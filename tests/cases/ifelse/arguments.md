@@ -20,6 +20,44 @@ const obj = {f, foo: 10};
 $(obj.f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  debugger;
+  const tmpIfTest /*:unknown*/ = $(1);
+  if (tmpIfTest) {
+    const tmpIfTest$1 /*:unknown*/ = $(2);
+    if (tmpIfTest$1) {
+      return tmpPrevalAliasArgumentsAny;
+    } else {
+      return undefined;
+    }
+  } else {
+    return undefined;
+  }
+};
+const tmpCalleeParam /*:unknown*/ = f();
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  if ($(1)) {
+    if ($(2)) {
+      return tmpPrevalAliasArgumentsAny;
+    }
+  }
+};
+$(f());
+`````
+
 ## Pre Normal
 
 
@@ -61,31 +99,7 @@ const tmpCalleeParam = obj.f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
-  debugger;
-  const tmpIfTest /*:unknown*/ = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 /*:unknown*/ = $(2);
-    if (tmpIfTest$1) {
-      return tmpPrevalAliasArgumentsAny;
-    } else {
-      return undefined;
-    }
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam /*:unknown*/ = f();
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +128,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -126,4 +140,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

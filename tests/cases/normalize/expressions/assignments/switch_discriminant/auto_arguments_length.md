@@ -17,6 +17,24 @@ switch ((a = arguments)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = arguments;
+$(100);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = arguments;
+$(100);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -43,17 +61,7 @@ $(100);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = arguments;
-$(100);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -68,7 +76,7 @@ BAD@! Found 1 implicit global bindings:
 
 arguments
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -79,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,21 @@ function f({ ...x }) {
 f(null);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:array*/ = [];
+objPatternRest(null, tmpCalleeParam$1, `x`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+objPatternRest(null, [], `x`);
+`````
+
 ## Pre Normal
 
 
@@ -44,16 +59,7 @@ let f = function ($$0) {
 f(null);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:array*/ = [];
-objPatternRest(null, tmpCalleeParam$1, `x`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +71,7 @@ objPatternRest( null, a, "x" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -74,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

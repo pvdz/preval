@@ -22,6 +22,48 @@ export class c {}
 export const x = $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  const x$1 /*:unknown*/ = $(1);
+  return x$1;
+};
+const g /*:(unknown)=>unknown*/ = function ($$0) {
+  const x$3 /*:unknown*/ = $$0;
+  debugger;
+  return x$3;
+};
+const c /*:class*/ = class {};
+export { c };
+const tmpCalleeParam /*:unknown*/ = $(1);
+const x /*:unknown*/ = $(tmpCalleeParam);
+export { x };
+export { f };
+export { g };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const x$1 = $(1);
+  return x$1;
+};
+const g = function (x$3) {
+  return x$3;
+};
+const c = class {};
+export { c };
+const x = $($(1));
+export { x };
+export { f };
+export { g };
+`````
+
 ## Pre Normal
 
 
@@ -67,31 +109,7 @@ export { f };
 export { g };
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  const x$1 /*:unknown*/ = $(1);
-  return x$1;
-};
-const g /*:(unknown)=>unknown*/ = function ($$0) {
-  const x$3 /*:unknown*/ = $$0;
-  debugger;
-  return x$3;
-};
-const c /*:class*/ = class {};
-export { c };
-const tmpCalleeParam /*:unknown*/ = $(1);
-const x /*:unknown*/ = $(tmpCalleeParam);
-export { x };
-export { f };
-export { g };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +138,7 @@ export { c as g };
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -129,4 +147,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

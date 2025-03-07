@@ -13,6 +13,23 @@ const { x: { ...y } = $({ a: 'fail' }) } = { x: null, b: 11, c: 12 };
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$3 /*:array*/ = [];
+objPatternRest(null, tmpCalleeParam$3, undefined);
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+objPatternRest(null, [], undefined);
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -41,17 +58,7 @@ const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$3 /*:array*/ = [];
-objPatternRest(null, tmpCalleeParam$3, undefined);
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +71,7 @@ $( "bad" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -73,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

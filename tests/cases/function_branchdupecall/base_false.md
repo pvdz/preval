@@ -30,6 +30,30 @@ const r = $(5);
 $(f(v, p, q, r));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(false);
+const p /*:unknown*/ = $(1);
+const q /*:unknown*/ = $(3);
+const r /*:unknown*/ = $(5);
+const tmpBinLhs /*:primitive*/ = p + q;
+const tmpReturnArg /*:primitive*/ = tmpBinLhs + r;
+$(tmpReturnArg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(false);
+const p = $(1);
+const q = $(3);
+const r = $(5);
+$(p + q + r);
+`````
+
 ## Pre Normal
 
 
@@ -97,21 +121,7 @@ const tmpCalleeParam = f(v, p, q, r);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(false);
-const p /*:unknown*/ = $(1);
-const q /*:unknown*/ = $(3);
-const r /*:unknown*/ = $(5);
-const tmpBinLhs /*:primitive*/ = p + q;
-const tmpReturnArg /*:primitive*/ = tmpBinLhs + r;
-$(tmpReturnArg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -128,7 +138,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false
@@ -142,4 +152,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

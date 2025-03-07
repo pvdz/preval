@@ -23,6 +23,37 @@ function f() {
 $(f.call({y: 1}));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  debugger;
+  $(tmpPrevalAliasThis);
+  $(tmpPrevalAliasThis);
+  const tmpReturnArg /*:unknown*/ = tmpPrevalAliasThis.y;
+  return tmpReturnArg;
+};
+const tmpCalleeParam$1 /*:object*/ = { y: 1 };
+const tmpCalleeParam /*:unknown*/ = f.call(tmpCalleeParam$1);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const tmpPrevalAliasThis = this;
+  $(tmpPrevalAliasThis);
+  $(tmpPrevalAliasThis);
+  const tmpReturnArg = tmpPrevalAliasThis.y;
+  return tmpReturnArg;
+};
+$(f.call({ y: 1 }));
+`````
+
 ## Pre Normal
 
 
@@ -67,25 +98,7 @@ const tmpCalleeParam = $dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam$1
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  debugger;
-  $(tmpPrevalAliasThis);
-  $(tmpPrevalAliasThis);
-  const tmpReturnArg /*:unknown*/ = tmpPrevalAliasThis.y;
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 /*:object*/ = { y: 1 };
-const tmpCalleeParam /*:unknown*/ = f.call(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +119,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { y: '1' }
@@ -118,4 +131,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

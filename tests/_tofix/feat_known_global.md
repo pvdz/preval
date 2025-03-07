@@ -87,6 +87,146 @@ $(typeof Number.POSITIVE_INFINITY, 'Number.POSITIVE_INFINITY');
 $(typeof Number.NaN, 'Number.NaN');
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$coerce($spy(`String`), `string`);
+$(`string`);
+$coerce($spy(`Number`), `number`);
+$(`number`);
+$spy(`Boolean`);
+$(`boolean`);
+$coerce($spy(`parseInt`), `string`);
+$(`number`);
+$coerce($spy(`parseFloat`), `string`);
+$(`number`);
+$coerce($spy(`isNaN`), `number`);
+$(`boolean`);
+$coerce($spy(`isFinite`), `number`);
+$(`boolean`);
+$Array_from($spy(`Array.from`));
+$(`object`);
+$spy(`Array.isArray`);
+$(`boolean`);
+$spy(`Array.of`);
+$(`object`);
+$spy(`Date.now`);
+$(`number`);
+const tmpCalleeParam$41 = $spy(`Date.UTC`);
++tmpCalleeParam$41;
+$(`number`);
+$coerce($spy(`Date.parse`), `string`);
+$(`number`);
+const tmpUnaryArg$25 = $JSON_stringify($spy(`JSON.stringify`));
+$(typeof tmpUnaryArg$25);
+$coerce($spy(`Math.abs`), `number`);
+$(`number`);
+$coerce($spy(`Math.acos`), `number`);
+$(`number`);
+$coerce($spy(`Math.acosh`), `number`);
+$(`number`);
+$coerce($spy(`Math.asin`), `number`);
+$(`number`);
+$coerce($spy(`Math.asinh`), `number`);
+$(`number`);
+$coerce($spy(`Math.atan`), `number`);
+$(`number`);
+const tmpCalleeParam$77 = $spy(`Math.atan2`);
++tmpCalleeParam$77;
+$(`number`);
+$coerce($spy(`Math.atanh`), `number`);
+$(`number`);
+$coerce($spy(`Math.cbrt`), `number`);
+$(`number`);
+$coerce($spy(`Math.ceil`), `number`);
+$(`number`);
+$coerce($spy(`Math.clz32`), `number`);
+$(`number`);
+$coerce($spy(`Math.cos`), `number`);
+$(`number`);
+$coerce($spy(`Math.cosh`), `number`);
+$(`number`);
+$coerce($spy(`Math.exp`), `number`);
+$(`number`);
+$coerce($spy(`Math.expm1`), `number`);
+$(`number`);
+$coerce($spy(`Math.floor`), `number`);
+$(`number`);
+$coerce($spy(`Math.fround`), `number`);
+$(`number`);
+const tmpCalleeParam$121 = $spy(`Math.hypot`);
++tmpCalleeParam$121;
+$(`number`);
+const tmpCalleeParam$125 = $spy(`Math.imul`);
++tmpCalleeParam$125;
+$(`number`);
+$coerce($spy(`Math.log`), `number`);
+$(`number`);
+$coerce($spy(`Math.log10`), `number`);
+$(`number`);
+$coerce($spy(`Math.log1p`), `number`);
+$(`number`);
+$coerce($spy(`Math.log2`), `number`);
+$(`number`);
+const tmpCalleeParam$145 = $spy(`Math.max`);
++tmpCalleeParam$145;
+$(`number`);
+const tmpCalleeParam$149 = $spy(`Math.min`);
++tmpCalleeParam$149;
+$(`number`);
+const tmpCalleeParam$153 = $spy(`Math.pow`);
++tmpCalleeParam$153;
+$(`number`);
+$spy(`Math.random`);
+$(`number`);
+$coerce($spy(`Math.round`), `number`);
+$(`number`);
+$coerce($spy(`Math.sign`), `number`);
+$(`number`);
+$coerce($spy(`Math.sin`), `number`);
+$(`number`);
+$spy(`Number.isFinite`);
+$(`boolean`);
+$spy(`Number.isInteger`);
+$(`boolean`);
+$spy(`Number.isNaN`);
+$(`boolean`);
+$spy(`Number.isSafeInteger`);
+$(`boolean`);
+$coerce($spy(`Number.parseFloat`), `string`);
+$(`number`);
+$coerce($spy(`Number.parseInt`), `string`);
+$(`number`);
+$spy(`Object.is`);
+$(`boolean`);
+$spy(`Object.isFrozen`);
+$(`boolean`);
+$spy(`Object.isSealed`);
+$(`boolean`);
+const tmpCalleeParam$209 = $spy(`String.fromCharCode`);
++tmpCalleeParam$209;
+$(`string`);
+$String_fromCodePoint($spy(`String.fromCodePoint`));
+$(`string`);
+$String_raw($spy(`String.raw`));
+$(`string`);
+$(`number`, `Math.E`);
+$(`number`, `Math.LN10`);
+$(`number`, `Math.LN2`);
+$(`number`, `Math.LOG10E`);
+$(`number`, `Math.LOG2E`);
+$(`number`, `Math.PI`);
+$(`number`, `Math.SQRT1_2`);
+$(`number`, `Math.SQRT2`);
+$(`number`, `Number.EPSILON`);
+$(`number`, `Number.MAX_VALUE`);
+$(`number`, `Number.MIN_VALUE`);
+$(`number`, `Number.NEGATIVE_INFINITY`);
+$(`number`, `Number.POSITIVE_INFINITY`);
+$(`number`, `Number.NaN`);
+`````
+
 ## Pre Normal
 
 
@@ -435,7 +575,7 @@ const tmpCalleeParam$245 = typeof tmpUnaryArg$137;
 $(tmpCalleeParam$245, `Number.NaN`);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -612,8 +752,7 @@ $(`number`, `Number.POSITIVE_INFINITY`);
 $(`number`, `Number.NaN`);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -829,4 +968,56 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_from
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_isArray
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_of
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Date_now
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Date_UTC
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Date_parse
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $JSON_stringify
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_abs
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_acos
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_acosh
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_asin
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_asinh
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_atan
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_atan2
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_atanh
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_cbrt
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_ceil
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_clz32
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_cos
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_cosh
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_exp
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_expm1
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_floor
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_fround
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_hypot
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_imul
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log10
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log1p
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log2
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_max
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_min
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_pow
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_random
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_round
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_sign
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_sin
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_isFinite
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_isInteger
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_isNaN
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_isSafeInteger
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_parseFloat
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_parseInt
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_is
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_isFrozen
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_isSealed
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $String_fromCodePoint
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $String_raw

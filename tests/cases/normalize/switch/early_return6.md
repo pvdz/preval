@@ -28,6 +28,22 @@ const tmpReturnArg$11 = tmpBranchingB(1);
 $(tmpReturnArg$11);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(0);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(0);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -77,16 +93,7 @@ const tmpReturnArg$11 = tmpBranchingB(1);
 $(tmpReturnArg$11);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(0);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +105,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -109,4 +116,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

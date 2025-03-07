@@ -27,6 +27,23 @@ $(f(300));
 $(f('three'));
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+};
+f();
+$([1, 2, 3].toString());
+f();
+$(`300`);
+f();
+$(`three`);
+`````
+
 ## Pre Normal
 
 
@@ -68,7 +85,7 @@ const tmpCalleeParam$5 = f(`three`);
 $(tmpCalleeParam$5);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -89,8 +106,7 @@ f();
 $(`three`);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -136,4 +152,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_toString

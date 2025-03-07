@@ -22,6 +22,15 @@ let x = function (a, b) {
 x(undefined, {x: 1});
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  throw `Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ;`;
+}
+`````
+
 ## Pre Normal
 
 
@@ -68,7 +77,7 @@ const tmpCalleeParam$1 = { x: 1 };
 tmpCallCallee(undefined, tmpCalleeParam$1);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -79,8 +88,7 @@ if (tmpIfTest) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,4 +114,6 @@ Normalized calls: BAD!?
  - 1: true
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

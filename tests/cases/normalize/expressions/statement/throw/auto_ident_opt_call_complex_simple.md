@@ -14,6 +14,33 @@ throw $($)?.(1);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpThrowArg /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
+  tmpThrowArg = tmpChainElementCall$1;
+}
+throw tmpThrowArg;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpThrowArg = undefined;
+const tmpChainElementCall = $($);
+if (!(tmpChainElementCall == null)) {
+  tmpThrowArg = $dotCall(tmpChainElementCall, $, undefined, 1);
+}
+throw tmpThrowArg;
+`````
+
 ## Pre Normal
 
 
@@ -40,23 +67,7 @@ if (tmpIfTest) {
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpThrowArg /*:unknown*/ = undefined;
-const tmpChainElementCall /*:unknown*/ = $($);
-const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  tmpThrowArg = tmpChainElementCall$1;
-}
-throw tmpThrowArg;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +88,7 @@ throw a;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -88,4 +99,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

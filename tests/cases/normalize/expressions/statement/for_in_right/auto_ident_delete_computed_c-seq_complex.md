@@ -16,6 +16,51 @@ for (let x in delete ($(1), $(2), $(arg))[$("y")]);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+const tmpCalleeParam /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const arg = { y: 1 };
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $(`y`);
+const tmpForInGen = $forIn(delete tmpDeleteCompObj[tmpDeleteCompProp]);
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 }, arg);
+`````
+
 ## Pre Normal
 
 
@@ -60,32 +105,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj /*:unknown*/ = $(arg);
-const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpCalleeParam /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -117,7 +137,7 @@ $( h, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -131,7 +151,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

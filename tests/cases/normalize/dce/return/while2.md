@@ -21,6 +21,34 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  const tmpReturnArg /*:unknown*/ = $(1, `return`);
+  tmpCalleeParam = tmpReturnArg;
+} else {
+  $(`keep, do not eval`);
+}
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = undefined;
+if ($(true)) {
+  tmpCalleeParam = $(1, `return`);
+} else {
+  $(`keep, do not eval`);
+}
+$(tmpCalleeParam);
+`````
+
 ## Pre Normal
 
 
@@ -58,23 +86,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpReturnArg /*:unknown*/ = $(1, `return`);
-  tmpCalleeParam = tmpReturnArg;
-} else {
-  $(`keep, do not eval`);
-}
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -94,7 +106,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -106,4 +118,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

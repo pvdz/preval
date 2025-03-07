@@ -17,6 +17,30 @@ if (x === 100) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(100);
+const tmpIfTest /*:boolean*/ = x === 100;
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(`nope`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(100) === 100) {
+  $(100);
+} else {
+  $(`nope`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -42,21 +66,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(100);
-const tmpIfTest /*:boolean*/ = x === 100;
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(`nope`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +84,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -85,4 +95,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -24,6 +24,59 @@ $(g());
 $(g());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpFuncLock /*:boolean*/ = true;
+const f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  const a /*:unknown*/ = $$0;
+  const b /*:unknown*/ = $$1;
+  const c /*:unknown*/ = $$2;
+  debugger;
+  $(`call me once`, tmpPrevalAliasThis, a, b, c);
+  return undefined;
+};
+const g /*:()=>undefined*/ = function () {
+  debugger;
+  if (tmpFuncLock) {
+    const obj /*:object*/ = {};
+    f.call(obj, 1, 2, 3);
+    tmpFuncLock = false;
+    return undefined;
+  } else {
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpFuncLock = true;
+const f = function (a, b, c) {
+  $(`call me once`, this, a, b, c);
+};
+const g = function () {
+  if (tmpFuncLock) {
+    f.call({}, 1, 2, 3);
+    tmpFuncLock = false;
+  } else {
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -80,39 +133,7 @@ const tmpCalleeParam$1 = g();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpFuncLock /*:boolean*/ = true;
-const f /*:(unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  const a /*:unknown*/ = $$0;
-  const b /*:unknown*/ = $$1;
-  const c /*:unknown*/ = $$2;
-  debugger;
-  $(`call me once`, tmpPrevalAliasThis, a, b, c);
-  return undefined;
-};
-const g /*:()=>undefined*/ = function () {
-  debugger;
-  if (tmpFuncLock) {
-    const obj /*:object*/ = {};
-    f.call(obj, 1, 2, 3);
-    tmpFuncLock = false;
-    return undefined;
-  } else {
-    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
-  }
-};
-g();
-$(undefined);
-g();
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -148,7 +169,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'call me once', {}, 1, 2, 3
@@ -159,4 +180,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

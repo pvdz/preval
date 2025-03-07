@@ -16,6 +16,33 @@ if ((a = (1, 2, $(b))?.x));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpChainRootProp /*:unknown*/ = $(b);
+const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
+if (tmpIfTest$1) {
+  $(undefined);
+} else {
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
+  $(tmpChainElementObject);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainRootProp = $({ x: 1 });
+if (tmpChainRootProp == null) {
+  $(undefined);
+} else {
+  $(tmpChainRootProp.x);
+}
+`````
+
 ## Pre Normal
 
 
@@ -44,23 +71,7 @@ let tmpIfTest = a;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpChainRootProp /*:unknown*/ = $(b);
-const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
-if (tmpIfTest$1) {
-  $(undefined);
-} else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  $(tmpChainElementObject);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +91,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -91,4 +102,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

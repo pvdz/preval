@@ -17,6 +17,40 @@ while (({ x, y } = ($(x), $(y), { x: $(3), y: $(4) }))) $(100);
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(x);
+  $(y);
+  const tmpObjLitVal /*:unknown*/ = $(3);
+  const tmpObjLitVal$1 /*:unknown*/ = $(4);
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
+  $(100);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+while (true) {
+  $(x);
+  $(y);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
+  $(100);
+}
+`````
+
 ## Pre Normal
 
 
@@ -54,25 +88,7 @@ while (true) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(x);
-  $(y);
-  const tmpObjLitVal /*:unknown*/ = $(3);
-  const tmpObjLitVal$1 /*:unknown*/ = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
-  $(100);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +109,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -128,4 +144,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

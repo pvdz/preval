@@ -21,6 +21,20 @@ const tmpCallCallee= tmpCallComplexCallee();
 tmpCallCallee(`$('win')`);
 `````
 
+## Settled
+
+
+`````js filename=intro
+eval(`$('win')`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+eval(`$('win')`);
+`````
+
 ## Pre Normal
 
 
@@ -60,15 +74,7 @@ const tmpCallCallee = tmpCallComplexCallee();
 tmpCallCallee(`$('win')`);
 `````
 
-## Output
-
-
-`````js filename=intro
-eval(`$('win')`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +85,7 @@ eval( "$('win')" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -88,6 +94,10 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - 1: 'win'
+ - eval returned: undefined
+
+Denormalized calls: BAD!!
  - 1: 'win'
  - eval returned: undefined

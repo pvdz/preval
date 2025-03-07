@@ -18,6 +18,21 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClusterSSA_b /*:object*/ = { c: 2 };
+$(2, tmpClusterSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(2, { c: 2 });
+`````
+
 ## Pre Normal
 
 
@@ -54,16 +69,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { c: 2 };
-$(2, tmpClusterSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +81,7 @@ $( 2, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2, { c: '2' }
@@ -85,4 +91,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

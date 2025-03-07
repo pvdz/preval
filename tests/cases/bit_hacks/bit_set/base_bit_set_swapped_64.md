@@ -19,6 +19,31 @@ if (set) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const v /*:unknown*/ = $(64);
+const and /*:number*/ = 64 & v;
+if (and) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const v = $(64);
+if (64 & v) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,21 +72,7 @@ if (set) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const v /*:unknown*/ = $(64);
-const and /*:number*/ = 64 & v;
-if (and) {
-  $(`fail`);
-} else {
-  $(`pass`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +90,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 64
@@ -90,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

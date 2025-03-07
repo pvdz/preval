@@ -17,6 +17,31 @@ f(...x); // This should NOT be inlined (for now) because we can't safely reason 
          // (In the future we could still translate this case by $(x[0]) but that'll be a very specific rule)
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`pass`);
+const f /*:(unknown)=>undefined*/ = function ($$0) {
+  const y /*:unknown*/ = $$0;
+  debugger;
+  $(y);
+  return undefined;
+};
+f(...x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $(`pass`);
+const f = function (y) {
+  $(y);
+};
+f(...x);
+`````
+
 ## Pre Normal
 
 
@@ -44,22 +69,7 @@ const f = function ($$0) {
 f(...x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`pass`);
-const f /*:(unknown)=>undefined*/ = function ($$0) {
-  const y /*:unknown*/ = $$0;
-  debugger;
-  $(y);
-  return undefined;
-};
-f(...x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +87,7 @@ b( ...a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -88,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

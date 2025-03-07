@@ -31,6 +31,52 @@ const tmp = $frfr(g, x, y);
 $(tmp);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:(number, number)=>number*/ = function $free($$0, $$1) {
+  const n /*:number*/ = $$0;
+  const o /*:number*/ = $$1;
+  debugger;
+  const p /*:number*/ = n * 20;
+  const q /*:number*/ = o * 40;
+  const c /*:number*/ = p + q;
+  const d /*:number*/ = c * 10;
+  const tmpIfTest /*:boolean*/ = d > 40;
+  if (tmpIfTest) {
+    const tmpReturnArg /*:number*/ = d * 10;
+    return tmpReturnArg;
+  } else {
+    return d;
+  }
+};
+const tmpBinLhs /*:unknown*/ = $(100);
+const x /*:number*/ = tmpBinLhs * 1;
+const tmpBinLhs$1 /*:unknown*/ = $(200);
+const y /*:number*/ = tmpBinLhs$1 * 1;
+const tmp /*:number*/ = $frfr(g, x, y);
+$(tmp);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function $free(n, o) {
+  const p = n * 20;
+  const d = (p + o * 40) * 10;
+  if (d > 40) {
+    const tmpReturnArg = d * 10;
+    return tmpReturnArg;
+  } else {
+    return d;
+  }
+};
+const x = $(100) * 1;
+$($frfr(g, x, $(200) * 1));
+`````
+
 ## Pre Normal
 
 
@@ -96,36 +142,7 @@ const tmp = $frfr(g, x, y);
 $(tmp);
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:(number, number)=>number*/ = function $free($$0, $$1) {
-  const n /*:number*/ = $$0;
-  const o /*:number*/ = $$1;
-  debugger;
-  const p /*:number*/ = n * 20;
-  const q /*:number*/ = o * 40;
-  const c /*:number*/ = p + q;
-  const d /*:number*/ = c * 10;
-  const tmpIfTest /*:boolean*/ = d > 40;
-  if (tmpIfTest) {
-    const tmpReturnArg /*:number*/ = d * 10;
-    return tmpReturnArg;
-  } else {
-    return d;
-  }
-};
-const tmpBinLhs /*:unknown*/ = $(100);
-const x /*:number*/ = tmpBinLhs * 1;
-const tmpBinLhs$1 /*:unknown*/ = $(200);
-const y /*:number*/ = tmpBinLhs$1 * 1;
-const tmp /*:number*/ = $frfr(g, x, y);
-$(tmp);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -158,7 +175,7 @@ $( o );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -170,4 +187,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

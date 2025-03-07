@@ -15,6 +15,20 @@ const f = function(a, b, c, d, e) {
 f(1, 2, 3, 4, 5); // The use of `arguments.length` should prevent inlining this call, for now, although inlining the arg count probably won't take very long
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(5);
+`````
+
 ## Pre Normal
 
 
@@ -50,15 +64,7 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
 f(1, 2, 3, 4, 5);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +75,7 @@ $( 5 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5
@@ -79,4 +85,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,22 @@ function f({ x: { ...y } = $({ a: 'fail' }) } = $({ x: { a: 'fail2' } })) {
 $(f({ x: 'abc', b: 11, c: 12 }, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$5 /*:array*/ = [];
+const y /*:unknown*/ = objPatternRest(`abc`, tmpCalleeParam$5, undefined);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(objPatternRest(`abc`, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -64,17 +80,7 @@ const tmpCalleeParam$7 = tmpCallCallee(tmpCalleeParam$9, 10);
 $(tmpCalleeParam$7);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$5 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(`abc`, tmpCalleeParam$5, undefined);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +93,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { 0: '"a"', 1: '"b"', 2: '"c"' }
@@ -97,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

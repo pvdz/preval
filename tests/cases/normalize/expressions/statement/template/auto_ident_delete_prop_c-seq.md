@@ -16,6 +16,44 @@ $(`before  ${delete ($(1), $(2), $(arg)).y}  after`);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
+  const tmpCalleeParam$2 /*:boolean*/ = $$0;
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
+$(1);
+$(2);
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteObj /*:unknown*/ = $(arg);
+const tmpCalleeParam$1 /*:boolean*/ = delete tmpDeleteObj.y;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCalleeParam$1);
+$(tmpCalleeParam);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(tmpCalleeParam$2) {
+  const tmpRet = `before  ${tmpCalleeParam$2}  after`;
+  return tmpRet;
+};
+$(1);
+$(2);
+const arg = { y: 1 };
+const tmpDeleteObj = $(arg);
+$($frfr(tmpFree, delete tmpDeleteObj.y));
+$({ a: 999, b: 1000 }, arg);
+`````
+
 ## Pre Normal
 
 
@@ -45,30 +83,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
-  const tmpCalleeParam$2 /*:boolean*/ = $$0;
-  debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-  return tmpRet;
-};
-$(1);
-$(2);
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpCalleeParam$1 /*:boolean*/ = delete tmpDeleteObj.y;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCalleeParam$1);
-$(tmpCalleeParam);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +112,7 @@ $( k, f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -111,4 +126,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

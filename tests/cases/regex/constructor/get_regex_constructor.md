@@ -15,6 +15,21 @@ const y = c('x', 'g');
 $(y); // the regex `/x/g`
 `````
 
+## Settled
+
+
+`````js filename=intro
+const y /*:regex*/ = /x/g;
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(/x/g);
+`````
+
 ## Pre Normal
 
 
@@ -35,16 +50,7 @@ const y = c(`x`, `g`);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const y /*:regex*/ = /x/g;
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +62,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: {}
@@ -66,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

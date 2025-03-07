@@ -17,6 +17,28 @@ obj[delete arg["y"]];
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arg /*:object*/ = { y: 1 };
+const tmpCompProp /*:boolean*/ = delete arg.y;
+const obj /*:object*/ = {};
+obj[tmpCompProp];
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arg = { y: 1 };
+const tmpCompProp = delete arg.y;
+({}[tmpCompProp]);
+$({ a: 999, b: 1000 }, arg);
+`````
+
 ## Pre Normal
 
 
@@ -41,20 +63,7 @@ tmpCompObj[tmpCompProp];
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arg /*:object*/ = { y: 1 };
-const tmpCompProp /*:boolean*/ = delete arg.y;
-const obj /*:object*/ = {};
-obj[tmpCompProp];
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +82,7 @@ $( d, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '999', b: '1000' }, {}
@@ -83,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

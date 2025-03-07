@@ -30,6 +30,62 @@ while (true) {
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+const z /*:unknown*/ = $(3);
+const test /*:unknown*/ = $(z);
+if (test) {
+  const p /*:unknown*/ = $(3);
+  $(4);
+  x = p;
+  y = z;
+  while ($LOOP_UNROLL_10) {
+    const test$1 /*:unknown*/ = $(0);
+    if (test$1) {
+      const p$1 /*:unknown*/ = $(3);
+      $(4);
+      x = p$1;
+      y = 0;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, x, y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+const z = $(3);
+if ($(z)) {
+  const p = $(3);
+  $(4);
+  x = p;
+  y = z;
+  while (true) {
+    if ($(0)) {
+      const p$1 = $(3);
+      $(4);
+      x = p$1;
+      y = 0;
+    } else {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, x, y);
+`````
+
 ## Pre Normal
 
 
@@ -78,38 +134,7 @@ while (true) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-const z /*:unknown*/ = $(3);
-const test /*:unknown*/ = $(z);
-if (test) {
-  const p /*:unknown*/ = $(3);
-  $(4);
-  x = p;
-  y = z;
-  while ($LOOP_UNROLL_10) {
-    const test$1 /*:unknown*/ = $(0);
-    if (test$1) {
-      const p$1 /*:unknown*/ = $(3);
-      $(4);
-      x = p$1;
-      y = 0;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, x, y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -146,7 +171,7 @@ $( h, a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 3
@@ -161,4 +186,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

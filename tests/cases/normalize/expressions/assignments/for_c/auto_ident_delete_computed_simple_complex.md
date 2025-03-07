@@ -16,6 +16,52 @@ for (; $(1); a = delete arg[$("y")]);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+const arg /*:object*/ = { y: 1 };
+if (tmpIfTest) {
+  const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+  a = delete arg[tmpDeleteCompProp];
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
+      a = delete arg[tmpDeleteCompProp$1];
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+const arg = { y: 1 };
+if (tmpIfTest) {
+  const tmpDeleteCompProp = $(`y`);
+  a = delete arg[tmpDeleteCompProp];
+  while (true) {
+    if ($(1)) {
+      const tmpDeleteCompProp$1 = $(`y`);
+      a = delete arg[tmpDeleteCompProp$1];
+    } else {
+      break;
+    }
+  }
+}
+$(a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -49,32 +95,7 @@ while (true) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-const arg /*:object*/ = { y: 1 };
-if (tmpIfTest) {
-  const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-  a = delete arg[tmpDeleteCompProp];
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
-      a = delete arg[tmpDeleteCompProp$1];
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +126,7 @@ $( a, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -140,7 +161,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

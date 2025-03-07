@@ -15,6 +15,33 @@ while ({...$({a: $(1), b: $(2)})}) {
 $('after');
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpObjLitVal /*:unknown*/ = $(1);
+  const tmpObjLitVal$1 /*:unknown*/ = $(2);
+  const tmpCalleeParam /*:object*/ = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
+  const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
+  ({ ...tmpObjSpread });
+  $(`loop`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  const tmpObjLitVal = $(1);
+  const tmpObjLitVal$1 = $(2);
+  const tmpObjSpread = $({ a: tmpObjLitVal, b: tmpObjLitVal$1 });
+  ({ ...tmpObjSpread });
+  $(`loop`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -44,22 +71,7 @@ while (true) {
 $(`after`);
 `````
 
-## Output
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpObjLitVal /*:unknown*/ = $(1);
-  const tmpObjLitVal$1 /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:object*/ = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
-  const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
-  ({ ...tmpObjSpread });
-  $(`loop`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -115,4 +127,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

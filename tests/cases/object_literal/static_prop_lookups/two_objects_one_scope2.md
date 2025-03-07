@@ -26,6 +26,23 @@ problem2 = {};
 $(problem2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$Object_prototype.now;
+const tmpClusterSSA_problem2 /*:object*/ = {};
+$(tmpClusterSSA_problem2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$Object_prototype.now;
+$({});
+`````
+
 ## Pre Normal
 
 
@@ -56,17 +73,7 @@ problem2 = {};
 $(problem2);
 `````
 
-## Output
-
-
-`````js filename=intro
-$Object_prototype.now;
-const tmpClusterSSA_problem2 /*:object*/ = {};
-$(tmpClusterSSA_problem2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +86,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: {}
@@ -89,4 +96,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

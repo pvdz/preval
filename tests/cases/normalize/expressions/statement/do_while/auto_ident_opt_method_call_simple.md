@@ -18,6 +18,45 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const b /*:object*/ = { c: $ };
+const tmpChainElementCall /*:unknown*/ = b.c(1);
+if (tmpChainElementCall) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpChainElementCall$1 /*:unknown*/ = b.c(1);
+    if (tmpChainElementCall$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+const b = { c: $ };
+if (b.c(1)) {
+  while (true) {
+    $(100);
+    if (!b.c(1)) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -60,30 +99,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = b.c(1);
-if (tmpChainElementCall) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpChainElementCall$1 /*:unknown*/ = b.c(1);
-    if (tmpChainElementCall$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -113,7 +129,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -148,7 +164,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

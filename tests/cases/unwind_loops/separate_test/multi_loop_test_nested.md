@@ -22,6 +22,68 @@ while (test) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let counter /*:number*/ = 0;
+while (true) {
+  $(`yolo`);
+  const tmpClusterSSA_counter /*:number*/ = counter + 1;
+  const tmpClusterSSA_test /*:boolean*/ = tmpClusterSSA_counter < 10;
+  if (tmpClusterSSA_test) {
+    $(`yolo`);
+    counter = tmpClusterSSA_counter + 1;
+    let tmpClusterSSA_test$1 /*:boolean*/ = counter < 10;
+    while ($LOOP_UNROLL_9) {
+      if (tmpClusterSSA_test$1) {
+        $(`yolo`);
+        counter = counter + 1;
+        tmpClusterSSA_test$1 = counter < 10;
+      } else {
+        break;
+      }
+    }
+    if (tmpClusterSSA_test$1) {
+    } else {
+      break;
+    }
+  } else {
+    break;
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let counter = 0;
+while (true) {
+  $(`yolo`);
+  const tmpClusterSSA_counter = counter + 1;
+  if (tmpClusterSSA_counter < 10) {
+    $(`yolo`);
+    counter = tmpClusterSSA_counter + 1;
+    let tmpClusterSSA_test$1 = counter < 10;
+    while (true) {
+      if (tmpClusterSSA_test$1) {
+        $(`yolo`);
+        counter = counter + 1;
+        tmpClusterSSA_test$1 = counter < 10;
+      } else {
+        break;
+      }
+    }
+    if (!tmpClusterSSA_test$1) {
+      break;
+    }
+  } else {
+    break;
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -62,40 +124,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let counter /*:number*/ = 0;
-while (true) {
-  $(`yolo`);
-  const tmpClusterSSA_counter /*:number*/ = counter + 1;
-  const tmpClusterSSA_test /*:boolean*/ = tmpClusterSSA_counter < 10;
-  if (tmpClusterSSA_test) {
-    $(`yolo`);
-    counter = tmpClusterSSA_counter + 1;
-    let tmpClusterSSA_test$1 /*:boolean*/ = counter < 10;
-    while ($LOOP_UNROLL_9) {
-      if (tmpClusterSSA_test$1) {
-        $(`yolo`);
-        counter = counter + 1;
-        tmpClusterSSA_test$1 = counter < 10;
-      } else {
-        break;
-      }
-    }
-    if (tmpClusterSSA_test$1) {
-    } else {
-      break;
-    }
-  } else {
-    break;
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -135,7 +164,7 @@ while (true) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'yolo'
@@ -154,7 +183,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

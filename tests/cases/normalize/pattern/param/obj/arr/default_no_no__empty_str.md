@@ -15,6 +15,24 @@ function f({ x: [] }) {
 $(f('', 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternNoDefault /*:unknown*/ = ``.x;
+[...objPatternNoDefault];
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternNoDefault = ``.x;
+[...objPatternNoDefault];
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -46,17 +64,7 @@ const tmpCalleeParam = f(``, 10);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternNoDefault /*:unknown*/ = ``.x;
-[...objPatternNoDefault];
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +77,7 @@ $( "bad" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -79,5 +87,8 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Denormalized calls: BAD!!
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

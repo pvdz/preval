@@ -17,6 +17,22 @@ switch ($(1)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(`foo`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(`foo`);
+`````
+
 ## Pre Normal
 
 
@@ -42,16 +58,7 @@ a = `foo`;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(`foo`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +70,7 @@ $( "foo" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -74,4 +81,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

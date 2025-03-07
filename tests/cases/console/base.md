@@ -12,6 +12,20 @@
 console.log('console test case');
 `````
 
+## Settled
+
+
+`````js filename=intro
+console.log(`console test case`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+console.log(`console test case`);
+`````
+
 ## Pre Normal
 
 
@@ -26,15 +40,7 @@ console.log(`console test case`);
 console.log(`console test case`);
 `````
 
-## Output
-
-
-`````js filename=intro
-console.log(`console test case`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -45,7 +51,7 @@ console.log( "console test case" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -54,4 +60,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

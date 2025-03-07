@@ -14,6 +14,27 @@ $(`before  ${1 && $($(1))}  after`);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+$(tmpCalleeParam);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`before  ${$($(1))}  after`);
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -43,21 +64,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$3 /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +84,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -90,4 +97,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

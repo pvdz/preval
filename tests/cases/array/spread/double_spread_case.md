@@ -26,6 +26,39 @@ const zz = ['z', ...y, ...x, 'z'];
 $(aa, zz, a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(`x`);
+$(`y`);
+const tmpClusterSSA_a /*:unknown*/ = $(`u`);
+const b /*:unknown*/ = $(`w`);
+const tmpClusterSSA_a$1 /*:unknown*/ = $(`o`);
+const tmpClusterSSA_b /*:unknown*/ = $(`p`);
+const aa /*:array*/ = [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, `a`];
+const zz /*:array*/ = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`];
+$(aa, zz, tmpClusterSSA_a$1, tmpClusterSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = $(`x`);
+$(`y`);
+const tmpClusterSSA_a = $(`u`);
+const b = $(`w`);
+const tmpClusterSSA_a$1 = $(`o`);
+const tmpClusterSSA_b = $(`p`);
+$(
+  [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, `a`],
+  [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`],
+  tmpClusterSSA_a$1,
+  tmpClusterSSA_b,
+);
+`````
+
 ## Pre Normal
 
 
@@ -60,23 +93,7 @@ const zz = [`z`, ...y, ...x, `z`];
 $(aa, zz, a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(`x`);
-$(`y`);
-const tmpClusterSSA_a /*:unknown*/ = $(`u`);
-const b /*:unknown*/ = $(`w`);
-const tmpClusterSSA_a$1 /*:unknown*/ = $(`o`);
-const tmpClusterSSA_b /*:unknown*/ = $(`p`);
-const aa /*:array*/ = [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, `a`];
-const zz /*:array*/ = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`];
-$(aa, zz, tmpClusterSSA_a$1, tmpClusterSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -95,7 +112,7 @@ $( f, g, d, e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -111,4 +128,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

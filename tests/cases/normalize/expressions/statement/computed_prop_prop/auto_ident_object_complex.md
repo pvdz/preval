@@ -15,6 +15,31 @@ obj[{ x: $(1), y: 2, z: $(3) }];
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpObjLitVal$3 /*:unknown*/ = $(3);
+const obj /*:object*/ = {};
+const tmpCompProp /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+obj[tmpCompProp];
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$3 = $(3);
+const obj = {};
+const tmpCompProp = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+obj[tmpCompProp];
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -40,21 +65,7 @@ tmpCompObj[tmpCompProp];
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-const tmpObjLitVal$3 /*:unknown*/ = $(3);
-const obj /*:object*/ = {};
-const tmpCompProp /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-obj[tmpCompProp];
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +89,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -90,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

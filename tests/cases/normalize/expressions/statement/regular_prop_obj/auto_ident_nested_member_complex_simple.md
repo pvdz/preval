@@ -19,6 +19,39 @@ let obj = {};
 $(a, b, c, d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const c /*:object*/ = { y: 2 };
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+(3).a;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b, c, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $(`x`);
+const c = { y: 2 };
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $(`y`);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+(3).a;
+$({ a: 999, b: 1000 }, b, c, 3);
+`````
+
 ## Pre Normal
 
 
@@ -54,25 +87,7 @@ tmpCompObj.a;
 $(a, b, c, d);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-(3).a;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, c, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +111,7 @@ $( g, a, d, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -110,4 +125,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

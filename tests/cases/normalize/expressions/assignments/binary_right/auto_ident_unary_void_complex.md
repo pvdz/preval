@@ -14,6 +14,27 @@ $($(100) + (a = void $(100)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+$(100);
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
+$(tmpCalleeParam);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(100);
+$(100);
+$(tmpBinBothLhs + undefined);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -37,19 +58,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-$(100);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
-$(tmpCalleeParam);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +73,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -77,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

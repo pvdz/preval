@@ -19,6 +19,34 @@ throw (a = $(b)[$("x")] = $(c)[$("y")] = d + e);
 $(a, b, c, d, e);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+const c /*:object*/ = { y: 2 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+throw 7;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignComMemberObj = $({ x: 1 });
+const tmpNestedAssignComMemberProp = $(`x`);
+const varInitAssignLhsComputedObj = $({ y: 2 });
+const varInitAssignLhsComputedProp = $(`y`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+throw 7;
+`````
+
 ## Pre Normal
 
 
@@ -55,23 +83,7 @@ let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-throw 7;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -90,7 +102,7 @@ throw 7;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -103,4 +115,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -14,6 +14,26 @@ $('before');
 $('after');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`before`);
+const tmpCallComplexCallee /*:class*/ = class x {};
+tmpCallComplexCallee();
+$(`after`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`before`);
+const tmpCallComplexCallee = class x {};
+tmpCallComplexCallee();
+$(`after`);
+`````
+
 ## Pre Normal
 
 
@@ -33,18 +53,7 @@ tmpCallComplexCallee();
 $(`after`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`before`);
-const tmpCallComplexCallee /*:class*/ = class x {};
-tmpCallComplexCallee();
-$(`after`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +71,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'before'
@@ -72,4 +81,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

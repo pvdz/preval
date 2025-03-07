@@ -96,6 +96,91 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  $(1, 2);
+} else {
+  $(1, 3);
+}
+$(4);
+if ($) {
+  $(1, 2);
+} else {
+}
+$(4);
+if ($) {
+} else {
+  $(1, 3);
+}
+$(4);
+$(4);
+if ($) {
+  $(1, 2);
+  $(10);
+} else {
+  $(1, 3);
+}
+$(4);
+if ($) {
+} else {
+  $(1, 2);
+  $(10, 3);
+}
+$(4);
+if ($) {
+  $(1, 2);
+  $(10, 3);
+} else {
+  $(1, 4);
+  $(10, 5);
+}
+$(4);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $(1, 2);
+} else {
+  $(1, 3);
+}
+$(4);
+if ($) {
+  $(1, 2);
+}
+$(4);
+if (!$) {
+  $(1, 3);
+}
+$(4);
+$(4);
+if ($) {
+  $(1, 2);
+  $(10);
+} else {
+  $(1, 3);
+}
+$(4);
+if (!$) {
+  $(1, 2);
+  $(10, 3);
+}
+$(4);
+if ($) {
+  $(1, 2);
+  $(10, 3);
+} else {
+  $(1, 4);
+  $(10, 5);
+}
+$(4);
+`````
+
 ## Pre Normal
 
 
@@ -237,52 +322,7 @@ x$11 = 4;
 $(x$11);
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  $(1, 2);
-} else {
-  $(1, 3);
-}
-$(4);
-if ($) {
-  $(1, 2);
-} else {
-}
-$(4);
-if ($) {
-} else {
-  $(1, 3);
-}
-$(4);
-$(4);
-if ($) {
-  $(1, 2);
-  $(10);
-} else {
-  $(1, 3);
-}
-$(4);
-if ($) {
-} else {
-  $(1, 2);
-  $(10, 3);
-}
-$(4);
-if ($) {
-  $(1, 2);
-  $(10, 3);
-} else {
-  $(1, 4);
-  $(10, 5);
-}
-$(4);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -336,7 +376,7 @@ $( 4 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 2
@@ -358,4 +398,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

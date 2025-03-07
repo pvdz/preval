@@ -15,6 +15,27 @@ const {
 };
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.a;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  $(`default`);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($Object_prototype.a === undefined) {
+  $(`default`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -37,20 +58,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.a;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  $(`default`);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +73,7 @@ if (b) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'default'
@@ -75,4 +83,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

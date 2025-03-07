@@ -23,6 +23,23 @@ let x = $(2);
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+const x /*:unknown*/ = $(2);
+$(x, `f`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$($(2), `f`);
+`````
+
 ## Pre Normal
 
 
@@ -68,17 +85,7 @@ let x = $(2);
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-const x /*:unknown*/ = $(2);
-$(x, `f`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +98,7 @@ $( a, "f" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -103,7 +110,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - free with zero args, we can eliminate this?

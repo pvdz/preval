@@ -21,6 +21,24 @@ $(x() !== x());
 $(x() === zzzz());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(false);
+$(true);
+$(false);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(false);
+$(true);
+$(false);
+`````
+
 ## Pre Normal
 
 
@@ -62,17 +80,7 @@ const tmpCalleeParam$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(false);
-$(true);
-$(false);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -85,7 +93,7 @@ $( false );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false
@@ -97,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -13,6 +13,27 @@ const obj = {a: {b: {c: $()}}};
 $(obj??a??b??c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$3 /*:unknown*/ = $();
+const tmpObjLitVal$1 /*:object*/ = { c: tmpObjLitVal$3 };
+const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
+const obj /*:object*/ = { a: tmpObjLitVal };
+$(obj);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal$3 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+$({ a: tmpObjLitVal });
+`````
+
 ## Pre Normal
 
 
@@ -48,19 +69,7 @@ if (tmpIfTest$3) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$3 /*:unknown*/ = $();
-const tmpObjLitVal$1 /*:object*/ = { c: tmpObjLitVal$3 };
-const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
-const obj /*:object*/ = { a: tmpObjLitVal };
-$(obj);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +84,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -86,4 +95,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

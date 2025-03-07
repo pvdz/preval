@@ -22,6 +22,19 @@ ARR.push(n); // this cant be inlined now because if NOOP gets called we don't kn
 $(ARR);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const ARR = [`a`, `b`, `c`];
+const NOOP = function () {
+  $(ARR);
+};
+$(`c`);
+$(NOOP);
+$(ARR);
+`````
+
 ## Pre Normal
 
 
@@ -55,7 +68,7 @@ ARR.push(n);
 $(ARR);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -70,8 +83,7 @@ $(NOOP);
 $(ARR);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -102,4 +114,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

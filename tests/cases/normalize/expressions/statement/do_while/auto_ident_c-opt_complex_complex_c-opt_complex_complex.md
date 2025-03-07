@@ -18,6 +18,95 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+let tmpIfTest /*:unknown*/ = undefined;
+const tmpObjLitVal /*:object*/ = { y: 1 };
+const b /*:object*/ = { x: tmpObjLitVal };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
+  if (tmpIfTest$3) {
+  } else {
+    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpIfTest = tmpChainElementObject$1;
+  }
+}
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    let tmpIfTest$2 /*:unknown*/ = undefined;
+    const tmpChainElementCall$1 /*:unknown*/ = $(b);
+    const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
+    if (tmpIfTest$4) {
+    } else {
+      const tmpChainRootComputed$2 /*:unknown*/ = $(`x`);
+      const tmpChainElementObject$2 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$2];
+      const tmpIfTest$6 /*:boolean*/ = tmpChainElementObject$2 == null;
+      if (tmpIfTest$6) {
+      } else {
+        const tmpChainRootComputed$4 /*:unknown*/ = $(`y`);
+        const tmpChainElementObject$4 /*:unknown*/ = tmpChainElementObject$2[tmpChainRootComputed$4];
+        tmpIfTest$2 = tmpChainElementObject$4;
+      }
+    }
+    if (tmpIfTest$2) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+let tmpIfTest = undefined;
+const tmpObjLitVal = { y: 1 };
+const b = { x: tmpObjLitVal };
+const tmpChainElementCall = $(b);
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    const tmpChainRootComputed$1 = $(`y`);
+    tmpIfTest = tmpChainElementObject[tmpChainRootComputed$1];
+  }
+}
+if (tmpIfTest) {
+  while (true) {
+    $(100);
+    let tmpIfTest$2 = undefined;
+    const tmpChainElementCall$1 = $(b);
+    if (!(tmpChainElementCall$1 == null)) {
+      const tmpChainRootComputed$2 = $(`x`);
+      const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
+      if (!(tmpChainElementObject$2 == null)) {
+        const tmpChainRootComputed$4 = $(`y`);
+        tmpIfTest$2 = tmpChainElementObject$2[tmpChainRootComputed$4];
+      }
+    }
+    if (!tmpIfTest$2) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -69,59 +158,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-let tmpIfTest /*:unknown*/ = undefined;
-const tmpObjLitVal /*:object*/ = { y: 1 };
-const b /*:object*/ = { x: tmpObjLitVal };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpIfTest = tmpChainElementObject$1;
-  }
-}
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    let tmpIfTest$2 /*:unknown*/ = undefined;
-    const tmpChainElementCall$1 /*:unknown*/ = $(b);
-    const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
-    if (tmpIfTest$4) {
-    } else {
-      const tmpChainRootComputed$2 /*:unknown*/ = $(`x`);
-      const tmpChainElementObject$2 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$2];
-      const tmpIfTest$6 /*:boolean*/ = tmpChainElementObject$2 == null;
-      if (tmpIfTest$6) {
-      } else {
-        const tmpChainRootComputed$4 /*:unknown*/ = $(`y`);
-        const tmpChainElementObject$4 /*:unknown*/ = tmpChainElementObject$2[tmpChainRootComputed$4];
-        tmpIfTest$2 = tmpChainElementObject$4;
-      }
-    }
-    if (tmpIfTest$2) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -188,7 +225,7 @@ $( s );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -223,7 +260,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

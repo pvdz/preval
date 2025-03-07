@@ -14,6 +14,23 @@ x * $;
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$ ** 0;
+const x /*:number*/ = 2 * $;
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$ ** 0;
+$(2 * $);
+`````
+
 ## Pre Normal
 
 
@@ -33,17 +50,7 @@ $ * 0;
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$ ** 0;
-const x /*:number*/ = 2 * $;
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +63,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: NaN
@@ -66,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

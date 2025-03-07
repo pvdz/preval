@@ -17,6 +17,28 @@ try {
 $('after', blob)
 `````
 
+## Settled
+
+
+`````js filename=intro
+const blob /*:object*/ = { thing: `woop` };
+try {
+  blob.thing = `boing`;
+} catch (e) {}
+$(`after`, blob);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const blob = { thing: `woop` };
+try {
+  blob.thing = `boing`;
+} catch (e) {}
+$(`after`, blob);
+`````
+
 ## Pre Normal
 
 
@@ -39,19 +61,7 @@ try {
 $(`after`, blob);
 `````
 
-## Output
-
-
-`````js filename=intro
-const blob /*:object*/ = { thing: `woop` };
-try {
-  blob.thing = `boing`;
-} catch (e) {}
-$(`after`, blob);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +79,7 @@ $( "after", a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'after', { thing: '"boing"' }
@@ -79,4 +89,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

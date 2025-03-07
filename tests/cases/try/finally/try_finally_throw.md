@@ -16,6 +16,22 @@ try {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(2);
+throw `exit`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(2);
+throw `exit`;
+`````
+
 ## Pre Normal
 
 
@@ -71,16 +87,7 @@ if ($implicitThrow) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(2);
-throw `exit`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +99,7 @@ throw "exit";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -102,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

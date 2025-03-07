@@ -14,6 +14,24 @@ switch ($('a')) { case $('a'): let a = b + c; break; }
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`a`);
+$(`a`);
+$(1, 2, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`a`);
+$(`a`);
+$(1, 2, 3);
+`````
+
 ## Pre Normal
 
 
@@ -55,17 +73,7 @@ tmpSwitchBreak: {
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`a`);
-$(`a`);
-$(1, 2, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +86,7 @@ $( 1, 2, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -90,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

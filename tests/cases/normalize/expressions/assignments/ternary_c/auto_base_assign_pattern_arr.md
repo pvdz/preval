@@ -16,6 +16,46 @@ $($(0) ? $(100) : (a = [b] = $([$(2)])));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:unknown*/ = [];
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(0);
+if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpArrElement /*:unknown*/ = $(2);
+  const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
+  const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
+  const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  b = arrPatternSplat[0];
+  a = tmpNestedAssignArrPatternRhs;
+  $(tmpNestedAssignArrPatternRhs);
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = [];
+let a = { a: 999, b: 1000 };
+if ($(0)) {
+  $($(100));
+} else {
+  const tmpArrElement = $(2);
+  const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
+  b = [...tmpNestedAssignArrPatternRhs][0];
+  a = tmpNestedAssignArrPatternRhs;
+  $(tmpNestedAssignArrPatternRhs);
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -51,30 +91,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:unknown*/ = [];
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(0);
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpArrElement /*:unknown*/ = $(2);
-  const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
-  a = tmpNestedAssignArrPatternRhs;
-  $(tmpNestedAssignArrPatternRhs);
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +121,7 @@ $( b, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -118,7 +135,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

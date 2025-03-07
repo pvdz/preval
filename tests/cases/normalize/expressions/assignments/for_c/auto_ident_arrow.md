@@ -14,6 +14,40 @@ for (; $(1); a = () => {});
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+while (true) {
+  const tmpIfTest /*:unknown*/ = $(1);
+  if (tmpIfTest) {
+    a = function () {
+      debugger;
+      return undefined;
+    };
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  if ($(1)) {
+    a = function () {};
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -48,27 +82,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest /*:unknown*/ = $(1);
-  if (tmpIfTest) {
-    a = function () {
-      debugger;
-      return undefined;
-    };
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -95,7 +109,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -130,7 +144,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

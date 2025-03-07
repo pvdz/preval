@@ -19,6 +19,28 @@ while (test) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let counter1 /*:number*/ = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`yolo`);
+  counter1 = counter1 + 1;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let counter1 = 0;
+while (true) {
+  $(`yolo`);
+  counter1 = counter1 + 1;
+}
+`````
+
 ## Pre Normal
 
 
@@ -51,19 +73,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let counter1 /*:number*/ = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(`yolo`);
-  counter1 = counter1 + 1;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +88,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'yolo'
@@ -113,4 +123,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

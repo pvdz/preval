@@ -21,6 +21,22 @@ a = a * tmpBinBothRhs;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * 2;
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ a: 999, b: 1000 } * 2);
+`````
+
 ## Pre Normal
 
 
@@ -49,17 +65,7 @@ a = a * tmpBinBothRhs;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:object*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * 2;
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +81,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: NaN
@@ -85,4 +91,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

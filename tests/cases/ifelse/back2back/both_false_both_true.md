@@ -24,6 +24,44 @@ if (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = $(false, `a`);
+if (x) {
+  $(x, `A`);
+  x = $(true, `b`);
+} else {
+  $(x, `B`);
+  x = $(true, `b`);
+}
+if (x) {
+  $(x, `one`);
+} else {
+  $(x, `two`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $(false, `a`);
+if (x) {
+  $(x, `A`);
+  x = $(true, `b`);
+} else {
+  $(x, `B`);
+  x = $(true, `b`);
+}
+if (x) {
+  $(x, `one`);
+} else {
+  $(x, `two`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -62,27 +100,7 @@ if (x) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = $(false, `a`);
-if (x) {
-  $(x, `A`);
-  x = $(true, `b`);
-} else {
-  $(x, `B`);
-  x = $(true, `b`);
-}
-if (x) {
-  $(x, `one`);
-} else {
-  $(x, `two`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +125,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false, 'a'
@@ -120,4 +138,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

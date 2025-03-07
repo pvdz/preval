@@ -31,6 +31,25 @@ if (tmpIfTest) {
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(1)) {
+  $($(1));
+  while (true) {
+    if ($(1)) {
+      $($(1));
+    } else {
+      break;
+    }
+  }
+  $(0);
+} else {
+  $({ a: 999, b: 1000 });
+}
+`````
+
 ## Pre Normal
 
 
@@ -81,7 +100,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -105,8 +124,7 @@ if (tmpIfTest) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -174,4 +192,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

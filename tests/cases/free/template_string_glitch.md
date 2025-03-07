@@ -32,6 +32,27 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $();
+const xs /*:string*/ = $coerce(x, `string`);
+const y /*:unknown*/ = $();
+const ys /*:string*/ = $coerce(y, `string`);
+const fxy /*:string*/ = `/${xs}/${ys}`;
+$(fxy);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const xs = $coerce($(), `string`);
+const ys = $coerce($(), `string`);
+$(`/${xs}/${ys}`);
+`````
+
 ## Pre Normal
 
 
@@ -91,20 +112,7 @@ const fxy = $frfr(tmpFree$157, xs, ys);
 $(fxy);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $();
-const xs /*:string*/ = $coerce(x, `string`);
-const y /*:unknown*/ = $();
-const ys /*:string*/ = $coerce(y, `string`);
-const fxy /*:string*/ = `/${xs}/${ys}`;
-$(fxy);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +128,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -132,4 +140,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

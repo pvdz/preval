@@ -16,6 +16,41 @@ $((a = delete ($(1), $(2), $(arg)).y) + (a = delete ($(1), $(2), $(arg)).y));
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteObj /*:unknown*/ = $(arg);
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
+$(1);
+$(2);
+const tmpDeleteObj$1 /*:unknown*/ = $(arg);
+const tmpClusterSSA_a$1 /*:boolean*/ = delete tmpDeleteObj$1.y;
+const tmpCalleeParam /*:number*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
+$(tmpCalleeParam);
+$(tmpClusterSSA_a$1, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const arg = { y: 1 };
+const tmpDeleteObj = $(arg);
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
+$(1);
+$(2);
+const tmpDeleteObj$1 = $(arg);
+const tmpClusterSSA_a$1 = delete tmpDeleteObj$1.y;
+$(tmpClusterSSA_a + tmpClusterSSA_a$1);
+$(tmpClusterSSA_a$1, arg);
+`````
+
 ## Pre Normal
 
 
@@ -47,26 +82,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-$(1);
-$(2);
-const tmpDeleteObj$1 /*:unknown*/ = $(arg);
-const tmpClusterSSA_a$1 /*:boolean*/ = delete tmpDeleteObj$1.y;
-const tmpCalleeParam /*:number*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
-$(tmpCalleeParam);
-$(tmpClusterSSA_a$1, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +104,7 @@ $( e, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -105,4 +121,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

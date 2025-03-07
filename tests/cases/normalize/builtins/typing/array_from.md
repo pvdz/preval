@@ -14,6 +14,22 @@ const arr = Array.from(str);
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const str /*:unknown*/ = $(`abc`);
+const arr /*:array*/ = $Array_from(str);
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($Array_from($(`abc`)));
+`````
+
 ## Pre Normal
 
 
@@ -32,17 +48,7 @@ const arr = $Array_from(str);
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-const str /*:unknown*/ = $(`abc`);
-const arr /*:array*/ = $Array_from(str);
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +61,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'abc'
@@ -66,7 +72,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_from

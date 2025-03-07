@@ -16,6 +16,60 @@ for (; b++; $(1));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:number*/ = 12;
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = b;
+  b = b + 1;
+  if (tmpPostUpdArgIdent$1) {
+  } else {
+    break;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = 12;
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while (true) {
+  $(1);
+  const tmpPostUpdArgIdent$1 = b;
+  b = b + 1;
+  if (!tmpPostUpdArgIdent$1) {
+    break;
+  }
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -49,36 +103,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:number*/ = 12;
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-$(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(1);
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = b;
-  b = b + 1;
-  if (tmpPostUpdArgIdent$1) {
-  } else {
-    break;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +140,7 @@ $( c, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -150,4 +175,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

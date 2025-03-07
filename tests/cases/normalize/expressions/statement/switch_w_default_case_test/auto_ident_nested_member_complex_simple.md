@@ -25,6 +25,74 @@ switch ($(1)) {
 $(a, b, c, d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const b /*:object*/ = { x: 1 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const c /*:object*/ = { y: 2 };
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+const tmpIfTest /*:boolean*/ = 3 === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+} else {
+  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`fail1`);
+  } else {
+  }
+  $(`fail2`);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b, c, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const b = { x: 1 };
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $(`x`);
+const c = { y: 2 };
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $(`y`);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+if (3 === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (!(tmpSwitchCaseToStart <= 0)) {
+  if (tmpSwitchCaseToStart <= 1) {
+    $(`fail1`);
+  }
+  $(`fail2`);
+}
+$({ a: 999, b: 1000 }, b, c, 3);
+`````
+
 ## Pre Normal
 
 
@@ -103,46 +171,7 @@ tmpSwitchBreak: {
 $(a, b, c, d);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const b /*:object*/ = { x: 1 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-const tmpIfTest /*:boolean*/ = 3 === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
-} else {
-  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    $(`fail1`);
-  } else {
-  }
-  $(`fail2`);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, c, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -188,7 +217,7 @@ $( m, c, f, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -205,4 +234,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

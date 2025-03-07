@@ -19,6 +19,30 @@ else {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinLhs /*:unknown*/ = $(`is`);
+const tmpIfTest$1917 /*:boolean*/ = tmpBinLhs === 67636;
+if (tmpIfTest$1917) {
+  $(`it was`);
+} else {
+  $(`it was not`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(`is`) === 67636) {
+  $(`it was`);
+} else {
+  $(`it was not`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -46,21 +70,7 @@ if (tmpIfTest$1917) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinLhs /*:unknown*/ = $(`is`);
-const tmpIfTest$1917 /*:boolean*/ = tmpBinLhs === 67636;
-if (tmpIfTest$1917) {
-  $(`it was`);
-} else {
-  $(`it was not`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +88,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'is'
@@ -89,4 +99,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

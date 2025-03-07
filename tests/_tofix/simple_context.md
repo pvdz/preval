@@ -18,6 +18,15 @@ function f() {
 f.call({pass: 1});
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+(function () {
+  $(this);
+}.call({ pass: 1 }));
+`````
+
 ## Pre Normal
 
 
@@ -48,7 +57,7 @@ const tmpCalleeParam = { pass: 1 };
 $dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -62,8 +71,7 @@ const tmpCalleeParam /*:object*/ = { pass: 1 };
 f.call(tmpCalleeParam);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,4 +99,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

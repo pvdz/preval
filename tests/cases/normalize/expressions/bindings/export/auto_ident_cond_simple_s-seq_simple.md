@@ -13,6 +13,24 @@ export let a = 1 ? (40, 50, 60) : $($(100));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:number*/ = 60;
+export { a };
+$(60);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = 60;
+export { a };
+$(60);
+`````
+
 ## Pre Normal
 
 
@@ -32,17 +50,7 @@ export { a };
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:number*/ = 60;
-export { a };
-$(60);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +63,7 @@ $( 60 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -64,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

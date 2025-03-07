@@ -29,6 +29,105 @@ switch ($(1)) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+tmpSwitchBreak: {
+  const tmpSwitchValue /*:unknown*/ = $(1);
+  let tmpSwitchCaseToStart /*:number*/ = 4;
+  const tmpIfTest /*:boolean*/ = 0 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpIfTest$1 /*:boolean*/ = 1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+      const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 2;
+      } else {
+        const tmpIfTest$5 /*:boolean*/ = 3 === tmpSwitchValue;
+        if (tmpIfTest$5) {
+          tmpSwitchCaseToStart = 3;
+        } else {
+        }
+      }
+    }
+  }
+  const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$7) {
+    $(`one`);
+    if (x) {
+      break tmpSwitchBreak;
+    } else {
+    }
+  } else {
+  }
+  const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$9) {
+    $(`two`);
+  } else {
+    const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$11) {
+      $(`three`);
+    } else {
+      const tmpIfTest$13 /*:boolean*/ = tmpSwitchCaseToStart <= 3;
+      if (tmpIfTest$13) {
+        $(`four`);
+      } else {
+        $(`def`);
+      }
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+tmpSwitchBreak: {
+  const tmpSwitchValue = $(1);
+  let tmpSwitchCaseToStart = 4;
+  if (0 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    if (1 === tmpSwitchValue) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+      if (2 === tmpSwitchValue) {
+        tmpSwitchCaseToStart = 2;
+      } else {
+        if (3 === tmpSwitchValue) {
+          tmpSwitchCaseToStart = 3;
+        }
+      }
+    }
+  }
+  if (tmpSwitchCaseToStart <= 0) {
+    $(`one`);
+    if (x) {
+      break tmpSwitchBreak;
+    }
+  }
+  if (tmpSwitchCaseToStart <= 1) {
+    $(`two`);
+  } else {
+    if (tmpSwitchCaseToStart <= 2) {
+      $(`three`);
+    } else {
+      if (tmpSwitchCaseToStart <= 3) {
+        $(`four`);
+      } else {
+        $(`def`);
+      }
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -129,63 +228,7 @@ tmpSwitchBreak: {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchValue /*:unknown*/ = $(1);
-  let tmpSwitchCaseToStart /*:number*/ = 4;
-  const tmpIfTest /*:boolean*/ = 0 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 /*:boolean*/ = 1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    } else {
-      const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;
-      if (tmpIfTest$3) {
-        tmpSwitchCaseToStart = 2;
-      } else {
-        const tmpIfTest$5 /*:boolean*/ = 3 === tmpSwitchValue;
-        if (tmpIfTest$5) {
-          tmpSwitchCaseToStart = 3;
-        } else {
-        }
-      }
-    }
-  }
-  const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$7) {
-    $(`one`);
-    if (x) {
-      break tmpSwitchBreak;
-    } else {
-    }
-  } else {
-  }
-  const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$9) {
-    $(`two`);
-  } else {
-    const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$11) {
-      $(`three`);
-    } else {
-      const tmpIfTest$13 /*:boolean*/ = tmpSwitchCaseToStart <= 3;
-      if (tmpIfTest$13) {
-        $(`four`);
-      } else {
-        $(`def`);
-      }
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -249,7 +292,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -260,4 +303,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

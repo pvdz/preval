@@ -13,6 +13,30 @@ const a = {};
 a?.b.c?.(1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
+const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
+if (tmpIfTest$1) {
+} else {
+  $dotCall(tmpChainElementObject$1, tmpChainElementObject, `c`, 1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainElementObject = $Object_prototype.b;
+const tmpChainElementObject$1 = tmpChainElementObject.c;
+if (!(tmpChainElementObject$1 == null)) {
+  $dotCall(tmpChainElementObject$1, tmpChainElementObject, `c`, 1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -40,21 +64,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
-const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
-if (tmpIfTest$1) {
-} else {
-  $dotCall(tmpChainElementObject$1, tmpChainElementObject, `c`, 1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +83,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -82,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

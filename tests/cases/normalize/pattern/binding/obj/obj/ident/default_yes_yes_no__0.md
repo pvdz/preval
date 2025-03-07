@@ -13,6 +13,48 @@ const { x: { y = $('fail') } = $({ y: 'pass2' }) } = 0;
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = (0).x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam /*:object*/ = { y: `pass2` };
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const objPatternBeforeDefault$1 /*:unknown*/ = objPatternAfterDefault.y;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  const tmpClusterSSA_y /*:unknown*/ = $(`fail`);
+  $(tmpClusterSSA_y);
+} else {
+  $(objPatternBeforeDefault$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = (0).x;
+let objPatternAfterDefault = undefined;
+if (objPatternBeforeDefault === undefined) {
+  objPatternAfterDefault = $({ y: `pass2` });
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+if (objPatternBeforeDefault$1 === undefined) {
+  $($(`fail`));
+} else {
+  $(objPatternBeforeDefault$1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -46,31 +88,7 @@ if (tmpIfTest$1) {
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = (0).x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam /*:object*/ = { y: `pass2` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const objPatternBeforeDefault$1 /*:unknown*/ = objPatternAfterDefault.y;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  const tmpClusterSSA_y /*:unknown*/ = $(`fail`);
-  $(tmpClusterSSA_y);
-} else {
-  $(objPatternBeforeDefault$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -99,7 +117,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { y: '"pass2"' }
@@ -110,4 +128,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

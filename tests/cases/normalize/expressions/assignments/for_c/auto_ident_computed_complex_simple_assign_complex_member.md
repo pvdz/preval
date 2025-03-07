@@ -16,6 +16,68 @@ for (; $(1); a = $(b)["c"] = $(b)[$("d")]);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+const b /*:object*/ = { c: 10, d: 20 };
+if (tmpIfTest) {
+  const tmpNestedAssignObj /*:unknown*/ = $(b);
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpCompProp /*:unknown*/ = $(`d`);
+  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+  a = tmpNestedAssignPropRhs;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpNestedAssignObj$1 /*:unknown*/ = $(b);
+      const tmpCompObj$1 /*:unknown*/ = $(b);
+      const tmpCompProp$1 /*:unknown*/ = $(`d`);
+      const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+      tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
+      a = tmpNestedAssignPropRhs$1;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+const b = { c: 10, d: 20 };
+if (tmpIfTest) {
+  const tmpNestedAssignObj = $(b);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+  a = tmpNestedAssignPropRhs;
+  while (true) {
+    if ($(1)) {
+      const tmpNestedAssignObj$1 = $(b);
+      const tmpCompObj$1 = $(b);
+      const tmpCompProp$1 = $(`d`);
+      const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+      tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
+      a = tmpNestedAssignPropRhs$1;
+    } else {
+      break;
+    }
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -53,40 +115,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { c: 10, d: 20 };
-if (tmpIfTest) {
-  const tmpNestedAssignObj /*:unknown*/ = $(b);
-  const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`d`);
-  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpNestedAssignObj$1 /*:unknown*/ = $(b);
-      const tmpCompObj$1 /*:unknown*/ = $(b);
-      const tmpCompProp$1 /*:unknown*/ = $(`d`);
-      const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
-      tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-      a = tmpNestedAssignPropRhs$1;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -128,7 +157,7 @@ $( a, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -163,7 +192,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

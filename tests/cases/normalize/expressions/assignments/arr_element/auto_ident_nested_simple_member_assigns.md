@@ -20,6 +20,23 @@ $(
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(6);
+const b /*:object*/ = { x: 3 };
+$(3, b, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(6);
+$(3, { x: 3 }, 3);
+`````
+
 ## Pre Normal
 
 
@@ -73,17 +90,7 @@ $(tmpCalleeParam);
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(6);
-const b /*:object*/ = { x: 3 };
-$(3, b, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +103,7 @@ $( 3, a, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 6
@@ -107,4 +114,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,22 @@ function f([{ ...x }]) {
 $(f('abc', 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:array*/ = [];
+const x /*:unknown*/ = objPatternRest(`a`, tmpCalleeParam$1, undefined);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(objPatternRest(`a`, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -47,17 +63,7 @@ const tmpCalleeParam$3 = f(`abc`, 200);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:array*/ = [];
-const x /*:unknown*/ = objPatternRest(`a`, tmpCalleeParam$1, undefined);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +76,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { 0: '"a"' }
@@ -80,7 +86,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

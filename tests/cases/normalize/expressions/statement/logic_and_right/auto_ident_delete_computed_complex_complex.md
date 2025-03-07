@@ -16,6 +16,36 @@ $(100) && delete $(arg)[$("y")];
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(100);
+const arg /*:object*/ = { y: 1 };
+if (tmpIfTest) {
+  const tmpDeleteCompObj /*:unknown*/ = $(arg);
+  const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+  delete tmpDeleteCompObj[tmpDeleteCompProp];
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(100);
+const arg = { y: 1 };
+if (tmpIfTest) {
+  const tmpDeleteCompObj = $(arg);
+  const tmpDeleteCompProp = $(`y`);
+  delete tmpDeleteCompObj[tmpDeleteCompProp];
+}
+$({ a: 999, b: 1000 }, arg);
+`````
+
 ## Pre Normal
 
 
@@ -42,24 +72,7 @@ if (tmpIfTest) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(100);
-const arg /*:object*/ = { y: 1 };
-if (tmpIfTest) {
-  const tmpDeleteCompObj /*:unknown*/ = $(arg);
-  const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-  delete tmpDeleteCompObj[tmpDeleteCompProp];
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +94,7 @@ $( e, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -94,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -22,6 +22,66 @@ function a() {
 $(a().b?.().c().d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a$1 /*:object*/ = {
+  a() {
+    debugger;
+    return a$1;
+  },
+  b() {
+    debugger;
+    return a$1;
+  },
+  c() {
+    debugger;
+    return a$1;
+  },
+  d() {
+    debugger;
+    return a$1;
+  },
+};
+const tmpChainElementObject /*:unknown*/ = a$1.b;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, a$1, `b`);
+  const tmpChainElementCall$3 /*:unknown*/ = tmpChainElementCall$1.c();
+  const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$3.d;
+  $(tmpChainElementObject$3);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a$1 = {
+  a() {
+    return a$1;
+  },
+  b() {
+    return a$1;
+  },
+  c() {
+    return a$1;
+  },
+  d() {
+    return a$1;
+  },
+};
+const tmpChainElementObject = a$1.b;
+if (tmpChainElementObject == null) {
+  $(undefined);
+} else {
+  $($dotCall(tmpChainElementObject, a$1, `b`).c().d);
+}
+`````
+
 ## Pre Normal
 
 
@@ -92,42 +152,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a$1 /*:object*/ = {
-  a() {
-    debugger;
-    return a$1;
-  },
-  b() {
-    debugger;
-    return a$1;
-  },
-  c() {
-    debugger;
-    return a$1;
-  },
-  d() {
-    debugger;
-    return a$1;
-  },
-};
-const tmpChainElementObject /*:unknown*/ = a$1.b;
-const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, a$1, `b`);
-  const tmpChainElementCall$3 /*:unknown*/ = tmpChainElementCall$1.c();
-  const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$3.d;
-  $(tmpChainElementObject$3);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -166,7 +191,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -176,4 +201,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

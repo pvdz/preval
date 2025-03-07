@@ -37,6 +37,31 @@ tmpSwitchBreak: {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+const tmpArrElement /*:unknown*/ = $(2);
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, tmpClusterSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+const tmpArrElement = $(2);
+const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
+const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
+$({ a: 999, b: 1000 }, tmpClusterSSA_b);
+`````
+
 ## Pre Normal
 
 
@@ -84,22 +109,7 @@ if (tmpIfTest) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-const tmpArrElement /*:unknown*/ = $(2);
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +130,7 @@ $( f, e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -133,7 +143,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

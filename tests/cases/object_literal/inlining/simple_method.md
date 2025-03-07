@@ -15,6 +15,22 @@ const obj = {
 $(obj.encode());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`inline me`);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`inline me`);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -42,16 +58,7 @@ const tmpCalleeParam = obj.encode();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`inline me`);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +70,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'inline me'
@@ -74,4 +81,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,41 @@ $(1) ? (1, 2, $(b))?.x : $(200);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const b /*:object*/ = { x: 1 };
+  const tmpChainRootProp /*:unknown*/ = $(b);
+  const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
+  if (tmpIfTest$1) {
+  } else {
+    tmpChainRootProp.x;
+  }
+} else {
+  $(200);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(1)) {
+  const tmpChainRootProp = $({ x: 1 });
+  if (!(tmpChainRootProp == null)) {
+    tmpChainRootProp.x;
+  }
+} else {
+  $(200);
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -46,28 +81,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const b /*:object*/ = { x: 1 };
-  const tmpChainRootProp /*:unknown*/ = $(b);
-  const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
-  if (tmpIfTest$1) {
-  } else {
-    tmpChainRootProp.x;
-  }
-} else {
-  $(200);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +111,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -109,4 +123,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

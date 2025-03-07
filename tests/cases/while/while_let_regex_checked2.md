@@ -27,6 +27,53 @@ while (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:regex*/ = /foo/;
+const tmpCalleeParam /*:unknown*/ = x.foo;
+$(tmpCalleeParam);
+const tmpIfTest /*:unknown*/ = $(x);
+if (tmpIfTest) {
+} else {
+  let tmpClusterSSA_x /*:regex*/ = /foo/;
+  tmpClusterSSA_x.foo = `object`;
+  while ($LOOP_UNROLL_10) {
+    const tmpCalleeParam$1 /*:unknown*/ = tmpClusterSSA_x.foo;
+    $(tmpCalleeParam$1);
+    const tmpIfTest$1 /*:unknown*/ = $(tmpClusterSSA_x);
+    if (tmpIfTest$1) {
+      break;
+    } else {
+      tmpClusterSSA_x = /foo/;
+      tmpClusterSSA_x.foo = `object`;
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = /foo/;
+$(x.foo);
+if (!$(x)) {
+  let tmpClusterSSA_x = /foo/;
+  tmpClusterSSA_x.foo = `object`;
+  while (true) {
+    $(tmpClusterSSA_x.foo);
+    if ($(tmpClusterSSA_x)) {
+      break;
+    } else {
+      tmpClusterSSA_x = /foo/;
+      tmpClusterSSA_x.foo = `object`;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -73,34 +120,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:regex*/ = /foo/;
-const tmpCalleeParam /*:unknown*/ = x.foo;
-$(tmpCalleeParam);
-const tmpIfTest /*:unknown*/ = $(x);
-if (tmpIfTest) {
-} else {
-  let tmpClusterSSA_x /*:regex*/ = /foo/;
-  tmpClusterSSA_x.foo = `object`;
-  while ($LOOP_UNROLL_10) {
-    const tmpCalleeParam$1 /*:unknown*/ = tmpClusterSSA_x.foo;
-    $(tmpCalleeParam$1);
-    const tmpIfTest$1 /*:unknown*/ = $(tmpClusterSSA_x);
-    if (tmpIfTest$1) {
-      break;
-    } else {
-      tmpClusterSSA_x = /foo/;
-      tmpClusterSSA_x.foo = `object`;
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -133,7 +153,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -144,7 +164,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - regular property access of an ident feels tricky;

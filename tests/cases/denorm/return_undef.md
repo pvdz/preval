@@ -13,6 +13,42 @@ $(() => {})
 $(() => x ? void $(1) : void $(2));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:()=>unknown*/ = function () {
+  debugger;
+  if (x) {
+    $(1);
+    return undefined;
+  } else {
+    $(2);
+    return undefined;
+  }
+};
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {});
+$(function () {
+  if (x) {
+    $(1);
+  } else {
+    $(2);
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -51,30 +87,7 @@ const tmpCalleeParam$1 = function () {
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:()=>unknown*/ = function () {
-  debugger;
-  if (x) {
-    $(1);
-    return undefined;
-  } else {
-    $(2);
-    return undefined;
-  }
-};
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +116,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -114,4 +127,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

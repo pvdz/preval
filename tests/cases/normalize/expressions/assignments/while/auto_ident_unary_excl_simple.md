@@ -16,6 +16,20 @@ while ((a = !arg)) $(100);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(false, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(false, 1);
+`````
+
 ## Pre Normal
 
 
@@ -44,15 +58,7 @@ while (true) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(false, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +69,7 @@ $( false, 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false, 1
@@ -73,7 +79,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

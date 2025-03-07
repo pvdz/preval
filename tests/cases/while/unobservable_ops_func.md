@@ -23,6 +23,62 @@ $(f());
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  const s /*:unknown*/ = $(10);
+  parseExpression(lexerFlags$285, astProp$181);
+  let tmpClusterSSA_s /*:number*/ = s | 10;
+  const tmpClusterSSA_x /*:unknown*/ = $(true);
+  if (tmpClusterSSA_x) {
+    while ($LOOP_UNROLL_10) {
+      parseExpression(lexerFlags$285, astProp$181);
+      tmpClusterSSA_s = tmpClusterSSA_s | 10;
+      const tmpClusterSSA_x$1 /*:unknown*/ = $(true);
+      if (tmpClusterSSA_x$1) {
+      } else {
+        break;
+      }
+    }
+  } else {
+  }
+  $(tmpClusterSSA_s);
+  return undefined;
+};
+f();
+$(undefined);
+f();
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const s = $(10);
+  parseExpression(lexerFlags$285, astProp$181);
+  let tmpClusterSSA_s = s | 10;
+  if ($(true)) {
+    while (true) {
+      parseExpression(lexerFlags$285, astProp$181);
+      tmpClusterSSA_s = tmpClusterSSA_s | 10;
+      if (!$(true)) {
+        break;
+      }
+    }
+  }
+  $(tmpClusterSSA_s);
+};
+f();
+$(undefined);
+f();
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -68,39 +124,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  const s /*:unknown*/ = $(10);
-  parseExpression(lexerFlags$285, astProp$181);
-  let tmpClusterSSA_s /*:number*/ = s | 10;
-  const tmpClusterSSA_x /*:unknown*/ = $(true);
-  if (tmpClusterSSA_x) {
-    while ($LOOP_UNROLL_10) {
-      parseExpression(lexerFlags$285, astProp$181);
-      tmpClusterSSA_s = tmpClusterSSA_s | 10;
-      const tmpClusterSSA_x$1 /*:unknown*/ = $(true);
-      if (tmpClusterSSA_x$1) {
-      } else {
-        break;
-      }
-    }
-  } else {
-  }
-  $(tmpClusterSSA_s);
-  return undefined;
-};
-f();
-$(undefined);
-f();
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -138,7 +162,7 @@ BAD@! Found 3 implicit global bindings:
 
 parseExpression, lexerFlags$285, astProp$181
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -148,4 +172,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

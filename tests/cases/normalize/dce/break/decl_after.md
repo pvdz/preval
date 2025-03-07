@@ -22,6 +22,36 @@ while ($(true)) {
 $('after');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  const tmpIfTest$1 /*:unknown*/ = $(false);
+  if (tmpIfTest$1) {
+    $(`fail too`);
+    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+  } else {
+  }
+} else {
+}
+$(`after`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  if ($(false)) {
+    $(`fail too`);
+    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+  }
+}
+$(`after`);
+`````
+
 ## Pre Normal
 
 
@@ -56,25 +86,7 @@ while (true) {
 $(`after`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpIfTest$1 /*:unknown*/ = $(false);
-  if (tmpIfTest$1) {
-    $(`fail too`);
-    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-  } else {
-  }
-} else {
-}
-$(`after`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +105,7 @@ $( "after" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -105,4 +117,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

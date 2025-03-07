@@ -23,6 +23,41 @@ $(f(2));
 f('three');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(primitive)=>number*/ = function ($$0) {
+  const x /*:primitive*/ = $$0;
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  const bad /*:unknown*/ = $(`please`);
+  const y /*:number*/ = x | bad;
+  return y;
+};
+const tmpCalleeParam /*:number*/ = f(1);
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:number*/ = f(2);
+$(tmpCalleeParam$1);
+f(`three`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (x) {
+  $(`no`);
+  $(`inlining`);
+  const y = x | $(`please`);
+  return y;
+};
+$(f(1));
+$(f(2));
+f(`three`);
+`````
+
 ## Pre Normal
 
 
@@ -61,28 +96,7 @@ $(tmpCalleeParam$1);
 f(`three`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(primitive)=>number*/ = function ($$0) {
-  const x /*:primitive*/ = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  const bad /*:unknown*/ = $(`please`);
-  const y /*:number*/ = x | bad;
-  return y;
-};
-const tmpCalleeParam /*:number*/ = f(1);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:number*/ = f(2);
-$(tmpCalleeParam$1);
-f(`three`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +120,7 @@ a( "three" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -126,4 +140,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

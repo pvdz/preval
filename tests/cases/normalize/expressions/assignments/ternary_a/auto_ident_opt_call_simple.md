@@ -14,6 +14,43 @@ $((a = $?.(1)) ? $(100) : $(200));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainElementCall /*:unknown*/ = $(1);
+  a = tmpChainElementCall;
+}
+if (a) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+if (!($ == null)) {
+  a = $(1);
+}
+if (a) {
+  $($(100));
+} else {
+  $($(200));
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -47,29 +84,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = $ == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
-}
-if (a) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +112,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -110,4 +125,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

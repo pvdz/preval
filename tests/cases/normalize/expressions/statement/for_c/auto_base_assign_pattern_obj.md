@@ -16,6 +16,54 @@ for (; $(1); { b } = $({ b: $(2) }));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:unknown*/ = {};
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpObjLitVal /*:unknown*/ = $(2);
+  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+  const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+  b = tmpAssignObjPatternRhs.b;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpObjLitVal$1 /*:unknown*/ = $(2);
+      const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+      const tmpAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
+      b = tmpAssignObjPatternRhs$1.b;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = {};
+if ($(1)) {
+  const tmpObjLitVal = $(2);
+  b = $({ b: tmpObjLitVal }).b;
+  while (true) {
+    if ($(1)) {
+      const tmpObjLitVal$1 = $(2);
+      b = $({ b: tmpObjLitVal$1 }).b;
+    } else {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -50,36 +98,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:unknown*/ = {};
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpObjLitVal /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-  const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  b = tmpAssignObjPatternRhs.b;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpObjLitVal$1 /*:unknown*/ = $(2);
-      const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
-      const tmpAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      b = tmpAssignObjPatternRhs$1.b;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +133,7 @@ $( j, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -149,7 +168,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

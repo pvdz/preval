@@ -20,6 +20,39 @@ function f(t, e, r) {
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  debugger;
+  const tmpSwitchValue /*:unknown*/ = tmpPrevalAliasThis.state;
+  const tmpBinLhs /*:unknown*/ = Yt.PARSING;
+  const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    return undefined;
+  } else {
+    Yt.PARSED;
+    return undefined;
+  }
+};
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function ($$0, $$1, $$2) {
+  const tmpSwitchValue = this.state;
+  const tmpIfTest = Yt.PARSING === tmpSwitchValue;
+  if (!tmpIfTest) {
+    Yt.PARSED;
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -82,28 +115,7 @@ let f = function ($$0, $$1, $$2) {
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  debugger;
-  const tmpSwitchValue /*:unknown*/ = tmpPrevalAliasThis.state;
-  const tmpBinLhs /*:unknown*/ = Yt.PARSING;
-  const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    Yt.PARSED;
-    return undefined;
-  }
-};
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -130,7 +142,7 @@ BAD@! Found 1 implicit global bindings:
 
 Yt
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -140,4 +152,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

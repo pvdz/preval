@@ -20,6 +20,26 @@ function f() {
 $('end', f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  return NaN;
+};
+$(`end`, f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`end`, function () {
+  return NaN;
+});
+`````
+
 ## Pre Normal
 
 
@@ -47,19 +67,7 @@ let f = function () {
 $(`end`, f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  return NaN;
-};
-$(`end`, f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +82,7 @@ $( "end", a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'end', '<function>'
@@ -84,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

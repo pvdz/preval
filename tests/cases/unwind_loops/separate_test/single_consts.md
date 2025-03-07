@@ -22,6 +22,53 @@ while (test) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const max /*:unknown*/ = $(10);
+const test /*:boolean*/ = 2 < max;
+if (test) {
+  $(103);
+  let tmpClusterSSA_counter /*:number*/ = 3;
+  let tmpClusterSSA_test /*:boolean*/ = true;
+  const arr /*:array*/ = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_test) {
+      const tmpCalleeParam$1 /*:primitive*/ = arr[tmpClusterSSA_counter];
+      $(tmpCalleeParam$1);
+      tmpClusterSSA_counter = tmpClusterSSA_counter + 1;
+      tmpClusterSSA_test = tmpClusterSSA_counter < 10;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const max = $(10);
+if (2 < max) {
+  $(103);
+  let tmpClusterSSA_counter = 3;
+  let tmpClusterSSA_test = true;
+  const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
+  while (true) {
+    if (tmpClusterSSA_test) {
+      $(arr[tmpClusterSSA_counter]);
+      tmpClusterSSA_counter = tmpClusterSSA_counter + 1;
+      tmpClusterSSA_test = tmpClusterSSA_counter < 10;
+    } else {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -60,33 +107,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const max /*:unknown*/ = $(10);
-const test /*:boolean*/ = 2 < max;
-if (test) {
-  $(103);
-  let tmpClusterSSA_counter /*:number*/ = 3;
-  let tmpClusterSSA_test /*:boolean*/ = true;
-  const arr /*:array*/ = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
-  while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_test) {
-      const tmpCalleeParam$1 /*:primitive*/ = arr[tmpClusterSSA_counter];
-      $(tmpCalleeParam$1);
-      tmpClusterSSA_counter = tmpClusterSSA_counter + 1;
-      tmpClusterSSA_test = tmpClusterSSA_counter < 10;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +136,7 @@ if (b) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -133,4 +154,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

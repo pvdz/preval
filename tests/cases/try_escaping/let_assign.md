@@ -27,6 +27,56 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = undefined;
+let y /*:unknown*/ = 1;
+const arr /*:array*/ = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam /*:primitive*/ = arr[0];
+  try {
+    $(tmpCalleeParam);
+    x = arr;
+    arr.reverse();
+    y = [5, 6];
+    const tmpIfTest /*:boolean*/ = y === $;
+    if (tmpIfTest) {
+      break;
+    } else {
+    }
+  } catch (e) {
+    $(`fail`);
+  }
+}
+$(x, y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = undefined;
+let y = 1;
+const arr = [1, 2, 3];
+while (true) {
+  const tmpCalleeParam = arr[0];
+  try {
+    $(tmpCalleeParam);
+    x = arr;
+    arr.reverse();
+    y = [5, 6];
+    if (y === $) {
+      break;
+    }
+  } catch (e) {
+    $(`fail`);
+  }
+}
+$(x, y);
+`````
+
 ## Pre Normal
 
 
@@ -74,34 +124,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = undefined;
-let y /*:unknown*/ = 1;
-const arr /*:array*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam /*:primitive*/ = arr[0];
-  try {
-    $(tmpCalleeParam);
-    x = arr;
-    arr.reverse();
-    y = [5, 6];
-    const tmpIfTest /*:boolean*/ = y === $;
-    if (tmpIfTest) {
-      break;
-    } else {
-    }
-  } catch (e) {
-    $(`fail`);
-  }
-}
-$(x, y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -131,7 +154,7 @@ $( a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -166,4 +189,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

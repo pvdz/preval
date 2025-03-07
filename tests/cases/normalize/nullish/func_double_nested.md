@@ -17,6 +17,34 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+$(3);
+const tmpObjLitVal$3 /*:unknown*/ = $();
+const tmpObjLitVal$1 /*:object*/ = { c: tmpObjLitVal$3 };
+const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
+const obj /*:object*/ = { a: tmpObjLitVal };
+const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(obj);
+$(tmpClusterSSA_tmpReturnArg$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+$(3);
+const tmpObjLitVal$3 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+$($({ a: tmpObjLitVal }));
+`````
+
 ## Pre Normal
 
 
@@ -68,23 +96,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-$(3);
-const tmpObjLitVal$3 /*:unknown*/ = $();
-const tmpObjLitVal$1 /*:object*/ = { c: tmpObjLitVal$3 };
-const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
-const obj /*:object*/ = { a: tmpObjLitVal };
-const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(obj);
-$(tmpClusterSSA_tmpReturnArg$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +115,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -118,4 +130,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

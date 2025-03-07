@@ -23,6 +23,26 @@ f(true);
 f(false);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`else`);
+$(`then`);
+$(`then`);
+$(`else`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`else`);
+$(`then`);
+$(`then`);
+$(`else`);
+`````
+
 ## Pre Normal
 
 
@@ -63,18 +83,7 @@ f(true);
 f(false);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`else`);
-$(`then`);
-$(`then`);
-$(`else`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +97,7 @@ $( "else" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'else'
@@ -101,4 +110,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

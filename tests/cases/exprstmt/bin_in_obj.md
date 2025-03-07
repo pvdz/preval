@@ -13,6 +13,40 @@ const spy = {toString(){ $('pass'); }, valueOf(){ $('fail'); }};
 spy in {};
 `````
 
+## Settled
+
+
+`````js filename=intro
+const spy /*:object*/ = {
+  toString() {
+    debugger;
+    $(`pass`);
+    return undefined;
+  },
+  valueOf() {
+    debugger;
+    $(`fail`);
+    return undefined;
+  },
+};
+const tmpBinBothRhs /*:object*/ = {};
+spy in tmpBinBothRhs;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+({
+  toString() {
+    $(`pass`);
+  },
+  valueOf() {
+    $(`fail`);
+  },
+} in {});
+`````
+
 ## Pre Normal
 
 
@@ -51,28 +85,7 @@ const tmpBinBothRhs = {};
 tmpBinBothLhs in tmpBinBothRhs;
 `````
 
-## Output
-
-
-`````js filename=intro
-const spy /*:object*/ = {
-  toString() {
-    debugger;
-    $(`pass`);
-    return undefined;
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-};
-const tmpBinBothRhs /*:object*/ = {};
-spy in tmpBinBothRhs;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +109,7 @@ a in b;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -106,4 +119,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -31,6 +31,71 @@ while (true) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let maybegx /*:unknown*/ = undefined;
+const b /*:object*/ = { x: 1 };
+const g /*:unknown*/ = $(b);
+const same /*:boolean*/ = g == null;
+if (same) {
+} else {
+  const x /*:unknown*/ = $(`x`);
+  const gx /*:unknown*/ = g[x];
+  maybegx = gx;
+}
+if (maybegx) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    let maybegx$1 /*:unknown*/ = undefined;
+    const g$1 /*:unknown*/ = $(b);
+    const same$1 /*:boolean*/ = g$1 == null;
+    if (same$1) {
+    } else {
+      const x$1 /*:unknown*/ = $(`x`);
+      const gx$1 /*:unknown*/ = g$1[x$1];
+      maybegx$1 = gx$1;
+    }
+    if (maybegx$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let maybegx = undefined;
+const b = { x: 1 };
+const g = $(b);
+if (!(g == null)) {
+  const x = $(`x`);
+  maybegx = g[x];
+}
+if (maybegx) {
+  while (true) {
+    $(1);
+    let maybegx$1 = undefined;
+    const g$1 = $(b);
+    if (!(g$1 == null)) {
+      const x$1 = $(`x`);
+      maybegx$1 = g$1[x$1];
+    }
+    if (!maybegx$1) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -83,45 +148,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let maybegx /*:unknown*/ = undefined;
-const b /*:object*/ = { x: 1 };
-const g /*:unknown*/ = $(b);
-const same /*:boolean*/ = g == null;
-if (same) {
-} else {
-  const x /*:unknown*/ = $(`x`);
-  const gx /*:unknown*/ = g[x];
-  maybegx = gx;
-}
-if (maybegx) {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    let maybegx$1 /*:unknown*/ = undefined;
-    const g$1 /*:unknown*/ = $(b);
-    const same$1 /*:boolean*/ = g$1 == null;
-    if (same$1) {
-    } else {
-      const x$1 /*:unknown*/ = $(`x`);
-      const gx$1 /*:unknown*/ = g$1[x$1];
-      maybegx$1 = gx$1;
-    }
-    if (maybegx$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -170,7 +197,7 @@ $( l );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -205,7 +232,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

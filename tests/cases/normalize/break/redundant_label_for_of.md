@@ -24,6 +24,62 @@ exit: for (const key of $(new Set(['a', 'b']))) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = $(2);
+const tmpCalleeParam$3 /*:array*/ = [`a`, `b`];
+const tmpCalleeParam$1 /*:object*/ = new Set(tmpCalleeParam$3);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const key /*:unknown*/ = tmpForOfNext.value;
+    $(`key:`, key);
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      x = $(3);
+    } else {
+    }
+    if (x) {
+      break;
+    } else {
+      x = $(4);
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $(2);
+const tmpCalleeParam$3 = [`a`, `b`];
+const tmpForOfGen = $forOf($(new Set(tmpCalleeParam$3)));
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    $(`key:`, tmpForOfNext.value);
+    if ($(1)) {
+      x = $(3);
+    }
+    if (x) {
+      break;
+    } else {
+      x = $(4);
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -85,39 +141,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = $(2);
-const tmpCalleeParam$3 /*:array*/ = [`a`, `b`];
-const tmpCalleeParam$1 /*:object*/ = new Set(tmpCalleeParam$3);
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const key /*:unknown*/ = tmpForOfNext.value;
-    $(`key:`, key);
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      x = $(3);
-    } else {
-    }
-    if (x) {
-      break;
-    } else {
-      x = $(4);
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -153,7 +177,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -167,7 +191,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

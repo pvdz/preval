@@ -13,6 +13,39 @@
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = (1).x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam /*:array*/ = [`fail`];
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
+y = arrPatternSplat.slice(0);
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = (1).x;
+let objPatternAfterDefault = undefined;
+if (objPatternBeforeDefault === undefined) {
+  objPatternAfterDefault = $([`fail`]);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+y = [...objPatternAfterDefault].slice(0);
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -40,26 +73,7 @@ y = arrPatternSplat.slice(0);
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = (1).x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam /*:array*/ = [`fail`];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-y = arrPatternSplat.slice(0);
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +98,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['fail']
@@ -94,7 +108,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

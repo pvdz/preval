@@ -30,6 +30,62 @@ $(typeof Math.SQRT1_2, 'Math.SQRT1_2');
 $(typeof Math.SQRT2, 'Math.SQRT2');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$spy(`Object.is`);
+$(`boolean`);
+$spy(`Object.isFrozen`);
+$(`boolean`);
+$spy(`Object.isSealed`);
+$(`boolean`);
+const tmpCalleeParam$13 /*:unknown*/ = $spy(`String.fromCharCode`);
++tmpCalleeParam$13;
+$(`string`);
+const tmpCalleeParam$17 /*:unknown*/ = $spy(`String.fromCodePoint`);
+$String_fromCodePoint(tmpCalleeParam$17);
+$(`string`);
+const tmpCalleeParam$21 /*:unknown*/ = $spy(`String.raw`);
+$String_raw(tmpCalleeParam$21);
+$(`string`);
+$(`number`, `Math.E`);
+$(`number`, `Math.LN10`);
+$(`number`, `Math.LN2`);
+$(`number`, `Math.LOG10E`);
+$(`number`, `Math.LOG2E`);
+$(`number`, `Math.PI`);
+$(`number`, `Math.SQRT1_2`);
+$(`number`, `Math.SQRT2`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$spy(`Object.is`);
+$(`boolean`);
+$spy(`Object.isFrozen`);
+$(`boolean`);
+$spy(`Object.isSealed`);
+$(`boolean`);
+const tmpCalleeParam$13 = $spy(`String.fromCharCode`);
++tmpCalleeParam$13;
+$(`string`);
+$String_fromCodePoint($spy(`String.fromCodePoint`));
+$(`string`);
+$String_raw($spy(`String.raw`));
+$(`string`);
+$(`number`, `Math.E`);
+$(`number`, `Math.LN10`);
+$(`number`, `Math.LN2`);
+$(`number`, `Math.LOG10E`);
+$(`number`, `Math.LOG2E`);
+$(`number`, `Math.PI`);
+$(`number`, `Math.SQRT1_2`);
+$(`number`, `Math.SQRT2`);
+`````
+
 ## Pre Normal
 
 
@@ -104,37 +160,7 @@ const tmpCalleeParam$37 = typeof tmpUnaryArg$25;
 $(tmpCalleeParam$37, `Math.SQRT2`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$spy(`Object.is`);
-$(`boolean`);
-$spy(`Object.isFrozen`);
-$(`boolean`);
-$spy(`Object.isSealed`);
-$(`boolean`);
-const tmpCalleeParam$13 /*:unknown*/ = $spy(`String.fromCharCode`);
-+tmpCalleeParam$13;
-$(`string`);
-const tmpCalleeParam$17 /*:unknown*/ = $spy(`String.fromCodePoint`);
-$String_fromCodePoint(tmpCalleeParam$17);
-$(`string`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`String.raw`);
-$String_raw(tmpCalleeParam$21);
-$(`string`);
-$(`number`, `Math.E`);
-$(`number`, `Math.LN10`);
-$(`number`, `Math.LN2`);
-$(`number`, `Math.LOG10E`);
-$(`number`, `Math.LOG2E`);
-$(`number`, `Math.PI`);
-$(`number`, `Math.SQRT1_2`);
-$(`number`, `Math.SQRT2`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -167,7 +193,7 @@ $( "number", "Math.SQRT2" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Object.is', 'Object.is']
@@ -187,7 +213,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_is

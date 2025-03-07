@@ -23,6 +23,61 @@ switch ($(1)) {
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+$(1);
+$(2);
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpIfTest /*:boolean*/ = tmpNestedAssignObjPatternRhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
+  $(`fail1`);
+} else {
+}
+$(`fail2`);
+$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+$(1);
+$(2);
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+if (tmpNestedAssignObjPatternRhs === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (tmpSwitchCaseToStart <= 1) {
+  $(`fail1`);
+}
+$(`fail2`);
+$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
+`````
+
 ## Pre Normal
 
 
@@ -92,38 +147,7 @@ if (tmpIfTest$7) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-$(1);
-$(2);
-const tmpObjLitVal /*:unknown*/ = $(3);
-const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpIfTest /*:boolean*/ = tmpNestedAssignObjPatternRhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$5) {
-  $(`fail1`);
-} else {
-}
-$(`fail2`);
-$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -159,7 +183,7 @@ $( e, c, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -176,4 +200,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

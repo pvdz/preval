@@ -16,6 +16,23 @@ x = $(20);
 $(x, a, 'final');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(10);
+const x /*:unknown*/ = $(20);
+$(x, 2, `final`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(10);
+$($(20), 2, `final`);
+`````
+
 ## Pre Normal
 
 
@@ -46,17 +63,7 @@ x = $(20);
 $(x, a, `final`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(10);
-const x /*:unknown*/ = $(20);
-$(x, 2, `final`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +76,7 @@ $( a, 2, "final" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -81,4 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

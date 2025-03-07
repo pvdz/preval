@@ -19,6 +19,24 @@ function f({
 $(f({ x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 }, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$3 /*:object*/ = { z: 1, a: 2, b: 3 };
+const tmpCalleeParam$1 /*:array*/ = [];
+const z /*:unknown*/ = objPatternRest(tmpObjLitVal$3, tmpCalleeParam$1, undefined);
+$(z);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal$3 = { z: 1, a: 2, b: 3 };
+$(objPatternRest(tmpObjLitVal$3, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -60,18 +78,7 @@ const tmpCalleeParam$3 = tmpCallCallee(tmpCalleeParam$5, 10);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$3 /*:object*/ = { z: 1, a: 2, b: 3 };
-const tmpCalleeParam$1 /*:array*/ = [];
-const z /*:unknown*/ = objPatternRest(tmpObjLitVal$3, tmpCalleeParam$1, undefined);
-$(z);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -89,7 +96,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { z: '1', a: '2', b: '3' }
@@ -99,4 +106,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

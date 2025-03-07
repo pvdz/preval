@@ -14,6 +14,20 @@ const b = 'b', c = 'c', d = 'd';
 $(a[b][c][d]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(10);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(10);
+`````
+
 ## Pre Normal
 
 
@@ -41,15 +55,7 @@ const tmpCalleeParam = tmpCompObj[d];
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(10);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +66,7 @@ $( 10 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -70,4 +76,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

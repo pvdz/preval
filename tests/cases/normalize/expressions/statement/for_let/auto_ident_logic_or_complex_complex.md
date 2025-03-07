@@ -14,6 +14,37 @@ for (let xyz = $($(0)) || $($(2)); ; $(1)) $(xyz);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(0);
+let xyz /*:unknown*/ = $(tmpCalleeParam);
+if (xyz) {
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  xyz = $(tmpCalleeParam$1);
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(xyz);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let xyz = $($(0));
+if (!xyz) {
+  xyz = $($(2));
+}
+while (true) {
+  $(xyz);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,25 +78,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(0);
-let xyz /*:unknown*/ = $(tmpCalleeParam);
-if (xyz) {
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  xyz = $(tmpCalleeParam$1);
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +101,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -123,4 +136,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

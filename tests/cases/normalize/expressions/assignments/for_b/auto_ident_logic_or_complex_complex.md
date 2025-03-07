@@ -14,43 +14,7 @@ for (; (a = $($(0)) || $($(2))); $(1));
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  while ((a = $($(0)) || $($(2)))) {
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpCalleeParam = $(0);
-  a = $(tmpCalleeParam);
-  if (a) {
-  } else {
-    const tmpCalleeParam$1 = $(2);
-    a = $(tmpCalleeParam$1);
-  }
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -218,8 +182,175 @@ loopStop: {
 $(a);
 `````
 
-## PST Output
+## Denormalized
+(This ought to be the final result)
 
+`````js filename=intro
+let a = undefined;
+loopStop: {
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  if ($($(0))) {
+    $(1);
+  } else {
+    a = $($(2));
+    if (a) {
+      $(1);
+    } else {
+      break loopStop;
+    }
+  }
+  while (true) {
+    if ($($(0))) {
+      $(1);
+    } else {
+      a = $($(2));
+      if (a) {
+        $(1);
+      } else {
+        break;
+      }
+    }
+  }
+}
+$(a);
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+{
+  while ((a = $($(0)) || $($(2)))) {
+    $(1);
+  }
+}
+$(a);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  const tmpCalleeParam = $(0);
+  a = $(tmpCalleeParam);
+  if (a) {
+  } else {
+    const tmpCalleeParam$1 = $(2);
+    a = $(tmpCalleeParam$1);
+  }
+  let tmpIfTest = a;
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -415,7 +546,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -450,7 +581,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -812,6 +812,723 @@ function TP$cloneX2$cloneX1(fNeX1786, mNeX765, hNeX475, gNeX352, yNeX272) {
 $(TP$cloneX2$cloneX1);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const fooCalleeParamX11238 = function (nCeX401) {
+  return nCeX401;
+};
+$(function ($$0, mNeX765, $$2, gNeX352, yNeX272) {
+  const fooReturnArgX5632 = function (nCeX418) {
+    const fooReturnArgX5633 = RP$cloneX5(SSA_bNeX94, $, [5, SSA_xNeX108, nCeX418], QNeX102);
+    return fooReturnArgX5633;
+  };
+  const fooReturnArgX5630 = function (nCeX417) {
+    const fooCalleeParamX11330 = SSA_bNeX94;
+    const fooArrElementX3282 = SSA_xNeX108;
+    const fooArrElementX3284 = $yX2(Iq, nCeX417);
+    const fooReturnArgX5631 = RP$cloneX5(fooCalleeParamX11330, $, [4, fooArrElementX3282, fooArrElementX3284], KNeX38);
+    return fooReturnArgX5631;
+  };
+  const fooReturnArgX5628 = function () {
+    const fooReturnArgX5629 = RP$cloneX5(SSA_bNeX94, $, ZNeX45, HNeX48);
+    return fooReturnArgX5629;
+  };
+  const fooReturnArgX5622 = function (nCeX414) {
+    const fooReturnArgX5623 = RP$cloneX5(SSA_bNeX94, $, [6, SSA_xNeX108, nCeX414], XNeX77);
+    return fooReturnArgX5623;
+  };
+  const fooReturnArgX5619 = function (nCeX413, rCeX221) {
+    const fooArrElementX3269 = function (sCeX131) {
+      const fooReturnArgX5621 = YE(nCeX413, sCeX131, rCeX221);
+      return fooReturnArgX5621;
+    };
+    const fooReturnArgX5620 = RP$cloneX5(SSA_bNeX94, $, [6, SSA_xNeX108, fooArrElementX3269], UNeX80);
+    return fooReturnArgX5620;
+  };
+  let BNeX51 = undefined;
+  const fooReturnArgX5617 = function (nCeX412) {
+    const sCeX130 = YA(nCeX412[1], WE(PA(BNeX51)));
+    const fooUnaryArgX395 = sCeX130[2];
+    const fooBinBothRhsX4246 = typeof fooUnaryArgX395;
+    if (`number` == fooBinBothRhsX4246) {
+      const fooReturnArgX5618 = RP$cloneX5(SSA_bNeX94, $, SSA_xNeX108, ZE(sCeX130[1], VNeX53));
+      return fooReturnArgX5618;
+    } else {
+      throw JAe;
+    }
+  };
+  const fooReturnArgX5615 = function () {
+    const fooReturnArgX5616 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, FNeX55], MNeX63);
+    return fooReturnArgX5616;
+  };
+  let DNeX65 = undefined;
+  const fooReturnArgX5613 = function (nCeX411) {
+    let rCeX219 = undefined;
+    if (nCeX411) {
+      rCeX219 = TU;
+    } else {
+      rCeX219 = _U;
+    }
+    const fooReturnArgX5614 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, rCeX219], DNeX65);
+    return fooReturnArgX5614;
+  };
+  const fooReturnArgX5598 = function (nCeX410, rCeX218) {
+    const fooArrElementX3254 = UA(jNeX68, nCeX410, SP(kNeX164, RNeX72, rCeX218));
+    const fooReturnArgX5612 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3254], PNeX191);
+    return fooReturnArgX5612;
+  };
+  const tmpClusterSSA_fooReturnArgX5609$1 = function (nCeX409, rCeX217, sCeX129) {
+    const fooArrElementX3249 = UA(jNeX68, nCeX409, SP(kNeX164, rCeX217, sCeX129));
+    const fooReturnArgX5611 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3249], PNeX191);
+    return fooReturnArgX5611;
+  };
+  const tmpClusterSSA_fooReturnArgX5609 = function (nCeX408, rCeX216) {
+    const fooArrElementX3244 = UA(jNeX68, nCeX408, SP(kNeX164, zAe, rCeX216));
+    const fooReturnArgX5610 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3244], PNeX191);
+    return fooReturnArgX5610;
+  };
+  const fooReturnArgX5604 = function (nCeX407) {
+    const fooArrElementX3239 = UA(LNeX86, wNeX70, SP(kNeX164, INeX72, nCeX407));
+    const fooReturnArgX5608 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3239], PNeX191);
+    return fooReturnArgX5608;
+  };
+  const tmpClusterSSA_fooReturnArgX5605$1 = function (nCeX406, rCeX215) {
+    const fooArrElementX3234 = UA(LNeX86, wNeX70, SP(kNeX164, nCeX406, rCeX215));
+    const fooReturnArgX5607 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3234], PNeX191);
+    return fooReturnArgX5607;
+  };
+  const tmpClusterSSA_fooReturnArgX5605 = function (nCeX405) {
+    const fooArrElementX3229 = UA(LNeX86, wNeX70, SP(kNeX164, zAe, nCeX405));
+    const fooReturnArgX5606 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3229], PNeX191);
+    return fooReturnArgX5606;
+  };
+  const fooReturnArgX5599 = function (nCeX404) {
+    const fooArrElementX3225 = SP(kNeX164, vNeX134, nCeX404);
+    const fooReturnArgX5603 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3225], PNeX191);
+    return fooReturnArgX5603;
+  };
+  const tmpClusterSSA_fooReturnArgX5600$1 = function (nCeX403, rCeX214) {
+    const fooArrElementX3221 = SP(kNeX164, nCeX403, rCeX214);
+    const fooReturnArgX5602 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3221], PNeX191);
+    return fooReturnArgX5602;
+  };
+  const tmpClusterSSA_fooReturnArgX5600 = function (nCeX402) {
+    const fooArrElementX3217 = SP(kNeX164, zAe, nCeX402);
+    const fooReturnArgX5601 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3217], PNeX191);
+    return fooReturnArgX5601;
+  };
+  const fooReturnArgX5596 = function (nCeX400) {
+    const fooArrElementX3213 = __(XT(nCeX400), Jq);
+    const fooReturnArgX5597 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3213], TNeX211);
+    return fooReturnArgX5597;
+  };
+  let ENeX311 = undefined;
+  let FNeX55 = undefined;
+  let HNeX48 = undefined;
+  let INeX72 = undefined;
+  let KNeX38 = undefined;
+  let LNeX86 = undefined;
+  let MNeX63 = undefined;
+  let PNeX191 = undefined;
+  let QNeX102 = undefined;
+  let RNeX72 = undefined;
+  let SSA_bNeX94 = mNeX765;
+  let SSA_xNeX108 = gNeX352;
+  let TNeX211 = undefined;
+  let UNeX80 = undefined;
+  let VNeX53 = undefined;
+  let XNeX77 = undefined;
+  let ZNeX45 = undefined;
+  const fooReturnArgX5594 = function (nCeX399) {
+    const fooReturnArgX5595 = RP$cloneX5(SSA_bNeX94, $, [5, SSA_xNeX108, nCeX399], ENeX311);
+    return fooReturnArgX5595;
+  };
+  let jNeX68 = undefined;
+  let kNeX164 = undefined;
+  let vNeX134 = undefined;
+  let wNeX70 = undefined;
+  let SSA_SNeX76 = yNeX272;
+  while (true) {
+    const fooBinBothRhsX4240 = typeof SSA_SNeX76;
+    if (`number` == fooBinBothRhsX4240) {
+      const fooReturnArgX5593 = YE$cloneX5(SSA_bNeX94, $, SSA_xNeX108);
+      return fooReturnArgX5593;
+    } else {
+      const fooSwitchTestX186 = SSA_SNeX76[0];
+      let fooSwitchCaseToStartX352 = 24;
+      if (0 === fooSwitchTestX186) {
+        fooSwitchCaseToStartX352 = 0;
+      } else {
+        if (1 === fooSwitchTestX186) {
+          fooSwitchCaseToStartX352 = 1;
+        } else {
+          if (2 === fooSwitchTestX186) {
+            fooSwitchCaseToStartX352 = 2;
+          } else {
+            if (3 === fooSwitchTestX186) {
+              fooSwitchCaseToStartX352 = 3;
+            } else {
+              if (4 === fooSwitchTestX186) {
+                fooSwitchCaseToStartX352 = 4;
+              } else {
+                if (5 === fooSwitchTestX186) {
+                  fooSwitchCaseToStartX352 = 5;
+                } else {
+                  if (6 === fooSwitchTestX186) {
+                    fooSwitchCaseToStartX352 = 6;
+                  } else {
+                    if (7 === fooSwitchTestX186) {
+                      fooSwitchCaseToStartX352 = 7;
+                    } else {
+                      if (8 === fooSwitchTestX186) {
+                        fooSwitchCaseToStartX352 = 8;
+                      } else {
+                        if (9 === fooSwitchTestX186) {
+                          fooSwitchCaseToStartX352 = 9;
+                        } else {
+                          if (10 === fooSwitchTestX186) {
+                            fooSwitchCaseToStartX352 = 10;
+                          } else {
+                            if (11 === fooSwitchTestX186) {
+                              fooSwitchCaseToStartX352 = 11;
+                            } else {
+                              if (12 === fooSwitchTestX186) {
+                                fooSwitchCaseToStartX352 = 12;
+                              } else {
+                                if (13 === fooSwitchTestX186) {
+                                  fooSwitchCaseToStartX352 = 13;
+                                } else {
+                                  if (14 === fooSwitchTestX186) {
+                                    fooSwitchCaseToStartX352 = 14;
+                                  } else {
+                                    if (15 === fooSwitchTestX186) {
+                                      fooSwitchCaseToStartX352 = 15;
+                                    } else {
+                                      if (16 === fooSwitchTestX186) {
+                                        fooSwitchCaseToStartX352 = 16;
+                                      } else {
+                                        if (17 === fooSwitchTestX186) {
+                                          fooSwitchCaseToStartX352 = 17;
+                                        } else {
+                                          if (18 === fooSwitchTestX186) {
+                                            fooSwitchCaseToStartX352 = 18;
+                                          } else {
+                                            if (19 === fooSwitchTestX186) {
+                                              fooSwitchCaseToStartX352 = 19;
+                                            } else {
+                                              if (20 === fooSwitchTestX186) {
+                                                fooSwitchCaseToStartX352 = 20;
+                                              } else {
+                                                if (21 === fooSwitchTestX186) {
+                                                  fooSwitchCaseToStartX352 = 21;
+                                                } else {
+                                                  if (22 === fooSwitchTestX186) {
+                                                    fooSwitchCaseToStartX352 = 22;
+                                                  } else {
+                                                    if (23 === fooSwitchTestX186) {
+                                                      fooSwitchCaseToStartX352 = 23;
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      if (fooSwitchCaseToStartX352 <= 0) {
+        ENeX311 = SSA_SNeX76[1];
+        return fooReturnArgX5594;
+      } else {
+        if (fooSwitchCaseToStartX352 <= 1) {
+          TNeX211 = SSA_SNeX76[1];
+          return fooReturnArgX5596;
+        } else {
+          if (fooSwitchCaseToStartX352 <= 2) {
+            const SSA_fooReturnArgX138 = NP$cloneX2$clone(
+              $,
+              SSA_bNeX94,
+              $,
+              SSA_xNeX108,
+              SSA_SNeX76[2],
+              SSA_SNeX76[1],
+              fooCalleeParamX11238,
+            );
+            return SSA_fooReturnArgX138;
+          } else {
+            if (fooSwitchCaseToStartX352 <= 3) {
+              const SSA_fooReturnArgX139 = NP$cloneX2$clone($, SSA_bNeX94, $, SSA_xNeX108, SSA_SNeX76[2], SSA_SNeX76[1], WA);
+              return SSA_fooReturnArgX139;
+            } else {
+              if (fooSwitchCaseToStartX352 <= 4) {
+                const SSA_fooReturnArgX140 = LP$cloneX2$clone(
+                  $,
+                  SSA_bNeX94,
+                  $,
+                  SSA_xNeX108,
+                  SSA_SNeX76[4],
+                  SSA_SNeX76[2],
+                  SSA_SNeX76[3],
+                  ZA,
+                  SSA_SNeX76[1],
+                );
+                return SSA_fooReturnArgX140;
+              } else {
+                if (fooSwitchCaseToStartX352 <= 5) {
+                  const SSA_fooReturnArgX141 = LP$cloneX2$clone(
+                    $,
+                    SSA_bNeX94,
+                    $,
+                    SSA_xNeX108,
+                    SSA_SNeX76[4],
+                    SSA_SNeX76[2],
+                    SSA_SNeX76[3],
+                    KA,
+                    SSA_SNeX76[1],
+                  );
+                  return SSA_fooReturnArgX141;
+                } else {
+                  if (fooSwitchCaseToStartX352 <= 6) {
+                    const SSA_fooReturnArgX142 = LP$cloneX2$clone(
+                      $,
+                      SSA_bNeX94,
+                      $,
+                      SSA_xNeX108,
+                      SSA_SNeX76[4],
+                      SSA_SNeX76[2],
+                      SSA_SNeX76[3],
+                      QA,
+                      SSA_SNeX76[1],
+                    );
+                    return SSA_fooReturnArgX142;
+                  } else {
+                    if (fooSwitchCaseToStartX352 <= 7) {
+                      const SSA_fooReturnArgX143 = LP$cloneX2$clone(
+                        $,
+                        SSA_bNeX94,
+                        $,
+                        SSA_xNeX108,
+                        SSA_SNeX76[4],
+                        SSA_SNeX76[2],
+                        SSA_SNeX76[3],
+                        $A,
+                        SSA_SNeX76[1],
+                      );
+                      return SSA_fooReturnArgX143;
+                    } else {
+                      if (fooSwitchCaseToStartX352 <= 8) {
+                        PNeX191 = SSA_SNeX76[4];
+                        const NNeX135 = SSA_SNeX76[3];
+                        const CNeX70 = SSA_SNeX76[2];
+                        kNeX164 = SSA_SNeX76[1];
+                        const fooBinBothRhsX4241 = typeof CNeX70;
+                        if (`number` == fooBinBothRhsX4241) {
+                          const fooBinBothRhsX4244 = typeof NNeX135;
+                          if (`number` == fooBinBothRhsX4244) {
+                            if (0 === NNeX135) {
+                              return tmpClusterSSA_fooReturnArgX5600;
+                            } else {
+                              return tmpClusterSSA_fooReturnArgX5600$1;
+                            }
+                          } else {
+                            vNeX134 = NNeX135[1];
+                            return fooReturnArgX5599;
+                          }
+                        } else {
+                          const fooBinBothRhsX4242 = CNeX70[0];
+                          if (0 === fooBinBothRhsX4242) {
+                            wNeX70 = CNeX70[2];
+                            LNeX86 = CNeX70[1];
+                            const fooBinBothRhsX4245 = typeof NNeX135;
+                            if (`number` == fooBinBothRhsX4245) {
+                              if (0 === NNeX135) {
+                                return tmpClusterSSA_fooReturnArgX5605;
+                              } else {
+                                return tmpClusterSSA_fooReturnArgX5605$1;
+                              }
+                            } else {
+                              INeX72 = NNeX135[1];
+                              return fooReturnArgX5604;
+                            }
+                          } else {
+                            jNeX68 = CNeX70[1];
+                            const fooBinBothRhsX4243 = typeof NNeX135;
+                            if (`number` == fooBinBothRhsX4243) {
+                              if (0 === NNeX135) {
+                                return tmpClusterSSA_fooReturnArgX5609;
+                              } else {
+                                return tmpClusterSSA_fooReturnArgX5609$1;
+                              }
+                            } else {
+                              RNeX72 = NNeX135[1];
+                              return fooReturnArgX5598;
+                            }
+                          }
+                        }
+                      } else {
+                        if (fooSwitchCaseToStartX352 <= 9) {
+                          DNeX65 = SSA_SNeX76[1];
+                          return fooReturnArgX5613;
+                        } else {
+                          if (fooSwitchCaseToStartX352 <= 10) {
+                            SSA_xNeX108 = [7, SSA_xNeX108];
+                            SSA_SNeX76 = SSA_SNeX76[1];
+                          } else {
+                            if (fooSwitchCaseToStartX352 <= 11) {
+                              const fooArrElementX3259 = SSA_SNeX76[1];
+                              SSA_xNeX108 = [2, SSA_xNeX108, fooArrElementX3259];
+                              SSA_SNeX76 = SSA_SNeX76[2];
+                            } else {
+                              if (fooSwitchCaseToStartX352 <= 12) {
+                                const fooArrElementX3264 = SSA_SNeX76[1];
+                                SSA_xNeX108 = [3, SSA_xNeX108, fooArrElementX3264];
+                                SSA_SNeX76 = SSA_SNeX76[2];
+                              } else {
+                                if (fooSwitchCaseToStartX352 <= 13) {
+                                  MNeX63 = SSA_SNeX76[3];
+                                  const ONeX61 = SSA_SNeX76[2];
+                                  const YNeX58 = Q_$clone($);
+                                  _A(YNeX58, ONeX61);
+                                  FNeX55 = TA(YNeX58);
+                                  return fooReturnArgX5615;
+                                } else {
+                                  if (fooSwitchCaseToStartX352 <= 14) {
+                                    VNeX53 = SSA_SNeX76[3];
+                                    BNeX51 = SSA_SNeX76[2];
+                                    return fooReturnArgX5617;
+                                  } else {
+                                    if (fooSwitchCaseToStartX352 <= 15) {
+                                      UNeX80 = SSA_SNeX76[1];
+                                      return fooReturnArgX5619;
+                                    } else {
+                                      if (fooSwitchCaseToStartX352 <= 16) {
+                                        XNeX77 = SSA_SNeX76[1];
+                                        return fooReturnArgX5622;
+                                      } else {
+                                        if (fooSwitchCaseToStartX352 <= 17) {
+                                          const fooArrElementX3274 = SSA_SNeX76[1];
+                                          SSA_xNeX108 = [0, SSA_xNeX108, fooArrElementX3274];
+                                          SSA_SNeX76 = SSA_SNeX76[2];
+                                        } else {
+                                          if (fooSwitchCaseToStartX352 <= 18) {
+                                            const fooReturnArgX5626 = function (iCeX155, oCeX144) {
+                                              const fooArrElementX3279 = [1, oCeX144];
+                                              const fooReturnArgX5627 = RP(rCeX222, iCeX155, [1, nCeX415, fooArrElementX3279], qNeX60);
+                                              return fooReturnArgX5627;
+                                            };
+                                            const fooReturnArgX5624 = function (iCeX154, oCeX143) {
+                                              const fooArrElementX3277 = [0, oCeX143];
+                                              const fooReturnArgX5625 = RP(rCeX222, iCeX154, [1, nCeX415, fooArrElementX3277], qNeX60);
+                                              return fooReturnArgX5625;
+                                            };
+                                            const WNeX66 = SSA_SNeX76[1];
+                                            const fooBinBothRhsX4247 = WNeX66[0];
+                                            const qNeX60 = SSA_SNeX76[2];
+                                            const GNeX69 = WNeX66[1][1];
+                                            const nCeX415 = SSA_xNeX108;
+                                            const rCeX222 = SSA_bNeX94;
+                                            if (0 === fooBinBothRhsX4247) {
+                                              SSA_bNeX94 = fooReturnArgX5624;
+                                              SSA_xNeX108 = 0;
+                                              SSA_SNeX76 = GNeX69;
+                                            } else {
+                                              SSA_bNeX94 = fooReturnArgX5626;
+                                              SSA_xNeX108 = 0;
+                                              SSA_SNeX76 = GNeX69;
+                                            }
+                                          } else {
+                                            if (fooSwitchCaseToStartX352 <= 19) {
+                                              const fooThrowArgX300 = [0, WB, Rq];
+                                              throw fooThrowArgX300;
+                                            } else {
+                                              if (fooSwitchCaseToStartX352 <= 20) {
+                                                HNeX48 = SSA_SNeX76[3];
+                                                ZNeX45 = [8, SSA_xNeX108, Mq];
+                                                return fooReturnArgX5628;
+                                              } else {
+                                                if (fooSwitchCaseToStartX352 <= 21) {
+                                                  KNeX38 = SSA_SNeX76[2];
+                                                  return fooReturnArgX5630;
+                                                } else {
+                                                  if (fooSwitchCaseToStartX352 <= 22) {
+                                                    QNeX102 = SSA_SNeX76[1];
+                                                    return fooReturnArgX5632;
+                                                  } else {
+                                                    if (fooSwitchCaseToStartX352 <= 23) {
+                                                      const $NeX101 = SSA_SNeX76[2];
+                                                      const eCeX71 = SSA_SNeX76[1];
+                                                      const fooBinBothRhsX4248 = typeof eCeX71;
+                                                      if (`number` == fooBinBothRhsX4248) {
+                                                        let fooSwitchCaseToStartX353 = 4;
+                                                        if (0 === eCeX71) {
+                                                          fooSwitchCaseToStartX353 = 0;
+                                                        } else {
+                                                          if (1 === eCeX71) {
+                                                            fooSwitchCaseToStartX353 = 1;
+                                                          } else {
+                                                            if (2 === eCeX71) {
+                                                              fooSwitchCaseToStartX353 = 2;
+                                                            } else {
+                                                              if (3 === eCeX71) {
+                                                                fooSwitchCaseToStartX353 = 3;
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                        if (fooSwitchCaseToStartX353 <= 0) {
+                                                          const SSA_fooReturnArgX144 = PP$cloneX3$clone(
+                                                            $,
+                                                            SSA_bNeX94,
+                                                            $,
+                                                            SSA_xNeX108,
+                                                            $NeX101,
+                                                          );
+                                                          return SSA_fooReturnArgX144;
+                                                        } else {
+                                                          if (fooSwitchCaseToStartX353 <= 1) {
+                                                            const SSA_fooReturnArgX145 = PP$cloneX3$clone(
+                                                              $,
+                                                              SSA_bNeX94,
+                                                              $,
+                                                              SSA_xNeX108,
+                                                              $NeX101,
+                                                            );
+                                                            return SSA_fooReturnArgX145;
+                                                          } else {
+                                                            if (fooSwitchCaseToStartX353 <= 2) {
+                                                              const SSA_fooReturnArgX146 = PP$cloneX3$clone(
+                                                                $,
+                                                                SSA_bNeX94,
+                                                                $,
+                                                                SSA_xNeX108,
+                                                                $NeX101,
+                                                              );
+                                                              return SSA_fooReturnArgX146;
+                                                            } else {
+                                                              if (fooSwitchCaseToStartX353 <= 3) {
+                                                                const fooThrowArgX301 = [0, WB, Oq];
+                                                                throw fooThrowArgX301;
+                                                              } else {
+                                                                const SSA_fooReturnArgX147 = PP$cloneX3$clone(
+                                                                  $,
+                                                                  SSA_bNeX94,
+                                                                  $,
+                                                                  SSA_xNeX108,
+                                                                  $NeX101,
+                                                                );
+                                                                return SSA_fooReturnArgX147;
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      } else {
+                                                        const fooSwitchTestX187 = eCeX71[0];
+                                                        let fooSwitchCaseToStartX354 = 10;
+                                                        if (0 === fooSwitchTestX187) {
+                                                          fooSwitchCaseToStartX354 = 0;
+                                                        } else {
+                                                          if (1 === fooSwitchTestX187) {
+                                                            fooSwitchCaseToStartX354 = 1;
+                                                          } else {
+                                                            if (2 === fooSwitchTestX187) {
+                                                              fooSwitchCaseToStartX354 = 2;
+                                                            } else {
+                                                              if (3 === fooSwitchTestX187) {
+                                                                fooSwitchCaseToStartX354 = 3;
+                                                              } else {
+                                                                if (4 === fooSwitchTestX187) {
+                                                                  fooSwitchCaseToStartX354 = 4;
+                                                                } else {
+                                                                  if (5 === fooSwitchTestX187) {
+                                                                    fooSwitchCaseToStartX354 = 5;
+                                                                  } else {
+                                                                    if (6 === fooSwitchTestX187) {
+                                                                      fooSwitchCaseToStartX354 = 6;
+                                                                    } else {
+                                                                      if (7 === fooSwitchTestX187) {
+                                                                        fooSwitchCaseToStartX354 = 7;
+                                                                      } else {
+                                                                        if (8 === fooSwitchTestX187) {
+                                                                          fooSwitchCaseToStartX354 = 8;
+                                                                        } else {
+                                                                          if (9 === fooSwitchTestX187) {
+                                                                            fooSwitchCaseToStartX354 = 9;
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                        if (fooSwitchCaseToStartX354 <= 0) {
+                                                          const SSA_fooReturnArgX148 = PP$cloneX3$clone(
+                                                            $,
+                                                            SSA_bNeX94,
+                                                            $,
+                                                            SSA_xNeX108,
+                                                            $NeX101,
+                                                          );
+                                                          return SSA_fooReturnArgX148;
+                                                        } else {
+                                                          if (fooSwitchCaseToStartX354 <= 1) {
+                                                            const SSA_fooReturnArgX149 = PP$cloneX3$clone(
+                                                              $,
+                                                              SSA_bNeX94,
+                                                              $,
+                                                              SSA_xNeX108,
+                                                              $NeX101,
+                                                            );
+                                                            return SSA_fooReturnArgX149;
+                                                          } else {
+                                                            if (fooSwitchCaseToStartX354 <= 2) {
+                                                              const SSA_fooReturnArgX150 = PP$cloneX3$clone(
+                                                                $,
+                                                                SSA_bNeX94,
+                                                                $,
+                                                                SSA_xNeX108,
+                                                                $NeX101,
+                                                              );
+                                                              return SSA_fooReturnArgX150;
+                                                            } else {
+                                                              if (fooSwitchCaseToStartX354 <= 3) {
+                                                                const SSA_fooReturnArgX151 = PP$cloneX3$clone(
+                                                                  $,
+                                                                  SSA_bNeX94,
+                                                                  $,
+                                                                  SSA_xNeX108,
+                                                                  $NeX101,
+                                                                );
+                                                                return SSA_fooReturnArgX151;
+                                                              } else {
+                                                                if (fooSwitchCaseToStartX354 <= 4) {
+                                                                  const SSA_fooReturnArgX152 = PP$cloneX3$clone(
+                                                                    $,
+                                                                    SSA_bNeX94,
+                                                                    $,
+                                                                    SSA_xNeX108,
+                                                                    $NeX101,
+                                                                  );
+                                                                  return SSA_fooReturnArgX152;
+                                                                } else {
+                                                                  if (fooSwitchCaseToStartX354 <= 5) {
+                                                                    const SSA_fooReturnArgX153 = PP$cloneX3$clone(
+                                                                      $,
+                                                                      SSA_bNeX94,
+                                                                      $,
+                                                                      SSA_xNeX108,
+                                                                      $NeX101,
+                                                                    );
+                                                                    return SSA_fooReturnArgX153;
+                                                                  } else {
+                                                                    if (fooSwitchCaseToStartX354 <= 6) {
+                                                                      const SSA_fooReturnArgX154 = PP$cloneX3$clone(
+                                                                        $,
+                                                                        SSA_bNeX94,
+                                                                        $,
+                                                                        SSA_xNeX108,
+                                                                        $NeX101,
+                                                                      );
+                                                                      return SSA_fooReturnArgX154;
+                                                                    } else {
+                                                                      if (fooSwitchCaseToStartX354 <= 7) {
+                                                                        const SSA_fooReturnArgX155 = PP$cloneX3$clone(
+                                                                          $,
+                                                                          SSA_bNeX94,
+                                                                          $,
+                                                                          SSA_xNeX108,
+                                                                          $NeX101,
+                                                                        );
+                                                                        return SSA_fooReturnArgX155;
+                                                                      } else {
+                                                                        if (fooSwitchCaseToStartX354 <= 8) {
+                                                                          const SSA_fooReturnArgX156 = _P$cloneX4$clone(
+                                                                            $,
+                                                                            SSA_bNeX94,
+                                                                            $,
+                                                                            SSA_xNeX108,
+                                                                            eCeX71[2],
+                                                                            $NeX101,
+                                                                          );
+                                                                          return SSA_fooReturnArgX156;
+                                                                        } else {
+                                                                          const SSA_fooReturnArgX157 = PP$cloneX3$clone(
+                                                                            $,
+                                                                            SSA_bNeX94,
+                                                                            $,
+                                                                            SSA_xNeX108,
+                                                                            $NeX101,
+                                                                          );
+                                                                          return SSA_fooReturnArgX157;
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    } else {
+                                                      const SSA_fooReturnArgX159 = IP$cloneX3$cloneX1(
+                                                        $,
+                                                        SSA_bNeX94,
+                                                        $,
+                                                        SSA_xNeX108,
+                                                        SSA_SNeX76[3],
+                                                        SSA_SNeX76[1],
+                                                        OE$clone(SSA_SNeX76[2], $),
+                                                      );
+                                                      return SSA_fooReturnArgX159;
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -2898,7 +3615,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
 $(TP$cloneX2$cloneX1);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -3830,8 +4547,7 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
 $(TP$cloneX2$cloneX1);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -4712,4 +5428,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

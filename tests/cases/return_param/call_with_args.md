@@ -23,6 +23,48 @@ $(f(function(a,b,c,d,e){ $('pass2', a,b,c,d,e); }));
 $(f(function(a,b,c,d,e){ $('pass3', a,b,c,d,e); }));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  return undefined;
+};
+f();
+$(`pass1`, 1, `two`, null, NaN, undefined);
+$(undefined);
+f();
+$(`pass2`, 1, `two`, null, NaN, undefined);
+$(undefined);
+f();
+$(`pass3`, 1, `two`, null, NaN, undefined);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+};
+f();
+$(`pass1`, 1, `two`, null, NaN, undefined);
+$(undefined);
+f();
+$(`pass2`, 1, `two`, null, NaN, undefined);
+$(undefined);
+f();
+$(`pass3`, 1, `two`, null, NaN, undefined);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -125,30 +167,7 @@ const tmpCalleeParam$7 = tmpCallCallee$3(tmpCalleeParam$9);
 $(tmpCalleeParam$7);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  return undefined;
-};
-f();
-$(`pass1`, 1, `two`, null, NaN, undefined);
-$(undefined);
-f();
-$(`pass2`, 1, `two`, null, NaN, undefined);
-$(undefined);
-f();
-$(`pass3`, 1, `two`, null, NaN, undefined);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -174,7 +193,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -198,4 +217,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

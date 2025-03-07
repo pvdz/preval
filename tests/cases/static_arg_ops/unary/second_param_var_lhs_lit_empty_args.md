@@ -20,6 +20,26 @@ $(f('a', 'x'));
 $(f(true, false));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(NaN);
+$(NaN);
+$(NaN);
+$(NaN);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(NaN);
+$(NaN);
+$(NaN);
+$(NaN);
+`````
+
 ## Pre Normal
 
 
@@ -65,18 +85,7 @@ const tmpCalleeParam$5 = f(true, false);
 $(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(NaN);
-$(NaN);
-$(NaN);
-$(NaN);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -90,7 +99,7 @@ $( NaN );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: NaN
@@ -103,4 +112,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

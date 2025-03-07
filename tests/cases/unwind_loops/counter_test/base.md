@@ -17,6 +17,30 @@ while (counter) {
 $('finished');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`x5`);
+$(`x4`);
+$(`x3`);
+$(`x2`);
+$(`x1`);
+$(`finished`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`x5`);
+$(`x4`);
+$(`x3`);
+$(`x2`);
+$(`x1`);
+$(`finished`);
+`````
+
 ## Pre Normal
 
 
@@ -47,20 +71,7 @@ while (true) {
 $(`finished`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`x5`);
-$(`x4`);
-$(`x3`);
-$(`x2`);
-$(`x1`);
-$(`finished`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +87,7 @@ $( "finished" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x5'
@@ -91,7 +102,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: TemplateLiteral

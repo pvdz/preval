@@ -30,6 +30,51 @@ d();
 $(d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objd /*:object*/ = {
+  get foo() {
+    debugger;
+    return 100;
+  },
+  set foo($$0) {
+    debugger;
+    return 4000;
+  },
+};
+const d /*:()=>unknown*/ = function () {
+  debugger;
+  $(`a`);
+  $(`b`);
+  return objd;
+};
+d();
+$(d);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objd = {
+  get foo() {
+    return 100;
+  },
+  set foo($$0) {
+    return 4000;
+  },
+};
+const d = function () {
+  $(`a`);
+  $(`b`);
+  return objd;
+};
+d();
+$(d);
+`````
+
 ## Pre Normal
 
 
@@ -80,32 +125,7 @@ d();
 $(d);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objd /*:object*/ = {
-  get foo() {
-    debugger;
-    return 100;
-  },
-  set foo($$0) {
-    debugger;
-    return 4000;
-  },
-};
-const d /*:()=>unknown*/ = function () {
-  debugger;
-  $(`a`);
-  $(`b`);
-  return objd;
-};
-d();
-$(d);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -133,7 +153,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -145,4 +165,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

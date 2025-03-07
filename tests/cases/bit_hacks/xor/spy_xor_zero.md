@@ -12,6 +12,22 @@
 $($spy(0xffffffffffffffffffffffffffffffff) ^ 0);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinLhs /*:unknown*/ = $spy(3.402823669209385e38);
+const tmpCalleeParam /*:number*/ = tmpBinLhs ^ 0;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($spy(3.402823669209385e38) ^ 0);
+`````
+
 ## Pre Normal
 
 
@@ -28,17 +44,7 @@ const tmpCalleeParam = tmpBinLhs ^ 0;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinLhs /*:unknown*/ = $spy(3.402823669209385e38);
-const tmpCalleeParam /*:number*/ = tmpBinLhs ^ 0;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -51,7 +57,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [3.402823669209385e38, 3.402823669209385e38]
@@ -63,4 +69,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

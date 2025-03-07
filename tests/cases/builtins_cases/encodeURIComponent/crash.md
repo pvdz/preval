@@ -14,6 +14,26 @@ $(encodeURIComponent("\uD800"));
 $(encodeURIComponent("\uDFFF"));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`%F0%90%8F%BF`);
+const tmpCalleeParam$1 /*:string*/ = encodeURIComponent(`\ud800`);
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:string*/ = encodeURIComponent(`\udfff`);
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`%F0%90%8F%BF`);
+$(encodeURIComponent(`\ud800`));
+$(encodeURIComponent(`\udfff`));
+`````
+
 ## Pre Normal
 
 
@@ -35,19 +55,7 @@ const tmpCalleeParam$3 = encodeURIComponent(`\udfff`);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`%F0%90%8F%BF`);
-const tmpCalleeParam$1 /*:string*/ = encodeURIComponent(`\ud800`);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:string*/ = encodeURIComponent(`\udfff`);
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +70,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '%F0%90%8F%BF'
@@ -72,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

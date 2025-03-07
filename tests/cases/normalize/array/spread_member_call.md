@@ -12,6 +12,21 @@
 $([...true.toString()]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`t`, `r`, `u`, `e`];
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([`t`, `r`, `u`, `e`]);
+`````
+
 ## Pre Normal
 
 
@@ -28,16 +43,7 @@ const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`t`, `r`, `u`, `e`];
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -49,7 +55,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['t', 'r', 'u', 'e']
@@ -59,4 +65,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -14,6 +14,20 @@ x >> NaN;
 $('finished');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`finished`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`finished`);
+`````
+
 ## Pre Normal
 
 
@@ -32,15 +46,7 @@ x >> 0;
 $(`finished`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`finished`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -51,7 +57,7 @@ $( "finished" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'finished'
@@ -61,4 +67,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

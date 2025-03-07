@@ -15,6 +15,22 @@ function f(a, b, ...rest) {
 f($spy(), $spy());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $spy();
+const tmpCalleeParam$1 /*:unknown*/ = $spy();
+$(tmpCalleeParam, tmpCalleeParam$1, `fwep`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($spy(), $spy(), `fwep`);
+`````
+
 ## Pre Normal
 
 
@@ -47,17 +63,7 @@ const tmpCalleeParam$1 = $spy();
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $spy();
-const tmpCalleeParam$1 /*:unknown*/ = $spy();
-$(tmpCalleeParam, tmpCalleeParam$1, `fwep`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +76,7 @@ $( a, b, "fwep" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]
@@ -82,7 +88,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - drop unused rest param?

@@ -14,6 +14,25 @@ const N = ARR.shift();
 $(N);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`a`, `b`, `c`];
+const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
+const ARR /*:array*/ = [...tmpArrSpread];
+const N /*:unknown*/ = ARR.shift();
+$(N);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArrSpread = $([`a`, `b`, `c`]);
+$([...tmpArrSpread].shift());
+`````
+
 ## Pre Normal
 
 
@@ -34,19 +53,7 @@ const N = ARR.shift();
 $(N);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`a`, `b`, `c`];
-const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
-const ARR /*:array*/ = [...tmpArrSpread];
-const N /*:unknown*/ = ARR.shift();
-$(N);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +68,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['a', 'b', 'c']
@@ -72,4 +79,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

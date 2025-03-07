@@ -16,6 +16,25 @@ arr.splice(1, 2, 20);
 $(arr.length);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3];
+arr.splice(1, 2, 20);
+const tmpCalleeParam /*:number*/ = arr.length;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+arr.splice(1, 2, 20);
+$(arr.length);
+`````
+
 ## Pre Normal
 
 
@@ -35,18 +54,7 @@ const tmpCalleeParam = arr.length;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-arr.splice(1, 2, 20);
-const tmpCalleeParam /*:number*/ = arr.length;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +68,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -70,7 +78,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_splice

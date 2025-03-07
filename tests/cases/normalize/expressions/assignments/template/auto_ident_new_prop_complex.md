@@ -16,6 +16,30 @@ $(`before  ${(a = new ($(b).$)(1))}  after`);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+$(tmpCalleeParam);
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNewCallee = $({ $: $ }).$;
+const tmpClusterSSA_a = new tmpNewCallee(1);
+$(`before  ${tmpClusterSSA_a}  after`);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -45,22 +69,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +87,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -91,4 +100,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

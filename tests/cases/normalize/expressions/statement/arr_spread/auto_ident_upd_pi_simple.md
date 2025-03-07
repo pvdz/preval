@@ -16,6 +16,22 @@ let a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+[...2];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+[...2];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
 ## Pre Normal
 
 
@@ -38,16 +54,7 @@ let tmpArrElToSpread = b;
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-[...2];
-throw `[Preval]: Array spread must crash before this line`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +66,7 @@ throw "[Preval]: Array spread must crash before this line";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -68,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

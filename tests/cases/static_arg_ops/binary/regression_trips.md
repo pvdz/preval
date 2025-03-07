@@ -20,6 +20,37 @@ $(tmpCallCompProp$449)
 $(tmpCallCompProp$451)
 `````
 
+## Settled
+
+
+`````js filename=intro
+const _0x2751bd$3 /*:(number, number)=>undefined*/ = function ($$0, $$1) {
+  const _0x1a6934 /*:number*/ = $$0;
+  const tmpOutlinedParam /*:number*/ = $$1;
+  debugger;
+  const tmpReturnArg$489 /*:unknown*/ = $(_0x1a6934, tmpOutlinedParam);
+  $(tmpReturnArg$489);
+  return undefined;
+};
+_0x2751bd$3(112, 1562);
+_0x2751bd$3(859, 1690);
+$(undefined);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const _0x2751bd$3 = function (_0x1a6934, tmpOutlinedParam) {
+  $($(_0x1a6934, tmpOutlinedParam));
+};
+_0x2751bd$3(112, 1562);
+_0x2751bd$3(859, 1690);
+$(undefined);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -57,26 +88,7 @@ $(tmpCallCompProp$449);
 $(tmpCallCompProp$451);
 `````
 
-## Output
-
-
-`````js filename=intro
-const _0x2751bd$3 /*:(number, number)=>undefined*/ = function ($$0, $$1) {
-  const _0x1a6934 /*:number*/ = $$0;
-  const tmpOutlinedParam /*:number*/ = $$1;
-  debugger;
-  const tmpReturnArg$489 /*:unknown*/ = $(_0x1a6934, tmpOutlinedParam);
-  $(tmpReturnArg$489);
-  return undefined;
-};
-_0x2751bd$3(112, 1562);
-_0x2751bd$3(859, 1690);
-$(undefined);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +110,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 112, 1562
@@ -113,4 +125,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

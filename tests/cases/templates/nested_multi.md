@@ -17,6 +17,40 @@ $(`A${a}B${b}C`);
 $(`A${`A${a}B${b}C`}B${`A${a}B${b}C`}C`);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(`x`);
+const b /*:unknown*/ = $(`y`);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
+const tmpBinBothRhs /*:string*/ = $coerce(b, `string`);
+const tmpCalleeParam /*:string*/ = `A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`;
+$(tmpCalleeParam);
+const tmpBinBothRhs$9 /*:string*/ = $coerce(a, `string`);
+const tmpBinBothRhs$7 /*:string*/ = $coerce(b, `string`);
+const tmpBinBothRhs$13 /*:string*/ = $coerce(a, `string`);
+const tmpBinBothRhs$11 /*:string*/ = $coerce(b, `string`);
+const tmpCalleeParam$1 /*:string*/ = `AA${tmpBinBothRhs$9}B${tmpBinBothRhs$7}CBA${tmpBinBothRhs$13}B${tmpBinBothRhs$11}CC`;
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = $(`x`);
+const b = $(`y`);
+const tmpBinBothRhs$1 = $coerce(a, `string`);
+const tmpBinBothRhs = $coerce(b, `string`);
+$(`A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`);
+const tmpBinBothRhs$9 = $coerce(a, `string`);
+const tmpBinBothRhs$7 = $coerce(b, `string`);
+const tmpBinBothRhs$13 = $coerce(a, `string`);
+const tmpBinBothRhs$11 = $coerce(b, `string`);
+$(`AA${tmpBinBothRhs$9}B${tmpBinBothRhs$7}CBA${tmpBinBothRhs$13}B${tmpBinBothRhs$11}CC`);
+`````
+
 ## Pre Normal
 
 
@@ -79,26 +113,7 @@ const tmpCalleeParam$1 = `${tmpStringConcatR$13}C`;
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(`x`);
-const b /*:unknown*/ = $(`y`);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
-const tmpBinBothRhs /*:string*/ = $coerce(b, `string`);
-const tmpCalleeParam /*:string*/ = `A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`;
-$(tmpCalleeParam);
-const tmpBinBothRhs$9 /*:string*/ = $coerce(a, `string`);
-const tmpBinBothRhs$7 /*:string*/ = $coerce(b, `string`);
-const tmpBinBothRhs$13 /*:string*/ = $coerce(a, `string`);
-const tmpBinBothRhs$11 /*:string*/ = $coerce(b, `string`);
-const tmpCalleeParam$1 /*:string*/ = `AA${tmpBinBothRhs$9}B${tmpBinBothRhs$7}CBA${tmpBinBothRhs$13}B${tmpBinBothRhs$11}CC`;
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +135,7 @@ $( j );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -133,4 +148,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

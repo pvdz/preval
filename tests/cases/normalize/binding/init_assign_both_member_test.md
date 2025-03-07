@@ -17,6 +17,67 @@ var a = b.x = c.x;
 $(5, a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const c /*:object*/ = {
+  get x() {
+    debugger;
+    $(3);
+    return 20;
+  },
+  set x($$0) {
+    const n$1 /*:unknown*/ = $$0;
+    debugger;
+    $(4, n$1);
+    return undefined;
+  },
+};
+const tmpNestedAssignPropRhs /*:unknown*/ = c.x;
+const b /*:object*/ = {
+  get x() {
+    debugger;
+    $(1);
+    return 10;
+  },
+  set x($$0) {
+    const n /*:unknown*/ = $$0;
+    debugger;
+    $(2, n);
+    return undefined;
+  },
+};
+b.x = tmpNestedAssignPropRhs;
+$(5, tmpNestedAssignPropRhs);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignPropRhs = {
+  get x() {
+    $(3);
+    return 20;
+  },
+  set x(n$1) {
+    $(4, n$1);
+  },
+}.x;
+const b = {
+  get x() {
+    $(1);
+    return 10;
+  },
+  set x(n) {
+    $(2, n);
+  },
+};
+b.x = tmpNestedAssignPropRhs;
+$(5, tmpNestedAssignPropRhs);
+`````
+
 ## Pre Normal
 
 
@@ -92,43 +153,7 @@ a = tmpNestedPropAssignRhs;
 $(5, a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const c /*:object*/ = {
-  get x() {
-    debugger;
-    $(3);
-    return 20;
-  },
-  set x($$0) {
-    const n$1 /*:unknown*/ = $$0;
-    debugger;
-    $(4, n$1);
-    return undefined;
-  },
-};
-const tmpNestedAssignPropRhs /*:unknown*/ = c.x;
-const b /*:object*/ = {
-  get x() {
-    debugger;
-    $(1);
-    return 10;
-  },
-  set x($$0) {
-    const n /*:unknown*/ = $$0;
-    debugger;
-    $(2, n);
-    return undefined;
-  },
-};
-b.x = tmpNestedAssignPropRhs;
-$(5, tmpNestedAssignPropRhs);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -167,7 +192,7 @@ $( 5, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 3
@@ -179,4 +204,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

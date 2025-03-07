@@ -13,6 +13,45 @@ const a = {b: {c: $}};
 $($(a).b?.c?.(100));
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpObjLitVal /*:object*/ = { c: $ };
+const a /*:object*/ = { b: tmpObjLitVal };
+const tmpChainElementCall /*:unknown*/ = $(a);
+const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.b;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementObject, `c`, 100);
+    tmpCalleeParam = tmpChainElementCall$1;
+  }
+}
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = undefined;
+const tmpObjLitVal = { c: $ };
+const tmpChainElementObject = $({ b: tmpObjLitVal }).b;
+if (!(tmpChainElementObject == null)) {
+  const tmpChainElementObject$1 = tmpChainElementObject.c;
+  if (!(tmpChainElementObject$1 == null)) {
+    tmpCalleeParam = $dotCall(tmpChainElementObject$1, tmpChainElementObject, `c`, 100);
+  }
+}
+$(tmpCalleeParam);
+`````
+
 ## Pre Normal
 
 
@@ -45,31 +84,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
-const tmpObjLitVal /*:object*/ = { c: $ };
-const a /*:object*/ = { b: tmpObjLitVal };
-const tmpChainElementCall /*:unknown*/ = $(a);
-const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.b;
-const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
-  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementObject, `c`, 100);
-    tmpCalleeParam = tmpChainElementCall$1;
-  }
-}
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -100,7 +115,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { b: '{"c":"\\"<$>\\""}' }
@@ -112,4 +127,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,44 @@ while ((a = delete arg["y"])) $(100);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arg /*:object*/ = { y: 1 };
+let a /*:boolean*/ = delete arg.y;
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    a = delete arg.y;
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arg = { y: 1 };
+let a = delete arg.y;
+if (a) {
+  while (true) {
+    $(100);
+    a = delete arg.y;
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -44,28 +82,7 @@ while (true) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arg /*:object*/ = { y: 1 };
-let a /*:boolean*/ = delete arg.y;
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    a = delete arg.y;
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -90,7 +107,7 @@ $( b, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -125,7 +142,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

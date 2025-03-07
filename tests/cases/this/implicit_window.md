@@ -20,6 +20,20 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(window);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(window);
+`````
+
 ## Pre Normal
 
 
@@ -45,15 +59,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(window);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +70,7 @@ $( window );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')
@@ -73,4 +79,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

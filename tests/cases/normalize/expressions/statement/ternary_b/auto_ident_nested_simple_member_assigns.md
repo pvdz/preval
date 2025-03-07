@@ -17,6 +17,45 @@ $(1) ? (b.x = b.x = b.x = b.x = b.x = b.x = c) : $(200);
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(1);
+const b /*:object*/ = { x: 1 };
+if (tmpIfTest) {
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+} else {
+  $(200);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(1);
+const b = { x: 1 };
+if (tmpIfTest) {
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+} else {
+  $(200);
+}
+$({ a: 999, b: 1000 }, b, 3);
+`````
+
 ## Pre Normal
 
 
@@ -56,28 +95,7 @@ if (tmpIfTest) {
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { x: 1 };
-if (tmpIfTest) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-} else {
-  $(200);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +123,7 @@ $( c, b, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -116,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

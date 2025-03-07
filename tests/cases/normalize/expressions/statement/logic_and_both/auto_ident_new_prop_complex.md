@@ -16,6 +16,33 @@ new ($(b).$)(1) && new ($(b).$)(1);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
+new tmpNewCallee(1);
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1.$;
+new tmpNewCallee$1(1);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { $: $ };
+const tmpNewCallee = $(b).$;
+new tmpNewCallee(1);
+const tmpNewCallee$1 = $(b).$;
+new tmpNewCallee$1(1);
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -44,23 +71,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-new tmpNewCallee(1);
-const tmpCompObj$1 /*:unknown*/ = $(b);
-const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1.$;
-new tmpNewCallee$1(1);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +93,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -96,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,42 @@ const spy = {
 $(Number([spy, spy]));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const spy /*:object*/ = {
+  valueOf() {
+    debugger;
+    $(`x`);
+    return undefined;
+  },
+  toString() {
+    debugger;
+    $(`y`);
+    return undefined;
+  },
+};
+const tmpStringFirstArg /*:array*/ = [spy, spy];
+const tmpCalleeParam /*:number*/ = $coerce(tmpStringFirstArg, `number`);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const spy = {
+  valueOf() {
+    $(`x`);
+  },
+  toString() {
+    $(`y`);
+  },
+};
+$($coerce([spy, spy], `number`));
+`````
+
 ## Pre Normal
 
 
@@ -54,29 +90,7 @@ const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const spy /*:object*/ = {
-  valueOf() {
-    debugger;
-    $(`x`);
-    return undefined;
-  },
-  toString() {
-    debugger;
-    $(`y`);
-    return undefined;
-  },
-};
-const tmpStringFirstArg /*:array*/ = [spy, spy];
-const tmpCalleeParam /*:number*/ = $coerce(tmpStringFirstArg, `number`);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +115,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'y'
@@ -113,4 +127,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -75,6 +75,90 @@ if (n <= 11) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $();
+const t /*:boolean*/ = 0 === x;
+if (t) {
+} else {
+  const tmpClusterSSA_t /*:boolean*/ = 1 === x;
+  if (tmpClusterSSA_t) {
+  } else {
+    const tmpClusterSSA_t$1 /*:boolean*/ = 2 === x;
+    if (tmpClusterSSA_t$1) {
+    } else {
+      const tmpClusterSSA_t$3 /*:boolean*/ = 3 === x;
+      if (tmpClusterSSA_t$3) {
+      } else {
+        const tmpClusterSSA_t$5 /*:boolean*/ = 4 === x;
+        if (tmpClusterSSA_t$5) {
+        } else {
+          const tmpClusterSSA_t$7 /*:boolean*/ = 5 === x;
+          if (tmpClusterSSA_t$7) {
+          } else {
+            const tmpClusterSSA_t$9 /*:boolean*/ = 6 === x;
+            if (tmpClusterSSA_t$9) {
+            } else {
+              const tmpClusterSSA_t$11 /*:boolean*/ = 7 === x;
+              if (tmpClusterSSA_t$11) {
+              } else {
+                const tmpClusterSSA_t$13 /*:boolean*/ = 8 === x;
+                if (tmpClusterSSA_t$13) {
+                } else {
+                  const tmpClusterSSA_t$15 /*:boolean*/ = 10 === x;
+                  if (tmpClusterSSA_t$15) {
+                  } else {
+                    const tmpClusterSSA_t$17 /*:boolean*/ = 9 === x;
+                    if (tmpClusterSSA_t$17) {
+                    } else {
+                      $(`must be 11`);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+$(`pass`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $();
+if (!(0 === x)) {
+  if (!(1 === x)) {
+    if (!(2 === x)) {
+      if (!(3 === x)) {
+        if (!(4 === x)) {
+          if (!(5 === x)) {
+            if (!(6 === x)) {
+              if (!(7 === x)) {
+                if (!(8 === x)) {
+                  if (!(10 === x)) {
+                    if (!(9 === x)) {
+                      $(`must be 11`);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+$(`pass`);
+`````
+
 ## Pre Normal
 
 
@@ -214,61 +298,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $();
-const t /*:boolean*/ = 0 === x;
-if (t) {
-} else {
-  const tmpClusterSSA_t /*:boolean*/ = 1 === x;
-  if (tmpClusterSSA_t) {
-  } else {
-    const tmpClusterSSA_t$1 /*:boolean*/ = 2 === x;
-    if (tmpClusterSSA_t$1) {
-    } else {
-      const tmpClusterSSA_t$3 /*:boolean*/ = 3 === x;
-      if (tmpClusterSSA_t$3) {
-      } else {
-        const tmpClusterSSA_t$5 /*:boolean*/ = 4 === x;
-        if (tmpClusterSSA_t$5) {
-        } else {
-          const tmpClusterSSA_t$7 /*:boolean*/ = 5 === x;
-          if (tmpClusterSSA_t$7) {
-          } else {
-            const tmpClusterSSA_t$9 /*:boolean*/ = 6 === x;
-            if (tmpClusterSSA_t$9) {
-            } else {
-              const tmpClusterSSA_t$11 /*:boolean*/ = 7 === x;
-              if (tmpClusterSSA_t$11) {
-              } else {
-                const tmpClusterSSA_t$13 /*:boolean*/ = 8 === x;
-                if (tmpClusterSSA_t$13) {
-                } else {
-                  const tmpClusterSSA_t$15 /*:boolean*/ = 10 === x;
-                  if (tmpClusterSSA_t$15) {
-                  } else {
-                    const tmpClusterSSA_t$17 /*:boolean*/ = 9 === x;
-                    if (tmpClusterSSA_t$17) {
-                    } else {
-                      $(`must be 11`);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-$(`pass`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -347,7 +377,7 @@ $( "pass" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -359,4 +389,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

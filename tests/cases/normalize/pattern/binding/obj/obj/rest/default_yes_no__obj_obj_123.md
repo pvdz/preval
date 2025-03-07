@@ -13,6 +13,24 @@ const { x: { ...y } = $({ a: 'fail' }) } = { x: { x: 1, y: 2, z: 3 }, b: 11, c: 
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:object*/ = { x: 1, y: 2, z: 3 };
+const tmpCalleeParam$3 /*:array*/ = [];
+const y /*:unknown*/ = objPatternRest(tmpObjLitVal, tmpCalleeParam$3, undefined);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = { x: 1, y: 2, z: 3 };
+$(objPatternRest(tmpObjLitVal, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -42,18 +60,7 @@ const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:object*/ = { x: 1, y: 2, z: 3 };
-const tmpCalleeParam$3 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(tmpObjLitVal, tmpCalleeParam$3, undefined);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +78,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1', y: '2', z: '3' }
@@ -81,4 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -20,6 +20,20 @@ try {
 $(glbl);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(window);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(window);
+`````
+
 ## Pre Normal
 
 
@@ -53,15 +67,7 @@ try {
 $(glbl);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(window);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +78,7 @@ $( window );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Maximum call stack size exceeded ]>')
@@ -82,5 +88,8 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Denormalized calls: BAD!!
  - eval returned: ('<crash[ <ref> is not defined ]>')

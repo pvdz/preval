@@ -19,6 +19,35 @@ try {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+try {
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    throw `fail`;
+  } else {
+  }
+} catch (e) {
+  const tmpCalleeParam /*:unknown*/ = e;
+  $(tmpCalleeParam);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+try {
+  if ($(true)) {
+    throw `fail`;
+  }
+} catch (e) {
+  $(e);
+}
+`````
+
 ## Pre Normal
 
 
@@ -50,24 +79,7 @@ try {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-try {
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    throw `fail`;
-  } else {
-  }
-} catch (e) {
-  const tmpCalleeParam /*:unknown*/ = e;
-  $(tmpCalleeParam);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +99,7 @@ catch (b) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -98,4 +110,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

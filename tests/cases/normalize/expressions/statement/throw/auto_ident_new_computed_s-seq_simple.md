@@ -16,6 +16,22 @@ throw new (1, 2, b)["$"](1);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpThrowArg /*:object*/ = new $(1);
+throw tmpThrowArg;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpThrowArg = new $(1);
+throw tmpThrowArg;
+`````
+
 ## Pre Normal
 
 
@@ -38,16 +54,7 @@ const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpThrowArg /*:object*/ = new $(1);
-throw tmpThrowArg;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +66,7 @@ throw a;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -69,4 +76,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

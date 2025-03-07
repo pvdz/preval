@@ -25,6 +25,36 @@ while (flag) {
 $('after');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`before`);
+const tmpBinBothRhs /*:unknown*/ = $(5);
+const x /*:boolean*/ = 0 < tmpBinBothRhs;
+if (x) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $(`again`);
+  }
+} else {
+}
+$(`after`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`before`);
+const tmpBinBothRhs = $(5);
+if (0 < tmpBinBothRhs) {
+  while (true) {
+    $(`again`);
+  }
+}
+$(`after`);
+`````
+
 ## Pre Normal
 
 
@@ -67,24 +97,7 @@ while (true) {
 $(`after`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`before`);
-const tmpBinBothRhs /*:unknown*/ = $(5);
-const x /*:boolean*/ = 0 < tmpBinBothRhs;
-if (x) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(`again`);
-  }
-} else {
-}
-$(`after`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +116,7 @@ $( "after" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'before'
@@ -138,4 +151,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

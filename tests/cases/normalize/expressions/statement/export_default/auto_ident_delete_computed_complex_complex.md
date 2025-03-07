@@ -16,6 +16,31 @@ export default delete $(arg)[$("y")];
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+const tmpAnonDefaultExport /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+export { tmpAnonDefaultExport as default };
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arg = { y: 1 };
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $(`y`);
+const tmpAnonDefaultExport = delete tmpDeleteCompObj[tmpDeleteCompProp];
+export { tmpAnonDefaultExport as default };
+$({ a: 999, b: 1000 }, arg);
+`````
+
 ## Pre Normal
 
 
@@ -40,21 +65,7 @@ export { tmpAnonDefaultExport as default };
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj /*:unknown*/ = $(arg);
-const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpAnonDefaultExport /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +85,7 @@ $( e, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -83,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,64 @@ for (; (a = $(b)?.x); $(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const b /*:object*/ = { x: 1 };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
+  a = tmpChainElementObject;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $(b);
+    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$1 == null;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.x;
+      a = tmpChainElementObject$1;
+    }
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const b = { x: 1 };
+const tmpChainElementCall = $(b);
+if (!(tmpChainElementCall == null)) {
+  a = tmpChainElementCall.x;
+}
+if (a) {
+  while (true) {
+    $(1);
+    const tmpChainElementCall$1 = $(b);
+    if (!(tmpChainElementCall$1 == null)) {
+      a = tmpChainElementCall$1.x;
+    }
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -56,41 +114,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const b /*:object*/ = { x: 1 };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $(b);
-    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$1 == null;
-    if (tmpIfTest$2) {
-    } else {
-      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.x;
-      a = tmpChainElementObject$1;
-    }
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -132,7 +156,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -167,7 +191,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

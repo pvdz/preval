@@ -26,6 +26,28 @@ const f = function() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`do`);
+$(`not`);
+$(`inline`);
+$(1);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`do`);
+$(`not`);
+$(`inline`);
+$(1);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -78,19 +100,7 @@ const f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`do`);
-$(`not`);
-$(`inline`);
-$(1);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +115,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'do'
@@ -119,4 +129,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

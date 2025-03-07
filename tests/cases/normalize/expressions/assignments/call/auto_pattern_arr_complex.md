@@ -14,6 +14,33 @@ $(([a] = $([1, 2])));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+arrPatternSplat[0];
+const tmpCalleeParam$1 /*:array*/ = [1, 2];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+$(tmpNestedAssignArrPatternRhs);
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+[...bindingPatternArrRoot][0];
+const tmpNestedAssignArrPatternRhs = $([1, 2]);
+const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
+$(tmpNestedAssignArrPatternRhs);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -40,23 +67,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
-const tmpCalleeParam$1 /*:array*/ = [1, 2];
-const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
-$(tmpNestedAssignArrPatternRhs);
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +89,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -87,7 +98,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

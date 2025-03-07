@@ -15,6 +15,33 @@ const o = {
 $(o.toString());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const o /*:object*/ = {
+  toString() {
+    debugger;
+    return `xyz`;
+  },
+};
+const tmpCalleeParam /*:string*/ = o.toString();
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(
+  {
+    toString() {
+      return `xyz`;
+    },
+  }.toString(),
+);
+`````
+
 ## Pre Normal
 
 
@@ -42,22 +69,7 @@ const tmpCalleeParam = o.toString();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const o /*:object*/ = {
-  toString() {
-    debugger;
-    return `xyz`;
-  },
-};
-const tmpCalleeParam /*:string*/ = o.toString();
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +85,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'xyz'
@@ -83,7 +95,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $object_toString

@@ -16,6 +16,50 @@ for ($(b)["c"] = $(b)[$("d")]; $(0); );
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpAssignMemLhsObj /*:unknown*/ = $(b);
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+const tmpIfTest /*:unknown*/ = $(0);
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(0);
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: 10, d: 20 };
+const tmpAssignMemLhsObj = $(b);
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+tmpAssignMemLhsObj.c = tmpCompObj[tmpCompProp];
+if ($(0)) {
+  while (true) {
+    if (!$(0)) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -51,33 +95,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 10, d: 20 };
-const tmpAssignMemLhsObj /*:unknown*/ = $(b);
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-const tmpIfTest /*:unknown*/ = $(0);
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(0);
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -113,7 +131,7 @@ $( h, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }
@@ -130,4 +148,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

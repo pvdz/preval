@@ -16,6 +16,49 @@ for (let x of (a = $($(b)).x++));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
+const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+const tmpForOfGen /*:unknown*/ = $forOf(tmpPostUpdArgVal);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(tmpPostUpdArgVal, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpPostUpdArgObj = $($(b));
+const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
+const tmpForOfGen = $forOf(tmpPostUpdArgVal);
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(tmpPostUpdArgVal, b);
+`````
+
 ## Pre Normal
 
 
@@ -63,31 +106,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpPostUpdArgVal);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForOfNext.value;
-  }
-}
-$(tmpPostUpdArgVal, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +134,7 @@ $( d, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -126,7 +145,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

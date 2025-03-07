@@ -18,6 +18,26 @@ let {
 $(c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(`a`);
+const b /*:unknown*/ = $(`b`);
+const dynKey /*:primitive*/ = a + b;
+const x /*:object*/ = { ab: 3 };
+const c /*:unknown*/ = x[dynKey];
+$(c);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const dynKey = $(`a`) + $(`b`);
+$({ ab: 3 }[dynKey]);
+`````
+
 ## Pre Normal
 
 
@@ -42,20 +62,7 @@ let c = bindingPatternObjRoot[dynKey];
 $(c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(`a`);
-const b /*:unknown*/ = $(`b`);
-const dynKey /*:primitive*/ = a + b;
-const x /*:object*/ = { ab: 3 };
-const c /*:unknown*/ = x[dynKey];
-$(c);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +78,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -83,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

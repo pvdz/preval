@@ -16,6 +16,32 @@ for (let xyz = (a = new (1, 2, $(b))["$"](1)); ; $(1)) $(xyz);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(tmpClusterSSA_a);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNewCallee = $({ $: $ }).$;
+const tmpClusterSSA_a = new tmpNewCallee(1);
+while (true) {
+  $(tmpClusterSSA_a);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -48,22 +74,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_a);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -116,7 +127,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: NewExpression

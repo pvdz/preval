@@ -23,6 +23,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+`````
+
 ## Pre Normal
 
 
@@ -59,16 +74,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +86,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
@@ -90,7 +96,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

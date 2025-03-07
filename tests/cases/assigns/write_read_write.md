@@ -16,6 +16,26 @@ $(x);
 x = $('redundant'); // This assignment should be dropped (but the expression is kept)
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(1);
+$(x);
+const tmpClusterSSA_x /*:unknown*/ = $(2);
+$(tmpClusterSSA_x);
+$(`redundant`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(1));
+$($(2));
+$(`redundant`);
+`````
+
 ## Pre Normal
 
 
@@ -38,19 +58,7 @@ $(x);
 x = $(`redundant`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(1);
-$(x);
-const tmpClusterSSA_x /*:unknown*/ = $(2);
-$(tmpClusterSSA_x);
-$(`redundant`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +73,7 @@ $( "redundant" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -79,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

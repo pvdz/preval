@@ -13,6 +13,20 @@ var a = 10, b = 20, c = 30;
 $(a = b = c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(30);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(30);
+`````
+
 ## Pre Normal
 
 
@@ -40,15 +54,7 @@ let tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(30);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +65,7 @@ $( 30 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 30
@@ -69,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -19,6 +19,36 @@ let b = {x: 2}, c = 3, d = 4;
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  const b /*:object*/ = { x: 2 };
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  $(7, b, 3);
+} else {
+}
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  const b = { x: 2 };
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $(`x`);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  $(7, b, 3);
+}
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -62,24 +92,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const b /*:object*/ = { x: 2 };
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-  $(7, b, 3);
-} else {
-}
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +111,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -112,4 +125,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

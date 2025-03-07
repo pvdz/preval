@@ -16,6 +16,43 @@ while (tmpLoopRetCode) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpLoopRetCode /*:boolean*/ = true;
+if ($) {
+} else {
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      tmpLoopRetCode = false;
+    } else {
+    }
+    if (tmpLoopRetCode) {
+    } else {
+      break;
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpLoopRetCode = true;
+if (!$) {
+  while (true) {
+    if ($) {
+      tmpLoopRetCode = false;
+    }
+    if (!tmpLoopRetCode) {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -46,28 +83,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpLoopRetCode /*:boolean*/ = true;
-if ($) {
-} else {
-  while ($LOOP_UNROLL_10) {
-    if ($) {
-      tmpLoopRetCode = false;
-    } else {
-    }
-    if (tmpLoopRetCode) {
-    } else {
-      break;
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -94,7 +110,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -103,7 +119,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support referencing this builtin in isFree: $

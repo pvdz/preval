@@ -16,6 +16,34 @@ $((a = delete ($(1), $(2), arg)[$("y")]) + $(100));
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
+const tmpBinBothRhs /*:unknown*/ = $(100);
+const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
+$(tmpCalleeParam);
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpDeleteCompProp = $(`y`);
+const arg = { y: 1 };
+const a = delete arg[tmpDeleteCompProp];
+$(a + $(100));
+$(a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -44,23 +72,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const arg /*:object*/ = { y: 1 };
-const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-const tmpBinBothRhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +91,7 @@ $( c, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -94,4 +106,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

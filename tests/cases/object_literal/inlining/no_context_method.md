@@ -16,6 +16,22 @@ const str = 'abc'
 $(obj.encode());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(abc);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(abc);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -45,16 +61,7 @@ const tmpCalleeParam = obj.encode();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(abc);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -68,7 +75,7 @@ BAD@! Found 1 implicit global bindings:
 
 abc
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -77,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -32,6 +32,71 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpSwitchDisc /*:unknown*/ = $(true, `dis`);
+  const tmpBinBothRhs /*:unknown*/ = $(true, `case`);
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+  if (tmpIfTest$1) {
+    $(`case`);
+  } else {
+    $(`do not visit, default`);
+  }
+  while ($LOOP_UNROLL_10) {
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$2 /*:unknown*/ = $(true);
+    if (tmpIfTest$2) {
+      $(`loop`);
+      const tmpSwitchDisc$1 /*:unknown*/ = $(true, `dis`);
+      const tmpBinBothRhs$1 /*:unknown*/ = $(true, `case`);
+      const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      if (tmpIfTest$4) {
+        $(`case`);
+      } else {
+        $(`do not visit, default`);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after (not invoked)`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  $(`loop`);
+  if ($(true, `dis`) === $(true, `case`)) {
+    $(`case`);
+  } else {
+    $(`do not visit, default`);
+  }
+  while (true) {
+    $(`infiloop, do not eliminate`);
+    if ($(true)) {
+      $(`loop`);
+      if ($(true, `dis`) === $(true, `case`)) {
+        $(`case`);
+      } else {
+        $(`do not visit, default`);
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(`after (not invoked)`);
+`````
+
 ## Pre Normal
 
 
@@ -85,45 +150,7 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  $(`loop`);
-  const tmpSwitchDisc /*:unknown*/ = $(true, `dis`);
-  const tmpBinBothRhs /*:unknown*/ = $(true, `case`);
-  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-  if (tmpIfTest$1) {
-    $(`case`);
-  } else {
-    $(`do not visit, default`);
-  }
-  while ($LOOP_UNROLL_10) {
-    $(`infiloop, do not eliminate`);
-    const tmpIfTest$2 /*:unknown*/ = $(true);
-    if (tmpIfTest$2) {
-      $(`loop`);
-      const tmpSwitchDisc$1 /*:unknown*/ = $(true, `dis`);
-      const tmpBinBothRhs$1 /*:unknown*/ = $(true, `case`);
-      const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
-      if (tmpIfTest$4) {
-        $(`case`);
-      } else {
-        $(`do not visit, default`);
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(`after (not invoked)`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -166,7 +193,7 @@ $( "after (not invoked)" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -201,4 +228,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

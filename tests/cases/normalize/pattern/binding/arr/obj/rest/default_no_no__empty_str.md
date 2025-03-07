@@ -13,6 +13,22 @@ const [{ ...x }] = '';
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:array*/ = [];
+const x /*:unknown*/ = objPatternRest(undefined, tmpCalleeParam$1, undefined);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(objPatternRest(undefined, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -34,17 +50,7 @@ const x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:array*/ = [];
-const x /*:unknown*/ = objPatternRest(undefined, tmpCalleeParam$1, undefined);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +63,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -66,7 +72,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

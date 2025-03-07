@@ -17,6 +17,44 @@ const obj = {
 $($(obj).x = 30);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const obj /*:object*/ = {
+  get x() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(10);
+    return tmpReturnArg;
+  },
+  set x($$0) {
+    debugger;
+    $(20);
+    return undefined;
+  },
+};
+const varInitAssignLhsComputedObj /*:unknown*/ = $(obj);
+varInitAssignLhsComputedObj.x = 30;
+$(30);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const varInitAssignLhsComputedObj = $({
+  get x() {
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
+  },
+  set x($$0) {
+    $(20);
+  },
+});
+varInitAssignLhsComputedObj.x = 30;
+$(30);
+`````
+
 ## Pre Normal
 
 
@@ -59,29 +97,7 @@ const tmpCalleeParam = varInitAssignLhsComputedRhs;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const obj /*:object*/ = {
-  get x() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(10);
-    return tmpReturnArg;
-  },
-  set x($$0) {
-    debugger;
-    $(20);
-    return undefined;
-  },
-};
-const varInitAssignLhsComputedObj /*:unknown*/ = $(obj);
-varInitAssignLhsComputedObj.x = 30;
-$(30);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +122,7 @@ $( 30 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '<get/set>' }
@@ -118,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

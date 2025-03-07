@@ -21,6 +21,38 @@ while (true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpClusterSSA_x /*:unknown*/ = $(10);
+  const tmpIfTest /*:number*/ = tmpClusterSSA_x % 2;
+  if (tmpIfTest) {
+    const tmpClusterSSA_x$1 /*:primitive*/ = tmpClusterSSA_x + 1;
+    $(tmpClusterSSA_x$1, `write`);
+  } else {
+    $(tmpClusterSSA_x, `read`);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+while (true) {
+  const tmpClusterSSA_x = $(10);
+  if (tmpClusterSSA_x % 2) {
+    $(tmpClusterSSA_x + 1, `write`);
+  } else {
+    $(tmpClusterSSA_x, `read`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -54,25 +86,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpClusterSSA_x /*:unknown*/ = $(10);
-  const tmpIfTest /*:number*/ = tmpClusterSSA_x % 2;
-  if (tmpIfTest) {
-    const tmpClusterSSA_x$1 /*:primitive*/ = tmpClusterSSA_x + 1;
-    $(tmpClusterSSA_x$1, `write`);
-  } else {
-    $(tmpClusterSSA_x, `read`);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -94,7 +108,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -129,4 +143,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

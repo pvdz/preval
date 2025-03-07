@@ -16,6 +16,38 @@ for (let xyz = (a = (1, 2, b)[$("c")] = $(b)[$("d")]); ; $(1)) $(xyz);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(tmpNestedAssignPropRhs);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignComMemberProp = $(`c`);
+const b = { c: 10, d: 20 };
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+while (true) {
+  $(tmpNestedAssignPropRhs);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -53,24 +85,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpNestedAssignPropRhs);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +108,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'c'
@@ -128,4 +143,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

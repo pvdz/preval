@@ -14,6 +14,46 @@ let b = {x: 1, y: 2};
 for ($(a).x in b) $(a.x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1, y: 2 };
+const tmpForInGen /*:unknown*/ = $forIn(b);
+const a /*:object*/ = {};
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    const tmpCalleeParam /*:unknown*/ = a.x;
+    $(tmpCalleeParam);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn({ x: 1, y: 2 });
+const a = {};
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    const tmpAssignMemLhsObj = $(a);
+    tmpAssignMemLhsObj.x = tmpForInNext.value;
+    $(a.x);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -57,30 +97,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1, y: 2 };
-const tmpForInGen /*:unknown*/ = $forIn(b);
-const a /*:object*/ = {};
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpAssignMemLhsObj /*:unknown*/ = $(a);
-    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    const tmpCalleeParam /*:unknown*/ = a.x;
-    $(tmpCalleeParam);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +127,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: {}
@@ -123,7 +140,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

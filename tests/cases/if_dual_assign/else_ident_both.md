@@ -26,6 +26,27 @@ if (a) {
 $(x, 'end');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:unknown*/ = $(`x`, `one`);
+const c /*:unknown*/ = $(`x`, `one`);
+$(false, `middle`);
+const a /*:boolean*/ = b === c;
+$(a, `end`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = $(`x`, `one`);
+const c = $(`x`, `one`);
+$(false, `middle`);
+$(b === c, `end`);
+`````
+
 ## Pre Normal
 
 
@@ -68,19 +89,7 @@ if (a) {
 $(x, `end`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:unknown*/ = $(`x`, `one`);
-const c /*:unknown*/ = $(`x`, `one`);
-$(false, `middle`);
-const a /*:boolean*/ = b === c;
-$(a, `end`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -95,7 +104,7 @@ $( c, "end" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x', 'one'
@@ -108,4 +117,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

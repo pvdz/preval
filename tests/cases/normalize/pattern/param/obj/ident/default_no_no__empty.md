@@ -15,6 +15,22 @@ function f({ x }) {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+undefined.x;
+throw `[Preval]: Can not reach here`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+undefined.x;
+throw `[Preval]: Can not reach here`;
+`````
+
 ## Pre Normal
 
 
@@ -43,16 +59,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-undefined.x;
-throw `[Preval]: Can not reach here`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +71,7 @@ throw "[Preval]: Can not reach here";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -73,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

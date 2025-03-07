@@ -16,6 +16,47 @@ for (let x of ({ b } = $({ b: $(2) })));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(2);
+const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignObjPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, tmpClusterSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(2);
+const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$({ a: 999, b: 1000 }, tmpClusterSSA_b);
+`````
+
 ## Pre Normal
 
 
@@ -61,30 +102,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignObjPatternRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForOfNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +132,7 @@ $( h, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -125,7 +143,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

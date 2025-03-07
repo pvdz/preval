@@ -18,6 +18,24 @@ let diff = !same;
 $(diff);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(1);
+const b /*:unknown*/ = $(2);
+const same /*:boolean*/ = a !== b;
+$(same);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = $(1);
+$(a !== $(2));
+`````
+
 ## Pre Normal
 
 
@@ -40,18 +58,7 @@ let diff = !same;
 $(diff);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(1);
-const b /*:unknown*/ = $(2);
-const same /*:boolean*/ = a !== b;
-$(same);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +72,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -77,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

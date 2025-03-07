@@ -12,6 +12,23 @@
 $(`abc ${ $(10) } ${ 20 } def`);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $(10);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+const tmpCalleeParam /*:string*/ = `abc ${tmpBinBothRhs$1} 20 def`;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`abc ${$(10)} 20 def`);
+`````
+
 ## Pre Normal
 
 
@@ -36,18 +53,7 @@ const tmpCalleeParam = `${tmpStringConcatR$1} def`;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(10);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam /*:string*/ = `abc ${tmpBinBothRhs$1} 20 def`;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +67,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -72,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

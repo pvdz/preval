@@ -47,6 +47,74 @@ const h = function () {
 $(h());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const k /*:()=>unknown*/ = function () {
+  debugger;
+  const tmpCalleeParam /*:unknown*/ = $(10);
+  if ($) {
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
+    return tmpCalleeParam;
+  } else {
+    return tmpCalleeParam;
+  }
+};
+if ($) {
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
+  if ($) {
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
+    const tmpReturnArg$1 /*:unknown*/ = k();
+    $(tmpReturnArg$1);
+  } else {
+    const tmpReturnArg$3 /*:unknown*/ = k();
+    $(tmpReturnArg$3);
+  }
+} else {
+  const tmpReturnArg$7 /*:unknown*/ = k();
+  $(tmpReturnArg$7);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const k = function () {
+  const tmpCalleeParam = $(10);
+  if ($) {
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
+    return tmpCalleeParam;
+  } else {
+    return tmpCalleeParam;
+  }
+};
+if ($) {
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
+  if ($) {
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
+    $(k());
+  } else {
+    $(k());
+  }
+} else {
+  $(k());
+}
+`````
+
 ## Pre Normal
 
 
@@ -145,44 +213,7 @@ const tmpCalleeParam$1 = h();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const k /*:()=>unknown*/ = function () {
-  debugger;
-  const tmpCalleeParam /*:unknown*/ = $(10);
-  if ($) {
-    $(`prevent`);
-    $(`simple`);
-    $(`inlining`);
-    return tmpCalleeParam;
-  } else {
-    return tmpCalleeParam;
-  }
-};
-if ($) {
-  $(`prevent`);
-  $(`simple`);
-  $(`inlining`);
-  if ($) {
-    $(`prevent`);
-    $(`simple`);
-    $(`inlining`);
-    const tmpReturnArg$1 /*:unknown*/ = k();
-    $(tmpReturnArg$1);
-  } else {
-    const tmpReturnArg$3 /*:unknown*/ = k();
-    $(tmpReturnArg$3);
-  }
-} else {
-  const tmpReturnArg$7 /*:unknown*/ = k();
-  $(tmpReturnArg$7);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -225,7 +256,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'prevent'
@@ -245,4 +276,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

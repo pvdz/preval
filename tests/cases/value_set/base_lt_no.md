@@ -75,6 +75,134 @@ if (n <= 10) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $();
+let n /*:number*/ = 11;
+const t /*:boolean*/ = 0 === x;
+if (t) {
+  n = 0;
+} else {
+  const tmpClusterSSA_t /*:boolean*/ = 1 === x;
+  if (tmpClusterSSA_t) {
+    n = 1;
+  } else {
+    const tmpClusterSSA_t$1 /*:boolean*/ = 2 === x;
+    if (tmpClusterSSA_t$1) {
+      n = 2;
+    } else {
+      const tmpClusterSSA_t$3 /*:boolean*/ = 3 === x;
+      if (tmpClusterSSA_t$3) {
+        n = 3;
+      } else {
+        const tmpClusterSSA_t$5 /*:boolean*/ = 4 === x;
+        if (tmpClusterSSA_t$5) {
+          n = 4;
+        } else {
+          const tmpClusterSSA_t$7 /*:boolean*/ = 5 === x;
+          if (tmpClusterSSA_t$7) {
+            n = 5;
+          } else {
+            const tmpClusterSSA_t$9 /*:boolean*/ = 6 === x;
+            if (tmpClusterSSA_t$9) {
+              n = 6;
+            } else {
+              const tmpClusterSSA_t$11 /*:boolean*/ = 7 === x;
+              if (tmpClusterSSA_t$11) {
+                n = 7;
+              } else {
+                const tmpClusterSSA_t$13 /*:boolean*/ = 8 === x;
+                if (tmpClusterSSA_t$13) {
+                  n = 8;
+                } else {
+                  const tmpClusterSSA_t$15 /*:boolean*/ = 10 === x;
+                  if (tmpClusterSSA_t$15) {
+                    n = 9;
+                  } else {
+                    const tmpClusterSSA_t$17 /*:boolean*/ = 9 === x;
+                    if (tmpClusterSSA_t$17) {
+                      n = 10;
+                    } else {
+                      $(`must be 11`);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+const tmpIfTest /*:boolean*/ = n <= 10;
+if (tmpIfTest) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $();
+let n = 11;
+if (0 === x) {
+  n = 0;
+} else {
+  if (1 === x) {
+    n = 1;
+  } else {
+    if (2 === x) {
+      n = 2;
+    } else {
+      if (3 === x) {
+        n = 3;
+      } else {
+        if (4 === x) {
+          n = 4;
+        } else {
+          if (5 === x) {
+            n = 5;
+          } else {
+            if (6 === x) {
+              n = 6;
+            } else {
+              if (7 === x) {
+                n = 7;
+              } else {
+                if (8 === x) {
+                  n = 8;
+                } else {
+                  if (10 === x) {
+                    n = 9;
+                  } else {
+                    if (9 === x) {
+                      n = 10;
+                    } else {
+                      $(`must be 11`);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+if (n <= 10) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -214,78 +342,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $();
-let n /*:number*/ = 11;
-const t /*:boolean*/ = 0 === x;
-if (t) {
-  n = 0;
-} else {
-  const tmpClusterSSA_t /*:boolean*/ = 1 === x;
-  if (tmpClusterSSA_t) {
-    n = 1;
-  } else {
-    const tmpClusterSSA_t$1 /*:boolean*/ = 2 === x;
-    if (tmpClusterSSA_t$1) {
-      n = 2;
-    } else {
-      const tmpClusterSSA_t$3 /*:boolean*/ = 3 === x;
-      if (tmpClusterSSA_t$3) {
-        n = 3;
-      } else {
-        const tmpClusterSSA_t$5 /*:boolean*/ = 4 === x;
-        if (tmpClusterSSA_t$5) {
-          n = 4;
-        } else {
-          const tmpClusterSSA_t$7 /*:boolean*/ = 5 === x;
-          if (tmpClusterSSA_t$7) {
-            n = 5;
-          } else {
-            const tmpClusterSSA_t$9 /*:boolean*/ = 6 === x;
-            if (tmpClusterSSA_t$9) {
-              n = 6;
-            } else {
-              const tmpClusterSSA_t$11 /*:boolean*/ = 7 === x;
-              if (tmpClusterSSA_t$11) {
-                n = 7;
-              } else {
-                const tmpClusterSSA_t$13 /*:boolean*/ = 8 === x;
-                if (tmpClusterSSA_t$13) {
-                  n = 8;
-                } else {
-                  const tmpClusterSSA_t$15 /*:boolean*/ = 10 === x;
-                  if (tmpClusterSSA_t$15) {
-                    n = 9;
-                  } else {
-                    const tmpClusterSSA_t$17 /*:boolean*/ = 9 === x;
-                    if (tmpClusterSSA_t$17) {
-                      n = 10;
-                    } else {
-                      $(`must be 11`);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-const tmpIfTest /*:boolean*/ = n <= 10;
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -371,7 +428,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -383,4 +440,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

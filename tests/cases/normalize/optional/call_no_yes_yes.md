@@ -22,6 +22,76 @@ function a() {
 $(a().b?.().c?.().d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:unknown*/ = undefined;
+const a$1 /*:object*/ = {
+  a() {
+    debugger;
+    return a$1;
+  },
+  b() {
+    debugger;
+    return a$1;
+  },
+  c() {
+    debugger;
+    return a$1;
+  },
+  d() {
+    debugger;
+    return a$1;
+  },
+};
+const tmpChainElementObject /*:unknown*/ = a$1.b;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, a$1, `b`);
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.c;
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainElementCall$3 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, `c`);
+    const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$3.d;
+    tmpCalleeParam = tmpChainElementObject$3;
+  }
+}
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = undefined;
+const a$1 = {
+  a() {
+    return a$1;
+  },
+  b() {
+    return a$1;
+  },
+  c() {
+    return a$1;
+  },
+  d() {
+    return a$1;
+  },
+};
+const tmpChainElementObject = a$1.b;
+if (!(tmpChainElementObject == null)) {
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, a$1, `b`);
+  const tmpChainElementObject$1 = tmpChainElementCall$1.c;
+  if (!(tmpChainElementObject$1 == null)) {
+    tmpCalleeParam = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, `c`).d;
+  }
+}
+$(tmpCalleeParam);
+`````
+
 ## Pre Normal
 
 
@@ -97,48 +167,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
-const a$1 /*:object*/ = {
-  a() {
-    debugger;
-    return a$1;
-  },
-  b() {
-    debugger;
-    return a$1;
-  },
-  c() {
-    debugger;
-    return a$1;
-  },
-  d() {
-    debugger;
-    return a$1;
-  },
-};
-const tmpChainElementObject /*:unknown*/ = a$1.b;
-const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, a$1, `b`);
-  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.c;
-  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementCall$3 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, `c`);
-    const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$3.d;
-    tmpCalleeParam = tmpChainElementObject$3;
-  }
-}
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -186,7 +215,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -196,4 +225,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

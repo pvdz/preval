@@ -44,6 +44,46 @@ const h = function($$0) {
 };
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  arr[-344];
+  if (unknown) {
+    unknown;
+    arr[364];
+  } else {
+  }
+  if (unknown2) {
+    unknown2;
+    arr[364];
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  arr[-344];
+  if (unknown) {
+    unknown;
+    arr[364];
+  }
+  if (unknown2) {
+    unknown2;
+    arr[364];
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -110,31 +150,7 @@ const h = function ($$0) {
 };
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  arr[-344];
-  if (unknown) {
-    unknown;
-    arr[364];
-  } else {
-  }
-  if (unknown2) {
-    unknown2;
-    arr[364];
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -163,7 +179,7 @@ BAD@! Found 3 implicit global bindings:
 
 arr, unknown, unknown2
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -173,4 +189,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

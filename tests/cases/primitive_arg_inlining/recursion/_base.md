@@ -19,6 +19,31 @@ function f(n) {
 $(f(0));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(primitive)=>unknown*/ = function ($$0) {
+  const n /*:primitive*/ = $$0;
+  debugger;
+  const tmpCalleeParam /*:primitive*/ = n + 1;
+  const tmpReturnArg /*:unknown*/ = f(tmpCalleeParam);
+  return tmpReturnArg;
+};
+throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (n) {
+  const tmpReturnArg = f(n + 1);
+  return tmpReturnArg;
+};
+throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
+`````
+
 ## Pre Normal
 
 
@@ -47,22 +72,7 @@ const tmpCalleeParam$1 = f(0);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(primitive)=>unknown*/ = function ($$0) {
-  const n /*:primitive*/ = $$0;
-  debugger;
-  const tmpCalleeParam /*:primitive*/ = n + 1;
-  const tmpReturnArg /*:unknown*/ = f(tmpCalleeParam);
-  return tmpReturnArg;
-};
-throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +90,7 @@ throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = f(0);`
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Maximum call stack size exceeded ]>')
@@ -89,4 +99,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

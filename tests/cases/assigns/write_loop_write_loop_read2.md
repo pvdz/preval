@@ -17,6 +17,31 @@ while (true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let i /*:number*/ = 0;
+$(10);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  i = i + 1;
+  const tmpClusterSSA_x /*:unknown*/ = $(i, `set`);
+  $(tmpClusterSSA_x, `loop`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let i = 0;
+$(10);
+while (true) {
+  i = i + 1;
+  $($(i, `set`), `loop`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -43,21 +68,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let i /*:number*/ = 0;
-$(10);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  i = i + 1;
-  const tmpClusterSSA_x /*:unknown*/ = $(i, `set`);
-  $(tmpClusterSSA_x, `loop`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +85,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -109,4 +120,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

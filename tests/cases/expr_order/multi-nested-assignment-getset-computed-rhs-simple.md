@@ -28,6 +28,237 @@ $$(a, b, c, d, e);
 $$(obja, objb, objc, objd);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmp /*:(array)=>unknown*/ = function (...$$0 /*:array*/) {
+  const a$1 /*:array*/ = $$0;
+  debugger;
+  const tmpCalleeParam /*:array*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, `::`, ...a$1];
+  $(tmpCalleeParam);
+  const tmpReturnArg /*:unknown*/ = a$1[0];
+  return tmpReturnArg;
+};
+const obja /*:object*/ = {
+  get a() {
+    debugger;
+    tmp(`a.get`);
+    return 110;
+  },
+  set a($$0) {
+    const x /*:unknown*/ = $$0;
+    debugger;
+    tmp(`a.set`, x);
+    e = `faila`;
+    return 1000;
+  },
+};
+const objb /*:object*/ = {
+  get b() {
+    debugger;
+    tmp(`b.get`);
+    a = 210;
+    return 100;
+  },
+  set b($$0) {
+    const x$1 /*:unknown*/ = $$0;
+    debugger;
+    tmp(`b.set`, x$1);
+    a = 2100;
+    e = `failb`;
+    return 2000;
+  },
+};
+const objc /*:object*/ = {
+  get c() {
+    debugger;
+    tmp(`c.get`);
+    a = 310;
+    b = 320;
+    return 100;
+  },
+  set c($$0) {
+    const x$3 /*:unknown*/ = $$0;
+    debugger;
+    tmp(`c.set`, x$3);
+    a = 3100;
+    b = 3200;
+    e = `failc`;
+    return 3000;
+  },
+};
+const objd /*:object*/ = {
+  get d() {
+    debugger;
+    tmp(`d.get`);
+    a = 410;
+    b = 420;
+    c = 430;
+    return 100;
+  },
+  set d($$0) {
+    const x$5 /*:unknown*/ = $$0;
+    debugger;
+    tmp(`d.set`, x$5);
+    a = 4100;
+    b = 4200;
+    c = 4300;
+    e = `faild`;
+    return 4000;
+  },
+};
+let a /*:()=>unknown*/ = function () {
+  debugger;
+  tmp(`a`);
+  return obja;
+};
+let b /*:()=>unknown*/ = function () {
+  debugger;
+  tmp(`b`);
+  a = 21;
+  return objb;
+};
+let c /*:()=>unknown*/ = function () {
+  debugger;
+  tmp(`c`);
+  a = 31;
+  b = 32;
+  return objc;
+};
+const d /*:()=>object*/ = function () {
+  debugger;
+  tmp(`d`);
+  a = 41;
+  b = 42;
+  c = 43;
+  return objd;
+};
+let e /*:primitive*/ = 12345;
+const varInitAssignLhsComputedObj /*:unknown*/ = a();
+const varInitAssignLhsComputedProp /*:unknown*/ = tmp(`a`);
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = b();
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = tmp(`b`);
+const varInitAssignLhsComputedObj$3 /*:unknown*/ = c();
+const varInitAssignLhsComputedProp$3 /*:unknown*/ = tmp(`c`);
+d();
+const varInitAssignLhsComputedProp$5 /*:unknown*/ = tmp(`d`);
+const varInitAssignLhsComputedRhs$5 /*:unknown*/ = e;
+objd[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$5;
+tmp(varInitAssignLhsComputedRhs$5);
+tmp(a, b, c, d, e);
+tmp(obja, objb, objc, objd);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmp = function (a$1) {
+  $([`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, `::`, ...a$1]);
+  const tmpReturnArg = a$1[0];
+  return tmpReturnArg;
+};
+const obja = {
+  get a() {
+    tmp(`a.get`);
+    return 110;
+  },
+  set a(x) {
+    tmp(`a.set`, x);
+    e = `faila`;
+    return 1000;
+  },
+};
+const objb = {
+  get b() {
+    tmp(`b.get`);
+    a = 210;
+    return 100;
+  },
+  set b(x$1) {
+    tmp(`b.set`, x$1);
+    a = 2100;
+    e = `failb`;
+    return 2000;
+  },
+};
+const objc = {
+  get c() {
+    tmp(`c.get`);
+    a = 310;
+    b = 320;
+    return 100;
+  },
+  set c(x$3) {
+    tmp(`c.set`, x$3);
+    a = 3100;
+    b = 3200;
+    e = `failc`;
+    return 3000;
+  },
+};
+const objd = {
+  get d() {
+    tmp(`d.get`);
+    a = 410;
+    b = 420;
+    c = 430;
+    return 100;
+  },
+  set d(x$5) {
+    tmp(`d.set`, x$5);
+    a = 4100;
+    b = 4200;
+    c = 4300;
+    e = `faild`;
+    return 4000;
+  },
+};
+let a = function () {
+  tmp(`a`);
+  return obja;
+};
+let b = function () {
+  tmp(`b`);
+  a = 21;
+  return objb;
+};
+let c = function () {
+  tmp(`c`);
+  a = 31;
+  b = 32;
+  return objc;
+};
+const d = function () {
+  tmp(`d`);
+  a = 41;
+  b = 42;
+  c = 43;
+  return objd;
+};
+let e = 12345;
+const varInitAssignLhsComputedObj = a();
+const varInitAssignLhsComputedProp = tmp(`a`);
+const varInitAssignLhsComputedObj$1 = b();
+const varInitAssignLhsComputedProp$1 = tmp(`b`);
+const varInitAssignLhsComputedObj$3 = c();
+const varInitAssignLhsComputedProp$3 = tmp(`c`);
+d();
+const varInitAssignLhsComputedProp$5 = tmp(`d`);
+const varInitAssignLhsComputedRhs$5 = e;
+objd[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$5;
+tmp(varInitAssignLhsComputedRhs$5);
+tmp(a, b, c, d, e);
+tmp(obja, objb, objc, objd);
+`````
+
 ## Pre Normal
 
 
@@ -286,133 +517,7 @@ tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmp /*:(array)=>unknown*/ = function (...$$0 /*:array*/) {
-  const a$1 /*:array*/ = $$0;
-  debugger;
-  const tmpCalleeParam /*:array*/ = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, `::`, ...a$1];
-  $(tmpCalleeParam);
-  const tmpReturnArg /*:unknown*/ = a$1[0];
-  return tmpReturnArg;
-};
-const obja /*:object*/ = {
-  get a() {
-    debugger;
-    tmp(`a.get`);
-    return 110;
-  },
-  set a($$0) {
-    const x /*:unknown*/ = $$0;
-    debugger;
-    tmp(`a.set`, x);
-    e = `faila`;
-    return 1000;
-  },
-};
-const objb /*:object*/ = {
-  get b() {
-    debugger;
-    tmp(`b.get`);
-    a = 210;
-    return 100;
-  },
-  set b($$0) {
-    const x$1 /*:unknown*/ = $$0;
-    debugger;
-    tmp(`b.set`, x$1);
-    a = 2100;
-    e = `failb`;
-    return 2000;
-  },
-};
-const objc /*:object*/ = {
-  get c() {
-    debugger;
-    tmp(`c.get`);
-    a = 310;
-    b = 320;
-    return 100;
-  },
-  set c($$0) {
-    const x$3 /*:unknown*/ = $$0;
-    debugger;
-    tmp(`c.set`, x$3);
-    a = 3100;
-    b = 3200;
-    e = `failc`;
-    return 3000;
-  },
-};
-const objd /*:object*/ = {
-  get d() {
-    debugger;
-    tmp(`d.get`);
-    a = 410;
-    b = 420;
-    c = 430;
-    return 100;
-  },
-  set d($$0) {
-    const x$5 /*:unknown*/ = $$0;
-    debugger;
-    tmp(`d.set`, x$5);
-    a = 4100;
-    b = 4200;
-    c = 4300;
-    e = `faild`;
-    return 4000;
-  },
-};
-let a /*:()=>unknown*/ = function () {
-  debugger;
-  tmp(`a`);
-  return obja;
-};
-let b /*:()=>unknown*/ = function () {
-  debugger;
-  tmp(`b`);
-  a = 21;
-  return objb;
-};
-let c /*:()=>unknown*/ = function () {
-  debugger;
-  tmp(`c`);
-  a = 31;
-  b = 32;
-  return objc;
-};
-const d /*:()=>object*/ = function () {
-  debugger;
-  tmp(`d`);
-  a = 41;
-  b = 42;
-  c = 43;
-  return objd;
-};
-let e /*:primitive*/ = 12345;
-const varInitAssignLhsComputedObj /*:unknown*/ = a();
-const varInitAssignLhsComputedProp /*:unknown*/ = tmp(`a`);
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = b();
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = tmp(`b`);
-const varInitAssignLhsComputedObj$3 /*:unknown*/ = c();
-const varInitAssignLhsComputedProp$3 /*:unknown*/ = tmp(`c`);
-d();
-const varInitAssignLhsComputedProp$5 /*:unknown*/ = tmp(`d`);
-const varInitAssignLhsComputedRhs$5 /*:unknown*/ = e;
-objd[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$5;
-tmp(varInitAssignLhsComputedRhs$5);
-tmp(a, b, c, d, e);
-tmp(obja, objb, objc, objd);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -541,7 +646,7 @@ a( h, i, j, k );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -786,4 +891,200 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: BAD!!
+ - 1: 
+  [
+    '$:',
+    'a',
+    '<function>',
+    '<function>',
+    '<function>',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'a',
+  ],
+
+ - 2: 
+  [
+    '$:',
+    'a',
+    '<function>',
+    '<function>',
+    '<function>',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'a',
+  ],
+
+ - 3: 
+  [
+    '$:',
+    'b',
+    '<function>',
+    '<function>',
+    '<function>',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'b',
+  ],
+
+ - 4: 
+  [
+    '$:',
+    'b',
+    '<function>',
+    '<function>',
+    '<function>',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'b',
+  ],
+
+ - 5: 
+  [
+    '$:',
+    'c',
+    '<function>',
+    '<function>',
+    '<function>',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'c',
+  ],
+
+ - 6: 
+  [
+    '$:',
+    'c',
+    32,
+    '<function>',
+    '<function>',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'c',
+  ],
+
+ - 7: 
+  [
+    '$:',
+    'd',
+    32,
+    '<function>',
+    '<function>',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'd',
+  ],
+
+ - 8: ['$:', 'd', 42, 43, '<function>', 12345, { a: '<get/set>' }, { b: '<get/set>' }, { c: '<get/set>' }, { d: '<get/set>' }, '::', 'd']
+ - 9: 
+  [
+    '$:',
+    'd.set',
+    42,
+    43,
+    '<function>',
+    12345,
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'd',
+    '.',
+    's',
+    'e',
+    't',
+  ],
+
+ - 10: 
+  [
+    '$:',
+    'c.set',
+    4200,
+    4300,
+    '<function>',
+    'faild',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'c',
+    '.',
+    's',
+    'e',
+    't',
+  ],
+
+ - 11: 
+  [
+    '$:',
+    'b.set',
+    3200,
+    4300,
+    '<function>',
+    'failc',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'b',
+    '.',
+    's',
+    'e',
+    't',
+  ],
+
+ - 12: 
+  [
+    '$:',
+    'a.set',
+    3200,
+    4300,
+    '<function>',
+    'failb',
+    { a: '<get/set>' },
+    { b: '<get/set>' },
+    { c: '<get/set>' },
+    { d: '<get/set>' },
+    '::',
+    'a',
+    '.',
+    's',
+    'e',
+    't',
+  ],
+
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')

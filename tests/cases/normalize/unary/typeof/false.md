@@ -12,6 +12,20 @@
 $(typeof false);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`boolean`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`boolean`);
+`````
+
 ## Pre Normal
 
 
@@ -27,15 +41,7 @@ const tmpCalleeParam = `boolean`;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`boolean`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -46,7 +52,7 @@ $( "boolean" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'boolean'
@@ -56,4 +62,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

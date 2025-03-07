@@ -26,6 +26,56 @@ $(f(427 + 3));
 $(alias);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3, 4];
+let f /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
+  const a /*:unknown*/ = $$0;
+  const b /*:unknown*/ = $$1;
+  debugger;
+  f = function ($$0, $$1) {
+    const c /*:unknown*/ = $$0;
+    debugger;
+    const index /*:number*/ = c - 427;
+    const n /*:primitive*/ = arr[index];
+    return n;
+  };
+  const tmp /*:unknown*/ = f(a, b);
+  return tmp;
+};
+const alias /*:unknown*/ = f;
+const tmpCalleeParam /*:unknown*/ = f(428);
+$(tmpCalleeParam);
+const tmpCalleeParam$3 /*:unknown*/ = f(429);
+$(tmpCalleeParam$3);
+const tmpCalleeParam$7 /*:unknown*/ = f(430);
+$(tmpCalleeParam$7);
+$(alias);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [1, 2, 3, 4];
+let f = function (a, b) {
+  f = function (c, $$1) {
+    const index = c - 427;
+    const n = arr[index];
+    return n;
+  };
+  const tmp = f(a, b);
+  return tmp;
+};
+const alias = f;
+$(f(428));
+$(f(429));
+$(f(430));
+$(alias);
+`````
+
 ## Pre Normal
 
 
@@ -89,37 +139,7 @@ $(tmpCalleeParam$7);
 $(alias);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3, 4];
-let f /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  const a /*:unknown*/ = $$0;
-  const b /*:unknown*/ = $$1;
-  debugger;
-  f = function ($$0, $$1) {
-    const c /*:unknown*/ = $$0;
-    debugger;
-    const index /*:number*/ = c - 427;
-    const n /*:primitive*/ = arr[index];
-    return n;
-  };
-  const tmp /*:unknown*/ = f(a, b);
-  return tmp;
-};
-const alias /*:unknown*/ = f;
-const tmpCalleeParam /*:unknown*/ = f(428);
-$(tmpCalleeParam);
-const tmpCalleeParam$3 /*:unknown*/ = f(429);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$7 /*:unknown*/ = f(430);
-$(tmpCalleeParam$7);
-$(alias);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -152,7 +172,7 @@ $( i );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -165,4 +185,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -17,6 +17,42 @@ for (let x in {a:10, b:20}) {
 $('keep, do not eval');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: 10, b: 20 };
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+    $(`fail`);
+  }
+}
+$(`keep, do not eval`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn({ a: 10, b: 20 });
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+    $(`fail`);
+  }
+}
+$(`keep, do not eval`);
+`````
+
 ## Pre Normal
 
 
@@ -57,27 +93,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`keep, do not eval`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 10, b: 20 };
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-    $(`fail`);
-  }
-}
-$(`keep, do not eval`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +120,7 @@ $( "keep, do not eval" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'fail'
@@ -116,7 +132,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

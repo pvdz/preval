@@ -12,6 +12,22 @@
 $(parseFloat(NaN, 1, "two", implicitGlobal, 3));
 `````
 
+## Settled
+
+
+`````js filename=intro
+implicitGlobal;
+$(NaN);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+implicitGlobal;
+$(NaN);
+`````
+
 ## Pre Normal
 
 
@@ -29,16 +45,7 @@ const tmpCalleeParam = parseFloat(tmpArgOverflow);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-implicitGlobal;
-$(NaN);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -52,7 +59,7 @@ BAD@! Found 1 implicit global bindings:
 
 implicitGlobal
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -61,4 +68,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -18,6 +18,31 @@ $(obj.f);
 $('nope');
 `````
 
+## Settled
+
+
+`````js filename=intro
+import { default as e } from 'xyz';
+const tmpCalleeParam /*:unknown*/ = e;
+$(tmpCalleeParam);
+`````
+
+`````js filename=xyz
+$(`nope`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+import { default as e } from 'xyz';
+$(e);
+`````
+
+`````js filename=xyz
+$(`nope`);
+`````
+
 ## Pre Normal
 
 
@@ -45,21 +70,7 @@ $(tmpCalleeParam);
 $(`nope`);
 `````
 
-## Output
-
-
-`````js filename=intro
-import { default as e } from 'xyz';
-const tmpCalleeParam /*:unknown*/ = e;
-$(tmpCalleeParam);
-`````
-
-`````js filename=xyz
-$(`nope`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +91,7 @@ BAD@! Found 1 implicit global bindings:
 
 e
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')
@@ -89,4 +100,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

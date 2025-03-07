@@ -14,6 +14,55 @@ for (let x in (10, 20, $(30)) ? $(2) : $($(100)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(30);
+let tmpForInGen /*:unknown*/ = undefined;
+if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2);
+  tmpForInGen = $forIn(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  tmpForInGen = $forIn(tmpClusterSSA_tmpCalleeParam$1);
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(30);
+let tmpForInGen = undefined;
+if (tmpIfTest) {
+  tmpForInGen = $forIn($(2));
+} else {
+  tmpForInGen = $forIn($($(100)));
+}
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -59,35 +108,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(30);
-let tmpForInGen /*:unknown*/ = undefined;
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2);
-  tmpForInGen = $forIn(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(100);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpForInGen = $forIn(tmpClusterSSA_tmpCalleeParam$1);
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest$1) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -123,7 +144,7 @@ $( h );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 30
@@ -135,7 +156,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

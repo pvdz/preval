@@ -21,6 +21,36 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+if (tmpIfTest) {
+  $(`unreachable (but keep because the for body may not be visited...)`);
+} else {
+  const x /*:unknown*/ = tmpForOfNext.value;
+  $(`for`, x);
+}
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForOfNext = $forOf([1, 2]).next();
+if (tmpForOfNext.done) {
+  $(`unreachable (but keep because the for body may not be visited...)`);
+} else {
+  $(`for`, tmpForOfNext.value);
+}
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -73,25 +103,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-if (tmpIfTest) {
-  $(`unreachable (but keep because the for body may not be visited...)`);
-} else {
-  const x /*:unknown*/ = tmpForOfNext.value;
-  $(`for`, x);
-}
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -113,7 +125,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'for', 1
@@ -124,4 +136,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

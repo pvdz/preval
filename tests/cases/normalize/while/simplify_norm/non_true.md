@@ -18,6 +18,49 @@ while (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if (x) {
+  const tmpIfTest /*:unknown*/ = $(`yes`);
+  if (tmpIfTest) {
+    while ($LOOP_UNROLL_10) {
+      if (x) {
+        const tmpIfTest$1 /*:unknown*/ = $(`yes`);
+        if (tmpIfTest$1) {
+        } else {
+          break;
+        }
+      } else {
+        break;
+      }
+    }
+  } else {
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (x) {
+  if ($(`yes`)) {
+    while (true) {
+      if (x) {
+        if (!$(`yes`)) {
+          break;
+        }
+      } else {
+        break;
+      }
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -48,32 +91,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if (x) {
-  const tmpIfTest /*:unknown*/ = $(`yes`);
-  if (tmpIfTest) {
-    while ($LOOP_UNROLL_10) {
-      if (x) {
-        const tmpIfTest$1 /*:unknown*/ = $(`yes`);
-        if (tmpIfTest$1) {
-        } else {
-          break;
-        }
-      } else {
-        break;
-      }
-    }
-  } else {
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +122,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -113,4 +131,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -12,6 +12,30 @@
 isNaN(...$([1, 2, 3, 4]), $spy('b'), $spy('c'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [1, 2, 3, 4];
+const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
+const tmpCompObj /*:array*/ = [...tmpArrSpread];
+const tmpArgOverflow /*:unknown*/ = tmpCompObj[0];
+$spy(`b`);
+$spy(`c`);
+$coerce(tmpArgOverflow, `number`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArrSpread = $([1, 2, 3, 4]);
+const tmpArgOverflow = [...tmpArrSpread][0];
+$spy(`b`);
+$spy(`c`);
+$coerce(tmpArgOverflow, `number`);
+`````
+
 ## Pre Normal
 
 
@@ -32,21 +56,7 @@ $spy(`c`);
 $coerce(tmpArgOverflow, `number`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2, 3, 4];
-const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
-const tmpCompObj /*:array*/ = [...tmpArrSpread];
-const tmpArgOverflow /*:unknown*/ = tmpCompObj[0];
-$spy(`b`);
-$spy(`c`);
-$coerce(tmpArgOverflow, `number`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +73,7 @@ $coerce( d, "number" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1, 2, 3, 4]
@@ -75,7 +85,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

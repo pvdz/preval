@@ -18,6 +18,53 @@ do {
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+$(1);
+$(2);
+const arg /*:object*/ = { y: 1 };
+const tmpIfTest /*:boolean*/ = delete arg.y;
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    $(1);
+    $(2);
+    const tmpIfTest$1 /*:boolean*/ = delete arg.y;
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+$(1);
+$(2);
+const arg = { y: 1 };
+if (delete arg.y) {
+  while (true) {
+    $(100);
+    $(1);
+    $(2);
+    if (!delete arg.y) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, arg);
+`````
+
 ## Pre Normal
 
 
@@ -56,34 +103,7 @@ while (true) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-$(1);
-$(2);
-const arg /*:object*/ = { y: 1 };
-const tmpIfTest /*:boolean*/ = delete arg.y;
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    $(1);
-    $(2);
-    const tmpIfTest$1 /*:boolean*/ = delete arg.y;
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -117,7 +137,7 @@ $( d, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -152,7 +172,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

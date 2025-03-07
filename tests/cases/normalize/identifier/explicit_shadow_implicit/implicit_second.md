@@ -16,6 +16,23 @@
 $(n);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const n$1 /*:unknown*/ = $(10);
+$(n$1);
+$(n);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(10));
+$(n);
+`````
+
 ## Pre Normal
 
 
@@ -36,17 +53,7 @@ $(n$1);
 $(n);
 `````
 
-## Output
-
-
-`````js filename=intro
-const n$1 /*:unknown*/ = $(10);
-$(n$1);
-$(n);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +68,7 @@ BAD@! Found 1 implicit global bindings:
 
 n
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -72,4 +79,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

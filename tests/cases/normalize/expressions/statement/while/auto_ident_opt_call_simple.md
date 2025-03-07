@@ -14,6 +14,61 @@ while ($?.(1)) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpIfTest /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainElementCall /*:unknown*/ = $(1);
+  tmpIfTest = tmpChainElementCall;
+}
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    let tmpIfTest$2 /*:unknown*/ = undefined;
+    const tmpIfTest$4 /*:boolean*/ = $ == null;
+    if (tmpIfTest$4) {
+    } else {
+      const tmpChainElementCall$1 /*:unknown*/ = $(1);
+      tmpIfTest$2 = tmpChainElementCall$1;
+    }
+    if (tmpIfTest$2) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpIfTest = undefined;
+if (!($ == null)) {
+  tmpIfTest = $(1);
+}
+if (tmpIfTest) {
+  while (true) {
+    $(100);
+    let tmpIfTest$2 = undefined;
+    if (!($ == null)) {
+      tmpIfTest$2 = $(1);
+    }
+    if (!tmpIfTest$2) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -46,40 +101,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpIfTest /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = $ == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpIfTest = tmpChainElementCall;
-}
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    let tmpIfTest$2 /*:unknown*/ = undefined;
-    const tmpIfTest$4 /*:boolean*/ = $ == null;
-    if (tmpIfTest$4) {
-    } else {
-      const tmpChainElementCall$1 /*:unknown*/ = $(1);
-      tmpIfTest$2 = tmpChainElementCall$1;
-    }
-    if (tmpIfTest$2) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -123,7 +145,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -158,7 +180,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support referencing this builtin in isFree: $

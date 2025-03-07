@@ -14,6 +14,21 @@ const rra = arr.reverse();
 $(rra);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [2, 1];
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([2, 1]);
+`````
+
 ## Pre Normal
 
 
@@ -32,16 +47,7 @@ const rra = arr.reverse();
 $(rra);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [2, 1];
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +59,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [2, 1]
@@ -63,4 +69,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

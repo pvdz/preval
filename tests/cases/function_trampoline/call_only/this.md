@@ -15,6 +15,20 @@ const f = function(a, b, c, d, e) {
 f(1, 2, 3, 4, 5); // The use of `this` should prevent inlining this call, for now
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -50,15 +64,7 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
 f(1, 2, 3, 4, 5);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +75,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -79,4 +85,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

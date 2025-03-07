@@ -15,6 +15,21 @@ function f([[...x]]) {
 $(f([[, , , 1], 4, 5], 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:array*/ = [undefined, undefined, undefined, 1];
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([undefined, undefined, undefined, 1]);
+`````
+
 ## Pre Normal
 
 
@@ -49,16 +64,7 @@ const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 200);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:array*/ = [undefined, undefined, undefined, 1];
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +76,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [undefined, undefined, undefined, 1]
@@ -80,7 +86,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

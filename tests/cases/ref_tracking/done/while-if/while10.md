@@ -121,6 +121,43 @@ if ($) {
 $('end', x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 1;
+if ($) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $(x);
+    if ($) {
+    } else {
+      x = 2;
+    }
+  }
+} else {
+  $(`oh`);
+}
+$(`end`, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+if ($) {
+  while (true) {
+    $(x);
+    if (!$) {
+      x = 2;
+    }
+  }
+} else {
+  $(`oh`);
+}
+$(`end`, 1);
+`````
+
 ## Pre Normal
 
 
@@ -168,27 +205,7 @@ if ($) {
 $(`end`, x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:number*/ = 1;
-if ($) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(x);
-    if ($) {
-    } else {
-      x = 2;
-    }
-  }
-} else {
-  $(`oh`);
-}
-$(`end`, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -214,7 +231,7 @@ $( "end", 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -249,7 +266,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

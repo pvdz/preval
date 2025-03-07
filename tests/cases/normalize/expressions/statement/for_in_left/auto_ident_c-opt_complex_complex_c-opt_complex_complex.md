@@ -16,6 +16,72 @@ for (($(b)?.[$("x")]?.[$("y")]).x in $({ x: 1 }));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpObjLitVal /*:object*/ = { y: 1 };
+const b /*:object*/ = { x: tmpObjLitVal };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
+    const tmpChainElementCall /*:unknown*/ = $(b);
+    const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+    if (tmpIfTest$1) {
+    } else {
+      const tmpChainRootComputed /*:unknown*/ = $(`x`);
+      const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+      const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
+      if (tmpIfTest$3) {
+      } else {
+        const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
+        const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+        tmpAssignMemLhsObj = tmpChainElementObject$1;
+      }
+    }
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn($({ x: 1 }));
+const tmpObjLitVal = { y: 1 };
+const b = { x: tmpObjLitVal };
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    let tmpAssignMemLhsObj = undefined;
+    const tmpChainElementCall = $(b);
+    if (!(tmpChainElementCall == null)) {
+      const tmpChainRootComputed = $(`x`);
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      if (!(tmpChainElementObject == null)) {
+        const tmpChainRootComputed$1 = $(`y`);
+        tmpAssignMemLhsObj = tmpChainElementObject[tmpChainRootComputed$1];
+      }
+    }
+    tmpAssignMemLhsObj.x = tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -76,46 +142,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-const tmpObjLitVal /*:object*/ = { y: 1 };
-const b /*:object*/ = { x: tmpObjLitVal };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
-    const tmpChainElementCall /*:unknown*/ = $(b);
-    const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpChainRootComputed /*:unknown*/ = $(`x`);
-      const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
-      if (tmpIfTest$3) {
-      } else {
-        const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-        const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-        tmpAssignMemLhsObj = tmpChainElementObject$1;
-      }
-    }
-    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -165,7 +192,7 @@ $( q );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -178,7 +205,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

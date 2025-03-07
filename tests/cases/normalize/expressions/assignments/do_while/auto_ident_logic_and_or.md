@@ -16,52 +16,7 @@ do {
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  {
-    $(100);
-  }
-  if ((a = ($($(1)) && $($(1))) || $($(2)))) {
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  $(100);
-  const tmpCalleeParam = $(1);
-  a = $(tmpCalleeParam);
-  if (a) {
-    const tmpCalleeParam$1 = $(1);
-    a = $(tmpCalleeParam$1);
-  } else {
-  }
-  if (a) {
-  } else {
-    const tmpCalleeParam$3 = $(2);
-    a = $(tmpCalleeParam$3);
-  }
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -277,8 +232,196 @@ loopStop: {
 $(a);
 `````
 
-## PST Output
+## Denormalized
+(This ought to be the final result)
 
+`````js filename=intro
+let a = undefined;
+loopStop: {
+  $(100);
+  let tmpClusterSSA_a = $($(1));
+  if (tmpClusterSSA_a) {
+    tmpClusterSSA_a = $($(1));
+  }
+  if (!tmpClusterSSA_a) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$1 = $($(1));
+  if (tmpClusterSSA_a$1) {
+    tmpClusterSSA_a$1 = $($(1));
+  }
+  if (!tmpClusterSSA_a$1) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$2 = $($(1));
+  if (tmpClusterSSA_a$2) {
+    tmpClusterSSA_a$2 = $($(1));
+  }
+  if (!tmpClusterSSA_a$2) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$3 = $($(1));
+  if (tmpClusterSSA_a$3) {
+    tmpClusterSSA_a$3 = $($(1));
+  }
+  if (!tmpClusterSSA_a$3) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$4 = $($(1));
+  if (tmpClusterSSA_a$4) {
+    tmpClusterSSA_a$4 = $($(1));
+  }
+  if (!tmpClusterSSA_a$4) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$5 = $($(1));
+  if (tmpClusterSSA_a$5) {
+    tmpClusterSSA_a$5 = $($(1));
+  }
+  if (!tmpClusterSSA_a$5) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$6 = $($(1));
+  if (tmpClusterSSA_a$6) {
+    tmpClusterSSA_a$6 = $($(1));
+  }
+  if (!tmpClusterSSA_a$6) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$7 = $($(1));
+  if (tmpClusterSSA_a$7) {
+    tmpClusterSSA_a$7 = $($(1));
+  }
+  if (!tmpClusterSSA_a$7) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$8 = $($(1));
+  if (tmpClusterSSA_a$8) {
+    tmpClusterSSA_a$8 = $($(1));
+  }
+  if (!tmpClusterSSA_a$8) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$9 = $($(1));
+  if (tmpClusterSSA_a$9) {
+    tmpClusterSSA_a$9 = $($(1));
+  }
+  if (!tmpClusterSSA_a$9) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  $(100);
+  let tmpClusterSSA_a$10 = $($(1));
+  if (tmpClusterSSA_a$10) {
+    tmpClusterSSA_a$10 = $($(1));
+  }
+  if (!tmpClusterSSA_a$10) {
+    a = $($(2));
+    if (!a) {
+      break loopStop;
+    }
+  }
+  while (true) {
+    $(100);
+    let tmpClusterSSA_a$11 = $($(1));
+    if (tmpClusterSSA_a$11) {
+      tmpClusterSSA_a$11 = $($(1));
+    }
+    if (!tmpClusterSSA_a$11) {
+      a = $($(2));
+      if (!a) {
+        break;
+      }
+    }
+  }
+}
+$(a);
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  {
+    $(100);
+  }
+  if ((a = ($($(1)) && $($(1))) || $($(2)))) {
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  $(100);
+  const tmpCalleeParam = $(1);
+  a = $(tmpCalleeParam);
+  if (a) {
+    const tmpCalleeParam$1 = $(1);
+    a = $(tmpCalleeParam$1);
+  } else {
+  }
+  if (a) {
+  } else {
+    const tmpCalleeParam$3 = $(2);
+    a = $(tmpCalleeParam$3);
+  }
+  let tmpIfTest = a;
+  if (tmpIfTest) {
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -534,7 +677,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -569,7 +712,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

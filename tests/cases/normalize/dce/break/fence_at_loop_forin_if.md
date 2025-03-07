@@ -31,6 +31,93 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+  const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest$1) {
+  } else {
+    const x /*:unknown*/ = tmpForInNext.value;
+    $(`loop`, x);
+    const tmpIfTest$3 /*:unknown*/ = $(1);
+    if (tmpIfTest$3) {
+      $(`pass`);
+    } else {
+      $(`do not visit`);
+    }
+  }
+  while ($LOOP_UNROLL_10) {
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$2 /*:unknown*/ = $(true);
+    if (tmpIfTest$2) {
+      $(`loop`);
+      const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+      const tmpForInGen$1 /*:unknown*/ = $forIn(tmpCalleeParam$1);
+      const tmpForInNext$1 /*:unknown*/ = tmpForInGen$1.next();
+      const tmpIfTest$4 /*:unknown*/ = tmpForInNext$1.done;
+      if (tmpIfTest$4) {
+      } else {
+        const x$1 /*:unknown*/ = tmpForInNext$1.value;
+        $(`loop`, x$1);
+        const tmpIfTest$6 /*:unknown*/ = $(1);
+        if (tmpIfTest$6) {
+          $(`pass`);
+        } else {
+          $(`do not visit`);
+        }
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after (not invoked)`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  $(`loop`);
+  const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+  if (!tmpForInNext.done) {
+    $(`loop`, tmpForInNext.value);
+    if ($(1)) {
+      $(`pass`);
+    } else {
+      $(`do not visit`);
+    }
+  }
+  while (true) {
+    $(`infiloop, do not eliminate`);
+    if ($(true)) {
+      $(`loop`);
+      const tmpForInNext$1 = $forIn({ a: 1, b: 2 }).next();
+      if (!tmpForInNext$1.done) {
+        $(`loop`, tmpForInNext$1.value);
+        if ($(1)) {
+          $(`pass`);
+        } else {
+          $(`do not visit`);
+        }
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(`after (not invoked)`);
+`````
+
 ## Pre Normal
 
 
@@ -102,59 +189,7 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  $(`loop`);
-  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-  const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest$1) {
-  } else {
-    const x /*:unknown*/ = tmpForInNext.value;
-    $(`loop`, x);
-    const tmpIfTest$3 /*:unknown*/ = $(1);
-    if (tmpIfTest$3) {
-      $(`pass`);
-    } else {
-      $(`do not visit`);
-    }
-  }
-  while ($LOOP_UNROLL_10) {
-    $(`infiloop, do not eliminate`);
-    const tmpIfTest$2 /*:unknown*/ = $(true);
-    if (tmpIfTest$2) {
-      $(`loop`);
-      const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
-      const tmpForInGen$1 /*:unknown*/ = $forIn(tmpCalleeParam$1);
-      const tmpForInNext$1 /*:unknown*/ = tmpForInGen$1.next();
-      const tmpIfTest$4 /*:unknown*/ = tmpForInNext$1.done;
-      if (tmpIfTest$4) {
-      } else {
-        const x$1 /*:unknown*/ = tmpForInNext$1.value;
-        $(`loop`, x$1);
-        const tmpIfTest$6 /*:unknown*/ = $(1);
-        if (tmpIfTest$6) {
-          $(`pass`);
-        } else {
-          $(`do not visit`);
-        }
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(`after (not invoked)`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -221,7 +256,7 @@ $( "after (not invoked)" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -256,4 +291,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

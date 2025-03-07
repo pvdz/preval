@@ -35,6 +35,20 @@ var a = function() {
 a();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`inner`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`inner`);
+`````
+
 ## Pre Normal
 
 
@@ -69,15 +83,7 @@ a = function () {
 a();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`inner`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +94,7 @@ $( "inner" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'inner'
@@ -98,4 +104,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -33,6 +33,54 @@ f();
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+let curtype /*:unknown*/ = 0;
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpIfTest /*:boolean*/ = curtype === 16472;
+  if (tmpIfTest) {
+    curtype = $(`random`);
+    const tmpIfTest$1 /*:boolean*/ = curtype === 16473;
+    if (tmpIfTest$1) {
+      $(`x`);
+      return undefined;
+    } else {
+      $(`y`);
+      return undefined;
+    }
+  } else {
+    $(`a`);
+    return undefined;
+  }
+};
+f();
+f();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let curtype = 0;
+const f = function () {
+  if (curtype === 16472) {
+    curtype = $(`random`);
+    if (curtype === 16473) {
+      $(`x`);
+    } else {
+      $(`y`);
+    }
+  } else {
+    $(`a`);
+  }
+};
+f();
+f();
+`````
+
 ## Pre Normal
 
 
@@ -88,35 +136,7 @@ f();
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-let curtype /*:unknown*/ = 0;
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpIfTest /*:boolean*/ = curtype === 16472;
-  if (tmpIfTest) {
-    curtype = $(`random`);
-    const tmpIfTest$1 /*:boolean*/ = curtype === 16473;
-    if (tmpIfTest$1) {
-      $(`x`);
-      return undefined;
-    } else {
-      $(`y`);
-      return undefined;
-    }
-  } else {
-    $(`a`);
-    return undefined;
-  }
-};
-f();
-f();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -149,7 +169,7 @@ b();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -160,4 +180,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

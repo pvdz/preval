@@ -19,6 +19,42 @@ while (true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam /*:object*/ = {
+    toString() {
+      debugger;
+      $(`PASS`);
+      return undefined;
+    },
+  };
+  const x /*:unknown*/ = $(tmpCalleeParam);
+  try {
+    const y /*:number*/ = parseInt(x);
+    $(y);
+  } catch (e) {}
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  const x = $({
+    toString() {
+      $(`PASS`);
+    },
+  });
+  try {
+    $(parseInt(x));
+  } catch (e) {}
+}
+`````
+
 ## Pre Normal
 
 
@@ -57,28 +93,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam /*:object*/ = {
-    toString() {
-      debugger;
-      $(`PASS`);
-      return undefined;
-    },
-  };
-  const x /*:unknown*/ = $(tmpCalleeParam);
-  try {
-    const y /*:number*/ = parseInt(x);
-    $(y);
-  } catch (e) {}
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +118,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { toString: '"<function>"' }
@@ -138,7 +153,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

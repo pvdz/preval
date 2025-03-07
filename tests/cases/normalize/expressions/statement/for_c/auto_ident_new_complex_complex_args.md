@@ -16,6 +16,56 @@ for (; $(1); new ($($))($(1), $(2)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpNewCallee /*:unknown*/ = $($);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpNewCallee$1 /*:unknown*/ = $($);
+      const tmpCalleeParam$2 /*:unknown*/ = $(1);
+      const tmpCalleeParam$4 /*:unknown*/ = $(2);
+      new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(1)) {
+  const tmpNewCallee = $($);
+  const tmpCalleeParam = $(1);
+  const tmpCalleeParam$1 = $(2);
+  new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  while (true) {
+    if ($(1)) {
+      const tmpNewCallee$1 = $($);
+      const tmpCalleeParam$2 = $(1);
+      const tmpCalleeParam$4 = $(2);
+      new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
+    } else {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -50,35 +100,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpNewCallee /*:unknown*/ = $($);
-  const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpNewCallee$1 /*:unknown*/ = $($);
-      const tmpCalleeParam$2 /*:unknown*/ = $(1);
-      const tmpCalleeParam$4 /*:unknown*/ = $(2);
-      new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -112,7 +134,7 @@ $( i );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -147,7 +169,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

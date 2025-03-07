@@ -26,6 +26,24 @@ if (a) {
 $(x, 'end');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:boolean*/ = b === c;
+$(a, `middle`);
+$(a, `end`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = b === c;
+$(a, `middle`);
+$(a, `end`);
+`````
+
 ## Pre Normal
 
 
@@ -64,17 +82,7 @@ if (a) {
 $(x, `end`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:boolean*/ = b === c;
-$(a, `middle`);
-$(a, `end`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -89,7 +97,7 @@ BAD@! Found 2 implicit global bindings:
 
 b, c
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -98,4 +106,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

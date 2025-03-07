@@ -15,6 +15,23 @@ const z = y === 32768 // true
 $(z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`32768`);
+const y /*:number*/ = x & 32768;
+const z /*:boolean*/ = Boolean(y);
+$(z);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(Boolean($(`32768`) & 32768));
+`````
+
 ## Pre Normal
 
 
@@ -35,18 +52,7 @@ const z = y === 32768;
 $(z);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`32768`);
-const y /*:number*/ = x & 32768;
-const z /*:boolean*/ = Boolean(y);
-$(z);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +66,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '32768'
@@ -71,4 +77,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

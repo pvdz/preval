@@ -38,6 +38,99 @@ while (true) {
 $(arr.slice(0, 3));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+const tmpCalleeParam /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
+const arr /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
+try {
+  $(tmpCalleeParam);
+} catch (e) {
+  const v /*:unknown*/ = arr.shift();
+  arr.push(v);
+}
+$(false);
+$(1);
+const tmpBinLhs$1 /*:primitive*/ = arr[2];
+const tmpClusterSSA_test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
+if (tmpClusterSSA_test$1) {
+} else {
+  const next$1 /*:unknown*/ = arr.shift();
+  arr.push(next$1);
+  const tmpCalleeParam$2 /*:array*/ = arr.slice(0);
+  try {
+    $(tmpCalleeParam$2);
+  } catch (e$1) {
+    const v$1 /*:unknown*/ = arr.shift();
+    arr.push(v$1);
+  }
+  while ($LOOP_UNROLL_9) {
+    $(false);
+    $(1);
+    const tmpBinLhs$2 /*:primitive*/ = arr[2];
+    const tmpClusterSSA_test$2 /*:boolean*/ = tmpBinLhs$2 === 820304;
+    if (tmpClusterSSA_test$2) {
+      break;
+    } else {
+      const next$2 /*:unknown*/ = arr.shift();
+      arr.push(next$2);
+      const tmpCalleeParam$3 /*:array*/ = arr.slice(0);
+      try {
+        $(tmpCalleeParam$3);
+      } catch (e$2) {
+        const v$2 /*:unknown*/ = arr.shift();
+        arr.push(v$2);
+      }
+    }
+  }
+}
+const tmpCalleeParam$1 /*:array*/ = arr.slice(0, 3);
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+const tmpCalleeParam = [`two`, `three`, `four`, `five`, `one`];
+const arr = [`two`, `three`, `four`, `five`, `one`];
+try {
+  $(tmpCalleeParam);
+} catch (e) {
+  arr.push(arr.shift());
+}
+$(false);
+$(1);
+if (!(arr[2] === 820304)) {
+  arr.push(arr.shift());
+  const tmpCalleeParam$2 = arr.slice(0);
+  try {
+    $(tmpCalleeParam$2);
+  } catch (e$1) {
+    arr.push(arr.shift());
+  }
+  while (true) {
+    $(false);
+    $(1);
+    if (arr[2] === 820304) {
+      break;
+    } else {
+      arr.push(arr.shift());
+      const tmpCalleeParam$3 = arr.slice(0);
+      try {
+        $(tmpCalleeParam$3);
+      } catch (e$2) {
+        arr.push(arr.shift());
+      }
+    }
+  }
+}
+$(arr.slice(0, 3));
+`````
+
 ## Pre Normal
 
 
@@ -93,60 +186,7 @@ const tmpCalleeParam$1 = arr.slice(0, 3);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-const tmpCalleeParam /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
-const arr /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
-try {
-  $(tmpCalleeParam);
-} catch (e) {
-  const v /*:unknown*/ = arr.shift();
-  arr.push(v);
-}
-$(false);
-$(1);
-const tmpBinLhs$1 /*:primitive*/ = arr[2];
-const tmpClusterSSA_test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
-if (tmpClusterSSA_test$1) {
-} else {
-  const next$1 /*:unknown*/ = arr.shift();
-  arr.push(next$1);
-  const tmpCalleeParam$2 /*:array*/ = arr.slice(0);
-  try {
-    $(tmpCalleeParam$2);
-  } catch (e$1) {
-    const v$1 /*:unknown*/ = arr.shift();
-    arr.push(v$1);
-  }
-  while ($LOOP_UNROLL_9) {
-    $(false);
-    $(1);
-    const tmpBinLhs$2 /*:primitive*/ = arr[2];
-    const tmpClusterSSA_test$2 /*:boolean*/ = tmpBinLhs$2 === 820304;
-    if (tmpClusterSSA_test$2) {
-      break;
-    } else {
-      const next$2 /*:unknown*/ = arr.shift();
-      arr.push(next$2);
-      const tmpCalleeParam$3 /*:array*/ = arr.slice(0);
-      try {
-        $(tmpCalleeParam$3);
-      } catch (e$2) {
-        const v$2 /*:unknown*/ = arr.shift();
-        arr.push(v$2);
-      }
-    }
-  }
-}
-const tmpCalleeParam$1 /*:array*/ = arr.slice(0, 3);
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -208,7 +248,7 @@ $( q );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -243,7 +283,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - switch me to ref tracking

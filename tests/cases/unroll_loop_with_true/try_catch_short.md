@@ -24,45 +24,7 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  try {
-    const test = $(`first`);
-    $(`second`);
-    if (test) {
-      break;
-    } else {
-      $(`third`);
-    }
-  } catch (e) {
-    $(`error`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  try {
-    const test = $(`first`);
-    $(`second`);
-    if (test) {
-      break;
-    } else {
-      $(`third`);
-    }
-  } catch (e) {
-    $(`error`);
-  }
-}
-`````
-
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -204,8 +166,187 @@ loopStop: {
 }
 `````
 
-## PST Output
+## Denormalized
+(This ought to be the final result)
 
+`````js filename=intro
+loopStop: {
+  try {
+    const test = $(`first`);
+    $(`second`);
+    if (test) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e) {
+    $(`error`);
+  }
+  try {
+    const test$1 = $(`first`);
+    $(`second`);
+    if (test$1) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$1) {
+    $(`error`);
+  }
+  try {
+    const test$2 = $(`first`);
+    $(`second`);
+    if (test$2) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$2) {
+    $(`error`);
+  }
+  try {
+    const test$3 = $(`first`);
+    $(`second`);
+    if (test$3) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$3) {
+    $(`error`);
+  }
+  try {
+    const test$4 = $(`first`);
+    $(`second`);
+    if (test$4) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$4) {
+    $(`error`);
+  }
+  try {
+    const test$5 = $(`first`);
+    $(`second`);
+    if (test$5) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$5) {
+    $(`error`);
+  }
+  try {
+    const test$6 = $(`first`);
+    $(`second`);
+    if (test$6) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$6) {
+    $(`error`);
+  }
+  try {
+    const test$7 = $(`first`);
+    $(`second`);
+    if (test$7) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$7) {
+    $(`error`);
+  }
+  try {
+    const test$8 = $(`first`);
+    $(`second`);
+    if (test$8) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$8) {
+    $(`error`);
+  }
+  try {
+    const test$9 = $(`first`);
+    $(`second`);
+    if (test$9) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$9) {
+    $(`error`);
+  }
+  try {
+    const test$10 = $(`first`);
+    $(`second`);
+    if (test$10) {
+      break loopStop;
+    } else {
+      $(`third`);
+    }
+  } catch (e$10) {
+    $(`error`);
+  }
+  while (true) {
+    try {
+      const test$11 = $(`first`);
+      $(`second`);
+      if (test$11) {
+        break;
+      } else {
+        $(`third`);
+      }
+    } catch (e$11) {
+      $(`error`);
+    }
+  }
+}
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+while (true) {
+  try {
+    const test = $(`first`);
+    $(`second`);
+    if (test) {
+      break;
+    } else {
+      $(`third`);
+    }
+  } catch (e) {
+    $(`error`);
+  }
+}
+`````
+
+## Normalized
+
+
+`````js filename=intro
+while (true) {
+  try {
+    const test = $(`first`);
+    $(`second`);
+    if (test) {
+      break;
+    } else {
+      $(`third`);
+    }
+  } catch (e) {
+    $(`error`);
+  }
+}
+`````
+
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -375,7 +516,7 @@ loopStop: {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'first'
@@ -386,4 +527,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

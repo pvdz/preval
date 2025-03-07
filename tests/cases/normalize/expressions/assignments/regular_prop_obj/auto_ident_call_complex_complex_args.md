@@ -17,6 +17,28 @@ let obj = {};
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallCallee /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+a.a;
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallCallee = $($);
+const a = tmpCallCallee($(1), $(2));
+a.a;
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -44,20 +66,7 @@ tmpCompObj.a;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-a.a;
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +82,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -87,4 +96,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

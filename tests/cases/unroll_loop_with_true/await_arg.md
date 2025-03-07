@@ -16,6 +16,28 @@ async function f() {
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>promise*/ = async function () {
+  debugger;
+  const x /*:boolean*/ = await true;
+  $(x);
+  return undefined;
+};
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(async function () {
+  $(await true);
+});
+`````
+
 ## Pre Normal
 
 
@@ -41,21 +63,7 @@ let f = async function () {
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>promise*/ = async function () {
-  debugger;
-  const x /*:boolean*/ = await true;
-  $(x);
-  return undefined;
-};
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +80,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -82,7 +90,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - inline async functions safely (because await)

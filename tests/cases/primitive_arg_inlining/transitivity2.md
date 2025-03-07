@@ -19,6 +19,25 @@ $(f(1, 2));
 $(g(2)); // Should ultimately reuse the cloned func from the prev call
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $(1, 2);
+$(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = $(1, 2);
+const tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam);
+$(tmpReturnArg$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(1, 2));
+$($($(1, 2)));
+`````
+
 ## Pre Normal
 
 
@@ -62,19 +81,7 @@ const tmpCalleeParam$3 = g(2);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(1, 2);
-$(tmpCalleeParam$1);
-const tmpCalleeParam /*:unknown*/ = $(1, 2);
-const tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam);
-$(tmpReturnArg$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -89,7 +96,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 2
@@ -103,4 +110,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

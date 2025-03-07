@@ -28,6 +28,50 @@ var x = {
 x.y(a.b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:object*/ = {
+  get y() {
+    debugger;
+    $(`y.get`);
+    return $;
+  },
+};
+const tmpCallVal /*:unknown*/ = x.y;
+const a /*:object*/ = {
+  get b() {
+    debugger;
+    $(`b.get`);
+    return 100;
+  },
+};
+const tmpCalleeParam /*:unknown*/ = a.b;
+$dotCall(tmpCallVal, x, `y`, tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = {
+  get y() {
+    $(`y.get`);
+    return $;
+  },
+};
+x.y(
+  `y`,
+  {
+    get b() {
+      $(`b.get`);
+      return 100;
+    },
+  }.b,
+);
+`````
+
 ## Pre Normal
 
 
@@ -77,31 +121,7 @@ const tmpCalleeParam = a.b;
 $dotCall(tmpCallVal, tmpCallObj, `y`, tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:object*/ = {
-  get y() {
-    debugger;
-    $(`y.get`);
-    return $;
-  },
-};
-const tmpCallVal /*:unknown*/ = x.y;
-const a /*:object*/ = {
-  get b() {
-    debugger;
-    $(`b.get`);
-    return 100;
-  },
-};
-const tmpCalleeParam /*:unknown*/ = a.b;
-$dotCall(tmpCallVal, x, `y`, tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -124,7 +144,7 @@ $dotCall( b, a, "y", d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'y.get'
@@ -136,4 +156,10 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: BAD!!
+ - 1: 'y.get'
+ - 2: 'b.get'
+ - 3: 'y', 100
+ - eval returned: undefined

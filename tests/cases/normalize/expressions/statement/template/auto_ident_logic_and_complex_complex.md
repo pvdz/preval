@@ -14,6 +14,40 @@ $(`before  ${$($(1)) && $($(2))}  after`);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
+if (tmpCalleeParam$1) {
+  const tmpCalleeParam$5 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$5);
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam$2 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
+  $(tmpClusterSSA_tmpCalleeParam$2);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam$1 = $($(1));
+if (tmpCalleeParam$1) {
+  $(`before  ${$($(2))}  after`);
+} else {
+  $(`before  ${tmpCalleeParam$1}  after`);
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -44,29 +78,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$3 /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
-if (tmpCalleeParam$1) {
-  const tmpCalleeParam$5 /*:unknown*/ = $(2);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$5);
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam$2 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
-  $(tmpClusterSSA_tmpCalleeParam$2);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -95,7 +107,7 @@ $( i );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -110,4 +122,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

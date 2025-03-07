@@ -13,6 +13,20 @@ let x, b, c
 ({ x } = 1) ? b : c;
 `````
 
+## Settled
+
+
+`````js filename=intro
+(1).x;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+(1).x;
+`````
+
 ## Pre Normal
 
 
@@ -34,15 +48,7 @@ x = tmpNestedAssignObjPatternRhs.x;
 tmpIfTest = tmpNestedAssignObjPatternRhs;
 `````
 
-## Output
-
-
-`````js filename=intro
-(1).x;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +59,7 @@ With rename=true
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -62,4 +68,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

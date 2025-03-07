@@ -26,6 +26,85 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+  const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    $(`unreachable`);
+    while ($LOOP_UNROLL_10) {
+      const tmpIfTest$2 /*:unknown*/ = $(true);
+      if (tmpIfTest$2) {
+        $(`loop`);
+        const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+        const tmpForInGen$1 /*:unknown*/ = $forIn(tmpCalleeParam$1);
+        const tmpForInNext$1 /*:unknown*/ = tmpForInGen$1.next();
+        const tmpIfTest$4 /*:unknown*/ = tmpForInNext$1.done;
+        if (tmpIfTest$4) {
+          $(`unreachable`);
+        } else {
+          const x$1 /*:unknown*/ = tmpForInNext$1.value;
+          $(`loop`, x$1);
+          const tmpThrowArg$1 /*:unknown*/ = $(7, `throw`);
+          throw tmpThrowArg$1;
+        }
+      } else {
+        break;
+      }
+    }
+  } else {
+    const x /*:unknown*/ = tmpForInNext.value;
+    $(`loop`, x);
+    const tmpThrowArg /*:unknown*/ = $(7, `throw`);
+    throw tmpThrowArg;
+  }
+} else {
+}
+$(`after (unreachable)`);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  $(`loop`);
+  const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+  if (tmpForInNext.done) {
+    $(`unreachable`);
+    while (true) {
+      if ($(true)) {
+        $(`loop`);
+        const tmpForInNext$1 = $forIn({ a: 1, b: 2 }).next();
+        if (tmpForInNext$1.done) {
+          $(`unreachable`);
+        } else {
+          $(`loop`, tmpForInNext$1.value);
+          const tmpThrowArg$1 = $(7, `throw`);
+          throw tmpThrowArg$1;
+        }
+      } else {
+        break;
+      }
+    }
+  } else {
+    $(`loop`, tmpForInNext.value);
+    const tmpThrowArg = $(7, `throw`);
+    throw tmpThrowArg;
+  }
+}
+$(`after (unreachable)`);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -93,53 +172,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  $(`loop`);
-  const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-  const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest$1) {
-    $(`unreachable`);
-    while ($LOOP_UNROLL_10) {
-      const tmpIfTest$2 /*:unknown*/ = $(true);
-      if (tmpIfTest$2) {
-        $(`loop`);
-        const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
-        const tmpForInGen$1 /*:unknown*/ = $forIn(tmpCalleeParam$1);
-        const tmpForInNext$1 /*:unknown*/ = tmpForInGen$1.next();
-        const tmpIfTest$4 /*:unknown*/ = tmpForInNext$1.done;
-        if (tmpIfTest$4) {
-          $(`unreachable`);
-        } else {
-          const x$1 /*:unknown*/ = tmpForInNext$1.value;
-          $(`loop`, x$1);
-          const tmpThrowArg$1 /*:unknown*/ = $(7, `throw`);
-          throw tmpThrowArg$1;
-        }
-      } else {
-        break;
-      }
-    }
-  } else {
-    const x /*:unknown*/ = tmpForInNext.value;
-    $(`loop`, x);
-    const tmpThrowArg /*:unknown*/ = $(7, `throw`);
-    throw tmpThrowArg;
-  }
-} else {
-}
-$(`after (unreachable)`);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -196,7 +229,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -209,4 +242,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

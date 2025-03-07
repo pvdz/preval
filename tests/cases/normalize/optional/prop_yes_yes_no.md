@@ -13,6 +13,33 @@ const a = {};
 $(a?.b?.c.d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
+if (tmpIfTest$1) {
+  $(undefined);
+} else {
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
+  const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1.d;
+  $(tmpChainElementObject$3);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainElementObject = $Object_prototype.b;
+if (tmpChainElementObject == null) {
+  $(undefined);
+} else {
+  $(tmpChainElementObject.c.d);
+}
+`````
+
 ## Pre Normal
 
 
@@ -43,23 +70,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
-if (tmpIfTest$1) {
-  $(undefined);
-} else {
-  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
-  const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1.d;
-  $(tmpChainElementObject$3);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +90,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -89,4 +100,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

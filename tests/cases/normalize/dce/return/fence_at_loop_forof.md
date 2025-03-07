@@ -26,6 +26,64 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
+$inlinedFunction: {
+  while (true) {
+    const tmpIfTest /*:unknown*/ = $(true);
+    if (tmpIfTest) {
+      $(`loop`);
+      const tmpCalleeParam /*:array*/ = [1, 2];
+      const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+      const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
+      if (tmpIfTest$1) {
+        $(`unreachable2 (but keep because the for body may not be visited...)`);
+      } else {
+        const x /*:unknown*/ = tmpForOfNext.value;
+        $(`loop`, x);
+        const tmpReturnArg /*:unknown*/ = $(100, `return`);
+        tmpCalleeParam$1 = tmpReturnArg;
+        break $inlinedFunction;
+      }
+    } else {
+      break;
+    }
+  }
+  $(`unreachable3`);
+}
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam$1 = undefined;
+$inlinedFunction: {
+  while (true) {
+    if ($(true)) {
+      $(`loop`);
+      const tmpForOfNext = $forOf([1, 2]).next();
+      if (tmpForOfNext.done) {
+        $(`unreachable2 (but keep because the for body may not be visited...)`);
+      } else {
+        $(`loop`, tmpForOfNext.value);
+        tmpCalleeParam$1 = $(100, `return`);
+        break $inlinedFunction;
+      }
+    } else {
+      break;
+    }
+  }
+  $(`unreachable3`);
+}
+$(tmpCalleeParam$1);
+`````
+
 ## Pre Normal
 
 
@@ -93,40 +151,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
-$inlinedFunction: {
-  while (true) {
-    const tmpIfTest /*:unknown*/ = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      const tmpCalleeParam /*:array*/ = [1, 2];
-      const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-      const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
-      if (tmpIfTest$1) {
-        $(`unreachable2 (but keep because the for body may not be visited...)`);
-      } else {
-        const x /*:unknown*/ = tmpForOfNext.value;
-        $(`loop`, x);
-        const tmpReturnArg /*:unknown*/ = $(100, `return`);
-        tmpCalleeParam$1 = tmpReturnArg;
-        break $inlinedFunction;
-      }
-    } else {
-      break;
-    }
-  }
-  $(`unreachable3`);
-}
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -164,7 +189,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -178,4 +203,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

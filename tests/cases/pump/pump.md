@@ -82,6 +82,20 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr[0]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`2880154MAzcYZ`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`2880154MAzcYZ`);
+`````
+
 ## Pre Normal
 
 
@@ -306,15 +320,7 @@ const tmpCalleeParam = arr[0];
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`2880154MAzcYZ`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -325,7 +331,7 @@ $( "2880154MAzcYZ" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '2880154MAzcYZ'
@@ -335,4 +341,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

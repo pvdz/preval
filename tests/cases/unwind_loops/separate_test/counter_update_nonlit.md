@@ -13,6 +13,51 @@ const max = $(10);
 for (let i=0; i<10; i += max) $(i);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const max /*:unknown*/ = $(10);
+$(0);
+const tmpClusterSSA_i /*:primitive*/ = 0 + max;
+const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i < 10;
+if (tmpIfTest$1) {
+  $(tmpClusterSSA_i);
+  let tmpClusterSSA_i$1 /*:primitive*/ = tmpClusterSSA_i + max;
+  while ($LOOP_UNROLL_9) {
+    const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_i$1 < 10;
+    if (tmpIfTest$2) {
+      $(tmpClusterSSA_i$1);
+      tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + max;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const max = $(10);
+$(0);
+const tmpClusterSSA_i = 0 + max;
+if (tmpClusterSSA_i < 10) {
+  $(tmpClusterSSA_i);
+  let tmpClusterSSA_i$1 = tmpClusterSSA_i + max;
+  while (true) {
+    if (tmpClusterSSA_i$1 < 10) {
+      $(tmpClusterSSA_i$1);
+      tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + max;
+    } else {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -44,32 +89,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const max /*:unknown*/ = $(10);
-$(0);
-const tmpClusterSSA_i /*:primitive*/ = 0 + max;
-const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i < 10;
-if (tmpIfTest$1) {
-  $(tmpClusterSSA_i);
-  let tmpClusterSSA_i$1 /*:primitive*/ = tmpClusterSSA_i + max;
-  while ($LOOP_UNROLL_9) {
-    const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_i$1 < 10;
-    if (tmpIfTest$2) {
-      $(tmpClusterSSA_i$1);
-      tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + max;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +117,7 @@ if (c) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -108,4 +128,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

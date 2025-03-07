@@ -16,6 +16,33 @@ $($(100) + (a = (1, 2, $(b))[$("c")]));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const b /*:object*/ = { c: 1 };
+const tmpAssignRhsCompObj /*:unknown*/ = $(b);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
+const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
+$(tmpCalleeParam);
+$(tmpClusterSSA_a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(100);
+const b = { c: 1 };
+const tmpAssignRhsCompObj = $(b);
+const tmpAssignRhsCompProp = $(`c`);
+const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(tmpBinBothLhs + tmpClusterSSA_a);
+$(tmpClusterSSA_a, b);
+`````
+
 ## Pre Normal
 
 
@@ -42,22 +69,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-const b /*:object*/ = { c: 1 };
-const tmpAssignRhsCompObj /*:unknown*/ = $(b);
-const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
-$(tmpCalleeParam);
-$(tmpClusterSSA_a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +87,7 @@ $( e, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -89,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

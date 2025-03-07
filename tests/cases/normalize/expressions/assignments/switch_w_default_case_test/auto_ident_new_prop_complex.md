@@ -22,6 +22,57 @@ switch ($(1)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const b /*:object*/ = { $: $ };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
+  $(`fail1`);
+} else {
+}
+$(`fail2`);
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const tmpNewCallee = $({ $: $ }).$;
+const tmpClusterSSA_a = new tmpNewCallee(1);
+if (tmpClusterSSA_a === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (tmpSwitchCaseToStart <= 1) {
+  $(`fail1`);
+}
+$(`fail2`);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -84,37 +135,7 @@ if (tmpIfTest$7) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const b /*:object*/ = { $: $ };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$5) {
-  $(`fail1`);
-} else {
-}
-$(`fail2`);
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -146,7 +167,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -161,4 +182,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

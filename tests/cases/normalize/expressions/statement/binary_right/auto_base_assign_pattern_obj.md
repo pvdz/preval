@@ -16,6 +16,32 @@ $(100) + ({ b } = $({ b: $(2) }));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpObjLitVal /*:unknown*/ = $(2);
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+tmpBinBothLhs + tmpNestedAssignObjPatternRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, tmpClusterSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(100);
+const tmpObjLitVal = $(2);
+const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+tmpBinBothLhs + tmpNestedAssignObjPatternRhs;
+$({ a: 999, b: 1000 }, tmpClusterSSA_b);
+`````
+
 ## Pre Normal
 
 
@@ -43,22 +69,7 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-tmpBinBothLhs + tmpNestedAssignObjPatternRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +90,7 @@ $( f, e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -92,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

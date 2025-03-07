@@ -13,6 +13,25 @@ var a = 10, b = {}, c = 30;
 $(a = $(b).x = c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClusterSSA_b /*:object*/ = {};
+const tmpNestedAssignObj /*:unknown*/ = $(tmpClusterSSA_b);
+tmpNestedAssignObj.x = 30;
+$(30);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignObj = $({});
+tmpNestedAssignObj.x = 30;
+$(30);
+`````
+
 ## Pre Normal
 
 
@@ -42,18 +61,7 @@ let tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClusterSSA_b /*:object*/ = {};
-const tmpNestedAssignObj /*:unknown*/ = $(tmpClusterSSA_b);
-tmpNestedAssignObj.x = 30;
-$(30);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -67,7 +75,7 @@ $( 30 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: {}
@@ -78,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

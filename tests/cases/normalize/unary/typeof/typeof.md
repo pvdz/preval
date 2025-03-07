@@ -12,6 +12,22 @@
 $(typeof typeof $(100));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+$(`string`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+$(`string`);
+`````
+
 ## Pre Normal
 
 
@@ -28,16 +44,7 @@ const tmpCalleeParam = `string`;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-$(`string`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -49,7 +56,7 @@ $( "string" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -60,4 +67,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

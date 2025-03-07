@@ -18,6 +18,55 @@ while ($('a')) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(10);
+while (true) {
+  const tmpIfTest /*:unknown*/ = $(`a`);
+  if (tmpIfTest) {
+    const tmpClusterSSA_x /*:unknown*/ = $(20, `set`);
+    const tmpIfTest$1 /*:unknown*/ = $(`b`);
+    if (tmpIfTest$1) {
+      while ($LOOP_UNROLL_10) {
+        $(tmpClusterSSA_x, `loop`);
+        const tmpIfTest$2 /*:unknown*/ = $(`b`);
+        if (tmpIfTest$2) {
+        } else {
+          break;
+        }
+      }
+    } else {
+    }
+  } else {
+    break;
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(10);
+while (true) {
+  if ($(`a`)) {
+    const tmpClusterSSA_x = $(20, `set`);
+    if ($(`b`)) {
+      while (true) {
+        $(tmpClusterSSA_x, `loop`);
+        if (!$(`b`)) {
+          break;
+        }
+      }
+    }
+  } else {
+    break;
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -54,35 +103,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(10);
-while (true) {
-  const tmpIfTest /*:unknown*/ = $(`a`);
-  if (tmpIfTest) {
-    const tmpClusterSSA_x /*:unknown*/ = $(20, `set`);
-    const tmpIfTest$1 /*:unknown*/ = $(`b`);
-    if (tmpIfTest$1) {
-      while ($LOOP_UNROLL_10) {
-        $(tmpClusterSSA_x, `loop`);
-        const tmpIfTest$2 /*:unknown*/ = $(`b`);
-        if (tmpIfTest$2) {
-        } else {
-          break;
-        }
-      }
-    } else {
-    }
-  } else {
-    break;
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +136,7 @@ while (true) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -150,4 +171,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

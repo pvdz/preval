@@ -14,6 +14,33 @@ $(({ a } = $({ a: 1, b: 2 })) + ({ a } = $({ a: 1, b: 2 })));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
+tmpNestedAssignObjPatternRhs.a;
+const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.a;
+const tmpCalleeParam /*:primitive*/ = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
+$(tmpCalleeParam);
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
+tmpNestedAssignObjPatternRhs.a;
+const tmpNestedAssignObjPatternRhs$1 = $({ a: 1, b: 2 });
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+$(tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -44,23 +71,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-tmpNestedAssignObjPatternRhs.a;
-const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.a;
-const tmpCalleeParam /*:primitive*/ = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-$(tmpCalleeParam);
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -85,7 +96,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }
@@ -98,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

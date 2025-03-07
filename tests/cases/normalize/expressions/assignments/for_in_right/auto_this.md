@@ -14,6 +14,39 @@ for (let x in (a = this));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpForInGen /*:unknown*/ = $forIn(undefined);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn(undefined);
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -53,25 +86,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpForInGen /*:unknown*/ = $forIn(undefined);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +108,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -103,7 +118,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

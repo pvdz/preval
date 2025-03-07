@@ -14,6 +14,22 @@ $(delete (null, foo));
 $(typeof foo)
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(true);
+$(`number`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(true);
+$(`number`);
+`````
+
 ## Pre Normal
 
 
@@ -34,16 +50,7 @@ const tmpCalleeParam$1 = typeof foo;
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(true);
-$(`number`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +62,7 @@ $( "number" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -66,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

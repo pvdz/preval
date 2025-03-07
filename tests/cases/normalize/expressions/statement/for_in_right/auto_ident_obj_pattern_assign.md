@@ -23,6 +23,47 @@ for (let x in ({ x, y } = { x: $(3), y: $(4) }));
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
+x$1 = tmpObjLitVal;
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignObjPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, 1, tmpObjLitVal$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+x$1 = tmpObjLitVal;
+const tmpForInGen = $forIn({ x: tmpObjLitVal, y: tmpObjLitVal$1 });
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 }, 1, tmpObjLitVal$1);
+`````
+
 ## Pre Normal
 
 
@@ -71,30 +112,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(3);
-const tmpObjLitVal$1 /*:unknown*/ = $(4);
-x$1 = tmpObjLitVal;
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignObjPatternRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, 1, tmpObjLitVal$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -129,7 +147,7 @@ BAD@! Found 1 implicit global bindings:
 
 x$1
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')
@@ -138,7 +156,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

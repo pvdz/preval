@@ -14,6 +14,39 @@ $`before ${(a = $?.(1))} after`;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = $ == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementCall /*:unknown*/ = $(1);
+  a = tmpChainElementCall;
+  tmpCalleeParam$1 = tmpChainElementCall;
+}
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+$(tmpCalleeParam, tmpCalleeParam$1);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+let tmpCalleeParam$1 = undefined;
+if (!($ == null)) {
+  const tmpChainElementCall = $(1);
+  a = tmpChainElementCall;
+  tmpCalleeParam$1 = tmpChainElementCall;
+}
+$([`before `, ` after`], tmpCalleeParam$1);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -42,26 +75,7 @@ $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = $ == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
-  tmpCalleeParam$1 = tmpChainElementCall;
-}
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -85,7 +99,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -97,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

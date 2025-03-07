@@ -20,6 +20,36 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [10, 20];
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  tmpForOfNext.value;
+  const tmpReturnArg /*:unknown*/ = $(1, `return`);
+  $(tmpReturnArg);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForOfNext = $forOf([10, 20]).next();
+if (tmpForOfNext.done) {
+  $(undefined);
+} else {
+  tmpForOfNext.value;
+  $($(1, `return`));
+}
+`````
+
 ## Pre Normal
 
 
@@ -70,25 +100,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [10, 20];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  tmpForOfNext.value;
-  const tmpReturnArg /*:unknown*/ = $(1, `return`);
-  $(tmpReturnArg);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +122,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'return'
@@ -121,4 +133,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

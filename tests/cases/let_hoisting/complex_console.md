@@ -24,6 +24,33 @@ if ($) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:unknown*/ = console.log(`ok`);
+if ($) {
+  $(f);
+  const tmpClusterSSA_x /*:unknown*/ = $(`do not inline me`);
+  $(tmpClusterSSA_x);
+} else {
+  $(undefined);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = console.log(`ok`);
+if ($) {
+  $(f);
+  $($(`do not inline me`));
+} else {
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -67,22 +94,7 @@ if ($) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:unknown*/ = console.log(`ok`);
-if ($) {
-  $(f);
-  const tmpClusterSSA_x /*:unknown*/ = $(`do not inline me`);
-  $(tmpClusterSSA_x);
-} else {
-  $(undefined);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +113,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -113,4 +125,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

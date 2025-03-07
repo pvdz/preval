@@ -11,6 +11,20 @@ $String_prototype.lastIndexOf; // dropme
 $( "3.48" );
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`3.48`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`3.48`);
+`````
+
 ## Pre Normal
 
 
@@ -27,15 +41,7 @@ $String_prototype.lastIndexOf;
 $(`3.48`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`3.48`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -46,7 +52,7 @@ $( "3.48" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '3.48'
@@ -56,4 +62,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

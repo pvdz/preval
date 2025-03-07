@@ -31,6 +31,54 @@ $(f(2));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    $(`a`);
+    return undefined;
+  } else {
+    $(`b`);
+    return undefined;
+  }
+};
+f();
+$(NaN);
+f();
+$(NaN);
+f();
+$(NaN);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  if ($(true)) {
+    $(`a`);
+  } else {
+    $(`b`);
+  }
+};
+f();
+$(NaN);
+f();
+$(NaN);
+f();
+$(NaN);
+`````
+
 ## Pre Normal
 
 
@@ -83,34 +131,7 @@ const tmpCalleeParam$3 = f(`three`);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    $(`a`);
-    return undefined;
-  } else {
-    $(`b`);
-    return undefined;
-  }
-};
-f();
-$(NaN);
-f();
-$(NaN);
-f();
-$(NaN);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -141,7 +162,7 @@ $( NaN );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -168,4 +189,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

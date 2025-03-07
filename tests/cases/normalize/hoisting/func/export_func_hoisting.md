@@ -22,6 +22,60 @@ export function a(){}
 $(a,b,d,f,h,x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const b /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const d /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const h /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const l /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const x /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+$(a, b, d, f, h, x);
+export { l };
+export { h };
+export { a };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = function () {};
+const b = function () {};
+const d = function () {};
+const f = function () {};
+const h = function () {};
+const l = function () {};
+$(a, b, d, f, h, function () {});
+export { l };
+export { h };
+export { a };
+`````
+
 ## Pre Normal
 
 
@@ -93,46 +147,7 @@ export { h };
 export { a };
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const b /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const d /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const h /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const l /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const x /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-$(a, b, d, f, h, x);
-export { l };
-export { h };
-export { a };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -174,7 +189,7 @@ export { a as a };
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -183,4 +198,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -13,6 +13,25 @@ let a = 1, b = {x: 2}, c = 3;
 for (let a = $(b)[$('x')] = c;false;) $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 2 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const varInitAssignLhsComputedObj = $({ x: 2 });
+const varInitAssignLhsComputedProp = $(`x`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+`````
+
 ## Pre Normal
 
 
@@ -42,18 +61,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComp
 let a$1 = varInitAssignLhsComputedRhs;
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -67,7 +75,7 @@ b[c] = 3;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '2' }
@@ -78,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

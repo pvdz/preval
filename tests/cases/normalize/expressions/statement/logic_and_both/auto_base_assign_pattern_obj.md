@@ -16,6 +16,42 @@ let a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(2);
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const a /*:object*/ = { a: 999, b: 1000 };
+if (tmpNestedAssignObjPatternRhs) {
+  const tmpObjLitVal$1 /*:unknown*/ = $(2);
+  const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+  const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpClusterSSA_b$1 /*:unknown*/ = tmpAssignObjPatternRhs.b;
+  $(a, tmpClusterSSA_b$1);
+} else {
+  $(a, tmpClusterSSA_b);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(2);
+const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const a = { a: 999, b: 1000 };
+if (tmpNestedAssignObjPatternRhs) {
+  const tmpObjLitVal$1 = $(2);
+  $(a, $({ b: tmpObjLitVal$1 }).b);
+} else {
+  $(a, tmpClusterSSA_b);
+}
+`````
+
 ## Pre Normal
 
 
@@ -48,28 +84,7 @@ if (tmpIfTest) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpNestedAssignObjPatternRhs) {
-  const tmpObjLitVal$1 /*:unknown*/ = $(2);
-  const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
-  const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  const tmpClusterSSA_b$1 /*:unknown*/ = tmpAssignObjPatternRhs.b;
-  $(a, tmpClusterSSA_b$1);
-} else {
-  $(a, tmpClusterSSA_b);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +112,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -111,4 +126,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

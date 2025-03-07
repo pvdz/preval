@@ -22,6 +22,46 @@ $(() => {
 });
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:()=>unknown*/ = function () {
+  debugger;
+  const incorrectlyhoisted$3 /*:()=>undefined*/ = function () {
+    debugger;
+    const tmpCalleeParam$1 /*:object*/ = {};
+    const C /*:unknown*/ = $(tmpCalleeParam$1);
+    C.innerHTML = wheredoyougoto;
+    return undefined;
+  };
+  if ($) {
+    return undefined;
+  } else {
+  }
+  const wheredoyougoto /*:unknown*/ = $();
+  return incorrectlyhoisted$3;
+};
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  const incorrectlyhoisted$3 = function () {
+    const C = $({});
+    C.innerHTML = wheredoyougoto;
+  };
+  if ($) {
+    return undefined;
+  }
+  const wheredoyougoto = $();
+  return incorrectlyhoisted$3;
+});
+`````
+
 ## Pre Normal
 
 
@@ -64,31 +104,7 @@ const tmpCalleeParam = function () {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:()=>unknown*/ = function () {
-  debugger;
-  const incorrectlyhoisted$3 /*:()=>undefined*/ = function () {
-    debugger;
-    const tmpCalleeParam$1 /*:object*/ = {};
-    const C /*:unknown*/ = $(tmpCalleeParam$1);
-    C.innerHTML = wheredoyougoto;
-    return undefined;
-  };
-  if ($) {
-    return undefined;
-  } else {
-  }
-  const wheredoyougoto /*:unknown*/ = $();
-  return incorrectlyhoisted$3;
-};
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +130,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -124,4 +140,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

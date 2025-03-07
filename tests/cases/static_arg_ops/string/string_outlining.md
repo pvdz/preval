@@ -17,6 +17,22 @@ rule(`I want it my \\way`);
 rule(`You have to listen to me`);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`purpleRule:reset "I want it my \\way"`);
+$(`purpleRule:reset "You have to listen to me"`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`purpleRule:reset "I want it my \\way"`);
+$(`purpleRule:reset "You have to listen to me"`);
+`````
+
 ## Pre Normal
 
 
@@ -50,16 +66,7 @@ rule(`I want it my \\way`);
 rule(`You have to listen to me`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`purpleRule:reset "I want it my \\way"`);
-$(`purpleRule:reset "You have to listen to me"`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +78,7 @@ $( "purpleRule:reset \"You have to listen to me\"" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'purpleRule:reset "I want it my \\way"'
@@ -82,4 +89,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

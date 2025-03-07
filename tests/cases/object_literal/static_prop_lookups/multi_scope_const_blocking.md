@@ -20,6 +20,41 @@ f();
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(1);
+const o /*:object*/ = { x: tmpObjLitVal };
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpCalleeParam /*:unknown*/ = o.x;
+  $(tmpCalleeParam);
+  return undefined;
+};
+$(tmpObjLitVal);
+o.x = 10;
+f();
+f();
+f();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(1);
+const o = { x: tmpObjLitVal };
+const f = function () {
+  $(o.x);
+};
+$(tmpObjLitVal);
+o.x = 10;
+f();
+f();
+f();
+`````
+
 ## Pre Normal
 
 
@@ -56,27 +91,7 @@ f();
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-const o /*:object*/ = { x: tmpObjLitVal };
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpCalleeParam /*:unknown*/ = o.x;
-  $(tmpCalleeParam);
-  return undefined;
-};
-$(tmpObjLitVal);
-o.x = 10;
-f();
-f();
-f();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -99,7 +114,7 @@ c();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -113,4 +128,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,42 @@ $(`before  ${(a = delete ($(1), $(2), arg).y)}  after`);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
+  const a$1 /*:boolean*/ = $$0;
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(a$1, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
+$(1);
+$(2);
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg.y;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, a);
+$(tmpCalleeParam);
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(a$1) {
+  const tmpRet = `before  ${a$1}  after`;
+  return tmpRet;
+};
+$(1);
+$(2);
+const arg = { y: 1 };
+const a = delete arg.y;
+$($frfr(tmpFree, a));
+$(a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -46,28 +82,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
-  const a$1 /*:boolean*/ = $$0;
-  debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(a$1, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-  return tmpRet;
-};
-$(1);
-$(2);
-const arg /*:object*/ = { y: 1 };
-const a /*:boolean*/ = delete arg.y;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, a);
-$(tmpCalleeParam);
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +106,7 @@ $( g, f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -104,4 +119,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

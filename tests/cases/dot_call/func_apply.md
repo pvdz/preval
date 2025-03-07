@@ -16,6 +16,30 @@ function f() {
 f.call({pass: 1}, [1,2,3], 'nope' ,$);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  debugger;
+  $(tmpPrevalAliasThis);
+  return undefined;
+};
+const tmpCalleeParam /*:object*/ = { pass: 1 };
+const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
+f.call(tmpCalleeParam, tmpCalleeParam$1, `nope`, $);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+(function () {
+  $(this);
+}.call({ pass: 1 }, [1, 2, 3], `nope`, $));
+`````
+
 ## Pre Normal
 
 
@@ -48,23 +72,7 @@ const tmpCalleeParam$3 = $;
 $dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam, tmpCalleeParam$1, `nope`, tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  debugger;
-  $(tmpPrevalAliasThis);
-  return undefined;
-};
-const tmpCalleeParam /*:object*/ = { pass: 1 };
-const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
-f.call(tmpCalleeParam, tmpCalleeParam$1, `nope`, $);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +91,7 @@ a.call( c, d, "nope", $ );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { pass: '1' }
@@ -93,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

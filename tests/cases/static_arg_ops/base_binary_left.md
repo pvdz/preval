@@ -18,6 +18,37 @@ f(6, 2, 7);
 f(8, 2, 9);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(number)=>undefined*/ = function ($$0) {
+  const a /*:number*/ = $$0;
+  debugger;
+  const tmpBinBothRhs /*:unknown*/ = $(1);
+  const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
+  $(tmpCalleeParam);
+  return undefined;
+};
+f(1);
+f(4);
+f(6);
+f(8);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (a) {
+  $(a + $(1));
+};
+f(1);
+f(4);
+f(6);
+f(8);
+`````
+
 ## Pre Normal
 
 
@@ -56,26 +87,7 @@ f(6, 2, 7);
 f(8, 2, 9);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(number)=>undefined*/ = function ($$0) {
-  const a /*:number*/ = $$0;
-  debugger;
-  const tmpBinBothRhs /*:unknown*/ = $(1);
-  const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
-  $(tmpCalleeParam);
-  return undefined;
-};
-f(1);
-f(4);
-f(6);
-f(8);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +109,7 @@ a( 8 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -114,4 +126,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

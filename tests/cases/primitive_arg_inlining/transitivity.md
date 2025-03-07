@@ -22,6 +22,52 @@ $(f($('a'), $('b')), 'second C');
 $(f('a', 'b'), 'second D');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $(`b`);
+const tmpCalleeParam /*:unknown*/ = $(`a`, tmpCalleeParam$1);
+$(tmpCalleeParam, `first A`);
+const tmpCalleeParam$5 /*:unknown*/ = $(`a`);
+const tmpCalleeParam$3 /*:unknown*/ = $(tmpCalleeParam$5, `b`);
+$(tmpCalleeParam$3, `first B`);
+const tmpCalleeParam$9 /*:unknown*/ = $(`a`);
+const tmpCalleeParam$11 /*:unknown*/ = $(`b`);
+const tmpCalleeParam$7 /*:unknown*/ = $(tmpCalleeParam$9, tmpCalleeParam$11);
+$(tmpCalleeParam$7, `first C`);
+const tmpCalleeParam$13 /*:unknown*/ = $(`a`, `b`);
+$(tmpCalleeParam$13, `first D`);
+const tmpCalleeParam$17 /*:unknown*/ = $(`b`);
+const tmpCalleeParam$15 /*:unknown*/ = $(`a`, tmpCalleeParam$17);
+$(tmpCalleeParam$15, `second A`);
+const tmpCalleeParam$21 /*:unknown*/ = $(`a`);
+const tmpCalleeParam$19 /*:unknown*/ = $(tmpCalleeParam$21, `b`);
+$(tmpCalleeParam$19, `second B`);
+const tmpCalleeParam$25 /*:unknown*/ = $(`a`);
+const tmpCalleeParam$27 /*:unknown*/ = $(`b`);
+const tmpCalleeParam$23 /*:unknown*/ = $(tmpCalleeParam$25, tmpCalleeParam$27);
+$(tmpCalleeParam$23, `second C`);
+const tmpCalleeParam$29 /*:unknown*/ = $(`a`, `b`);
+$(tmpCalleeParam$29, `second D`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(`a`, $(`b`)), `first A`);
+$($($(`a`), `b`), `first B`);
+const tmpCalleeParam$9 = $(`a`);
+$($(tmpCalleeParam$9, $(`b`)), `first C`);
+$($(`a`, `b`), `first D`);
+$($(`a`, $(`b`)), `second A`);
+$($($(`a`), `b`), `second B`);
+const tmpCalleeParam$25 = $(`a`);
+$($(tmpCalleeParam$25, $(`b`)), `second C`);
+$($(`a`, `b`), `second D`);
+`````
+
 ## Pre Normal
 
 
@@ -85,38 +131,7 @@ const tmpCalleeParam$29 = f(`a`, `b`);
 $(tmpCalleeParam$29, `second D`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(`b`);
-const tmpCalleeParam /*:unknown*/ = $(`a`, tmpCalleeParam$1);
-$(tmpCalleeParam, `first A`);
-const tmpCalleeParam$5 /*:unknown*/ = $(`a`);
-const tmpCalleeParam$3 /*:unknown*/ = $(tmpCalleeParam$5, `b`);
-$(tmpCalleeParam$3, `first B`);
-const tmpCalleeParam$9 /*:unknown*/ = $(`a`);
-const tmpCalleeParam$11 /*:unknown*/ = $(`b`);
-const tmpCalleeParam$7 /*:unknown*/ = $(tmpCalleeParam$9, tmpCalleeParam$11);
-$(tmpCalleeParam$7, `first C`);
-const tmpCalleeParam$13 /*:unknown*/ = $(`a`, `b`);
-$(tmpCalleeParam$13, `first D`);
-const tmpCalleeParam$17 /*:unknown*/ = $(`b`);
-const tmpCalleeParam$15 /*:unknown*/ = $(`a`, tmpCalleeParam$17);
-$(tmpCalleeParam$15, `second A`);
-const tmpCalleeParam$21 /*:unknown*/ = $(`a`);
-const tmpCalleeParam$19 /*:unknown*/ = $(tmpCalleeParam$21, `b`);
-$(tmpCalleeParam$19, `second B`);
-const tmpCalleeParam$25 /*:unknown*/ = $(`a`);
-const tmpCalleeParam$27 /*:unknown*/ = $(`b`);
-const tmpCalleeParam$23 /*:unknown*/ = $(tmpCalleeParam$25, tmpCalleeParam$27);
-$(tmpCalleeParam$23, `second C`);
-const tmpCalleeParam$29 /*:unknown*/ = $(`a`, `b`);
-$(tmpCalleeParam$29, `second D`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -150,7 +165,7 @@ $( p, "second D" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'b'
@@ -183,4 +198,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

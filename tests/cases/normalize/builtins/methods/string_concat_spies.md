@@ -14,6 +14,26 @@ const y = $spy('b');
 "".concat(x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $spy(`a`);
+const y /*:unknown*/ = $spy(`b`);
+$coerce(x, `string`);
+$coerce(y, `string`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $spy(`a`);
+const y = $spy(`b`);
+$coerce(x, `string`);
+$coerce(y, `string`);
+`````
+
 ## Pre Normal
 
 
@@ -32,18 +52,7 @@ const y = $spy(`b`);
 ``.concat(x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $spy(`a`);
-const y /*:unknown*/ = $spy(`b`);
-$coerce(x, `string`);
-$coerce(y, `string`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +66,7 @@ $coerce( b, "string" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']
@@ -70,4 +79,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

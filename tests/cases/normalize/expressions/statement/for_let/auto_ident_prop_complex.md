@@ -16,6 +16,30 @@ for (let xyz = $(b).c; ; $(1)) $(xyz);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 1 };
+const tmpCompObj /*:unknown*/ = $(b);
+const xyz /*:unknown*/ = tmpCompObj.c;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(xyz);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const xyz = $({ c: 1 }).c;
+while (true) {
+  $(xyz);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -46,21 +70,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 1 };
-const tmpCompObj /*:unknown*/ = $(b);
-const xyz /*:unknown*/ = tmpCompObj.c;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +87,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { c: '1' }
@@ -112,7 +122,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - regular property access of an ident feels tricky;

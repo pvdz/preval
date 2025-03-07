@@ -25,6 +25,44 @@ function f() {
 $(f(), 'final');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(0);
+if (tmpIfTest) {
+  $(2);
+  const tmpReturnArg$1 /*:unknown*/ = $(7);
+  $(tmpReturnArg$1, `final`);
+} else {
+  const tmpIfTest$1 /*:unknown*/ = $(3);
+  if (tmpIfTest$1) {
+    $(4);
+  } else {
+    $(5);
+  }
+  const tmpReturnArg /*:unknown*/ = $(6);
+  $(tmpReturnArg, `final`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(0)) {
+  $(2);
+  $($(7), `final`);
+} else {
+  if ($(3)) {
+    $(4);
+  } else {
+    $(5);
+  }
+  $($(6), `final`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -72,29 +110,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam, `final`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(0);
-if (tmpIfTest) {
-  $(2);
-  const tmpReturnArg$1 /*:unknown*/ = $(7);
-  $(tmpReturnArg$1, `final`);
-} else {
-  const tmpIfTest$1 /*:unknown*/ = $(3);
-  if (tmpIfTest$1) {
-    $(4);
-  } else {
-    $(5);
-  }
-  const tmpReturnArg /*:unknown*/ = $(6);
-  $(tmpReturnArg, `final`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +137,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -135,4 +151,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

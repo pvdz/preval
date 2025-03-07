@@ -19,6 +19,44 @@ $(100) && ($(b)[$("x")] = $(c)[$("y")] = d + e);
 $(a, b, c, d, e);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(100);
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
+if (tmpIfTest) {
+  const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
+  const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b, c, 3, 4);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(100);
+const b = { x: 1 };
+const c = { y: 2 };
+if (tmpIfTest) {
+  const tmpAssignComMemLhsObj = $(b);
+  const tmpAssignComMemLhsProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $(`y`);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
+}
+$({ a: 999, b: 1000 }, b, c, 3, 4);
+`````
+
 ## Pre Normal
 
 
@@ -58,28 +96,7 @@ if (tmpIfTest) {
 $(a, b, c, d, e);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(100);
-const b /*:object*/ = { x: 1 };
-const c /*:object*/ = { y: 2 };
-if (tmpIfTest) {
-  const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
-  const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, c, 3, 4);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +122,7 @@ $( h, b, c, 3, 4 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -120,4 +137,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

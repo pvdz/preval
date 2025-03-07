@@ -16,6 +16,43 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const tmpIfTest /*:unknown*/ = $(60);
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpIfTest$1 /*:unknown*/ = $(60);
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+if ($(60)) {
+  while (true) {
+    $(100);
+    if (!$(60)) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -50,29 +87,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const tmpIfTest /*:unknown*/ = $(60);
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpIfTest$1 /*:unknown*/ = $(60);
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +116,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -136,4 +151,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

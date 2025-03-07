@@ -19,6 +19,30 @@ if (dedupeMe) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if (tmpUnaryArg$83) {
+  const c /*:unknown*/ = props$15.children;
+  const tmpClusterSSA_dedupeMe /*:boolean*/ = c == null;
+  $(tmpClusterSSA_dedupeMe, `xyz`);
+} else {
+  $(true, `abc`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (tmpUnaryArg$83) {
+  $(props$15.children == null, `xyz`);
+} else {
+  $(true, `abc`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,21 +71,7 @@ if (dedupeMe) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if (tmpUnaryArg$83) {
-  const c /*:unknown*/ = props$15.children;
-  const tmpClusterSSA_dedupeMe /*:boolean*/ = c == null;
-  $(tmpClusterSSA_dedupeMe, `xyz`);
-} else {
-  $(true, `abc`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +91,7 @@ BAD@! Found 2 implicit global bindings:
 
 tmpUnaryArg$83, props$15
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -90,4 +100,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

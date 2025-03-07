@@ -37,6 +37,101 @@ $(ff() === gg());
 $(outer);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const outer /*:()=>array*/ = function () {
+  debugger;
+  let f /*:()=>unknown*/ = function () {
+    debugger;
+    const a /*:array*/ = [];
+    f = function ($$0, $$1) {
+      debugger;
+      return a;
+    };
+    const tmpReturnArg$23 /*:unknown*/ = f();
+    return tmpReturnArg$23;
+  };
+  const g /*:unknown*/ = f;
+  f();
+  f();
+  g();
+  g();
+  g();
+  f();
+  const tmpReturnArg /*:array*/ = [f, g];
+  return tmpReturnArg;
+};
+const bindingPatternArrRoot /*:array*/ = outer();
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+const ff /*:unknown*/ = arrPatternSplat[0];
+const gg /*:unknown*/ = arrPatternSplat[1];
+const tmpCalleeParam /*:unknown*/ = ff();
+const tmpCalleeParam$1 /*:unknown*/ = ff();
+$(tmpCalleeParam, tmpCalleeParam$1);
+const tmpBinBothLhs /*:unknown*/ = ff();
+const tmpBinBothRhs /*:unknown*/ = ff();
+const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
+$(tmpCalleeParam$3);
+const tmpCalleeParam$5 /*:unknown*/ = gg();
+const tmpCalleeParam$7 /*:unknown*/ = gg();
+$(tmpCalleeParam$5, tmpCalleeParam$7);
+const tmpBinBothLhs$1 /*:unknown*/ = gg();
+const tmpBinBothRhs$1 /*:unknown*/ = gg();
+const tmpCalleeParam$9 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+$(tmpCalleeParam$9);
+const tmpBinBothLhs$3 /*:unknown*/ = gg();
+const tmpBinBothRhs$3 /*:unknown*/ = ff();
+const tmpCalleeParam$11 /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
+$(tmpCalleeParam$11);
+const tmpBinBothLhs$5 /*:unknown*/ = ff();
+const tmpBinBothRhs$5 /*:unknown*/ = gg();
+const tmpCalleeParam$13 /*:boolean*/ = tmpBinBothLhs$5 === tmpBinBothRhs$5;
+$(tmpCalleeParam$13);
+$(outer);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const outer = function () {
+  let f = function () {
+    const a = [];
+    f = function ($$0, $$1) {
+      return a;
+    };
+    const tmpReturnArg$23 = f();
+    return tmpReturnArg$23;
+  };
+  const g = f;
+  f();
+  f();
+  g();
+  g();
+  g();
+  f();
+  const tmpReturnArg = [f, g];
+  return tmpReturnArg;
+};
+const bindingPatternArrRoot = outer();
+const arrPatternSplat = [...bindingPatternArrRoot];
+const ff = arrPatternSplat[0];
+const gg = arrPatternSplat[1];
+$(ff(), ff());
+const tmpBinBothLhs = ff();
+$(tmpBinBothLhs === ff());
+$(gg(), gg());
+const tmpBinBothLhs$1 = gg();
+$(tmpBinBothLhs$1 === gg());
+const tmpBinBothLhs$3 = gg();
+$(tmpBinBothLhs$3 === ff());
+const tmpBinBothLhs$5 = ff();
+$(tmpBinBothLhs$5 === gg());
+$(outer);
+`````
+
 ## Pre Normal
 
 
@@ -128,63 +223,7 @@ $(tmpCalleeParam$13);
 $(outer);
 `````
 
-## Output
-
-
-`````js filename=intro
-const outer /*:()=>array*/ = function () {
-  debugger;
-  let f /*:()=>unknown*/ = function () {
-    debugger;
-    const a /*:array*/ = [];
-    f = function ($$0, $$1) {
-      debugger;
-      return a;
-    };
-    const tmpReturnArg$23 /*:unknown*/ = f();
-    return tmpReturnArg$23;
-  };
-  const g /*:unknown*/ = f;
-  f();
-  f();
-  g();
-  g();
-  g();
-  f();
-  const tmpReturnArg /*:array*/ = [f, g];
-  return tmpReturnArg;
-};
-const bindingPatternArrRoot /*:array*/ = outer();
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const ff /*:unknown*/ = arrPatternSplat[0];
-const gg /*:unknown*/ = arrPatternSplat[1];
-const tmpCalleeParam /*:unknown*/ = ff();
-const tmpCalleeParam$1 /*:unknown*/ = ff();
-$(tmpCalleeParam, tmpCalleeParam$1);
-const tmpBinBothLhs /*:unknown*/ = ff();
-const tmpBinBothRhs /*:unknown*/ = ff();
-const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:unknown*/ = gg();
-const tmpCalleeParam$7 /*:unknown*/ = gg();
-$(tmpCalleeParam$5, tmpCalleeParam$7);
-const tmpBinBothLhs$1 /*:unknown*/ = gg();
-const tmpBinBothRhs$1 /*:unknown*/ = gg();
-const tmpCalleeParam$9 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-$(tmpCalleeParam$9);
-const tmpBinBothLhs$3 /*:unknown*/ = gg();
-const tmpBinBothRhs$3 /*:unknown*/ = ff();
-const tmpCalleeParam$11 /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-$(tmpCalleeParam$11);
-const tmpBinBothLhs$5 /*:unknown*/ = ff();
-const tmpBinBothRhs$5 /*:unknown*/ = gg();
-const tmpCalleeParam$13 /*:boolean*/ = tmpBinBothLhs$5 === tmpBinBothRhs$5;
-$(tmpCalleeParam$13);
-$(outer);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -243,7 +282,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [], []
@@ -259,7 +298,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

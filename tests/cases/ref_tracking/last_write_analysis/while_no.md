@@ -23,6 +23,43 @@ while (true) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`a`);
+$(x);
+const tmpClusterSSA_x /*:unknown*/ = $(`b`);
+if ($) {
+  while ($LOOP_UNROLL_10) {
+    $(`123`);
+    if ($) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(`a`));
+const tmpClusterSSA_x = $(`b`);
+if ($) {
+  while (true) {
+    $(`123`);
+    if (!$) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_x);
+`````
+
 ## Pre Normal
 
 
@@ -57,28 +94,7 @@ while (true) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`a`);
-$(x);
-const tmpClusterSSA_x /*:unknown*/ = $(`b`);
-if ($) {
-  while ($LOOP_UNROLL_10) {
-    $(`123`);
-    if ($) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(tmpClusterSSA_x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +119,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -138,7 +154,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support referencing this builtin in isFree: $

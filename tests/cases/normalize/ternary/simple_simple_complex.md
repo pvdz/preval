@@ -14,6 +14,21 @@ const b = 0 ? 4 : $(5)
 $(a, b)
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:unknown*/ = $(5);
+$(2, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(2, $(5));
+`````
+
 ## Pre Normal
 
 
@@ -34,16 +49,7 @@ b = $(5);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:unknown*/ = $(5);
-$(2, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +61,7 @@ $( 2, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5
@@ -66,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

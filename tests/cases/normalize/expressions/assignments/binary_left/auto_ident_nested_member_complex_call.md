@@ -18,6 +18,42 @@ $((a = $(b)[$("x")] = $(c)[$("y")] = $(d)) + $(100));
 $(a, b, c, d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+const c /*:object*/ = { y: 2 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+const tmpBinBothRhs /*:unknown*/ = $(100);
+const tmpCalleeParam /*:primitive*/ = varInitAssignLhsComputedRhs + tmpBinBothRhs;
+$(tmpCalleeParam);
+$(varInitAssignLhsComputedRhs, b, c, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const c = { y: 2 };
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $(`y`);
+const varInitAssignLhsComputedRhs = $(3);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+$(varInitAssignLhsComputedRhs + $(100));
+$(varInitAssignLhsComputedRhs, b, c, 3);
+`````
+
 ## Pre Normal
 
 
@@ -55,27 +91,7 @@ $(tmpCalleeParam);
 $(a, b, c, d);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:primitive*/ = varInitAssignLhsComputedRhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(varInitAssignLhsComputedRhs, b, c, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +114,7 @@ $( g, a, d, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -115,4 +131,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

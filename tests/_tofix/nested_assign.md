@@ -21,6 +21,25 @@ while (true) {
 $(x);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(10);
+while (true) {
+  $(20);
+  if (!$(true)) {
+    while (true) {
+      $(20);
+      if ($(true)) {
+        break;
+      }
+    }
+  }
+  $(30);
+}
+`````
+
 ## Pre Normal
 
 
@@ -54,7 +73,7 @@ while (true) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -77,8 +96,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -141,4 +159,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- Support this node type in isFree: LabeledStatement

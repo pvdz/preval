@@ -18,6 +18,37 @@ let a = { a: 999, b: 1000 };
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
+$(tmpObjLitVal);
+$(tmpObjLitVal$1);
+const tmpObjLitVal$3 /*:unknown*/ = $(3);
+const tmpObjLitVal$5 /*:unknown*/ = $(4);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, tmpObjLitVal$3, tmpObjLitVal$5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+$(tmpObjLitVal);
+$(tmpObjLitVal$1);
+const tmpObjLitVal$3 = $(3);
+const tmpObjLitVal$5 = $(4);
+$({ a: 999, b: 1000 }, tmpObjLitVal$3, tmpObjLitVal$5);
+`````
+
 ## Pre Normal
 
 
@@ -58,24 +89,7 @@ if (tmpIfTest) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const tmpObjLitVal /*:unknown*/ = $(3);
-const tmpObjLitVal$1 /*:unknown*/ = $(4);
-$(tmpObjLitVal);
-$(tmpObjLitVal$1);
-const tmpObjLitVal$3 /*:unknown*/ = $(3);
-const tmpObjLitVal$5 /*:unknown*/ = $(4);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpObjLitVal$3, tmpObjLitVal$5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +112,7 @@ $( e, c, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -116,4 +130,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

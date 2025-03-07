@@ -23,6 +23,86 @@ switch ($(1)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+let tmpBinLhs /*:unknown*/ = undefined;
+const tmpObjLitVal /*:object*/ = { y: 1 };
+const b /*:object*/ = { x: tmpObjLitVal };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
+  if (tmpIfTest$3) {
+  } else {
+    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpBinLhs = tmpChainElementObject$1;
+  }
+}
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$5 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$5) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$7) {
+} else {
+  const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$9) {
+    $(`fail1`);
+  } else {
+  }
+  $(`fail2`);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+let tmpBinLhs = undefined;
+const tmpObjLitVal = { y: 1 };
+const tmpChainElementCall = $({ x: tmpObjLitVal });
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    const tmpChainRootComputed$1 = $(`y`);
+    tmpBinLhs = tmpChainElementObject[tmpChainRootComputed$1];
+  }
+}
+if (tmpBinLhs === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (!(tmpSwitchCaseToStart <= 0)) {
+  if (tmpSwitchCaseToStart <= 1) {
+    $(`fail1`);
+  }
+  $(`fail2`);
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -105,55 +185,7 @@ tmpSwitchBreak: {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-let tmpBinLhs /*:unknown*/ = undefined;
-const tmpObjLitVal /*:object*/ = { y: 1 };
-const b /*:object*/ = { x: tmpObjLitVal };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpBinLhs = tmpChainElementObject$1;
-  }
-}
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$5 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$5) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$7) {
-} else {
-  const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$9) {
-    $(`fail1`);
-  } else {
-  }
-  $(`fail2`);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -212,7 +244,7 @@ $( q );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -226,4 +258,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

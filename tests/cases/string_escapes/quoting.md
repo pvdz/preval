@@ -15,6 +15,26 @@ eval("hello'`world'");
 eval('hello\\"\\`world"');
 `````
 
+## Settled
+
+
+`````js filename=intro
+eval(`hello"\`world"`);
+eval(`hello"'world"`);
+eval(`hello'\`world'`);
+eval(`hello\\"\\\`world"`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+eval(`hello"\`world"`);
+eval(`hello"'world"`);
+eval(`hello'\`world'`);
+eval(`hello\\"\\\`world"`);
+`````
+
 ## Pre Normal
 
 
@@ -35,18 +55,7 @@ eval(`hello'\`world'`);
 eval(`hello\\"\\\`world"`);
 `````
 
-## Output
-
-
-`````js filename=intro
-eval(`hello"\`world"`);
-eval(`hello"'world"`);
-eval(`hello'\`world'`);
-eval(`hello\\"\\\`world"`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +69,7 @@ eval( "hello\\\"\\`world\"" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Unexpected string ]>')
@@ -69,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

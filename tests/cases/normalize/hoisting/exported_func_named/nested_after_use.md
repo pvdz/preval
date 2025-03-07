@@ -18,6 +18,33 @@ export function g() {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpCalleeParam /*:unknown*/ = $(2);
+  $(tmpCalleeParam);
+  return undefined;
+};
+g();
+$(undefined);
+export { g };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function () {
+  $($(2));
+};
+g();
+$(undefined);
+export { g };
+`````
+
 ## Pre Normal
 
 
@@ -54,23 +81,7 @@ $(tmpCalleeParam$1);
 export { g };
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpCalleeParam /*:unknown*/ = $(2);
-  $(tmpCalleeParam);
-  return undefined;
-};
-g();
-$(undefined);
-export { g };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -89,7 +100,7 @@ export { a as g };
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -98,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

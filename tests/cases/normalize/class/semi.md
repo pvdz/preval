@@ -17,6 +17,36 @@ class x {
 $(new x().b());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:class*/ = class {
+  a() {
+    debugger;
+    return undefined;
+  }
+  b() {
+    debugger;
+    return undefined;
+  }
+};
+const tmpCallObj /*:object*/ = new x();
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.b();
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = class {
+  a() {}
+  b() {}
+};
+$(new x().b());
+`````
+
 ## Pre Normal
 
 
@@ -51,27 +81,7 @@ const tmpCalleeParam = tmpCallObj.b();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:class*/ = class {
-  a() {
-    debugger;
-    return undefined;
-  }
-  b() {
-    debugger;
-    return undefined;
-  }
-};
-const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam /*:unknown*/ = tmpCallObj.b();
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +103,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -103,4 +113,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

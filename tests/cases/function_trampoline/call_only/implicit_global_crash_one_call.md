@@ -16,6 +16,28 @@ $(`inline me`);
 f(implicitGlobalShouldCrash, a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+implicitGlobalShouldCrash;
+a;
+b;
+c;
+$(`inline me`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+implicitGlobalShouldCrash;
+a;
+b;
+c;
+$(`inline me`);
+`````
+
 ## Pre Normal
 
 
@@ -40,19 +62,7 @@ const f = function () {
 f(implicitGlobalShouldCrash, a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-implicitGlobalShouldCrash;
-a;
-b;
-c;
-$(`inline me`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +79,7 @@ BAD@! Found 4 implicit global bindings:
 
 implicitGlobalShouldCrash, a, b, c
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -78,4 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

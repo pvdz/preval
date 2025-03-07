@@ -15,6 +15,20 @@ function f(x = 'fail') {
 $(f(null, 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(null);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(null);
+`````
+
 ## Pre Normal
 
 
@@ -49,15 +63,7 @@ const tmpCalleeParam = f(null, 200);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(null);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -68,7 +74,7 @@ $( null );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: null
@@ -78,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

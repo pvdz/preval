@@ -22,6 +22,48 @@ switch ($(1)) {
 $(a, b, c, d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
+if (tmpIfTest) {
+  const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
+  const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+  const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b, c, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(1) === $(1);
+const b = { x: 1 };
+const c = { y: 2 };
+if (tmpIfTest) {
+  const tmpAssignComMemLhsObj = $(b);
+  const tmpAssignComMemLhsProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $(`y`);
+  const varInitAssignLhsComputedRhs = $(3);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
+}
+$({ a: 999, b: 1000 }, b, c, 3);
+`````
+
 ## Pre Normal
 
 
@@ -70,31 +112,7 @@ if (tmpIfTest) {
 $(a, b, c, d);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-const b /*:object*/ = { x: 1 };
-const c /*:object*/ = { y: 2 };
-if (tmpIfTest) {
-  const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
-  const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, c, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -123,7 +141,7 @@ $( k, d, e, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -140,4 +158,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

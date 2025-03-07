@@ -15,6 +15,26 @@ $(arr[false]);
 $(`${arr[2]}xyz`);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(4);
+const arr /*:array*/ = [1, 2, 3, 4];
+const tmpCalleeParam$1 /*:unknown*/ = arr.false;
+$(tmpCalleeParam$1);
+$(`3xyz`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(4);
+$([1, 2, 3, 4].false);
+$(`3xyz`);
+`````
+
 ## Pre Normal
 
 
@@ -43,19 +63,7 @@ const tmpCalleeParam$3 = `${tmpStringConcatR}xyz`;
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(4);
-const arr /*:array*/ = [1, 2, 3, 4];
-const tmpCalleeParam$1 /*:unknown*/ = arr.false;
-$(tmpCalleeParam$1);
-$(`3xyz`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +78,7 @@ $( "3xyz" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 4
@@ -82,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

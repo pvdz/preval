@@ -14,6 +14,23 @@ const {x: [ y ]} = 1;
 { let y = 1; }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternNoDefault /*:unknown*/ = (1).x;
+const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
+arrPatternSplat[0];
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternNoDefault = (1).x;
+[...objPatternNoDefault][0];
+`````
+
 ## Pre Normal
 
 
@@ -41,17 +58,7 @@ const y = arrPatternSplat[0];
 let y$3 = 1;
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (1).x;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-arrPatternSplat[0];
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +71,7 @@ b[ 0 ];
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -74,7 +81,10 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Denormalized calls: BAD!!
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Todos triggered:

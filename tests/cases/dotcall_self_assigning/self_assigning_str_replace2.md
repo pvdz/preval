@@ -34,6 +34,52 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(str);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let count /*:number*/ = 77;
+let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
+const arr /*:array*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = count;
+  count = count - 1;
+  if (tmpPostUpdArgIdent$1) {
+    const chr /*:primitive*/ = arr[count];
+    if (chr) {
+      const chr2 /*:primitive*/ = arr[count];
+      const regex /*:regex*/ = /xyz/g;
+      str = str.replace(regex, chr2);
+    } else {
+    }
+  } else {
+    break;
+  }
+}
+$(str);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let count = 77;
+let str = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
+const arr = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
+while (true) {
+  const tmpPostUpdArgIdent$1 = count;
+  count = count - 1;
+  if (tmpPostUpdArgIdent$1) {
+    if (arr[count]) {
+      str = str.replace(/xyz/g, arr[count]);
+    }
+  } else {
+    break;
+  }
+}
+$(str);
+`````
+
 ## Pre Normal
 
 
@@ -84,33 +130,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(str);
 `````
 
-## Output
-
-
-`````js filename=intro
-let count /*:number*/ = 77;
-let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
-const arr /*:array*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = count;
-  count = count - 1;
-  if (tmpPostUpdArgIdent$1) {
-    const chr /*:primitive*/ = arr[count];
-    if (chr) {
-      const chr2 /*:primitive*/ = arr[count];
-      const regex /*:regex*/ = /xyz/g;
-      str = str.replace(regex, chr2);
-    } else {
-    }
-  } else {
-    break;
-  }
-}
-$(str);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -139,7 +159,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9'
@@ -149,4 +169,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

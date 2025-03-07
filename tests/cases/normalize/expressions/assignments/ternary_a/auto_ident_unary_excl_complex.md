@@ -14,6 +14,35 @@ $((a = !$(100)) ? $(100) : $(200));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(100);
+if (tmpUnaryArg) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam$1);
+}
+const a /*:boolean*/ = !tmpUnaryArg;
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg = $(100);
+if (tmpUnaryArg) {
+  $($(200));
+} else {
+  $($(100));
+}
+$(!tmpUnaryArg);
+`````
+
 ## Pre Normal
 
 
@@ -41,24 +70,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(100);
-if (tmpUnaryArg) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam$1);
-}
-const a /*:boolean*/ = !tmpUnaryArg;
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +91,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -92,4 +104,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

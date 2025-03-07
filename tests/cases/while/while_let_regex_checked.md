@@ -26,6 +26,31 @@ while (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:regex*/ = /foo/;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam /*:unknown*/ = x.foo;
+  $(tmpCalleeParam);
+  x = /foo/;
+  x.foo = `object`;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = /foo/;
+while (true) {
+  $(x.foo);
+  x = /foo/;
+  x.foo = `object`;
+}
+`````
+
 ## Pre Normal
 
 
@@ -66,21 +91,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:regex*/ = /foo/;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam /*:unknown*/ = x.foo;
-  $(tmpCalleeParam);
-  x = /foo/;
-  x.foo = `object`;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +108,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -132,7 +143,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - regular property access of an ident feels tricky;

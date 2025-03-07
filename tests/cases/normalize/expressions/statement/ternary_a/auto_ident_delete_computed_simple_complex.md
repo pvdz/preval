@@ -16,6 +16,36 @@ delete arg[$("y")] ? $(100) : $(200);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+const arg /*:object*/ = { y: 1 };
+const tmpIfTest /*:boolean*/ = delete arg[tmpDeleteCompProp];
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(200);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpDeleteCompProp = $(`y`);
+const arg = { y: 1 };
+if (delete arg[tmpDeleteCompProp]) {
+  $(100);
+} else {
+  $(200);
+}
+$({ a: 999, b: 1000 }, arg);
+`````
+
 ## Pre Normal
 
 
@@ -43,24 +73,7 @@ if (tmpIfTest) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const arg /*:object*/ = { y: 1 };
-const tmpIfTest /*:boolean*/ = delete arg[tmpDeleteCompProp];
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(200);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +97,7 @@ $( d, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'y'
@@ -96,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,22 @@ function f([{ x }]) {
 $(f(undefined));
 `````
 
+## Settled
+
+
+`````js filename=intro
+[...undefined];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+[...undefined];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
 ## Pre Normal
 
 
@@ -45,16 +61,7 @@ const tmpCalleeParam = f(undefined);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-[...undefined];
-throw `[Preval]: Array spread must crash before this line`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +73,7 @@ throw "[Preval]: Array spread must crash before this line";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -75,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

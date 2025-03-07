@@ -14,6 +14,21 @@ I guess we have to keep it like this because coercing it to number may force-coe
 $spy() + '';
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinLhs /*:unknown*/ = $spy();
+$coerce(tmpBinLhs, `plustr`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$coerce($spy(), `plustr`);
+`````
+
 ## Pre Normal
 
 
@@ -29,16 +44,7 @@ const tmpBinLhs = $spy();
 $coerce(tmpBinLhs, `plustr`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinLhs /*:unknown*/ = $spy();
-$coerce(tmpBinLhs, `plustr`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -50,7 +56,7 @@ $coerce( a, "plustr" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]
@@ -61,4 +67,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

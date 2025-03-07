@@ -30,6 +30,43 @@ else $('fail');
 
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f$1 /*:()=>boolean*/ = function () {
+  debugger;
+  const tmpssa2_x /*:unknown*/ = $(100);
+  const y /*:boolean*/ = Boolean(tmpssa2_x);
+  return y;
+};
+$(undefined);
+$(f$1);
+const tmpBoolTrampoline /*:unknown*/ = $(100);
+if (tmpBoolTrampoline) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f$1 = function () {
+  const y = Boolean($(100));
+  return y;
+};
+$(undefined);
+$(f$1);
+if ($(100)) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -78,28 +115,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const f$1 /*:()=>boolean*/ = function () {
-  debugger;
-  const tmpssa2_x /*:unknown*/ = $(100);
-  const y /*:boolean*/ = Boolean(tmpssa2_x);
-  return y;
-};
-$(undefined);
-$(f$1);
-const tmpBoolTrampoline /*:unknown*/ = $(100);
-if (tmpBoolTrampoline) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -124,7 +140,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -137,4 +153,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

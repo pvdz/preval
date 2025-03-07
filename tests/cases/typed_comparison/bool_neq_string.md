@@ -14,6 +14,22 @@ const y = x !== "";
 $('out:', y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(false);
+$(`out:`, true);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(false);
+$(`out:`, true);
+`````
+
 ## Pre Normal
 
 
@@ -33,16 +49,7 @@ const y = x !== ``;
 $(`out:`, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(false);
-$(`out:`, true);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +61,7 @@ $( "out:", true );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false
@@ -65,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

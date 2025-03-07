@@ -23,6 +23,61 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpIfTest$1 /*:unknown*/ = $(true);
+  if (tmpIfTest$1) {
+    $(`loop`);
+  } else {
+  }
+  while ($LOOP_UNROLL_10) {
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$2 /*:unknown*/ = $(true);
+    if (tmpIfTest$2) {
+      $(`loop`);
+      const tmpIfTest$4 /*:unknown*/ = $(true);
+      if (tmpIfTest$4) {
+        $(`loop`);
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after (not invoked)`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  $(`loop`);
+  if ($(true)) {
+    $(`loop`);
+  }
+  while (true) {
+    $(`infiloop, do not eliminate`);
+    if ($(true)) {
+      $(`loop`);
+      if ($(true)) {
+        $(`loop`);
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(`after (not invoked)`);
+`````
+
 ## Pre Normal
 
 
@@ -64,39 +119,7 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  $(`loop`);
-  const tmpIfTest$1 /*:unknown*/ = $(true);
-  if (tmpIfTest$1) {
-    $(`loop`);
-  } else {
-  }
-  while ($LOOP_UNROLL_10) {
-    $(`infiloop, do not eliminate`);
-    const tmpIfTest$2 /*:unknown*/ = $(true);
-    if (tmpIfTest$2) {
-      $(`loop`);
-      const tmpIfTest$4 /*:unknown*/ = $(true);
-      if (tmpIfTest$4) {
-        $(`loop`);
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(`after (not invoked)`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -129,7 +152,7 @@ $( "after (not invoked)" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -164,4 +187,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

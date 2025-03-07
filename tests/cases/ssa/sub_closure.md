@@ -45,6 +45,39 @@ const parseUnicodeQuadEscape = function (a$7, noDouble) {
 parseUnicodeQuadEscape($(50), $(true));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(50);
+$(true);
+if (tmpIfTest$9045) {
+} else {
+  const tmpClusterSSA_secondPart /*:number*/ = tmpBinLhs$1687 | vh;
+  firstPart;
+  const tmpIfTest$9053 /*:boolean*/ = tmpClusterSSA_secondPart < 56320;
+  if (tmpIfTest$9053) {
+  } else {
+    $(tmpClusterSSA_secondPart);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(50);
+$(true);
+if (!tmpIfTest$9045) {
+  const tmpClusterSSA_secondPart = tmpBinLhs$1687 | vh;
+  firstPart;
+  if (!(tmpClusterSSA_secondPart < 56320)) {
+    $(tmpClusterSSA_secondPart);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -131,26 +164,7 @@ const tmpCalleeParam$1 = $(true);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(50);
-$(true);
-if (tmpIfTest$9045) {
-} else {
-  const tmpClusterSSA_secondPart /*:number*/ = tmpBinLhs$1687 | vh;
-  firstPart;
-  const tmpIfTest$9053 /*:boolean*/ = tmpClusterSSA_secondPart < 56320;
-  if (tmpIfTest$9053) {
-  } else {
-    $(tmpClusterSSA_secondPart);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -178,7 +192,7 @@ BAD@! Found 4 implicit global bindings:
 
 tmpIfTest$9045, tmpBinLhs$1687, vh, firstPart
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 50
@@ -189,4 +203,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

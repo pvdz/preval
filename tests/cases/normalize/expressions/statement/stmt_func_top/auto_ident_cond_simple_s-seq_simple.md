@@ -17,6 +17,23 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ a: 999, b: 1000 });
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -44,17 +61,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +77,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '999', b: '1000' }
@@ -81,4 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

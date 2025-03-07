@@ -51,6 +51,20 @@ const X = function (a, b, c, d, e) {
 X('a', 'b', 'c', 'd', 'e');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);
+`````
+
 ## Pre Normal
 
 
@@ -147,15 +161,7 @@ const X = function ($$0, $$1, $$2, $$3, $$4) {
 X(`a`, `b`, `c`, `d`, `e`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -166,7 +172,7 @@ $( "a", "b", "no", "c", "e", 1, false, "string", true, 0, true );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, true
@@ -176,4 +182,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -17,6 +17,36 @@ switch ((a = (10, 20, $(30)) ? (40, 50, $(60)) : $($(100)))) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(30);
+if (tmpIfTest) {
+  a = $(60);
+} else {
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  a = $(tmpCalleeParam);
+}
+$(100);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+if ($(30)) {
+  a = $(60);
+} else {
+  a = $($(100));
+}
+$(100);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -49,24 +79,7 @@ $(100);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(30);
-if (tmpIfTest) {
-  a = $(60);
-} else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam);
-}
-$(100);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +100,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 30
@@ -100,4 +113,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

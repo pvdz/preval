@@ -16,6 +16,22 @@ $((a = b?.x.y.z) && (a = b?.x.y.z));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+$(100);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+$(100);
+`````
+
 ## Pre Normal
 
 
@@ -64,16 +80,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-$(100);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -85,7 +92,7 @@ $( 100 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -96,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

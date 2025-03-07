@@ -27,6 +27,39 @@ Counter case. I think it's an invalid report.
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = $();
+$(x);
+const tmpCalleeParam /*:object*/ = {
+  toString() {
+    debugger;
+    $(x);
+    return undefined;
+  },
+};
+x = $(tmpCalleeParam);
+x = x + 1;
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $();
+$(x);
+x = $({
+  toString() {
+    $(x);
+  },
+});
+x = x + 1;
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -63,26 +96,7 @@ x = x + 1;
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = $();
-$(x);
-const tmpCalleeParam /*:object*/ = {
-  toString() {
-    debugger;
-    $(x);
-    return undefined;
-  },
-};
-x = $(tmpCalleeParam);
-x = x + 1;
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -102,7 +116,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -116,4 +130,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

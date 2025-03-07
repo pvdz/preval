@@ -19,6 +19,63 @@ for ((a = $(b)[$("x")] = $(c)[$("y")] = d + e).x of $({ x: 1 }));
 $(a, b, c, d, e);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+    const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+    const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+    const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+    a = 7;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
+    (7).x = tmpAssignMemRhs;
+  }
+}
+$(a, b, c, 3, 4);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpForOfGen = $forOf($({ x: 1 }));
+const b = { x: 1 };
+const c = { y: 2 };
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $(`x`);
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $(`y`);
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+    a = 7;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    (7).x = tmpAssignMemRhs;
+  }
+}
+$(a, b, c, 3, 4);
+`````
+
 ## Pre Normal
 
 
@@ -79,38 +136,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b, c, d, e);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-const b /*:object*/ = { x: 1 };
-const c /*:object*/ = { y: 2 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
-    const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-    const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-    const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-    a = 7;
-    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    (7).x = tmpAssignMemRhs;
-  }
-}
-$(a, b, c, 3, 4);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -148,7 +174,7 @@ $( a, e, f, 3, 4 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -158,7 +184,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

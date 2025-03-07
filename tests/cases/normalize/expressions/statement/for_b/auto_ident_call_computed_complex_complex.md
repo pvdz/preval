@@ -16,6 +16,51 @@ for (; $(b)[$("$")](1); $(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCallCompObj /*:unknown*/ = $(b);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpIfTest /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    const tmpCallCompObj$1 /*:unknown*/ = $(b);
+    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
+    const tmpIfTest$1 /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1](1);
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { $: $ };
+const tmpCallCompObj = $(b);
+const tmpCallCompProp = $(`\$`);
+if (tmpCallCompObj[tmpCallCompProp](1)) {
+  while (true) {
+    $(1);
+    const tmpCallCompObj$1 = $(b);
+    const tmpCallCompProp$1 = $(`\$`);
+    if (!tmpCallCompObj$1[tmpCallCompProp$1](1)) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -49,33 +94,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpIfTest /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    const tmpCallCompObj$1 /*:unknown*/ = $(b);
-    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-    const tmpIfTest$1 /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1](1);
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -108,7 +127,7 @@ $( h );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -143,7 +162,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

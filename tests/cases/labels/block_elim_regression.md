@@ -17,6 +17,22 @@ loopStop: {
 $(A);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`mefirst`);
+$(`oops`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`mefirst`);
+$(`oops`);
+`````
+
 ## Pre Normal
 
 
@@ -38,16 +54,7 @@ A = `oops`;
 $(A);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`mefirst`);
-$(`oops`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +66,7 @@ $( "oops" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'mefirst'
@@ -70,4 +77,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

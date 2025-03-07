@@ -26,6 +26,24 @@
   $(cTmp);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(3);
+$(`pass`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(3);
+$(`pass`);
+`````
+
 ## Pre Normal
 
 
@@ -68,17 +86,7 @@ while (true) {
 $(cTmp);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(3);
-$(`pass`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +99,7 @@ $( "pass" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -103,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

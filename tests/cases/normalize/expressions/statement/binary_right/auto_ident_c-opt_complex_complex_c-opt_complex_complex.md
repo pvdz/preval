@@ -16,6 +16,53 @@ $(100) + $(b)?.[$("x")]?.[$("y")];
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+let tmpBinBothRhs /*:unknown*/ = undefined;
+const tmpObjLitVal /*:object*/ = { y: 1 };
+const b /*:object*/ = { x: tmpObjLitVal };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpBinBothRhs = tmpChainElementObject$1;
+  }
+}
+tmpBinBothLhs + tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(100);
+let tmpBinBothRhs = undefined;
+const tmpObjLitVal = { y: 1 };
+const tmpChainElementCall = $({ x: tmpObjLitVal });
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    const tmpChainRootComputed$1 = $(`y`);
+    tmpBinBothRhs = tmpChainElementObject[tmpChainRootComputed$1];
+  }
+}
+tmpBinBothLhs + tmpBinBothRhs;
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -54,35 +101,7 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-let tmpBinBothRhs /*:unknown*/ = undefined;
-const tmpObjLitVal /*:object*/ = { y: 1 };
-const b /*:object*/ = { x: tmpObjLitVal };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpBinBothRhs = tmpChainElementObject$1;
-  }
-}
-tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +139,7 @@ $( l );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -134,4 +153,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

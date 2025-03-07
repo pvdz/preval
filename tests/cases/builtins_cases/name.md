@@ -14,6 +14,25 @@ $(Array.name);
 $(parseInt.name);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`String`);
+$(`Array`);
+const tmpCalleeParam$3 /*:unknown*/ = parseInt.name;
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`String`);
+$(`Array`);
+$(parseInt.name);
+`````
+
 ## Pre Normal
 
 
@@ -35,18 +54,7 @@ const tmpCalleeParam$3 = parseInt.name;
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`String`);
-$(`Array`);
-const tmpCalleeParam$3 /*:unknown*/ = parseInt.name;
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +68,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'String'
@@ -72,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

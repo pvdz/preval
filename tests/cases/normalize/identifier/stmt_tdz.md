@@ -20,6 +20,20 @@ let x = 10;
 $('fail');
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: x;`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: x;`;
+`````
+
 ## Pre Normal
 
 
@@ -37,15 +51,7 @@ throw `Preval: TDZ triggered for this read: x;`;
 let x = 0;
 `````
 
-## Output
-
-
-`````js filename=intro
-throw `Preval: TDZ triggered for this read: x;`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +62,7 @@ throw "Preval: TDZ triggered for this read: x;";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')
@@ -65,4 +71,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -19,6 +19,31 @@ let tmpSSA_e = function($$0) {
 $(p);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSSA_e /*:()=>unknown*/ = function () {
+  debugger;
+  $(2);
+  tmpBinBothLhs = tmpSSA_e();
+  return tmpBinBothLhs;
+};
+$(``);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSSA_e = function () {
+  $(2);
+  tmpBinBothLhs = tmpSSA_e();
+  return tmpBinBothLhs;
+};
+$(``);
+`````
+
 ## Pre Normal
 
 
@@ -51,21 +76,7 @@ let tmpSSA_e = function ($$0) {
 $(p);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSSA_e /*:()=>unknown*/ = function () {
-  debugger;
-  $(2);
-  tmpBinBothLhs = tmpSSA_e();
-  return tmpBinBothLhs;
-};
-$(``);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +95,7 @@ BAD@! Found 1 implicit global bindings:
 
 tmpBinBothLhs
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ''
@@ -94,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

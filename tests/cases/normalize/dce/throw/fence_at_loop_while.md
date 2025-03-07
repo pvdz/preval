@@ -26,6 +26,75 @@ function f(){
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpIfTest$1 /*:unknown*/ = $(true);
+  if (tmpIfTest$1) {
+    $(`loop`);
+    const tmpThrowArg /*:unknown*/ = $(7, `throw`);
+    throw tmpThrowArg;
+  } else {
+    $(`do not visit, do not eliminate`);
+    while ($LOOP_UNROLL_10) {
+      const tmpIfTest$2 /*:unknown*/ = $(true);
+      if (tmpIfTest$2) {
+        $(`loop`);
+        const tmpIfTest$4 /*:unknown*/ = $(true);
+        if (tmpIfTest$4) {
+          $(`loop`);
+          const tmpThrowArg$1 /*:unknown*/ = $(7, `throw`);
+          throw tmpThrowArg$1;
+        } else {
+          $(`do not visit, do not eliminate`);
+        }
+      } else {
+        break;
+      }
+    }
+  }
+} else {
+}
+$(`after (not invoked)`);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  $(`loop`);
+  if ($(true)) {
+    $(`loop`);
+    const tmpThrowArg = $(7, `throw`);
+    throw tmpThrowArg;
+  } else {
+    $(`do not visit, do not eliminate`);
+    while (true) {
+      if ($(true)) {
+        $(`loop`);
+        if ($(true)) {
+          $(`loop`);
+          const tmpThrowArg$1 = $(7, `throw`);
+          throw tmpThrowArg$1;
+        } else {
+          $(`do not visit, do not eliminate`);
+        }
+      } else {
+        break;
+      }
+    }
+  }
+}
+$(`after (not invoked)`);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -78,45 +147,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  $(`loop`);
-  const tmpIfTest$1 /*:unknown*/ = $(true);
-  if (tmpIfTest$1) {
-    $(`loop`);
-    const tmpThrowArg /*:unknown*/ = $(7, `throw`);
-    throw tmpThrowArg;
-  } else {
-    $(`do not visit, do not eliminate`);
-    while ($LOOP_UNROLL_10) {
-      const tmpIfTest$2 /*:unknown*/ = $(true);
-      if (tmpIfTest$2) {
-        $(`loop`);
-        const tmpIfTest$4 /*:unknown*/ = $(true);
-        if (tmpIfTest$4) {
-          $(`loop`);
-          const tmpThrowArg$1 /*:unknown*/ = $(7, `throw`);
-          throw tmpThrowArg$1;
-        } else {
-          $(`do not visit, do not eliminate`);
-        }
-      } else {
-        break;
-      }
-    }
-  }
-} else {
-}
-$(`after (not invoked)`);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -159,7 +190,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -173,4 +204,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

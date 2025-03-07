@@ -16,6 +16,29 @@ const r = f(1, 2, 3);
 $(r);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(array)=>array*/ = function (...$$0 /*:array*/) {
+  const x /*:array*/ = $$0;
+  debugger;
+  return x;
+};
+const r /*:array*/ = f(1, 2, 3);
+$(r);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (x) {
+  return x;
+};
+$(f(1, 2, 3));
+`````
+
 ## Pre Normal
 
 
@@ -42,21 +65,7 @@ const r = f(1, 2, 3);
 $(r);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(array)=>array*/ = function (...$$0 /*:array*/) {
-  const x /*:array*/ = $$0;
-  debugger;
-  return x;
-};
-const r /*:array*/ = f(1, 2, 3);
-$(r);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +82,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1, 2, 3]
@@ -83,4 +92,8 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: BAD!!
+ - 1: 1
+ - eval returned: undefined

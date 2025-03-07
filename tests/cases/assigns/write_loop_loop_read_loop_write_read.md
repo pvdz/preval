@@ -20,6 +20,48 @@ while (true) {
 $(x, 'outer');
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = $(10);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(x, `inner`);
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+  } else {
+    while ($LOOP_UNROLL_10) {
+      $(x, `inner`);
+      const tmpIfTest$1 /*:unknown*/ = $(true);
+      if (tmpIfTest$1) {
+        break;
+      } else {
+      }
+    }
+  }
+  x = $(30);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $(10);
+while (true) {
+  $(x, `inner`);
+  if (!$(true)) {
+    while (true) {
+      $(x, `inner`);
+      if ($(true)) {
+        break;
+      }
+    }
+  }
+  x = $(30);
+}
+`````
+
 ## Pre Normal
 
 
@@ -53,31 +95,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = $(10);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(x, `inner`);
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-  } else {
-    while ($LOOP_UNROLL_10) {
-      $(x, `inner`);
-      const tmpIfTest$1 /*:unknown*/ = $(true);
-      if (tmpIfTest$1) {
-        break;
-      } else {
-      }
-    }
-  }
-  x = $(30);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +123,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -140,7 +158,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

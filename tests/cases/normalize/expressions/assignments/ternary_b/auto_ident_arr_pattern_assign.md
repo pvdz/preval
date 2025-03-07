@@ -17,6 +17,52 @@ $($(1) ? (a = [x, y] = [$(3), $(4)]) : $(200));
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpArrElement /*:unknown*/ = $(3);
+  const tmpArrElement$1 /*:unknown*/ = $(4);
+  const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  a = tmpNestedAssignArrPatternRhs;
+  $(tmpNestedAssignArrPatternRhs);
+} else {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
+}
+$(a, x, y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+let a = { a: 999, b: 1000 };
+if ($(1)) {
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  a = tmpNestedAssignArrPatternRhs;
+  $(tmpNestedAssignArrPatternRhs);
+} else {
+  $($(200));
+}
+$(a, x, y);
+`````
+
 ## Pre Normal
 
 
@@ -55,32 +101,7 @@ $(tmpCalleeParam);
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpArrElement /*:unknown*/ = $(3);
-  const tmpArrElement$1 /*:unknown*/ = $(4);
-  const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
-  $(tmpNestedAssignArrPatternRhs);
-} else {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
-}
-$(a, x, y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -112,7 +133,7 @@ $( c, a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -126,7 +147,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

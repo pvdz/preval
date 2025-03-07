@@ -17,6 +17,30 @@ throw (a = { x, y } = ($(x), $(y), { x: $(3), y: $(4) }));
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+throw tmpNestedAssignObjPatternRhs;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+throw tmpNestedAssignObjPatternRhs;
+`````
+
 ## Pre Normal
 
 
@@ -47,20 +71,7 @@ let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const tmpObjLitVal /*:unknown*/ = $(3);
-const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-throw tmpNestedAssignObjPatternRhs;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +90,7 @@ throw c;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -92,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

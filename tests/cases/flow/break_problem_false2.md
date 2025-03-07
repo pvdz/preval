@@ -25,6 +25,29 @@ const tmpLabeledBlockFunc = function () {
 tmpLabeledBlockFunc();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest$3 /*:unknown*/ = $(false);
+if (tmpIfTest$3) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(false)) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -63,20 +86,7 @@ const tmpLabeledBlockFunc = function () {
 tmpLabeledBlockFunc();
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest$3 /*:unknown*/ = $(false);
-if (tmpIfTest$3) {
-  $(`fail`);
-} else {
-  $(`pass`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +103,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false
@@ -104,4 +114,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

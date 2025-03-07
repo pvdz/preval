@@ -16,6 +16,20 @@ a?.b(x.y);
 $(a, x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(undefined, undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(undefined, undefined);
+`````
+
 ## Pre Normal
 
 
@@ -45,15 +59,7 @@ if (tmpIfTest) {
 $(a, x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(undefined, undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +70,7 @@ $( undefined, undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined, undefined
@@ -74,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

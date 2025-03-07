@@ -18,6 +18,64 @@ switch ($('a')) { case $('a'): let a = $(obj)[$('x')] = $(obj)[$('y')] = $(d); b
 $(a, b, c, d, obj);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothRhs /*:unknown*/ = $(`a`);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const obj /*:object*/ = {
+  get c() {
+    debugger;
+    $(`get`);
+    return undefined;
+  },
+  set c($$0) {
+    debugger;
+    $(`set`);
+    return undefined;
+  },
+};
+if (tmpIfTest) {
+  const tmpNestedAssignComMemberObj /*:unknown*/ = $(obj);
+  const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(obj);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+  const varInitAssignLhsComputedRhs /*:unknown*/ = $(4);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+} else {
+}
+const b /*:object*/ = { x: 2 };
+$(1, b, 3, 4, obj);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(`a`) === $(`a`);
+const obj = {
+  get c() {
+    $(`get`);
+  },
+  set c($$0) {
+    $(`set`);
+  },
+};
+if (tmpIfTest) {
+  const tmpNestedAssignComMemberObj = $(obj);
+  const tmpNestedAssignComMemberProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(obj);
+  const varInitAssignLhsComputedProp = $(`y`);
+  const varInitAssignLhsComputedRhs = $(4);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+}
+$(1, { x: 2 }, 3, 4, obj);
+`````
+
 ## Pre Normal
 
 
@@ -94,41 +152,7 @@ tmpSwitchBreak: {
 $(a, b, c, d, obj);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(`a`);
-const tmpBinBothRhs /*:unknown*/ = $(`a`);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-const obj /*:object*/ = {
-  get c() {
-    debugger;
-    $(`get`);
-    return undefined;
-  },
-  set c($$0) {
-    debugger;
-    $(`set`);
-    return undefined;
-  },
-};
-if (tmpIfTest) {
-  const tmpNestedAssignComMemberObj /*:unknown*/ = $(obj);
-  const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(obj);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = $(4);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-} else {
-}
-const b /*:object*/ = { x: 2 };
-$(1, b, 3, 4, obj);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -164,7 +188,7 @@ $( 1, j, 3, 4, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -181,4 +205,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

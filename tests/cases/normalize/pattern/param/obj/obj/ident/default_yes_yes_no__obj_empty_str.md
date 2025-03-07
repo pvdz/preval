@@ -15,6 +15,32 @@ function f({ x: { y = $('pass') } = $({ y: 'fail2' }) }) {
 $(f({ x: '', b: 11, c: 12 }, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault$1 /*:unknown*/ = ``.y;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  const tmpClusterSSA_y /*:unknown*/ = $(`pass`);
+  $(tmpClusterSSA_y);
+} else {
+  $(objPatternBeforeDefault$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault$1 = ``.y;
+if (objPatternBeforeDefault$1 === undefined) {
+  $($(`pass`));
+} else {
+  $(objPatternBeforeDefault$1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -62,22 +88,7 @@ const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 10);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault$1 /*:unknown*/ = ``.y;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  const tmpClusterSSA_y /*:unknown*/ = $(`pass`);
-  $(tmpClusterSSA_y);
-} else {
-  $(objPatternBeforeDefault$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +107,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -107,4 +118,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

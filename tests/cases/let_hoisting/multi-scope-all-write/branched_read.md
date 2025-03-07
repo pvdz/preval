@@ -32,6 +32,55 @@ const f = function (s) {
 if ($) $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown)=>boolean*/ = function ($$0) {
+  const s /*:unknown*/ = $$0;
+  debugger;
+  const promoMe /*:boolean*/ = s === ``;
+  if (promoMe) {
+    return true;
+  } else {
+    const r /*:unknown*/ = $(`.`);
+    const tmpssa2_promoMe /*:boolean*/ = r === `.`;
+    if (tmpssa2_promoMe) {
+      const t /*:unknown*/ = $(``);
+      const tmpClusterSSA_tmpssa2_promoMe /*:boolean*/ = t !== `.`;
+      return tmpClusterSSA_tmpssa2_promoMe;
+    } else {
+      return false;
+    }
+  }
+};
+if ($) {
+  $(f);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (s) {
+  if (s === ``) {
+    return true;
+  } else {
+    if ($(`.`) === `.`) {
+      const tmpClusterSSA_tmpssa2_promoMe = $(``) !== `.`;
+      return tmpClusterSSA_tmpssa2_promoMe;
+    } else {
+      return false;
+    }
+  }
+};
+if ($) {
+  $(f);
+}
+`````
+
 ## Pre Normal
 
 
@@ -95,36 +144,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unknown)=>boolean*/ = function ($$0) {
-  const s /*:unknown*/ = $$0;
-  debugger;
-  const promoMe /*:boolean*/ = s === ``;
-  if (promoMe) {
-    return true;
-  } else {
-    const r /*:unknown*/ = $(`.`);
-    const tmpssa2_promoMe /*:boolean*/ = r === `.`;
-    if (tmpssa2_promoMe) {
-      const t /*:unknown*/ = $(``);
-      const tmpClusterSSA_tmpssa2_promoMe /*:boolean*/ = t !== `.`;
-      return tmpClusterSSA_tmpssa2_promoMe;
-    } else {
-      return false;
-    }
-  }
-};
-if ($) {
-  $(f);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -157,7 +177,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -167,4 +187,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

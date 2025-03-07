@@ -18,6 +18,40 @@ const alias = 123['f f'];
 $(order);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const order /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpCalleeParam /*:unknown*/ = $dotCall(alias, obj, undefined);
+  $(tmpCalleeParam);
+  return undefined;
+};
+const g /*:()=>string*/ = function () {
+  debugger;
+  return `win`;
+};
+const obj /*:object*/ = { f: g };
+const alias /*:unknown*/ = (123)[`f f`];
+$(order);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const order = function () {
+  $($dotCall(alias, obj, undefined));
+};
+const g = function () {
+  return `win`;
+};
+const obj = { f: g };
+const alias = (123)[`f f`];
+$(order);
+`````
+
 ## Pre Normal
 
 
@@ -54,27 +88,7 @@ const alias = (123)[`f f`];
 $(order);
 `````
 
-## Output
-
-
-`````js filename=intro
-const order /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpCalleeParam /*:unknown*/ = $dotCall(alias, obj, undefined);
-  $(tmpCalleeParam);
-  return undefined;
-};
-const g /*:()=>string*/ = function () {
-  debugger;
-  return `win`;
-};
-const obj /*:object*/ = { f: g };
-const alias /*:unknown*/ = (123)[`f f`];
-$(order);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +111,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -107,4 +121,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -30,6 +30,50 @@ const tmpLabeledBlockFunc$3 = function (x) {
 $(tmpLabeledBlockFunc$3);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpLabeledBlockFunc$3 /*:(unknown)=>undefined*/ = function ($$0) {
+  const x /*:unknown*/ = $$0;
+  debugger;
+  const tmpIfTest /*:unknown*/ = $(1);
+  if (tmpIfTest) {
+    if ($) {
+      const tmpClusterSSA_x /*:unknown*/ = $(1);
+      $(tmpClusterSSA_x);
+      return undefined;
+    } else {
+      $(2);
+      return undefined;
+    }
+  } else {
+    $(3);
+    $(x);
+    return undefined;
+  }
+};
+$(tmpLabeledBlockFunc$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function (x) {
+  if ($(1)) {
+    if ($) {
+      $($(1));
+    } else {
+      $(2);
+    }
+  } else {
+    $(3);
+    $(x);
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -79,34 +123,7 @@ const tmpLabeledBlockFunc$3 = function ($$0) {
 $(tmpLabeledBlockFunc$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpLabeledBlockFunc$3 /*:(unknown)=>undefined*/ = function ($$0) {
-  const x /*:unknown*/ = $$0;
-  debugger;
-  const tmpIfTest /*:unknown*/ = $(1);
-  if (tmpIfTest) {
-    if ($) {
-      const tmpClusterSSA_x /*:unknown*/ = $(1);
-      $(tmpClusterSSA_x);
-      return undefined;
-    } else {
-      $(2);
-      return undefined;
-    }
-  } else {
-    $(3);
-    $(x);
-    return undefined;
-  }
-};
-$(tmpLabeledBlockFunc$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -138,7 +155,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -148,4 +165,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

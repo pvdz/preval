@@ -13,6 +13,20 @@ let a = 1, b = 2, x = 1, y = 2, z = [10, 20, 30];
 for (let [a, b] = [, x, y] = z;false;) $(a, b, x, y, z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+
+`````
+
 ## Pre Normal
 
 
@@ -50,15 +64,7 @@ let a$1 = arrPatternSplat[0];
 let b$1 = arrPatternSplat[1];
 `````
 
-## Output
-
-
-`````js filename=intro
-
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +75,7 @@ With rename=true
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -78,7 +84,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

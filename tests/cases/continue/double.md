@@ -45,99 +45,7 @@ while (true) {
 $('woohoo');
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  $continue: {
-    {
-      if ($(false)) {
-        $(`uhoh`);
-        break $continue;
-      }
-      if ($(false)) {
-        $(`neither`);
-        break $continue;
-      }
-      $(`exit`);
-      break;
-    }
-  }
-}
-$(`woohoo`);
-while (true) {
-  let continued = false;
-  if ($(false)) {
-    $(`uhoh`);
-  } else {
-    continued = true;
-  }
-  if (!continued) {
-    if ($(false)) {
-      $(`neither`);
-    } else {
-      continued = true;
-    }
-  }
-  if (!continued) {
-    $(`exit`);
-    break;
-  }
-}
-$(`woohoo`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  $continue: {
-    const tmpIfTest = $(false);
-    if (tmpIfTest) {
-      $(`uhoh`);
-      break $continue;
-    } else {
-      const tmpIfTest$1 = $(false);
-      if (tmpIfTest$1) {
-        $(`neither`);
-        break $continue;
-      } else {
-        $(`exit`);
-        break;
-      }
-    }
-  }
-}
-$(`woohoo`);
-while (true) {
-  let continued = false;
-  const tmpIfTest$3 = $(false);
-  if (tmpIfTest$3) {
-    $(`uhoh`);
-  } else {
-    continued = true;
-  }
-  if (continued) {
-  } else {
-    const tmpIfTest$5 = $(false);
-    if (tmpIfTest$5) {
-      $(`neither`);
-    } else {
-      continued = true;
-    }
-    if (continued) {
-    } else {
-      $(`exit`);
-      break;
-    }
-  }
-}
-$(`woohoo`);
-`````
-
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -441,8 +349,331 @@ loopStop$1: {
 $(`woohoo`);
 `````
 
-## PST Output
+## Denormalized
+(This ought to be the final result)
 
+`````js filename=intro
+loopStop$1: {
+  loopStop: {
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    if ($(false)) {
+      $(`uhoh`);
+    } else {
+      if ($(false)) {
+        $(`neither`);
+      } else {
+        $(`exit`);
+        break loopStop;
+      }
+    }
+    while (true) {
+      if ($(false)) {
+        $(`uhoh`);
+      } else {
+        if ($(false)) {
+          $(`neither`);
+        } else {
+          $(`exit`);
+          break;
+        }
+      }
+    }
+  }
+  $(`woohoo`);
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  if ($(false)) {
+    $(`uhoh`);
+    if ($(false)) {
+      $(`neither`);
+      $(`exit`);
+      break loopStop$1;
+    }
+  }
+  while (true) {
+    if ($(false)) {
+      $(`uhoh`);
+      if ($(false)) {
+        $(`neither`);
+        $(`exit`);
+        break;
+      }
+    }
+  }
+}
+$(`woohoo`);
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+while (true) {
+  $continue: {
+    {
+      if ($(false)) {
+        $(`uhoh`);
+        break $continue;
+      }
+      if ($(false)) {
+        $(`neither`);
+        break $continue;
+      }
+      $(`exit`);
+      break;
+    }
+  }
+}
+$(`woohoo`);
+while (true) {
+  let continued = false;
+  if ($(false)) {
+    $(`uhoh`);
+  } else {
+    continued = true;
+  }
+  if (!continued) {
+    if ($(false)) {
+      $(`neither`);
+    } else {
+      continued = true;
+    }
+  }
+  if (!continued) {
+    $(`exit`);
+    break;
+  }
+}
+$(`woohoo`);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+while (true) {
+  $continue: {
+    const tmpIfTest = $(false);
+    if (tmpIfTest) {
+      $(`uhoh`);
+      break $continue;
+    } else {
+      const tmpIfTest$1 = $(false);
+      if (tmpIfTest$1) {
+        $(`neither`);
+        break $continue;
+      } else {
+        $(`exit`);
+        break;
+      }
+    }
+  }
+}
+$(`woohoo`);
+while (true) {
+  let continued = false;
+  const tmpIfTest$3 = $(false);
+  if (tmpIfTest$3) {
+    $(`uhoh`);
+  } else {
+    continued = true;
+  }
+  if (continued) {
+  } else {
+    const tmpIfTest$5 = $(false);
+    if (tmpIfTest$5) {
+      $(`neither`);
+    } else {
+      continued = true;
+    }
+    if (continued) {
+    } else {
+      $(`exit`);
+      break;
+    }
+  }
+}
+$(`woohoo`);
+`````
+
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -750,7 +981,7 @@ $( "woohoo" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false
@@ -785,4 +1016,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

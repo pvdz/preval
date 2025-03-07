@@ -17,6 +17,21 @@ if (tmpIfTest$3265) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest$3265 /*:boolean*/ = fromStmtOrExpr$1 !== 1;
+tmpCalleeParam$1359 = tmpIfTest$3265;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+tmpCalleeParam$1359 = fromStmtOrExpr$1 !== 1;
+`````
+
 ## Pre Normal
 
 
@@ -41,16 +56,7 @@ if (tmpIfTest$3265) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest$3265 /*:boolean*/ = fromStmtOrExpr$1 !== 1;
-tmpCalleeParam$1359 = tmpIfTest$3265;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +70,7 @@ BAD@! Found 2 implicit global bindings:
 
 fromStmtOrExpr$1, tmpCalleeParam$1359
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -73,4 +79,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,26 @@ $(0xfffffffffffffffff);
 $(0xffffffffffffffffff);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(327698);
+$(327698);
+$(295147905179352830000);
+$(4.722366482869645e21);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(327698);
+$(327698);
+$(295147905179352830000);
+$(4.722366482869645e21);
+`````
+
 ## Pre Normal
 
 
@@ -35,18 +55,7 @@ $(295147905179352830000);
 $(4.722366482869645e21);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(327698);
-$(327698);
-$(295147905179352830000);
-$(4.722366482869645e21);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +69,7 @@ $( 4.722366482869645e+21 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 327698
@@ -73,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

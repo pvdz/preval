@@ -14,6 +14,40 @@ $((a = !$(100)) || (a = !$(100)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(100);
+let a /*:unknown*/ = true;
+if (tmpUnaryArg) {
+  const tmpUnaryArg$1 /*:unknown*/ = $(100);
+  const tmpNestedComplexRhs /*:boolean*/ = !tmpUnaryArg$1;
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(true);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg = $(100);
+let a = true;
+if (tmpUnaryArg) {
+  const tmpUnaryArg$1 = $(100);
+  const tmpNestedComplexRhs = !tmpUnaryArg$1;
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(true);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -42,25 +76,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(100);
-let a /*:unknown*/ = true;
-if (tmpUnaryArg) {
-  const tmpUnaryArg$1 /*:unknown*/ = $(100);
-  const tmpNestedComplexRhs /*:boolean*/ = !tmpUnaryArg$1;
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(true);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +98,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -95,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

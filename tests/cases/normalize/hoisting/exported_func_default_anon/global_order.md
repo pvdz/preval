@@ -16,6 +16,55 @@ export default function() { return $(); }
 export function g() { return $(); }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  const tmpReturnArg /*:unknown*/ = $();
+  return tmpReturnArg;
+};
+const g /*:()=>unknown*/ = function () {
+  debugger;
+  const tmpReturnArg$1 /*:unknown*/ = $();
+  return tmpReturnArg$1;
+};
+const tmpCalleeParam /*:unknown*/ = $();
+const tmpCalleeParam$1 /*:unknown*/ = $();
+$(tmpCalleeParam, tmpCalleeParam$1);
+const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
+  debugger;
+  const tmpReturnArg$3 /*:unknown*/ = $();
+  return tmpReturnArg$3;
+};
+export { tmpAnonDefaultExport as default };
+export { f };
+export { g };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const tmpReturnArg = $();
+  return tmpReturnArg;
+};
+const g = function () {
+  const tmpReturnArg$1 = $();
+  return tmpReturnArg$1;
+};
+$($(), $());
+const tmpAnonDefaultExport = function () {
+  const tmpReturnArg$3 = $();
+  return tmpReturnArg$3;
+};
+export { tmpAnonDefaultExport as default };
+export { f };
+export { g };
+`````
+
 ## Pre Normal
 
 
@@ -65,35 +114,7 @@ export { f };
 export { g };
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  const tmpReturnArg /*:unknown*/ = $();
-  return tmpReturnArg;
-};
-const g /*:()=>unknown*/ = function () {
-  debugger;
-  const tmpReturnArg$1 /*:unknown*/ = $();
-  return tmpReturnArg$1;
-};
-const tmpCalleeParam /*:unknown*/ = $();
-const tmpCalleeParam$1 /*:unknown*/ = $();
-$(tmpCalleeParam, tmpCalleeParam$1);
-const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
-  debugger;
-  const tmpReturnArg$3 /*:unknown*/ = $();
-  return tmpReturnArg$3;
-};
-export { tmpAnonDefaultExport as default };
-export { f };
-export { g };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -124,7 +145,7 @@ export { c as g };
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -133,4 +154,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

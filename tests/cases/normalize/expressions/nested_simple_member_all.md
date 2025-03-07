@@ -13,6 +13,34 @@ var a = {x:1}, b = {x:2}, c = {x:3};
 $($(a).x = $(b).x = $(c).x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:object*/ = { x: 1 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(a);
+const b /*:object*/ = { x: 2 };
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+const c /*:object*/ = { x: 3 };
+const tmpCompObj /*:unknown*/ = $(c);
+const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj.x;
+varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
+$(varInitAssignLhsComputedRhs$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const varInitAssignLhsComputedObj = $({ x: 1 });
+const varInitAssignLhsComputedObj$1 = $({ x: 2 });
+const varInitAssignLhsComputedRhs$1 = $({ x: 3 }).x;
+varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
+$(varInitAssignLhsComputedRhs$1);
+`````
+
 ## Pre Normal
 
 
@@ -45,24 +73,7 @@ const tmpCalleeParam = varInitAssignLhsComputedRhs;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:object*/ = { x: 1 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(a);
-const b /*:object*/ = { x: 2 };
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
-const c /*:object*/ = { x: 3 };
-const tmpCompObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj.x;
-varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
-$(varInitAssignLhsComputedRhs$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +93,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -95,4 +106,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

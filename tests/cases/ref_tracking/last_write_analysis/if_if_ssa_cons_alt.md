@@ -23,6 +23,41 @@ if ($(1)) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`a`);
+$(x);
+let tmpClusterSSA_x /*:unknown*/ = $(`b`);
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  tmpClusterSSA_x = $(`c`);
+  const tmpIfTest$1 /*:unknown*/ = $(2);
+  if (tmpIfTest$1) {
+  } else {
+    tmpClusterSSA_x = $(`d`);
+  }
+} else {
+}
+$(tmpClusterSSA_x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(`a`));
+let tmpClusterSSA_x = $(`b`);
+if ($(1)) {
+  tmpClusterSSA_x = $(`c`);
+  if (!$(2)) {
+    tmpClusterSSA_x = $(`d`);
+  }
+}
+$(tmpClusterSSA_x);
+`````
+
 ## Pre Normal
 
 
@@ -60,28 +95,7 @@ if (tmpIfTest) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`a`);
-$(x);
-let tmpClusterSSA_x /*:unknown*/ = $(`b`);
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  tmpClusterSSA_x = $(`c`);
-  const tmpIfTest$1 /*:unknown*/ = $(2);
-  if (tmpIfTest$1) {
-  } else {
-    tmpClusterSSA_x = $(`d`);
-  }
-} else {
-}
-$(tmpClusterSSA_x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +120,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -122,4 +136,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

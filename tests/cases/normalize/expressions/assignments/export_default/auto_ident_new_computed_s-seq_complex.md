@@ -16,6 +16,31 @@ export default a = new (1, 2, b)[$("$")](1);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCompProp /*:unknown*/ = $(`\$`);
+const b /*:object*/ = { $: $ };
+const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
+export { tmpAnonDefaultExport as default };
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCompProp = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpAnonDefaultExport = tmpClusterSSA_a;
+export { tmpAnonDefaultExport as default };
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -42,21 +67,7 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
-export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +84,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -82,4 +93,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

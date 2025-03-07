@@ -14,6 +14,22 @@ const y = $spy('b');
 "".match(x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $spy(`a`);
+const y /*:unknown*/ = $spy(`b`);
+``.match(x, y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+``.match($spy(`a`), $spy(`b`));
+`````
+
 ## Pre Normal
 
 
@@ -32,17 +48,7 @@ const y = $spy(`b`);
 ``.match(x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $spy(`a`);
-const y /*:unknown*/ = $spy(`b`);
-``.match(x, y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +61,7 @@ const b = $spy( "b" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']
@@ -67,7 +73,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $string_match

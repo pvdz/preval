@@ -16,6 +16,46 @@ $((a = $($)($(1), $(2))) && (a = $($)($(1), $(2))));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallCallee /*:unknown*/ = $($);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam$3 /*:unknown*/ = $(2);
+let a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam /*:unknown*/ = a;
+if (a) {
+  const tmpCallCallee$1 /*:unknown*/ = $($);
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  const tmpCalleeParam$7 /*:unknown*/ = $(2);
+  const tmpNestedComplexRhs /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallCallee = $($);
+let a = tmpCallCallee($(1), $(2));
+const tmpCalleeParam = a;
+if (a) {
+  const tmpCallCallee$1 = $($);
+  const tmpNestedComplexRhs = tmpCallCallee$1($(1), $(2));
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -50,30 +90,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
-const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpCalleeParam$3 /*:unknown*/ = $(2);
-let a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  const tmpCallCallee$1 /*:unknown*/ = $($);
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpCalleeParam$7 /*:unknown*/ = $(2);
-  const tmpNestedComplexRhs /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -100,7 +117,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -119,4 +136,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

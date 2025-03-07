@@ -14,6 +14,23 @@ $({ [(a = "foo")]: 10 });
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { foo: 10 };
+$(tmpCalleeParam);
+$(`foo`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ foo: 10 });
+$(`foo`);
+`````
+
 ## Pre Normal
 
 
@@ -36,17 +53,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { foo: 10 };
-$(tmpCalleeParam);
-$(`foo`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +66,7 @@ $( "foo" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { foo: '10' }
@@ -70,4 +77,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

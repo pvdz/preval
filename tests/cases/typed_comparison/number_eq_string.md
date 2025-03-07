@@ -14,6 +14,23 @@ const y = x === "";
 $('out:', y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpStringFirstArg /*:unknown*/ = $(100);
+$coerce(tmpStringFirstArg, `number`);
+$(`out:`, false);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$coerce($(100), `number`);
+$(`out:`, false);
+`````
+
 ## Pre Normal
 
 
@@ -33,17 +50,7 @@ const y = x === ``;
 $(`out:`, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpStringFirstArg /*:unknown*/ = $(100);
-$coerce(tmpStringFirstArg, `number`);
-$(`out:`, false);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +63,7 @@ $( "out:", false );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -67,4 +74,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

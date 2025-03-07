@@ -14,6 +14,41 @@ $((a *= $?.(1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpClusterSSA_a /*:number*/ = NaN;
+const tmpIfTest /*:boolean*/ = $ == null;
+const a /*:object*/ = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  a ** 0;
+  $(NaN);
+} else {
+  const tmpChainElementCall /*:unknown*/ = $(1);
+  tmpClusterSSA_a = a * tmpChainElementCall;
+  $(tmpClusterSSA_a);
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpClusterSSA_a = NaN;
+const tmpIfTest = $ == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  a ** 0;
+  $(NaN);
+} else {
+  tmpClusterSSA_a = a * $(1);
+  $(tmpClusterSSA_a);
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -43,26 +78,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpClusterSSA_a /*:number*/ = NaN;
-const tmpIfTest /*:boolean*/ = $ == null;
-const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpIfTest) {
-  a ** 0;
-  $(NaN);
-} else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpClusterSSA_a = a * tmpChainElementCall;
-  $(tmpClusterSSA_a);
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +104,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -100,4 +116,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

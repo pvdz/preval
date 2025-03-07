@@ -25,6 +25,46 @@ if (x & 8) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $spy(32);
+const tmpIfTest /*:number*/ = x & 8;
+if (tmpIfTest) {
+  const tmpIfTest$1 /*:number*/ = x & 2;
+  if (tmpIfTest$1) {
+    const tmpIfTest$3 /*:number*/ = x & 32;
+    if (tmpIfTest$3) {
+      const tmpIfTest$5 /*:number*/ = x & 16;
+      if (tmpIfTest$5) {
+        $(`it is 58`);
+      } else {
+      }
+    } else {
+    }
+  } else {
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $spy(32);
+if (x & 8) {
+  if (x & 2) {
+    if (x & 32) {
+      if (x & 16) {
+        $(`it is 58`);
+      }
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -65,32 +105,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $spy(32);
-const tmpIfTest /*:number*/ = x & 8;
-if (tmpIfTest) {
-  const tmpIfTest$1 /*:number*/ = x & 2;
-  if (tmpIfTest$1) {
-    const tmpIfTest$3 /*:number*/ = x & 32;
-    if (tmpIfTest$3) {
-      const tmpIfTest$5 /*:number*/ = x & 16;
-      if (tmpIfTest$5) {
-        $(`it is 58`);
-      } else {
-      }
-    } else {
-    }
-  } else {
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +129,7 @@ if (b) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [32, 32]
@@ -125,4 +140,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

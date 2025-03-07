@@ -18,6 +18,65 @@ do {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+let b /*:unknown*/ = 12;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
+  const tmpNestedComplexRhs$1 /*:number*/ = b + 1;
+  b = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs$1;
+  if (tmpNestedComplexRhs$1) {
+  } else {
+    break;
+  }
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+let b = 12;
+while (true) {
+  $(100);
+  const tmpNestedComplexRhs$1 = b + 1;
+  b = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs$1;
+  if (!tmpNestedComplexRhs$1) {
+    break;
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -57,38 +116,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-$(100);
-let b /*:unknown*/ = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  const tmpNestedComplexRhs$1 /*:number*/ = b + 1;
-  b = tmpNestedComplexRhs$1;
-  a = tmpNestedComplexRhs$1;
-  if (tmpNestedComplexRhs$1) {
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -124,7 +152,7 @@ $( a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -159,4 +187,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

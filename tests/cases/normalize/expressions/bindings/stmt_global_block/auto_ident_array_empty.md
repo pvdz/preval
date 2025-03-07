@@ -15,6 +15,21 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:array*/ = [];
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([]);
+`````
+
 ## Pre Normal
 
 
@@ -33,16 +48,7 @@ let a = [];
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:array*/ = [];
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +60,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: []
@@ -64,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

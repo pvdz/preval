@@ -25,6 +25,49 @@ while ($LOOP_UNROLL_1) {      // The unrolled body is not in a loop so it can in
 $(arr.slice(0));              // Don't let arr escape
 `````
 
+## Settled
+
+
+`````js filename=intro
+const test /*:unknown*/ = $(`never`);
+const arr /*:array*/ = [1, 2, 3, 4, 5];
+if (test) {
+} else {
+  const tmp /*:unknown*/ = arr.shift();
+  arr.push(tmp);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const test$1 /*:unknown*/ = $(`never`);
+    if (test$1) {
+      break;
+    } else {
+      const tmp$1 /*:unknown*/ = arr.shift();
+      arr.push(tmp$1);
+    }
+  }
+}
+const tmpCalleeParam /*:array*/ = arr.slice(0);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const test = $(`never`);
+const arr = [1, 2, 3, 4, 5];
+if (!test) {
+  arr.push(arr.shift());
+  while (true) {
+    if ($(`never`)) {
+      break;
+    } else {
+      arr.push(arr.shift());
+    }
+  }
+}
+$(arr.slice(0));
+`````
+
 ## Pre Normal
 
 
@@ -60,32 +103,7 @@ const tmpCalleeParam = arr.slice(0);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const test /*:unknown*/ = $(`never`);
-const arr /*:array*/ = [1, 2, 3, 4, 5];
-if (test) {
-} else {
-  const tmp /*:unknown*/ = arr.shift();
-  arr.push(tmp);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const test$1 /*:unknown*/ = $(`never`);
-    if (test$1) {
-      break;
-    } else {
-      const tmp$1 /*:unknown*/ = arr.shift();
-      arr.push(tmp$1);
-    }
-  }
-}
-const tmpCalleeParam /*:array*/ = arr.slice(0);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +134,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'never'
@@ -127,7 +145,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

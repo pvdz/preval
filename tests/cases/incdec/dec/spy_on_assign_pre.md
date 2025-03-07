@@ -1,0 +1,165 @@
+# Preval test case
+
+# spy_on_assign_pre.md
+
+> Incdec > Dec > Spy on assign pre
+
+## Input
+
+`````js filename=intro
+let c = {valueOf: () => { $('c flag now:', flag); }};
+let flag = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (flag < 10) {
+    flag = --c;
+    $('--c', flag);
+  } else {
+    break;
+  }
+}
+$(c, flag);
+`````
+
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:()=>undefined*/ = function () {
+  debugger;
+  $(`c flag now:`, flag);
+  return undefined;
+};
+let c /*:unknown*/ = { valueOf: tmpObjLitVal };
+let flag /*:unknown*/ = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest /*:boolean*/ = flag < 10;
+  if (tmpIfTest) {
+    const tmpNestedComplexRhs /*:number*/ = c - 1;
+    c = tmpNestedComplexRhs;
+    flag = tmpNestedComplexRhs;
+    $(`--c`, tmpNestedComplexRhs);
+  } else {
+    break;
+  }
+}
+$(c, flag);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = function () {
+  $(`c flag now:`, flag);
+};
+let c = { valueOf: tmpObjLitVal };
+let flag = 0;
+while (true) {
+  if (flag < 10) {
+    const tmpNestedComplexRhs = c - 1;
+    c = tmpNestedComplexRhs;
+    flag = tmpNestedComplexRhs;
+    $(`--c`, tmpNestedComplexRhs);
+  } else {
+    break;
+  }
+}
+$(c, flag);
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let c = {
+  valueOf: () => {
+    debugger;
+    $(`c flag now:`, flag);
+  },
+};
+let flag = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (flag < 10) {
+    flag = --c;
+    $(`--c`, flag);
+  } else {
+    break;
+  }
+}
+$(c, flag);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+const tmpObjLitVal = function () {
+  debugger;
+  $(`c flag now:`, flag);
+  return undefined;
+};
+let c = { valueOf: tmpObjLitVal };
+let flag = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest = flag < 10;
+  if (tmpIfTest) {
+    const tmpNestedCompoundLhs = c;
+    const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
+    c = tmpNestedComplexRhs;
+    flag = tmpNestedComplexRhs;
+    $(`--c`, flag);
+  } else {
+    break;
+  }
+}
+$(c, flag);
+`````
+
+## PST Settled
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "c flag now:", b );
+  return undefined;
+};
+let c = { valueOf: a };
+let b = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = b < 10;
+  if (d) {
+    const e = c - 1;
+    c = e;
+    b = e;
+    $( "--c", e );
+  }
+  else {
+    break;
+  }
+}
+$( c, b );
+`````
+
+## Globals
+
+None
+
+## Runtime Outcome
+
+Should call `$` with:
+ - 1: 'c flag now:', 0
+ - 2: '--c', NaN
+ - 3: NaN, NaN
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- objects in isFree check

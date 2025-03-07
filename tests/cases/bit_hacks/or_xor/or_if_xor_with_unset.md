@@ -17,6 +17,32 @@ if (y) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(3);
+const y /*:number*/ = x | 32;
+if (y) {
+  const tmpClusterSSA_x /*:number*/ = x ^ 32;
+  $(tmpClusterSSA_x);
+} else {
+  $(x);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $(3);
+if (x | 32) {
+  $(x ^ 32);
+} else {
+  $(x);
+}
+`````
+
 ## Pre Normal
 
 
@@ -42,22 +68,7 @@ if (y) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(3);
-const y /*:number*/ = x | 32;
-if (y) {
-  const tmpClusterSSA_x /*:number*/ = x ^ 32;
-  $(tmpClusterSSA_x);
-} else {
-  $(x);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +87,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 3
@@ -87,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

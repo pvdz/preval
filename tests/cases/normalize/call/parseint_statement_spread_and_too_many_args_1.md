@@ -12,6 +12,63 @@
 parseInt(...$([1]), $spy('b'), $spy('c'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [1];
+const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
+const tmpArgOverflowOne /*:array*/ = [...tmpArrSpread];
+const tmpArgOverflowLen /*:number*/ = tmpArgOverflowOne.length;
+const tmpArgOverflowTwo /*:unknown*/ = $spy(`b`);
+const tmpArgOverflowThree /*:unknown*/ = $spy(`c`);
+if (tmpArgOverflowLen) {
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = tmpArgOverflowOne[0];
+  $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
+} else {
+  $coerce(tmpArgOverflowTwo, `string`);
+}
+let tmpUnaryArg /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = tmpArgOverflowLen > 1;
+if (tmpIfTest) {
+  tmpUnaryArg = tmpArgOverflowOne[1];
+} else {
+  if (tmpArgOverflowLen) {
+    tmpUnaryArg = tmpArgOverflowTwo;
+  } else {
+    tmpUnaryArg = tmpArgOverflowThree;
+  }
+}
++tmpUnaryArg;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArrSpread = $([1]);
+const tmpArgOverflowOne = [...tmpArrSpread];
+const tmpArgOverflowLen = tmpArgOverflowOne.length;
+const tmpArgOverflowTwo = $spy(`b`);
+const tmpArgOverflowThree = $spy(`c`);
+if (tmpArgOverflowLen) {
+  $coerce(tmpArgOverflowOne[0], `string`);
+} else {
+  $coerce(tmpArgOverflowTwo, `string`);
+}
+let tmpUnaryArg = undefined;
+if (tmpArgOverflowLen > 1) {
+  tmpUnaryArg = tmpArgOverflowOne[1];
+} else {
+  if (tmpArgOverflowLen) {
+    tmpUnaryArg = tmpArgOverflowTwo;
+  } else {
+    tmpUnaryArg = tmpArgOverflowThree;
+  }
+}
++tmpUnaryArg;
+`````
+
 ## Pre Normal
 
 
@@ -50,38 +107,7 @@ if (tmpIfTest) {
 +tmpUnaryArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [1];
-const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
-const tmpArgOverflowOne /*:array*/ = [...tmpArrSpread];
-const tmpArgOverflowLen /*:number*/ = tmpArgOverflowOne.length;
-const tmpArgOverflowTwo /*:unknown*/ = $spy(`b`);
-const tmpArgOverflowThree /*:unknown*/ = $spy(`c`);
-if (tmpArgOverflowLen) {
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = tmpArgOverflowOne[0];
-  $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
-} else {
-  $coerce(tmpArgOverflowTwo, `string`);
-}
-let tmpUnaryArg /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = tmpArgOverflowLen > 1;
-if (tmpIfTest) {
-  tmpUnaryArg = tmpArgOverflowOne[1];
-} else {
-  if (tmpArgOverflowLen) {
-    tmpUnaryArg = tmpArgOverflowTwo;
-  } else {
-    tmpUnaryArg = tmpArgOverflowThree;
-  }
-}
-+tmpUnaryArg;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +144,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1]
@@ -131,7 +157,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

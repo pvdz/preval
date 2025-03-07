@@ -13,6 +13,24 @@ let a = 1, b = {x: 2}, c = 3, d = 4;
 for (let a = b[$('x')] = c + d;false;) $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const b /*:object*/ = { x: 2 };
+b[varInitAssignLhsComputedProp] = 7;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const varInitAssignLhsComputedProp = $(`x`);
+const b = { x: 2 };
+b[varInitAssignLhsComputedProp] = 7;
+`````
+
 ## Pre Normal
 
 
@@ -44,17 +62,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComp
 let a$1 = varInitAssignLhsComputedRhs;
 `````
 
-## Output
-
-
-`````js filename=intro
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const b /*:object*/ = { x: 2 };
-b[varInitAssignLhsComputedProp] = 7;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -67,7 +75,7 @@ b[a] = 7;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -77,4 +85,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

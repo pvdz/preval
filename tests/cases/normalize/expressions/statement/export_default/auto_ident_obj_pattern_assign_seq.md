@@ -17,6 +17,36 @@ export default { x, y } = ($(x), $(y), { x: $(3), y: $(4) });
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
+$(1);
+$(2);
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { tmpAnonDefaultExport as default };
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, tmpObjLitVal, tmpObjLitVal$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpAnonDefaultExport = undefined;
+$(1);
+$(2);
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+tmpAnonDefaultExport = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+export { tmpAnonDefaultExport as default };
+$({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
+`````
+
 ## Pre Normal
 
 
@@ -49,24 +79,7 @@ export { tmpAnonDefaultExport as default };
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
-$(1);
-$(2);
-const tmpObjLitVal /*:unknown*/ = $(3);
-const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
-export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpObjLitVal, tmpObjLitVal$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +105,7 @@ $( e, b, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -101,4 +114,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

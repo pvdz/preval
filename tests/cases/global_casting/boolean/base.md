@@ -16,6 +16,24 @@ const y = Boolean(x);
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(`a`);
+const b /*:unknown*/ = $(`b`);
+const x /*:boolean*/ = a === b;
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = $(`a`);
+$(a === $(`b`));
+`````
+
 ## Pre Normal
 
 
@@ -38,18 +56,7 @@ const y = Boolean(x);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(`a`);
-const b /*:unknown*/ = $(`b`);
-const x /*:boolean*/ = a === b;
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +70,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -75,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

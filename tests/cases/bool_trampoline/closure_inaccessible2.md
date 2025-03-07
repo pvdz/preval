@@ -33,6 +33,66 @@ $(obj);
 
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f$1 /*:()=>boolean*/ = function () {
+  debugger;
+  const tmpssa2_x /*:unknown*/ = $(100);
+  const y /*:boolean*/ = Boolean(tmpssa2_x);
+  return y;
+};
+const tmpObjLitVal /*:()=>function*/ = function () {
+  debugger;
+  $(undefined);
+  return f$1;
+};
+const obj /*:object*/ = {
+  f: tmpObjLitVal,
+  g() {
+    const tmpPrevalAliasThis /*:object*/ = this;
+    debugger;
+    const tmpIfTest /*:unknown*/ = tmpPrevalAliasThis.f();
+    if (tmpIfTest) {
+      $(`pass`);
+      return undefined;
+    } else {
+      $(`fail`);
+      return undefined;
+    }
+  },
+};
+obj.f();
+$(obj);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f$1 = function () {
+  const y = Boolean($(100));
+  return y;
+};
+const tmpObjLitVal = function () {
+  $(undefined);
+  return f$1;
+};
+const obj = {
+  f: tmpObjLitVal,
+  g() {
+    if (this.f()) {
+      $(`pass`);
+    } else {
+      $(`fail`);
+    }
+  },
+};
+obj.f();
+$(obj);
+`````
+
 ## Pre Normal
 
 
@@ -96,42 +156,7 @@ const f = obj.f();
 $(obj);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f$1 /*:()=>boolean*/ = function () {
-  debugger;
-  const tmpssa2_x /*:unknown*/ = $(100);
-  const y /*:boolean*/ = Boolean(tmpssa2_x);
-  return y;
-};
-const tmpObjLitVal /*:()=>function*/ = function () {
-  debugger;
-  $(undefined);
-  return f$1;
-};
-const obj /*:object*/ = {
-  f: tmpObjLitVal,
-  g() {
-    const tmpPrevalAliasThis /*:object*/ = this;
-    debugger;
-    const tmpIfTest /*:unknown*/ = tmpPrevalAliasThis.f();
-    if (tmpIfTest) {
-      $(`pass`);
-      return undefined;
-    } else {
-      $(`fail`);
-      return undefined;
-    }
-  },
-};
-obj.f();
-$(obj);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -170,7 +195,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -181,4 +206,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

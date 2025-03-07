@@ -16,6 +16,27 @@ $`before ${b?.c.d.e(1)} after`;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+$(tmpCalleeParam, tmpChainElementCall);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainElementCall = { e: $ }.e(1);
+$([`before `, ` after`], tmpChainElementCall);
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -49,20 +70,7 @@ $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpChainElementCall);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +89,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -93,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

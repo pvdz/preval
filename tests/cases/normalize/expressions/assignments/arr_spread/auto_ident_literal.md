@@ -14,6 +14,23 @@ $([...(a = "foo")]);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`f`, `o`, `o`];
+$(tmpCalleeParam);
+$(`foo`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([`f`, `o`, `o`]);
+$(`foo`);
+`````
+
 ## Pre Normal
 
 
@@ -35,17 +52,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`f`, `o`, `o`];
-$(tmpCalleeParam);
-$(`foo`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -58,7 +65,7 @@ $( "foo" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['f', 'o', 'o']
@@ -69,4 +76,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -14,6 +14,45 @@ for (let x of [$(1), 2, $(3)]);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpArrElement /*:unknown*/ = $(1);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const tmpCalleeParam /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArrElement = $(1);
+const tmpArrElement$3 = $(3);
+const tmpForOfGen = $forOf([tmpArrElement, 2, tmpArrElement$3]);
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -55,29 +94,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpArrElement /*:unknown*/ = $(1);
-const tmpArrElement$3 /*:unknown*/ = $(3);
-const tmpCalleeParam /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForOfNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +123,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -118,7 +135,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

@@ -23,6 +23,58 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+## Settled
+
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    const tmpCalleeParam /*:array*/ = [1, 2];
+    const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+      const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        const x /*:unknown*/ = tmpForOfNext.value;
+        $(`loop`, x);
+      }
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  if ($(true)) {
+    $(`loop`);
+    const tmpForOfGen = $forOf([1, 2]);
+    while (true) {
+      const tmpForOfNext = tmpForOfGen.next();
+      if (tmpForOfNext.done) {
+        break;
+      } else {
+        $(`loop`, tmpForOfNext.value);
+      }
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
 ## Pre Normal
 
 
@@ -82,36 +134,7 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
-## Output
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    const tmpCalleeParam /*:array*/ = [1, 2];
-    const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-      const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        const x /*:unknown*/ = tmpForOfNext.value;
-        $(`loop`, x);
-      }
-    }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
-  }
-}
-$(`after (not invoked)`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -145,7 +168,7 @@ $( "after (not invoked)" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -180,7 +203,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

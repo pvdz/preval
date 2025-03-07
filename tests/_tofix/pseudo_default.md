@@ -23,6 +23,17 @@ if (arg === undefined) {
 $(val);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (arg === undefined) {
+  $({});
+} else {
+  $(arg);
+}
+`````
+
 ## Pre Normal
 
 
@@ -50,7 +61,7 @@ if (tmpIfTest) {
 $(val);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -64,8 +75,7 @@ if (tmpIfTest) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -95,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

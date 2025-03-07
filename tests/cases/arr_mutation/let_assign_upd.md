@@ -18,6 +18,52 @@ do {
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let arr /*:array*/ = [0];
+arr[0] = 1;
+$(arr);
+const tmpBinLhs$1 /*:unknown*/ = arr[0];
+const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    arr = [0];
+    arr[0] = 1;
+    $(arr);
+    const tmpBinLhs$2 /*:unknown*/ = arr[0];
+    const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$2 < 10;
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let arr = [0];
+arr[0] = 1;
+$(arr);
+if (arr[0] < 10) {
+  while (true) {
+    arr = [0];
+    arr[0] = 1;
+    $(arr);
+    if (!(arr[0] < 10)) {
+      break;
+    }
+  }
+}
+$(arr);
+`````
+
 ## Pre Normal
 
 
@@ -60,34 +106,7 @@ while (true) {
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-let arr /*:array*/ = [0];
-arr[0] = 1;
-$(arr);
-const tmpBinLhs$1 /*:unknown*/ = arr[0];
-const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    arr = [0];
-    arr[0] = 1;
-    $(arr);
-    const tmpBinLhs$2 /*:unknown*/ = arr[0];
-    const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$2 < 10;
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +137,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1]
@@ -153,4 +172,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

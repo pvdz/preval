@@ -20,6 +20,36 @@ try {
 $(4);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+try {
+  $(2);
+} catch ($finalImplicit) {
+  $(3);
+  throw $finalImplicit;
+}
+$(3);
+$(4);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+try {
+  $(2);
+} catch ($finalImplicit) {
+  $(3);
+  throw $finalImplicit;
+}
+$(3);
+$(4);
+`````
+
 ## Pre Normal
 
 
@@ -67,23 +97,7 @@ if ($implicitThrow) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-try {
-  $(2);
-} catch ($finalImplicit) {
-  $(3);
-  throw $finalImplicit;
-}
-$(3);
-$(4);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +117,7 @@ $( 4 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -116,4 +130,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

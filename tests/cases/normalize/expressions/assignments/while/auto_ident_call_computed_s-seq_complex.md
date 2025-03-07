@@ -16,6 +16,48 @@ while ((a = (1, 2, b)[$("$")](1))) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const b /*:object*/ = { $: $ };
+let a /*:unknown*/ = b[tmpCallCompProp](1);
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
+    a = b[tmpCallCompProp$1](1);
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallCompProp = $(`\$`);
+const b = { $: $ };
+let a = b[tmpCallCompProp](1);
+if (a) {
+  while (true) {
+    $(100);
+    const tmpCallCompProp$1 = $(`\$`);
+    a = b[tmpCallCompProp$1](1);
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -46,30 +88,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
-let a /*:unknown*/ = b[tmpCallCompProp](1);
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-    a = b[tmpCallCompProp$1](1);
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +115,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '$'
@@ -131,7 +150,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

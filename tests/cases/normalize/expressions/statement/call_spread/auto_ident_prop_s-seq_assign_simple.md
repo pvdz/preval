@@ -16,6 +16,24 @@ $(...((1, 2, b).c = 2));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(...2);
+const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ = { c: 2 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(...2);
+$({ a: 999, b: 1000 }, { c: 2 });
+`````
+
 ## Pre Normal
 
 
@@ -40,18 +58,7 @@ $(...tmpCalleeParamSpread);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(...2);
-const a /*:object*/ = { a: 999, b: 1000 };
-const b /*:object*/ = { c: 2 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -68,7 +75,7 @@ $( a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -77,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

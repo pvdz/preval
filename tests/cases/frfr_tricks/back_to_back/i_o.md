@@ -30,6 +30,44 @@ const rs = r + s;
 $(rs);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(string, string)=>primitive*/ = function $free($$0, $$1) {
+  const xs$1 /*:string*/ = $$0;
+  const ys$1 /*:string*/ = $$1;
+  debugger;
+  const tmpCalleeParam /*:string*/ = xs$1 + 5;
+  const one /*:number*/ = parseInt(tmpCalleeParam, ys$1);
+  const two /*:unknown*/ = one.slice(1);
+  two + 0;
+  const two$1 /*:unknown*/ = two.slice(2);
+  const tmpRet /*:primitive*/ = two + two$1;
+  return tmpRet;
+};
+const x /*:unknown*/ = $spy(`x`);
+const xs /*:string*/ = $coerce(x, `plustr`);
+const y /*:unknown*/ = $spy(`y`);
+const ys /*:string*/ = $coerce(y, `plustr`);
+const rs /*:primitive*/ = $frfr(tmpFree, xs, ys);
+$(rs);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(xs$1, ys$1) {
+  const two = parseInt(xs$1 + 5, ys$1).slice(1);
+  two + 0;
+  const tmpRet = two + two.slice(2);
+  return tmpRet;
+};
+const xs = $coerce($spy(`x`), `plustr`);
+$($frfr(tmpFree, xs, $coerce($spy(`y`), `plustr`)));
+`````
+
 ## Pre Normal
 
 
@@ -94,32 +132,7 @@ const rs = r + s;
 $(rs);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(string, string)=>primitive*/ = function $free($$0, $$1) {
-  const xs$1 /*:string*/ = $$0;
-  const ys$1 /*:string*/ = $$1;
-  debugger;
-  const tmpCalleeParam /*:string*/ = xs$1 + 5;
-  const one /*:number*/ = parseInt(tmpCalleeParam, ys$1);
-  const two /*:unknown*/ = one.slice(1);
-  two + 0;
-  const two$1 /*:unknown*/ = two.slice(2);
-  const tmpRet /*:primitive*/ = two + two$1;
-  return tmpRet;
-};
-const x /*:unknown*/ = $spy(`x`);
-const xs /*:string*/ = $coerce(x, `plustr`);
-const y /*:unknown*/ = $spy(`y`);
-const ys /*:string*/ = $coerce(y, `plustr`);
-const rs /*:primitive*/ = $frfr(tmpFree, xs, ys);
-$(rs);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -147,7 +160,7 @@ $( n );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['x', 'x']
@@ -160,4 +173,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

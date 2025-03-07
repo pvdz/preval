@@ -22,6 +22,40 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const c /*:object*/ = { y: 2 };
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+$(varInitAssignLhsComputedRhs$1, b, c, 3);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $(`x`);
+const c = { y: 2 };
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $(`y`);
+const varInitAssignLhsComputedRhs$1 = $(3);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+$(varInitAssignLhsComputedRhs$1, b, c, 3);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -64,25 +98,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-$(varInitAssignLhsComputedRhs$1, b, c, 3);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +119,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -119,4 +135,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

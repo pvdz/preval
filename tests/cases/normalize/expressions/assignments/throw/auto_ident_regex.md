@@ -14,6 +14,22 @@ throw (a = /foo/);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:regex*/ = /foo/;
+throw a;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = /foo/;
+throw a;
+`````
+
 ## Pre Normal
 
 
@@ -33,16 +49,7 @@ let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:regex*/ = /foo/;
-throw a;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +61,7 @@ throw a;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ /foo/ ]>')
@@ -63,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

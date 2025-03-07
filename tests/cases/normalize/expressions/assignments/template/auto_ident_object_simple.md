@@ -14,6 +14,26 @@ $(`before  ${(a = { x: 1, y: 2, z: 3 })}  after`);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:object*/ = { x: 1, y: 2, z: 3 };
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+$(tmpCalleeParam);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = { x: 1, y: 2, z: 3 };
+$(`before  ${a}  after`);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -39,19 +59,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:object*/ = { x: 1, y: 2, z: 3 };
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +78,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'before [object Object] after'
@@ -81,4 +89,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

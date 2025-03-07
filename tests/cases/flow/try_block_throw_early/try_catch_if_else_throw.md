@@ -27,6 +27,44 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:string*/ = `fail`;
+try {
+  fail_early;
+  if ($) {
+    x = `pass`;
+    throw `yes`;
+  } else {
+    throw `too`;
+  }
+} catch (e) {
+  $(x, `mutation is observable in the catch`);
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = `fail`;
+try {
+  fail_early;
+  if ($) {
+    x = `pass`;
+    throw `yes`;
+  } else {
+    throw `too`;
+  }
+} catch (e) {
+  $(x, `mutation is observable in the catch`);
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -74,27 +112,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:string*/ = `fail`;
-try {
-  fail_early;
-  if ($) {
-    x = `pass`;
-    throw `yes`;
-  } else {
-    throw `too`;
-  }
-} catch (e) {
-  $(x, `mutation is observable in the catch`);
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +139,7 @@ BAD@! Found 1 implicit global bindings:
 
 fail_early
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'fail', 'mutation is observable in the catch'
@@ -132,4 +150,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

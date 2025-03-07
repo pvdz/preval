@@ -14,6 +14,22 @@ $(...(a = this));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(...undefined);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(...undefined);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -34,16 +50,7 @@ $(...tmpCalleeParamSpread);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(...undefined);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +62,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -64,4 +71,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

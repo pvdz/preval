@@ -21,6 +21,13 @@ $(f(427 + 3));
 $(alias);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw `<max pcode call depth exceeded>; calling \`const tmp = f(undefined, undefined);\``;
+`````
+
 ## Pre Normal
 
 
@@ -68,15 +75,14 @@ $(tmpCalleeParam$7);
 $(alias);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
 throw `<max pcode call depth exceeded>; calling \`const tmp = f(undefined, undefined);\``;
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,4 +102,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

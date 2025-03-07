@@ -15,6 +15,38 @@ function f({} = $('pass')) {
 $(f(undefined, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const bindingPatternObjRoot /*:unknown*/ = $(`pass`);
+let objPatternCrashTest /*:boolean*/ = bindingPatternObjRoot === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = bindingPatternObjRoot === null;
+}
+if (objPatternCrashTest) {
+  bindingPatternObjRoot.cannotDestructureThis;
+} else {
+}
+$(`ok`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternObjRoot = $(`pass`);
+let objPatternCrashTest = bindingPatternObjRoot === undefined;
+if (!objPatternCrashTest) {
+  objPatternCrashTest = bindingPatternObjRoot === null;
+}
+if (objPatternCrashTest) {
+  bindingPatternObjRoot.cannotDestructureThis;
+}
+$(`ok`);
+`````
+
 ## Pre Normal
 
 
@@ -58,25 +90,7 @@ const tmpCalleeParam = f(undefined, 10);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const bindingPatternObjRoot /*:unknown*/ = $(`pass`);
-let objPatternCrashTest /*:boolean*/ = bindingPatternObjRoot === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
-}
-if (objPatternCrashTest) {
-  bindingPatternObjRoot.cannotDestructureThis;
-} else {
-}
-$(`ok`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +112,7 @@ $( "ok" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -109,4 +123,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

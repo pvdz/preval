@@ -14,6 +14,45 @@ $?.(1) + $?.(1);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpBinBothLhs /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = $ == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementCall /*:unknown*/ = $(1);
+  tmpBinBothLhs = tmpChainElementCall;
+}
+let tmpBinBothRhs /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainElementCall$1 /*:unknown*/ = $(1);
+  tmpBinBothRhs = tmpChainElementCall$1;
+}
+tmpBinBothLhs + tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpBinBothLhs = undefined;
+if (!($ == null)) {
+  tmpBinBothLhs = $(1);
+}
+let tmpBinBothRhs = undefined;
+if (!($ == null)) {
+  tmpBinBothRhs = $(1);
+}
+tmpBinBothLhs + tmpBinBothRhs;
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -48,31 +87,7 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = $ == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpBinBothLhs = tmpChainElementCall;
-}
-let tmpBinBothRhs /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = $ == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementCall$1 /*:unknown*/ = $(1);
-  tmpBinBothRhs = tmpChainElementCall$1;
-}
-tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +121,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -118,4 +133,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

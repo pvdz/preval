@@ -32,6 +32,58 @@ if (chk) {
 $(wat);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const s /*:unknown*/ = $(10);
+$(`before`);
+let wat /*:number*/ = s | 10;
+const chk /*:unknown*/ = $(true);
+if (chk) {
+  $(`inside`);
+  wat = wat | 10;
+  const tmpClusterSSA_chk /*:unknown*/ = $(true);
+  if (tmpClusterSSA_chk) {
+    while ($LOOP_UNROLL_10) {
+      $(`inside`);
+      wat = wat | 10;
+      const tmpClusterSSA_chk$1 /*:unknown*/ = $(true);
+      if (tmpClusterSSA_chk$1) {
+      } else {
+        break;
+      }
+    }
+  } else {
+  }
+} else {
+}
+$(wat);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const s = $(10);
+$(`before`);
+let wat = s | 10;
+if ($(true)) {
+  $(`inside`);
+  wat = wat | 10;
+  if ($(true)) {
+    while (true) {
+      $(`inside`);
+      wat = wat | 10;
+      if (!$(true)) {
+        break;
+      }
+    }
+  }
+}
+$(wat);
+`````
+
 ## Pre Normal
 
 
@@ -86,37 +138,7 @@ if (chk) {
 $(wat);
 `````
 
-## Output
-
-
-`````js filename=intro
-const s /*:unknown*/ = $(10);
-$(`before`);
-let wat /*:number*/ = s | 10;
-const chk /*:unknown*/ = $(true);
-if (chk) {
-  $(`inside`);
-  wat = wat | 10;
-  const tmpClusterSSA_chk /*:unknown*/ = $(true);
-  if (tmpClusterSSA_chk) {
-    while ($LOOP_UNROLL_10) {
-      $(`inside`);
-      wat = wat | 10;
-      const tmpClusterSSA_chk$1 /*:unknown*/ = $(true);
-      if (tmpClusterSSA_chk$1) {
-      } else {
-        break;
-      }
-    }
-  } else {
-  }
-} else {
-}
-$(wat);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -149,7 +171,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -184,4 +206,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

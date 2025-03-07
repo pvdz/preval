@@ -17,6 +17,21 @@ try {
 $('after', blob)
 `````
 
+## Settled
+
+
+`````js filename=intro
+const blob /*:array*/ = [1, 2, 3];
+$(`after`, blob);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`after`, [1, 2, 3]);
+`````
+
 ## Pre Normal
 
 
@@ -37,16 +52,7 @@ const blob = [1, 2, 3];
 $(`after`, blob);
 `````
 
-## Output
-
-
-`````js filename=intro
-const blob /*:array*/ = [1, 2, 3];
-$(`after`, blob);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -58,7 +64,7 @@ $( "after", a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'after', [1, 2, 3]
@@ -68,4 +74,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

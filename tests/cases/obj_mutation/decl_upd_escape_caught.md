@@ -18,6 +18,21 @@ f(blob);
 $(blob);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const blob /*:object*/ = { thing: `boom` };
+$(blob);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ thing: `boom` });
+`````
+
 ## Pre Normal
 
 
@@ -48,16 +63,7 @@ f(blob);
 $(blob);
 `````
 
-## Output
-
-
-`````js filename=intro
-const blob /*:object*/ = { thing: `boom` };
-$(blob);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +75,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { thing: '"boom"' }
@@ -79,4 +85,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

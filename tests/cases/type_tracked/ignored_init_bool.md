@@ -25,6 +25,35 @@ if (itooamanumberjack) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBool /*:boolean*/ = Boolean(imanumberandilovethrees);
+const tmpCalleeParam /*:unknown*/ = $(tmpBool);
+imanumberandilovethrees;
+const tmpClusterSSA_itooamanumberjack /*:boolean*/ = Boolean(tmpCalleeParam);
+if (tmpCalleeParam) {
+  $(`a`, tmpClusterSSA_itooamanumberjack);
+} else {
+  $(`b`, tmpClusterSSA_itooamanumberjack);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam = $(Boolean(imanumberandilovethrees));
+imanumberandilovethrees;
+const tmpClusterSSA_itooamanumberjack = Boolean(tmpCalleeParam);
+if (tmpCalleeParam) {
+  $(`a`, tmpClusterSSA_itooamanumberjack);
+} else {
+  $(`b`, tmpClusterSSA_itooamanumberjack);
+}
+`````
+
 ## Pre Normal
 
 
@@ -61,23 +90,7 @@ if (itooamanumberjack) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBool /*:boolean*/ = Boolean(imanumberandilovethrees);
-const tmpCalleeParam /*:unknown*/ = $(tmpBool);
-imanumberandilovethrees;
-const tmpClusterSSA_itooamanumberjack /*:boolean*/ = Boolean(tmpCalleeParam);
-if (tmpCalleeParam) {
-  $(`a`, tmpClusterSSA_itooamanumberjack);
-} else {
-  $(`b`, tmpClusterSSA_itooamanumberjack);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -99,7 +112,7 @@ BAD@! Found 1 implicit global bindings:
 
 imanumberandilovethrees
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -108,4 +121,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

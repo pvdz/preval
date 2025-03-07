@@ -22,6 +22,42 @@ $(f());
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>primitive*/ = function () {
+  debugger;
+  if ($) {
+    $(100);
+    return 10;
+  } else {
+    return undefined;
+  }
+};
+const tmpCalleeParam /*:primitive*/ = f();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:primitive*/ = f();
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:primitive*/ = f();
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  if ($) {
+    $(100);
+    return 10;
+  }
+};
+$(f());
+$(f());
+$(f());
+`````
+
 ## Pre Normal
 
 
@@ -59,29 +95,7 @@ const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>primitive*/ = function () {
-  debugger;
-  if ($) {
-    $(100);
-    return 10;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam /*:primitive*/ = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:primitive*/ = f();
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:primitive*/ = f();
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +121,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -122,4 +136,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

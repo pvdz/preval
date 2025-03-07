@@ -26,6 +26,47 @@ if (b) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:(boolean)=>undefined*/ = function ($$0) {
+  const arg /*:boolean*/ = $$0;
+  debugger;
+  $(arg);
+  $(arg);
+  $(arg);
+  return undefined;
+};
+const tmpCalleeParam /*:unknown*/ = $(10);
+const b /*:boolean*/ = tmpCalleeParam === 10;
+if (b) {
+  $(`a`, true);
+  g(true);
+} else {
+  $(`b`, false);
+  g(false);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function (arg) {
+  $(arg);
+  $(arg);
+  $(arg);
+};
+if ($(10) === 10) {
+  $(`a`, true);
+  g(true);
+} else {
+  $(`b`, false);
+  g(false);
+}
+`````
+
 ## Pre Normal
 
 
@@ -72,31 +113,7 @@ if (b) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:(boolean)=>undefined*/ = function ($$0) {
-  const arg /*:boolean*/ = $$0;
-  debugger;
-  $(arg);
-  $(arg);
-  $(arg);
-  return undefined;
-};
-const tmpCalleeParam /*:unknown*/ = $(10);
-const b /*:boolean*/ = tmpCalleeParam === 10;
-if (b) {
-  $(`a`, true);
-  g(true);
-} else {
-  $(`b`, false);
-  g(false);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -124,7 +141,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -138,4 +155,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -18,6 +18,28 @@ const program = {
 };
 `````
 
+## Settled
+
+
+`````js filename=intro
+const fdata /*:object*/ = { name: 1 };
+const tmpClusterSSA_tmpElement /*:array*/ = [1, fdata];
+const tmpClusterSSA_tmpArg_1 /*:array*/ = [tmpClusterSSA_tmpElement];
+new Map(tmpClusterSSA_tmpArg_1);
+fdata.name;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const fdata = { name: 1 };
+const tmpClusterSSA_tmpElement = [1, fdata];
+const tmpClusterSSA_tmpArg_1 = [tmpClusterSSA_tmpElement];
+new Map(tmpClusterSSA_tmpArg_1);
+fdata.name;
+`````
+
 ## Pre Normal
 
 
@@ -47,19 +69,7 @@ const tmpObjLitVal$1 = fdata.name;
 const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };
 `````
 
-## Output
-
-
-`````js filename=intro
-const fdata /*:object*/ = { name: 1 };
-const tmpClusterSSA_tmpElement /*:array*/ = [1, fdata];
-const tmpClusterSSA_tmpArg_1 /*:array*/ = [tmpClusterSSA_tmpElement];
-new Map(tmpClusterSSA_tmpArg_1);
-fdata.name;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +84,7 @@ a.name;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -83,4 +93,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

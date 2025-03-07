@@ -18,6 +18,32 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(b);
+const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
+const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+$(tmpPostUpdArgVal, b);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpPostUpdArgObj = $($(b));
+const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
+$(tmpPostUpdArgVal, b);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -52,22 +78,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-$(tmpPostUpdArgVal, b);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -85,7 +96,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -98,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -23,6 +23,35 @@ if (expires) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if (expires) {
+  const date /*:object*/ = new Date();
+  const time /*:unknown*/ = date.getTime();
+  const exp /*:number*/ = expires * 1000;
+  const endtime /*:primitive*/ = time + exp;
+  $dotCall($date_setTime, date, `setTime`, endtime);
+  a8.expires = date;
+  unknown = date;
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (expires) {
+  const date = new Date();
+  const time = date.getTime();
+  $dotCall($date_setTime, date, `setTime`, time + expires * 1000);
+  a8.expires = date;
+  unknown = date;
+}
+`````
+
 ## Pre Normal
 
 
@@ -57,24 +86,7 @@ if (expires) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if (expires) {
-  const date /*:object*/ = new Date();
-  const time /*:unknown*/ = date.getTime();
-  const exp /*:number*/ = expires * 1000;
-  const endtime /*:primitive*/ = time + exp;
-  $dotCall($date_setTime, date, `setTime`, endtime);
-  a8.expires = date;
-  unknown = date;
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -95,7 +107,7 @@ BAD@! Found 3 implicit global bindings:
 
 expires, a8, unknown
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -104,7 +116,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - maybe fix the type for calling this builtin?

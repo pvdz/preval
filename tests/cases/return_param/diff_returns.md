@@ -31,6 +31,56 @@ $(f(2));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(primitive)=>number*/ = function ($$0) {
+  const x /*:primitive*/ = $$0;
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    $(`a`);
+    const y /*:number*/ = ~x;
+    return y;
+  } else {
+    $(`b`);
+    return 5;
+  }
+};
+const tmpCalleeParam /*:number*/ = f(1);
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:number*/ = f(2);
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:number*/ = f(`three`);
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (x) {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  if ($(true)) {
+    $(`a`);
+    const y = ~x;
+    return y;
+  } else {
+    $(`b`);
+    return 5;
+  }
+};
+$(f(1));
+$(f(2));
+$(f(`three`));
+`````
+
 ## Pre Normal
 
 
@@ -83,36 +133,7 @@ const tmpCalleeParam$3 = f(`three`);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(primitive)=>number*/ = function ($$0) {
-  const x /*:primitive*/ = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    $(`a`);
-    const y /*:number*/ = ~x;
-    return y;
-  } else {
-    $(`b`);
-    return 5;
-  }
-};
-const tmpCalleeParam /*:number*/ = f(1);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:number*/ = f(2);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:number*/ = f(`three`);
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -145,7 +166,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -172,4 +193,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

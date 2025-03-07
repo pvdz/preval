@@ -19,6 +19,30 @@ $(f(2));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(2);
+$(2);
+$(3);
+$(3);
+$(`three1`);
+$(`three1`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(2);
+$(2);
+$(3);
+$(3);
+$(`three1`);
+$(`three1`);
+`````
+
 ## Pre Normal
 
 
@@ -54,20 +78,7 @@ const tmpCalleeParam$3 = f(`three`);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(2);
-$(2);
-$(3);
-$(3);
-$(`three1`);
-$(`three1`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +94,7 @@ $( "three1" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -98,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -24,6 +24,58 @@ $(typeof parseInt($spy('parseInt')));
 $(typeof parseFloat($spy('parseFloat')));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.sign`);
+$coerce(tmpCalleeParam$1, `number`);
+$(`number`);
+const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.sin`);
+$coerce(tmpCalleeParam$5, `number`);
+$(`number`);
+const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.hypot`);
++tmpCalleeParam$9;
+$(`number`);
+const tmpStringFirstArg /*:unknown*/ = $spy(`String`);
+$coerce(tmpStringFirstArg, `string`);
+$(`string`);
+const tmpStringFirstArg$1 /*:unknown*/ = $spy(`Number`);
+$coerce(tmpStringFirstArg$1, `number`);
+$(`number`);
+$spy(`Boolean`);
+$(`boolean`);
+const tmpCalleeParam$21 /*:unknown*/ = $spy(`parseInt`);
+$coerce(tmpCalleeParam$21, `string`);
+$(`number`);
+const tmpCalleeParam$25 /*:unknown*/ = $spy(`parseFloat`);
+$coerce(tmpCalleeParam$25, `string`);
+$(`number`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$coerce($spy(`Math.sign`), `number`);
+$(`number`);
+$coerce($spy(`Math.sin`), `number`);
+$(`number`);
+const tmpCalleeParam$9 = $spy(`Math.hypot`);
++tmpCalleeParam$9;
+$(`number`);
+$coerce($spy(`String`), `string`);
+$(`string`);
+$coerce($spy(`Number`), `number`);
+$(`number`);
+$spy(`Boolean`);
+$(`boolean`);
+$coerce($spy(`parseInt`), `string`);
+$(`number`);
+$coerce($spy(`parseFloat`), `string`);
+$(`number`);
+`````
+
 ## Pre Normal
 
 
@@ -76,37 +128,7 @@ const tmpCalleeParam$23 = typeof tmpUnaryArg$13;
 $(tmpCalleeParam$23);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.sign`);
-$coerce(tmpCalleeParam$1, `number`);
-$(`number`);
-const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.sin`);
-$coerce(tmpCalleeParam$5, `number`);
-$(`number`);
-const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.hypot`);
-+tmpCalleeParam$9;
-$(`number`);
-const tmpStringFirstArg /*:unknown*/ = $spy(`String`);
-$coerce(tmpStringFirstArg, `string`);
-$(`string`);
-const tmpStringFirstArg$1 /*:unknown*/ = $spy(`Number`);
-$coerce(tmpStringFirstArg$1, `number`);
-$(`number`);
-$spy(`Boolean`);
-$(`boolean`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`parseInt`);
-$coerce(tmpCalleeParam$21, `string`);
-$(`number`);
-const tmpCalleeParam$25 /*:unknown*/ = $spy(`parseFloat`);
-$coerce(tmpCalleeParam$25, `string`);
-$(`number`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -139,7 +161,7 @@ $( "number" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Math.sign', 'Math.sign']
@@ -171,7 +193,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_sign

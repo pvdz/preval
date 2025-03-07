@@ -15,6 +15,37 @@ obj[$($)?.(1)];
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCompProp /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
+  tmpCompProp = tmpChainElementCall$1;
+}
+const obj /*:object*/ = {};
+obj[tmpCompProp];
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCompProp = undefined;
+const tmpChainElementCall = $($);
+if (!(tmpChainElementCall == null)) {
+  tmpCompProp = $dotCall(tmpChainElementCall, $, undefined, 1);
+}
+({}[tmpCompProp]);
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -45,26 +76,7 @@ tmpCompObj[tmpCompProp];
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCompProp /*:unknown*/ = undefined;
-const tmpChainElementCall /*:unknown*/ = $($);
-const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  tmpCompProp = tmpChainElementCall$1;
-}
-const obj /*:object*/ = {};
-obj[tmpCompProp];
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +103,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -103,4 +115,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

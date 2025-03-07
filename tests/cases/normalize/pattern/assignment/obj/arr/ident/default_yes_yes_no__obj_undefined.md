@@ -13,6 +13,37 @@
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`pass2`];
+const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  y = `fail`;
+} else {
+  y = arrPatternBeforeDefault;
+}
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternAfterDefault = $([`pass2`]);
+const arrPatternBeforeDefault = [...objPatternAfterDefault][0];
+if (arrPatternBeforeDefault === undefined) {
+  y = `fail`;
+} else {
+  y = arrPatternBeforeDefault;
+}
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -46,25 +77,7 @@ if (tmpIfTest$1) {
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`pass2`];
-const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  y = `fail`;
-} else {
-  y = arrPatternBeforeDefault;
-}
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +101,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['pass2']
@@ -98,7 +111,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

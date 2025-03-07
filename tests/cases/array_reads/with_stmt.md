@@ -14,6 +14,22 @@ $('distraction');
 $(arr[0]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`distraction`);
+$(1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`distraction`);
+$(1);
+`````
+
 ## Pre Normal
 
 
@@ -33,16 +49,7 @@ const tmpCalleeParam = arr[0];
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`distraction`);
-$(1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +61,7 @@ $( 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'distraction'
@@ -65,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

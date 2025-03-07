@@ -14,6 +14,46 @@ let b = {x: 1, y: 2};
 for ($(a).x of b) $(a.x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1, y: 2 };
+const tmpForOfGen /*:unknown*/ = $forOf(b);
+const a /*:object*/ = {};
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    const tmpCalleeParam /*:unknown*/ = a.x;
+    $(tmpCalleeParam);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForOfGen = $forOf({ x: 1, y: 2 });
+const a = {};
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    const tmpAssignMemLhsObj = $(a);
+    tmpAssignMemLhsObj.x = tmpForOfNext.value;
+    $(a.x);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -57,30 +97,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1, y: 2 };
-const tmpForOfGen /*:unknown*/ = $forOf(b);
-const a /*:object*/ = {};
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpAssignMemLhsObj /*:unknown*/ = $(a);
-    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    const tmpCalleeParam /*:unknown*/ = a.x;
-    $(tmpCalleeParam);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +127,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -119,7 +136,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

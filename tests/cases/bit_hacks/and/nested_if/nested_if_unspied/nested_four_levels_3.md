@@ -25,6 +25,58 @@ if (x & 8) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree$1 /*:(number)=>boolean*/ = function $free($$0) {
+  const x$1 /*:number*/ = $$0;
+  debugger;
+  const tmpIfTest /*:number*/ = x$1 & 10;
+  const tmpRet$1 /*:boolean*/ = tmpIfTest === 10;
+  return tmpRet$1;
+};
+const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
+  const x$3 /*:number*/ = $$0;
+  debugger;
+  const tmpIfTest$3 /*:number*/ = x$3 & 48;
+  const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
+  return tmpRet;
+};
+const tmpUnaryArg /*:unknown*/ = $spy(3);
+const x /*:number*/ = +tmpUnaryArg;
+const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree$1, x);
+if (tmpIfTest$1) {
+  const tmpIfTest$5 /*:boolean*/ = $frfr(tmpFree, x);
+  if (tmpIfTest$5) {
+    $(`it is 58`);
+  } else {
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree$1 = function $free(x$1) {
+  const tmpRet$1 = (x$1 & 10) === 10;
+  return tmpRet$1;
+};
+const tmpFree = function $free(x$3) {
+  const tmpRet = (x$3 & 48) === 48;
+  return tmpRet;
+};
+const tmpUnaryArg = $spy(3);
+const x = +tmpUnaryArg;
+if ($frfr(tmpFree$1, x)) {
+  if ($frfr(tmpFree, x)) {
+    $(`it is 58`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -66,39 +118,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree$1 /*:(number)=>boolean*/ = function $free($$0) {
-  const x$1 /*:number*/ = $$0;
-  debugger;
-  const tmpIfTest /*:number*/ = x$1 & 10;
-  const tmpRet$1 /*:boolean*/ = tmpIfTest === 10;
-  return tmpRet$1;
-};
-const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
-  const x$3 /*:number*/ = $$0;
-  debugger;
-  const tmpIfTest$3 /*:number*/ = x$3 & 48;
-  const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
-  return tmpRet;
-};
-const tmpUnaryArg /*:unknown*/ = $spy(3);
-const x /*:number*/ = +tmpUnaryArg;
-const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree$1, x);
-if (tmpIfTest$1) {
-  const tmpIfTest$5 /*:boolean*/ = $frfr(tmpFree, x);
-  if (tmpIfTest$5) {
-    $(`it is 58`);
-  } else {
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -131,7 +151,7 @@ if (l) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [3, 3]
@@ -142,4 +162,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

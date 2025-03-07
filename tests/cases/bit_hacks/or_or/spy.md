@@ -15,6 +15,22 @@ const c = b | 32;
 $(c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $spy();
+const b /*:number*/ = a | 48;
+$(b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($spy() | 48);
+`````
+
 ## Pre Normal
 
 
@@ -35,17 +51,7 @@ const c = b | 32;
 $(c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $spy();
-const b /*:number*/ = a | 48;
-$(b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -58,7 +64,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]
@@ -70,4 +76,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

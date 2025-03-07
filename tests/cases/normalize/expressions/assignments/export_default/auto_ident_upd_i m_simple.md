@@ -16,6 +16,24 @@ export default a = b--;
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpAnonDefaultExport /*:number*/ = 1;
+export { tmpAnonDefaultExport as default };
+$(1, 0);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAnonDefaultExport = 1;
+export { tmpAnonDefaultExport as default };
+$(1, 0);
+`````
+
 ## Pre Normal
 
 
@@ -41,17 +59,7 @@ export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpAnonDefaultExport /*:number*/ = 1;
-export { tmpAnonDefaultExport as default };
-$(1, 0);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +72,7 @@ $( 1, 0 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -73,4 +81,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

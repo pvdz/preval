@@ -34,6 +34,27 @@ if (y) {
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (!$) {
+  let tmpClusterSSA_x = true;
+  if ($) {
+    tmpClusterSSA_x = false;
+  }
+  while (true) {
+    if (tmpClusterSSA_x) {
+      if ($) {
+        tmpClusterSSA_x = false;
+      }
+    } else {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -92,7 +113,7 @@ if (y) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -116,8 +137,7 @@ if ($) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -155,4 +175,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- Support referencing this builtin in isFree: $

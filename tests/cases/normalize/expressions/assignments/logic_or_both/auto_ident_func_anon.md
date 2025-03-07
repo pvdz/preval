@@ -14,6 +14,42 @@ $((a = function () {}) || (a = function () {}));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+if (a) {
+  $(a);
+} else {
+  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
+    debugger;
+    return undefined;
+  };
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = function () {};
+if (a) {
+  $(a);
+} else {
+  const tmpNestedComplexRhs = function () {};
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -53,29 +89,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-if (a) {
-  $(a);
-} else {
-  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
-    debugger;
-    return undefined;
-  };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +115,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -112,4 +126,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

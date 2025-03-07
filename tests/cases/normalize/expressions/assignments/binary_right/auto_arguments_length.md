@@ -14,6 +14,27 @@ $($(100) + (a = arguments));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const a /*:unknown*/ = arguments;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
+$(tmpCalleeParam);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(100);
+const a = arguments;
+$(tmpBinBothLhs + a);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -36,19 +57,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-const a /*:unknown*/ = arguments;
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
-$(tmpCalleeParam);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +74,7 @@ BAD@! Found 1 implicit global bindings:
 
 arguments
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -77,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

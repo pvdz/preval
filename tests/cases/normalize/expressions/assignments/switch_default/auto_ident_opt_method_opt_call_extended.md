@@ -19,6 +19,33 @@ switch ($(1)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+if (tmpIfTest$1) {
+  $(undefined);
+} else {
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  $(tmpChainElementCall);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+if ($ == null) {
+  $(undefined);
+} else {
+  $($dotCall($, { e: $ }, `e`, 1));
+}
+`````
+
 ## Pre Normal
 
 
@@ -62,23 +89,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-const tmpIfTest$1 /*:boolean*/ = $ == null;
-if (tmpIfTest$1) {
-  $(undefined);
-} else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  $(tmpChainElementCall);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +109,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -110,4 +121,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

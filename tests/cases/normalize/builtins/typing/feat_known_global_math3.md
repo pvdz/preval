@@ -24,6 +24,60 @@ $(typeof Math.random($spy('Math.random')));
 $(typeof Math.round($spy('Math.round')));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.log10`);
+$coerce(tmpCalleeParam$1, `number`);
+$(`number`);
+const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.log1p`);
+$coerce(tmpCalleeParam$5, `number`);
+$(`number`);
+const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.log2`);
+$coerce(tmpCalleeParam$9, `number`);
+$(`number`);
+const tmpCalleeParam$13 /*:unknown*/ = $spy(`Math.max`);
++tmpCalleeParam$13;
+$(`number`);
+const tmpCalleeParam$17 /*:unknown*/ = $spy(`Math.min`);
++tmpCalleeParam$17;
+$(`number`);
+const tmpCalleeParam$21 /*:unknown*/ = $spy(`Math.pow`);
++tmpCalleeParam$21;
+$(`number`);
+$spy(`Math.random`);
+$(`number`);
+const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.round`);
+$coerce(tmpCalleeParam$29, `number`);
+$(`number`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$coerce($spy(`Math.log10`), `number`);
+$(`number`);
+$coerce($spy(`Math.log1p`), `number`);
+$(`number`);
+$coerce($spy(`Math.log2`), `number`);
+$(`number`);
+const tmpCalleeParam$13 = $spy(`Math.max`);
++tmpCalleeParam$13;
+$(`number`);
+const tmpCalleeParam$17 = $spy(`Math.min`);
++tmpCalleeParam$17;
+$(`number`);
+const tmpCalleeParam$21 = $spy(`Math.pow`);
++tmpCalleeParam$21;
+$(`number`);
+$spy(`Math.random`);
+$(`number`);
+$coerce($spy(`Math.round`), `number`);
+$(`number`);
+`````
+
 ## Pre Normal
 
 
@@ -76,37 +130,7 @@ const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
 $(tmpCalleeParam$27);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.log10`);
-$coerce(tmpCalleeParam$1, `number`);
-$(`number`);
-const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.log1p`);
-$coerce(tmpCalleeParam$5, `number`);
-$(`number`);
-const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.log2`);
-$coerce(tmpCalleeParam$9, `number`);
-$(`number`);
-const tmpCalleeParam$13 /*:unknown*/ = $spy(`Math.max`);
-+tmpCalleeParam$13;
-$(`number`);
-const tmpCalleeParam$17 /*:unknown*/ = $spy(`Math.min`);
-+tmpCalleeParam$17;
-$(`number`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`Math.pow`);
-+tmpCalleeParam$21;
-$(`number`);
-$spy(`Math.random`);
-$(`number`);
-const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.round`);
-$coerce(tmpCalleeParam$29, `number`);
-$(`number`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -139,7 +163,7 @@ $( "number" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Math.log10', 'Math.log10']
@@ -171,7 +195,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log10

@@ -14,6 +14,21 @@ let x = obj.a['b'];
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$1 /*:unknown*/ = $();
+$(tmpObjLitVal$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($());
+`````
+
 ## Pre Normal
 
 
@@ -35,16 +50,7 @@ let x = tmpCompObj.b;
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$1 /*:unknown*/ = $();
-$(tmpObjLitVal$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +62,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -67,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

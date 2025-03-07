@@ -11,6 +11,23 @@ const here = $("here")
 $("this `thing`" + here + "is `quoted`");
 `````
 
+## Settled
+
+
+`````js filename=intro
+const here /*:unknown*/ = $(`here`);
+const tmpStringConcatL /*:string*/ = $coerce(here, `plustr`);
+const tmpCalleeParam /*:string*/ = `this \`thing\`${tmpStringConcatL}is \`quoted\``;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`this \`thing\`${$(`here`)}is \`quoted\``);
+`````
+
 ## Pre Normal
 
 
@@ -31,18 +48,7 @@ const tmpCalleeParam = `${tmpStringConcatR}is \`quoted\``;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const here /*:unknown*/ = $(`here`);
-const tmpStringConcatL /*:string*/ = $coerce(here, `plustr`);
-const tmpCalleeParam /*:string*/ = `this \`thing\`${tmpStringConcatL}is \`quoted\``;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +62,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'here'
@@ -67,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

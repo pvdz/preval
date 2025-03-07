@@ -12,6 +12,22 @@
 $("\13\17\31\08\12\29\21\22\7\16\08\07\09");
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`\u000b\u000f\u0019\u00008
+\u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`\u000b\u000f\u0019\u00008
+\u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009`);
+`````
+
 ## Pre Normal
 
 
@@ -28,16 +44,7 @@ $(`\u000b\u000f\u0019\u00008
 \u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`\u000b\u000f\u0019\u00008
-\u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -48,7 +55,7 @@ $( "\u000b\u000f\u0019\u00008\u000a\u00029\u0011\u0012\u0007\u000e\u00008\u0007\
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Octal escape sequences are not allowed in strict mode. ]>')
@@ -59,6 +66,10 @@ Normalized calls: BAD!?
  - 1: '\u000b\u000f\u0019\u00008\u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009'
  - eval returned: undefined
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - 1: '\u000b\u000f\u0019\u00008\u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009'
+ - eval returned: undefined
+
+Denormalized calls: BAD!!
  - 1: '\u000b\u000f\u0019\u00008\u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009'
  - eval returned: undefined

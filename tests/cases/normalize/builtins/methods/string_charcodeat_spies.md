@@ -13,6 +13,21 @@ const x = $spy('a');
 "".charCodeAt(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $spy(`a`);
+$coerce(x, `number`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$coerce($spy(`a`), `number`);
+`````
+
 ## Pre Normal
 
 
@@ -29,16 +44,7 @@ const x = $spy(`a`);
 $coerce(x, `number`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $spy(`a`);
-$coerce(x, `number`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -50,7 +56,7 @@ $coerce( a, "number" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']
@@ -61,4 +67,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

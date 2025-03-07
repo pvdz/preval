@@ -14,6 +14,31 @@ $($(100) + (a = [$(1), 2, $(3)]));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpArrElement /*:unknown*/ = $(1);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
+$(tmpCalleeParam);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(100);
+const tmpArrElement = $(1);
+const tmpArrElement$3 = $(3);
+const a = [tmpArrElement, 2, tmpArrElement$3];
+$(tmpBinBothLhs + a);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -39,21 +64,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpArrElement /*:unknown*/ = $(1);
-const tmpArrElement$3 /*:unknown*/ = $(3);
-const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
-$(tmpCalleeParam);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +81,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -84,4 +95,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -14,6 +14,30 @@ label: a = $?.(1);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:boolean*/ = $ == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainElementCall /*:unknown*/ = $(1);
+  $(tmpChainElementCall);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($ == null) {
+  $(undefined);
+} else {
+  $($(1));
+}
+`````
+
 ## Pre Normal
 
 
@@ -39,21 +63,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:boolean*/ = $ == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  $(tmpChainElementCall);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +81,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -82,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

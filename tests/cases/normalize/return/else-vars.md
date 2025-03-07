@@ -21,6 +21,34 @@ function f() {
 $(f(), 'result');
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  $(100);
+} else {
+  const tmpClusterSSA_x /*:unknown*/ = $(2, `b`);
+  tmpCalleeParam = tmpClusterSSA_x;
+}
+$(tmpCalleeParam, `result`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = undefined;
+if ($(1)) {
+  $(100);
+} else {
+  tmpCalleeParam = $(2, `b`);
+}
+$(tmpCalleeParam, `result`);
+`````
+
 ## Pre Normal
 
 
@@ -58,23 +86,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam, `result`);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  $(100);
-} else {
-  const tmpClusterSSA_x /*:unknown*/ = $(2, `b`);
-  tmpCalleeParam = tmpClusterSSA_x;
-}
-$(tmpCalleeParam, `result`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -94,7 +106,7 @@ $( a, "result" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -106,4 +118,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

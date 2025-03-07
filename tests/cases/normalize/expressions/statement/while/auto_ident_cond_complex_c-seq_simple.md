@@ -14,39 +14,7 @@ while ($(1) ? (40, 50, $(60)) : $($(100))) $(100);
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-while ($(1) ? (40, 50, $(60)) : $($(100))) $(100);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  let tmpIfTest = undefined;
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    tmpIfTest = $(60);
-  } else {
-    const tmpCalleeParam = $(100);
-    tmpIfTest = $(tmpCalleeParam);
-  }
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -80,8 +48,66 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
-## PST Output
+## Denormalized
+(This ought to be the final result)
 
+`````js filename=intro
+let tmpIfTest = undefined;
+if ($(1)) {
+  tmpIfTest = $(60);
+} else {
+  tmpIfTest = $($(100));
+}
+if (tmpIfTest) {
+  while (true) {
+    $(100);
+    let tmpIfTest$2 = undefined;
+    if ($(1)) {
+      tmpIfTest$2 = $(60);
+    } else {
+      tmpIfTest$2 = $($(100));
+    }
+    if (!tmpIfTest$2) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while ($(1) ? (40, 50, $(60)) : $($(100))) $(100);
+$(a);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+while (true) {
+  let tmpIfTest = undefined;
+  const tmpIfTest$1 = $(1);
+  if (tmpIfTest$1) {
+    tmpIfTest = $(60);
+  } else {
+    const tmpCalleeParam = $(100);
+    tmpIfTest = $(tmpCalleeParam);
+  }
+  if (tmpIfTest) {
+    $(100);
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -125,7 +151,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -160,4 +186,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

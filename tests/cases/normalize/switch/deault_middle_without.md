@@ -52,6 +52,111 @@ switch (6) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpSwitchCaseToStart /*:number*/ = 5;
+const tmpBinLhs /*:unknown*/ = $(10);
+const tmpIfTest /*:boolean*/ = tmpBinLhs === 6;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs$1 /*:unknown*/ = $(20);
+  const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === 6;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+    const tmpBinLhs$3 /*:unknown*/ = $(30);
+    const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$3 === 6;
+    if (tmpIfTest$3) {
+      tmpSwitchCaseToStart = 2;
+    } else {
+      const tmpBinLhs$5 /*:unknown*/ = $(40);
+      const tmpIfTest$5 /*:boolean*/ = tmpBinLhs$5 === 6;
+      if (tmpIfTest$5) {
+        tmpSwitchCaseToStart = 3;
+      } else {
+        const tmpBinLhs$7 /*:unknown*/ = $(50);
+        const tmpIfTest$7 /*:boolean*/ = tmpBinLhs$7 === 6;
+        if (tmpIfTest$7) {
+          tmpSwitchCaseToStart = 4;
+        } else {
+        }
+      }
+    }
+  }
+}
+const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$9) {
+  $(1);
+} else {
+  const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$11) {
+    $(2);
+  } else {
+  }
+  const tmpIfTest$13 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$13) {
+    $(3);
+  } else {
+  }
+  const tmpIfTest$15 /*:boolean*/ = tmpSwitchCaseToStart <= 3;
+  if (tmpIfTest$15) {
+    $(4);
+  } else {
+    const tmpIfTest$17 /*:boolean*/ = tmpSwitchCaseToStart <= 4;
+    if (tmpIfTest$17) {
+      $(5);
+    } else {
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpSwitchCaseToStart = 5;
+if ($(10) === 6) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if ($(20) === 6) {
+    tmpSwitchCaseToStart = 1;
+  } else {
+    if ($(30) === 6) {
+      tmpSwitchCaseToStart = 2;
+    } else {
+      if ($(40) === 6) {
+        tmpSwitchCaseToStart = 3;
+      } else {
+        if ($(50) === 6) {
+          tmpSwitchCaseToStart = 4;
+        }
+      }
+    }
+  }
+}
+if (tmpSwitchCaseToStart <= 0) {
+  $(1);
+} else {
+  if (tmpSwitchCaseToStart <= 1) {
+    $(2);
+  }
+  if (tmpSwitchCaseToStart <= 2) {
+    $(3);
+  }
+  if (tmpSwitchCaseToStart <= 3) {
+    $(4);
+  } else {
+    if (tmpSwitchCaseToStart <= 4) {
+      $(5);
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -156,70 +261,7 @@ tmpSwitchBreak: {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpSwitchCaseToStart /*:number*/ = 5;
-const tmpBinLhs /*:unknown*/ = $(10);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === 6;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpBinLhs$1 /*:unknown*/ = $(20);
-  const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === 6;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-    const tmpBinLhs$3 /*:unknown*/ = $(30);
-    const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$3 === 6;
-    if (tmpIfTest$3) {
-      tmpSwitchCaseToStart = 2;
-    } else {
-      const tmpBinLhs$5 /*:unknown*/ = $(40);
-      const tmpIfTest$5 /*:boolean*/ = tmpBinLhs$5 === 6;
-      if (tmpIfTest$5) {
-        tmpSwitchCaseToStart = 3;
-      } else {
-        const tmpBinLhs$7 /*:unknown*/ = $(50);
-        const tmpIfTest$7 /*:boolean*/ = tmpBinLhs$7 === 6;
-        if (tmpIfTest$7) {
-          tmpSwitchCaseToStart = 4;
-        } else {
-        }
-      }
-    }
-  }
-}
-const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$9) {
-  $(1);
-} else {
-  const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$11) {
-    $(2);
-  } else {
-  }
-  const tmpIfTest$13 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$13) {
-    $(3);
-  } else {
-  }
-  const tmpIfTest$15 /*:boolean*/ = tmpSwitchCaseToStart <= 3;
-  if (tmpIfTest$15) {
-    $(4);
-  } else {
-    const tmpIfTest$17 /*:boolean*/ = tmpSwitchCaseToStart <= 4;
-    if (tmpIfTest$17) {
-      $(5);
-    } else {
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -287,7 +329,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -301,4 +343,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

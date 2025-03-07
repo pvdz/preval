@@ -16,6 +16,24 @@ throw (a = $(b)["$"](1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCallObj /*:unknown*/ = $(b);
+const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
+throw tmpClusterSSA_a;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClusterSSA_a = $({ $: $ }).$(1);
+throw tmpClusterSSA_a;
+`````
+
 ## Pre Normal
 
 
@@ -38,18 +56,7 @@ let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
-throw tmpClusterSSA_a;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +70,7 @@ throw c;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -74,4 +81,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

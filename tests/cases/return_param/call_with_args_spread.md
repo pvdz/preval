@@ -23,6 +23,75 @@ $(f(function(...args){ $('pass2', args); }));
 $(f(function(...args){ $('pass3', args); }));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  return undefined;
+};
+const tmpCalleeParam$1 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
+  const args /*:array*/ = $$0;
+  debugger;
+  $(`pass1`, args);
+  return undefined;
+};
+f();
+tmpCalleeParam$1(1, `two`, null, NaN);
+$(undefined);
+const tmpCalleeParam$5 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
+  const args$1 /*:array*/ = $$0;
+  debugger;
+  $(`pass2`, args$1);
+  return undefined;
+};
+f();
+tmpCalleeParam$5(1, `two`, null, NaN);
+$(undefined);
+const tmpCalleeParam$9 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
+  const args$3 /*:array*/ = $$0;
+  debugger;
+  $(`pass3`, args$3);
+  return undefined;
+};
+f();
+tmpCalleeParam$9(1, `two`, null, NaN);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+};
+const tmpCalleeParam$1 = function (args) {
+  $(`pass1`, args);
+};
+f();
+tmpCalleeParam$1(1, `two`, null, NaN);
+$(undefined);
+const tmpCalleeParam$5 = function (args$1) {
+  $(`pass2`, args$1);
+};
+f();
+tmpCalleeParam$5(1, `two`, null, NaN);
+$(undefined);
+const tmpCalleeParam$9 = function (args$3) {
+  $(`pass3`, args$3);
+};
+f();
+tmpCalleeParam$9(1, `two`, null, NaN);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -101,48 +170,7 @@ const tmpCalleeParam$7 = tmpCallCallee$3(tmpCalleeParam$9);
 $(tmpCalleeParam$7);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  return undefined;
-};
-const tmpCalleeParam$1 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const args /*:array*/ = $$0;
-  debugger;
-  $(`pass1`, args);
-  return undefined;
-};
-f();
-tmpCalleeParam$1(1, `two`, null, NaN);
-$(undefined);
-const tmpCalleeParam$5 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const args$1 /*:array*/ = $$0;
-  debugger;
-  $(`pass2`, args$1);
-  return undefined;
-};
-f();
-tmpCalleeParam$5(1, `two`, null, NaN);
-$(undefined);
-const tmpCalleeParam$9 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const args$3 /*:array*/ = $$0;
-  debugger;
-  $(`pass3`, args$3);
-  return undefined;
-};
-f();
-tmpCalleeParam$9(1, `two`, null, NaN);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -186,7 +214,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -210,4 +238,22 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: BAD!!
+ - 1: 'no'
+ - 2: 'inlining'
+ - 3: 'please'
+ - 4: 'pass1', 1
+ - 5: undefined
+ - 6: 'no'
+ - 7: 'inlining'
+ - 8: 'please'
+ - 9: 'pass2', 1
+ - 10: undefined
+ - 11: 'no'
+ - 12: 'inlining'
+ - 13: 'please'
+ - 14: 'pass3', 1
+ - 15: undefined
+ - eval returned: undefined

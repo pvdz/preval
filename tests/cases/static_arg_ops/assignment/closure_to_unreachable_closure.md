@@ -23,6 +23,50 @@ f(1);
 f(2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const a /*:unknown*/ = $();
+  $();
+  let b /*:unknown*/ = a;
+  const tmpClusterSSA_f /*:()=>undefined*/ = function () {
+    debugger;
+    $(a);
+    $(b);
+    return undefined;
+  };
+  tmpClusterSSA_f();
+  b = a;
+  tmpClusterSSA_f();
+} else {
+  undefined();
+  throw `[Preval]: Call expression with illegal callee must crash before this line ; \`undefined()\``;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  const a = $();
+  $();
+  let b = a;
+  const tmpClusterSSA_f = function () {
+    $(a);
+    $(b);
+  };
+  tmpClusterSSA_f();
+  b = a;
+  tmpClusterSSA_f();
+} else {
+  undefined();
+  throw `[Preval]: Call expression with illegal callee must crash before this line ; \`undefined()\``;
+}
+`````
+
 ## Pre Normal
 
 
@@ -63,31 +107,7 @@ f(1);
 f(2);
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const a /*:unknown*/ = $();
-  $();
-  let b /*:unknown*/ = a;
-  const tmpClusterSSA_f /*:()=>undefined*/ = function () {
-    debugger;
-    $(a);
-    $(b);
-    return undefined;
-  };
-  tmpClusterSSA_f();
-  b = a;
-  tmpClusterSSA_f();
-} else {
-  undefined();
-  throw `[Preval]: Call expression with illegal callee must crash before this line ; \`undefined()\``;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +135,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -130,4 +150,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

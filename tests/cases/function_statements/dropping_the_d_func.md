@@ -38,6 +38,28 @@ function f() {
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpCalleeParam /*:unknown*/ = THIS_IS_DA____();
+  $(tmpCalleeParam);
+  return undefined;
+};
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  $(THIS_IS_DA____());
+});
+`````
+
 ## Pre Normal
 
 
@@ -82,21 +104,7 @@ let g = function () {
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpCalleeParam /*:unknown*/ = THIS_IS_DA____();
-  $(tmpCalleeParam);
-  return undefined;
-};
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +123,7 @@ BAD@! Found 1 implicit global bindings:
 
 THIS_IS_DA____
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -125,4 +133,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

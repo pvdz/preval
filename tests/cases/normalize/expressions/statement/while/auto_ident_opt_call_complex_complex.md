@@ -14,6 +14,67 @@ while ($($)?.($(1))) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpIfTest /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
+  tmpIfTest = tmpChainElementCall$1;
+}
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    let tmpIfTest$2 /*:unknown*/ = undefined;
+    const tmpChainElementCall$2 /*:unknown*/ = $($);
+    const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$2 == null;
+    if (tmpIfTest$4) {
+    } else {
+      const tmpCalleeParam$1 /*:unknown*/ = $(1);
+      const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementCall$2, $, undefined, tmpCalleeParam$1);
+      tmpIfTest$2 = tmpChainElementCall$4;
+    }
+    if (tmpIfTest$2) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpIfTest = undefined;
+const tmpChainElementCall = $($);
+if (!(tmpChainElementCall == null)) {
+  tmpIfTest = $dotCall(tmpChainElementCall, $, undefined, $(1));
+}
+if (tmpIfTest) {
+  while (true) {
+    $(100);
+    let tmpIfTest$2 = undefined;
+    const tmpChainElementCall$2 = $($);
+    if (!(tmpChainElementCall$2 == null)) {
+      tmpIfTest$2 = $dotCall(tmpChainElementCall$2, $, undefined, $(1));
+    }
+    if (!tmpIfTest$2) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -50,44 +111,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpIfTest /*:unknown*/ = undefined;
-const tmpChainElementCall /*:unknown*/ = $($);
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
-  tmpIfTest = tmpChainElementCall$1;
-}
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    let tmpIfTest$2 /*:unknown*/ = undefined;
-    const tmpChainElementCall$2 /*:unknown*/ = $($);
-    const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$2 == null;
-    if (tmpIfTest$4) {
-    } else {
-      const tmpCalleeParam$1 /*:unknown*/ = $(1);
-      const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementCall$2, $, undefined, tmpCalleeParam$1);
-      tmpIfTest$2 = tmpChainElementCall$4;
-    }
-    if (tmpIfTest$2) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -135,7 +159,7 @@ $( k );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -170,4 +194,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

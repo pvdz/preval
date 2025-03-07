@@ -12,6 +12,33 @@
 ({x: {y: {z = a }}} = 1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
+const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault$1.z;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  z = a;
+} else {
+  z = objPatternBeforeDefault;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = (1).x.y.z;
+if (objPatternBeforeDefault === undefined) {
+  z = a;
+} else {
+  z = objPatternBeforeDefault;
+}
+`````
+
 ## Pre Normal
 
 
@@ -39,23 +66,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (1).x;
-const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
-const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault$1.z;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  z = a;
-} else {
-  z = objPatternBeforeDefault;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +88,7 @@ BAD@! Found 2 implicit global bindings:
 
 a, z
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -86,4 +97,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

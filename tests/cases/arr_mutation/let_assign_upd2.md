@@ -23,6 +23,24 @@ if (f) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:array*/ = [1];
+$(a);
+$(a, a, 0, 1, 1, true);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = [1];
+$(a);
+$(a, a, 0, 1, 1, true);
+`````
+
 ## Pre Normal
 
 
@@ -59,17 +77,7 @@ if (f) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:array*/ = [1];
-$(a);
-$(a, a, 0, 1, 1, true);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +90,7 @@ $( a, a, 0, 1, 1, true );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1]
@@ -93,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

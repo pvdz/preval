@@ -16,6 +16,43 @@ for (let x of typeof $(x));
 $(a, x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(x$1);
+const tmpCalleeParam /*:string*/ = typeof tmpUnaryArg;
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg = $(x$1);
+const tmpForOfGen = $forOf(typeof tmpUnaryArg);
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$({ a: 999, b: 1000 }, 1);
+`````
+
 ## Pre Normal
 
 
@@ -57,28 +94,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(x$1);
-const tmpCalleeParam /*:string*/ = typeof tmpUnaryArg;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForOfNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -108,7 +124,7 @@ BAD@! Found 1 implicit global bindings:
 
 x$1
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -118,7 +134,10 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Denormalized calls: BAD!!
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Todos triggered:

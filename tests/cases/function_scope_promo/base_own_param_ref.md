@@ -25,6 +25,58 @@ function h() {
 $(h());
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
+  if ($) {
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
+  } else {
+  }
+} else {
+}
+const tmpCalleeParam /*:unknown*/ = $(10);
+if ($) {
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
+  $(tmpCalleeParam);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
+  if ($) {
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
+  }
+}
+const tmpCalleeParam = $(10);
+if ($) {
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
+  $(tmpCalleeParam);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
 ## Pre Normal
 
 
@@ -104,35 +156,7 @@ const tmpCalleeParam$1 = h();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  $(`prevent`);
-  $(`simple`);
-  $(`inlining`);
-  if ($) {
-    $(`prevent`);
-    $(`simple`);
-    $(`inlining`);
-  } else {
-  }
-} else {
-}
-const tmpCalleeParam /*:unknown*/ = $(10);
-if ($) {
-  $(`prevent`);
-  $(`simple`);
-  $(`inlining`);
-  $(tmpCalleeParam);
-} else {
-  $(tmpCalleeParam);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -162,7 +186,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'prevent'
@@ -182,4 +206,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

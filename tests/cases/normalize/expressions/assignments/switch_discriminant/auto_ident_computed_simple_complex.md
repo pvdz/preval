@@ -19,6 +19,28 @@ switch ((a = b[$("c")])) {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
+const b /*:object*/ = { c: 1 };
+const a /*:unknown*/ = b[tmpAssignRhsCompProp];
+$(100);
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAssignRhsCompProp = $(`c`);
+const b = { c: 1 };
+const a = b[tmpAssignRhsCompProp];
+$(100);
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -49,19 +71,7 @@ $(100);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
-const a /*:unknown*/ = b[tmpAssignRhsCompProp];
-$(100);
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +86,7 @@ $( c, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'c'
@@ -88,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

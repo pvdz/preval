@@ -34,6 +34,26 @@ const func /*:(unknown)=>undefined*/ = function($$0) {
 $(func(0));
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free($dlr_$$0) {
+  const tmpRet = $coerce($dlr_$$0 / $dlr_$$0, `string`);
+  return tmpRet;
+};
+const func = function ($dlr_$$1) {
+  const onetoo = $frfr(tmpFree, $dlr_$$1).length;
+  if (1 === onetoo) {
+    return `end`;
+  } else {
+    func($dlr_$$1 + 1);
+    return `pass`;
+  }
+};
+$(func(0));
+`````
+
 ## Pre Normal
 
 
@@ -81,7 +101,7 @@ const tmpCalleeParam = func(0);
 $(tmpCalleeParam);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -110,8 +130,7 @@ const tmpCalleeParam /*:string*/ = func(0);
 $(tmpCalleeParam);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -155,4 +174,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

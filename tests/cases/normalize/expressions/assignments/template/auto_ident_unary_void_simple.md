@@ -16,6 +16,22 @@ $(`before  ${(a = void arg)}  after`);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`before  undefined  after`);
+$(undefined, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`before  undefined  after`);
+$(undefined, 1);
+`````
+
 ## Pre Normal
 
 
@@ -43,16 +59,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`before  undefined  after`);
-$(undefined, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +71,7 @@ $( undefined, 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'before undefined after'
@@ -75,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

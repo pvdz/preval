@@ -15,6 +15,24 @@ function f({ x: [{ ...y }] }) {
 $(f({ x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 }, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpArrElement /*:object*/ = { x: 1, y: 2, c: 3 };
+const tmpCalleeParam$1 /*:array*/ = [];
+const y /*:unknown*/ = objPatternRest(tmpArrElement, tmpCalleeParam$1, undefined);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArrElement = { x: 1, y: 2, c: 3 };
+$(objPatternRest(tmpArrElement, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -54,18 +72,7 @@ const tmpCalleeParam$3 = tmpCallCallee(tmpCalleeParam$5, 10);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpArrElement /*:object*/ = { x: 1, y: 2, c: 3 };
-const tmpCalleeParam$1 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(tmpArrElement, tmpCalleeParam$1, undefined);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +90,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1', y: '2', c: '3' }
@@ -93,7 +100,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -14,6 +14,48 @@ $(`before  ${($($(1)) && $($(1))) || $($(2))}  after`);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+let tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
+if (tmpCalleeParam$1) {
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  tmpCalleeParam$1 = $(tmpCalleeParam$5);
+} else {
+}
+if (tmpCalleeParam$1) {
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpCalleeParam$7 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$7);
+  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam$2 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
+  $(tmpClusterSSA_tmpCalleeParam$2);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam$1 = $($(1));
+if (tmpCalleeParam$1) {
+  tmpCalleeParam$1 = $($(1));
+}
+if (tmpCalleeParam$1) {
+  $(`before  ${tmpCalleeParam$1}  after`);
+} else {
+  $(`before  ${$($(2))}  after`);
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -49,34 +91,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$3 /*:unknown*/ = $(1);
-let tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
-if (tmpCalleeParam$1) {
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  tmpCalleeParam$1 = $(tmpCalleeParam$5);
-} else {
-}
-if (tmpCalleeParam$1) {
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpCalleeParam$7 /*:unknown*/ = $(2);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$7);
-  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam$2 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
-  $(tmpClusterSSA_tmpCalleeParam$2);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,7 +124,7 @@ $( j );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -124,4 +139,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

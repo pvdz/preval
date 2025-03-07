@@ -16,6 +16,79 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
+if (tmpIfTest) {
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_tmpIfTest) {
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$3);
+    if (tmpClusterSSA_tmpIfTest$1) {
+      while ($LOOP_UNROLL_10) {
+        $(100);
+        const tmpCalleeParam$2 /*:unknown*/ = $(1);
+        const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$2);
+        if (tmpIfTest$1) {
+          const tmpCalleeParam$4 /*:unknown*/ = $(1);
+          const tmpClusterSSA_tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$4);
+          if (tmpClusterSSA_tmpIfTest$2) {
+            const tmpCalleeParam$6 /*:unknown*/ = $(2);
+            const tmpClusterSSA_tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$6);
+            if (tmpClusterSSA_tmpIfTest$4) {
+            } else {
+              break;
+            }
+          } else {
+            break;
+          }
+        } else {
+          break;
+        }
+      }
+    } else {
+    }
+  } else {
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+if ($($(1))) {
+  if ($($(1))) {
+    if ($($(2))) {
+      while (true) {
+        $(100);
+        if ($($(1))) {
+          if ($($(1))) {
+            if (!$($(2))) {
+              break;
+            }
+          } else {
+            break;
+          }
+        } else {
+          break;
+        }
+      }
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -62,53 +135,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
-if (tmpIfTest) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_tmpIfTest) {
-    const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$3);
-    if (tmpClusterSSA_tmpIfTest$1) {
-      while ($LOOP_UNROLL_10) {
-        $(100);
-        const tmpCalleeParam$2 /*:unknown*/ = $(1);
-        const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$2);
-        if (tmpIfTest$1) {
-          const tmpCalleeParam$4 /*:unknown*/ = $(1);
-          const tmpClusterSSA_tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$4);
-          if (tmpClusterSSA_tmpIfTest$2) {
-            const tmpCalleeParam$6 /*:unknown*/ = $(2);
-            const tmpClusterSSA_tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$6);
-            if (tmpClusterSSA_tmpIfTest$4) {
-            } else {
-              break;
-            }
-          } else {
-            break;
-          }
-        } else {
-          break;
-        }
-      }
-    } else {
-    }
-  } else {
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -161,7 +188,7 @@ $( m );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -196,4 +223,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

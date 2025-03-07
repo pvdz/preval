@@ -15,6 +15,22 @@ const y = String(x);
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(`a`);
+const x /*:string*/ = $coerce(a, `plustr`);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($coerce($(`a`), `plustr`));
+`````
+
 ## Pre Normal
 
 
@@ -36,17 +52,7 @@ const y = $coerce(tmpStringFirstArg, `string`);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(`a`);
-const x /*:string*/ = $coerce(a, `plustr`);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +65,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -70,4 +76,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

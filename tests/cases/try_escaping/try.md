@@ -22,6 +22,47 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    try {
+      $(1);
+    } catch (e) {
+      $(2);
+    }
+    const tmpCalleeParam /*:primitive*/ = arr[0];
+    $(tmpCalleeParam);
+    arr.reverse();
+  } catch (e$1) {
+    $(`fail`);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+while (true) {
+  try {
+    try {
+      $(1);
+    } catch (e) {
+      $(2);
+    }
+    $(arr[0]);
+    arr.reverse();
+  } catch (e$1) {
+    $(`fail`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -63,29 +104,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    try {
-      $(1);
-    } catch (e) {
-      $(2);
-    }
-    const tmpCalleeParam /*:primitive*/ = arr[0];
-    $(tmpCalleeParam);
-    arr.reverse();
-  } catch (e$1) {
-    $(`fail`);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -112,7 +131,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -147,4 +166,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

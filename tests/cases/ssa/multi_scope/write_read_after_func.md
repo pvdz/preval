@@ -28,6 +28,37 @@ if (y) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`a`);
+const y /*:boolean*/ = x === `undefined`;
+if (y) {
+  const tmpAssignRhsProp$105 /*:unknown*/ = tmpthis$63.getInitialState;
+  const tmpssa2_y /*:unknown*/ = tmpAssignRhsProp$105._isMockFunction;
+  if (tmpssa2_y) {
+    $(1);
+  } else {
+    $(2);
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(`a`) === `undefined`) {
+  if (tmpthis$63.getInitialState._isMockFunction) {
+    $(1);
+  } else {
+    $(2);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -73,26 +104,7 @@ if (y) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`a`);
-const y /*:boolean*/ = x === `undefined`;
-if (y) {
-  const tmpAssignRhsProp$105 /*:unknown*/ = tmpthis$63.getInitialState;
-  const tmpssa2_y /*:unknown*/ = tmpAssignRhsProp$105._isMockFunction;
-  if (tmpssa2_y) {
-    $(1);
-  } else {
-    $(2);
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +128,7 @@ BAD@! Found 1 implicit global bindings:
 
 tmpthis$63
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -126,4 +138,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -18,6 +18,45 @@ class x {
 $(new x().y());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:class*/ = class {
+  y($$0) {
+    const tmpParamBare /*:unknown*/ = $$0;
+    debugger;
+    const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
+    if (tmpIfTest) {
+      const tmpClusterSSA_arg /*:unknown*/ = $(10, `default`);
+      return tmpClusterSSA_arg;
+    } else {
+      return tmpParamBare;
+    }
+  }
+};
+const tmpCallObj /*:object*/ = new x();
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.y();
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = class {
+  y(tmpParamBare) {
+    if (tmpParamBare === undefined) {
+      const tmpClusterSSA_arg = $(10, `default`);
+      return tmpClusterSSA_arg;
+    } else {
+      return tmpParamBare;
+    }
+  }
+};
+$(new x().y());
+`````
+
 ## Pre Normal
 
 
@@ -57,30 +96,7 @@ const tmpCalleeParam = tmpCallObj.y();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:class*/ = class {
-  y($$0) {
-    const tmpParamBare /*:unknown*/ = $$0;
-    debugger;
-    const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
-    if (tmpIfTest) {
-      const tmpClusterSSA_arg /*:unknown*/ = $(10, `default`);
-      return tmpClusterSSA_arg;
-    } else {
-      return tmpParamBare;
-    }
-  }
-};
-const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam /*:unknown*/ = tmpCallObj.y();
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +123,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10, 'default'
@@ -118,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

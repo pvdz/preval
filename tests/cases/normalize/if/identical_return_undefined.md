@@ -24,6 +24,25 @@ function g() {
 if ($) $(g());
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  $(undefined);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -67,18 +86,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  $(undefined);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +99,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -101,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

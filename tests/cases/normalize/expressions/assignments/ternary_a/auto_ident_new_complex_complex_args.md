@@ -16,6 +16,31 @@ $((a = new ($($))($(1), $(2))) ? $(100) : $(200));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNewCallee /*:unknown*/ = $($);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam$3 /*:unknown*/ = $(2);
+const a /*:object*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+$(tmpClusterSSA_tmpCalleeParam);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNewCallee = $($);
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$3 = $(2);
+const a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+$($(100));
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -47,21 +72,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNewCallee /*:unknown*/ = $($);
-const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:object*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-$(tmpClusterSSA_tmpCalleeParam);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +89,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -94,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

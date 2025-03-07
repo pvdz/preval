@@ -34,6 +34,55 @@ const tmpCalleeParam$1 = x;
 $(tmpCalleeParam$1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(100);
+$(x);
+const g /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpIfTest /*:unknown*/ = $(1);
+  if (tmpIfTest) {
+    $(`a`);
+    g();
+    return undefined;
+  } else {
+    $(`b`);
+    return undefined;
+  }
+};
+const tmpIfTest$1 /*:unknown*/ = $(1);
+if (tmpIfTest$1) {
+  $(`c`);
+} else {
+}
+const tmpClusterSSA_x /*:unknown*/ = f();
+$(tmpClusterSSA_x);
+$(tmpClusterSSA_x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(100));
+const g = function () {
+  if ($(1)) {
+    $(`a`);
+    g();
+  } else {
+    $(`b`);
+  }
+};
+if ($(1)) {
+  $(`c`);
+}
+const tmpClusterSSA_x = f();
+$(tmpClusterSSA_x);
+$(tmpClusterSSA_x);
+`````
+
 ## Pre Normal
 
 
@@ -96,36 +145,7 @@ const tmpCalleeParam$1 = x;
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(100);
-$(x);
-const g /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpIfTest /*:unknown*/ = $(1);
-  if (tmpIfTest) {
-    $(`a`);
-    g();
-    return undefined;
-  } else {
-    $(`b`);
-    return undefined;
-  }
-};
-const tmpIfTest$1 /*:unknown*/ = $(1);
-if (tmpIfTest$1) {
-  $(`c`);
-} else {
-}
-const tmpClusterSSA_x /*:unknown*/ = f();
-$(tmpClusterSSA_x);
-$(tmpClusterSSA_x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -159,7 +179,7 @@ BAD@! Found 1 implicit global bindings:
 
 f
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -172,4 +192,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

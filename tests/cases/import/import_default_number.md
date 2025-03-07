@@ -21,6 +21,32 @@ $(x);
 export default 100;
 `````
 
+## Settled
+
+
+`````js filename=intro
+import { default as x } from 'x';
+$(x);
+`````
+
+`````js filename=x
+const tmpAnonDefaultExport /*:number*/ = 100;
+export { tmpAnonDefaultExport as default };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+import { default as x } from 'x';
+$(x);
+`````
+
+`````js filename=x
+const tmpAnonDefaultExport = 100;
+export { tmpAnonDefaultExport as default };
+`````
+
 ## Pre Normal
 
 
@@ -47,21 +73,7 @@ const tmpAnonDefaultExport = 100;
 export { tmpAnonDefaultExport as default };
 `````
 
-## Output
-
-
-`````js filename=intro
-import { default as x } from 'x';
-$(x);
-`````
-
-`````js filename=x
-const tmpAnonDefaultExport /*:number*/ = 100;
-export { tmpAnonDefaultExport as default };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +92,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')
@@ -89,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

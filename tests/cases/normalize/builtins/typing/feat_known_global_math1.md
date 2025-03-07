@@ -24,6 +24,59 @@ $(typeof Math.ceil($spy('Math.ceil')));
 $(typeof Math.clz32($spy('Math.clz32')));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.asin`);
+$coerce(tmpCalleeParam$1, `number`);
+$(`number`);
+const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.asinh`);
+$coerce(tmpCalleeParam$5, `number`);
+$(`number`);
+const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.atan`);
+$coerce(tmpCalleeParam$9, `number`);
+$(`number`);
+const tmpCalleeParam$13 /*:unknown*/ = $spy(`Math.atan2`);
++tmpCalleeParam$13;
+$(`number`);
+const tmpCalleeParam$17 /*:unknown*/ = $spy(`Math.atanh`);
+$coerce(tmpCalleeParam$17, `number`);
+$(`number`);
+const tmpCalleeParam$21 /*:unknown*/ = $spy(`Math.cbrt`);
+$coerce(tmpCalleeParam$21, `number`);
+$(`number`);
+const tmpCalleeParam$25 /*:unknown*/ = $spy(`Math.ceil`);
+$coerce(tmpCalleeParam$25, `number`);
+$(`number`);
+const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.clz32`);
+$coerce(tmpCalleeParam$29, `number`);
+$(`number`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$coerce($spy(`Math.asin`), `number`);
+$(`number`);
+$coerce($spy(`Math.asinh`), `number`);
+$(`number`);
+$coerce($spy(`Math.atan`), `number`);
+$(`number`);
+const tmpCalleeParam$13 = $spy(`Math.atan2`);
++tmpCalleeParam$13;
+$(`number`);
+$coerce($spy(`Math.atanh`), `number`);
+$(`number`);
+$coerce($spy(`Math.cbrt`), `number`);
+$(`number`);
+$coerce($spy(`Math.ceil`), `number`);
+$(`number`);
+$coerce($spy(`Math.clz32`), `number`);
+$(`number`);
+`````
+
 ## Pre Normal
 
 
@@ -76,38 +129,7 @@ const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
 $(tmpCalleeParam$27);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.asin`);
-$coerce(tmpCalleeParam$1, `number`);
-$(`number`);
-const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.asinh`);
-$coerce(tmpCalleeParam$5, `number`);
-$(`number`);
-const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.atan`);
-$coerce(tmpCalleeParam$9, `number`);
-$(`number`);
-const tmpCalleeParam$13 /*:unknown*/ = $spy(`Math.atan2`);
-+tmpCalleeParam$13;
-$(`number`);
-const tmpCalleeParam$17 /*:unknown*/ = $spy(`Math.atanh`);
-$coerce(tmpCalleeParam$17, `number`);
-$(`number`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`Math.cbrt`);
-$coerce(tmpCalleeParam$21, `number`);
-$(`number`);
-const tmpCalleeParam$25 /*:unknown*/ = $spy(`Math.ceil`);
-$coerce(tmpCalleeParam$25, `number`);
-$(`number`);
-const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.clz32`);
-$coerce(tmpCalleeParam$29, `number`);
-$(`number`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -141,7 +163,7 @@ $( "number" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Math.asin', 'Math.asin']
@@ -174,7 +196,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_asin

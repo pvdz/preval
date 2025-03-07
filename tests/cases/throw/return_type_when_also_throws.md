@@ -27,6 +27,57 @@ $(_THROW())
 $(_THROW())
 `````
 
+## Settled
+
+
+`````js filename=intro
+const _THROW /*:()=>unknown*/ = function () {
+  debugger;
+  $(`do`);
+  $(`not`);
+  $(`inline`);
+  $(`please`);
+  if ($) {
+    return undefined;
+  } else {
+    const tmpThrowArg /*:object*/ = new Error(`always throws`);
+    throw tmpThrowArg;
+  }
+};
+_THROW();
+$(1);
+_THROW();
+$(1);
+_THROW();
+$(1);
+_THROW();
+$(1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const _THROW = function () {
+  $(`do`);
+  $(`not`);
+  $(`inline`);
+  $(`please`);
+  if (!$) {
+    const tmpThrowArg = new Error(`always throws`);
+    throw tmpThrowArg;
+  }
+};
+_THROW();
+$(1);
+_THROW();
+$(1);
+_THROW();
+$(1);
+_THROW();
+$(1);
+`````
+
 ## Pre Normal
 
 
@@ -73,35 +124,7 @@ const tmpCalleeParam$5 = _THROW();
 $(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const _THROW /*:()=>unknown*/ = function () {
-  debugger;
-  $(`do`);
-  $(`not`);
-  $(`inline`);
-  $(`please`);
-  if ($) {
-    return undefined;
-  } else {
-    const tmpThrowArg /*:object*/ = new Error(`always throws`);
-    throw tmpThrowArg;
-  }
-};
-_THROW();
-$(1);
-_THROW();
-$(1);
-_THROW();
-$(1);
-_THROW();
-$(1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -133,7 +156,7 @@ $( 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'do'
@@ -162,4 +185,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

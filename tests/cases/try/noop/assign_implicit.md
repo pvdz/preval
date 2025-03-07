@@ -19,6 +19,28 @@ function f(x) {
 $(f(50));
 `````
 
+## Settled
+
+
+`````js filename=intro
+let y /*:unknown*/ = 100;
+try {
+  y = xyz;
+} catch (e) {}
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let y = 100;
+try {
+  y = xyz;
+} catch (e) {}
+$(y);
+`````
+
 ## Pre Normal
 
 
@@ -52,19 +74,7 @@ const tmpCalleeParam = f(50);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let y /*:unknown*/ = 100;
-try {
-  y = xyz;
-} catch (e) {}
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +94,7 @@ BAD@! Found 1 implicit global bindings:
 
 xyz
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -94,4 +104,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

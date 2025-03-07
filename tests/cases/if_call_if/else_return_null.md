@@ -35,6 +35,53 @@ const f = function () {
 if ($) $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>primitive*/ = function () {
+  debugger;
+  const test /*:unknown*/ = $(3);
+  if (test) {
+    const tmpClusterSSA_test /*:unknown*/ = $(1);
+    if (tmpClusterSSA_test) {
+      $(2);
+      $(4);
+      return undefined;
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
+};
+if ($) {
+  $(f);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  if ($(3)) {
+    if ($(1)) {
+      $(2);
+      $(4);
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
+};
+if ($) {
+  $(f);
+}
+`````
+
 ## Pre Normal
 
 
@@ -105,34 +152,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>primitive*/ = function () {
-  debugger;
-  const test /*:unknown*/ = $(3);
-  if (test) {
-    const tmpClusterSSA_test /*:unknown*/ = $(1);
-    if (tmpClusterSSA_test) {
-      $(2);
-      $(4);
-      return undefined;
-    } else {
-      return null;
-    }
-  } else {
-    return null;
-  }
-};
-if ($) {
-  $(f);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -163,7 +183,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -173,4 +193,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

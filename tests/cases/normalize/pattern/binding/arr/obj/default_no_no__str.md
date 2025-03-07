@@ -13,6 +13,20 @@ const [{}] = 'abc';
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -40,15 +54,7 @@ if (objPatternCrashTest) {
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +65,7 @@ $( "bad" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'bad'
@@ -69,7 +75,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

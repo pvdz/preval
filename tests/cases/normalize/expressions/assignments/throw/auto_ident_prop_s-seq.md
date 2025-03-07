@@ -16,6 +16,20 @@ throw (a = (1, 2, b).c);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw 1;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw 1;
+`````
+
 ## Pre Normal
 
 
@@ -38,15 +52,7 @@ let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-throw 1;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +63,7 @@ throw 1;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ 1 ]>')
@@ -66,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

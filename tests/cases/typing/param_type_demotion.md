@@ -28,6 +28,40 @@ $(calling_this_func(0));
 
 `````
 
+## Settled
+
+
+`````js filename=intro
+const calling_this_func /*:(primitive)=>undefined*/ = function ($$0) {
+  const $dlr_$$0 /*:primitive*/ = $$0;
+  debugger;
+  const tmpIfTest /*:unknown*/ = $(1);
+  if (tmpIfTest) {
+    return undefined;
+  } else {
+    const tmpCalleeParam /*:primitive*/ = $dlr_$$0 + 1;
+    calling_this_func(tmpCalleeParam);
+    return undefined;
+  }
+};
+calling_this_func(0);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const calling_this_func = function ($dlr_$$0) {
+  const tmpIfTest = $(1);
+  if (!tmpIfTest) {
+    calling_this_func($dlr_$$0 + 1);
+  }
+};
+calling_this_func(0);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -65,28 +99,7 @@ const tmpCalleeParam$1 = calling_this_func(0);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const calling_this_func /*:(primitive)=>undefined*/ = function ($$0) {
-  const $dlr_$$0 /*:primitive*/ = $$0;
-  debugger;
-  const tmpIfTest /*:unknown*/ = $(1);
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const tmpCalleeParam /*:primitive*/ = $dlr_$$0 + 1;
-    calling_this_func(tmpCalleeParam);
-    return undefined;
-  }
-};
-calling_this_func(0);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -111,7 +124,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')
@@ -120,4 +133,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

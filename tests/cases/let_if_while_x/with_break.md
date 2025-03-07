@@ -32,6 +32,70 @@ while (count) {
 $(wat);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const s /*:unknown*/ = $(10);
+let count /*:boolean*/ = true;
+$(`before`);
+let wat /*:number*/ = s | 10;
+const chk /*:unknown*/ = $(true);
+if (chk) {
+  $(`inside`);
+  wat = wat | 10;
+  const chk$1 /*:unknown*/ = $(true);
+  if (chk$1) {
+  } else {
+    count = false;
+  }
+  while ($LOOP_UNROLL_10) {
+    if (count) {
+      $(`inside`);
+      wat = wat | 10;
+      const chk$2 /*:unknown*/ = $(true);
+      if (chk$2) {
+      } else {
+        count = false;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(wat);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const s = $(10);
+let count = true;
+$(`before`);
+let wat = s | 10;
+if ($(true)) {
+  $(`inside`);
+  wat = wat | 10;
+  if (!$(true)) {
+    count = false;
+  }
+  while (true) {
+    if (count) {
+      $(`inside`);
+      wat = wat | 10;
+      if (!$(true)) {
+        count = false;
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(wat);
+`````
+
 ## Pre Normal
 
 
@@ -86,43 +150,7 @@ while (true) {
 $(wat);
 `````
 
-## Output
-
-
-`````js filename=intro
-const s /*:unknown*/ = $(10);
-let count /*:boolean*/ = true;
-$(`before`);
-let wat /*:number*/ = s | 10;
-const chk /*:unknown*/ = $(true);
-if (chk) {
-  $(`inside`);
-  wat = wat | 10;
-  const chk$1 /*:unknown*/ = $(true);
-  if (chk$1) {
-  } else {
-    count = false;
-  }
-  while ($LOOP_UNROLL_10) {
-    if (count) {
-      $(`inside`);
-      wat = wat | 10;
-      const chk$2 /*:unknown*/ = $(true);
-      if (chk$2) {
-      } else {
-        count = false;
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(wat);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -165,7 +193,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -200,4 +228,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

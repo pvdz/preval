@@ -14,6 +14,31 @@ for (let xyz = ({ a } = $({ a: 1, b: 2 })); ; $(1)) $(xyz);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+tmpNestedAssignObjPatternRhs.a;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(tmpNestedAssignObjPatternRhs);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
+tmpNestedAssignObjPatternRhs.a;
+while (true) {
+  $(tmpNestedAssignObjPatternRhs);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -46,21 +71,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-tmpNestedAssignObjPatternRhs.a;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpNestedAssignObjPatternRhs);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +91,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }
@@ -115,7 +126,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - regular property access of an ident feels tricky;

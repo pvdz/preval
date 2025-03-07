@@ -14,6 +14,34 @@ let a = b[$('x')] = $(c)[$('y')] = $(d);
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+const b /*:object*/ = { x: 2 };
+b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+$(varInitAssignLhsComputedRhs$1, b, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const varInitAssignLhsComputedProp = $(`x`);
+const varInitAssignLhsComputedObj$1 = $(3);
+const varInitAssignLhsComputedProp$1 = $(`y`);
+const varInitAssignLhsComputedRhs$1 = $(4);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+const b = { x: 2 };
+b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+$(varInitAssignLhsComputedRhs$1, b, 3);
+`````
+
 ## Pre Normal
 
 
@@ -44,22 +72,7 @@ let a = varInitAssignLhsComputedRhs;
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const b /*:object*/ = { x: 2 };
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-$(varInitAssignLhsComputedRhs$1, b, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +90,7 @@ $( d, e, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -90,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

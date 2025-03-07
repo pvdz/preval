@@ -14,6 +14,26 @@ export var [x] = [10];
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(undefined);
+$(10);
+const x /*:number*/ = 10;
+export { x };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(undefined);
+$(10);
+const x = 10;
+export { x };
+`````
+
 ## Pre Normal
 
 
@@ -38,18 +58,7 @@ $(x);
 export { x };
 `````
 
-## Output
-
-
-`````js filename=intro
-$(undefined);
-$(10);
-const x /*:number*/ = 10;
-export { x };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +72,7 @@ export { a as x };
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -72,7 +81,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

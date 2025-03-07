@@ -23,6 +23,44 @@ try {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+try {
+  if ($) {
+    throw `pass`;
+  } else {
+    $(`fail`);
+  }
+} catch (e) {
+  try {
+    $(`inner`);
+  } catch (e$1) {
+    $(`outer`);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+try {
+  if ($) {
+    throw `pass`;
+  } else {
+    $(`fail`);
+  }
+} catch (e) {
+  try {
+    $(`inner`);
+  } catch (e$1) {
+    $(`outer`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -60,27 +98,7 @@ try {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-try {
-  if ($) {
-    throw `pass`;
-  } else {
-    $(`fail`);
-  }
-} catch (e) {
-  try {
-    $(`inner`);
-  } catch (e$1) {
-    $(`outer`);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +124,7 @@ catch (a) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'inner'
@@ -116,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

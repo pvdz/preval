@@ -13,6 +13,22 @@ let x = $(1);
 $(++x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(1);
+const tmpClusterSSA_x /*:primitive*/ = x + 1;
+$(tmpClusterSSA_x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(1) + 1);
+`````
+
 ## Pre Normal
 
 
@@ -31,17 +47,7 @@ let tmpCalleeParam = x;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(1);
-const tmpClusterSSA_x /*:primitive*/ = x + 1;
-$(tmpClusterSSA_x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +60,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -65,4 +71,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

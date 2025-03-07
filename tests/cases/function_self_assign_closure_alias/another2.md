@@ -22,6 +22,56 @@ $(x() !== x());
 $(x() === zzzz());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let zzzz /*:()=>unknown*/ = function () {
+  debugger;
+  const a /*:array*/ = [];
+  zzzz = function ($$0, $$1) {
+    debugger;
+    return a;
+  };
+  const tmpReturnArg$23 /*:unknown*/ = zzzz();
+  return tmpReturnArg$23;
+};
+const x /*:unknown*/ = zzzz;
+const tmpBinBothLhs /*:unknown*/ = zzzz();
+const tmpBinBothRhs /*:unknown*/ = zzzz();
+const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
+$(tmpCalleeParam);
+const tmpBinBothLhs$1 /*:unknown*/ = x();
+const tmpBinBothRhs$1 /*:unknown*/ = x();
+const tmpCalleeParam$1 /*:boolean*/ = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
+$(tmpCalleeParam$1);
+const tmpBinBothLhs$3 /*:unknown*/ = x();
+const tmpBinBothRhs$3 /*:unknown*/ = zzzz();
+const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let zzzz = function () {
+  const a = [];
+  zzzz = function ($$0, $$1) {
+    return a;
+  };
+  const tmpReturnArg$23 = zzzz();
+  return tmpReturnArg$23;
+};
+const x = zzzz;
+const tmpBinBothLhs = zzzz();
+$(tmpBinBothLhs === zzzz());
+const tmpBinBothLhs$1 = x();
+$(tmpBinBothLhs$1 !== x());
+const tmpBinBothLhs$3 = x();
+$(tmpBinBothLhs$3 === zzzz());
+`````
+
 ## Pre Normal
 
 
@@ -75,37 +125,7 @@ const tmpCalleeParam$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-let zzzz /*:()=>unknown*/ = function () {
-  debugger;
-  const a /*:array*/ = [];
-  zzzz = function ($$0, $$1) {
-    debugger;
-    return a;
-  };
-  const tmpReturnArg$23 /*:unknown*/ = zzzz();
-  return tmpReturnArg$23;
-};
-const x /*:unknown*/ = zzzz;
-const tmpBinBothLhs /*:unknown*/ = zzzz();
-const tmpBinBothRhs /*:unknown*/ = zzzz();
-const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpCalleeParam);
-const tmpBinBothLhs$1 /*:unknown*/ = x();
-const tmpBinBothRhs$1 /*:unknown*/ = x();
-const tmpCalleeParam$1 /*:boolean*/ = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
-$(tmpCalleeParam$1);
-const tmpBinBothLhs$3 /*:unknown*/ = x();
-const tmpBinBothRhs$3 /*:unknown*/ = zzzz();
-const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -138,7 +158,7 @@ $( m );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -150,4 +170,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

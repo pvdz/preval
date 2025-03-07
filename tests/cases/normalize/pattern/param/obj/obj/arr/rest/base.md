@@ -19,6 +19,21 @@ function f({
 $(f({ x: { x: 13, y: [1, 2, 3], z: 14 }, b: 11, c: 12 }, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const z /*:array*/ = [1, 2, 3];
+$(z);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([1, 2, 3]);
+`````
+
 ## Pre Normal
 
 
@@ -59,16 +74,7 @@ const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 10);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const z /*:array*/ = [1, 2, 3];
-$(z);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +86,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1, 2, 3]
@@ -90,7 +96,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

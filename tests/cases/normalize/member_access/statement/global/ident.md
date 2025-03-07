@@ -12,6 +12,20 @@
 $.length;
 `````
 
+## Settled
+
+
+`````js filename=intro
+$.length;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$.length;
+`````
+
 ## Pre Normal
 
 
@@ -26,15 +40,7 @@ $.length;
 $.length;
 `````
 
-## Output
-
-
-`````js filename=intro
-$.length;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -45,7 +51,7 @@ $.length;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -54,4 +60,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

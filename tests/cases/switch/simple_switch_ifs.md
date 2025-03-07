@@ -25,6 +25,52 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:number*/ = 0;
+const tmpUnaryArg /*:unknown*/ = $(`x`);
+const x /*:string*/ = typeof tmpUnaryArg;
+const tmpIfTest /*:boolean*/ = x === `string`;
+if (tmpIfTest) {
+} else {
+  const tmpIfTest$1 /*:boolean*/ = x === `number`;
+  if (tmpIfTest$1) {
+    tmpCalleeParam = 2;
+  } else {
+    const tmpIfTest$3 /*:boolean*/ = x === `boolean`;
+    if (tmpIfTest$3) {
+      tmpCalleeParam = 3;
+    } else {
+      tmpCalleeParam = 4;
+    }
+  }
+}
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = 0;
+const tmpUnaryArg = $(`x`);
+const x = typeof tmpUnaryArg;
+if (!(x === `string`)) {
+  if (x === `number`) {
+    tmpCalleeParam = 2;
+  } else {
+    if (x === `boolean`) {
+      tmpCalleeParam = 3;
+    } else {
+      tmpCalleeParam = 4;
+    }
+  }
+}
+$(tmpCalleeParam);
+`````
+
 ## Pre Normal
 
 
@@ -84,33 +130,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:number*/ = 0;
-const tmpUnaryArg /*:unknown*/ = $(`x`);
-const x /*:string*/ = typeof tmpUnaryArg;
-const tmpIfTest /*:boolean*/ = x === `string`;
-if (tmpIfTest) {
-} else {
-  const tmpIfTest$1 /*:boolean*/ = x === `number`;
-  if (tmpIfTest$1) {
-    tmpCalleeParam = 2;
-  } else {
-    const tmpIfTest$3 /*:boolean*/ = x === `boolean`;
-    if (tmpIfTest$3) {
-      tmpCalleeParam = 3;
-    } else {
-      tmpCalleeParam = 4;
-    }
-  }
-}
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -143,7 +163,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -154,4 +174,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

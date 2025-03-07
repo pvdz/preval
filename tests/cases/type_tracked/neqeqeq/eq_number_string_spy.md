@@ -14,6 +14,26 @@ const y = '' + $spy(); // Must be string
 $(x !== y); // Must be false (number !== bool)
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothRhs /*:unknown*/ = $spy();
+tmpBinBothRhs ** 0;
+const tmpBinBothRhs$1 /*:unknown*/ = $spy();
+$coerce(tmpBinBothRhs$1, `plustr`);
+$(true);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$spy() ** 0;
+$coerce($spy(), `plustr`);
+$(true);
+`````
+
 ## Pre Normal
 
 
@@ -37,19 +57,7 @@ const tmpCalleeParam = x !== y;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothRhs /*:unknown*/ = $spy();
-tmpBinBothRhs ** 0;
-const tmpBinBothRhs$1 /*:unknown*/ = $spy();
-$coerce(tmpBinBothRhs$1, `plustr`);
-$(true);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +72,7 @@ $( true );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]
@@ -78,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -24,6 +24,39 @@ $(a);
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(0);
+if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 2 };
+  $(a);
+} else {
+  const tmpObjLitVal /*:unknown*/ = $(1);
+  const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(0)) {
+  $($(100));
+  $({ a: 999, b: 2 });
+} else {
+  const tmpObjLitVal = $(1);
+  const tmpNestedComplexRhs = { b: tmpObjLitVal };
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
+}
+`````
+
 ## Pre Normal
 
 
@@ -62,26 +95,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(0);
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-  const a /*:object*/ = { a: 999, b: 2 };
-  $(a);
-} else {
-  const tmpObjLitVal /*:unknown*/ = $(1);
-  const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
-  $(tmpNestedComplexRhs);
-  $(tmpNestedComplexRhs);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +121,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -120,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

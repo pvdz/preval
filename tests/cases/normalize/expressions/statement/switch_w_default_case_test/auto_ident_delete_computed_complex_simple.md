@@ -23,6 +23,63 @@ switch ($(1)) {
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteObj /*:unknown*/ = $(arg);
+const tmpBinLhs /*:boolean*/ = delete tmpDeleteObj.y;
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+} else {
+  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`fail1`);
+  } else {
+  }
+  $(`fail2`);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const arg = { y: 1 };
+const tmpDeleteObj = $(arg);
+if (delete tmpDeleteObj.y === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (!(tmpSwitchCaseToStart <= 0)) {
+  if (tmpSwitchCaseToStart <= 1) {
+    $(`fail1`);
+  }
+  $(`fail2`);
+}
+$({ a: 999, b: 1000 }, arg);
+`````
+
 ## Pre Normal
 
 
@@ -90,41 +147,7 @@ tmpSwitchBreak: {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpBinLhs /*:boolean*/ = delete tmpDeleteObj.y;
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
-} else {
-  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    $(`fail1`);
-  } else {
-  }
-  $(`fail2`);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -165,7 +188,7 @@ $( j, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -179,4 +202,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

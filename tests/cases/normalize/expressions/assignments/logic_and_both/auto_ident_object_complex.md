@@ -14,6 +14,46 @@ $((a = { x: $(1), y: 2, z: $(3) }) && (a = { x: $(1), y: 2, z: $(3) }));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpObjLitVal$3 /*:unknown*/ = $(3);
+let a /*:unknown*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpCalleeParam /*:unknown*/ = a;
+if (a) {
+  const tmpObjLitVal$5 /*:unknown*/ = $(1);
+  const tmpObjLitVal$9 /*:unknown*/ = $(3);
+  const tmpNestedComplexRhs /*:object*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$3 = $(3);
+let a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpCalleeParam = a;
+if (a) {
+  const tmpObjLitVal$5 = $(1);
+  const tmpObjLitVal$9 = $(3);
+  const tmpNestedComplexRhs = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -46,28 +86,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-const tmpObjLitVal$3 /*:unknown*/ = $(3);
-let a /*:unknown*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  const tmpObjLitVal$5 /*:unknown*/ = $(1);
-  const tmpObjLitVal$9 /*:unknown*/ = $(3);
-  const tmpNestedComplexRhs /*:object*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -100,7 +119,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -115,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

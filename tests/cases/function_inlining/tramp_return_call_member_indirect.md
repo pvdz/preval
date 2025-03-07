@@ -21,6 +21,21 @@ const r = f(String);
 $(r);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const r /*:string*/ = String.toString();
+$(r);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(String.toString());
+`````
+
 ## Pre Normal
 
 
@@ -61,16 +76,7 @@ const r = f(String);
 $(r);
 `````
 
-## Output
-
-
-`````js filename=intro
-const r /*:string*/ = String.toString();
-$(r);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +88,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'function() { [native code] }'
@@ -92,7 +98,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $function_toString

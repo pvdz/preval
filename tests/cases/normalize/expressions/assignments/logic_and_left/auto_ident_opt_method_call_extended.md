@@ -16,6 +16,34 @@ $((a = b?.c.d.e(1)) && $(100));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+if (tmpChainElementCall) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  $(tmpChainElementCall);
+}
+$(tmpChainElementCall);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainElementCall = { e: $ }.e(1);
+if (tmpChainElementCall) {
+  $($(100));
+} else {
+  $(tmpChainElementCall);
+}
+$(tmpChainElementCall);
+`````
+
 ## Pre Normal
 
 
@@ -53,23 +81,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
-if (tmpChainElementCall) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  $(tmpChainElementCall);
-}
-$(tmpChainElementCall);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -89,7 +101,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -102,4 +114,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

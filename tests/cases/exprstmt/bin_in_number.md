@@ -13,6 +13,39 @@ const spy = {toString(){ $('pass'); }, valueOf(){ $('fail'); }};
 spy in 150; // This'll crash
 `````
 
+## Settled
+
+
+`````js filename=intro
+const spy /*:object*/ = {
+  toString() {
+    debugger;
+    $(`pass`);
+    return undefined;
+  },
+  valueOf() {
+    debugger;
+    $(`fail`);
+    return undefined;
+  },
+};
+spy in 150;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+({
+  toString() {
+    $(`pass`);
+  },
+  valueOf() {
+    $(`fail`);
+  },
+} in 150);
+`````
+
 ## Pre Normal
 
 
@@ -49,27 +82,7 @@ const spy = {
 spy in 150;
 `````
 
-## Output
-
-
-`````js filename=intro
-const spy /*:object*/ = {
-  toString() {
-    debugger;
-    $(`pass`);
-    return undefined;
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-};
-spy in 150;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +105,7 @@ a in 150;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot use 'in' operator to search for '[object Object]' in 150 ]>")
@@ -101,4 +114,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

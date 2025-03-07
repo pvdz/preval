@@ -13,6 +13,23 @@ const obj = { foo: { bar: 10 } };
 $({...obj.foo});
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:object*/ = { bar: 10 };
+const tmpCalleeParam /*:object*/ = { ...tmpObjLitVal };
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = { bar: 10 };
+$({ ...tmpObjLitVal });
+`````
+
 ## Pre Normal
 
 
@@ -32,17 +49,7 @@ const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:object*/ = { bar: 10 };
-const tmpCalleeParam /*:object*/ = { ...tmpObjLitVal };
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +62,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { bar: '10' }
@@ -65,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -18,6 +18,32 @@ f();
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  arr[0] = 1;
+  return undefined;
+};
+const arr /*:array*/ = [1];
+$(f);
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  arr[0] = 1;
+};
+const arr = [1];
+$(f);
+$(arr);
+`````
+
 ## Pre Normal
 
 
@@ -47,22 +73,7 @@ f();
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  arr[0] = 1;
-  return undefined;
-};
-const arr /*:array*/ = [1];
-$(f);
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +91,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -91,4 +102,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

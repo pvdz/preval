@@ -13,6 +13,20 @@ const spy = {toString(){ $('fail'); }, valueOf(){ $('fail'); }};
 spy instanceof Number;
 `````
 
+## Settled
+
+
+`````js filename=intro
+undefined instanceof Number;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+undefined instanceof Number;
+`````
+
 ## Pre Normal
 
 
@@ -49,15 +63,7 @@ const spy = {
 undefined instanceof Number;
 `````
 
-## Output
-
-
-`````js filename=intro
-undefined instanceof Number;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -68,7 +74,7 @@ undefined instanceof Number;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -77,4 +83,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

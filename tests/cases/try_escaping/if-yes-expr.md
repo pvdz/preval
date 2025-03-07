@@ -24,6 +24,44 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    if ($) {
+      $(1);
+    } else {
+    }
+    const tmpCalleeParam /*:primitive*/ = arr[0];
+    $(tmpCalleeParam);
+    arr.reverse();
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+while (true) {
+  try {
+    if ($) {
+      $(1);
+    }
+    $(arr[0]);
+    arr.reverse();
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -62,28 +100,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    if ($) {
-      $(1);
-    } else {
-    }
-    const tmpCalleeParam /*:primitive*/ = arr[0];
-    $(tmpCalleeParam);
-    arr.reverse();
-  } catch (e) {
-    $(`fail`);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +124,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -142,7 +159,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support referencing this builtin in isFree: $

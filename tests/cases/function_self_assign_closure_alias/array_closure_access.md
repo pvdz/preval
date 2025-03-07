@@ -32,6 +32,48 @@ $(b());
 $(a()[1]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:()=>unknown*/ = function () {
+  debugger;
+  const arr /*:array*/ = [1, 2, 3];
+  a = function () {
+    debugger;
+    return arr;
+  };
+  const tmpReturnArg /*:unknown*/ = a();
+  return tmpReturnArg;
+};
+const b /*:unknown*/ = a;
+const tmpCalleeParam /*:unknown*/ = a();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:unknown*/ = b();
+$(tmpCalleeParam$1);
+const tmpCompObj /*:unknown*/ = a();
+const tmpCalleeParam$3 /*:unknown*/ = tmpCompObj[1];
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = function () {
+  const arr = [1, 2, 3];
+  a = function () {
+    return arr;
+  };
+  const tmpReturnArg = a();
+  return tmpReturnArg;
+};
+const b = a;
+$(a());
+$(b());
+$(a()[1]);
+`````
+
 ## Pre Normal
 
 
@@ -79,32 +121,7 @@ const tmpCalleeParam$3 = tmpCompObj[1];
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:()=>unknown*/ = function () {
-  debugger;
-  const arr /*:array*/ = [1, 2, 3];
-  a = function () {
-    debugger;
-    return arr;
-  };
-  const tmpReturnArg /*:unknown*/ = a();
-  return tmpReturnArg;
-};
-const b /*:unknown*/ = a;
-const tmpCalleeParam /*:unknown*/ = a();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:unknown*/ = b();
-$(tmpCalleeParam$1);
-const tmpCompObj /*:unknown*/ = a();
-const tmpCalleeParam$3 /*:unknown*/ = tmpCompObj[1];
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -132,7 +149,7 @@ $( h );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1, 2, 3]
@@ -144,4 +161,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

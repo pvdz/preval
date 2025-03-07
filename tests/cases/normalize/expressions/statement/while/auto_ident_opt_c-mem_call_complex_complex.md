@@ -16,51 +16,7 @@ while ($(b)?.[$("$")]?.($(1))) $(100);
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-while ($(b)?.[$(`\$`)]?.($(1))) $(100);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-while (true) {
-  let tmpIfTest = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      const tmpCalleeParam = tmpChainElementObject;
-      const tmpCalleeParam$1 = tmpChainElementCall;
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
-      tmpIfTest = tmpChainElementCall$1;
-    } else {
-    }
-  } else {
-  }
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -109,8 +65,85 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
-## PST Output
+## Denormalized
+(This ought to be the final result)
 
+`````js filename=intro
+let tmpIfTest = undefined;
+const b = { $: $ };
+const tmpChainElementCall = $(b);
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`\$`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    tmpIfTest = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+  }
+}
+if (tmpIfTest) {
+  while (true) {
+    $(100);
+    let tmpIfTest$2 = undefined;
+    const tmpChainElementCall$2 = $(b);
+    if (!(tmpChainElementCall$2 == null)) {
+      const tmpChainRootComputed$1 = $(`\$`);
+      const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
+      if (!(tmpChainElementObject$1 == null)) {
+        tmpIfTest$2 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, undefined, $(1));
+      }
+    }
+    if (!tmpIfTest$2) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let b = { $: $ };
+let a = { a: 999, b: 1000 };
+while ($(b)?.[$(`\$`)]?.($(1))) $(100);
+$(a);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+let b = { $: $ };
+let a = { a: 999, b: 1000 };
+while (true) {
+  let tmpIfTest = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainRootComputed = $(`\$`);
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
+      const tmpCalleeParam = tmpChainElementObject;
+      const tmpCalleeParam$1 = tmpChainElementCall;
+      const tmpCalleeParam$3 = $(1);
+      const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
+      tmpIfTest = tmpChainElementCall$1;
+    } else {
+    }
+  } else {
+  }
+  if (tmpIfTest) {
+    $(100);
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -175,7 +208,7 @@ $( r );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -210,7 +243,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

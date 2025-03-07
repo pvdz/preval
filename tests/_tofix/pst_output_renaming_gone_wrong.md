@@ -27,6 +27,25 @@
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 20;
+$(a);
+const tmpIfTest = $(1);
+$(20);
+if (tmpIfTest) {
+  x = 30;
+  $(30);
+}
+const tmpIfTest$1 = $(2);
+$(x);
+if (tmpIfTest$1) {
+  $(40);
+}
+`````
+
 ## Pre Normal
 
 
@@ -71,7 +90,7 @@ if (tmpIfTest$1) {
 $(x);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -92,8 +111,7 @@ if (tmpIfTest$1) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,4 +145,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

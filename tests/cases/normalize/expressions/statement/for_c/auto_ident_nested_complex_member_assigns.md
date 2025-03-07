@@ -23,6 +23,115 @@ for (
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(1);
+const b /*:object*/ = { x: 1 };
+if (tmpIfTest) {
+  const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
+  const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
+  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+  varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpAssignComMemLhsObj$1 /*:unknown*/ = $(b);
+      const tmpAssignComMemLhsProp$1 /*:unknown*/ = $(`x`);
+      const varInitAssignLhsComputedObj$2 /*:unknown*/ = $(b);
+      const varInitAssignLhsComputedProp$2 /*:unknown*/ = $(`x`);
+      const varInitAssignLhsComputedObj$4 /*:unknown*/ = $(b);
+      const varInitAssignLhsComputedProp$4 /*:unknown*/ = $(`x`);
+      const varInitAssignLhsComputedObj$6 /*:unknown*/ = $(b);
+      const varInitAssignLhsComputedProp$6 /*:unknown*/ = $(`x`);
+      const varInitAssignLhsComputedObj$8 /*:unknown*/ = $(b);
+      const varInitAssignLhsComputedProp$8 /*:unknown*/ = $(`x`);
+      const varInitAssignLhsComputedObj$10 /*:unknown*/ = $(b);
+      const varInitAssignLhsComputedProp$10 /*:unknown*/ = $(`x`);
+      varInitAssignLhsComputedObj$10[varInitAssignLhsComputedProp$10] = 3;
+      varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = 3;
+      varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = 3;
+      varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
+      varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+      tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = 3;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(1);
+const b = { x: 1 };
+if (tmpIfTest) {
+  const tmpAssignComMemLhsObj = $(b);
+  const tmpAssignComMemLhsProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $(`x`);
+  const varInitAssignLhsComputedObj$1 = $(b);
+  const varInitAssignLhsComputedProp$1 = $(`x`);
+  const varInitAssignLhsComputedObj$3 = $(b);
+  const varInitAssignLhsComputedProp$3 = $(`x`);
+  const varInitAssignLhsComputedObj$5 = $(b);
+  const varInitAssignLhsComputedProp$5 = $(`x`);
+  const varInitAssignLhsComputedObj$7 = $(b);
+  const varInitAssignLhsComputedProp$7 = $(`x`);
+  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+  varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+  while (true) {
+    if ($(1)) {
+      const tmpAssignComMemLhsObj$1 = $(b);
+      const tmpAssignComMemLhsProp$1 = $(`x`);
+      const varInitAssignLhsComputedObj$2 = $(b);
+      const varInitAssignLhsComputedProp$2 = $(`x`);
+      const varInitAssignLhsComputedObj$4 = $(b);
+      const varInitAssignLhsComputedProp$4 = $(`x`);
+      const varInitAssignLhsComputedObj$6 = $(b);
+      const varInitAssignLhsComputedProp$6 = $(`x`);
+      const varInitAssignLhsComputedObj$8 = $(b);
+      const varInitAssignLhsComputedProp$8 = $(`x`);
+      const varInitAssignLhsComputedObj$10 = $(b);
+      const varInitAssignLhsComputedProp$10 = $(`x`);
+      varInitAssignLhsComputedObj$10[varInitAssignLhsComputedProp$10] = 3;
+      varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = 3;
+      varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = 3;
+      varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
+      varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+      tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = 3;
+    } else {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, b, 3);
+`````
+
 ## Pre Normal
 
 
@@ -81,64 +190,7 @@ while (true) {
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { x: 1 };
-if (tmpIfTest) {
-  const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
-  const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
-  varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
-  varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
-  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpAssignComMemLhsObj$1 /*:unknown*/ = $(b);
-      const tmpAssignComMemLhsProp$1 /*:unknown*/ = $(`x`);
-      const varInitAssignLhsComputedObj$2 /*:unknown*/ = $(b);
-      const varInitAssignLhsComputedProp$2 /*:unknown*/ = $(`x`);
-      const varInitAssignLhsComputedObj$4 /*:unknown*/ = $(b);
-      const varInitAssignLhsComputedProp$4 /*:unknown*/ = $(`x`);
-      const varInitAssignLhsComputedObj$6 /*:unknown*/ = $(b);
-      const varInitAssignLhsComputedProp$6 /*:unknown*/ = $(`x`);
-      const varInitAssignLhsComputedObj$8 /*:unknown*/ = $(b);
-      const varInitAssignLhsComputedProp$8 /*:unknown*/ = $(`x`);
-      const varInitAssignLhsComputedObj$10 /*:unknown*/ = $(b);
-      const varInitAssignLhsComputedProp$10 /*:unknown*/ = $(`x`);
-      varInitAssignLhsComputedObj$10[varInitAssignLhsComputedProp$10] = 3;
-      varInitAssignLhsComputedObj$8[varInitAssignLhsComputedProp$8] = 3;
-      varInitAssignLhsComputedObj$6[varInitAssignLhsComputedProp$6] = 3;
-      varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
-      varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
-      tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = 3;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -201,7 +253,7 @@ $( bb, b, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -236,7 +288,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

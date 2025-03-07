@@ -28,6 +28,48 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$inlinedFunction: {
+  let x /*:string*/ = `fail`;
+  try {
+    fail_early;
+    if ($) {
+      break $inlinedFunction;
+    } else {
+      x = `pass`;
+      throw `too`;
+    }
+  } catch (e) {
+    $(`caught`);
+  }
+  $(x);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$inlinedFunction: {
+  let x = `fail`;
+  try {
+    fail_early;
+    if ($) {
+      break $inlinedFunction;
+    } else {
+      x = `pass`;
+      throw `too`;
+    }
+  } catch (e) {
+    $(`caught`);
+  }
+  $(x);
+}
+`````
+
 ## Pre Normal
 
 
@@ -76,29 +118,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-$inlinedFunction: {
-  let x /*:string*/ = `fail`;
-  try {
-    fail_early;
-    if ($) {
-      break $inlinedFunction;
-    } else {
-      x = `pass`;
-      throw `too`;
-    }
-  } catch (e) {
-    $(`caught`);
-  }
-  $(x);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,7 +147,7 @@ BAD@! Found 1 implicit global bindings:
 
 fail_early
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'caught'
@@ -138,4 +158,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -30,6 +30,27 @@ g();
 $(undefined);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpFuncLock = true;
+const g = function () {
+  if (tmpFuncLock) {
+    $(`call me once`);
+    if (tmpFuncLock) {
+      tmpFuncLock = false;
+    }
+  } else {
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -80,7 +101,7 @@ g();
 $(undefined);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -105,8 +126,7 @@ g();
 $(undefined);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -148,4 +168,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

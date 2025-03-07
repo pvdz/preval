@@ -15,6 +15,21 @@ function f({ x = $('pass') } = $({ x: 'fail2' })) {
 $(f({ x: undefined }, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
+$(tmpClusterSSA_x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(`pass`));
+`````
+
 ## Pre Normal
 
 
@@ -60,16 +75,7 @@ const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 10);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
-$(tmpClusterSSA_x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +87,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -92,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

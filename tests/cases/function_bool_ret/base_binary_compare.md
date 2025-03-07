@@ -22,6 +22,51 @@ $(!f(), 'two');
 $(!f(), 'three');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>boolean*/ = function () {
+  debugger;
+  if ($) {
+    const tmpBinBothRhs /*:unknown*/ = $($);
+    const tmpReturnArg /*:boolean*/ = $ === tmpBinBothRhs;
+    return tmpReturnArg;
+  } else {
+    return false;
+  }
+};
+const tmpUnaryArg /*:boolean*/ = f();
+const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
+$(tmpCalleeParam, `one`);
+const tmpUnaryArg$1 /*:boolean*/ = f();
+const tmpCalleeParam$1 /*:boolean*/ = !tmpUnaryArg$1;
+$(tmpCalleeParam$1, `two`);
+const tmpUnaryArg$3 /*:boolean*/ = f();
+const tmpCalleeParam$3 /*:boolean*/ = !tmpUnaryArg$3;
+$(tmpCalleeParam$3, `three`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  if ($) {
+    const tmpReturnArg = $ === $($);
+    return tmpReturnArg;
+  } else {
+    return false;
+  }
+};
+const tmpUnaryArg = f();
+$(!tmpUnaryArg, `one`);
+const tmpUnaryArg$1 = f();
+$(!tmpUnaryArg$1, `two`);
+const tmpUnaryArg$3 = f();
+$(!tmpUnaryArg$3, `three`);
+`````
+
 ## Pre Normal
 
 
@@ -65,33 +110,7 @@ const tmpCalleeParam$3 = !tmpUnaryArg$3;
 $(tmpCalleeParam$3, `three`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>boolean*/ = function () {
-  debugger;
-  if ($) {
-    const tmpBinBothRhs /*:unknown*/ = $($);
-    const tmpReturnArg /*:boolean*/ = $ === tmpBinBothRhs;
-    return tmpReturnArg;
-  } else {
-    return false;
-  }
-};
-const tmpUnaryArg /*:boolean*/ = f();
-const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
-$(tmpCalleeParam, `one`);
-const tmpUnaryArg$1 /*:boolean*/ = f();
-const tmpCalleeParam$1 /*:boolean*/ = !tmpUnaryArg$1;
-$(tmpCalleeParam$1, `two`);
-const tmpUnaryArg$3 /*:boolean*/ = f();
-const tmpCalleeParam$3 /*:boolean*/ = !tmpUnaryArg$3;
-$(tmpCalleeParam$3, `three`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +140,7 @@ $( i, "three" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -136,4 +155,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

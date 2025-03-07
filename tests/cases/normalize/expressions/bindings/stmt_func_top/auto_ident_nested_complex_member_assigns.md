@@ -21,6 +21,60 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$9 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$9 /*:unknown*/ = $(`x`);
+varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
+varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+$(3, b, 3);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $(`x`);
+const varInitAssignLhsComputedObj$1 = $(b);
+const varInitAssignLhsComputedProp$1 = $(`x`);
+const varInitAssignLhsComputedObj$3 = $(b);
+const varInitAssignLhsComputedProp$3 = $(`x`);
+const varInitAssignLhsComputedObj$5 = $(b);
+const varInitAssignLhsComputedProp$5 = $(`x`);
+const varInitAssignLhsComputedObj$7 = $(b);
+const varInitAssignLhsComputedProp$7 = $(`x`);
+const varInitAssignLhsComputedObj$9 = $(b);
+const varInitAssignLhsComputedProp$9 = $(`x`);
+varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
+varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+$(3, b, 3);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -75,35 +129,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$9 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp$9 /*:unknown*/ = $(`x`);
-varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
-varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-$(3, b, 3);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -134,7 +160,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -157,4 +183,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

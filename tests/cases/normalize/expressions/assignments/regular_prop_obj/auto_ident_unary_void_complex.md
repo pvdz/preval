@@ -15,6 +15,24 @@ let obj = {};
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+undefined.a;
+throw `[Preval]: Can not reach here`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+undefined.a;
+throw `[Preval]: Can not reach here`;
+`````
+
 ## Pre Normal
 
 
@@ -38,17 +56,7 @@ tmpCompObj.a;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-undefined.a;
-throw `[Preval]: Can not reach here`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +69,7 @@ throw "[Preval]: Can not reach here";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -71,4 +79,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

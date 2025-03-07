@@ -16,6 +16,45 @@ for (let x in (a = delete arg[$("y")]));
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
+const tmpForInGen /*:unknown*/ = $forIn(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpDeleteCompProp = $(`y`);
+const arg = { y: 1 };
+const a = delete arg[tmpDeleteCompProp];
+const tmpForInGen = $forIn(a);
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -59,28 +98,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const arg /*:object*/ = { y: 1 };
-const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-const tmpForInGen /*:unknown*/ = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +123,7 @@ $( c, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'y'
@@ -116,7 +134,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

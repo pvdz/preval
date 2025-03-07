@@ -15,6 +15,25 @@ function f([...x] = $(['pass'])) {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`pass`];
+const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+const x /*:array*/ = arrPatternSplat.slice(0);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternArrRoot = $([`pass`]);
+$([...bindingPatternArrRoot].slice(0));
+`````
+
 ## Pre Normal
 
 
@@ -51,19 +70,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`pass`];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const x /*:array*/ = arrPatternSplat.slice(0);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +85,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['pass']
@@ -89,7 +96,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

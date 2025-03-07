@@ -18,6 +18,66 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+$(100);
+const b /*:object*/ = { x: 1 };
+const tmpChainRootProp /*:unknown*/ = $(b);
+const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
+  a = tmpChainElementObject;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpChainRootProp$1 /*:unknown*/ = $(b);
+    const tmpIfTest$2 /*:boolean*/ = tmpChainRootProp$1 == null;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainRootProp$1.x;
+      a = tmpChainElementObject$1;
+    }
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+$(100);
+const b = { x: 1 };
+const tmpChainRootProp = $(b);
+if (!(tmpChainRootProp == null)) {
+  a = tmpChainRootProp.x;
+}
+if (a) {
+  while (true) {
+    $(100);
+    const tmpChainRootProp$1 = $(b);
+    if (!(tmpChainRootProp$1 == null)) {
+      a = tmpChainRootProp$1.x;
+    }
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -61,42 +121,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-$(100);
-const b /*:object*/ = { x: 1 };
-const tmpChainRootProp /*:unknown*/ = $(b);
-const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpChainRootProp$1 /*:unknown*/ = $(b);
-    const tmpIfTest$2 /*:boolean*/ = tmpChainRootProp$1 == null;
-    if (tmpIfTest$2) {
-    } else {
-      const tmpChainElementObject$1 /*:unknown*/ = tmpChainRootProp$1.x;
-      a = tmpChainElementObject$1;
-    }
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -139,7 +164,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -174,7 +199,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -17,6 +17,24 @@ const [
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:object*/ = { a: 1, b: 2, c: 3 };
+const tmpCalleeParam$1 /*:array*/ = [];
+const y /*:unknown*/ = objPatternRest(tmpObjLitVal, tmpCalleeParam$1, undefined);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = { a: 1, b: 2, c: 3 };
+$(objPatternRest(tmpObjLitVal, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -45,18 +63,7 @@ const y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:object*/ = { a: 1, b: 2, c: 3 };
-const tmpCalleeParam$1 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(tmpObjLitVal, tmpCalleeParam$1, undefined);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +81,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '1', b: '2', c: '3' }
@@ -84,7 +91,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

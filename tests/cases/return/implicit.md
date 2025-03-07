@@ -19,6 +19,44 @@ $(f());
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  if ($) {
+    $(100);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+f();
+$(undefined);
+f();
+$(undefined);
+f();
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  if ($) {
+    $(100);
+  }
+};
+f();
+$(undefined);
+f();
+$(undefined);
+f();
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -55,29 +93,7 @@ const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  if ($) {
-    $(100);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-f();
-$(undefined);
-f();
-$(undefined);
-f();
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +119,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -118,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

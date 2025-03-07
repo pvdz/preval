@@ -15,6 +15,25 @@ while (true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const rnd /*:number*/ = $Math_random();
+  $(rnd);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  $($Math_random());
+}
+`````
+
 ## Pre Normal
 
 
@@ -35,18 +54,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const rnd /*:number*/ = $Math_random();
-  $(rnd);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +68,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0.12556649118791485
@@ -95,7 +103,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_random

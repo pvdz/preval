@@ -14,6 +14,24 @@ let a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+[...undefined];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+[...undefined];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
 ## Pre Normal
 
 
@@ -34,17 +52,7 @@ const tmpArrElToSpread = undefined;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-[...undefined];
-throw `[Preval]: Array spread must crash before this line`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +65,7 @@ throw "[Preval]: Array spread must crash before this line";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -67,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

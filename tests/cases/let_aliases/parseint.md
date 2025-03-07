@@ -30,6 +30,51 @@ $(f);
 $(mm);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let f /*:()=>unknown*/ = function () {
+  debugger;
+  the_let_binding = 2;
+  f = function () {
+    debugger;
+    return the_let_binding;
+  };
+  const tmpReturnArg /*:unknown*/ = f();
+  return tmpReturnArg;
+};
+const n /*:unknown*/ = $(`1`);
+let the_let_binding /*:unknown*/ = $(1);
+const a /*:unknown*/ = the_let_binding;
+const m /*:number*/ = parseInt(n);
+$(a, a);
+$(f);
+const mm /*:number*/ = m / 33;
+$(mm);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let f = function () {
+  the_let_binding = 2;
+  f = function () {
+    return the_let_binding;
+  };
+  const tmpReturnArg = f();
+  return tmpReturnArg;
+};
+const n = $(`1`);
+let the_let_binding = $(1);
+const a = the_let_binding;
+const m = parseInt(n);
+$(a, a);
+$(f);
+$(m / 33);
+`````
+
 ## Pre Normal
 
 
@@ -79,32 +124,7 @@ $(f);
 $(mm);
 `````
 
-## Output
-
-
-`````js filename=intro
-let f /*:()=>unknown*/ = function () {
-  debugger;
-  the_let_binding = 2;
-  f = function () {
-    debugger;
-    return the_let_binding;
-  };
-  const tmpReturnArg /*:unknown*/ = f();
-  return tmpReturnArg;
-};
-const n /*:unknown*/ = $(`1`);
-let the_let_binding /*:unknown*/ = $(1);
-const a /*:unknown*/ = the_let_binding;
-const m /*:number*/ = parseInt(n);
-$(a, a);
-$(f);
-const mm /*:number*/ = m / 33;
-$(mm);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -132,7 +152,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '1'
@@ -146,4 +166,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

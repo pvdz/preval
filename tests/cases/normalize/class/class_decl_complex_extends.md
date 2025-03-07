@@ -13,6 +13,23 @@ class x extends $(String) {}
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClassSuper /*:unknown*/ = $(String);
+const x /*:class*/ = class extends tmpClassSuper {};
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClassSuper = $(String);
+$(class extends tmpClassSuper {});
+`````
+
 ## Pre Normal
 
 
@@ -30,17 +47,7 @@ let x = class extends tmpClassSuper {};
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClassSuper /*:unknown*/ = $(String);
-const x /*:class*/ = class extends tmpClassSuper {};
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +62,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -66,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

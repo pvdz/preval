@@ -28,6 +28,46 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const x /*:primitive*/ = arr[1];
+  try {
+    $(x);
+    globalish = arr;
+    const tmpIfTest /*:unknown*/ = $();
+    if (tmpIfTest) {
+      break;
+    } else {
+    }
+  } catch (P) {
+    $(`fail`);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while (true) {
+  const x = arr[1];
+  try {
+    $(x);
+    globalish = arr;
+    if ($()) {
+      break;
+    }
+  } catch (P) {
+    $(`fail`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -71,29 +111,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x /*:primitive*/ = arr[1];
-  try {
-    $(x);
-    globalish = arr;
-    const tmpIfTest /*:unknown*/ = $();
-    if (tmpIfTest) {
-      break;
-    } else {
-    }
-  } catch (P) {
-    $(`fail`);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +138,7 @@ BAD@! Found 1 implicit global bindings:
 
 globalish
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'b'
@@ -155,4 +173,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

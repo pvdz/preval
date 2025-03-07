@@ -16,6 +16,34 @@ switch ($(1)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+const tmpIfTest$1 /*:unknown*/ = $(30);
+if (tmpIfTest$1) {
+  const tmpClusterSSA_a /*:unknown*/ = $(2);
+  $(tmpClusterSSA_a);
+} else {
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
+  $(tmpClusterSSA_a$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+if ($(30)) {
+  $($(2));
+} else {
+  $($($(100)));
+}
+`````
+
 ## Pre Normal
 
 
@@ -49,24 +77,7 @@ const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-const tmpIfTest$1 /*:unknown*/ = $(30);
-if (tmpIfTest$1) {
-  const tmpClusterSSA_a /*:unknown*/ = $(2);
-  $(tmpClusterSSA_a);
-} else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
-  $(tmpClusterSSA_a$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +98,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -100,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

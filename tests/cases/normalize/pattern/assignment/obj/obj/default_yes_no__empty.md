@@ -13,6 +13,54 @@
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = (1).x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
+let objPatternCrashTest /*:boolean*/ = false;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam /*:object*/ = { x: `fail` };
+  objPatternAfterDefault = $(tmpCalleeParam);
+  objPatternCrashTest = objPatternAfterDefault === undefined;
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternAfterDefault.cannotDestructureThis;
+} else {
+}
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = (1).x;
+let objPatternAfterDefault = undefined;
+let objPatternCrashTest = false;
+if (objPatternBeforeDefault === undefined) {
+  objPatternAfterDefault = $({ x: `fail` });
+  objPatternCrashTest = objPatternAfterDefault === undefined;
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+if (!objPatternCrashTest) {
+  objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternAfterDefault.cannotDestructureThis;
+}
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -47,34 +95,7 @@ if (objPatternCrashTest) {
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = (1).x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-let objPatternCrashTest /*:boolean*/ = false;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam /*:object*/ = { x: `fail` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-  objPatternCrashTest = objPatternAfterDefault === undefined;
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternAfterDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
-} else {
-}
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +127,7 @@ $( "bad" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '"fail"' }
@@ -117,4 +138,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -22,6 +22,20 @@ const tmpCalleeParam$1 = typeof f;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `Preval: Cannot write to const binding \`r\``;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw `Preval: Cannot write to const binding \`r\``;
+`````
+
 ## Pre Normal
 
 
@@ -56,15 +70,7 @@ const tmpCalleeParam$1 = typeof f;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-throw `Preval: Cannot write to const binding \`r\``;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +81,7 @@ throw "Preval: Cannot write to const binding `r`";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Assignment to constant variable. ]>')
@@ -84,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

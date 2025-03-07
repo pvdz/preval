@@ -20,6 +20,21 @@ const s = f();
 $(s);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const t /*:unknown*/ = $(1, `return`);
+$(t);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(1, `return`));
+`````
+
 ## Pre Normal
 
 
@@ -52,16 +67,7 @@ const s = f();
 $(s);
 `````
 
-## Output
-
-
-`````js filename=intro
-const t /*:unknown*/ = $(1, `return`);
-$(t);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +79,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'return'
@@ -84,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

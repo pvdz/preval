@@ -12,6 +12,24 @@
 $(!!!!!$(1));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg$7 /*:unknown*/ = $(1);
+const tmpUnaryArg$3 /*:boolean*/ = Boolean(tmpUnaryArg$7);
+const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg$3;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg$3 = Boolean($(1));
+$(!tmpUnaryArg$3);
+`````
+
 ## Pre Normal
 
 
@@ -32,18 +50,7 @@ const tmpCalleeParam = !tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg$7 /*:unknown*/ = $(1);
-const tmpUnaryArg$3 /*:boolean*/ = Boolean(tmpUnaryArg$7);
-const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg$3;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +64,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -68,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

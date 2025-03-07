@@ -18,6 +18,32 @@ try {
 considerMutated(x) // always true
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 0;
+try {
+  fail_early;
+} catch (e) {
+  x = 1;
+}
+considerMutated(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 0;
+try {
+  fail_early;
+} catch (e) {
+  x = 1;
+}
+considerMutated(x);
+`````
+
 ## Pre Normal
 
 
@@ -44,21 +70,7 @@ try {
 considerMutated(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:number*/ = 0;
-try {
-  fail_early;
-} catch (e) {
-  x = 1;
-}
-considerMutated(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +90,7 @@ BAD@! Found 2 implicit global bindings:
 
 fail_early, considerMutated
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -87,4 +99,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -23,6 +23,44 @@ $(f(300));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  return undefined;
+};
+f();
+const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
+const tmpCalleeParam /*:string*/ = tmpCalleeParam$1.toString();
+$(tmpCalleeParam);
+f();
+$(`300`);
+f();
+$(`three`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+};
+f();
+$([1, 2, 3].toString());
+f();
+$(`300`);
+f();
+$(`three`);
+`````
+
 ## Pre Normal
 
 
@@ -64,29 +102,7 @@ const tmpCalleeParam$5 = f(`three`);
 $(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  return undefined;
-};
-f();
-const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
-const tmpCalleeParam /*:string*/ = tmpCalleeParam$1.toString();
-$(tmpCalleeParam);
-f();
-$(`300`);
-f();
-$(`three`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -111,7 +127,7 @@ $( "three" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -132,7 +148,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_toString

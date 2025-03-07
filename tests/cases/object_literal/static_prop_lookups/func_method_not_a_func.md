@@ -17,6 +17,24 @@ const o = {
 $(o.arr());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3];
+const o /*:object*/ = { arr: arr };
+const tmpCalleeParam /*:unknown*/ = o.arr();
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+$({ arr: arr }.arr());
+`````
+
 ## Pre Normal
 
 
@@ -36,18 +54,7 @@ const tmpCalleeParam = o.arr();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-const o /*:object*/ = { arr: arr };
-const tmpCalleeParam /*:unknown*/ = o.arr();
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +68,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -70,4 +77,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

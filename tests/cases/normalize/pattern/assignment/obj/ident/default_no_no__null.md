@@ -13,6 +13,22 @@
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+x = null.x;
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+x = null.x;
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -30,16 +46,7 @@ x = tmpAssignObjPatternRhs.x;
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-x = null.x;
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +60,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -62,4 +69,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

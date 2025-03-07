@@ -16,6 +16,29 @@ throw new ($(b)[$("$")])(1);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpThrowArg /*:object*/ = new tmpNewCallee(1);
+throw tmpThrowArg;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCompObj = $({ $: $ });
+const tmpCompProp = $(`\$`);
+const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpThrowArg = new tmpNewCallee(1);
+throw tmpThrowArg;
+`````
+
 ## Pre Normal
 
 
@@ -39,20 +62,7 @@ const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`\$`);
-const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
-const tmpThrowArg /*:object*/ = new tmpNewCallee(1);
-throw tmpThrowArg;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -68,7 +78,7 @@ throw e;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -80,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

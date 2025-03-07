@@ -15,6 +15,32 @@ function f([{ x = $('pass') } = $({ x: 'fail2' })] = $([{ x: 'fail3' }])) {
 $(f([0, 20, 30], 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = (0).x;
+const tmpIfTest$3 /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest$3) {
+  const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
+  $(tmpClusterSSA_x);
+} else {
+  $(objPatternBeforeDefault);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = (0).x;
+if (objPatternBeforeDefault === undefined) {
+  $($(`pass`));
+} else {
+  $(objPatternBeforeDefault);
+}
+`````
+
 ## Pre Normal
 
 
@@ -71,22 +97,7 @@ const tmpCalleeParam$3 = tmpCallCallee(tmpCalleeParam$5, 200);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = (0).x;
-const tmpIfTest$3 /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest$3) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
-  $(tmpClusterSSA_x);
-} else {
-  $(objPatternBeforeDefault);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +116,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -116,7 +127,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

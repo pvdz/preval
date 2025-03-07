@@ -23,6 +23,20 @@ function x(foo = x, {x}) {
 x();
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: x\$1;`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: x\$1;`;
+`````
+
 ## Pre Normal
 
 
@@ -59,15 +73,7 @@ let x = function ($$0, $$1) {
 x();
 `````
 
-## Output
-
-
-`````js filename=intro
-throw `Preval: TDZ triggered for this read: x\$1;`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +84,7 @@ throw "Preval: TDZ triggered for this read: x$1;";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')
@@ -87,4 +93,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

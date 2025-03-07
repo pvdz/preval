@@ -15,6 +15,22 @@ obj[(a = this)];
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$Object_prototype.undefined;
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$Object_prototype.undefined;
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -38,16 +54,7 @@ tmpCompObj[tmpCompProp];
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$Object_prototype.undefined;
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +66,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -69,4 +76,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

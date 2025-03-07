@@ -16,6 +16,61 @@ for (; $(1); a = { b } = $({ b: $(2) }));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:unknown*/ = {};
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpObjLitVal /*:unknown*/ = $(2);
+  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpObjLitVal$1 /*:unknown*/ = $(2);
+      const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+      const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
+      b = tmpNestedAssignObjPatternRhs$1.b;
+      a = tmpNestedAssignObjPatternRhs$1;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = {};
+let a = { a: 999, b: 1000 };
+if ($(1)) {
+  const tmpObjLitVal = $(2);
+  const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  while (true) {
+    if ($(1)) {
+      const tmpObjLitVal$1 = $(2);
+      const tmpNestedAssignObjPatternRhs$1 = $({ b: tmpObjLitVal$1 });
+      b = tmpNestedAssignObjPatternRhs$1.b;
+      a = tmpNestedAssignObjPatternRhs$1;
+    } else {
+      break;
+    }
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -51,38 +106,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:unknown*/ = {};
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpObjLitVal /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpObjLitVal$1 /*:unknown*/ = $(2);
-      const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
-      const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      b = tmpNestedAssignObjPatternRhs$1.b;
-      a = tmpNestedAssignObjPatternRhs$1;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +143,7 @@ $( b, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -154,7 +178,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

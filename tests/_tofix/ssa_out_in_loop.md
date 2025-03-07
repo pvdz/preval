@@ -51,6 +51,30 @@
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  let B = `jhayon.vercel.app`;
+  const A = $(`x`).length;
+  if (A[0] === `.`) {
+    B = A.slice(1);
+  } else {
+    B = A;
+  }
+  const tmpClusterSSA__0x26b289 = $(`abc`);
+  const tmpClusterSSA__0x30c47e = tmpClusterSSA__0x26b289.length - B.length;
+  const tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
+  if (!(tmpClusterSSA__0x2a669d === -1)) {
+    if (tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e) {
+      tmpClusterSSA__0x26b289.length;
+      A.length;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -132,7 +156,7 @@ if ($) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -166,8 +190,7 @@ if ($) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -217,4 +240,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

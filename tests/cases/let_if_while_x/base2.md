@@ -33,6 +33,61 @@ $('after');
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let flag /*:boolean*/ = true;
+$(`before`);
+const x /*:unknown*/ = $(`what`);
+if (x) {
+  $(`inner`, 0);
+  let tmpClusterSSA_n /*:number*/ = 1;
+  while ($LOOP_UNROLL_10) {
+    if (flag) {
+      $(`inner`, tmpClusterSSA_n);
+      tmpClusterSSA_n = tmpClusterSSA_n + 1;
+      const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_n >= 5;
+      if (tmpIfTest$1) {
+        flag = false;
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after`);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let flag = true;
+$(`before`);
+const x = $(`what`);
+if (x) {
+  $(`inner`, 0);
+  let tmpClusterSSA_n = 1;
+  while (true) {
+    if (flag) {
+      $(`inner`, tmpClusterSSA_n);
+      tmpClusterSSA_n = tmpClusterSSA_n + 1;
+      if (tmpClusterSSA_n >= 5) {
+        flag = false;
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(`after`);
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -86,37 +141,7 @@ $(`after`);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let flag /*:boolean*/ = true;
-$(`before`);
-const x /*:unknown*/ = $(`what`);
-if (x) {
-  $(`inner`, 0);
-  let tmpClusterSSA_n /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
-    if (flag) {
-      $(`inner`, tmpClusterSSA_n);
-      tmpClusterSSA_n = tmpClusterSSA_n + 1;
-      const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_n >= 5;
-      if (tmpIfTest$1) {
-        flag = false;
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(`after`);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -148,7 +173,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'before'
@@ -166,4 +191,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

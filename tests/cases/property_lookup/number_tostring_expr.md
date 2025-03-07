@@ -11,6 +11,20 @@ const x = $Number_prototype.toString;
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$($number_toString);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($number_toString);
+`````
+
 ## Pre Normal
 
 
@@ -27,15 +41,7 @@ const x = $Number_prototype.toString;
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$($number_toString);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -46,7 +52,7 @@ $( $number_toString );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -56,4 +62,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

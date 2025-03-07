@@ -16,6 +16,48 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
+let a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+    const tmpBinBothRhs$1 /*:unknown*/ = $(2);
+    a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+let a = $(1) + $(2);
+if (a) {
+  while (true) {
+    $(100);
+    a = $(1) + $(2);
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -52,32 +94,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const tmpBinBothLhs /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(2);
-let a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpBinBothLhs$1 /*:unknown*/ = $(1);
-    const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-    a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +123,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -141,7 +158,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

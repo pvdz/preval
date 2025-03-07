@@ -20,6 +20,36 @@ ARR.push(count);
 $(NOOP);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const ARR /*:array*/ = [`a`, `b`, `c`];
+const NOOP /*:()=>unknown*/ = function () {
+  debugger;
+  $(ARR);
+  return undefined;
+};
+ARR.unshift(10, $);
+$(5);
+ARR.push(5);
+$(NOOP);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const ARR = [`a`, `b`, `c`];
+const NOOP = function () {
+  $(ARR);
+};
+ARR.unshift(10, $);
+$(5);
+ARR.push(5);
+$(NOOP);
+`````
+
 ## Pre Normal
 
 
@@ -51,24 +81,7 @@ ARR.push(count);
 $(NOOP);
 `````
 
-## Output
-
-
-`````js filename=intro
-const ARR /*:array*/ = [`a`, `b`, `c`];
-const NOOP /*:()=>unknown*/ = function () {
-  debugger;
-  $(ARR);
-  return undefined;
-};
-ARR.unshift(10, $);
-$(5);
-ARR.push(5);
-$(NOOP);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +101,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5
@@ -99,7 +112,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_unshift

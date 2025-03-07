@@ -22,6 +22,52 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpClusterSSA_a /*:unknown*/ = undefined;
+const tmpObjLitVal /*:object*/ = { y: 1 };
+const b /*:object*/ = { x: tmpObjLitVal };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$5) {
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject == null;
+  if (tmpIfTest$7) {
+  } else {
+    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+    tmpClusterSSA_a = tmpChainElementObject$1;
+  }
+}
+$(tmpClusterSSA_a);
+$(`fail1`);
+$(`fail2`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpClusterSSA_a = undefined;
+const tmpObjLitVal = { y: 1 };
+const tmpChainElementCall = $({ x: tmpObjLitVal });
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    const tmpChainRootComputed$1 = $(`y`);
+    tmpClusterSSA_a = tmpChainElementObject[tmpChainRootComputed$1];
+  }
+}
+$(tmpClusterSSA_a);
+$(`fail1`);
+$(`fail2`);
+`````
+
 ## Pre Normal
 
 
@@ -103,34 +149,7 @@ if (tmpIfTest$11) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpClusterSSA_a /*:unknown*/ = undefined;
-const tmpObjLitVal /*:object*/ = { y: 1 };
-const b /*:object*/ = { x: tmpObjLitVal };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$5) {
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject == null;
-  if (tmpIfTest$7) {
-  } else {
-    const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpClusterSSA_a = tmpChainElementObject$1;
-  }
-}
-$(tmpClusterSSA_a);
-$(`fail1`);
-$(`fail2`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -164,7 +183,7 @@ $( "fail2" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '{"y":"1"}' }
@@ -179,4 +198,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

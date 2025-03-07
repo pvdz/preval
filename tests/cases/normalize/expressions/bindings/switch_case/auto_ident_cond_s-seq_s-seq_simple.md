@@ -16,6 +16,20 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(60);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(60);
+`````
+
 ## Pre Normal
 
 
@@ -51,15 +65,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(60);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +76,7 @@ $( 60 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 60
@@ -80,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -21,6 +21,41 @@ $(f());
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  if (y) {
+    return y;
+  } else {
+    const x /*:boolean*/ = Boolean(y);
+    return x;
+  }
+};
+const tmpCalleeParam /*:unknown*/ = f();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:unknown*/ = f();
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  if (y) {
+    return y;
+  } else {
+    const x = Boolean(y);
+    return x;
+  }
+};
+$(f());
+$(f());
+`````
+
 ## Pre Normal
 
 
@@ -57,27 +92,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  if (y) {
-    return y;
-  } else {
-    const x /*:boolean*/ = Boolean(y);
-    return x;
-  }
-};
-const tmpCalleeParam /*:unknown*/ = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:unknown*/ = f();
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +118,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -112,4 +127,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

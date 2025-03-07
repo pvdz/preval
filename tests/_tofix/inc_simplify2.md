@@ -30,6 +30,24 @@ const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let flag = true;
+let b = 12;
+while (true) {
+  if (flag) {
+    $(100);
+    flag = b;
+    b = b + 1;
+  } else {
+    break;
+  }
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -68,7 +86,7 @@ const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -87,8 +105,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -150,4 +167,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

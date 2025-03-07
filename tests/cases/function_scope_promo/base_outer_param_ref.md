@@ -25,6 +25,64 @@ function h(x) {
 $(h($(10)));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $(10);
+if ($) {
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
+  if ($) {
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
+    if ($) {
+      $(`prevent`);
+      $(`simple`);
+      $(`inlining`);
+      $(tmpCalleeParam$1);
+    } else {
+      $(tmpCalleeParam$1);
+    }
+  } else {
+    $(tmpCalleeParam$1);
+  }
+} else {
+  $(tmpCalleeParam$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam$1 = $(10);
+if ($) {
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
+  if ($) {
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
+    if ($) {
+      $(`prevent`);
+      $(`simple`);
+      $(`inlining`);
+      $(tmpCalleeParam$1);
+    } else {
+      $(tmpCalleeParam$1);
+    }
+  } else {
+    $(tmpCalleeParam$1);
+  }
+} else {
+  $(tmpCalleeParam$1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -104,37 +162,7 @@ const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(10);
-if ($) {
-  $(`prevent`);
-  $(`simple`);
-  $(`inlining`);
-  if ($) {
-    $(`prevent`);
-    $(`simple`);
-    $(`inlining`);
-    if ($) {
-      $(`prevent`);
-      $(`simple`);
-      $(`inlining`);
-      $(tmpCalleeParam$1);
-    } else {
-      $(tmpCalleeParam$1);
-    }
-  } else {
-    $(tmpCalleeParam$1);
-  }
-} else {
-  $(tmpCalleeParam$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -170,7 +198,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -190,4 +218,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

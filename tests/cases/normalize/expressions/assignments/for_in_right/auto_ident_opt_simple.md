@@ -16,6 +16,39 @@ for (let x in (a = b?.x));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClusterSSA_tmpForInGen /*:unknown*/ = $forIn(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpClusterSSA_tmpForInGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClusterSSA_tmpForInGen = $forIn(1);
+while (true) {
+  const tmpForInNext = tmpClusterSSA_tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(1);
+`````
+
 ## Pre Normal
 
 
@@ -64,25 +97,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClusterSSA_tmpForInGen /*:unknown*/ = $forIn(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpClusterSSA_tmpForInGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest$1) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-$(1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +119,7 @@ $( 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -114,7 +129,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpClusterSSA_tmpForInGen_next

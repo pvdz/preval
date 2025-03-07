@@ -16,6 +16,64 @@ for (; $(1); a = $($(b)).x--);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+const b /*:object*/ = { x: 1 };
+if (tmpIfTest) {
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
+  const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
+  tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  a = tmpPostUpdArgVal;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$1 /*:unknown*/ = $(b);
+      const tmpPostUpdArgObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+      const tmpPostUpdArgVal$1 /*:unknown*/ = tmpPostUpdArgObj$1.x;
+      const tmpAssignMemRhs$1 /*:number*/ = tmpPostUpdArgVal$1 - 1;
+      tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
+      a = tmpPostUpdArgVal$1;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+const b = { x: 1 };
+if (tmpIfTest) {
+  const tmpPostUpdArgObj = $($(b));
+  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  tmpPostUpdArgObj.x = tmpPostUpdArgVal - 1;
+  a = tmpPostUpdArgVal;
+  while (true) {
+    if ($(1)) {
+      const tmpPostUpdArgObj$1 = $($(b));
+      const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
+      tmpPostUpdArgObj$1.x = tmpPostUpdArgVal$1 - 1;
+      a = tmpPostUpdArgVal$1;
+    } else {
+      break;
+    }
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -53,40 +111,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { x: 1 };
-if (tmpIfTest) {
-  const tmpCalleeParam /*:unknown*/ = $(b);
-  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
-  tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  a = tmpPostUpdArgVal;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpCalleeParam$1 /*:unknown*/ = $(b);
-      const tmpPostUpdArgObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      const tmpPostUpdArgVal$1 /*:unknown*/ = tmpPostUpdArgObj$1.x;
-      const tmpAssignMemRhs$1 /*:number*/ = tmpPostUpdArgVal$1 - 1;
-      tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-      a = tmpPostUpdArgVal$1;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -125,7 +150,7 @@ $( a, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -160,7 +185,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -16,6 +16,51 @@ $((a = (1, 2, $(b))?.x) && $(100));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const b /*:object*/ = { x: 1 };
+const tmpChainRootProp /*:unknown*/ = $(b);
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+let tmpCalleeParam /*:unknown*/ = undefined;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
+  a = tmpChainElementObject;
+  tmpCalleeParam = tmpChainElementObject;
+}
+if (a) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const tmpChainRootProp = $({ x: 1 });
+const tmpIfTest = tmpChainRootProp == null;
+let tmpCalleeParam = undefined;
+if (!tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  a = tmpChainElementObject;
+  tmpCalleeParam = tmpChainElementObject;
+}
+if (a) {
+  $($(100));
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -49,32 +94,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const b /*:object*/ = { x: 1 };
-const tmpChainRootProp /*:unknown*/ = $(b);
-const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpCalleeParam /*:unknown*/ = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpCalleeParam = tmpChainElementObject;
-}
-if (a) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +125,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -118,4 +138,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

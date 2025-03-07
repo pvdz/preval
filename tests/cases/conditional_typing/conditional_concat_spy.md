@@ -27,6 +27,38 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const lastType /*:unknown*/ = $(2097173);
+const tmpBinBothRhs /*:unknown*/ = $spy();
+const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
+if (tmpIfTest$1787) {
+  const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL} (at EOF)`;
+  $(`-->`, tmpClusterSSA_fullErrmsg);
+} else {
+  const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL}`;
+  $(`-->`, tmpBinBothLhs$253);
+}
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const lastType = $(2097173);
+const tmpStringConcatL = $coerce($spy(), `plustr`);
+if (lastType === 2097173) {
+  $(`-->`, `Parser error! ${tmpStringConcatL} (at EOF)`);
+} else {
+  $(`-->`, `Parser error! ${tmpStringConcatL}`);
+}
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -73,26 +105,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const lastType /*:unknown*/ = $(2097173);
-const tmpBinBothRhs /*:unknown*/ = $spy();
-const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
-if (tmpIfTest$1787) {
-  const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL} (at EOF)`;
-  $(`-->`, tmpClusterSSA_fullErrmsg);
-} else {
-  const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL}`;
-  $(`-->`, tmpBinBothLhs$253);
-}
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +128,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2097173
@@ -129,4 +142,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

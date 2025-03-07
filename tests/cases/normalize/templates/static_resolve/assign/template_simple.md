@@ -14,6 +14,20 @@ x = `${`I am a string`}`;
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`I am a string`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`I am a string`);
+`````
+
 ## Pre Normal
 
 
@@ -35,15 +49,7 @@ x = $coerce(tmpBinLhs, `plustr`);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`I am a string`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +60,7 @@ $( "I am a string" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'I am a string'
@@ -64,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

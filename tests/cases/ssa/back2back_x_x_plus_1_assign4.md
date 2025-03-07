@@ -61,6 +61,78 @@ if ($) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  let x /*:unknown*/ = $(5);
+  $(x);
+  const tmpCalleeParam /*:object*/ = {
+    toString() {
+      debugger;
+      x = 200;
+      if ($) {
+        $(200, `t`);
+      } else {
+      }
+      $(x);
+      if ($) {
+        $(11);
+        return `hi`;
+      } else {
+        return `hi`;
+      }
+    },
+  };
+  x = $(tmpCalleeParam);
+  x = x + 1;
+  if ($) {
+    $(x);
+  } else {
+  }
+  $(x, `t`);
+  if ($) {
+    $(10);
+  } else {
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  let x = $(5);
+  $(x);
+  x = $({
+    toString() {
+      x = 200;
+      if ($) {
+        $(200, `t`);
+      }
+      $(x);
+      if ($) {
+        $(11);
+        return `hi`;
+      } else {
+        return `hi`;
+      }
+    },
+  });
+  x = x + 1;
+  if ($) {
+    $(x);
+  }
+  $(x, `t`);
+  if ($) {
+    $(10);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -169,47 +241,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  let x /*:unknown*/ = $(5);
-  $(x);
-  const tmpCalleeParam /*:object*/ = {
-    toString() {
-      debugger;
-      x = 200;
-      if ($) {
-        $(200, `t`);
-      } else {
-      }
-      $(x);
-      if ($) {
-        $(11);
-        return `hi`;
-      } else {
-        return `hi`;
-      }
-    },
-  };
-  x = $(tmpCalleeParam);
-  x = x + 1;
-  if ($) {
-    $(x);
-  } else {
-  }
-  $(x, `t`);
-  if ($) {
-    $(10);
-  } else {
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -247,7 +279,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5
@@ -265,4 +297,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,48 @@ while ((a = b?.c(1))) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: $ };
+const tmpChainElementCall /*:unknown*/ = b.c(1);
+let tmpClusterSSA_a /*:unknown*/ = tmpChainElementCall;
+if (tmpChainElementCall) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpChainElementCall$1 /*:unknown*/ = b.c(1);
+    tmpClusterSSA_a = tmpChainElementCall$1;
+    if (tmpChainElementCall$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: $ };
+const tmpChainElementCall = b.c(1);
+let tmpClusterSSA_a = tmpChainElementCall;
+if (tmpChainElementCall) {
+  while (true) {
+    $(100);
+    const tmpChainElementCall$1 = b.c(1);
+    tmpClusterSSA_a = tmpChainElementCall$1;
+    if (!tmpChainElementCall$1) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -51,30 +93,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = b.c(1);
-let tmpClusterSSA_a /*:unknown*/ = tmpChainElementCall;
-if (tmpChainElementCall) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpChainElementCall$1 /*:unknown*/ = b.c(1);
-    tmpClusterSSA_a = tmpChainElementCall$1;
-    if (tmpChainElementCall$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +120,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -136,7 +155,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -15,6 +15,23 @@ const f = regex.test;
 $dotCall(f, regex, 'test', arg, {some: 'stuff'});
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arg /*:unknown*/ = $(`give food`);
+const regex /*:regex*/ = /foo/;
+const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
+regex.test(arg, tmpCalleeParam$5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+/foo/.test($(`give food`), { some: `stuff` });
+`````
+
 ## Pre Normal
 
 
@@ -39,18 +56,7 @@ const tmpCalleeParam$5 = { some: `stuff` };
 $dotCall(tmpCalleeParam, tmpCalleeParam$1, `test`, tmpCalleeParam$3, tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arg /*:unknown*/ = $(`give food`);
-const regex /*:regex*/ = /foo/;
-const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
-regex.test(arg, tmpCalleeParam$5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +70,7 @@ b.test( a, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'give food'
@@ -74,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

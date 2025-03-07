@@ -16,6 +16,25 @@ $({ [(a = b = $(2))]: 10 });
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
+const tmpCalleeParam /*:object*/ = { [tmpNestedComplexRhs]: 10 };
+$(tmpCalleeParam);
+$(tmpNestedComplexRhs, tmpNestedComplexRhs);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedComplexRhs = $(2);
+$({ [tmpNestedComplexRhs]: 10 });
+$(tmpNestedComplexRhs, tmpNestedComplexRhs);
+`````
+
 ## Pre Normal
 
 
@@ -42,18 +61,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNestedComplexRhs /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { [tmpNestedComplexRhs]: 10 };
-$(tmpCalleeParam);
-$(tmpNestedComplexRhs, tmpNestedComplexRhs);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -67,7 +75,7 @@ $( a, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -79,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

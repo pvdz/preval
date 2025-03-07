@@ -16,6 +16,24 @@ a = ((b = c.x), $(b)).y === 'Identifier';
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:object*/ = { y: 10 };
+const tmpCompObj /*:unknown*/ = $(tmpObjLitVal);
+const tmpBinLhs /*:unknown*/ = tmpCompObj.y;
+const tmpClusterSSA_a /*:boolean*/ = tmpBinLhs === `Identifier`;
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($({ y: 10 }).y === `Identifier`);
+`````
+
 ## Pre Normal
 
 
@@ -42,19 +60,7 @@ a = tmpBinLhs === `Identifier`;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:object*/ = { y: 10 };
-const tmpCompObj /*:unknown*/ = $(tmpObjLitVal);
-const tmpBinLhs /*:unknown*/ = tmpCompObj.y;
-const tmpClusterSSA_a /*:boolean*/ = tmpBinLhs === `Identifier`;
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +75,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { y: '10' }
@@ -80,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

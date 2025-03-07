@@ -16,6 +16,52 @@ $((a = ++$($(b)).x) || (a = ++$($(b)).x));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+let tmpClusterSSA_a /*:unknown*/ = tmpNestedPropCompoundComplexRhs;
+if (tmpNestedPropCompoundComplexRhs) {
+  $(tmpNestedPropCompoundComplexRhs);
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(b);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs$1 + 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
+  $(varInitAssignLhsComputedRhs);
+}
+$(tmpClusterSSA_a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpNestedAssignObj = $($(b));
+const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+let tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs;
+if (tmpNestedPropCompoundComplexRhs) {
+  $(tmpNestedPropCompoundComplexRhs);
+} else {
+  const varInitAssignLhsComputedObj = $($(b));
+  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x + 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
+  $(varInitAssignLhsComputedRhs);
+}
+$(tmpClusterSSA_a, b);
+`````
+
 ## Pre Normal
 
 
@@ -54,33 +100,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedPropCompoundComplexRhs;
-if (tmpNestedPropCompoundComplexRhs) {
-  $(tmpNestedPropCompoundComplexRhs);
-} else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$3);
-  const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj.x;
-  const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs$1 + 1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
-}
-$(tmpClusterSSA_a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +130,7 @@ $( f, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -123,4 +143,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

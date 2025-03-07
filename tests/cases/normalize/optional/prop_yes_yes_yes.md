@@ -13,6 +13,41 @@ const a = {};
 $(a?.b?.c?.d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject$1 == null;
+  if (tmpIfTest$3) {
+  } else {
+    const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1.d;
+    tmpCalleeParam = tmpChainElementObject$3;
+  }
+}
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = undefined;
+const tmpChainElementObject = $Object_prototype.b;
+if (!(tmpChainElementObject == null)) {
+  const tmpChainElementObject$1 = tmpChainElementObject.c;
+  if (!(tmpChainElementObject$1 == null)) {
+    tmpCalleeParam = tmpChainElementObject$1.d;
+  }
+}
+$(tmpCalleeParam);
+`````
+
 ## Pre Normal
 
 
@@ -47,28 +82,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
-const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
-  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject$1 == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1.d;
-    tmpCalleeParam = tmpChainElementObject$3;
-  }
-}
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +110,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -106,4 +120,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

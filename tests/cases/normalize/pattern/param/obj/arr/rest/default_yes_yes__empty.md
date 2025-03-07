@@ -15,6 +15,42 @@ function f({ x: [...y] = $(['fail']) } = $({ x: ['pass2'] })) {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:array*/ = [`pass2`];
+const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
+const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$1 /*:array*/ = [`fail`];
+  objPatternAfterDefault = $(tmpCalleeParam$1);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
+const y /*:array*/ = arrPatternSplat.slice(0);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = [`pass2`];
+const objPatternBeforeDefault = $({ x: tmpObjLitVal }).x;
+let objPatternAfterDefault = undefined;
+if (objPatternBeforeDefault === undefined) {
+  objPatternAfterDefault = $([`fail`]);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+$([...objPatternAfterDefault].slice(0));
+`````
+
 ## Pre Normal
 
 
@@ -61,29 +97,7 @@ const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:array*/ = [`pass2`];
-const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:array*/ = [`fail`];
-  objPatternAfterDefault = $(tmpCalleeParam$1);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const y /*:array*/ = arrPatternSplat.slice(0);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,7 +123,7 @@ $( i );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '["pass2"]' }
@@ -120,7 +134,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

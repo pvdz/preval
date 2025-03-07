@@ -20,6 +20,51 @@ function a(){}
 $(a,b,d,f,h,x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const b /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const d /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const h /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const x /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+$(a, b, d, f, h, x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(
+  function () {},
+  function () {},
+  function () {},
+  function () {},
+  function () {},
+  function () {},
+);
+`````
+
 ## Pre Normal
 
 
@@ -83,39 +128,7 @@ let x = function () {
 $(a, b, d, f, h, x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const b /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const d /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const h /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const x /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-$(a, b, d, f, h, x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -150,7 +163,7 @@ $( a, b, c, d, e, f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>', '<function>', '<function>', '<function>', '<function>', '<function>'
@@ -160,4 +173,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -23,6 +23,43 @@ $continue: {
 $('end');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`start`);
+if ($) {
+  $(`inner`);
+} else {
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      $(`inner`);
+      break;
+    } else {
+    }
+  }
+}
+$(`end`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`start`);
+if ($) {
+  $(`inner`);
+} else {
+  while (true) {
+    if ($) {
+      $(`inner`);
+      break;
+    }
+  }
+}
+$(`end`);
+`````
+
 ## Pre Normal
 
 
@@ -54,27 +91,7 @@ while (true) {
 $(`end`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`start`);
-if ($) {
-  $(`inner`);
-} else {
-  while ($LOOP_UNROLL_10) {
-    if ($) {
-      $(`inner`);
-      break;
-    } else {
-    }
-  }
-}
-$(`end`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +114,7 @@ $( "end" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'start'
@@ -109,7 +126,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support referencing this builtin in isFree: $

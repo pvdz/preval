@@ -30,6 +30,66 @@ $(typeof Number.POSITIVE_INFINITY, 'Number.POSITIVE_INFINITY');
 $(typeof Number.NaN, 'Number.NaN');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $spy(`isNaN`);
+$coerce(tmpCalleeParam$1, `number`);
+$(`boolean`);
+const tmpCalleeParam$5 /*:unknown*/ = $spy(`isFinite`);
+$coerce(tmpCalleeParam$5, `number`);
+$(`boolean`);
+$spy(`Number.isFinite`);
+$(`boolean`);
+$spy(`Number.isInteger`);
+$(`boolean`);
+$spy(`Number.isNaN`);
+$(`boolean`);
+$spy(`Number.isSafeInteger`);
+$(`boolean`);
+const tmpCalleeParam$25 /*:unknown*/ = $spy(`Number.parseFloat`);
+$coerce(tmpCalleeParam$25, `string`);
+$(`number`);
+const tmpCalleeParam$29 /*:unknown*/ = $spy(`Number.parseInt`);
+$coerce(tmpCalleeParam$29, `string`);
+$(`number`);
+$(`number`, `Number.EPSILON`);
+$(`number`, `Number.MAX_VALUE`);
+$(`number`, `Number.MIN_VALUE`);
+$(`number`, `Number.NEGATIVE_INFINITY`);
+$(`number`, `Number.POSITIVE_INFINITY`);
+$(`number`, `Number.NaN`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$coerce($spy(`isNaN`), `number`);
+$(`boolean`);
+$coerce($spy(`isFinite`), `number`);
+$(`boolean`);
+$spy(`Number.isFinite`);
+$(`boolean`);
+$spy(`Number.isInteger`);
+$(`boolean`);
+$spy(`Number.isNaN`);
+$(`boolean`);
+$spy(`Number.isSafeInteger`);
+$(`boolean`);
+$coerce($spy(`Number.parseFloat`), `string`);
+$(`number`);
+$coerce($spy(`Number.parseInt`), `string`);
+$(`number`);
+$(`number`, `Number.EPSILON`);
+$(`number`, `Number.MAX_VALUE`);
+$(`number`, `Number.MIN_VALUE`);
+$(`number`, `Number.NEGATIVE_INFINITY`);
+$(`number`, `Number.POSITIVE_INFINITY`);
+$(`number`, `Number.NaN`);
+`````
+
 ## Pre Normal
 
 
@@ -106,40 +166,7 @@ const tmpCalleeParam$41 = typeof tmpUnaryArg$25;
 $(tmpCalleeParam$41, `Number.NaN`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`isNaN`);
-$coerce(tmpCalleeParam$1, `number`);
-$(`boolean`);
-const tmpCalleeParam$5 /*:unknown*/ = $spy(`isFinite`);
-$coerce(tmpCalleeParam$5, `number`);
-$(`boolean`);
-$spy(`Number.isFinite`);
-$(`boolean`);
-$spy(`Number.isInteger`);
-$(`boolean`);
-$spy(`Number.isNaN`);
-$(`boolean`);
-$spy(`Number.isSafeInteger`);
-$(`boolean`);
-const tmpCalleeParam$25 /*:unknown*/ = $spy(`Number.parseFloat`);
-$coerce(tmpCalleeParam$25, `string`);
-$(`number`);
-const tmpCalleeParam$29 /*:unknown*/ = $spy(`Number.parseInt`);
-$coerce(tmpCalleeParam$29, `string`);
-$(`number`);
-$(`number`, `Number.EPSILON`);
-$(`number`, `Number.MAX_VALUE`);
-$(`number`, `Number.MIN_VALUE`);
-$(`number`, `Number.NEGATIVE_INFINITY`);
-$(`number`, `Number.POSITIVE_INFINITY`);
-$(`number`, `Number.NaN`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -175,7 +202,7 @@ $( "number", "Number.NaN" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['isNaN', 'isNaN']
@@ -210,7 +237,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_isFinite

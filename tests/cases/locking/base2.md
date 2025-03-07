@@ -31,6 +31,44 @@ g();
 $(undefined);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let f /*:boolean*/ = true;
+const g /*:()=>unknown*/ = function () {
+  debugger;
+  if (f) {
+    $(`call me once`);
+    f = false;
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let f = true;
+const g = function () {
+  if (f) {
+    $(`call me once`);
+    f = false;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -83,29 +121,7 @@ g();
 $(undefined);
 `````
 
-## Output
-
-
-`````js filename=intro
-let f /*:boolean*/ = true;
-const g /*:()=>unknown*/ = function () {
-  debugger;
-  if (f) {
-    $(`call me once`);
-    f = false;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-g();
-$(undefined);
-g();
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -131,7 +147,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'call me once'
@@ -143,4 +159,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

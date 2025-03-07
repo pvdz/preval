@@ -23,6 +23,15 @@ $(_0x5576());
 $(_0x5576());
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const _0x5576 = [`W4BcO8kAW5RdGa`, `AH7cVXhdHa`];
+$(_0x5576);
+$(_0x5576);
+`````
+
 ## Pre Normal
 
 
@@ -61,7 +70,7 @@ const tmpCalleeParam$1 = _0x5576();
 $(tmpCalleeParam$1);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -70,8 +79,7 @@ $(_0x5576);
 $(_0x5576);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -95,4 +103,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- switch me to ref tracking

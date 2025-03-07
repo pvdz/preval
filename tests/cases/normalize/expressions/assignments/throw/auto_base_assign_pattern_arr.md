@@ -16,6 +16,28 @@ throw (a = [b] = $([$(2)]));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpArrElement /*:unknown*/ = $(2);
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+arrPatternSplat[0];
+throw tmpNestedAssignArrPatternRhs;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArrElement = $(2);
+const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
+[...tmpNestedAssignArrPatternRhs][0];
+throw tmpNestedAssignArrPatternRhs;
+`````
+
 ## Pre Normal
 
 
@@ -42,20 +64,7 @@ let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpArrElement /*:unknown*/ = $(2);
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
-throw tmpNestedAssignArrPatternRhs;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +80,7 @@ throw c;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -82,7 +91,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -17,6 +17,14 @@ existing test
 $(a = 5);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+a = 5;
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -33,7 +41,7 @@ let tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -42,8 +50,7 @@ const tmpCalleeParam /*:unknown*/ = a;
 $(tmpCalleeParam);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -67,4 +74,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

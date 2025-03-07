@@ -16,6 +16,37 @@ let a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(2);
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+tmpNestedAssignObjPatternRhs.b;
+const tmpObjLitVal$1 /*:unknown*/ = $(2);
+const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
+tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, tmpClusterSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(2);
+const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
+tmpNestedAssignObjPatternRhs.b;
+const tmpObjLitVal$1 = $(2);
+const tmpNestedAssignObjPatternRhs$1 = $({ b: tmpObjLitVal$1 });
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
+$({ a: 999, b: 1000 }, tmpClusterSSA_b);
+`````
+
 ## Pre Normal
 
 
@@ -48,25 +79,7 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-tmpNestedAssignObjPatternRhs.b;
-const tmpObjLitVal$1 /*:unknown*/ = $(2);
-const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
-const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
-tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -90,7 +103,7 @@ $( h, g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -104,4 +117,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

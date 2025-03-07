@@ -19,6 +19,34 @@ if (y !== 200) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(200);
+const y /*:number*/ = x & 200;
+$(y);
+const tmpIfTest /*:boolean*/ = y === 200;
+if (tmpIfTest) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const y = $(200) & 200;
+$(y);
+if (y === 200) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -48,23 +76,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(200);
-const y /*:number*/ = x & 200;
-$(y);
-const tmpIfTest /*:boolean*/ = y === 200;
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +96,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 200
@@ -96,4 +108,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

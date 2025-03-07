@@ -15,6 +15,36 @@ function f([[x = $('fail')] = $(['pass2'])]) {
 $(f([], 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`pass2`];
+const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
+const arrPatternBeforeDefault$1 /*:unknown*/ = arrPatternSplat$1[0];
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
+  $(tmpClusterSSA_x);
+} else {
+  $(arrPatternBeforeDefault$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arrPatternStep = $([`pass2`]);
+const arrPatternBeforeDefault$1 = [...arrPatternStep][0];
+if (arrPatternBeforeDefault$1 === undefined) {
+  $($(`fail`));
+} else {
+  $(arrPatternBeforeDefault$1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -64,25 +94,7 @@ const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 200);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`pass2`];
-const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const arrPatternBeforeDefault$1 /*:unknown*/ = arrPatternSplat$1[0];
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
-  $(tmpClusterSSA_x);
-} else {
-  $(arrPatternBeforeDefault$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +116,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['pass2']
@@ -115,7 +127,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -15,6 +15,21 @@ function f({ x: [...y] = $(['fail']) }) {
 $(f({ x: [, , , 1], a: 11, b: 12 }, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const y /*:array*/ = [undefined, undefined, undefined, 1];
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([undefined, undefined, undefined, 1]);
+`````
+
 ## Pre Normal
 
 
@@ -56,16 +71,7 @@ const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 10);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const y /*:array*/ = [undefined, undefined, undefined, 1];
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +83,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [undefined, undefined, undefined, 1]
@@ -87,7 +93,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

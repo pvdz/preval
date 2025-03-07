@@ -16,6 +16,49 @@ for (b[$("$")](1).x in $({ x: 1 }));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const b /*:object*/ = { $: $ };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCallCompProp /*:unknown*/ = $(`\$`);
+    const tmpAssignMemLhsObj /*:unknown*/ = b[tmpCallCompProp](1);
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn($({ x: 1 }));
+const b = { $: $ };
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    const tmpCallCompProp = $(`\$`);
+    const tmpAssignMemLhsObj = b[tmpCallCompProp](1);
+    tmpAssignMemLhsObj.x = tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -62,32 +105,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-const b /*:object*/ = { $: $ };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpCallCompProp /*:unknown*/ = $(`\$`);
-    const tmpAssignMemLhsObj /*:unknown*/ = b[tmpCallCompProp](1);
-    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +137,7 @@ $( j );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -131,7 +149,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -13,6 +13,22 @@ const x = {1: 'pass'};
 $(x[[1]]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:object*/ = { [1]: `pass` };
+const tmpCalleeParam /*:unknown*/ = x[`1`];
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ [1]: `pass` }[`1`]);
+`````
+
 ## Pre Normal
 
 
@@ -32,17 +48,7 @@ const tmpCalleeParam = tmpCompObj[tmpCompProp];
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:object*/ = { [1]: `pass` };
-const tmpCalleeParam /*:unknown*/ = x[`1`];
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +61,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -65,4 +71,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

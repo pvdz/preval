@@ -23,6 +23,30 @@ if (tmpTernaryTest) {
 f(tmpArg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinaryLeft /*:unknown*/ = a.x;
+const tmpTernaryTest /*:boolean*/ = tmpBinaryLeft === 1;
+if (tmpTernaryTest) {
+  f(2);
+} else {
+  f(3);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (a.x === 1) {
+  f(2);
+} else {
+  f(3);
+}
+`````
+
 ## Pre Normal
 
 
@@ -64,21 +88,7 @@ if (tmpTernaryTest) {
 f(tmpArg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinaryLeft /*:unknown*/ = a.x;
-const tmpTernaryTest /*:boolean*/ = tmpBinaryLeft === 1;
-if (tmpTernaryTest) {
-  f(2);
-} else {
-  f(3);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +108,7 @@ BAD@! Found 2 implicit global bindings:
 
 a, f
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -107,4 +117,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -25,6 +25,20 @@ function g() {
 g()();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(0);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(0);
+`````
+
 ## Pre Normal
 
 
@@ -60,15 +74,7 @@ const tmpCallComplexCallee = g();
 tmpCallComplexCallee();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(0);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +85,7 @@ $( 0 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -88,6 +94,10 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - 1: 0
+ - eval returned: undefined
+
+Denormalized calls: BAD!!
  - 1: 0
  - eval returned: undefined

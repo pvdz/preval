@@ -19,6 +19,37 @@ f();
 $(String(arr));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(`updating`);
+  arr[0] = `pass`;
+  return undefined;
+};
+const arr /*:array*/ = [`fail`, 2, 3];
+f();
+f();
+const tmpCalleeParam /*:string*/ = $coerce(arr, `string`);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`updating`);
+  arr[0] = `pass`;
+};
+const arr = [`fail`, 2, 3];
+f();
+f();
+$($coerce(arr, `string`));
+`````
+
 ## Pre Normal
 
 
@@ -52,25 +83,7 @@ const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(`updating`);
-  arr[0] = `pass`;
-  return undefined;
-};
-const arr /*:array*/ = [`fail`, 2, 3];
-f();
-f();
-const tmpCalleeParam /*:string*/ = $coerce(arr, `string`);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +104,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'updating'
@@ -103,4 +116,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

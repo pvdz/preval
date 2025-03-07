@@ -13,6 +13,28 @@ let o = $(undefined);
 delete o?.x;
 `````
 
+## Settled
+
+
+`````js filename=intro
+const o /*:unknown*/ = $(undefined);
+const tmpIfTest /*:boolean*/ = o == null;
+if (tmpIfTest) {
+} else {
+  delete o.x;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const o = $(undefined);
+if (!(o == null)) {
+  delete o.x;
+}
+`````
+
 ## Pre Normal
 
 
@@ -34,20 +56,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const o /*:unknown*/ = $(undefined);
-const tmpIfTest /*:boolean*/ = o == null;
-if (tmpIfTest) {
-} else {
-  delete o.x;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +74,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -75,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

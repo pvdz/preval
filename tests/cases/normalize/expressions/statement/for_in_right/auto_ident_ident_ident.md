@@ -17,6 +17,40 @@ for (let x in (b = 2));
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpForInGen /*:unknown*/ = $forIn(2);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, 2, 2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn(2);
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 }, 2, 2);
+`````
+
 ## Pre Normal
 
 
@@ -60,26 +94,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpForInGen /*:unknown*/ = $forIn(2);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, 2, 2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +120,7 @@ $( d, 2, 2 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '999', b: '1000' }, 2, 2
@@ -115,7 +130,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

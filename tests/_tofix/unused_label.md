@@ -20,6 +20,13 @@ const s = f();
 $(s);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(1, `return`));
+`````
+
 ## Pre Normal
 
 
@@ -52,7 +59,7 @@ const s = f();
 $(s);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -60,8 +67,7 @@ const t /*:unknown*/ = $(1, `return`);
 $(t);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

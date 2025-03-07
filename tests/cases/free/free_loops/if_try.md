@@ -101,6 +101,20 @@ const tmpCalleeParam$23 = thisisanarrayyesyes[0];
 $(tmpCalleeParam$23);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`Qdcyq`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`Qdcyq`);
+`````
+
 ## Pre Normal
 
 
@@ -322,15 +336,7 @@ const tmpCalleeParam$23 = thisisanarrayyesyes[0];
 $(tmpCalleeParam$23);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`Qdcyq`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -341,7 +347,7 @@ $( "Qdcyq" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Qdcyq'
@@ -351,7 +357,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

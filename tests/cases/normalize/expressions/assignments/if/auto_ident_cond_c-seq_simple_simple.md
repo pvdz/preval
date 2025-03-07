@@ -14,6 +14,32 @@ if ((a = (10, 20, $(30)) ? $(2) : $($(100))));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest$1 /*:unknown*/ = $(30);
+if (tmpIfTest$1) {
+  const tmpClusterSSA_a /*:unknown*/ = $(2);
+  $(tmpClusterSSA_a);
+} else {
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
+  $(tmpClusterSSA_a$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(30)) {
+  $($(2));
+} else {
+  $($($(100)));
+}
+`````
+
 ## Pre Normal
 
 
@@ -39,23 +65,7 @@ let tmpIfTest = a;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest$1 /*:unknown*/ = $(30);
-if (tmpIfTest$1) {
-  const tmpClusterSSA_a /*:unknown*/ = $(2);
-  $(tmpClusterSSA_a);
-} else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
-  $(tmpClusterSSA_a$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +85,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 30
@@ -87,4 +97,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -18,6 +18,30 @@ if (y) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(1);
+const y /*:boolean*/ = x != 1;
+if (y) {
+  $(`if`);
+} else {
+  $(`else`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(1) != 1) {
+  $(`if`);
+} else {
+  $(`else`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -44,21 +68,7 @@ if (y) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(1);
-const y /*:boolean*/ = x != 1;
-if (y) {
-  $(`if`);
-} else {
-  $(`else`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +86,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -87,4 +97,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

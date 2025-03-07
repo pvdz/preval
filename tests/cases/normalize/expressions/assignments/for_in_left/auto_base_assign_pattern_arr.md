@@ -16,6 +16,56 @@ for ((a = [b] = $([$(2)])).x in $({ x: 1 }));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:unknown*/ = [];
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpArrElement /*:unknown*/ = $(2);
+    const tmpCalleeParam$3 /*:array*/ = [tmpArrElement];
+    const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
+    const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+    b = arrPatternSplat[0];
+    a = tmpNestedAssignArrPatternRhs;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
+    tmpNestedAssignArrPatternRhs.x = tmpAssignMemRhs;
+  }
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = [];
+let a = { a: 999, b: 1000 };
+const tmpForInGen = $forIn($({ x: 1 }));
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    const tmpArrElement = $(2);
+    const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
+    b = [...tmpNestedAssignArrPatternRhs][0];
+    a = tmpNestedAssignArrPatternRhs;
+    tmpNestedAssignArrPatternRhs.x = tmpForInNext.value;
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -66,36 +116,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:unknown*/ = [];
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpArrElement /*:unknown*/ = $(2);
-    const tmpCalleeParam$3 /*:array*/ = [tmpArrElement];
-    const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
-    const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-    b = arrPatternSplat[0];
-    a = tmpNestedAssignArrPatternRhs;
-    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpNestedAssignArrPatternRhs.x = tmpAssignMemRhs;
-  }
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -131,7 +152,7 @@ $( b, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -144,7 +165,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

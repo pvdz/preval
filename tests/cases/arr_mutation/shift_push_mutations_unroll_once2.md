@@ -25,6 +25,53 @@ while ($LOOP_UNROLL_1) {      // The unrolled body is not in a loop so it can in
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const test /*:unknown*/ = $(`never`);
+const arr /*:array*/ = [1, 2, 3, 4, 5];
+if (test) {
+  const tmpCalleeParam /*:array*/ = arr.slice(0);
+  $(tmpCalleeParam);
+} else {
+  const tmp /*:unknown*/ = arr.shift();
+  arr.push(tmp);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const test$1 /*:unknown*/ = $(`never`);
+    if (test$1) {
+      const tmpCalleeParam$1 /*:array*/ = arr.slice(0);
+      $(tmpCalleeParam$1);
+      break;
+    } else {
+      const tmp$1 /*:unknown*/ = arr.shift();
+      arr.push(tmp$1);
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const test = $(`never`);
+const arr = [1, 2, 3, 4, 5];
+if (test) {
+  $(arr.slice(0));
+} else {
+  arr.push(arr.shift());
+  while (true) {
+    if ($(`never`)) {
+      $(arr.slice(0));
+      break;
+    } else {
+      arr.push(arr.shift());
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -60,34 +107,7 @@ while ($LOOP_UNROLL_1) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const test /*:unknown*/ = $(`never`);
-const arr /*:array*/ = [1, 2, 3, 4, 5];
-if (test) {
-  const tmpCalleeParam /*:array*/ = arr.slice(0);
-  $(tmpCalleeParam);
-} else {
-  const tmp /*:unknown*/ = arr.shift();
-  arr.push(tmp);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const test$1 /*:unknown*/ = $(`never`);
-    if (test$1) {
-      const tmpCalleeParam$1 /*:array*/ = arr.slice(0);
-      $(tmpCalleeParam$1);
-      break;
-    } else {
-      const tmp$1 /*:unknown*/ = arr.shift();
-      arr.push(tmp$1);
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +139,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'never'
@@ -130,7 +150,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

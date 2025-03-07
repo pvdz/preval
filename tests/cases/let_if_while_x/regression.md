@@ -24,6 +24,28 @@ while (true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const t /*:unknown*/ = $(5);
+const x /*:boolean*/ = 0 < t;
+if (x) {
+  $(`inner`);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const t = $(5);
+if (0 < t) {
+  $(`inner`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -60,20 +82,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const t /*:unknown*/ = $(5);
-const x /*:boolean*/ = 0 < t;
-if (x) {
-  $(`inner`);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +97,7 @@ if (b) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5
@@ -99,4 +108,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

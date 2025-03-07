@@ -20,6 +20,69 @@ switch ($(1)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = 2;
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const tmpIfTest$1 /*:unknown*/ = $(1);
+let tmpIfTest /*:boolean*/ = false;
+if (tmpIfTest$1) {
+  tmpIfTest = 2 === tmpSwitchValue;
+} else {
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  a = $(tmpCalleeParam);
+  tmpIfTest = a === tmpSwitchValue;
+}
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$3) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
+  $(`fail1`);
+} else {
+}
+$(`fail2`);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = 2;
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const tmpIfTest$1 = $(1);
+let tmpIfTest = false;
+if (tmpIfTest$1) {
+  tmpIfTest = 2 === tmpSwitchValue;
+} else {
+  a = $($(100));
+  tmpIfTest = a === tmpSwitchValue;
+}
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (tmpSwitchCaseToStart <= 1) {
+  $(`fail1`);
+}
+$(`fail2`);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -84,42 +147,7 @@ if (tmpIfTest$9) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = 2;
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpIfTest$1 /*:unknown*/ = $(1);
-let tmpIfTest /*:boolean*/ = false;
-if (tmpIfTest$1) {
-  tmpIfTest = 2 === tmpSwitchValue;
-} else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam);
-  tmpIfTest = a === tmpSwitchValue;
-}
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$3) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$7) {
-  $(`fail1`);
-} else {
-}
-$(`fail2`);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -157,7 +185,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -171,4 +199,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

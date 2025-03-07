@@ -19,6 +19,55 @@ for (let x in (a = $(b)[$("x")] = $(c)[$("y")] = d + e));
 $(a, b, c, d, e);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+const c /*:object*/ = { y: 2 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+const tmpForInGen /*:unknown*/ = $forIn(7);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(7, b, c, 3, 4);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const c = { y: 2 };
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $(`y`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+const tmpForInGen = $forIn(7);
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(7, b, c, 3, 4);
+`````
+
 ## Pre Normal
 
 
@@ -75,33 +124,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b, c, d, e);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-const tmpForInGen /*:unknown*/ = $forIn(7);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-$(7, b, c, 3, 4);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -131,7 +154,7 @@ $( 7, a, d, 3, 4 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -145,7 +168,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

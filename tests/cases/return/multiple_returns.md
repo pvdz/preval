@@ -37,6 +37,82 @@ $(f());
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    $(1);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
+    if (tmpIfTest$1) {
+      $(2);
+      return undefined;
+    } else {
+      const tmpIfTest$3 /*:unknown*/ = $(true);
+      if (tmpIfTest$3) {
+        $(3);
+        const tmpIfTest$5 /*:unknown*/ = $(true);
+        if (tmpIfTest$5) {
+          $(4);
+          const tmpIfTest$7 /*:unknown*/ = $(true);
+          if (tmpIfTest$7) {
+            $(5);
+            return undefined;
+          } else {
+            return undefined;
+          }
+        } else {
+          return undefined;
+        }
+      } else {
+        return undefined;
+      }
+    }
+  } else {
+    return undefined;
+  }
+};
+f();
+$(10);
+f();
+$(10);
+f();
+$(10);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  if ($(true)) {
+    $(1);
+    if ($(true)) {
+      $(2);
+    } else {
+      if ($(true)) {
+        $(3);
+        if ($(true)) {
+          $(4);
+          if ($(true)) {
+            $(5);
+          }
+        }
+      }
+    }
+  }
+};
+f();
+$(10);
+f();
+$(10);
+f();
+$(10);
+`````
+
 ## Pre Normal
 
 
@@ -116,54 +192,7 @@ const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    $(1);
-    const tmpIfTest$1 /*:unknown*/ = $(true);
-    if (tmpIfTest$1) {
-      $(2);
-      return undefined;
-    } else {
-      const tmpIfTest$3 /*:unknown*/ = $(true);
-      if (tmpIfTest$3) {
-        $(3);
-        const tmpIfTest$5 /*:unknown*/ = $(true);
-        if (tmpIfTest$5) {
-          $(4);
-          const tmpIfTest$7 /*:unknown*/ = $(true);
-          if (tmpIfTest$7) {
-            $(5);
-            return undefined;
-          } else {
-            return undefined;
-          }
-        } else {
-          return undefined;
-        }
-      } else {
-        return undefined;
-      }
-    }
-  } else {
-    return undefined;
-  }
-};
-f();
-$(10);
-f();
-$(10);
-f();
-$(10);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -218,7 +247,7 @@ $( 10 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -242,4 +271,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

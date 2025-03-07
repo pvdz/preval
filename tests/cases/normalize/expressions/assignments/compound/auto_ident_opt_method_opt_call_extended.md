@@ -16,6 +16,42 @@ $((a *= b?.c.d.e?.(1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpClusterSSA_a /*:number*/ = NaN;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+const a /*:object*/ = { a: 999, b: 1000 };
+if (tmpIfTest$1) {
+  a ** 0;
+  $(NaN);
+} else {
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  tmpClusterSSA_a = a * tmpChainElementCall;
+  $(tmpClusterSSA_a);
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpClusterSSA_a = NaN;
+const tmpIfTest$1 = $ == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest$1) {
+  a ** 0;
+  $(NaN);
+} else {
+  tmpClusterSSA_a = a * $dotCall($, { e: $ }, `e`, 1);
+  $(tmpClusterSSA_a);
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -56,27 +92,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpClusterSSA_a /*:number*/ = NaN;
-const tmpIfTest$1 /*:boolean*/ = $ == null;
-const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpIfTest$1) {
-  a ** 0;
-  $(NaN);
-} else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpClusterSSA_a = a * tmpChainElementCall;
-  $(tmpClusterSSA_a);
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +119,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -115,4 +131,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

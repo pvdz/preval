@@ -14,6 +14,25 @@ throw function f() {};
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+throw f;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {};
+throw f;
+`````
+
 ## Pre Normal
 
 
@@ -38,19 +57,7 @@ const tmpThrowArg = f;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-throw f;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +72,7 @@ throw a;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ function() {return undefined;} ]>')
@@ -74,4 +81,7 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: BAD!!
+ - eval returned: ('<crash[ function() {} ]>')

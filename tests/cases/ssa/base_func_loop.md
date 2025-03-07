@@ -21,6 +21,57 @@ function f() {
 if ($) $(f()); // The branching prevents certain flattening
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const x /*:unknown*/ = $(3);
+  $(x);
+  let tmpClusterSSA_x /*:primitive*/ = x + 1;
+  $(tmpClusterSSA_x);
+  const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
+  if (tmpIfTest) {
+  } else {
+    while ($LOOP_UNROLL_10) {
+      tmpClusterSSA_x = tmpClusterSSA_x + 1;
+      $(tmpClusterSSA_x);
+      const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x > 5;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+      }
+    }
+  }
+  $(tmpClusterSSA_x);
+  $(undefined);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  const x = $(3);
+  $(x);
+  let tmpClusterSSA_x = x + 1;
+  $(tmpClusterSSA_x);
+  if (!(tmpClusterSSA_x > 5)) {
+    while (true) {
+      tmpClusterSSA_x = tmpClusterSSA_x + 1;
+      $(tmpClusterSSA_x);
+      if (tmpClusterSSA_x > 5) {
+        break;
+      }
+    }
+  }
+  $(tmpClusterSSA_x);
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -66,36 +117,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const x /*:unknown*/ = $(3);
-  $(x);
-  let tmpClusterSSA_x /*:primitive*/ = x + 1;
-  $(tmpClusterSSA_x);
-  const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
-  if (tmpIfTest) {
-  } else {
-    while ($LOOP_UNROLL_10) {
-      tmpClusterSSA_x = tmpClusterSSA_x + 1;
-      $(tmpClusterSSA_x);
-      const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x > 5;
-      if (tmpIfTest$1) {
-        break;
-      } else {
-      }
-    }
-  }
-  $(tmpClusterSSA_x);
-  $(undefined);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,7 +149,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 3
@@ -143,4 +165,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

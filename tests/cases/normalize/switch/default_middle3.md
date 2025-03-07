@@ -32,6 +32,77 @@ switch ($(30)) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchValue /*:unknown*/ = $(30);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const tmpBinLhs /*:unknown*/ = $(30);
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpBinLhs$1 /*:unknown*/ = $(31);
+  const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+    const tmpBinLhs$3 /*:unknown*/ = $(32);
+    const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$3 === tmpSwitchValue;
+    if (tmpIfTest$3) {
+      tmpSwitchCaseToStart = 3;
+    } else {
+    }
+  }
+}
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$5) {
+  $(`a`);
+} else {
+}
+const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
+  $(`b`);
+} else {
+}
+const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$9) {
+  $(`c`);
+} else {
+}
+$(`d`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchValue = $(30);
+let tmpSwitchCaseToStart = 1;
+if ($(30) === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if ($(31) === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+    if ($(32) === tmpSwitchValue) {
+      tmpSwitchCaseToStart = 3;
+    }
+  }
+}
+if (tmpSwitchCaseToStart <= 0) {
+  $(`a`);
+}
+if (tmpSwitchCaseToStart <= 1) {
+  $(`b`);
+}
+if (tmpSwitchCaseToStart <= 2) {
+  $(`c`);
+}
+$(`d`);
+`````
+
 ## Pre Normal
 
 
@@ -106,50 +177,7 @@ if (tmpIfTest$11) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(30);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs /*:unknown*/ = $(30);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpBinLhs$1 /*:unknown*/ = $(31);
-  const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-    const tmpBinLhs$3 /*:unknown*/ = $(32);
-    const tmpIfTest$3 /*:boolean*/ = tmpBinLhs$3 === tmpSwitchValue;
-    if (tmpIfTest$3) {
-      tmpSwitchCaseToStart = 3;
-    } else {
-    }
-  }
-}
-const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$5) {
-  $(`a`);
-} else {
-}
-const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$7) {
-  $(`b`);
-} else {
-}
-const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$9) {
-  $(`c`);
-} else {
-}
-$(`d`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -193,7 +221,7 @@ $( "d" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 30
@@ -208,4 +236,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

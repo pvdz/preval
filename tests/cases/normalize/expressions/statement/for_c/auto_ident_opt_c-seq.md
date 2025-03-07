@@ -16,6 +16,62 @@ for (; $(1); (1, 2, $(b))?.x);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const b /*:object*/ = { x: 1 };
+  const tmpChainRootProp /*:unknown*/ = $(b);
+  const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
+  if (tmpIfTest$1) {
+  } else {
+    tmpChainRootProp.x;
+  }
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$2 /*:unknown*/ = $(1);
+    if (tmpIfTest$2) {
+      const tmpChainRootProp$1 /*:unknown*/ = $(b);
+      const tmpIfTest$4 /*:boolean*/ = tmpChainRootProp$1 == null;
+      if (tmpIfTest$4) {
+      } else {
+        tmpChainRootProp$1.x;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(1)) {
+  const b = { x: 1 };
+  const tmpChainRootProp = $(b);
+  if (!(tmpChainRootProp == null)) {
+    tmpChainRootProp.x;
+  }
+  while (true) {
+    if ($(1)) {
+      const tmpChainRootProp$1 = $(b);
+      if (!(tmpChainRootProp$1 == null)) {
+        tmpChainRootProp$1.x;
+      }
+    } else {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -52,40 +108,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const b /*:object*/ = { x: 1 };
-  const tmpChainRootProp /*:unknown*/ = $(b);
-  const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
-  if (tmpIfTest$1) {
-  } else {
-    tmpChainRootProp.x;
-  }
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 /*:unknown*/ = $(1);
-    if (tmpIfTest$2) {
-      const tmpChainRootProp$1 /*:unknown*/ = $(b);
-      const tmpIfTest$4 /*:boolean*/ = tmpChainRootProp$1 == null;
-      if (tmpIfTest$4) {
-      } else {
-        tmpChainRootProp$1.x;
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -128,7 +151,7 @@ $( h );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -163,7 +186,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

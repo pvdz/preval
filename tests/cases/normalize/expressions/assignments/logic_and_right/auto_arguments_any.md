@@ -14,6 +14,37 @@ $($(100) && (a = arguments));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
+if (tmpCalleeParam) {
+  a = arguments;
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = arguments;
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = $(100);
+if (tmpCalleeParam) {
+  a = arguments;
+  $(arguments);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -38,24 +69,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam /*:unknown*/ = $(100);
-if (tmpCalleeParam) {
-  a = arguments;
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = arguments;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +95,7 @@ BAD@! Found 1 implicit global bindings:
 
 arguments
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -93,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

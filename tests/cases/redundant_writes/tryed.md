@@ -22,6 +22,37 @@ try {
 $(n);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let n /*:unknown*/ = 1;
+try {
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    n = $(`throws 2`);
+  } else {
+    n = $(`throws 3`);
+  }
+} catch (e) {}
+$(n);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let n = 1;
+try {
+  if ($(true)) {
+    n = $(`throws 2`);
+  } else {
+    n = $(`throws 3`);
+  }
+} catch (e) {}
+$(n);
+`````
+
 ## Pre Normal
 
 
@@ -53,24 +84,7 @@ try {
 $(n);
 `````
 
-## Output
-
-
-`````js filename=intro
-let n /*:unknown*/ = 1;
-try {
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    n = $(`throws 2`);
-  } else {
-    n = $(`throws 3`);
-  }
-} catch (e) {}
-$(n);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -94,7 +108,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -106,4 +120,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -21,7 +21,7 @@ export const ORANGE = '\x1b[38;5;214m';
 export const GOOD = '\x1b[40m 🙂 \x1b[0m';
 export const BAD = '\x1b[41m 👎 \x1b[0m';
 
-const PRINT_DENORMALIZED = false;
+const PRINT_DENORMALIZED = true;
 
 export function ASSERT(a, desc = '', ...rest) {
   if (!a) {
@@ -150,7 +150,10 @@ export function fromMarkdownCase(md, fname, config) {
             !s.startsWith('Globals\n') &&
             !s.startsWith('PST Output\n') &&
             !s.startsWith('Denormalized\n') &&
-            !s.startsWith('Result\n'),
+            !s.startsWith('Settled\n') &&
+            !s.startsWith('PST Settled\n') &&
+            !s.startsWith('Result\n') &&
+            !s.startsWith('Runtime Outcome\n'),
         )
         .map((s) => '## ' + s.trim()),
       fin: {},
@@ -264,7 +267,7 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
     (implicitGlobals.size > 0
       ? 'BAD@! Found ' + implicitGlobals.size + ' implicit global bindings:\n\n' + [...implicitGlobals].join(', ')
       : 'None') +
-    '\n\n## Result\n\n' +
+    '\n\n## Runtime Outcome\n\n' +
     'Should call `$` with:\n' +
     inputOutput +
     '\n\n' +
@@ -324,6 +327,23 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
 
   let mdBody =
     ((CONFIG.logPasses || CONFIG.logPhases) ? '<trimmed, see logs>' : (
+
+      (wasPcodeTest || wasRefTest ? '' : (
+        '\n\n## Settled\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
+        Object.keys(output.files)
+        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+        .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
+        .join('\n\n')
+      )) +
+
+      (!PRINT_DENORMALIZED || wasPcodeTest || wasRefTest ? '' : (
+        '\n\n## Denormalized\n(This ought to be the final result)\n\n' + // two lines. this way diff always captures this as the hunk header (with the default U3)
+        Object.keys(output.denormed)
+        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+        .map((key) => '`````js filename=' + key + '\n' + fmat(output.denormed[key]).trim() + '\n`````')
+        .join('\n\n')
+      )) +
+
       (wasRefTest || CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
       (wasRefTest || wasPcodeTest || CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
       (!wasRefTest ? '' : (
@@ -359,14 +379,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
         .join('\n\n')
       )) +
       (wasPcodeTest || wasRefTest ? '' : (
-        '\n\n## Output\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
-        Object.keys(output.files)
-        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-        .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
-        .join('\n\n')
-      )) +
-      (wasPcodeTest || wasRefTest ? '' : (
-        '\n\n## PST Output\n\n' +
+        '\n\n## PST Settled\n' +
         'With rename=true\n\n' +
         Object.keys(output.files)
         .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
@@ -383,13 +396,6 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
 
           return '`````js filename=' + key + '\n' + code.trim() + '\n`````';
         })
-        .join('\n\n')
-      )) +
-      (!PRINT_DENORMALIZED || wasPcodeTest || wasRefTest ? '' : (
-        '\n\n## Denormalized\n\n(This ought to be the final result)\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
-        Object.keys(output.denormed)
-        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-        .map((key) => '`````js filename=' + key + '\n' + fmat(output.denormed[key]).trim() + '\n`````')
         .join('\n\n')
       )) +
       (

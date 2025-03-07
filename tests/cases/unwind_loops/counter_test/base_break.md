@@ -21,6 +21,28 @@ while (true) {
 $('finished');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`x`);
+$(`x`);
+$(`x`);
+$(`x`);
+$(`finished`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`x`);
+$(`x`);
+$(`x`);
+$(`x`);
+$(`finished`);
+`````
+
 ## Pre Normal
 
 
@@ -53,19 +75,7 @@ while (true) {
 $(`finished`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`x`);
-$(`x`);
-$(`x`);
-$(`x`);
-$(`finished`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +90,7 @@ $( "finished" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -94,4 +104,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

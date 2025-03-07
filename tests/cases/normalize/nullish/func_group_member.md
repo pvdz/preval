@@ -16,6 +16,34 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const y /*:unknown*/ = $();
+const tmpIfTest /*:boolean*/ = y == null;
+if (tmpIfTest) {
+  const tmpClusterSSA_y /*:unknown*/ = foo;
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_y);
+  $(tmpClusterSSA_tmpReturnArg);
+} else {
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(y);
+  $(tmpClusterSSA_tmpReturnArg$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const y = $();
+if (y == null) {
+  $($(foo));
+} else {
+  $($(y));
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,24 +75,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const y /*:unknown*/ = $();
-const tmpIfTest /*:boolean*/ = y == null;
-if (tmpIfTest) {
-  const tmpClusterSSA_y /*:unknown*/ = foo;
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_y);
-  $(tmpClusterSSA_tmpReturnArg);
-} else {
-  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(y);
-  $(tmpClusterSSA_tmpReturnArg$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +98,7 @@ BAD@! Found 1 implicit global bindings:
 
 foo
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -97,4 +108,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

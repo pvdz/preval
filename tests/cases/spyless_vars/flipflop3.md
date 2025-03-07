@@ -19,6 +19,29 @@ const arr = [a, b, c];
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:object*/ = {};
+const a /*:boolean*/ = x instanceof String;
+const b /*:boolean*/ = x instanceof Function;
+const c /*:boolean*/ = x instanceof Array;
+const arr /*:array*/ = [a, b, c];
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = {};
+const a = x instanceof String;
+const b = x instanceof Function;
+const c = x instanceof Array;
+$([a, b, c]);
+`````
+
 ## Pre Normal
 
 
@@ -43,20 +66,7 @@ const arr = [a, b, c];
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:object*/ = {};
-const a /*:boolean*/ = x instanceof String;
-const b /*:boolean*/ = x instanceof Function;
-const c /*:boolean*/ = x instanceof Array;
-const arr /*:array*/ = [a, b, c];
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +82,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [false, false, false]
@@ -82,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

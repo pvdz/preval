@@ -16,6 +16,65 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+arrPatternSplat[0];
+$(100);
+$(10);
+$(20);
+const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+let tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+if (tmpNestedAssignArrPatternRhs) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    $(10);
+    $(20);
+    const tmpCalleeParam$1 /*:array*/ = [1, 2];
+    const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    const arrPatternSplat$2 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
+    tmpClusterSSA_a = arrPatternSplat$2[0];
+    if (tmpNestedAssignArrPatternRhs$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+[...bindingPatternArrRoot][0];
+$(100);
+$(10);
+$(20);
+const tmpNestedAssignArrPatternRhs = $([1, 2]);
+let tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
+if (tmpNestedAssignArrPatternRhs) {
+  while (true) {
+    $(100);
+    $(10);
+    $(20);
+    const tmpNestedAssignArrPatternRhs$1 = $([1, 2]);
+    tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs$1][0];
+    if (!tmpNestedAssignArrPatternRhs$1) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -58,41 +117,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
-$(100);
-$(10);
-$(20);
-const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-let tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
-if (tmpNestedAssignArrPatternRhs) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    $(10);
-    $(20);
-    const tmpCalleeParam$1 /*:array*/ = [1, 2];
-    const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    const arrPatternSplat$2 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-    tmpClusterSSA_a = arrPatternSplat$2[0];
-    if (tmpNestedAssignArrPatternRhs$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -133,7 +158,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -142,7 +167,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

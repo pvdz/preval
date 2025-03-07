@@ -17,6 +17,29 @@ let a = { a: 999, b: 1000 };
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(3);
+$(4);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const tmpArrElement$5 /*:unknown*/ = $(4);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, tmpArrElement$3, tmpArrElement$5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(3);
+$(4);
+const tmpArrElement$3 = $(3);
+const tmpArrElement$5 = $(4);
+$({ a: 999, b: 1000 }, tmpArrElement$3, tmpArrElement$5);
+`````
+
 ## Pre Normal
 
 
@@ -55,20 +78,7 @@ if (tmpIfTest) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(3);
-$(4);
-const tmpArrElement$3 /*:unknown*/ = $(3);
-const tmpArrElement$5 /*:unknown*/ = $(4);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpArrElement$3, tmpArrElement$5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +97,7 @@ $( c, a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 3
@@ -101,7 +111,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

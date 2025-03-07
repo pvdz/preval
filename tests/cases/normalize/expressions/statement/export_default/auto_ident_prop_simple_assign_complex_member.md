@@ -16,6 +16,35 @@ export default b.c = $(b)[$("d")];
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+const tmpAnonDefaultExport /*:unknown*/ = varInitAssignLhsComputedRhs;
+export { tmpAnonDefaultExport as default };
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: 10, d: 20 };
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+const tmpAnonDefaultExport = varInitAssignLhsComputedRhs;
+export { tmpAnonDefaultExport as default };
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -42,23 +71,7 @@ export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-b.c = varInitAssignLhsComputedRhs;
-const tmpAnonDefaultExport /*:unknown*/ = varInitAssignLhsComputedRhs;
-export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +96,7 @@ $( f, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -92,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

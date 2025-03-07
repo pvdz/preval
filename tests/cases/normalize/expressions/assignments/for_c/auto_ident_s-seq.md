@@ -16,6 +16,51 @@ for (; $(1); a = ($(1), $(2), x));
 $(a, x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  $(1);
+  $(2);
+  a = 1;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      $(1);
+      $(2);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+if ($(1)) {
+  $(1);
+  $(2);
+  a = 1;
+  while (true) {
+    if ($(1)) {
+      $(1);
+      $(2);
+    } else {
+      break;
+    }
+  }
+}
+$(a, 1);
+`````
+
 ## Pre Normal
 
 
@@ -49,32 +94,7 @@ while (true) {
 $(a, x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  $(1);
-  $(2);
-  a = 1;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      $(1);
-      $(2);
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +125,7 @@ $( a, 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -140,7 +160,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

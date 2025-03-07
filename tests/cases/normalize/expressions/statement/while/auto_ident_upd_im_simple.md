@@ -16,6 +16,23 @@ while (b--) $(100);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, -1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+$({ a: 999, b: 1000 }, -1);
+`````
+
 ## Pre Normal
 
 
@@ -45,17 +62,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, -1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +78,7 @@ $( a, -1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -82,4 +89,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

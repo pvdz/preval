@@ -17,6 +17,75 @@ for (; $(1); a = { x, y } = ($(x), $(y), { x: $(3), y: $(4) }));
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  $(1);
+  $(2);
+  const tmpObjLitVal /*:unknown*/ = $(3);
+  const tmpObjLitVal$1 /*:unknown*/ = $(4);
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
+  const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  a = tmpNestedAssignObjPatternRhs;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      $(x);
+      $(y);
+      const tmpObjLitVal$2 /*:unknown*/ = $(3);
+      const tmpObjLitVal$4 /*:unknown*/ = $(4);
+      x = tmpObjLitVal$2;
+      y = tmpObjLitVal$4;
+      const tmpNestedAssignObjPatternRhs$1 /*:object*/ = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
+      a = tmpNestedAssignObjPatternRhs$1;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, x, y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+let a = { a: 999, b: 1000 };
+if ($(1)) {
+  $(1);
+  $(2);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
+  a = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  while (true) {
+    if ($(1)) {
+      $(x);
+      $(y);
+      const tmpObjLitVal$2 = $(3);
+      const tmpObjLitVal$4 = $(4);
+      x = tmpObjLitVal$2;
+      y = tmpObjLitVal$4;
+      a = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
+    } else {
+      break;
+    }
+  }
+}
+$(a, x, y);
+`````
+
 ## Pre Normal
 
 
@@ -57,45 +126,7 @@ while (true) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  $(1);
-  $(2);
-  const tmpObjLitVal /*:unknown*/ = $(3);
-  const tmpObjLitVal$1 /*:unknown*/ = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
-  const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  a = tmpNestedAssignObjPatternRhs;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      $(x);
-      $(y);
-      const tmpObjLitVal$2 /*:unknown*/ = $(3);
-      const tmpObjLitVal$4 /*:unknown*/ = $(4);
-      x = tmpObjLitVal$2;
-      y = tmpObjLitVal$4;
-      const tmpNestedAssignObjPatternRhs$1 /*:object*/ = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
-      a = tmpNestedAssignObjPatternRhs$1;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, x, y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -145,7 +176,7 @@ $( c, a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -180,7 +211,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

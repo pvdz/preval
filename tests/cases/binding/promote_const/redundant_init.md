@@ -36,6 +36,65 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [10, 20, 30, 40];
+const SSA_SNe$596 /*:unknown*/ = $(tmpCalleeParam);
+if (tmpIfTest$32854) {
+  const tmpCalleeParam$36039 /*:unknown*/ = $(1);
+  const tmpCalleeParam$36040 /*:unknown*/ = $(2);
+  const tmpCalleeParam$36041 /*:unknown*/ = SSA_SNe$596[4];
+  const tmpCalleeParam$36042 /*:unknown*/ = SSA_SNe$596[2];
+  const tmpCalleeParam$36043 /*:unknown*/ = SSA_SNe$596[3];
+  const tmpCalleeParam$36044 /*:unknown*/ = SSA_SNe$596[1];
+  const tmpReturnArg$21651 /*:unknown*/ = $(
+    100,
+    tmpCalleeParam$36039,
+    101,
+    tmpCalleeParam$36040,
+    tmpCalleeParam$36041,
+    tmpCalleeParam$36042,
+    tmpCalleeParam$36043,
+    102,
+    tmpCalleeParam$36044,
+  );
+  $(tmpReturnArg$21651);
+} else {
+  $(undefined);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const SSA_SNe$596 = $([10, 20, 30, 40]);
+if (tmpIfTest$32854) {
+  const tmpCalleeParam$36039 = $(1);
+  const tmpCalleeParam$36040 = $(2);
+  const tmpCalleeParam$36041 = SSA_SNe$596[4];
+  const tmpCalleeParam$36042 = SSA_SNe$596[2];
+  const tmpCalleeParam$36043 = SSA_SNe$596[3];
+  $(
+    $(
+      100,
+      tmpCalleeParam$36039,
+      101,
+      tmpCalleeParam$36040,
+      tmpCalleeParam$36041,
+      tmpCalleeParam$36042,
+      tmpCalleeParam$36043,
+      102,
+      SSA_SNe$596[1],
+    ),
+  );
+} else {
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -104,38 +163,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [10, 20, 30, 40];
-const SSA_SNe$596 /*:unknown*/ = $(tmpCalleeParam);
-if (tmpIfTest$32854) {
-  const tmpCalleeParam$36039 /*:unknown*/ = $(1);
-  const tmpCalleeParam$36040 /*:unknown*/ = $(2);
-  const tmpCalleeParam$36041 /*:unknown*/ = SSA_SNe$596[4];
-  const tmpCalleeParam$36042 /*:unknown*/ = SSA_SNe$596[2];
-  const tmpCalleeParam$36043 /*:unknown*/ = SSA_SNe$596[3];
-  const tmpCalleeParam$36044 /*:unknown*/ = SSA_SNe$596[1];
-  const tmpReturnArg$21651 /*:unknown*/ = $(
-    100,
-    tmpCalleeParam$36039,
-    101,
-    tmpCalleeParam$36040,
-    tmpCalleeParam$36041,
-    tmpCalleeParam$36042,
-    tmpCalleeParam$36043,
-    102,
-    tmpCalleeParam$36044,
-  );
-  $(tmpReturnArg$21651);
-} else {
-  $(undefined);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -162,7 +190,7 @@ BAD@! Found 1 implicit global bindings:
 
 tmpIfTest$32854
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [10, 20, 30, 40]
@@ -172,4 +200,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

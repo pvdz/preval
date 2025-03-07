@@ -21,6 +21,34 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpChainRootProp /*:unknown*/ = $(b);
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+if (tmpIfTest) {
+} else {
+  tmpChainRootProp.x;
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainRootProp = $({ x: 1 });
+if (!(tmpChainRootProp == null)) {
+  tmpChainRootProp.x;
+}
+$({ a: 999, b: 1000 });
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -58,24 +86,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpChainRootProp /*:unknown*/ = $(b);
-const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-if (tmpIfTest) {
-} else {
-  tmpChainRootProp.x;
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -100,7 +111,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -112,4 +123,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

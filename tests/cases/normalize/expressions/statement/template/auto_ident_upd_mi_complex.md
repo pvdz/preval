@@ -16,6 +16,45 @@ $(`before  ${--$($(b)).x}  after`);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(number)=>string*/ = function $free($$0) {
+  const varInitAssignLhsComputedRhs$1 /*:number*/ = $$0;
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(varInitAssignLhsComputedRhs$1, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam$3 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs$1 - 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, varInitAssignLhsComputedRhs);
+$(tmpCalleeParam);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(varInitAssignLhsComputedRhs$1) {
+  const tmpRet = `before  ${varInitAssignLhsComputedRhs$1}  after`;
+  return tmpRet;
+};
+const b = { x: 1 };
+const varInitAssignLhsComputedObj = $($(b));
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x - 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+$($frfr(tmpFree, varInitAssignLhsComputedRhs));
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -47,31 +86,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const varInitAssignLhsComputedRhs$1 /*:number*/ = $$0;
-  debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(varInitAssignLhsComputedRhs$1, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-  return tmpRet;
-};
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$3 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs$1 - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, varInitAssignLhsComputedRhs);
-$(tmpCalleeParam);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +116,7 @@ $( m, f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -114,4 +129,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

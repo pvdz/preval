@@ -14,6 +14,26 @@ $($(100) + (a = [1, 2, 3]));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpStringConcatR /*:string*/ = $coerce(tmpBinBothLhs, `plustr`);
+const tmpCalleeParam /*:string*/ = `${tmpStringConcatR}1,2,3`;
+$(tmpCalleeParam);
+const a /*:array*/ = [1, 2, 3];
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`${$(100)}1,2,3`);
+$([1, 2, 3]);
+`````
+
 ## Pre Normal
 
 
@@ -36,20 +56,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpStringConcatR /*:string*/ = $coerce(tmpBinBothLhs, `plustr`);
-const tmpCalleeParam /*:string*/ = `${tmpStringConcatR}1,2,3`;
-$(tmpCalleeParam);
-const a /*:array*/ = [1, 2, 3];
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +72,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -77,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

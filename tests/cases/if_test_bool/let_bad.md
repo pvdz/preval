@@ -25,6 +25,55 @@ f();
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  let x /*:unknown*/ = $(1);
+  let tmpCalleeParam /*:boolean*/ = false;
+  if ($) {
+    x = 10;
+  } else {
+    tmpCalleeParam = !x;
+  }
+  if (x) {
+    $(`a`, tmpCalleeParam);
+    return undefined;
+  } else {
+    $(`b`, tmpCalleeParam);
+    return undefined;
+  }
+};
+f();
+f();
+f();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  let x = $(1);
+  let tmpCalleeParam = false;
+  if ($) {
+    x = 10;
+  } else {
+    tmpCalleeParam = !x;
+  }
+  if (x) {
+    $(`a`, tmpCalleeParam);
+  } else {
+    $(`b`, tmpCalleeParam);
+  }
+};
+f();
+f();
+f();
+`````
+
 ## Pre Normal
 
 
@@ -70,34 +119,7 @@ f();
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  let x /*:unknown*/ = $(1);
-  let tmpCalleeParam /*:boolean*/ = false;
-  if ($) {
-    x = 10;
-  } else {
-    tmpCalleeParam = !x;
-  }
-  if (x) {
-    $(`a`, tmpCalleeParam);
-    return undefined;
-  } else {
-    $(`b`, tmpCalleeParam);
-    return undefined;
-  }
-};
-f();
-f();
-f();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -129,7 +151,7 @@ a();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -144,4 +166,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

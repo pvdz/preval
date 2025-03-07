@@ -16,6 +16,29 @@ throw (a = ++$($(b)).x);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+throw tmpNestedPropCompoundComplexRhs;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignObj = $($({ x: 1 }));
+const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+throw tmpNestedPropCompoundComplexRhs;
+`````
+
 ## Pre Normal
 
 
@@ -42,21 +65,7 @@ let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-throw tmpNestedPropCompoundComplexRhs;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +82,7 @@ throw e;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -84,4 +93,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

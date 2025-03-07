@@ -19,6 +19,35 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAssignComMemLhsProp = $(`c`);
+const b = { c: 10, d: 20 };
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+$({ a: 999, b: 1000 }, b);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -56,23 +85,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +110,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'c'
@@ -114,4 +127,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,64 @@ while ((a = $(b).c = $(b)[$("d")])) $(100);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpNestedAssignObj /*:unknown*/ = $(b);
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
+if (tmpNestedAssignPropRhs) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpNestedAssignObj$1 /*:unknown*/ = $(b);
+    const tmpCompObj$1 /*:unknown*/ = $(b);
+    const tmpCompProp$1 /*:unknown*/ = $(`d`);
+    const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+    tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
+    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    if (tmpNestedAssignPropRhs$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: 10, d: 20 };
+const tmpNestedAssignObj = $(b);
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+let tmpClusterSSA_a = tmpNestedAssignPropRhs;
+if (tmpNestedAssignPropRhs) {
+  while (true) {
+    $(100);
+    const tmpNestedAssignObj$1 = $(b);
+    const tmpCompObj$1 = $(b);
+    const tmpCompProp$1 = $(`d`);
+    const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+    tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
+    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    if (!tmpNestedAssignPropRhs$1) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_a, b);
+`````
+
 ## Pre Normal
 
 
@@ -50,38 +108,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 10, d: 20 };
-const tmpNestedAssignObj /*:unknown*/ = $(b);
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
-if (tmpNestedAssignPropRhs) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpNestedAssignObj$1 /*:unknown*/ = $(b);
-    const tmpCompObj$1 /*:unknown*/ = $(b);
-    const tmpCompProp$1 /*:unknown*/ = $(`d`);
-    const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
-    tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
-    if (tmpNestedAssignPropRhs$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(tmpClusterSSA_a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +146,7 @@ $( f, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }
@@ -154,7 +181,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -13,6 +13,21 @@ var f = {x: 10};
 $(f??x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:object*/ = { x: 10 };
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ x: 10 });
+`````
+
 ## Pre Normal
 
 
@@ -37,16 +52,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:object*/ = { x: 10 };
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -58,7 +64,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '10' }
@@ -68,4 +74,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

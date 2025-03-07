@@ -17,6 +17,48 @@ const a = 10,
 $(c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:unknown*/ = undefined;
+const tmpChainRootProp /*:unknown*/ = $(2);
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+let tmpIfTest$1 /*:boolean*/ = true;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.toString;
+  b = tmpChainElementObject;
+  tmpIfTest$1 = tmpChainElementObject == null;
+}
+if (tmpIfTest$1) {
+  $(undefined);
+} else {
+  const tmpChainElementObject$1 /*:unknown*/ = b.length;
+  $(tmpChainElementObject$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = undefined;
+const tmpChainRootProp = $(2);
+const tmpIfTest = tmpChainRootProp == null;
+let tmpIfTest$1 = true;
+if (!tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.toString;
+  b = tmpChainElementObject;
+  tmpIfTest$1 = tmpChainElementObject == null;
+}
+if (tmpIfTest$1) {
+  $(undefined);
+} else {
+  $(b.length);
+}
+`````
+
 ## Pre Normal
 
 
@@ -51,30 +93,7 @@ if (tmpIfTest$1) {
 $(c);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:unknown*/ = undefined;
-const tmpChainRootProp /*:unknown*/ = $(2);
-const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpIfTest$1 /*:boolean*/ = true;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.toString;
-  b = tmpChainElementObject;
-  tmpIfTest$1 = tmpChainElementObject == null;
-}
-if (tmpIfTest$1) {
-  $(undefined);
-} else {
-  const tmpChainElementObject$1 /*:unknown*/ = b.length;
-  $(tmpChainElementObject$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +122,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -114,4 +133,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

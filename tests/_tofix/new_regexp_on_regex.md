@@ -14,6 +14,14 @@ const newLineRegex = new RegExp(x); // -> same as regex literal
 $(newLineRegex);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = /abc/g;
+$(new RegExp(x));
+`````
+
 ## Pre Normal
 
 
@@ -32,7 +40,7 @@ const newLineRegex = new RegExp(x);
 $(newLineRegex);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -41,8 +49,7 @@ const newLineRegex /*:object*/ = new RegExp(x);
 $(newLineRegex);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

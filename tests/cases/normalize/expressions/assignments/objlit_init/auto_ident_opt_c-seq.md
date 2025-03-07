@@ -16,6 +16,43 @@ $({ x: (a = (1, 2, $(b))?.x) });
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const b /*:object*/ = { x: 1 };
+const tmpChainRootProp /*:unknown*/ = $(b);
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+let tmpObjLitVal /*:unknown*/ = undefined;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
+  a = tmpChainElementObject;
+  tmpObjLitVal = tmpChainElementObject;
+}
+const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
+$(tmpCalleeParam);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const tmpChainRootProp = $({ x: 1 });
+const tmpIfTest = tmpChainRootProp == null;
+let tmpObjLitVal = undefined;
+if (!tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  a = tmpChainElementObject;
+  tmpObjLitVal = tmpChainElementObject;
+}
+$({ x: tmpObjLitVal });
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -46,28 +83,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const b /*:object*/ = { x: 1 };
-const tmpChainRootProp /*:unknown*/ = $(b);
-const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpObjLitVal /*:unknown*/ = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpObjLitVal = tmpChainElementObject;
-}
-const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-$(tmpCalleeParam);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +109,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -105,4 +121,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

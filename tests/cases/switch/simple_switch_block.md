@@ -24,6 +24,52 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:number*/ = 1;
+const tmpUnaryArg /*:unknown*/ = $(`x`);
+const tmpSwitchDisc /*:string*/ = typeof tmpUnaryArg;
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === `string`;
+if (tmpIfTest) {
+} else {
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === `number`;
+  if (tmpIfTest$1) {
+    tmpCalleeParam = 2;
+  } else {
+    const tmpIfTest$3 /*:boolean*/ = tmpSwitchDisc === `boolean`;
+    if (tmpIfTest$3) {
+      tmpCalleeParam = 3;
+    } else {
+      tmpCalleeParam = 4;
+    }
+  }
+}
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = 1;
+const tmpUnaryArg = $(`x`);
+const tmpSwitchDisc = typeof tmpUnaryArg;
+if (!(tmpSwitchDisc === `string`)) {
+  if (tmpSwitchDisc === `number`) {
+    tmpCalleeParam = 2;
+  } else {
+    if (tmpSwitchDisc === `boolean`) {
+      tmpCalleeParam = 3;
+    } else {
+      tmpCalleeParam = 4;
+    }
+  }
+}
+$(tmpCalleeParam);
+`````
+
 ## Pre Normal
 
 
@@ -80,33 +126,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:number*/ = 1;
-const tmpUnaryArg /*:unknown*/ = $(`x`);
-const tmpSwitchDisc /*:string*/ = typeof tmpUnaryArg;
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === `string`;
-if (tmpIfTest) {
-} else {
-  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === `number`;
-  if (tmpIfTest$1) {
-    tmpCalleeParam = 2;
-  } else {
-    const tmpIfTest$3 /*:boolean*/ = tmpSwitchDisc === `boolean`;
-    if (tmpIfTest$3) {
-      tmpCalleeParam = 3;
-    } else {
-      tmpCalleeParam = 4;
-    }
-  }
-}
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -139,7 +159,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -150,4 +170,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -36,6 +36,23 @@ if (tmpSaooB$1) {
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (arg) {
+  if ($coerce(arg / arg, `string`).length === 1) {
+    arg % 0;
+  }
+  $(arg + 1);
+};
+f(500);
+const tmpCalleeParam = $spy();
+if (!(typeof tmpCalleeParam === `string`)) {
+  f(tmpCalleeParam);
+}
+`````
+
 ## Pre Normal
 
 
@@ -94,7 +111,7 @@ if (tmpSaooB$1) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -123,8 +140,7 @@ if (tmpSaooB$1) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -174,4 +190,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

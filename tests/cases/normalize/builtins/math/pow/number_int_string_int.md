@@ -12,6 +12,20 @@
 $(Math.pow(3, '3'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(27);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(27);
+`````
+
 ## Pre Normal
 
 
@@ -27,15 +41,7 @@ const tmpCalleeParam = 27;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(27);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -46,7 +52,7 @@ $( 27 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 27
@@ -56,4 +62,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

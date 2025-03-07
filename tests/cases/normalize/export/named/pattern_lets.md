@@ -13,6 +13,28 @@ export let [a, b, {c: [d]}] = [1, 2, {c: [3]}];
 $(a, b, d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:number*/ = 1;
+const b /*:number*/ = 2;
+const d /*:number*/ = 3;
+export { a, b, d };
+$(1, 2, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = 1;
+const b = 2;
+const d = 3;
+export { a, b, d };
+$(1, 2, 3);
+`````
+
 ## Pre Normal
 
 
@@ -48,19 +70,7 @@ export { a, b, d };
 $(a, b, d);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:number*/ = 1;
-const b /*:number*/ = 2;
-const d /*:number*/ = 3;
-export { a, b, d };
-$(1, 2, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +85,7 @@ $( 1, 2, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -84,7 +94,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -59,6 +59,62 @@ a();
 b();
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:()=>unknown*/ = function () {
+  debugger;
+  $(`before`);
+  a = function () {
+    debugger;
+    $(`replaced`);
+    return undefined;
+  };
+  $(`after`);
+  return undefined;
+};
+const b /*:()=>unknown*/ = function () {
+  debugger;
+  $(`before`);
+  a = function () {
+    debugger;
+    $(`replaced`);
+    return undefined;
+  };
+  $(`after`);
+  return undefined;
+};
+b();
+b();
+a();
+b();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = function () {
+  $(`before`);
+  a = function () {
+    $(`replaced`);
+  };
+  $(`after`);
+};
+const b = function () {
+  $(`before`);
+  a = function () {
+    $(`replaced`);
+  };
+  $(`after`);
+};
+b();
+b();
+a();
+b();
+`````
+
 ## Pre Normal
 
 
@@ -119,40 +175,7 @@ a();
 b();
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:()=>unknown*/ = function () {
-  debugger;
-  $(`before`);
-  a = function () {
-    debugger;
-    $(`replaced`);
-    return undefined;
-  };
-  $(`after`);
-  return undefined;
-};
-const b /*:()=>unknown*/ = function () {
-  debugger;
-  $(`before`);
-  a = function () {
-    debugger;
-    $(`replaced`);
-    return undefined;
-  };
-  $(`after`);
-  return undefined;
-};
-b();
-b();
-a();
-b();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -188,7 +211,7 @@ b();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'before'
@@ -204,4 +227,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

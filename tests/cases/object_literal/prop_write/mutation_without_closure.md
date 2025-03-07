@@ -23,6 +23,37 @@ $(x);
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(`a`);
+  $(`b`);
+  return undefined;
+};
+f();
+f();
+const x /*:object*/ = { y: 10 };
+$(x);
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`a`);
+  $(`b`);
+};
+f();
+f();
+$({ y: 10 });
+$(f);
+`````
+
 ## Pre Normal
 
 
@@ -58,25 +89,7 @@ $(x);
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(`a`);
-  $(`b`);
-  return undefined;
-};
-f();
-f();
-const x /*:object*/ = { y: 10 };
-$(x);
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +110,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -112,4 +125,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

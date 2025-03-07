@@ -24,6 +24,87 @@ try {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let $implicitThrow$3 /*:boolean*/ = false;
+let $finalStep /*:boolean*/ = false;
+let $finalCatchArg$3 /*:unknown*/ = undefined;
+let $finalArg /*:unknown*/ = undefined;
+$finally$3: {
+  try {
+    try {
+      $(1);
+    } catch ($finalImplicit) {
+      $(2);
+      $finalStep = true;
+      $finalArg = $finalImplicit;
+      break $finally$3;
+    }
+    $(2);
+  } catch ($finalImplicit$3) {
+    $implicitThrow$3 = true;
+    $finalCatchArg$3 = $finalImplicit$3;
+  }
+}
+try {
+  $(3);
+} catch ($finalImplicit$1) {
+  $(4);
+  throw $finalImplicit$1;
+}
+$(4);
+if ($implicitThrow$3) {
+  throw $finalCatchArg$3;
+} else {
+  if ($finalStep) {
+    throw $finalArg;
+  } else {
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let $implicitThrow$3 = false;
+let $finalStep = false;
+let $finalCatchArg$3 = undefined;
+let $finalArg = undefined;
+$finally$3: {
+  try {
+    try {
+      $(1);
+    } catch ($finalImplicit) {
+      $(2);
+      $finalStep = true;
+      $finalArg = $finalImplicit;
+      break $finally$3;
+    }
+    $(2);
+  } catch ($finalImplicit$3) {
+    $implicitThrow$3 = true;
+    $finalCatchArg$3 = $finalImplicit$3;
+  }
+}
+try {
+  $(3);
+} catch ($finalImplicit$1) {
+  $(4);
+  throw $finalImplicit$1;
+}
+$(4);
+if ($implicitThrow$3) {
+  throw $finalCatchArg$3;
+} else {
+  if ($finalStep) {
+    throw $finalArg;
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -156,49 +237,7 @@ if ($implicitThrow$1) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let $implicitThrow$3 /*:boolean*/ = false;
-let $finalStep /*:boolean*/ = false;
-let $finalCatchArg$3 /*:unknown*/ = undefined;
-let $finalArg /*:unknown*/ = undefined;
-$finally$3: {
-  try {
-    try {
-      $(1);
-    } catch ($finalImplicit) {
-      $(2);
-      $finalStep = true;
-      $finalArg = $finalImplicit;
-      break $finally$3;
-    }
-    $(2);
-  } catch ($finalImplicit$3) {
-    $implicitThrow$3 = true;
-    $finalCatchArg$3 = $finalImplicit$3;
-  }
-}
-try {
-  $(3);
-} catch ($finalImplicit$1) {
-  $(4);
-  throw $finalImplicit$1;
-}
-$(4);
-if ($implicitThrow$3) {
-  throw $finalCatchArg$3;
-} else {
-  if ($finalStep) {
-    throw $finalArg;
-  } else {
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -246,7 +285,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -259,4 +298,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

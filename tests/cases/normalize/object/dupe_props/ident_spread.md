@@ -13,6 +13,26 @@ const x = {a: $('prop'), ...$({})};
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(`prop`);
+const tmpCalleeParam /*:object*/ = {};
+const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
+const x /*:object*/ = { a: tmpObjLitVal, ...tmpObjSpread };
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(`prop`);
+const tmpObjSpread = $({});
+$({ a: tmpObjLitVal, ...tmpObjSpread });
+`````
+
 ## Pre Normal
 
 
@@ -32,19 +52,7 @@ const x = { a: tmpObjLitVal, ...tmpObjSpread };
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(`prop`);
-const tmpCalleeParam /*:object*/ = {};
-const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
-const x /*:object*/ = { a: tmpObjLitVal, ...tmpObjSpread };
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +70,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'prop'
@@ -74,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

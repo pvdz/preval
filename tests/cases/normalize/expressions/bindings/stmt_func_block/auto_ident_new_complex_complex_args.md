@@ -20,6 +20,29 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNewCallee /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(a);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNewCallee = $($);
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(2);
+$(new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1));
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -53,20 +76,7 @@ const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNewCallee /*:unknown*/ = $($);
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +92,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -97,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

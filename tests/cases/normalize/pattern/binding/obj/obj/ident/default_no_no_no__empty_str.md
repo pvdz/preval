@@ -13,6 +13,23 @@ const { x: { y } } = '';
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternNoDefault /*:unknown*/ = ``.x;
+objPatternNoDefault.y;
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+``.x.y;
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -33,17 +50,7 @@ const y = objPatternNoDefault.y;
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternNoDefault /*:unknown*/ = ``.x;
-objPatternNoDefault.y;
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +63,7 @@ $( "bad" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -65,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

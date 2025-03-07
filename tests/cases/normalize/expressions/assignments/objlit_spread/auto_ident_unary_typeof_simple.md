@@ -16,6 +16,23 @@ $({ ...(a = typeof arg) });
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { [`0`]: `n`, [`1`]: `u`, [`2`]: `m`, [`3`]: `b`, [`4`]: `e`, [`5`]: `r` };
+$(tmpCalleeParam);
+$(`number`, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ [`0`]: `n`, [`1`]: `u`, [`2`]: `m`, [`3`]: `b`, [`4`]: `e`, [`5`]: `r` });
+$(`number`, 1);
+`````
+
 ## Pre Normal
 
 
@@ -39,17 +56,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { [`0`]: `n`, [`1`]: `u`, [`2`]: `m`, [`3`]: `b`, [`4`]: `e`, [`5`]: `r` };
-$(tmpCalleeParam);
-$(`number`, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +76,7 @@ $( "number", 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { 0: '"n"', 1: '"u"', 2: '"m"', 3: '"b"', 4: '"e"', 5: '"r"' }
@@ -80,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

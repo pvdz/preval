@@ -23,6 +23,20 @@ while (counter) {
 $(arr[0]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`b`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`b`);
+`````
+
 ## Pre Normal
 
 
@@ -56,15 +70,7 @@ const tmpCalleeParam = arr[0];
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`b`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +81,7 @@ $( "b" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'b'
@@ -85,7 +91,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

@@ -27,6 +27,41 @@ function f() {
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  const tmpStringConcatL$1 /*:string*/ = $coerce(desc$1, `plustr`);
+  const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
+  if (tmpIfTest$1787) {
+    const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL$1} (at EOF)`;
+    _THROW(tmpClusterSSA_fullErrmsg, tokenStart$5, tokenStop$5, ``);
+  } else {
+    const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL$1}`;
+    _THROW(tmpBinBothLhs$253, tokenStart$5, tokenStop$5, ``);
+  }
+  throw `Preval: the previous call always throws`;
+};
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  const tmpStringConcatL$1 = $coerce(desc$1, `plustr`);
+  if (lastType === 2097173) {
+    _THROW(`Parser error! ${tmpStringConcatL$1} (at EOF)`, tokenStart$5, tokenStop$5, ``);
+  } else {
+    _THROW(`Parser error! ${tmpStringConcatL$1}`, tokenStart$5, tokenStop$5, ``);
+  }
+  throw `Preval: the previous call always throws`;
+});
+`````
+
 ## Pre Normal
 
 
@@ -70,28 +105,7 @@ let f = function () {
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  const tmpStringConcatL$1 /*:string*/ = $coerce(desc$1, `plustr`);
-  const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
-  if (tmpIfTest$1787) {
-    const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL$1} (at EOF)`;
-    _THROW(tmpClusterSSA_fullErrmsg, tokenStart$5, tokenStop$5, ``);
-  } else {
-    const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL$1}`;
-    _THROW(tmpBinBothLhs$253, tokenStart$5, tokenStop$5, ``);
-  }
-  throw `Preval: the previous call always throws`;
-};
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +132,7 @@ BAD@! Found 5 implicit global bindings:
 
 desc$1, lastType, _THROW, tokenStart$5, tokenStop$5
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -128,4 +142,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,31 @@ $(f());
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat$1 /*:array*/ = [...bindingPatternArrRoot];
+arrPatternSplat$1[0];
+$(10);
+$(20);
+$(undefined);
+$(1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+[...bindingPatternArrRoot][0];
+$(10);
+$(20);
+$(undefined);
+$(1);
+`````
+
 ## Pre Normal
 
 
@@ -59,21 +84,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat$1 /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat$1[0];
-$(10);
-$(20);
-$(undefined);
-$(1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +104,7 @@ $( 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -102,7 +113,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -15,6 +15,25 @@ function f([[] = $(['pass2'])] = $(['fail3'])) {
 $(f([, , , , 4, 5], 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:array*/ = [`pass2`];
+const arrPatternStep /*:unknown*/ = $(tmpCalleeParam$1);
+[...arrPatternStep];
+$(`ok`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arrPatternStep = $([`pass2`]);
+[...arrPatternStep];
+$(`ok`);
+`````
+
 ## Pre Normal
 
 
@@ -62,18 +81,7 @@ const tmpCalleeParam$3 = tmpCallCallee(tmpCalleeParam$5, 200);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:array*/ = [`pass2`];
-const arrPatternStep /*:unknown*/ = $(tmpCalleeParam$1);
-[...arrPatternStep];
-$(`ok`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +95,7 @@ $( "ok" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['pass2']
@@ -98,7 +106,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

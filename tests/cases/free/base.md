@@ -26,6 +26,53 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(i);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(number)=>string*/ = function $free($$0) {
+  const n /*:number*/ = $$0;
+  debugger;
+  const a /*:number*/ = $Math_pow(n, 2);
+  const b /*:number*/ = a / 2;
+  const tmpRet /*:string*/ = $coerce(b, `string`);
+  return tmpRet;
+};
+let i /*:number*/ = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const r /*:unknown*/ = $(i);
+  const n$1 /*:number*/ = r * 1;
+  const c /*:string*/ = $frfr(tmpFree, n$1);
+  $(i, c);
+  i = i + 1;
+  const tmpIfTest /*:boolean*/ = i > 10;
+  if (tmpIfTest) {
+    break;
+  } else {
+  }
+}
+$(i);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(n) {
+  const tmpRet = $coerce($Math_pow(n, 2) / 2, `string`);
+  return tmpRet;
+};
+let i = 0;
+while (true) {
+  $(i, $frfr(tmpFree, $(i) * 1));
+  i = i + 1;
+  if (i > 10) {
+    break;
+  }
+}
+$(i);
+`````
+
 ## Pre Normal
 
 
@@ -67,36 +114,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(i);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const n /*:number*/ = $$0;
-  debugger;
-  const a /*:number*/ = $Math_pow(n, 2);
-  const b /*:number*/ = a / 2;
-  const tmpRet /*:string*/ = $coerce(b, `string`);
-  return tmpRet;
-};
-let i /*:number*/ = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const r /*:unknown*/ = $(i);
-  const n$1 /*:number*/ = r * 1;
-  const c /*:string*/ = $frfr(tmpFree, n$1);
-  $(i, c);
-  i = i + 1;
-  const tmpIfTest /*:boolean*/ = i > 10;
-  if (tmpIfTest) {
-    break;
-  } else {
-  }
-}
-$(i);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,7 +145,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -159,7 +177,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_pow

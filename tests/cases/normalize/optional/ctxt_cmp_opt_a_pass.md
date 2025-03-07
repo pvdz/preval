@@ -13,6 +13,57 @@ const a = {b: {c: function(...a){ $($(a), this); return a[0]; }}};
 $($(a)?.[$('b')][$('c')](100));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$1 /*:(array)=>unknown*/ = function (...$$0 /*:array*/) {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  const a$1 /*:array*/ = $$0;
+  debugger;
+  const tmpCalleeParam /*:unknown*/ = $(a$1);
+  $(tmpCalleeParam, tmpPrevalAliasThis);
+  const tmpReturnArg /*:unknown*/ = a$1[0];
+  return tmpReturnArg;
+};
+const tmpObjLitVal /*:object*/ = { c: tmpObjLitVal$1 };
+const a /*:object*/ = { b: tmpObjLitVal };
+const tmpChainElementCall /*:unknown*/ = $(a);
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`b`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainRootComputed$1 /*:unknown*/ = $(`c`);
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementObject, undefined, 100);
+  $(tmpChainElementCall$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal$1 = function (a$1) {
+  const tmpPrevalAliasThis = this;
+  $($(a$1), tmpPrevalAliasThis);
+  const tmpReturnArg = a$1[0];
+  return tmpReturnArg;
+};
+const tmpObjLitVal = { c: tmpObjLitVal$1 };
+const tmpChainElementCall = $({ b: tmpObjLitVal });
+if (tmpChainElementCall == null) {
+  $(undefined);
+} else {
+  const tmpChainRootComputed = $(`b`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpChainRootComputed$1 = $(`c`);
+  $(tmpChainElementObject[tmpChainRootComputed$1](undefined, 100));
+}
+`````
+
 ## Pre Normal
 
 
@@ -63,37 +114,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$1 /*:(array)=>unknown*/ = function (...$$0 /*:array*/) {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  const a$1 /*:array*/ = $$0;
-  debugger;
-  const tmpCalleeParam /*:unknown*/ = $(a$1);
-  $(tmpCalleeParam, tmpPrevalAliasThis);
-  const tmpReturnArg /*:unknown*/ = a$1[0];
-  return tmpReturnArg;
-};
-const tmpObjLitVal /*:object*/ = { c: tmpObjLitVal$1 };
-const a /*:object*/ = { b: tmpObjLitVal };
-const tmpChainElementCall /*:unknown*/ = $(a);
-const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`b`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpChainRootComputed$1 /*:unknown*/ = $(`c`);
-  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementObject, undefined, 100);
-  $(tmpChainElementCall$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,7 +148,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { b: '{"c":"\\"<function>\\""}' }
@@ -142,4 +163,12 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: BAD!!
+ - 1: { b: '{"c":"\\"<function>\\""}' }
+ - 2: 'b'
+ - 3: 'c'
+ - 4: undefined
+ - 5: undefined, { c: '"<function>"' }
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')

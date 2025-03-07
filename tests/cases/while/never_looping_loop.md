@@ -55,6 +55,69 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  let B /*:unknown*/ = `jhayon.vercel.app`;
+  const x /*:unknown*/ = $(`x`);
+  const A /*:unknown*/ = x.length;
+  const tmpBinBothLhs$30 /*:unknown*/ = A[0];
+  const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
+  if (tmpIfTest$10) {
+    B = A.slice(1);
+  } else {
+    B = A;
+  }
+  const len /*:unknown*/ = $.length;
+  const len2 /*:unknown*/ = B.length;
+  const diff /*:number*/ = len - len2;
+  const pos /*:unknown*/ = $.indexOf(B, diff);
+  const isnot /*:boolean*/ = pos === -1;
+  if (isnot) {
+  } else {
+    const tmpClusterSSA_isnot /*:boolean*/ = pos === diff;
+    if (tmpClusterSSA_isnot) {
+      const len3 /*:unknown*/ = $.length;
+      const lena2 /*:unknown*/ = A.length;
+      const isa2 /*:boolean*/ = len3 === lena2;
+      if (isa2) {
+      } else {
+        A.indexOf(`.`);
+      }
+    } else {
+    }
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  let B = `jhayon.vercel.app`;
+  const A = $(`x`).length;
+  if (A[0] === `.`) {
+    B = A.slice(1);
+  } else {
+    B = A;
+  }
+  const diff = $.length - B.length;
+  const pos = $.indexOf(B, diff);
+  if (!(pos === -1)) {
+    if (pos === diff) {
+      const len3 = $.length;
+      if (!(len3 === A.length)) {
+        A.indexOf(`.`);
+      }
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -144,46 +207,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  let B /*:unknown*/ = `jhayon.vercel.app`;
-  const x /*:unknown*/ = $(`x`);
-  const A /*:unknown*/ = x.length;
-  const tmpBinBothLhs$30 /*:unknown*/ = A[0];
-  const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
-  if (tmpIfTest$10) {
-    B = A.slice(1);
-  } else {
-    B = A;
-  }
-  const len /*:unknown*/ = $.length;
-  const len2 /*:unknown*/ = B.length;
-  const diff /*:number*/ = len - len2;
-  const pos /*:unknown*/ = $.indexOf(B, diff);
-  const isnot /*:boolean*/ = pos === -1;
-  if (isnot) {
-  } else {
-    const tmpClusterSSA_isnot /*:boolean*/ = pos === diff;
-    if (tmpClusterSSA_isnot) {
-      const len3 /*:unknown*/ = $.length;
-      const lena2 /*:unknown*/ = A.length;
-      const isa2 /*:boolean*/ = len3 === lena2;
-      if (isa2) {
-      } else {
-        A.indexOf(`.`);
-      }
-    } else {
-    }
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -228,7 +252,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -238,4 +262,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

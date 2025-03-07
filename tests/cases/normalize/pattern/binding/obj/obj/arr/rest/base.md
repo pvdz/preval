@@ -17,6 +17,21 @@ const {
 $(z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const z /*:array*/ = [1, 2, 3];
+$(z);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([1, 2, 3]);
+`````
+
 ## Pre Normal
 
 
@@ -44,16 +59,7 @@ const z = arrPatternSplat.slice(0);
 $(z);
 `````
 
-## Output
-
-
-`````js filename=intro
-const z /*:array*/ = [1, 2, 3];
-$(z);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +71,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1, 2, 3]
@@ -75,7 +81,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

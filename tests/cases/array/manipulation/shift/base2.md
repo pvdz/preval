@@ -17,6 +17,25 @@ $(NOT_AN_ARRAY);
 
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr1 /*:array*/ = [`a`, `b`, `c`];
+const secretArr /*:unknown*/ = $(arr1);
+const ARR /*:array*/ = [...secretArr];
+const NOT_AN_ARRAY /*:unknown*/ = ARR.shift();
+$(NOT_AN_ARRAY);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const secretArr = $([`a`, `b`, `c`]);
+$([...secretArr].shift());
+`````
+
 ## Pre Normal
 
 
@@ -39,19 +58,7 @@ const NOT_AN_ARRAY = ARR.shift();
 $(NOT_AN_ARRAY);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr1 /*:array*/ = [`a`, `b`, `c`];
-const secretArr /*:unknown*/ = $(arr1);
-const ARR /*:array*/ = [...secretArr];
-const NOT_AN_ARRAY /*:unknown*/ = ARR.shift();
-$(NOT_AN_ARRAY);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +73,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['a', 'b', 'c']
@@ -77,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

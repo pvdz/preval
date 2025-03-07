@@ -23,6 +23,50 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let arr /*:array*/ = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam /*:unknown*/ = arr[0];
+  try {
+    $(tmpCalleeParam);
+    arr.reverse();
+    const tmpBinLhs /*:unknown*/ = arr[0];
+    const tmpIfTest /*:boolean*/ = tmpBinLhs === $;
+    if (tmpIfTest) {
+      break;
+    } else {
+      arr = [1, 2, 3];
+    }
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let arr = [1, 2, 3];
+while (true) {
+  const tmpCalleeParam = arr[0];
+  try {
+    $(tmpCalleeParam);
+    arr.reverse();
+    if (arr[0] === $) {
+      break;
+    } else {
+      arr = [1, 2, 3];
+    }
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -63,31 +107,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let arr /*:array*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam /*:unknown*/ = arr[0];
-  try {
-    $(tmpCalleeParam);
-    arr.reverse();
-    const tmpBinLhs /*:unknown*/ = arr[0];
-    const tmpIfTest /*:boolean*/ = tmpBinLhs === $;
-    if (tmpIfTest) {
-      break;
-    } else {
-      arr = [1, 2, 3];
-    }
-  } catch (e) {
-    $(`fail`);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +136,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -151,7 +171,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - fix the member expression on array stuff. im going to hate myself for skipping this.

@@ -18,6 +18,31 @@ function f() {
 $(f(), 'outer');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:(unknown)=>unknown*/ = function ($$0) {
+  const a /*:unknown*/ = $$0;
+  debugger;
+  const tmpReturnArg$1 /*:unknown*/ = $(a, `g`);
+  return tmpReturnArg$1;
+};
+const tmpReturnArg /*:object*/ = new g(10);
+$(tmpReturnArg, `outer`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function (a) {
+  const tmpReturnArg$1 = $(a, `g`);
+  return tmpReturnArg$1;
+};
+$(new g(10), `outer`);
+`````
+
 ## Pre Normal
 
 
@@ -53,22 +78,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam, `outer`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:(unknown)=>unknown*/ = function ($$0) {
-  const a /*:unknown*/ = $$0;
-  debugger;
-  const tmpReturnArg$1 /*:unknown*/ = $(a, `g`);
-  return tmpReturnArg$1;
-};
-const tmpReturnArg /*:object*/ = new g(10);
-$(tmpReturnArg, `outer`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +96,7 @@ $( d, "outer" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10, 'g'
@@ -97,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

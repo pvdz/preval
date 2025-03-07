@@ -20,6 +20,48 @@ while (true) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(10);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  let tmpClusterSSA_x /*:unknown*/ = $(20);
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+  } else {
+    while ($LOOP_UNROLL_10) {
+      tmpClusterSSA_x = $(20);
+      const tmpIfTest$1 /*:unknown*/ = $(true);
+      if (tmpIfTest$1) {
+        break;
+      } else {
+      }
+    }
+  }
+  $(tmpClusterSSA_x);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(10);
+while (true) {
+  let tmpClusterSSA_x = $(20);
+  if (!$(true)) {
+    while (true) {
+      tmpClusterSSA_x = $(20);
+      if ($(true)) {
+        break;
+      }
+    }
+  }
+  $(tmpClusterSSA_x);
+}
+`````
+
 ## Pre Normal
 
 
@@ -53,31 +95,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(10);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpClusterSSA_x /*:unknown*/ = $(20);
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-  } else {
-    while ($LOOP_UNROLL_10) {
-      tmpClusterSSA_x = $(20);
-      const tmpIfTest$1 /*:unknown*/ = $(true);
-      if (tmpIfTest$1) {
-        break;
-      } else {
-      }
-    }
-  }
-  $(tmpClusterSSA_x);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +123,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -140,7 +158,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

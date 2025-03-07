@@ -19,6 +19,32 @@ x = $(10);
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  throw `Preval: TDZ triggered for this read: \$(x)`;
+} else {
+  const x /*:unknown*/ = $(5);
+  $(x);
+  const tmpClusterSSA_x /*:unknown*/ = $(10);
+  $(tmpClusterSSA_x);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  throw `Preval: TDZ triggered for this read: \$(x)`;
+} else {
+  $($(5));
+  $($(10));
+}
+`````
+
 ## Pre Normal
 
 
@@ -44,22 +70,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  throw `Preval: TDZ triggered for this read: \$(x)`;
-} else {
-  const x /*:unknown*/ = $(5);
-  $(x);
-  const tmpClusterSSA_x /*:unknown*/ = $(10);
-  $(tmpClusterSSA_x);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +89,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -87,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

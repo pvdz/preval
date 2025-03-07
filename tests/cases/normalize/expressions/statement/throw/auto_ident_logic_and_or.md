@@ -14,6 +14,39 @@ throw ($($(1)) && $($(1))) || $($(2));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
+if (tmpThrowArg) {
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  tmpThrowArg = $(tmpCalleeParam$1);
+} else {
+}
+if (tmpThrowArg) {
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  tmpThrowArg = $(tmpCalleeParam$3);
+}
+throw tmpThrowArg;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpThrowArg = $($(1));
+if (tmpThrowArg) {
+  tmpThrowArg = $($(1));
+}
+if (!tmpThrowArg) {
+  tmpThrowArg = $($(2));
+}
+throw tmpThrowArg;
+`````
+
 ## Pre Normal
 
 
@@ -43,27 +76,7 @@ if (tmpThrowArg) {
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-let tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
-if (tmpThrowArg) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  tmpThrowArg = $(tmpCalleeParam$1);
-} else {
-}
-if (tmpThrowArg) {
-} else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  tmpThrowArg = $(tmpCalleeParam$3);
-}
-throw tmpThrowArg;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +100,7 @@ throw b;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -100,4 +113,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

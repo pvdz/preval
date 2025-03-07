@@ -12,6 +12,25 @@
 $spy(isNaN)($spy('a'), $spy('b'), $spy('c'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallCallee /*:unknown*/ = $spy(isNaN);
+const tmpCalleeParam /*:unknown*/ = $spy(`a`);
+const tmpCalleeParam$1 /*:unknown*/ = $spy(`b`);
+const tmpCalleeParam$3 /*:unknown*/ = $spy(`c`);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallCallee = $spy(isNaN);
+tmpCallCallee($spy(`a`), $spy(`b`), $spy(`c`));
+`````
+
 ## Pre Normal
 
 
@@ -30,19 +49,7 @@ const tmpCalleeParam$3 = $spy(`c`);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallCallee /*:unknown*/ = $spy(isNaN);
-const tmpCalleeParam /*:unknown*/ = $spy(`a`);
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`b`);
-const tmpCalleeParam$3 /*:unknown*/ = $spy(`c`);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +64,7 @@ a( b, c, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['<function>', '<function>']
@@ -70,4 +77,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

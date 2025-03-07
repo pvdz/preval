@@ -13,6 +13,20 @@ const x = {a: 1};
 $(typeof x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`object`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`object`);
+`````
+
 ## Pre Normal
 
 
@@ -30,15 +44,7 @@ const tmpCalleeParam = typeof x;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`object`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -49,7 +55,7 @@ $( "object" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'object'
@@ -59,4 +65,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

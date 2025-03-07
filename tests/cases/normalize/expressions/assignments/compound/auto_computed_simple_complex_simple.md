@@ -15,6 +15,32 @@ a[$("b")] = 2;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(1);
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpBinBothRhs /*:object*/ = { b: tmpObjLitVal };
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
+tmpClusterSSA_a[tmpAssignComMemLhsProp] = 2;
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(1);
+const tmpClusterSSA_a = { a: 999, b: 1000 } * { b: tmpObjLitVal };
+$(tmpClusterSSA_a);
+const tmpAssignComMemLhsProp = $(`b`);
+tmpClusterSSA_a[tmpAssignComMemLhsProp] = 2;
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -42,22 +68,7 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-const a /*:object*/ = { a: 999, b: 1000 };
-const tmpBinBothRhs /*:object*/ = { b: tmpObjLitVal };
-const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
-tmpClusterSSA_a[tmpAssignComMemLhsProp] = 2;
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +89,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -90,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

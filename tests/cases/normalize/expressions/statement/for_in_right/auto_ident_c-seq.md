@@ -16,6 +16,45 @@ for (let x in ($(1), $(2), $(x)));
 $(a, x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpCalleeParam /*:unknown*/ = $(x$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpForInGen = $forIn($(x$1));
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 }, 1);
+`````
+
 ## Pre Normal
 
 
@@ -58,29 +97,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const tmpCalleeParam /*:unknown*/ = $(x$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -111,7 +128,7 @@ BAD@! Found 1 implicit global bindings:
 
 x$1
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -125,7 +142,12 @@ Normalized calls: BAD!?
  - 2: 2
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - 1: 1
+ - 2: 2
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Denormalized calls: BAD!!
  - 1: 1
  - 2: 2
  - eval returned: ('<crash[ <ref> is not defined ]>')

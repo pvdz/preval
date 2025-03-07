@@ -24,6 +24,66 @@ while (tst) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(-1);
+$(0);
+$(1);
+$(2);
+$(3);
+$(4);
+$(5);
+$(6);
+$(7);
+$(8);
+$(9);
+$(10);
+$(11);
+$(12);
+$(13);
+let tmpClusterSSA_i$2 /*:number*/ = 14;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(tmpClusterSSA_i$2);
+  tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
+  const tmpClusterSSA_tst$1 /*:boolean*/ = tmpClusterSSA_i$2 > -5;
+  if (tmpClusterSSA_tst$1) {
+  } else {
+    break;
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(-1);
+$(0);
+$(1);
+$(2);
+$(3);
+$(4);
+$(5);
+$(6);
+$(7);
+$(8);
+$(9);
+$(10);
+$(11);
+$(12);
+$(13);
+let tmpClusterSSA_i$2 = 14;
+while (true) {
+  $(tmpClusterSSA_i$2);
+  tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
+  if (!(tmpClusterSSA_i$2 > -5)) {
+    break;
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -62,39 +122,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(-1);
-$(0);
-$(1);
-$(2);
-$(3);
-$(4);
-$(5);
-$(6);
-$(7);
-$(8);
-$(9);
-$(10);
-$(11);
-$(12);
-$(13);
-let tmpClusterSSA_i$2 /*:number*/ = 14;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_i$2);
-  tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
-  const tmpClusterSSA_tst$1 /*:boolean*/ = tmpClusterSSA_i$2 > -5;
-  if (tmpClusterSSA_tst$1) {
-  } else {
-    break;
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -131,7 +159,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: -1
@@ -166,4 +194,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

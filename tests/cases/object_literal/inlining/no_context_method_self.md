@@ -17,6 +17,24 @@ $('objstr:', obj.str);
 $('objencode:', obj.encode());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`objstr:`, `abc`);
+$(`method:`, `abc`);
+$(`objencode:`, undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`objstr:`, `abc`);
+$(`method:`, `abc`);
+$(`objencode:`, undefined);
+`````
+
 ## Pre Normal
 
 
@@ -49,17 +67,7 @@ const tmpCalleeParam$3 = obj.encode();
 $(`objencode:`, tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`objstr:`, `abc`);
-$(`method:`, `abc`);
-$(`objencode:`, undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +80,7 @@ $( "objencode:", undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'objstr:', 'abc'
@@ -84,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

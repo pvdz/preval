@@ -75,6 +75,20 @@ while (true) {
 $(arrB[0]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`I should become first element`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`I should become first element`);
+`````
+
 ## Pre Normal
 
 
@@ -280,15 +294,7 @@ const tmpCalleeParam = arrB[0];
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`I should become first element`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -299,7 +305,7 @@ $( "I should become first element" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'I should become first element'
@@ -309,4 +315,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

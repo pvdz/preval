@@ -14,6 +14,25 @@ obj.a.b = 15;
 $(obj??a??b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$();
+const tmpObjLitVal /*:object*/ = { b: 15 };
+const obj /*:object*/ = { a: tmpObjLitVal };
+$(obj);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$();
+const tmpObjLitVal = { b: 15 };
+$({ a: tmpObjLitVal });
+`````
+
 ## Pre Normal
 
 
@@ -46,18 +65,7 @@ if (tmpIfTest$1) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$();
-const tmpObjLitVal /*:object*/ = { b: 15 };
-const obj /*:object*/ = { a: tmpObjLitVal };
-$(obj);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +79,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -82,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -13,6 +13,52 @@
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = `abc`.x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam /*:array*/ = [`pass2`];
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  y = `fail`;
+  $(y);
+} else {
+  y = arrPatternBeforeDefault;
+  $(y);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = `abc`.x;
+let objPatternAfterDefault = undefined;
+if (objPatternBeforeDefault === undefined) {
+  objPatternAfterDefault = $([`pass2`]);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternBeforeDefault = [...objPatternAfterDefault][0];
+if (arrPatternBeforeDefault === undefined) {
+  y = `fail`;
+  $(y);
+} else {
+  y = arrPatternBeforeDefault;
+  $(y);
+}
+`````
+
 ## Pre Normal
 
 
@@ -46,33 +92,7 @@ if (tmpIfTest$1) {
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = `abc`.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam /*:array*/ = [`pass2`];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  y = `fail`;
-  $(y);
-} else {
-  y = arrPatternBeforeDefault;
-  $(y);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +125,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['pass2']
@@ -115,7 +135,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

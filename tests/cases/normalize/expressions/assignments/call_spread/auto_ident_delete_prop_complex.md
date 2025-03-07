@@ -16,6 +16,28 @@ $(...(a = delete $(arg).y));
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteObj /*:unknown*/ = $(arg);
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
+$(...tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arg = { y: 1 };
+const tmpDeleteObj = $(arg);
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
+$(...tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -39,19 +61,7 @@ $(...tmpCalleeParamSpread);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-$(...tmpClusterSSA_a);
-$(tmpClusterSSA_a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +76,7 @@ $( c, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { y: '1' }
@@ -76,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

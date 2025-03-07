@@ -14,6 +14,20 @@ let c = 20;
 let a = b.x = c
 `````
 
+## Settled
+
+
+`````js filename=intro
+(10).x = 20;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+(10).x = 20;
+`````
+
 ## Pre Normal
 
 
@@ -34,15 +48,7 @@ b.x = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
 `````
 
-## Output
-
-
-`````js filename=intro
-(10).x = 20;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +59,7 @@ With rename=true
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot create property 'x' on number '10' ]>")
@@ -62,4 +68,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

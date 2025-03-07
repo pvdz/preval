@@ -16,6 +16,52 @@ while ((a = (1, 2, $(b))[$("$")](1))) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCallCompObj /*:unknown*/ = $(b);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
+let tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+if (tmpClusterSSA_a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCallCompObj$1 /*:unknown*/ = $(b);
+    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
+    tmpClusterSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
+    if (tmpClusterSSA_a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { $: $ };
+const tmpCallCompObj = $(b);
+const tmpCallCompProp = $(`\$`);
+let tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+if (tmpClusterSSA_a) {
+  while (true) {
+    $(100);
+    const tmpCallCompObj$1 = $(b);
+    const tmpCallCompProp$1 = $(`\$`);
+    tmpClusterSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
+    if (!tmpClusterSSA_a) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -46,32 +92,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-let tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
-if (tmpClusterSSA_a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpCallCompObj$1 /*:unknown*/ = $(b);
-    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-    tmpClusterSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
-    if (tmpClusterSSA_a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -100,7 +121,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -135,7 +156,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

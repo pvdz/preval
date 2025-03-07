@@ -18,6 +18,47 @@ x = $(20);
 $(x, a, b, 'final');
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = $(10);
+const b /*:object*/ = {
+  set x($$0) {
+    debugger;
+    x = $(30, `from set`);
+    return undefined;
+  },
+  get x() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(40, `from get`);
+    return tmpReturnArg;
+  },
+};
+b.x = x;
+x = $(20);
+$(x, 2, b, `final`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $(10);
+const b = {
+  set x($$0) {
+    x = $(30, `from set`);
+  },
+  get x() {
+    const tmpReturnArg = $(40, `from get`);
+    return tmpReturnArg;
+  },
+};
+b.x = x;
+x = $(20);
+$(x, 2, b, `final`);
+`````
+
 ## Pre Normal
 
 
@@ -76,30 +117,7 @@ x = $(20);
 $(x, a, b, `final`);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = $(10);
-const b /*:object*/ = {
-  set x($$0) {
-    debugger;
-    x = $(30, `from set`);
-    return undefined;
-  },
-  get x() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(40, `from get`);
-    return tmpReturnArg;
-  },
-};
-b.x = x;
-x = $(20);
-$(x, 2, b, `final`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -125,7 +143,7 @@ $( a, 2, b, "final" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -138,4 +156,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

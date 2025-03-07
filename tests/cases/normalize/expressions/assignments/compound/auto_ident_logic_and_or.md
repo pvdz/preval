@@ -14,6 +14,51 @@ $((a *= ($($(1)) && $($(1))) || $($(2))));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
+if (tmpBinBothRhs) {
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  tmpBinBothRhs = $(tmpCalleeParam$3);
+} else {
+}
+let tmpClusterSSA_a /*:number*/ = 0;
+const a /*:object*/ = { a: 999, b: 1000 };
+if (tmpBinBothRhs) {
+  tmpClusterSSA_a = a * tmpBinBothRhs;
+  $(tmpClusterSSA_a);
+} else {
+  const tmpCalleeParam$5 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$5);
+  tmpClusterSSA_a = a * tmpClusterSSA_tmpBinBothRhs;
+  $(tmpClusterSSA_a);
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpBinBothRhs = $($(1));
+if (tmpBinBothRhs) {
+  tmpBinBothRhs = $($(1));
+}
+let tmpClusterSSA_a = 0;
+const a = { a: 999, b: 1000 };
+if (tmpBinBothRhs) {
+  tmpClusterSSA_a = a * tmpBinBothRhs;
+  $(tmpClusterSSA_a);
+} else {
+  tmpClusterSSA_a = a * $($(2));
+  $(tmpClusterSSA_a);
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -47,33 +92,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(1);
-let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
-if (tmpBinBothRhs) {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  tmpBinBothRhs = $(tmpCalleeParam$3);
-} else {
-}
-let tmpClusterSSA_a /*:number*/ = 0;
-const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpBinBothRhs) {
-  tmpClusterSSA_a = a * tmpBinBothRhs;
-  $(tmpClusterSSA_a);
-} else {
-  const tmpCalleeParam$5 /*:unknown*/ = $(2);
-  const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$5);
-  tmpClusterSSA_a = a * tmpClusterSSA_tmpBinBothRhs;
-  $(tmpClusterSSA_a);
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +124,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -120,4 +139,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -20,6 +20,24 @@ const d = c + e;
 $(d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = tmpForInNext.value;
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpBinLhs /*:string*/ = `; ${tmpBinBothRhs}`;
+const d /*:string*/ = tmpBinLhs + e;
+$(d);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`; ${tmpForInNext.value}` + e);
+`````
+
 ## Pre Normal
 
 
@@ -45,19 +63,7 @@ const d = c + e;
 $(d);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = tmpForInNext.value;
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpBinLhs /*:string*/ = `; ${tmpBinBothRhs}`;
-const d /*:string*/ = tmpBinLhs + e;
-$(d);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +80,7 @@ BAD@! Found 2 implicit global bindings:
 
 tmpForInNext, e
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -83,4 +89,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

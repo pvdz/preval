@@ -16,6 +16,47 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const tmpUnaryArg /*:unknown*/ = $(100);
+const tmpIfTest /*:number*/ = ~tmpUnaryArg;
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpUnaryArg$1 /*:unknown*/ = $(100);
+    const tmpIfTest$1 /*:number*/ = ~tmpUnaryArg$1;
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+const tmpUnaryArg = $(100);
+if (~tmpUnaryArg) {
+  while (true) {
+    $(100);
+    const tmpUnaryArg$1 = $(100);
+    if (!~tmpUnaryArg$1) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -50,31 +91,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const tmpUnaryArg /*:unknown*/ = $(100);
-const tmpIfTest /*:number*/ = ~tmpUnaryArg;
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpUnaryArg$1 /*:unknown*/ = $(100);
-    const tmpIfTest$1 /*:number*/ = ~tmpUnaryArg$1;
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +122,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -140,4 +157,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

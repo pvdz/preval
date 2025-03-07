@@ -16,6 +16,50 @@ for (; (a = b = $(2)); $(1));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
+let b /*:unknown*/ = tmpNestedComplexRhs;
+let a /*:unknown*/ = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
+    b = tmpNestedComplexRhs$1;
+    a = tmpNestedComplexRhs$1;
+    if (tmpNestedComplexRhs$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedComplexRhs = $(2);
+let b = tmpNestedComplexRhs;
+let a = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
+  while (true) {
+    $(1);
+    const tmpNestedComplexRhs$1 = $(2);
+    b = tmpNestedComplexRhs$1;
+    a = tmpNestedComplexRhs$1;
+    if (!tmpNestedComplexRhs$1) {
+      break;
+    }
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -50,31 +94,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNestedComplexRhs /*:unknown*/ = $(2);
-let b /*:unknown*/ = tmpNestedComplexRhs;
-let a /*:unknown*/ = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
-    b = tmpNestedComplexRhs$1;
-    a = tmpNestedComplexRhs$1;
-    if (tmpNestedComplexRhs$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -102,7 +122,7 @@ $( c, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -137,7 +157,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

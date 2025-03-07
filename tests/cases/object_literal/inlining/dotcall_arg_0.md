@@ -14,6 +14,29 @@ const obj = {f: g};
 $dotCall(obj, window, undefined); // wot
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:()=>unknown*/ = function () {
+  debugger;
+  $();
+  return undefined;
+};
+const obj /*:object*/ = { f: g };
+$dotCall(obj, window, undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function () {
+  $();
+};
+$dotCall({ f: g }, window, undefined);
+`````
+
 ## Pre Normal
 
 
@@ -39,21 +62,7 @@ const obj = { f: g };
 $dotCall(obj, window, undefined);
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:()=>unknown*/ = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const obj /*:object*/ = { f: g };
-$dotCall(obj, window, undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +79,7 @@ $dotCall( b, window, undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -79,4 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

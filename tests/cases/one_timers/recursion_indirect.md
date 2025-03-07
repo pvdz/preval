@@ -25,6 +25,33 @@ function f() {
 // Yes that means this test ends with an empty output. Or should, anyways.
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  if ($) {
+    f();
+  } else {
+  }
+  $(1);
+  return undefined;
+};
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  if ($) {
+    f();
+  }
+  $(1);
+};
+`````
+
 ## Pre Normal
 
 
@@ -64,23 +91,7 @@ let f = function () {
 };
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  if ($) {
-    f();
-  } else {
-  }
-  $(1);
-  return undefined;
-};
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +109,7 @@ const a = function() {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -107,4 +118,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

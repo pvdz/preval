@@ -18,6 +18,25 @@ m = t;
 $(m);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClusterSSA_a /*:unknown*/ = $(10);
+const b /*:unknown*/ = $(20);
+const t /*:array*/ = [tmpClusterSSA_a, b];
+$(t);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClusterSSA_a = $(10);
+const b = $(20);
+$([tmpClusterSSA_a, b]);
+`````
+
 ## Pre Normal
 
 
@@ -44,18 +63,7 @@ m = t;
 $(m);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClusterSSA_a /*:unknown*/ = $(10);
-const b /*:unknown*/ = $(20);
-const t /*:array*/ = [tmpClusterSSA_a, b];
-$(t);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +77,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -81,4 +89,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

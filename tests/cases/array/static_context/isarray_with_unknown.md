@@ -12,6 +12,26 @@
 $(Array.isArray([$(1),$(2),$(3)]));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+$(3);
+$(true);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+$(3);
+$(true);
+`````
+
 ## Pre Normal
 
 
@@ -31,18 +51,7 @@ const tmpCalleeParam = $Array_isArray(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-$(3);
-$(true);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +65,7 @@ $( true );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -69,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

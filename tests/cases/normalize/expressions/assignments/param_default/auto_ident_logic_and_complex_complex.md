@@ -15,6 +15,39 @@ $(f());
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
+let tmpClusterSSA_a /*:unknown*/ = undefined;
+if (tmpNestedComplexRhs) {
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
+  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
+} else {
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+}
+$(undefined);
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedComplexRhs = $($(1));
+let tmpClusterSSA_a = undefined;
+if (tmpNestedComplexRhs) {
+  tmpClusterSSA_a = $($(2));
+} else {
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+}
+$(undefined);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -60,26 +93,7 @@ $(tmpCalleeParam$3);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
-let tmpClusterSSA_a /*:unknown*/ = undefined;
-if (tmpNestedComplexRhs) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
-} else {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-}
-$(undefined);
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -102,7 +116,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -117,4 +131,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,40 @@ $((a = b = $(2)) || (a = b = $(2)));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
+let b /*:unknown*/ = tmpNestedComplexRhs;
+let a /*:unknown*/ = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
+  $(tmpNestedComplexRhs);
+} else {
+  b = $(2);
+  a = b;
+  $(b);
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedComplexRhs = $(2);
+let b = tmpNestedComplexRhs;
+let a = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
+  $(tmpNestedComplexRhs);
+} else {
+  b = $(2);
+  a = b;
+  $(b);
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -47,25 +81,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNestedComplexRhs /*:unknown*/ = $(2);
-let b /*:unknown*/ = tmpNestedComplexRhs;
-let a /*:unknown*/ = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
-  $(tmpNestedComplexRhs);
-} else {
-  b = $(2);
-  a = b;
-  $(b);
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +103,7 @@ $( c, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -99,4 +115,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

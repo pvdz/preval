@@ -16,6 +16,29 @@ export default a = $(b)["c"];
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 1 };
+const tmpAssignRhsProp /*:unknown*/ = $(b);
+const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
+const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
+export { tmpAnonDefaultExport as default };
+$(tmpClusterSSA_a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: 1 };
+const tmpClusterSSA_a = $(b).c;
+const tmpAnonDefaultExport = tmpClusterSSA_a;
+export { tmpAnonDefaultExport as default };
+$(tmpClusterSSA_a, b);
+`````
+
 ## Pre Normal
 
 
@@ -40,20 +63,7 @@ export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 1 };
-const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
-export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +79,7 @@ $( c, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -78,4 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

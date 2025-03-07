@@ -14,6 +14,21 @@ const y = ['a', ...x, 'b'];
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const y /*:array*/ = [`a`, undefined, undefined, undefined, `b`];
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([`a`, undefined, undefined, undefined, `b`]);
+`````
+
 ## Pre Normal
 
 
@@ -32,16 +47,7 @@ const y = [`a`, ...x, `b`];
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const y /*:array*/ = [`a`, undefined, undefined, undefined, `b`];
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +59,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['a', undefined, undefined, undefined, 'b']
@@ -63,4 +69,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

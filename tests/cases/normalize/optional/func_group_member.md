@@ -16,6 +16,34 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpChainRootProp /*:unknown*/ = $();
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+if (tmpIfTest) {
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(undefined);
+  $(tmpClusterSSA_tmpReturnArg);
+} else {
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.foo;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpChainElementObject);
+  $(tmpClusterSSA_tmpReturnArg$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainRootProp = $();
+if (tmpChainRootProp == null) {
+  $($(undefined));
+} else {
+  $($(tmpChainRootProp.foo));
+}
+`````
+
 ## Pre Normal
 
 
@@ -49,24 +77,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpChainRootProp /*:unknown*/ = $();
-const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(undefined);
-  $(tmpClusterSSA_tmpReturnArg);
-} else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.foo;
-  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpChainElementObject);
-  $(tmpClusterSSA_tmpReturnArg$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +98,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -99,4 +110,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

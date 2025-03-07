@@ -24,6 +24,47 @@ $(f());
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>number*/ = function () {
+  debugger;
+  const x /*:unknown*/ = $spy();
+  const t /*:number*/ = x & 8192;
+  if (t) {
+    return 128;
+  } else {
+    const r /*:number*/ = x & 128;
+    return r;
+  }
+};
+const tmpCalleeParam /*:number*/ = f();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:number*/ = f();
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:number*/ = f();
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const x = $spy();
+  if (x & 8192) {
+    return 128;
+  } else {
+    const r = x & 128;
+    return r;
+  }
+};
+$(f());
+$(f());
+$(f());
+`````
+
 ## Pre Normal
 
 
@@ -67,31 +108,7 @@ const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>number*/ = function () {
-  debugger;
-  const x /*:unknown*/ = $spy();
-  const t /*:number*/ = x & 8192;
-  if (t) {
-    return 128;
-  } else {
-    const r /*:number*/ = x & 128;
-    return r;
-  }
-};
-const tmpCalleeParam /*:number*/ = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:number*/ = f();
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:number*/ = f();
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +136,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]
@@ -137,4 +154,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

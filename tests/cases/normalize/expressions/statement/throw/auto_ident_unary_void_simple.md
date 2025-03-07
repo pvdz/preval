@@ -16,6 +16,20 @@ throw void arg;
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw undefined;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw undefined;
+`````
+
 ## Pre Normal
 
 
@@ -36,15 +50,7 @@ const tmpThrowArg = undefined;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-throw undefined;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +61,7 @@ throw undefined;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ undefined ]>')
@@ -64,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

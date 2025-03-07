@@ -20,6 +20,32 @@ $(
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+$(tmpNestedAssignObjPatternRhs);
+$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+$(tmpNestedAssignObjPatternRhs);
+$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
+`````
+
 ## Pre Normal
 
 
@@ -65,21 +91,7 @@ $(tmpCalleeParam);
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const tmpObjLitVal /*:unknown*/ = $(3);
-const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-$(tmpNestedAssignObjPatternRhs);
-$(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -99,7 +111,7 @@ $( c, a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -114,4 +126,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -26,6 +26,28 @@ y = drop3;
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+drop1;
+const x /*:unknown*/ = drop2;
+$(x);
+$();
+const y /*:unknown*/ = drop3;
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+drop1;
+$(drop2);
+$();
+$(drop3);
+`````
+
 ## Pre Normal
 
 
@@ -53,20 +75,7 @@ y = drop3;
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-drop1;
-const x /*:unknown*/ = drop2;
-$(x);
-$();
-const y /*:unknown*/ = drop3;
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +93,7 @@ BAD@! Found 3 implicit global bindings:
 
 drop1, drop2, drop3
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -93,4 +102,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

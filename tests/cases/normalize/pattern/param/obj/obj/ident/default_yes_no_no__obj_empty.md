@@ -15,6 +15,30 @@ function f({ x: { y = $('fail') } }) {
 $(f({}, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternNoDefault /*:unknown*/ = $Object_prototype.x;
+const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault.y;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  $(`fail`);
+} else {
+}
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($Object_prototype.x.y === undefined) {
+  $(`fail`);
+}
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -56,22 +80,7 @@ const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 10);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Object_prototype.x;
-const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault.y;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  $(`fail`);
-} else {
-}
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +97,7 @@ $( "bad" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -97,4 +106,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

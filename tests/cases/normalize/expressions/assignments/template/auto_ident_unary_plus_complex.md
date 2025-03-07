@@ -14,6 +14,38 @@ $(`before  ${(a = +$(100))}  after`);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(number)=>string*/ = function $free($$0) {
+  const a$1 /*:number*/ = $$0;
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(a$1, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
+const tmpUnaryArg /*:unknown*/ = $(100);
+const a /*:number*/ = +tmpUnaryArg;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, a);
+$(tmpCalleeParam);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(a$1) {
+  const tmpRet = `before  ${a$1}  after`;
+  return tmpRet;
+};
+const tmpUnaryArg = $(100);
+const a = +tmpUnaryArg;
+$($frfr(tmpFree, a));
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -40,26 +72,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const a$1 /*:number*/ = $$0;
-  debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(a$1, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-  return tmpRet;
-};
-const tmpUnaryArg /*:unknown*/ = $(100);
-const a /*:number*/ = +tmpUnaryArg;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, a);
-$(tmpCalleeParam);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +94,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -93,4 +106,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

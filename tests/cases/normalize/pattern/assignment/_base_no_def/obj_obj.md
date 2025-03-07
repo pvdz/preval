@@ -13,6 +13,22 @@ let x = 10, y = 20, z = 30;
 ({x: {y: {z}}} = 1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
+objPatternNoDefault$1.z;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+(1).x.y.z;
+`````
+
 ## Pre Normal
 
 
@@ -40,17 +56,7 @@ const objPatternNoDefault$1 = objPatternNoDefault.y;
 z = objPatternNoDefault$1.z;
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (1).x;
-const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
-objPatternNoDefault$1.z;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +69,7 @@ b.z;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -72,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

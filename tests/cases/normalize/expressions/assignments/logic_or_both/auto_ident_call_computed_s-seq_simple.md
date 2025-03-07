@@ -16,6 +16,38 @@ $((a = (1, 2, b)["$"](1)) || (a = (1, 2, b)["$"](1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+let a /*:unknown*/ = b.$(1);
+if (a) {
+  $(a);
+} else {
+  const tmpNestedComplexRhs /*:unknown*/ = b.$(1);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { $: $ };
+let a = b.$(1);
+if (a) {
+  $(a);
+} else {
+  const tmpNestedComplexRhs = b.$(1);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -46,24 +78,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-let a /*:unknown*/ = b.$(1);
-if (a) {
-  $(a);
-} else {
-  const tmpNestedComplexRhs /*:unknown*/ = b.$(1);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +99,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -96,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

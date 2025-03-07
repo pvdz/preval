@@ -22,6 +22,59 @@ while ($(true)) {
 $('after, do not evaluate (infinite loop)');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+  const tmpBinBothRhs /*:unknown*/ = $(0);
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+  if (tmpIfTest$1) {
+    $(`keep, do not eval`);
+  } else {
+  }
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$2 /*:unknown*/ = $(true);
+    if (tmpIfTest$2) {
+      const tmpSwitchDisc$1 /*:unknown*/ = $(1, `disc`);
+      const tmpBinBothRhs$1 /*:unknown*/ = $(0);
+      const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      if (tmpIfTest$4) {
+        $(`keep, do not eval`);
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after, do not evaluate (infinite loop)`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  if ($(1, `disc`) === $(0)) {
+    $(`keep, do not eval`);
+  }
+  while (true) {
+    if ($(true)) {
+      if ($(1, `disc`) === $(0)) {
+        $(`keep, do not eval`);
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(`after, do not evaluate (infinite loop)`);
+`````
+
 ## Pre Normal
 
 
@@ -72,40 +125,7 @@ while (true) {
 $(`after, do not evaluate (infinite loop)`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
-  const tmpBinBothRhs /*:unknown*/ = $(0);
-  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-  if (tmpIfTest$1) {
-    $(`keep, do not eval`);
-  } else {
-  }
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 /*:unknown*/ = $(true);
-    if (tmpIfTest$2) {
-      const tmpSwitchDisc$1 /*:unknown*/ = $(1, `disc`);
-      const tmpBinBothRhs$1 /*:unknown*/ = $(0);
-      const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
-      if (tmpIfTest$4) {
-        $(`keep, do not eval`);
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(`after, do not evaluate (infinite loop)`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -139,7 +159,7 @@ $( "after, do not evaluate (infinite loop)" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -174,4 +194,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

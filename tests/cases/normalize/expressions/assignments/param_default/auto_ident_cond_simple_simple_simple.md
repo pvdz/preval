@@ -15,6 +15,22 @@ $(f());
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(undefined);
+$(2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(undefined);
+$(2);
+`````
+
 ## Pre Normal
 
 
@@ -55,16 +71,7 @@ $(tmpCalleeParam$1);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(undefined);
-$(2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +83,7 @@ $( 2 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -87,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

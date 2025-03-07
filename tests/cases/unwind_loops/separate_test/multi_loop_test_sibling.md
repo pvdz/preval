@@ -23,6 +23,38 @@ while (test) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+`````
+
 ## Pre Normal
 
 
@@ -67,24 +99,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +119,7 @@ $( "yolo" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'yolo'
@@ -123,7 +138,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

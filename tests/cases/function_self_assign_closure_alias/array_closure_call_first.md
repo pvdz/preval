@@ -38,6 +38,28 @@ $(a() === b());
 $(a() === a());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3];
+$(arr);
+$(arr);
+$(true);
+$(true);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+$(arr);
+$(arr);
+$(true);
+$(true);
+`````
+
 ## Pre Normal
 
 
@@ -91,19 +113,7 @@ const tmpCalleeParam$5 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
 $(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-$(arr);
-$(arr);
-$(true);
-$(true);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +128,7 @@ $( true );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1, 2, 3]
@@ -131,4 +141,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

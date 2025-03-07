@@ -14,6 +14,51 @@ $((a = $(1) ? 2 : $($(100))) + (a = $(1) ? 2 : $($(100))));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = 2;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpBinBothLhs /*:unknown*/ = 2;
+if (tmpIfTest) {
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+  tmpBinBothLhs = tmpClusterSSA_a;
+}
+const tmpIfTest$1 /*:unknown*/ = $(1);
+if (tmpIfTest$1) {
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 2;
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(100);
+  a = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam$1);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = 2;
+const tmpIfTest = $(1);
+let tmpBinBothLhs = 2;
+if (!tmpIfTest) {
+  tmpBinBothLhs = $($(100));
+}
+if ($(1)) {
+  $(tmpBinBothLhs + 2);
+} else {
+  a = $($(100));
+  $(tmpBinBothLhs + a);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -49,34 +94,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = 2;
-const tmpIfTest /*:unknown*/ = $(1);
-let tmpBinBothLhs /*:unknown*/ = 2;
-if (tmpIfTest) {
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(100);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpBinBothLhs = tmpClusterSSA_a;
-}
-const tmpIfTest$1 /*:unknown*/ = $(1);
-if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + 2;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam$3);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
-  $(tmpClusterSSA_tmpCalleeParam$1);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,7 +127,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -122,4 +140,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

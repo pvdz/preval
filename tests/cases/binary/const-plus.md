@@ -16,6 +16,20 @@ const xyz = z;
 $(xyz);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`aba`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`aba`);
+`````
+
 ## Pre Normal
 
 
@@ -39,15 +53,7 @@ const xyz = z;
 $(xyz);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`aba`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -58,7 +64,7 @@ $( "aba" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'aba'
@@ -68,4 +74,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

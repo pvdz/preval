@@ -17,6 +17,29 @@ $(x);
 $(c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+const tmpAssignRhsCompObj /*:unknown*/ = $(2);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`toString`);
+const x /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(x);
+$(c);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+const tmpAssignRhsCompObj = $(2);
+const tmpAssignRhsCompProp = $(`toString`);
+$(tmpAssignRhsCompObj[tmpAssignRhsCompProp]);
+$(c);
+`````
+
 ## Pre Normal
 
 
@@ -40,20 +63,7 @@ $(x);
 $(c);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-const tmpAssignRhsCompObj /*:unknown*/ = $(2);
-const tmpAssignRhsCompProp /*:unknown*/ = $(`toString`);
-const x /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(x);
-$(c);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +81,7 @@ BAD@! Found 1 implicit global bindings:
 
 c
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -84,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

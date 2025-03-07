@@ -14,6 +14,26 @@ const y = '' + $(2); // Must be string
 $(x === y); // Must be false (number !== bool)
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothRhs /*:unknown*/ = $(2);
+tmpBinBothRhs ** 0;
+const tmpBinBothRhs$1 /*:unknown*/ = $(2);
+$coerce(tmpBinBothRhs$1, `plustr`);
+$(false);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(2) ** 0;
+$coerce($(2), `plustr`);
+$(false);
+`````
+
 ## Pre Normal
 
 
@@ -37,19 +57,7 @@ const tmpCalleeParam = x === y;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothRhs /*:unknown*/ = $(2);
-tmpBinBothRhs ** 0;
-const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-$coerce(tmpBinBothRhs$1, `plustr`);
-$(false);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +72,7 @@ $( false );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -76,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

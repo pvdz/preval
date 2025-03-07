@@ -20,6 +20,37 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  tmpForInNext.value;
+  const tmpThrowArg /*:unknown*/ = $(1, `throw`);
+  throw tmpThrowArg;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+if (tmpForInNext.done) {
+  $(undefined);
+} else {
+  tmpForInNext.value;
+  const tmpThrowArg = $(1, `throw`);
+  throw tmpThrowArg;
+}
+`````
+
 ## Pre Normal
 
 
@@ -70,25 +101,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  tmpForInNext.value;
-  const tmpThrowArg /*:unknown*/ = $(1, `throw`);
-  throw tmpThrowArg;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -113,7 +126,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'throw'
@@ -123,4 +136,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,42 @@ function f({ x: [] = $(['fail']) } = $({ x: ['fail2'] })) {
 $(f(undefined, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:array*/ = [`fail2`];
+const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
+const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$1 /*:array*/ = [`fail`];
+  objPatternAfterDefault = $(tmpCalleeParam$1);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+[...objPatternAfterDefault];
+$(`ok`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = [`fail2`];
+const objPatternBeforeDefault = $({ x: tmpObjLitVal }).x;
+let objPatternAfterDefault = undefined;
+if (objPatternBeforeDefault === undefined) {
+  objPatternAfterDefault = $([`fail`]);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+[...objPatternAfterDefault];
+$(`ok`);
+`````
+
 ## Pre Normal
 
 
@@ -60,28 +96,7 @@ const tmpCalleeParam$3 = f(undefined, 10);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:array*/ = [`fail2`];
-const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:array*/ = [`fail`];
-  objPatternAfterDefault = $(tmpCalleeParam$1);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-[...objPatternAfterDefault];
-$(`ok`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +121,7 @@ $( "ok" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '["fail2"]' }
@@ -117,4 +132,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

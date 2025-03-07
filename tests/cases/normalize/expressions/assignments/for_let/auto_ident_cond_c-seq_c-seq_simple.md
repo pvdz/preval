@@ -15,6 +15,43 @@ for (let xyz = (a = (10, 20, $(30)) ? (40, 50, $(60)) : $($(100))); ; $(1))
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(30);
+let xyz /*:unknown*/ = undefined;
+if (tmpIfTest) {
+  const tmpClusterSSA_a /*:unknown*/ = $(60);
+  xyz = tmpClusterSSA_a;
+} else {
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
+  xyz = tmpClusterSSA_a$1;
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(xyz);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(30);
+let xyz = undefined;
+if (tmpIfTest) {
+  xyz = $(60);
+} else {
+  xyz = $($(100));
+}
+while (true) {
+  $(xyz);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -49,28 +86,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(30);
-let xyz /*:unknown*/ = undefined;
-if (tmpIfTest) {
-  const tmpClusterSSA_a /*:unknown*/ = $(60);
-  xyz = tmpClusterSSA_a;
-} else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
-  xyz = tmpClusterSSA_a$1;
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -95,7 +111,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 30
@@ -130,4 +146,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

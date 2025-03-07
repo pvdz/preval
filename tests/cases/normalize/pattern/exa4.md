@@ -24,6 +24,87 @@ let { a, b: { ...rest }, c } = obj;
 $(a, c, rest);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const obj /*:object*/ = {
+  get a() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(`a`);
+    return tmpReturnArg;
+  },
+  get b() {
+    debugger;
+    const tmpReturnArg$1 /*:object*/ = {
+      get c() {
+        debugger;
+        const tmpReturnArg$3 /*:unknown*/ = $(`b`);
+        return tmpReturnArg$3;
+      },
+      get d() {
+        debugger;
+        const tmpReturnArg$5 /*:unknown*/ = $(`c`);
+        return tmpReturnArg$5;
+      },
+      get e() {
+        debugger;
+        const tmpReturnArg$7 /*:unknown*/ = $(`d`);
+        return tmpReturnArg$7;
+      },
+    };
+    return tmpReturnArg$1;
+  },
+  get c() {
+    debugger;
+    const tmpReturnArg$9 /*:unknown*/ = $(`c`);
+    return tmpReturnArg$9;
+  },
+};
+const a /*:unknown*/ = obj.a;
+const objPatternNoDefault /*:unknown*/ = obj.b;
+const tmpCalleeParam$1 /*:array*/ = [];
+const rest /*:unknown*/ = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+const c /*:unknown*/ = obj.c;
+$(a, c, rest);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const obj = {
+  get a() {
+    const tmpReturnArg = $(`a`);
+    return tmpReturnArg;
+  },
+  get b() {
+    const tmpReturnArg$1 = {
+      get c() {
+        const tmpReturnArg$3 = $(`b`);
+        return tmpReturnArg$3;
+      },
+      get d() {
+        const tmpReturnArg$5 = $(`c`);
+        return tmpReturnArg$5;
+      },
+      get e() {
+        const tmpReturnArg$7 = $(`d`);
+        return tmpReturnArg$7;
+      },
+    };
+    return tmpReturnArg$1;
+  },
+  get c() {
+    const tmpReturnArg$9 = $(`c`);
+    return tmpReturnArg$9;
+  },
+};
+const a = obj.a;
+const rest = objPatternRest(obj.b, [], undefined);
+$(a, obj.c, rest);
+`````
+
 ## Pre Normal
 
 
@@ -110,53 +191,7 @@ let c = bindingPatternObjRoot.c;
 $(a, c, rest);
 `````
 
-## Output
-
-
-`````js filename=intro
-const obj /*:object*/ = {
-  get a() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(`a`);
-    return tmpReturnArg;
-  },
-  get b() {
-    debugger;
-    const tmpReturnArg$1 /*:object*/ = {
-      get c() {
-        debugger;
-        const tmpReturnArg$3 /*:unknown*/ = $(`b`);
-        return tmpReturnArg$3;
-      },
-      get d() {
-        debugger;
-        const tmpReturnArg$5 /*:unknown*/ = $(`c`);
-        return tmpReturnArg$5;
-      },
-      get e() {
-        debugger;
-        const tmpReturnArg$7 /*:unknown*/ = $(`d`);
-        return tmpReturnArg$7;
-      },
-    };
-    return tmpReturnArg$1;
-  },
-  get c() {
-    debugger;
-    const tmpReturnArg$9 /*:unknown*/ = $(`c`);
-    return tmpReturnArg$9;
-  },
-};
-const a /*:unknown*/ = obj.a;
-const objPatternNoDefault /*:unknown*/ = obj.b;
-const tmpCalleeParam$1 /*:array*/ = [];
-const rest /*:unknown*/ = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
-const c /*:unknown*/ = obj.c;
-$(a, c, rest);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -205,7 +240,7 @@ $( h, l, k );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -220,4 +255,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

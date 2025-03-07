@@ -23,6 +23,24 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`still throws`);
+$(`pass`);
+throw `yes`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`still throws`);
+$(`pass`);
+throw `yes`;
+`````
+
 ## Pre Normal
 
 
@@ -95,17 +113,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`still throws`);
-$(`pass`);
-throw `yes`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +126,7 @@ throw "yes";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'still throws'
@@ -129,4 +137,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

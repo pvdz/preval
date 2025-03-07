@@ -24,6 +24,43 @@ f();
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>boolean*/ = function () {
+  debugger;
+  let y /*:boolean*/ = true;
+  if (x) {
+  } else {
+    y = false;
+  }
+  $(`block`);
+  $(`block`);
+  return y;
+};
+f();
+const tmpCalleeParam /*:boolean*/ = f();
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  let y = true;
+  if (!x) {
+    y = false;
+  }
+  $(`block`);
+  $(`block`);
+  return y;
+};
+f();
+$(f());
+`````
+
 ## Pre Normal
 
 
@@ -65,28 +102,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>boolean*/ = function () {
-  debugger;
-  let y /*:boolean*/ = true;
-  if (x) {
-  } else {
-    y = false;
-  }
-  $(`block`);
-  $(`block`);
-  return y;
-};
-f();
-const tmpCalleeParam /*:boolean*/ = f();
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +130,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -123,4 +139,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

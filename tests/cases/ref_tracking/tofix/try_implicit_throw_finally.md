@@ -19,6 +19,32 @@ abc: try {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 1;
+try {
+  fail;
+} catch (e) {
+  x = 2;
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+try {
+  fail;
+} catch (e) {
+  x = 2;
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -49,21 +75,7 @@ abc: {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:number*/ = 1;
-try {
-  fail;
-} catch (e) {
-  x = 2;
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +95,7 @@ BAD@! Found 1 implicit global bindings:
 
 fail
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -93,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

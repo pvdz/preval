@@ -14,6 +14,42 @@ $((a = $($)(1)) && (a = $($)(1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallComplexCallee /*:unknown*/ = $($);
+let a /*:unknown*/ = tmpCallComplexCallee(1);
+const tmpCalleeParam /*:unknown*/ = a;
+if (a) {
+  const tmpCallComplexCallee$1 /*:unknown*/ = $($);
+  const tmpNestedComplexRhs /*:unknown*/ = tmpCallComplexCallee$1(1);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallComplexCallee = $($);
+let a = tmpCallComplexCallee(1);
+const tmpCalleeParam = a;
+if (a) {
+  const tmpCallComplexCallee$1 = $($);
+  const tmpNestedComplexRhs = tmpCallComplexCallee$1(1);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -42,26 +78,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallComplexCallee /*:unknown*/ = $($);
-let a /*:unknown*/ = tmpCallComplexCallee(1);
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  const tmpCallComplexCallee$1 /*:unknown*/ = $($);
-  const tmpNestedComplexRhs /*:unknown*/ = tmpCallComplexCallee$1(1);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +101,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -99,4 +116,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -63,6 +63,83 @@ function f() {
 $(f);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  const tmpBinBothRhs$175 = typeof Uint8Array;
+  if (`undefined` === tmpBinBothRhs$175) {
+    a$27 = Array;
+  } else {
+    a$27 = Uint8Array;
+  }
+  const tmpAssignComMemLhsProp$14 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(0);
+  const tmpSSA_n$37 = [];
+  tmpSSA_n$37[tmpAssignComMemLhsProp$14] = 0;
+  const tmpAssignComMemLhsProp$12 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(1);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$12] = 1;
+  const tmpAssignComMemLhsProp$16 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(2);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$16] = 2;
+  const tmpAssignComMemLhsProp$17 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(3);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$17] = 3;
+  const tmpAssignComMemLhsProp$18 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(4);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$18] = 4;
+  const tmpAssignComMemLhsProp$19 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(5);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$19] = 5;
+  const tmpAssignComMemLhsProp$20 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(6);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$20] = 6;
+  const tmpAssignComMemLhsProp$21 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(7);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$21] = 7;
+  const tmpAssignComMemLhsProp$22 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(8);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$22] = 8;
+  const tmpAssignComMemLhsProp$24 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(9);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$24] = 9;
+  const tmpAssignComMemLhsProp$25 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(10);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$25] = 10;
+  const tmpAssignComMemLhsProp$26 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(11);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$26] = 11;
+  const tmpAssignComMemLhsProp$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(12);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$1] = 12;
+  const tmpAssignComMemLhsProp$2 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(13);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$2] = 13;
+  const tmpAssignComMemLhsProp$3 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(14);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$3] = 14;
+  const tmpAssignComMemLhsProp$4 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(15);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$4] = 15;
+  const tmpAssignComMemLhsProp$5 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(16);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$5] = 16;
+  const tmpAssignComMemLhsProp$6 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(17);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$6] = 17;
+  const tmpAssignComMemLhsProp$7 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(18);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$7] = 18;
+  const tmpAssignComMemLhsProp$8 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(19);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$8] = 19;
+  const tmpAssignComMemLhsProp$9 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(20);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$9] = 20;
+  const tmpAssignComMemLhsProp$10 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(21);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$10] = 21;
+  let tmpClusterSSA_s$1 = 22;
+  const tmpSSA_i$51 = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`];
+  while (true) {
+    if (tmpClusterSSA_s$1 < 64) {
+      const tmpAssignComputedRhs$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
+      tmpSSA_i$51[tmpClusterSSA_s$1] = tmpAssignComputedRhs$1;
+      const tmpAssignComMemLhsProp$11 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(tmpClusterSSA_s$1);
+      tmpSSA_n$37[tmpAssignComMemLhsProp$11] = tmpClusterSSA_s$1;
+      tmpClusterSSA_s$1 = tmpClusterSSA_s$1 + 1;
+    } else {
+      break;
+    }
+  }
+  const tmpAssignComMemLhsProp$13 = `-`.charCodeAt(0);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$13] = 62;
+  const tmpAssignComMemLhsProp$15 = `_`.charCodeAt(0);
+  tmpSSA_n$37[tmpAssignComMemLhsProp$15] = 63;
+  $(tmpSSA_n$37, tmpSSA_i$51);
+});
+`````
+
 ## Pre Normal
 
 
@@ -180,7 +257,7 @@ let f = function () {
 $(f);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -287,8 +364,7 @@ const f /*:()=>undefined*/ = function () {
 $(f);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -388,4 +464,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $string_charCodeAt

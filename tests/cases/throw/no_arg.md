@@ -15,6 +15,20 @@ function f(){
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `x`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw `x`;
+`````
+
 ## Pre Normal
 
 
@@ -38,15 +52,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-throw `x`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +63,7 @@ throw "x";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ x ]>')
@@ -66,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

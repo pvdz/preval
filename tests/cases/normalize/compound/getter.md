@@ -16,6 +16,20 @@ obj.x += 5;
 $(obj.x); // 5
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(5);
+`````
+
 ## Pre Normal
 
 
@@ -38,15 +52,7 @@ const tmpCalleeParam = obj.x;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +63,7 @@ $( 5 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5
@@ -67,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -19,6 +19,24 @@ $(tmp());
 $(obj.f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`wat`);
+$(undefined);
+$(`wat`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`wat`);
+$(undefined);
+$(`wat`);
+`````
+
 ## Pre Normal
 
 
@@ -59,17 +77,7 @@ const tmpCalleeParam$3 = obj.f();
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`wat`);
-$(undefined);
-$(`wat`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +90,7 @@ $( "wat" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'wat'
@@ -94,4 +102,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

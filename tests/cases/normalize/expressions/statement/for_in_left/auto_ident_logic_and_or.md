@@ -14,6 +14,68 @@ for ((($($(1)) && $($(1))) || $($(2))).x in $({ x: 1 }));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    let tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$3);
+    if (tmpAssignMemLhsObj) {
+      const tmpCalleeParam$5 /*:unknown*/ = $(1);
+      tmpAssignMemLhsObj = $(tmpCalleeParam$5);
+    } else {
+    }
+    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
+    if (tmpAssignMemLhsObj) {
+      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    } else {
+      const tmpCalleeParam$7 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$7);
+      tmpAssignMemLhsObj$1 = tmpClusterSSA_tmpAssignMemLhsObj;
+    }
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn($({ x: 1 }));
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    let tmpAssignMemLhsObj = $($(1));
+    if (tmpAssignMemLhsObj) {
+      tmpAssignMemLhsObj = $($(1));
+    }
+    let tmpAssignMemLhsObj$1 = undefined;
+    if (tmpAssignMemLhsObj) {
+      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    } else {
+      tmpAssignMemLhsObj$1 = $($(2));
+    }
+    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -67,44 +129,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    let tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$3);
-    if (tmpAssignMemLhsObj) {
-      const tmpCalleeParam$5 /*:unknown*/ = $(1);
-      tmpAssignMemLhsObj = $(tmpCalleeParam$5);
-    } else {
-    }
-    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
-    if (tmpAssignMemLhsObj) {
-      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    } else {
-      const tmpCalleeParam$7 /*:unknown*/ = $(2);
-      const tmpClusterSSA_tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$7);
-      tmpAssignMemLhsObj$1 = tmpClusterSSA_tmpAssignMemLhsObj;
-    }
-    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -148,7 +173,7 @@ $( m );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -162,7 +187,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

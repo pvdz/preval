@@ -14,6 +14,26 @@ $`before ${$({ a: 1, b: 2 })} after`;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
+const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+$(tmpCalleeParam, tmpCalleeParam$1);
+$(999);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam$1 = $({ a: 1, b: 2 });
+$([`before `, ` after`], tmpCalleeParam$1);
+$(999);
+`````
+
 ## Pre Normal
 
 
@@ -36,19 +56,7 @@ $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
-const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(999);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +74,7 @@ $( 999 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }
@@ -78,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

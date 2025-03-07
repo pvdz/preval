@@ -30,6 +30,43 @@ $(outer);
 
 `````
 
+## Settled
+
+
+`````js filename=intro
+const inner /*:()=>undefined*/ = function () {
+  debugger;
+  $(1);
+  return undefined;
+};
+const outer /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpIfTest /*:unknown*/ = $();
+  if (tmpIfTest) {
+    return undefined;
+  } else {
+    $(inner);
+    return undefined;
+  }
+};
+$(outer);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const inner = function () {
+  $(1);
+};
+$(function () {
+  const tmpIfTest = $();
+  if (!tmpIfTest) {
+    $(inner);
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -72,30 +109,7 @@ let outer = function () {
 $(outer);
 `````
 
-## Output
-
-
-`````js filename=intro
-const inner /*:()=>undefined*/ = function () {
-  debugger;
-  $(1);
-  return undefined;
-};
-const outer /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpIfTest /*:unknown*/ = $();
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    $(inner);
-    return undefined;
-  }
-};
-$(outer);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -122,7 +136,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -132,4 +146,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

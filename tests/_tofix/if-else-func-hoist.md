@@ -53,6 +53,30 @@ repeat(0);
 $(repeat);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let closure_cond = false;
+const repeat = function (arg) {
+  let inline_me = undefined;
+  if (closure_cond) {
+    inline_me = function () {
+      $(`a`);
+    };
+  } else {
+    inline_me = function () {
+      $(`b`);
+    };
+  }
+  closure_cond = [];
+  inline_me();
+  repeat(arg + 1);
+};
+repeat(0);
+$(repeat);
+`````
+
 ## Pre Normal
 
 
@@ -114,7 +138,7 @@ repeat(0);
 $(repeat);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -146,8 +170,7 @@ repeat(0);
 $(repeat);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -219,4 +242,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

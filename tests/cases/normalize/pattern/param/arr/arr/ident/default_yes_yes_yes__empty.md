@@ -15,6 +15,53 @@ function f([[x = $('fail')] = $(['fail2'])] = $(['pass3'])) {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`pass3`];
+const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
+let arrPatternStep /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$1 /*:array*/ = [`fail2`];
+  arrPatternStep = $(tmpCalleeParam$1);
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
+}
+const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
+const arrPatternBeforeDefault$1 /*:unknown*/ = arrPatternSplat$1[0];
+const tmpIfTest$3 /*:boolean*/ = arrPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$3) {
+  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
+  $(tmpClusterSSA_x);
+} else {
+  $(arrPatternBeforeDefault$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternArrRoot = $([`pass3`]);
+const arrPatternBeforeDefault = [...bindingPatternArrRoot][0];
+let arrPatternStep = undefined;
+if (arrPatternBeforeDefault === undefined) {
+  arrPatternStep = $([`fail2`]);
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
+}
+const arrPatternBeforeDefault$1 = [...arrPatternStep][0];
+if (arrPatternBeforeDefault$1 === undefined) {
+  $($(`fail`));
+} else {
+  $(arrPatternBeforeDefault$1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -69,35 +116,7 @@ const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`pass3`];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-let arrPatternStep /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:array*/ = [`fail2`];
-  arrPatternStep = $(tmpCalleeParam$1);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const arrPatternBeforeDefault$1 /*:unknown*/ = arrPatternSplat$1[0];
-const tmpIfTest$3 /*:boolean*/ = arrPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$3) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
-  $(tmpClusterSSA_x);
-} else {
-  $(arrPatternBeforeDefault$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -130,7 +149,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['pass3']
@@ -141,7 +160,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

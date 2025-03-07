@@ -20,6 +20,31 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothRhs /*:unknown*/ = $(`pass`);
+const b /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+if (b) {
+  $(b);
+} else {
+  $(``);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = $coerce($(`pass`), `plustr`);
+if (b) {
+  $(b);
+} else {
+  $(``);
+}
+`````
+
 ## Pre Normal
 
 
@@ -56,21 +81,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothRhs /*:unknown*/ = $(`pass`);
-const b /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-if (b) {
-  $(b);
-} else {
-  $(``);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +99,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -99,4 +110,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

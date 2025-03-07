@@ -17,6 +17,33 @@ const a = {};
 $(a?.b.c?.d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
+const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
+if (tmpIfTest$1) {
+  $(undefined);
+} else {
+  const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1.d;
+  $(tmpChainElementObject$3);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainElementObject$1 = $Object_prototype.b.c;
+if (tmpChainElementObject$1 == null) {
+  $(undefined);
+} else {
+  $(tmpChainElementObject$1.d);
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,23 +74,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
-const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
-if (tmpIfTest$1) {
-  $(undefined);
-} else {
-  const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1.d;
-  $(tmpChainElementObject$3);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +94,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -92,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

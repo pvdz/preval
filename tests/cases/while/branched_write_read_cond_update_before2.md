@@ -28,6 +28,52 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = $(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const imanumberandilovethrees /*:number*/ = x % 3;
+  let itooamanumberjack /*:number*/ = 0;
+  if (imanumberandilovethrees) {
+    x = $(10, `ten`);
+    itooamanumberjack = x % 2;
+  } else {
+    itooamanumberjack = x % 2;
+  }
+  if (itooamanumberjack) {
+    x = x + 1;
+    $(x, `write`);
+  } else {
+    $(x, `read`);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $(1);
+while (true) {
+  const imanumberandilovethrees = x % 3;
+  let itooamanumberjack = 0;
+  if (imanumberandilovethrees) {
+    x = $(10, `ten`);
+    itooamanumberjack = x % 2;
+  } else {
+    itooamanumberjack = x % 2;
+  }
+  if (itooamanumberjack) {
+    x = x + 1;
+    $(x, `write`);
+  } else {
+    $(x, `read`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -74,31 +120,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const imanumberandilovethrees /*:number*/ = x % 3;
-  let itooamanumberjack /*:number*/ = 0;
-  if (imanumberandilovethrees) {
-    x = $(10, `ten`);
-    itooamanumberjack = x % 2;
-  } else {
-    itooamanumberjack = x % 2;
-  }
-  if (itooamanumberjack) {
-    x = x + 1;
-    $(x, `write`);
-  } else {
-    $(x, `read`);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,7 +149,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -162,4 +184,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

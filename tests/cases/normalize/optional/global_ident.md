@@ -12,6 +12,30 @@
 $(global?.foo);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:boolean*/ = global == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainElementObject /*:unknown*/ = global.foo;
+  $(tmpChainElementObject);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (global == null) {
+  $(undefined);
+} else {
+  $(global.foo);
+}
+`````
+
 ## Pre Normal
 
 
@@ -34,21 +58,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:boolean*/ = global == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementObject /*:unknown*/ = global.foo;
-  $(tmpChainElementObject);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +76,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -76,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

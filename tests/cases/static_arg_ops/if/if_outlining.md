@@ -65,6 +65,97 @@ const siftUp = function(heap, node, i, tmpOutlinedParam) {
 $(push);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
+  const heap /*:unknown*/ = $$0;
+  const node /*:unknown*/ = $$1;
+  debugger;
+  $inlinedFunction: {
+    const index$1 /*:unknown*/ = heap.length;
+    const tmpSaooB$1 /*:boolean*/ = index$1 > 0;
+    heap.push(node);
+    if (tmpSaooB$1) {
+      const tmpBinLhs$261 /*:number*/ = index$1 - 1;
+      const tmpClusterSSA_parentIndex /*:number*/ = tmpBinLhs$261 >>> 1;
+      const tmpClusterSSA_parent /*:unknown*/ = heap[tmpClusterSSA_parentIndex];
+      const tmpBinLhs$263 /*:unknown*/ = compare(tmpClusterSSA_parent, node);
+      const tmpIfTest$369 /*:boolean*/ = tmpBinLhs$263 > 0;
+      if (tmpIfTest$369) {
+        heap[tmpClusterSSA_parentIndex] = node;
+        heap[index$1] = tmpClusterSSA_parent;
+        let tmpClusterSSA_index$3 /*:unknown*/ = tmpClusterSSA_parentIndex;
+        let tmpClusterSSA_tmpIfTest$367 /*:boolean*/ = tmpClusterSSA_parentIndex > 0;
+        while ($LOOP_UNROLL_100) {
+          if (tmpClusterSSA_tmpIfTest$367) {
+            const tmpBinLhs$1 /*:number*/ = tmpClusterSSA_index$3 - 1;
+            const tmpClusterSSA_parentIndex$1 /*:number*/ = tmpBinLhs$1 >>> 1;
+            const tmpClusterSSA_parent$1 /*:unknown*/ = heap[tmpClusterSSA_parentIndex$1];
+            const tmpBinLhs$3 /*:unknown*/ = compare(tmpClusterSSA_parent$1, node);
+            const tmpIfTest$2 /*:boolean*/ = tmpBinLhs$3 > 0;
+            if (tmpIfTest$2) {
+              heap[tmpClusterSSA_parentIndex$1] = node;
+              heap[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
+              tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
+              tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
+            } else {
+              break $inlinedFunction;
+            }
+          } else {
+            break;
+          }
+        }
+      } else {
+      }
+    } else {
+    }
+  }
+  return undefined;
+};
+$(push);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function (heap, node) {
+  $inlinedFunction: {
+    const index$1 = heap.length;
+    const tmpSaooB$1 = index$1 > 0;
+    heap.push(node);
+    if (tmpSaooB$1) {
+      const tmpClusterSSA_parentIndex = (index$1 - 1) >>> 1;
+      const tmpClusterSSA_parent = heap[tmpClusterSSA_parentIndex];
+      if (compare(tmpClusterSSA_parent, node) > 0) {
+        heap[tmpClusterSSA_parentIndex] = node;
+        heap[index$1] = tmpClusterSSA_parent;
+        let tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex;
+        let tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex > 0;
+        while (true) {
+          if (tmpClusterSSA_tmpIfTest$367) {
+            const tmpClusterSSA_parentIndex$1 = (tmpClusterSSA_index$3 - 1) >>> 1;
+            const tmpClusterSSA_parent$1 = heap[tmpClusterSSA_parentIndex$1];
+            if (compare(tmpClusterSSA_parent$1, node) > 0) {
+              heap[tmpClusterSSA_parentIndex$1] = node;
+              heap[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
+              tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
+              tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
+            } else {
+              break $inlinedFunction;
+            }
+          } else {
+            break;
+          }
+        }
+      }
+    }
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -187,60 +278,7 @@ const siftUp = function ($$0, $$1, $$2, $$3) {
 $(push);
 `````
 
-## Output
-
-
-`````js filename=intro
-const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
-  const heap /*:unknown*/ = $$0;
-  const node /*:unknown*/ = $$1;
-  debugger;
-  $inlinedFunction: {
-    const index$1 /*:unknown*/ = heap.length;
-    const tmpSaooB$1 /*:boolean*/ = index$1 > 0;
-    heap.push(node);
-    if (tmpSaooB$1) {
-      const tmpBinLhs$261 /*:number*/ = index$1 - 1;
-      const tmpClusterSSA_parentIndex /*:number*/ = tmpBinLhs$261 >>> 1;
-      const tmpClusterSSA_parent /*:unknown*/ = heap[tmpClusterSSA_parentIndex];
-      const tmpBinLhs$263 /*:unknown*/ = compare(tmpClusterSSA_parent, node);
-      const tmpIfTest$369 /*:boolean*/ = tmpBinLhs$263 > 0;
-      if (tmpIfTest$369) {
-        heap[tmpClusterSSA_parentIndex] = node;
-        heap[index$1] = tmpClusterSSA_parent;
-        let tmpClusterSSA_index$3 /*:unknown*/ = tmpClusterSSA_parentIndex;
-        let tmpClusterSSA_tmpIfTest$367 /*:boolean*/ = tmpClusterSSA_parentIndex > 0;
-        while ($LOOP_UNROLL_100) {
-          if (tmpClusterSSA_tmpIfTest$367) {
-            const tmpBinLhs$1 /*:number*/ = tmpClusterSSA_index$3 - 1;
-            const tmpClusterSSA_parentIndex$1 /*:number*/ = tmpBinLhs$1 >>> 1;
-            const tmpClusterSSA_parent$1 /*:unknown*/ = heap[tmpClusterSSA_parentIndex$1];
-            const tmpBinLhs$3 /*:unknown*/ = compare(tmpClusterSSA_parent$1, node);
-            const tmpIfTest$2 /*:boolean*/ = tmpBinLhs$3 > 0;
-            if (tmpIfTest$2) {
-              heap[tmpClusterSSA_parentIndex$1] = node;
-              heap[tmpClusterSSA_index$3] = tmpClusterSSA_parent$1;
-              tmpClusterSSA_index$3 = tmpClusterSSA_parentIndex$1;
-              tmpClusterSSA_tmpIfTest$367 = tmpClusterSSA_parentIndex$1 > 0;
-            } else {
-              break $inlinedFunction;
-            }
-          } else {
-            break;
-          }
-        }
-      } else {
-      }
-    } else {
-    }
-  }
-  return undefined;
-};
-$(push);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -298,7 +336,7 @@ BAD@! Found 1 implicit global bindings:
 
 compare
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -308,4 +346,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

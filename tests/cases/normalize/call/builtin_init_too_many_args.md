@@ -13,6 +13,27 @@ const x = isNaN($spy('a'), $spy('b'), $spy('c'));
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpArgOverflow /*:unknown*/ = $spy(`a`);
+$spy(`b`);
+$spy(`c`);
+const x /*:boolean*/ = isNaN(tmpArgOverflow);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArgOverflow = $spy(`a`);
+$spy(`b`);
+$spy(`c`);
+$(isNaN(tmpArgOverflow));
+`````
+
 ## Pre Normal
 
 
@@ -32,19 +53,7 @@ const x = isNaN(tmpArgOverflow);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpArgOverflow /*:unknown*/ = $spy(`a`);
-$spy(`b`);
-$spy(`c`);
-const x /*:boolean*/ = isNaN(tmpArgOverflow);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +68,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']
@@ -73,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

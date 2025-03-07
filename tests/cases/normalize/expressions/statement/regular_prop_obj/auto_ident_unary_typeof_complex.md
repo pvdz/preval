@@ -17,6 +17,26 @@ let obj = {};
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(1);
+const tmpCompObj /*:string*/ = typeof tmpUnaryArg;
+tmpCompObj.a;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg = $(1);
+(typeof tmpUnaryArg).a;
+$({ a: 999, b: 1000 }, 1);
+`````
+
 ## Pre Normal
 
 
@@ -41,19 +61,7 @@ tmpCompObj.a;
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(1);
-const tmpCompObj /*:string*/ = typeof tmpUnaryArg;
-tmpCompObj.a;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +79,7 @@ $( c, 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -82,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

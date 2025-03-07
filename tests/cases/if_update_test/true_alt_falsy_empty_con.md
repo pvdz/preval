@@ -20,6 +20,25 @@ if (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+} else {
+  $(3);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (!$) {
+  $(3);
+}
+`````
+
 ## Pre Normal
 
 
@@ -50,18 +69,7 @@ if (x) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-} else {
-  $(3);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +85,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -86,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

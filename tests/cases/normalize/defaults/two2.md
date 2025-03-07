@@ -36,6 +36,54 @@ const tmpCalleeParam = main();
 $(tmpCalleeParam);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const outer /*:()=>unknown*/ = function () {
+  debugger;
+  const r /*:array*/ = [undefined];
+  $(r);
+  return undefined;
+};
+const inner /*:()=>unknown*/ = function () {
+  debugger;
+  outer();
+  if ($) {
+    outer();
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+inner();
+if ($) {
+  inner();
+} else {
+}
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const outer = function () {
+  $([undefined]);
+};
+const inner = function () {
+  outer();
+  if ($) {
+    outer();
+  }
+};
+inner();
+if ($) {
+  inner();
+}
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -101,36 +149,7 @@ const tmpCalleeParam = main();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const outer /*:()=>unknown*/ = function () {
-  debugger;
-  const r /*:array*/ = [undefined];
-  $(r);
-  return undefined;
-};
-const inner /*:()=>unknown*/ = function () {
-  debugger;
-  outer();
-  if ($) {
-    outer();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-inner();
-if ($) {
-  inner();
-} else {
-}
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -162,7 +181,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [undefined]
@@ -176,4 +195,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

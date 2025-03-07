@@ -12,6 +12,24 @@
 Boolean($spy('a'), $spy('b'), $spy('c'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$spy(`a`);
+$spy(`b`);
+$spy(`c`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$spy(`a`);
+$spy(`b`);
+$spy(`c`);
+`````
+
 ## Pre Normal
 
 
@@ -28,17 +46,7 @@ $spy(`b`);
 $spy(`c`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$spy(`a`);
-$spy(`b`);
-$spy(`c`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -51,7 +59,7 @@ $spy( "c" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']
@@ -63,4 +71,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

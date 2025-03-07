@@ -25,6 +25,37 @@ if (f()) $('pass'); // Always returns a promise and promises are truthy
 else $('fail');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unused)=>promise*/ = async function ($$0) {
+  debugger;
+  const tmpClusterSSA_x /*:unknown*/ = $(0);
+  const y /*:unknown*/ = await tmpClusterSSA_x;
+  return y;
+};
+$(f);
+$(f);
+f();
+$(`pass`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = async function ($$0) {
+  const tmpClusterSSA_x = $(0);
+  const y = await tmpClusterSSA_x;
+  return y;
+};
+$(f);
+$(f);
+f();
+$(`pass`);
+`````
+
 ## Pre Normal
 
 
@@ -63,24 +94,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unused)=>promise*/ = async function ($$0) {
-  debugger;
-  const tmpClusterSSA_x /*:unknown*/ = $(0);
-  const y /*:unknown*/ = await tmpClusterSSA_x;
-  return y;
-};
-$(f);
-$(f);
-f();
-$(`pass`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -100,7 +114,7 @@ $( "pass" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -113,7 +127,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - inline async functions safely (because await)

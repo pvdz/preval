@@ -14,6 +14,20 @@ throw (10, 20, 30) ? (40, 50, 60) : $($(100));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw 60;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw 60;
+`````
+
 ## Pre Normal
 
 
@@ -39,15 +53,7 @@ if (tmpIfTest) {
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-throw 60;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -58,7 +64,7 @@ throw 60;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ 60 ]>')
@@ -67,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

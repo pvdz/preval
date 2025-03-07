@@ -22,6 +22,23 @@ const r = f(String, toString);
 $(r);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const toString /*:unknown*/ = $(`toString`);
+const r /*:unknown*/ = String[toString]();
+$(r);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const toString = $(`toString`);
+$(String[toString]());
+`````
+
 ## Pre Normal
 
 
@@ -68,17 +85,7 @@ const r = f(String, toString);
 $(r);
 `````
 
-## Output
-
-
-`````js filename=intro
-const toString /*:unknown*/ = $(`toString`);
-const r /*:unknown*/ = String[toString]();
-$(r);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +98,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'toString'
@@ -102,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

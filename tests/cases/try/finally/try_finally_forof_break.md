@@ -20,6 +20,50 @@ for (const x of ['a', 'b', 'c']) {
 $(3);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`a`, `b`, `c`];
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const x /*:unknown*/ = tmpForOfNext.value;
+    try {
+      $(x, 1);
+    } catch ($finalImplicit) {}
+    $(2);
+    break;
+  }
+}
+$(3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForOfGen = $forOf([`a`, `b`, `c`]);
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    const x = tmpForOfNext.value;
+    try {
+      $(x, 1);
+    } catch ($finalImplicit) {}
+    $(2);
+    break;
+  }
+}
+$(3);
+`````
+
 ## Pre Normal
 
 
@@ -87,31 +131,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`a`, `b`, `c`];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const x /*:unknown*/ = tmpForOfNext.value;
-    try {
-      $(x, 1);
-    } catch ($finalImplicit) {}
-    $(2);
-    break;
-  }
-}
-$(3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -142,7 +162,7 @@ $( 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a', 1
@@ -154,7 +174,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

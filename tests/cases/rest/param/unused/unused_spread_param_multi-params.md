@@ -17,6 +17,37 @@ f('a', 'b');
 f($spy(), $spy());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
+  const a /*:unknown*/ = $$0;
+  const b /*:unknown*/ = $$1;
+  debugger;
+  const rest /*:array*/ = [];
+  $(a, b, rest);
+  return undefined;
+};
+f(1, 2);
+f(`a`, `b`);
+const tmpCalleeParam /*:unknown*/ = $spy();
+const tmpCalleeParam$1 /*:unknown*/ = $spy();
+f(tmpCalleeParam, tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (a, b) {
+  $(a, b, []);
+};
+f(1, 2);
+f(`a`, `b`);
+f($spy(), $spy());
+`````
+
 ## Pre Normal
 
 
@@ -53,27 +84,7 @@ const tmpCalleeParam$1 = $spy();
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
-  const a /*:unknown*/ = $$0;
-  const b /*:unknown*/ = $$1;
-  debugger;
-  const rest /*:array*/ = [];
-  $(a, b, rest);
-  return undefined;
-};
-f(1, 2);
-f(`a`, `b`);
-const tmpCalleeParam /*:unknown*/ = $spy();
-const tmpCalleeParam$1 /*:unknown*/ = $spy();
-f(tmpCalleeParam, tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +107,7 @@ a( e, f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 2, []
@@ -110,7 +121,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - drop unused rest param?

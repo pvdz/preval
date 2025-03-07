@@ -13,6 +13,21 @@ const x = {[$LOOP_DONE_UNROLLING_ALWAYS_TRUE]: 'haha'};
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:object*/ = { [true]: `haha` };
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ [true]: `haha` });
+`````
+
 ## Pre Normal
 
 
@@ -29,16 +44,7 @@ const x = { [true]: `haha` };
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:object*/ = { [true]: `haha` };
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -50,7 +56,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { true: '"haha"' }
@@ -60,4 +66,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

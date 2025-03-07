@@ -14,6 +14,33 @@ $((a = function () {}) + (a = function () {}));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:()=>undefined*/ = function () {
+  debugger;
+  return undefined;
+};
+const tmpClusterSSA_a /*:()=>undefined*/ = function () {
+  debugger;
+  return undefined;
+};
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
+$(tmpCalleeParam);
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = function () {};
+const tmpClusterSSA_a = function () {};
+$(a + tmpClusterSSA_a);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -50,25 +77,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:()=>undefined*/ = function () {
-  debugger;
-  return undefined;
-};
-const tmpClusterSSA_a /*:()=>undefined*/ = function () {
-  debugger;
-  return undefined;
-};
-const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
-$(tmpCalleeParam);
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -89,7 +98,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'function() {return undefined;}function() {return undefined;}'
@@ -100,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

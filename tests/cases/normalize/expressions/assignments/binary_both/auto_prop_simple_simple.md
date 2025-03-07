@@ -15,6 +15,33 @@ a.b = 2;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpObjLitVal$1 /*:unknown*/ = $(1);
+const a /*:object*/ = { b: tmpObjLitVal };
+const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal$1 };
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
+$(tmpCalleeParam);
+tmpClusterSSA_a.b = 2;
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$1 = $(1);
+const a = { b: tmpObjLitVal };
+const tmpClusterSSA_a = { b: tmpObjLitVal$1 };
+$(a + tmpClusterSSA_a);
+tmpClusterSSA_a.b = 2;
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -42,22 +69,7 @@ a.b = 2;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-const tmpObjLitVal$1 /*:unknown*/ = $(1);
-const a /*:object*/ = { b: tmpObjLitVal };
-const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal$1 };
-const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
-$(tmpCalleeParam);
-tmpClusterSSA_a.b = 2;
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +87,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -88,4 +100,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

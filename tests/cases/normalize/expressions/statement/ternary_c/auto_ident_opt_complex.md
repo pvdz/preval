@@ -16,6 +16,41 @@ $(0) ? $(100) : $(b)?.x;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(0);
+if (tmpIfTest) {
+  $(100);
+} else {
+  const b /*:object*/ = { x: 1 };
+  const tmpChainElementCall /*:unknown*/ = $(b);
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+  if (tmpIfTest$1) {
+  } else {
+    tmpChainElementCall.x;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(0)) {
+  $(100);
+} else {
+  const tmpChainElementCall = $({ x: 1 });
+  if (!(tmpChainElementCall == null)) {
+    tmpChainElementCall.x;
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -47,28 +82,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(0);
-if (tmpIfTest) {
-  $(100);
-} else {
-  const b /*:object*/ = { x: 1 };
-  const tmpChainElementCall /*:unknown*/ = $(b);
-  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-  if (tmpIfTest$1) {
-  } else {
-    tmpChainElementCall.x;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +112,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -110,4 +124,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

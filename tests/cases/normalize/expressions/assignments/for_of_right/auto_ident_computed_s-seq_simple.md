@@ -16,6 +16,45 @@ for (let x of (a = (1, 2, b)[$("c")]));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
+const b /*:object*/ = { c: 1 };
+const a /*:unknown*/ = b[tmpAssignRhsCompProp];
+const tmpForOfGen /*:unknown*/ = $forOf(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAssignRhsCompProp = $(`c`);
+const b = { c: 1 };
+const a = b[tmpAssignRhsCompProp];
+const tmpForOfGen = $forOf(a);
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -59,28 +98,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
-const a /*:unknown*/ = b[tmpAssignRhsCompProp];
-const tmpForOfGen /*:unknown*/ = $forOf(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForOfNext.value;
-  }
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +123,7 @@ $( c, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'c'
@@ -115,7 +133,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

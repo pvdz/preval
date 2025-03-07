@@ -19,6 +19,33 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+const tmpBinBothRhs /*:unknown*/ = $(1, `case`);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+if (tmpIfTest) {
+  const tmpThrowArg /*:unknown*/ = $(2, `ret`);
+  throw tmpThrowArg;
+} else {
+  $(undefined);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(1, `disc`) === $(1, `case`)) {
+  const tmpThrowArg = $(2, `ret`);
+  throw tmpThrowArg;
+} else {
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -58,23 +85,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
-const tmpBinBothRhs /*:unknown*/ = $(1, `case`);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-if (tmpIfTest) {
-  const tmpThrowArg /*:unknown*/ = $(2, `ret`);
-  throw tmpThrowArg;
-} else {
-  $(undefined);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -94,7 +105,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'disc'
@@ -106,4 +117,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

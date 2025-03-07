@@ -24,6 +24,59 @@ $(typeof Math.imul($spy('Math.imul')));
 $(typeof Math.log($spy('Math.log')));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.cos`);
+$coerce(tmpCalleeParam$1, `number`);
+$(`number`);
+const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.cosh`);
+$coerce(tmpCalleeParam$5, `number`);
+$(`number`);
+const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.exp`);
+$coerce(tmpCalleeParam$9, `number`);
+$(`number`);
+const tmpCalleeParam$13 /*:unknown*/ = $spy(`Math.expm1`);
+$coerce(tmpCalleeParam$13, `number`);
+$(`number`);
+const tmpCalleeParam$17 /*:unknown*/ = $spy(`Math.floor`);
+$coerce(tmpCalleeParam$17, `number`);
+$(`number`);
+const tmpCalleeParam$21 /*:unknown*/ = $spy(`Math.fround`);
+$coerce(tmpCalleeParam$21, `number`);
+$(`number`);
+const tmpCalleeParam$25 /*:unknown*/ = $spy(`Math.imul`);
++tmpCalleeParam$25;
+$(`number`);
+const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.log`);
+$coerce(tmpCalleeParam$29, `number`);
+$(`number`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$coerce($spy(`Math.cos`), `number`);
+$(`number`);
+$coerce($spy(`Math.cosh`), `number`);
+$(`number`);
+$coerce($spy(`Math.exp`), `number`);
+$(`number`);
+$coerce($spy(`Math.expm1`), `number`);
+$(`number`);
+$coerce($spy(`Math.floor`), `number`);
+$(`number`);
+$coerce($spy(`Math.fround`), `number`);
+$(`number`);
+const tmpCalleeParam$25 = $spy(`Math.imul`);
++tmpCalleeParam$25;
+$(`number`);
+$coerce($spy(`Math.log`), `number`);
+$(`number`);
+`````
+
 ## Pre Normal
 
 
@@ -76,38 +129,7 @@ const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
 $(tmpCalleeParam$27);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.cos`);
-$coerce(tmpCalleeParam$1, `number`);
-$(`number`);
-const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.cosh`);
-$coerce(tmpCalleeParam$5, `number`);
-$(`number`);
-const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.exp`);
-$coerce(tmpCalleeParam$9, `number`);
-$(`number`);
-const tmpCalleeParam$13 /*:unknown*/ = $spy(`Math.expm1`);
-$coerce(tmpCalleeParam$13, `number`);
-$(`number`);
-const tmpCalleeParam$17 /*:unknown*/ = $spy(`Math.floor`);
-$coerce(tmpCalleeParam$17, `number`);
-$(`number`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`Math.fround`);
-$coerce(tmpCalleeParam$21, `number`);
-$(`number`);
-const tmpCalleeParam$25 /*:unknown*/ = $spy(`Math.imul`);
-+tmpCalleeParam$25;
-$(`number`);
-const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.log`);
-$coerce(tmpCalleeParam$29, `number`);
-$(`number`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -141,7 +163,7 @@ $( "number" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Math.cos', 'Math.cos']
@@ -174,7 +196,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_cos

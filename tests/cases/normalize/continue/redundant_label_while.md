@@ -24,6 +24,71 @@ exit: while (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = $(2);
+if (x) {
+  $(1);
+  const tmpIfTest /*:unknown*/ = $(1);
+  if (tmpIfTest) {
+    x = $(3);
+  } else {
+  }
+  if (x) {
+  } else {
+    x = $(4);
+  }
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $(1);
+      const tmpIfTest$1 /*:unknown*/ = $(1);
+      if (tmpIfTest$1) {
+        x = $(3);
+      } else {
+      }
+      if (x) {
+      } else {
+        x = $(4);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $(2);
+if (x) {
+  $(1);
+  if ($(1)) {
+    x = $(3);
+  }
+  if (!x) {
+    x = $(4);
+  }
+  while (true) {
+    if (x) {
+      $(1);
+      if ($(1)) {
+        x = $(3);
+      }
+      if (!x) {
+        x = $(4);
+      }
+    } else {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -72,44 +137,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = $(2);
-if (x) {
-  $(1);
-  const tmpIfTest /*:unknown*/ = $(1);
-  if (tmpIfTest) {
-    x = $(3);
-  } else {
-  }
-  if (x) {
-  } else {
-    x = $(4);
-  }
-  while ($LOOP_UNROLL_10) {
-    if (x) {
-      $(1);
-      const tmpIfTest$1 /*:unknown*/ = $(1);
-      if (tmpIfTest$1) {
-        x = $(3);
-      } else {
-      }
-      if (x) {
-      } else {
-        x = $(4);
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -151,7 +179,7 @@ if (a) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -186,4 +214,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

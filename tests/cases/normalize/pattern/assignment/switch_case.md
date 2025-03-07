@@ -18,6 +18,20 @@ switch (0) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(30, 40);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(30, 40);
+`````
+
 ## Pre Normal
 
 
@@ -56,15 +70,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(30, 40);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +81,7 @@ $( 30, 40 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 30, 40
@@ -85,7 +91,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

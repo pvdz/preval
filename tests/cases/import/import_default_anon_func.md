@@ -24,6 +24,41 @@ export default function() {
 };
 `````
 
+## Settled
+
+
+`````js filename=intro
+import { default as x } from 'x';
+const tmpCalleeParam /*:unknown*/ = x();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:unknown*/ = x.name;
+$(tmpCalleeParam$1);
+`````
+
+`````js filename=x
+const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
+  debugger;
+  return 100;
+};
+export { tmpAnonDefaultExport as default };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+import { default as x } from 'x';
+$(x());
+$(x.name);
+`````
+
+`````js filename=x
+const tmpAnonDefaultExport = function () {
+  return 100;
+};
+export { tmpAnonDefaultExport as default };
+`````
+
 ## Pre Normal
 
 
@@ -60,27 +95,7 @@ const tmpAnonDefaultExport = function () {
 export { tmpAnonDefaultExport as default };
 `````
 
-## Output
-
-
-`````js filename=intro
-import { default as x } from 'x';
-const tmpCalleeParam /*:unknown*/ = x();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:unknown*/ = x.name;
-$(tmpCalleeParam$1);
-`````
-
-`````js filename=x
-const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
-  debugger;
-  return 100;
-};
-export { tmpAnonDefaultExport as default };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +120,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')
@@ -114,4 +129,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

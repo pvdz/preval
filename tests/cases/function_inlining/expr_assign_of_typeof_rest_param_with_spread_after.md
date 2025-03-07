@@ -25,6 +25,25 @@ f();
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [1, 2];
+const arr /*:unknown*/ = $(tmpCalleeParam);
+[...arr];
+$(`object`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = $([1, 2]);
+[...arr];
+$(`object`);
+`````
+
 ## Pre Normal
 
 
@@ -68,18 +87,7 @@ f();
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [1, 2];
-const arr /*:unknown*/ = $(tmpCalleeParam);
-[...arr];
-$(`object`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +101,7 @@ $( "object" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1, 2]
@@ -104,7 +112,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - drop unused rest param?

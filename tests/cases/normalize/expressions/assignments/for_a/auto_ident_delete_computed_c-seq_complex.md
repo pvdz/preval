@@ -16,6 +16,35 @@ for (a = delete ($(1), $(2), $(arg))[$("y")]; ; $(1));
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+delete tmpDeleteCompObj[tmpDeleteCompProp];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpDeleteCompObj = $({ y: 1 });
+const tmpDeleteCompProp = $(`y`);
+delete tmpDeleteCompObj[tmpDeleteCompProp];
+while (true) {
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,23 +76,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj /*:unknown*/ = $(arg);
-const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-delete tmpDeleteCompObj[tmpDeleteCompProp];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +95,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -117,7 +130,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - computed property access of an ident where the property ident is not recorded;

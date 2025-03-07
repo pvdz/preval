@@ -22,6 +22,52 @@ f(4);
 f(x);                         // At this point, x is set to 3, the first call to f() above, so no PASS output
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:()=>undefined*/ = function () {
+  debugger;
+  $(`PASS`);
+  return undefined;
+};
+const tmpCalleeParam /*:object*/ = { valueOf: tmpObjLitVal };
+let x /*:unknown*/ = $(tmpCalleeParam);
+$coerce(x, `number`);
+const f /*:(unknown)=>undefined*/ = function ($$0) {
+  const c /*:unknown*/ = $$0;
+  debugger;
+  x = $coerce(c, `number`);
+  $(1);
+  $(2);
+  $(c);
+  return undefined;
+};
+f(3);
+f(4);
+f(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = function () {
+  $(`PASS`);
+};
+let x = $({ valueOf: tmpObjLitVal });
+$coerce(x, `number`);
+const f = function (c) {
+  x = $coerce(c, `number`);
+  $(1);
+  $(2);
+  $(c);
+};
+f(3);
+f(4);
+f(x);
+`````
+
 ## Pre Normal
 
 
@@ -72,34 +118,7 @@ f(4);
 f(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:()=>undefined*/ = function () {
-  debugger;
-  $(`PASS`);
-  return undefined;
-};
-const tmpCalleeParam /*:object*/ = { valueOf: tmpObjLitVal };
-let x /*:unknown*/ = $(tmpCalleeParam);
-$coerce(x, `number`);
-const f /*:(unknown)=>undefined*/ = function ($$0) {
-  const c /*:unknown*/ = $$0;
-  debugger;
-  x = $coerce(c, `number`);
-  $(1);
-  $(2);
-  $(c);
-  return undefined;
-};
-f(3);
-f(4);
-f(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -129,7 +148,7 @@ d( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { valueOf: '"<function>"' }
@@ -149,4 +168,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

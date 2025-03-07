@@ -14,6 +14,22 @@ const y = $spy('b');
 "".replace(x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`a`);
+const y /*:unknown*/ = $spy(`b`);
+``.replace(x, y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+``.replace($(`a`), $spy(`b`));
+`````
+
 ## Pre Normal
 
 
@@ -32,17 +48,7 @@ const y = $spy(`b`);
 ``.replace(x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`a`);
-const y /*:unknown*/ = $spy(`b`);
-``.replace(x, y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +61,7 @@ const b = $spy( "b" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -67,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

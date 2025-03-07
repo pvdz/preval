@@ -17,6 +17,51 @@ $(f());
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam$5 /*:unknown*/ = undefined;
+const tmpCalleeParam /*:unknown*/ = $(0);
+const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
+if (tmpReturnArg) {
+  tmpCalleeParam$5 = tmpReturnArg;
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_tmpReturnArg) {
+    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg;
+  } else {
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam$3);
+    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg$1;
+  }
+}
+$(tmpCalleeParam$5);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam$5 = undefined;
+const tmpReturnArg = $($(0));
+if (tmpReturnArg) {
+  tmpCalleeParam$5 = tmpReturnArg;
+} else {
+  const tmpClusterSSA_tmpReturnArg = $($(1));
+  if (tmpClusterSSA_tmpReturnArg) {
+    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg;
+  } else {
+    tmpCalleeParam$5 = $($(2));
+  }
+}
+$(tmpCalleeParam$5);
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -58,33 +103,7 @@ $(tmpCalleeParam$5);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam$5 /*:unknown*/ = undefined;
-const tmpCalleeParam /*:unknown*/ = $(0);
-const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
-if (tmpReturnArg) {
-  tmpCalleeParam$5 = tmpReturnArg;
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_tmpReturnArg) {
-    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg;
-  } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam$3);
-    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg$1;
-  }
-}
-$(tmpCalleeParam$5);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +137,7 @@ $( h );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -133,4 +152,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

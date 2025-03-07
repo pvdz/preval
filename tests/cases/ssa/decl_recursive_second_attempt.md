@@ -25,6 +25,55 @@ function f() {
 if ($) f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  let g /*:(unknown)=>unknown*/ = function ($$0) {
+    const x /*:unknown*/ = $$0;
+    debugger;
+    if (x) {
+      g(F);
+      const tmpReturnArg /*:unknown*/ = $(100);
+      return tmpReturnArg;
+    } else {
+      return undefined;
+    }
+  };
+  g = g(T);
+  return undefined;
+};
+const T /*:unknown*/ = $(true);
+const F /*:unknown*/ = $(false);
+if ($) {
+  f();
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  let g = function (x) {
+    if (x) {
+      g(F);
+      const tmpReturnArg = $(100);
+      return tmpReturnArg;
+    }
+  };
+  g = g(T);
+};
+const T = $(true);
+const F = $(false);
+if ($) {
+  f();
+}
+`````
+
 ## Pre Normal
 
 
@@ -74,36 +123,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  let g /*:(unknown)=>unknown*/ = function ($$0) {
-    const x /*:unknown*/ = $$0;
-    debugger;
-    if (x) {
-      g(F);
-      const tmpReturnArg /*:unknown*/ = $(100);
-      return tmpReturnArg;
-    } else {
-      return undefined;
-    }
-  };
-  g = g(T);
-  return undefined;
-};
-const T /*:unknown*/ = $(true);
-const F /*:unknown*/ = $(false);
-if ($) {
-  f();
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -135,7 +155,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -147,4 +167,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

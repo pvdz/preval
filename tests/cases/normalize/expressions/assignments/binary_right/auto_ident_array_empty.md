@@ -14,6 +14,25 @@ $($(100) + (a = []));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpCalleeParam /*:string*/ = $coerce(tmpBinBothLhs, `plustr`);
+$(tmpCalleeParam);
+const a /*:array*/ = [];
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($coerce($(100), `plustr`));
+$([]);
+`````
+
 ## Pre Normal
 
 
@@ -36,19 +55,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:string*/ = $coerce(tmpBinBothLhs, `plustr`);
-$(tmpCalleeParam);
-const a /*:array*/ = [];
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +70,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -75,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -26,6 +26,59 @@ function f(){
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:unknown*/ = undefined;
+$inlinedFunction: {
+  while (true) {
+    const tmpIfTest /*:unknown*/ = $(true);
+    if (tmpIfTest) {
+      $(`loop`);
+      const tmpIfTest$1 /*:unknown*/ = $(true);
+      if (tmpIfTest$1) {
+        $(`loop`);
+        const tmpReturnArg /*:unknown*/ = $(100, `return`);
+        tmpCalleeParam = tmpReturnArg;
+        break $inlinedFunction;
+      } else {
+        $(`do not visit, do not eliminate`);
+      }
+    } else {
+      break;
+    }
+  }
+  $(`after (not invoked)`);
+}
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = undefined;
+$inlinedFunction: {
+  while (true) {
+    if ($(true)) {
+      $(`loop`);
+      if ($(true)) {
+        $(`loop`);
+        tmpCalleeParam = $(100, `return`);
+        break $inlinedFunction;
+      } else {
+        $(`do not visit, do not eliminate`);
+      }
+    } else {
+      break;
+    }
+  }
+  $(`after (not invoked)`);
+}
+$(tmpCalleeParam);
+`````
+
 ## Pre Normal
 
 
@@ -78,36 +131,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
-$inlinedFunction: {
-  while (true) {
-    const tmpIfTest /*:unknown*/ = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      const tmpIfTest$1 /*:unknown*/ = $(true);
-      if (tmpIfTest$1) {
-        $(`loop`);
-        const tmpReturnArg /*:unknown*/ = $(100, `return`);
-        tmpCalleeParam = tmpReturnArg;
-        break $inlinedFunction;
-      } else {
-        $(`do not visit, do not eliminate`);
-      }
-    } else {
-      break;
-    }
-  }
-  $(`after (not invoked)`);
-}
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -141,7 +165,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -156,4 +180,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

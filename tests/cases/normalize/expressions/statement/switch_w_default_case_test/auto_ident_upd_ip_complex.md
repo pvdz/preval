@@ -23,6 +23,68 @@ switch ($(1)) {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(b);
+const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
+const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+const tmpIfTest /*:boolean*/ = tmpPostUpdArgVal === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+} else {
+  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`fail1`);
+  } else {
+  }
+  $(`fail2`);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const b = { x: 1 };
+const tmpPostUpdArgObj = $($(b));
+const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
+if (tmpPostUpdArgVal === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (!(tmpSwitchCaseToStart <= 0)) {
+  if (tmpSwitchCaseToStart <= 1) {
+    $(`fail1`);
+  }
+  $(`fail2`);
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -95,44 +157,7 @@ tmpSwitchBreak: {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpIfTest /*:boolean*/ = tmpPostUpdArgVal === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
-} else {
-  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    $(`fail1`);
-  } else {
-  }
-  $(`fail2`);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -176,7 +201,7 @@ $( l, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -189,4 +214,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -26,6 +26,48 @@ while(true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 10;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const t /*:unknown*/ = $(x);
+  if (t) {
+  } else {
+    x = 20;
+    while ($LOOP_UNROLL_10) {
+      $(20);
+      const t$1 /*:unknown*/ = $(20);
+      if (t$1) {
+        break;
+      } else {
+      }
+    }
+  }
+  $(x);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 10;
+while (true) {
+  if (!$(x)) {
+    x = 20;
+    while (true) {
+      $(20);
+      if ($(20)) {
+        break;
+      }
+    }
+  }
+  $(x);
+}
+`````
+
 ## Pre Normal
 
 
@@ -66,31 +108,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:number*/ = 10;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const t /*:unknown*/ = $(x);
-  if (t) {
-  } else {
-    x = 20;
-    while ($LOOP_UNROLL_10) {
-      $(20);
-      const t$1 /*:unknown*/ = $(20);
-      if (t$1) {
-        break;
-      } else {
-      }
-    }
-  }
-  $(x);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +136,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -153,7 +171,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

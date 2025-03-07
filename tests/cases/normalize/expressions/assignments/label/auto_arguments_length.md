@@ -14,6 +14,21 @@ label: a = arguments;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = arguments;
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(arguments);
+`````
+
 ## Pre Normal
 
 
@@ -32,16 +47,7 @@ a = arguments;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = arguments;
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +61,7 @@ BAD@! Found 1 implicit global bindings:
 
 arguments
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<Global Arguments>'
@@ -65,4 +71,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

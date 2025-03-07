@@ -35,6 +35,46 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(0);
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 /*:unknown*/ = $(2);
+  if (tmpIfTest$1) {
+    const tmpIfTest$3 /*:unknown*/ = $(0);
+    if (tmpIfTest$3) {
+    } else {
+      $(`tail3`);
+    }
+    $(`tail2`);
+  } else {
+  }
+} else {
+}
+$(`tail1`);
+$(`end`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(0);
+if ($(1)) {
+  if ($(2)) {
+    if (!$(0)) {
+      $(`tail3`);
+    }
+    $(`tail2`);
+  }
+}
+$(`tail1`);
+$(`end`);
+`````
+
 ## Pre Normal
 
 
@@ -98,31 +138,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(0);
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpIfTest$1 /*:unknown*/ = $(2);
-  if (tmpIfTest$1) {
-    const tmpIfTest$3 /*:unknown*/ = $(0);
-    if (tmpIfTest$3) {
-    } else {
-      $(`tail3`);
-    }
-    $(`tail2`);
-  } else {
-  }
-} else {
-}
-$(`tail1`);
-$(`end`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -149,7 +165,7 @@ $( "end" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -166,4 +182,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

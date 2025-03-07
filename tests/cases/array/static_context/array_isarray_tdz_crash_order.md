@@ -12,6 +12,24 @@
 $(Array.isArray([i_crash_first, crash_hard]));
 `````
 
+## Settled
+
+
+`````js filename=intro
+i_crash_first;
+crash_hard;
+$(true);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+i_crash_first;
+crash_hard;
+$(true);
+`````
+
 ## Pre Normal
 
 
@@ -28,17 +46,7 @@ const tmpCalleeParam = $Array_isArray(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-i_crash_first;
-crash_hard;
-$(true);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +61,7 @@ BAD@! Found 2 implicit global bindings:
 
 i_crash_first, crash_hard
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -62,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

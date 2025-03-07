@@ -26,6 +26,42 @@ const x /*:unknown*/ = RECUR_FUNC(a);
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const RECUR_FUNC /*:(unknown)=>number*/ = function ($$0) {
+  const $dlr_$$0 /*:unknown*/ = $$0;
+  debugger;
+  const test /*:boolean*/ = $dlr_$$0 > 100;
+  if (test) {
+    return 10;
+  } else {
+    const ARGPLUS /*:primitive*/ = $dlr_$$0 + 1;
+    const RECURRESULT /*:number*/ = RECUR_FUNC(ARGPLUS);
+    return RECURRESULT;
+  }
+};
+const a /*:unknown*/ = $(10);
+const x /*:number*/ = RECUR_FUNC(a);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const RECUR_FUNC = function ($dlr_$$0) {
+  if ($dlr_$$0 > 100) {
+    return 10;
+  } else {
+    const RECURRESULT = RECUR_FUNC($dlr_$$0 + 1);
+    return RECURRESULT;
+  }
+};
+$(RECUR_FUNC($(10)));
+`````
+
 ## Pre Normal
 
 
@@ -70,29 +106,7 @@ const x = RECUR_FUNC(a);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const RECUR_FUNC /*:(unknown)=>number*/ = function ($$0) {
-  const $dlr_$$0 /*:unknown*/ = $$0;
-  debugger;
-  const test /*:boolean*/ = $dlr_$$0 > 100;
-  if (test) {
-    return 10;
-  } else {
-    const ARGPLUS /*:primitive*/ = $dlr_$$0 + 1;
-    const RECURRESULT /*:number*/ = RECUR_FUNC(ARGPLUS);
-    return RECURRESULT;
-  }
-};
-const a /*:unknown*/ = $(10);
-const x /*:number*/ = RECUR_FUNC(a);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +132,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -129,4 +143,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

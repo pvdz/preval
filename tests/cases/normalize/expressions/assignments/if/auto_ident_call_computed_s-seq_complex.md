@@ -16,6 +16,24 @@ if ((a = (1, 2, b)[$("$")](1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const b /*:object*/ = { $: $ };
+const a /*:unknown*/ = b[tmpCallCompProp](1);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallCompProp = $(`\$`);
+$({ $: $ }[tmpCallCompProp](1));
+`````
+
 ## Pre Normal
 
 
@@ -39,18 +57,7 @@ let tmpIfTest = a;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b[tmpCallCompProp](1);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +71,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '$'
@@ -76,4 +83,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

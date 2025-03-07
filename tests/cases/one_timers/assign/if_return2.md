@@ -24,6 +24,32 @@ $(x, 'x');
 closure();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(100, `init`);
+$(x, `closure`);
+if ($) {
+  $(1, `f`);
+} else {
+}
+$(undefined, `x`);
+$(undefined, `closure`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(100, `init`), `closure`);
+if ($) {
+  $(1, `f`);
+}
+$(undefined, `x`);
+$(undefined, `closure`);
+`````
+
 ## Pre Normal
 
 
@@ -70,22 +96,7 @@ $(x, `x`);
 closure();
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(100, `init`);
-$(x, `closure`);
-if ($) {
-  $(1, `f`);
-} else {
-}
-$(undefined, `x`);
-$(undefined, `closure`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -102,7 +113,7 @@ $( undefined, "closure" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100, 'init'
@@ -116,4 +127,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

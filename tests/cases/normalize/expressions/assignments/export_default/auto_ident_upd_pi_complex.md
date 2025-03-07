@@ -16,6 +16,34 @@ export default a = ++$($(b)).x;
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+const tmpAnonDefaultExport /*:unknown*/ = tmpNestedPropCompoundComplexRhs;
+export { tmpAnonDefaultExport as default };
+$(tmpNestedPropCompoundComplexRhs, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpNestedAssignObj = $($(b));
+const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+const tmpAnonDefaultExport = tmpNestedPropCompoundComplexRhs;
+export { tmpAnonDefaultExport as default };
+$(tmpNestedPropCompoundComplexRhs, b);
+`````
+
 ## Pre Normal
 
 
@@ -44,23 +72,7 @@ export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpAnonDefaultExport /*:unknown*/ = tmpNestedPropCompoundComplexRhs;
-export { tmpAnonDefaultExport as default };
-$(tmpNestedPropCompoundComplexRhs, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +91,7 @@ $( e, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -88,4 +100,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

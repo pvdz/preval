@@ -17,6 +17,29 @@ x = $('unknown 3'); // This has to be made a constant in the first cycle. The un
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`unknown 1`);
+const z /*:unknown*/ = $(`unknown 2`);
+$(x);
+x + z;
+const tmpClusterSSA_x /*:unknown*/ = $(`unknown 3`);
+$(tmpClusterSSA_x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $(`unknown 1`);
+const z = $(`unknown 2`);
+$(x);
+x + z;
+$($(`unknown 3`));
+`````
+
 ## Pre Normal
 
 
@@ -41,20 +64,7 @@ x = $(`unknown 3`);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`unknown 1`);
-const z /*:unknown*/ = $(`unknown 2`);
-$(x);
-x + z;
-const tmpClusterSSA_x /*:unknown*/ = $(`unknown 3`);
-$(tmpClusterSSA_x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +80,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'unknown 1'
@@ -84,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

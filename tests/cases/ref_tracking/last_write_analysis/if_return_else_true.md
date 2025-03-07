@@ -24,6 +24,34 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  const tmpClusterSSA_x /*:unknown*/ = $(1, `prevent optim`);
+  $(tmpClusterSSA_x);
+} else {
+  const tmpClusterSSA_x$1 /*:unknown*/ = $(2, `prevent optim`);
+  $(`prevent return hoisting`);
+  $(tmpClusterSSA_x$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  $($(1, `prevent optim`));
+} else {
+  const tmpClusterSSA_x$1 = $(2, `prevent optim`);
+  $(`prevent return hoisting`);
+  $(tmpClusterSSA_x$1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -64,23 +92,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpClusterSSA_x /*:unknown*/ = $(1, `prevent optim`);
-  $(tmpClusterSSA_x);
-} else {
-  const tmpClusterSSA_x$1 /*:unknown*/ = $(2, `prevent optim`);
-  $(`prevent return hoisting`);
-  $(tmpClusterSSA_x$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -100,7 +112,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -112,4 +124,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

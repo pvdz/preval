@@ -14,6 +14,23 @@ $((a = [1, 2, 3]) + (a = [1, 2, 3]));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`1,2,31,2,3`);
+const tmpClusterSSA_a /*:array*/ = [1, 2, 3];
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`1,2,31,2,3`);
+$([1, 2, 3]);
+`````
+
 ## Pre Normal
 
 
@@ -37,17 +54,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`1,2,31,2,3`);
-const tmpClusterSSA_a /*:array*/ = [1, 2, 3];
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +67,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '1,2,31,2,3'
@@ -71,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

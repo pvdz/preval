@@ -29,6 +29,47 @@ function outer() {
 if ($) $(outer(), 'outer');
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const x /*:unknown*/ = $(1);
+  if (x) {
+    const tmpClusterSSA_x /*:unknown*/ = $(2);
+    if (tmpClusterSSA_x) {
+      const tmpReturnArg /*:unknown*/ = $(`inner if`, tmpClusterSSA_x);
+      $(tmpReturnArg, `outer`);
+    } else {
+      const tmpReturnArg$1 /*:unknown*/ = $(`inner else`, tmpClusterSSA_x);
+      $(tmpReturnArg$1, `outer`);
+    }
+  } else {
+    const tmpReturnArg$5 /*:unknown*/ = $(`inner else`, false);
+    $(tmpReturnArg$5, `outer`);
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  if ($(1)) {
+    const tmpClusterSSA_x = $(2);
+    if (tmpClusterSSA_x) {
+      $($(`inner if`, tmpClusterSSA_x), `outer`);
+    } else {
+      $($(`inner else`, tmpClusterSSA_x), `outer`);
+    }
+  } else {
+    $($(`inner else`, false), `outer`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -89,31 +130,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const x /*:unknown*/ = $(1);
-  if (x) {
-    const tmpClusterSSA_x /*:unknown*/ = $(2);
-    if (tmpClusterSSA_x) {
-      const tmpReturnArg /*:unknown*/ = $(`inner if`, tmpClusterSSA_x);
-      $(tmpReturnArg, `outer`);
-    } else {
-      const tmpReturnArg$1 /*:unknown*/ = $(`inner else`, tmpClusterSSA_x);
-      $(tmpReturnArg$1, `outer`);
-    }
-  } else {
-    const tmpReturnArg$5 /*:unknown*/ = $(`inner else`, false);
-    $(tmpReturnArg$5, `outer`);
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -141,7 +158,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -154,4 +171,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

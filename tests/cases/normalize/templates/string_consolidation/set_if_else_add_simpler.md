@@ -30,6 +30,36 @@ const z = x + y;
 $(z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const s /*:unknown*/ = $(`s`);
+const t /*:unknown*/ = $(`t`);
+if (t) {
+  const tmpStringConcatL /*:string*/ = $coerce(t, `plustr`);
+  const tmpClusterSSA_z /*:string*/ = `abcdef${tmpStringConcatL}`;
+  $(tmpClusterSSA_z);
+} else {
+  const tmpStringConcatL$1 /*:string*/ = $coerce(s, `plustr`);
+  const tmpClusterSSA_z$1 /*:string*/ = `abcghi${tmpStringConcatL$1}`;
+  $(tmpClusterSSA_z$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const s = $(`s`);
+const t = $(`t`);
+if (t) {
+  $(`abcdef${t}`);
+} else {
+  $(`abcghi${s}`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -66,25 +96,7 @@ const z = x + y;
 $(z);
 `````
 
-## Output
-
-
-`````js filename=intro
-const s /*:unknown*/ = $(`s`);
-const t /*:unknown*/ = $(`t`);
-if (t) {
-  const tmpStringConcatL /*:string*/ = $coerce(t, `plustr`);
-  const tmpClusterSSA_z /*:string*/ = `abcdef${tmpStringConcatL}`;
-  $(tmpClusterSSA_z);
-} else {
-  const tmpStringConcatL$1 /*:string*/ = $coerce(s, `plustr`);
-  const tmpClusterSSA_z$1 /*:string*/ = `abcghi${tmpStringConcatL$1}`;
-  $(tmpClusterSSA_z$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +118,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 's'
@@ -118,4 +130,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

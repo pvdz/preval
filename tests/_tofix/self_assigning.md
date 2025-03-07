@@ -37,6 +37,36 @@ let _0x4a09/*:(unknown, unknown)=>*/ = function(_0x5796ef, _0x26241c) {
 $(_0x4a09);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let _0x4a09 = function (_0x5796ef, _0x26241c) {
+  _0x4a09 = function (_0x6bfd63, $$1) {
+    const tmpPrevalAliasArgumentsAny$1 = arguments;
+    const tmpClusterSSA__0x6bfd63 = _0x6bfd63 - 208;
+    const _0x34cc82 = _0x4157[tmpClusterSSA__0x6bfd63];
+    if (_0x4a09.NCZorg === undefined) {
+      _0x4a09.YBuklE = tmpClusterSSA__0x36fe1d;
+      _0x5796ef = tmpPrevalAliasArgumentsAny$1;
+      _0x4a09.NCZorg = true;
+    }
+    const _0x3ccddd = tmpClusterSSA__0x6bfd63 + _0x4157[0];
+    const _0x3ffbb4 = _0x5796ef[_0x3ccddd];
+    if (_0x3ffbb4) {
+      return _0x3ffbb4;
+    } else {
+      const tmpClusterSSA__0x34cc82 = _0x4a09.YBuklE(_0x34cc82);
+      _0x5796ef[_0x3ccddd] = tmpClusterSSA__0x34cc82;
+      return tmpClusterSSA__0x34cc82;
+    }
+  };
+  const tmpReturnArg$3 = _0x4a09(_0x5796ef, _0x26241c);
+  return tmpReturnArg$3;
+};
+$(_0x4a09);
+`````
+
 ## Pre Normal
 
 
@@ -116,7 +146,7 @@ let _0x4a09 = function ($$0, $$1) {
 $(_0x4a09);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -155,8 +185,7 @@ let _0x4a09 /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
 $(_0x4a09);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -211,4 +240,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

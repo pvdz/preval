@@ -20,6 +20,29 @@ if ($) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const tmpClusterSSA_x /*:array*/ = [];
+  $(tmpClusterSSA_x);
+} else {
+  $(undefined);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $([]);
+} else {
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -51,20 +74,7 @@ if ($) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const tmpClusterSSA_x /*:array*/ = [];
-  $(tmpClusterSSA_x);
-} else {
-  $(undefined);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +91,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: []
@@ -91,7 +101,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

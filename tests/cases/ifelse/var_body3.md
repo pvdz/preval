@@ -13,6 +13,22 @@ if ($(true)) var x;
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(true);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(true);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -31,16 +47,7 @@ const tmpIfTest = $(true);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(true);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -52,7 +59,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -63,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

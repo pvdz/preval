@@ -14,6 +14,52 @@ for (let x in $?.(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpForInGen /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = $ == null;
+if (tmpIfTest) {
+  tmpForInGen = $forIn(undefined);
+} else {
+  const tmpChainElementCall /*:unknown*/ = $(1);
+  tmpForInGen = $forIn(tmpChainElementCall);
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpForInGen = undefined;
+if ($ == null) {
+  tmpForInGen = $forIn(undefined);
+} else {
+  tmpForInGen = $forIn($(1));
+}
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -59,33 +105,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpForInGen /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = $ == null;
-if (tmpIfTest) {
-  tmpForInGen = $forIn(undefined);
-} else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpForInGen = $forIn(tmpChainElementCall);
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest$1) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +139,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -130,7 +150,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

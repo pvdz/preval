@@ -21,6 +21,58 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClusterSSA_b /*:object*/ = { x: 1 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(tmpClusterSSA_b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
+varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+$(3, tmpClusterSSA_b, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClusterSSA_b = { x: 1 };
+const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const varInitAssignLhsComputedObj = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp = $(`x`);
+const varInitAssignLhsComputedObj$1 = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp$1 = $(`x`);
+const varInitAssignLhsComputedObj$3 = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp$3 = $(`x`);
+const varInitAssignLhsComputedObj$5 = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp$5 = $(`x`);
+const varInitAssignLhsComputedObj$7 = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedProp$7 = $(`x`);
+varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+$(3, tmpClusterSSA_b, 3);
+`````
+
 ## Pre Normal
 
 
@@ -82,34 +134,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(tmpClusterSSA_b);
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(tmpClusterSSA_b);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(tmpClusterSSA_b);
-const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(tmpClusterSSA_b);
-const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(tmpClusterSSA_b);
-const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
-varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-$(3, tmpClusterSSA_b, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -139,7 +164,7 @@ $( 3, a, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -161,4 +186,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

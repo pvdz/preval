@@ -22,6 +22,22 @@ const h = function() {
 g.prop = apparently_this_is_relevant; // Probably to keep the func around at least until the crash.
 `````
 
+## Settled
+
+
+`````js filename=intro
+$();
+apparently_this_is_relevant;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$();
+apparently_this_is_relevant;
+`````
+
 ## Pre Normal
 
 
@@ -65,16 +81,7 @@ const h = function () {
 g.prop = apparently_this_is_relevant;
 `````
 
-## Output
-
-
-`````js filename=intro
-$();
-apparently_this_is_relevant;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +95,7 @@ BAD@! Found 1 implicit global bindings:
 
 apparently_this_is_relevant
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -98,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

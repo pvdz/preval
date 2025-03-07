@@ -16,6 +16,52 @@ $($(100) && (a = $(b)?.[$("x")]));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
+if (tmpCalleeParam) {
+  let tmpNestedComplexRhs /*:unknown*/ = undefined;
+  const b /*:object*/ = { x: 1 };
+  const tmpChainElementCall /*:unknown*/ = $(b);
+  const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+  if (tmpIfTest) {
+  } else {
+    const tmpChainRootComputed /*:unknown*/ = $(`x`);
+    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+    tmpNestedComplexRhs = tmpChainElementObject;
+  }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = $(100);
+if (tmpCalleeParam) {
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainElementCall = $({ x: 1 });
+  if (!(tmpChainElementCall == null)) {
+    const tmpChainRootComputed = $(`x`);
+    tmpNestedComplexRhs = tmpChainElementCall[tmpChainRootComputed];
+  }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -52,33 +98,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam /*:unknown*/ = $(100);
-if (tmpCalleeParam) {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
-  const b /*:object*/ = { x: 1 };
-  const tmpChainElementCall /*:unknown*/ = $(b);
-  const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainRootComputed /*:unknown*/ = $(`x`);
-    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-    tmpNestedComplexRhs = tmpChainElementObject;
-  }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -113,7 +133,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -127,4 +147,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,42 @@ while ((a = new ($(b)[$("$")])(1))) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
+new tmpNewCallee(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
+  const tmpCompObj$1 /*:unknown*/ = $(b);
+  const tmpCompProp$1 /*:unknown*/ = $(`\$`);
+  const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+  new tmpNewCallee$1(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { $: $ };
+const tmpCompObj = $(b);
+const tmpCompProp = $(`\$`);
+const tmpNewCallee = tmpCompObj[tmpCompProp];
+new tmpNewCallee(1);
+while (true) {
+  $(100);
+  const tmpCompObj$1 = $(b);
+  const tmpCompProp$1 = $(`\$`);
+  const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
+  new tmpNewCallee$1(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,26 +83,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`\$`);
-const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
-new tmpNewCallee(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  const tmpCompObj$1 /*:unknown*/ = $(b);
-  const tmpCompProp$1 /*:unknown*/ = $(`\$`);
-  const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
-  new tmpNewCallee$1(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +105,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -123,7 +140,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

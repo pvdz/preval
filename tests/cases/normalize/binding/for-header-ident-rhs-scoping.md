@@ -19,6 +19,39 @@ for (let x in [x]) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [x$1];
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const x$2 /*:unknown*/ = tmpForInNext.value;
+    $(x$2);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn([x$1]);
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    $(tmpForInNext.value);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -63,26 +96,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [x$1];
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const x$2 /*:unknown*/ = tmpForInNext.value;
-    $(x$2);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +121,7 @@ BAD@! Found 1 implicit global bindings:
 
 x$1
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -117,7 +131,10 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Denormalized calls: BAD!!
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Todos triggered:

@@ -18,6 +18,28 @@ do {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 1 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
+  b.c = 2;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: 1 };
+while (true) {
+  $(100);
+  b.c = 2;
+}
+`````
+
 ## Pre Normal
 
 
@@ -57,19 +79,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  b.c = 2;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +94,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -119,7 +129,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

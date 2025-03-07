@@ -16,6 +16,53 @@ for (; $(1); a = new $($(1), $(2)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:object*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  a = new $(tmpCalleeParam, tmpCalleeParam$1);
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$2 /*:unknown*/ = $(1);
+      const tmpCalleeParam$4 /*:unknown*/ = $(2);
+      a = new $(tmpCalleeParam$2, tmpCalleeParam$4);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+if ($(1)) {
+  const tmpCalleeParam = $(1);
+  const tmpCalleeParam$1 = $(2);
+  a = new $(tmpCalleeParam, tmpCalleeParam$1);
+  while (true) {
+    if ($(1)) {
+      const tmpCalleeParam$2 = $(1);
+      const tmpCalleeParam$4 = $(2);
+      a = new $(tmpCalleeParam$2, tmpCalleeParam$4);
+    } else {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -50,33 +97,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:object*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  a = new $(tmpCalleeParam, tmpCalleeParam$1);
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpCalleeParam$2 /*:unknown*/ = $(1);
-      const tmpCalleeParam$4 /*:unknown*/ = $(2);
-      a = new $(tmpCalleeParam$2, tmpCalleeParam$4);
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -108,7 +129,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -143,7 +164,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

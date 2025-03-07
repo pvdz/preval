@@ -25,6 +25,20 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+
+`````
+
 ## Pre Normal
 
 
@@ -84,15 +98,7 @@ if (tmpIfTest$5) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +109,7 @@ With rename=true
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')
@@ -112,7 +118,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

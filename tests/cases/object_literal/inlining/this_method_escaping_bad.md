@@ -24,6 +24,53 @@ const obj = {
 $(obj.f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$1 /*:()=>unknown*/ = function () {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  debugger;
+  const tmpBinLhs /*:unknown*/ = tmpPrevalAliasThis.x;
+  const tmpIfTest /*:boolean*/ = tmpBinLhs === `burn`;
+  if (tmpIfTest) {
+    const tmpReturnArg /*:unknown*/ = $(`burned`);
+    return tmpReturnArg;
+  } else {
+    const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.f;
+    $(`once`);
+    const tmpCalleeParam /*:object*/ = { f: 1, x: `burn` };
+    tmpCalleeParam$1.call(tmpCalleeParam);
+    const tmpCalleeParam$3 /*:unknown*/ = tmpPrevalAliasThis.x;
+    $(tmpCalleeParam$3);
+    return `win`;
+  }
+};
+const obj /*:object*/ = { x: `pass`, f: tmpObjLitVal$1 };
+const tmpCalleeParam$5 /*:unknown*/ = obj.f();
+$(tmpCalleeParam$5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal$1 = function () {
+  const tmpPrevalAliasThis = this;
+  if (tmpPrevalAliasThis.x === `burn`) {
+    const tmpReturnArg = $(`burned`);
+    return tmpReturnArg;
+  } else {
+    const tmpCalleeParam$1 = tmpPrevalAliasThis.f;
+    $(`once`);
+    tmpCalleeParam$1.call({ f: 1, x: `burn` });
+    $(tmpPrevalAliasThis.x);
+    return `win`;
+  }
+};
+$({ x: `pass`, f: tmpObjLitVal$1 }.f());
+`````
+
 ## Pre Normal
 
 
@@ -85,35 +132,7 @@ const tmpCalleeParam$5 = obj.f();
 $(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$1 /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  debugger;
-  const tmpBinLhs /*:unknown*/ = tmpPrevalAliasThis.x;
-  const tmpIfTest /*:boolean*/ = tmpBinLhs === `burn`;
-  if (tmpIfTest) {
-    const tmpReturnArg /*:unknown*/ = $(`burned`);
-    return tmpReturnArg;
-  } else {
-    const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.f;
-    $(`once`);
-    const tmpCalleeParam /*:object*/ = { f: 1, x: `burn` };
-    tmpCalleeParam$1.call(tmpCalleeParam);
-    const tmpCalleeParam$3 /*:unknown*/ = tmpPrevalAliasThis.x;
-    $(tmpCalleeParam$3);
-    return `win`;
-  }
-};
-const obj /*:object*/ = { x: `pass`, f: tmpObjLitVal$1 };
-const tmpCalleeParam$5 /*:unknown*/ = obj.f();
-$(tmpCalleeParam$5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -151,7 +170,7 @@ $( j );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'once'
@@ -164,4 +183,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

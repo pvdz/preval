@@ -16,6 +16,32 @@ if ((a = (1, 2, b)[$("c")] = $(b)[$("d")]));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+$(tmpNestedAssignPropRhs, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignComMemberProp = $(`c`);
+const b = { c: 10, d: 20 };
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+$(tmpNestedAssignPropRhs, b);
+`````
+
 ## Pre Normal
 
 
@@ -44,21 +70,7 @@ let tmpIfTest = a;
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +90,7 @@ $( e, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'c'
@@ -91,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

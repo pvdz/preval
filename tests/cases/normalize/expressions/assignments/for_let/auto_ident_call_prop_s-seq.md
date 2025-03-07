@@ -16,6 +16,29 @@ for (let xyz = (a = (1, 2, b).$(1)); ; $(1)) $(xyz);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const a /*:unknown*/ = b.$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(a);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = { $: $ }.$(1);
+while (true) {
+  $(a);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,20 +70,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b.$(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +86,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -111,7 +121,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $b_$

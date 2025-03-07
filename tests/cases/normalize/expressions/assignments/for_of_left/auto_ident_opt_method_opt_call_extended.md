@@ -16,6 +16,62 @@ for ((a = b?.c.d.e?.(1)).x of $({ x: 1 }));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    a = undefined;
+    const tmpChainElementObject$3 /*:unknown*/ = tmpObjLitVal$1.e;
+    const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject$3 == null;
+    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
+    if (tmpIfTest$3) {
+    } else {
+      const tmpChainElementCall /*:unknown*/ = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
+      tmpAssignMemLhsObj = tmpChainElementCall;
+    }
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpForOfGen = $forOf($({ x: 1 }));
+const tmpObjLitVal$1 = { e: $ };
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    a = undefined;
+    const tmpChainElementObject$3 = tmpObjLitVal$1.e;
+    const tmpIfTest$3 = tmpChainElementObject$3 == null;
+    let tmpAssignMemLhsObj = undefined;
+    if (!tmpIfTest$3) {
+      tmpAssignMemLhsObj = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
+    }
+    tmpAssignMemLhsObj.x = tmpForOfNext.value;
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -77,39 +133,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    a = undefined;
-    const tmpChainElementObject$3 /*:unknown*/ = tmpObjLitVal$1.e;
-    const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject$3 == null;
-    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
-    if (tmpIfTest$3) {
-    } else {
-      const tmpChainElementCall /*:unknown*/ = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
-      tmpAssignMemLhsObj = tmpChainElementCall;
-    }
-    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  }
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -150,7 +174,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -160,7 +184,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

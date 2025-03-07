@@ -16,6 +16,31 @@ export default a = { b } = $({ b: $(2) });
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(2);
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignObjPatternRhs;
+export { tmpAnonDefaultExport as default };
+$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(2);
+const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { tmpAnonDefaultExport as default };
+$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+`````
+
 ## Pre Normal
 
 
@@ -43,21 +68,7 @@ export { tmpAnonDefaultExport as default };
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignObjPatternRhs;
-export { tmpAnonDefaultExport as default };
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +85,7 @@ $( c, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -83,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

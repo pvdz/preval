@@ -22,6 +22,65 @@ switch ($(1)) {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+const tmpIfTest /*:boolean*/ = tmpNestedAssignPropRhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
+  $(`fail1`);
+} else {
+}
+$(`fail2`);
+$(tmpNestedAssignPropRhs, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+const b = { c: 10, d: 20 };
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`c`);
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+if (tmpNestedAssignPropRhs === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (tmpSwitchCaseToStart <= 1) {
+  $(`fail1`);
+}
+$(`fail2`);
+$(tmpNestedAssignPropRhs, b);
+`````
+
 ## Pre Normal
 
 
@@ -89,40 +148,7 @@ if (tmpIfTest$7) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const b /*:object*/ = { c: 10, d: 20 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-const tmpIfTest /*:boolean*/ = tmpNestedAssignPropRhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$5) {
-  $(`fail1`);
-} else {
-}
-$(`fail2`);
-$(tmpNestedAssignPropRhs, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -160,7 +186,7 @@ $( h, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -177,4 +203,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

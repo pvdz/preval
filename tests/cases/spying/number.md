@@ -16,6 +16,30 @@ $(Number($spy(1, 2)));
 $(Number($spy('x', 'y')));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpStringFirstArg /*:unknown*/ = $spy();
+const tmpCalleeParam /*:number*/ = $coerce(tmpStringFirstArg, `number`);
+$(tmpCalleeParam);
+const tmpStringFirstArg$1 /*:unknown*/ = $spy(1, 2);
+const tmpCalleeParam$1 /*:number*/ = $coerce(tmpStringFirstArg$1, `number`);
+$(tmpCalleeParam$1);
+const tmpStringFirstArg$3 /*:unknown*/ = $spy(`x`, `y`);
+const tmpCalleeParam$3 /*:number*/ = $coerce(tmpStringFirstArg$3, `number`);
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($coerce($spy(), `number`));
+$($coerce($spy(1, 2), `number`));
+$($coerce($spy(`x`, `y`), `number`));
+`````
+
 ## Pre Normal
 
 
@@ -40,23 +64,7 @@ const tmpCalleeParam$3 = $coerce(tmpStringFirstArg$3, `number`);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpStringFirstArg /*:unknown*/ = $spy();
-const tmpCalleeParam /*:number*/ = $coerce(tmpStringFirstArg, `number`);
-$(tmpCalleeParam);
-const tmpStringFirstArg$1 /*:unknown*/ = $spy(1, 2);
-const tmpCalleeParam$1 /*:number*/ = $coerce(tmpStringFirstArg$1, `number`);
-$(tmpCalleeParam$1);
-const tmpStringFirstArg$3 /*:unknown*/ = $spy(`x`, `y`);
-const tmpCalleeParam$3 /*:number*/ = $coerce(tmpStringFirstArg$3, `number`);
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +83,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]
@@ -93,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

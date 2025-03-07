@@ -17,6 +17,33 @@ for (const x in wat) {
 $();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const wat /*:object*/ = { a: 1, b: 2 };
+const tmpForInGen /*:unknown*/ = $forIn(wat);
+const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+if (tmpIfTest) {
+} else {
+  const x /*:unknown*/ = tmpForInNext.value;
+  $(x);
+}
+$();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+if (!tmpForInNext.done) {
+  $(tmpForInNext.value);
+}
+$();
+`````
+
 ## Pre Normal
 
 
@@ -60,24 +87,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $();
 `````
 
-## Output
-
-
-`````js filename=intro
-const wat /*:object*/ = { a: 1, b: 2 };
-const tmpForInGen /*:unknown*/ = $forIn(wat);
-const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-if (tmpIfTest) {
-} else {
-  const x /*:unknown*/ = tmpForInNext.value;
-  $(x);
-}
-$();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -102,7 +112,7 @@ $();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -113,4 +123,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

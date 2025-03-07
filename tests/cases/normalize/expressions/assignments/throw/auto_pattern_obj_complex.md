@@ -14,6 +14,25 @@ throw ({ a } = $({ a: 1, b: 2 }));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+tmpNestedAssignObjPatternRhs.a;
+throw tmpNestedAssignObjPatternRhs;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
+tmpNestedAssignObjPatternRhs.a;
+throw tmpNestedAssignObjPatternRhs;
+`````
+
 ## Pre Normal
 
 
@@ -37,18 +56,7 @@ tmpThrowArg = tmpNestedAssignObjPatternRhs;
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-tmpNestedAssignObjPatternRhs.a;
-throw tmpNestedAssignObjPatternRhs;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +73,7 @@ throw b;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }
@@ -75,4 +83,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

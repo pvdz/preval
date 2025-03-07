@@ -14,6 +14,40 @@ $((a = $(1) + $(2)) || (a = $(1) + $(2)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
+let a /*:unknown*/ = tmpBinBothLhs + tmpBinBothRhs;
+if (a) {
+  $(a);
+} else {
+  const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+  const tmpBinBothRhs$1 /*:unknown*/ = $(2);
+  const tmpNestedComplexRhs /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = $(1) + $(2);
+if (a) {
+  $(a);
+} else {
+  const tmpNestedComplexRhs = $(1) + $(2);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -44,27 +78,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(2);
-let a /*:unknown*/ = tmpBinBothLhs + tmpBinBothRhs;
-if (a) {
-  $(a);
-} else {
-  const tmpBinBothLhs$1 /*:unknown*/ = $(1);
-  const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-  const tmpNestedComplexRhs /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +102,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -101,4 +115,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

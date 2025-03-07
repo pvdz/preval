@@ -19,6 +19,62 @@ while (test) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+`````
+
 ## Pre Normal
 
 
@@ -51,36 +107,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -112,7 +139,7 @@ $( "oops" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'yolo'
@@ -143,4 +170,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

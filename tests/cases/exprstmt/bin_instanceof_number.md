@@ -13,6 +13,20 @@ const spy = {toString(){ $('fail'); }, valueOf(){ $('fail'); }};
 spy instanceof 150; // This'll crash
 `````
 
+## Settled
+
+
+`````js filename=intro
+undefined instanceof 150;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+undefined instanceof 150;
+`````
+
 ## Pre Normal
 
 
@@ -49,15 +63,7 @@ const spy = {
 undefined instanceof 150;
 `````
 
-## Output
-
-
-`````js filename=intro
-undefined instanceof 150;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -68,7 +74,7 @@ undefined instanceof 150;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Right-hand side of 'instanceof' is not an object ]>")
@@ -77,4 +83,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

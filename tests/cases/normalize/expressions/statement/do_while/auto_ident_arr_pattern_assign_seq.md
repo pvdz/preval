@@ -19,6 +19,40 @@ do {
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
+  $(x);
+  $(y);
+  const tmpArrElement /*:unknown*/ = $(3);
+  const tmpArrElement$1 /*:unknown*/ = $(4);
+  x = tmpArrElement;
+  y = tmpArrElement$1;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+while (true) {
+  $(100);
+  $(x);
+  $(y);
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  x = tmpArrElement;
+  y = tmpArrElement$1;
+}
+`````
+
 ## Pre Normal
 
 
@@ -65,25 +99,7 @@ while (true) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  $(x);
-  $(y);
-  const tmpArrElement /*:unknown*/ = $(3);
-  const tmpArrElement$1 /*:unknown*/ = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +120,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -139,7 +155,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

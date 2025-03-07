@@ -20,6 +20,67 @@ switch ($(1)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const tmpCalleeParam /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam);
+let tmpIfTest /*:boolean*/ = false;
+if (a) {
+  tmpIfTest = a === tmpSwitchValue;
+} else {
+  a = 2;
+  tmpIfTest = 2 === tmpSwitchValue;
+}
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
+  $(`fail1`);
+} else {
+}
+$(`fail2`);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+let a = $($(0));
+let tmpIfTest = false;
+if (a) {
+  tmpIfTest = a === tmpSwitchValue;
+} else {
+  a = 2;
+  tmpIfTest = 2 === tmpSwitchValue;
+}
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (tmpSwitchCaseToStart <= 1) {
+  $(`fail1`);
+}
+$(`fail2`);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -83,41 +144,7 @@ if (tmpIfTest$7) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpCalleeParam /*:unknown*/ = $(0);
-let a /*:unknown*/ = $(tmpCalleeParam);
-let tmpIfTest /*:boolean*/ = false;
-if (a) {
-  tmpIfTest = a === tmpSwitchValue;
-} else {
-  a = 2;
-  tmpIfTest = 2 === tmpSwitchValue;
-}
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$5) {
-  $(`fail1`);
-} else {
-}
-$(`fail2`);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -154,7 +181,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -169,4 +196,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

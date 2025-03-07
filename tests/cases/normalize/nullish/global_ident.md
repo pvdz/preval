@@ -12,6 +12,20 @@
 $(parseInt??foo);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(parseInt);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(parseInt);
+`````
+
 ## Pre Normal
 
 
@@ -32,15 +46,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(parseInt);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -51,7 +57,7 @@ $( parseInt );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -61,4 +67,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -76,6 +76,182 @@ if (action === 5) throw use;
 */
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  let $finalStep /*:boolean*/ = false;
+  let $finalStep$1 /*:boolean*/ = false;
+  let $finalStep$3 /*:boolean*/ = false;
+  let $finalArg /*:unknown*/ = undefined;
+  let $finalArg$1 /*:unknown*/ = undefined;
+  try {
+    $(a);
+    if ($1) {
+      $finalStep = true;
+    } else {
+      if ($2) {
+        $finalStep$1 = true;
+        $finalArg = value;
+      } else {
+        if ($3) {
+          $finalStep$3 = true;
+          $finalArg$1 = x;
+        } else {
+          $4;
+        }
+      }
+    }
+  } catch ($finalImplicit) {
+    $(b);
+    throw $finalImplicit;
+  }
+  $(b);
+  if ($finalStep) {
+    return undefined;
+  } else {
+    if ($finalStep$1) {
+      return $finalArg;
+    } else {
+      if ($finalStep$3) {
+        throw $finalArg$1;
+      } else {
+        while ($LOOP_UNROLL_10) {
+          let $finalStep$2 /*:boolean*/ = false;
+          let $finalStep$4 /*:boolean*/ = false;
+          let $finalStep$6 /*:boolean*/ = false;
+          let $finalArg$2 /*:unknown*/ = undefined;
+          let $finalArg$4 /*:unknown*/ = undefined;
+          try {
+            $(a);
+            if ($1) {
+              $finalStep$2 = true;
+            } else {
+              if ($2) {
+                $finalStep$4 = true;
+                $finalArg$2 = value;
+              } else {
+                if ($3) {
+                  $finalStep$6 = true;
+                  $finalArg$4 = x;
+                } else {
+                  $4;
+                }
+              }
+            }
+          } catch ($finalImplicit$1) {
+            $(b);
+            throw $finalImplicit$1;
+          }
+          $(b);
+          if ($finalStep$2) {
+            break;
+          } else {
+            if ($finalStep$4) {
+              return $finalArg$2;
+            } else {
+              if ($finalStep$6) {
+                throw $finalArg$4;
+              } else {
+              }
+            }
+          }
+        }
+        return undefined;
+      }
+    }
+  }
+};
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  let $finalStep = false;
+  let $finalStep$1 = false;
+  let $finalStep$3 = false;
+  let $finalArg = undefined;
+  let $finalArg$1 = undefined;
+  try {
+    $(a);
+    if ($1) {
+      $finalStep = true;
+    } else {
+      if ($2) {
+        $finalStep$1 = true;
+        $finalArg = value;
+      } else {
+        if ($3) {
+          $finalStep$3 = true;
+          $finalArg$1 = x;
+        } else {
+          $4;
+        }
+      }
+    }
+  } catch ($finalImplicit) {
+    $(b);
+    throw $finalImplicit;
+  }
+  $(b);
+  if (!$finalStep) {
+    if ($finalStep$1) {
+      return $finalArg;
+    } else {
+      if ($finalStep$3) {
+        throw $finalArg$1;
+      } else {
+        while (true) {
+          let $finalStep$2 = false;
+          let $finalStep$4 = false;
+          let $finalStep$6 = false;
+          let $finalArg$2 = undefined;
+          let $finalArg$4 = undefined;
+          try {
+            $(a);
+            if ($1) {
+              $finalStep$2 = true;
+            } else {
+              if ($2) {
+                $finalStep$4 = true;
+                $finalArg$2 = value;
+              } else {
+                if ($3) {
+                  $finalStep$6 = true;
+                  $finalArg$4 = x;
+                } else {
+                  $4;
+                }
+              }
+            }
+          } catch ($finalImplicit$1) {
+            $(b);
+            throw $finalImplicit$1;
+          }
+          $(b);
+          if ($finalStep$2) {
+            break;
+          } else {
+            if ($finalStep$4) {
+              return $finalArg$2;
+            } else {
+              if ($finalStep$6) {
+                throw $finalArg$4;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -220,99 +396,7 @@ let f = function () {
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  let $finalStep /*:boolean*/ = false;
-  let $finalStep$1 /*:boolean*/ = false;
-  let $finalStep$3 /*:boolean*/ = false;
-  let $finalArg /*:unknown*/ = undefined;
-  let $finalArg$1 /*:unknown*/ = undefined;
-  try {
-    $(a);
-    if ($1) {
-      $finalStep = true;
-    } else {
-      if ($2) {
-        $finalStep$1 = true;
-        $finalArg = value;
-      } else {
-        if ($3) {
-          $finalStep$3 = true;
-          $finalArg$1 = x;
-        } else {
-          $4;
-        }
-      }
-    }
-  } catch ($finalImplicit) {
-    $(b);
-    throw $finalImplicit;
-  }
-  $(b);
-  if ($finalStep) {
-    return undefined;
-  } else {
-    if ($finalStep$1) {
-      return $finalArg;
-    } else {
-      if ($finalStep$3) {
-        throw $finalArg$1;
-      } else {
-        while ($LOOP_UNROLL_10) {
-          let $finalStep$2 /*:boolean*/ = false;
-          let $finalStep$4 /*:boolean*/ = false;
-          let $finalStep$6 /*:boolean*/ = false;
-          let $finalArg$2 /*:unknown*/ = undefined;
-          let $finalArg$4 /*:unknown*/ = undefined;
-          try {
-            $(a);
-            if ($1) {
-              $finalStep$2 = true;
-            } else {
-              if ($2) {
-                $finalStep$4 = true;
-                $finalArg$2 = value;
-              } else {
-                if ($3) {
-                  $finalStep$6 = true;
-                  $finalArg$4 = x;
-                } else {
-                  $4;
-                }
-              }
-            }
-          } catch ($finalImplicit$1) {
-            $(b);
-            throw $finalImplicit$1;
-          }
-          $(b);
-          if ($finalStep$2) {
-            break;
-          } else {
-            if ($finalStep$4) {
-              return $finalArg$2;
-            } else {
-              if ($finalStep$6) {
-                throw $finalArg$4;
-              } else {
-              }
-            }
-          }
-        }
-        return undefined;
-      }
-    }
-  }
-};
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -421,7 +505,7 @@ BAD@! Found 8 implicit global bindings:
 
 a, $1, $2, value, $3, x, $4, b
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -431,7 +515,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: DebuggerStatement

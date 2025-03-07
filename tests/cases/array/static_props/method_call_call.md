@@ -18,6 +18,23 @@ arr.splice.call(arr, 1, 2, 10, 20);
 $(arr.length);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3];
+$array_splice.call(arr, 1, 2, 10, 20);
+$(3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$array_splice.call([1, 2, 3], 1, 2, 10, 20);
+$(3);
+`````
+
 ## Pre Normal
 
 
@@ -38,17 +55,7 @@ const tmpCalleeParam = arr.length;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-$array_splice.call(arr, 1, 2, 10, 20);
-$(3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +68,7 @@ $( 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 3
@@ -71,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

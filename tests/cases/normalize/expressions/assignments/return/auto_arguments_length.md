@@ -17,6 +17,36 @@ $(f());
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const f /*:()=>arguments*/ = function () {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  debugger;
+  a = tmpPrevalAliasArgumentsAny;
+  return tmpPrevalAliasArgumentsAny;
+};
+const tmpCalleeParam /*:arguments*/ = f();
+$(tmpCalleeParam);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const f = function () {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  a = tmpPrevalAliasArgumentsAny;
+  return tmpPrevalAliasArgumentsAny;
+};
+$(f());
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -47,24 +77,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const f /*:()=>arguments*/ = function () {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
-  debugger;
-  a = tmpPrevalAliasArgumentsAny;
-  return tmpPrevalAliasArgumentsAny;
-};
-const tmpCalleeParam /*:arguments*/ = f();
-$(tmpCalleeParam);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +100,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: {}
@@ -98,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

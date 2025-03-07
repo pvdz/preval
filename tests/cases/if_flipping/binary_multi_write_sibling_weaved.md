@@ -28,6 +28,46 @@ if (y) {
 //$(y, 'after');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(1);
+const b /*:unknown*/ = $(2);
+const c /*:unknown*/ = $(3);
+let y /*:boolean*/ = a === b;
+if (y) {
+  y = a === c;
+} else {
+  $(`if1`);
+}
+if (y) {
+  $(`else1`);
+} else {
+  $(`if2`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = $(1);
+const b = $(2);
+const c = $(3);
+let y = a === b;
+if (y) {
+  y = a === c;
+} else {
+  $(`if1`);
+}
+if (y) {
+  $(`else1`);
+} else {
+  $(`if2`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -68,28 +108,7 @@ if (y) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(1);
-const b /*:unknown*/ = $(2);
-const c /*:unknown*/ = $(3);
-let y /*:boolean*/ = a === b;
-if (y) {
-  y = a === c;
-} else {
-  $(`if1`);
-}
-if (y) {
-  $(`else1`);
-} else {
-  $(`if2`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +134,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -129,4 +148,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

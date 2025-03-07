@@ -27,6 +27,53 @@ f('');
 f('foop');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(string)=>undefined*/ = function ($$0) {
+  const y /*:string*/ = $$0;
+  debugger;
+  const g /*:(number)=>array*/ = function ($$0) {
+    const z /*:number*/ = $$0;
+    debugger;
+    $(`keepme`);
+    const tmpReturnArg /*:array*/ = [y, z];
+    return tmpReturnArg;
+  };
+  if (y) {
+    return undefined;
+  } else {
+    const tmpCalleeParam /*:array*/ = g(10);
+    $(tmpCalleeParam, `pass`);
+    const tmpCalleeParam$1 /*:array*/ = g(20);
+    $(tmpCalleeParam$1, `pass`);
+    return undefined;
+  }
+};
+f(``);
+f(`foop`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (y) {
+  const g = function (z) {
+    $(`keepme`);
+    const tmpReturnArg = [y, z];
+    return tmpReturnArg;
+  };
+  if (!y) {
+    $(g(10), `pass`);
+    $(g(20), `pass`);
+  }
+};
+f(``);
+f(`foop`);
+`````
+
 ## Pre Normal
 
 
@@ -80,36 +127,7 @@ f(``);
 f(`foop`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(string)=>undefined*/ = function ($$0) {
-  const y /*:string*/ = $$0;
-  debugger;
-  const g /*:(number)=>array*/ = function ($$0) {
-    const z /*:number*/ = $$0;
-    debugger;
-    $(`keepme`);
-    const tmpReturnArg /*:array*/ = [y, z];
-    return tmpReturnArg;
-  };
-  if (y) {
-    return undefined;
-  } else {
-    const tmpCalleeParam /*:array*/ = g(10);
-    $(tmpCalleeParam, `pass`);
-    const tmpCalleeParam$1 /*:array*/ = g(20);
-    $(tmpCalleeParam$1, `pass`);
-    return undefined;
-  }
-};
-f(``);
-f(`foop`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -142,7 +160,7 @@ a( "foop" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'keepme'
@@ -155,4 +173,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

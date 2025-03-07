@@ -14,6 +14,49 @@ for (var [x] in {y: 100}) $(x, 'for');
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = undefined;
+$(undefined);
+const tmpCalleeParam /*:object*/ = { y: 100 };
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const arrAssignPatternRhs /*:unknown*/ = tmpForInNext.value;
+    const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    $(x, `for`);
+  }
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = undefined;
+$(undefined);
+const tmpForInGen = $forIn({ y: 100 });
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    const arrAssignPatternRhs = tmpForInNext.value;
+    x = [...arrAssignPatternRhs][0];
+    $(x, `for`);
+  }
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -58,31 +101,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = undefined;
-$(undefined);
-const tmpCalleeParam /*:object*/ = { y: 100 };
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const arrAssignPatternRhs /*:unknown*/ = tmpForInNext.value;
-    const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
-    $(x, `for`);
-  }
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +129,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -122,7 +141,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

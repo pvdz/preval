@@ -17,6 +17,27 @@ if (a === 33) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(33);
+const tmpIfTest /*:boolean*/ = a === 33;
+if (tmpIfTest) {
+  $(`pass`);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(33) === 33) {
+  $(`pass`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -45,20 +66,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(33);
-const tmpIfTest /*:boolean*/ = a === 33;
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +81,7 @@ if (b) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 33
@@ -84,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -13,6 +13,33 @@ const a = {};
 $(a.b.c??d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCompObj /*:unknown*/ = $Object_prototype.b;
+const tmpCalleeParam /*:unknown*/ = tmpCompObj.c;
+const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
+if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = d;
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam = $Object_prototype.b.c;
+if (tmpCalleeParam == null) {
+  $(d);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
 ## Pre Normal
 
 
@@ -36,23 +63,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCompObj /*:unknown*/ = $Object_prototype.b;
-const tmpCalleeParam /*:unknown*/ = tmpCompObj.c;
-const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = d;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  $(tmpCalleeParam);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +85,7 @@ BAD@! Found 1 implicit global bindings:
 
 d
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -83,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

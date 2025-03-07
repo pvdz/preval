@@ -19,6 +19,26 @@ a.length = NaN;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$();
+const a /*:array*/ = [1, 2, 3, 4, 5];
+a.length = NaN;
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$();
+const a = [1, 2, 3, 4, 5];
+a.length = NaN;
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -39,18 +59,7 @@ a.length = NaN;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$();
-const a /*:array*/ = [1, 2, 3, 4, 5];
-a.length = NaN;
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +73,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -74,4 +83,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

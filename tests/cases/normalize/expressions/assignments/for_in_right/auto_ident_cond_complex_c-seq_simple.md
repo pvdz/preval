@@ -14,6 +14,58 @@ for (let x in (a = $(1) ? (40, 50, $(60)) : $($(100))));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpForInGen /*:unknown*/ = undefined;
+if (tmpIfTest) {
+  a = $(60);
+  tmpForInGen = $forIn(a);
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  a = $(tmpCalleeParam$1);
+  tmpForInGen = $forIn(a);
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const tmpIfTest = $(1);
+let tmpForInGen = undefined;
+if (tmpIfTest) {
+  a = $(60);
+  tmpForInGen = $forIn(a);
+} else {
+  a = $($(100));
+  tmpForInGen = $forIn(a);
+}
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -59,35 +111,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(1);
-let tmpForInGen /*:unknown*/ = undefined;
-if (tmpIfTest) {
-  a = $(60);
-  tmpForInGen = $forIn(a);
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam$1);
-  tmpForInGen = $forIn(a);
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest$1) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +144,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -132,7 +156,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

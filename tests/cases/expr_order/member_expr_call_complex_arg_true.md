@@ -13,6 +13,22 @@ var a = true, x = false;
 a.b(x.y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallVal /*:unknown*/ = true.b;
+const tmpCalleeParam /*:unknown*/ = false.y;
+$dotCall(tmpCallVal, true, `b`, tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$dotCall(true.b, true, `b`, false.y);
+`````
+
 ## Pre Normal
 
 
@@ -37,17 +53,7 @@ const tmpCalleeParam = x.y;
 $dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallVal /*:unknown*/ = true.b;
-const tmpCalleeParam /*:unknown*/ = false.y;
-$dotCall(tmpCallVal, true, `b`, tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +66,7 @@ $dotCall( a, true, "b", b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -70,5 +76,8 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+
+Denormalized calls: BAD!!
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')

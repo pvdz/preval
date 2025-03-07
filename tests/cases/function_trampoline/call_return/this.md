@@ -17,6 +17,21 @@ const q = f(1, 2, 3, 4, 5); // The use of `this` should prevent inlining this ca
 $(q);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const q /*:unknown*/ = $(undefined);
+$(q);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(undefined));
+`````
+
 ## Pre Normal
 
 
@@ -55,16 +70,7 @@ const q = f(1, 2, 3, 4, 5);
 $(q);
 `````
 
-## Output
-
-
-`````js filename=intro
-const q /*:unknown*/ = $(undefined);
-$(q);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +82,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -87,4 +93,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

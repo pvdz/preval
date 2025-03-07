@@ -16,6 +16,35 @@ $($(100) + (a = --$($(b)).x));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs - 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpNestedPropCompoundComplexRhs;
+$(tmpCalleeParam);
+$(tmpNestedPropCompoundComplexRhs, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(100);
+const b = { x: 1 };
+const tmpNestedAssignObj = $($(b));
+const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x - 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+$(tmpBinBothLhs + tmpNestedPropCompoundComplexRhs);
+$(tmpNestedPropCompoundComplexRhs, b);
+`````
+
 ## Pre Normal
 
 
@@ -45,24 +74,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpNestedPropCompoundComplexRhs;
-$(tmpCalleeParam);
-$(tmpNestedPropCompoundComplexRhs, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +94,7 @@ $( f, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -96,4 +108,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

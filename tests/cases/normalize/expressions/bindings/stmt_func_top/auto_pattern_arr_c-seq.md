@@ -16,6 +16,31 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(10);
+$(20);
+const tmpCalleeParam /*:array*/ = [1, 2];
+const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+const a /*:unknown*/ = arrPatternSplat[0];
+$(a);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(10);
+$(20);
+const bindingPatternArrRoot = $([1, 2]);
+$([...bindingPatternArrRoot][0]);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -47,22 +72,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(10);
-$(20);
-const tmpCalleeParam /*:array*/ = [1, 2];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a /*:unknown*/ = arrPatternSplat[0];
-$(a);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +90,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -94,7 +104,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

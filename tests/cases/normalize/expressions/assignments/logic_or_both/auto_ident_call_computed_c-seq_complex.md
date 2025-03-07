@@ -16,6 +16,46 @@ $((a = (1, 2, $(b))[$("$")](1)) || (a = (1, 2, $(b))[$("$")](1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCallCompObj /*:unknown*/ = $(b);
+const tmpCallCompProp /*:unknown*/ = $(`\$`);
+let tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+} else {
+  const tmpCallCompObj$1 /*:unknown*/ = $(b);
+  const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
+  const tmpNestedComplexRhs /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1](1);
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { $: $ };
+const tmpCallCompObj = $(b);
+const tmpCallCompProp = $(`\$`);
+let tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+} else {
+  const tmpCallCompObj$1 = $(b);
+  const tmpCallCompProp$1 = $(`\$`);
+  const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -48,28 +88,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-let tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-} else {
-  const tmpCallCompObj$1 /*:unknown*/ = $(b);
-  const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-  const tmpNestedComplexRhs /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1](1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -94,7 +113,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -108,4 +127,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -18,6 +18,13 @@ while ($LOOP_UNROLL_500) {
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+
+`````
+
 ## Pre Normal
 
 
@@ -37,15 +44,14 @@ let y = 1;
 y = y + 1;
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
 
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,5 +72,8 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: undefined
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: undefined
+
+Denormalized calls: BAD!!
  - eval returned: undefined

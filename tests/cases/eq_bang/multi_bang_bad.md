@@ -20,6 +20,33 @@ $(!same);
 $(same);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(1);
+const b /*:unknown*/ = $(2);
+const same /*:boolean*/ = a === b;
+const tmpCalleeParam /*:boolean*/ = !same;
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:boolean*/ = !same;
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:boolean*/ = !same;
+$(tmpCalleeParam$3);
+$(same);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const same = $(1) === $(2);
+$(!same);
+$(!same);
+$(!same);
+$(same);
+`````
+
 ## Pre Normal
 
 
@@ -49,24 +76,7 @@ $(tmpCalleeParam$3);
 $(same);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(1);
-const b /*:unknown*/ = $(2);
-const same /*:boolean*/ = a === b;
-const tmpCalleeParam /*:boolean*/ = !same;
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:boolean*/ = !same;
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:boolean*/ = !same;
-$(tmpCalleeParam$3);
-$(same);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +96,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -101,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

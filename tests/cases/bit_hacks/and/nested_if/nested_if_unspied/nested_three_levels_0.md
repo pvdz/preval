@@ -23,6 +23,47 @@ if (x & 8) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
+  const x$1 /*:number*/ = $$0;
+  debugger;
+  const tmpIfTest /*:number*/ = x$1 & 10;
+  const tmpRet /*:boolean*/ = tmpIfTest === 10;
+  return tmpRet;
+};
+const tmpUnaryArg /*:unknown*/ = $spy(0);
+const x /*:number*/ = +tmpUnaryArg;
+const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree, x);
+if (tmpIfTest$1) {
+  const tmpIfTest$3 /*:number*/ = x & 32;
+  if (tmpIfTest$3) {
+    $(`it is 42`);
+  } else {
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(x$1) {
+  const tmpRet = (x$1 & 10) === 10;
+  return tmpRet;
+};
+const tmpUnaryArg = $spy(0);
+const x = +tmpUnaryArg;
+if ($frfr(tmpFree, x)) {
+  if (x & 32) {
+    $(`it is 42`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -58,32 +99,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
-  const x$1 /*:number*/ = $$0;
-  debugger;
-  const tmpIfTest /*:number*/ = x$1 & 10;
-  const tmpRet /*:boolean*/ = tmpIfTest === 10;
-  return tmpRet;
-};
-const tmpUnaryArg /*:unknown*/ = $spy(0);
-const x /*:number*/ = +tmpUnaryArg;
-const tmpIfTest$1 /*:boolean*/ = $frfr(tmpFree, x);
-if (tmpIfTest$1) {
-  const tmpIfTest$3 /*:number*/ = x & 32;
-  if (tmpIfTest$3) {
-    $(`it is 42`);
-  } else {
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,7 +125,7 @@ if (h) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [0, 0]
@@ -120,4 +136,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

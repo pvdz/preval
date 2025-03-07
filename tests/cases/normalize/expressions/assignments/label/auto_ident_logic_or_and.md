@@ -14,6 +14,39 @@ label: a = $($(0)) || ($($(1)) && $($(2)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam);
+if (a) {
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  a = $(tmpCalleeParam$1);
+  if (a) {
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
+    a = $(tmpCalleeParam$3);
+  } else {
+  }
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = $($(0));
+if (!a) {
+  a = $($(1));
+  if (a) {
+    a = $($(2));
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -43,27 +76,7 @@ if (a) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(0);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  a = $(tmpCalleeParam$1);
-  if (a) {
-    const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    a = $(tmpCalleeParam$3);
-  } else {
-  }
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +100,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -103,4 +116,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

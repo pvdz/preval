@@ -16,6 +16,34 @@ $`before ${--$($(b)).x} after`;
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam$3 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+$(tmpCalleeParam, varInitAssignLhsComputedRhs);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const varInitAssignLhsComputedObj = $($(b));
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x - 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+$([`before `, ` after`], varInitAssignLhsComputedRhs);
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -43,24 +71,7 @@ $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$3 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, varInitAssignLhsComputedRhs);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +94,7 @@ $( g, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -96,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

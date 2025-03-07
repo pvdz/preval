@@ -16,6 +16,31 @@ export let a = ({ x, y } = { x: $(3), y: $(4) });
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const tmpObjLitVal /*:unknown*/ = $(3);
+const tmpObjLitVal$1 /*:unknown*/ = $(4);
+const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+a = tmpNestedAssignObjPatternRhs;
+export { a };
+$(a, tmpObjLitVal, tmpObjLitVal$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+a = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+export { a };
+$(a, tmpObjLitVal, tmpObjLitVal$1);
+`````
+
 ## Pre Normal
 
 
@@ -44,21 +69,7 @@ export { a };
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const tmpObjLitVal /*:unknown*/ = $(3);
-const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-a = tmpNestedAssignObjPatternRhs;
-export { a };
-$(a, tmpObjLitVal, tmpObjLitVal$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +89,7 @@ $( a, b, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -87,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

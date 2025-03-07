@@ -20,6 +20,42 @@ $(f(2));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(`stop`);
+  $(`the`);
+  $(`inlining`);
+  return undefined;
+};
+f();
+$(17);
+f();
+$(18);
+f();
+$(16);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`stop`);
+  $(`the`);
+  $(`inlining`);
+};
+f();
+$(17);
+f();
+$(18);
+f();
+$(16);
+`````
+
 ## Pre Normal
 
 
@@ -58,27 +94,7 @@ const tmpCalleeParam$3 = f(`three`);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(`stop`);
-  $(`the`);
-  $(`inlining`);
-  return undefined;
-};
-f();
-$(17);
-f();
-$(18);
-f();
-$(16);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +117,7 @@ $( 16 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'stop'
@@ -122,4 +138,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -25,6 +25,32 @@ $(f(true));
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(100);
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:unknown*/ = $(100);
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:unknown*/ = $(100);
+$(tmpCalleeParam$3);
+const tmpCalleeParam$5 /*:unknown*/ = $(100);
+$(tmpCalleeParam$5);
+$(-2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(100));
+$($(100));
+$($(100));
+$($(100));
+$(-2);
+`````
+
 ## Pre Normal
 
 
@@ -66,23 +92,7 @@ $(tmpCalleeParam$5);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(100);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:unknown*/ = $(100);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:unknown*/ = $(100);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:unknown*/ = $(100);
-$(tmpCalleeParam$5);
-$(-2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +111,7 @@ $( -2 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -119,4 +129,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

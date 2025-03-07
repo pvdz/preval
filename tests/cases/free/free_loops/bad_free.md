@@ -28,6 +28,51 @@ const tmpObjLitVal$159 = function() {
 $(tmpObjLitVal$159);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree$1 /*:(unknown, unknown)=>number*/ = function $free($$0, $$1) {
+  const cs$1 /*:unknown*/ = $$0;
+  const g$147 /*:unknown*/ = $$1;
+  debugger;
+  const tmpBinBothLhs$3633 /*:primitive*/ = cs$1 + 71046;
+  const tmpBinBothRhs$3633 /*:number*/ = `\uf051`.charCodeAt(g$147);
+  const tmpCalleeParam$9457 /*:number*/ = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
+  return tmpCalleeParam$9457;
+};
+$(tmpFree$1);
+const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
+  debugger;
+  $coerce(tmpBinBothRhs$32, `string`);
+  $coerce(tmpClusterSSA_r$2027, `string`);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const tmpBinBothRhs$3631 /*:number*/ = $frfr(tmpFree$1, $, $);
+    p$171 = p$171 + tmpBinBothRhs$3631;
+  }
+  return undefined;
+};
+$(tmpObjLitVal$159);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree$1 = function $free(cs$1, g$147) {
+  const tmpCalleeParam$9457 = (cs$1 + 71046) ^ `\uf051`.charCodeAt(g$147);
+  return tmpCalleeParam$9457;
+};
+$(tmpFree$1);
+$(function () {
+  $coerce(tmpBinBothRhs$32, `string`);
+  $coerce(tmpClusterSSA_r$2027, `string`);
+  while (true) {
+    p$171 = p$171 + $frfr(tmpFree$1, $, $);
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -87,35 +132,7 @@ const tmpObjLitVal$159 = function () {
 $(tmpObjLitVal$159);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree$1 /*:(unknown, unknown)=>number*/ = function $free($$0, $$1) {
-  const cs$1 /*:unknown*/ = $$0;
-  const g$147 /*:unknown*/ = $$1;
-  debugger;
-  const tmpBinBothLhs$3633 /*:primitive*/ = cs$1 + 71046;
-  const tmpBinBothRhs$3633 /*:number*/ = `\uf051`.charCodeAt(g$147);
-  const tmpCalleeParam$9457 /*:number*/ = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
-  return tmpCalleeParam$9457;
-};
-$(tmpFree$1);
-const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
-  debugger;
-  $coerce(tmpBinBothRhs$32, `string`);
-  $coerce(tmpClusterSSA_r$2027, `string`);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpBinBothRhs$3631 /*:number*/ = $frfr(tmpFree$1, $, $);
-    p$171 = p$171 + tmpBinBothRhs$3631;
-  }
-  return undefined;
-};
-$(tmpObjLitVal$159);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -148,7 +165,7 @@ BAD@! Found 3 implicit global bindings:
 
 tmpBinBothRhs$32, tmpClusterSSA_r$2027, p$171
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -159,7 +176,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $string_charCodeAt

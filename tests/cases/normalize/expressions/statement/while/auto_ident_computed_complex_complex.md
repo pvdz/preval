@@ -16,6 +16,51 @@ while ($(b)[$("c")]) $(100);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 1 };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpIfTest /*:unknown*/ = tmpCompObj[tmpCompProp];
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCompObj$1 /*:unknown*/ = $(b);
+    const tmpCompProp$1 /*:unknown*/ = $(`c`);
+    const tmpIfTest$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: 1 };
+const tmpCompObj = $(b);
+const tmpCompProp = $(`c`);
+if (tmpCompObj[tmpCompProp]) {
+  while (true) {
+    $(100);
+    const tmpCompObj$1 = $(b);
+    const tmpCompProp$1 = $(`c`);
+    if (!tmpCompObj$1[tmpCompProp$1]) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -45,33 +90,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 1 };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`c`);
-const tmpIfTest /*:unknown*/ = tmpCompObj[tmpCompProp];
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpCompObj$1 /*:unknown*/ = $(b);
-    const tmpCompProp$1 /*:unknown*/ = $(`c`);
-    const tmpIfTest$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +123,7 @@ $( h, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { c: '1' }
@@ -139,7 +158,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

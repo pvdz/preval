@@ -31,6 +31,54 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
+  const a /*:primitive*/ = $$0;
+  debugger;
+  const b /*:number*/ = parseInt(a);
+  const tmpRet /*:number*/ = b / 1;
+  return tmpRet;
+};
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a$1 /*:primitive*/ = arr[2];
+  $(a$1);
+  const c /*:number*/ = $frfr(tmpFree, a$1);
+  if (c) {
+    break;
+  } else {
+    const M /*:unknown*/ = arr.shift();
+    arr.push(M);
+  }
+}
+const tmpCalleeParam /*:primitive*/ = arr[1];
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(a) {
+  const tmpRet = parseInt(a) / 1;
+  return tmpRet;
+};
+const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while (true) {
+  const a$1 = arr[2];
+  $(a$1);
+  if ($frfr(tmpFree, a$1)) {
+    break;
+  } else {
+    arr.push(arr.shift());
+  }
+}
+$(arr[1]);
+`````
+
 ## Pre Normal
 
 
@@ -82,35 +130,7 @@ const tmpCalleeParam = arr[1];
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
-  const a /*:primitive*/ = $$0;
-  debugger;
-  const b /*:number*/ = parseInt(a);
-  const tmpRet /*:number*/ = b / 1;
-  return tmpRet;
-};
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a$1 /*:primitive*/ = arr[2];
-  $(a$1);
-  const c /*:number*/ = $frfr(tmpFree, a$1);
-  if (c) {
-    break;
-  } else {
-    const M /*:unknown*/ = arr.shift();
-    arr.push(M);
-  }
-}
-const tmpCalleeParam /*:primitive*/ = arr[1];
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -142,7 +162,7 @@ $( k );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'c'
@@ -177,7 +197,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

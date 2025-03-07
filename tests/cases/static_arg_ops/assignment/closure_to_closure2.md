@@ -12,6 +12,40 @@
 const a = $(); let b = 2; function f() { b = a; $(a); $(b); }; f(); f(); $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  $(a);
+  $(tmpSSA_b);
+  return undefined;
+};
+const a /*:unknown*/ = $();
+let tmpSSA_b /*:unknown*/ = a;
+f();
+tmpSSA_b = a;
+f();
+$(a, tmpSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(a);
+  $(tmpSSA_b);
+};
+const a = $();
+let tmpSSA_b = a;
+f();
+tmpSSA_b = a;
+f();
+$(a, tmpSSA_b);
+`````
+
 ## Pre Normal
 
 
@@ -47,26 +81,7 @@ f();
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  $(a);
-  $(tmpSSA_b);
-  return undefined;
-};
-const a /*:unknown*/ = $();
-let tmpSSA_b /*:unknown*/ = a;
-f();
-tmpSSA_b = a;
-f();
-$(a, tmpSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +103,7 @@ $( b, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -103,4 +118,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

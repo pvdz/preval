@@ -26,6 +26,64 @@ while (true) {
 $(y, 'last');
 `````
 
+## Settled
+
+
+`````js filename=intro
+let y /*:unknown*/ = undefined;
+while (true) {
+  y = $(true);
+  if (y) {
+    $(y, `before`);
+    let x /*:unknown*/ = undefined;
+    const obj /*:object*/ = { a: 1, b: 2 };
+    const tmpForInGen /*:unknown*/ = $forIn(obj);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+      const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+      if (tmpIfTest) {
+        break;
+      } else {
+        x = tmpForInNext.value;
+        $(x, y);
+      }
+    }
+    $(x, y, `after`);
+  } else {
+    break;
+  }
+}
+$(y, `last`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let y = undefined;
+while (true) {
+  y = $(true);
+  if (y) {
+    $(y, `before`);
+    let x = undefined;
+    const tmpForInGen = $forIn({ a: 1, b: 2 });
+    while (true) {
+      const tmpForInNext = tmpForInGen.next();
+      if (tmpForInNext.done) {
+        break;
+      } else {
+        x = tmpForInNext.value;
+        $(x, y);
+      }
+    }
+    $(x, y, `after`);
+  } else {
+    break;
+  }
+}
+$(y, `last`);
+`````
+
 ## Pre Normal
 
 
@@ -94,38 +152,7 @@ while (true) {
 $(y, `last`);
 `````
 
-## Output
-
-
-`````js filename=intro
-let y /*:unknown*/ = undefined;
-while (true) {
-  y = $(true);
-  if (y) {
-    $(y, `before`);
-    let x /*:unknown*/ = undefined;
-    const obj /*:object*/ = { a: 1, b: 2 };
-    const tmpForInGen /*:unknown*/ = $forIn(obj);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-      const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-      if (tmpIfTest) {
-        break;
-      } else {
-        x = tmpForInNext.value;
-        $(x, y);
-      }
-    }
-    $(x, y, `after`);
-  } else {
-    break;
-  }
-}
-$(y, `last`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -164,7 +191,7 @@ $( a, "last" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -199,7 +226,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

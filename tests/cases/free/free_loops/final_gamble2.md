@@ -144,6 +144,24 @@ const tmpCalleeParam$1 /*:string*/ = arr.join(``);
 $(tmpCalleeParam$1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`//\u00c0
+
+(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e,g,c=0,d=[],p=[35,48,72,128];c<j.length;)a=j.charCode`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`//\u00c0
+
+(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e,g,c=0,d=[],p=[35,48,72,128];c<j.length;)a=j.charCode`);
+`````
+
 ## Pre Normal
 
 
@@ -422,17 +440,7 @@ const tmpCalleeParam$1 = arr.join(``);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`//\u00c0
-
-(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e,g,c=0,d=[],p=[35,48,72,128];c<j.length;)a=j.charCode`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -443,7 +451,7 @@ $( "//\u00c0\u000a\u000a(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '//À(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e,g,c=0,d=[],p=[35,48,72,128];c<j.length;)a=j.charCode'
@@ -453,4 +461,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,28 @@ const alias = obj.g;
 $dotCall(alias, obj, 'g');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:()=>unknown*/ = function () {
+  debugger;
+  return `win`;
+};
+const obj /*:object*/ = { f: g };
+obj.g();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function () {
+  return `win`;
+};
+({ f: g }.g());
+`````
+
 ## Pre Normal
 
 
@@ -40,20 +62,7 @@ const obj = { f: g };
 obj.g();
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:()=>unknown*/ = function () {
-  debugger;
-  return `win`;
-};
-const obj /*:object*/ = { f: g };
-obj.g();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +78,7 @@ b.g();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -79,5 +88,8 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Denormalized calls: BAD!!
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

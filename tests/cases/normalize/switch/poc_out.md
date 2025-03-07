@@ -50,6 +50,63 @@ exit: {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let fallthrough /*:boolean*/ = false;
+const tmpBinBothRhs /*:unknown*/ = $(1);
+let tmpIfTest$1 /*:boolean*/ = true;
+const tmpIfTest /*:boolean*/ = undefined === tmpBinBothRhs;
+if (tmpIfTest) {
+  $(`A`);
+  fallthrough = true;
+} else {
+  const tmpBinBothRhs$1 /*:unknown*/ = $(2);
+  tmpIfTest$1 = undefined === tmpBinBothRhs$1;
+}
+if (tmpIfTest$1) {
+  $(`B`);
+} else {
+  let tmpIfTest$3 /*:unknown*/ = fallthrough;
+  if (fallthrough) {
+  } else {
+    const tmpBinBothRhs$3 /*:unknown*/ = $(3);
+    tmpIfTest$3 = undefined === tmpBinBothRhs$3;
+  }
+  if (tmpIfTest$3) {
+    $(`C`);
+  } else {
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let fallthrough = false;
+const tmpBinBothRhs = $(1);
+let tmpIfTest$1 = true;
+if (undefined === tmpBinBothRhs) {
+  $(`A`);
+  fallthrough = true;
+} else {
+  tmpIfTest$1 = undefined === $(2);
+}
+if (tmpIfTest$1) {
+  $(`B`);
+} else {
+  let tmpIfTest$3 = fallthrough;
+  if (!fallthrough) {
+    tmpIfTest$3 = undefined === $(3);
+  }
+  if (tmpIfTest$3) {
+    $(`C`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -126,39 +183,7 @@ exit: {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let fallthrough /*:boolean*/ = false;
-const tmpBinBothRhs /*:unknown*/ = $(1);
-let tmpIfTest$1 /*:boolean*/ = true;
-const tmpIfTest /*:boolean*/ = undefined === tmpBinBothRhs;
-if (tmpIfTest) {
-  $(`A`);
-  fallthrough = true;
-} else {
-  const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-  tmpIfTest$1 = undefined === tmpBinBothRhs$1;
-}
-if (tmpIfTest$1) {
-  $(`B`);
-} else {
-  let tmpIfTest$3 /*:unknown*/ = fallthrough;
-  if (fallthrough) {
-  } else {
-    const tmpBinBothRhs$3 /*:unknown*/ = $(3);
-    tmpIfTest$3 = undefined === tmpBinBothRhs$3;
-  }
-  if (tmpIfTest$3) {
-    $(`C`);
-  } else {
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -196,7 +221,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -208,4 +233,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

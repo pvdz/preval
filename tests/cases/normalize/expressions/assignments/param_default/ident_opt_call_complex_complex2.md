@@ -41,6 +41,41 @@ $(tmpCalleeParam$6);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const tmpChainElementCall$2 /*:unknown*/ = $($);
+const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$2 == null;
+if (tmpIfTest$3) {
+  $(undefined);
+} else {
+  const tmpCallVal$2 /*:unknown*/ = tmpChainElementCall$2.call;
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  const tmpChainElementCall$5 /*:unknown*/ = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
+  a = tmpChainElementCall$5;
+  $(tmpChainElementCall$5);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const tmpChainElementCall$2 = $($);
+if (tmpChainElementCall$2 == null) {
+  $(undefined);
+} else {
+  const tmpChainElementCall$5 = tmpChainElementCall$2.call.call(tmpChainElementCall$2, $, $(1));
+  a = tmpChainElementCall$5;
+  $(tmpChainElementCall$5);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -124,27 +159,7 @@ $(tmpCalleeParam$6);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const tmpChainElementCall$2 /*:unknown*/ = $($);
-const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$2 == null;
-if (tmpIfTest$3) {
-  $(undefined);
-} else {
-  const tmpCallVal$2 /*:unknown*/ = tmpChainElementCall$2.call;
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpChainElementCall$5 /*:unknown*/ = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
-  a = tmpChainElementCall$5;
-  $(tmpChainElementCall$5);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -168,7 +183,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -182,4 +197,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

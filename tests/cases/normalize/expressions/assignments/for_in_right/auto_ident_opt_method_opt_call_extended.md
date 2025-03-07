@@ -16,6 +16,57 @@ for (let x in (a = b?.c.d.e?.(1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+let tmpForInGen /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+if (tmpIfTest$1) {
+  tmpForInGen = $forIn(undefined);
+} else {
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  a = tmpChainElementCall;
+  tmpForInGen = $forIn(tmpChainElementCall);
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest$3 /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest$3) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+let tmpForInGen = undefined;
+if ($ == null) {
+  tmpForInGen = $forIn(undefined);
+} else {
+  const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
+  a = tmpChainElementCall;
+  tmpForInGen = $forIn(tmpChainElementCall);
+}
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -73,35 +124,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-let tmpForInGen /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = $ == null;
-if (tmpIfTest$1) {
-  tmpForInGen = $forIn(undefined);
-} else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  a = tmpChainElementCall;
-  tmpForInGen = $forIn(tmpChainElementCall);
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest$3 /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest$3) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -134,7 +157,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -145,7 +168,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

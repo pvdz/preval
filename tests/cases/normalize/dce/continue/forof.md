@@ -20,6 +20,53 @@ while ($(true)) {
 $('after, wont eval due to infinite loop');
 `````
 
+## Settled
+
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    const tmpCalleeParam /*:array*/ = [10, 20];
+    const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+      const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        tmpForOfNext.value;
+      }
+    }
+  } else {
+    break;
+  }
+}
+$(`after, wont eval due to infinite loop`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  if ($(true)) {
+    const tmpForOfGen = $forOf([10, 20]);
+    while (true) {
+      const tmpForOfNext = tmpForOfGen.next();
+      if (tmpForOfNext.done) {
+        break;
+      } else {
+        tmpForOfNext.value;
+      }
+    }
+  } else {
+    break;
+  }
+}
+$(`after, wont eval due to infinite loop`);
+`````
+
 ## Pre Normal
 
 
@@ -73,33 +120,7 @@ while (true) {
 $(`after, wont eval due to infinite loop`);
 `````
 
-## Output
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    const tmpCalleeParam /*:array*/ = [10, 20];
-    const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-      const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        tmpForOfNext.value;
-      }
-    }
-  } else {
-    break;
-  }
-}
-$(`after, wont eval due to infinite loop`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -130,7 +151,7 @@ $( "after, wont eval due to infinite loop" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -165,7 +186,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

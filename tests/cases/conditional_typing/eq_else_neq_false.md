@@ -22,6 +22,22 @@ if (x) {
 $(x)
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(67637);
+$(true);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(67637);
+$(true);
+`````
+
 ## Pre Normal
 
 
@@ -48,16 +64,7 @@ if (x) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(67637);
-$(true);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +76,7 @@ $( true );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 67637
@@ -80,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

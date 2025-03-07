@@ -31,6 +31,62 @@ f($(''));
 f($('foop'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown)=>undefined*/ = function ($$0) {
+  const y /*:unknown*/ = $$0;
+  debugger;
+  const f$1 /*:(number)=>array*/ = function ($$0) {
+    const z /*:number*/ = $$0;
+    debugger;
+    $(`keepme`);
+    $(`keepme`);
+    const tmpReturnArg /*:array*/ = [x, z];
+    return tmpReturnArg;
+  };
+  const x /*:string*/ = $coerce(y, `plustr`);
+  if (x) {
+    $(x, `if`);
+    return undefined;
+  } else {
+    const tmpCalleeParam /*:array*/ = f$1(10);
+    $(tmpCalleeParam, `pass`);
+    const tmpCalleeParam$1 /*:array*/ = f$1(20);
+    $(tmpCalleeParam$1, `pass`);
+    return undefined;
+  }
+};
+const tmpCalleeParam$3 /*:unknown*/ = $(``);
+f(tmpCalleeParam$3);
+const tmpCalleeParam$5 /*:unknown*/ = $(`foop`);
+f(tmpCalleeParam$5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (y) {
+  const f$1 = function (z) {
+    $(`keepme`);
+    $(`keepme`);
+    const tmpReturnArg = [x, z];
+    return tmpReturnArg;
+  };
+  const x = $coerce(y, `plustr`);
+  if (x) {
+    $(x, `if`);
+  } else {
+    $(f$1(10), `pass`);
+    $(f$1(20), `pass`);
+  }
+};
+f($(``));
+f($(`foop`));
+`````
+
 ## Pre Normal
 
 
@@ -92,41 +148,7 @@ const tmpCalleeParam$5 = $(`foop`);
 tmpCallCallee$1(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unknown)=>undefined*/ = function ($$0) {
-  const y /*:unknown*/ = $$0;
-  debugger;
-  const f$1 /*:(number)=>array*/ = function ($$0) {
-    const z /*:number*/ = $$0;
-    debugger;
-    $(`keepme`);
-    $(`keepme`);
-    const tmpReturnArg /*:array*/ = [x, z];
-    return tmpReturnArg;
-  };
-  const x /*:string*/ = $coerce(y, `plustr`);
-  if (x) {
-    $(x, `if`);
-    return undefined;
-  } else {
-    const tmpCalleeParam /*:array*/ = f$1(10);
-    $(tmpCalleeParam, `pass`);
-    const tmpCalleeParam$1 /*:array*/ = f$1(20);
-    $(tmpCalleeParam$1, `pass`);
-    return undefined;
-  }
-};
-const tmpCalleeParam$3 /*:unknown*/ = $(``);
-f(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:unknown*/ = $(`foop`);
-f(tmpCalleeParam$5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -164,7 +186,7 @@ a( j );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ''
@@ -182,4 +204,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

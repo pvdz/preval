@@ -14,6 +14,31 @@ export let a = b.x = $(c).y = $(d);
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
+const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
+varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
+const a /*:unknown*/ = varInitAssignLhsComputedRhs$1;
+export { a };
+const b /*:object*/ = { x: varInitAssignLhsComputedRhs$1 };
+$(varInitAssignLhsComputedRhs$1, b, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const varInitAssignLhsComputedObj = $(3);
+const varInitAssignLhsComputedRhs$1 = $(4);
+varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
+const a = varInitAssignLhsComputedRhs$1;
+export { a };
+$(varInitAssignLhsComputedRhs$1, { x: varInitAssignLhsComputedRhs$1 }, 3);
+`````
+
 ## Pre Normal
 
 
@@ -43,21 +68,7 @@ export { a };
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
-varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
-const a /*:unknown*/ = varInitAssignLhsComputedRhs$1;
-export { a };
-const b /*:object*/ = { x: varInitAssignLhsComputedRhs$1 };
-$(varInitAssignLhsComputedRhs$1, b, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +85,7 @@ $( b, d, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -83,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

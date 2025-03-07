@@ -33,6 +33,71 @@ const y = $('m#az#e');
 $(f(String(y)));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree$1 /*:(string)=>string*/ = function $free($$0) {
+  const repl$1 /*:string*/ = $$0;
+  debugger;
+  const a1 /*:string*/ = repl$1.charAt(0);
+  const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
+  const b1 /*:string*/ = repl$1.charAt(1);
+  const b2 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(b1);
+  const frout /*:number*/ = tmpRet + b2;
+  const tmpRet$1 /*:string*/ = $coerce(frout, `string`);
+  return tmpRet$1;
+};
+const f /*:(string)=>string*/ = function ($$0) {
+  const inputstr /*:string*/ = $$0;
+  debugger;
+  const regex /*:regex*/ = /[^A-Za-z0-9\+\/\=]/g;
+  const repl$2 /*:string*/ = inputstr.replace(regex, ``);
+  const len /*:number*/ = repl$2.length;
+  const test /*:boolean*/ = 0 < len;
+  if (test) {
+    const tmpClusterSSA_outputstr /*:string*/ = $frfr(tmpFree$1, repl$2);
+    return tmpClusterSSA_outputstr;
+  } else {
+    return ``;
+  }
+};
+const x /*:unknown*/ = $(`co_rn`);
+const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
+const tmpCalleeParam /*:string*/ = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const y /*:unknown*/ = $(`m#az#e`);
+const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
+const tmpCalleeParam$3 /*:string*/ = f(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree$1 = function $free(repl$1) {
+  const tmpRet = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(repl$1.charAt(0));
+  const tmpRet$1 = $coerce(
+    tmpRet + `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(repl$1.charAt(1)),
+    `string`,
+  );
+  return tmpRet$1;
+};
+const f = function (inputstr) {
+  const repl$2 = inputstr.replace(/[^A-Za-z0-9\+\/\=]/g, ``);
+  const len = repl$2.length;
+  if (0 < len) {
+    const tmpClusterSSA_outputstr = $frfr(tmpFree$1, repl$2);
+    return tmpClusterSSA_outputstr;
+  } else {
+    return ``;
+  }
+};
+$(f($coerce($(`co_rn`), `string`)));
+$(f($coerce($(`m#az#e`), `string`)));
+`````
+
 ## Pre Normal
 
 
@@ -103,47 +168,7 @@ const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree$1 /*:(string)=>string*/ = function $free($$0) {
-  const repl$1 /*:string*/ = $$0;
-  debugger;
-  const a1 /*:string*/ = repl$1.charAt(0);
-  const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
-  const b1 /*:string*/ = repl$1.charAt(1);
-  const b2 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(b1);
-  const frout /*:number*/ = tmpRet + b2;
-  const tmpRet$1 /*:string*/ = $coerce(frout, `string`);
-  return tmpRet$1;
-};
-const f /*:(string)=>string*/ = function ($$0) {
-  const inputstr /*:string*/ = $$0;
-  debugger;
-  const regex /*:regex*/ = /[^A-Za-z0-9\+\/\=]/g;
-  const repl$2 /*:string*/ = inputstr.replace(regex, ``);
-  const len /*:number*/ = repl$2.length;
-  const test /*:boolean*/ = 0 < len;
-  if (test) {
-    const tmpClusterSSA_outputstr /*:string*/ = $frfr(tmpFree$1, repl$2);
-    return tmpClusterSSA_outputstr;
-  } else {
-    return ``;
-  }
-};
-const x /*:unknown*/ = $(`co_rn`);
-const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
-const tmpCalleeParam /*:string*/ = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
-const y /*:unknown*/ = $(`m#az#e`);
-const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
-const tmpCalleeParam$3 /*:string*/ = f(tmpCalleeParam$5);
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -187,7 +212,7 @@ $( w );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'co_rn'
@@ -200,4 +225,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

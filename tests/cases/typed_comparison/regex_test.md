@@ -12,6 +12,24 @@
 $(/x/g.test($('x')));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $(`x`);
+const tmpCallObj /*:regex*/ = /x/g;
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.test(tmpCalleeParam$1);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam$1 = $(`x`);
+$(/x/g.test(tmpCalleeParam$1));
+`````
+
 ## Pre Normal
 
 
@@ -29,18 +47,7 @@ const tmpCalleeParam = tmpCallObj.test(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(`x`);
-const tmpCallObj /*:regex*/ = /x/g;
-const tmpCalleeParam /*:unknown*/ = tmpCallObj.test(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +61,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -65,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -17,6 +17,28 @@ while (true) {
 $('unreachable');
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:primitive*/ = true;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(x);
+  x = 2;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = true;
+while (true) {
+  $(x);
+  x = 2;
+}
+`````
+
 ## Pre Normal
 
 
@@ -40,19 +62,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:primitive*/ = true;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(x);
-  x = 2;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -67,7 +77,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -102,4 +112,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

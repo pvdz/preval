@@ -28,6 +28,74 @@ $(g(3)(), 'outer');
 $(g(4)(), 'outer');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:(number)=>function*/ = function ($$0) {
+  const a /*:number*/ = $$0;
+  debugger;
+  const f /*:()=>number*/ = function () {
+    debugger;
+    $(a, `inner`);
+    return a;
+  };
+  if ($) {
+    f.foo = a;
+    const tmpCalleeParam /*:unknown*/ = f.foo;
+    $(tmpCalleeParam, `init`);
+  } else {
+  }
+  const tmpReturnArg /*:()=>number*/ = function () {
+    debugger;
+    $(a, `inner`);
+    return a;
+  };
+  return tmpReturnArg;
+};
+const tmpCallComplexCallee /*:function*/ = g(1);
+const tmpCalleeParam$1 /*:unknown*/ = tmpCallComplexCallee();
+$(tmpCalleeParam$1, `outer`);
+const tmpCallComplexCallee$1 /*:function*/ = g(2);
+const tmpCalleeParam$3 /*:unknown*/ = tmpCallComplexCallee$1();
+$(tmpCalleeParam$3, `outer`);
+const tmpCallComplexCallee$3 /*:function*/ = g(3);
+const tmpCalleeParam$5 /*:unknown*/ = tmpCallComplexCallee$3();
+$(tmpCalleeParam$5, `outer`);
+const tmpCallComplexCallee$5 /*:function*/ = g(4);
+const tmpCalleeParam$7 /*:unknown*/ = tmpCallComplexCallee$5();
+$(tmpCalleeParam$7, `outer`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function (a) {
+  const f = function () {
+    $(a, `inner`);
+    return a;
+  };
+  if ($) {
+    f.foo = a;
+    $(f.foo, `init`);
+  }
+  const tmpReturnArg = function () {
+    $(a, `inner`);
+    return a;
+  };
+  return tmpReturnArg;
+};
+const tmpCallComplexCallee = g(1);
+$(tmpCallComplexCallee(), `outer`);
+const tmpCallComplexCallee$1 = g(2);
+$(tmpCallComplexCallee$1(), `outer`);
+const tmpCallComplexCallee$3 = g(3);
+$(tmpCallComplexCallee$3(), `outer`);
+const tmpCallComplexCallee$5 = g(4);
+$(tmpCallComplexCallee$5(), `outer`);
+`````
+
 ## Pre Normal
 
 
@@ -94,47 +162,7 @@ const tmpCalleeParam$7 = tmpCallComplexCallee$5();
 $(tmpCalleeParam$7, `outer`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:(number)=>function*/ = function ($$0) {
-  const a /*:number*/ = $$0;
-  debugger;
-  const f /*:()=>number*/ = function () {
-    debugger;
-    $(a, `inner`);
-    return a;
-  };
-  if ($) {
-    f.foo = a;
-    const tmpCalleeParam /*:unknown*/ = f.foo;
-    $(tmpCalleeParam, `init`);
-  } else {
-  }
-  const tmpReturnArg /*:()=>number*/ = function () {
-    debugger;
-    $(a, `inner`);
-    return a;
-  };
-  return tmpReturnArg;
-};
-const tmpCallComplexCallee /*:function*/ = g(1);
-const tmpCalleeParam$1 /*:unknown*/ = tmpCallComplexCallee();
-$(tmpCalleeParam$1, `outer`);
-const tmpCallComplexCallee$1 /*:function*/ = g(2);
-const tmpCalleeParam$3 /*:unknown*/ = tmpCallComplexCallee$1();
-$(tmpCalleeParam$3, `outer`);
-const tmpCallComplexCallee$3 /*:function*/ = g(3);
-const tmpCalleeParam$5 /*:unknown*/ = tmpCallComplexCallee$3();
-$(tmpCalleeParam$5, `outer`);
-const tmpCallComplexCallee$5 /*:function*/ = g(4);
-const tmpCalleeParam$7 /*:unknown*/ = tmpCallComplexCallee$5();
-$(tmpCalleeParam$7, `outer`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -176,7 +204,7 @@ $( m, "outer" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'init'
@@ -197,4 +225,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

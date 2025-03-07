@@ -23,6 +23,64 @@ A: for (const y of x) {
 $('c');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:object*/ = { a: 0, b: 1 };
+const tmpForOfGen /*:unknown*/ = $forOf(x);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+    $(`a`);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
+    if (tmpIfTest$1) {
+    } else {
+      while ($LOOP_UNROLL_10) {
+        $(`fail`);
+        $(`a`);
+        const tmpIfTest$2 /*:unknown*/ = $(true);
+        if (tmpIfTest$2) {
+          break;
+        } else {
+        }
+      }
+    }
+  }
+}
+$(`c`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForOfGen = $forOf({ a: 0, b: 1 });
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    tmpForOfNext.value;
+    $(`a`);
+    if (!$(true)) {
+      while (true) {
+        $(`fail`);
+        $(`a`);
+        if ($(true)) {
+          break;
+        }
+      }
+    }
+  }
+}
+$(`c`);
+`````
+
 ## Pre Normal
 
 
@@ -83,40 +141,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`c`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:object*/ = { a: 0, b: 1 };
-const tmpForOfGen /*:unknown*/ = $forOf(x);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForOfNext.value;
-    $(`a`);
-    const tmpIfTest$1 /*:unknown*/ = $(true);
-    if (tmpIfTest$1) {
-    } else {
-      while ($LOOP_UNROLL_10) {
-        $(`fail`);
-        $(`a`);
-        const tmpIfTest$2 /*:unknown*/ = $(true);
-        if (tmpIfTest$2) {
-          break;
-        } else {
-        }
-      }
-    }
-  }
-}
-$(`c`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -157,7 +182,7 @@ $( "c" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -166,7 +191,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - regular property access of an ident feels tricky;

@@ -28,6 +28,44 @@ function a() {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  f();
+  $(1);
+  return undefined;
+};
+const a /*:()=>unknown*/ = function () {
+  debugger;
+  $(`x`);
+  $(`y`);
+  $(`z`);
+  const tmpReturnArg /*:unknown*/ = $(2);
+  return tmpReturnArg;
+};
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  f();
+  $(1);
+};
+$(function () {
+  $(`x`);
+  $(`y`);
+  $(`z`);
+  const tmpReturnArg = $(2);
+  return tmpReturnArg;
+});
+`````
+
 ## Pre Normal
 
 
@@ -79,29 +117,7 @@ let a = function () {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  f();
-  $(1);
-  return undefined;
-};
-const a /*:()=>unknown*/ = function () {
-  debugger;
-  $(`x`);
-  $(`y`);
-  $(`z`);
-  const tmpReturnArg /*:unknown*/ = $(2);
-  return tmpReturnArg;
-};
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -126,7 +142,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -136,4 +152,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

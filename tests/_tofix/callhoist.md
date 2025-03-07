@@ -15,6 +15,25 @@ for (; $(1); a = 0 || $($(1)));
 $(a);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+if ($(1)) {
+  a = 0;
+  $($(1));
+  while (true) {
+    if ($(1)) {
+      $($(1));
+    } else {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -49,7 +68,7 @@ while (true) {
 $(a);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -73,8 +92,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -140,4 +158,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- objects in isFree check

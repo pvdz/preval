@@ -21,6 +21,48 @@ $(f(function(a){ $(a, 'second'); }));
 $(f(function(a){ $(a, 'third'); }));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(`a`);
+  $(`b`);
+  $(`c`);
+  return undefined;
+};
+f();
+$(1, `first`);
+$(undefined);
+f();
+$(1, `second`);
+$(undefined);
+f();
+$(1, `third`);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`a`);
+  $(`b`);
+  $(`c`);
+};
+f();
+$(1, `first`);
+$(undefined);
+f();
+$(1, `second`);
+$(undefined);
+f();
+$(1, `third`);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -99,30 +141,7 @@ const tmpCalleeParam$7 = tmpCallCallee$3(tmpCalleeParam$9);
 $(tmpCalleeParam$7);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(`a`);
-  $(`b`);
-  $(`c`);
-  return undefined;
-};
-f();
-$(1, `first`);
-$(undefined);
-f();
-$(1, `second`);
-$(undefined);
-f();
-$(1, `third`);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -148,7 +167,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -172,4 +191,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,25 @@ function f({ ...x } = $({ a: 'pass' })) {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: `pass` };
+const bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$3 /*:array*/ = [];
+const x /*:unknown*/ = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$3, `x`);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternObjRoot = $({ a: `pass` });
+$(objPatternRest(bindingPatternObjRoot, [], `x`));
+`````
+
 ## Pre Normal
 
 
@@ -52,19 +71,7 @@ const tmpCalleeParam$5 = f();
 $(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: `pass` };
-const bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpCalleeParam$3 /*:array*/ = [];
-const x /*:unknown*/ = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$3, `x`);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +86,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '"pass"' }
@@ -90,4 +97,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

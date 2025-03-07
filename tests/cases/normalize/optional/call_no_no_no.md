@@ -22,6 +22,55 @@ function a() {
 $(a().b().c().d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a$1 /*:object*/ = {
+  a() {
+    debugger;
+    return a$1;
+  },
+  b() {
+    debugger;
+    return a$1;
+  },
+  c() {
+    debugger;
+    return a$1;
+  },
+  d() {
+    debugger;
+    return a$1;
+  },
+};
+const tmpCallObj /*:unknown*/ = a$1.b();
+const tmpCompObj /*:unknown*/ = tmpCallObj.c();
+const tmpCalleeParam /*:unknown*/ = tmpCompObj.d;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a$1 = {
+  a() {
+    return a$1;
+  },
+  b() {
+    return a$1;
+  },
+  c() {
+    return a$1;
+  },
+  d() {
+    return a$1;
+  },
+};
+$(a$1.b().c().d);
+`````
+
 ## Pre Normal
 
 
@@ -84,36 +133,7 @@ const tmpCalleeParam = tmpCompObj.d;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a$1 /*:object*/ = {
-  a() {
-    debugger;
-    return a$1;
-  },
-  b() {
-    debugger;
-    return a$1;
-  },
-  c() {
-    debugger;
-    return a$1;
-  },
-  d() {
-    debugger;
-    return a$1;
-  },
-};
-const tmpCallObj /*:unknown*/ = a$1.b();
-const tmpCompObj /*:unknown*/ = tmpCallObj.c();
-const tmpCalleeParam /*:unknown*/ = tmpCompObj.d;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -145,7 +165,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -155,4 +175,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

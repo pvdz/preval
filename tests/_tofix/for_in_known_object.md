@@ -16,6 +16,22 @@ for (const key in obj) {
 $('done');
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn({ x: 1, y: `two` });
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    $(`key`, tmpForInNext.value);
+  }
+}
+$(`done`);
+`````
+
 ## Pre Normal
 
 
@@ -57,7 +73,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`done`);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -76,8 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`done`);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,4 +131,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

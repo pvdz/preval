@@ -17,6 +17,44 @@ const obj = {
 $(obj)[$('x')] = 30;
 `````
 
+## Settled
+
+
+`````js filename=intro
+const obj /*:object*/ = {
+  get x() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(10);
+    return tmpReturnArg;
+  },
+  set x($$0) {
+    debugger;
+    $(20);
+    return undefined;
+  },
+};
+const tmpAssignComMemLhsObj /*:unknown*/ = $(obj);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAssignComMemLhsObj = $({
+  get x() {
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
+  },
+  set x($$0) {
+    $(20);
+  },
+});
+const tmpAssignComMemLhsProp = $(`x`);
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
+`````
+
 ## Pre Normal
 
 
@@ -57,29 +95,7 @@ const tmpAssignComMemLhsProp = $(`x`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
 `````
 
-## Output
-
-
-`````js filename=intro
-const obj /*:object*/ = {
-  get x() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(10);
-    return tmpReturnArg;
-  },
-  set x($$0) {
-    debugger;
-    $(20);
-    return undefined;
-  },
-};
-const tmpAssignComMemLhsObj /*:unknown*/ = $(obj);
-const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +120,7 @@ c[d] = 30;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '<get/set>' }
@@ -116,4 +132,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -20,6 +20,32 @@ if (x) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(67636);
+const x /*:boolean*/ = a === 67636;
+if (x) {
+  f(`Preval: Cannot write to const binding \`a\``);
+  $(false);
+} else {
+  throw `Preval: Cannot write to const binding \`a\``;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(67636) === 67636) {
+  f(`Preval: Cannot write to const binding \`a\``);
+  $(false);
+} else {
+  throw `Preval: Cannot write to const binding \`a\``;
+}
+`````
+
 ## Pre Normal
 
 
@@ -50,22 +76,7 @@ if (x) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(67636);
-const x /*:boolean*/ = a === 67636;
-if (x) {
-  f(`Preval: Cannot write to const binding \`a\``);
-  $(false);
-} else {
-  throw `Preval: Cannot write to const binding \`a\``;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +97,7 @@ BAD@! Found 1 implicit global bindings:
 
 f
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 67636
@@ -96,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

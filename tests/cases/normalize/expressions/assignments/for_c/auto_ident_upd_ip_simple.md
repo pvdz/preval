@@ -16,6 +16,53 @@ for (; $(1); a = b++);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:number*/ = 1;
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  b = 2;
+  a = 1;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpPostUpdArgIdent$1 /*:unknown*/ = b;
+      b = b + 1;
+      a = tmpPostUpdArgIdent$1;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = 1;
+let a = { a: 999, b: 1000 };
+if ($(1)) {
+  b = 2;
+  a = 1;
+  while (true) {
+    if ($(1)) {
+      const tmpPostUpdArgIdent$1 = b;
+      b = b + 1;
+      a = tmpPostUpdArgIdent$1;
+    } else {
+      break;
+    }
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -49,33 +96,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:number*/ = 1;
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  b = 2;
-  a = 1;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpPostUpdArgIdent$1 /*:unknown*/ = b;
-      b = b + 1;
-      a = tmpPostUpdArgIdent$1;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +128,7 @@ $( b, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -142,7 +163,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

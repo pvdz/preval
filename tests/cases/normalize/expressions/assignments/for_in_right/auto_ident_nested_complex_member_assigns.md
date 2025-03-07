@@ -19,6 +19,77 @@ for (let x in (a = $(b)[$("x")] = $(b)[$("x")] = $(b)[$("x")] = $(b)[
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
+const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(b);
+const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
+varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+const tmpForInGen /*:unknown*/ = $forIn(3);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(3, b, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $(`x`);
+const varInitAssignLhsComputedObj$1 = $(b);
+const varInitAssignLhsComputedProp$1 = $(`x`);
+const varInitAssignLhsComputedObj$3 = $(b);
+const varInitAssignLhsComputedProp$3 = $(`x`);
+const varInitAssignLhsComputedObj$5 = $(b);
+const varInitAssignLhsComputedProp$5 = $(`x`);
+const varInitAssignLhsComputedObj$7 = $(b);
+const varInitAssignLhsComputedProp$7 = $(`x`);
+varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+const tmpForInGen = $forIn(3);
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(3, b, 3);
+`````
+
 ## Pre Normal
 
 
@@ -87,44 +158,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$5 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$7 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
-varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-const tmpForInGen /*:unknown*/ = $forIn(3);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-$(3, b, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -165,7 +199,7 @@ $( 3, a, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -187,7 +221,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

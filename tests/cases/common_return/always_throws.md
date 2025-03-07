@@ -23,6 +23,48 @@ try { f(); } catch {}
 try { $(f()); } catch {}
 `````
 
+## Settled
+
+
+`````js filename=intro
+try {
+  throw `Some error`;
+} catch (e) {}
+try {
+  throw `Some error`;
+} catch (e$1) {}
+try {
+  throw `Some error`;
+} catch (e$3) {}
+try {
+  throw `Some error`;
+} catch (e$5) {}
+try {
+  throw `Some error`;
+} catch (e$7) {}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+try {
+  throw `Some error`;
+} catch (e) {}
+try {
+  throw `Some error`;
+} catch (e$1) {}
+try {
+  throw `Some error`;
+} catch (e$3) {}
+try {
+  throw `Some error`;
+} catch (e$5) {}
+try {
+  throw `Some error`;
+} catch (e$7) {}
+`````
+
 ## Pre Normal
 
 
@@ -74,29 +116,7 @@ try {
 } catch (e$7) {}
 `````
 
-## Output
-
-
-`````js filename=intro
-try {
-  throw `Some error`;
-} catch (e) {}
-try {
-  throw `Some error`;
-} catch (e$1) {}
-try {
-  throw `Some error`;
-} catch (e$3) {}
-try {
-  throw `Some error`;
-} catch (e$5) {}
-try {
-  throw `Some error`;
-} catch (e$7) {}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -136,7 +156,7 @@ catch (e) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -145,4 +165,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

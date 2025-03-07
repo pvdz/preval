@@ -18,6 +18,32 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpNestedAssignObj /*:unknown*/ = $(b);
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+$(tmpNestedAssignPropRhs, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: 10, d: 20 };
+const tmpNestedAssignObj = $(b);
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+$(tmpNestedAssignPropRhs, b);
+`````
+
 ## Pre Normal
 
 
@@ -57,21 +83,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 10, d: 20 };
-const tmpNestedAssignObj /*:unknown*/ = $(b);
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +103,7 @@ $( e, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }
@@ -104,4 +116,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

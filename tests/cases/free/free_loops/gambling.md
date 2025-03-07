@@ -117,6 +117,20 @@ This whole loop is predictable and that's what this test is supposed to show.
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`4747192131040313372212183947471921310403133713`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`4747192131040313372212183947471921310403133713`);
+`````
+
 ## Pre Normal
 
 
@@ -355,15 +369,7 @@ const tmpCalleeParam = output_array.join(``);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`4747192131040313372212183947471921310403133713`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -374,7 +380,7 @@ $( "4747192131040313372212183947471921310403133713" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '4747192131040313372212183947471921310403133713'
@@ -384,7 +390,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - in this arr[x], x is not known to be a number so we must bail

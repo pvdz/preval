@@ -13,6 +13,22 @@
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+y = null;
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+y = null;
+$(y);
+`````
+
 ## Pre Normal
 
 
@@ -46,16 +62,7 @@ if (tmpIfTest$1) {
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-y = null;
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +76,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -78,4 +85,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

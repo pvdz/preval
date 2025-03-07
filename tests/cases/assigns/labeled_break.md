@@ -22,6 +22,32 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 10;
+if ($) {
+  x = 20;
+} else {
+  $(10);
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 10;
+if ($) {
+  x = 20;
+} else {
+  $(10);
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -55,21 +81,7 @@ foo: {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:number*/ = 10;
-if ($) {
-  x = 20;
-} else {
-  $(10);
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +99,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 20
@@ -97,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

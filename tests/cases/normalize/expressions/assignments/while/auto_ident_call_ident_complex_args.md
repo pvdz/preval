@@ -16,6 +16,46 @@ while ((a = $($(1), $(2)))) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+let a /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$2 /*:unknown*/ = $(1);
+    const tmpCalleeParam$4 /*:unknown*/ = $(2);
+    a = $(tmpCalleeParam$2, tmpCalleeParam$4);
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = $($(1), $(2));
+if (a) {
+  while (true) {
+    $(100);
+    a = $($(1), $(2));
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -46,31 +86,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-let a /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpCalleeParam$2 /*:unknown*/ = $(1);
-    const tmpCalleeParam$4 /*:unknown*/ = $(2);
-    a = $(tmpCalleeParam$2, tmpCalleeParam$4);
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +114,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -133,7 +149,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

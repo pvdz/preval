@@ -14,6 +14,28 @@ function f() {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  debugger;
+  f.apply(tmpPrevalAliasThis, tmpPrevalAliasArgumentsAny);
+  return undefined;
+};
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  f.apply(this, arguments);
+};
+`````
+
 ## Pre Normal
 
 
@@ -39,21 +61,7 @@ let f = function () {
 };
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
-  debugger;
-  f.apply(tmpPrevalAliasThis, tmpPrevalAliasArgumentsAny);
-  return undefined;
-};
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +78,7 @@ const a = function() {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -79,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

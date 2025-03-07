@@ -18,6 +18,58 @@ while (test) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+let tmpClusterSSA_counter$2 /*:number*/ = 11;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`yolo`);
+  tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 + 1;
+  const tmpClusterSSA_test$1 /*:boolean*/ = tmpClusterSSA_counter$2 < 20;
+  if (tmpClusterSSA_test$1) {
+  } else {
+    break;
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+let tmpClusterSSA_counter$2 = 11;
+while (true) {
+  $(`yolo`);
+  tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 + 1;
+  if (!(tmpClusterSSA_counter$2 < 20)) {
+    break;
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -48,35 +100,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-let tmpClusterSSA_counter$2 /*:number*/ = 11;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(`yolo`);
-  tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 + 1;
-  const tmpClusterSSA_test$1 /*:boolean*/ = tmpClusterSSA_counter$2 < 20;
-  if (tmpClusterSSA_test$1) {
-  } else {
-    break;
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,7 +133,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'yolo'
@@ -138,4 +162,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

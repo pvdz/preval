@@ -29,6 +29,61 @@ f();
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  $(`block inlinine`);
+  $(`block inlinine`);
+  $(`block inlinine`);
+  $(x);
+  return undefined;
+};
+let x /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(true);
+const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+const tmpBool$1 /*:boolean*/ = !tmpUnaryArg;
+x = tmpBool$1;
+if (tmpUnaryArg) {
+  $(`b`);
+  $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
+}
+f();
+f();
+f();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`block inlinine`);
+  $(`block inlinine`);
+  $(`block inlinine`);
+  $(x);
+};
+let x = undefined;
+const tmpUnaryArg = $(Boolean($(true)));
+x = !tmpUnaryArg;
+if (tmpUnaryArg) {
+  $(`b`);
+  $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
+}
+f();
+f();
+f();
+`````
+
 ## Pre Normal
 
 
@@ -91,38 +146,7 @@ f();
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  $(`block inlinine`);
-  $(`block inlinine`);
-  $(`block inlinine`);
-  $(x);
-  return undefined;
-};
-let x /*:unknown*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(true);
-const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
-const tmpUnaryArg /*:unknown*/ = $(tmpBool);
-const tmpBool$1 /*:boolean*/ = !tmpUnaryArg;
-x = tmpBool$1;
-if (tmpUnaryArg) {
-  $(`b`);
-  $(`c`);
-} else {
-  $(`a`);
-  $(`d`);
-}
-f();
-f();
-f();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -157,7 +181,7 @@ a();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -182,4 +206,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

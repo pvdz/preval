@@ -28,6 +28,42 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest /*:unknown*/ = $();
+  if (tmpIfTest) {
+    const tmpIfTest$1 /*:unknown*/ = $();
+    if (tmpIfTest$1) {
+      const tmpIfTest$3 /*:unknown*/ = $();
+      if (tmpIfTest$3) {
+        break;
+      } else {
+      }
+    } else {
+    }
+  } else {
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  if ($()) {
+    if ($()) {
+      if ($()) {
+        break;
+      }
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -77,29 +113,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest /*:unknown*/ = $();
-  if (tmpIfTest) {
-    const tmpIfTest$1 /*:unknown*/ = $();
-    if (tmpIfTest$1) {
-      const tmpIfTest$3 /*:unknown*/ = $();
-      if (tmpIfTest$3) {
-        break;
-      } else {
-      }
-    } else {
-    }
-  } else {
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +135,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -156,4 +170,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

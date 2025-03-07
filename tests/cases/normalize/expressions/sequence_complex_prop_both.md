@@ -16,6 +16,27 @@ a = (p.x, $(q)).y === ((b = c.x), $(b)).y;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCompObj /*:unknown*/ = $(30);
+const tmpBinBothLhs /*:unknown*/ = tmpCompObj.y;
+const tmpObjLitVal /*:object*/ = { y: 10 };
+const tmpCompObj$1 /*:unknown*/ = $(tmpObjLitVal);
+const tmpBinBothRhs /*:unknown*/ = tmpCompObj$1.y;
+const tmpClusterSSA_a /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(30).y;
+$(tmpBinBothLhs === $({ y: 10 }).y);
+`````
+
 ## Pre Normal
 
 
@@ -49,21 +70,7 @@ a = tmpBinBothLhs === tmpBinBothRhs;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCompObj /*:unknown*/ = $(30);
-const tmpBinBothLhs /*:unknown*/ = tmpCompObj.y;
-const tmpObjLitVal /*:object*/ = { y: 10 };
-const tmpCompObj$1 /*:unknown*/ = $(tmpObjLitVal);
-const tmpBinBothRhs /*:unknown*/ = tmpCompObj$1.y;
-const tmpClusterSSA_a /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +87,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 30
@@ -92,4 +99,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

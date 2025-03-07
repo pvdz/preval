@@ -25,6 +25,59 @@ while (true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpClusterSSA_i$2 /*:number*/ = -1;
+const test$2 /*:unknown*/ = $(`first`);
+$(`second`);
+if (test$2) {
+} else {
+  $(`third`);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_i$2;
+    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
+    const tmpIfTest$1 /*:boolean*/ = tmpPostUpdArgIdent$1 > 0;
+    if (tmpIfTest$1) {
+    } else {
+      const test$1 /*:unknown*/ = $(`first`);
+      $(`second`);
+      if (test$1) {
+        break;
+      } else {
+        $(`third`);
+      }
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpClusterSSA_i$2 = -1;
+const test$2 = $(`first`);
+$(`second`);
+if (!test$2) {
+  $(`third`);
+  while (true) {
+    const tmpPostUpdArgIdent$1 = tmpClusterSSA_i$2;
+    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
+    if (!(tmpPostUpdArgIdent$1 > 0)) {
+      const test$1 = $(`first`);
+      $(`second`);
+      if (test$1) {
+        break;
+      } else {
+        $(`third`);
+      }
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -72,36 +125,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpClusterSSA_i$2 /*:number*/ = -1;
-const test$2 /*:unknown*/ = $(`first`);
-$(`second`);
-if (test$2) {
-} else {
-  $(`third`);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_i$2;
-    tmpClusterSSA_i$2 = tmpClusterSSA_i$2 - 1;
-    const tmpIfTest$1 /*:boolean*/ = tmpPostUpdArgIdent$1 > 0;
-    if (tmpIfTest$1) {
-    } else {
-      const test$1 /*:unknown*/ = $(`first`);
-      $(`second`);
-      if (test$1) {
-        break;
-      } else {
-        $(`third`);
-      }
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -138,7 +162,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'first'
@@ -149,7 +173,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

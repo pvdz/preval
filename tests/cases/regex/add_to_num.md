@@ -12,6 +12,20 @@
 $(/foo/ + 1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`/foo/1`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`/foo/1`);
+`````
+
 ## Pre Normal
 
 
@@ -28,15 +42,7 @@ const tmpCalleeParam = tmpBinLhs + 1;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`/foo/1`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -47,7 +53,7 @@ $( "/foo/1" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '/foo/1'
@@ -57,4 +63,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

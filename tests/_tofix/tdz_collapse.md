@@ -15,6 +15,13 @@ const x = TDZ + $; // This will always first evaluate TDZ
 $(x);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(TDZ + $);
+`````
+
 ## Pre Normal
 
 
@@ -32,7 +39,7 @@ const x = TDZ + $;
 $(x);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -40,8 +47,7 @@ const x /*:primitive*/ = TDZ + $;
 $(x);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

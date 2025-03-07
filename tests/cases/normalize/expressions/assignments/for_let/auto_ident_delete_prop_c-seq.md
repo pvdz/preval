@@ -16,6 +16,35 @@ for (let xyz = (a = delete ($(1), $(2), $(arg)).y); ; $(1)) $(xyz);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteObj /*:unknown*/ = $(arg);
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(tmpClusterSSA_a);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpDeleteObj = $({ y: 1 });
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
+while (true) {
+  $(tmpClusterSSA_a);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -49,23 +78,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_a);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +97,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -119,7 +132,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - regular property access of an ident feels tricky;

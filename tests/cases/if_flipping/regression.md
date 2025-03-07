@@ -48,6 +48,39 @@ if (tmpIfTest$45) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if (tmpIfTest$45) {
+  tmpCalleeParam$127;
+  tmpSSA__0x2d5594;
+  const h /*:unknown*/ = tmpReturnArg$39;
+  h(e, d);
+  getParameterByName();
+  unknown(297);
+  alsoUnknown(310);
+  const c /*:unknown*/ = $dotCall(a, document, undefined, b);
+  $(c);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (tmpIfTest$45) {
+  tmpCalleeParam$127;
+  tmpSSA__0x2d5594;
+  tmpReturnArg$39(e, d);
+  getParameterByName();
+  unknown(297);
+  alsoUnknown(310);
+  $($dotCall(a, document, undefined, b));
+}
+`````
+
 ## Pre Normal
 
 
@@ -135,26 +168,7 @@ if (tmpIfTest$45) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if (tmpIfTest$45) {
-  tmpCalleeParam$127;
-  tmpSSA__0x2d5594;
-  const h /*:unknown*/ = tmpReturnArg$39;
-  h(e, d);
-  getParameterByName();
-  unknown(297);
-  alsoUnknown(310);
-  const c /*:unknown*/ = $dotCall(a, document, undefined, b);
-  $(c);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -177,7 +191,7 @@ BAD@! Found 11 implicit global bindings:
 
 tmpIfTest$45, tmpCalleeParam$127, tmpSSA__0x2d5594, tmpReturnArg$39, e, d, getParameterByName, unknown, alsoUnknown, a, b
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -186,4 +200,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

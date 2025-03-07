@@ -76,6 +76,153 @@ while (true) {
 $(arr[0]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(primitive, primitive, primitive, primitive, primitive, primitive, primitive, primitive)=>boolean*/ = function $free(
+  $$0,
+  $$1,
+  $$2,
+  $$3,
+  $$4,
+  $$5,
+  $$6,
+  $$7,
+) {
+  const d /*:primitive*/ = $$0;
+  const h /*:primitive*/ = $$1;
+  const a /*:primitive*/ = $$2;
+  const n /*:primitive*/ = $$3;
+  const s /*:primitive*/ = $$4;
+  const w /*:primitive*/ = $$5;
+  const A /*:primitive*/ = $$6;
+  const F /*:primitive*/ = $$7;
+  debugger;
+  const e /*:number*/ = parseInt(d);
+  const i /*:number*/ = parseInt(h);
+  const f /*:number*/ = -e;
+  const j /*:number*/ = -i;
+  const b /*:number*/ = parseInt(a);
+  const g /*:number*/ = f / 2;
+  const k /*:number*/ = j / 3;
+  const o /*:number*/ = parseInt(n);
+  const c /*:number*/ = b / 1;
+  const l /*:number*/ = g * k;
+  const p /*:number*/ = -o;
+  const m /*:number*/ = c + l;
+  const q /*:number*/ = p / 4;
+  const t /*:number*/ = parseInt(s);
+  const r /*:number*/ = m + q;
+  const u /*:number*/ = t / 5;
+  const x /*:number*/ = parseInt(w);
+  const B /*:number*/ = parseInt(A);
+  const v /*:number*/ = r + u;
+  const y /*:number*/ = x / 6;
+  const C /*:number*/ = -B;
+  const G /*:number*/ = parseInt(F);
+  const z /*:number*/ = v + y;
+  const D /*:number*/ = C / 7;
+  const H /*:number*/ = -G;
+  const E /*:number*/ = z + D;
+  const I /*:number*/ = H / 8;
+  const K /*:number*/ = E + I;
+  const tmpRet /*:boolean*/ = K === 644244;
+  return tmpRet;
+};
+$(`a`);
+$(`b`);
+$(`c`);
+$(`d`);
+$(`e`);
+$(`f`);
+$(`g`);
+$(`h`);
+$(`i`);
+$(`j`);
+$(`k`);
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam$2 /*:primitive*/ = arr[0];
+  $(tmpCalleeParam$2);
+  const a$2 /*:primitive*/ = arr[286];
+  const d$2 /*:primitive*/ = arr[181];
+  const h$2 /*:primitive*/ = arr[308];
+  const n$2 /*:primitive*/ = arr[32];
+  const s$2 /*:primitive*/ = arr[86];
+  const w$2 /*:primitive*/ = arr[87];
+  const A$2 /*:primitive*/ = arr[30];
+  const F$2 /*:primitive*/ = arr[356];
+  const L$1 /*:boolean*/ = $frfr(tmpFree, d$2, h$2, a$2, n$2, s$2, w$2, A$2, F$2);
+  if (L$1) {
+    break;
+  } else {
+    const M$1 /*:unknown*/ = arr.shift();
+    arr.push(M$1);
+  }
+}
+const tmpCalleeParam$1 /*:primitive*/ = arr[0];
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(d, h, a, n, s, w, A, F) {
+  const e = parseInt(d);
+  const i = parseInt(h);
+  const f = -e;
+  const j = -i;
+  const b = parseInt(a);
+  const g = f / 2;
+  const k = j / 3;
+  const o = parseInt(n);
+  const c = b / 1;
+  const l = g * k;
+  const p = -o;
+  const m = c + l;
+  const q = p / 4;
+  const t = parseInt(s);
+  const r = m + q;
+  const u = t / 5;
+  const x = parseInt(w);
+  const B = parseInt(A);
+  const v = r + u;
+  const y = x / 6;
+  const C = -B;
+  const G = parseInt(F);
+  const z = v + y;
+  const D = C / 7;
+  const H = -G;
+  const E = z + D;
+  const tmpRet = E + H / 8 === 644244;
+  return tmpRet;
+};
+$(`a`);
+$(`b`);
+$(`c`);
+$(`d`);
+$(`e`);
+$(`f`);
+$(`g`);
+$(`h`);
+$(`i`);
+$(`j`);
+$(`k`);
+const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while (true) {
+  $(arr[0]);
+  const a$2 = arr[286];
+  if ($frfr(tmpFree, arr[181], arr[308], a$2, arr[32], arr[86], arr[87], arr[30], arr[356])) {
+    break;
+  } else {
+    arr.push(arr.shift());
+  }
+}
+$(arr[0]);
+`````
+
 ## Pre Normal
 
 
@@ -196,97 +343,7 @@ const tmpCalleeParam$1 = arr[0];
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(primitive, primitive, primitive, primitive, primitive, primitive, primitive, primitive)=>boolean*/ = function $free(
-  $$0,
-  $$1,
-  $$2,
-  $$3,
-  $$4,
-  $$5,
-  $$6,
-  $$7,
-) {
-  const d /*:primitive*/ = $$0;
-  const h /*:primitive*/ = $$1;
-  const a /*:primitive*/ = $$2;
-  const n /*:primitive*/ = $$3;
-  const s /*:primitive*/ = $$4;
-  const w /*:primitive*/ = $$5;
-  const A /*:primitive*/ = $$6;
-  const F /*:primitive*/ = $$7;
-  debugger;
-  const e /*:number*/ = parseInt(d);
-  const i /*:number*/ = parseInt(h);
-  const f /*:number*/ = -e;
-  const j /*:number*/ = -i;
-  const b /*:number*/ = parseInt(a);
-  const g /*:number*/ = f / 2;
-  const k /*:number*/ = j / 3;
-  const o /*:number*/ = parseInt(n);
-  const c /*:number*/ = b / 1;
-  const l /*:number*/ = g * k;
-  const p /*:number*/ = -o;
-  const m /*:number*/ = c + l;
-  const q /*:number*/ = p / 4;
-  const t /*:number*/ = parseInt(s);
-  const r /*:number*/ = m + q;
-  const u /*:number*/ = t / 5;
-  const x /*:number*/ = parseInt(w);
-  const B /*:number*/ = parseInt(A);
-  const v /*:number*/ = r + u;
-  const y /*:number*/ = x / 6;
-  const C /*:number*/ = -B;
-  const G /*:number*/ = parseInt(F);
-  const z /*:number*/ = v + y;
-  const D /*:number*/ = C / 7;
-  const H /*:number*/ = -G;
-  const E /*:number*/ = z + D;
-  const I /*:number*/ = H / 8;
-  const K /*:number*/ = E + I;
-  const tmpRet /*:boolean*/ = K === 644244;
-  return tmpRet;
-};
-$(`a`);
-$(`b`);
-$(`c`);
-$(`d`);
-$(`e`);
-$(`f`);
-$(`g`);
-$(`h`);
-$(`i`);
-$(`j`);
-$(`k`);
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam$2 /*:primitive*/ = arr[0];
-  $(tmpCalleeParam$2);
-  const a$2 /*:primitive*/ = arr[286];
-  const d$2 /*:primitive*/ = arr[181];
-  const h$2 /*:primitive*/ = arr[308];
-  const n$2 /*:primitive*/ = arr[32];
-  const s$2 /*:primitive*/ = arr[86];
-  const w$2 /*:primitive*/ = arr[87];
-  const A$2 /*:primitive*/ = arr[30];
-  const F$2 /*:primitive*/ = arr[356];
-  const L$1 /*:boolean*/ = $frfr(tmpFree, d$2, h$2, a$2, n$2, s$2, w$2, A$2, F$2);
-  if (L$1) {
-    break;
-  } else {
-    const M$1 /*:unknown*/ = arr.shift();
-    arr.push(M$1);
-  }
-}
-const tmpCalleeParam$1 /*:primitive*/ = arr[0];
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -371,7 +428,7 @@ $( ca );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -406,7 +463,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

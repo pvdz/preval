@@ -13,6 +13,21 @@ const x = {5: 1, 5: 2};
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:object*/ = { [5]: 2 };
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ [5]: 2 });
+`````
+
 ## Pre Normal
 
 
@@ -29,16 +44,7 @@ const x = { [5]: 2 };
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:object*/ = { [5]: 2 };
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -50,7 +56,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { 5: '2' }
@@ -60,4 +66,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

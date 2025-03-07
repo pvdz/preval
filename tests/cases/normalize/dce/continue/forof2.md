@@ -21,6 +21,55 @@ while ($(true)) {
 $('after, wont eval due to infinite loop');
 `````
 
+## Settled
+
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+    const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+      const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        tmpForInNext.value;
+      }
+    }
+    $(`keep`);
+  } else {
+    break;
+  }
+}
+$(`after, wont eval due to infinite loop`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  if ($(true)) {
+    const tmpForInGen = $forIn({ a: 1, b: 2 });
+    while (true) {
+      const tmpForInNext = tmpForInGen.next();
+      if (tmpForInNext.done) {
+        break;
+      } else {
+        tmpForInNext.value;
+      }
+    }
+    $(`keep`);
+  } else {
+    break;
+  }
+}
+$(`after, wont eval due to infinite loop`);
+`````
+
 ## Pre Normal
 
 
@@ -76,34 +125,7 @@ while (true) {
 $(`after, wont eval due to infinite loop`);
 `````
 
-## Output
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-    const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-      const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        tmpForInNext.value;
-      }
-    }
-    $(`keep`);
-  } else {
-    break;
-  }
-}
-$(`after, wont eval due to infinite loop`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -138,7 +160,7 @@ $( "after, wont eval due to infinite loop" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -173,7 +195,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

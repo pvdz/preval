@@ -16,6 +16,55 @@ $((a = b?.c.d.e?.(1)) + (a = b?.c.d.e?.(1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpBinBothLhs /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
+if (tmpIfTest$1) {
+} else {
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  tmpBinBothLhs = tmpChainElementCall;
+}
+let tmpClusterSSA_a /*:unknown*/ = undefined;
+const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
+const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$9 == null;
+if (tmpIfTest$5) {
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+  tmpClusterSSA_a = tmpChainElementCall$1;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$1;
+  $(tmpClusterSSA_tmpCalleeParam$1);
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpBinBothLhs = undefined;
+const tmpIfTest$1 = $ == null;
+const tmpObjLitVal$1 = { e: $ };
+if (!tmpIfTest$1) {
+  tmpBinBothLhs = $dotCall($, tmpObjLitVal$1, `e`, 1);
+}
+let tmpClusterSSA_a = undefined;
+const tmpChainElementObject$9 = tmpObjLitVal$1.e;
+if (tmpChainElementObject$9 == null) {
+  $(tmpBinBothLhs + undefined);
+} else {
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+  tmpClusterSSA_a = tmpChainElementCall$1;
+  $(tmpBinBothLhs + tmpChainElementCall$1);
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -71,35 +120,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = $ == null;
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpBinBothLhs = tmpChainElementCall;
-}
-let tmpClusterSSA_a /*:unknown*/ = undefined;
-const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
-const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$9 == null;
-if (tmpIfTest$5) {
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
-  tmpClusterSSA_a = tmpChainElementCall$1;
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$1;
-  $(tmpClusterSSA_tmpCalleeParam$1);
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -133,7 +154,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -146,4 +167,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

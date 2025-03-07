@@ -15,6 +15,20 @@ function f([{ x = $('fail') } = $({ x: 'fail2' })]) {
 $(f([{ x: null, y: 2, z: 3 }, 20, 30], 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(null);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(null);
+`````
+
 ## Pre Normal
 
 
@@ -64,15 +78,7 @@ const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 200);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(null);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +89,7 @@ $( null );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: null
@@ -93,7 +99,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

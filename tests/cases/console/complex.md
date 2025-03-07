@@ -12,6 +12,21 @@
 console.log(['console tet case']);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`console tet case`];
+console.log(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+console.log([`console tet case`]);
+`````
+
 ## Pre Normal
 
 
@@ -29,16 +44,7 @@ const tmpCalleeParam = [`console tet case`];
 $dotCall(tmpCallVal, tmpCallObj, `log`, tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`console tet case`];
-console.log(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -50,7 +56,7 @@ console.log( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -59,4 +65,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

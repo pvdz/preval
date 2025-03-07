@@ -22,6 +22,46 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let y /*:number*/ = 1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    missing;
+    $(y);
+    y = y + 1;
+    const tmpIfTest /*:boolean*/ = y === $;
+    if (tmpIfTest) {
+      break;
+    } else {
+    }
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let y = 1;
+while (true) {
+  try {
+    missing;
+    $(y);
+    y = y + 1;
+    if (y === $) {
+      break;
+    }
+  } catch (e) {
+    $(`fail`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -60,29 +100,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let y /*:number*/ = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    missing;
-    $(y);
-    y = y + 1;
-    const tmpIfTest /*:boolean*/ = y === $;
-    if (tmpIfTest) {
-      break;
-    } else {
-    }
-  } catch (e) {
-    $(`fail`);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,7 +127,7 @@ BAD@! Found 1 implicit global bindings:
 
 missing
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'fail'
@@ -144,4 +162,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

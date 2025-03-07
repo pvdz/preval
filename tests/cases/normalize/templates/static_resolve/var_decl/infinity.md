@@ -13,6 +13,20 @@ let x = `${Infinity}`;
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`Infinity`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`Infinity`);
+`````
+
 ## Pre Normal
 
 
@@ -32,15 +46,7 @@ let x = $coerce(tmpBinLhs, `plustr`);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`Infinity`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -51,7 +57,7 @@ $( "Infinity" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Infinity'
@@ -61,4 +67,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -31,6 +31,66 @@ switch ($(1)) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === 0;
+if (tmpIfTest) {
+  $(`one`);
+  const tmpIfTest$1 /*:unknown*/ = $(1);
+  if (tmpIfTest$1) {
+    $(2);
+  } else {
+  }
+} else {
+  const tmpIfTest$3 /*:boolean*/ = tmpSwitchDisc === 1;
+  if (tmpIfTest$3) {
+    $(`two`);
+  } else {
+    const tmpIfTest$5 /*:boolean*/ = tmpSwitchDisc === 2;
+    if (tmpIfTest$5) {
+      $(`three`);
+    } else {
+      const tmpIfTest$7 /*:boolean*/ = tmpSwitchDisc === 3;
+      if (tmpIfTest$7) {
+        $(`four`);
+      } else {
+        $(`def`);
+      }
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchDisc = $(1);
+if (tmpSwitchDisc === 0) {
+  $(`one`);
+  if ($(1)) {
+    $(2);
+  }
+} else {
+  if (tmpSwitchDisc === 1) {
+    $(`two`);
+  } else {
+    if (tmpSwitchDisc === 2) {
+      $(`three`);
+    } else {
+      if (tmpSwitchDisc === 3) {
+        $(`four`);
+      } else {
+        $(`def`);
+      }
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -103,41 +163,7 @@ tmpSwitchBreak: {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === 0;
-if (tmpIfTest) {
-  $(`one`);
-  const tmpIfTest$1 /*:unknown*/ = $(1);
-  if (tmpIfTest$1) {
-    $(2);
-  } else {
-  }
-} else {
-  const tmpIfTest$3 /*:boolean*/ = tmpSwitchDisc === 1;
-  if (tmpIfTest$3) {
-    $(`two`);
-  } else {
-    const tmpIfTest$5 /*:boolean*/ = tmpSwitchDisc === 2;
-    if (tmpIfTest$5) {
-      $(`three`);
-    } else {
-      const tmpIfTest$7 /*:boolean*/ = tmpSwitchDisc === 3;
-      if (tmpIfTest$7) {
-        $(`four`);
-      } else {
-        $(`def`);
-      }
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -177,7 +203,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -188,4 +214,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

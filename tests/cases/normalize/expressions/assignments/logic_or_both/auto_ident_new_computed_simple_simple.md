@@ -16,6 +16,36 @@ $((a = new b["$"](1)) || (a = new b["$"](1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpClusterSSA_a /*:unknown*/ = new $(1);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+} else {
+  const tmpNestedComplexRhs /*:object*/ = new $(1);
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpClusterSSA_a = new $(1);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+} else {
+  const tmpNestedComplexRhs = new $(1);
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -46,23 +76,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpClusterSSA_a /*:unknown*/ = new $(1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-} else {
-  const tmpNestedComplexRhs /*:object*/ = new $(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +96,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -94,4 +108,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

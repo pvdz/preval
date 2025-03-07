@@ -20,6 +20,30 @@ function f(x) {
 $(f(KEEP_ME));
 `````
 
+## Settled
+
+
+`````js filename=intro
+KEEP_ME;
+let y /*:unknown*/ = 100;
+try {
+  y = FAIL;
+} catch (e) {}
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+KEEP_ME;
+let y = 100;
+try {
+  y = FAIL;
+} catch (e) {}
+$(y);
+`````
+
 ## Pre Normal
 
 
@@ -53,20 +77,7 @@ const tmpCalleeParam = f(KEEP_ME);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-KEEP_ME;
-let y /*:unknown*/ = 100;
-try {
-  y = FAIL;
-} catch (e) {}
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +98,7 @@ BAD@! Found 2 implicit global bindings:
 
 KEEP_ME, FAIL
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -96,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

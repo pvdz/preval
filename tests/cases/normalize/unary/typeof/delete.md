@@ -12,6 +12,24 @@
 $(typeof delete $(100).x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpDeleteObj /*:unknown*/ = $(100);
+delete tmpDeleteObj.x;
+$(`boolean`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpDeleteObj = $(100);
+delete tmpDeleteObj.x;
+$(`boolean`);
+`````
+
 ## Pre Normal
 
 
@@ -29,17 +47,7 @@ const tmpCalleeParam = `boolean`;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpDeleteObj /*:unknown*/ = $(100);
-delete tmpDeleteObj.x;
-$(`boolean`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -52,7 +60,7 @@ $( "boolean" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -63,4 +71,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

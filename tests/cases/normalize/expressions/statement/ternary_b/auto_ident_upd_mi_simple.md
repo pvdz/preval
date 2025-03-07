@@ -16,6 +16,34 @@ $(1) ? --b : $(200);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:number*/ = 1;
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  b = 0;
+} else {
+  $(200);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = 1;
+if ($(1)) {
+  b = 0;
+} else {
+  $(200);
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -41,23 +69,7 @@ if (tmpIfTest) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:number*/ = 1;
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  b = 0;
-} else {
-  $(200);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +92,7 @@ $( c, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -91,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

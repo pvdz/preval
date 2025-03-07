@@ -15,6 +15,28 @@ obj[(a = function () {})];
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const obj /*:object*/ = {};
+obj[a];
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = function () {};
+({}[a]);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -45,21 +67,7 @@ tmpCompObj[tmpCompProp];
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const obj /*:object*/ = {};
-obj[a];
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +84,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -86,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

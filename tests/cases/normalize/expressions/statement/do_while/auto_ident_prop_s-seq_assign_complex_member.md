@@ -18,6 +18,59 @@ do {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpCompObj /*:unknown*/ = $(b);
+const tmpCompProp /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+if (varInitAssignLhsComputedRhs) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCompObj$1 /*:unknown*/ = $(b);
+    const tmpCompProp$1 /*:unknown*/ = $(`d`);
+    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+    b.c = varInitAssignLhsComputedRhs$1;
+    if (varInitAssignLhsComputedRhs$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+const b = { c: 10, d: 20 };
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+if (varInitAssignLhsComputedRhs) {
+  while (true) {
+    $(100);
+    const tmpCompObj$1 = $(b);
+    const tmpCompProp$1 = $(`d`);
+    const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
+    b.c = varInitAssignLhsComputedRhs$1;
+    if (!varInitAssignLhsComputedRhs$1) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -58,36 +111,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const b /*:object*/ = { c: 10, d: 20 };
-const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-b.c = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpCompObj$1 /*:unknown*/ = $(b);
-    const tmpCompProp$1 /*:unknown*/ = $(`d`);
-    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
-    b.c = varInitAssignLhsComputedRhs$1;
-    if (varInitAssignLhsComputedRhs$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -126,7 +150,7 @@ $( h, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -161,7 +185,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

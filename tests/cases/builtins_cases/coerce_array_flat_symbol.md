@@ -13,6 +13,20 @@ const x = $coerce($array_flat, 'plustr')
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`function flat() { [native code] }`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`function flat() { [native code] }`);
+`````
+
 ## Pre Normal
 
 
@@ -29,15 +43,7 @@ const x = $coerce($array_flat, `plustr`);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`function flat() { [native code] }`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -48,7 +54,7 @@ $( "function flat() { [native code] }" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'function() { [native code] }'
@@ -58,4 +64,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

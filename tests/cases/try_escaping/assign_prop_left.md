@@ -29,6 +29,47 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(1);
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  try {
+    arr[286] = a;
+    $(a);
+    if (a) {
+      break;
+    } else {
+    }
+  } catch (P) {
+    $(`fail`);
+  }
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = $(1);
+const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while (true) {
+  try {
+    arr[286] = a;
+    $(a);
+    if (a) {
+      break;
+    }
+  } catch (P) {
+    $(`fail`);
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -73,29 +114,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(1);
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    arr[286] = a;
-    $(a);
-    if (a) {
-      break;
-    } else {
-    }
-  } catch (P) {
-    $(`fail`);
-  }
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +139,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -132,4 +151,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

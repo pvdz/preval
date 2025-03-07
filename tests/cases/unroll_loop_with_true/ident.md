@@ -16,6 +16,20 @@ let f = function (a) {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+[...$LOOP_DONE_UNROLLING_ALWAYS_TRUE];
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+[...$LOOP_DONE_UNROLLING_ALWAYS_TRUE];
+`````
+
 ## Pre Normal
 
 
@@ -42,15 +56,7 @@ let f = function ($$0) {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-[...$LOOP_DONE_UNROLLING_ALWAYS_TRUE];
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +67,7 @@ With rename=true
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -70,4 +76,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -25,6 +25,37 @@ if (f()) $('pass'); // Always returns an object and objects are truthy
 else $('fail');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unused)=>object*/ = function* ($$0) {
+  debugger;
+  const tmpClusterSSA_x /*:unknown*/ = $(0);
+  const y /*:unknown*/ = yield tmpClusterSSA_x;
+  return y;
+};
+$(f);
+$(f);
+f();
+$(`pass`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function* ($$0) {
+  const tmpClusterSSA_x = $(0);
+  const y = yield tmpClusterSSA_x;
+  return y;
+};
+$(f);
+$(f);
+f();
+$(`pass`);
+`````
+
 ## Pre Normal
 
 
@@ -63,24 +94,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unused)=>object*/ = function* ($$0) {
-  debugger;
-  const tmpClusterSSA_x /*:unknown*/ = $(0);
-  const y /*:unknown*/ = yield tmpClusterSSA_x;
-  return y;
-};
-$(f);
-$(f);
-f();
-$(`pass`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -100,7 +114,7 @@ $( "pass" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -112,7 +126,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - would this not be the same as await? would we not want to infer the arg here?

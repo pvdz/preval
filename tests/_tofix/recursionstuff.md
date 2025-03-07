@@ -48,6 +48,29 @@ try {
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree2 = function $free($dlr_$$1) {
+  const tmpRet$2 = typeof $dlr_$$1 === `string`;
+  return tmpRet$2;
+};
+const selfcaller = function ($dlr_$$3) {
+  $($dlr_$$3);
+  const tmpIfTest = $frfr(tmpFree2, $dlr_$$3);
+  if (!tmpIfTest) {
+    selfcaller($dlr_$$3 + 1);
+  }
+};
+try {
+  selfcaller(0);
+  $(`pass`);
+} catch (e) {
+  $(`fail`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -134,7 +157,7 @@ try {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -166,8 +189,7 @@ try {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -240,4 +262,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

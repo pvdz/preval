@@ -16,6 +16,45 @@ $($(0) ? $(100) : (a = { b } = $({ b: $(2) })));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:unknown*/ = {};
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(0);
+if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpObjLitVal /*:unknown*/ = $(2);
+  const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  $(tmpNestedAssignObjPatternRhs);
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = {};
+let a = { a: 999, b: 1000 };
+if ($(0)) {
+  $($(100));
+} else {
+  const tmpObjLitVal = $(2);
+  const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  $(tmpNestedAssignObjPatternRhs);
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -50,29 +89,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:unknown*/ = {};
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(0);
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpObjLitVal /*:unknown*/ = $(2);
-  const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  $(tmpNestedAssignObjPatternRhs);
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +118,7 @@ $( b, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -115,4 +132,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

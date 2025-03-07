@@ -27,6 +27,55 @@ function f() {
 $(f(), 'final');
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 /*:unknown*/ = $(2);
+  if (tmpIfTest$1) {
+    const tmpReturnArg /*:unknown*/ = $(3);
+    tmpCalleeParam = tmpReturnArg;
+  } else {
+    const tmpReturnArg$1 /*:unknown*/ = $(4);
+    tmpCalleeParam = tmpReturnArg$1;
+  }
+} else {
+  const tmpIfTest$3 /*:unknown*/ = $(5);
+  if (tmpIfTest$3) {
+    const tmpReturnArg$3 /*:unknown*/ = $(6);
+    tmpCalleeParam = tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 /*:unknown*/ = $(7);
+    tmpCalleeParam = tmpReturnArg$5;
+  }
+}
+$(tmpCalleeParam, `final`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = undefined;
+if ($(1)) {
+  if ($(2)) {
+    tmpCalleeParam = $(3);
+  } else {
+    tmpCalleeParam = $(4);
+  }
+} else {
+  if ($(5)) {
+    tmpCalleeParam = $(6);
+  } else {
+    tmpCalleeParam = $(7);
+  }
+}
+$(tmpCalleeParam, `final`);
+`````
+
 ## Pre Normal
 
 
@@ -81,36 +130,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam, `final`);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpIfTest$1 /*:unknown*/ = $(2);
-  if (tmpIfTest$1) {
-    const tmpReturnArg /*:unknown*/ = $(3);
-    tmpCalleeParam = tmpReturnArg;
-  } else {
-    const tmpReturnArg$1 /*:unknown*/ = $(4);
-    tmpCalleeParam = tmpReturnArg$1;
-  }
-} else {
-  const tmpIfTest$3 /*:unknown*/ = $(5);
-  if (tmpIfTest$3) {
-    const tmpReturnArg$3 /*:unknown*/ = $(6);
-    tmpCalleeParam = tmpReturnArg$3;
-  } else {
-    const tmpReturnArg$5 /*:unknown*/ = $(7);
-    tmpCalleeParam = tmpReturnArg$5;
-  }
-}
-$(tmpCalleeParam, `final`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -145,7 +165,7 @@ $( a, "final" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -158,4 +178,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

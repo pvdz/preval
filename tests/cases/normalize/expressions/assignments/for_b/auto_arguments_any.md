@@ -14,6 +14,42 @@ for (; (a = arguments); $(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = arguments;
+if (arguments) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    a = arguments;
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = arguments;
+if (arguments) {
+  while (true) {
+    $(1);
+    a = arguments;
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -44,27 +80,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = arguments;
-if (arguments) {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    a = arguments;
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -90,7 +106,7 @@ BAD@! Found 1 implicit global bindings:
 
 arguments
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -125,7 +141,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

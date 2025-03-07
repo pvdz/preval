@@ -15,6 +15,28 @@ const c = function() {
 $(c)
 `````
 
+## Settled
+
+
+`````js filename=intro
+const c /*:()=>unknown*/ = function () {
+  debugger;
+  const tmpReturnArg /*:class*/ = class {};
+  return tmpReturnArg;
+};
+$(c);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  const tmpReturnArg = class {};
+  return tmpReturnArg;
+});
+`````
+
 ## Pre Normal
 
 
@@ -38,20 +60,7 @@ const c = function () {
 $(c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const c /*:()=>unknown*/ = function () {
-  debugger;
-  const tmpReturnArg /*:class*/ = class {};
-  return tmpReturnArg;
-};
-$(c);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +78,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -79,4 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

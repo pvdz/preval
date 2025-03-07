@@ -14,6 +14,58 @@ for (; $(1); $(1) ? (40, 50, 60) : $($(100)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 /*:unknown*/ = $(1);
+  if (tmpIfTest$1) {
+  } else {
+    const tmpCalleeParam /*:unknown*/ = $(100);
+    $(tmpCalleeParam);
+  }
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$2 /*:unknown*/ = $(1);
+    if (tmpIfTest$2) {
+      const tmpIfTest$4 /*:unknown*/ = $(1);
+      if (tmpIfTest$4) {
+      } else {
+        const tmpCalleeParam$1 /*:unknown*/ = $(100);
+        $(tmpCalleeParam$1);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(1)) {
+  if (!$(1)) {
+    $($(100));
+  }
+  while (true) {
+    if ($(1)) {
+      if (!$(1)) {
+        $($(100));
+      }
+    } else {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -48,39 +100,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpIfTest$1 /*:unknown*/ = $(1);
-  if (tmpIfTest$1) {
-  } else {
-    const tmpCalleeParam /*:unknown*/ = $(100);
-    $(tmpCalleeParam);
-  }
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 /*:unknown*/ = $(1);
-    if (tmpIfTest$2) {
-      const tmpIfTest$4 /*:unknown*/ = $(1);
-      if (tmpIfTest$4) {
-      } else {
-        const tmpCalleeParam$1 /*:unknown*/ = $(100);
-        $(tmpCalleeParam$1);
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -122,7 +142,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -157,4 +177,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

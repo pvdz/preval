@@ -15,6 +15,26 @@ const tmpObjLitVal = [7];
 new String(8.5, 8, ...tmpObjLitVal);
 `````
 
+## Settled
+
+
+`````js filename=intro
+(2).c;
+(5)[6];
+const tmpObjLitVal /*:array*/ = [7];
+new String(8.5, 8, ...tmpObjLitVal);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+(2).c;
+(5)[6];
+const tmpObjLitVal = [7];
+new String(8.5, 8, ...tmpObjLitVal);
+`````
+
 ## Pre Normal
 
 
@@ -35,18 +55,7 @@ const tmpObjLitVal = [7];
 new String(8.5, 8, ...tmpObjLitVal);
 `````
 
-## Output
-
-
-`````js filename=intro
-(2).c;
-(5)[6];
-const tmpObjLitVal /*:array*/ = [7];
-new String(8.5, 8, ...tmpObjLitVal);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +69,7 @@ new String( 8.5, 8, ...a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -69,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

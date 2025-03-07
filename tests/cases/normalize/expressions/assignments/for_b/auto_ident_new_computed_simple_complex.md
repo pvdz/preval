@@ -16,6 +16,38 @@ for (; (a = new b[$("$")](1)); $(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCompProp /*:unknown*/ = $(`\$`);
+const b /*:object*/ = { $: $ };
+const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+new tmpNewCallee(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
+  const tmpCompProp$1 /*:unknown*/ = $(`\$`);
+  const tmpNewCallee$1 /*:unknown*/ = b[tmpCompProp$1];
+  new tmpNewCallee$1(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCompProp = $(`\$`);
+const b = { $: $ };
+const tmpNewCallee = b[tmpCompProp];
+new tmpNewCallee(1);
+while (true) {
+  $(1);
+  const tmpCompProp$1 = $(`\$`);
+  const tmpNewCallee$1 = b[tmpCompProp$1];
+  new tmpNewCallee$1(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -51,24 +83,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
-new tmpNewCallee(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(1);
-  const tmpCompProp$1 /*:unknown*/ = $(`\$`);
-  const tmpNewCallee$1 /*:unknown*/ = b[tmpCompProp$1];
-  new tmpNewCallee$1(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +103,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '$'
@@ -123,7 +138,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

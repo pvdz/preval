@@ -16,6 +16,23 @@ $({ [(a = ++b)]: 10 });
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { [2]: 10 };
+$(tmpCalleeParam);
+$(2, 2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ [2]: 10 });
+$(2, 2);
+`````
+
 ## Pre Normal
 
 
@@ -43,17 +60,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { [2]: 10 };
-$(tmpCalleeParam);
-$(2, 2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +73,7 @@ $( 2, 2 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { 2: '10' }
@@ -77,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

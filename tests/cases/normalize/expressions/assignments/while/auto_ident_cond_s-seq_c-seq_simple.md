@@ -14,6 +14,42 @@ while ((a = (10, 20, 30) ? (40, 50, $(60)) : $($(100)))) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = $(60);
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    a = $(60);
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = $(60);
+if (a) {
+  while (true) {
+    $(100);
+    a = $(60);
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -46,27 +82,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = $(60);
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    a = $(60);
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -90,7 +106,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 60
@@ -125,4 +141,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

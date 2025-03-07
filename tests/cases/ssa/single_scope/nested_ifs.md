@@ -24,6 +24,49 @@ const f = function (y) {
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown)=>undefined*/ = function ($$0) {
+  const y /*:unknown*/ = $$0;
+  debugger;
+  if (y) {
+    if ($) {
+      return undefined;
+    } else {
+      while ($LOOP_UNROLL_10) {
+        if ($) {
+          break;
+        } else {
+        }
+      }
+      return undefined;
+    }
+  } else {
+    return undefined;
+  }
+};
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function (y) {
+  if (y) {
+    if (!$) {
+      while (true) {
+        if ($) {
+          break;
+        }
+      }
+    }
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -70,34 +113,7 @@ const f = function ($$0) {
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unknown)=>undefined*/ = function ($$0) {
-  const y /*:unknown*/ = $$0;
-  debugger;
-  if (y) {
-    if ($) {
-      return undefined;
-    } else {
-      while ($LOOP_UNROLL_10) {
-        if ($) {
-          break;
-        } else {
-        }
-      }
-      return undefined;
-    }
-  } else {
-    return undefined;
-  }
-};
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -128,7 +144,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -138,7 +154,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support referencing this builtin in isFree: $

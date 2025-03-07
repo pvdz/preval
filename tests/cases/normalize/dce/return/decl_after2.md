@@ -29,6 +29,31 @@ $(undefined);
 
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(false);
+if (tmpIfTest) {
+  x = $(`fail too`);
+} else {
+  $(`fail`);
+}
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(false)) {
+  x = $(`fail too`);
+} else {
+  $(`fail`);
+}
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -65,21 +90,7 @@ f();
 $(undefined);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(false);
-if (tmpIfTest) {
-  x = $(`fail too`);
-} else {
-  $(`fail`);
-}
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -99,7 +110,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false
@@ -111,4 +122,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

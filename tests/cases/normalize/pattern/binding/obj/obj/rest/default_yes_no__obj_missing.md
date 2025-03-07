@@ -13,6 +13,39 @@ const { x: { ...y } = $({ a: 'pass' }) } = { b: 11, c: 12 };
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam /*:object*/ = { a: `pass` };
+  const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
+  tmpCalleeParam$1 = tmpClusterSSA_objPatternAfterDefault;
+} else {
+  tmpCalleeParam$1 = objPatternBeforeDefault;
+}
+const tmpCalleeParam$3 /*:array*/ = [];
+const y /*:unknown*/ = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = $Object_prototype.x;
+let tmpCalleeParam$1 = undefined;
+if (objPatternBeforeDefault === undefined) {
+  tmpCalleeParam$1 = $({ a: `pass` });
+} else {
+  tmpCalleeParam$1 = objPatternBeforeDefault;
+}
+$(objPatternRest(tmpCalleeParam$1, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -41,27 +74,7 @@ const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam /*:object*/ = { a: `pass` };
-  const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
-  tmpCalleeParam$1 = tmpClusterSSA_objPatternAfterDefault;
-} else {
-  tmpCalleeParam$1 = objPatternBeforeDefault;
-}
-const tmpCalleeParam$3 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -85,7 +98,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '"pass"' }
@@ -96,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

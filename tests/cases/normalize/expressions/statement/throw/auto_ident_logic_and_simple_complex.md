@@ -14,6 +14,23 @@ throw 1 && $($(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
+throw tmpThrowArg;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpThrowArg = $($(1));
+throw tmpThrowArg;
+`````
+
 ## Pre Normal
 
 
@@ -37,17 +54,7 @@ if (tmpThrowArg) {
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
-throw tmpThrowArg;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +67,7 @@ throw b;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -71,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

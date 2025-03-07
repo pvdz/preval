@@ -42,6 +42,63 @@ const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree$1 /*:()=>number*/ = function $free() {
+  debugger;
+  const tmpSaooB /*:string*/ = tmpCalleeParam$5.charAt(0);
+  const tmpRet$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB);
+  return tmpRet$1;
+};
+const tmpFree /*:()=>number*/ = function $free() {
+  debugger;
+  const tmpSaooB$1 /*:string*/ = tmpCalleeParam$1.charAt(0);
+  const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB$1);
+  return tmpRet;
+};
+const f /*:(number)=>string*/ = function ($$0) {
+  const $dlr_$$0 /*:number*/ = $$0;
+  debugger;
+  const out /*:primitive*/ = $dlr_$$0 + b2;
+  unknown = $coerce(out, `plustr`);
+  return unknown;
+};
+const x /*:unknown*/ = $(`co_rn`);
+const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
+const tmpSaooB$4 /*:number*/ = $frfr(tmpFree);
+const tmpCalleeParam /*:string*/ = f(tmpSaooB$4);
+$(tmpCalleeParam);
+const y /*:unknown*/ = $(`m#az#e`);
+const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
+const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1);
+const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree$1 = function $free() {
+  const tmpRet$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpCalleeParam$5.charAt(0));
+  return tmpRet$1;
+};
+const tmpFree = function $free() {
+  const tmpRet = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpCalleeParam$1.charAt(0));
+  return tmpRet;
+};
+const f = function ($dlr_$$0) {
+  unknown = $coerce($dlr_$$0 + b2, `plustr`);
+  return unknown;
+};
+const tmpCalleeParam$1 = $coerce($(`co_rn`), `string`);
+$(f($frfr(tmpFree)));
+const tmpCalleeParam$5 = $coerce($(`m#az#e`), `string`);
+$(f($frfr(tmpFree$1)));
+`````
+
 ## Pre Normal
 
 
@@ -118,43 +175,7 @@ const tmpCalleeParam$3 = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree$1 /*:()=>number*/ = function $free() {
-  debugger;
-  const tmpSaooB /*:string*/ = tmpCalleeParam$5.charAt(0);
-  const tmpRet$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB);
-  return tmpRet$1;
-};
-const tmpFree /*:()=>number*/ = function $free() {
-  debugger;
-  const tmpSaooB$1 /*:string*/ = tmpCalleeParam$1.charAt(0);
-  const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB$1);
-  return tmpRet;
-};
-const f /*:(number)=>string*/ = function ($$0) {
-  const $dlr_$$0 /*:number*/ = $$0;
-  debugger;
-  const out /*:primitive*/ = $dlr_$$0 + b2;
-  unknown = $coerce(out, `plustr`);
-  return unknown;
-};
-const x /*:unknown*/ = $(`co_rn`);
-const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
-const tmpSaooB$4 /*:number*/ = $frfr(tmpFree);
-const tmpCalleeParam /*:string*/ = f(tmpSaooB$4);
-$(tmpCalleeParam);
-const y /*:unknown*/ = $(`m#az#e`);
-const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
-const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1);
-const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -195,7 +216,7 @@ BAD@! Found 2 implicit global bindings:
 
 b2, unknown
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'co_rn'
@@ -205,7 +226,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - free with zero args, we can eliminate this?

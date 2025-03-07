@@ -27,6 +27,76 @@ switch ($(1)) {
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const tmpBinLhs /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  $(1);
+  $(2);
+  const tmpArrElement /*:unknown*/ = $(3);
+  const tmpArrElement$1 /*:unknown*/ = $(4);
+  x = tmpArrElement;
+  y = tmpArrElement$1;
+} else {
+  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`fail1`);
+  } else {
+  }
+  $(`fail2`);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, x, y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+if ($(1) === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (tmpSwitchCaseToStart <= 0) {
+  $(1);
+  $(2);
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  x = tmpArrElement;
+  y = tmpArrElement$1;
+} else {
+  if (tmpSwitchCaseToStart <= 1) {
+    $(`fail1`);
+  }
+  $(`fail2`);
+}
+$({ a: 999, b: 1000 }, x, y);
+`````
+
 ## Pre Normal
 
 
@@ -106,47 +176,7 @@ tmpSwitchBreak: {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
-  $(1);
-  $(2);
-  const tmpArrElement /*:unknown*/ = $(3);
-  const tmpArrElement$1 /*:unknown*/ = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
-} else {
-  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    $(`fail1`);
-  } else {
-  }
-  $(`fail2`);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, x, y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -192,7 +222,7 @@ $( l, a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -208,7 +238,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

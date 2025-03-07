@@ -14,6 +14,37 @@ export default [a] = $([1, 2]);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+arrPatternSplat[0];
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
+const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpAnonDefaultExport as default };
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+[...bindingPatternArrRoot][0];
+let tmpAnonDefaultExport = undefined;
+const tmpNestedAssignArrPatternRhs = $([1, 2]);
+const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
+tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpAnonDefaultExport as default };
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -41,25 +72,7 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
-const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
-tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +96,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -92,7 +105,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

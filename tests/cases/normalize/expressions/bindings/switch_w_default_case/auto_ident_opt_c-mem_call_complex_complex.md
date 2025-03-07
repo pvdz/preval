@@ -22,6 +22,49 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const b /*:object*/ = { $: $ };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$5) {
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject == null;
+  if (tmpIfTest$7) {
+  } else {
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+    a = tmpChainElementCall$1;
+  }
+}
+$(a);
+$(`fail1`);
+$(`fail2`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const tmpChainElementCall = $({ $: $ });
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`\$`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+  }
+}
+$(a);
+$(`fail1`);
+$(`fail2`);
+`````
+
 ## Pre Normal
 
 
@@ -104,33 +147,7 @@ if (tmpIfTest$11) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const b /*:object*/ = { $: $ };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$5) {
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject == null;
-  if (tmpIfTest$7) {
-  } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
-  }
-}
-$(a);
-$(`fail1`);
-$(`fail2`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -163,7 +180,7 @@ $( "fail2" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -179,4 +196,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

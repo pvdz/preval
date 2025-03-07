@@ -16,6 +16,21 @@ const arr = [1, 2, 3];
 for (const x of arr) $(x);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForOfGen = $forOf([1, 2, 3]);
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    $(tmpForOfNext.value);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -53,7 +68,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -71,8 +86,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,4 +121,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

@@ -13,6 +13,32 @@ $(f(1));
 export function f() { return $(2); }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  const tmpReturnArg /*:unknown*/ = $(2);
+  return tmpReturnArg;
+};
+const tmpCalleeParam /*:unknown*/ = $(2);
+$(tmpCalleeParam);
+export { f };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const tmpReturnArg = $(2);
+  return tmpReturnArg;
+};
+$($(2));
+export { f };
+`````
+
 ## Pre Normal
 
 
@@ -39,22 +65,7 @@ $(tmpCalleeParam);
 export { f };
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  const tmpReturnArg /*:unknown*/ = $(2);
-  return tmpReturnArg;
-};
-const tmpCalleeParam /*:unknown*/ = $(2);
-$(tmpCalleeParam);
-export { f };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +83,7 @@ export { a as f };
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -81,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

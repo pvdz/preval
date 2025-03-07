@@ -15,6 +15,25 @@ function f({ x: { ...y } = $({ a: 'pass' }) } = $({ x: { a: 'fail2' } })) {
 $(f({ x: undefined, b: 11, c: 12 }, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
+const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpCalleeParam$5 /*:array*/ = [];
+const y /*:unknown*/ = objPatternRest(tmpClusterSSA_objPatternAfterDefault, tmpCalleeParam$5, undefined);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClusterSSA_objPatternAfterDefault = $({ a: `pass` });
+$(objPatternRest(tmpClusterSSA_objPatternAfterDefault, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -64,19 +83,7 @@ const tmpCalleeParam$7 = tmpCallCallee(tmpCalleeParam$9, 10);
 $(tmpCalleeParam$7);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
-const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpCalleeParam$5 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(tmpClusterSSA_objPatternAfterDefault, tmpCalleeParam$5, undefined);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +98,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '"pass"' }
@@ -102,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

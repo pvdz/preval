@@ -16,6 +16,31 @@ for (let xyz = (a = b[$("c")]); ; $(1)) $(xyz);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
+const b /*:object*/ = { c: 1 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a /*:unknown*/ = b[tmpAssignRhsCompProp];
+  $(a);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAssignRhsCompProp = $(`c`);
+const b = { c: 1 };
+while (true) {
+  $(b[tmpAssignRhsCompProp]);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -48,21 +73,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a /*:unknown*/ = b[tmpAssignRhsCompProp];
-  $(a);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -79,7 +90,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'c'
@@ -114,7 +125,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

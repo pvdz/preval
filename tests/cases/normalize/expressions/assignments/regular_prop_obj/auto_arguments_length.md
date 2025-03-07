@@ -15,6 +15,24 @@ let obj = {};
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = arguments;
+a.a;
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = arguments;
+a.a;
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -37,17 +55,7 @@ tmpCompObj.a;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = arguments;
-a.a;
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +70,7 @@ BAD@! Found 1 implicit global bindings:
 
 arguments
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<Global Arguments>'
@@ -72,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

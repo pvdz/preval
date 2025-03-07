@@ -13,6 +13,23 @@ let a = class x extends $(String) {}
 $(a, x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClassSuper /*:unknown*/ = $(String);
+const a /*:class*/ = class x extends tmpClassSuper {};
+$(a, x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClassSuper = $(String);
+$(class x extends tmpClassSuper {}, x);
+`````
+
 ## Pre Normal
 
 
@@ -30,17 +47,7 @@ let a = class x extends tmpClassSuper {};
 $(a, x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClassSuper /*:unknown*/ = $(String);
-const a /*:class*/ = class x extends tmpClassSuper {};
-$(a, x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +64,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -67,4 +74,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

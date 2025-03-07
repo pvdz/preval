@@ -15,6 +15,21 @@ y = o['x'] ;
 $(y, o);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const o /*:object*/ = { x: 1 };
+$(1, o);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1, { x: 1 });
+`````
+
 ## Pre Normal
 
 
@@ -35,16 +50,7 @@ y = o.x;
 $(y, o);
 `````
 
-## Output
-
-
-`````js filename=intro
-const o /*:object*/ = { x: 1 };
-$(1, o);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +62,7 @@ $( 1, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, { x: '1' }
@@ -66,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

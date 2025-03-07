@@ -19,6 +19,30 @@ if (expires) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if (expires) {
+  const date /*:object*/ = new Date();
+  const time /*:unknown*/ = date.getTime();
+  $(time);
+  unknown = date;
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (expires) {
+  const date = new Date();
+  $(date.getTime());
+  unknown = date;
+}
+`````
+
 ## Pre Normal
 
 
@@ -45,21 +69,7 @@ if (expires) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if (expires) {
-  const date /*:object*/ = new Date();
-  const time /*:unknown*/ = date.getTime();
-  $(time);
-  unknown = date;
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +87,7 @@ BAD@! Found 2 implicit global bindings:
 
 expires, unknown
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -86,7 +96,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - maybe fix the type for calling this builtin?

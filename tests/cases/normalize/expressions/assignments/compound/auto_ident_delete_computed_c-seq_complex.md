@@ -16,6 +16,37 @@ $((a *= delete ($(1), $(2), $(arg))[$("y")]));
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+const tmpBinBothRhs /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const a /*:object*/ = { a: 999, b: 1000 };
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const arg = { y: 1 };
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $(`y`);
+const tmpBinBothRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -44,24 +75,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj /*:unknown*/ = $(arg);
-const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpBinBothRhs /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const a /*:object*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +98,7 @@ $( f, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -99,4 +113,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

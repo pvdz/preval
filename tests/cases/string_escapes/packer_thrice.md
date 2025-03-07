@@ -18,6 +18,266 @@ It is packed three times (output becomes input)
 eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!\'\'.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t\'\\\\w+\'};c=1};x(c--)u(k[c])p=p.v(A B(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);t p}(\'f(5(p,a,c,k,e,r){e=7;8(!\\\'\\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\\'\\\\\\\\h+\\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);6 p}(\\\'0.1(\\\\\\\'2\\\\\\\\`\\\\\\\\\\\\\\\'\\\\\\\\"\\\\\\\\3\\\\\\\')\\\',4,4,\\\'l|m|n|o\\\'.q(\\\'|\\\'),0,{}))\',C,C,\'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|\'.D(\'|\'),0,{}))',45,45,'||||||||||||||||||||||||||||function|return|if|replace||while|eval|String|new|RegExp|28|split|toString|console|log|bo|x20o'.split('|'),0,{}))
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(number)=>number*/ = function $free($$0) {
+  const c$1 /*:number*/ = $$0;
+  debugger;
+  const tmpCalleeParam$7 /*:number*/ = c$1 / 45;
+  const tmpRet /*:number*/ = parseInt(tmpCalleeParam$7);
+  return tmpRet;
+};
+const tmpCalleeParam$3 /*:object*/ = {};
+let tmpSSA_e /*:(number)=>unknown*/ = function ($$0) {
+  const c$2 /*:number*/ = $$0;
+  debugger;
+  let tmpBinBothLhs /*:unknown*/ = ``;
+  const tmpIfTest /*:boolean*/ = c$2 < 45;
+  if (tmpIfTest) {
+  } else {
+    const tmpCalleeParam$5 /*:number*/ = $frfr(tmpFree, c$2);
+    tmpBinBothLhs = tmpSSA_e(tmpCalleeParam$5);
+  }
+  const tmpClusterSSA_c$1 /*:number*/ = c$2 % 45;
+  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_c$1 > 35;
+  if (tmpIfTest$1) {
+    const tmpCalleeParam$9 /*:number*/ = tmpClusterSSA_c$1 + 29;
+    const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $String_fromCharCode(tmpCalleeParam$9);
+    const tmpClusterSSA_tmpReturnArg /*:string*/ = tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
+    return tmpClusterSSA_tmpReturnArg;
+  } else {
+    const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = tmpClusterSSA_c$1.toString(36);
+    const tmpClusterSSA_tmpReturnArg$1 /*:string*/ = tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs$1;
+    return tmpClusterSSA_tmpReturnArg$1;
+  }
+};
+const tmpAssignComMemLhsProp /*:unknown*/ = tmpSSA_e(44);
+tmpCalleeParam$3[tmpAssignComMemLhsProp] = `x20o`;
+const tmpAssignComMemLhsProp$1 /*:unknown*/ = tmpSSA_e(43);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$1] = `bo`;
+const tmpAssignComMemLhsProp$2 /*:unknown*/ = tmpSSA_e(42);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$2] = `log`;
+const tmpAssignComMemLhsProp$3 /*:unknown*/ = tmpSSA_e(41);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$3] = `console`;
+const tmpAssignComMemLhsProp$4 /*:unknown*/ = tmpSSA_e(40);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$4] = `toString`;
+const tmpAssignComMemLhsProp$5 /*:unknown*/ = tmpSSA_e(39);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$5] = `split`;
+const tmpAssignComMemLhsProp$6 /*:unknown*/ = tmpSSA_e(38);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$6] = `28`;
+const tmpAssignComMemLhsProp$7 /*:unknown*/ = tmpSSA_e(37);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$7] = `RegExp`;
+const tmpAssignComMemLhsProp$8 /*:unknown*/ = tmpSSA_e(36);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$8] = `new`;
+const tmpAssignComMemLhsProp$9 /*:unknown*/ = tmpSSA_e(35);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$9] = `String`;
+let tmpClusterSSA_c$2 /*:number*/ = 34;
+const tmpAssignComMemLhsProp$10 /*:unknown*/ = tmpSSA_e(34);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$10] = `eval`;
+const tmpCalleeParam$1 /*:array*/ = [
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  `function`,
+  `return`,
+  `if`,
+  `replace`,
+  ``,
+  `while`,
+  `eval`,
+  `String`,
+  `new`,
+  `RegExp`,
+  `28`,
+  `split`,
+  `toString`,
+  `console`,
+  `log`,
+  `bo`,
+  `x20o`,
+];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$2;
+  tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
+  if (tmpPostUpdArgIdent$1) {
+    const tmpAssignComMemLhsProp$11 /*:unknown*/ = tmpSSA_e(tmpClusterSSA_c$2);
+    let tmpAssignComputedRhs$1 /*:unknown*/ = tmpCalleeParam$1[tmpClusterSSA_c$2];
+    if (tmpAssignComputedRhs$1) {
+    } else {
+      tmpAssignComputedRhs$1 = tmpSSA_e(tmpClusterSSA_c$2);
+    }
+    tmpCalleeParam$3[tmpAssignComMemLhsProp$11] = tmpAssignComputedRhs$1;
+  } else {
+    break;
+  }
+}
+const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
+  const e$1 /*:unknown*/ = $$0;
+  debugger;
+  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$3[e$1];
+  return tmpReturnArg$1;
+};
+tmpSSA_e = function () {
+  debugger;
+  return `\\w+`;
+};
+const tmpCalleeParam$15 /*:regex*/ = /\b\w+\b/g;
+const tmpClusterSSA_p /*:string*/ = `y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t'\\\\w+'};c=1};x(c--)u(k[c])p=p.v(A B('\\\\b'+e(c)+'\\\\b','g'),k[c]);t p}('f(5(p,a,c,k,e,r){e=7;8(!\\'\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\'\\\\\\\\h+\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);6 p}(\\'0.1(\\\\\\'2\\\\\\\\\`\\\\\\\\\\\\\\'\\\\\\\\"\\\\\\\\3\\\\\\')\\',4,4,\\'l|m|n|o\\'.q(\\'|\\'),0,{}))',C,C,'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|'.D('|'),0,{}))`.replace(
+  tmpCalleeParam$15,
+  tmpArrElement,
+);
+eval(tmpClusterSSA_p);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(c$1) {
+  const tmpRet = parseInt(c$1 / 45);
+  return tmpRet;
+};
+const tmpCalleeParam$3 = {};
+let tmpSSA_e = function (c$2) {
+  let tmpBinBothLhs = ``;
+  if (!(c$2 < 45)) {
+    tmpBinBothLhs = tmpSSA_e($frfr(tmpFree, c$2));
+  }
+  const tmpClusterSSA_c$1 = c$2 % 45;
+  if (tmpClusterSSA_c$1 > 35) {
+    const tmpClusterSSA_tmpReturnArg = tmpBinBothLhs + $String_fromCharCode(tmpClusterSSA_c$1 + 29);
+    return tmpClusterSSA_tmpReturnArg;
+  } else {
+    const tmpClusterSSA_tmpReturnArg$1 = tmpBinBothLhs + tmpClusterSSA_c$1.toString(36);
+    return tmpClusterSSA_tmpReturnArg$1;
+  }
+};
+const tmpAssignComMemLhsProp = tmpSSA_e(44);
+tmpCalleeParam$3[tmpAssignComMemLhsProp] = `x20o`;
+const tmpAssignComMemLhsProp$1 = tmpSSA_e(43);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$1] = `bo`;
+const tmpAssignComMemLhsProp$2 = tmpSSA_e(42);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$2] = `log`;
+const tmpAssignComMemLhsProp$3 = tmpSSA_e(41);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$3] = `console`;
+const tmpAssignComMemLhsProp$4 = tmpSSA_e(40);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$4] = `toString`;
+const tmpAssignComMemLhsProp$5 = tmpSSA_e(39);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$5] = `split`;
+const tmpAssignComMemLhsProp$6 = tmpSSA_e(38);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$6] = `28`;
+const tmpAssignComMemLhsProp$7 = tmpSSA_e(37);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$7] = `RegExp`;
+const tmpAssignComMemLhsProp$8 = tmpSSA_e(36);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$8] = `new`;
+const tmpAssignComMemLhsProp$9 = tmpSSA_e(35);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$9] = `String`;
+let tmpClusterSSA_c$2 = 34;
+const tmpAssignComMemLhsProp$10 = tmpSSA_e(34);
+tmpCalleeParam$3[tmpAssignComMemLhsProp$10] = `eval`;
+const tmpCalleeParam$1 = [
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  ``,
+  `function`,
+  `return`,
+  `if`,
+  `replace`,
+  ``,
+  `while`,
+  `eval`,
+  `String`,
+  `new`,
+  `RegExp`,
+  `28`,
+  `split`,
+  `toString`,
+  `console`,
+  `log`,
+  `bo`,
+  `x20o`,
+];
+while (true) {
+  const tmpPostUpdArgIdent$1 = tmpClusterSSA_c$2;
+  tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
+  if (tmpPostUpdArgIdent$1) {
+    const tmpAssignComMemLhsProp$11 = tmpSSA_e(tmpClusterSSA_c$2);
+    let tmpAssignComputedRhs$1 = tmpCalleeParam$1[tmpClusterSSA_c$2];
+    if (!tmpAssignComputedRhs$1) {
+      tmpAssignComputedRhs$1 = tmpSSA_e(tmpClusterSSA_c$2);
+    }
+    tmpCalleeParam$3[tmpAssignComMemLhsProp$11] = tmpAssignComputedRhs$1;
+  } else {
+    break;
+  }
+}
+const tmpArrElement = function (e$1) {
+  const tmpReturnArg$1 = tmpCalleeParam$3[e$1];
+  return tmpReturnArg$1;
+};
+tmpSSA_e = function () {
+  return `\\w+`;
+};
+eval(
+  `y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t'\\\\w+'};c=1};x(c--)u(k[c])p=p.v(A B('\\\\b'+e(c)+'\\\\b','g'),k[c]);t p}('f(5(p,a,c,k,e,r){e=7;8(!\\'\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\'\\\\\\\\h+\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);6 p}(\\'0.1(\\\\\\'2\\\\\\\\\`\\\\\\\\\\\\\\'\\\\\\\\"\\\\\\\\3\\\\\\')\\',4,4,\\'l|m|n|o\\'.q(\\'|\\'),0,{}))',C,C,'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|'.D('|'),0,{}))`.replace(
+    /\b\w+\b/g,
+    tmpArrElement,
+  ),
+);
+`````
+
 ## Pre Normal
 
 
@@ -180,146 +440,7 @@ const tmpCalleeParam = tmpCallCallee(
 eval(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(number)=>number*/ = function $free($$0) {
-  const c$1 /*:number*/ = $$0;
-  debugger;
-  const tmpCalleeParam$7 /*:number*/ = c$1 / 45;
-  const tmpRet /*:number*/ = parseInt(tmpCalleeParam$7);
-  return tmpRet;
-};
-const tmpCalleeParam$3 /*:object*/ = {};
-let tmpSSA_e /*:(number)=>unknown*/ = function ($$0) {
-  const c$2 /*:number*/ = $$0;
-  debugger;
-  let tmpBinBothLhs /*:unknown*/ = ``;
-  const tmpIfTest /*:boolean*/ = c$2 < 45;
-  if (tmpIfTest) {
-  } else {
-    const tmpCalleeParam$5 /*:number*/ = $frfr(tmpFree, c$2);
-    tmpBinBothLhs = tmpSSA_e(tmpCalleeParam$5);
-  }
-  const tmpClusterSSA_c$1 /*:number*/ = c$2 % 45;
-  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_c$1 > 35;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$9 /*:number*/ = tmpClusterSSA_c$1 + 29;
-    const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $String_fromCharCode(tmpCalleeParam$9);
-    const tmpClusterSSA_tmpReturnArg /*:string*/ = tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
-    return tmpClusterSSA_tmpReturnArg;
-  } else {
-    const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = tmpClusterSSA_c$1.toString(36);
-    const tmpClusterSSA_tmpReturnArg$1 /*:string*/ = tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs$1;
-    return tmpClusterSSA_tmpReturnArg$1;
-  }
-};
-const tmpAssignComMemLhsProp /*:unknown*/ = tmpSSA_e(44);
-tmpCalleeParam$3[tmpAssignComMemLhsProp] = `x20o`;
-const tmpAssignComMemLhsProp$1 /*:unknown*/ = tmpSSA_e(43);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$1] = `bo`;
-const tmpAssignComMemLhsProp$2 /*:unknown*/ = tmpSSA_e(42);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$2] = `log`;
-const tmpAssignComMemLhsProp$3 /*:unknown*/ = tmpSSA_e(41);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$3] = `console`;
-const tmpAssignComMemLhsProp$4 /*:unknown*/ = tmpSSA_e(40);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$4] = `toString`;
-const tmpAssignComMemLhsProp$5 /*:unknown*/ = tmpSSA_e(39);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$5] = `split`;
-const tmpAssignComMemLhsProp$6 /*:unknown*/ = tmpSSA_e(38);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$6] = `28`;
-const tmpAssignComMemLhsProp$7 /*:unknown*/ = tmpSSA_e(37);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$7] = `RegExp`;
-const tmpAssignComMemLhsProp$8 /*:unknown*/ = tmpSSA_e(36);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$8] = `new`;
-const tmpAssignComMemLhsProp$9 /*:unknown*/ = tmpSSA_e(35);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$9] = `String`;
-let tmpClusterSSA_c$2 /*:number*/ = 34;
-const tmpAssignComMemLhsProp$10 /*:unknown*/ = tmpSSA_e(34);
-tmpCalleeParam$3[tmpAssignComMemLhsProp$10] = `eval`;
-const tmpCalleeParam$1 /*:array*/ = [
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  ``,
-  `function`,
-  `return`,
-  `if`,
-  `replace`,
-  ``,
-  `while`,
-  `eval`,
-  `String`,
-  `new`,
-  `RegExp`,
-  `28`,
-  `split`,
-  `toString`,
-  `console`,
-  `log`,
-  `bo`,
-  `x20o`,
-];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$2;
-  tmpClusterSSA_c$2 = tmpClusterSSA_c$2 - 1;
-  if (tmpPostUpdArgIdent$1) {
-    const tmpAssignComMemLhsProp$11 /*:unknown*/ = tmpSSA_e(tmpClusterSSA_c$2);
-    let tmpAssignComputedRhs$1 /*:unknown*/ = tmpCalleeParam$1[tmpClusterSSA_c$2];
-    if (tmpAssignComputedRhs$1) {
-    } else {
-      tmpAssignComputedRhs$1 = tmpSSA_e(tmpClusterSSA_c$2);
-    }
-    tmpCalleeParam$3[tmpAssignComMemLhsProp$11] = tmpAssignComputedRhs$1;
-  } else {
-    break;
-  }
-}
-const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
-  const e$1 /*:unknown*/ = $$0;
-  debugger;
-  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$3[e$1];
-  return tmpReturnArg$1;
-};
-tmpSSA_e = function () {
-  debugger;
-  return `\\w+`;
-};
-const tmpCalleeParam$15 /*:regex*/ = /\b\w+\b/g;
-const tmpClusterSSA_p /*:string*/ = `y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t'\\\\w+'};c=1};x(c--)u(k[c])p=p.v(A B('\\\\b'+e(c)+'\\\\b','g'),k[c]);t p}('f(5(p,a,c,k,e,r){e=7;8(!\\'\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\'\\\\\\\\h+\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);6 p}(\\'0.1(\\\\\\'2\\\\\\\\\`\\\\\\\\\\\\\\'\\\\\\\\"\\\\\\\\3\\\\\\')\\',4,4,\\'l|m|n|o\\'.q(\\'|\\'),0,{}))',C,C,'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|'.D('|'),0,{}))`.replace(
-  tmpCalleeParam$15,
-  tmpArrElement,
-);
-eval(tmpClusterSSA_p);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -418,7 +539,7 @@ eval( bn );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -427,7 +548,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

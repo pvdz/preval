@@ -18,6 +18,30 @@ f();
 $(100);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpAssignMemLhsObj /*:unknown*/ = $(b);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+varInitAssignLhsComputedObj.x = 3;
+tmpAssignMemLhsObj.x = 3;
+$(100);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpAssignMemLhsObj = $(b);
+const varInitAssignLhsComputedObj = $(b);
+varInitAssignLhsComputedObj.x = 3;
+tmpAssignMemLhsObj.x = 3;
+$(100);
+`````
+
 ## Pre Normal
 
 
@@ -53,20 +77,7 @@ f();
 $(100);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpAssignMemLhsObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-varInitAssignLhsComputedObj.x = 3;
-tmpAssignMemLhsObj.x = 3;
-$(100);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +93,7 @@ $( 100 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -94,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -28,6 +28,35 @@ function f() {
 if ($) f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const tmpssa2_x /*:unknown*/ = $(1, `shared`);
+  if ($) {
+    $(tmpssa2_x, `a`);
+  } else {
+    $(tmpssa2_x, `b`);
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  const tmpssa2_x = $(1, `shared`);
+  if ($) {
+    $(tmpssa2_x, `a`);
+  } else {
+    $(tmpssa2_x, `b`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -80,23 +109,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const tmpssa2_x /*:unknown*/ = $(1, `shared`);
-  if ($) {
-    $(tmpssa2_x, `a`);
-  } else {
-    $(tmpssa2_x, `b`);
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +128,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'shared'
@@ -126,4 +139,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

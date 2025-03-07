@@ -40,6 +40,110 @@ const arr2 = [
 $(arr2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const tmpArrElement$7 /*:primitive*/ = undefined + x;
+x ** 0;
+const tmpArrElement$11 /*:number*/ = 0 << x;
+const tmpArrElement$13 /*:number*/ = 0 >> x;
+const tmpArrElement$15 /*:number*/ = 0 >>> x;
+const tmpArrElement$17 /*:boolean*/ = undefined < x;
+const tmpArrElement$19 /*:boolean*/ = undefined > x;
+const tmpArrElement$21 /*:boolean*/ = undefined <= x;
+const tmpArrElement$23 /*:boolean*/ = undefined >= x;
+const tmpArrElement$25 /*:boolean*/ = undefined == x;
+const tmpArrElement$27 /*:boolean*/ = undefined != x;
+x ** 0;
+const tmpArrElement$35 /*:number*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ = 0 | x;
+const tmpArrElement$29 /*:boolean*/ = undefined === x;
+const tmpArrElement$31 /*:boolean*/ = undefined !== x;
+const arr /*:array*/ = [
+  NaN,
+  NaN,
+  NaN,
+  NaN,
+  tmpArrElement$7,
+  NaN,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  tmpArrElement$25,
+  tmpArrElement$27,
+  tmpArrElement$29,
+  tmpArrElement$31,
+  0,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+const tmpArrElement$39 /*:boolean*/ = undefined in x;
+const tmpArrElement$41 /*:boolean*/ = undefined instanceof x;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+$(arr2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const tmpArrElement$7 = undefined + x;
+x ** 0;
+const tmpArrElement$11 = 0 << x;
+const tmpArrElement$13 = 0 >> x;
+const tmpArrElement$15 = 0 >>> x;
+const tmpArrElement$17 = undefined < x;
+const tmpArrElement$19 = undefined > x;
+const tmpArrElement$21 = undefined <= x;
+const tmpArrElement$23 = undefined >= x;
+const tmpArrElement$25 = undefined == x;
+const tmpArrElement$27 = undefined != x;
+x ** 0;
+const tmpArrElement$35 = 0 ^ x;
+const tmpArrElement$37 = 0 | x;
+const tmpArrElement$29 = undefined === x;
+const tmpArrElement$31 = undefined !== x;
+$([
+  NaN,
+  NaN,
+  NaN,
+  NaN,
+  tmpArrElement$7,
+  NaN,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  tmpArrElement$25,
+  tmpArrElement$27,
+  tmpArrElement$29,
+  tmpArrElement$31,
+  0,
+  tmpArrElement$35,
+  tmpArrElement$37,
+]);
+const tmpArrElement$39 = undefined in x;
+const tmpArrElement$41 = undefined instanceof x;
+$([tmpArrElement$39, tmpArrElement$41]);
+`````
+
 ## Pre Normal
 
 
@@ -130,61 +234,7 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
-## Output
-
-
-`````js filename=intro
-x ** 0;
-x ** 0;
-x ** 0;
-x ** 0;
-const tmpArrElement$7 /*:primitive*/ = undefined + x;
-x ** 0;
-const tmpArrElement$11 /*:number*/ = 0 << x;
-const tmpArrElement$13 /*:number*/ = 0 >> x;
-const tmpArrElement$15 /*:number*/ = 0 >>> x;
-const tmpArrElement$17 /*:boolean*/ = undefined < x;
-const tmpArrElement$19 /*:boolean*/ = undefined > x;
-const tmpArrElement$21 /*:boolean*/ = undefined <= x;
-const tmpArrElement$23 /*:boolean*/ = undefined >= x;
-const tmpArrElement$25 /*:boolean*/ = undefined == x;
-const tmpArrElement$27 /*:boolean*/ = undefined != x;
-x ** 0;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const tmpArrElement$29 /*:boolean*/ = undefined === x;
-const tmpArrElement$31 /*:boolean*/ = undefined !== x;
-const arr /*:array*/ = [
-  NaN,
-  NaN,
-  NaN,
-  NaN,
-  tmpArrElement$7,
-  NaN,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  0,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpArrElement$39 /*:boolean*/ = undefined in x;
-const tmpArrElement$41 /*:boolean*/ = undefined instanceof x;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
-$(arr2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -222,7 +272,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -231,4 +281,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

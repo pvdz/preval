@@ -26,6 +26,35 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:string*/ = `pass`;
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  $(`pass`, `not mutating, not completing`);
+  $(`pass`, `should not be considered mutated`);
+} else {
+  x = `fail`;
+}
+$(x, `after label`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = `pass`;
+if ($(true)) {
+  $(`pass`, `not mutating, not completing`);
+  $(`pass`, `should not be considered mutated`);
+} else {
+  x = `fail`;
+}
+$(x, `after label`);
+`````
+
 ## Pre Normal
 
 
@@ -70,23 +99,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:string*/ = `pass`;
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  $(`pass`, `not mutating, not completing`);
-  $(`pass`, `should not be considered mutated`);
-} else {
-  x = `fail`;
-}
-$(x, `after label`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +119,7 @@ $( a, "after label" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -119,4 +132,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

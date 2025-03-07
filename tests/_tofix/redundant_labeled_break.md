@@ -50,6 +50,36 @@ here: {
 $(x);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+let $finalAbruptAction = 0;
+let $finalCatchArg = undefined;
+try {
+  if ($) {
+    x = 2;
+    $finalAbruptAction = 1;
+  } else {
+    x = 3;
+  }
+} catch ($finalImplicit) {
+  $finalAbruptAction = 2;
+  $finalCatchArg = $finalImplicit;
+}
+$(x);
+if (!($finalAbruptAction === 1)) {
+  if ($finalAbruptAction === 2) {
+    throw $finalCatchArg;
+  } else {
+    $(x);
+    x = 4;
+  }
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -128,7 +158,7 @@ here: {
 $(x);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -161,8 +191,7 @@ if (tmpIfTest) {
 $(x);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -215,4 +244,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

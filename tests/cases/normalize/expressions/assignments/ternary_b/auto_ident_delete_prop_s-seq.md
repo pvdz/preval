@@ -16,6 +16,45 @@ $($(1) ? (a = delete ($(1), $(2), arg).y) : $(200));
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+const arg /*:object*/ = { y: 1 };
+if (tmpIfTest) {
+  $(1);
+  $(2);
+  const tmpNestedComplexRhs /*:boolean*/ = delete arg.y;
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
+}
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+const arg = { y: 1 };
+if (tmpIfTest) {
+  $(1);
+  $(2);
+  const tmpNestedComplexRhs = delete arg.y;
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $($(200));
+}
+$(a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -48,28 +87,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-const arg /*:object*/ = { y: 1 };
-if (tmpIfTest) {
-  $(1);
-  $(2);
-  const tmpNestedComplexRhs /*:boolean*/ = delete arg.y;
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
-}
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +115,7 @@ $( a, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -111,4 +129,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

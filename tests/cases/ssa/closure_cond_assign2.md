@@ -31,6 +31,62 @@ function f() {
 if ($) $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  let x /*:number*/ = 0;
+  const g /*:(boolean)=>undefined*/ = function ($$0) {
+    const t /*:boolean*/ = $$0;
+    debugger;
+    if (t) {
+      x = x + 1;
+      $(x);
+    } else {
+      $(x);
+    }
+    $();
+    return undefined;
+  };
+  g(true);
+  g(false);
+  g(true);
+  g(false);
+  g(false);
+  g(true);
+  g(true);
+  $(undefined);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  let x = 0;
+  const g = function (t) {
+    if (t) {
+      x = x + 1;
+      $(x);
+    } else {
+      $(x);
+    }
+    $();
+  };
+  g(true);
+  g(false);
+  g(true);
+  g(false);
+  g(false);
+  g(true);
+  g(true);
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -92,38 +148,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  let x /*:number*/ = 0;
-  const g /*:(boolean)=>undefined*/ = function ($$0) {
-    const t /*:boolean*/ = $$0;
-    debugger;
-    if (t) {
-      x = x + 1;
-      $(x);
-    } else {
-      $(x);
-    }
-    $();
-    return undefined;
-  };
-  g(true);
-  g(false);
-  g(true);
-  g(false);
-  g(false);
-  g(true);
-  g(true);
-  $(undefined);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -157,7 +182,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -181,4 +206,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

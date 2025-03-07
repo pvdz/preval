@@ -26,6 +26,37 @@ function f(){
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  $(`loop`);
+  const tmpThrowArg /*:unknown*/ = $(7, `throw`);
+  throw tmpThrowArg;
+} else {
+  $(`after (not invoked)`);
+  $(undefined);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  $(`loop`);
+  $(`loop`);
+  const tmpThrowArg = $(7, `throw`);
+  throw tmpThrowArg;
+} else {
+  $(`after (not invoked)`);
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -78,24 +109,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  $(`loop`);
-  $(`loop`);
-  const tmpThrowArg /*:unknown*/ = $(7, `throw`);
-  throw tmpThrowArg;
-} else {
-  $(`after (not invoked)`);
-  $(undefined);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +130,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -129,4 +143,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

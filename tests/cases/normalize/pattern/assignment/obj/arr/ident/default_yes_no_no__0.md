@@ -13,6 +13,36 @@
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternNoDefault /*:unknown*/ = (0).x;
+const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
+const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
+const tmpIfTest /*:boolean*/ = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  y = `fail`;
+} else {
+  y = arrPatternBeforeDefault;
+}
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternNoDefault = (0).x;
+const arrPatternBeforeDefault = [...objPatternNoDefault][0];
+if (arrPatternBeforeDefault === undefined) {
+  y = `fail`;
+} else {
+  y = arrPatternBeforeDefault;
+}
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -40,24 +70,7 @@ if (tmpIfTest) {
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (0).x;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-const tmpIfTest /*:boolean*/ = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  y = `fail`;
-} else {
-  y = arrPatternBeforeDefault;
-}
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +93,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -90,7 +103,10 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Denormalized calls: BAD!!
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Todos triggered:

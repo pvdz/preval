@@ -16,6 +16,35 @@ class x {
 $(new x()['very stringy']());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:class*/ = class {
+  [`very stringy`]() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(1);
+    return tmpReturnArg;
+  }
+};
+const tmpCallObj /*:object*/ = new x();
+const tmpCalleeParam /*:unknown*/ = tmpCallObj[`very stringy`]();
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = class {
+  [`very stringy`]() {
+    const tmpReturnArg = $(1);
+    return tmpReturnArg;
+  }
+};
+$(new x()[`very stringy`]());
+`````
+
 ## Pre Normal
 
 
@@ -45,24 +74,7 @@ const tmpCalleeParam = tmpCallObj[`very stringy`]();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:class*/ = class {
-  [`very stringy`]() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(1);
-    return tmpReturnArg;
-  }
-};
-const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam /*:unknown*/ = tmpCallObj[`very stringy`]();
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +94,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -93,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

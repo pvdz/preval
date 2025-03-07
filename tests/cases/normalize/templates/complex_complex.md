@@ -12,6 +12,27 @@
 $(`abc ${ $(10) } ${ $(20) } def`);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $(10);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+const tmpCalleeParam$3 /*:unknown*/ = $(20);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$3, `string`);
+const tmpCalleeParam /*:string*/ = `abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothRhs$1 = $coerce($(10), `string`);
+const tmpBinBothRhs = $coerce($(20), `string`);
+$(`abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`);
+`````
+
 ## Pre Normal
 
 
@@ -37,20 +58,7 @@ const tmpCalleeParam = `${tmpStringConcatR$1} def`;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(10);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const tmpCalleeParam$3 /*:unknown*/ = $(20);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$3, `string`);
-const tmpCalleeParam /*:string*/ = `abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +74,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -78,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

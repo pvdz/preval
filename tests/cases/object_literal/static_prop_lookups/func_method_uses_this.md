@@ -24,6 +24,26 @@ const o = {
 $(o.f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`piss`);
+$(`pass`);
+$(`poss`);
+$(`You got it!`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`piss`);
+$(`pass`);
+$(`poss`);
+$(`You got it!`);
+`````
+
 ## Pre Normal
 
 
@@ -58,18 +78,7 @@ const tmpCalleeParam = o.f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`piss`);
-$(`pass`);
-$(`poss`);
-$(`You got it!`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +92,7 @@ $( "You got it!" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'piss'
@@ -96,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

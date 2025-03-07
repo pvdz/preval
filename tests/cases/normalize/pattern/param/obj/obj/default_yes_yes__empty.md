@@ -15,6 +15,58 @@ function f({ x: {} = $({ x: 'fail' }) } = $({ x: { y: 'pass2' } })) {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:object*/ = { y: `pass2` };
+const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
+const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
+let objPatternCrashTest /*:boolean*/ = false;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$1 /*:object*/ = { x: `fail` };
+  objPatternAfterDefault = $(tmpCalleeParam$1);
+  objPatternCrashTest = objPatternAfterDefault === undefined;
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternAfterDefault.cannotDestructureThis;
+} else {
+}
+$(`ok`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = { y: `pass2` };
+const objPatternBeforeDefault = $({ x: tmpObjLitVal }).x;
+let objPatternAfterDefault = undefined;
+let objPatternCrashTest = false;
+if (objPatternBeforeDefault === undefined) {
+  objPatternAfterDefault = $({ x: `fail` });
+  objPatternCrashTest = objPatternAfterDefault === undefined;
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+if (!objPatternCrashTest) {
+  objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternAfterDefault.cannotDestructureThis;
+}
+$(`ok`);
+`````
+
 ## Pre Normal
 
 
@@ -69,37 +121,7 @@ const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:object*/ = { y: `pass2` };
-const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-let objPatternCrashTest /*:boolean*/ = false;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:object*/ = { x: `fail` };
-  objPatternAfterDefault = $(tmpCalleeParam$1);
-  objPatternCrashTest = objPatternAfterDefault === undefined;
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternAfterDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
-} else {
-}
-$(`ok`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -134,7 +156,7 @@ $( "ok" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '{"y":"\\"pass2\\""}' }
@@ -145,4 +167,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

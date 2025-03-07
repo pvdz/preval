@@ -13,6 +13,13 @@
 $(function(){}.prototype);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -36,15 +43,14 @@ const tmpCalleeParam = tmpCompObj.prototype;
 $(tmpCalleeParam);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
 $(undefined);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,6 +71,10 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - 1: undefined
+ - eval returned: undefined
+
+Denormalized calls: BAD!!
  - 1: undefined
  - eval returned: undefined

@@ -14,6 +14,35 @@
 $(function(){ $(this.x); }.apply({x: 15}, ['x']));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallObj /*:()=>undefined*/ = function () {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  debugger;
+  const tmpCalleeParam$5 /*:unknown*/ = tmpPrevalAliasThis.x;
+  $(tmpCalleeParam$5);
+  return undefined;
+};
+const tmpCalleeParam$1 /*:object*/ = { x: 15 };
+const tmpCalleeParam$3 /*:array*/ = [`x`];
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallObj = function () {
+  const tmpPrevalAliasThis = this;
+  $(tmpPrevalAliasThis.x);
+};
+const tmpCalleeParam$1 = { x: 15 };
+$(tmpCallObj.apply(tmpCalleeParam$1, [`x`]));
+`````
+
 ## Pre Normal
 
 
@@ -44,25 +73,7 @@ const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallObj /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  debugger;
-  const tmpCalleeParam$5 /*:unknown*/ = tmpPrevalAliasThis.x;
-  $(tmpCalleeParam$5);
-  return undefined;
-};
-const tmpCalleeParam$1 /*:object*/ = { x: 15 };
-const tmpCalleeParam$3 /*:array*/ = [`x`];
-const tmpCalleeParam /*:unknown*/ = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +94,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 15
@@ -94,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

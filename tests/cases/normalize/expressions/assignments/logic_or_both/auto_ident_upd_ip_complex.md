@@ -16,6 +16,52 @@ $((a = $($(b)).x++) || (a = $($(b)).x++));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
+const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+let tmpClusterSSA_a /*:unknown*/ = tmpPostUpdArgVal;
+if (tmpPostUpdArgVal) {
+  $(tmpPostUpdArgVal);
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(b);
+  const tmpPostUpdArgObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpPostUpdArgVal$1 /*:unknown*/ = tmpPostUpdArgObj$1.x;
+  const tmpAssignMemRhs$1 /*:primitive*/ = tmpPostUpdArgVal$1 + 1;
+  tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
+  tmpClusterSSA_a = tmpPostUpdArgVal$1;
+  $(tmpPostUpdArgVal$1);
+}
+$(tmpClusterSSA_a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpPostUpdArgObj = $($(b));
+const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
+let tmpClusterSSA_a = tmpPostUpdArgVal;
+if (tmpPostUpdArgVal) {
+  $(tmpPostUpdArgVal);
+} else {
+  const tmpPostUpdArgObj$1 = $($(b));
+  const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
+  tmpPostUpdArgObj$1.x = tmpPostUpdArgVal$1 + 1;
+  tmpClusterSSA_a = tmpPostUpdArgVal$1;
+  $(tmpPostUpdArgVal$1);
+}
+$(tmpClusterSSA_a, b);
+`````
+
 ## Pre Normal
 
 
@@ -56,33 +102,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpPostUpdArgVal;
-if (tmpPostUpdArgVal) {
-  $(tmpPostUpdArgVal);
-} else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(b);
-  const tmpPostUpdArgObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
-  const tmpPostUpdArgVal$1 /*:unknown*/ = tmpPostUpdArgObj$1.x;
-  const tmpAssignMemRhs$1 /*:primitive*/ = tmpPostUpdArgVal$1 + 1;
-  tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-  tmpClusterSSA_a = tmpPostUpdArgVal$1;
-  $(tmpPostUpdArgVal$1);
-}
-$(tmpClusterSSA_a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -112,7 +132,7 @@ $( f, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -125,4 +145,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

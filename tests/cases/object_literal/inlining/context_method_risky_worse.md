@@ -21,6 +21,39 @@ $(obj.encode.call(obj)); // Indirect call. Parent node of `obj.encode` is not a 
 $(obj.str); // changed!
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:()=>undefined*/ = function () {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  debugger;
+  tmpPrevalAliasThis.str = `changed`;
+  const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis.str;
+  $(tmpCalleeParam);
+  return undefined;
+};
+const obj /*:object*/ = { encode: tmpObjLitVal, str: `abc` };
+const tmpCalleeParam$1 /*:unknown*/ = tmpObjLitVal.call(obj);
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:unknown*/ = obj.str;
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = function () {
+  const tmpPrevalAliasThis = this;
+  tmpPrevalAliasThis.str = `changed`;
+  $(tmpPrevalAliasThis.str);
+};
+const obj = { encode: tmpObjLitVal, str: `abc` };
+$(tmpObjLitVal.call(obj));
+$(obj.str);
+`````
+
 ## Pre Normal
 
 
@@ -58,27 +91,7 @@ const tmpCalleeParam$3 = obj.str;
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:()=>undefined*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  debugger;
-  tmpPrevalAliasThis.str = `changed`;
-  const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis.str;
-  $(tmpCalleeParam);
-  return undefined;
-};
-const obj /*:object*/ = { encode: tmpObjLitVal, str: `abc` };
-const tmpCalleeParam$1 /*:unknown*/ = tmpObjLitVal.call(obj);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:unknown*/ = obj.str;
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +117,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'changed'
@@ -116,4 +129,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

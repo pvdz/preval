@@ -16,6 +16,31 @@ $((a = typeof $(arg)) + (a = typeof $(arg)));
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(1);
+const tmpUnaryArg$1 /*:unknown*/ = $(1);
+const a /*:string*/ = typeof tmpUnaryArg;
+const tmpClusterSSA_a /*:string*/ = typeof tmpUnaryArg$1;
+const tmpCalleeParam /*:string*/ = a + tmpClusterSSA_a;
+$(tmpCalleeParam);
+$(tmpClusterSSA_a, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg = $(1);
+const tmpUnaryArg$1 = $(1);
+const a = typeof tmpUnaryArg;
+const tmpClusterSSA_a = typeof tmpUnaryArg$1;
+$(a + tmpClusterSSA_a);
+$(tmpClusterSSA_a, 1);
+`````
+
 ## Pre Normal
 
 
@@ -43,21 +68,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(1);
-const tmpUnaryArg$1 /*:unknown*/ = $(1);
-const a /*:string*/ = typeof tmpUnaryArg;
-const tmpClusterSSA_a /*:string*/ = typeof tmpUnaryArg$1;
-const tmpCalleeParam /*:string*/ = a + tmpClusterSSA_a;
-$(tmpCalleeParam);
-$(tmpClusterSSA_a, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +85,7 @@ $( d, 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -87,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

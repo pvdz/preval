@@ -15,6 +15,50 @@ $(`before  ${(a = 1 && $($(obj)))}  after`);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const obj /*:object*/ = {
+  toString() {
+    debugger;
+    $(`toString`);
+    return `x`;
+  },
+  valueOf() {
+    debugger;
+    $(`valueOf`);
+    return `y`;
+  },
+};
+const tmpCalleeParam$3 /*:unknown*/ = $(obj);
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+$(tmpCalleeParam);
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClusterSSA_a = $(
+  $({
+    toString() {
+      $(`toString`);
+      return `x`;
+    },
+    valueOf() {
+      $(`valueOf`);
+      return `y`;
+    },
+  }),
+);
+$(`before  ${tmpClusterSSA_a}  after`);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -69,32 +113,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const obj /*:object*/ = {
-  toString() {
-    debugger;
-    $(`toString`);
-    return `x`;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return `y`;
-  },
-};
-const tmpCalleeParam$3 /*:unknown*/ = $(obj);
-const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -122,7 +141,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { toString: '"<function>"', valueOf: '"<function>"' }
@@ -136,4 +155,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

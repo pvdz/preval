@@ -20,6 +20,42 @@ f("first1", {a: 1, b: 2, c: 'hi', d: parseInt}, "last1");
 f("first2", {a: 3, b: 4, c: true, d: null}, "last2");
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(string, number, string, number, primitive, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+  const d /*:unknown*/ = $$5;
+  const c /*:primitive*/ = $$4;
+  const b /*:number*/ = $$3;
+  const x /*:string*/ = $$0;
+  const a /*:number*/ = $$1;
+  const y /*:string*/ = $$2;
+  debugger;
+  $(x, y, a);
+  $(x, y, b);
+  $(x, y, c);
+  $(x, y, d);
+  return undefined;
+};
+f(`first1`, 1, `last1`, 2, `hi`, parseInt);
+f(`first2`, 3, `last2`, 4, true, null);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (x, a, y, b, c, d) {
+  $(x, y, a);
+  $(x, y, b);
+  $(x, y, c);
+  $(x, y, d);
+};
+f(`first1`, 1, `last1`, 2, `hi`, parseInt);
+f(`first2`, 3, `last2`, 4, true, null);
+`````
+
 ## Pre Normal
 
 
@@ -73,30 +109,7 @@ const tmpCalleeParam$25 = { a: 3, b: 4, c: true, d: null };
 tmpCallCallee$1(`first2`, tmpCalleeParam$25, `last2`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(string, number, string, number, primitive, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-  const d /*:unknown*/ = $$5;
-  const c /*:primitive*/ = $$4;
-  const b /*:number*/ = $$3;
-  const x /*:string*/ = $$0;
-  const a /*:number*/ = $$1;
-  const y /*:string*/ = $$2;
-  debugger;
-  $(x, y, a);
-  $(x, y, b);
-  $(x, y, c);
-  $(x, y, d);
-  return undefined;
-};
-f(`first1`, 1, `last1`, 2, `hi`, parseInt);
-f(`first2`, 3, `last2`, 4, true, null);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -122,7 +135,7 @@ a( "first2", 3, "last2", 4, true, null );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'first1', 'last1', 1
@@ -139,4 +152,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

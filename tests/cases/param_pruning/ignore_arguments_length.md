@@ -15,6 +15,20 @@ function f(x, y, z) {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(0, undefined, undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(0, undefined, undefined);
+`````
+
 ## Pre Normal
 
 
@@ -46,15 +60,7 @@ let f = function ($$0, $$1, $$2) {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(0, undefined, undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +71,7 @@ $( 0, undefined, undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0, undefined, undefined
@@ -75,4 +81,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

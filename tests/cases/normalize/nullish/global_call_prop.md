@@ -12,6 +12,20 @@
 $(parseInt(15)??foo);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(15);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(15);
+`````
+
 ## Pre Normal
 
 
@@ -32,15 +46,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(15);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -51,7 +57,7 @@ $( 15 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 15
@@ -61,4 +67,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -13,6 +13,32 @@ const a = {};
 $(a.b??c.d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $Object_prototype.b;
+const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
+if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = c.d;
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam = $Object_prototype.b;
+if (tmpCalleeParam == null) {
+  $(c.d);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
 ## Pre Normal
 
 
@@ -35,22 +61,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $Object_prototype.b;
-const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = c.d;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  $(tmpCalleeParam);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +82,7 @@ BAD@! Found 1 implicit global bindings:
 
 c
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -80,4 +91,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

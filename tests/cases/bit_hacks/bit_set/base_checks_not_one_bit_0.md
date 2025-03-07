@@ -19,6 +19,31 @@ if (set) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const v /*:unknown*/ = $(0);
+const and /*:number*/ = v & 65;
+const set /*:boolean*/ = and === 65;
+if (set) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (($(0) & 65) === 65) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,22 +72,7 @@ if (set) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const v /*:unknown*/ = $(0);
-const and /*:number*/ = v & 65;
-const set /*:boolean*/ = and === 65;
-if (set) {
-  $(`fail`);
-} else {
-  $(`pass`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +91,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -92,4 +102,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

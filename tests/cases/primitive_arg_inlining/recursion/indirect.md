@@ -22,6 +22,43 @@ function h(n) {
 $(f(0));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:(primitive)=>primitive*/ = function ($$0) {
+  const n$1 /*:primitive*/ = $$0;
+  debugger;
+  const tmpCalleeParam /*:primitive*/ = n$1 + 1;
+  const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
+  const tmpIfTest /*:boolean*/ = tmpBinLhs > 1000;
+  if (tmpIfTest) {
+    return tmpCalleeParam;
+  } else {
+    const tmpReturnArg$3 /*:primitive*/ = g(tmpCalleeParam);
+    return tmpReturnArg$3;
+  }
+};
+const tmpCalleeParam$1 /*:primitive*/ = g(0);
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function (n$1) {
+  const tmpCalleeParam = n$1 + 1;
+  if ($(tmpCalleeParam) > 1000) {
+    return tmpCalleeParam;
+  } else {
+    const tmpReturnArg$3 = g(tmpCalleeParam);
+    return tmpReturnArg$3;
+  }
+};
+$(g(0));
+`````
+
 ## Pre Normal
 
 
@@ -79,29 +116,7 @@ const tmpCalleeParam$1 = f(0);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:(primitive)=>primitive*/ = function ($$0) {
-  const n$1 /*:primitive*/ = $$0;
-  debugger;
-  const tmpCalleeParam /*:primitive*/ = n$1 + 1;
-  const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
-  const tmpIfTest /*:boolean*/ = tmpBinLhs > 1000;
-  if (tmpIfTest) {
-    return tmpCalleeParam;
-  } else {
-    const tmpReturnArg$3 /*:primitive*/ = g(tmpCalleeParam);
-    return tmpReturnArg$3;
-  }
-};
-const tmpCalleeParam$1 /*:primitive*/ = g(0);
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,7 +142,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -162,4 +177,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

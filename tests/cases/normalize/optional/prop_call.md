@@ -16,6 +16,43 @@ const a = {
 $(a).x?.(1, 2, 3);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  const args /*:array*/ = $$0;
+  debugger;
+  const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.y;
+  $(args, tmpCalleeParam$1);
+  return undefined;
+};
+const a /*:object*/ = { x: tmpObjLitVal, y: 100 };
+const tmpChainElementCall /*:unknown*/ = $(a);
+const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
+if (tmpIfTest) {
+} else {
+  $dotCall(tmpChainElementObject, tmpChainElementCall, `x`, 1, 2, 3);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = function (args) {
+  const tmpPrevalAliasThis = this;
+  $(args, tmpPrevalAliasThis.y);
+};
+const tmpChainElementCall = $({ x: tmpObjLitVal, y: 100 });
+const tmpChainElementObject = tmpChainElementCall.x;
+if (!(tmpChainElementObject == null)) {
+  $dotCall(tmpChainElementObject, tmpChainElementCall, `x`, 1, 2, 3);
+}
+`````
+
 ## Pre Normal
 
 
@@ -56,30 +93,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  const args /*:array*/ = $$0;
-  debugger;
-  const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.y;
-  $(args, tmpCalleeParam$1);
-  return undefined;
-};
-const a /*:object*/ = { x: tmpObjLitVal, y: 100 };
-const tmpChainElementCall /*:unknown*/ = $(a);
-const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
-if (tmpIfTest) {
-} else {
-  $dotCall(tmpChainElementObject, tmpChainElementCall, `x`, 1, 2, 3);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +124,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '"<function>"', y: '100' }
@@ -121,4 +135,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: BAD!!
+ - 1: { x: '"<function>"', y: '100' }
+ - 2: 1, 100
+ - eval returned: undefined

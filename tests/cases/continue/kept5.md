@@ -45,6 +45,76 @@ $(8);
 
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  nestedLoop: {
+    const tmpIfTest /*:unknown*/ = $(1);
+    if (tmpIfTest) {
+      const tmpIfTest$1 /*:unknown*/ = $(2);
+      if (tmpIfTest$1) {
+        break nestedLoop;
+      } else {
+      }
+    } else {
+    }
+    const tmpIfTest$3 /*:unknown*/ = $(3);
+    if (tmpIfTest$3) {
+      break;
+    } else {
+    }
+  }
+}
+$(4);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest$5 /*:unknown*/ = $(5);
+  if (tmpIfTest$5) {
+    const tmpIfTest$7 /*:unknown*/ = $(6);
+    if (tmpIfTest$7) {
+      const tmpIfTest$9 /*:unknown*/ = $(7);
+      if (tmpIfTest$9) {
+        break;
+      } else {
+      }
+    } else {
+    }
+  } else {
+  }
+}
+$(8);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  nestedLoop: {
+    if ($(1)) {
+      if ($(2)) {
+        break nestedLoop;
+      }
+    }
+    if ($(3)) {
+      break;
+    }
+  }
+}
+$(4);
+while (true) {
+  if ($(5)) {
+    if ($(6)) {
+      if ($(7)) {
+        break;
+      }
+    }
+  }
+}
+$(8);
+`````
+
 ## Pre Normal
 
 
@@ -128,49 +198,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(8);
 `````
 
-## Output
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  nestedLoop: {
-    const tmpIfTest /*:unknown*/ = $(1);
-    if (tmpIfTest) {
-      const tmpIfTest$1 /*:unknown*/ = $(2);
-      if (tmpIfTest$1) {
-        break nestedLoop;
-      } else {
-      }
-    } else {
-    }
-    const tmpIfTest$3 /*:unknown*/ = $(3);
-    if (tmpIfTest$3) {
-      break;
-    } else {
-    }
-  }
-}
-$(4);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$5 /*:unknown*/ = $(5);
-  if (tmpIfTest$5) {
-    const tmpIfTest$7 /*:unknown*/ = $(6);
-    if (tmpIfTest$7) {
-      const tmpIfTest$9 /*:unknown*/ = $(7);
-      if (tmpIfTest$9) {
-        break;
-      } else {
-      }
-    } else {
-    }
-  } else {
-  }
-}
-$(8);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -209,7 +237,7 @@ $( 8 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -244,7 +272,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

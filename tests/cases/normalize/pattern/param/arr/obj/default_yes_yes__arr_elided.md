@@ -15,6 +15,38 @@ function f([{} = $('fail')] = $(['fail2'])) {
 $(f([, , , 1, 20, 30], 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arrPatternStep /*:unknown*/ = $(`fail`);
+let objPatternCrashTest /*:boolean*/ = arrPatternStep === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  arrPatternStep.cannotDestructureThis;
+} else {
+}
+$(`ok`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arrPatternStep = $(`fail`);
+let objPatternCrashTest = arrPatternStep === undefined;
+if (!objPatternCrashTest) {
+  objPatternCrashTest = arrPatternStep === null;
+}
+if (objPatternCrashTest) {
+  arrPatternStep.cannotDestructureThis;
+}
+$(`ok`);
+`````
+
 ## Pre Normal
 
 
@@ -70,25 +102,7 @@ const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 200);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arrPatternStep /*:unknown*/ = $(`fail`);
-let objPatternCrashTest /*:boolean*/ = arrPatternStep === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = arrPatternStep === null;
-}
-if (objPatternCrashTest) {
-  arrPatternStep.cannotDestructureThis;
-} else {
-}
-$(`ok`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +124,7 @@ $( "ok" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'fail'
@@ -121,7 +135,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

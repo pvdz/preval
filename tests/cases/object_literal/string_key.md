@@ -16,6 +16,38 @@ const x = {
 $(x, x['Hey, me too!']());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitPropVal /*:unknown*/ = $(1);
+const x /*:object*/ = {
+  [`hello, world!`]: tmpObjLitPropVal,
+  [`hey, me too!`]() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(2);
+    return tmpReturnArg;
+  },
+};
+const tmpCalleeParam$1 /*:unknown*/ = x[`Hey, me too!`]();
+$(x, tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitPropVal = $(1);
+const x = {
+  [`hello, world!`]: tmpObjLitPropVal,
+  [`hey, me too!`]() {
+    const tmpReturnArg = $(2);
+    return tmpReturnArg;
+  },
+};
+$(x, x[`Hey, me too!`]());
+`````
+
 ## Pre Normal
 
 
@@ -49,25 +81,7 @@ const tmpCalleeParam$1 = x[`Hey, me too!`]();
 $(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitPropVal /*:unknown*/ = $(1);
-const x /*:object*/ = {
-  [`hello, world!`]: tmpObjLitPropVal,
-  [`hey, me too!`]() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(2);
-    return tmpReturnArg;
-  },
-};
-const tmpCalleeParam$1 /*:unknown*/ = x[`Hey, me too!`]();
-$(x, tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +102,7 @@ $( b, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -98,4 +112,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

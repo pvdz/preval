@@ -20,6 +20,43 @@ switch ($(1)) {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const b /*:object*/ = { c: 10, d: 20 };
+if (tmpIfTest) {
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpCompProp /*:unknown*/ = $(`d`);
+  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+  b.c = tmpNestedAssignPropRhs;
+  $(tmpNestedAssignPropRhs, b);
+} else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(1) === $(1);
+const b = { c: 10, d: 20 };
+if (tmpIfTest) {
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+  b.c = tmpNestedAssignPropRhs;
+  $(tmpNestedAssignPropRhs, b);
+} else {
+  $({ a: 999, b: 1000 }, b);
+}
+`````
+
 ## Pre Normal
 
 
@@ -61,28 +98,7 @@ if (tmpIfTest) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-const b /*:object*/ = { c: 10, d: 20 };
-if (tmpIfTest) {
-  const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`d`);
-  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-  b.c = tmpNestedAssignPropRhs;
-  $(tmpNestedAssignPropRhs, b);
-} else {
-  const a /*:object*/ = { a: 999, b: 1000 };
-  $(a, b);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -113,7 +129,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -127,4 +143,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

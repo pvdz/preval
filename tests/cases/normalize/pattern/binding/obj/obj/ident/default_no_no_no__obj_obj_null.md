@@ -13,6 +13,20 @@ const { x: { y } } = { x: { x: 1, y: null, z: 3 }, b: 11, c: 12 };
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(null);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(null);
+`````
+
 ## Pre Normal
 
 
@@ -34,15 +48,7 @@ const y = objPatternNoDefault.y;
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(null);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +59,7 @@ $( null );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: null
@@ -63,4 +69,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

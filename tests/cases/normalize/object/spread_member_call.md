@@ -13,6 +13,36 @@ const obj = {foo() { return $({ x: 1 }); }};
 $({...obj.foo()});
 `````
 
+## Settled
+
+
+`````js filename=intro
+const obj /*:object*/ = {
+  foo() {
+    debugger;
+    const tmpCalleeParam /*:object*/ = { x: 1 };
+    const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
+    return tmpReturnArg;
+  },
+};
+const tmpObjSpread /*:unknown*/ = obj.foo();
+const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjSpread = {
+  foo() {
+    const tmpReturnArg = $({ x: 1 });
+    return tmpReturnArg;
+  },
+}.foo();
+$({ ...tmpObjSpread });
+`````
+
 ## Pre Normal
 
 
@@ -43,25 +73,7 @@ const tmpCalleeParam$1 = { ...tmpObjSpread };
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const obj /*:object*/ = {
-  foo() {
-    debugger;
-    const tmpCalleeParam /*:object*/ = { x: 1 };
-    const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
-    return tmpReturnArg;
-  },
-};
-const tmpObjSpread /*:unknown*/ = obj.foo();
-const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +92,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -91,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

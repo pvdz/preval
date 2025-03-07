@@ -18,6 +18,29 @@ ARR.push(item);
 $(NOOP);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const ARR /*:array*/ = [`b`, `c`, `a`];
+const NOOP /*:()=>unknown*/ = function () {
+  debugger;
+  $(ARR);
+  return undefined;
+};
+$(NOOP);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const ARR = [`b`, `c`, `a`];
+$(function () {
+  $(ARR);
+});
+`````
+
 ## Pre Normal
 
 
@@ -47,21 +70,7 @@ ARR.push(item);
 $(NOOP);
 `````
 
-## Output
-
-
-`````js filename=intro
-const ARR /*:array*/ = [`b`, `c`, `a`];
-const NOOP /*:()=>unknown*/ = function () {
-  debugger;
-  $(ARR);
-  return undefined;
-};
-$(NOOP);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +87,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -88,4 +97,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

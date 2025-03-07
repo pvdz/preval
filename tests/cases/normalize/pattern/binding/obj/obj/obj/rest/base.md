@@ -17,6 +17,24 @@ const {
 $(z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$3 /*:object*/ = { z: 1, a: 2, b: 3 };
+const tmpCalleeParam$1 /*:array*/ = [];
+const z /*:unknown*/ = objPatternRest(tmpObjLitVal$3, tmpCalleeParam$1, undefined);
+$(z);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal$3 = { z: 1, a: 2, b: 3 };
+$(objPatternRest(tmpObjLitVal$3, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -45,18 +63,7 @@ const z = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(z);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$3 /*:object*/ = { z: 1, a: 2, b: 3 };
-const tmpCalleeParam$1 /*:array*/ = [];
-const z /*:unknown*/ = objPatternRest(tmpObjLitVal$3, tmpCalleeParam$1, undefined);
-$(z);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +81,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { z: '1', a: '2', b: '3' }
@@ -84,4 +91,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

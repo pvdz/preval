@@ -16,6 +16,24 @@ const arr = [
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $spy();
+const tmpArrElement /*:string*/ = $coerce(x, `plustr`);
+const arr /*:array*/ = [tmpArrElement];
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArrElement = $coerce($spy(), `plustr`);
+$([tmpArrElement]);
+`````
+
 ## Pre Normal
 
 
@@ -36,18 +54,7 @@ const arr = [tmpArrElement];
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $spy();
-const tmpArrElement /*:string*/ = $coerce(x, `plustr`);
-const arr /*:array*/ = [tmpArrElement];
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +68,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]
@@ -73,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

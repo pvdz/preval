@@ -23,6 +23,46 @@ try {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+try {
+  $(1);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $(2);
+    const tmpIfTest /*:unknown*/ = $(3);
+    if (tmpIfTest) {
+    } else {
+      $(4);
+    }
+  }
+} catch ($finalImplicit) {
+  $(5);
+  throw $finalImplicit;
+}
+$(5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+try {
+  $(1);
+  while (true) {
+    $(2);
+    if (!$(3)) {
+      $(4);
+    }
+  }
+} catch ($finalImplicit) {
+  $(5);
+  throw $finalImplicit;
+}
+$(5);
+`````
+
 ## Pre Normal
 
 
@@ -88,29 +128,7 @@ if ($implicitThrow) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-try {
-  $(1);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(2);
-    const tmpIfTest /*:unknown*/ = $(3);
-    if (tmpIfTest) {
-    } else {
-      $(4);
-    }
-  }
-} catch ($finalImplicit) {
-  $(5);
-  throw $finalImplicit;
-}
-$(5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -138,7 +156,7 @@ $( 5 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -173,7 +191,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

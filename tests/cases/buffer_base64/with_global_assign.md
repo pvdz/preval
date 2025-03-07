@@ -22,6 +22,41 @@ $(f("cGF0aA")); // path
 $(unknown);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown)=>string*/ = function ($$0) {
+  const x /*:unknown*/ = $$0;
+  debugger;
+  unknown = x;
+  const tmp /*:buffer*/ = $Buffer_from(x, `base64`);
+  const tmp2 /*:string*/ = tmp.toString(`utf8`);
+  return tmp2;
+};
+let unknown /*:unknown*/ = $(1);
+$(f);
+unknown = `cGF0aA`;
+$(`path`);
+$(unknown);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (x) {
+  unknown = x;
+  const tmp2 = $Buffer_from(x, `base64`).toString(`utf8`);
+  return tmp2;
+};
+let unknown = $(1);
+$(f);
+unknown = `cGF0aA`;
+$(`path`);
+$(unknown);
+`````
+
 ## Pre Normal
 
 
@@ -60,27 +95,7 @@ $(tmpCalleeParam);
 $(unknown);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unknown)=>string*/ = function ($$0) {
-  const x /*:unknown*/ = $$0;
-  debugger;
-  unknown = x;
-  const tmp /*:buffer*/ = $Buffer_from(x, `base64`);
-  const tmp2 /*:string*/ = tmp.toString(`utf8`);
-  return tmp2;
-};
-let unknown /*:unknown*/ = $(1);
-$(f);
-unknown = `cGF0aA`;
-$(`path`);
-$(unknown);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +118,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -116,7 +131,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Buffer_from

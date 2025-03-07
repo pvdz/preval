@@ -20,6 +20,63 @@ while ($(true)) {
 $('after');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  const tmpCalleeParam /*:array*/ = [10, 20];
+  const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest$1) {
+  } else {
+    tmpForOfNext.value;
+  }
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$2 /*:unknown*/ = $(true);
+    if (tmpIfTest$2) {
+      const tmpCalleeParam$1 /*:array*/ = [10, 20];
+      const tmpForOfGen$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
+      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
+      const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
+      if (tmpIfTest$4) {
+      } else {
+        tmpForOfNext$1.value;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  const tmpForOfNext = $forOf([10, 20]).next();
+  if (!tmpForOfNext.done) {
+    tmpForOfNext.value;
+  }
+  while (true) {
+    if ($(true)) {
+      const tmpForOfNext$1 = $forOf([10, 20]).next();
+      if (!tmpForOfNext$1.done) {
+        tmpForOfNext$1.value;
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(`after`);
+`````
+
 ## Pre Normal
 
 
@@ -70,42 +127,7 @@ while (true) {
 $(`after`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const tmpCalleeParam /*:array*/ = [10, 20];
-  const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest$1) {
-  } else {
-    tmpForOfNext.value;
-  }
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 /*:unknown*/ = $(true);
-    if (tmpIfTest$2) {
-      const tmpCalleeParam$1 /*:array*/ = [10, 20];
-      const tmpForOfGen$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
-      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
-      const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
-      if (tmpIfTest$4) {
-      } else {
-        tmpForOfNext$1.value;
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(`after`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -147,7 +169,7 @@ $( "after" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -182,4 +204,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

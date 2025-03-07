@@ -23,6 +23,40 @@ const rs = r + '';
 $(rs);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(string, string)=>string*/ = function $free($$0, $$1) {
+  const xs$1 /*:string*/ = $$0;
+  const ys$1 /*:string*/ = $$1;
+  debugger;
+  const tmpCalleeParam /*:string*/ = xs$1 + 5;
+  const one /*:number*/ = parseInt(tmpCalleeParam, 10);
+  const two /*:unknown*/ = one.slice(1, ys$1);
+  const tmpRet /*:string*/ = $coerce(two, `plustr`);
+  return tmpRet;
+};
+const x /*:unknown*/ = $spy(`x`);
+const xs /*:string*/ = $coerce(x, `plustr`);
+const y /*:unknown*/ = $spy(`y`);
+const ys /*:string*/ = $coerce(y, `plustr`);
+const rs /*:string*/ = $frfr(tmpFree, xs, ys);
+$(rs);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(xs$1, ys$1) {
+  const tmpRet = $coerce(parseInt(xs$1 + 5, 10).slice(1, ys$1), `plustr`);
+  return tmpRet;
+};
+const xs = $coerce($spy(`x`), `plustr`);
+$($frfr(tmpFree, xs, $coerce($spy(`y`), `plustr`)));
+`````
+
 ## Pre Normal
 
 
@@ -69,30 +103,7 @@ const rs = $coerce(r, `plustr`);
 $(rs);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(string, string)=>string*/ = function $free($$0, $$1) {
-  const xs$1 /*:string*/ = $$0;
-  const ys$1 /*:string*/ = $$1;
-  debugger;
-  const tmpCalleeParam /*:string*/ = xs$1 + 5;
-  const one /*:number*/ = parseInt(tmpCalleeParam, 10);
-  const two /*:unknown*/ = one.slice(1, ys$1);
-  const tmpRet /*:string*/ = $coerce(two, `plustr`);
-  return tmpRet;
-};
-const x /*:unknown*/ = $spy(`x`);
-const xs /*:string*/ = $coerce(x, `plustr`);
-const y /*:unknown*/ = $spy(`y`);
-const ys /*:string*/ = $coerce(y, `plustr`);
-const rs /*:string*/ = $frfr(tmpFree, xs, ys);
-$(rs);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +129,7 @@ $( m );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['x', 'x']
@@ -131,4 +142,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

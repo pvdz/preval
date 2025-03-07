@@ -13,6 +13,21 @@ const x = 10;
 $(x?.[20]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpChainElementObject /*:unknown*/ = (10)[20];
+$(tmpChainElementObject);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$((10)[20]);
+`````
+
 ## Pre Normal
 
 
@@ -38,16 +53,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpChainElementObject /*:unknown*/ = (10)[20];
-$(tmpChainElementObject);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +65,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -69,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -23,6 +23,20 @@ f(1);
 f(2);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (x) {
+  if (x) {
+    $(x, { xyz: x });
+  }
+  $(`end`);
+};
+f(1);
+f(2);
+`````
+
 ## Pre Normal
 
 
@@ -62,7 +76,7 @@ f(1);
 f(2);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -81,8 +95,7 @@ f(1);
 f(2);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -117,4 +130,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,57 @@ while (++$($(b)).x) $(100);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(b);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+if (varInitAssignLhsComputedRhs) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 /*:unknown*/ = $(b);
+    const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj$1.x;
+    const varInitAssignLhsComputedRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
+    varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
+    if (varInitAssignLhsComputedRhs$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const varInitAssignLhsComputedObj = $($(b));
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x + 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+if (varInitAssignLhsComputedRhs) {
+  while (true) {
+    $(100);
+    const varInitAssignLhsComputedObj$1 = $($(b));
+    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedObj$1.x + 1;
+    varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
+    if (!varInitAssignLhsComputedRhs$1) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -48,37 +99,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpCalleeParam$1 /*:unknown*/ = $(b);
-    const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj$1.x;
-    const varInitAssignLhsComputedRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
-    varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-    if (varInitAssignLhsComputedRhs$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +136,7 @@ $( j, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -150,7 +171,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

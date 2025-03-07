@@ -16,6 +16,42 @@ $($(100) || (a = new (1, 2, $(b)).$(1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
+if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+} else {
+  const b /*:object*/ = { $: $ };
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
+  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee(1);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = $(100);
+if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+} else {
+  const tmpNewCallee = $({ $: $ }).$;
+  const tmpNestedComplexRhs = new tmpNewCallee(1);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -45,27 +81,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam /*:unknown*/ = $(100);
-if (tmpCalleeParam) {
-  $(tmpCalleeParam);
-} else {
-  const b /*:object*/ = { $: $ };
-  const tmpCompObj /*:unknown*/ = $(b);
-  const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee(1);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +108,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -104,4 +120,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

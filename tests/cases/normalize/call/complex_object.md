@@ -13,6 +13,22 @@ const a = {b: $};
 $(a).b(1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:object*/ = { b: $ };
+const tmpCallObj /*:unknown*/ = $(a);
+tmpCallObj.b(1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ b: $ }).b(1);
+`````
+
 ## Pre Normal
 
 
@@ -30,17 +46,7 @@ const tmpCallObj = $(a);
 tmpCallObj.b(1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:object*/ = { b: $ };
-const tmpCallObj /*:unknown*/ = $(a);
-tmpCallObj.b(1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +59,7 @@ b.b( 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { b: '"<$>"' }
@@ -64,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

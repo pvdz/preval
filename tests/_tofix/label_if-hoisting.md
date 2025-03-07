@@ -26,6 +26,21 @@ if ($(1)) {
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(1)) {
+  if (!$(2)) {
+    $(3);
+  }
+} else {
+  if (!$(3)) {
+    $(4);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -73,7 +88,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -93,8 +108,7 @@ if (tmpIfTest) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -134,4 +148,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

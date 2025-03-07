@@ -27,6 +27,49 @@ if ($) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const oops /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
+  const args /*:array*/ = $$0;
+  debugger;
+  $(...args);
+  x = `fail`;
+  return undefined;
+};
+let x /*:primitive*/ = 5;
+$(5);
+if ($) {
+  x = 10;
+  oops(10, `a`);
+} else {
+  x = 20;
+  oops(20, `b`);
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const oops = function (args) {
+  $(...args);
+  x = `fail`;
+};
+let x = 5;
+$(5);
+if ($) {
+  x = 10;
+  oops(10, `a`);
+} else {
+  x = 20;
+  oops(20, `b`);
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -72,31 +115,7 @@ if ($) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const oops /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
-  const args /*:array*/ = $$0;
-  debugger;
-  $(...args);
-  x = `fail`;
-  return undefined;
-};
-let x /*:primitive*/ = 5;
-$(5);
-if ($) {
-  x = 10;
-  oops(10, `a`);
-} else {
-  x = 20;
-  oops(20, `b`);
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -124,7 +143,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5
@@ -136,4 +155,8 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: BAD!!
+ - 1: 5
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')

@@ -69,6 +69,66 @@ loopStop$3: {
 $(a());
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = [
+  `o+qs5DkTS`,
+  `displayNam`,
+  `VQ5vY4Jbig`,
+  `previous`,
+  `nk">`,
+  `TqTwnd5/c+`,
+  `FaGG+cRqIi`,
+  `getPrototy`,
+  `ch2p7teUW5`,
+  `binary`,
+  `1549114mYdRSK`,
+  `qfVUyPGyG`,
+  `nV7NqmuKE`,
+  `MVWzWKgjww`,
+  `mark`,
+  `//BaPJuXX`,
+  `loaded`,
+  `call`,
+  `he WebCryp`,
+  `RSASSA-PKC`,
+  `E31n2Gh9QE`,
+  `N8h3TKFzuv`,
+  `Stb3euiWtm`,
+  `return`,
+  `ILhA`,
+  `G9w0BAQEFA`,
+  `7340072VkQjzG`,
+  `c-link" ta`,
+  `63rBGDGDE`,
+  `b6cIzo9YK`,
+  `RuH/AHrSL6`,
+  `replace`,
+  `encode`,
+  `Vk2ghqMihj`,
+  `setPrototy`,
+  `ker.`,
+  `asyncItera`,
+  `t provide `,
+];
+while (true) {
+  $(`loop`);
+  a[369];
+  a[89];
+  a[504];
+  a[334];
+  a[254];
+  if (parseInt(a[112])) {
+    break;
+  } else {
+    a.push(a.shift());
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -270,7 +330,7 @@ const tmpCalleeParam$15 = a();
 $(tmpCalleeParam$15);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -333,8 +393,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -398,4 +457,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

@@ -56,6 +56,29 @@ if (set) {
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const bit /*:number*/ = objDestructible & 1;
+if (bit) {
+  $(16);
+} else {
+  $(32);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (objDestructible & 1) {
+  $(16);
+} else {
+  $(32);
+}
+`````
+
 ## Pre Normal
 
 
@@ -86,20 +109,7 @@ if (set) {
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const bit /*:number*/ = objDestructible & 1;
-if (bit) {
-  $(16);
-} else {
-  $(32);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -118,7 +128,7 @@ BAD@! Found 1 implicit global bindings:
 
 objDestructible
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -127,4 +137,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

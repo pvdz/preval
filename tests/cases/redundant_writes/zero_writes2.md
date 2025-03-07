@@ -26,6 +26,62 @@ while (true) {
 $(x, 'last'); // unknown ref (!)
 `````
 
+## Settled
+
+
+`````js filename=intro
+while (true) {
+  const tmpClusterSSA_y /*:unknown*/ = $(true);
+  if (tmpClusterSSA_y) {
+    $(tmpClusterSSA_y, `before`);
+    let x$1 /*:unknown*/ = undefined;
+    const obj /*:object*/ = { a: 1, b: 2 };
+    const tmpForInGen /*:unknown*/ = $forIn(obj);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+      const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+      if (tmpIfTest) {
+        break;
+      } else {
+        x$1 = tmpForInNext.value;
+        $(x$1, tmpClusterSSA_y);
+      }
+    }
+    $(x$1, tmpClusterSSA_y, `after`);
+  } else {
+    break;
+  }
+}
+$(x, `last`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  const tmpClusterSSA_y = $(true);
+  if (tmpClusterSSA_y) {
+    $(tmpClusterSSA_y, `before`);
+    let x$1 = undefined;
+    const tmpForInGen = $forIn({ a: 1, b: 2 });
+    while (true) {
+      const tmpForInNext = tmpForInGen.next();
+      if (tmpForInNext.done) {
+        break;
+      } else {
+        x$1 = tmpForInNext.value;
+        $(x$1, tmpClusterSSA_y);
+      }
+    }
+    $(x$1, tmpClusterSSA_y, `after`);
+  } else {
+    break;
+  }
+}
+$(x, `last`);
+`````
+
 ## Pre Normal
 
 
@@ -94,37 +150,7 @@ while (true) {
 $(x, `last`);
 `````
 
-## Output
-
-
-`````js filename=intro
-while (true) {
-  const tmpClusterSSA_y /*:unknown*/ = $(true);
-  if (tmpClusterSSA_y) {
-    $(tmpClusterSSA_y, `before`);
-    let x$1 /*:unknown*/ = undefined;
-    const obj /*:object*/ = { a: 1, b: 2 };
-    const tmpForInGen /*:unknown*/ = $forIn(obj);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-      const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-      if (tmpIfTest) {
-        break;
-      } else {
-        x$1 = tmpForInNext.value;
-        $(x$1, tmpClusterSSA_y);
-      }
-    }
-    $(x$1, tmpClusterSSA_y, `after`);
-  } else {
-    break;
-  }
-}
-$(x, `last`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -164,7 +190,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -199,7 +225,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

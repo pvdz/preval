@@ -31,6 +31,61 @@ while (flag) {
 $('after');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`before`);
+const tmpBinBothRhs /*:unknown*/ = $(5);
+const x /*:boolean*/ = 0 < tmpBinBothRhs;
+let tmpClusterSSA_flag /*:unknown*/ = x;
+if (x) {
+  $(`inner`, 0);
+  let tmpClusterSSA_n /*:number*/ = 1;
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_flag) {
+      $(`inner`, tmpClusterSSA_n);
+      tmpClusterSSA_n = tmpClusterSSA_n + 1;
+      const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_n >= 5;
+      if (tmpIfTest$1) {
+        tmpClusterSSA_flag = false;
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`before`);
+const tmpBinBothRhs = $(5);
+const x = 0 < tmpBinBothRhs;
+let tmpClusterSSA_flag = x;
+if (x) {
+  $(`inner`, 0);
+  let tmpClusterSSA_n = 1;
+  while (true) {
+    if (tmpClusterSSA_flag) {
+      $(`inner`, tmpClusterSSA_n);
+      tmpClusterSSA_n = tmpClusterSSA_n + 1;
+      if (tmpClusterSSA_n >= 5) {
+        tmpClusterSSA_flag = false;
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(`after`);
+`````
+
 ## Pre Normal
 
 
@@ -84,37 +139,7 @@ while (true) {
 $(`after`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`before`);
-const tmpBinBothRhs /*:unknown*/ = $(5);
-const x /*:boolean*/ = 0 < tmpBinBothRhs;
-let tmpClusterSSA_flag /*:unknown*/ = x;
-if (x) {
-  $(`inner`, 0);
-  let tmpClusterSSA_n /*:number*/ = 1;
-  while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_flag) {
-      $(`inner`, tmpClusterSSA_n);
-      tmpClusterSSA_n = tmpClusterSSA_n + 1;
-      const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_n >= 5;
-      if (tmpIfTest$1) {
-        tmpClusterSSA_flag = false;
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(`after`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -146,7 +171,7 @@ $( "after" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'before'
@@ -163,4 +188,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

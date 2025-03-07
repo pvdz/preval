@@ -14,6 +14,23 @@ if ((a = $($)(1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallComplexCallee /*:unknown*/ = $($);
+const a /*:unknown*/ = tmpCallComplexCallee(1);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallComplexCallee = $($);
+$(tmpCallComplexCallee(1));
+`````
+
 ## Pre Normal
 
 
@@ -34,17 +51,7 @@ let tmpIfTest = a;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallComplexCallee /*:unknown*/ = $($);
-const a /*:unknown*/ = tmpCallComplexCallee(1);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +64,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -69,4 +76,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

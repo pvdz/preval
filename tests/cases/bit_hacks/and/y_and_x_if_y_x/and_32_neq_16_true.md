@@ -20,6 +20,34 @@ if (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const spy /*:unknown*/ = $spy(33);
+const x /*:number*/ = spy & 32;
+const tmpCalleeParam /*:boolean*/ = spy !== 16;
+if (x) {
+  $(`fail`, tmpCalleeParam);
+} else {
+  $(`pass`, tmpCalleeParam);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const spy = $spy(33);
+const x = spy & 32;
+const tmpCalleeParam = spy !== 16;
+if (x) {
+  $(`fail`, tmpCalleeParam);
+} else {
+  $(`pass`, tmpCalleeParam);
+}
+`````
+
 ## Pre Normal
 
 
@@ -48,22 +76,7 @@ if (x) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const spy /*:unknown*/ = $spy(33);
-const x /*:number*/ = spy & 32;
-const tmpCalleeParam /*:boolean*/ = spy !== 16;
-if (x) {
-  $(`fail`, tmpCalleeParam);
-} else {
-  $(`pass`, tmpCalleeParam);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +95,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [33, 33]
@@ -94,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

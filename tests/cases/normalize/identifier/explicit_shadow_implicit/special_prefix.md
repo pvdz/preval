@@ -17,6 +17,23 @@
 $($implicit$foo);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const $implicit$foo$1 /*:unknown*/ = $(1);
+$($implicit$foo$1);
+$($implicit$foo);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(1));
+$($implicit$foo);
+`````
+
 ## Pre Normal
 
 
@@ -37,17 +54,7 @@ $($implicit$foo$1);
 $($implicit$foo);
 `````
 
-## Output
-
-
-`````js filename=intro
-const $implicit$foo$1 /*:unknown*/ = $(1);
-$($implicit$foo$1);
-$($implicit$foo);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +69,7 @@ BAD@! Found 1 implicit global bindings:
 
 $implicit$foo
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -73,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

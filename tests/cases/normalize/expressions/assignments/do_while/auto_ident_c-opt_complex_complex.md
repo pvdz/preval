@@ -18,6 +18,70 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+$(100);
+const b /*:object*/ = { x: 1 };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`x`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  a = tmpChainElementObject;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpChainElementCall$1 /*:unknown*/ = $(b);
+    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$1 == null;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpChainRootComputed$1 /*:unknown*/ = $(`x`);
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
+      a = tmpChainElementObject$1;
+    }
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+$(100);
+const b = { x: 1 };
+const tmpChainElementCall = $(b);
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`x`);
+  a = tmpChainElementCall[tmpChainRootComputed];
+}
+if (a) {
+  while (true) {
+    $(100);
+    const tmpChainElementCall$1 = $(b);
+    if (!(tmpChainElementCall$1 == null)) {
+      const tmpChainRootComputed$1 = $(`x`);
+      a = tmpChainElementCall$1[tmpChainRootComputed$1];
+    }
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -63,44 +127,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-$(100);
-const b /*:object*/ = { x: 1 };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpChainElementCall$1 /*:unknown*/ = $(b);
-    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$1 == null;
-    if (tmpIfTest$2) {
-    } else {
-      const tmpChainRootComputed$1 /*:unknown*/ = $(`x`);
-      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
-      a = tmpChainElementObject$1;
-    }
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -145,7 +172,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -180,7 +207,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

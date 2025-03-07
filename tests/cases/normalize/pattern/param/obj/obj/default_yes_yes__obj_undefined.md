@@ -15,6 +15,39 @@ function f({ x: {} = $({ x: 'pass' }) } = $({ x: { y: 'fail2' } })) {
 $(f({ x: undefined, b: 11, c: 12 }, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { x: `pass` };
+const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
+let tmpClusterSSA_objPatternCrashTest /*:boolean*/ = objPatternAfterDefault === undefined;
+if (tmpClusterSSA_objPatternCrashTest) {
+} else {
+  tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (tmpClusterSSA_objPatternCrashTest) {
+  objPatternAfterDefault.cannotDestructureThis;
+} else {
+}
+$(`ok`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternAfterDefault = $({ x: `pass` });
+let tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === undefined;
+if (!tmpClusterSSA_objPatternCrashTest) {
+  tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (tmpClusterSSA_objPatternCrashTest) {
+  objPatternAfterDefault.cannotDestructureThis;
+}
+$(`ok`);
+`````
+
 ## Pre Normal
 
 
@@ -71,26 +104,7 @@ const tmpCalleeParam$3 = tmpCallCallee(tmpCalleeParam$5, 10);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { x: `pass` };
-const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
-let tmpClusterSSA_objPatternCrashTest /*:boolean*/ = objPatternAfterDefault === undefined;
-if (tmpClusterSSA_objPatternCrashTest) {
-} else {
-  tmpClusterSSA_objPatternCrashTest = objPatternAfterDefault === null;
-}
-if (tmpClusterSSA_objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
-} else {
-}
-$(`ok`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -113,7 +127,7 @@ $( "ok" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '"pass"' }
@@ -124,4 +138,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

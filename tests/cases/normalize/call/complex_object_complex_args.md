@@ -13,6 +13,26 @@ const a = {b: $};
 $(a).b($(1), $(2));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:object*/ = { b: $ };
+const tmpCallObj /*:unknown*/ = $(a);
+const tmpCallVal /*:unknown*/ = tmpCallObj.b;
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+$dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam, tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallObj = $({ b: $ });
+tmpCallObj.b(`b`, $(1), $(2));
+`````
+
 ## Pre Normal
 
 
@@ -33,20 +53,7 @@ const tmpCalleeParam$1 = $(2);
 $dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:object*/ = { b: $ };
-const tmpCallObj /*:unknown*/ = $(a);
-const tmpCallVal /*:unknown*/ = tmpCallObj.b;
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-$dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam, tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +69,7 @@ $dotCall( c, b, "b", d, e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { b: '"<$>"' }
@@ -75,4 +82,11 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: BAD!!
+ - 1: { b: '"<$>"' }
+ - 2: 1
+ - 3: 2
+ - 4: 'b', 1, 2
+ - eval returned: undefined

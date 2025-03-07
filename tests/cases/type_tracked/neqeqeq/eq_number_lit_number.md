@@ -13,6 +13,24 @@ const x = 1 * $(2); // Must be number
 $(x !== 2); // Both are number so we can't predict the outcome
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothRhs /*:unknown*/ = $(2);
+const x /*:number*/ = 1 * tmpBinBothRhs;
+const tmpCalleeParam /*:boolean*/ = x !== 2;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothRhs = $(2);
+$(1 * tmpBinBothRhs !== 2);
+`````
+
 ## Pre Normal
 
 
@@ -32,18 +50,7 @@ const tmpCalleeParam = x !== 2;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothRhs /*:unknown*/ = $(2);
-const x /*:number*/ = 1 * tmpBinBothRhs;
-const tmpCalleeParam /*:boolean*/ = x !== 2;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +64,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -68,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

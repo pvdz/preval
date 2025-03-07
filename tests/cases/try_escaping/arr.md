@@ -30,6 +30,41 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam /*:primitive*/ = arr[0];
+  $(tmpCalleeParam);
+  const a /*:primitive*/ = arr[286];
+  if (a) {
+    break;
+  } else {
+    const M /*:unknown*/ = arr.shift();
+    arr.push(M);
+  }
+}
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while (true) {
+  $(arr[0]);
+  if (arr[286]) {
+    break;
+  } else {
+    arr.push(arr.shift());
+  }
+}
+$(arr);
+`````
+
 ## Pre Normal
 
 
@@ -79,27 +114,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCalleeParam /*:primitive*/ = arr[0];
-  $(tmpCalleeParam);
-  const a /*:primitive*/ = arr[286];
-  if (a) {
-    break;
-  } else {
-    const M /*:unknown*/ = arr.shift();
-    arr.push(M);
-  }
-}
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -123,7 +138,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -158,7 +173,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

@@ -14,6 +14,22 @@ throw [];
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpThrowArg /*:array*/ = [];
+throw tmpThrowArg;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpThrowArg = [];
+throw tmpThrowArg;
+`````
+
 ## Pre Normal
 
 
@@ -32,16 +48,7 @@ const tmpThrowArg = [];
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpThrowArg /*:array*/ = [];
-throw tmpThrowArg;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +60,7 @@ throw a;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[  ]>')
@@ -62,4 +69,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -34,6 +34,30 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`something`);
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  $(100);
+} else {
+}
+$(100);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`something`);
+if ($(1)) {
+  $(100);
+}
+$(100);
+`````
+
 ## Pre Normal
 
 
@@ -72,21 +96,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`something`);
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  $(100);
-} else {
-}
-$(100);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -102,7 +112,7 @@ $( 100 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'something'
@@ -115,4 +125,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

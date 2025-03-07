@@ -24,6 +24,32 @@ export default function f() {}
 f = 10;
 `````
 
+## Settled
+
+
+`````js filename=intro
+import { default as x } from 'x';
+$(x);
+`````
+
+`````js filename=x
+const f /*:number*/ = 10;
+export { f as default };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+import { default as x } from 'x';
+$(x);
+`````
+
+`````js filename=x
+const f = 10;
+export { f as default };
+`````
+
 ## Pre Normal
 
 
@@ -57,21 +83,7 @@ f = 10;
 export { f as default };
 `````
 
-## Output
-
-
-`````js filename=intro
-import { default as x } from 'x';
-$(x);
-`````
-
-`````js filename=x
-const f /*:number*/ = 10;
-export { f as default };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -90,7 +102,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')
@@ -99,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

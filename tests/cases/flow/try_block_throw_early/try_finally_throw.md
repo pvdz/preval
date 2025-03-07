@@ -24,6 +24,42 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:string*/ = `pass`;
+try {
+  fail_early;
+  x = `fail`;
+} catch ($finalImplicit) {
+  $(`still throws`);
+  $(x);
+  throw $finalImplicit;
+}
+$(`still throws`);
+$(`fail`);
+throw `yes`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = `pass`;
+try {
+  fail_early;
+  x = `fail`;
+} catch ($finalImplicit) {
+  $(`still throws`);
+  $(x);
+  throw $finalImplicit;
+}
+$(`still throws`);
+$(`fail`);
+throw `yes`;
+`````
+
 ## Pre Normal
 
 
@@ -98,26 +134,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:string*/ = `pass`;
-try {
-  fail_early;
-  x = `fail`;
-} catch ($finalImplicit) {
-  $(`still throws`);
-  $(x);
-  throw $finalImplicit;
-}
-$(`still throws`);
-$(`fail`);
-throw `yes`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -142,7 +159,7 @@ BAD@! Found 1 implicit global bindings:
 
 fail_early
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'still throws'
@@ -153,4 +170,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

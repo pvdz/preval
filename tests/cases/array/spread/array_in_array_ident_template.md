@@ -16,6 +16,38 @@ const y = ['a', ...x, 'b'];
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(10);
+const tmpCalleeParam /*:unknown*/ = $(`x`);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam, `string`);
+const tmpCalleeParam$1 /*:unknown*/ = $(`y`);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+if ($) {
+  $(20);
+} else {
+}
+const tmpBinLhs /*:string*/ = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
+const y /*:array*/ = [`a`, 1, tmpBinLhs, 3, `b`];
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(10);
+const tmpBinBothRhs$1 = $coerce($(`x`), `string`);
+const tmpBinBothRhs = $coerce($(`y`), `string`);
+if ($) {
+  $(20);
+}
+const tmpBinLhs = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
+$([`a`, 1, tmpBinLhs, 3, `b`]);
+`````
+
 ## Pre Normal
 
 
@@ -52,26 +84,7 @@ const y = [`a`, ...x, `b`];
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(10);
-const tmpCalleeParam /*:unknown*/ = $(`x`);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam, `string`);
-const tmpCalleeParam$1 /*:unknown*/ = $(`y`);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-if ($) {
-  $(20);
-} else {
-}
-const tmpBinLhs /*:string*/ = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
-const y /*:array*/ = [`a`, 1, tmpBinLhs, 3, `b`];
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +105,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -106,4 +119,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

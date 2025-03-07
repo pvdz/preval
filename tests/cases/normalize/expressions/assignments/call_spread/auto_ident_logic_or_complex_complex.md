@@ -14,6 +14,45 @@ $(...(a = $($(0)) || $($(2))));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam);
+if (a) {
+  $(...a);
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  a = $(tmpCalleeParam$1);
+  const tmpIfTest /*:boolean*/ = a === ``;
+  if (tmpIfTest) {
+    $();
+  } else {
+    throw `Preval: Attempting to spread primitive that is not an empty string`;
+  }
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = $($(0));
+if (a) {
+  $(...a);
+} else {
+  a = $($(2));
+  if (a === ``) {
+    $();
+  } else {
+    throw `Preval: Attempting to spread primitive that is not an empty string`;
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -40,29 +79,7 @@ $(...tmpCalleeParamSpread);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(0);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
-  $(...a);
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$1);
-  const tmpIfTest /*:boolean*/ = a === ``;
-  if (tmpIfTest) {
-    $();
-  } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
-  }
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -89,7 +106,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -102,4 +119,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

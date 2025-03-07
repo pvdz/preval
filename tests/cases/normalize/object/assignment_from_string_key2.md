@@ -17,6 +17,23 @@ if ($(true)) {
 $(y, o);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(true);
+const o /*:object*/ = { x: 1 };
+$(1, o);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(true);
+$(1, { x: 1 });
+`````
+
 ## Pre Normal
 
 
@@ -43,17 +60,7 @@ if (tmpIfTest) {
 $(y, o);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(true);
-const o /*:object*/ = { x: 1 };
-$(1, o);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +73,7 @@ $( 1, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -77,4 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

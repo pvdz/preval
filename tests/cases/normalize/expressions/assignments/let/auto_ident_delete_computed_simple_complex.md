@@ -17,6 +17,28 @@ $(xyz);
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpDeleteCompProp /*:unknown*/ = $(`y`);
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
+$(a);
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpDeleteCompProp = $(`y`);
+const arg = { y: 1 };
+const a = delete arg[tmpDeleteCompProp];
+$(a);
+$(a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -42,19 +64,7 @@ $(xyz);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const arg /*:object*/ = { y: 1 };
-const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-$(a);
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -69,7 +79,7 @@ $( c, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'y'
@@ -81,4 +91,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -28,6 +28,48 @@ let closure_cond = false;
   $(repeat);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let closure_cond /*:unknown*/ = false;
+const repeat /*:(unknown)=>undefined*/ = function ($$0) {
+  const $dlr_$$0 /*:unknown*/ = $$0;
+  debugger;
+  if (closure_cond) {
+    closure_cond = [];
+    $(`a`);
+  } else {
+    closure_cond = [];
+    $(`b`);
+  }
+  const tmpCalleeParam /*:primitive*/ = $dlr_$$0 + 1;
+  repeat(tmpCalleeParam);
+  return undefined;
+};
+repeat(0);
+$(repeat);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let closure_cond = false;
+const repeat = function ($dlr_$$0) {
+  if (closure_cond) {
+    closure_cond = [];
+    $(`a`);
+  } else {
+    closure_cond = [];
+    $(`b`);
+  }
+  repeat($dlr_$$0 + 1);
+};
+repeat(0);
+$(repeat);
+`````
+
 ## Pre Normal
 
 
@@ -76,31 +118,7 @@ repeat(0);
 $(repeat);
 `````
 
-## Output
-
-
-`````js filename=intro
-let closure_cond /*:unknown*/ = false;
-const repeat /*:(unknown)=>undefined*/ = function ($$0) {
-  const $dlr_$$0 /*:unknown*/ = $$0;
-  debugger;
-  if (closure_cond) {
-    closure_cond = [];
-    $(`a`);
-  } else {
-    closure_cond = [];
-    $(`b`);
-  }
-  const tmpCalleeParam /*:primitive*/ = $dlr_$$0 + 1;
-  repeat(tmpCalleeParam);
-  return undefined;
-};
-repeat(0);
-$(repeat);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -128,7 +146,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'b'
@@ -163,4 +181,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,42 @@ for (let x of (a = b?.c.d.e(1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+const tmpClusterSSA_tmpForOfGen /*:unknown*/ = $forOf(tmpChainElementCall);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(tmpChainElementCall);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainElementCall = { e: $ }.e(1);
+const tmpClusterSSA_tmpForOfGen = $forOf(tmpChainElementCall);
+while (true) {
+  const tmpForOfNext = tmpClusterSSA_tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(tmpChainElementCall);
+`````
+
 ## Pre Normal
 
 
@@ -68,27 +104,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
-const tmpClusterSSA_tmpForOfGen /*:unknown*/ = $forOf(tmpChainElementCall);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest$1) {
-    break;
-  } else {
-    tmpForOfNext.value;
-  }
-}
-$(tmpChainElementCall);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -112,7 +128,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -122,7 +138,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpClusterSSA_tmpForOfGen_next

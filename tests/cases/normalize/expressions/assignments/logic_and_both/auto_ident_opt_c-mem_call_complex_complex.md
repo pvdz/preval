@@ -16,6 +16,84 @@ $((a = $(b)?.[$("$")]?.($(1))) && (a = $(b)?.[$("$")]?.($(1))));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const b /*:object*/ = { $: $ };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpCalleeParam$5 /*:unknown*/ = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$5);
+    a = tmpChainElementCall$1;
+  }
+}
+const tmpCalleeParam /*:unknown*/ = a;
+if (a) {
+  let tmpNestedComplexRhs /*:unknown*/ = undefined;
+  const tmpChainElementCall$3 /*:unknown*/ = $(b);
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
+  if (tmpIfTest$3) {
+  } else {
+    const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$3[tmpChainRootComputed$1];
+    const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$1 == null;
+    if (tmpIfTest$5) {
+    } else {
+      const tmpCalleeParam$11 /*:unknown*/ = $(1);
+      const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$11);
+      tmpNestedComplexRhs = tmpChainElementCall$5;
+    }
+  }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const b = { $: $ };
+const tmpChainElementCall = $(b);
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`\$`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+  }
+}
+const tmpCalleeParam = a;
+if (a) {
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainElementCall$3 = $(b);
+  if (!(tmpChainElementCall$3 == null)) {
+    const tmpChainRootComputed$1 = $(`\$`);
+    const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
+    if (!(tmpChainElementObject$1 == null)) {
+      tmpNestedComplexRhs = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, $(1));
+    }
+  }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+} else {
+  $(tmpCalleeParam);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -78,53 +156,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const b /*:object*/ = { $: $ };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpCalleeParam$5 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$5);
-    a = tmpChainElementCall$1;
-  }
-}
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
-  const tmpChainElementCall$3 /*:unknown*/ = $(b);
-  const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$3[tmpChainRootComputed$1];
-    const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$1 == null;
-    if (tmpIfTest$5) {
-    } else {
-      const tmpCalleeParam$11 /*:unknown*/ = $(1);
-      const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$11);
-      tmpNestedComplexRhs = tmpChainElementCall$5;
-    }
-  }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -182,7 +214,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -201,4 +233,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

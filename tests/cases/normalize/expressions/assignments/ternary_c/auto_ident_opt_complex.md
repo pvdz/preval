@@ -16,6 +16,50 @@ $($(0) ? $(100) : (a = $(b)?.x));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(0);
+if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  let tmpNestedComplexRhs /*:unknown*/ = undefined;
+  const b /*:object*/ = { x: 1 };
+  const tmpChainElementCall /*:unknown*/ = $(b);
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
+    tmpNestedComplexRhs = tmpChainElementObject;
+  }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+if ($(0)) {
+  $($(100));
+} else {
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainElementCall = $({ x: 1 });
+  if (!(tmpChainElementCall == null)) {
+    tmpNestedComplexRhs = tmpChainElementCall.x;
+  }
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -53,33 +97,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(0);
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
-  const b /*:object*/ = { x: 1 };
-  const tmpChainElementCall /*:unknown*/ = $(b);
-  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-    tmpNestedComplexRhs = tmpChainElementObject;
-  }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +132,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -127,4 +145,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

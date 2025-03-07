@@ -20,6 +20,29 @@ function f(){
 log(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallCallee /*:unknown*/ = log;
+if (a) {
+} else {
+  b;
+}
+tmpCallCallee(3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallCallee = log;
+if (!a) {
+  b;
+}
+tmpCallCallee(3);
+`````
+
 ## Pre Normal
 
 
@@ -101,20 +124,7 @@ const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallCallee /*:unknown*/ = log;
-if (a) {
-} else {
-  b;
-}
-tmpCallCallee(3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -134,7 +144,7 @@ BAD@! Found 3 implicit global bindings:
 
 log, a, b
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -143,4 +153,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

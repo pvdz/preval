@@ -18,6 +18,22 @@ f(100, `abc`, 200, 300);
 f(400, `def`, 500, 600);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`abc`, 100, NaN, 230);
+$(`def`, 400, NaN, 530);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`abc`, 100, NaN, 230);
+$(`def`, 400, NaN, 530);
+`````
+
 ## Pre Normal
 
 
@@ -55,16 +71,7 @@ f(100, `abc`, 200, 300);
 f(400, `def`, 500, 600);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`abc`, 100, NaN, 230);
-$(`def`, 400, NaN, 530);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +83,7 @@ $( "def", 400, NaN, 530 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'abc', 100, NaN, 230
@@ -87,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

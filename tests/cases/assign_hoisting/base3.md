@@ -28,6 +28,36 @@ $(x);
 
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = $(2);
+if ($) {
+  $(`block inlining`);
+  $(x);
+  x = $(3);
+} else {
+  $(x);
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $(2);
+if ($) {
+  $(`block inlining`);
+  $(x);
+  x = $(3);
+} else {
+  $(x);
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -72,23 +102,7 @@ if ($) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = $(2);
-if ($) {
-  $(`block inlining`);
-  $(x);
-  x = $(3);
-} else {
-  $(x);
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -108,7 +122,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -122,4 +136,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -20,6 +20,30 @@ const q = f();
 $(p, q);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>object*/ = function* () {
+  debugger;
+  yield 20;
+  return undefined;
+};
+const p /*:object*/ = f();
+const q /*:object*/ = f();
+$(p, q);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function* () {
+  yield 20;
+};
+$(f(), f());
+`````
+
 ## Pre Normal
 
 
@@ -49,22 +73,7 @@ const q = f();
 $(p, q);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>object*/ = function* () {
-  debugger;
-  yield 20;
-  return undefined;
-};
-const p /*:object*/ = f();
-const q /*:object*/ = f();
-$(p, q);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +91,7 @@ $( b, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: {}, {}
@@ -92,7 +101,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - would this not be the same as await? would we not want to infer the arg here?

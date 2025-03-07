@@ -22,6 +22,46 @@ f(6, 2, 7);
 f(8, 2, 9);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(number, number, number, primitive)=>undefined*/ = function ($$0, $$1, $$2, $$3) {
+  const tmpPrevalAliasArgumentsLen /*:number*/ = arguments.length;
+  const a /*:number*/ = $$0;
+  const b /*:number*/ = $$1;
+  const c /*:number*/ = $$2;
+  const d /*:primitive*/ = $$3;
+  debugger;
+  if ($) {
+    $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+f(1, 2, 3, `oops`);
+f(4, 2, 5);
+f(6, 2, 7);
+f(8, 2, 9);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (a, b, c, d) {
+  const tmpPrevalAliasArgumentsLen = arguments.length;
+  if ($) {
+    $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
+  }
+};
+f(1, 2, 3, `oops`);
+f(4, 2, 5);
+f(6, 2, 7);
+f(8, 2, 9);
+`````
+
 ## Pre Normal
 
 
@@ -67,32 +107,7 @@ f(6, 2, 7);
 f(8, 2, 9);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(number, number, number, primitive)=>undefined*/ = function ($$0, $$1, $$2, $$3) {
-  const tmpPrevalAliasArgumentsLen /*:number*/ = arguments.length;
-  const a /*:number*/ = $$0;
-  const b /*:number*/ = $$1;
-  const c /*:number*/ = $$2;
-  const d /*:primitive*/ = $$3;
-  debugger;
-  if ($) {
-    $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-f(1, 2, 3, `oops`);
-f(4, 2, 5);
-f(6, 2, 7);
-f(8, 2, 9);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +136,7 @@ a( 8, 2, 9 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 2, 3, 'oops', 4, 'hopefully b is a literal afterwards'
@@ -134,4 +149,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

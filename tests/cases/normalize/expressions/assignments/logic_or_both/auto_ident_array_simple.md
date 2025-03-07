@@ -14,6 +14,36 @@ $((a = [1, 2, 3]) || (a = [1, 2, 3]));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = [1, 2, 3];
+if (a) {
+  $(a);
+} else {
+  const tmpNestedComplexRhs /*:array*/ = [1, 2, 3];
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = [1, 2, 3];
+if (a) {
+  $(a);
+} else {
+  const tmpNestedComplexRhs = [1, 2, 3];
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -40,23 +70,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = [1, 2, 3];
-if (a) {
-  $(a);
-} else {
-  const tmpNestedComplexRhs /*:array*/ = [1, 2, 3];
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +90,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1, 2, 3]
@@ -87,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

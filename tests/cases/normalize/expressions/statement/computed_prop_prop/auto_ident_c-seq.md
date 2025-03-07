@@ -17,6 +17,30 @@ obj[($(1), $(2), $(x))];
 $(a, x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpCompProp /*:unknown*/ = $(1);
+const obj /*:object*/ = {};
+obj[tmpCompProp];
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpCompProp = $(1);
+({}[tmpCompProp]);
+$({ a: 999, b: 1000 }, 1);
+`````
+
 ## Pre Normal
 
 
@@ -43,21 +67,7 @@ tmpCompObj[tmpCompProp];
 $(a, x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const tmpCompProp /*:unknown*/ = $(1);
-const obj /*:object*/ = {};
-obj[tmpCompProp];
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +87,7 @@ $( c, 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -90,4 +100,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

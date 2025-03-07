@@ -13,6 +13,31 @@ let a = 1, b = 2, z = [10, 20, 30];
 for (let [x, y] = ($(a), $(b), $(z));false;) $(a, b, x, y, z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const z /*:array*/ = [10, 20, 30];
+const bindingPatternArrRoot /*:unknown*/ = $(z);
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+arrPatternSplat[0];
+arrPatternSplat[1];
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const bindingPatternArrRoot = $([10, 20, 30]);
+const arrPatternSplat = [...bindingPatternArrRoot];
+arrPatternSplat[0];
+arrPatternSplat[1];
+`````
+
 ## Pre Normal
 
 
@@ -43,21 +68,7 @@ let x = arrPatternSplat[0];
 let y = arrPatternSplat[1];
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const z /*:array*/ = [10, 20, 30];
-const bindingPatternArrRoot /*:unknown*/ = $(z);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
-arrPatternSplat[1];
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +85,7 @@ c[ 1 ];
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -86,4 +97,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

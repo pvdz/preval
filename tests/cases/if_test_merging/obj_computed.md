@@ -21,6 +21,27 @@ if (bool) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(true);
+const a /*:unknown*/ = $();
+const tmpBool /*:boolean*/ = Boolean(tmpCalleeParam);
+const tmpClusterSSA_x /*:object*/ = { [a]: 1, b: tmpBool };
+$(tmpClusterSSA_x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam = $(true);
+const a = $();
+const tmpBool = Boolean(tmpCalleeParam);
+$({ [a]: 1, b: tmpBool });
+`````
+
 ## Pre Normal
 
 
@@ -52,19 +73,7 @@ if (bool) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(true);
-const a /*:unknown*/ = $();
-const tmpBool /*:boolean*/ = Boolean(tmpCalleeParam);
-const tmpClusterSSA_x /*:object*/ = { [a]: 1, b: tmpBool };
-$(tmpClusterSSA_x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +91,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -94,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

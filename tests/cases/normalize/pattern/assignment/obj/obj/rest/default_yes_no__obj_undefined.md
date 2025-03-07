@@ -13,6 +13,25 @@
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: `pass` };
+const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$3 /*:array*/ = [];
+y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+y = objPatternRest($({ a: `pass` }), [], undefined);
+$(y);
+`````
+
 ## Pre Normal
 
 
@@ -41,19 +60,7 @@ y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: `pass` };
-const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
-const tmpCalleeParam$3 /*:array*/ = [];
-y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +77,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '"pass"' }
@@ -80,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

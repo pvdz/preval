@@ -19,6 +19,35 @@ if ($) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(`1`);
+const a /*:number*/ = +tmpUnaryArg;
+const x /*:number*/ = a * 2;
+if ($) {
+  $(`foo`);
+} else {
+  $(x);
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg = $(`1`);
+const x = +tmpUnaryArg * 2;
+if ($) {
+  $(`foo`);
+} else {
+  $(x);
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -48,23 +77,7 @@ if ($) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(`1`);
-const a /*:number*/ = +tmpUnaryArg;
-const x /*:number*/ = a * 2;
-if ($) {
-  $(`foo`);
-} else {
-  $(x);
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +97,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '1'
@@ -96,4 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

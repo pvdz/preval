@@ -14,6 +14,39 @@ $(`before  ${$(1) + $(2)}  after`);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
+  const tmpCalleeParam$2 /*:primitive*/ = $$0;
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
+const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+const tmpBinBothRhs$1 /*:unknown*/ = $(2);
+const tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCalleeParam$1);
+$(tmpCalleeParam);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(tmpCalleeParam$2) {
+  const tmpRet = `before  ${tmpCalleeParam$2}  after`;
+  return tmpRet;
+};
+const tmpBinBothLhs$1 = $(1);
+$($frfr(tmpFree, tmpBinBothLhs$1 + $(2)));
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -40,28 +73,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
-  const tmpCalleeParam$2 /*:primitive*/ = $$0;
-  debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$2, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
-  return tmpRet;
-};
-const tmpBinBothLhs$1 /*:unknown*/ = $(1);
-const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-const tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpCalleeParam$1);
-$(tmpCalleeParam);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +100,7 @@ $( k );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -101,4 +113,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

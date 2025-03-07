@@ -22,6 +22,33 @@ $(!f(), 'two');
 $(!f(), 'three');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:boolean*/ = Boolean($);
+const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
+$(tmpCalleeParam, `one`);
+const tmpUnaryArg$1 /*:boolean*/ = Boolean($);
+const tmpCalleeParam$1 /*:boolean*/ = !tmpUnaryArg$1;
+$(tmpCalleeParam$1, `two`);
+const tmpUnaryArg$3 /*:boolean*/ = Boolean($);
+const tmpCalleeParam$3 /*:boolean*/ = !tmpUnaryArg$3;
+$(tmpCalleeParam$3, `three`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg = Boolean($);
+$(!tmpUnaryArg, `one`);
+const tmpUnaryArg$1 = Boolean($);
+$(!tmpUnaryArg$1, `two`);
+const tmpUnaryArg$3 = Boolean($);
+$(!tmpUnaryArg$3, `three`);
+`````
+
 ## Pre Normal
 
 
@@ -62,23 +89,7 @@ const tmpCalleeParam$3 = !tmpUnaryArg$3;
 $(tmpCalleeParam$3, `three`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:boolean*/ = Boolean($);
-const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
-$(tmpCalleeParam, `one`);
-const tmpUnaryArg$1 /*:boolean*/ = Boolean($);
-const tmpCalleeParam$1 /*:boolean*/ = !tmpUnaryArg$1;
-$(tmpCalleeParam$1, `two`);
-const tmpUnaryArg$3 /*:boolean*/ = Boolean($);
-const tmpCalleeParam$3 /*:boolean*/ = !tmpUnaryArg$3;
-$(tmpCalleeParam$3, `three`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +108,7 @@ $( f, "three" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false, 'one'
@@ -109,4 +120,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

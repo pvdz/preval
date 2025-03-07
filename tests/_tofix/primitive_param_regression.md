@@ -46,6 +46,28 @@ const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree$1 = function $free() {
+  const tmpRet$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpCalleeParam$5.charAt(0));
+  return tmpRet$1;
+};
+const tmpFree = function $free() {
+  const tmpRet = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpCalleeParam$1.charAt(0));
+  return tmpRet;
+};
+const f = function ($dlr_$$0) {
+  unknown = $coerce($dlr_$$0 + b2, `plustr`);
+  return unknown;
+};
+const tmpCalleeParam$1 = $coerce($(`co_rn`), `string`);
+$(f($frfr(tmpFree)));
+const tmpCalleeParam$5 = $coerce($(`m#az#e`), `string`);
+$(f($frfr(tmpFree$1)));
+`````
+
 ## Pre Normal
 
 
@@ -122,7 +144,7 @@ const tmpCalleeParam$3 = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -157,8 +179,7 @@ const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -209,4 +230,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- free with zero args, we can eliminate this?

@@ -19,6 +19,26 @@ a[100] = d;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const d /*:unknown*/ = $();
+const a /*:array*/ = [0];
+a[100] = d;
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const d = $();
+const a = [0];
+a[100] = d;
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -39,18 +59,7 @@ a[100] = d;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const d /*:unknown*/ = $();
-const a /*:array*/ = [0];
-a[100] = d;
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +73,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -179,7 +188,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - switch me to ref tracking

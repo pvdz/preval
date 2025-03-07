@@ -17,6 +17,26 @@ $($(a).length = b);
 //$($(a).length);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [];
+const a /*:unknown*/ = $(tmpCalleeParam);
+const varInitAssignLhsComputedObj /*:unknown*/ = $(a);
+varInitAssignLhsComputedObj.length = undefined;
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const varInitAssignLhsComputedObj = $($([]));
+varInitAssignLhsComputedObj.length = undefined;
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -40,19 +60,7 @@ const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [];
-const a /*:unknown*/ = $(tmpCalleeParam);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(a);
-varInitAssignLhsComputedObj.length = undefined;
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -67,7 +75,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: []
@@ -78,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

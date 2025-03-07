@@ -25,6 +25,50 @@ try {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+try {
+  $();
+} catch (e) {
+  let a /*:unknown*/ = $(1);
+  const f /*:()=>undefined*/ = function () {
+    debugger;
+    a = e;
+    $(`filler`);
+    $(`more filler`);
+    return undefined;
+  };
+  f();
+  $(undefined);
+  f();
+  $(undefined);
+  $(a);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+try {
+  $();
+} catch (e) {
+  let a = $(1);
+  const f = function () {
+    a = e;
+    $(`filler`);
+    $(`more filler`);
+  };
+  f();
+  $(undefined);
+  f();
+  $(undefined);
+  $(a);
+}
+`````
+
 ## Pre Normal
 
 
@@ -69,31 +113,7 @@ try {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-try {
-  $();
-} catch (e) {
-  let a /*:unknown*/ = $(1);
-  const f /*:()=>undefined*/ = function () {
-    debugger;
-    a = e;
-    $(`filler`);
-    $(`more filler`);
-    return undefined;
-  };
-  f();
-  $(undefined);
-  f();
-  $(undefined);
-  $(a);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +141,7 @@ catch (a) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -131,4 +151,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

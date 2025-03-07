@@ -17,6 +17,46 @@ $(0) ? $(100) : ([x, y] = ($(x), $(y), [$(3), $(4)]));
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = 1;
+let y /*:unknown*/ = 2;
+const tmpIfTest /*:unknown*/ = $(0);
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(1);
+  $(2);
+  const tmpArrElement /*:unknown*/ = $(3);
+  const tmpArrElement$1 /*:unknown*/ = $(4);
+  x = tmpArrElement;
+  y = tmpArrElement$1;
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, x, y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+let y = 2;
+if ($(0)) {
+  $(100);
+} else {
+  $(1);
+  $(2);
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  x = tmpArrElement;
+  y = tmpArrElement$1;
+}
+$({ a: 999, b: 1000 }, x, y);
+`````
+
 ## Pre Normal
 
 
@@ -51,29 +91,7 @@ if (tmpIfTest) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-const tmpIfTest /*:unknown*/ = $(0);
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(1);
-  $(2);
-  const tmpArrElement /*:unknown*/ = $(3);
-  const tmpArrElement$1 /*:unknown*/ = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, x, y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -102,7 +120,7 @@ $( f, a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -117,7 +135,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

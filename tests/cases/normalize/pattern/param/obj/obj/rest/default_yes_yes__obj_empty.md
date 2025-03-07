@@ -15,6 +15,39 @@ function f({ x: { ...y } = $({ a: 'pass' }) } = $({ x: { a: 'fail2' } })) {
 $(f({}, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
+let tmpCalleeParam$3 /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
+  const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
+  tmpCalleeParam$3 = tmpClusterSSA_objPatternAfterDefault;
+} else {
+  tmpCalleeParam$3 = objPatternBeforeDefault;
+}
+const tmpCalleeParam$5 /*:array*/ = [];
+const y /*:unknown*/ = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = $Object_prototype.x;
+let tmpCalleeParam$3 = undefined;
+if (objPatternBeforeDefault === undefined) {
+  tmpCalleeParam$3 = $({ a: `pass` });
+} else {
+  tmpCalleeParam$3 = objPatternBeforeDefault;
+}
+$(objPatternRest(tmpCalleeParam$3, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -64,27 +97,7 @@ const tmpCalleeParam$7 = tmpCallCallee(tmpCalleeParam$9, 10);
 $(tmpCalleeParam$7);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
-let tmpCalleeParam$3 /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
-  const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpCalleeParam$3 = tmpClusterSSA_objPatternAfterDefault;
-} else {
-  tmpCalleeParam$3 = objPatternBeforeDefault;
-}
-const tmpCalleeParam$5 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -108,7 +121,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '"pass"' }
@@ -119,4 +132,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -17,6 +17,24 @@ const out = $dotCall(method, str, 'replace', regex, `u`);
 $(out);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const str /*:unknown*/ = $(`hello`);
+const regex /*:regex*/ = /e/g;
+const out /*:unknown*/ = str.replace(regex, `u`);
+$(out);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const str = $(`hello`);
+$(str.replace(/e/g, `u`));
+`````
+
 ## Pre Normal
 
 
@@ -39,18 +57,7 @@ const out = $dotCall(method, str, `replace`, regex, `u`);
 $(out);
 `````
 
-## Output
-
-
-`````js filename=intro
-const str /*:unknown*/ = $(`hello`);
-const regex /*:regex*/ = /e/g;
-const out /*:unknown*/ = str.replace(regex, `u`);
-$(out);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +71,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'hello'
@@ -75,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

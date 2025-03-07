@@ -26,6 +26,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`];
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([`a`, `b`, `c`, `d`, `e`]);
+`````
+
 ## Pre Normal
 
 
@@ -65,16 +80,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`];
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +92,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['a', 'b', 'c', 'd', 'e']
@@ -96,4 +102,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

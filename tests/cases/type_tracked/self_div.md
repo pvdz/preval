@@ -38,6 +38,52 @@ f('thing');
 f($spy());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f_f /*:(unknown)=>undefined*/ = function ($$0) {
+  const arg$1 /*:unknown*/ = $$0;
+  debugger;
+  const one /*:number*/ = arg$1 / arg$1;
+  const onestr /*:string*/ = $coerce(one, `string`);
+  const len /*:number*/ = onestr.length;
+  const isone /*:boolean*/ = len === 1;
+  if (isone) {
+    arg$1 % 0;
+  } else {
+  }
+  const argup /*:primitive*/ = arg$1 + 1;
+  $(argup);
+  return undefined;
+};
+f_f(500);
+const tmpCalleeParam /*:unknown*/ = $spy();
+const tmpSaooB /*:string*/ = typeof tmpCalleeParam;
+const tmpSaooB$1 /*:boolean*/ = tmpSaooB === `string`;
+if (tmpSaooB$1) {
+} else {
+  f_f(tmpCalleeParam);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f_f = function (arg$1) {
+  if ($coerce(arg$1 / arg$1, `string`).length === 1) {
+    arg$1 % 0;
+  }
+  $(arg$1 + 1);
+};
+f_f(500);
+const tmpCalleeParam = $spy();
+if (!(typeof tmpCalleeParam === `string`)) {
+  f_f(tmpCalleeParam);
+}
+`````
+
 ## Pre Normal
 
 
@@ -98,37 +144,7 @@ const tmpCalleeParam = $spy();
 tmpCallCallee(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f_f /*:(unknown)=>undefined*/ = function ($$0) {
-  const arg$1 /*:unknown*/ = $$0;
-  debugger;
-  const one /*:number*/ = arg$1 / arg$1;
-  const onestr /*:string*/ = $coerce(one, `string`);
-  const len /*:number*/ = onestr.length;
-  const isone /*:boolean*/ = len === 1;
-  if (isone) {
-    arg$1 % 0;
-  } else {
-  }
-  const argup /*:primitive*/ = arg$1 + 1;
-  $(argup);
-  return undefined;
-};
-f_f(500);
-const tmpCalleeParam /*:unknown*/ = $spy();
-const tmpSaooB /*:string*/ = typeof tmpCalleeParam;
-const tmpSaooB$1 /*:boolean*/ = tmpSaooB === `string`;
-if (tmpSaooB$1) {
-} else {
-  f_f(tmpCalleeParam);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -162,7 +178,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 501
@@ -178,4 +194,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

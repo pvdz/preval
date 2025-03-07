@@ -17,6 +17,22 @@ x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+x = [];
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+x = [];
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -41,16 +57,7 @@ x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-x = [];
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +71,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -73,7 +80,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -26,6 +26,48 @@ if ($(1)) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:primitive*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 /*:unknown*/ = $(2);
+  if (tmpIfTest$1) {
+    x = 10;
+  } else {
+  }
+  const tmpIfTest$3 /*:unknown*/ = $(3);
+  if (tmpIfTest$3) {
+    const tmpIfTest$5 /*:unknown*/ = $(4);
+    if (tmpIfTest$5) {
+      $(x);
+    } else {
+    }
+  } else {
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = undefined;
+if ($(1)) {
+  if ($(2)) {
+    x = 10;
+  }
+  if ($(3)) {
+    if ($(4)) {
+      $(x);
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -68,33 +110,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:primitive*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpIfTest$1 /*:unknown*/ = $(2);
-  if (tmpIfTest$1) {
-    x = 10;
-  } else {
-  }
-  const tmpIfTest$3 /*:unknown*/ = $(3);
-  if (tmpIfTest$3) {
-    const tmpIfTest$5 /*:unknown*/ = $(4);
-    if (tmpIfTest$5) {
-      $(x);
-    } else {
-    }
-  } else {
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +135,7 @@ if (b) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -133,4 +149,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

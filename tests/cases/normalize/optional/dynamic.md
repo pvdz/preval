@@ -13,6 +13,24 @@ const obj = {foo: 10};
 $(obj?.[$()]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpChainRootComputed /*:unknown*/ = $();
+const obj /*:object*/ = { foo: 10 };
+const tmpChainElementObject /*:unknown*/ = obj[tmpChainRootComputed];
+$(tmpChainElementObject);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainRootComputed = $();
+$({ foo: 10 }[tmpChainRootComputed]);
+`````
+
 ## Pre Normal
 
 
@@ -38,18 +56,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpChainRootComputed /*:unknown*/ = $();
-const obj /*:object*/ = { foo: 10 };
-const tmpChainElementObject /*:unknown*/ = obj[tmpChainRootComputed];
-$(tmpChainElementObject);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +70,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -74,4 +81,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -59,6 +59,42 @@ function f() {
 $('f():', f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`n:`, 1);
+$(`n:`, 2);
+$(`n:`, 3);
+$(`n:`, 4);
+$(`n:`, 5);
+$(`n:`, 6);
+$(`n:`, 7);
+$(`n:`, 8);
+$(`n:`, 9);
+$(`n:`, 10);
+$(`n:`, 11);
+$(`f():`, 11);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`n:`, 1);
+$(`n:`, 2);
+$(`n:`, 3);
+$(`n:`, 4);
+$(`n:`, 5);
+$(`n:`, 6);
+$(`n:`, 7);
+$(`n:`, 8);
+$(`n:`, 9);
+$(`n:`, 10);
+$(`n:`, 11);
+$(`f():`, 11);
+`````
+
 ## Pre Normal
 
 
@@ -101,26 +137,7 @@ const tmpCalleeParam$1 = f();
 $(`f():`, tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`n:`, 1);
-$(`n:`, 2);
-$(`n:`, 3);
-$(`n:`, 4);
-$(`n:`, 5);
-$(`n:`, 6);
-$(`n:`, 7);
-$(`n:`, 8);
-$(`n:`, 9);
-$(`n:`, 10);
-$(`n:`, 11);
-$(`f():`, 11);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -142,7 +159,7 @@ $( "f():", 11 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'n:', 1
@@ -163,4 +180,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

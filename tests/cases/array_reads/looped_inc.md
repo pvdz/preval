@@ -16,6 +16,31 @@ while(true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCompoundAssignLhs /*:primitive*/ = arr[0];
+  const tmpAssignComputedRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
+  arr[0] = tmpAssignComputedRhs;
+  $(tmpAssignComputedRhs);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [1, 2, 3];
+while (true) {
+  const tmpAssignComputedRhs = arr[0] + 1;
+  arr[0] = tmpAssignComputedRhs;
+  $(tmpAssignComputedRhs);
+}
+`````
+
 ## Pre Normal
 
 
@@ -43,21 +68,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCompoundAssignLhs /*:primitive*/ = arr[0];
-  const tmpAssignComputedRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
-  arr[0] = tmpAssignComputedRhs;
-  $(tmpAssignComputedRhs);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +85,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -109,4 +120,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

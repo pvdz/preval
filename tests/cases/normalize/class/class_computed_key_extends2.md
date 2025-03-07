@@ -17,6 +17,30 @@ class x {
 x().y;
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:class*/ = class {
+  x() {
+    debugger;
+    return undefined;
+  }
+};
+const tmpCompObj /*:unknown*/ = x();
+tmpCompObj.y;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = class {
+  x() {}
+};
+x().y;
+`````
+
 ## Pre Normal
 
 
@@ -45,22 +69,7 @@ const tmpCompObj = x();
 tmpCompObj.y;
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:class*/ = class {
-  x() {
-    debugger;
-    return undefined;
-  }
-};
-const tmpCompObj /*:unknown*/ = x();
-tmpCompObj.y;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +87,7 @@ b.y;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Class constructor x cannot be invoked without 'new' ]>")
@@ -87,4 +96,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

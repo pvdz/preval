@@ -12,6 +12,21 @@
 $(5 in Infinity);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:boolean*/ = 5 in Infinity;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(5 in Infinity);
+`````
+
 ## Pre Normal
 
 
@@ -27,16 +42,7 @@ const tmpCalleeParam = 5 in Infinity;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:boolean*/ = 5 in Infinity;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -48,7 +54,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot use 'in' operator to search for '5' in Infinity ]>")
@@ -57,4 +63,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

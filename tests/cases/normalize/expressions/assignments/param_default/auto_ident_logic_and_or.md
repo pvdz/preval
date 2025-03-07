@@ -15,6 +15,47 @@ $(f());
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
+if (tmpNestedComplexRhs) {
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  tmpNestedComplexRhs = $(tmpCalleeParam$1);
+} else {
+}
+let tmpClusterSSA_a /*:unknown*/ = undefined;
+if (tmpNestedComplexRhs) {
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$3);
+  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
+}
+$(undefined);
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpNestedComplexRhs = $($(1));
+if (tmpNestedComplexRhs) {
+  tmpNestedComplexRhs = $($(1));
+}
+let tmpClusterSSA_a = undefined;
+if (tmpNestedComplexRhs) {
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+} else {
+  tmpClusterSSA_a = $($(2));
+}
+$(undefined);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -65,31 +106,7 @@ $(tmpCalleeParam$5);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
-if (tmpNestedComplexRhs) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  tmpNestedComplexRhs = $(tmpCalleeParam$1);
-} else {
-}
-let tmpClusterSSA_a /*:unknown*/ = undefined;
-if (tmpNestedComplexRhs) {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-} else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$3);
-  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
-}
-$(undefined);
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +133,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -131,4 +148,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

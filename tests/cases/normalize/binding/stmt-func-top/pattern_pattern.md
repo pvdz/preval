@@ -17,6 +17,34 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const z /*:array*/ = [10, 20, 30];
+const arrPatternSplat$1 /*:array*/ = [...z];
+const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat$1[1];
+const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat$1[2];
+const arrPatternSplat /*:array*/ = [...z];
+const a /*:unknown*/ = arrPatternSplat[0];
+const b /*:unknown*/ = arrPatternSplat[1];
+$(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const z = [10, 20, 30];
+const arrPatternSplat$1 = [...z];
+const tmpClusterSSA_x = arrPatternSplat$1[1];
+const tmpClusterSSA_y = arrPatternSplat$1[2];
+const arrPatternSplat = [...z];
+$(arrPatternSplat[0], arrPatternSplat[1], tmpClusterSSA_x, tmpClusterSSA_y, z);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -57,23 +85,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const z /*:array*/ = [10, 20, 30];
-const arrPatternSplat$1 /*:array*/ = [...z];
-const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat$1[1];
-const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat$1[2];
-const arrPatternSplat /*:array*/ = [...z];
-const a /*:unknown*/ = arrPatternSplat[0];
-const b /*:unknown*/ = arrPatternSplat[1];
-$(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +104,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10, 20, 20, 30, [10, 20, 30]
@@ -103,7 +115,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

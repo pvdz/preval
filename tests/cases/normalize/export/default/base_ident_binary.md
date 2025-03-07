@@ -12,6 +12,24 @@
 export default $(1) + $(2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
+const tmpAnonDefaultExport /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+export { tmpAnonDefaultExport as default };
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAnonDefaultExport = $(1) + $(2);
+export { tmpAnonDefaultExport as default };
+`````
+
 ## Pre Normal
 
 
@@ -30,18 +48,7 @@ const tmpAnonDefaultExport = tmpBinBothLhs + tmpBinBothRhs;
 export { tmpAnonDefaultExport as default };
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(2);
-const tmpAnonDefaultExport /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-export { tmpAnonDefaultExport as default };
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +62,7 @@ export { c as default };
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -64,4 +71,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -13,6 +13,21 @@ const [[...x]] = [[], 4, 5];
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:array*/ = [];
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([]);
+`````
+
 ## Pre Normal
 
 
@@ -34,16 +49,7 @@ const x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:array*/ = [];
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +61,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: []
@@ -65,7 +71,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

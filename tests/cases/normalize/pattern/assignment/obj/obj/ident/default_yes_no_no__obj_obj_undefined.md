@@ -13,6 +13,22 @@
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+y = $(`pass`);
+$(y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+y = $(`pass`);
+$(y);
+`````
+
 ## Pre Normal
 
 
@@ -40,16 +56,7 @@ if (tmpIfTest) {
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-y = $(`pass`);
-$(y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +70,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -73,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

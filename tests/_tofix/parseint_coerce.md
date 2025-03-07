@@ -22,6 +22,20 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  const y = parseInt($coerce($(`1`), `string`));
+  try {
+    $(y);
+  } catch (e) {
+    $(`keepme`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -54,7 +68,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -70,8 +84,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,4 +140,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

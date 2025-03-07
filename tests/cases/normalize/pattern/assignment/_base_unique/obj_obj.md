@@ -14,6 +14,22 @@
 { let z = 1; }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
+z = objPatternNoDefault$1.z;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+z = (1).x.y.z;
+`````
+
 ## Pre Normal
 
 
@@ -43,17 +59,7 @@ z = objPatternNoDefault$1.z;
 let z$1 = 1;
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (1).x;
-const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
-z = objPatternNoDefault$1.z;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -68,7 +74,7 @@ BAD@! Found 1 implicit global bindings:
 
 z
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -77,4 +83,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

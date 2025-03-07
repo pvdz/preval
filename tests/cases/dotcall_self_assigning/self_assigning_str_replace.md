@@ -40,6 +40,52 @@ while (true) {
 $(str);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
+let tmpClusterSSA_count$2 /*:number*/ = 66;
+const arr /*:array*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpPostUpdArgIdent$2 /*:unknown*/ = tmpClusterSSA_count$2;
+  tmpClusterSSA_count$2 = tmpClusterSSA_count$2 - 1;
+  if (tmpPostUpdArgIdent$2) {
+    const chr$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
+    if (chr$1) {
+      const chr2$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
+      const regex$1 /*:regex*/ = /xyz/g;
+      str = str.replace(regex$1, chr2$1);
+    } else {
+    }
+  } else {
+    break;
+  }
+}
+$(str);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let str = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
+let tmpClusterSSA_count$2 = 66;
+const arr = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
+while (true) {
+  const tmpPostUpdArgIdent$2 = tmpClusterSSA_count$2;
+  tmpClusterSSA_count$2 = tmpClusterSSA_count$2 - 1;
+  if (tmpPostUpdArgIdent$2) {
+    if (arr[tmpClusterSSA_count$2]) {
+      str = str.replace(/xyz/g, arr[tmpClusterSSA_count$2]);
+    }
+  } else {
+    break;
+  }
+}
+$(str);
+`````
+
 ## Pre Normal
 
 
@@ -92,33 +138,7 @@ while (true) {
 $(str);
 `````
 
-## Output
-
-
-`````js filename=intro
-let str /*:string*/ = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
-let tmpClusterSSA_count$2 /*:number*/ = 66;
-const arr /*:array*/ = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpPostUpdArgIdent$2 /*:unknown*/ = tmpClusterSSA_count$2;
-  tmpClusterSSA_count$2 = tmpClusterSSA_count$2 - 1;
-  if (tmpPostUpdArgIdent$2) {
-    const chr$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
-    if (chr$1) {
-      const chr2$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
-      const regex$1 /*:regex*/ = /xyz/g;
-      str = str.replace(regex$1, chr2$1);
-    } else {
-    }
-  } else {
-    break;
-  }
-}
-$(str);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -147,7 +167,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9'
@@ -157,4 +177,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

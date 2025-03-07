@@ -18,6 +18,24 @@ function superExpensiveFunction() {
 superExpensiveFunction().x += 5;
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpAssignMemLhsObj /*:unknown*/ = $();
+const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
+const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 5;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAssignMemLhsObj = $();
+tmpAssignMemLhsObj.x = tmpAssignMemLhsObj.x + 5;
+`````
+
 ## Pre Normal
 
 
@@ -45,18 +63,7 @@ const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
 tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpAssignMemLhsObj /*:unknown*/ = $();
-const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +77,7 @@ a.x = c;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -80,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

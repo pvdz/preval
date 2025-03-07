@@ -31,6 +31,57 @@ $(f(2));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(primitive)=>primitive*/ = function ($$0) {
+  const x /*:primitive*/ = $$0;
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const tmpBinBothRhs /*:unknown*/ = $(1);
+  const y /*:primitive*/ = x + tmpBinBothRhs;
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    $(`a`);
+    return y;
+  } else {
+    $(`b`);
+    return y;
+  }
+};
+const tmpCalleeParam /*:primitive*/ = f(1);
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:primitive*/ = f(2);
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:primitive*/ = f(`three`);
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (x) {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = x + $(1);
+  if ($(true)) {
+    $(`a`);
+    return y;
+  } else {
+    $(`b`);
+    return y;
+  }
+};
+$(f(1));
+$(f(2));
+$(f(`three`));
+`````
+
 ## Pre Normal
 
 
@@ -85,37 +136,7 @@ const tmpCalleeParam$3 = f(`three`);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(primitive)=>primitive*/ = function ($$0) {
-  const x /*:primitive*/ = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const tmpBinBothRhs /*:unknown*/ = $(1);
-  const y /*:primitive*/ = x + tmpBinBothRhs;
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    $(`a`);
-    return y;
-  } else {
-    $(`b`);
-    return y;
-  }
-};
-const tmpCalleeParam /*:primitive*/ = f(1);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:primitive*/ = f(2);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:primitive*/ = f(`three`);
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -149,7 +170,7 @@ $( h );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -179,4 +200,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

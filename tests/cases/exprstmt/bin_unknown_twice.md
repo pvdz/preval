@@ -12,6 +12,20 @@
 implicit1 + implicit2;
 `````
 
+## Settled
+
+
+`````js filename=intro
+implicit1 + implicit2;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+implicit1 + implicit2;
+`````
+
 ## Pre Normal
 
 
@@ -26,15 +40,7 @@ implicit1 + implicit2;
 implicit1 + implicit2;
 `````
 
-## Output
-
-
-`````js filename=intro
-implicit1 + implicit2;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -47,7 +53,7 @@ BAD@! Found 2 implicit global bindings:
 
 implicit1, implicit2
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -56,4 +62,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

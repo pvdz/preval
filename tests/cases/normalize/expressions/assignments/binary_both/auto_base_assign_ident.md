@@ -16,6 +16,27 @@ $((a = b = $(2)) + (a = b = $(2)));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNestedComplexRhs /*:unknown*/ = $(2);
+const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
+const tmpCalleeParam /*:primitive*/ = tmpNestedComplexRhs + tmpNestedComplexRhs$1;
+$(tmpCalleeParam);
+$(tmpNestedComplexRhs$1, tmpNestedComplexRhs$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedComplexRhs = $(2);
+const tmpNestedComplexRhs$1 = $(2);
+$(tmpNestedComplexRhs + tmpNestedComplexRhs$1);
+$(tmpNestedComplexRhs$1, tmpNestedComplexRhs$1);
+`````
+
 ## Pre Normal
 
 
@@ -45,19 +66,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNestedComplexRhs /*:unknown*/ = $(2);
-const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
-const tmpCalleeParam /*:primitive*/ = tmpNestedComplexRhs + tmpNestedComplexRhs$1;
-$(tmpCalleeParam);
-$(tmpNestedComplexRhs$1, tmpNestedComplexRhs$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +81,7 @@ $( b, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -85,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

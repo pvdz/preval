@@ -12,6 +12,28 @@
 a ? b : ({ x } = 1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+if (a) {
+  b;
+} else {
+  x = (1).x;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (a) {
+  b;
+} else {
+  x = (1).x;
+}
+`````
+
 ## Pre Normal
 
 
@@ -31,19 +53,7 @@ if (a) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if (a) {
-  b;
-} else {
-  x = (1).x;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +71,7 @@ BAD@! Found 3 implicit global bindings:
 
 a, b, x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -70,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

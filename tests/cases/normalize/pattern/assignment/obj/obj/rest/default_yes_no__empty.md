@@ -13,6 +13,40 @@
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = (1).x;
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam /*:object*/ = { a: `fail` };
+  const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
+  tmpCalleeParam$1 = tmpClusterSSA_objPatternAfterDefault;
+} else {
+  tmpCalleeParam$1 = objPatternBeforeDefault;
+}
+const tmpCalleeParam$3 /*:array*/ = [];
+y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = (1).x;
+let tmpCalleeParam$1 = undefined;
+if (objPatternBeforeDefault === undefined) {
+  tmpCalleeParam$1 = $({ a: `fail` });
+} else {
+  tmpCalleeParam$1 = objPatternBeforeDefault;
+}
+y = objPatternRest(tmpCalleeParam$1, [], undefined);
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -41,27 +75,7 @@ y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = (1).x;
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam /*:object*/ = { a: `fail` };
-  const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
-  tmpCalleeParam$1 = tmpClusterSSA_objPatternAfterDefault;
-} else {
-  tmpCalleeParam$1 = objPatternBeforeDefault;
-}
-const tmpCalleeParam$3 /*:array*/ = [];
-y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +101,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '"fail"' }
@@ -97,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

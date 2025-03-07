@@ -18,6 +18,46 @@ let x = $(obj)[$('x')] = 30;
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const obj /*:object*/ = {
+  get x() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(10);
+    return tmpReturnArg;
+  },
+  set x($$0) {
+    debugger;
+    $(20);
+    return undefined;
+  },
+};
+const varInitAssignLhsComputedObj /*:unknown*/ = $(obj);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
+$(30);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const varInitAssignLhsComputedObj = $({
+  get x() {
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
+  },
+  set x($$0) {
+    $(20);
+  },
+});
+const varInitAssignLhsComputedProp = $(`x`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
+$(30);
+`````
+
 ## Pre Normal
 
 
@@ -62,30 +102,7 @@ let x = varInitAssignLhsComputedRhs;
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const obj /*:object*/ = {
-  get x() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(10);
-    return tmpReturnArg;
-  },
-  set x($$0) {
-    debugger;
-    $(20);
-    return undefined;
-  },
-};
-const varInitAssignLhsComputedObj /*:unknown*/ = $(obj);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
-$(30);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -111,7 +128,7 @@ $( 30 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '<get/set>' }
@@ -124,4 +141,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

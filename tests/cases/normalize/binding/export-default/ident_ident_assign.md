@@ -14,6 +14,30 @@ export let a = b = $(c).y = $(d);
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNestedAssignObj /*:unknown*/ = $(3);
+const tmpNestedAssignPropRhs /*:unknown*/ = $(4);
+tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
+const a /*:unknown*/ = tmpNestedAssignPropRhs;
+export { a };
+$(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignObj = $(3);
+const tmpNestedAssignPropRhs = $(4);
+tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
+const a = tmpNestedAssignPropRhs;
+export { a };
+$(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+`````
+
 ## Pre Normal
 
 
@@ -43,20 +67,7 @@ export { a };
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNestedAssignObj /*:unknown*/ = $(3);
-const tmpNestedAssignPropRhs /*:unknown*/ = $(4);
-tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-const a /*:unknown*/ = tmpNestedAssignPropRhs;
-export { a };
-$(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +83,7 @@ $( b, b, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -81,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

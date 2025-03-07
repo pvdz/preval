@@ -24,6 +24,45 @@ if (f($(100))) $('pass');
 else $('fail');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown)=>boolean*/ = function ($$0) {
+  const arg /*:unknown*/ = $$0;
+  debugger;
+  const x /*:unknown*/ = $(arg);
+  const y /*:boolean*/ = Boolean(x);
+  return y;
+};
+$(f);
+$(f);
+const tmpCalleeParam /*:unknown*/ = $(100);
+const tmpBoolTrampoline /*:unknown*/ = $(tmpCalleeParam);
+if (tmpBoolTrampoline) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (arg) {
+  const y = Boolean($(arg));
+  return y;
+};
+$(f);
+$(f);
+if ($($(100))) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -64,30 +103,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unknown)=>boolean*/ = function ($$0) {
-  const arg /*:unknown*/ = $$0;
-  debugger;
-  const x /*:unknown*/ = $(arg);
-  const y /*:boolean*/ = Boolean(x);
-  return y;
-};
-$(f);
-$(f);
-const tmpCalleeParam /*:unknown*/ = $(100);
-const tmpBoolTrampoline /*:unknown*/ = $(tmpCalleeParam);
-if (tmpBoolTrampoline) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +130,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -128,4 +144,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

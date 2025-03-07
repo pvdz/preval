@@ -19,6 +19,25 @@ switch ((a = typeof $(arg))) {
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(1);
+$(100);
+const a /*:string*/ = typeof tmpUnaryArg;
+$(a, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg = $(1);
+$(100);
+$(typeof tmpUnaryArg, 1);
+`````
+
 ## Pre Normal
 
 
@@ -48,18 +67,7 @@ $(100);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(1);
-$(100);
-const a /*:string*/ = typeof tmpUnaryArg;
-$(a, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +81,7 @@ $( b, 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -85,4 +93,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

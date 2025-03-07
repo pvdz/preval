@@ -23,6 +23,71 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpCalleeParam /*:array*/ = [1, 2];
+  const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest$1) {
+  } else {
+    const x /*:unknown*/ = tmpForOfNext.value;
+    $(`loop`, x);
+  }
+  while ($LOOP_UNROLL_10) {
+    $(`infiloop, do not eliminate`);
+    const tmpIfTest$2 /*:unknown*/ = $(true);
+    if (tmpIfTest$2) {
+      $(`loop`);
+      const tmpCalleeParam$1 /*:array*/ = [1, 2];
+      const tmpForOfGen$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
+      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
+      const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
+      if (tmpIfTest$4) {
+      } else {
+        const x$1 /*:unknown*/ = tmpForOfNext$1.value;
+        $(`loop`, x$1);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after (not invoked)`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  $(`loop`);
+  const tmpForOfNext = $forOf([1, 2]).next();
+  if (!tmpForOfNext.done) {
+    $(`loop`, tmpForOfNext.value);
+  }
+  while (true) {
+    $(`infiloop, do not eliminate`);
+    if ($(true)) {
+      $(`loop`);
+      const tmpForOfNext$1 = $forOf([1, 2]).next();
+      if (!tmpForOfNext$1.done) {
+        $(`loop`, tmpForOfNext$1.value);
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(`after (not invoked)`);
+`````
+
 ## Pre Normal
 
 
@@ -79,47 +144,7 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  $(`loop`);
-  const tmpCalleeParam /*:array*/ = [1, 2];
-  const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest$1) {
-  } else {
-    const x /*:unknown*/ = tmpForOfNext.value;
-    $(`loop`, x);
-  }
-  while ($LOOP_UNROLL_10) {
-    $(`infiloop, do not eliminate`);
-    const tmpIfTest$2 /*:unknown*/ = $(true);
-    if (tmpIfTest$2) {
-      $(`loop`);
-      const tmpCalleeParam$1 /*:array*/ = [1, 2];
-      const tmpForOfGen$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
-      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
-      const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
-      if (tmpIfTest$4) {
-      } else {
-        const x$1 /*:unknown*/ = tmpForOfNext$1.value;
-        $(`loop`, x$1);
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(`after (not invoked)`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -166,7 +191,7 @@ $( "after (not invoked)" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -201,4 +226,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

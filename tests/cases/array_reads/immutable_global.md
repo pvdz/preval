@@ -20,6 +20,37 @@ $(arr[1]);
 $(arr.length);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(1, 2, 3, undefined);
+  return 3;
+};
+$(1, 2, 3, undefined);
+$(3);
+$(f);
+$(2);
+$(3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(1, 2, 3, undefined);
+  return 3;
+};
+$(1, 2, 3, undefined);
+$(3);
+$(f);
+$(2);
+$(3);
+`````
+
 ## Pre Normal
 
 
@@ -60,24 +91,7 @@ const tmpCalleeParam$11 = arr.length;
 $(tmpCalleeParam$11);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(1, 2, 3, undefined);
-  return 3;
-};
-$(1, 2, 3, undefined);
-$(3);
-$(f);
-$(2);
-$(3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -97,7 +111,7 @@ $( 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 2, 3, undefined
@@ -111,4 +125,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

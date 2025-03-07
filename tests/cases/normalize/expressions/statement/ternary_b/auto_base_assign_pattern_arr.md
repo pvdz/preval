@@ -16,6 +16,40 @@ $(1) ? ([b] = $([$(2)])) : $(200);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:unknown*/ = [];
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpArrElement /*:unknown*/ = $(2);
+  const tmpCalleeParam /*:array*/ = [tmpArrElement];
+  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
+  b = arrPatternSplat[0];
+} else {
+  $(200);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = [];
+if ($(1)) {
+  const tmpArrElement = $(2);
+  const arrAssignPatternRhs = $([tmpArrElement]);
+  b = [...arrAssignPatternRhs][0];
+} else {
+  $(200);
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -45,27 +79,7 @@ if (tmpIfTest) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:unknown*/ = [];
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpArrElement /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:array*/ = [tmpArrElement];
-  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-  b = arrPatternSplat[0];
-} else {
-  $(200);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +106,7 @@ $( g, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -105,7 +119,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

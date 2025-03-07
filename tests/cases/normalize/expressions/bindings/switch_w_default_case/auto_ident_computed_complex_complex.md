@@ -22,6 +22,31 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 1 };
+const tmpAssignRhsCompObj /*:unknown*/ = $(b);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
+const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(tmpClusterSSA_a, b);
+$(`fail1`);
+$(`fail2`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: 1 };
+const tmpAssignRhsCompObj = $(b);
+const tmpAssignRhsCompProp = $(`c`);
+$(tmpAssignRhsCompObj[tmpAssignRhsCompProp], b);
+$(`fail1`);
+$(`fail2`);
+`````
+
 ## Pre Normal
 
 
@@ -89,21 +114,7 @@ if (tmpIfTest$7) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 1 };
-const tmpAssignRhsCompObj /*:unknown*/ = $(b);
-const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(tmpClusterSSA_a, b);
-$(`fail1`);
-$(`fail2`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +131,7 @@ $( "fail2" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { c: '1' }
@@ -134,4 +145,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

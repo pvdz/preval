@@ -21,6 +21,31 @@ if ($) {
 $('!');
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  $(100, 11);
+  $(100, 12);
+  $(100);
+} else {
+}
+$(`!`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $(100, 11);
+  $(100, 12);
+  $(100);
+}
+$(`!`);
+`````
+
 ## Pre Normal
 
 
@@ -61,21 +86,7 @@ if ($) {
 $(`!`);
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  $(100, 11);
-  $(100, 12);
-  $(100);
-} else {
-}
-$(`!`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +102,7 @@ $( "!" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100, 11
@@ -104,4 +115,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

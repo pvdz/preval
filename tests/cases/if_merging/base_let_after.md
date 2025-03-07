@@ -33,6 +33,53 @@ if ($(true)) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+if (tmpUnaryArg) {
+  $(`b`);
+  $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
+}
+const tmpIfTest$1 /*:unknown*/ = $(true);
+const tmpBool$1 /*:boolean*/ = Boolean(tmpIfTest$1);
+const tmpUnaryArg$3 /*:unknown*/ = $(tmpBool$1);
+const tmpIfTest$3 /*:unknown*/ = $(true);
+const tmpClusterSSA_x /*:boolean*/ = !tmpUnaryArg$3;
+if (tmpIfTest$3) {
+  $(`true`, tmpClusterSSA_x);
+} else {
+  $(`false`, tmpClusterSSA_x);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(Boolean($(true)))) {
+  $(`b`);
+  $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
+}
+const tmpUnaryArg$3 = $(Boolean($(true)));
+const tmpIfTest$3 = $(true);
+const tmpClusterSSA_x = !tmpUnaryArg$3;
+if (tmpIfTest$3) {
+  $(`true`, tmpClusterSSA_x);
+} else {
+  $(`false`, tmpClusterSSA_x);
+}
+`````
+
 ## Pre Normal
 
 
@@ -98,34 +145,7 @@ if (tmpIfTest$3) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
-const tmpUnaryArg /*:unknown*/ = $(tmpBool);
-if (tmpUnaryArg) {
-  $(`b`);
-  $(`c`);
-} else {
-  $(`a`);
-  $(`d`);
-}
-const tmpIfTest$1 /*:unknown*/ = $(true);
-const tmpBool$1 /*:boolean*/ = Boolean(tmpIfTest$1);
-const tmpUnaryArg$3 /*:unknown*/ = $(tmpBool$1);
-const tmpIfTest$3 /*:unknown*/ = $(true);
-const tmpClusterSSA_x /*:boolean*/ = !tmpUnaryArg$3;
-if (tmpIfTest$3) {
-  $(`true`, tmpClusterSSA_x);
-} else {
-  $(`false`, tmpClusterSSA_x);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -157,7 +177,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -174,4 +194,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

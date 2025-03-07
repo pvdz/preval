@@ -13,6 +13,49 @@
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = (1).x;
+let objPatternAfterDefault /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam /*:object*/ = { y: `fail2` };
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const objPatternBeforeDefault$1 /*:unknown*/ = objPatternAfterDefault.y;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  y = $(`fail`);
+} else {
+  y = objPatternBeforeDefault$1;
+}
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = (1).x;
+let objPatternAfterDefault = undefined;
+if (objPatternBeforeDefault === undefined) {
+  objPatternAfterDefault = $({ y: `fail2` });
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+if (objPatternBeforeDefault$1 === undefined) {
+  y = $(`fail`);
+} else {
+  y = objPatternBeforeDefault$1;
+}
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -45,31 +88,7 @@ if (tmpIfTest$1) {
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = (1).x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam /*:object*/ = { y: `fail2` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const objPatternBeforeDefault$1 /*:unknown*/ = objPatternAfterDefault.y;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  y = $(`fail`);
-} else {
-  y = objPatternBeforeDefault$1;
-}
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -100,7 +119,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { y: '"fail2"' }
@@ -110,4 +129,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

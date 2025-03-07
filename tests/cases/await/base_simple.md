@@ -15,6 +15,28 @@ async function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>promise*/ = async function () {
+  debugger;
+  await $;
+  return undefined;
+};
+f();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = async function () {
+  await $;
+};
+f();
+`````
+
 ## Pre Normal
 
 
@@ -38,20 +60,7 @@ let f = async function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>promise*/ = async function () {
-  debugger;
-  await $;
-  return undefined;
-};
-f();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -67,7 +76,7 @@ a();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -76,7 +85,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - inline async functions safely (because await)

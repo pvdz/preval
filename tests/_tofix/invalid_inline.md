@@ -27,6 +27,19 @@ while (true) {
 $(cTmp);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const cTail = $fail;
+if ($) {
+  $(`keep`);
+  $($($));
+} else {
+  $(cTail);
+}
+`````
+
 ## Pre Normal
 
 
@@ -60,7 +73,7 @@ if ($) {
 $(cTmp);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -74,8 +87,7 @@ if ($) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,4 +117,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

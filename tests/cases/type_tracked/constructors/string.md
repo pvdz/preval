@@ -13,6 +13,22 @@ const x = "" + $(1);
 $(String(x)); // Is the same as `x` and dropping the `String` call should not be observable
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothRhs /*:unknown*/ = $(1);
+const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($coerce($(1), `plustr`));
+`````
+
 ## Pre Normal
 
 
@@ -33,17 +49,7 @@ const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +62,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -67,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

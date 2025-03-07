@@ -15,6 +15,34 @@ function f({ x = $('fail') } = $({ x: 'pass2' })) {
 $(f(undefined, 10));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { x: `pass2` };
+const bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const objPatternBeforeDefault /*:unknown*/ = bindingPatternObjRoot.x;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
+  $(tmpClusterSSA_x);
+} else {
+  $(objPatternBeforeDefault);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = $({ x: `pass2` }).x;
+if (objPatternBeforeDefault === undefined) {
+  $($(`fail`));
+} else {
+  $(objPatternBeforeDefault);
+}
+`````
+
 ## Pre Normal
 
 
@@ -58,24 +86,7 @@ const tmpCalleeParam$1 = f(undefined, 10);
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { x: `pass2` };
-const bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const objPatternBeforeDefault /*:unknown*/ = bindingPatternObjRoot.x;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
-  $(tmpClusterSSA_x);
-} else {
-  $(objPatternBeforeDefault);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +107,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '"pass2"' }
@@ -107,4 +118,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

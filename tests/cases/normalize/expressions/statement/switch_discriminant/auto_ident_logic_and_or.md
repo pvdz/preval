@@ -17,6 +17,42 @@ switch (($($(1)) && $($(1))) || $($(2))) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpSwitchDisc /*:unknown*/ = $(tmpCalleeParam);
+if (tmpSwitchDisc) {
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  tmpSwitchDisc = $(tmpCalleeParam$1);
+} else {
+}
+if (tmpSwitchDisc) {
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  $(tmpCalleeParam$3);
+}
+$(100);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpSwitchDisc = $($(1));
+if (tmpSwitchDisc) {
+  tmpSwitchDisc = $($(1));
+}
+if (!tmpSwitchDisc) {
+  $($(2));
+}
+$(100);
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -53,29 +89,7 @@ $(100);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-let tmpSwitchDisc /*:unknown*/ = $(tmpCalleeParam);
-if (tmpSwitchDisc) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  tmpSwitchDisc = $(tmpCalleeParam$1);
-} else {
-}
-if (tmpSwitchDisc) {
-} else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  $(tmpCalleeParam$3);
-}
-$(100);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +118,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -119,4 +133,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

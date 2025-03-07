@@ -29,6 +29,35 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest /*:unknown*/ = $(false);
+  if (tmpIfTest) {
+    $(`fail too`);
+    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+  } else {
+    $(`fail`);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  if ($(false)) {
+    $(`fail too`);
+    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+  } else {
+    $(`fail`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -72,23 +101,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest /*:unknown*/ = $(false);
-  if (tmpIfTest) {
-    $(`fail too`);
-    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-  } else {
-    $(`fail`);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -108,7 +121,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false
@@ -143,7 +156,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

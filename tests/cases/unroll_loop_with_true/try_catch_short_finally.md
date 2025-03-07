@@ -26,6 +26,90 @@ while (true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let $finalStep /*:boolean*/ = false;
+try {
+  const test /*:unknown*/ = $(`first`);
+  $(`second`);
+  if (test) {
+    $finalStep = true;
+  } else {
+    $(`third`);
+  }
+} catch ($finalImplicit) {
+  $(`finally`);
+  throw $finalImplicit;
+}
+$(`finally`);
+if ($finalStep) {
+} else {
+  while ($LOOP_UNROLL_10) {
+    let $finalStep$1 /*:boolean*/ = false;
+    try {
+      const test$1 /*:unknown*/ = $(`first`);
+      $(`second`);
+      if (test$1) {
+        $finalStep$1 = true;
+      } else {
+        $(`third`);
+      }
+    } catch ($finalImplicit$1) {
+      $(`finally`);
+      throw $finalImplicit$1;
+    }
+    $(`finally`);
+    if ($finalStep$1) {
+      break;
+    } else {
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let $finalStep = false;
+try {
+  const test = $(`first`);
+  $(`second`);
+  if (test) {
+    $finalStep = true;
+  } else {
+    $(`third`);
+  }
+} catch ($finalImplicit) {
+  $(`finally`);
+  throw $finalImplicit;
+}
+$(`finally`);
+if (!$finalStep) {
+  while (true) {
+    let $finalStep$1 = false;
+    try {
+      const test$1 = $(`first`);
+      $(`second`);
+      if (test$1) {
+        $finalStep$1 = true;
+      } else {
+        $(`third`);
+      }
+    } catch ($finalImplicit$1) {
+      $(`finally`);
+      throw $finalImplicit$1;
+    }
+    $(`finally`);
+    if ($finalStep$1) {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -98,51 +182,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let $finalStep /*:boolean*/ = false;
-try {
-  const test /*:unknown*/ = $(`first`);
-  $(`second`);
-  if (test) {
-    $finalStep = true;
-  } else {
-    $(`third`);
-  }
-} catch ($finalImplicit) {
-  $(`finally`);
-  throw $finalImplicit;
-}
-$(`finally`);
-if ($finalStep) {
-} else {
-  while ($LOOP_UNROLL_10) {
-    let $finalStep$1 /*:boolean*/ = false;
-    try {
-      const test$1 /*:unknown*/ = $(`first`);
-      $(`second`);
-      if (test$1) {
-        $finalStep$1 = true;
-      } else {
-        $(`third`);
-      }
-    } catch ($finalImplicit$1) {
-      $(`finally`);
-      throw $finalImplicit$1;
-    }
-    $(`finally`);
-    if ($finalStep$1) {
-      break;
-    } else {
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -194,7 +234,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'first'
@@ -206,7 +246,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

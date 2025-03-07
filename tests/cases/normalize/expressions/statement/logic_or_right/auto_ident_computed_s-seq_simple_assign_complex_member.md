@@ -16,6 +16,40 @@ $(100) || ((1, 2, b)[$("c")] = $(b)[$("d")]);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(100);
+const b /*:object*/ = { c: 10, d: 20 };
+if (tmpIfTest) {
+} else {
+  const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
+  const tmpCompObj /*:unknown*/ = $(b);
+  const tmpCompProp /*:unknown*/ = $(`d`);
+  const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+  b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(100);
+const b = { c: 10, d: 20 };
+if (!tmpIfTest) {
+  const tmpAssignComMemLhsProp = $(`c`);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+  b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -47,26 +81,7 @@ if (tmpIfTest) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(100);
-const b /*:object*/ = { c: 10, d: 20 };
-if (tmpIfTest) {
-} else {
-  const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
-  const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`d`);
-  const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
-  b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +111,7 @@ $( g, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -110,4 +125,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

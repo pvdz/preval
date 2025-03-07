@@ -16,6 +16,50 @@ for (; $(1); a = (1, 2, $(b)).c);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+const b /*:object*/ = { c: 1 };
+if (tmpIfTest) {
+  const tmpAssignRhsProp /*:unknown*/ = $(b);
+  a = tmpAssignRhsProp.c;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpAssignRhsProp$1 /*:unknown*/ = $(b);
+      a = tmpAssignRhsProp$1.c;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+const b = { c: 1 };
+if (tmpIfTest) {
+  a = $(b).c;
+  while (true) {
+    if ($(1)) {
+      a = $(b).c;
+    } else {
+      break;
+    }
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -48,32 +92,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { c: 1 };
-if (tmpIfTest) {
-  const tmpAssignRhsProp /*:unknown*/ = $(b);
-  a = tmpAssignRhsProp.c;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpAssignRhsProp$1 /*:unknown*/ = $(b);
-      a = tmpAssignRhsProp$1.c;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +123,7 @@ $( a, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -139,7 +158,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -14,6 +14,20 @@ const f = x.constructor;
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(Function);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(Function);
+`````
+
 ## Pre Normal
 
 
@@ -33,15 +47,7 @@ const f = x.constructor;
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(Function);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -52,7 +58,7 @@ $( Function );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -62,4 +68,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

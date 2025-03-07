@@ -18,6 +18,44 @@ foo: do {
 } while ($(false));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1, `outer`);
+$(1, `inner`);
+const tmpIfTest /*:unknown*/ = $(false);
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(1, `outer`);
+    $(1, `inner`);
+    const tmpIfTest$1 /*:unknown*/ = $(false);
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1, `outer`);
+$(1, `inner`);
+if ($(false)) {
+  while (true) {
+    $(1, `outer`);
+    $(1, `inner`);
+    if (!$(false)) {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -62,29 +100,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1, `outer`);
-$(1, `inner`);
-const tmpIfTest /*:unknown*/ = $(false);
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(1, `outer`);
-    $(1, `inner`);
-    const tmpIfTest$1 /*:unknown*/ = $(false);
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +126,7 @@ if (a) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'outer'
@@ -122,4 +138,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

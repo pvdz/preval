@@ -23,6 +23,45 @@ f();
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpBinBothRhs /*:unknown*/ = $(`truthy`);
+  const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+  if (x) {
+    $(false, `fail`);
+  } else {
+    $(true, `pass`);
+  }
+  $(x, `after`);
+  return undefined;
+};
+f();
+f();
+f();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const x = $coerce($(`truthy`), `plustr`);
+  if (x) {
+    $(false, `fail`);
+  } else {
+    $(true, `pass`);
+  }
+  $(x, `after`);
+};
+f();
+f();
+f();
+`````
+
 ## Pre Normal
 
 
@@ -66,29 +105,7 @@ f();
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpBinBothRhs /*:unknown*/ = $(`truthy`);
-  const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
-  if (x) {
-    $(false, `fail`);
-  } else {
-    $(true, `pass`);
-  }
-  $(x, `after`);
-  return undefined;
-};
-f();
-f();
-f();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +131,7 @@ a();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'truthy'
@@ -132,4 +149,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

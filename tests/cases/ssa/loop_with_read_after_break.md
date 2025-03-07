@@ -23,6 +23,51 @@ function f() {
 if ($) f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  $(1);
+  let x /*:unknown*/ = $(2);
+  $(x);
+  if ($) {
+  } else {
+    while ($LOOP_UNROLL_10) {
+      x = $(2);
+      $(x);
+      if ($) {
+        break;
+      } else {
+      }
+    }
+  }
+  $(x);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $(1);
+  let x = $(2);
+  $(x);
+  if (!$) {
+    while (true) {
+      x = $(2);
+      $(x);
+      if ($) {
+        break;
+      }
+    }
+  }
+  $(x);
+}
+`````
+
 ## Pre Normal
 
 
@@ -64,32 +109,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  $(1);
-  let x /*:unknown*/ = $(2);
-  $(x);
-  if ($) {
-  } else {
-    while ($LOOP_UNROLL_10) {
-      x = $(2);
-      $(x);
-      if ($) {
-        break;
-      } else {
-      }
-    }
-  }
-  $(x);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -117,7 +137,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -130,4 +150,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

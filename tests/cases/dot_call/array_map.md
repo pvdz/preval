@@ -20,6 +20,34 @@ const arr = $dotCall(map, pre, 'map', f); // Turn this back into `pre.map(f);`
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown)=>primitive*/ = function ($$0) {
+  const item /*:unknown*/ = $$0;
+  debugger;
+  $(`hello`, item);
+  const tmpReturnArg /*:primitive*/ = item + 1;
+  return tmpReturnArg;
+};
+const pre /*:array*/ = [1, 2, 3];
+const arr /*:array*/ = pre.map(f);
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (item) {
+  $(`hello`, item);
+  const tmpReturnArg = item + 1;
+  return tmpReturnArg;
+};
+$([1, 2, 3].map(f));
+`````
+
 ## Pre Normal
 
 
@@ -53,24 +81,7 @@ const arr = $dotCall(map, pre, `map`, f);
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unknown)=>primitive*/ = function ($$0) {
-  const item /*:unknown*/ = $$0;
-  debugger;
-  $(`hello`, item);
-  const tmpReturnArg /*:primitive*/ = item + 1;
-  return tmpReturnArg;
-};
-const pre /*:array*/ = [1, 2, 3];
-const arr /*:array*/ = pre.map(f);
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -90,7 +101,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'hello', 1
@@ -103,7 +114,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_map

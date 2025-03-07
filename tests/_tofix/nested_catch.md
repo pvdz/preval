@@ -33,6 +33,17 @@ try {
 $(x);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+try {
+  fail_early;
+  throw `one`;
+} catch (e) {}
+$(2);
+`````
+
 ## Pre Normal
 
 
@@ -65,7 +76,7 @@ try {
 $(x);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -76,8 +87,7 @@ try {
 $(2);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,4 +117,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

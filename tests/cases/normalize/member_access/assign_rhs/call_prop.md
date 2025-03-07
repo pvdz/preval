@@ -14,6 +14,22 @@ x = $('foo').length;
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpAssignRhsProp /*:unknown*/ = $(`foo`);
+const x /*:unknown*/ = tmpAssignRhsProp.length;
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(`foo`).length);
+`````
+
 ## Pre Normal
 
 
@@ -33,17 +49,7 @@ x = tmpAssignRhsProp.length;
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpAssignRhsProp /*:unknown*/ = $(`foo`);
-const x /*:unknown*/ = tmpAssignRhsProp.length;
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +62,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'foo'
@@ -67,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

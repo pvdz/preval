@@ -13,6 +13,22 @@
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+y = undefined.y;
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+y = undefined.y;
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -33,16 +49,7 @@ y = objPatternNoDefault.y;
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-y = undefined.y;
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +63,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -65,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

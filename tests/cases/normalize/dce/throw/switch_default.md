@@ -22,6 +22,35 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+const tmpBinBothRhs /*:unknown*/ = $(0);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+if (tmpIfTest) {
+  $(`wrong branch`);
+  throw `wrong exit`;
+} else {
+  const tmpThrowArg /*:unknown*/ = $(2, `throw`);
+  throw tmpThrowArg;
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(1, `disc`) === $(0)) {
+  $(`wrong branch`);
+  throw `wrong exit`;
+} else {
+  const tmpThrowArg = $(2, `throw`);
+  throw tmpThrowArg;
+}
+`````
+
 ## Pre Normal
 
 
@@ -65,24 +94,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
-const tmpBinBothRhs /*:unknown*/ = $(0);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-if (tmpIfTest) {
-  $(`wrong branch`);
-  throw `wrong exit`;
-} else {
-  const tmpThrowArg /*:unknown*/ = $(2, `throw`);
-  throw tmpThrowArg;
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +115,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'disc'
@@ -115,4 +127,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

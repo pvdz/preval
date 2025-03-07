@@ -16,6 +16,41 @@ const spy = {
 String([spy, spy]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const spy /*:object*/ = {
+  valueOf() {
+    debugger;
+    $(`x`);
+    return undefined;
+  },
+  toString() {
+    debugger;
+    $(`y`);
+    return undefined;
+  },
+};
+const tmpCalleeParam /*:array*/ = [spy, spy];
+$coerce(tmpCalleeParam, `string`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const spy = {
+  valueOf() {
+    $(`x`);
+  },
+  toString() {
+    $(`y`);
+  },
+};
+$coerce([spy, spy], `string`);
+`````
+
 ## Pre Normal
 
 
@@ -53,28 +88,7 @@ const tmpCalleeParam = [spy, spy];
 $coerce(tmpCalleeParam, `string`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const spy /*:object*/ = {
-  valueOf() {
-    debugger;
-    $(`x`);
-    return undefined;
-  },
-  toString() {
-    debugger;
-    $(`y`);
-    return undefined;
-  },
-};
-const tmpCalleeParam /*:array*/ = [spy, spy];
-$coerce(tmpCalleeParam, `string`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +112,7 @@ $coerce( b, "string" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'y'
@@ -109,4 +123,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

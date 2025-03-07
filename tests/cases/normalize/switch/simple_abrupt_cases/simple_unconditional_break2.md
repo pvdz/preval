@@ -22,6 +22,39 @@ switch ($(1)) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === 0;
+if (tmpIfTest) {
+  $(`one`);
+  KEEP_ME_AROUND;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === 1;
+  if (tmpIfTest$1) {
+    $(`two`);
+  } else {
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSwitchDisc = $(1);
+if (tmpSwitchDisc === 0) {
+  $(`one`);
+  KEEP_ME_AROUND;
+} else {
+  if (tmpSwitchDisc === 1) {
+    $(`two`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -67,26 +100,7 @@ tmpSwitchBreak: {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === 0;
-if (tmpIfTest) {
-  $(`one`);
-  KEEP_ME_AROUND;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === 1;
-  if (tmpIfTest$1) {
-    $(`two`);
-  } else {
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +124,7 @@ BAD@! Found 1 implicit global bindings:
 
 KEEP_ME_AROUND
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -121,4 +135,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

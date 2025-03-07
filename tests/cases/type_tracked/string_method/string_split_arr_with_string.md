@@ -16,6 +16,23 @@ const res /*:array*/ = str.split(args);
 $(res);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const wat /*:unknown*/ = $(`x`);
+const str /*:string*/ = $coerce(wat, `plustr`);
+const res /*:array*/ = str.split(` `);
+$(res);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($coerce($(`x`), `plustr`).split(` `));
+`````
+
 ## Pre Normal
 
 
@@ -38,18 +55,7 @@ const res = str.split(args);
 $(res);
 `````
 
-## Output
-
-
-`````js filename=intro
-const wat /*:unknown*/ = $(`x`);
-const str /*:string*/ = $coerce(wat, `plustr`);
-const res /*:array*/ = str.split(` `);
-$(res);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +69,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -74,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

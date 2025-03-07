@@ -17,6 +17,57 @@ $(
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+let tmpBinBothLhs /*:unknown*/ = undefined;
+if (tmpIfTest) {
+  const tmpClusterSSA_a /*:unknown*/ = $(60);
+  tmpBinBothLhs = tmpClusterSSA_a;
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  tmpBinBothLhs = tmpClusterSSA_a$1;
+}
+const tmpIfTest$1 /*:unknown*/ = $(1);
+if (tmpIfTest$1) {
+  a = $(60);
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(100);
+  a = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam$1);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const tmpIfTest = $(1);
+let tmpBinBothLhs = undefined;
+if (tmpIfTest) {
+  tmpBinBothLhs = $(60);
+} else {
+  tmpBinBothLhs = $($(100));
+}
+if ($(1)) {
+  a = $(60);
+  $(tmpBinBothLhs + a);
+} else {
+  a = $($(100));
+  $(tmpBinBothLhs + a);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -52,37 +103,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(1);
-let tmpBinBothLhs /*:unknown*/ = undefined;
-if (tmpIfTest) {
-  const tmpClusterSSA_a /*:unknown*/ = $(60);
-  tmpBinBothLhs = tmpClusterSSA_a;
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(100);
-  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpBinBothLhs = tmpClusterSSA_a$1;
-}
-const tmpIfTest$1 /*:unknown*/ = $(1);
-if (tmpIfTest$1) {
-  a = $(60);
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam$3);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
-  $(tmpClusterSSA_tmpCalleeParam$1);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -117,7 +138,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -132,4 +153,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

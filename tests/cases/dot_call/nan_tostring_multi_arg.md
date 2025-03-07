@@ -15,6 +15,22 @@ const x = $dotCall(tmpCallVal, naN, 'toString', 2, $, unknown);
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+unknown;
+$(`NaN`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+unknown;
+$(`NaN`);
+`````
+
 ## Pre Normal
 
 
@@ -34,16 +50,7 @@ const x = naN.toString(2, $, unknown);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-unknown;
-$(`NaN`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +64,7 @@ BAD@! Found 1 implicit global bindings:
 
 unknown
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -66,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

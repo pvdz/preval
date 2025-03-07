@@ -14,6 +14,20 @@ a /= b;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(0.5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(0.5);
+`````
+
 ## Pre Normal
 
 
@@ -34,15 +48,7 @@ a = a / b;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(0.5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -53,7 +59,7 @@ $( 0.5 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0.5
@@ -63,4 +69,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

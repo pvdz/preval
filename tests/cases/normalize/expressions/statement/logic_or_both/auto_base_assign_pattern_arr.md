@@ -16,6 +16,45 @@ let a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpArrElement /*:unknown*/ = $(2);
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
+const a /*:object*/ = { a: 999, b: 1000 };
+if (tmpNestedAssignArrPatternRhs) {
+  $(a, tmpClusterSSA_b);
+} else {
+  const tmpArrElement$1 /*:unknown*/ = $(2);
+  const tmpCalleeParam$1 /*:array*/ = [tmpArrElement$1];
+  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
+  const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
+  const tmpClusterSSA_b$1 /*:unknown*/ = arrPatternSplat$1[0];
+  $(a, tmpClusterSSA_b$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArrElement = $(2);
+const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
+const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
+const a = { a: 999, b: 1000 };
+if (tmpNestedAssignArrPatternRhs) {
+  $(a, tmpClusterSSA_b);
+} else {
+  const tmpArrElement$1 = $(2);
+  const arrAssignPatternRhs = $([tmpArrElement$1]);
+  $(a, [...arrAssignPatternRhs][0]);
+}
+`````
+
 ## Pre Normal
 
 
@@ -50,30 +89,7 @@ if (tmpIfTest) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpArrElement /*:unknown*/ = $(2);
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
-const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpNestedAssignArrPatternRhs) {
-  $(a, tmpClusterSSA_b);
-} else {
-  const tmpArrElement$1 /*:unknown*/ = $(2);
-  const tmpCalleeParam$1 /*:array*/ = [tmpArrElement$1];
-  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
-  const tmpClusterSSA_b$1 /*:unknown*/ = arrPatternSplat$1[0];
-  $(a, tmpClusterSSA_b$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +119,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -115,7 +131,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

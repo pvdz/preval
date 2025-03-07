@@ -24,6 +24,35 @@ const getMessages = async function($$0) {
 $(getMessages);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const getMessages /*:(unknown)=>promise*/ = async function ($$0) {
+  const $dlr_$$0 /*:unknown*/ = $$0;
+  debugger;
+  const tmpAwaitArg /*:unknown*/ = fetchFromStore($dlr_$$0);
+  const l$11 /*:unknown*/ = await tmpAwaitArg;
+  const tmpCompObj$1 /*:unknown*/ = l$11[0];
+  const tmpCompObj /*:unknown*/ = tmpCompObj$1.dataValues;
+  const tmpCalleeParam /*:unknown*/ = tmpCompObj.bucket;
+  const tmpReturnArg$13 /*:unknown*/ = $JSON_parse(tmpCalleeParam);
+  return tmpReturnArg$13;
+};
+$(getMessages);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(async function ($dlr_$$0) {
+  const tmpAwaitArg = fetchFromStore($dlr_$$0);
+  const tmpReturnArg$13 = $JSON_parse(await tmpAwaitArg[0].dataValues.bucket);
+  return tmpReturnArg$13;
+});
+`````
+
 ## Pre Normal
 
 
@@ -64,26 +93,7 @@ const getMessages = async function ($$0) {
 $(getMessages);
 `````
 
-## Output
-
-
-`````js filename=intro
-const getMessages /*:(unknown)=>promise*/ = async function ($$0) {
-  const $dlr_$$0 /*:unknown*/ = $$0;
-  debugger;
-  const tmpAwaitArg /*:unknown*/ = fetchFromStore($dlr_$$0);
-  const l$11 /*:unknown*/ = await tmpAwaitArg;
-  const tmpCompObj$1 /*:unknown*/ = l$11[0];
-  const tmpCompObj /*:unknown*/ = tmpCompObj$1.dataValues;
-  const tmpCalleeParam /*:unknown*/ = tmpCompObj.bucket;
-  const tmpReturnArg$13 /*:unknown*/ = $JSON_parse(tmpCalleeParam);
-  return tmpReturnArg$13;
-};
-$(getMessages);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +117,7 @@ BAD@! Found 1 implicit global bindings:
 
 fetchFromStore
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -117,7 +127,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - maybe fix the type for calling this builtin?

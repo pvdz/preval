@@ -19,6 +19,26 @@ switch ($(1)) {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+const b /*:object*/ = { c: 1 };
+const tmpAssignRhsProp /*:unknown*/ = $(b);
+const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
+$(tmpClusterSSA_a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+const b = { c: 1 };
+$($(b).c, b);
+`````
+
 ## Pre Normal
 
 
@@ -47,19 +67,7 @@ a = tmpAssignRhsProp.c;
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-const b /*:object*/ = { c: 1 };
-const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-$(tmpClusterSSA_a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +82,7 @@ $( c, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -86,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

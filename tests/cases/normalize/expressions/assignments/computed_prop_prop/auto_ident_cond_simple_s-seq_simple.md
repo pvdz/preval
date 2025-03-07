@@ -15,6 +15,23 @@ obj[(a = 1 ? (40, 50, 60) : $($(100)))];
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const obj /*:object*/ = {};
+obj[60];
+$(60);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+({}[60]);
+$(60);
+`````
+
 ## Pre Normal
 
 
@@ -38,17 +55,7 @@ tmpCompObj[tmpCompProp];
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const obj /*:object*/ = {};
-obj[60];
-$(60);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +68,7 @@ $( 60 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 60
@@ -71,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

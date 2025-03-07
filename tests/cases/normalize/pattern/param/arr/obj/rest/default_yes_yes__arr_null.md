@@ -15,6 +15,23 @@ function f([{ ...x } = $({ a: 'fail' })] = $([{ a: 'fail2' }])) {
 $(f([null, 20, 30], 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$5 /*:array*/ = [];
+objPatternRest(null, tmpCalleeParam$5, undefined);
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+objPatternRest(null, [], undefined);
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -65,17 +82,7 @@ const tmpCalleeParam$7 = tmpCallCallee(tmpCalleeParam$9, 200);
 $(tmpCalleeParam$7);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$5 /*:array*/ = [];
-objPatternRest(null, tmpCalleeParam$5, undefined);
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +95,7 @@ $( "bad" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -97,7 +104,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

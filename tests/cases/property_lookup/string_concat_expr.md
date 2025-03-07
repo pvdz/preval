@@ -11,6 +11,20 @@ const x = $String_prototype.lastIndexOf;
 $( x );
 `````
 
+## Settled
+
+
+`````js filename=intro
+$($string_lastIndexOf);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($string_lastIndexOf);
+`````
+
 ## Pre Normal
 
 
@@ -27,15 +41,7 @@ const x = $String_prototype.lastIndexOf;
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$($string_lastIndexOf);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -46,7 +52,7 @@ $( $string_lastIndexOf );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -56,4 +62,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

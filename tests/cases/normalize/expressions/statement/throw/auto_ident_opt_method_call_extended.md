@@ -16,6 +16,23 @@ throw b?.c.d.e(1);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal$1 /*:object*/ = { e: $ };
+const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+throw tmpChainElementCall;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainElementCall = { e: $ }.e(1);
+throw tmpChainElementCall;
+`````
+
 ## Pre Normal
 
 
@@ -47,17 +64,7 @@ if (tmpIfTest) {
 throw tmpThrowArg;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
-throw tmpChainElementCall;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +77,7 @@ throw b;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -80,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

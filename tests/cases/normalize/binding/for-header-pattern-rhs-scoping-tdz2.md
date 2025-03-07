@@ -28,6 +28,20 @@ for (lhs in rhs) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: [firstElement]`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: [firstElement]`;
+`````
+
 ## Pre Normal
 
 
@@ -64,15 +78,7 @@ let lhs = 0;
 let firstElement = 0;
 `````
 
-## Output
-
-
-`````js filename=intro
-throw `Preval: TDZ triggered for this read: [firstElement]`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +89,7 @@ throw "Preval: TDZ triggered for this read: [firstElement]";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -92,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -14,6 +14,49 @@ $($)?.(1) && $($)?.(1);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpIfTest /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
+  tmpIfTest = tmpChainElementCall$1;
+}
+if (tmpIfTest) {
+  const tmpChainElementCall$3 /*:unknown*/ = $($);
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
+  if (tmpIfTest$3) {
+  } else {
+    $dotCall(tmpChainElementCall$3, $, undefined, 1);
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpIfTest = undefined;
+const tmpChainElementCall = $($);
+if (!(tmpChainElementCall == null)) {
+  tmpIfTest = $dotCall(tmpChainElementCall, $, undefined, 1);
+}
+if (tmpIfTest) {
+  const tmpChainElementCall$3 = $($);
+  if (!(tmpChainElementCall$3 == null)) {
+    $dotCall(tmpChainElementCall$3, $, undefined, 1);
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -50,33 +93,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpIfTest /*:unknown*/ = undefined;
-const tmpChainElementCall /*:unknown*/ = $($);
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  tmpIfTest = tmpChainElementCall$1;
-}
-if (tmpIfTest) {
-  const tmpChainElementCall$3 /*:unknown*/ = $($);
-  const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
-  if (tmpIfTest$3) {
-  } else {
-    $dotCall(tmpChainElementCall$3, $, undefined, 1);
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -111,7 +128,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -125,4 +142,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -17,6 +17,30 @@ if ($) {
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const tmpClusterSSA_y /*:array*/ = [`a`, 1, 2, 3, `b`];
+  $(tmpClusterSSA_y);
+} else {
+  const y /*:array*/ = [];
+  $(y);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $([`a`, 1, 2, 3, `b`]);
+} else {
+  $([]);
+}
+`````
+
 ## Pre Normal
 
 
@@ -42,21 +66,7 @@ if ($) {
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const tmpClusterSSA_y /*:array*/ = [`a`, 1, 2, 3, `b`];
-  $(tmpClusterSSA_y);
-} else {
-  const y /*:array*/ = [];
-  $(y);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +84,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['a', 1, 2, 3, 'b']
@@ -84,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,32 @@ const obj = {f: 123};
 $dotCall(h, obj, undefined); // obj has no funcs heh
 `````
 
+## Settled
+
+
+`````js filename=intro
+const h /*:()=>unknown*/ = function () {
+  debugger;
+  $();
+  return undefined;
+};
+const obj /*:object*/ = { f: 123 };
+$dotCall(h, obj, undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$dotCall(
+  function () {
+    $();
+  },
+  { f: 123 },
+  undefined,
+);
+`````
+
 ## Pre Normal
 
 
@@ -49,21 +75,7 @@ const obj = { f: 123 };
 $dotCall(h, obj, undefined);
 `````
 
-## Output
-
-
-`````js filename=intro
-const h /*:()=>unknown*/ = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const obj /*:object*/ = { f: 123 };
-$dotCall(h, obj, undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +92,7 @@ $dotCall( a, b, undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -90,4 +102,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

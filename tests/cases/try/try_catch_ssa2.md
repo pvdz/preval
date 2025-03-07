@@ -49,6 +49,68 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let ignore /*:boolean*/ = false;
+const one /*:()=>undefined*/ = function () {
+  debugger;
+  $(x);
+  x = $(2);
+  ignore = true;
+  $(x);
+  return undefined;
+};
+let x /*:unknown*/ = $(1);
+try {
+  one();
+  x = undefined;
+} catch (e$1) {
+  if (ignore) {
+    throw e$1;
+  } else {
+    $(x);
+    $(3);
+    x = undefined;
+  }
+}
+$(x);
+one();
+[...undefined];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let ignore = false;
+const one = function () {
+  $(x);
+  x = $(2);
+  ignore = true;
+  $(x);
+};
+let x = $(1);
+try {
+  one();
+  x = undefined;
+} catch (e$1) {
+  if (ignore) {
+    throw e$1;
+  } else {
+    $(x);
+    $(3);
+    x = undefined;
+  }
+}
+$(x);
+one();
+[...undefined];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
 ## Pre Normal
 
 
@@ -158,40 +220,7 @@ three(x);
 $tryCatch(one, two, three);
 `````
 
-## Output
-
-
-`````js filename=intro
-let ignore /*:boolean*/ = false;
-const one /*:()=>undefined*/ = function () {
-  debugger;
-  $(x);
-  x = $(2);
-  ignore = true;
-  $(x);
-  return undefined;
-};
-let x /*:unknown*/ = $(1);
-try {
-  one();
-  x = undefined;
-} catch (e$1) {
-  if (ignore) {
-    throw e$1;
-  } else {
-    $(x);
-    $(3);
-    x = undefined;
-  }
-}
-$(x);
-one();
-[...undefined];
-throw `[Preval]: Array spread must crash before this line`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -229,7 +258,7 @@ throw "[Preval]: Array spread must crash before this line";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -246,7 +275,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

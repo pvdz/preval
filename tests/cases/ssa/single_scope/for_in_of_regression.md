@@ -20,6 +20,48 @@ for (arr of list) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(undefined);
+let x /*:unknown*/ = undefined;
+const list /*:array*/ = [100];
+const tmpForOfGen /*:unknown*/ = $forOf(list);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpClusterSSA_arr /*:unknown*/ = tmpForOfNext.value;
+    x = tmpClusterSSA_arr;
+    $(tmpClusterSSA_arr, `for`);
+  }
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(undefined);
+let x = undefined;
+const tmpForOfGen = $forOf([100]);
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    const tmpClusterSSA_arr = tmpForOfNext.value;
+    x = tmpClusterSSA_arr;
+    $(tmpClusterSSA_arr, `for`);
+  }
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -69,30 +111,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(undefined);
-let x /*:unknown*/ = undefined;
-const list /*:array*/ = [100];
-const tmpForOfGen /*:unknown*/ = $forOf(list);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpClusterSSA_arr /*:unknown*/ = tmpForOfNext.value;
-    x = tmpClusterSSA_arr;
-    $(tmpClusterSSA_arr, `for`);
-  }
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +138,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined
@@ -131,7 +150,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

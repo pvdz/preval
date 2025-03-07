@@ -14,6 +14,48 @@ while (({ a } = $({ a: 1, b: 2 }))) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+if (tmpNestedAssignObjPatternRhs) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+    const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+    if (tmpNestedAssignObjPatternRhs$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
+let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+if (tmpNestedAssignObjPatternRhs) {
+  while (true) {
+    $(100);
+    const tmpNestedAssignObjPatternRhs$1 = $({ a: 1, b: 2 });
+    tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+    if (!tmpNestedAssignObjPatternRhs$1) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -44,31 +86,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
-if (tmpNestedAssignObjPatternRhs) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
-    if (tmpNestedAssignObjPatternRhs$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -102,7 +120,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }
@@ -137,7 +155,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

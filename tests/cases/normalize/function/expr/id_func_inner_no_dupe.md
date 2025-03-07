@@ -19,6 +19,33 @@ out();
 out();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const out /*:()=>unknown*/ = function () {
+  debugger;
+  $(`function`);
+  const tmpCalleeParam$1 /*:string*/ = typeof g;
+  $(tmpCalleeParam$1, undefined);
+  return undefined;
+};
+out();
+out();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const out = function () {
+  $(`function`);
+  $(typeof g, undefined);
+};
+out();
+out();
+`````
+
 ## Pre Normal
 
 
@@ -57,23 +84,7 @@ out();
 out();
 `````
 
-## Output
-
-
-`````js filename=intro
-const out /*:()=>unknown*/ = function () {
-  debugger;
-  $(`function`);
-  const tmpCalleeParam$1 /*:string*/ = typeof g;
-  $(tmpCalleeParam$1, undefined);
-  return undefined;
-};
-out();
-out();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -94,7 +105,7 @@ BAD@! Found 1 implicit global bindings:
 
 g
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'function'
@@ -107,4 +118,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

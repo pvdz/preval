@@ -43,6 +43,64 @@ if ($tmpLoopUnrollCheck) {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+const b /*:object*/ = { x: 1 };
+if (tmpIfTest) {
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
+  const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  a = tmpNestedPropCompoundComplexRhs;
+  while ($LOOP_UNROLL_10) {
+    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpClusterSSA_tmpIfTest$1) {
+      const tmpCalleeParam$1 /*:unknown*/ = $(b);
+      const tmpNestedAssignObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+      const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj$1.x;
+      const tmpNestedPropCompoundComplexRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
+      tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
+      a = tmpNestedPropCompoundComplexRhs$1;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+const b = { x: 1 };
+if (tmpIfTest) {
+  const tmpNestedAssignObj = $($(b));
+  const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  a = tmpNestedPropCompoundComplexRhs;
+  while (true) {
+    if ($(1)) {
+      const tmpNestedAssignObj$1 = $($(b));
+      const tmpNestedPropCompoundComplexRhs$1 = tmpNestedAssignObj$1.x + 1;
+      tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
+      a = tmpNestedPropCompoundComplexRhs$1;
+    } else {
+      break;
+    }
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -119,40 +177,7 @@ if ($tmpLoopUnrollCheck) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { x: 1 };
-if (tmpIfTest) {
-  const tmpCalleeParam /*:unknown*/ = $(b);
-  const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-  const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
-  while ($LOOP_UNROLL_10) {
-    const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpClusterSSA_tmpIfTest$1) {
-      const tmpCalleeParam$1 /*:unknown*/ = $(b);
-      const tmpNestedAssignObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj$1.x;
-      const tmpNestedPropCompoundComplexRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
-      tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-      a = tmpNestedPropCompoundComplexRhs$1;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -191,7 +216,7 @@ $( a, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -226,4 +251,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

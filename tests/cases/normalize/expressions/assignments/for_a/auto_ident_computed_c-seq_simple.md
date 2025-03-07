@@ -16,6 +16,31 @@ for (a = (1, 2, $(b))[$("c")]; ; $(1));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 1 };
+const tmpAssignRhsCompObj /*:unknown*/ = $(b);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
+tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAssignRhsCompObj = $({ c: 1 });
+const tmpAssignRhsCompProp = $(`c`);
+tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+while (true) {
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -45,21 +70,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 1 };
-const tmpAssignRhsCompObj /*:unknown*/ = $(b);
-const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +87,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { c: '1' }
@@ -111,7 +122,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - computed property access of an ident where the property ident is not recorded;

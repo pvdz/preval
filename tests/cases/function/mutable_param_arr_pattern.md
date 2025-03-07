@@ -16,6 +16,21 @@ function f([a]) {
 $(f([1]));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(10);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(10));
+`````
+
 ## Pre Normal
 
 
@@ -49,16 +64,7 @@ const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(10);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +76,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -81,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,35 @@ for (let xyz = (a = ++$($(b)).x); ; $(1)) $(xyz);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(b);
+const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(tmpNestedPropCompoundComplexRhs);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNestedAssignObj = $($({ x: 1 }));
+const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+while (true) {
+  $(tmpNestedPropCompoundComplexRhs);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -51,24 +80,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpNestedPropCompoundComplexRhs);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +100,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -123,4 +135,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

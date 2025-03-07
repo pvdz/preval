@@ -18,6 +18,88 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+$(100);
+const b /*:object*/ = { $: $ };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
+  if (tmpIfTest$3) {
+  } else {
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+    a = tmpChainElementCall$1;
+  }
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpChainElementCall$2 /*:unknown*/ = $(b);
+    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$2 == null;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$2[tmpChainRootComputed$1];
+      const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$1 == null;
+      if (tmpIfTest$4) {
+      } else {
+        const tmpCalleeParam$1 /*:unknown*/ = $(1);
+        const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, undefined, tmpCalleeParam$1);
+        a = tmpChainElementCall$4;
+      }
+    }
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+$(100);
+const b = { $: $ };
+const tmpChainElementCall = $(b);
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`\$`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+  }
+}
+if (a) {
+  while (true) {
+    $(100);
+    const tmpChainElementCall$2 = $(b);
+    if (!(tmpChainElementCall$2 == null)) {
+      const tmpChainRootComputed$1 = $(`\$`);
+      const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
+      if (!(tmpChainElementObject$1 == null)) {
+        a = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, undefined, $(1));
+      }
+    }
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -71,56 +153,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-$(100);
-const b /*:object*/ = { $: $ };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
-  }
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpChainElementCall$2 /*:unknown*/ = $(b);
-    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$2 == null;
-    if (tmpIfTest$2) {
-    } else {
-      const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
-      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$2[tmpChainRootComputed$1];
-      const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$1 == null;
-      if (tmpIfTest$4) {
-      } else {
-        const tmpCalleeParam$1 /*:unknown*/ = $(1);
-        const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, undefined, tmpCalleeParam$1);
-        a = tmpChainElementCall$4;
-      }
-    }
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -181,7 +214,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -216,7 +249,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

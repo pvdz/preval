@@ -16,6 +16,38 @@ new ($($))($(1), $(2)) + new ($($))($(1), $(2));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNewCallee /*:unknown*/ = $($);
+const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpCalleeParam$1 /*:unknown*/ = $(2);
+const tmpBinBothLhs /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpNewCallee$1 /*:unknown*/ = $($);
+const tmpCalleeParam$3 /*:unknown*/ = $(1);
+const tmpCalleeParam$5 /*:unknown*/ = $(2);
+const tmpBinBothRhs /*:object*/ = new tmpNewCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+tmpBinBothLhs + tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNewCallee = $($);
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(2);
+const tmpBinBothLhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpNewCallee$1 = $($);
+const tmpCalleeParam$3 = $(1);
+const tmpCalleeParam$5 = $(2);
+tmpBinBothLhs + new tmpNewCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -44,25 +76,7 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNewCallee /*:unknown*/ = $($);
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpBinBothLhs /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpNewCallee$1 /*:unknown*/ = $($);
-const tmpCalleeParam$3 /*:unknown*/ = $(1);
-const tmpCalleeParam$5 /*:unknown*/ = $(2);
-const tmpBinBothRhs /*:object*/ = new tmpNewCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +100,7 @@ $( i );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -104,4 +118,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

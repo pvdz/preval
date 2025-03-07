@@ -24,6 +24,38 @@ $('break if hoisting optimization ooops');
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = $(`a`);
+$(x);
+$(`b`);
+if ($) {
+  x = $(`c`);
+} else {
+  x = $(`d`);
+}
+$(`break if hoisting optimization ooops`);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $(`a`);
+$(x);
+$(`b`);
+if ($) {
+  x = $(`c`);
+} else {
+  x = $(`d`);
+}
+$(`break if hoisting optimization ooops`);
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -56,24 +88,7 @@ $(`break if hoisting optimization ooops`);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:unknown*/ = $(`a`);
-$(x);
-$(`b`);
-if ($) {
-  x = $(`c`);
-} else {
-  x = $(`d`);
-}
-$(`break if hoisting optimization ooops`);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -94,7 +109,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -109,4 +124,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

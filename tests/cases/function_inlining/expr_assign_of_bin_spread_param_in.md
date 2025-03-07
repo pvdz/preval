@@ -25,6 +25,37 @@ f();
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:primitive*/ = 0;
+const g /*:(unknown, unused, unused, unknown, unused)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
+  const a /*:unknown*/ = $$0;
+  const d /*:unknown*/ = $$3;
+  debugger;
+  x = a + d;
+  return undefined;
+};
+const tmpCalleeParam /*:array*/ = [1, 2];
+const arr /*:unknown*/ = $(tmpCalleeParam);
+g(10, 20, ...arr, 30, 40, 50);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 0;
+const g = function (a, $$1, $$2, d, $$4) {
+  x = a + d;
+};
+const arr = $([1, 2]);
+g(10, 20, ...arr, 30, 40, 50);
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -74,26 +105,7 @@ f();
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:primitive*/ = 0;
-const g /*:(unknown, unused, unused, unknown, unused)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
-  const a /*:unknown*/ = $$0;
-  const d /*:unknown*/ = $$3;
-  debugger;
-  x = a + d;
-  return undefined;
-};
-const tmpCalleeParam /*:array*/ = [1, 2];
-const arr /*:unknown*/ = $(tmpCalleeParam);
-g(10, 20, ...arr, 30, 40, 50);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +127,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: [1, 2]
@@ -126,4 +138,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

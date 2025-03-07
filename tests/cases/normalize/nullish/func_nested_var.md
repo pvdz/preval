@@ -20,6 +20,55 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:unknown*/ = $(2);
+const tmpIfTest /*:boolean*/ = b == null;
+let c /*:unknown*/ = undefined;
+let tmpIfTest$1 /*:boolean*/ = false;
+if (tmpIfTest) {
+  const tmpClusterSSA_b /*:unknown*/ = toString;
+  c = tmpClusterSSA_b;
+  tmpIfTest$1 = tmpClusterSSA_b == null;
+} else {
+  c = b;
+  tmpIfTest$1 = b == null;
+}
+if (tmpIfTest$1) {
+  const tmpClusterSSA_c /*:unknown*/ = length;
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_c);
+  $(tmpClusterSSA_tmpReturnArg);
+} else {
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(c);
+  $(tmpClusterSSA_tmpReturnArg$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = $(2);
+const tmpIfTest = b == null;
+let c = undefined;
+let tmpIfTest$1 = false;
+if (tmpIfTest) {
+  const tmpClusterSSA_b = toString;
+  c = tmpClusterSSA_b;
+  tmpIfTest$1 = tmpClusterSSA_b == null;
+} else {
+  c = b;
+  tmpIfTest$1 = b == null;
+}
+if (tmpIfTest$1) {
+  $($(length));
+} else {
+  $($(c));
+}
+`````
+
 ## Pre Normal
 
 
@@ -60,34 +109,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:unknown*/ = $(2);
-const tmpIfTest /*:boolean*/ = b == null;
-let c /*:unknown*/ = undefined;
-let tmpIfTest$1 /*:boolean*/ = false;
-if (tmpIfTest) {
-  const tmpClusterSSA_b /*:unknown*/ = toString;
-  c = tmpClusterSSA_b;
-  tmpIfTest$1 = tmpClusterSSA_b == null;
-} else {
-  c = b;
-  tmpIfTest$1 = b == null;
-}
-if (tmpIfTest$1) {
-  const tmpClusterSSA_c /*:unknown*/ = length;
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_c);
-  $(tmpClusterSSA_tmpReturnArg);
-} else {
-  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(c);
-  $(tmpClusterSSA_tmpReturnArg$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +143,7 @@ BAD@! Found 2 implicit global bindings:
 
 toString, length
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -133,4 +155,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

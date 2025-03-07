@@ -19,6 +19,39 @@ $({ ...(a = $(b)[$("x")] = $(c)[$("y")] = d + e) });
 $(a, b, c, d, e);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+const c /*:object*/ = { y: 2 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+const tmpCalleeParam /*:object*/ = {};
+$(tmpCalleeParam);
+$(7, b, c, 3, 4);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { x: 1 };
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const c = { y: 2 };
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $(`y`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+$({});
+$(7, b, c, 3, 4);
+`````
+
 ## Pre Normal
 
 
@@ -57,25 +90,7 @@ $(tmpCalleeParam);
 $(a, b, c, d, e);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-const tmpCalleeParam /*:object*/ = {};
-$(tmpCalleeParam);
-$(7, b, c, 3, 4);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,7 +111,7 @@ $( 7, a, d, 3, 4 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -111,4 +126,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

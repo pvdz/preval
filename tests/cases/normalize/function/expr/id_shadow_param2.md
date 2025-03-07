@@ -17,6 +17,22 @@ const x = f(10);
 $(x, typeof f, 'b');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`number`, `a`);
+$(10, `function`, `b`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`number`, `a`);
+$(10, `function`, `b`);
+`````
+
 ## Pre Normal
 
 
@@ -49,16 +65,7 @@ const tmpCalleeParam$3 = typeof f;
 $(tmpCalleeParam$1, tmpCalleeParam$3, `b`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`number`, `a`);
-$(10, `function`, `b`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +77,7 @@ $( 10, "function", "b" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'number', 'a'
@@ -81,4 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

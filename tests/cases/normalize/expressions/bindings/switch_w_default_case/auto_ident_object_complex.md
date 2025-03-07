@@ -20,6 +20,29 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpObjLitVal$3 /*:unknown*/ = $(3);
+const a /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(a);
+$(`fail1`);
+$(`fail2`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$3 = $(3);
+$({ x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 });
+$(`fail1`);
+$(`fail2`);
+`````
+
 ## Pre Normal
 
 
@@ -84,20 +107,7 @@ if (tmpIfTest$7) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-const tmpObjLitVal$3 /*:unknown*/ = $(3);
-const a /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(a);
-$(`fail1`);
-$(`fail2`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -117,7 +127,7 @@ $( "fail2" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -131,4 +141,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

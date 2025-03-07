@@ -14,6 +14,40 @@ for (; (a = !$(100)); $(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:unknown*/ = $(100);
+if (tmpUnaryArg) {
+} else {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    const tmpUnaryArg$1 /*:unknown*/ = $(100);
+    if (tmpUnaryArg$1) {
+      break;
+    } else {
+    }
+  }
+}
+$(false);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (!$(100)) {
+  while (true) {
+    $(1);
+    if ($(100)) {
+      break;
+    }
+  }
+}
+$(false);
+`````
+
 ## Pre Normal
 
 
@@ -45,27 +79,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(100);
-if (tmpUnaryArg) {
-} else {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    const tmpUnaryArg$1 /*:unknown*/ = $(100);
-    if (tmpUnaryArg$1) {
-      break;
-    } else {
-    }
-  }
-}
-$(false);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -89,7 +103,7 @@ $( false );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -100,7 +114,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

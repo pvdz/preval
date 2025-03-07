@@ -27,6 +27,58 @@ obj.x += 5; // This line should become `obj.x = obj.x + 5`
 $(a, s); // 5, 'read;write[5]'
 `````
 
+## Settled
+
+
+`````js filename=intro
+let s /*:string*/ = ``;
+let a /*:primitive*/ = 0;
+const obj /*:object*/ = {
+  get x() {
+    debugger;
+    const tmpStringConcatR /*:unknown*/ = s;
+    s = `${tmpStringConcatR}read;`;
+    return a;
+  },
+  set x($$0) {
+    const v /*:unknown*/ = $$0;
+    debugger;
+    const tmpBinBothLhs /*:unknown*/ = s;
+    const tmpStringConcatL /*:string*/ = $coerce(v, `plustr`);
+    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL}];`;
+    s = tmpBinBothLhs + tmpBinBothRhs;
+    a = a + v;
+    return a;
+  },
+};
+const tmpCompoundAssignLhs /*:unknown*/ = obj.x;
+const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 5;
+obj.x = tmpAssignMemRhs;
+$(a, s);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let s = ``;
+let a = 0;
+const obj = {
+  get x() {
+    const tmpStringConcatR = s;
+    s = `${tmpStringConcatR}read;`;
+    return a;
+  },
+  set x(v) {
+    s = s + `write[${v}];`;
+    a = a + v;
+    return a;
+  },
+};
+obj.x = obj.x + 5;
+$(a, s);
+`````
+
 ## Pre Normal
 
 
@@ -84,38 +136,7 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, s);
 `````
 
-## Output
-
-
-`````js filename=intro
-let s /*:string*/ = ``;
-let a /*:primitive*/ = 0;
-const obj /*:object*/ = {
-  get x() {
-    debugger;
-    const tmpStringConcatR /*:unknown*/ = s;
-    s = `${tmpStringConcatR}read;`;
-    return a;
-  },
-  set x($$0) {
-    const v /*:unknown*/ = $$0;
-    debugger;
-    const tmpBinBothLhs /*:unknown*/ = s;
-    const tmpStringConcatL /*:string*/ = $coerce(v, `plustr`);
-    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL}];`;
-    s = tmpBinBothLhs + tmpBinBothRhs;
-    a = a + v;
-    return a;
-  },
-};
-const tmpCompoundAssignLhs /*:unknown*/ = obj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 5;
-obj.x = tmpAssignMemRhs;
-$(a, s);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -149,7 +170,7 @@ $( b, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5, 'read;write[5];'
@@ -159,4 +180,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

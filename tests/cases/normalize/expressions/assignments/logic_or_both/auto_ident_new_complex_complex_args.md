@@ -16,6 +16,48 @@ $((a = new ($($))($(1), $(2))) || (a = new ($($))($(1), $(2))));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNewCallee /*:unknown*/ = $($);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam$3 /*:unknown*/ = $(2);
+let a /*:unknown*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+if (a) {
+  $(a);
+} else {
+  const tmpNewCallee$1 /*:unknown*/ = $($);
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  const tmpCalleeParam$7 /*:unknown*/ = $(2);
+  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNewCallee = $($);
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$3 = $(2);
+let a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+if (a) {
+  $(a);
+} else {
+  const tmpNewCallee$1 = $($);
+  const tmpCalleeParam$5 = $(1);
+  const tmpCalleeParam$7 = $(2);
+  const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -50,29 +92,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNewCallee /*:unknown*/ = $($);
-const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpCalleeParam$3 /*:unknown*/ = $(2);
-let a /*:unknown*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-if (a) {
-  $(a);
-} else {
-  const tmpNewCallee$1 /*:unknown*/ = $($);
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpCalleeParam$7 /*:unknown*/ = $(2);
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +118,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -113,4 +133,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,41 @@ for (let x in (a = typeof x));
 $(a, x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:string*/ = typeof x$1;
+const tmpForInGen /*:unknown*/ = $forIn(a);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(a, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = typeof x$1;
+const tmpForInGen = $forIn(a);
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    tmpForInNext.value;
+  }
+}
+$(a, 1);
+`````
+
 ## Pre Normal
 
 
@@ -57,26 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:string*/ = typeof x$1;
-const tmpForInGen /*:unknown*/ = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForInNext.value;
-  }
-}
-$(a, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +117,7 @@ BAD@! Found 1 implicit global bindings:
 
 x$1
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -112,7 +128,11 @@ Normalized calls: BAD!?
  - 1: 'undefined', 1
  - eval returned: undefined
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - 1: 'undefined', 1
+ - eval returned: undefined
+
+Denormalized calls: BAD!!
  - 1: 'undefined', 1
  - eval returned: undefined
 

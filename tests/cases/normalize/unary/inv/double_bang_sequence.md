@@ -13,6 +13,22 @@ var x;
 $(!!((x = 'foo'), $(x)));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg$1 /*:unknown*/ = $(`foo`);
+const tmpCalleeParam /*:boolean*/ = Boolean(tmpUnaryArg$1);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(Boolean($(`foo`)));
+`````
+
 ## Pre Normal
 
 
@@ -33,17 +49,7 @@ const tmpCalleeParam = !tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg$1 /*:unknown*/ = $(`foo`);
-const tmpCalleeParam /*:boolean*/ = Boolean(tmpUnaryArg$1);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +62,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'foo'
@@ -67,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -14,6 +14,20 @@ It is packed twice (output becomes input)
 eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0.1(\'2\\`\\\'\\"\\3\')',4,4,'console|log|bo|x20o'.split('|'),0,{}))
 `````
 
+## Settled
+
+
+`````js filename=intro
+eval(`console.log('bo\\\`\\'\\"\\x20o')`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+eval(`console.log('bo\\\`\\'\\"\\x20o')`);
+`````
+
 ## Pre Normal
 
 
@@ -129,15 +143,7 @@ const tmpCalleeParam = tmpCallCallee(`0.1('2\\\`\\'\\"\\3')`, 4, 4, tmpCalleePar
 eval(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-eval(`console.log('bo\\\`\\'\\"\\x20o')`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -148,7 +154,7 @@ eval( "console.log('bo\\`\\'\\\"\\x20o')" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -157,7 +163,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

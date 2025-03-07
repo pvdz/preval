@@ -19,6 +19,26 @@ arr[0] = 'x';
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+(1)[0] = 2;
+(1)[0] = 1;
+(1)[0] = `x`;
+$(1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+(1)[0] = 2;
+(1)[0] = 1;
+(1)[0] = `x`;
+$(1);
+`````
+
 ## Pre Normal
 
 
@@ -52,18 +72,7 @@ arr[0] = `x`;
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-(1)[0] = 2;
-(1)[0] = 1;
-(1)[0] = `x`;
-$(1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +86,7 @@ $( 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot create property '0' on number '1' ]>")
@@ -86,4 +95,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

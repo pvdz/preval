@@ -18,6 +18,32 @@ let b
 $(b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(`prop`);
+const tmpIfTest /*:boolean*/ = tmpObjLitVal === undefined;
+if (tmpIfTest) {
+  const tmpClusterSSA_b /*:unknown*/ = $(`default`);
+  $(tmpClusterSSA_b);
+} else {
+  $(tmpObjLitVal);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(`prop`);
+if (tmpObjLitVal === undefined) {
+  $($(`default`));
+} else {
+  $(tmpObjLitVal);
+}
+`````
+
 ## Pre Normal
 
 
@@ -44,22 +70,7 @@ if (tmpIfTest) {
 $(b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(`prop`);
-const tmpIfTest /*:boolean*/ = tmpObjLitVal === undefined;
-if (tmpIfTest) {
-  const tmpClusterSSA_b /*:unknown*/ = $(`default`);
-  $(tmpClusterSSA_b);
-} else {
-  $(tmpObjLitVal);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +89,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'prop'
@@ -89,4 +100,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

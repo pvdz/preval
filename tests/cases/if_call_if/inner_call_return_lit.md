@@ -31,6 +31,54 @@ function f() {
 if ($) $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  let tmpCalleeParam /*:unknown*/ = 500;
+  const x /*:unknown*/ = $(1);
+  if (x) {
+    $(`a`);
+  } else {
+    const tmpClusterSSA_x /*:unknown*/ = $(0);
+    let tmpReturnArg$1 /*:number*/ = 500;
+    if (tmpClusterSSA_x) {
+      $(`a`);
+    } else {
+      $(`b`);
+      tmpReturnArg$1 = 1000;
+    }
+    tmpCalleeParam = tmpReturnArg$1;
+  }
+  $(tmpCalleeParam);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  let tmpCalleeParam = 500;
+  if ($(1)) {
+    $(`a`);
+  } else {
+    const tmpClusterSSA_x = $(0);
+    let tmpReturnArg$1 = 500;
+    if (tmpClusterSSA_x) {
+      $(`a`);
+    } else {
+      $(`b`);
+      tmpReturnArg$1 = 1000;
+    }
+    tmpCalleeParam = tmpReturnArg$1;
+  }
+  $(tmpCalleeParam);
+}
+`````
+
 ## Pre Normal
 
 
@@ -93,33 +141,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  let tmpCalleeParam /*:unknown*/ = 500;
-  const x /*:unknown*/ = $(1);
-  if (x) {
-    $(`a`);
-  } else {
-    const tmpClusterSSA_x /*:unknown*/ = $(0);
-    let tmpReturnArg$1 /*:number*/ = 500;
-    if (tmpClusterSSA_x) {
-      $(`a`);
-    } else {
-      $(`b`);
-      tmpReturnArg$1 = 1000;
-    }
-    tmpCalleeParam = tmpReturnArg$1;
-  }
-  $(tmpCalleeParam);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -149,7 +171,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -161,4 +183,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

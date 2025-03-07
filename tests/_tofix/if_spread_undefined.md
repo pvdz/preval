@@ -31,6 +31,23 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const tmpChainElementCall = $({ x: 1 });
+const tmpIfTest = tmpChainElementCall == null;
+let tmpArrSpread = undefined;
+if (!tmpIfTest) {
+  const tmpChainElementObject = tmpChainElementCall.x;
+  a = tmpChainElementObject;
+  tmpArrSpread = tmpChainElementObject;
+}
+$([...tmpArrSpread]);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -71,7 +88,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -91,8 +108,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -128,4 +144,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

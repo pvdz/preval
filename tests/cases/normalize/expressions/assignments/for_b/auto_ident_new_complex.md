@@ -14,6 +14,32 @@ for (; (a = new ($($))(1)); $(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpNewCallee /*:unknown*/ = $($);
+new tmpNewCallee(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
+  const tmpNewCallee$1 /*:unknown*/ = $($);
+  new tmpNewCallee$1(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNewCallee = $($);
+new tmpNewCallee(1);
+while (true) {
+  $(1);
+  const tmpNewCallee$1 = $($);
+  new tmpNewCallee$1(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -45,21 +71,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpNewCallee /*:unknown*/ = $($);
-new tmpNewCallee(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(1);
-  const tmpNewCallee$1 /*:unknown*/ = $($);
-  new tmpNewCallee$1(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +88,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -111,7 +123,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -29,6 +29,35 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+} else {
+  try {
+    throw `too`;
+  } catch (e) {
+    $(`caught`);
+  }
+  $(`pass`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (!$) {
+  try {
+    throw `too`;
+  } catch (e) {
+    $(`caught`);
+  }
+  $(`pass`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -77,23 +106,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-} else {
-  try {
-    throw `too`;
-  } catch (e) {
-    $(`caught`);
-  }
-  $(`pass`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +128,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -124,4 +137,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

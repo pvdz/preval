@@ -12,6 +12,21 @@
 $(Math.pow(3, '3.7'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:number*/ = $Math_pow(3, `3.7`);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($Math_pow(3, `3.7`));
+`````
+
 ## Pre Normal
 
 
@@ -27,16 +42,7 @@ const tmpCalleeParam = $Math_pow(3, `3.7`);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:number*/ = $Math_pow(3, `3.7`);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -48,7 +54,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 58.25707055931402
@@ -58,7 +64,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_pow

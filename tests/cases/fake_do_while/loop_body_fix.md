@@ -49,6 +49,35 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let test /*:number*/ = 9;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`inner`);
+  test = test - 1;
+  if (test) {
+  } else {
+    break;
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let test = 9;
+while (true) {
+  $(`inner`);
+  test = test - 1;
+  if (!test) {
+    break;
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -79,23 +108,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let test /*:number*/ = 9;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(`inner`);
-  test = test - 1;
-  if (test) {
-  } else {
-    break;
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +129,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'inner'
@@ -134,4 +147,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

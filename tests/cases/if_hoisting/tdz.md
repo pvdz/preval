@@ -19,6 +19,20 @@ $(x);
 let fail = "too late";
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: if (fail) {`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: if (fail) {`;
+`````
+
 ## Pre Normal
 
 
@@ -42,15 +56,7 @@ throw `Preval: TDZ triggered for this read: if (fail) {`;
 let fail = 0;
 `````
 
-## Output
-
-
-`````js filename=intro
-throw `Preval: TDZ triggered for this read: if (fail) {`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +67,7 @@ throw "Preval: TDZ triggered for this read: if (fail) {";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -70,4 +76,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

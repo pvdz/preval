@@ -19,6 +19,72 @@ for (; $(1); a = $(b)[$("x")] = $(c)[$("y")] = d + e);
 $(a, b, c, d, e);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
+if (tmpIfTest) {
+  const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+  const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
+  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+  a = 7;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpNestedAssignComMemberObj$1 /*:unknown*/ = $(b);
+      const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`x`);
+      const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+      const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+      varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 7;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, b, c, 3, 4);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpIfTest = $(1);
+const b = { x: 1 };
+const c = { y: 2 };
+if (tmpIfTest) {
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $(`y`);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+  a = 7;
+  while (true) {
+    if ($(1)) {
+      const tmpNestedAssignComMemberObj$1 = $(b);
+      const tmpNestedAssignComMemberProp$1 = $(`x`);
+      const varInitAssignLhsComputedObj$1 = $(c);
+      const varInitAssignLhsComputedProp$1 = $(`y`);
+      varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 7;
+    } else {
+      break;
+    }
+  }
+}
+$(a, b, c, 3, 4);
+`````
+
 ## Pre Normal
 
 
@@ -65,42 +131,7 @@ while (true) {
 $(a, b, c, d, e);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { x: 1 };
-const c /*:object*/ = { y: 2 };
-if (tmpIfTest) {
-  const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
-  const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-  a = 7;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpNestedAssignComMemberObj$1 /*:unknown*/ = $(b);
-      const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`x`);
-      const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-      const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-      varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
-      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 7;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b, c, 3, 4);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -141,7 +172,7 @@ $( a, c, d, 3, 4 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -176,7 +207,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -13,6 +13,21 @@ var f = undefined;
 $(f??x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = x;
+$(tmpClusterSSA_tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -37,16 +52,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = x;
-$(tmpClusterSSA_tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +66,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -69,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

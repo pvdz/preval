@@ -13,6 +13,25 @@ const { x: [] = $(['fail']) } = { x: undefined, a: 11, b: 12 };
 $('ok');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`fail`];
+const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
+[...objPatternAfterDefault];
+$(`ok`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternAfterDefault = $([`fail`]);
+[...objPatternAfterDefault];
+$(`ok`);
+`````
+
 ## Pre Normal
 
 
@@ -39,18 +58,7 @@ const arrPatternSplat = [...objPatternAfterDefault];
 $(`ok`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`fail`];
-const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
-[...objPatternAfterDefault];
-$(`ok`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -64,7 +72,7 @@ $( "ok" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['fail']
@@ -75,4 +83,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

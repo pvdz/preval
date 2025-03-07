@@ -15,6 +15,36 @@ $(xyz);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(0);
+const xyz /*:unknown*/ = $(tmpCalleeParam);
+if (xyz) {
+  $(xyz);
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  const tmpClusterSSA_xyz /*:unknown*/ = $(tmpCalleeParam$1);
+  $(tmpClusterSSA_xyz);
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const xyz = $($(0));
+if (xyz) {
+  $(xyz);
+} else {
+  $($($(2)));
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -41,25 +71,7 @@ $(xyz);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(0);
-const xyz /*:unknown*/ = $(tmpCalleeParam);
-if (xyz) {
-  $(xyz);
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const tmpClusterSSA_xyz /*:unknown*/ = $(tmpCalleeParam$1);
-  $(tmpClusterSSA_xyz);
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +96,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -99,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

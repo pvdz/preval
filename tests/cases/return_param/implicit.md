@@ -31,6 +31,53 @@ $(f(2));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    $(`a`);
+    return foo;
+  } else {
+    $(`b`);
+    return foo;
+  }
+};
+const tmpCalleeParam /*:unknown*/ = f();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:unknown*/ = f();
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:unknown*/ = f();
+$(tmpCalleeParam$3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  if ($(true)) {
+    $(`a`);
+    return foo;
+  } else {
+    $(`b`);
+    return foo;
+  }
+};
+$(f());
+$(f());
+$(f());
+`````
+
 ## Pre Normal
 
 
@@ -83,34 +130,7 @@ const tmpCalleeParam$3 = f(`three`);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    $(`a`);
-    return foo;
-  } else {
-    $(`b`);
-    return foo;
-  }
-};
-const tmpCalleeParam /*:unknown*/ = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:unknown*/ = f();
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:unknown*/ = f();
-$(tmpCalleeParam$3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -143,7 +163,7 @@ BAD@! Found 1 implicit global bindings:
 
 foo
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -157,4 +177,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

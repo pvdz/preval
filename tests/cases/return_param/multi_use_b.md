@@ -29,6 +29,54 @@ $(f(2));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const tmpIfTest /*:unknown*/ = $(false);
+  if (tmpIfTest) {
+    $(`a`);
+    return undefined;
+  } else {
+    $(`b`);
+    return undefined;
+  }
+};
+f();
+$(-2);
+f();
+$(-3);
+f();
+$(-1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  if ($(false)) {
+    $(`a`);
+  } else {
+    $(`b`);
+  }
+};
+f();
+$(-2);
+f();
+$(-3);
+f();
+$(-1);
+`````
+
 ## Pre Normal
 
 
@@ -81,34 +129,7 @@ const tmpCalleeParam$3 = f(`three`);
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const tmpIfTest /*:unknown*/ = $(false);
-  if (tmpIfTest) {
-    $(`a`);
-    return undefined;
-  } else {
-    $(`b`);
-    return undefined;
-  }
-};
-f();
-$(-2);
-f();
-$(-3);
-f();
-$(-1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -139,7 +160,7 @@ $( -1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -166,4 +187,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

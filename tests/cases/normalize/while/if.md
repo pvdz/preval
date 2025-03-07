@@ -20,6 +20,55 @@ function f() {
 if ($) f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  let i /*:number*/ = 1;
+  $(1, `sub`);
+  while ($LOOP_UNROLL_10) {
+    i = i + 1;
+    const tmpIfTest$2 /*:boolean*/ = i < 10;
+    if (tmpIfTest$2) {
+      const tmpIfTest$4 /*:boolean*/ = i < 5;
+      if (tmpIfTest$4) {
+        $(i, `sub`);
+      } else {
+        $(i, `sup`);
+      }
+    } else {
+      break;
+    }
+  }
+  $(i);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  let i = 1;
+  $(1, `sub`);
+  while (true) {
+    i = i + 1;
+    if (i < 10) {
+      if (i < 5) {
+        $(i, `sub`);
+      } else {
+        $(i, `sup`);
+      }
+    } else {
+      break;
+    }
+  }
+  $(i);
+}
+`````
+
 ## Pre Normal
 
 
@@ -67,34 +116,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  let i /*:number*/ = 1;
-  $(1, `sub`);
-  while ($LOOP_UNROLL_10) {
-    i = i + 1;
-    const tmpIfTest$2 /*:boolean*/ = i < 10;
-    if (tmpIfTest$2) {
-      const tmpIfTest$4 /*:boolean*/ = i < 5;
-      if (tmpIfTest$4) {
-        $(i, `sub`);
-      } else {
-        $(i, `sup`);
-      }
-    } else {
-      break;
-    }
-  }
-  $(i);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -125,7 +147,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'sub'
@@ -144,7 +166,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: DebuggerStatement

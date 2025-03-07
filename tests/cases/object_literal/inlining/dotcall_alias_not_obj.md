@@ -16,6 +16,32 @@ $();
 $dotCall(alias, obj, 'f', 1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:()=>string*/ = function () {
+  debugger;
+  return `win`;
+};
+const alias /*:unknown*/ = $.f;
+$();
+const obj /*:object*/ = { f: g };
+$dotCall(alias, obj, `f`, 1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function () {
+  return `win`;
+};
+const alias = $.f;
+$();
+$dotCall(alias, { f: g }, `f`, 1);
+`````
+
 ## Pre Normal
 
 
@@ -44,22 +70,7 @@ $();
 $dotCall(alias, obj, `f`, 1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:()=>string*/ = function () {
-  debugger;
-  return `win`;
-};
-const alias /*:unknown*/ = $.f;
-$();
-const obj /*:object*/ = { f: g };
-$dotCall(alias, obj, `f`, 1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +88,7 @@ $dotCall( b, c, "f", 1 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -87,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

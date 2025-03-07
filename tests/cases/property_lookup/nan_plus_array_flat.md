@@ -15,6 +15,20 @@ const tmpCompObj$459 = NaN + tmpBinBothRhs$893;
 $(tmpCompObj$459);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`NaNfunction flat() { [native code] }`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`NaNfunction flat() { [native code] }`);
+`````
+
 ## Pre Normal
 
 
@@ -33,15 +47,7 @@ const tmpCompObj$459 = NaN + tmpBinBothRhs$893;
 $(tmpCompObj$459);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`NaNfunction flat() { [native code] }`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -52,7 +58,7 @@ $( "NaNfunction flat() { [native code] }" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'NaNfunction() { [native code] }'
@@ -62,4 +68,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

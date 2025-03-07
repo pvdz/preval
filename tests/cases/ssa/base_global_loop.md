@@ -18,6 +18,50 @@ while (true) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(3);
+$(x);
+let tmpClusterSSA_x /*:primitive*/ = x + 1;
+$(tmpClusterSSA_x);
+const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
+if (tmpIfTest) {
+} else {
+  while ($LOOP_UNROLL_10) {
+    tmpClusterSSA_x = tmpClusterSSA_x + 1;
+    $(tmpClusterSSA_x);
+    const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x > 5;
+    if (tmpIfTest$1) {
+      break;
+    } else {
+    }
+  }
+}
+$(tmpClusterSSA_x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $(3);
+$(x);
+let tmpClusterSSA_x = x + 1;
+$(tmpClusterSSA_x);
+if (!(tmpClusterSSA_x > 5)) {
+  while (true) {
+    tmpClusterSSA_x = tmpClusterSSA_x + 1;
+    $(tmpClusterSSA_x);
+    if (tmpClusterSSA_x > 5) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_x);
+`````
+
 ## Pre Normal
 
 
@@ -50,32 +94,7 @@ while (true) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(3);
-$(x);
-let tmpClusterSSA_x /*:primitive*/ = x + 1;
-$(tmpClusterSSA_x);
-const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
-if (tmpIfTest) {
-} else {
-  while ($LOOP_UNROLL_10) {
-    tmpClusterSSA_x = tmpClusterSSA_x + 1;
-    $(tmpClusterSSA_x);
-    const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x > 5;
-    if (tmpIfTest$1) {
-      break;
-    } else {
-    }
-  }
-}
-$(tmpClusterSSA_x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +123,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 3
@@ -119,4 +138,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

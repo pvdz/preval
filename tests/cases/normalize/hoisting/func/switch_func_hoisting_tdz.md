@@ -19,6 +19,33 @@ switch ($(1)) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+f();
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+if (tmpIfTest) {
+  $(`pass`);
+} else {
+  $(2);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+f();
+if ($(1) === $(1)) {
+  $(`pass`);
+} else {
+  $(2);
+}
+`````
+
 ## Pre Normal
 
 
@@ -65,23 +92,7 @@ tmpSwitchBreak: {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-f();
-const tmpSwitchDisc /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  $(2);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +114,7 @@ BAD@! Found 1 implicit global bindings:
 
 f
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -112,4 +123,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

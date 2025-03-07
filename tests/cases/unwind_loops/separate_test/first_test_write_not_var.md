@@ -23,6 +23,20 @@ let counter = 0;
 let test = counter < 10;
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: while (test) {`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw `Preval: TDZ triggered for this read: while (test) {`;
+`````
+
 ## Pre Normal
 
 
@@ -62,15 +76,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-throw `Preval: TDZ triggered for this read: while (test) {`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +87,7 @@ throw "Preval: TDZ triggered for this read: while (test) {";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -90,4 +96,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

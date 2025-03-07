@@ -14,6 +14,28 @@ $({ [(a = function f() {})]: 10 });
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const tmpCalleeParam /*:object*/ = { [f]: 10 };
+$(tmpCalleeParam);
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {};
+$({ [f]: 10 });
+$(f);
+`````
+
 ## Pre Normal
 
 
@@ -44,21 +66,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const tmpCalleeParam /*:object*/ = { [f]: 10 };
-$(tmpCalleeParam);
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +83,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { 'function() {return undefined;}': '10' }
@@ -89,7 +97,9 @@ Normalized calls: BAD!?
  - 2: '<function>'
  - eval returned: undefined
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
  - 1: { 'function() {\ndebugger;\nreturn undefined;\n}': '10' }
  - 2: '<function>'
  - eval returned: undefined
+
+Denormalized calls: Same

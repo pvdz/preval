@@ -42,6 +42,64 @@ const a = function () {
 $(a());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const c /*:()=>unknown*/ = function () {
+  debugger;
+  $(`c`);
+  const tmpCalleeParam /*:unknown*/ = $(10);
+  if ($) {
+    $(`d`);
+    return tmpCalleeParam;
+  } else {
+    return tmpCalleeParam;
+  }
+};
+if ($) {
+  $(`a`);
+  if ($) {
+    $(`b`);
+    const tmpReturnArg$1 /*:unknown*/ = c();
+    $(tmpReturnArg$1);
+  } else {
+    const tmpReturnArg$3 /*:unknown*/ = c();
+    $(tmpReturnArg$3);
+  }
+} else {
+  const tmpReturnArg$7 /*:unknown*/ = c();
+  $(tmpReturnArg$7);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const c = function () {
+  $(`c`);
+  const tmpCalleeParam = $(10);
+  if ($) {
+    $(`d`);
+    return tmpCalleeParam;
+  } else {
+    return tmpCalleeParam;
+  }
+};
+if ($) {
+  $(`a`);
+  if ($) {
+    $(`b`);
+    $(c());
+  } else {
+    $(c());
+  }
+} else {
+  $(c());
+}
+`````
+
 ## Pre Normal
 
 
@@ -130,39 +188,7 @@ const tmpCalleeParam$1 = a();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const c /*:()=>unknown*/ = function () {
-  debugger;
-  $(`c`);
-  const tmpCalleeParam /*:unknown*/ = $(10);
-  if ($) {
-    $(`d`);
-    return tmpCalleeParam;
-  } else {
-    return tmpCalleeParam;
-  }
-};
-if ($) {
-  $(`a`);
-  if ($) {
-    $(`b`);
-    const tmpReturnArg$1 /*:unknown*/ = c();
-    $(tmpReturnArg$1);
-  } else {
-    const tmpReturnArg$3 /*:unknown*/ = c();
-    $(tmpReturnArg$3);
-  }
-} else {
-  const tmpReturnArg$7 /*:unknown*/ = c();
-  $(tmpReturnArg$7);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -200,7 +226,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -215,4 +241,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

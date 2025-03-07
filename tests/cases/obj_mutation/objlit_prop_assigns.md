@@ -20,6 +20,21 @@ obj[`7C`] = `f`;
 $(obj);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const obj /*:object*/ = { [`7H`]: `a`, [`7G`]: `b`, [`7F`]: `c`, [`7E`]: `d`, [`7D`]: `e`, [`7C`]: `f` };
+$(obj);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ [`7H`]: `a`, [`7G`]: `b`, [`7F`]: `c`, [`7E`]: `d`, [`7D`]: `e`, [`7C`]: `f` });
+`````
+
 ## Pre Normal
 
 
@@ -42,16 +57,7 @@ const obj = { [`7H`]: `a`, [`7G`]: `b`, [`7F`]: `c`, [`7E`]: `d`, [`7D`]: `e`, [
 $(obj);
 `````
 
-## Output
-
-
-`````js filename=intro
-const obj /*:object*/ = { [`7H`]: `a`, [`7G`]: `b`, [`7F`]: `c`, [`7E`]: `d`, [`7D`]: `e`, [`7C`]: `f` };
-$(obj);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +76,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { '7H': '"a"', '7G': '"b"', '7F': '"c"', '7E': '"d"', '7D': '"e"', '7C': '"f"' }
@@ -80,4 +86,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

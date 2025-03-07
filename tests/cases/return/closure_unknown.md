@@ -26,6 +26,53 @@ $(f())
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  const g /*:()=>undefined*/ = function () {
+    debugger;
+    const tmpCalleeParam /*:primitive*/ = x + 1;
+    x = $(tmpCalleeParam);
+    return undefined;
+  };
+  let x /*:unknown*/ = 0;
+  g();
+  $(x);
+  g();
+  $(x);
+  g();
+  $(x);
+  return undefined;
+};
+f();
+$(undefined);
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const g = function () {
+    x = $(x + 1);
+  };
+  let x = 0;
+  g();
+  $(x);
+  g();
+  $(x);
+  g();
+  $(x);
+};
+f();
+$(undefined);
+$(f);
+`````
+
 ## Pre Normal
 
 
@@ -72,34 +119,7 @@ $(tmpCalleeParam$7);
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  const g /*:()=>undefined*/ = function () {
-    debugger;
-    const tmpCalleeParam /*:primitive*/ = x + 1;
-    x = $(tmpCalleeParam);
-    return undefined;
-  };
-  let x /*:unknown*/ = 0;
-  g();
-  $(x);
-  g();
-  $(x);
-  g();
-  $(x);
-  return undefined;
-};
-f();
-$(undefined);
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -129,7 +149,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -146,4 +166,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

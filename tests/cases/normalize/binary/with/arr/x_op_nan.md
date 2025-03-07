@@ -45,6 +45,143 @@ const arr2 = [
 $(arr2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:object*/ = {
+  toString() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    debugger;
+    $(`valueOf`);
+    return 100;
+  },
+};
+const tmpBinBothRhs /*:array*/ = [];
+const tmpArrElement /*:number*/ = x ** tmpBinBothRhs;
+const tmpBinBothRhs$1 /*:array*/ = [];
+const tmpArrElement$1 /*:number*/ = x * tmpBinBothRhs$1;
+const tmpBinBothRhs$3 /*:array*/ = [];
+const tmpArrElement$3 /*:number*/ = x / tmpBinBothRhs$3;
+const tmpBinBothRhs$5 /*:array*/ = [];
+const tmpArrElement$5 /*:number*/ = x % tmpBinBothRhs$5;
+const tmpArrElement$7 /*:string*/ = $coerce(x, `plustr`);
+const tmpBinBothRhs$9 /*:array*/ = [];
+const tmpArrElement$9 /*:number*/ = x - tmpBinBothRhs$9;
+const tmpBinBothRhs$11 /*:array*/ = [];
+const tmpArrElement$11 /*:number*/ = x << tmpBinBothRhs$11;
+const tmpBinBothRhs$13 /*:array*/ = [];
+const tmpArrElement$13 /*:number*/ = x >> tmpBinBothRhs$13;
+const tmpBinBothRhs$15 /*:array*/ = [];
+const tmpArrElement$15 /*:number*/ = x >>> tmpBinBothRhs$15;
+const tmpBinBothRhs$17 /*:array*/ = [];
+const tmpArrElement$17 /*:boolean*/ = x < tmpBinBothRhs$17;
+const tmpBinBothRhs$19 /*:array*/ = [];
+const tmpArrElement$19 /*:boolean*/ = x > tmpBinBothRhs$19;
+const tmpBinBothRhs$21 /*:array*/ = [];
+const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$21;
+const tmpBinBothRhs$23 /*:array*/ = [];
+const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$23;
+const tmpBinBothRhs$33 /*:array*/ = [];
+const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$33;
+const tmpBinBothRhs$35 /*:array*/ = [];
+const tmpArrElement$35 /*:number*/ = x ^ tmpBinBothRhs$35;
+const tmpBinBothRhs$37 /*:array*/ = [];
+const tmpArrElement$37 /*:number*/ = x | tmpBinBothRhs$37;
+const arr /*:array*/ = [
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  false,
+  true,
+  false,
+  true,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+const tmpBinBothRhs$39 /*:array*/ = [];
+const tmpBinBothRhs$41 /*:array*/ = [];
+const tmpArrElement$39 /*:boolean*/ = x in tmpBinBothRhs$39;
+const tmpArrElement$41 /*:boolean*/ = x instanceof tmpBinBothRhs$41;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+$(arr2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = {
+  toString() {
+    const tmpReturnArg = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    $(`valueOf`);
+    return 100;
+  },
+};
+const tmpArrElement = x ** [];
+const tmpArrElement$1 = x * [];
+const tmpArrElement$3 = x / [];
+const tmpArrElement$5 = x % [];
+const tmpArrElement$7 = $coerce(x, `plustr`);
+const tmpArrElement$9 = x - [];
+const tmpArrElement$11 = x << [];
+const tmpArrElement$13 = x >> [];
+const tmpArrElement$15 = x >>> [];
+const tmpArrElement$17 = x < [];
+const tmpArrElement$19 = x > [];
+const tmpArrElement$21 = x <= [];
+const tmpArrElement$23 = x >= [];
+const tmpArrElement$33 = x & [];
+const tmpArrElement$35 = x ^ [];
+const tmpArrElement$37 = x | [];
+$([
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  false,
+  true,
+  false,
+  true,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+]);
+const tmpBinBothRhs$39 = [];
+const tmpBinBothRhs$41 = [];
+const tmpArrElement$39 = x in tmpBinBothRhs$39;
+const tmpArrElement$41 = x instanceof tmpBinBothRhs$41;
+$([tmpArrElement$39, tmpArrElement$41]);
+`````
+
 ## Pre Normal
 
 
@@ -196,86 +333,7 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:object*/ = {
-  toString() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-const tmpBinBothRhs /*:array*/ = [];
-const tmpArrElement /*:number*/ = x ** tmpBinBothRhs;
-const tmpBinBothRhs$1 /*:array*/ = [];
-const tmpArrElement$1 /*:number*/ = x * tmpBinBothRhs$1;
-const tmpBinBothRhs$3 /*:array*/ = [];
-const tmpArrElement$3 /*:number*/ = x / tmpBinBothRhs$3;
-const tmpBinBothRhs$5 /*:array*/ = [];
-const tmpArrElement$5 /*:number*/ = x % tmpBinBothRhs$5;
-const tmpArrElement$7 /*:string*/ = $coerce(x, `plustr`);
-const tmpBinBothRhs$9 /*:array*/ = [];
-const tmpArrElement$9 /*:number*/ = x - tmpBinBothRhs$9;
-const tmpBinBothRhs$11 /*:array*/ = [];
-const tmpArrElement$11 /*:number*/ = x << tmpBinBothRhs$11;
-const tmpBinBothRhs$13 /*:array*/ = [];
-const tmpArrElement$13 /*:number*/ = x >> tmpBinBothRhs$13;
-const tmpBinBothRhs$15 /*:array*/ = [];
-const tmpArrElement$15 /*:number*/ = x >>> tmpBinBothRhs$15;
-const tmpBinBothRhs$17 /*:array*/ = [];
-const tmpArrElement$17 /*:boolean*/ = x < tmpBinBothRhs$17;
-const tmpBinBothRhs$19 /*:array*/ = [];
-const tmpArrElement$19 /*:boolean*/ = x > tmpBinBothRhs$19;
-const tmpBinBothRhs$21 /*:array*/ = [];
-const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$21;
-const tmpBinBothRhs$23 /*:array*/ = [];
-const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$23;
-const tmpBinBothRhs$33 /*:array*/ = [];
-const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$33;
-const tmpBinBothRhs$35 /*:array*/ = [];
-const tmpArrElement$35 /*:number*/ = x ^ tmpBinBothRhs$35;
-const tmpBinBothRhs$37 /*:array*/ = [];
-const tmpArrElement$37 /*:number*/ = x | tmpBinBothRhs$37;
-const arr /*:array*/ = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  false,
-  true,
-  false,
-  true,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpBinBothRhs$39 /*:array*/ = [];
-const tmpBinBothRhs$41 /*:array*/ = [];
-const tmpArrElement$39 /*:boolean*/ = x in tmpBinBothRhs$39;
-const tmpArrElement$41 /*:boolean*/ = x instanceof tmpBinBothRhs$41;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
-$(arr2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -336,7 +394,7 @@ $( bm );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'valueOf'
@@ -363,4 +421,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

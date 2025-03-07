@@ -25,6 +25,67 @@ $(typeof Math.acos($spy('Math.acos')));
 $(typeof Math.acosh($spy('Math.acosh')));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $spy(`Array.from`);
+$Array_from(tmpCalleeParam$1);
+$(`object`);
+$spy(`Array.isArray`);
+$(`boolean`);
+$spy(`Array.of`);
+$(`object`);
+$spy(`Date.now`);
+$(`number`);
+const tmpCalleeParam$17 /*:unknown*/ = $spy(`Date.UTC`);
++tmpCalleeParam$17;
+$(`number`);
+const tmpCalleeParam$21 /*:unknown*/ = $spy(`Date.parse`);
+$coerce(tmpCalleeParam$21, `string`);
+$(`number`);
+const tmpCalleeParam$25 /*:unknown*/ = $spy(`JSON.stringify`);
+const tmpUnaryArg$11 /*:primitive*/ = $JSON_stringify(tmpCalleeParam$25);
+const tmpCalleeParam$23 /*:string*/ = typeof tmpUnaryArg$11;
+$(tmpCalleeParam$23);
+const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.abs`);
+$coerce(tmpCalleeParam$29, `number`);
+$(`number`);
+const tmpCalleeParam$33 /*:unknown*/ = $spy(`Math.acos`);
+$coerce(tmpCalleeParam$33, `number`);
+$(`number`);
+const tmpCalleeParam$37 /*:unknown*/ = $spy(`Math.acosh`);
+$coerce(tmpCalleeParam$37, `number`);
+$(`number`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$Array_from($spy(`Array.from`));
+$(`object`);
+$spy(`Array.isArray`);
+$(`boolean`);
+$spy(`Array.of`);
+$(`object`);
+$spy(`Date.now`);
+$(`number`);
+const tmpCalleeParam$17 = $spy(`Date.UTC`);
++tmpCalleeParam$17;
+$(`number`);
+$coerce($spy(`Date.parse`), `string`);
+$(`number`);
+const tmpUnaryArg$11 = $JSON_stringify($spy(`JSON.stringify`));
+$(typeof tmpUnaryArg$11);
+$coerce($spy(`Math.abs`), `number`);
+$(`number`);
+$coerce($spy(`Math.acos`), `number`);
+$(`number`);
+$coerce($spy(`Math.acosh`), `number`);
+$(`number`);
+`````
+
 ## Pre Normal
 
 
@@ -87,42 +148,7 @@ const tmpCalleeParam$35 = typeof tmpUnaryArg$17;
 $(tmpCalleeParam$35);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`Array.from`);
-$Array_from(tmpCalleeParam$1);
-$(`object`);
-$spy(`Array.isArray`);
-$(`boolean`);
-$spy(`Array.of`);
-$(`object`);
-$spy(`Date.now`);
-$(`number`);
-const tmpCalleeParam$17 /*:unknown*/ = $spy(`Date.UTC`);
-+tmpCalleeParam$17;
-$(`number`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`Date.parse`);
-$coerce(tmpCalleeParam$21, `string`);
-$(`number`);
-const tmpCalleeParam$25 /*:unknown*/ = $spy(`JSON.stringify`);
-const tmpUnaryArg$11 /*:primitive*/ = $JSON_stringify(tmpCalleeParam$25);
-const tmpCalleeParam$23 /*:string*/ = typeof tmpUnaryArg$11;
-$(tmpCalleeParam$23);
-const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.abs`);
-$coerce(tmpCalleeParam$29, `number`);
-$(`number`);
-const tmpCalleeParam$33 /*:unknown*/ = $spy(`Math.acos`);
-$coerce(tmpCalleeParam$33, `number`);
-$(`number`);
-const tmpCalleeParam$37 /*:unknown*/ = $spy(`Math.acosh`);
-$coerce(tmpCalleeParam$37, `number`);
-$(`number`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -160,7 +186,7 @@ $( "number" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Array.from', 'Array.from']
@@ -194,7 +220,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_from

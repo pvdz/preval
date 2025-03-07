@@ -13,6 +13,22 @@ $(1e10);
 $(1e1000);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(10000000000);
+$(Infinity);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(10000000000);
+$(Infinity);
+`````
+
 ## Pre Normal
 
 
@@ -29,16 +45,7 @@ $(10000000000);
 $(Infinity);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(10000000000);
-$(Infinity);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -50,7 +57,7 @@ $( Infinity );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10000000000
@@ -61,4 +68,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

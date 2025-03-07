@@ -13,6 +13,26 @@ const x = {...$({a: 'ignored'}), a: $('prop')};
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: `ignored` };
+const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
+const tmpObjLitVal /*:unknown*/ = $(`prop`);
+const x /*:object*/ = { ...tmpObjSpread, a: tmpObjLitVal };
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjSpread = $({ a: `ignored` });
+const tmpObjLitVal = $(`prop`);
+$({ ...tmpObjSpread, a: tmpObjLitVal });
+`````
+
 ## Pre Normal
 
 
@@ -32,19 +52,7 @@ const x = { ...tmpObjSpread, a: tmpObjLitVal };
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: `ignored` };
-const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
-const tmpObjLitVal /*:unknown*/ = $(`prop`);
-const x /*:object*/ = { ...tmpObjSpread, a: tmpObjLitVal };
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +70,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '"ignored"' }
@@ -74,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

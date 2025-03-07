@@ -38,6 +38,72 @@ while (true) {
 $('woohoo');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(false);
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    $(`uhoh`);
+    const tmpIfTest$1 /*:unknown*/ = $(false);
+    if (tmpIfTest$1) {
+    } else {
+      $(`exit`);
+      break;
+    }
+  }
+} else {
+  $(`exit`);
+}
+$(`woohoo`);
+const tmpIfTest$3 /*:unknown*/ = $(false);
+if (tmpIfTest$3) {
+  while ($LOOP_UNROLL_10) {
+    $(`uhoh`);
+    const tmpIfTest$2 /*:unknown*/ = $(false);
+    if (tmpIfTest$2) {
+    } else {
+      $(`exit`);
+      break;
+    }
+  }
+} else {
+  $(`exit`);
+}
+$(`woohoo`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(false)) {
+  while (true) {
+    $(`uhoh`);
+    if (!$(false)) {
+      $(`exit`);
+      break;
+    }
+  }
+} else {
+  $(`exit`);
+}
+$(`woohoo`);
+if ($(false)) {
+  while (true) {
+    $(`uhoh`);
+    if (!$(false)) {
+      $(`exit`);
+      break;
+    }
+  }
+} else {
+  $(`exit`);
+}
+$(`woohoo`);
+`````
+
 ## Pre Normal
 
 
@@ -102,44 +168,7 @@ while (true) {
 $(`woohoo`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(false);
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    $(`uhoh`);
-    const tmpIfTest$1 /*:unknown*/ = $(false);
-    if (tmpIfTest$1) {
-    } else {
-      $(`exit`);
-      break;
-    }
-  }
-} else {
-  $(`exit`);
-}
-$(`woohoo`);
-const tmpIfTest$3 /*:unknown*/ = $(false);
-if (tmpIfTest$3) {
-  while ($LOOP_UNROLL_10) {
-    $(`uhoh`);
-    const tmpIfTest$2 /*:unknown*/ = $(false);
-    if (tmpIfTest$2) {
-    } else {
-      $(`exit`);
-      break;
-    }
-  }
-} else {
-  $(`exit`);
-}
-$(`woohoo`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -185,7 +214,7 @@ $( "woohoo" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false
@@ -200,7 +229,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

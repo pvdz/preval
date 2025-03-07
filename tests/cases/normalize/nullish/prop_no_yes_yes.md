@@ -13,6 +13,47 @@ const a = {};
 $(a.b??c??d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam /*:unknown*/ = $Object_prototype.b;
+const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
+let tmpIfTest$1 /*:boolean*/ = false;
+if (tmpIfTest) {
+  tmpCalleeParam = c;
+  tmpIfTest$1 = tmpCalleeParam == null;
+} else {
+  tmpIfTest$1 = tmpCalleeParam == null;
+}
+if (tmpIfTest$1) {
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = d;
+  $(tmpClusterSSA_tmpCalleeParam);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam = $Object_prototype.b;
+const tmpIfTest = tmpCalleeParam == null;
+let tmpIfTest$1 = false;
+if (tmpIfTest) {
+  tmpCalleeParam = c;
+  tmpIfTest$1 = tmpCalleeParam == null;
+} else {
+  tmpIfTest$1 = tmpCalleeParam == null;
+}
+if (tmpIfTest$1) {
+  $(d);
+} else {
+  $(tmpCalleeParam);
+}
+`````
+
 ## Pre Normal
 
 
@@ -40,29 +81,7 @@ if (tmpIfTest$1) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam /*:unknown*/ = $Object_prototype.b;
-const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
-let tmpIfTest$1 /*:boolean*/ = false;
-if (tmpIfTest) {
-  tmpCalleeParam = c;
-  tmpIfTest$1 = tmpCalleeParam == null;
-} else {
-  tmpIfTest$1 = tmpCalleeParam == null;
-}
-if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = d;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  $(tmpCalleeParam);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,7 +110,7 @@ BAD@! Found 2 implicit global bindings:
 
 c, d
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -100,4 +119,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

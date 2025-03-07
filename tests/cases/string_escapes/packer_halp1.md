@@ -19,6 +19,21 @@ const x = eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = eval(`"a\\\`b\\"c\\'d\\\\e\\x20f\\u0020g\${not_expr}h\\/i"`);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(eval(`"a\\\`b\\"c\\'d\\\\e\\x20f\\u0020g\${not_expr}h\\/i"`));
+`````
+
 ## Pre Normal
 
 
@@ -136,16 +151,7 @@ const x = eval(tmpCalleeParam);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = eval(`"a\\\`b\\"c\\'d\\\\e\\x20f\\u0020g\${not_expr}h\\/i"`);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -157,7 +163,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a`b"c\'d\\e f g${not_expr}h/i'
@@ -167,7 +173,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

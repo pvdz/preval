@@ -15,6 +15,40 @@ const obj = {f: g};
 $dotCall(h, obj, undefined); // not calling an obj prop value
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:()=>unknown*/ = function () {
+  debugger;
+  $();
+  return undefined;
+};
+const h /*:()=>unknown*/ = function () {
+  debugger;
+  $();
+  return undefined;
+};
+const obj /*:object*/ = { f: g };
+$dotCall(h, obj, undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function () {
+  $();
+};
+$dotCall(
+  function () {
+    $();
+  },
+  { f: g },
+  undefined,
+);
+`````
+
 ## Pre Normal
 
 
@@ -49,26 +83,7 @@ const obj = { f: g };
 $dotCall(h, obj, undefined);
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:()=>unknown*/ = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const h /*:()=>unknown*/ = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const obj /*:object*/ = { f: g };
-$dotCall(h, obj, undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -90,7 +105,7 @@ $dotCall( b, c, undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -100,4 +115,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

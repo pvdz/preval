@@ -14,6 +14,63 @@ for (; $(1); a = $($)?.(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  a = undefined;
+  const tmpChainElementCall /*:unknown*/ = $($);
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+  if (tmpIfTest$1) {
+  } else {
+    $dotCall(tmpChainElementCall, $, undefined, 1);
+  }
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$2 /*:unknown*/ = $(1);
+    if (tmpIfTest$2) {
+      const tmpChainElementCall$1 /*:unknown*/ = $($);
+      const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
+      if (tmpIfTest$4) {
+      } else {
+        $dotCall(tmpChainElementCall$1, $, undefined, 1);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+if ($(1)) {
+  a = undefined;
+  const tmpChainElementCall = $($);
+  if (!(tmpChainElementCall == null)) {
+    $dotCall(tmpChainElementCall, $, undefined, 1);
+  }
+  while (true) {
+    if ($(1)) {
+      const tmpChainElementCall$1 = $($);
+      if (!(tmpChainElementCall$1 == null)) {
+        $dotCall(tmpChainElementCall$1, $, undefined, 1);
+      }
+    } else {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -51,40 +108,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  a = undefined;
-  const tmpChainElementCall /*:unknown*/ = $($);
-  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-  if (tmpIfTest$1) {
-  } else {
-    $dotCall(tmpChainElementCall, $, undefined, 1);
-  }
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 /*:unknown*/ = $(1);
-    if (tmpIfTest$2) {
-      const tmpChainElementCall$1 /*:unknown*/ = $($);
-      const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
-      if (tmpIfTest$4) {
-      } else {
-        $dotCall(tmpChainElementCall$1, $, undefined, 1);
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,7 +151,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -162,7 +186,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

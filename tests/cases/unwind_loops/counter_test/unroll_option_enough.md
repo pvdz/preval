@@ -22,6 +22,58 @@ while (counter) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`test 20`);
+$(`test 19`);
+$(`test 18`);
+$(`test 17`);
+$(`test 16`);
+$(`test 15`);
+$(`test 14`);
+$(`test 13`);
+$(`test 12`);
+$(`test 11`);
+$(`test 10`);
+$(`test 9`);
+$(`test 8`);
+$(`test 7`);
+$(`test 6`);
+$(`test 5`);
+$(`test 4`);
+$(`test 3`);
+$(`test 2`);
+$(`test 1`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`test 20`);
+$(`test 19`);
+$(`test 18`);
+$(`test 17`);
+$(`test 16`);
+$(`test 15`);
+$(`test 14`);
+$(`test 13`);
+$(`test 12`);
+$(`test 11`);
+$(`test 10`);
+$(`test 9`);
+$(`test 8`);
+$(`test 7`);
+$(`test 6`);
+$(`test 5`);
+$(`test 4`);
+$(`test 3`);
+$(`test 2`);
+$(`test 1`);
+`````
+
 ## Pre Normal
 
 
@@ -50,34 +102,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`test 20`);
-$(`test 19`);
-$(`test 18`);
-$(`test 17`);
-$(`test 16`);
-$(`test 15`);
-$(`test 14`);
-$(`test 13`);
-$(`test 12`);
-$(`test 11`);
-$(`test 10`);
-$(`test 9`);
-$(`test 8`);
-$(`test 7`);
-$(`test 6`);
-$(`test 5`);
-$(`test 4`);
-$(`test 3`);
-$(`test 2`);
-$(`test 1`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +132,7 @@ $( "test 1" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'test 20'
@@ -136,7 +161,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: TemplateLiteral

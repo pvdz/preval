@@ -20,6 +20,41 @@ a = b.c = d;
 $(a, b, d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let b /*:unknown*/ = {
+  set c($$0) {
+    debugger;
+    $(`b.set`);
+    b = null;
+    d = null;
+    return 7;
+  },
+};
+let d /*:primitive*/ = 3;
+b.c = 3;
+$(3, b, d);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let b = {
+  set c($$0) {
+    $(`b.set`);
+    b = null;
+    d = null;
+    return 7;
+  },
+};
+let d = 3;
+b.c = 3;
+$(3, b, d);
+`````
+
 ## Pre Normal
 
 
@@ -62,26 +97,7 @@ a = tmpNestedPropAssignRhs;
 $(a, b, d);
 `````
 
-## Output
-
-
-`````js filename=intro
-let b /*:unknown*/ = {
-  set c($$0) {
-    debugger;
-    $(`b.set`);
-    b = null;
-    d = null;
-    return 7;
-  },
-};
-let d /*:primitive*/ = 3;
-b.c = 3;
-$(3, b, d);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,7 +117,7 @@ $( 3, a, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'b.set'
@@ -112,4 +128,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

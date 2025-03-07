@@ -17,6 +17,40 @@ switch ($(1)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+const tmpCalleeParam /*:unknown*/ = $(0);
+const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
+if (tmpIfTest) {
+} else {
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpIfTest$1) {
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
+    $(tmpCalleeParam$3);
+  } else {
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+if (!$($(0))) {
+  if ($($(1))) {
+    $($(2));
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -53,29 +87,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-const tmpCalleeParam /*:unknown*/ = $(0);
-const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
-if (tmpIfTest) {
-} else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$1);
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    $(tmpCalleeParam$3);
-  } else {
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +116,7 @@ $( f );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -121,4 +133,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

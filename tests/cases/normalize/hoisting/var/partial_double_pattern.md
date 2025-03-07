@@ -15,6 +15,22 @@ var [x, z] = [4, 5, 6];
 $(x, y, z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1, 2);
+$(4, 2, 5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1, 2);
+$(4, 2, 5);
+`````
+
 ## Pre Normal
 
 
@@ -47,16 +63,7 @@ z = arrPatternSplat$1[1];
 $(x, y, z);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1, 2);
-$(4, 2, 5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -68,7 +75,7 @@ $( 4, 2, 5 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 2
@@ -79,7 +86,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

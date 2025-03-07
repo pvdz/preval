@@ -17,6 +17,34 @@ $(f());
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpClusterSSA_a /*:unknown*/ = undefined;
+const tmpIfTest$3 /*:boolean*/ = $ == null;
+if (tmpIfTest$3) {
+} else {
+  const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  tmpClusterSSA_a = tmpChainElementCall;
+}
+$(undefined);
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpClusterSSA_a = undefined;
+if (!($ == null)) {
+  tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
+}
+$(undefined);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -74,24 +102,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpClusterSSA_a /*:unknown*/ = undefined;
-const tmpIfTest$3 /*:boolean*/ = $ == null;
-if (tmpIfTest$3) {
-} else {
-  const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpClusterSSA_a = tmpChainElementCall;
-}
-$(undefined);
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -113,7 +124,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -125,4 +136,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

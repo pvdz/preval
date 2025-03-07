@@ -14,6 +14,20 @@ let c = 20;
 let a = b = c.x
 `````
 
+## Settled
+
+
+`````js filename=intro
+(20).x;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+(20).x;
+`````
+
 ## Pre Normal
 
 
@@ -33,15 +47,7 @@ b = c.x;
 let a = b;
 `````
 
-## Output
-
-
-`````js filename=intro
-(20).x;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -52,7 +58,7 @@ With rename=true
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -61,4 +67,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

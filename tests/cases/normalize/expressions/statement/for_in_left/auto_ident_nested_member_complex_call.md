@@ -18,6 +18,61 @@ for (($(b)[$("x")] = $(c)[$("y")] = $(d)).x in $({ x: 1 }));
 $(a, b, c, d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const b /*:object*/ = { x: 1 };
+const c /*:object*/ = { y: 2 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+    const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+    const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+    const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
+    varInitAssignLhsComputedRhs$1.x = tmpAssignMemRhs;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b, c, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn($({ x: 1 }));
+const b = { x: 1 };
+const c = { y: 2 };
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedProp = $(`x`);
+    const varInitAssignLhsComputedObj$1 = $(c);
+    const varInitAssignLhsComputedProp$1 = $(`y`);
+    const varInitAssignLhsComputedRhs$1 = $(3);
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedRhs$1.x = tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 }, b, c, 3);
+`````
+
 ## Pre Normal
 
 
@@ -74,38 +129,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b, c, d);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-const b /*:object*/ = { x: 1 };
-const c /*:object*/ = { y: 2 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-    const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-    const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-    const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    varInitAssignLhsComputedRhs$1.x = tmpAssignMemRhs;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, c, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -143,7 +167,7 @@ $( n, d, e, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -158,7 +182,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

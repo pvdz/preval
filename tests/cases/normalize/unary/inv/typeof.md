@@ -12,6 +12,22 @@
 $(!typeof $(100));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+$(false);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+$(false);
+`````
+
 ## Pre Normal
 
 
@@ -29,16 +45,7 @@ const tmpCalleeParam = !tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-$(false);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -50,7 +57,7 @@ $( false );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -61,4 +68,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

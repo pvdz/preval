@@ -26,6 +26,47 @@ $(f());
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>boolean*/ = function () {
+  debugger;
+  let x /*:unknown*/ = $(1);
+  if (x) {
+    x = g();
+    $(`a`);
+  } else {
+    $(`b`);
+  }
+  const tmpReturnArg /*:boolean*/ = Boolean(x);
+  return tmpReturnArg;
+};
+const tmpCalleeParam /*:boolean*/ = f();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:boolean*/ = f();
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  let x = $(1);
+  if (x) {
+    x = g();
+    $(`a`);
+  } else {
+    $(`b`);
+  }
+  const tmpReturnArg = Boolean(x);
+  return tmpReturnArg;
+};
+$(f());
+$(f());
+`````
+
 ## Pre Normal
 
 
@@ -67,30 +108,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>boolean*/ = function () {
-  debugger;
-  let x /*:unknown*/ = $(1);
-  if (x) {
-    x = g();
-    $(`a`);
-  } else {
-    $(`b`);
-  }
-  const tmpReturnArg /*:boolean*/ = Boolean(x);
-  return tmpReturnArg;
-};
-const tmpCalleeParam /*:boolean*/ = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:boolean*/ = f();
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +137,7 @@ BAD@! Found 1 implicit global bindings:
 
 g
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -129,4 +147,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

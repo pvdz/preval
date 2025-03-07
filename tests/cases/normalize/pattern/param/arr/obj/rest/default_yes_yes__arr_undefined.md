@@ -15,6 +15,25 @@ function f([{ ...x } = $({ a: 'pass' })] = $([{ a: 'fail2' }])) {
 $(f([undefined, 20, 30], 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
+const tmpClusterSSA_arrPatternStep /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpCalleeParam$5 /*:array*/ = [];
+const x /*:unknown*/ = objPatternRest(tmpClusterSSA_arrPatternStep, tmpCalleeParam$5, undefined);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClusterSSA_arrPatternStep = $({ a: `pass` });
+$(objPatternRest(tmpClusterSSA_arrPatternStep, [], undefined));
+`````
+
 ## Pre Normal
 
 
@@ -65,19 +84,7 @@ const tmpCalleeParam$7 = tmpCallCallee(tmpCalleeParam$9, 200);
 $(tmpCalleeParam$7);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
-const tmpClusterSSA_arrPatternStep /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpCalleeParam$5 /*:array*/ = [];
-const x /*:unknown*/ = objPatternRest(tmpClusterSSA_arrPatternStep, tmpCalleeParam$5, undefined);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +99,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '"pass"' }
@@ -103,7 +110,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

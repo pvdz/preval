@@ -16,6 +16,46 @@ for (; (a = $(b)["c"]); $(1));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { c: 1 };
+const tmpAssignRhsProp /*:unknown*/ = $(b);
+let tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
+if (tmpClusterSSA_a) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    const tmpAssignRhsProp$1 /*:unknown*/ = $(b);
+    tmpClusterSSA_a = tmpAssignRhsProp$1.c;
+    if (tmpClusterSSA_a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { c: 1 };
+let tmpClusterSSA_a = $(b).c;
+if (tmpClusterSSA_a) {
+  while (true) {
+    $(1);
+    tmpClusterSSA_a = $(b).c;
+    if (!tmpClusterSSA_a) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_a, b);
+`````
+
 ## Pre Normal
 
 
@@ -49,30 +89,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { c: 1 };
-const tmpAssignRhsProp /*:unknown*/ = $(b);
-let tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-if (tmpClusterSSA_a) {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    const tmpAssignRhsProp$1 /*:unknown*/ = $(b);
-    tmpClusterSSA_a = tmpAssignRhsProp$1.c;
-    if (tmpClusterSSA_a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(tmpClusterSSA_a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -99,7 +116,7 @@ $( c, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { c: '1' }
@@ -134,7 +151,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

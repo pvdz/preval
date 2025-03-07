@@ -31,6 +31,53 @@ if (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(string, number)=>string*/ = function $free($$0, $$1) {
+  const somestr /*:string*/ = $$0;
+  const x$1 /*:number*/ = $$1;
+  debugger;
+  const extra$1 /*:string*/ = `${somestr}x`;
+  const chr /*:string*/ = extra$1.charAt(1);
+  const tmpIfTest$3 /*:number*/ = x$1 & 48;
+  const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
+  const ret2 /*:string*/ = tmpRet + chr;
+  return ret2;
+};
+const tmpUnaryArg /*:unknown*/ = $spy(1);
+const x /*:number*/ = +tmpUnaryArg;
+if (x) {
+  const unknown /*:unknown*/ = $(`abc`);
+  const somestr$1 /*:string*/ = $coerce(unknown, `string`);
+  const tmpIfTest$5 /*:string*/ = $frfr(tmpFree, somestr$1, x);
+  if (tmpIfTest$5) {
+    $(`it is 58`);
+  } else {
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(somestr, x$1) {
+  const chr = `${somestr}x`.charAt(1);
+  const ret2 = ((x$1 & 48) === 48) + chr;
+  return ret2;
+};
+const tmpUnaryArg = $spy(1);
+const x = +tmpUnaryArg;
+if (x) {
+  if ($frfr(tmpFree, $coerce($(`abc`), `string`), x)) {
+    $(`it is 58`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -91,37 +138,7 @@ if (x) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(string, number)=>string*/ = function $free($$0, $$1) {
-  const somestr /*:string*/ = $$0;
-  const x$1 /*:number*/ = $$1;
-  debugger;
-  const extra$1 /*:string*/ = `${somestr}x`;
-  const chr /*:string*/ = extra$1.charAt(1);
-  const tmpIfTest$3 /*:number*/ = x$1 & 48;
-  const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
-  const ret2 /*:string*/ = tmpRet + chr;
-  return ret2;
-};
-const tmpUnaryArg /*:unknown*/ = $spy(1);
-const x /*:number*/ = +tmpUnaryArg;
-if (x) {
-  const unknown /*:unknown*/ = $(`abc`);
-  const somestr$1 /*:string*/ = $coerce(unknown, `string`);
-  const tmpIfTest$5 /*:string*/ = $frfr(tmpFree, somestr$1, x);
-  if (tmpIfTest$5) {
-    $(`it is 58`);
-  } else {
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -152,7 +169,7 @@ if (k) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [1, 1]
@@ -165,4 +182,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

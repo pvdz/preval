@@ -15,6 +15,33 @@ a[$("b")] = 2;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpObjLitVal /*:unknown*/ = $(1);
+const a /*:object*/ = { b: tmpObjLitVal };
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
+$(tmpCalleeParam);
+const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
+a[tmpAssignComMemLhsProp] = 2;
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(100);
+const tmpObjLitVal = $(1);
+const a = { b: tmpObjLitVal };
+$(tmpBinBothLhs + a);
+const tmpAssignComMemLhsProp = $(`b`);
+a[tmpAssignComMemLhsProp] = 2;
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -42,22 +69,7 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpObjLitVal /*:unknown*/ = $(1);
-const a /*:object*/ = { b: tmpObjLitVal };
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
-$(tmpCalleeParam);
-const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
-a[tmpAssignComMemLhsProp] = 2;
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +87,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -89,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

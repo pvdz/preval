@@ -13,6 +13,24 @@ const { ...x } = { x: 1, b: 2, c: 3 };
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const bindingPatternObjRoot /*:object*/ = { x: 1, b: 2, c: 3 };
+const tmpCalleeParam$1 /*:array*/ = [];
+const x /*:unknown*/ = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, `x`);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternObjRoot = { x: 1, b: 2, c: 3 };
+$(objPatternRest(bindingPatternObjRoot, [], `x`));
+`````
+
 ## Pre Normal
 
 
@@ -32,18 +50,7 @@ const x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const bindingPatternObjRoot /*:object*/ = { x: 1, b: 2, c: 3 };
-const tmpCalleeParam$1 /*:array*/ = [];
-const x /*:unknown*/ = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, `x`);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +68,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1', b: '2', c: '3' }
@@ -71,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

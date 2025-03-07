@@ -14,6 +14,58 @@ for (($($)?.($(1))).x in $({ x: 1 }));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpChainElementCall /*:unknown*/ = $($);
+    const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
+    if (tmpIfTest$1) {
+    } else {
+      const tmpCalleeParam$7 /*:unknown*/ = $(1);
+      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$7);
+      tmpAssignMemLhsObj$1 = tmpChainElementCall$1;
+    }
+    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn($({ x: 1 }));
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    const tmpChainElementCall = $($);
+    const tmpIfTest$1 = tmpChainElementCall == null;
+    let tmpAssignMemLhsObj$1 = undefined;
+    if (!tmpIfTest$1) {
+      tmpAssignMemLhsObj$1 = $dotCall(tmpChainElementCall, $, undefined, $(1));
+    }
+    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -67,38 +119,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpChainElementCall /*:unknown*/ = $($);
-    const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpCalleeParam$7 /*:unknown*/ = $(1);
-      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$7);
-      tmpAssignMemLhsObj$1 = tmpChainElementCall$1;
-    }
-    const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -138,7 +159,7 @@ $( l );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -151,7 +172,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

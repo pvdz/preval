@@ -16,6 +16,65 @@ for ((a = $($(1)) && $($(1)) && $($(2))).x of $({}));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam$1 /*:object*/ = {};
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    a = $(tmpCalleeParam$3);
+    if (a) {
+      const tmpCalleeParam$5 /*:unknown*/ = $(1);
+      a = $(tmpCalleeParam$5);
+      if (a) {
+        const tmpCalleeParam$7 /*:unknown*/ = $(2);
+        a = $(tmpCalleeParam$7);
+      } else {
+      }
+    } else {
+    }
+    const tmpAssignMemLhsObj /*:unknown*/ = a;
+    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  }
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpForOfGen = $forOf($({}));
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    a = $($(1));
+    if (a) {
+      a = $($(1));
+      if (a) {
+        a = $($(2));
+      }
+    }
+    const tmpAssignMemLhsObj = a;
+    tmpAssignMemLhsObj.x = tmpForOfNext.value;
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -70,42 +129,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam$1 /*:object*/ = {};
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    a = $(tmpCalleeParam$3);
-    if (a) {
-      const tmpCalleeParam$5 /*:unknown*/ = $(1);
-      a = $(tmpCalleeParam$5);
-      if (a) {
-        const tmpCalleeParam$7 /*:unknown*/ = $(2);
-        a = $(tmpCalleeParam$7);
-      } else {
-      }
-    } else {
-    }
-    const tmpAssignMemLhsObj /*:unknown*/ = a;
-    const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  }
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -145,7 +169,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: {}
@@ -155,7 +179,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

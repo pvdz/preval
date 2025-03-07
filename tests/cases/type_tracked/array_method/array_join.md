@@ -21,6 +21,21 @@ const tmpReturnArg = tmpCallObj.split(`^`);
 $(tmpReturnArg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpReturnArg /*:array*/ = [`use strict`, `__extends`];
+$(tmpReturnArg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([`use strict`, `__extends`]);
+`````
+
 ## Pre Normal
 
 
@@ -53,16 +68,7 @@ const tmpReturnArg = tmpCallObj.split(`^`);
 $(tmpReturnArg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpReturnArg /*:array*/ = [`use strict`, `__extends`];
-$(tmpReturnArg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +80,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['use strict', '__extends']
@@ -84,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

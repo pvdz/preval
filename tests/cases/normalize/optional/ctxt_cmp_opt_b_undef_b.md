@@ -13,6 +13,40 @@ const a = {};
 $($(a)[$('b')]?.[$('c')](100));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:object*/ = {};
+const tmpChainElementCall /*:unknown*/ = $(a);
+const tmpChainRootComputed /*:unknown*/ = $(`b`);
+const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainRootComputed$1 /*:unknown*/ = $(`c`);
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementObject, undefined, 100);
+  $(tmpChainElementCall$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainElementCall = $({});
+const tmpChainRootComputed = $(`b`);
+const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+if (tmpChainElementObject == null) {
+  $(undefined);
+} else {
+  const tmpChainRootComputed$1 = $(`c`);
+  $(tmpChainElementObject[tmpChainRootComputed$1](undefined, 100));
+}
+`````
+
 ## Pre Normal
 
 
@@ -42,27 +76,7 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:object*/ = {};
-const tmpChainElementCall /*:unknown*/ = $(a);
-const tmpChainRootComputed /*:unknown*/ = $(`b`);
-const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainRootComputed$1 /*:unknown*/ = $(`c`);
-  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementObject, undefined, 100);
-  $(tmpChainElementCall$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +100,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: {}
@@ -98,4 +112,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

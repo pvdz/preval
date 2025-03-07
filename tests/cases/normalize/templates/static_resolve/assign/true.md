@@ -14,6 +14,20 @@ x = `${true}`;
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`true`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`true`);
+`````
+
 ## Pre Normal
 
 
@@ -35,15 +49,7 @@ x = $coerce(tmpBinLhs, `plustr`);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`true`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +60,7 @@ $( "true" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'true'
@@ -64,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

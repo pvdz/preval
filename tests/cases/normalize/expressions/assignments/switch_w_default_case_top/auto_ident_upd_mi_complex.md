@@ -23,6 +23,73 @@ switch ($(1)) {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const tmpBinLhs /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+const b /*:object*/ = { x: 1 };
+if (tmpIfTest$3) {
+  const tmpCalleeParam /*:unknown*/ = $(b);
+  const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj.x;
+  const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs$1 - 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  a = tmpNestedPropCompoundComplexRhs;
+} else {
+}
+const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
+  $(`fail1`);
+} else {
+}
+$(`fail2`);
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+if ($(1) === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const b = { x: 1 };
+if (tmpIfTest$3) {
+  const tmpNestedAssignObj = $($(b));
+  const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x - 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  a = tmpNestedPropCompoundComplexRhs;
+}
+if (tmpSwitchCaseToStart <= 1) {
+  $(`fail1`);
+}
+$(`fail2`);
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -92,46 +159,7 @@ if (tmpIfTest$7) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-const b /*:object*/ = { x: 1 };
-if (tmpIfTest$3) {
-  const tmpCalleeParam /*:unknown*/ = $(b);
-  const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-  const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs$1 - 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
-} else {
-}
-const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$5) {
-  $(`fail1`);
-} else {
-}
-$(`fail2`);
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -174,7 +202,7 @@ $( a, h );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -190,4 +218,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

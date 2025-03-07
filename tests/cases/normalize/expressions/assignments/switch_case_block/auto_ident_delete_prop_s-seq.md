@@ -20,6 +20,40 @@ switch ($(1)) {
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const arg /*:object*/ = { y: 1 };
+if (tmpIfTest) {
+  $(1);
+  $(2);
+  const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
+  $(tmpClusterSSA_a, arg);
+} else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, arg);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(1) === $(1);
+const arg = { y: 1 };
+if (tmpIfTest) {
+  $(1);
+  $(2);
+  $(delete arg.y, arg);
+} else {
+  $({ a: 999, b: 1000 }, arg);
+}
+`````
+
 ## Pre Normal
 
 
@@ -58,27 +92,7 @@ if (tmpIfTest) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-const arg /*:object*/ = { y: 1 };
-if (tmpIfTest) {
-  $(1);
-  $(2);
-  const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
-  $(tmpClusterSSA_a, arg);
-} else {
-  const a /*:object*/ = { a: 999, b: 1000 };
-  $(a, arg);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +119,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -119,4 +133,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

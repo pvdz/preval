@@ -16,6 +16,24 @@ switch ($(1)) {
 $();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$spy(0);
+$();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$spy(0);
+$();
+`````
+
 ## Pre Normal
 
 
@@ -52,17 +70,7 @@ const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 $();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$spy(0);
-$();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +83,7 @@ $();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -87,4 +95,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -24,6 +24,22 @@ $(f('x')); // [x, bar]
 $(f('x', 'y')); // [x, y]
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (tmpParamBare$1) {
+  let b = `bar`;
+  if (!(tmpParamBare$1 === undefined)) {
+    b = tmpParamBare$1;
+  }
+  const tmpReturnArg = [`x`, b];
+  return tmpReturnArg;
+};
+$(f());
+$(f(`y`));
+`````
+
 ## Pre Normal
 
 
@@ -71,7 +87,7 @@ const tmpCalleeParam$1 = f(`x`, `y`);
 $(tmpCalleeParam$1);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -93,8 +109,7 @@ const tmpCalleeParam$1 /*:array*/ = f(`y`);
 $(tmpCalleeParam$1);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -133,4 +148,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

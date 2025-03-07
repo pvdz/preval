@@ -16,6 +16,22 @@ f();
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`inline me`);
+$(`inline me`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`inline me`);
+$(`inline me`);
+`````
+
 ## Pre Normal
 
 
@@ -41,16 +57,7 @@ f();
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`inline me`);
-$(`inline me`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +69,7 @@ $( "inline me" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'inline me'
@@ -73,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

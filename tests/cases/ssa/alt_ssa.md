@@ -23,6 +23,31 @@ if ($()) {
 $(a); // can observe  1 2 3
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $();
+$(1);
+if (tmpIfTest) {
+  $(2);
+  $(3);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $();
+$(1);
+if (tmpIfTest) {
+  $(2);
+  $(3);
+}
+`````
+
 ## Pre Normal
 
 
@@ -58,21 +83,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $();
-$(1);
-if (tmpIfTest) {
-  $(2);
-  $(3);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +99,7 @@ if (a) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -99,4 +110,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

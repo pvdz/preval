@@ -12,6 +12,20 @@
 $(/foo/g + "xyz");
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`/foo/gxyz`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`/foo/gxyz`);
+`````
+
 ## Pre Normal
 
 
@@ -29,15 +43,7 @@ const tmpCalleeParam = `${tmpStringConcatR}xyz`;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`/foo/gxyz`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -48,7 +54,7 @@ $( "/foo/gxyz" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '/foo/gxyz'
@@ -58,4 +64,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -17,6 +17,38 @@ $(100) || ({ x, y } = ($(x), $(y), { x: $(3), y: $(4) }));
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(100);
+const a /*:object*/ = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a, 1, 2);
+} else {
+  $(1);
+  $(2);
+  const tmpObjLitVal /*:unknown*/ = $(3);
+  const tmpObjLitVal$1 /*:unknown*/ = $(4);
+  $(a, tmpObjLitVal, tmpObjLitVal$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(100);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a, 1, 2);
+} else {
+  $(1);
+  $(2);
+  $(a, $(3), $(4));
+}
+`````
+
 ## Pre Normal
 
 
@@ -49,25 +81,7 @@ if (tmpIfTest) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(100);
-const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpIfTest) {
-  $(a, 1, 2);
-} else {
-  $(1);
-  $(2);
-  const tmpObjLitVal /*:unknown*/ = $(3);
-  const tmpObjLitVal$1 /*:unknown*/ = $(4);
-  $(a, tmpObjLitVal, tmpObjLitVal$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +106,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -103,4 +117,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

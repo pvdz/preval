@@ -32,6 +32,59 @@ $(f.length); // This prevents the trick
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown)=>number*/ = function ($$0) {
+  const x /*:unknown*/ = $$0;
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y /*:number*/ = ~x;
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    $(`a`);
+    return y;
+  } else {
+    $(`b`);
+    return y;
+  }
+};
+const tmpCalleeParam /*:number*/ = f(1);
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:number*/ = f(2);
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:number*/ = f.length;
+$(tmpCalleeParam$3);
+const tmpCalleeParam$5 /*:number*/ = f(`three`);
+$(tmpCalleeParam$5);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (x) {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = ~x;
+  if ($(true)) {
+    $(`a`);
+    return y;
+  } else {
+    $(`b`);
+    return y;
+  }
+};
+$(f(1));
+$(f(2));
+$(f.length);
+$(f(`three`));
+`````
+
 ## Pre Normal
 
 
@@ -87,38 +140,7 @@ const tmpCalleeParam$5 = f(`three`);
 $(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unknown)=>number*/ = function ($$0) {
-  const x /*:unknown*/ = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y /*:number*/ = ~x;
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    $(`a`);
-    return y;
-  } else {
-    $(`b`);
-    return y;
-  }
-};
-const tmpCalleeParam /*:number*/ = f(1);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:number*/ = f(2);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 /*:number*/ = f.length;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 /*:number*/ = f(`three`);
-$(tmpCalleeParam$5);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -153,7 +175,7 @@ $( h );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -181,4 +203,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

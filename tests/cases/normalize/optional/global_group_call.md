@@ -13,6 +13,32 @@ const y = (1, 2, $())?.foo
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpChainRootProp /*:unknown*/ = $();
+const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+if (tmpIfTest) {
+  $(undefined);
+} else {
+  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.foo;
+  $(tmpChainElementObject);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpChainRootProp = $();
+if (tmpChainRootProp == null) {
+  $(undefined);
+} else {
+  $(tmpChainRootProp.foo);
+}
+`````
+
 ## Pre Normal
 
 
@@ -36,22 +62,7 @@ if (tmpIfTest) {
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpChainRootProp /*:unknown*/ = $();
-const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.foo;
-  $(tmpChainElementObject);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +81,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -81,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

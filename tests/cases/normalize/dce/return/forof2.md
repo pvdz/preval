@@ -21,6 +21,40 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+if (tmpIfTest) {
+  $(`keep, do not eval`);
+} else {
+  tmpForInNext.value;
+  const tmpReturnArg /*:unknown*/ = $(1, `return`);
+  tmpCalleeParam$1 = tmpReturnArg;
+}
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam$1 = undefined;
+const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+if (tmpForInNext.done) {
+  $(`keep, do not eval`);
+} else {
+  tmpForInNext.value;
+  tmpCalleeParam$1 = $(1, `return`);
+}
+$(tmpCalleeParam$1);
+`````
+
 ## Pre Normal
 
 
@@ -73,27 +107,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-if (tmpIfTest) {
-  $(`keep, do not eval`);
-} else {
-  tmpForInNext.value;
-  const tmpReturnArg /*:unknown*/ = $(1, `return`);
-  tmpCalleeParam$1 = tmpReturnArg;
-}
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -120,7 +134,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'return'
@@ -131,4 +145,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

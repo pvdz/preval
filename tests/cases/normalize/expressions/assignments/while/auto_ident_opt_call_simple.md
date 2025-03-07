@@ -14,6 +14,58 @@ while ((a = $?.(1))) $(100);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = $ == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainElementCall /*:unknown*/ = $(1);
+  a = tmpChainElementCall;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpIfTest$2 /*:boolean*/ = $ == null;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpChainElementCall$1 /*:unknown*/ = $(1);
+      a = tmpChainElementCall$1;
+    }
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+if (!($ == null)) {
+  a = $(1);
+}
+if (a) {
+  while (true) {
+    $(100);
+    if (!($ == null)) {
+      a = $(1);
+    }
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -47,38 +99,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = $ == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
-}
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpIfTest$2 /*:boolean*/ = $ == null;
-    if (tmpIfTest$2) {
-    } else {
-      const tmpChainElementCall$1 /*:unknown*/ = $(1);
-      a = tmpChainElementCall$1;
-    }
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -117,7 +138,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -152,7 +173,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support referencing this builtin in isFree: $

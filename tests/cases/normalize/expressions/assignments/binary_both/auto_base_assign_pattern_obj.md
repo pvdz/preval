@@ -16,6 +16,37 @@ $((a = { b } = $({ b: $(2) })) + (a = { b } = $({ b: $(2) })));
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(2);
+const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
+tmpNestedAssignObjPatternRhs.b;
+const tmpObjLitVal$1 /*:unknown*/ = $(2);
+const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal$1 };
+const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
+const tmpCalleeParam /*:primitive*/ = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
+$(tmpCalleeParam);
+$(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(2);
+const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
+tmpNestedAssignObjPatternRhs.b;
+const tmpObjLitVal$1 = $(2);
+const tmpNestedAssignObjPatternRhs$1 = $({ b: tmpObjLitVal$1 });
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+$(tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1);
+$(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b);
+`````
+
 ## Pre Normal
 
 
@@ -49,25 +80,7 @@ $(tmpCalleeParam);
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-tmpNestedAssignObjPatternRhs.b;
-const tmpObjLitVal$1 /*:unknown*/ = $(2);
-const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal$1 };
-const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
-const tmpCalleeParam /*:primitive*/ = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-$(tmpCalleeParam);
-$(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -88,7 +101,7 @@ $( f, g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -103,4 +116,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

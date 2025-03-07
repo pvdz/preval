@@ -17,6 +17,18 @@ while (true) {
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let i = 0;
+$(10);
+while (true) {
+  i = i + 1;
+  $($(i, `set`), `loop`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -43,7 +55,7 @@ while (true) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -56,8 +68,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,4 +120,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

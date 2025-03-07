@@ -14,6 +14,36 @@ $(100) + ($($(1)) && $($(2)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(100);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam);
+if (tmpBinBothRhs) {
+  const tmpCalleeParam$1 /*:unknown*/ = $(2);
+  tmpBinBothRhs = $(tmpCalleeParam$1);
+} else {
+}
+tmpBinBothLhs + tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothLhs = $(100);
+let tmpBinBothRhs = $($(1));
+if (tmpBinBothRhs) {
+  tmpBinBothRhs = $($(2));
+}
+tmpBinBothLhs + tmpBinBothRhs;
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -40,25 +70,7 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpCalleeParam /*:unknown*/ = $(1);
-let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam);
-if (tmpBinBothRhs) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  tmpBinBothRhs = $(tmpCalleeParam$1);
-} else {
-}
-tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +93,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -96,4 +108,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

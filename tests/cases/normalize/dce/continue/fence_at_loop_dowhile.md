@@ -23,6 +23,59 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+## Settled
+
+
+`````js filename=intro
+while (true) {
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+    $(`loop`);
+    $(`loop`);
+    const tmpIfTest$1 /*:unknown*/ = $(true);
+    if (tmpIfTest$1) {
+      while ($LOOP_UNROLL_10) {
+        $(`loop`);
+        const tmpIfTest$2 /*:unknown*/ = $(true);
+        if (tmpIfTest$2) {
+        } else {
+          break;
+        }
+      }
+    } else {
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+while (true) {
+  if ($(true)) {
+    $(`loop`);
+    $(`loop`);
+    if ($(true)) {
+      while (true) {
+        $(`loop`);
+        if (!$(true)) {
+          break;
+        }
+      }
+    }
+    $(`infiloop, do not eliminate`);
+  } else {
+    break;
+  }
+}
+$(`after (not invoked)`);
+`````
+
 ## Pre Normal
 
 
@@ -73,37 +126,7 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
-## Output
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    $(`loop`);
-    const tmpIfTest$1 /*:unknown*/ = $(true);
-    if (tmpIfTest$1) {
-      while ($LOOP_UNROLL_10) {
-        $(`loop`);
-        const tmpIfTest$2 /*:unknown*/ = $(true);
-        if (tmpIfTest$2) {
-        } else {
-          break;
-        }
-      }
-    } else {
-    }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
-  }
-}
-$(`after (not invoked)`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -138,7 +161,7 @@ $( "after (not invoked)" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -173,4 +196,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

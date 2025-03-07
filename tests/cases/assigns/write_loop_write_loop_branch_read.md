@@ -16,6 +16,58 @@ while ($(x)) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(10);
+const tmpIfTest /*:unknown*/ = $(x);
+if (tmpIfTest) {
+  let tmpClusterSSA_x /*:unknown*/ = $(0);
+  const tmpIfTest$1 /*:unknown*/ = $(true);
+  if (tmpIfTest$1) {
+    $(tmpClusterSSA_x, `branch`);
+  } else {
+  }
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$2 /*:unknown*/ = $(tmpClusterSSA_x);
+    if (tmpIfTest$2) {
+      tmpClusterSSA_x = $(0);
+      const tmpIfTest$4 /*:unknown*/ = $(true);
+      if (tmpIfTest$4) {
+        $(tmpClusterSSA_x, `branch`);
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($($(10))) {
+  let tmpClusterSSA_x = $(0);
+  if ($(true)) {
+    $(tmpClusterSSA_x, `branch`);
+  }
+  while (true) {
+    if ($(tmpClusterSSA_x)) {
+      tmpClusterSSA_x = $(0);
+      if ($(true)) {
+        $(tmpClusterSSA_x, `branch`);
+      }
+    } else {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,38 +99,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(10);
-const tmpIfTest /*:unknown*/ = $(x);
-if (tmpIfTest) {
-  let tmpClusterSSA_x /*:unknown*/ = $(0);
-  const tmpIfTest$1 /*:unknown*/ = $(true);
-  if (tmpIfTest$1) {
-    $(tmpClusterSSA_x, `branch`);
-  } else {
-  }
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$2 /*:unknown*/ = $(tmpClusterSSA_x);
-    if (tmpIfTest$2) {
-      tmpClusterSSA_x = $(0);
-      const tmpIfTest$4 /*:unknown*/ = $(true);
-      if (tmpIfTest$4) {
-        $(tmpClusterSSA_x, `branch`);
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +131,7 @@ if (b) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -125,4 +146,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

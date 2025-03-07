@@ -17,6 +17,56 @@ for (let x of ([x, y] = ($(x), $(y), [$(3), $(4)])));
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(x$1);
+$(2);
+const tmpArrElement /*:unknown*/ = $(3);
+const tmpArrElement$1 /*:unknown*/ = $(4);
+const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+x$1 = arrPatternSplat[0];
+const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
+const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignArrPatternRhs);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, 1, tmpClusterSSA_y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(x$1);
+$(2);
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+x$1 = arrPatternSplat[0];
+const tmpClusterSSA_y = arrPatternSplat[1];
+const tmpForOfGen = $forOf(tmpNestedAssignArrPatternRhs);
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$({ a: 999, b: 1000 }, 1, tmpClusterSSA_y);
+`````
+
 ## Pre Normal
 
 
@@ -68,34 +118,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(x$1);
-$(2);
-const tmpArrElement /*:unknown*/ = $(3);
-const tmpArrElement$1 /*:unknown*/ = $(4);
-const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-x$1 = arrPatternSplat[0];
-const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignArrPatternRhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    tmpForOfNext.value;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, 1, tmpClusterSSA_y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -131,7 +154,7 @@ BAD@! Found 1 implicit global bindings:
 
 x$1
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -141,7 +164,10 @@ Pre normalization calls: Same
 Normalized calls: BAD!?
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Denormalized calls: BAD!!
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Todos triggered:

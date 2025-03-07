@@ -14,6 +14,60 @@ for (let x of (a = $($)?.($(1))));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const tmpChainElementCall /*:unknown*/ = $($);
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpForOfGen /*:unknown*/ = undefined;
+if (tmpIfTest) {
+  tmpForOfGen = $forOf(undefined);
+} else {
+  const tmpCalleeParam$5 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
+  a = tmpChainElementCall$1;
+  tmpForOfGen = $forOf(tmpChainElementCall$1);
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest$1) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = undefined;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall == null;
+let tmpForOfGen = undefined;
+if (tmpIfTest) {
+  tmpForOfGen = $forOf(undefined);
+} else {
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, $(1));
+  a = tmpChainElementCall$1;
+  tmpForOfGen = $forOf(tmpChainElementCall$1);
+}
+while (true) {
+  const tmpForOfNext = tmpForOfGen.next();
+  if (tmpForOfNext.done) {
+    break;
+  } else {
+    tmpForOfNext.value;
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -64,36 +118,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const tmpChainElementCall /*:unknown*/ = $($);
-const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpForOfGen /*:unknown*/ = undefined;
-if (tmpIfTest) {
-  tmpForOfGen = $forOf(undefined);
-} else {
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
-  a = tmpChainElementCall$1;
-  tmpForOfGen = $forOf(tmpChainElementCall$1);
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest$1) {
-    break;
-  } else {
-    tmpForOfNext.value;
-  }
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,7 +152,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -139,7 +164,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

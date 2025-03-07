@@ -14,6 +14,37 @@ export default $(1) ? (40, 50, $(60)) : $($(100));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  tmpAnonDefaultExport = $(60);
+} else {
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  tmpAnonDefaultExport = $(tmpCalleeParam);
+}
+export { tmpAnonDefaultExport as default };
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpAnonDefaultExport = undefined;
+if ($(1)) {
+  tmpAnonDefaultExport = $(60);
+} else {
+  tmpAnonDefaultExport = $($(100));
+}
+export { tmpAnonDefaultExport as default };
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -41,25 +72,7 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  tmpAnonDefaultExport = $(60);
-} else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  tmpAnonDefaultExport = $(tmpCalleeParam);
-}
-export { tmpAnonDefaultExport as default };
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +97,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -93,4 +106,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

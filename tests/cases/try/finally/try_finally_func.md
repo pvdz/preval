@@ -27,6 +27,62 @@ try {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>primitive*/ = function () {
+  debugger;
+  let x /*:number*/ = 1;
+  let $finalStep /*:boolean*/ = false;
+  let $finalArg /*:primitive*/ = undefined;
+  try {
+    const tmpIfTest /*:unknown*/ = $();
+    if (tmpIfTest) {
+      x = 2;
+      $finalStep = true;
+      $finalArg = 100;
+    } else {
+    }
+  } catch ($finalImplicit) {
+    $(x);
+    throw $finalImplicit;
+  }
+  $(x);
+  if ($finalStep) {
+    return $finalArg;
+  } else {
+    return undefined;
+  }
+};
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  let x = 1;
+  let $finalStep = false;
+  let $finalArg = undefined;
+  try {
+    if ($()) {
+      x = 2;
+      $finalStep = true;
+      $finalArg = 100;
+    }
+  } catch ($finalImplicit) {
+    $(x);
+    throw $finalImplicit;
+  }
+  $(x);
+  if ($finalStep) {
+    return $finalArg;
+  }
+});
+`````
+
 ## Pre Normal
 
 
@@ -128,39 +184,7 @@ if ($implicitThrow$1) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>primitive*/ = function () {
-  debugger;
-  let x /*:number*/ = 1;
-  let $finalStep /*:boolean*/ = false;
-  let $finalArg /*:primitive*/ = undefined;
-  try {
-    const tmpIfTest /*:unknown*/ = $();
-    if (tmpIfTest) {
-      x = 2;
-      $finalStep = true;
-      $finalArg = 100;
-    } else {
-    }
-  } catch ($finalImplicit) {
-    $(x);
-    throw $finalImplicit;
-  }
-  $(x);
-  if ($finalStep) {
-    return $finalArg;
-  } else {
-    return undefined;
-  }
-};
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -196,7 +220,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -206,4 +230,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -15,6 +15,38 @@ for (let i=0; i<10; ++i) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(0);
+$(2);
+$(4);
+$(6);
+$(8);
+$(10);
+$(12);
+$(14);
+$(16);
+$(18);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(0);
+$(2);
+$(4);
+$(6);
+$(8);
+$(10);
+$(12);
+$(14);
+$(16);
+$(18);
+`````
+
 ## Pre Normal
 
 
@@ -48,24 +80,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(0);
-$(2);
-$(4);
-$(6);
-$(8);
-$(10);
-$(12);
-$(14);
-$(16);
-$(18);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -85,7 +100,7 @@ $( 18 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0
@@ -104,4 +119,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -19,6 +19,42 @@ switch ($(1)) {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  const tmpArrElement /*:unknown*/ = $(2);
+  const tmpCalleeParam /*:array*/ = [tmpArrElement];
+  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
+  const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
+  $(a, tmpClusterSSA_b);
+} else {
+  const b /*:array*/ = [];
+  $(a, b);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(1) === $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  const tmpArrElement = $(2);
+  const arrAssignPatternRhs = $([tmpArrElement]);
+  $(a, [...arrAssignPatternRhs][0]);
+} else {
+  $(a, []);
+}
+`````
+
 ## Pre Normal
 
 
@@ -56,29 +92,7 @@ if (tmpIfTest) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpIfTest) {
-  const tmpArrElement /*:unknown*/ = $(2);
-  const tmpCalleeParam /*:array*/ = [tmpArrElement];
-  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-  const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
-  $(a, tmpClusterSSA_b);
-} else {
-  const b /*:array*/ = [];
-  $(a, b);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +121,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -121,7 +135,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

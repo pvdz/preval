@@ -20,6 +20,33 @@ if (x) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(67636);
+let x /*:boolean*/ = a !== 67636;
+if (x) {
+  x = true;
+} else {
+  $(`Preval: Cannot write to const binding \`a\``);
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = $(67636) !== 67636;
+if (x) {
+  x = true;
+} else {
+  $(`Preval: Cannot write to const binding \`a\``);
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -50,22 +77,7 @@ if (x) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(67636);
-let x /*:boolean*/ = a !== 67636;
-if (x) {
-  x = true;
-} else {
-  $(`Preval: Cannot write to const binding \`a\``);
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +96,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 67636
@@ -96,4 +108,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

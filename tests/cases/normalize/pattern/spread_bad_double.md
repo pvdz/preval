@@ -16,6 +16,24 @@ $([1, 2, ...3, ...4, 5, 6]);
 $('after');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`before`);
+[...3];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`before`);
+[...3];
+throw `[Preval]: Array spread must crash before this line`;
+`````
+
 ## Pre Normal
 
 
@@ -34,17 +52,7 @@ const tmpCalleeParam = [...3];
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`before`);
-[...3];
-throw `[Preval]: Array spread must crash before this line`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +65,7 @@ throw "[Preval]: Array spread must crash before this line";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'before'
@@ -67,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

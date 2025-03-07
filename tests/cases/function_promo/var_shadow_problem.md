@@ -32,6 +32,43 @@ function f() {
 if ($) f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const x /*:unknown*/ = $(1);
+  if ($) {
+    $(x, `keep me a closure`);
+    const x$1 /*:unknown*/ = $();
+    if ($) {
+      $(x$1, `keep me inner local`);
+    } else {
+    }
+    $(x, `keep me outer local`);
+  } else {
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  const x = $(1);
+  if ($) {
+    $(x, `keep me a closure`);
+    const x$1 = $();
+    if ($) {
+      $(x$1, `keep me inner local`);
+    }
+    $(x, `keep me outer local`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -100,28 +137,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const x /*:unknown*/ = $(1);
-  if ($) {
-    $(x, `keep me a closure`);
-    const x$1 /*:unknown*/ = $();
-    if ($) {
-      $(x$1, `keep me inner local`);
-    } else {
-    }
-    $(x, `keep me outer local`);
-  } else {
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -142,7 +158,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -156,4 +172,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

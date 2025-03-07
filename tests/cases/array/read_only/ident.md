@@ -15,6 +15,24 @@ $(arr[3]);
 $(`${arr[2]}xyz`);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$($);
+$(4);
+$(`3xyz`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($);
+$(4);
+$(`3xyz`);
+`````
+
 ## Pre Normal
 
 
@@ -43,17 +61,7 @@ const tmpCalleeParam$3 = `${tmpStringConcatR}xyz`;
 $(tmpCalleeParam$3);
 `````
 
-## Output
-
-
-`````js filename=intro
-$($);
-$(4);
-$(`3xyz`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +74,7 @@ $( "3xyz" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<$>'
@@ -78,7 +86,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

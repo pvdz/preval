@@ -27,6 +27,50 @@ f(true);
 f(false);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSplitTruthy /*:()=>unknown*/ = function () {
+  debugger;
+  try {
+    $(`then`);
+  } catch (tmpCatchParam) {}
+  return undefined;
+};
+const tmpSplitFalsy /*:()=>unknown*/ = function () {
+  debugger;
+  try {
+    $(`else`);
+  } catch (tmpCatchParam$1) {}
+  return undefined;
+};
+tmpSplitFalsy();
+tmpSplitTruthy();
+tmpSplitTruthy();
+tmpSplitFalsy();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpSplitTruthy = function () {
+  try {
+    $(`then`);
+  } catch (tmpCatchParam) {}
+};
+const tmpSplitFalsy = function () {
+  try {
+    $(`else`);
+  } catch (tmpCatchParam$1) {}
+};
+tmpSplitFalsy();
+tmpSplitTruthy();
+tmpSplitTruthy();
+tmpSplitFalsy();
+`````
+
 ## Pre Normal
 
 
@@ -70,32 +114,7 @@ f(true);
 f(false);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSplitTruthy /*:()=>unknown*/ = function () {
-  debugger;
-  try {
-    $(`then`);
-  } catch (tmpCatchParam) {}
-  return undefined;
-};
-const tmpSplitFalsy /*:()=>unknown*/ = function () {
-  debugger;
-  try {
-    $(`else`);
-  } catch (tmpCatchParam$1) {}
-  return undefined;
-};
-tmpSplitFalsy();
-tmpSplitTruthy();
-tmpSplitTruthy();
-tmpSplitFalsy();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -129,7 +148,7 @@ c();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'else'
@@ -142,4 +161,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

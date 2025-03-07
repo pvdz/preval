@@ -18,6 +18,38 @@ f(3);
 f(4);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`50`);
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  const y /*:number*/ = $coerce(x, `number`);
+  $(1);
+  $(2);
+  $(y);
+  return undefined;
+};
+f();
+f();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $(`50`);
+const f = function () {
+  const y = $coerce(x, `number`);
+  $(1);
+  $(2);
+  $(y);
+};
+f();
+f();
+`````
+
 ## Pre Normal
 
 
@@ -53,25 +85,7 @@ f(3);
 f(4);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`50`);
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  const y /*:number*/ = $coerce(x, `number`);
-  $(1);
-  $(2);
-  $(y);
-  return undefined;
-};
-f();
-f();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +106,7 @@ b();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '50'
@@ -108,4 +122,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -49,6 +49,69 @@ here: {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 1;
+let $finalAbruptAction /*:number*/ = 0;
+let $finalCatchArg /*:unknown*/ = undefined;
+try {
+  if ($) {
+    x = 2;
+    $finalAbruptAction = 1;
+  } else {
+    x = 3;
+  }
+} catch ($finalImplicit) {
+  $finalAbruptAction = 2;
+  $finalCatchArg = $finalImplicit;
+}
+$(x);
+const tmpIfTest /*:boolean*/ = $finalAbruptAction === 1;
+if (tmpIfTest) {
+} else {
+  const tmpIfTest$1 /*:boolean*/ = $finalAbruptAction === 2;
+  if (tmpIfTest$1) {
+    throw $finalCatchArg;
+  } else {
+    $(x);
+    x = 4;
+  }
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+let $finalAbruptAction = 0;
+let $finalCatchArg = undefined;
+try {
+  if ($) {
+    x = 2;
+    $finalAbruptAction = 1;
+  } else {
+    x = 3;
+  }
+} catch ($finalImplicit) {
+  $finalAbruptAction = 2;
+  $finalCatchArg = $finalImplicit;
+}
+$(x);
+if (!($finalAbruptAction === 1)) {
+  if ($finalAbruptAction === 2) {
+    throw $finalCatchArg;
+  } else {
+    $(x);
+    x = 4;
+  }
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -127,41 +190,7 @@ here: {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:number*/ = 1;
-let $finalAbruptAction /*:number*/ = 0;
-let $finalCatchArg /*:unknown*/ = undefined;
-try {
-  if ($) {
-    x = 2;
-    $finalAbruptAction = 1;
-  } else {
-    x = 3;
-  }
-} catch ($finalImplicit) {
-  $finalAbruptAction = 2;
-  $finalCatchArg = $finalImplicit;
-}
-$(x);
-const tmpIfTest /*:boolean*/ = $finalAbruptAction === 1;
-if (tmpIfTest) {
-} else {
-  const tmpIfTest$1 /*:boolean*/ = $finalAbruptAction === 2;
-  if (tmpIfTest$1) {
-    throw $finalCatchArg;
-  } else {
-    $(x);
-    x = 4;
-  }
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -203,7 +232,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -214,4 +243,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

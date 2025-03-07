@@ -15,6 +15,24 @@ function f([] = $('pass')) {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const bindingPatternArrRoot /*:unknown*/ = $(`pass`);
+[...bindingPatternArrRoot];
+$(`ok`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const bindingPatternArrRoot = $(`pass`);
+[...bindingPatternArrRoot];
+$(`ok`);
+`````
+
 ## Pre Normal
 
 
@@ -49,17 +67,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const bindingPatternArrRoot /*:unknown*/ = $(`pass`);
-[...bindingPatternArrRoot];
-$(`ok`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +80,7 @@ $( "ok" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -83,4 +91,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

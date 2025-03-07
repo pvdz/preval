@@ -20,6 +20,38 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    if ($) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  while (true) {
+    $(1);
+    if (!$) {
+      break;
+    }
+  }
+}
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -65,25 +97,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    if ($) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +119,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -140,7 +154,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support referencing this builtin in isFree: $

@@ -24,6 +24,42 @@ while ($LOOP_UNROLL_2) {      // The unrolled body is not in a loop so it can in
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const test /*:unknown*/ = $(`never`);
+if (test) {
+} else {
+  const arr /*:array*/ = [2, 3, 4, 5, 1];
+  while ($LOOP_UNROLL_1) {
+    const test$1 /*:unknown*/ = $(`never`);
+    if (test$1) {
+      break;
+    } else {
+      const tmp$1 /*:unknown*/ = arr.shift();
+      arr.push(tmp$1);
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (!$(`never`)) {
+  const arr = [2, 3, 4, 5, 1];
+  while (true) {
+    if ($(`never`)) {
+      break;
+    } else {
+      arr.push(arr.shift());
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -56,28 +92,7 @@ while ($LOOP_UNROLL_2) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const test /*:unknown*/ = $(`never`);
-if (test) {
-} else {
-  const arr /*:array*/ = [2, 3, 4, 5, 1];
-  while ($LOOP_UNROLL_1) {
-    const test$1 /*:unknown*/ = $(`never`);
-    if (test$1) {
-      break;
-    } else {
-      const tmp$1 /*:unknown*/ = arr.shift();
-      arr.push(tmp$1);
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +119,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'never'
@@ -114,7 +129,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

@@ -28,6 +28,52 @@ $(
 );
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$3 /*:(unknown)=>array*/ = function ($$0) {
+  const k /*:unknown*/ = $$0;
+  debugger;
+  const tmpReturnArg /*:array*/ = [k, k];
+  return tmpReturnArg;
+};
+const tmpArrElement /*:array*/ = [`clearInterval`, `global.clearInterval`];
+const tmpArrElement$1 /*:array*/ = [`clearTimeout`, `global.clearTimeout`];
+const tmpArrElement$3 /*:array*/ = [`console`, `global.console`];
+const tmpArrElement$5 /*:array*/ = [`false`, `boolean`];
+const tmpArrElement$7 /*:array*/ = [`null`, `null`];
+const tmpArrElement$9 /*:array*/ = [`\$`, `\$`];
+const tmpCalleeParam$5 /*:array*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
+const tmpCallObj$3 /*:object*/ = new Map(tmpCalleeParam$5);
+const tmpArrSpread /*:unknown*/ = tmpCallObj$3.keys();
+const tmpCallObj$1 /*:array*/ = [...tmpArrSpread, `module`];
+const tmpCalleeParam$1 /*:array*/ = tmpCallObj$1.map(tmpCalleeParam$3);
+const tmpCallObj /*:object*/ = new Map(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.get(`\$`);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam$3 = function (k) {
+  const tmpReturnArg = [k, k];
+  return tmpReturnArg;
+};
+const tmpArrElement = [`clearInterval`, `global.clearInterval`];
+const tmpArrElement$1 = [`clearTimeout`, `global.clearTimeout`];
+const tmpArrElement$3 = [`console`, `global.console`];
+const tmpArrElement$5 = [`false`, `boolean`];
+const tmpArrElement$7 = [`null`, `null`];
+const tmpArrElement$9 = [`\$`, `\$`];
+const tmpCalleeParam$5 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
+const tmpArrSpread = new Map(tmpCalleeParam$5).keys();
+const tmpCalleeParam$1 = [...tmpArrSpread, `module`].map(tmpCalleeParam$3);
+$(new Map(tmpCalleeParam$1).get(`\$`));
+`````
+
 ## Pre Normal
 
 
@@ -81,34 +127,7 @@ const tmpCalleeParam = tmpCallObj.get(`\$`);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$3 /*:(unknown)=>array*/ = function ($$0) {
-  const k /*:unknown*/ = $$0;
-  debugger;
-  const tmpReturnArg /*:array*/ = [k, k];
-  return tmpReturnArg;
-};
-const tmpArrElement /*:array*/ = [`clearInterval`, `global.clearInterval`];
-const tmpArrElement$1 /*:array*/ = [`clearTimeout`, `global.clearTimeout`];
-const tmpArrElement$3 /*:array*/ = [`console`, `global.console`];
-const tmpArrElement$5 /*:array*/ = [`false`, `boolean`];
-const tmpArrElement$7 /*:array*/ = [`null`, `null`];
-const tmpArrElement$9 /*:array*/ = [`\$`, `\$`];
-const tmpCalleeParam$5 /*:array*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
-const tmpCallObj$3 /*:object*/ = new Map(tmpCalleeParam$5);
-const tmpArrSpread /*:unknown*/ = tmpCallObj$3.keys();
-const tmpCallObj$1 /*:array*/ = [...tmpArrSpread, `module`];
-const tmpCalleeParam$1 /*:array*/ = tmpCallObj$1.map(tmpCalleeParam$3);
-const tmpCallObj /*:object*/ = new Map(tmpCalleeParam$1);
-const tmpCalleeParam /*:unknown*/ = tmpCallObj.get(`\$`);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -138,7 +157,7 @@ $( p );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '$'
@@ -148,7 +167,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_map

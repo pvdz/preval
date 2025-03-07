@@ -39,6 +39,46 @@ if (theneedle) {
 $(undefined);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(1);
+const theneedle /*:unknown*/ = $(tmpCalleeParam);
+if (theneedle) {
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpClusterSSA_theneedle /*:unknown*/ = $(tmpCalleeParam$3);
+  if (tmpClusterSSA_theneedle) {
+    const tmpCalleeParam$7 /*:unknown*/ = $(2);
+    const tmpClusterSSA_theneedle$1 /*:unknown*/ = $(tmpCalleeParam$7);
+    $(tmpClusterSSA_theneedle$1);
+  } else {
+    $(tmpClusterSSA_theneedle);
+  }
+} else {
+  $(theneedle);
+}
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const theneedle = $($(1));
+if (theneedle) {
+  const tmpClusterSSA_theneedle = $($(1));
+  if (tmpClusterSSA_theneedle) {
+    $($($(2)));
+  } else {
+    $(tmpClusterSSA_theneedle);
+  }
+} else {
+  $(theneedle);
+}
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -107,30 +147,7 @@ if (theneedle) {
 $(undefined);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-const theneedle /*:unknown*/ = $(tmpCalleeParam);
-if (theneedle) {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpClusterSSA_theneedle /*:unknown*/ = $(tmpCalleeParam$3);
-  if (tmpClusterSSA_theneedle) {
-    const tmpCalleeParam$7 /*:unknown*/ = $(2);
-    const tmpClusterSSA_theneedle$1 /*:unknown*/ = $(tmpCalleeParam$7);
-    $(tmpClusterSSA_theneedle$1);
-  } else {
-    $(tmpClusterSSA_theneedle);
-  }
-} else {
-  $(theneedle);
-}
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -158,7 +175,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -175,4 +192,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

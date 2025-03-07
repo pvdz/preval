@@ -21,6 +21,56 @@ while (tmp) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmp /*:boolean*/ = true;
+const test /*:unknown*/ = $(`first`);
+$(`second`);
+if (test) {
+} else {
+  $(`third`);
+  while ($LOOP_UNROLL_10) {
+    const test$1 /*:unknown*/ = $(`first`);
+    $(`second`);
+    if (test$1) {
+      tmp = false;
+    } else {
+      $(`third`);
+    }
+    if (tmp) {
+    } else {
+      break;
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmp = true;
+const test = $(`first`);
+$(`second`);
+if (!test) {
+  $(`third`);
+  while (true) {
+    const test$1 = $(`first`);
+    $(`second`);
+    if (test$1) {
+      tmp = false;
+    } else {
+      $(`third`);
+    }
+    if (!tmp) {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -57,34 +107,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmp /*:boolean*/ = true;
-const test /*:unknown*/ = $(`first`);
-$(`second`);
-if (test) {
-} else {
-  $(`third`);
-  while ($LOOP_UNROLL_10) {
-    const test$1 /*:unknown*/ = $(`first`);
-    $(`second`);
-    if (test$1) {
-      tmp = false;
-    } else {
-      $(`third`);
-    }
-    if (tmp) {
-    } else {
-      break;
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +142,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'first'
@@ -130,4 +153,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

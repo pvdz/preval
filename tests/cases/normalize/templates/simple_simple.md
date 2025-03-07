@@ -12,6 +12,20 @@
 $(`abc ${ 10 } ${ 20 } def`);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`abc 10 20 def`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`abc 10 20 def`);
+`````
+
 ## Pre Normal
 
 
@@ -35,15 +49,7 @@ const tmpCalleeParam = `${tmpStringConcatR$1} def`;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`abc 10 20 def`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +60,7 @@ $( "abc 10 20 def" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'abc 10 20 def'
@@ -64,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -12,6 +12,20 @@
 function f([ x ]) { return x }
 `````
 
+## Settled
+
+
+`````js filename=intro
+
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+
+`````
+
 ## Pre Normal
 
 
@@ -38,15 +52,7 @@ let f = function ($$0) {
 };
 `````
 
-## Output
-
-
-`````js filename=intro
-
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +63,7 @@ With rename=true
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -66,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

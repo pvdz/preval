@@ -18,6 +18,50 @@ do {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
+const b /*:object*/ = { c: 1 };
+let a /*:unknown*/ = b[tmpAssignRhsCompProp];
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
+    a = b[tmpAssignRhsCompProp$1];
+    if (a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+const tmpAssignRhsCompProp = $(`c`);
+const b = { c: 1 };
+let a = b[tmpAssignRhsCompProp];
+if (a) {
+  while (true) {
+    $(100);
+    const tmpAssignRhsCompProp$1 = $(`c`);
+    a = b[tmpAssignRhsCompProp$1];
+    if (!a) {
+      break;
+    }
+  }
+}
+$(a, b);
+`````
+
 ## Pre Normal
 
 
@@ -56,31 +100,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
-let a /*:unknown*/ = b[tmpAssignRhsCompProp];
-if (a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
-    a = b[tmpAssignRhsCompProp$1];
-    if (a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -108,7 +128,7 @@ $( c, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -143,7 +163,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

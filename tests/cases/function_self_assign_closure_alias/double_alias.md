@@ -27,6 +27,82 @@ $('xy diff', x() === y()); // Should return two _diff_ array refs (x cannot infl
 $('yx diff', y() === x()); // Should return two _diff_ array refs (x cannot influence y)
 `````
 
+## Settled
+
+
+`````js filename=intro
+let zzzz /*:()=>unknown*/ = function () {
+  debugger;
+  const a /*:array*/ = [];
+  zzzz = function ($$0, $$1) {
+    debugger;
+    return a;
+  };
+  const tmpReturnArg$23 /*:unknown*/ = zzzz();
+  return tmpReturnArg$23;
+};
+const x /*:unknown*/ = zzzz;
+const tmpBinBothLhs /*:unknown*/ = zzzz();
+const tmpBinBothRhs /*:unknown*/ = zzzz();
+const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
+$(`eq`, tmpCalleeParam);
+const y /*:unknown*/ = zzzz;
+const tmpBinBothLhs$1 /*:unknown*/ = x();
+const tmpBinBothRhs$1 /*:unknown*/ = zzzz();
+const tmpCalleeParam$1 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+$(`eq, x should update z`, tmpCalleeParam$1);
+const tmpBinBothLhs$3 /*:unknown*/ = zzzz();
+const tmpBinBothRhs$3 /*:unknown*/ = x();
+const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
+$(`neq, z is read before x updates it`, tmpCalleeParam$3);
+const tmpBinBothLhs$5 /*:unknown*/ = x();
+const tmpBinBothRhs$5 /*:unknown*/ = x();
+const tmpCalleeParam$5 /*:boolean*/ = tmpBinBothLhs$5 === tmpBinBothRhs$5;
+$(`xx diff`, tmpCalleeParam$5);
+const tmpBinBothLhs$7 /*:unknown*/ = y();
+const tmpBinBothRhs$7 /*:unknown*/ = y();
+const tmpCalleeParam$7 /*:boolean*/ = tmpBinBothLhs$7 === tmpBinBothRhs$7;
+$(`yy same`, tmpCalleeParam$7);
+const tmpBinBothLhs$9 /*:unknown*/ = x();
+const tmpBinBothRhs$9 /*:unknown*/ = y();
+const tmpCalleeParam$9 /*:boolean*/ = tmpBinBothLhs$9 === tmpBinBothRhs$9;
+$(`xy diff`, tmpCalleeParam$9);
+const tmpBinBothLhs$11 /*:unknown*/ = y();
+const tmpBinBothRhs$11 /*:unknown*/ = x();
+const tmpCalleeParam$11 /*:boolean*/ = tmpBinBothLhs$11 === tmpBinBothRhs$11;
+$(`yx diff`, tmpCalleeParam$11);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let zzzz = function () {
+  const a = [];
+  zzzz = function ($$0, $$1) {
+    return a;
+  };
+  const tmpReturnArg$23 = zzzz();
+  return tmpReturnArg$23;
+};
+const x = zzzz;
+const tmpBinBothLhs = zzzz();
+$(`eq`, tmpBinBothLhs === zzzz());
+const y = zzzz;
+const tmpBinBothLhs$1 = x();
+$(`eq, x should update z`, tmpBinBothLhs$1 === zzzz());
+const tmpBinBothLhs$3 = zzzz();
+$(`neq, z is read before x updates it`, tmpBinBothLhs$3 === x());
+const tmpBinBothLhs$5 = x();
+$(`xx diff`, tmpBinBothLhs$5 === x());
+const tmpBinBothLhs$7 = y();
+$(`yy same`, tmpBinBothLhs$7 === y());
+const tmpBinBothLhs$9 = x();
+$(`xy diff`, tmpBinBothLhs$9 === y());
+const tmpBinBothLhs$11 = y();
+$(`yx diff`, tmpBinBothLhs$11 === x());
+`````
+
 ## Pre Normal
 
 
@@ -102,54 +178,7 @@ const tmpCalleeParam$11 = tmpBinBothLhs$11 === tmpBinBothRhs$11;
 $(`yx diff`, tmpCalleeParam$11);
 `````
 
-## Output
-
-
-`````js filename=intro
-let zzzz /*:()=>unknown*/ = function () {
-  debugger;
-  const a /*:array*/ = [];
-  zzzz = function ($$0, $$1) {
-    debugger;
-    return a;
-  };
-  const tmpReturnArg$23 /*:unknown*/ = zzzz();
-  return tmpReturnArg$23;
-};
-const x /*:unknown*/ = zzzz;
-const tmpBinBothLhs /*:unknown*/ = zzzz();
-const tmpBinBothRhs /*:unknown*/ = zzzz();
-const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-$(`eq`, tmpCalleeParam);
-const y /*:unknown*/ = zzzz;
-const tmpBinBothLhs$1 /*:unknown*/ = x();
-const tmpBinBothRhs$1 /*:unknown*/ = zzzz();
-const tmpCalleeParam$1 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-$(`eq, x should update z`, tmpCalleeParam$1);
-const tmpBinBothLhs$3 /*:unknown*/ = zzzz();
-const tmpBinBothRhs$3 /*:unknown*/ = x();
-const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-$(`neq, z is read before x updates it`, tmpCalleeParam$3);
-const tmpBinBothLhs$5 /*:unknown*/ = x();
-const tmpBinBothRhs$5 /*:unknown*/ = x();
-const tmpCalleeParam$5 /*:boolean*/ = tmpBinBothLhs$5 === tmpBinBothRhs$5;
-$(`xx diff`, tmpCalleeParam$5);
-const tmpBinBothLhs$7 /*:unknown*/ = y();
-const tmpBinBothRhs$7 /*:unknown*/ = y();
-const tmpCalleeParam$7 /*:boolean*/ = tmpBinBothLhs$7 === tmpBinBothRhs$7;
-$(`yy same`, tmpCalleeParam$7);
-const tmpBinBothLhs$9 /*:unknown*/ = x();
-const tmpBinBothRhs$9 /*:unknown*/ = y();
-const tmpCalleeParam$9 /*:boolean*/ = tmpBinBothLhs$9 === tmpBinBothRhs$9;
-$(`xy diff`, tmpCalleeParam$9);
-const tmpBinBothLhs$11 /*:unknown*/ = y();
-const tmpBinBothRhs$11 /*:unknown*/ = x();
-const tmpCalleeParam$11 /*:boolean*/ = tmpBinBothLhs$11 === tmpBinBothRhs$11;
-$(`yx diff`, tmpCalleeParam$11);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -199,7 +228,7 @@ $( "yx diff", z );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'eq', true
@@ -215,4 +244,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

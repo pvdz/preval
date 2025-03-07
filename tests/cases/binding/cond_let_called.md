@@ -19,6 +19,30 @@ const y = parseExpression(x);
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+if (a) {
+  const tmpClusterSSA_y /*:unknown*/ = parseExpression(`source`);
+  $(tmpClusterSSA_y);
+} else {
+  const tmpClusterSSA_y$1 /*:unknown*/ = parseExpression(`arguments`);
+  $(tmpClusterSSA_y$1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (a) {
+  $(parseExpression(`source`));
+} else {
+  $(parseExpression(`arguments`));
+}
+`````
+
 ## Pre Normal
 
 
@@ -47,21 +71,7 @@ const y = parseExpression(x);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-if (a) {
-  const tmpClusterSSA_y /*:unknown*/ = parseExpression(`source`);
-  $(tmpClusterSSA_y);
-} else {
-  const tmpClusterSSA_y$1 /*:unknown*/ = parseExpression(`arguments`);
-  $(tmpClusterSSA_y$1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -81,7 +91,7 @@ BAD@! Found 2 implicit global bindings:
 
 a, parseExpression
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -90,4 +100,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

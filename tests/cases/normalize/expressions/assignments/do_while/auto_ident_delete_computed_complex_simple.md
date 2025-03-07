@@ -18,6 +18,50 @@ do {
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteObj /*:unknown*/ = $(arg);
+let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
+if (tmpClusterSSA_a) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpDeleteObj$1 /*:unknown*/ = $(arg);
+    tmpClusterSSA_a = delete tmpDeleteObj$1.y;
+    if (tmpClusterSSA_a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+const arg = { y: 1 };
+const tmpDeleteObj = $(arg);
+let tmpClusterSSA_a = delete tmpDeleteObj.y;
+if (tmpClusterSSA_a) {
+  while (true) {
+    $(100);
+    const tmpDeleteObj$1 = $(arg);
+    tmpClusterSSA_a = delete tmpDeleteObj$1.y;
+    if (!tmpClusterSSA_a) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -55,31 +99,7 @@ while (true) {
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteObj /*:unknown*/ = $(arg);
-let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-if (tmpClusterSSA_a) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpDeleteObj$1 /*:unknown*/ = $(arg);
-    tmpClusterSSA_a = delete tmpDeleteObj$1.y;
-    if (tmpClusterSSA_a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(tmpClusterSSA_a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +127,7 @@ $( c, a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -142,7 +162,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

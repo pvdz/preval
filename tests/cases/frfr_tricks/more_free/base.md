@@ -24,6 +24,38 @@ const t = r.repeat(2)
 $(t);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(string, unused)=>string*/ = function $free($$0, $$1) {
+  const xs$1 /*:string*/ = $$0;
+  debugger;
+  const one /*:string*/ = xs$1 + 5;
+  const two /*:string*/ = one.slice(1);
+  const tmpRet /*:string*/ = two.repeat(2);
+  return tmpRet;
+};
+const x /*:unknown*/ = $(`x`);
+const xs /*:string*/ = $coerce(x, `plustr`);
+const y /*:unknown*/ = $(`y`);
+const ys /*:string*/ = $coerce(y, `plustr`);
+const t /*:string*/ = $frfr(tmpFree, xs, ys);
+$(t);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpFree = function $free(xs$1, $$1) {
+  const tmpRet = (xs$1 + 5).slice(1).repeat(2);
+  return tmpRet;
+};
+const xs = $coerce($(`x`), `plustr`);
+$($frfr(tmpFree, xs, $coerce($(`y`), `plustr`)));
+`````
+
 ## Pre Normal
 
 
@@ -64,28 +96,7 @@ const t = r.repeat(2);
 $(t);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpFree /*:(string, unused)=>string*/ = function $free($$0, $$1) {
-  const xs$1 /*:string*/ = $$0;
-  debugger;
-  const one /*:string*/ = xs$1 + 5;
-  const two /*:string*/ = one.slice(1);
-  const tmpRet /*:string*/ = two.repeat(2);
-  return tmpRet;
-};
-const x /*:unknown*/ = $(`x`);
-const xs /*:string*/ = $coerce(x, `plustr`);
-const y /*:unknown*/ = $(`y`);
-const ys /*:string*/ = $coerce(y, `plustr`);
-const t /*:string*/ = $frfr(tmpFree, xs, ys);
-$(t);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,7 +120,7 @@ $( k );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -121,7 +132,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - frfr and free arg mismatch

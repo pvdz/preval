@@ -35,6 +35,14 @@ const b = { ... a };
 $( b );
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = { bar: 10 };
+$({ ...tmpObjLitVal });
+`````
+
 ## Pre Normal
 
 
@@ -54,7 +62,7 @@ const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -63,8 +71,7 @@ const tmpCalleeParam /*:object*/ = { ...tmpObjLitVal };
 $(tmpCalleeParam);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,4 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -19,6 +19,43 @@ switch ($(1)) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:primitive*/ = undefined;
+const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+if (tmpIfTest) {
+  x = 10;
+} else {
+  const tmpBinBothRhs$1 /*:unknown*/ = $(2);
+  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs$1;
+  if (tmpIfTest$1) {
+    $(11);
+  } else {
+  }
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = undefined;
+const tmpSwitchDisc = $(1);
+if (tmpSwitchDisc === $(1)) {
+  x = 10;
+} else {
+  if (tmpSwitchDisc === $(2)) {
+    $(11);
+  }
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -63,29 +100,7 @@ tmpSwitchBreak: {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:primitive*/ = undefined;
-const tmpSwitchDisc /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-if (tmpIfTest) {
-  x = 10;
-} else {
-  const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs$1;
-  if (tmpIfTest$1) {
-    $(11);
-  } else {
-  }
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -110,7 +125,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -122,4 +137,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

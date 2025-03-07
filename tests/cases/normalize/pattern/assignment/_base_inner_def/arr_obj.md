@@ -14,6 +14,31 @@ var x, a = 100;
 $(x, a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  $(100, 100);
+} else {
+  $(objPatternBeforeDefault, 100);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault = $Object_prototype.x;
+if (objPatternBeforeDefault === undefined) {
+  $(100, 100);
+} else {
+  $(objPatternBeforeDefault, 100);
+}
+`````
+
 ## Pre Normal
 
 
@@ -46,21 +71,7 @@ if (tmpIfTest) {
 $(x, a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  $(100, 100);
-} else {
-  $(objPatternBeforeDefault, 100);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -78,7 +89,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100, 100
@@ -88,7 +99,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

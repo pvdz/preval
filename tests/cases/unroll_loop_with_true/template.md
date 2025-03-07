@@ -13,6 +13,20 @@ const x = `is it ${$LOOP_DONE_UNROLLING_ALWAYS_TRUE} that stuff`;
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`is it true that stuff`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`is it true that stuff`);
+`````
+
 ## Pre Normal
 
 
@@ -33,15 +47,7 @@ const x = `${tmpStringConcatR} that stuff`;
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`is it true that stuff`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -52,7 +58,7 @@ $( "is it true that stuff" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'is it true that stuff'
@@ -62,4 +68,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

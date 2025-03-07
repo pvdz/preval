@@ -17,6 +17,25 @@ switch (1 ? $(2) : $($(100))) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(2);
+$(100);
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(2);
+$(100);
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -43,18 +62,7 @@ $(100);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(2);
-$(100);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +79,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -83,4 +91,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

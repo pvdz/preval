@@ -12,6 +12,22 @@
 $(encodeURIComponent({wat: true}));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:object*/ = { wat: true };
+const tmpCalleeParam /*:string*/ = encodeURIComponent(tmpCalleeParam$1);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(encodeURIComponent({ wat: true }));
+`````
+
 ## Pre Normal
 
 
@@ -28,17 +44,7 @@ const tmpCalleeParam = encodeURIComponent(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:object*/ = { wat: true };
-const tmpCalleeParam /*:string*/ = encodeURIComponent(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -51,7 +57,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '%5Bobject%20Object%5D'
@@ -61,4 +67,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

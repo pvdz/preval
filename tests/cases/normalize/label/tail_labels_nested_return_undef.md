@@ -23,6 +23,26 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(true);
+$(true);
+$(`before`);
+$(`inside`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(true);
+$(true);
+$(`before`);
+$(`inside`);
+`````
+
 ## Pre Normal
 
 
@@ -55,18 +75,7 @@ const y = $(true);
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-$(true);
-$(true);
-$(`before`);
-$(`inside`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -80,7 +89,7 @@ $( "inside" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -93,4 +102,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -23,6 +23,42 @@ $(f(2));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  return undefined;
+};
+f();
+$(`pass`);
+$(undefined);
+f();
+2();
+throw `[Preval]: Call expression with illegal callee must crash before this line ; \`2()\``;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+};
+f();
+$(`pass`);
+$(undefined);
+f();
+2();
+throw `[Preval]: Call expression with illegal callee must crash before this line ; \`2()\``;
+`````
+
 ## Pre Normal
 
 
@@ -73,27 +109,7 @@ const tmpCalleeParam$5 = f(`three`);
 $(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  return undefined;
-};
-f();
-$(`pass`);
-$(undefined);
-f();
-2();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`2()\``;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +132,7 @@ throw "[Preval]: Call expression with illegal callee must crash before this line
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'
@@ -133,7 +149,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - maybe support this call case too

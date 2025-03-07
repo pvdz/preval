@@ -14,6 +14,57 @@ var spy2 = { get x(){ $('x2') } };
 spy.x(spy2.x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpReturnArg /*:()=>undefined*/ = function () {
+  debugger;
+  $(`call`);
+  return undefined;
+};
+const spy /*:object*/ = {
+  get x() {
+    debugger;
+    $(`x1`);
+    return tmpReturnArg;
+  },
+};
+const tmpCallVal /*:unknown*/ = spy.x;
+const spy2 /*:object*/ = {
+  get x() {
+    debugger;
+    $(`x2`);
+    return undefined;
+  },
+};
+const tmpCalleeParam /*:unknown*/ = spy2.x;
+$dotCall(tmpCallVal, spy, `x`, tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpReturnArg = function () {
+  $(`call`);
+};
+const spy = {
+  get x() {
+    $(`x1`);
+    return tmpReturnArg;
+  },
+};
+spy.x(
+  `x`,
+  {
+    get x() {
+      $(`x2`);
+    },
+  }.x,
+);
+`````
+
 ## Pre Normal
 
 
@@ -70,36 +121,7 @@ const tmpCalleeParam = spy2.x;
 $dotCall(tmpCallVal, tmpCallObj, `x`, tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpReturnArg /*:()=>undefined*/ = function () {
-  debugger;
-  $(`call`);
-  return undefined;
-};
-const spy /*:object*/ = {
-  get x() {
-    debugger;
-    $(`x1`);
-    return tmpReturnArg;
-  },
-};
-const tmpCallVal /*:unknown*/ = spy.x;
-const spy2 /*:object*/ = {
-  get x() {
-    debugger;
-    $(`x2`);
-    return undefined;
-  },
-};
-const tmpCalleeParam /*:unknown*/ = spy2.x;
-$dotCall(tmpCallVal, spy, `x`, tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -127,7 +149,7 @@ $dotCall( c, b, "x", e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x1'
@@ -139,4 +161,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

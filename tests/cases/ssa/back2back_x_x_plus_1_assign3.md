@@ -53,6 +53,49 @@ if ($) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const x /*:unknown*/ = $(5);
+  $(x);
+  const tmpCalleeParam /*:object*/ = {
+    toString() {
+      debugger;
+      $(`tostring`);
+      return `hi`;
+    },
+  };
+  const ssax /*:unknown*/ = $(tmpCalleeParam);
+  const tmpClusterSSA_x /*:primitive*/ = ssax + 1;
+  if ($) {
+    $(tmpClusterSSA_x);
+  } else {
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $($(5));
+  const tmpClusterSSA_x =
+    $({
+      toString() {
+        $(`tostring`);
+        return `hi`;
+      },
+    }) + 1;
+  if ($) {
+    $(tmpClusterSSA_x);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -132,32 +175,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const x /*:unknown*/ = $(5);
-  $(x);
-  const tmpCalleeParam /*:object*/ = {
-    toString() {
-      debugger;
-      $(`tostring`);
-      return `hi`;
-    },
-  };
-  const ssax /*:unknown*/ = $(tmpCalleeParam);
-  const tmpClusterSSA_x /*:primitive*/ = ssax + 1;
-  if ($) {
-    $(tmpClusterSSA_x);
-  } else {
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -181,7 +199,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5
@@ -195,4 +213,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

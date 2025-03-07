@@ -29,6 +29,14 @@ if (a) {
 $(x, 'end');
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(false, `middle`);
+$(b === c, `end`);
+`````
+
 ## Pre Normal
 
 
@@ -67,7 +75,7 @@ if (a) {
 $(x, `end`);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -76,8 +84,7 @@ const a /*:boolean*/ = b === c;
 $(a, `end`);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -101,6 +108,10 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
+Post settled calls: BAD!!
+ - 1: false, 'middle'
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Denormalized calls: BAD!!
  - 1: false, 'middle'
  - eval returned: ('<crash[ <ref> is not defined ]>')

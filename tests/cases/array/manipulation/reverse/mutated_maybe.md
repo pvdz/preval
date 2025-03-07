@@ -17,6 +17,32 @@ const rra = arr.reverse();
 $(rra);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3, 4];
+if ($) {
+  const tmpCalleeParam /*:unknown*/ = arr.pop();
+  $(tmpCalleeParam);
+} else {
+}
+arr.reverse();
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [1, 2, 3, 4];
+if ($) {
+  $(arr.pop());
+}
+arr.reverse();
+$(arr);
+`````
+
 ## Pre Normal
 
 
@@ -43,22 +69,7 @@ const rra = arr.reverse();
 $(rra);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3, 4];
-if ($) {
-  const tmpCalleeParam /*:unknown*/ = arr.pop();
-  $(tmpCalleeParam);
-} else {
-}
-arr.reverse();
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +86,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 4
@@ -86,7 +97,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_pop

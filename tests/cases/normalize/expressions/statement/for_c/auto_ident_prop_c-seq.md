@@ -16,6 +16,49 @@ for (; $(1); (1, 2, $(b)).c);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(1);
+const b /*:object*/ = { c: 1 };
+if (tmpIfTest) {
+  const tmpCompObj /*:unknown*/ = $(b);
+  tmpCompObj.c;
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpCompObj$1 /*:unknown*/ = $(b);
+      tmpCompObj$1.c;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(1);
+const b = { c: 1 };
+if (tmpIfTest) {
+  $(b).c;
+  while (true) {
+    if ($(1)) {
+      $(b).c;
+    } else {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, b);
+`````
+
 ## Pre Normal
 
 
@@ -48,32 +91,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(1);
-const b /*:object*/ = { c: 1 };
-if (tmpIfTest) {
-  const tmpCompObj /*:unknown*/ = $(b);
-  tmpCompObj.c;
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpCompObj$1 /*:unknown*/ = $(b);
-      tmpCompObj$1.c;
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +122,7 @@ $( f, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -139,7 +157,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -20,6 +20,46 @@ $(
 $(a, x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpArrElement /*:unknown*/ = $(3);
+const tmpArrElement$1 /*:unknown*/ = $(4);
+$(tmpArrElement);
+$(tmpArrElement$1);
+const tmpArrElement$3 /*:unknown*/ = $(3);
+const tmpArrElement$5 /*:unknown*/ = $(4);
+const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
+const tmpClusterSSA_x$1 /*:unknown*/ = arrPatternSplat$1[0];
+const tmpClusterSSA_y$1 /*:unknown*/ = arrPatternSplat$1[1];
+$(tmpNestedAssignArrPatternRhs$1);
+$(tmpNestedAssignArrPatternRhs$1, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(1);
+$(2);
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+$(tmpArrElement);
+$(tmpArrElement$1);
+const tmpArrElement$3 = $(3);
+const tmpArrElement$5 = $(4);
+const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
+const tmpClusterSSA_x$1 = arrPatternSplat$1[0];
+const tmpClusterSSA_y$1 = arrPatternSplat$1[1];
+$(tmpNestedAssignArrPatternRhs$1);
+$(tmpNestedAssignArrPatternRhs$1, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
+`````
+
 ## Pre Normal
 
 
@@ -67,28 +107,7 @@ $(tmpCalleeParam);
 $(a, x, y);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(1);
-$(2);
-const tmpArrElement /*:unknown*/ = $(3);
-const tmpArrElement$1 /*:unknown*/ = $(4);
-$(tmpArrElement);
-$(tmpArrElement$1);
-const tmpArrElement$3 /*:unknown*/ = $(3);
-const tmpArrElement$5 /*:unknown*/ = $(4);
-const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
-const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-const tmpClusterSSA_x$1 /*:unknown*/ = arrPatternSplat$1[0];
-const tmpClusterSSA_y$1 /*:unknown*/ = arrPatternSplat$1[1];
-$(tmpNestedAssignArrPatternRhs$1);
-$(tmpNestedAssignArrPatternRhs$1, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -112,7 +131,7 @@ $( e, g, h );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -131,7 +150,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

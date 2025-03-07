@@ -26,6 +26,27 @@ const r = $frfr(f, xs, ys);
 $(r);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $spy(`x`);
+const xs /*:string*/ = $coerce(x, `plustr`);
+const y /*:unknown*/ = $spy(`y`);
+$coerce(y, `plustr`);
+const r /*:string*/ = xs.slice(1);
+$(r);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const xs = $coerce($spy(`x`), `plustr`);
+$coerce($spy(`y`), `plustr`);
+$(xs.slice(1));
+`````
+
 ## Pre Normal
 
 
@@ -64,20 +85,7 @@ const r = $frfr(f, xs, ys);
 $(r);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $spy(`x`);
-const xs /*:string*/ = $coerce(x, `plustr`);
-const y /*:unknown*/ = $spy(`y`);
-$coerce(y, `plustr`);
-const r /*:string*/ = xs.slice(1);
-$(r);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +101,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['x', 'x']
@@ -107,7 +115,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - frfr and free arg mismatch

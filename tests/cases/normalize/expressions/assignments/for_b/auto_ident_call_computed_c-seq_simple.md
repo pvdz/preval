@@ -16,6 +16,46 @@ for (; (a = (1, 2, $(b))["$"](1)); $(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCallObj /*:unknown*/ = $(b);
+let tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
+if (tmpClusterSSA_a) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    const tmpCallObj$1 /*:unknown*/ = $(b);
+    tmpClusterSSA_a = tmpCallObj$1.$(1);
+    if (tmpClusterSSA_a) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const b = { $: $ };
+let tmpClusterSSA_a = $(b).$(1);
+if (tmpClusterSSA_a) {
+  while (true) {
+    $(1);
+    tmpClusterSSA_a = $(b).$(1);
+    if (!tmpClusterSSA_a) {
+      break;
+    }
+  }
+}
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -49,30 +89,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-let tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
-if (tmpClusterSSA_a) {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    const tmpCallObj$1 /*:unknown*/ = $(b);
-    tmpClusterSSA_a = tmpCallObj$1.$(1);
-    if (tmpClusterSSA_a) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -99,7 +116,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -134,7 +151,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

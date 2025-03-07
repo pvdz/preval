@@ -43,6 +43,126 @@ const arr2 = [
 $(arr2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:object*/ = {
+  toString() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    debugger;
+    $(`valueOf`);
+    return 100;
+  },
+};
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const tmpStringConcatL /*:string*/ = $coerce(x, `plustr`);
+x ** 0;
+const tmpArrElement$11 /*:number*/ = 0 << x;
+const tmpArrElement$13 /*:number*/ = 0 >> x;
+const tmpArrElement$15 /*:number*/ = 0 >>> x;
+const tmpArrElement$17 /*:boolean*/ = `function String() { [native code] }` < x;
+const tmpArrElement$19 /*:boolean*/ = `function String() { [native code] }` > x;
+const tmpArrElement$21 /*:boolean*/ = `function String() { [native code] }` <= x;
+const tmpArrElement$23 /*:boolean*/ = `function String() { [native code] }` >= x;
+x ** 0;
+const tmpArrElement$35 /*:number*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ = 0 | x;
+const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
+const arr /*:array*/ = [
+  NaN,
+  NaN,
+  NaN,
+  NaN,
+  tmpArrElement$7,
+  NaN,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  false,
+  true,
+  false,
+  true,
+  0,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+const tmpArrElement$39 /*:boolean*/ = String in x;
+const tmpArrElement$41 /*:boolean*/ = String instanceof x;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+$(arr2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = {
+  toString() {
+    const tmpReturnArg = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    $(`valueOf`);
+    return 100;
+  },
+};
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const tmpStringConcatL = $coerce(x, `plustr`);
+x ** 0;
+const tmpArrElement$11 = 0 << x;
+const tmpArrElement$13 = 0 >> x;
+const tmpArrElement$15 = 0 >>> x;
+const tmpArrElement$17 = `function String() { [native code] }` < x;
+const tmpArrElement$19 = `function String() { [native code] }` > x;
+const tmpArrElement$21 = `function String() { [native code] }` <= x;
+const tmpArrElement$23 = `function String() { [native code] }` >= x;
+x ** 0;
+const tmpArrElement$35 = 0 ^ x;
+const tmpArrElement$37 = 0 | x;
+const tmpArrElement$7 = `function String() { [native code] }${tmpStringConcatL}`;
+$([
+  NaN,
+  NaN,
+  NaN,
+  NaN,
+  tmpArrElement$7,
+  NaN,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  false,
+  true,
+  false,
+  true,
+  0,
+  tmpArrElement$35,
+  tmpArrElement$37,
+]);
+const tmpArrElement$39 = String in x;
+const tmpArrElement$41 = String instanceof x;
+$([tmpArrElement$39, tmpArrElement$41]);
+`````
+
 ## Pre Normal
 
 
@@ -157,70 +277,7 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:object*/ = {
-  toString() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-x ** 0;
-x ** 0;
-x ** 0;
-x ** 0;
-const tmpStringConcatL /*:string*/ = $coerce(x, `plustr`);
-x ** 0;
-const tmpArrElement$11 /*:number*/ = 0 << x;
-const tmpArrElement$13 /*:number*/ = 0 >> x;
-const tmpArrElement$15 /*:number*/ = 0 >>> x;
-const tmpArrElement$17 /*:boolean*/ = `function String() { [native code] }` < x;
-const tmpArrElement$19 /*:boolean*/ = `function String() { [native code] }` > x;
-const tmpArrElement$21 /*:boolean*/ = `function String() { [native code] }` <= x;
-const tmpArrElement$23 /*:boolean*/ = `function String() { [native code] }` >= x;
-x ** 0;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
-const arr /*:array*/ = [
-  NaN,
-  NaN,
-  NaN,
-  NaN,
-  tmpArrElement$7,
-  NaN,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  false,
-  true,
-  false,
-  true,
-  0,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpArrElement$39 /*:boolean*/ = String in x;
-const tmpArrElement$41 /*:boolean*/ = String instanceof x;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
-$(arr2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -265,7 +322,7 @@ $( q );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'valueOf'
@@ -291,4 +348,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

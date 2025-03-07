@@ -17,6 +17,37 @@ class x {
 $(new x().f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClassComputedKey /*:unknown*/ = $(`f`);
+const x /*:class*/ = class {
+  [tmpClassComputedKey]() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(100);
+    return tmpReturnArg;
+  }
+};
+const tmpCallObj /*:object*/ = new x();
+const tmpCalleeParam /*:unknown*/ = tmpCallObj.f();
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClassComputedKey = $(`f`);
+const x = class {
+  [tmpClassComputedKey]() {
+    const tmpReturnArg = $(100);
+    return tmpReturnArg;
+  }
+};
+$(new x().f());
+`````
+
 ## Pre Normal
 
 
@@ -47,25 +78,7 @@ const tmpCalleeParam = tmpCallObj.f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClassComputedKey /*:unknown*/ = $(`f`);
-const x /*:class*/ = class {
-  [tmpClassComputedKey]() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(100);
-    return tmpReturnArg;
-  }
-};
-const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam /*:unknown*/ = tmpCallObj.f();
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +99,7 @@ $( e );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'f'
@@ -98,4 +111,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

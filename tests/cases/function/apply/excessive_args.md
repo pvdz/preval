@@ -13,6 +13,32 @@
 $(function(){ $(...arguments); }.apply(({}), (['x']), 1, 2, 3));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCallObj /*:()=>unknown*/ = function () {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  debugger;
+  $(...tmpPrevalAliasArgumentsAny);
+  return undefined;
+};
+tmpCallObj(`x`);
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCallObj = function () {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  $(...tmpPrevalAliasArgumentsAny);
+};
+tmpCallObj(`x`);
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -42,22 +68,7 @@ const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3, 1, 2
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCallObj /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
-  debugger;
-  $(...tmpPrevalAliasArgumentsAny);
-  return undefined;
-};
-tmpCallObj(`x`);
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +86,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -86,4 +97,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

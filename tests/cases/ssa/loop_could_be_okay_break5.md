@@ -32,6 +32,51 @@ if ($tmpLoopUnrollCheck) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+} else {
+  let tmpClusterSSA_tmpLoopRetCode /*:boolean*/ = true;
+  if ($) {
+    tmpClusterSSA_tmpLoopRetCode = false;
+  } else {
+  }
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpLoopRetCode) {
+      if ($) {
+        tmpClusterSSA_tmpLoopRetCode = false;
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if (!$) {
+  let tmpClusterSSA_tmpLoopRetCode = true;
+  if ($) {
+    tmpClusterSSA_tmpLoopRetCode = false;
+  }
+  while (true) {
+    if (tmpClusterSSA_tmpLoopRetCode) {
+      if ($) {
+        tmpClusterSSA_tmpLoopRetCode = false;
+      }
+    } else {
+      break;
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -90,32 +135,7 @@ if ($tmpLoopUnrollCheck) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-} else {
-  let tmpClusterSSA_tmpLoopRetCode /*:boolean*/ = true;
-  if ($) {
-    tmpClusterSSA_tmpLoopRetCode = false;
-  } else {
-  }
-  while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpLoopRetCode) {
-      if ($) {
-        tmpClusterSSA_tmpLoopRetCode = false;
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -144,7 +164,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined
@@ -153,7 +173,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support referencing this builtin in isFree: $

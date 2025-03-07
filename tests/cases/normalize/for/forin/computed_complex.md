@@ -14,6 +14,49 @@ let b = {x: 1, y: 2};
 for ($(a)[$('foo')] in $(b)) $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 1, y: 2 };
+const tmpCalleeParam /*:unknown*/ = $(b);
+const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const a /*:object*/ = {};
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const tmpAssignComMemLhsObj /*:unknown*/ = $(a);
+    const tmpAssignComMemLhsProp /*:unknown*/ = $(`foo`);
+    const tmpAssignComputedRhs /*:unknown*/ = tmpForInNext.value;
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+    $(a);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpForInGen = $forIn($({ x: 1, y: 2 }));
+const a = {};
+while (true) {
+  const tmpForInNext = tmpForInGen.next();
+  if (tmpForInNext.done) {
+    break;
+  } else {
+    const tmpAssignComMemLhsObj = $(a);
+    const tmpAssignComMemLhsProp = $(`foo`);
+    const tmpAssignComputedRhs = tmpForInNext.value;
+    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+    $(a);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -59,31 +102,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 1, y: 2 };
-const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-const a /*:object*/ = {};
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpAssignComMemLhsObj /*:unknown*/ = $(a);
-    const tmpAssignComMemLhsProp /*:unknown*/ = $(`foo`);
-    const tmpAssignComputedRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-    $(a);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -114,7 +133,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1', y: '2' }
@@ -130,7 +149,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

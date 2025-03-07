@@ -21,6 +21,45 @@ $(x);
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`50`);
+const f /*:(number)=>undefined*/ = function ($$0) {
+  const c /*:number*/ = $$0;
+  debugger;
+  $(1);
+  $(2);
+  $(c);
+  return undefined;
+};
+$coerce(x, `number`);
+f(3);
+const tmpClusterSSA_y /*:number*/ = $coerce(x, `number`);
+f(4);
+$(x);
+$(tmpClusterSSA_y);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $(`50`);
+const f = function (c) {
+  $(1);
+  $(2);
+  $(c);
+};
+$coerce(x, `number`);
+f(3);
+const tmpClusterSSA_y = $coerce(x, `number`);
+f(4);
+$(x);
+$(tmpClusterSSA_y);
+`````
+
 ## Pre Normal
 
 
@@ -62,29 +101,7 @@ $(x);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`50`);
-const f /*:(number)=>undefined*/ = function ($$0) {
-  const c /*:number*/ = $$0;
-  debugger;
-  $(1);
-  $(2);
-  $(c);
-  return undefined;
-};
-$coerce(x, `number`);
-f(3);
-const tmpClusterSSA_y /*:number*/ = $coerce(x, `number`);
-f(4);
-$(x);
-$(tmpClusterSSA_y);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,7 +126,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '50'
@@ -127,4 +144,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

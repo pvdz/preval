@@ -20,6 +20,20 @@ A: {
 $('end');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`end`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`end`);
+`````
+
 ## Pre Normal
 
 
@@ -42,15 +56,7 @@ $(`end`);
 $(`end`);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`end`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -61,7 +67,7 @@ $( "end" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'end'
@@ -71,4 +77,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

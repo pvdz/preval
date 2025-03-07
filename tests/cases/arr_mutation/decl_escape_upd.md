@@ -15,6 +15,26 @@ arr[0] = 1;
 $(arr);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [];
+$(arr);
+arr[0] = 1;
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [];
+$(arr);
+arr[0] = 1;
+$(arr);
+`````
+
 ## Pre Normal
 
 
@@ -35,18 +55,7 @@ arr[0] = 1;
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [];
-$(arr);
-arr[0] = 1;
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +69,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: []
@@ -71,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

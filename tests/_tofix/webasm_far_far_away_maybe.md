@@ -21,6 +21,67 @@ l=(b=b.split` `.flatMap(t=>t>-1?[65,t]:107+'-*/'.indexOf(t)))
 (/*await*/ c('11 11 1 - + 4 * 2 /')).instance.exports['']()
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCalleeParam$5 = function (t) {
+  if (t > -1) {
+    const tmpClusterSSA_tmpReturnArg$1 = [65, t];
+    return tmpClusterSSA_tmpReturnArg$1;
+  } else {
+    const tmpBinBothRhs = `-*/`.indexOf(t);
+    const tmpClusterSSA_tmpReturnArg$2 = 107 + tmpBinBothRhs;
+    return tmpClusterSSA_tmpReturnArg$2;
+  }
+};
+const c = function () {
+  const tmpCallObj$1 = WebAssembly;
+  const tmpCallVal = tmpCallObj$1.instantiate;
+  const tmpNewCallee = Int8Array;
+  const tmpClusterSSA_b = [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`].flatMap(tmpCalleeParam$5);
+  const tmpClusterSSA_l = tmpClusterSSA_b.length + 4;
+  const tmpArrElement$37 = tmpClusterSSA_l - 2;
+  const tmpCalleeParam$3 = [
+    ,
+    97,
+    115,
+    109,
+    1,
+    ,
+    ,
+    ,
+    1,
+    5,
+    1,
+    96,
+    ,
+    1,
+    127,
+    3,
+    2,
+    1,
+    ,
+    7,
+    4,
+    1,
+    ,
+    ,
+    ,
+    10,
+    tmpClusterSSA_l,
+    1,
+    tmpArrElement$37,
+    ,
+    ...tmpClusterSSA_b,
+    11,
+  ];
+  const tmpCallCallee = $dotCall(tmpCallVal, tmpCallObj$1, `instantiate`, new tmpNewCallee(tmpCalleeParam$3));
+  const tmpReturnArg = tmpCallCallee(c()).instance.exports[``]();
+  return tmpReturnArg;
+};
+`````
+
 ## Pre Normal
 
 
@@ -173,7 +234,7 @@ let c = function ($$0, $$1) {
 };
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -245,8 +306,7 @@ const c /*:()=>unknown*/ = function () {
 };
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -301,4 +361,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_flatMap

@@ -76,6 +76,23 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`a`);
+const arr /*:array*/ = [`b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `a`];
+$(arr);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`a`);
+$([`b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `a`]);
+`````
+
 ## Pre Normal
 
 
@@ -193,17 +210,7 @@ try {
 $(arr);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`a`);
-const arr /*:array*/ = [`b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `a`];
-$(arr);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -216,7 +223,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -227,7 +234,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

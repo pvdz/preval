@@ -17,6 +17,25 @@ function f() {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  $(`x`);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $(`x`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -48,18 +67,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  $(`x`);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +80,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'
@@ -82,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

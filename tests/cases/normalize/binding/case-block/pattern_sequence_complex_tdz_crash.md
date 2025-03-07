@@ -24,6 +24,43 @@ switch ($('a')) { case $('a'): let [x, y] = ($(x), $(y), $(z)); break; }
 $(x, y, z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothRhs /*:unknown*/ = $(`a`);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const z /*:array*/ = [10, 20, 30];
+if (tmpIfTest) {
+  $(undefined);
+  $(undefined);
+  const arrAssignPatternRhs /*:unknown*/ = $(z);
+  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
+  arrPatternSplat[0];
+  arrPatternSplat[1];
+} else {
+}
+$(1, 2, z);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(`a`) === $(`a`);
+const z = [10, 20, 30];
+if (tmpIfTest) {
+  $(undefined);
+  $(undefined);
+  const arrAssignPatternRhs = $(z);
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  arrPatternSplat[0];
+  arrPatternSplat[1];
+}
+$(1, 2, z);
+`````
+
 ## Pre Normal
 
 
@@ -72,28 +109,7 @@ tmpSwitchBreak: {
 $(x, y, z);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(`a`);
-const tmpBinBothRhs /*:unknown*/ = $(`a`);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-const z /*:array*/ = [10, 20, 30];
-if (tmpIfTest) {
-  $(undefined);
-  $(undefined);
-  const arrAssignPatternRhs /*:unknown*/ = $(z);
-  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
-} else {
-}
-$(1, 2, z);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +132,7 @@ $( 1, 2, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')
@@ -125,7 +141,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

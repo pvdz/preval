@@ -30,6 +30,59 @@ const parseIdentifierRest = function () {
 $(parseIdentifierRest);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const parseIdentifierRest /*:()=>number*/ = function () {
+  debugger;
+  let s /*:number*/ = 10;
+  $inlinedFunction: {
+    const tmpIfTest /*:unknown*/ = $(1);
+    if (tmpIfTest) {
+      const tmpIfTest$1 /*:unknown*/ = $(1);
+      if (tmpIfTest$1) {
+        break $inlinedFunction;
+      } else {
+      }
+    } else {
+      $(100);
+    }
+    if ($) {
+      s = 3;
+    } else {
+      s = 4;
+    }
+  }
+  return s;
+};
+$(parseIdentifierRest);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  let s = 10;
+  $inlinedFunction: {
+    if ($(1)) {
+      if ($(1)) {
+        break $inlinedFunction;
+      }
+    } else {
+      $(100);
+    }
+    if ($) {
+      s = 3;
+    } else {
+      s = 4;
+    }
+  }
+  return s;
+});
+`````
+
 ## Pre Normal
 
 
@@ -87,37 +140,7 @@ const parseIdentifierRest = function () {
 $(parseIdentifierRest);
 `````
 
-## Output
-
-
-`````js filename=intro
-const parseIdentifierRest /*:()=>number*/ = function () {
-  debugger;
-  let s /*:number*/ = 10;
-  $inlinedFunction: {
-    const tmpIfTest /*:unknown*/ = $(1);
-    if (tmpIfTest) {
-      const tmpIfTest$1 /*:unknown*/ = $(1);
-      if (tmpIfTest$1) {
-        break $inlinedFunction;
-      } else {
-      }
-    } else {
-      $(100);
-    }
-    if ($) {
-      s = 3;
-    } else {
-      s = 4;
-    }
-  }
-  return s;
-};
-$(parseIdentifierRest);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -151,7 +174,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -161,4 +184,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

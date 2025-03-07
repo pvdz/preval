@@ -26,6 +26,49 @@ else $('fail');
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>boolean*/ = function () {
+  debugger;
+  x = $(100);
+  const y /*:boolean*/ = Boolean(x);
+  return y;
+};
+let x /*:unknown*/ = undefined;
+$(f);
+$(f);
+x = $(100);
+if (x) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  x = $(100);
+  const y = Boolean(x);
+  return y;
+};
+let x = undefined;
+$(f);
+$(f);
+x = $(100);
+if (x) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -66,30 +109,7 @@ if (tmpIfTest) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>boolean*/ = function () {
-  debugger;
-  x = $(100);
-  const y /*:boolean*/ = Boolean(x);
-  return y;
-};
-let x /*:unknown*/ = undefined;
-$(f);
-$(f);
-x = $(100);
-if (x) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +136,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -130,4 +150,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -16,6 +16,22 @@ const f = function() {
 f(); // In this test, this is the call we expect to be replaced by trampoline inlining...
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(`pass`);
+$(...x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $(`pass`);
+$(...x);
+`````
+
 ## Pre Normal
 
 
@@ -41,16 +57,7 @@ const f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(`pass`);
-$(...x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +69,7 @@ $( ...a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -73,4 +80,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

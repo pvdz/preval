@@ -18,6 +18,15 @@ foo: for(;$(true);) {
 $(2);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(0);
+$(true);
+$(2);
+`````
+
 ## Pre Normal
 
 
@@ -56,7 +65,7 @@ while (true) {
 $(2);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -65,8 +74,7 @@ $(true);
 $(2);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -91,4 +99,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

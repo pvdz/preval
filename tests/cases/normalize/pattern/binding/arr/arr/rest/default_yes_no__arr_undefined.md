@@ -13,6 +13,24 @@ const [[...x] = $('pass')] = [undefined, 4, 5];
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arrPatternStep /*:unknown*/ = $(`pass`);
+const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
+const x /*:array*/ = arrPatternSplat$1.slice(0);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arrPatternStep = $(`pass`);
+$([...arrPatternStep].slice(0));
+`````
+
 ## Pre Normal
 
 
@@ -40,18 +58,7 @@ const x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const arrPatternStep /*:unknown*/ = $(`pass`);
-const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const x /*:array*/ = arrPatternSplat$1.slice(0);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -65,7 +72,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -76,7 +83,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

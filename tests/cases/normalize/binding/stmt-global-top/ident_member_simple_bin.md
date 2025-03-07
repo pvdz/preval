@@ -14,6 +14,21 @@ let a = b.x = c + d;
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { x: 7 };
+$(7, b, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(7, { x: 7 }, 3);
+`````
+
 ## Pre Normal
 
 
@@ -38,16 +53,7 @@ let a = varInitAssignLhsComputedRhs;
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { x: 7 };
-$(7, b, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -59,7 +65,7 @@ $( 7, a, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 7, { x: '7' }, 3
@@ -69,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

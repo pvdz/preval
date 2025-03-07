@@ -27,6 +27,34 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 10;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest /*:unknown*/ = $(x);
+  if (tmpIfTest) {
+  } else {
+    x = 20;
+    $(20);
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 10;
+while (true) {
+  if (!$(x)) {
+    x = 20;
+    $(20);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -71,23 +99,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:number*/ = 10;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest /*:unknown*/ = $(x);
-  if (tmpIfTest) {
-  } else {
-    x = 20;
-    $(20);
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -108,7 +120,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -143,7 +155,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

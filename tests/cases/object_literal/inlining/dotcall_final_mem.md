@@ -16,6 +16,20 @@ $('attempt to distract'); // throws off a simple dotcall simplfication heuristic
 $dotCall(x, objlit, undefined)
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`attempt to distract`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`attempt to distract`);
+`````
+
 ## Pre Normal
 
 
@@ -43,15 +57,7 @@ $(`attempt to distract`);
 $dotCall(x, objlit, undefined);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`attempt to distract`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -62,7 +68,7 @@ $( "attempt to distract" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'attempt to distract'
@@ -72,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

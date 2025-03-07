@@ -17,6 +17,32 @@ if ($('if')) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:primitive*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(`if`);
+if (tmpIfTest) {
+  x = 10;
+  $(10);
+} else {
+}
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = undefined;
+if ($(`if`)) {
+  x = 10;
+  $(10);
+}
+$(x);
+`````
+
 ## Pre Normal
 
 
@@ -43,22 +69,7 @@ if (tmpIfTest) {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:primitive*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(`if`);
-if (tmpIfTest) {
-  x = 10;
-  $(10);
-} else {
-}
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +86,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'if'
@@ -87,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -25,6 +25,52 @@ function $continue() {
 $continue();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const $continue /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpIfTest /*:unknown*/ = $();
+  if (tmpIfTest) {
+    const tmpIfTest$1 /*:unknown*/ = $();
+    if (tmpIfTest$1) {
+      $continue();
+      return undefined;
+    } else {
+    }
+  } else {
+  }
+  const tmpIfTest$3 /*:unknown*/ = $();
+  if (tmpIfTest$3) {
+    return undefined;
+  } else {
+    $continue();
+    return undefined;
+  }
+};
+$continue();
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const $continue = function () {
+  if ($()) {
+    if ($()) {
+      $continue();
+      return undefined;
+    }
+  }
+  const tmpIfTest$3 = $();
+  if (!tmpIfTest$3) {
+    $continue();
+  }
+};
+$continue();
+`````
+
 ## Pre Normal
 
 
@@ -73,35 +119,7 @@ let $continue = function () {
 $continue();
 `````
 
-## Output
-
-
-`````js filename=intro
-const $continue /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpIfTest /*:unknown*/ = $();
-  if (tmpIfTest) {
-    const tmpIfTest$1 /*:unknown*/ = $();
-    if (tmpIfTest$1) {
-      $continue();
-      return undefined;
-    } else {
-    }
-  } else {
-  }
-  const tmpIfTest$3 /*:unknown*/ = $();
-  if (tmpIfTest$3) {
-    return undefined;
-  } else {
-    $continue();
-    return undefined;
-  }
-};
-$continue();
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -131,7 +149,7 @@ a();
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -166,4 +184,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -18,6 +18,42 @@ const x = f(a);
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const r /*:(unknown)=>number*/ = function ($$0) {
+  const n /*:unknown*/ = $$0;
+  debugger;
+  const tmpIfTest /*:boolean*/ = n > 100;
+  if (tmpIfTest) {
+    return 10;
+  } else {
+    const tmpCalleeParam /*:primitive*/ = n + 1;
+    const tmpReturnArg /*:number*/ = r(tmpCalleeParam);
+    return tmpReturnArg;
+  }
+};
+const a /*:unknown*/ = $(10);
+const x /*:number*/ = r(a);
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const r = function (n) {
+  if (n > 100) {
+    return 10;
+  } else {
+    const tmpReturnArg = r(n + 1);
+    return tmpReturnArg;
+  }
+};
+$(r($(10)));
+`````
+
 ## Pre Normal
 
 
@@ -56,29 +92,7 @@ const x = f(a);
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-const r /*:(unknown)=>number*/ = function ($$0) {
-  const n /*:unknown*/ = $$0;
-  debugger;
-  const tmpIfTest /*:boolean*/ = n > 100;
-  if (tmpIfTest) {
-    return 10;
-  } else {
-    const tmpCalleeParam /*:primitive*/ = n + 1;
-    const tmpReturnArg /*:number*/ = r(tmpCalleeParam);
-    return tmpReturnArg;
-  }
-};
-const a /*:unknown*/ = $(10);
-const x /*:number*/ = r(a);
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +118,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10
@@ -115,4 +129,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

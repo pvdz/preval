@@ -14,6 +14,25 @@ let { a } = { a: 999, b: 1000 };
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const tmpObjSpreadArg /*:unknown*/ = $(tmpCalleeParam);
+({ ...tmpObjSpreadArg });
+$(999);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjSpreadArg = $({ a: 1, b: 2 });
+({ ...tmpObjSpreadArg });
+$(999);
+`````
+
 ## Pre Normal
 
 
@@ -35,18 +54,7 @@ const tmpObjSpreadArg = $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpObjSpreadArg /*:unknown*/ = $(tmpCalleeParam);
-({ ...tmpObjSpreadArg });
-$(999);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -63,7 +71,7 @@ $( 999 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }
@@ -74,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

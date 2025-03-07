@@ -25,6 +25,13 @@ const r = f(String);
 $(r);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(String.toString());
+`````
+
 ## Pre Normal
 
 
@@ -65,7 +72,7 @@ const r = f(String);
 $(r);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -73,8 +80,7 @@ const r /*:string*/ = String.toString();
 $(r);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -96,4 +102,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
+
+Todos triggered:
+- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $function_toString

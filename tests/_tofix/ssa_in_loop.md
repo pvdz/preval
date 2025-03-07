@@ -30,6 +30,29 @@ while ($tmpLoopUnrollCheck) {
 $(tmpClusterSSA_s);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const s = $(10);
+parseExpression(lexerFlags$285, astProp$181);
+let tmpClusterSSA_s = s | 10;
+if ($(true)) {
+  parseExpression(lexerFlags$285, astProp$181);
+  tmpClusterSSA_s = tmpClusterSSA_s | 10;
+  if ($(true)) {
+    while (true) {
+      parseExpression(lexerFlags$285, astProp$181);
+      tmpClusterSSA_s = tmpClusterSSA_s | 10;
+      if (!$(true)) {
+        break;
+      }
+    }
+  }
+}
+$(tmpClusterSSA_s);
+`````
+
 ## Pre Normal
 
 
@@ -84,7 +107,7 @@ while (true) {
 $(tmpClusterSSA_s);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -113,8 +136,7 @@ if (tmpClusterSSA_x) {
 $(tmpClusterSSA_s);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -159,4 +181,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

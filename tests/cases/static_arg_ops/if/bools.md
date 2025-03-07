@@ -30,6 +30,50 @@ function f() {
 if ($) $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  let x /*:number*/ = 0;
+  const g_t /*:()=>unknown*/ = function () {
+    debugger;
+    x = x + 1;
+    $(x);
+    return undefined;
+  };
+  if ($) {
+    g_t();
+    g_t();
+    g_t();
+    g_t();
+  } else {
+  }
+  $(undefined);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  let x = 0;
+  const g_t = function () {
+    x = x + 1;
+    $(x);
+  };
+  if ($) {
+    g_t();
+    g_t();
+    g_t();
+    g_t();
+  }
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -96,32 +140,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  let x /*:number*/ = 0;
-  const g_t /*:()=>unknown*/ = function () {
-    debugger;
-    x = x + 1;
-    $(x);
-    return undefined;
-  };
-  if ($) {
-    g_t();
-    g_t();
-    g_t();
-    g_t();
-  } else {
-  }
-  $(undefined);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -147,7 +166,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -161,4 +180,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

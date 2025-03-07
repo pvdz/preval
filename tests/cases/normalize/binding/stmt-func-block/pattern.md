@@ -19,6 +19,34 @@ let z = [10, 20, 30];
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  const z /*:array*/ = [10, 20, 30];
+  const arrPatternSplat /*:array*/ = [...z];
+  const x /*:unknown*/ = arrPatternSplat[0];
+  const y /*:unknown*/ = arrPatternSplat[1];
+  $(x, y, z);
+} else {
+}
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(true)) {
+  const z = [10, 20, 30];
+  const arrPatternSplat = [...z];
+  $(arrPatternSplat[0], arrPatternSplat[1], z);
+}
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -57,24 +85,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  const z /*:array*/ = [10, 20, 30];
-  const arrPatternSplat /*:array*/ = [...z];
-  const x /*:unknown*/ = arrPatternSplat[0];
-  const y /*:unknown*/ = arrPatternSplat[1];
-  $(x, y, z);
-} else {
-}
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -93,7 +104,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -105,7 +116,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

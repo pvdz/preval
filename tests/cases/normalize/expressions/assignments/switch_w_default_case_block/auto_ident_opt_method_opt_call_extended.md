@@ -24,6 +24,72 @@ switch ($(1)) {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpSwitchValue /*:unknown*/ = $(1);
+let tmpSwitchCaseToStart /*:number*/ = 1;
+const tmpBinLhs /*:unknown*/ = $(1);
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 2;
+  } else {
+  }
+}
+const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  a = undefined;
+  const tmpIfTest$7 /*:boolean*/ = $ == null;
+  if (tmpIfTest$7) {
+  } else {
+    const tmpObjLitVal$1 /*:object*/ = { e: $ };
+    const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+    a = tmpChainElementCall;
+  }
+} else {
+}
+const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$9) {
+  $(`fail1`);
+} else {
+}
+$(`fail2`);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
+if ($(1) === tmpSwitchValue) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  if (2 === tmpSwitchValue) {
+    tmpSwitchCaseToStart = 2;
+  }
+}
+if (tmpSwitchCaseToStart <= 0) {
+  a = undefined;
+  if (!($ == null)) {
+    a = $dotCall($, { e: $ }, `e`, 1);
+  }
+}
+if (tmpSwitchCaseToStart <= 1) {
+  $(`fail1`);
+}
+$(`fail2`);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -106,47 +172,7 @@ if (tmpIfTest$11) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
-  a = undefined;
-  const tmpIfTest$7 /*:boolean*/ = $ == null;
-  if (tmpIfTest$7) {
-  } else {
-    const tmpObjLitVal$1 /*:object*/ = { e: $ };
-    const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-    a = tmpChainElementCall;
-  }
-} else {
-}
-const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$9) {
-  $(`fail1`);
-} else {
-}
-$(`fail2`);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -192,7 +218,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -207,4 +233,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

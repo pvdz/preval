@@ -22,6 +22,37 @@ const c = f(`g##h##i`);
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(string)=>undefined*/ = function ($$0) {
+  const thisisastring /*:string*/ = $$0;
+  debugger;
+  const regex /*:regex*/ = /[^A-Za-z0-9\+\/\=]/g;
+  const str /*:string*/ = thisisastring.replace(regex, ``);
+  $(str);
+  return undefined;
+};
+f(`a!bc`);
+f(`de?f`);
+f(`g##h##i`);
+$(undefined, undefined, undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function (thisisastring) {
+  $(thisisastring.replace(/[^A-Za-z0-9\+\/\=]/g, ``));
+};
+f(`a!bc`);
+f(`de?f`);
+f(`g##h##i`);
+$(undefined, undefined, undefined);
+`````
+
 ## Pre Normal
 
 
@@ -57,26 +88,7 @@ const c = f(`g##h##i`);
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(string)=>undefined*/ = function ($$0) {
-  const thisisastring /*:string*/ = $$0;
-  debugger;
-  const regex /*:regex*/ = /[^A-Za-z0-9\+\/\=]/g;
-  const str /*:string*/ = thisisastring.replace(regex, ``);
-  $(str);
-  return undefined;
-};
-f(`a!bc`);
-f(`de?f`);
-f(`g##h##i`);
-$(undefined, undefined, undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -98,7 +110,7 @@ $( undefined, undefined, undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'abc'
@@ -111,4 +123,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

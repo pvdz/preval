@@ -14,6 +14,21 @@ const obj = {f: g};
 $(obj.f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:regex*/ = /regex/;
+$(g);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(/regex/);
+`````
+
 ## Pre Normal
 
 
@@ -33,16 +48,7 @@ const tmpCalleeParam = obj.f;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:regex*/ = /regex/;
-$(g);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -54,7 +60,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: {}
@@ -64,4 +70,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

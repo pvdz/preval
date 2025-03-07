@@ -15,6 +15,20 @@ const rex = /\w.\w/g;
 $('a is not b'.replace(rex, (c) => obj[c]));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`undefinedundefinedoundefined`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`undefinedundefinedoundefined`);
+`````
+
 ## Pre Normal
 
 
@@ -47,15 +61,7 @@ const tmpCalleeParam = `a is not b`.replace(tmpCalleeParam$1, tmpCalleeParam$3);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`undefinedundefinedoundefined`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -66,7 +72,7 @@ $( "undefinedundefinedoundefined" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'undefinedundefinedoundefined'
@@ -76,4 +82,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

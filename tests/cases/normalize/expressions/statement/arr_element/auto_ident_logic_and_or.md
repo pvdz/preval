@@ -14,6 +14,61 @@ let a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(1);
+let tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
+if (tmpBinBothLhs) {
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  tmpBinBothLhs = $(tmpCalleeParam$1);
+} else {
+}
+if (tmpBinBothLhs) {
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  tmpBinBothLhs = $(tmpCalleeParam$3);
+}
+const tmpCalleeParam$5 /*:unknown*/ = $(1);
+let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$5);
+if (tmpBinBothRhs) {
+  const tmpCalleeParam$7 /*:unknown*/ = $(1);
+  tmpBinBothRhs = $(tmpCalleeParam$7);
+} else {
+}
+if (tmpBinBothRhs) {
+} else {
+  const tmpCalleeParam$9 /*:unknown*/ = $(2);
+  tmpBinBothRhs = $(tmpCalleeParam$9);
+}
+tmpBinBothLhs + tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpBinBothLhs = $($(1));
+if (tmpBinBothLhs) {
+  tmpBinBothLhs = $($(1));
+}
+if (!tmpBinBothLhs) {
+  tmpBinBothLhs = $($(2));
+}
+let tmpBinBothRhs = $($(1));
+if (tmpBinBothRhs) {
+  tmpBinBothRhs = $($(1));
+}
+if (!tmpBinBothRhs) {
+  tmpBinBothRhs = $($(2));
+}
+tmpBinBothLhs + tmpBinBothRhs;
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -56,41 +111,7 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-let tmpBinBothLhs /*:unknown*/ = $(tmpCalleeParam);
-if (tmpBinBothLhs) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  tmpBinBothLhs = $(tmpCalleeParam$1);
-} else {
-}
-if (tmpBinBothLhs) {
-} else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  tmpBinBothLhs = $(tmpCalleeParam$3);
-}
-const tmpCalleeParam$5 /*:unknown*/ = $(1);
-let tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$5);
-if (tmpBinBothRhs) {
-  const tmpCalleeParam$7 /*:unknown*/ = $(1);
-  tmpBinBothRhs = $(tmpCalleeParam$7);
-} else {
-}
-if (tmpBinBothRhs) {
-} else {
-  const tmpCalleeParam$9 /*:unknown*/ = $(2);
-  tmpBinBothRhs = $(tmpCalleeParam$9);
-}
-tmpBinBothLhs + tmpBinBothRhs;
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -132,7 +153,7 @@ $( i );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -150,4 +171,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

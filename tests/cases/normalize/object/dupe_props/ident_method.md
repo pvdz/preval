@@ -13,6 +13,28 @@ const x = {a: $('prop'), a(){}};
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`prop`);
+const x /*:object*/ = {
+  a() {
+    debugger;
+    return undefined;
+  },
+};
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`prop`);
+$({ a() {} });
+`````
+
 ## Pre Normal
 
 
@@ -40,22 +62,7 @@ const x = {
 $(x);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`prop`);
-const x /*:object*/ = {
-  a() {
-    debugger;
-    return undefined;
-  },
-};
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +78,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'prop'
@@ -82,4 +89,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

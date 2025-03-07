@@ -16,41 +16,7 @@ while ((1, 2, $(b))?.x) $(100);
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-while ((1, 2, $(b))?.x) $(100);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  let tmpIfTest = undefined;
-  const tmpChainRootProp = $(b);
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    tmpIfTest = tmpChainElementObject;
-  } else {
-  }
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -85,8 +51,67 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
-## PST Output
+## Denormalized
+(This ought to be the final result)
 
+`````js filename=intro
+let tmpIfTest = undefined;
+const b = { x: 1 };
+const tmpChainRootProp = $(b);
+if (!(tmpChainRootProp == null)) {
+  tmpIfTest = tmpChainRootProp.x;
+}
+if (tmpIfTest) {
+  while (true) {
+    $(100);
+    let tmpIfTest$2 = undefined;
+    const tmpChainRootProp$1 = $(b);
+    if (!(tmpChainRootProp$1 == null)) {
+      tmpIfTest$2 = tmpChainRootProp$1.x;
+    }
+    if (!tmpIfTest$2) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+while ((1, 2, $(b))?.x) $(100);
+$(a);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+let b = { x: 1 };
+let a = { a: 999, b: 1000 };
+while (true) {
+  let tmpIfTest = undefined;
+  const tmpChainRootProp = $(b);
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    tmpIfTest = tmpChainElementObject;
+  } else {
+  }
+  if (tmpIfTest) {
+    $(100);
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -133,7 +158,7 @@ $( j );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -168,7 +193,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

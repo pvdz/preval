@@ -12,6 +12,23 @@
 $(-(-/1/));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpUnaryArg /*:regex*/ = /1/;
+const tmpCalleeParam /*:number*/ = +tmpUnaryArg;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpUnaryArg = /1/;
+$(+tmpUnaryArg);
+`````
+
 ## Pre Normal
 
 
@@ -28,17 +45,7 @@ const tmpCalleeParam = +tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpUnaryArg /*:regex*/ = /1/;
-const tmpCalleeParam /*:number*/ = +tmpUnaryArg;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -51,7 +58,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: NaN
@@ -61,4 +68,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

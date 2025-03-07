@@ -32,6 +32,35 @@ $(x.headers);
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  $(x);
+  return undefined;
+};
+let x /*:unknown*/ = $;
+x = $(1);
+const tmpCalleeParam /*:unknown*/ = x.headers;
+$(tmpCalleeParam);
+$(f);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  $(x);
+};
+let x = $;
+x = $(1);
+$(x.headers);
+$(f);
+`````
+
 ## Pre Normal
 
 
@@ -69,24 +98,7 @@ $(tmpCalleeParam);
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  $(x);
-  return undefined;
-};
-let x /*:unknown*/ = $;
-x = $(1);
-const tmpCalleeParam /*:unknown*/ = x.headers;
-$(tmpCalleeParam);
-$(f);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -106,7 +118,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -118,4 +130,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

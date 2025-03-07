@@ -15,6 +15,58 @@ for (let i=0; i<10; ++i) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(0, `a`);
+$(0, `b`);
+$(1, `a`);
+$(1, `b`);
+$(2, `a`);
+$(2, `b`);
+$(3, `a`);
+$(3, `b`);
+$(4, `a`);
+$(4, `b`);
+$(5, `a`);
+$(5, `b`);
+$(6, `a`);
+$(6, `b`);
+$(7, `a`);
+$(7, `b`);
+$(8, `a`);
+$(8, `b`);
+$(9, `a`);
+$(9, `b`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(0, `a`);
+$(0, `b`);
+$(1, `a`);
+$(1, `b`);
+$(2, `a`);
+$(2, `b`);
+$(3, `a`);
+$(3, `b`);
+$(4, `a`);
+$(4, `b`);
+$(5, `a`);
+$(5, `b`);
+$(6, `a`);
+$(6, `b`);
+$(7, `a`);
+$(7, `b`);
+$(8, `a`);
+$(8, `b`);
+$(9, `a`);
+$(9, `b`);
+`````
+
 ## Pre Normal
 
 
@@ -48,34 +100,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-$(0, `a`);
-$(0, `b`);
-$(1, `a`);
-$(1, `b`);
-$(2, `a`);
-$(2, `b`);
-$(3, `a`);
-$(3, `b`);
-$(4, `a`);
-$(4, `b`);
-$(5, `a`);
-$(5, `b`);
-$(6, `a`);
-$(6, `b`);
-$(7, `a`);
-$(7, `b`);
-$(8, `a`);
-$(8, `b`);
-$(9, `a`);
-$(9, `b`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -105,7 +130,7 @@ $( 9, "b" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0, 'a'
@@ -134,4 +159,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

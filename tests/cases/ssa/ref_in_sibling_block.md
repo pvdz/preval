@@ -27,6 +27,44 @@ function f() {
 if ($) f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  let x /*:unknown*/ = $(1);
+  if ($) {
+    if (a) {
+      x = $(2);
+      $(x);
+    } else {
+    }
+    $(x);
+  } else {
+    $(x);
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  let x = $(1);
+  if ($) {
+    if (a) {
+      x = $(2);
+      $(x);
+    }
+    $(x);
+  } else {
+    $(x);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -75,28 +113,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  let x /*:unknown*/ = $(1);
-  if ($) {
-    if (a) {
-      x = $(2);
-      $(x);
-    } else {
-    }
-    $(x);
-  } else {
-    $(x);
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +138,7 @@ BAD@! Found 1 implicit global bindings:
 
 a
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -131,4 +148,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -13,6 +13,39 @@ const spy = {toString(){ $('pass'); }, valueOf(){ $('fail'); }};
 spy in Number;
 `````
 
+## Settled
+
+
+`````js filename=intro
+const spy /*:object*/ = {
+  toString() {
+    debugger;
+    $(`pass`);
+    return undefined;
+  },
+  valueOf() {
+    debugger;
+    $(`fail`);
+    return undefined;
+  },
+};
+spy in Number;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+({
+  toString() {
+    $(`pass`);
+  },
+  valueOf() {
+    $(`fail`);
+  },
+} in Number);
+`````
+
 ## Pre Normal
 
 
@@ -49,27 +82,7 @@ const spy = {
 spy in Number;
 `````
 
-## Output
-
-
-`````js filename=intro
-const spy /*:object*/ = {
-  toString() {
-    debugger;
-    $(`pass`);
-    return undefined;
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-};
-spy in Number;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +105,7 @@ a in Number;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -102,4 +115,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

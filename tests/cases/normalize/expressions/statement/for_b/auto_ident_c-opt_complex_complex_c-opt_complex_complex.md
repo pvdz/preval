@@ -16,54 +16,7 @@ for (; $(b)?.[$("x")]?.[$("y")]; $(1));
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: 1 } };
-let a = { a: 999, b: 1000 };
-{
-  while ($(b)?.[$(`x`)]?.[$(`y`)]) {
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-while (true) {
-  let tmpIfTest = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed = $(`x`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      const tmpChainRootComputed$1 = $(`y`);
-      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-      tmpIfTest = tmpChainElementObject$1;
-    } else {
-    }
-  } else {
-  }
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -113,8 +66,91 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
-## PST Output
+## Denormalized
+(This ought to be the final result)
 
+`````js filename=intro
+let tmpIfTest = undefined;
+const tmpObjLitVal = { y: 1 };
+const b = { x: tmpObjLitVal };
+const tmpChainElementCall = $(b);
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    const tmpChainRootComputed$1 = $(`y`);
+    tmpIfTest = tmpChainElementObject[tmpChainRootComputed$1];
+  }
+}
+if (tmpIfTest) {
+  while (true) {
+    $(1);
+    let tmpIfTest$2 = undefined;
+    const tmpChainElementCall$1 = $(b);
+    if (!(tmpChainElementCall$1 == null)) {
+      const tmpChainRootComputed$2 = $(`x`);
+      const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
+      if (!(tmpChainElementObject$2 == null)) {
+        const tmpChainRootComputed$4 = $(`y`);
+        tmpIfTest$2 = tmpChainElementObject$2[tmpChainRootComputed$4];
+      }
+    }
+    if (!tmpIfTest$2) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+let b = { x: { y: 1 } };
+let a = { a: 999, b: 1000 };
+{
+  while ($(b)?.[$(`x`)]?.[$(`y`)]) {
+    $(1);
+  }
+}
+$(a);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+const tmpObjLitVal = { y: 1 };
+let b = { x: tmpObjLitVal };
+let a = { a: 999, b: 1000 };
+while (true) {
+  let tmpIfTest = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainRootComputed = $(`x`);
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
+      const tmpChainRootComputed$1 = $(`y`);
+      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      tmpIfTest = tmpChainElementObject$1;
+    } else {
+    }
+  } else {
+  }
+  if (tmpIfTest) {
+    $(1);
+  } else {
+    break;
+  }
+}
+$(a);
+`````
+
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -180,7 +216,7 @@ $( s );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '{"y":"1"}' }
@@ -215,7 +251,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -16,6 +16,73 @@ $(b)?.[$("$")]?.($(1)) && $(b)?.[$("$")]?.($(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpIfTest /*:unknown*/ = undefined;
+const b /*:object*/ = { $: $ };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+} else {
+  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
+  if (tmpIfTest$3) {
+  } else {
+    const tmpCalleeParam$3 /*:unknown*/ = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+    tmpIfTest = tmpChainElementCall$1;
+  }
+}
+if (tmpIfTest) {
+  const tmpChainElementCall$3 /*:unknown*/ = $(b);
+  const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall$3 == null;
+  if (tmpIfTest$5) {
+  } else {
+    const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$3[tmpChainRootComputed$1];
+    const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject$1 == null;
+    if (tmpIfTest$7) {
+    } else {
+      const tmpCalleeParam$9 /*:unknown*/ = $(1);
+      $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$9);
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpIfTest = undefined;
+const b = { $: $ };
+const tmpChainElementCall = $(b);
+if (!(tmpChainElementCall == null)) {
+  const tmpChainRootComputed = $(`\$`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  if (!(tmpChainElementObject == null)) {
+    tmpIfTest = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+  }
+}
+if (tmpIfTest) {
+  const tmpChainElementCall$3 = $(b);
+  if (!(tmpChainElementCall$3 == null)) {
+    const tmpChainRootComputed$1 = $(`\$`);
+    const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
+    if (!(tmpChainElementObject$1 == null)) {
+      $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, $(1));
+    }
+  }
+}
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -72,48 +139,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpIfTest /*:unknown*/ = undefined;
-const b /*:object*/ = { $: $ };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainRootComputed /*:unknown*/ = $(`\$`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
-    tmpIfTest = tmpChainElementCall$1;
-  }
-}
-if (tmpIfTest) {
-  const tmpChainElementCall$3 /*:unknown*/ = $(b);
-  const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall$3 == null;
-  if (tmpIfTest$5) {
-  } else {
-    const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$3[tmpChainRootComputed$1];
-    const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject$1 == null;
-    if (tmpIfTest$7) {
-    } else {
-      const tmpCalleeParam$9 /*:unknown*/ = $(1);
-      $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$9);
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -167,7 +193,7 @@ $( p );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -185,4 +211,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -18,6 +18,31 @@ if ($) {
 $(x + $('prevent inlining'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpBinBothLhs /*:number*/ = 1;
+if ($) {
+} else {
+  tmpBinBothLhs = 2;
+}
+const tmpBinBothRhs /*:unknown*/ = $(`prevent inlining`);
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpBinBothLhs = 1;
+if (!$) {
+  tmpBinBothLhs = 2;
+}
+$(tmpBinBothLhs + $(`prevent inlining`));
+`````
+
 ## Pre Normal
 
 
@@ -47,22 +72,7 @@ const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpBinBothLhs /*:number*/ = 1;
-if ($) {
-} else {
-  tmpBinBothLhs = 2;
-}
-const tmpBinBothRhs /*:unknown*/ = $(`prevent inlining`);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +92,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'prevent inlining'
@@ -93,4 +103,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

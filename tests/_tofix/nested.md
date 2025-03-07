@@ -34,6 +34,23 @@ const z = g();
 $(z);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function () {
+  $(false);
+  $(true);
+  $(false);
+  const g$1 = [1, 2, 3];
+  return g$1;
+};
+g();
+g();
+$(false);
+$(g());
+`````
+
 ## Pre Normal
 
 
@@ -92,7 +109,7 @@ const z = g();
 $(z);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -111,8 +128,7 @@ const z /*:array*/ = g();
 $(z);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -155,4 +171,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

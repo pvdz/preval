@@ -21,6 +21,31 @@ function f() {
 if ($) $(f()); // The branching prevents certain flattening
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const x /*:unknown*/ = $(5);
+  $(x);
+  const tmpClusterSSA_x /*:unknown*/ = $(10);
+  $(tmpClusterSSA_x);
+  $(undefined);
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $($(5));
+  $($(10));
+  $(undefined);
+}
+`````
+
 ## Pre Normal
 
 
@@ -60,22 +85,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const x /*:unknown*/ = $(5);
-  $(x);
-  const tmpClusterSSA_x /*:unknown*/ = $(10);
-  $(tmpClusterSSA_x);
-  $(undefined);
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -92,7 +102,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 5
@@ -106,4 +116,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

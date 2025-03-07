@@ -14,6 +14,41 @@ $({ [(a = $($(1)) && $($(2)))]: 10 });
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+let a /*:unknown*/ = $(tmpCalleeParam$1);
+let tmpObjLitPropKey /*:unknown*/ = undefined;
+if (a) {
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  a = $(tmpCalleeParam$3);
+  tmpObjLitPropKey = a;
+} else {
+  tmpObjLitPropKey = a;
+}
+const tmpCalleeParam /*:object*/ = { [tmpObjLitPropKey]: 10 };
+$(tmpCalleeParam);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = $($(1));
+let tmpObjLitPropKey = undefined;
+if (a) {
+  a = $($(2));
+  tmpObjLitPropKey = a;
+} else {
+  tmpObjLitPropKey = a;
+}
+$({ [tmpObjLitPropKey]: 10 });
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -42,27 +77,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam$1);
-let tmpObjLitPropKey /*:unknown*/ = undefined;
-if (a) {
-  const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$3);
-  tmpObjLitPropKey = a;
-} else {
-  tmpObjLitPropKey = a;
-}
-const tmpCalleeParam /*:object*/ = { [tmpObjLitPropKey]: 10 };
-$(tmpCalleeParam);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +101,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -101,4 +116,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

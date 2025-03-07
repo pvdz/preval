@@ -13,6 +13,30 @@ const { x: { y = $('fail') } } = 1;
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault.y;
+const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  $(`fail`);
+} else {
+}
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ((1).x.y === undefined) {
+  $(`fail`);
+}
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -40,22 +64,7 @@ if (tmpIfTest) {
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (1).x;
-const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault.y;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  $(`fail`);
-} else {
-}
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +81,7 @@ $( "bad" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -81,4 +90,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

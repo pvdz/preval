@@ -21,6 +21,37 @@ switch ($('a')) {
 $(a, b, c);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothRhs /*:unknown*/ = $(`a`);
+const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const b /*:object*/ = { x: 2 };
+if (tmpIfTest) {
+  const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
+  const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+} else {
+}
+$(1, b, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpIfTest = $(`a`) === $(`a`);
+const b = { x: 2 };
+if (tmpIfTest) {
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $(`x`);
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
+}
+$(1, b, 3);
+`````
+
 ## Pre Normal
 
 
@@ -69,25 +100,7 @@ tmpSwitchBreak: {
 $(a, b, c);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(`a`);
-const tmpBinBothRhs /*:unknown*/ = $(`a`);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-const b /*:object*/ = { x: 2 };
-if (tmpIfTest) {
-  const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
-  const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-} else {
-}
-$(1, b, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -107,7 +120,7 @@ $( 1, d, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -121,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

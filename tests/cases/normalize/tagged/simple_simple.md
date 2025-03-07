@@ -12,6 +12,21 @@
 $`abc ${ 10 } ${ 20 } def`;
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:array*/ = [`abc `, ` `, ` def`];
+$(tmpCalleeParam, 10, 20);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$([`abc `, ` `, ` def`], 10, 20);
+`````
+
 ## Pre Normal
 
 
@@ -27,16 +42,7 @@ const tmpCalleeParam = [`abc `, ` `, ` def`];
 $(tmpCalleeParam, 10, 20);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam /*:array*/ = [`abc `, ` `, ` def`];
-$(tmpCalleeParam, 10, 20);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -48,7 +54,7 @@ $( a, 10, 20 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['abc ', ' ', ' def'], 10, 20
@@ -58,4 +64,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

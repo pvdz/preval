@@ -16,6 +16,84 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const tmpCalleeParam /*:unknown*/ = $(1);
+let a /*:unknown*/ = $(tmpCalleeParam);
+if (a) {
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  a = $(tmpCalleeParam$1);
+  if (a) {
+    const tmpCalleeParam$3 /*:unknown*/ = $(2);
+    a = $(tmpCalleeParam$3);
+    if (a) {
+      while ($LOOP_UNROLL_10) {
+        $(100);
+        const tmpCalleeParam$2 /*:unknown*/ = $(1);
+        a = $(tmpCalleeParam$2);
+        if (a) {
+          const tmpCalleeParam$4 /*:unknown*/ = $(1);
+          a = $(tmpCalleeParam$4);
+          if (a) {
+            const tmpCalleeParam$6 /*:unknown*/ = $(2);
+            a = $(tmpCalleeParam$6);
+            if (a) {
+            } else {
+              break;
+            }
+          } else {
+            break;
+          }
+        } else {
+          break;
+        }
+      }
+    } else {
+    }
+  } else {
+  }
+} else {
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+let a = $($(1));
+if (a) {
+  a = $($(1));
+  if (a) {
+    a = $($(2));
+    if (a) {
+      while (true) {
+        $(100);
+        a = $($(1));
+        if (a) {
+          a = $($(1));
+          if (a) {
+            a = $($(2));
+            if (!a) {
+              break;
+            }
+          } else {
+            break;
+          }
+        } else {
+          break;
+        }
+      }
+    }
+  }
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -61,52 +139,7 @@ while (true) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  a = $(tmpCalleeParam$1);
-  if (a) {
-    const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    a = $(tmpCalleeParam$3);
-    if (a) {
-      while ($LOOP_UNROLL_10) {
-        $(100);
-        const tmpCalleeParam$2 /*:unknown*/ = $(1);
-        a = $(tmpCalleeParam$2);
-        if (a) {
-          const tmpCalleeParam$4 /*:unknown*/ = $(1);
-          a = $(tmpCalleeParam$4);
-          if (a) {
-            const tmpCalleeParam$6 /*:unknown*/ = $(2);
-            a = $(tmpCalleeParam$6);
-            if (a) {
-            } else {
-              break;
-            }
-          } else {
-            break;
-          }
-        } else {
-          break;
-        }
-      }
-    } else {
-    }
-  } else {
-  }
-} else {
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -155,7 +188,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -190,7 +223,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

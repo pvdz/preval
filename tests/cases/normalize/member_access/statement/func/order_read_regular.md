@@ -20,6 +20,43 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const obj /*:object*/ = {
+  get x() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(10);
+    return tmpReturnArg;
+  },
+  set x($$0) {
+    debugger;
+    $(20);
+    return undefined;
+  },
+};
+const tmpCompObj /*:unknown*/ = $(obj);
+tmpCompObj.x;
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({
+  get x() {
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
+  },
+  set x($$0) {
+    $(20);
+  },
+}).x;
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -69,29 +106,7 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const obj /*:object*/ = {
-  get x() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(10);
-    return tmpReturnArg;
-  },
-  set x($$0) {
-    debugger;
-    $(20);
-    return undefined;
-  },
-};
-const tmpCompObj /*:unknown*/ = $(obj);
-tmpCompObj.x;
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -116,7 +131,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '<get/set>' }
@@ -128,4 +143,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

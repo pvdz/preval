@@ -14,6 +14,37 @@ let a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpArrElToSpread /*:unknown*/ = undefined;
+const tmpIfTest /*:unknown*/ = $(30);
+if (tmpIfTest) {
+  tmpArrElToSpread = $(60);
+} else {
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  tmpArrElToSpread = $(tmpCalleeParam);
+}
+[...tmpArrElToSpread];
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpArrElToSpread = undefined;
+if ($(30)) {
+  tmpArrElToSpread = $(60);
+} else {
+  tmpArrElToSpread = $($(100));
+}
+[...tmpArrElToSpread];
+$({ a: 999, b: 1000 });
+`````
+
 ## Pre Normal
 
 
@@ -40,25 +71,7 @@ if (tmpIfTest) {
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpArrElToSpread /*:unknown*/ = undefined;
-const tmpIfTest /*:unknown*/ = $(30);
-if (tmpIfTest) {
-  tmpArrElToSpread = $(60);
-} else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  tmpArrElToSpread = $(tmpCalleeParam);
-}
-[...tmpArrElToSpread];
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +96,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 30
@@ -94,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

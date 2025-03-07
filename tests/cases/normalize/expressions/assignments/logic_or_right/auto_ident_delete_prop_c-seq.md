@@ -16,6 +16,46 @@ $($(100) || (a = delete ($(1), $(2), $(arg)).y));
 $(a, arg);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam /*:unknown*/ = $(100);
+const arg /*:object*/ = { y: 1 };
+if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+} else {
+  $(1);
+  $(2);
+  const tmpDeleteObj /*:unknown*/ = $(arg);
+  const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj.y;
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a, arg);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = $(100);
+const arg = { y: 1 };
+if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+} else {
+  $(1);
+  $(2);
+  const tmpDeleteObj = $(arg);
+  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+}
+$(a, arg);
+`````
+
 ## Pre Normal
 
 
@@ -46,28 +86,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpCalleeParam /*:unknown*/ = $(100);
-const arg /*:object*/ = { y: 1 };
-if (tmpCalleeParam) {
-  $(tmpCalleeParam);
-} else {
-  $(1);
-  $(2);
-  const tmpDeleteObj /*:unknown*/ = $(arg);
-  const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj.y;
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
-$(a, arg);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -95,7 +114,7 @@ $( a, c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -107,4 +126,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

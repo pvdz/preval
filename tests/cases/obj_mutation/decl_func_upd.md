@@ -18,6 +18,34 @@ f();
 $(blob);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  blob.thing = `boing`;
+  return undefined;
+};
+const blob /*:object*/ = { thing: `woop` };
+$(f);
+blob.thing = `boing`;
+$(blob);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  blob.thing = `boing`;
+};
+const blob = { thing: `woop` };
+$(f);
+blob.thing = `boing`;
+$(blob);
+`````
+
 ## Pre Normal
 
 
@@ -47,23 +75,7 @@ f();
 $(blob);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  blob.thing = `boing`;
-  return undefined;
-};
-const blob /*:object*/ = { thing: `woop` };
-$(f);
-blob.thing = `boing`;
-$(blob);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +94,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -93,4 +105,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

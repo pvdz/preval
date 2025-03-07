@@ -13,6 +13,23 @@ const a = {};
 $(a.b.c.d);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCompObj$1 /*:unknown*/ = $Object_prototype.b;
+const tmpCompObj /*:unknown*/ = tmpCompObj$1.c;
+const tmpCalleeParam /*:unknown*/ = tmpCompObj.d;
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($Object_prototype.b.c.d);
+`````
+
 ## Pre Normal
 
 
@@ -32,18 +49,7 @@ const tmpCalleeParam = tmpCompObj.d;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCompObj$1 /*:unknown*/ = $Object_prototype.b;
-const tmpCompObj /*:unknown*/ = tmpCompObj$1.c;
-const tmpCalleeParam /*:unknown*/ = tmpCompObj.d;
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +63,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -66,4 +72,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

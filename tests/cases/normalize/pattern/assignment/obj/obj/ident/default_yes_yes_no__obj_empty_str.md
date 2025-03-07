@@ -13,6 +13,35 @@
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const objPatternBeforeDefault$1 /*:unknown*/ = ``.y;
+const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
+if (tmpIfTest$1) {
+  y = $(`pass`);
+  $(y);
+} else {
+  y = objPatternBeforeDefault$1;
+  $(y);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const objPatternBeforeDefault$1 = ``.y;
+if (objPatternBeforeDefault$1 === undefined) {
+  y = $(`pass`);
+  $(y);
+} else {
+  y = objPatternBeforeDefault$1;
+  $(y);
+}
+`````
+
 ## Pre Normal
 
 
@@ -45,23 +74,7 @@ if (tmpIfTest$1) {
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const objPatternBeforeDefault$1 /*:unknown*/ = ``.y;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  y = $(`pass`);
-  $(y);
-} else {
-  y = objPatternBeforeDefault$1;
-  $(y);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -83,7 +96,7 @@ BAD@! Found 1 implicit global bindings:
 
 y
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -93,4 +106,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

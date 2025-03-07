@@ -26,6 +26,52 @@ function f() {
 if ($) f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const x /*:unknown*/ = $(1);
+  $(x);
+  if ($) {
+  } else {
+    while ($LOOP_UNROLL_10) {
+      $(x);
+      if ($) {
+        break;
+      } else {
+      }
+    }
+  }
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    const tmpClusterSSA_x /*:unknown*/ = $(2);
+    $(tmpClusterSSA_x);
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  const x = $(1);
+  $(x);
+  if (!$) {
+    while (true) {
+      $(x);
+      if ($) {
+        break;
+      }
+    }
+  }
+  while (true) {
+    $($(2));
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -71,33 +117,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  const x /*:unknown*/ = $(1);
-  $(x);
-  if ($) {
-  } else {
-    while ($LOOP_UNROLL_10) {
-      $(x);
-      if ($) {
-        break;
-      } else {
-      }
-    }
-  }
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpClusterSSA_x /*:unknown*/ = $(2);
-    $(tmpClusterSSA_x);
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -126,7 +146,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -161,7 +181,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: LabeledStatement

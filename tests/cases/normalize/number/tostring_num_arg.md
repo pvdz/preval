@@ -13,6 +13,20 @@ const f = (31).toString(17);
 $(f);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`1e`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`1e`);
+`````
+
 ## Pre Normal
 
 
@@ -29,15 +43,7 @@ const f = `1e`;
 $(f);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`1e`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -48,7 +54,7 @@ $( "1e" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '1e'
@@ -58,4 +64,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

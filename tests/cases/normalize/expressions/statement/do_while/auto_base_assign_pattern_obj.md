@@ -18,6 +18,55 @@ do {
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+const tmpObjLitVal /*:unknown*/ = $(2);
+const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+let tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+if (tmpNestedAssignObjPatternRhs) {
+  while ($LOOP_UNROLL_10) {
+    $(100);
+    const tmpObjLitVal$1 /*:unknown*/ = $(2);
+    const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
+    const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+    if (tmpNestedAssignObjPatternRhs$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, tmpClusterSSA_b);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(100);
+const tmpObjLitVal = $(2);
+const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
+let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+if (tmpNestedAssignObjPatternRhs) {
+  while (true) {
+    $(100);
+    const tmpObjLitVal$1 = $(2);
+    const tmpNestedAssignObjPatternRhs$1 = $({ b: tmpObjLitVal$1 });
+    tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+    if (!tmpNestedAssignObjPatternRhs$1) {
+      break;
+    }
+  }
+}
+$({ a: 999, b: 1000 }, tmpClusterSSA_b);
+`````
+
 ## Pre Normal
 
 
@@ -58,35 +107,7 @@ while (true) {
 $(a, b);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(100);
-const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-let tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-if (tmpNestedAssignObjPatternRhs) {
-  while ($LOOP_UNROLL_10) {
-    $(100);
-    const tmpObjLitVal$1 /*:unknown*/ = $(2);
-    const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
-    const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
-    if (tmpNestedAssignObjPatternRhs$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +142,7 @@ $( h, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100
@@ -156,7 +177,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

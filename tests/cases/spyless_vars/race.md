@@ -18,6 +18,23 @@ if ($('a') === $) tmpSwitchCaseToStart = 0;
 $(a, z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`a`);
+const z /*:array*/ = [10, 20, 30];
+$(a, z);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`a`);
+$(a, [10, 20, 30]);
+`````
+
 ## Pre Normal
 
 
@@ -45,17 +62,7 @@ if (tmpIfTest) {
 $(a, z);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`a`);
-const z /*:array*/ = [10, 20, 30];
-$(a, z);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +77,7 @@ BAD@! Found 1 implicit global bindings:
 
 a
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -80,4 +87,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -25,6 +25,47 @@ function f() {
 if ($) f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  $(1);
+  const tmpClusterSSA_x /*:unknown*/ = $(2);
+  $(tmpClusterSSA_x);
+  if ($) {
+  } else {
+    while ($LOOP_UNROLL_10) {
+      const tmpClusterSSA_x$1 /*:unknown*/ = $(2);
+      $(tmpClusterSSA_x$1);
+      if ($) {
+        break;
+      } else {
+      }
+    }
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($) {
+  $(1);
+  $($(2));
+  if (!$) {
+    while (true) {
+      $($(2));
+      if ($) {
+        break;
+      }
+    }
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -64,31 +105,7 @@ if ($) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-if ($) {
-  $(1);
-  const tmpClusterSSA_x /*:unknown*/ = $(2);
-  $(tmpClusterSSA_x);
-  if ($) {
-  } else {
-    while ($LOOP_UNROLL_10) {
-      const tmpClusterSSA_x$1 /*:unknown*/ = $(2);
-      $(tmpClusterSSA_x$1);
-      if ($) {
-        break;
-      } else {
-      }
-    }
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -115,7 +132,7 @@ if ($) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -127,4 +144,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

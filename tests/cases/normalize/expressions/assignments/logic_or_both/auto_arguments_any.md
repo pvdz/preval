@@ -14,6 +14,35 @@ $((a = arguments) || (a = arguments));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = arguments;
+if (arguments) {
+  $(a);
+} else {
+  a = arguments;
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = arguments;
+  $(tmpClusterSSA_tmpCalleeParam);
+}
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let a = arguments;
+if (arguments) {
+  $(a);
+} else {
+  a = arguments;
+  $(arguments);
+}
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -39,23 +68,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-let a /*:unknown*/ = arguments;
-if (arguments) {
-  $(a);
-} else {
-  a = arguments;
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = arguments;
-  $(tmpClusterSSA_tmpCalleeParam);
-}
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +90,7 @@ BAD@! Found 1 implicit global bindings:
 
 arguments
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<Global Arguments>'
@@ -88,4 +101,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

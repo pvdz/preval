@@ -12,6 +12,20 @@
 $(~"0x0a05");
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(-2566);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(-2566);
+`````
+
 ## Pre Normal
 
 
@@ -27,15 +41,7 @@ const tmpCalleeParam = -2566;
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(-2566);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -46,7 +52,7 @@ $( -2566 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: -2566
@@ -56,4 +62,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

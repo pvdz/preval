@@ -38,6 +38,61 @@ $(parseIdentifierRest);
 
 `````
 
+## Settled
+
+
+`````js filename=intro
+const parseIdentifierRest /*:()=>number*/ = function () {
+  debugger;
+  c$53;
+  let s$15 /*:number*/ = 10;
+  $inlinedFunction: {
+    const tmpIfTest /*:unknown*/ = $(1);
+    if (tmpIfTest) {
+      const tmpIfTest$1 /*:unknown*/ = $(1);
+      if (tmpIfTest$1) {
+        break $inlinedFunction;
+      } else {
+      }
+    } else {
+      $(100);
+    }
+    if ($) {
+      s$15 = 3;
+    } else {
+      s$15 = 4;
+    }
+  }
+  return s$15;
+};
+$(parseIdentifierRest);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function () {
+  c$53;
+  let s$15 = 10;
+  $inlinedFunction: {
+    if ($(1)) {
+      if ($(1)) {
+        break $inlinedFunction;
+      }
+    } else {
+      $(100);
+    }
+    if ($) {
+      s$15 = 3;
+    } else {
+      s$15 = 4;
+    }
+  }
+  return s$15;
+});
+`````
+
 ## Pre Normal
 
 
@@ -95,38 +150,7 @@ const parseIdentifierRest = function () {
 $(parseIdentifierRest);
 `````
 
-## Output
-
-
-`````js filename=intro
-const parseIdentifierRest /*:()=>number*/ = function () {
-  debugger;
-  c$53;
-  let s$15 /*:number*/ = 10;
-  $inlinedFunction: {
-    const tmpIfTest /*:unknown*/ = $(1);
-    if (tmpIfTest) {
-      const tmpIfTest$1 /*:unknown*/ = $(1);
-      if (tmpIfTest$1) {
-        break $inlinedFunction;
-      } else {
-      }
-    } else {
-      $(100);
-    }
-    if ($) {
-      s$15 = 3;
-    } else {
-      s$15 = 4;
-    }
-  }
-  return s$15;
-};
-$(parseIdentifierRest);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -163,7 +187,7 @@ BAD@! Found 1 implicit global bindings:
 
 c$53
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -173,4 +197,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

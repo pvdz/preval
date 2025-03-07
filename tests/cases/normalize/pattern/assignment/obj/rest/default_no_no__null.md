@@ -13,6 +13,23 @@
 $('bad');
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$1 /*:array*/ = [];
+x = objPatternRest(null, tmpCalleeParam$1, `x`);
+$(`bad`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+x = objPatternRest(null, [], `x`);
+$(`bad`);
+`````
+
 ## Pre Normal
 
 
@@ -32,17 +49,7 @@ x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
 $(`bad`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCalleeParam$1 /*:array*/ = [];
-x = objPatternRest(null, tmpCalleeParam$1, `x`);
-$(`bad`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -57,7 +64,7 @@ BAD@! Found 1 implicit global bindings:
 
 x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
@@ -66,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

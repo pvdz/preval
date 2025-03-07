@@ -25,6 +25,24 @@ const g = function($$0, e$763, r$635) {
 $(g);
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function ($$0, $$1, $$2) {
+  const f = function (t$987, e$767) {
+    const tmpPrevalAliasThis = this;
+    tmpPrevalAliasThis._pairs = [];
+    if (t$987) {
+      const tmpCallComplexCallee$25 = Object(i$441.a);
+      tmpCallComplexCallee$25(t$987, tmpPrevalAliasThis, e$767);
+    }
+  };
+  const i$441 = $(`e467`);
+  $(f.prototype);
+});
+`````
+
 ## Pre Normal
 
 
@@ -88,7 +106,7 @@ const g = function ($$0, $$1, $$2) {
 $(g);
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -118,8 +136,7 @@ const g /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
 $(g);
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -164,4 +181,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

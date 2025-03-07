@@ -45,6 +45,128 @@ const arr2 = [
 $(arr2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:object*/ = {
+  toString() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    debugger;
+    $(`valueOf`);
+    return 100;
+  },
+};
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const tmpArrElement$7 /*:primitive*/ = NaN + x;
+x ** 0;
+const tmpArrElement$11 /*:number*/ = 0 << x;
+const tmpArrElement$13 /*:number*/ = 0 >> x;
+const tmpArrElement$15 /*:number*/ = 0 >>> x;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const tmpArrElement$35 /*:number*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ = 0 | x;
+const arr /*:array*/ = [
+  NaN,
+  NaN,
+  NaN,
+  NaN,
+  tmpArrElement$7,
+  NaN,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  false,
+  false,
+  false,
+  false,
+  false,
+  true,
+  false,
+  true,
+  0,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+const tmpArrElement$39 /*:boolean*/ = NaN in x;
+const tmpArrElement$41 /*:boolean*/ = NaN instanceof x;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+$(arr2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = {
+  toString() {
+    const tmpReturnArg = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    $(`valueOf`);
+    return 100;
+  },
+};
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const tmpArrElement$7 = NaN + x;
+x ** 0;
+const tmpArrElement$11 = 0 << x;
+const tmpArrElement$13 = 0 >> x;
+const tmpArrElement$15 = 0 >>> x;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const tmpArrElement$35 = 0 ^ x;
+const tmpArrElement$37 = 0 | x;
+$([
+  NaN,
+  NaN,
+  NaN,
+  NaN,
+  tmpArrElement$7,
+  NaN,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  false,
+  false,
+  false,
+  false,
+  false,
+  true,
+  false,
+  true,
+  0,
+  tmpArrElement$35,
+  tmpArrElement$37,
+]);
+const tmpArrElement$39 = NaN in x;
+const tmpArrElement$41 = NaN instanceof x;
+$([tmpArrElement$39, tmpArrElement$41]);
+`````
+
 ## Pre Normal
 
 
@@ -164,71 +286,7 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:object*/ = {
-  toString() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-x ** 0;
-x ** 0;
-x ** 0;
-x ** 0;
-const tmpArrElement$7 /*:primitive*/ = NaN + x;
-x ** 0;
-const tmpArrElement$11 /*:number*/ = 0 << x;
-const tmpArrElement$13 /*:number*/ = 0 >> x;
-const tmpArrElement$15 /*:number*/ = 0 >>> x;
-x ** 0;
-x ** 0;
-x ** 0;
-x ** 0;
-x ** 0;
-x ** 0;
-x ** 0;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const arr /*:array*/ = [
-  NaN,
-  NaN,
-  NaN,
-  NaN,
-  tmpArrElement$7,
-  NaN,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  false,
-  false,
-  false,
-  false,
-  false,
-  true,
-  false,
-  true,
-  0,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpArrElement$39 /*:boolean*/ = NaN in x;
-const tmpArrElement$41 /*:boolean*/ = NaN instanceof x;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
-$(arr2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -274,7 +332,7 @@ $( l );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'valueOf'
@@ -302,4 +360,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

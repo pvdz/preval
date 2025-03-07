@@ -25,6 +25,58 @@ if (itooamanumberjack) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let itooamanumberjack /*:unknown*/ = undefined;
+if (imanumberandilovethrees) {
+  const tmpChainElementCall /*:unknown*/ = $(1);
+  const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+  if (tmpIfTest) {
+  } else {
+    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
+    itooamanumberjack = tmpChainElementObject;
+  }
+} else {
+  const tmpChainElementCall$1 /*:unknown*/ = $(2);
+  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.x;
+    itooamanumberjack = tmpChainElementObject$1;
+  }
+}
+if (itooamanumberjack) {
+  $(`a`, itooamanumberjack);
+} else {
+  $(`b`, itooamanumberjack);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let itooamanumberjack = undefined;
+if (imanumberandilovethrees) {
+  const tmpChainElementCall = $(1);
+  if (!(tmpChainElementCall == null)) {
+    itooamanumberjack = tmpChainElementCall.x;
+  }
+} else {
+  const tmpChainElementCall$1 = $(2);
+  if (!(tmpChainElementCall$1 == null)) {
+    itooamanumberjack = tmpChainElementCall$1.x;
+  }
+}
+if (itooamanumberjack) {
+  $(`a`, itooamanumberjack);
+} else {
+  $(`b`, itooamanumberjack);
+}
+`````
+
 ## Pre Normal
 
 
@@ -75,37 +127,7 @@ if (itooamanumberjack) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-let itooamanumberjack /*:unknown*/ = undefined;
-if (imanumberandilovethrees) {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-    itooamanumberjack = tmpChainElementObject;
-  }
-} else {
-  const tmpChainElementCall$1 /*:unknown*/ = $(2);
-  const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.x;
-    itooamanumberjack = tmpChainElementObject$1;
-  }
-}
-if (itooamanumberjack) {
-  $(`a`, itooamanumberjack);
-} else {
-  $(`b`, itooamanumberjack);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -146,7 +168,7 @@ BAD@! Found 1 implicit global bindings:
 
 imanumberandilovethrees
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -155,4 +177,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

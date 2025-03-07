@@ -25,6 +25,52 @@ $(g());
 $(g());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpFuncLock /*:boolean*/ = true;
+const g /*:()=>unknown*/ = function () {
+  debugger;
+  if (tmpFuncLock) {
+    $(`call me once`);
+    if (tmpFuncLock) {
+      tmpFuncLock = false;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpFuncLock = true;
+const g = function () {
+  if (tmpFuncLock) {
+    $(`call me once`);
+    if (tmpFuncLock) {
+      tmpFuncLock = false;
+    }
+  } else {
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
 ## Pre Normal
 
 
@@ -71,33 +117,7 @@ const tmpCalleeParam$1 = g();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpFuncLock /*:boolean*/ = true;
-const g /*:()=>unknown*/ = function () {
-  debugger;
-  if (tmpFuncLock) {
-    $(`call me once`);
-    if (tmpFuncLock) {
-      tmpFuncLock = false;
-      return undefined;
-    } else {
-      return undefined;
-    }
-  } else {
-    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
-  }
-};
-g();
-$(undefined);
-g();
-$(undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -128,7 +148,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'call me once'
@@ -139,4 +159,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

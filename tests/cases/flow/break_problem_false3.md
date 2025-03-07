@@ -49,6 +49,30 @@ let f = function () {
 f();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest$3 /*:unknown*/ = $(false);
+if (tmpIfTest$3) {
+  const $dlr_$$1 /*:array*/ = [];
+  $($dlr_$$1);
+} else {
+  $(`pass`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(false)) {
+  $([]);
+} else {
+  $(`pass`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -147,21 +171,7 @@ let f = function () {
 f();
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest$3 /*:unknown*/ = $(false);
-if (tmpIfTest$3) {
-  const $dlr_$$1 /*:array*/ = [];
-  $($dlr_$$1);
-} else {
-  $(`pass`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -179,7 +189,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false
@@ -190,7 +200,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - drop unused rest param?

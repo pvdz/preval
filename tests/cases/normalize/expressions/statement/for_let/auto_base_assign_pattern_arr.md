@@ -16,6 +16,34 @@ for (let xyz = ([b] = $([$(2)])); ; $(1)) $(xyz);
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpArrElement /*:unknown*/ = $(2);
+const tmpCalleeParam /*:array*/ = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+arrPatternSplat[0];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(tmpNestedAssignArrPatternRhs);
+  $(1);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpArrElement = $(2);
+const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
+[...tmpNestedAssignArrPatternRhs][0];
+while (true) {
+  $(tmpNestedAssignArrPatternRhs);
+  $(1);
+}
+`````
+
 ## Pre Normal
 
 
@@ -51,23 +79,7 @@ while (true) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpArrElement /*:unknown*/ = $(2);
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpNestedAssignArrPatternRhs);
-  $(1);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +98,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -121,7 +133,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

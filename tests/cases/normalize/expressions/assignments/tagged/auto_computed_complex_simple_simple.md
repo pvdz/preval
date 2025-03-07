@@ -15,6 +15,32 @@ $(a)["b"] = 2;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:unknown*/ = $(1);
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const a /*:object*/ = { b: tmpObjLitVal };
+$(tmpCalleeParam, a);
+const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+tmpAssignMemLhsObj.b = 2;
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpObjLitVal = $(1);
+const tmpCalleeParam = [`before `, ` after`];
+const a = { b: tmpObjLitVal };
+$(tmpCalleeParam, a);
+const tmpAssignMemLhsObj = $(a);
+tmpAssignMemLhsObj.b = 2;
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -40,21 +66,7 @@ tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-const a /*:object*/ = { b: tmpObjLitVal };
-$(tmpCalleeParam, a);
-const tmpAssignMemLhsObj /*:unknown*/ = $(a);
-tmpAssignMemLhsObj.b = 2;
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -71,7 +83,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -84,4 +96,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -17,6 +17,34 @@ $(!a);
 $(!a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothLhs /*:unknown*/ = $(1);
+const tmpBinBothRhs /*:unknown*/ = $(2);
+const a /*:boolean*/ = tmpBinBothLhs !== tmpBinBothRhs;
+$(a);
+const tmpBinBothLhs$1 /*:unknown*/ = $(1);
+const tmpBinBothRhs$1 /*:unknown*/ = $(2);
+const b /*:boolean*/ = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
+$(b);
+$(a);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = $(1) !== $(2);
+$(a);
+const tmpBinBothLhs$1 = $(1);
+$(tmpBinBothLhs$1 !== $(2));
+$(a);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -49,24 +77,7 @@ const tmpCalleeParam$5 = !a;
 $(tmpCalleeParam$5);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinBothLhs /*:unknown*/ = $(1);
-const tmpBinBothRhs /*:unknown*/ = $(2);
-const a /*:boolean*/ = tmpBinBothLhs !== tmpBinBothRhs;
-$(a);
-const tmpBinBothLhs$1 /*:unknown*/ = $(1);
-const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-const b /*:boolean*/ = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
-$(b);
-$(a);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -86,7 +97,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1
@@ -103,4 +114,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

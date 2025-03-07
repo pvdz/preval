@@ -17,6 +17,39 @@ if (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(NaN);
+if (x) {
+  $(`truthy`, ...x);
+} else {
+  const tmpIfTest /*:boolean*/ = x === ``;
+  if (tmpIfTest) {
+    $(`falsy`);
+  } else {
+    throw `Preval: Attempting to spread primitive that is not an empty string`;
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $(NaN);
+if (x) {
+  $(`truthy`, ...x);
+} else {
+  if (x === ``) {
+    $(`falsy`);
+  } else {
+    throw `Preval: Attempting to spread primitive that is not an empty string`;
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -41,25 +74,7 @@ if (x) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(NaN);
-if (x) {
-  $(`truthy`, ...x);
-} else {
-  const tmpIfTest /*:boolean*/ = x === ``;
-  if (tmpIfTest) {
-    $(`falsy`);
-  } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -82,7 +97,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: NaN
@@ -92,4 +107,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

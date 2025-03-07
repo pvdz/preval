@@ -15,6 +15,21 @@ function f([x = $('pass')]) {
 $(f('', 200));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
+$(tmpClusterSSA_x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$($(`pass`));
+`````
+
 ## Pre Normal
 
 
@@ -52,16 +67,7 @@ const tmpCalleeParam = f(``, 200);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
-$(tmpClusterSSA_x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -73,7 +79,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'
@@ -84,7 +90,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -20,6 +20,36 @@ switch (1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpClusterSSA_b /*:object*/ = { x: 1 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(tmpClusterSSA_b);
+const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
+const tmpClusterSSA_c /*:object*/ = { y: 2 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_c);
+const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+$(3, tmpClusterSSA_b, tmpClusterSSA_c, 3);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpClusterSSA_b = { x: 1 };
+const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
+const tmpNestedAssignComMemberProp = $(`x`);
+const tmpClusterSSA_c = { y: 2 };
+const varInitAssignLhsComputedObj = $(tmpClusterSSA_c);
+const varInitAssignLhsComputedProp = $(`y`);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
+$(3, tmpClusterSSA_b, tmpClusterSSA_c, 3);
+`````
+
 ## Pre Normal
 
 
@@ -68,23 +98,7 @@ if (tmpIfTest) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(tmpClusterSSA_b);
-const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const tmpClusterSSA_c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-$(3, tmpClusterSSA_b, tmpClusterSSA_c, 3);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -103,7 +117,7 @@ $( 3, a, d, 3 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -117,4 +131,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

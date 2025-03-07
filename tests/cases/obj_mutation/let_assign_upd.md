@@ -18,6 +18,48 @@ do {
 $(blob);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let blob /*:object*/ = { thing: `woop`, xyz: 1 };
+$(blob);
+const tmpBinLhs$1 /*:unknown*/ = blob.xyz;
+const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
+if (tmpIfTest) {
+  while ($LOOP_UNROLL_10) {
+    blob = { thing: `woop`, xyz: 1 };
+    $(blob);
+    const tmpBinLhs$2 /*:unknown*/ = blob.xyz;
+    const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$2 < 10;
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(blob);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let blob = { thing: `woop`, xyz: 1 };
+$(blob);
+if (blob.xyz < 10) {
+  while (true) {
+    blob = { thing: `woop`, xyz: 1 };
+    $(blob);
+    if (!(blob.xyz < 10)) {
+      break;
+    }
+  }
+}
+$(blob);
+`````
+
 ## Pre Normal
 
 
@@ -59,32 +101,7 @@ while (true) {
 $(blob);
 `````
 
-## Output
-
-
-`````js filename=intro
-let blob /*:object*/ = { thing: `woop`, xyz: 1 };
-$(blob);
-const tmpBinLhs$1 /*:unknown*/ = blob.xyz;
-const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
-if (tmpIfTest) {
-  while ($LOOP_UNROLL_10) {
-    blob = { thing: `woop`, xyz: 1 };
-    $(blob);
-    const tmpBinLhs$2 /*:unknown*/ = blob.xyz;
-    const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$2 < 10;
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(blob);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -119,7 +136,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { thing: '"woop"', xyz: '1' }
@@ -154,7 +171,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

@@ -14,6 +14,28 @@ $`before ${(a = function () {})} after`;
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:()=>unknown*/ = function () {
+  debugger;
+  return undefined;
+};
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+$(tmpCalleeParam, a);
+$(a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = function () {};
+$([`before `, ` after`], a);
+$(a);
+`````
+
 ## Pre Normal
 
 
@@ -43,21 +65,7 @@ $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:()=>unknown*/ = function () {
-  debugger;
-  return undefined;
-};
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, a);
-$(a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +82,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['before ', ' after'], '<function>'
@@ -85,4 +93,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

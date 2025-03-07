@@ -23,6 +23,20 @@ while (true) {
 $(str);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`);
+`````
+
 ## Pre Normal
 
 
@@ -55,15 +69,7 @@ while (true) {
 $(str);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -74,7 +80,7 @@ $( "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
@@ -84,7 +90,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - Support this node type in isFree: TemplateLiteral

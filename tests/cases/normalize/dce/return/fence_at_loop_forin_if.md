@@ -34,6 +34,80 @@ function f() {
 $(f());
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpCalleeParam$1 /*:unknown*/ = undefined;
+$inlinedFunction: {
+  while (true) {
+    const tmpIfTest /*:unknown*/ = $(true);
+    if (tmpIfTest) {
+      $(`loop`);
+      const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+      const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+      const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
+      if (tmpIfTest$1) {
+        $(`after (not invoked but should not be eliminated)`);
+      } else {
+        const x /*:unknown*/ = tmpForInNext.value;
+        $(`loop`, x);
+        const tmpIfTest$3 /*:unknown*/ = $(1, `if`);
+        if (tmpIfTest$3) {
+          $(`pass`);
+          const tmpReturnArg /*:unknown*/ = $(100, `return`);
+          tmpCalleeParam$1 = tmpReturnArg;
+          break $inlinedFunction;
+        } else {
+          $(`do not visit`);
+          const tmpReturnArg$1 /*:unknown*/ = $(101, `return`);
+          tmpCalleeParam$1 = tmpReturnArg$1;
+          break $inlinedFunction;
+        }
+      }
+    } else {
+      break;
+    }
+  }
+  $(`after (not invoked)`);
+}
+$(tmpCalleeParam$1);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let tmpCalleeParam$1 = undefined;
+$inlinedFunction: {
+  while (true) {
+    if ($(true)) {
+      $(`loop`);
+      const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+      if (tmpForInNext.done) {
+        $(`after (not invoked but should not be eliminated)`);
+      } else {
+        $(`loop`, tmpForInNext.value);
+        if ($(1, `if`)) {
+          $(`pass`);
+          tmpCalleeParam$1 = $(100, `return`);
+          break $inlinedFunction;
+        } else {
+          $(`do not visit`);
+          tmpCalleeParam$1 = $(101, `return`);
+          break $inlinedFunction;
+        }
+      }
+    } else {
+      break;
+    }
+  }
+  $(`after (not invoked)`);
+}
+$(tmpCalleeParam$1);
+`````
+
 ## Pre Normal
 
 
@@ -117,49 +191,7 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
-## Output
-
-
-`````js filename=intro
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
-$inlinedFunction: {
-  while (true) {
-    const tmpIfTest /*:unknown*/ = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-      const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
-      const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
-      if (tmpIfTest$1) {
-        $(`after (not invoked but should not be eliminated)`);
-      } else {
-        const x /*:unknown*/ = tmpForInNext.value;
-        $(`loop`, x);
-        const tmpIfTest$3 /*:unknown*/ = $(1, `if`);
-        if (tmpIfTest$3) {
-          $(`pass`);
-          const tmpReturnArg /*:unknown*/ = $(100, `return`);
-          tmpCalleeParam$1 = tmpReturnArg;
-          break $inlinedFunction;
-        } else {
-          $(`do not visit`);
-          const tmpReturnArg$1 /*:unknown*/ = $(101, `return`);
-          tmpCalleeParam$1 = tmpReturnArg$1;
-          break $inlinedFunction;
-        }
-      }
-    } else {
-      break;
-    }
-  }
-  $(`after (not invoked)`);
-}
-$(tmpCalleeParam$1);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -210,7 +242,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -226,4 +258,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

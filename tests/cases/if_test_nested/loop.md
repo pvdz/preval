@@ -21,6 +21,30 @@ if (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $();
+if (x) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $(`round and`);
+  }
+} else {
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($()) {
+  while (true) {
+    $(`round and`);
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -54,21 +78,7 @@ if (x) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $();
-if (x) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(`round and`);
-  }
-} else {
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -84,7 +94,7 @@ if (a) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -94,4 +104,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

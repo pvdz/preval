@@ -14,6 +14,24 @@ const y = $spy('b');
 200..toFixed(x, y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $spy(`a`);
+$spy(`b`);
+$coerce(x, `number`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const x = $spy(`a`);
+$spy(`b`);
+$coerce(x, `number`);
+`````
+
 ## Pre Normal
 
 
@@ -32,17 +50,7 @@ const y = $spy(`b`);
 $coerce(x, `number`);
 `````
 
-## Output
-
-
-`````js filename=intro
-const x /*:unknown*/ = $spy(`a`);
-$spy(`b`);
-$coerce(x, `number`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -55,7 +63,7 @@ $coerce( a, "number" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']
@@ -67,4 +75,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

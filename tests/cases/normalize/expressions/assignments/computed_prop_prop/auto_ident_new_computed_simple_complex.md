@@ -17,6 +17,30 @@ obj[(a = new b[$("$")](1))];
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCompProp$1 /*:unknown*/ = $(`\$`);
+const b /*:object*/ = { $: $ };
+const tmpNewCallee /*:unknown*/ = b[tmpCompProp$1];
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+const obj /*:object*/ = {};
+obj[tmpClusterSSA_a];
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpCompProp$1 = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCompProp$1];
+const tmpClusterSSA_a = new tmpNewCallee(1);
+({}[tmpClusterSSA_a]);
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -45,21 +69,7 @@ tmpCompObj[tmpCompProp];
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpCompProp$1 /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp$1];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const obj /*:object*/ = {};
-obj[tmpClusterSSA_a];
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -76,7 +86,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '$'
@@ -88,4 +98,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

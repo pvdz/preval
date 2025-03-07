@@ -15,6 +15,23 @@ const y = Number(x, 1, "twee");
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(`a`);
+const x /*:number*/ = +a;
+$(x);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const a = $(`a`);
+$(+a);
+`````
+
 ## Pre Normal
 
 
@@ -37,17 +54,7 @@ const y = $coerce(tmpStringFirstArg, `number`);
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(`a`);
-const x /*:number*/ = +a;
-$(x);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -60,7 +67,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -71,4 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

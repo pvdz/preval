@@ -45,6 +45,145 @@ const arr2 = [
 $(arr2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinLhs /*:object*/ = {};
+const x /*:object*/ = {
+  toString() {
+    debugger;
+    const tmpReturnArg /*:unknown*/ = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    debugger;
+    $(`valueOf`);
+    return 100;
+  },
+};
+const tmpArrElement /*:number*/ = tmpBinLhs ** x;
+const tmpBinLhs$1 /*:object*/ = {};
+const tmpArrElement$1 /*:number*/ = tmpBinLhs$1 * x;
+const tmpBinLhs$3 /*:object*/ = {};
+const tmpArrElement$3 /*:number*/ = tmpBinLhs$3 / x;
+const tmpBinLhs$5 /*:object*/ = {};
+const tmpArrElement$5 /*:number*/ = tmpBinLhs$5 % x;
+const tmpBinLhs$7 /*:object*/ = {};
+const tmpArrElement$7 /*:primitive*/ = tmpBinLhs$7 + x;
+const tmpBinLhs$9 /*:object*/ = {};
+const tmpArrElement$9 /*:number*/ = tmpBinLhs$9 - x;
+const tmpBinLhs$11 /*:object*/ = {};
+const tmpArrElement$11 /*:number*/ = tmpBinLhs$11 << x;
+const tmpBinLhs$13 /*:object*/ = {};
+const tmpArrElement$13 /*:number*/ = tmpBinLhs$13 >> x;
+const tmpBinLhs$15 /*:object*/ = {};
+const tmpArrElement$15 /*:number*/ = tmpBinLhs$15 >>> x;
+const tmpBinLhs$17 /*:object*/ = {};
+const tmpArrElement$17 /*:boolean*/ = tmpBinLhs$17 < x;
+const tmpBinLhs$19 /*:object*/ = {};
+const tmpArrElement$19 /*:boolean*/ = tmpBinLhs$19 > x;
+const tmpBinLhs$21 /*:object*/ = {};
+const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
+const tmpBinLhs$23 /*:object*/ = {};
+const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
+const tmpBinLhs$33 /*:object*/ = {};
+const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
+const tmpBinLhs$35 /*:object*/ = {};
+const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
+const tmpBinLhs$37 /*:object*/ = {};
+const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
+const arr /*:array*/ = [
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  false,
+  true,
+  false,
+  true,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+const tmpBinLhs$39 /*:object*/ = {};
+const tmpBinLhs$41 /*:object*/ = {};
+const tmpArrElement$39 /*:boolean*/ = tmpBinLhs$39 in x;
+const tmpArrElement$41 /*:boolean*/ = tmpBinLhs$41 instanceof x;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+$(arr2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinLhs = {};
+const x = {
+  toString() {
+    const tmpReturnArg = $(`toString`);
+    return tmpReturnArg;
+  },
+  valueOf() {
+    $(`valueOf`);
+    return 100;
+  },
+};
+const tmpArrElement = tmpBinLhs ** x;
+const tmpArrElement$1 = {} * x;
+const tmpArrElement$3 = {} / x;
+const tmpArrElement$5 = {} % x;
+const tmpArrElement$7 = {} + x;
+const tmpArrElement$9 = {} - x;
+const tmpArrElement$11 = {} << x;
+const tmpArrElement$13 = {} >> x;
+const tmpArrElement$15 = {} >>> x;
+const tmpArrElement$17 = {} < x;
+const tmpArrElement$19 = {} > x;
+const tmpArrElement$21 = {} <= x;
+const tmpArrElement$23 = {} >= x;
+const tmpArrElement$33 = {} & x;
+const tmpArrElement$35 = {} ^ x;
+const tmpArrElement$37 = {} | x;
+$([
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  false,
+  true,
+  false,
+  true,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+]);
+const tmpBinLhs$39 = {};
+const tmpBinLhs$41 = {};
+const tmpArrElement$39 = tmpBinLhs$39 in x;
+const tmpArrElement$41 = tmpBinLhs$41 instanceof x;
+$([tmpArrElement$39, tmpArrElement$41]);
+`````
+
 ## Pre Normal
 
 
@@ -174,87 +313,7 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpBinLhs /*:object*/ = {};
-const x /*:object*/ = {
-  toString() {
-    debugger;
-    const tmpReturnArg /*:unknown*/ = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-const tmpArrElement /*:number*/ = tmpBinLhs ** x;
-const tmpBinLhs$1 /*:object*/ = {};
-const tmpArrElement$1 /*:number*/ = tmpBinLhs$1 * x;
-const tmpBinLhs$3 /*:object*/ = {};
-const tmpArrElement$3 /*:number*/ = tmpBinLhs$3 / x;
-const tmpBinLhs$5 /*:object*/ = {};
-const tmpArrElement$5 /*:number*/ = tmpBinLhs$5 % x;
-const tmpBinLhs$7 /*:object*/ = {};
-const tmpArrElement$7 /*:primitive*/ = tmpBinLhs$7 + x;
-const tmpBinLhs$9 /*:object*/ = {};
-const tmpArrElement$9 /*:number*/ = tmpBinLhs$9 - x;
-const tmpBinLhs$11 /*:object*/ = {};
-const tmpArrElement$11 /*:number*/ = tmpBinLhs$11 << x;
-const tmpBinLhs$13 /*:object*/ = {};
-const tmpArrElement$13 /*:number*/ = tmpBinLhs$13 >> x;
-const tmpBinLhs$15 /*:object*/ = {};
-const tmpArrElement$15 /*:number*/ = tmpBinLhs$15 >>> x;
-const tmpBinLhs$17 /*:object*/ = {};
-const tmpArrElement$17 /*:boolean*/ = tmpBinLhs$17 < x;
-const tmpBinLhs$19 /*:object*/ = {};
-const tmpArrElement$19 /*:boolean*/ = tmpBinLhs$19 > x;
-const tmpBinLhs$21 /*:object*/ = {};
-const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
-const tmpBinLhs$23 /*:object*/ = {};
-const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
-const tmpBinLhs$33 /*:object*/ = {};
-const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
-const tmpBinLhs$35 /*:object*/ = {};
-const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
-const tmpBinLhs$37 /*:object*/ = {};
-const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
-const arr /*:array*/ = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  false,
-  true,
-  false,
-  true,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpBinLhs$39 /*:object*/ = {};
-const tmpBinLhs$41 /*:object*/ = {};
-const tmpArrElement$39 /*:boolean*/ = tmpBinLhs$39 in x;
-const tmpArrElement$41 /*:boolean*/ = tmpBinLhs$41 instanceof x;
-const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
-$(arr2);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -316,7 +375,7 @@ $( bn );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'valueOf'
@@ -342,4 +401,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

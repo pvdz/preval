@@ -28,6 +28,37 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr[0]);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const x /*:primitive*/ = arr[0];
+  $(x);
+  const y /*:number*/ = parseInt(x);
+  if (y) {
+    const el /*:unknown*/ = arr.shift();
+    arr.push(el);
+  } else {
+  }
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
+while (true) {
+  const x = arr[0];
+  $(x);
+  if (parseInt(x)) {
+    arr.push(arr.shift());
+  }
+}
+`````
+
 ## Pre Normal
 
 
@@ -71,25 +102,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x /*:primitive*/ = arr[0];
-  $(x);
-  const y /*:number*/ = parseInt(x);
-  if (y) {
-    const el /*:unknown*/ = arr.shift();
-    arr.push(el);
-  } else {
-  }
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -109,7 +122,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a'
@@ -144,7 +157,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

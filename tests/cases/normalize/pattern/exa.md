@@ -22,6 +22,48 @@ var {
 } = foo();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpAssignObjPatternRhs /*:unknown*/ = foo();
+const objPatternNoDefault /*:unknown*/ = tmpAssignObjPatternRhs.val_1_1;
+objPatternNoDefault.val_2_1;
+const tmpCalleeParam$1 /*:array*/ = [`val_2_1`];
+val_2_rest = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+tmpAssignObjPatternRhs.val_1_2;
+const objPatternNoDefault$1 /*:unknown*/ = tmpAssignObjPatternRhs.val_1_3;
+const arrPatternSplat /*:array*/ = [...objPatternNoDefault$1];
+arrPatternSplat[0];
+arrPatternSplat[1];
+const arrPatternStep /*:unknown*/ = arrPatternSplat[2];
+arrPatternStep.val_3_1;
+const tmpCalleeParam$5 /*:array*/ = [`val_3_1`];
+val_3_rest = objPatternRest(arrPatternStep, tmpCalleeParam$5, undefined);
+arrPatternSplat[3];
+tmpAssignObjPatternRhs.val_1_4;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpAssignObjPatternRhs = foo();
+const objPatternNoDefault = tmpAssignObjPatternRhs.val_1_1;
+objPatternNoDefault.val_2_1;
+val_2_rest = objPatternRest(objPatternNoDefault, [`val_2_1`], undefined);
+tmpAssignObjPatternRhs.val_1_2;
+const objPatternNoDefault$1 = tmpAssignObjPatternRhs.val_1_3;
+const arrPatternSplat = [...objPatternNoDefault$1];
+arrPatternSplat[0];
+arrPatternSplat[1];
+const arrPatternStep = arrPatternSplat[2];
+arrPatternStep.val_3_1;
+val_3_rest = objPatternRest(arrPatternStep, [`val_3_1`], undefined);
+arrPatternSplat[3];
+tmpAssignObjPatternRhs.val_1_4;
+`````
+
 ## Pre Normal
 
 
@@ -72,30 +114,7 @@ arr_4 = arrPatternSplat[3];
 val_1_4 = tmpAssignObjPatternRhs.val_1_4;
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs /*:unknown*/ = foo();
-const objPatternNoDefault /*:unknown*/ = tmpAssignObjPatternRhs.val_1_1;
-objPatternNoDefault.val_2_1;
-const tmpCalleeParam$1 /*:array*/ = [`val_2_1`];
-val_2_rest = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
-tmpAssignObjPatternRhs.val_1_2;
-const objPatternNoDefault$1 /*:unknown*/ = tmpAssignObjPatternRhs.val_1_3;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault$1];
-arrPatternSplat[0];
-arrPatternSplat[1];
-const arrPatternStep /*:unknown*/ = arrPatternSplat[2];
-arrPatternStep.val_3_1;
-const tmpCalleeParam$5 /*:array*/ = [`val_3_1`];
-val_3_rest = objPatternRest(arrPatternStep, tmpCalleeParam$5, undefined);
-arrPatternSplat[3];
-tmpAssignObjPatternRhs.val_1_4;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -123,7 +142,7 @@ BAD@! Found 3 implicit global bindings:
 
 foo, val_2_rest, val_3_rest
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -132,7 +151,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

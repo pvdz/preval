@@ -20,6 +20,20 @@ let x = function (a, b) {
 x(undefined, {x: 1});
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `Preval: This statement contained a read that reached no writes: propTDZ;`;
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+throw `Preval: This statement contained a read that reached no writes: propTDZ;`;
+`````
+
 ## Pre Normal
 
 
@@ -58,15 +72,7 @@ const tmpCalleeParam = { x: 1 };
 tmpCallCallee(undefined, tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-throw `Preval: This statement contained a read that reached no writes: propTDZ;`;
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -77,7 +83,7 @@ throw "Preval: This statement contained a read that reached no writes: propTDZ;"
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
@@ -86,4 +92,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

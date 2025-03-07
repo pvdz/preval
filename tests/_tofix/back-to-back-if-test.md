@@ -27,6 +27,25 @@ if (x) {
 }
 `````
 
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+x = !tmpUnaryArg;
+x = !tmpUnaryArg;
+if (tmpUnaryArg) {
+  $(`b`);
+  x = true;
+} else {
+  $(`a`);
+}
+if (x) {
+  $(`d`);
+} else {
+  $(`c`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -63,7 +82,7 @@ if (x) {
 }
 `````
 
-## Output
+## Settled
 
 
 `````js filename=intro
@@ -83,8 +102,7 @@ if (x) {
 }
 `````
 
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,4 +139,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

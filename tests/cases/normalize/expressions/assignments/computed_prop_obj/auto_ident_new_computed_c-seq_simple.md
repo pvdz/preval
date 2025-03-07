@@ -17,6 +17,28 @@ let obj = {};
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const b /*:object*/ = { $: $ };
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpNewCallee /*:unknown*/ = tmpCompObj$1.$;
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+tmpClusterSSA_a.a;
+$(tmpClusterSSA_a);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpNewCallee = $({ $: $ }).$;
+const tmpClusterSSA_a = new tmpNewCallee(1);
+tmpClusterSSA_a.a;
+$(tmpClusterSSA_a);
+`````
+
 ## Pre Normal
 
 
@@ -43,20 +65,7 @@ tmpCompObj.a;
 $(a);
 `````
 
-## Output
-
-
-`````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCompObj$1 /*:unknown*/ = $(b);
-const tmpNewCallee /*:unknown*/ = tmpCompObj$1.$;
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-tmpClusterSSA_a.a;
-$(tmpClusterSSA_a);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -72,7 +81,7 @@ $( d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -84,4 +93,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -31,6 +31,35 @@ if (THIS_IS_BOOL) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpUnaryArg /*:unknown*/ = $(tmpBool);
+if (tmpUnaryArg) {
+  $(`b`);
+  $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+if ($(Boolean($(true)))) {
+  $(`b`);
+  $(`c`);
+} else {
+  $(`a`);
+  $(`d`);
+}
+`````
+
 ## Pre Normal
 
 
@@ -83,24 +112,7 @@ if (THIS_IS_BOOL) {
 }
 `````
 
-## Output
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
-const tmpUnaryArg /*:unknown*/ = $(tmpBool);
-if (tmpUnaryArg) {
-  $(`b`);
-  $(`c`);
-} else {
-  $(`a`);
-  $(`d`);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -121,7 +133,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true
@@ -134,4 +146,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

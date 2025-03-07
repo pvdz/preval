@@ -15,6 +15,30 @@ const method = /foo/; // Nevermind that it's not callable
 $dotCall(method, obj, undefined);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:()=>unknown*/ = function () {
+  debugger;
+  $();
+  return undefined;
+};
+const method /*:regex*/ = /foo/;
+const obj /*:object*/ = { f: g };
+$dotCall(method, obj, undefined);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const g = function () {
+  $();
+};
+$dotCall(/foo/, { f: g }, undefined);
+`````
+
 ## Pre Normal
 
 
@@ -42,22 +66,7 @@ const method = /foo/;
 $dotCall(method, obj, undefined);
 `````
 
-## Output
-
-
-`````js filename=intro
-const g /*:()=>unknown*/ = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const method /*:regex*/ = /foo/;
-const obj /*:object*/ = { f: g };
-$dotCall(method, obj, undefined);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -75,7 +84,7 @@ $dotCall( b, c, undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -84,4 +93,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

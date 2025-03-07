@@ -13,6 +13,32 @@ const y = (1, 2, $())??foo
 $(y);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const y /*:unknown*/ = $();
+const tmpIfTest /*:boolean*/ = y == null;
+if (tmpIfTest) {
+  const tmpClusterSSA_y /*:unknown*/ = foo;
+  $(tmpClusterSSA_y);
+} else {
+  $(y);
+}
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const y = $();
+if (y == null) {
+  $(foo);
+} else {
+  $(y);
+}
+`````
+
 ## Pre Normal
 
 
@@ -34,22 +60,7 @@ if (tmpIfTest) {
 $(y);
 `````
 
-## Output
-
-
-`````js filename=intro
-const y /*:unknown*/ = $();
-const tmpIfTest /*:boolean*/ = y == null;
-if (tmpIfTest) {
-  const tmpClusterSSA_y /*:unknown*/ = foo;
-  $(tmpClusterSSA_y);
-} else {
-  $(y);
-}
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -70,7 +81,7 @@ BAD@! Found 1 implicit global bindings:
 
 foo
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 
@@ -80,4 +91,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

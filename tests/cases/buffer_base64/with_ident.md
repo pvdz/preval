@@ -20,6 +20,32 @@ $(f); // Do not inline the func
 $(f("cGF0aA")); // path
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown)=>string*/ = function ($$0) {
+  const x /*:unknown*/ = $$0;
+  debugger;
+  const tmp /*:buffer*/ = $Buffer_from(x, `base64`);
+  const tmp2 /*:string*/ = tmp.toString(`utf8`);
+  return tmp2;
+};
+$(f);
+$(`path`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(function (x) {
+  const tmp2 = $Buffer_from(x, `base64`).toString(`utf8`);
+  return tmp2;
+});
+$(`path`);
+`````
+
 ## Pre Normal
 
 
@@ -52,23 +78,7 @@ const tmpCalleeParam = f(`cGF0aA`);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const f /*:(unknown)=>string*/ = function ($$0) {
-  const x /*:unknown*/ = $$0;
-  debugger;
-  const tmp /*:buffer*/ = $Buffer_from(x, `base64`);
-  const tmp2 /*:string*/ = tmp.toString(`utf8`);
-  return tmp2;
-};
-$(f);
-$(`path`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -87,7 +97,7 @@ $( "path" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'
@@ -98,7 +108,9 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Buffer_from

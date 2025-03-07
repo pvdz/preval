@@ -16,6 +16,22 @@ const o = {
 $(o.f("200", 15));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const o /*:object*/ = { f: $ };
+const tmpCalleeParam /*:unknown*/ = o.f(`200`, 15);
+$(tmpCalleeParam);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$({ f: $ }.f(`200`, 15));
+`````
+
 ## Pre Normal
 
 
@@ -33,17 +49,7 @@ const tmpCalleeParam = o.f(`200`, 15);
 $(tmpCalleeParam);
 `````
 
-## Output
-
-
-`````js filename=intro
-const o /*:object*/ = { f: $ };
-const tmpCalleeParam /*:unknown*/ = o.f(`200`, 15);
-$(tmpCalleeParam);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -56,7 +62,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '200', 15
@@ -67,4 +73,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

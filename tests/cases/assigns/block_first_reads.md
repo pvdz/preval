@@ -23,6 +23,44 @@ if ($) {
 $(x, 'third read (C)');
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 1;
+if ($) {
+  $(1, `first read (A)`);
+  const tmpIfTest /*:unknown*/ = $();
+  if (tmpIfTest) {
+    x = 2;
+    $(2, `second read (B)`);
+  } else {
+    x = 3;
+    $(3, `second read (B)`);
+  }
+} else {
+}
+$(x, `third read (C)`);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+let x = 1;
+if ($) {
+  $(1, `first read (A)`);
+  if ($()) {
+    x = 2;
+    $(2, `second read (B)`);
+  } else {
+    x = 3;
+    $(3, `second read (B)`);
+  }
+}
+$(x, `third read (C)`);
+`````
+
 ## Pre Normal
 
 
@@ -59,28 +97,7 @@ if ($) {
 $(x, `third read (C)`);
 `````
 
-## Output
-
-
-`````js filename=intro
-let x /*:number*/ = 1;
-if ($) {
-  $(1, `first read (A)`);
-  const tmpIfTest /*:unknown*/ = $();
-  if (tmpIfTest) {
-    x = 2;
-    $(2, `second read (B)`);
-  } else {
-    x = 3;
-    $(3, `second read (B)`);
-  }
-} else {
-}
-$(x, `third read (C)`);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +121,7 @@ $( a, "third read (C)" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'first read (A)'
@@ -117,4 +134,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

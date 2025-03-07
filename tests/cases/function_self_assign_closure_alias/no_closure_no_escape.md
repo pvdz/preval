@@ -22,6 +22,24 @@ $(f(427 + 2));
 $(f(427 + 3));
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(2);
+$(3);
+$(4);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(2);
+$(3);
+$(4);
+`````
+
 ## Pre Normal
 
 
@@ -81,17 +99,7 @@ const tmpCalleeParam$7 = tmpCallCallee$3(tmpCalleeParam$9);
 $(tmpCalleeParam$7);
 `````
 
-## Output
-
-
-`````js filename=intro
-$(2);
-$(3);
-$(4);
-`````
-
-## PST Output
-
+## PST Settled
 With rename=true
 
 `````js filename=intro
@@ -104,7 +112,7 @@ $( 4 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2
@@ -116,4 +124,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Post settled calls: Same
+
+Denormalized calls: Same

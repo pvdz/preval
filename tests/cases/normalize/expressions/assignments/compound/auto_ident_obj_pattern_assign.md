@@ -69,7 +69,7 @@ y = tmpNestedAssignObjPatternRhs.y;
 tmpBinBothRhs = tmpNestedAssignObjPatternRhs;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, x, y);
 `````
 

@@ -21,15 +21,18 @@ $(a, b, c);
 `````js filename=intro
 const a /*:unknown*/ = unknown1;
 const b /*:unknown*/ = unknown2;
-const c /*:unknown*/ = unknown3;
-$(a, b, c);
+unknown3;
+$(a, b, unknown3);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-$(unknown1, unknown2, unknown3);
+const a = unknown1;
+const b = unknown2;
+unknown3;
+$(a, b, unknown3);
 `````
 
 ## Pre Normal
@@ -49,7 +52,7 @@ $(a, b, c);
 const a = unknown1;
 const b = unknown2;
 const c = unknown3;
-$(a, b, c);
+$(a, b, unknown3);
 `````
 
 ## PST Settled
@@ -58,8 +61,8 @@ With rename=true
 `````js filename=intro
 const a = unknown1;
 const b = unknown2;
-const c = unknown3;
-$( a, b, c );
+unknown3;
+$( a, b, unknown3 );
 `````
 
 ## Globals

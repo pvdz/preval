@@ -127,7 +127,7 @@ const x = +tmpUnaryArg;
 if (x) {
   const unknown = $(`abc`);
   const tmpStringFirstArg = unknown;
-  const somestr = $coerce(tmpStringFirstArg, `string`);
+  const somestr = $coerce(unknown, `string`);
   const chr = somestr.charAt(1);
   const tmpIfTest$5 = $frfr(tmpFree, chr, x, chr);
   if (tmpIfTest$5) {

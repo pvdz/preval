@@ -80,7 +80,7 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainElementCall.x;

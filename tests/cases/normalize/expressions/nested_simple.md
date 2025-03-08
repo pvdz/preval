@@ -51,7 +51,7 @@ c = 30;
 b = c;
 a = c;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 `````
 
 ## PST Settled

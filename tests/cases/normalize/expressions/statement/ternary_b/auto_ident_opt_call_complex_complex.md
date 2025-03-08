@@ -66,7 +66,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpChainElementCall = $($);
   const tmpIfTest$1 = tmpChainElementCall != null;
   if (tmpIfTest$1) {
     const tmpCalleeParam = tmpChainElementCall;

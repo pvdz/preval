@@ -115,7 +115,7 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
+const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $(`x`);
@@ -134,7 +134,7 @@ if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$1 = tmpChainRootCall$1(b);
+  const tmpChainElementCall$1 = $(b);
   const tmpIfTest$3 = tmpChainElementCall$1 != null;
   if (tmpIfTest$3) {
     const tmpChainRootComputed$3 = $(`x`);

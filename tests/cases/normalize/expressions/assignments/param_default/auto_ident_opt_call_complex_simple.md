@@ -71,7 +71,7 @@ let f = function ($$0) {
   if (tmpIfTest) {
     let tmpNestedComplexRhs = undefined;
     const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpChainElementCall = $($);
     const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {
       const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);

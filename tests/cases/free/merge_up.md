@@ -125,7 +125,7 @@ const x = +tmpUnaryArg;
 if (x) {
   const unknown = $(`abc`);
   const tmpStringFirstArg = unknown;
-  const somestr = $coerce(tmpStringFirstArg, `string`);
+  const somestr = $coerce(unknown, `string`);
   const tmpStringConcatR = $coerce(somestr, `plustr`);
   const extra = `${tmpStringConcatR}x`;
   const chr = extra.charAt(1);

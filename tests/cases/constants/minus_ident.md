@@ -49,7 +49,7 @@ $(z);
 const x = $(5);
 const y = -x;
 const z = y;
-$(z);
+$(y);
 `````
 
 ## PST Settled

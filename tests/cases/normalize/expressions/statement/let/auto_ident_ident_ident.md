@@ -56,7 +56,7 @@ let c = 2;
 let a = { a: 999, b: 1000 };
 b = 2;
 let xyz = b;
-$(xyz);
+$(b);
 $(a, b, c);
 `````
 

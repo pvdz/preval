@@ -600,7 +600,7 @@ varInitAssignLhsComputedObj$1.b = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj.a = varInitAssignLhsComputedRhs;
 const tmpCalleeParam$3 = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam$3);
+tmpCallCallee(varInitAssignLhsComputedRhs);
 tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````

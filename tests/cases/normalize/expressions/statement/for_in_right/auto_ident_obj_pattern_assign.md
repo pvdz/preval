@@ -99,7 +99,7 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x$1 = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpCalleeParam = tmpNestedAssignObjPatternRhs;
-let tmpForInGen = $forIn(tmpCalleeParam);
+let tmpForInGen = $forIn(tmpNestedAssignObjPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

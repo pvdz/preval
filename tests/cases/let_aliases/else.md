@@ -43,8 +43,7 @@ let x /*:unknown*/ = $(1);
 const a /*:unknown*/ = x;
 if ($) {
 } else {
-  const c /*:unknown*/ = x;
-  $(a, c);
+  $(a, x);
 }
 $(f);
 `````
@@ -111,7 +110,7 @@ const a = x;
 if ($) {
 } else {
   const c = x;
-  $(a, c);
+  $(a, x);
 }
 $(f);
 `````
@@ -136,8 +135,7 @@ if ($) {
 
 }
 else {
-  const e = b;
-  $( d, e );
+  $( d, b );
 }
 $( a );
 `````

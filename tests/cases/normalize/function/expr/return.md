@@ -51,7 +51,7 @@ const g = function () {
   return tmpReturnArg;
 };
 const f = g;
-const tmpCalleeParam = f();
+const tmpCalleeParam = g();
 $(tmpCalleeParam);
 `````
 

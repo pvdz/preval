@@ -76,7 +76,7 @@ let f = function () {
       const tmpPostUpdArgIdent = $coerce(n, `number`);
       n = tmpPostUpdArgIdent + 1;
       const tmpCalleeParam = n;
-      $(tmpCalleeParam);
+      $(n);
       const tmpIfTest = n < 8;
       if (tmpIfTest) {
         break $continue;

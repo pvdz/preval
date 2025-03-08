@@ -54,7 +54,7 @@ const tmpCalleeParam = [`before `, ` after`];
 const tmpUnaryArg = $(100);
 a = !tmpUnaryArg;
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 

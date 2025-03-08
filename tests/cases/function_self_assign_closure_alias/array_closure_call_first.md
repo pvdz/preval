@@ -101,7 +101,7 @@ a = function () {
 const tmpCalleeParam = a();
 $(tmpCalleeParam);
 b = a;
-const tmpCalleeParam$1 = b();
+const tmpCalleeParam$1 = a();
 $(tmpCalleeParam$1);
 const tmpBinBothLhs = a();
 const tmpBinBothRhs = b();

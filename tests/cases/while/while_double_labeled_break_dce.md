@@ -2,7 +2,7 @@
 
 # while_double_labeled_break_dce.md
 
-> Tofix > while double labeled break dce
+> While > While double labeled break dce
 >
 > The while contains a double labeled break and is guaranteed to break to
 > the label. At the time of writing, the $(3) was not DCE'd, preventing

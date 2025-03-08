@@ -131,7 +131,7 @@ let b = { x: 1 };
 while (true) {
   let maybegx = undefined;
   const f = $;
-  const g = f(b);
+  const g = $(b);
   const same = g != null;
   if (same) {
     const x = $(`x`);

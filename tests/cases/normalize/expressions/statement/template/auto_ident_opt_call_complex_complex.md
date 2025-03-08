@@ -63,7 +63,7 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = `before  `;
 let tmpCalleeParam$1 = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall($);
+const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpCalleeParam$3 = tmpChainElementCall;

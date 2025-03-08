@@ -94,7 +94,7 @@ const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
 tmpCalleeParam = tmpNestedAssignArrPatternRhs;
-let tmpForOfGen = $forOf(tmpCalleeParam);
+let tmpForOfGen = $forOf(tmpNestedAssignArrPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

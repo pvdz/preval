@@ -21,18 +21,18 @@ $(a);
 
 
 `````js filename=intro
-const a /*:array*/ = [];
-$(a);
-$(a);
+const tmpClusterSSA_a /*:array*/ = [];
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const a = [];
-$(a);
-$(a);
+const tmpClusterSSA_a = [];
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal

@@ -38,7 +38,7 @@ $(Math.pow(`nope`, `3.2`));
 
 `````js filename=intro
 const tmpCalleeParam = NaN;
-$(tmpCalleeParam);
+$(NaN);
 `````
 
 ## PST Settled

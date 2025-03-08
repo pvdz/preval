@@ -75,7 +75,7 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 a = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
+const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainElementCall.x;

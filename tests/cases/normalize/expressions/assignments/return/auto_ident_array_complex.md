@@ -23,9 +23,9 @@ $(a);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
-const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-$(a);
-$(a);
+const tmpClusterSSA_a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -34,9 +34,9 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$3];
-$(a);
-$(a);
+const tmpClusterSSA_a = [tmpArrElement, 2, tmpArrElement$3];
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal

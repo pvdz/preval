@@ -56,7 +56,7 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 b = 2;
 let tmpCalleeParam$1 = b;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, b);
 $(a, b, c);
 `````
 

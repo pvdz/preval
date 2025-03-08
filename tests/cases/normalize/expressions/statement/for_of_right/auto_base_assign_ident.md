@@ -80,7 +80,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 b = $(2);
 let tmpCalleeParam = b;
-let tmpForOfGen = $forOf(tmpCalleeParam);
+let tmpForOfGen = $forOf(b);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

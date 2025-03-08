@@ -93,7 +93,7 @@ b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-let tmpForOfGen = $forOf(tmpCalleeParam);
+let tmpForOfGen = $forOf(varInitAssignLhsComputedRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

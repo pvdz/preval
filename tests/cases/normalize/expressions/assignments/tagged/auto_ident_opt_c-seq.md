@@ -24,15 +24,13 @@ let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   a = tmpChainElementObject;
-  tmpCalleeParam$1 = tmpChainElementObject;
 }
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 
@@ -42,14 +40,10 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainRootProp = $({ x: 1 });
-const tmpIfTest = tmpChainRootProp == null;
-let tmpCalleeParam$1 = undefined;
-if (!tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpCalleeParam$1 = tmpChainElementObject;
+if (!(tmpChainRootProp == null)) {
+  a = tmpChainRootProp.x;
 }
-$([`before `, ` after`], tmpCalleeParam$1);
+$([`before `, ` after`], a);
 $(a);
 `````
 
@@ -79,7 +73,7 @@ if (tmpIfTest) {
 } else {
 }
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 
@@ -91,17 +85,15 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
+  const e = c.x;
+  a = e;
 }
-const g = [ "before ", " after" ];
-$( g, e );
+const f = [ "before ", " after" ];
+$( f, a );
 $( a );
 `````
 

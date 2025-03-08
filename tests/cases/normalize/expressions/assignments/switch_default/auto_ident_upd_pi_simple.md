@@ -61,7 +61,7 @@ const tmpSwitchDisc = $(1);
 const tmpPostUpdArgIdent = $coerce(b, `number`);
 b = tmpPostUpdArgIdent + 1;
 a = b;
-$(a, b);
+$(b, b);
 `````
 
 ## PST Settled

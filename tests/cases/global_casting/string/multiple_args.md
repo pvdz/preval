@@ -49,7 +49,7 @@ const a = $(`a`);
 const x = $coerce(a, `plustr`);
 const tmpArgOverflow = x;
 const tmpStringFirstArg = tmpArgOverflow;
-const y = $coerce(tmpStringFirstArg, `string`);
+const y = $coerce(tmpArgOverflow, `string`);
 $(y);
 `````
 

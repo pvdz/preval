@@ -37,7 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpPostUpdArgIdent /*:number*/ = $coerce(c, `number`);
     c = tmpPostUpdArgIdent - 1;
     flag = c;
-    $(`--c`, flag);
+    $(`--c`, c);
   } else {
     break;
   }
@@ -58,7 +58,7 @@ while (true) {
   if (flag < 10) {
     c = $coerce(c, `number`) - 1;
     flag = c;
-    $(`--c`, flag);
+    $(`--c`, c);
   } else {
     break;
   }
@@ -105,7 +105,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpPostUpdArgIdent = $coerce(c, `number`);
     c = tmpPostUpdArgIdent - 1;
     flag = c;
-    $(`--c`, flag);
+    $(`--c`, c);
   } else {
     break;
   }
@@ -130,7 +130,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const e = $coerce( c, "number" );
     c = e - 1;
     b = c;
-    $( "--c", b );
+    $( "--c", c );
   }
   else {
     break;

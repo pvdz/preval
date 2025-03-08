@@ -163,13 +163,13 @@ const f = function ($$0) {
 const x = $(`co_rn`);
 const tmpCallCallee = f;
 const tmpStringFirstArg = x;
-const tmpCalleeParam$1 = $coerce(tmpStringFirstArg, `string`);
+const tmpCalleeParam$1 = $coerce(x, `string`);
 const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
 $(tmpCalleeParam);
 const y = $(`m#az#e`);
 const tmpCallCallee$1 = f;
 const tmpStringFirstArg$1 = y;
-const tmpCalleeParam$5 = $coerce(tmpStringFirstArg$1, `string`);
+const tmpCalleeParam$5 = $coerce(y, `string`);
 const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
 $(tmpCalleeParam$3);
 `````

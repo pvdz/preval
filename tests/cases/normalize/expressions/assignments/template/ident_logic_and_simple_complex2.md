@@ -105,7 +105,7 @@ if (a) {
 } else {
 }
 let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
+const tmpBinBothRhs = $coerce(a, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;

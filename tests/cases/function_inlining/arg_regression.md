@@ -138,7 +138,7 @@ let f = function () {
     debugger;
     let x$2 = x0$1;
     let tmpIfTest$2 = x1$1;
-    const tmpReturnArg$1 = tmpBranchingC(x$2, tmpIfTest$2);
+    const tmpReturnArg$1 = tmpBranchingC(x$2, x1$1);
     return tmpReturnArg$1;
   };
   const tmpBranchingC = function ($$0, $$1) {

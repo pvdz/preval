@@ -64,7 +64,7 @@ const tmpCallCompProp = $(`\$`);
 const tmpBinBothRhs = tmpCallCompObj[tmpCallCompProp](1);
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

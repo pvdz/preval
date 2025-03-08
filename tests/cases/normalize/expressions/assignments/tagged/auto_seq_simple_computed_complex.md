@@ -64,7 +64,7 @@ const tmpCalleeParam = [`before `, ` after`];
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(1);
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);

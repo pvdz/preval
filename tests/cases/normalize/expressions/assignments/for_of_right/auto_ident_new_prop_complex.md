@@ -85,7 +85,7 @@ const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 a = new tmpNewCallee(1);
 let tmpCalleeParam = a;
-let tmpForOfGen = $forOf(tmpCalleeParam);
+let tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

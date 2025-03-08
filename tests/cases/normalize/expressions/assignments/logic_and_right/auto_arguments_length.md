@@ -22,8 +22,7 @@ let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   a = arguments;
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = arguments;
-  $(tmpClusterSSA_tmpCalleeParam);
+  $(arguments);
 } else {
   $(tmpCalleeParam);
 }
@@ -80,8 +79,7 @@ let a = {
 const b = $( 100 );
 if (b) {
   a = arguments;
-  const c = arguments;
-  $( c );
+  $( arguments );
 }
 else {
   $( b );

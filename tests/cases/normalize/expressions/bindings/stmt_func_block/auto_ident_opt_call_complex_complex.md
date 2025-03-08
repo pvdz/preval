@@ -69,7 +69,7 @@ let f = function () {
   debugger;
   let a = undefined;
   const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpChainElementCall = $($);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
     const tmpCalleeParam = tmpChainElementCall;

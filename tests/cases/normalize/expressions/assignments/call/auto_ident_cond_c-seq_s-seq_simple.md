@@ -66,7 +66,7 @@ if (tmpIfTest) {
   a = $(tmpCalleeParam$1);
 }
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

@@ -58,7 +58,7 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
-$(a, x, y);
+$(tmpNestedAssignObjPatternRhs, x, y);
 `````
 
 ## PST Settled

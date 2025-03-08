@@ -81,7 +81,7 @@ const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
 let tmpCalleeParam = a;
-let tmpForInGen = $forIn(tmpCalleeParam);
+let tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

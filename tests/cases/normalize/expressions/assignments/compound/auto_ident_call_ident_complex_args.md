@@ -61,7 +61,7 @@ const tmpCalleeParam$3 = $(2);
 const tmpBinBothRhs = $(tmpCalleeParam$1, tmpCalleeParam$3);
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

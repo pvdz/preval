@@ -62,7 +62,7 @@ let f = function () {
   const tmpPrevalAliasThis = this;
   debugger;
   const x = tmpPrevalAliasThis;
-  $(x);
+  $(tmpPrevalAliasThis);
   return undefined;
 };
 const tmpCallObj = f;

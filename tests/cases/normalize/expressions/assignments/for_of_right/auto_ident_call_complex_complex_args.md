@@ -86,7 +86,7 @@ const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 a = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpCalleeParam = a;
-let tmpForOfGen = $forOf(tmpCalleeParam);
+let tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;

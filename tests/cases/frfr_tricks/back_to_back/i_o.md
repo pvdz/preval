@@ -108,7 +108,7 @@ const f = function $free($$0, $$1) {
   debugger;
   const tmpCalleeParam = a + 5;
   const tmpCalleeParam$1 = b;
-  const one = parseInt(tmpCalleeParam, tmpCalleeParam$1);
+  const one = parseInt(tmpCalleeParam, b);
   const two = one.slice(1);
   return two;
 };
@@ -118,7 +118,7 @@ const g = function $free($$0, $$1) {
   debugger;
   const tmpCalleeParam$3 = a$1 + 500;
   const tmpCalleeParam$5 = b$1;
-  const one$1 = parseInt(tmpCalleeParam$3, tmpCalleeParam$5);
+  const one$1 = parseInt(tmpCalleeParam$3, b$1);
   const two$1 = a$1.slice(2);
   return two$1;
 };

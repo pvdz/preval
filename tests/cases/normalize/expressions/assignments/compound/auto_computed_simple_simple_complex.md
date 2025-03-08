@@ -60,7 +60,7 @@ const tmpObjLitVal = $(1);
 const tmpBinBothRhs = { b: tmpObjLitVal };
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;

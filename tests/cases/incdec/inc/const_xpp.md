@@ -50,7 +50,7 @@ const x = $(0);
 const tmpPostUpdArgIdent = $coerce(x, `number`);
 x = tmpPostUpdArgIdent + 1;
 const y = tmpPostUpdArgIdent;
-$(y);
+$(tmpPostUpdArgIdent);
 $(x);
 `````
 

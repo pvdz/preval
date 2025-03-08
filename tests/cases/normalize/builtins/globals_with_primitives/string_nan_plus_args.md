@@ -42,7 +42,7 @@ $(String(NaN, 1, `two`, implicitGlobal, 3));
 const tmpArgOverflow = NaN;
 implicitGlobal;
 const tmpStringFirstArg = tmpArgOverflow;
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
+const tmpCalleeParam = $coerce(tmpArgOverflow, `string`);
 $(tmpCalleeParam);
 `````
 

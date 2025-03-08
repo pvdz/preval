@@ -63,7 +63,7 @@ const tmpSwitchDisc = $(1);
 const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
-$(a, b);
+$(tmpNestedComplexRhs, b);
 `````
 
 ## PST Settled

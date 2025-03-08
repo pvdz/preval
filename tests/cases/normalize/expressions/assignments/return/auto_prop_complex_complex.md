@@ -23,12 +23,12 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const a /*:object*/ = { b: tmpObjLitVal };
-$(a);
-const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal };
+$(tmpClusterSSA_a);
+const tmpAssignMemLhsObj /*:unknown*/ = $(tmpClusterSSA_a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -36,11 +36,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
-$(a);
-const tmpAssignMemLhsObj = $(a);
+const tmpClusterSSA_a = { b: tmpObjLitVal };
+$(tmpClusterSSA_a);
+const tmpAssignMemLhsObj = $(tmpClusterSSA_a);
 tmpAssignMemLhsObj.b = $(2);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal

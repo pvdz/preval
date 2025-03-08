@@ -66,7 +66,7 @@ $($(a)?.b.c?.(100));
 const a = {};
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(a);
+const tmpChainElementCall = $(a);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.b;

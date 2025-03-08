@@ -87,7 +87,7 @@ let f = function () {
     return tmpReturnArg;
   };
   const x = tmpPrevalAliasThis;
-  $(x);
+  $(tmpPrevalAliasThis);
   const tmpReturnArg$1 = g();
   return tmpReturnArg$1;
 };

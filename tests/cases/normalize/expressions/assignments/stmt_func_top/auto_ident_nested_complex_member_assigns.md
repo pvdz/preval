@@ -126,7 +126,7 @@ let f = function () {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  $(a, b, c);
+  $(tmpNestedPropAssignRhs, b, c);
   return undefined;
 };
 const tmpCalleeParam = f();

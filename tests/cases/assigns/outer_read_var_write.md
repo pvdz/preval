@@ -55,7 +55,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-$(x);
+$(undefined);
 $(1);
 x = $(2);
 $(x, `b`);

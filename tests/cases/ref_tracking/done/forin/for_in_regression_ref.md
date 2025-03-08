@@ -43,7 +43,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___26__) {
   } /*45*/ else {
     arr___51__ = tmpForInNext___49__.value___50__;
     x___55__ = arr___54__;
-    $(x___59__, `for`);
+    $(arr___59__, `for`);
   }
 }
 $(x___65__);
@@ -54,8 +54,7 @@ Ref tracking result:
                  | reads      | read by     | overWrites     | overwritten by
 x:
   - w @8       | ########## | 65          | none           | 55
-  - w @55      | ########## | 59,65       | 8,55           | 55
-  - r @59      | 55
+  - w @55      | ########## | 65          | 8,55           | 55
   - r @65      | 8,55
 
 list:
@@ -64,8 +63,9 @@ list:
 
 arr:
   - w @17      | ########## | not read    | none           | 51
-  - w @51      | ########## | 54          | 17,51          | 51
+  - w @51      | ########## | 54,59       | 17,51          | 51
   - r @54      | 51
+  - r @59      | 51
 
 tmpForInGen:
   - w @21       | ########## | 33          | none           | none

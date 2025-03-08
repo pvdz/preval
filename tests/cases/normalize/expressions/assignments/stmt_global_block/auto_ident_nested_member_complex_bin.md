@@ -85,7 +85,7 @@ const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-$(a, b, c, d, e);
+$(tmpNestedPropAssignRhs, b, c, d, e);
 `````
 
 ## PST Settled

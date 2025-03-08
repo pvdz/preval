@@ -89,7 +89,7 @@ f();
 let f = function () {
   debugger;
   let x = undefined;
-  $(x);
+  $(undefined);
   const tmpCalleeParam = [100];
   let tmpForOfGen = $forOf(tmpCalleeParam);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

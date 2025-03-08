@@ -61,7 +61,7 @@ const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

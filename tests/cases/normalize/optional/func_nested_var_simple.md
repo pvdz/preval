@@ -87,7 +87,7 @@ let f = function () {
   const a = 10;
   let b = undefined;
   const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(2);
+  const tmpChainElementCall = $(2);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainElementCall.toString;

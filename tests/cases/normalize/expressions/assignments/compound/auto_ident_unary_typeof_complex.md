@@ -59,7 +59,7 @@ const tmpUnaryArg = $(arg);
 const tmpBinBothRhs = typeof tmpUnaryArg;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, arg);
 `````
 

@@ -64,7 +64,7 @@ const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 a = new tmpNewCallee(1);
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

@@ -57,7 +57,7 @@ const f = function () {
   return undefined;
 };
 const tmpCalleeParam$1 = f;
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
+const tmpBinBothRhs = $coerce(f, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;

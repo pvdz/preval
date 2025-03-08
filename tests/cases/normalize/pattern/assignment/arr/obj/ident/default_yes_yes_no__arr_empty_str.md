@@ -24,7 +24,7 @@ if (tmpIfTest$1) {
   $(x);
 } else {
   x = objPatternBeforeDefault;
-  $(x);
+  $(objPatternBeforeDefault);
 }
 `````
 
@@ -38,7 +38,7 @@ if (objPatternBeforeDefault === undefined) {
   $(x);
 } else {
   x = objPatternBeforeDefault;
-  $(x);
+  $(objPatternBeforeDefault);
 }
 `````
 
@@ -87,7 +87,7 @@ if (b) {
 }
 else {
   x = a;
-  $( x );
+  $( a );
 }
 `````
 

@@ -79,7 +79,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall($);
+const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
@@ -89,7 +89,7 @@ if (tmpIfTest) {
 let tmpBinBothLhs = a;
 a = undefined;
 const tmpChainRootCall$1 = $;
-const tmpChainElementCall$3 = tmpChainRootCall$1($);
+const tmpChainElementCall$3 = $($);
 const tmpIfTest$1 = tmpChainElementCall$3 != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, tmpChainRootCall$1, undefined, 1);

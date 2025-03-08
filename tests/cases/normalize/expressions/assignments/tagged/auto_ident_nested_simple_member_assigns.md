@@ -69,7 +69,7 @@ const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a, b, c);
 `````
 

@@ -48,7 +48,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = [];
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

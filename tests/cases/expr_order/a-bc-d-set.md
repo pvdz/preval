@@ -94,7 +94,7 @@ let d = 3;
 const tmpNestedPropAssignRhs = d;
 b.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-$(a, b, d);
+$(tmpNestedPropAssignRhs, b, d);
 `````
 
 ## PST Settled

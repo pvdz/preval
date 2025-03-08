@@ -53,7 +53,7 @@ while (true) {
   if (x) {
     x = /foo/;
     let tmpCalleeParam = x;
-    $(tmpCalleeParam);
+    $(x);
   } else {
     break;
   }

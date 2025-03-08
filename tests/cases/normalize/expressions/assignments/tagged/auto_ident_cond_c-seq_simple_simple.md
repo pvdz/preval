@@ -20,17 +20,14 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(30);
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
 if (tmpIfTest) {
   a = $(2);
-  tmpCalleeParam$1 = a;
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$3);
-  tmpCalleeParam$1 = a;
 }
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 
@@ -39,16 +36,12 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpIfTest = $(30);
-let tmpCalleeParam$1 = undefined;
-if (tmpIfTest) {
+if ($(30)) {
   a = $(2);
-  tmpCalleeParam$1 = a;
 } else {
   a = $($(100));
-  tmpCalleeParam$1 = a;
 }
-$([`before `, ` after`], tmpCalleeParam$1);
+$([`before `, ` after`], a);
 $(a);
 `````
 
@@ -75,7 +68,7 @@ if (tmpIfTest) {
   a = $(tmpCalleeParam$3);
 }
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 
@@ -85,18 +78,15 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = $( 30 );
-let c = undefined;
 if (b) {
   a = $( 2 );
-  c = a;
 }
 else {
-  const d = $( 100 );
-  a = $( d );
-  c = a;
+  const c = $( 100 );
+  a = $( c );
 }
-const e = [ "before ", " after" ];
-$( e, c );
+const d = [ "before ", " after" ];
+$( d, a );
 $( a );
 `````
 

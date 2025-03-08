@@ -105,7 +105,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     arr = tmpForOfNext.value;
     x = arr;
-    $(x, `for`);
+    $(arr, `for`);
   }
 }
 $(x);

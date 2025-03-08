@@ -84,7 +84,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 let xyz = varInitAssignLhsComputedRhs;
-$(xyz);
+$(varInitAssignLhsComputedRhs);
 $(a, b, c, d);
 `````
 

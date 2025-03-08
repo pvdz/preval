@@ -34,8 +34,8 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
-  const tmpClusterSSA_c /*:unknown*/ = length;
-  $(tmpClusterSSA_c);
+  length;
+  $(length);
 } else {
   $(c);
 }
@@ -58,6 +58,7 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
+  length;
   $(length);
 } else {
   $(c);
@@ -112,8 +113,8 @@ else {
   d = a == null;
 }
 if (d) {
-  const f = length;
-  $( f );
+  length;
+  $( length );
 }
 else {
   $( c );

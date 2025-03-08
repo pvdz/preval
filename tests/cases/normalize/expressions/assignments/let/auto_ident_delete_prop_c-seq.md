@@ -65,7 +65,7 @@ $(2);
 const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, arg);
 `````
 

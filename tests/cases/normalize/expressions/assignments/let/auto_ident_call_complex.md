@@ -53,7 +53,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallComplexCallee = $($);
 a = tmpCallComplexCallee(1);
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

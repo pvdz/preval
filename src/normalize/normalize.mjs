@@ -3475,6 +3475,82 @@ export function phaseNormalize(fdata, fname, prng, options) {
           }
         });
 
+        // Check if the callee or any arg was just assigned to
+        if (body[i-1]?.type === 'VariableDeclaration' || body[i-1]?.type === 'ExpressionStatement') {
+          if (callee.type == 'Identifier') {
+            if (
+              body[i-1]?.type === 'VariableDeclaration' &&
+              body[i-1].declarations[0].init.type === 'Identifier' &&
+              body[i-1].declarations[0].id.name === callee.name
+            ) {
+              rule('Aliasing a variable that gets called immediately can skip that alias');
+              example('const x = y; x();', 'x = y; y();');
+              before(body[i]);
+
+              callee.name = body[i-1].declarations[0].init.name;
+
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (
+              body[i-1]?.type === 'ExpressionStatement' &&
+              body[i-1].expression.type === 'AssignmentExpression' &&
+              body[i-1].expression.left.type === 'Identifier' &&
+              body[i-1].expression.right.type === 'Identifier' &&
+              body[i-1].expression.left.name === callee.name
+            ) {
+              rule('Assigning to a variable that gets called immediately can skip that assignment');
+              example('x = y; x();', 'x = y; y();');
+              before(body[i]);
+
+              callee.name = body[i-1].expression.right.name;
+
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+          args.forEach(anode => {
+            if (anode.type == 'Identifier') {
+              if (
+                body[i-1]?.type === 'VariableDeclaration' &&
+                body[i-1].declarations[0].init.type === 'Identifier' &&
+                body[i-1].declarations[0].id.name === anode.name
+              ) {
+                rule('Aliasing a variable used as arg immediately can skip that alias');
+                example('const x = y; x();', 'x = y; y();');
+                before(body[i]);
+
+                anode.name = body[i-1].declarations[0].init.name;
+
+                after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
+              if (
+                body[i-1]?.type === 'ExpressionStatement' &&
+                body[i-1].expression.type === 'AssignmentExpression' &&
+                body[i-1].expression.left.type === 'Identifier' &&
+                body[i-1].expression.right.type === 'Identifier' &&
+                body[i-1].expression.left.name === anode.name
+              ) {
+                rule('Assigning to a variable used as arg immediately can skip that assignment');
+                example('x = y; x();', 'x = y; y();');
+                before(body[i]);
+
+                anode.name = body[i-1].expression.right.name;
+
+                after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+            }
+          })
+        }
+
         // Assert normalized form
         ASSERT(
           !AST.isComplexNode(callee) ||
@@ -9436,10 +9512,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
     }
 
     const dnode = node.declarations[0];
+    const id = dnode.id;
 
-    vlog('Id:', dnode.id.type === 'Identifier' ? '`' + dnode.id.name + '`' : '<pattern>');
+    vlog('Id:', id.type === 'Identifier' ? '`' + id.name + '`' : '<pattern>');
 
-    if (dnode.id.type === 'ArrayPattern') {
+    if (id.type === 'ArrayPattern') {
       rule('Binding array patterns not allowed');
       example('let [x] = y()', 'let tmp = y(), tmp1 = [...tmp], x = tmp1[0]');
       before(node);
@@ -9447,7 +9524,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       const bindingPatternRootName = createFreshVar('bindingPatternArrRoot', fdata); // TODO: rename to tmp prefix
       const nameStack = [bindingPatternRootName];
       const newBindings = [];
-      funcArgsWalkArrayPattern(dnode.id, nameStack, newBindings, 'var');
+      funcArgsWalkArrayPattern(id, nameStack, newBindings, 'var');
 
       if (newBindings.length) {
         vlog('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
@@ -9472,7 +9549,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       return true;
     }
 
-    if (dnode.id.type === 'ObjectPattern') {
+    if (id.type === 'ObjectPattern') {
       rule('Binding object patterns not allowed');
       example('var {x} = y()', 'var tmp = y(), x = obj.x');
       before(node, parentBlock);
@@ -9480,7 +9557,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       const bindingPatternRootName = createFreshVar('bindingPatternObjRoot', fdata);
       const nameStack = [bindingPatternRootName];
       const newBindings = [];
-      funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var', true);
+      funcArgsWalkObjectPattern(id, nameStack, newBindings, 'var', true);
 
       if (newBindings.length) {
         vlog('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
@@ -9505,20 +9582,21 @@ export function phaseNormalize(fdata, fname, prng, options) {
       return true;
     }
 
-    if (dnode.id.type !== 'Identifier') {
+    if (id.type !== 'Identifier') {
       console.log('Error node .dir:');
       console.dir(node, { depth: null });
       ASSERT(
         false,
         'The paramNode can be either an Identifier or a pattern of sorts, and we checked the pattern above',
-        [dnode.id.type],
+        [id.type],
         node,
       );
     }
 
     ASSERT(node.kind !== 'var');
+    const init = dnode.init;
 
-    if (!dnode.init) {
+    if (!init) {
       rule('Var decls must have an init');
       example('let x;', 'let x = undefined;');
       before(node);
@@ -9529,24 +9607,24 @@ export function phaseNormalize(fdata, fname, prng, options) {
       return true;
     }
 
-    vlog('Init:', dnode.init.type);
+    vlog('Init:', init.type);
 
-    if (dnode.init.type === 'AssignmentExpression') {
+    if (init.type === 'AssignmentExpression') {
       // Must first outline the assignment because otherwise recursive calls will assume the assignment
       // is an expression statement and then transforms go bad.
 
-      if (dnode.init.left.type === 'Identifier') {
-        if (dnode.init.operator !== '=') {
+      if (init.left.type === 'Identifier') {
+        if (init.operator !== '=') {
           rule('Var inits can not be compound assignments to ident');
           example('let x = y *= z()', 'let x = y = y * z();');
           before(node, parentBlock);
 
           dnode.init = AST.assignmentExpression(
-            dnode.init.left,
+            init.left,
             AST.binaryExpression(
-              dnode.init.operator.slice(0, -1), // *= becomes *
-              AST.cloneSimple(dnode.init.left),
-              dnode.init.right,
+              init.operator.slice(0, -1), // *= becomes *
+              AST.cloneSimple(init.left),
+              init.right,
             ),
           );
 
@@ -9560,8 +9638,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
         before(node, parentBlock);
 
         const newNodes = [
-          AST.expressionStatement(dnode.init),
-          AST.variableDeclaration(AST.cloneSimple(dnode.id), AST.cloneSimple(dnode.init.left)),
+          AST.expressionStatement(init),
+          AST.variableDeclaration(AST.cloneSimple(id), AST.cloneSimple(init.left)),
         ];
         body.splice(i, 1, ...newNodes);
 
@@ -9570,9 +9648,9 @@ export function phaseNormalize(fdata, fname, prng, options) {
         return true;
       }
 
-      if (dnode.init.left.type === 'MemberExpression') {
-        if (dnode.init.left.computed && AST.isComplexNode(dnode.init.left.property)) {
-          ASSERT(dnode.id.type === 'Identifier');
+      if (init.left.type === 'MemberExpression') {
+        if (init.left.computed && AST.isComplexNode(init.left.property)) {
+          ASSERT(id.type === 'Identifier');
           rule('Var inits can not be assignments; lhs computed complex prop');
           example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
           before(node, parentBlock);
@@ -9581,11 +9659,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
           const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp', fdata);
           const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
           const newNodes = [
-            AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
-            AST.variableDeclaration(tmpNameProp, dnode.init.left.property, 'const'),
-            AST.variableDeclaration(tmpNameRhs, dnode.init.right, 'const'),
+            AST.variableDeclaration(tmpNameObj, init.left.object, 'const'),
+            AST.variableDeclaration(tmpNameProp, init.left.property, 'const'),
+            AST.variableDeclaration(tmpNameRhs, init.right, 'const'),
             AST.expressionStatement(AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), tmpNameRhs)),
-            AST.variableDeclaration(AST.cloneSimple(dnode.id), tmpNameRhs, node.kind),
+            AST.variableDeclaration(AST.cloneSimple(id), tmpNameRhs, node.kind),
           ];
           body.splice(i, 1, ...newNodes);
 
@@ -9594,36 +9672,36 @@ export function phaseNormalize(fdata, fname, prng, options) {
           return true;
         }
 
-        if (AST.isComplexNode(dnode.init.left.object)) {
-          ASSERT(dnode.id.type === 'Identifier');
+        if (AST.isComplexNode(init.left.object)) {
+          ASSERT(id.type === 'Identifier');
           rule('Var inits can not be assignments; lhs regular complex prop');
-          example('let x = a().b = z()', 'tmp = a(); let x = tmp.b = z();', () => dnode.init.operator === '=' && !dnode.init.left.computed);
+          example('let x = a().b = z()', 'tmp = a(); let x = tmp.b = z();', () => init.operator === '=' && !init.left.computed);
           example(
             'let x = a()[b] = z()',
             'tmp = a(); let x = tmp[b] = z();',
-            () => dnode.init.operator === '=' && dnode.init.left.computed,
+            () => init.operator === '=' && init.left.computed,
           );
           example(
             'let x = a().b *= z()',
             'tmp = a(); let x = tmp.b *= z();',
-            () => dnode.init.operator !== '=' && !dnode.init.left.computed,
+            () => init.operator !== '=' && !init.left.computed,
           );
           example(
             'let x = a()[b] *= z()',
             'tmp = a(); let x = tmp[b] *= z();',
-            () => dnode.init.operator !== '=' && dnode.init.left.computed,
+            () => init.operator !== '=' && init.left.computed,
           );
           before(node, parentBlock);
 
           const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
           const newNodes = [
-            AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
+            AST.variableDeclaration(tmpNameObj, init.left.object, 'const'),
             AST.variableDeclaration(
-              dnode.id,
+              id,
               AST.assignmentExpression(
-                AST.memberExpression(tmpNameObj, dnode.init.left.property, dnode.init.left.computed),
-                dnode.init.right,
-                dnode.init.operator,
+                AST.memberExpression(tmpNameObj, init.left.property, init.left.computed),
+                init.right,
+                init.operator,
               ),
               node.kind,
             ),
@@ -9637,18 +9715,18 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         // At this point the assignment has an lhs that is a property and the object and property are simple (maybe computed)
 
-        if (dnode.init.operator !== '=') {
-          ASSERT(dnode.id.type === 'Identifier');
+        if (init.operator !== '=') {
+          ASSERT(id.type === 'Identifier');
           rule('Var inits can not be compound assignments to simple member');
           example('let x = a.b *= z()', 'let x = a.b = a.b * z();');
           before(node);
 
           dnode.init = AST.assignmentExpression(
-            dnode.init.left,
+            init.left,
             AST.binaryExpression(
-              dnode.init.operator.slice(0, -1), // *= becomes *
-              AST.cloneSimple(dnode.init.left),
-              dnode.init.right,
+              init.operator.slice(0, -1), // *= becomes *
+              AST.cloneSimple(init.left),
+              init.right,
             ),
           );
 
@@ -9659,16 +9737,16 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         // We should be able to stash the rhs without worrying about side effects by reading the lhs first.
 
-        ASSERT(dnode.id.type === 'Identifier');
+        ASSERT(id.type === 'Identifier');
         rule('Var inits can not be assignments; lhs simple member');
         example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
         before(node, parentBlock);
 
         const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
         const newNodes = [
-          AST.variableDeclaration(tmpNameRhs, dnode.init.right, 'const'),
-          AST.expressionStatement(AST.assignmentExpression(dnode.init.left, tmpNameRhs, dnode.init.operator)),
-          AST.variableDeclaration(dnode.id, tmpNameRhs, node.kind),
+          AST.variableDeclaration(tmpNameRhs, init.right, 'const'),
+          AST.expressionStatement(AST.assignmentExpression(init.left, tmpNameRhs, init.operator)),
+          AST.variableDeclaration(id, tmpNameRhs, node.kind),
         ];
         body.splice(i, 1, ...newNodes);
 
@@ -9684,8 +9762,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
       before(node, parentBlock);
 
       const newNodes = [
-        AST.variableDeclaration(AST.cloneSimple(dnode.id)),
-        AST.expressionStatement(AST.assignmentExpression(dnode.id, dnode.init)),
+        AST.variableDeclaration(AST.cloneSimple(id)),
+        AST.expressionStatement(AST.assignmentExpression(id, init)),
       ];
       body.splice(i, 1, ...newNodes);
 
@@ -9694,7 +9772,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       return true;
     }
 
-    if (dnode.init.type === 'FunctionExpression' && dnode.init.id && dnode.init.id.name !== '$free') {
+    if (init.type === 'FunctionExpression' && init.id && init.id.name !== '$free') {
       // Note: this happens here (var decl) and in assignment!
       // The id of a function expression is kind of special.
       // - It only exists inside the function
@@ -9705,7 +9783,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
       // So we can create an outer constant and assign it the function, then alias it.
       // But we have to make sure that the name is unique (!) and prevent collisions
 
-      const funcNode = dnode.init;
+      const funcNode = init;
 
       rule('Function expressions should not have an id; var');
       example('let x = function f(){};', 'const f = function(); let x = f;');
@@ -9721,35 +9799,35 @@ export function phaseNormalize(fdata, fname, prng, options) {
       return true;
     }
 
-    if (dnode.init.type === 'Literal' && typeof dnode.init.value === 'string') {
+    if (init.type === 'Literal' && typeof init.value === 'string') {
       rule('Var inits that are strings should be templates');
       example('const x = "foo";', 'const x = `foo`;');
-      before(dnode.init, parentBlock);
+      before(init, parentBlock);
 
-      dnode.init = AST.templateLiteral(dnode.init.value);
+      dnode.init = AST.templateLiteral(init.value);
 
       after(dnode.init, parentBlock);
       return true;
     }
 
     if (
-      AST.isComplexNode(dnode.init, false) ||
-      dnode.init.type === 'TemplateLiteral' ||
-      (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments')
+      AST.isComplexNode(init, false) ||
+      init.type === 'TemplateLiteral' ||
+      (init.type === 'Identifier' && init.name === 'arguments')
     ) {
       // false: returns true for simple unary as well
       vlog('- init is complex, transforming expression');
-      if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
+      if (transformExpression('var', init, body, i, node, id, node.kind)) {
         assertNoDupeNodes(AST.blockStatement(body), 'body', undefined, dnode);
         return true;
       }
     }
 
     if (
-      dnode.init.type === 'Identifier' &&
-      (dnode.init.name === SYMBOL_MAX_LOOP_UNROLL || dnode.init.name.startsWith(SYMBOL_LOOP_UNROLL))
+      init.type === 'Identifier' &&
+      (init.name === SYMBOL_MAX_LOOP_UNROLL || init.name.startsWith(SYMBOL_LOOP_UNROLL))
     ) {
-      if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
+      if (transformExpression('var', init, body, i, node, id, node.kind)) {
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
@@ -9759,10 +9837,10 @@ export function phaseNormalize(fdata, fname, prng, options) {
     if (
       // Is this a call and was previous statement an assignment?
       i && body[i - 1].type === 'ExpressionStatement' && body[i - 1].expression.type === 'AssignmentExpression' &&
-      dnode.init.type === 'CallExpression' && dnode.init.callee.type === 'Identifier' &&
+      init.type === 'CallExpression' && init.callee.type === 'Identifier' &&
       body[i - 1].expression.left.type === 'Identifier' &&
       // Are we calling a function binding that was just updated in the statement prior?
-      body[i - 1].expression.left.name === dnode.init.callee.name &&
+      body[i - 1].expression.left.name === init.callee.name &&
       // Is the assignment a function that is just returning a primitive?
       body[i - 1].expression.right.type === 'FunctionExpression' &&
       !body[i - 1].expression.right.async && !body[i - 1].expression.right.generator && // eh
@@ -9778,11 +9856,11 @@ export function phaseNormalize(fdata, fname, prng, options) {
       // We do not eliminate the previous assignment as that value may still be used again later
       // Just replace the init with the primitive value returned by the function
       body.splice(i, 1,
-        ...dnode.init.arguments.map(node => AST.expressionStatement(node)), // Retain TDZ errors
-        AST.variableDeclaration(dnode.id.name, AST.primitive(AST.getPrimitiveValue(body[i - 1].expression.right.body.body[1].argument))),
+        ...init.arguments.map(node => AST.expressionStatement(node)), // Retain TDZ errors
+        AST.variableDeclaration(id.name, AST.primitive(AST.getPrimitiveValue(body[i - 1].expression.right.body.body[1].argument))),
       );
 
-      after(body.slice(i, i + dnode.init.arguments.length + 1));
+      after(body.slice(i, i + init.arguments.length + 1));
       return true;
     }
 

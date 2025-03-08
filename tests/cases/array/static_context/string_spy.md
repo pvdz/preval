@@ -79,7 +79,7 @@ const arr = [`fail`, 2, 3];
 f();
 f();
 const tmpStringFirstArg = arr;
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
+const tmpCalleeParam = $coerce(arr, `string`);
 $(tmpCalleeParam);
 `````
 

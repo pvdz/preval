@@ -80,7 +80,7 @@ let f = function () {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  $(a, b);
+  $(tmpNestedPropAssignRhs, b);
   return undefined;
 };
 const tmpCalleeParam = f();

@@ -59,7 +59,7 @@ const tmpBinBothLhs = a;
 const tmpBinBothRhs = delete arg.y;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, arg);
 `````
 

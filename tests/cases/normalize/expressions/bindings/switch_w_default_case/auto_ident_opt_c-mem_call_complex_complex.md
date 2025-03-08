@@ -116,7 +116,7 @@ if (tmpIfTest$3) {
   b = { $: $ };
   a = undefined;
   const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainElementCall = $(b);
   const tmpIfTest$5 = tmpChainElementCall != null;
   if (tmpIfTest$5) {
     const tmpChainRootComputed = $(`\$`);

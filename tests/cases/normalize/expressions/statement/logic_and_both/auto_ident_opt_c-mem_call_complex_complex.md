@@ -101,7 +101,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
+const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainRootComputed = $(`\$`);
@@ -119,7 +119,7 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
   const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$3 = tmpChainRootCall$1(b);
+  const tmpChainElementCall$3 = $(b);
   const tmpIfTest$5 = tmpChainElementCall$3 != null;
   if (tmpIfTest$5) {
     const tmpChainRootComputed$1 = $(`\$`);

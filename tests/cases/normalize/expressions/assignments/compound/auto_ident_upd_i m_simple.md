@@ -57,7 +57,7 @@ b = tmpPostUpdArgIdent - 1;
 const tmpBinBothRhs = tmpPostUpdArgIdent;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, b);
 `````
 

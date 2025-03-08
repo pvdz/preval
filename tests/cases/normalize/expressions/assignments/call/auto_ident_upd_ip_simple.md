@@ -52,7 +52,7 @@ const tmpPostUpdArgIdent = $coerce(b, `number`);
 b = tmpPostUpdArgIdent + 1;
 a = tmpPostUpdArgIdent;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, b);
 `````
 

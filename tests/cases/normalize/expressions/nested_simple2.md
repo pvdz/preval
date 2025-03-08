@@ -58,7 +58,7 @@ let tmpSSA_a = 10;
 let tmpSSA_c = 30;
 let tmpSSA_a$1 = c;
 const tmpCalleeParam = tmpSSA_a$1;
-$(tmpCalleeParam);
+$(tmpSSA_a$1);
 `````
 
 ## PST Settled

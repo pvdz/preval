@@ -64,7 +64,7 @@ if (tmpIfTest) {
     return undefined;
   };
   a = f;
-  $(a);
+  $(f);
 } else {
 }
 `````

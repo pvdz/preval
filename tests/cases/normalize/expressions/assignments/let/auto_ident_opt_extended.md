@@ -63,7 +63,7 @@ if (tmpIfTest) {
 } else {
 }
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

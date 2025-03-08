@@ -54,7 +54,7 @@ const tmpPostUpdArgIdent = $coerce(b, `number`);
 b = tmpPostUpdArgIdent - 1;
 a = tmpPostUpdArgIdent;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, b);
 `````
 

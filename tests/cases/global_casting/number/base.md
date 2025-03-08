@@ -49,7 +49,7 @@ $(y);
 const a = $(`a`);
 const x = +a;
 const tmpStringFirstArg = x;
-const y = $coerce(tmpStringFirstArg, `number`);
+const y = $coerce(x, `number`);
 $(y);
 `````
 

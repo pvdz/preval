@@ -50,7 +50,7 @@ const a = $(`a`);
 const x = +a;
 const tmpArgOverflow = x;
 const tmpStringFirstArg = tmpArgOverflow;
-const y = $coerce(tmpStringFirstArg, `number`);
+const y = $coerce(tmpArgOverflow, `number`);
 $(y);
 `````
 

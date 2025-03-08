@@ -73,7 +73,7 @@ const tmpSwitchDisc = $(1);
 const tmpBinBothLhs = tmpSwitchDisc;
 let tmpBinBothRhs = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
+const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainRootComputed = $(`x`);

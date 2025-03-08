@@ -56,7 +56,7 @@ const funcexprname = function () {
   return funcexprname;
 };
 const f = funcexprname;
-const x = f();
+const x = funcexprname();
 const tmpCalleeParam = x;
 const tmpCalleeParam$1 = typeof f;
 $(tmpCalleeParam, tmpCalleeParam$1);

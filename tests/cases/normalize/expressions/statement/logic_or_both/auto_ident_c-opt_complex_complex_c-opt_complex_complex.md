@@ -106,7 +106,7 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
+const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainRootComputed = $(`x`);
@@ -123,7 +123,7 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
 } else {
   const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$1 = tmpChainRootCall$1(b);
+  const tmpChainElementCall$1 = $(b);
   const tmpIfTest$5 = tmpChainElementCall$1 != null;
   if (tmpIfTest$5) {
     const tmpChainRootComputed$3 = $(`x`);

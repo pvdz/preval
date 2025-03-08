@@ -21,18 +21,18 @@ $(a);
 
 
 `````js filename=intro
-const a /*:regex*/ = /foo/;
-$(a);
-$(a);
+const tmpClusterSSA_a /*:regex*/ = /foo/;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const a = /foo/;
-$(a);
-$(a);
+const tmpClusterSSA_a = /foo/;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal

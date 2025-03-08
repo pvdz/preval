@@ -56,7 +56,7 @@ if (a) {
   a = $(tmpCalleeParam);
 }
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

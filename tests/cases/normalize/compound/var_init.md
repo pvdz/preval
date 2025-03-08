@@ -54,7 +54,7 @@ const tmpBinBothRhs = $(2);
 const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
 a = tmpNestedComplexRhs;
 x = tmpNestedComplexRhs;
-$(x);
+$(tmpNestedComplexRhs);
 `````
 
 ## PST Settled

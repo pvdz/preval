@@ -66,7 +66,7 @@ let f = function () {
   const tmpNestedComplexRhs = $(2);
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  $(a, b);
+  $(tmpNestedComplexRhs, b);
   return undefined;
 };
 const tmpCalleeParam = f();

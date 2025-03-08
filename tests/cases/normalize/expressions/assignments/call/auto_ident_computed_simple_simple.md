@@ -51,7 +51,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 a = b.c;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, b);
 `````
 

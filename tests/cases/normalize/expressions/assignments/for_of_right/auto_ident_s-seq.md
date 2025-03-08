@@ -23,7 +23,7 @@ $(a, x);
 $(1);
 $(2);
 const a /*:unknown*/ = x$1;
-const tmpForOfGen /*:unknown*/ = $forOf(a);
+const tmpForOfGen /*:unknown*/ = $forOf(x$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
@@ -43,7 +43,7 @@ $(a, 1);
 $(1);
 $(2);
 const a = x$1;
-const tmpForOfGen = $forOf(a);
+const tmpForOfGen = $forOf(x$1);
 while (true) {
   const tmpForOfNext = tmpForOfGen.next();
   if (tmpForOfNext.done) {
@@ -85,7 +85,7 @@ $(1);
 $(2);
 a = x$1;
 let tmpCalleeParam = a;
-let tmpForOfGen = $forOf(tmpCalleeParam);
+let tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -105,7 +105,7 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = x$1;
-const b = $forOf( a );
+const b = $forOf( x$1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const c = b.next();
   const d = c.done;

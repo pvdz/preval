@@ -58,7 +58,7 @@ const tmpCalleeParam = [`before `, ` after`];
 $(1);
 $(2);
 const tmpCalleeParam$1 = x;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, x);
 $(a, x);
 `````
 

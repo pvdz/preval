@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpPostUpdArgIdent = $coerce(x, `number`);
     x = tmpPostUpdArgIdent + 1;
     const tmpCalleeParam = x;
-    $(tmpCalleeParam, `write`);
+    $(x, `write`);
   } else {
     $(x, `read`);
   }

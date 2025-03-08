@@ -48,7 +48,7 @@ let b = 2;
 let c = 3;
 $(b);
 let a = c;
-$(a, b, c);
+$(c, b, c);
 `````
 
 ## PST Settled

@@ -105,7 +105,7 @@ if (tmpIfTest$3) {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  $(a, b);
+  $(tmpNestedPropAssignRhs, b);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

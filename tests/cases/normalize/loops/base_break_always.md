@@ -66,7 +66,7 @@ let f = function () {
   const tmpPostUpdArgIdent = $coerce(n, `number`);
   n = tmpPostUpdArgIdent + 1;
   const tmpCalleeParam = n;
-  $(tmpCalleeParam);
+  $(n);
   $(`afterwards`);
   return 100;
 };

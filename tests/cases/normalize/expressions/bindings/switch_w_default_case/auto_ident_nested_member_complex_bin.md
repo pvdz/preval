@@ -29,15 +29,15 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(tmpClusterSSA_b);
+const b /*:object*/ = { x: 1 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const tmpClusterSSA_c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_c);
+const c /*:object*/ = { y: 2 };
+const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
 const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-$(7, tmpClusterSSA_b, tmpClusterSSA_c, 3, 4);
+$(7, b, c, 3, 4);
 $(`fail1`);
 $(`fail2`);
 `````
@@ -46,15 +46,15 @@ $(`fail2`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
-const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
+const b = { x: 1 };
+const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
-const tmpClusterSSA_c = { y: 2 };
-const varInitAssignLhsComputedObj = $(tmpClusterSSA_c);
+const c = { y: 2 };
+const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-$(7, tmpClusterSSA_b, tmpClusterSSA_c, 3, 4);
+$(7, b, c, 3, 4);
 $(`fail1`);
 $(`fail2`);
 `````
@@ -127,7 +127,7 @@ if (tmpIfTest$3) {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  $(a, b, c, d, e);
+  $(tmpNestedPropAssignRhs, b, c, d, e);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

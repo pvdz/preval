@@ -72,7 +72,7 @@ tmpUpdObj.x = tmpUpdInc;
 const tmpBinBothRhs = tmpUpdInc;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, b);
 `````
 

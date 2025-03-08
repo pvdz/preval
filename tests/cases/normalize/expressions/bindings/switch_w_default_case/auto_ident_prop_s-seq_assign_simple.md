@@ -94,7 +94,7 @@ if (tmpIfTest$3) {
   const tmpNestedPropAssignRhs = 2;
   tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  $(a, b);
+  $(tmpNestedPropAssignRhs, b);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

@@ -56,7 +56,7 @@ let f = function () {
   let b = 2;
   let c = 3;
   let a = b;
-  $(a, b, c);
+  $(b, b, c);
   return undefined;
 };
 const tmpCalleeParam = f();

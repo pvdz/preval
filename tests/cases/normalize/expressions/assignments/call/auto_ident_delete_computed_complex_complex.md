@@ -60,7 +60,7 @@ const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, arg);
 `````
 

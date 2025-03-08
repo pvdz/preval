@@ -58,7 +58,7 @@ let f = function ($$0, $$1, $$2) {
   const tmpCalleeParam = !tmpUnaryArg;
   const tmpCalleeParam$1 = x;
   const tmpCalleeParam$3 = z;
-  const tmpReturnArg = $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  const tmpReturnArg = $(tmpCalleeParam, tmpCalleeParam$1, z);
   return tmpReturnArg;
 };
 f();

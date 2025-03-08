@@ -54,7 +54,7 @@ const f = function () {
   return undefined;
 };
 let a = f;
-$(a);
+$(f);
 `````
 
 ## PST Settled

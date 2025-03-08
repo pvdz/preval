@@ -25,9 +25,9 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b[tmpCallCompProp](1);
-$(a);
-$(a);
+const tmpClusterSSA_a /*:unknown*/ = b[tmpCallCompProp](1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -35,9 +35,9 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const a = { $: $ }[tmpCallCompProp](1);
-$(a);
-$(a);
+const tmpClusterSSA_a = { $: $ }[tmpCallCompProp](1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal

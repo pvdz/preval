@@ -83,7 +83,7 @@ const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, b, c, d);
 `````
 

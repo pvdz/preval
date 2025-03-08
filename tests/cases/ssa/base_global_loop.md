@@ -86,7 +86,7 @@ while (true) {
   const tmpPostUpdArgIdent = $coerce(x, `number`);
   x = tmpPostUpdArgIdent + 1;
   const tmpCalleeParam = x;
-  $(tmpCalleeParam);
+  $(x);
   const tmpIfTest = x > 5;
   if (tmpIfTest) {
     break;

@@ -119,7 +119,7 @@ const a = the_let_binding;
 const m = parseInt(n);
 const mm = m / 33;
 const the_let_alias_to_eliminate = a;
-$(a, the_let_alias_to_eliminate);
+$(a, a);
 $(f);
 $(mm);
 `````

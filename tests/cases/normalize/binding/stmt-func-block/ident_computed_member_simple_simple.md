@@ -78,7 +78,7 @@ let f = function () {
     const varInitAssignLhsComputedRhs = c;
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     let a = varInitAssignLhsComputedRhs;
-    $(a, b, c);
+    $(varInitAssignLhsComputedRhs, b, c);
     return undefined;
   } else {
     return undefined;

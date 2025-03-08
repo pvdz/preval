@@ -105,7 +105,7 @@ while (true) {
   $(100);
   let tmpIfTest = undefined;
   const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpChainElementCall = $($);
   const tmpIfTest$1 = tmpChainElementCall != null;
   if (tmpIfTest$1) {
     const tmpCalleeParam = tmpChainElementCall;

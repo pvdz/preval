@@ -21,17 +21,16 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ = undefined;
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest$1) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   a = tmpChainElementCall;
-  tmpCalleeParam$1 = tmpChainElementCall;
+  $(tmpCalleeParam, tmpChainElementCall);
 }
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
@@ -40,13 +39,15 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-let tmpCalleeParam$1 = undefined;
-if (!($ == null)) {
+const tmpIfTest$1 = $ == null;
+const tmpCalleeParam = [`before `, ` after`];
+if (tmpIfTest$1) {
+  $(tmpCalleeParam, undefined);
+} else {
   const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
   a = tmpChainElementCall;
-  tmpCalleeParam$1 = tmpChainElementCall;
+  $(tmpCalleeParam, tmpChainElementCall);
 }
-$([`before `, ` after`], tmpCalleeParam$1);
 $(a);
 `````
 
@@ -85,7 +86,7 @@ if (tmpIfTest) {
 } else {
 }
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 
@@ -94,19 +95,17 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = $ == null;
-if (c) {
-
+const b = $ == null;
+const c = [ "before ", " after" ];
+if (b) {
+  $( c, undefined );
 }
 else {
   const d = { e: $ };
   const e = $dotCall( $, d, "e", 1 );
   a = e;
-  b = e;
+  $( c, e );
 }
-const f = [ "before ", " after" ];
-$( f, b );
 $( a );
 `````
 

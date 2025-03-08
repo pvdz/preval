@@ -17,14 +17,15 @@ $(obj.f);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = wat;
-$(tmpCalleeParam);
+wat;
+$(wat);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+wat;
 $(wat);
 `````
 
@@ -49,8 +50,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = wat;
-$( a );
+wat;
+$( wat );
 `````
 
 ## Globals

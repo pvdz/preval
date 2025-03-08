@@ -67,7 +67,7 @@ let tmpUpdNum = $coerce(tmpUpdProp, `number`);
 let tmpUpdInc = tmpUpdNum - 1;
 tmpUpdObj.x = tmpUpdInc;
 const tmpCalleeParam = tmpUpdInc;
-$(tmpCalleeParam);
+$(tmpUpdInc);
 $(a, b);
 `````
 

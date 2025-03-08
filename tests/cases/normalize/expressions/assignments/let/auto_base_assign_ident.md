@@ -56,7 +56,7 @@ const tmpNestedComplexRhs = $(2);
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, b);
 `````
 

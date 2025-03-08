@@ -50,7 +50,7 @@ const tmpCalleeParam = i;
 const tmpPostUpdArgIdent = $coerce(i, `number`);
 i = tmpPostUpdArgIdent + 1;
 const tmpCalleeParam$1 = i;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, i);
 `````
 
 ## PST Settled

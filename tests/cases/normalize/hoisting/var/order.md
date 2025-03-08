@@ -55,7 +55,7 @@ b = $();
 let a = undefined;
 let b = undefined;
 let c = undefined;
-$(a, b, c);
+$(a, b, undefined);
 a = $();
 c = $();
 b = $();

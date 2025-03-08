@@ -43,7 +43,7 @@ $(x, y);
 `````js filename=intro
 const x = 1;
 const y = x;
-$(x, y);
+$(x, x);
 `````
 
 ## PST Settled

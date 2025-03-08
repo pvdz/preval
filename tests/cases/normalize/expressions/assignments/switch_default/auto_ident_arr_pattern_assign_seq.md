@@ -84,7 +84,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
-$(a, x, y);
+$(tmpNestedAssignArrPatternRhs, x, y);
 `````
 
 ## PST Settled

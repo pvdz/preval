@@ -66,7 +66,7 @@ const findme = function () {
   return findme;
 };
 let f = findme;
-const x = f();
+const x = findme();
 const tmpCalleeParam$1 = x;
 const tmpCalleeParam$3 = typeof f;
 $(tmpCalleeParam$1, tmpCalleeParam$3);

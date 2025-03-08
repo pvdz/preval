@@ -146,7 +146,7 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpChainElementCall = $(b);
     const tmpIfTest$5 = tmpChainElementCall != null;
     if (tmpIfTest$5) {
       const tmpChainRootComputed = $(`x`);

@@ -92,7 +92,7 @@ if (tmpIfTest$3) {
   const tmpPostUpdArgIdent = $coerce(b, `number`);
   b = tmpPostUpdArgIdent - 1;
   a = tmpPostUpdArgIdent;
-  $(a, b);
+  $(tmpPostUpdArgIdent, b);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

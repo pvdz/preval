@@ -183,7 +183,7 @@ let f = function () {
   b.foo = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
   let tmpCalleeParam = a;
-  $(tmpCalleeParam);
+  $(a);
   $(`-------- test case`);
   $(a);
   $(`-------- a`);
@@ -193,7 +193,7 @@ let f = function () {
   const varInitAssignLhsComputedRhs = 4;
   b.foo = varInitAssignLhsComputedRhs;
   const tmpCalleeParam$3 = varInitAssignLhsComputedRhs;
-  $(tmpCalleeParam$3);
+  $(varInitAssignLhsComputedRhs);
   $(`-------- a.foo = 4`);
   return undefined;
 };

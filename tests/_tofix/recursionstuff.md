@@ -170,7 +170,7 @@ const selfcaller = function ($$0) {
   let $dlr_$$3 = $$0;
   debugger;
   const arg_is_number = $dlr_$$3;
-  $(arg_is_number);
+  $($dlr_$$3);
   const tmpIfTest = $frfr(tmpFree2, arg_is_number);
   if (tmpIfTest) {
     return undefined;

@@ -119,7 +119,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, varInitAssignLhsComputedRhs);
 $(a, b, c);
 `````
 

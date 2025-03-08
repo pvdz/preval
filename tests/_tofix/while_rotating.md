@@ -1,12 +1,12 @@
 # Preval test case
 
-# unused_while_init.md
+# while_rotating.md
 
-> Tofix > unused while init
+> Tofix > while rotating
 >
 > Normalization of assignments should work the same everywhere they are
 
-Currently the result is `$(100); new $(1); while (true) $(100); new $(1);` which can be rotated to just the loop. 
+Currently the result is `$(100); new $(1); while (true) $(100); new $(1);` which can be rotated to just the loop.
 
 ## Input
 

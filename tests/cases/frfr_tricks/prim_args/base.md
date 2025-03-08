@@ -90,7 +90,7 @@ const f = function $free($$0, $$1, $$2) {
   debugger;
   const tmpCalleeParam = a + 5;
   const tmpCalleeParam$1 = b;
-  const one = parseInt(tmpCalleeParam, tmpCalleeParam$1);
+  const one = parseInt(tmpCalleeParam, b);
   const two = one.slice(1, c);
   return two;
 };

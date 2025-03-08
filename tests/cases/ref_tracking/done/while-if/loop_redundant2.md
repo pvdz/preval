@@ -28,7 +28,7 @@ let dathing___4__ = `jhayon.vercel.app`;
 const d___9__ = $(`x`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___15__) {
   /*16*/ dathing___20__ = $;
-  $(dathing___24__);
+  $($);
 }
 `````
 
@@ -37,8 +37,7 @@ Ref tracking result:
                | reads      | read by     | overWrites     | overwritten by
 dathing:
   - w @4       | ########## | not read    | none           | 20
-  - w @20      | ########## | 24          | 4,20           | 20
-  - r @24      | 20
+  - w @20      | ########## | not read    | 4,20           | 20
 
 d:
   - w @9       | ########## | not read    | none           | none

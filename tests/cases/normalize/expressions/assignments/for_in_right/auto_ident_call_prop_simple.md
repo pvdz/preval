@@ -80,7 +80,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 a = b.$(1);
 let tmpCalleeParam = a;
-let tmpForInGen = $forIn(tmpCalleeParam);
+let tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

@@ -57,7 +57,7 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall($);
+const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);

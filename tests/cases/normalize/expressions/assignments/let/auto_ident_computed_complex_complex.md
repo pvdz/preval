@@ -62,7 +62,7 @@ const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let xyz = a;
-$(xyz);
+$(a);
 $(a, b);
 `````
 

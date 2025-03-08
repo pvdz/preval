@@ -102,7 +102,7 @@ if (tmpIfTest$3) {
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
-  $(a, b);
+  $(tmpNestedAssignArrPatternRhs, b);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

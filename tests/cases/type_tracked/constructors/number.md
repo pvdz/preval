@@ -47,7 +47,7 @@ const tmpBinBothLhs = $(5);
 const tmpBinBothRhs = $(`10`);
 const x = tmpBinBothLhs * tmpBinBothRhs;
 const tmpStringFirstArg = x;
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
+const tmpCalleeParam = $coerce(x, `number`);
 $(tmpCalleeParam);
 `````
 

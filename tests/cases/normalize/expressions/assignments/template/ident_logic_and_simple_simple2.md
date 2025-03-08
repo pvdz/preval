@@ -50,7 +50,7 @@ if (a) {
 } else {
 }
 let tmpBinLhs = a;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
+const tmpStringConcatR = $coerce(a, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}after`;
 $(tmpCalleeParam);
 $(a);

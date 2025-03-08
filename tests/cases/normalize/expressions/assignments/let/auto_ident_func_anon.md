@@ -58,7 +58,7 @@ a = function () {
   return undefined;
 };
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

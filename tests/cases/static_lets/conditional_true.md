@@ -77,11 +77,11 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = 10;
   const a = x;
-  $(a, `a`);
+  $(x, `a`);
 } else {
   x = 20;
   const b = x;
-  $(b, `b`);
+  $(x, `b`);
 }
 $(x);
 `````

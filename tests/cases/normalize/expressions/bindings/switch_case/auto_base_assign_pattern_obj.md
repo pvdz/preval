@@ -70,7 +70,7 @@ if (tmpIfTest) {
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
-  $(a, b);
+  $(tmpNestedAssignObjPatternRhs, b);
 } else {
 }
 `````

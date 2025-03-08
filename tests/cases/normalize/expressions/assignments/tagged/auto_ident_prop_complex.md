@@ -58,7 +58,7 @@ const tmpCalleeParam = [`before `, ` after`];
 const tmpAssignRhsProp = $(b);
 a = tmpAssignRhsProp.c;
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a, b);
 `````
 

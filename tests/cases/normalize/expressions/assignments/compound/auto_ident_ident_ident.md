@@ -59,7 +59,7 @@ b = 2;
 let tmpBinBothRhs = b;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, b, c);
 `````
 

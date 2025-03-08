@@ -37,8 +37,8 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
-  const tmpClusterSSA_c /*:unknown*/ = implicitB;
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_c);
+  implicitB;
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(implicitB);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
   const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(c);
@@ -63,6 +63,7 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
+  implicitB;
   $($(implicitB));
 } else {
   $($(c));
@@ -127,13 +128,13 @@ else {
   d = a == null;
 }
 if (d) {
-  const f = implicitB;
-  const g = $( f );
-  $( g );
+  implicitB;
+  const f = $( implicitB );
+  $( f );
 }
 else {
-  const h = $( c );
-  $( h );
+  const g = $( c );
+  $( g );
 }
 `````
 

@@ -62,7 +62,7 @@ if (tmpIfTest) {
 } else {
 }
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 

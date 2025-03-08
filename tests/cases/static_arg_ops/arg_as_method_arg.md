@@ -55,7 +55,7 @@ const f = function ($$0) {
   let aa = $$0;
   debugger;
   const a = aa;
-  $coerce(a, `number`);
+  $coerce(aa, `number`);
   return undefined;
 };
 f(`0`);

@@ -64,7 +64,7 @@ if (a) {
   a = 2;
 }
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

@@ -23,8 +23,7 @@ $('nope');
 
 `````js filename=intro
 import { default as e } from 'xyz';
-const tmpCalleeParam /*:unknown*/ = e;
-$(tmpCalleeParam);
+$(e);
 `````
 
 `````js filename=xyz
@@ -75,14 +74,12 @@ With rename=true
 
 `````js filename=intro
 import { default as e } from "xyz";
-const a = e;
-$( a );
+$( e );
 `````
 
 `````js filename=xyz
 import { default as e } from "xyz";
-const a = e;
-$( a );
+$( e );
 `````
 
 ## Globals

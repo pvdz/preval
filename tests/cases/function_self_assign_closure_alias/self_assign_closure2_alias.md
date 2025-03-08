@@ -124,7 +124,7 @@ let a = function () {
   return tmpReturnArg;
 };
 let b = a;
-const tmpBinBothLhs = b();
+const tmpBinBothLhs = a();
 const tmpBinBothRhs = a();
 const tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
 $(tmpCalleeParam);

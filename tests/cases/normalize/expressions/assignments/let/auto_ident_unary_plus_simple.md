@@ -52,7 +52,7 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 a = +arg;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, arg);
 `````
 

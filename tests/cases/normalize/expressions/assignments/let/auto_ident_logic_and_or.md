@@ -81,7 +81,7 @@ if (a) {
   a = $(tmpCalleeParam$3);
 }
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

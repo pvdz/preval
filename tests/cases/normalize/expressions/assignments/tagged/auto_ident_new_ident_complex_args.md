@@ -61,7 +61,7 @@ const tmpCalleeParam$3 = $(1);
 const tmpCalleeParam$5 = $(2);
 a = new tmpNewCallee(tmpCalleeParam$3, tmpCalleeParam$5);
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 

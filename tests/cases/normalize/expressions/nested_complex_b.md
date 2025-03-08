@@ -58,7 +58,7 @@ const tmpNestedPropAssignRhs = c;
 tmpNestedAssignObj.length = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 `````
 
 ## PST Settled

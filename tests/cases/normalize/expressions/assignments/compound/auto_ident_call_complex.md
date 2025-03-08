@@ -56,7 +56,7 @@ const tmpCallComplexCallee = $($);
 const tmpBinBothRhs = tmpCallComplexCallee(1);
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

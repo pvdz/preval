@@ -73,7 +73,7 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, x, y);
 `````
 

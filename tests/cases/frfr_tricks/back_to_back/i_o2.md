@@ -77,7 +77,7 @@ let g = function $free($$0) {
   let $dlr_$$0 = $$0;
   debugger;
   let x$1 = $dlr_$$0;
-  const r = $frfr(f, x$1);
+  const r = $frfr(f, $dlr_$$0);
   return r;
 };
 const f = function $free($$0, $$1) {

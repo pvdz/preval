@@ -84,7 +84,7 @@ if ($) {
     debugger;
     if (a) {
       x = a;
-      $(x, a);
+      $(a, a);
       return undefined;
     } else {
       $(`b`, x, a);

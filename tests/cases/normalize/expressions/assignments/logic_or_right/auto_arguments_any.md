@@ -24,8 +24,7 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   a = arguments;
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = arguments;
-  $(tmpClusterSSA_tmpCalleeParam);
+  $(arguments);
 }
 $(a);
 `````
@@ -83,8 +82,7 @@ if (b) {
 }
 else {
   a = arguments;
-  const c = arguments;
-  $( c );
+  $( arguments );
 }
 $( a );
 `````

@@ -53,7 +53,7 @@ const a = $(`a`);
 const b = $(`b`);
 const x = a === b;
 const tmpArgOverflow = x;
-const y = Boolean(tmpArgOverflow);
+const y = Boolean(x);
 $(y);
 `````
 

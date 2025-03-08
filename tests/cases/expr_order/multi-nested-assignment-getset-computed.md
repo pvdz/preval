@@ -611,7 +611,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-tmpCallCallee(tmpCalleeParam$1);
+tmpCallCallee(varInitAssignLhsComputedRhs);
 tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````

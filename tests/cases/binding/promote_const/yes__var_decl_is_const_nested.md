@@ -54,7 +54,7 @@ let x = undefined;
 let x = undefined;
 x = $(10);
 let tmpCalleeParam = x;
-$(tmpCalleeParam);
+$(x);
 $(x);
 `````
 

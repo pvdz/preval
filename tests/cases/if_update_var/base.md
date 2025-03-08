@@ -70,7 +70,7 @@ if (tmpIfTest) {
   x = 200;
 }
 const y = x;
-$(y);
+$(x);
 `````
 
 ## PST Settled

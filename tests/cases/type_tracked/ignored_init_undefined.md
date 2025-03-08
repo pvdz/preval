@@ -102,7 +102,7 @@ let itooamanumberjack = false;
 if (imanumberandilovethrees) {
   itooamanumberjack = undefined;
   const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(1);
+  const tmpChainElementCall = $(1);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainElementCall.x;
@@ -112,7 +112,7 @@ if (imanumberandilovethrees) {
 } else {
   itooamanumberjack = undefined;
   const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$1 = tmpChainRootCall$1(2);
+  const tmpChainElementCall$1 = $(2);
   const tmpIfTest$1 = tmpChainElementCall$1 != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementCall$1.x;

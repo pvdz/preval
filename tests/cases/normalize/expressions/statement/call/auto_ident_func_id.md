@@ -56,7 +56,7 @@ const f = function () {
   return undefined;
 };
 const tmpCalleeParam = f;
-$(tmpCalleeParam);
+$(f);
 $(a);
 `````
 

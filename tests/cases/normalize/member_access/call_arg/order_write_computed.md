@@ -97,7 +97,7 @@ const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedRhs = 30;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-$(tmpCalleeParam);
+$(varInitAssignLhsComputedRhs);
 `````
 
 ## PST Settled

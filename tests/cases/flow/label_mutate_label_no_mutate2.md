@@ -110,7 +110,7 @@ const f = function () {
     debugger;
     let tmpAfterLabel2 = $dlr_$$0;
     let x$1 = $dlr_$$1;
-    $(x$1);
+    $($dlr_$$1);
     const tmpReturnArg$3 = tmpAfterLabel2(x$1);
     return tmpReturnArg$3;
   };
@@ -118,7 +118,7 @@ const f = function () {
     let $dlr_$$2 = $$0;
     debugger;
     let x$3 = $dlr_$$2;
-    $(x$3);
+    $($dlr_$$2);
     return undefined;
   };
   let x = `fail`;

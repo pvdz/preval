@@ -24,16 +24,15 @@ let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-  tmpCalleeParam$1 = tmpChainElementObject;
+  $(tmpCalleeParam, tmpChainElementObject);
 }
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
@@ -44,14 +43,15 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $({ x: 1 });
 const tmpIfTest = tmpChainElementCall == null;
-let tmpCalleeParam$1 = undefined;
-if (!tmpIfTest) {
+const tmpCalleeParam = [`before `, ` after`];
+if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-  tmpCalleeParam$1 = tmpChainElementObject;
+  $(tmpCalleeParam, tmpChainElementObject);
 }
-$([`before `, ` after`], tmpCalleeParam$1);
 $(a);
 `````
 
@@ -74,7 +74,7 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 a = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
+const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $(`x`);
@@ -83,7 +83,7 @@ if (tmpIfTest) {
 } else {
 }
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 
@@ -95,18 +95,16 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
+const e = [ "before ", " after" ];
 if (d) {
-
+  $( e, undefined );
 }
 else {
   const f = $( "x" );
   const g = c[ f ];
   a = g;
-  e = g;
+  $( e, g );
 }
-const h = [ "before ", " after" ];
-$( h, e );
 $( a );
 `````
 

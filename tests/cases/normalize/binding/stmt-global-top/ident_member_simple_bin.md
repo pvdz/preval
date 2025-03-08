@@ -50,7 +50,7 @@ let d = 4;
 const varInitAssignLhsComputedRhs = c + d;
 b.x = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
-$(a, b, c);
+$(varInitAssignLhsComputedRhs, b, c);
 `````
 
 ## PST Settled

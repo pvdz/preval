@@ -52,7 +52,7 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 a = typeof x;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, x);
 `````
 

@@ -59,7 +59,7 @@ const tmpArrElement$3 = $(3);
 const tmpBinBothRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

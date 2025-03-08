@@ -59,7 +59,7 @@ const f = function () {
 };
 a = f;
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

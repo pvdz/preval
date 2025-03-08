@@ -106,7 +106,7 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 a = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(b);
+const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $(`x`);
@@ -121,7 +121,7 @@ if (tmpIfTest) {
 } else {
 }
 let tmpCalleeParam = a;
-let tmpForInGen = $forIn(tmpCalleeParam);
+let tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest$3 = tmpForInNext.done;

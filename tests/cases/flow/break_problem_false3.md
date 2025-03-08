@@ -162,7 +162,7 @@ let f = function () {
     let $dlr_$$6 = $$0;
     debugger;
     let x$1 = $dlr_$$6;
-    $(x$1);
+    $($dlr_$$6);
     return undefined;
   };
   const tmpReturnArg$9 = tmpLabeledBlockFunc(x);

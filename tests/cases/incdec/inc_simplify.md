@@ -69,11 +69,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(`a++`, tmpPostUpdArgIdent);
     b = b + 1;
     flag = b;
-    $(`++b`, flag);
+    $(`++b`, b);
     const tmpPostUpdArgIdent$3 /*:number*/ = $coerce(c, `number`);
     c = tmpPostUpdArgIdent$3 + 1;
     flag = c;
-    $(`++c`, flag);
+    $(`++c`, c);
     const tmpPostUpdArgIdent$5 /*:number*/ = $coerce(d, `number`);
     d = tmpPostUpdArgIdent$5 + 1;
     flag = tmpPostUpdArgIdent$5;
@@ -108,10 +108,10 @@ while (true) {
     $(`a++`, tmpPostUpdArgIdent);
     b = b + 1;
     flag = b;
-    $(`++b`, flag);
+    $(`++b`, b);
     c = $coerce(c, `number`) + 1;
     flag = c;
-    $(`++c`, flag);
+    $(`++c`, c);
     const tmpPostUpdArgIdent$5 = $coerce(d, `number`);
     d = tmpPostUpdArgIdent$5 + 1;
     flag = tmpPostUpdArgIdent$5;
@@ -184,19 +184,19 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpPostUpdArgIdent = $coerce(a, `number`);
     a = tmpPostUpdArgIdent + 1;
     flag = tmpPostUpdArgIdent;
-    $(`a++`, flag);
+    $(`a++`, tmpPostUpdArgIdent);
     const tmpPostUpdArgIdent$1 = $coerce(b, `number`);
     b = tmpPostUpdArgIdent$1 + 1;
     flag = b;
-    $(`++b`, flag);
+    $(`++b`, b);
     const tmpPostUpdArgIdent$3 = $coerce(c, `number`);
     c = tmpPostUpdArgIdent$3 + 1;
     flag = c;
-    $(`++c`, flag);
+    $(`++c`, c);
     const tmpPostUpdArgIdent$5 = $coerce(d, `number`);
     d = tmpPostUpdArgIdent$5 + 1;
     flag = tmpPostUpdArgIdent$5;
-    $(`d++`, flag);
+    $(`d++`, tmpPostUpdArgIdent$5);
   } else {
     break;
   }
@@ -232,11 +232,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( "a++", i );
     b = b + 1;
     d = b;
-    $( "++b", d );
+    $( "++b", b );
     const j = $coerce( e, "number" );
     e = j + 1;
     d = e;
-    $( "++c", d );
+    $( "++c", e );
     const k = $coerce( g, "number" );
     g = k + 1;
     d = k;
@@ -274,5 +274,4 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- switch me to ref tracking
 - objects in isFree check

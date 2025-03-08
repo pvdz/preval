@@ -53,7 +53,7 @@ const f = function () {
   return undefined;
 };
 a = f;
-$(a);
+$(f);
 `````
 
 ## PST Settled

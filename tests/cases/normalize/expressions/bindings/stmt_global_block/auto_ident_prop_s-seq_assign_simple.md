@@ -52,7 +52,7 @@ const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedRhs = 2;
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
-$(a, b);
+$(varInitAssignLhsComputedRhs, b);
 `````
 
 ## PST Settled

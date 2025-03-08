@@ -54,7 +54,7 @@ const tmpCalleeParam = [`before `, ` after`];
 const tmpPostUpdArgIdent = $coerce(b, `number`);
 b = tmpPostUpdArgIdent - 1;
 const tmpCalleeParam$1 = b;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, b);
 $(a, b);
 `````
 

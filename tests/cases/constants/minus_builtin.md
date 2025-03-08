@@ -43,7 +43,7 @@ $(y);
 `````js filename=intro
 const x = -Infinity;
 const y = x;
-$(y);
+$(x);
 `````
 
 ## PST Settled

@@ -99,7 +99,7 @@ const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall != null;
   if (tmpIfTest$1) {
     const tmpChainRootComputed = $(`x`);

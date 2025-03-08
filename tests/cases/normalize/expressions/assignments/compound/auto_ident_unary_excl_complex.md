@@ -55,7 +55,7 @@ const tmpUnaryArg = $(100);
 const tmpBinBothRhs = !tmpUnaryArg;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

@@ -86,7 +86,7 @@ const tmpObjLitVal = function (...$$0 /*:array*/) {
 };
 const a = { x: tmpObjLitVal, y: 100 };
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(a);
+const tmpChainElementCall = $(a);
 const tmpChainRootComputed = $(`x`);
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
 const tmpIfTest = tmpChainElementObject != null;

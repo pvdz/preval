@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const tmpCallComplexCallee /*:unknown*/ = $($);
-const a /*:unknown*/ = tmpCallComplexCallee(1);
-$(a);
-$(a);
+const tmpClusterSSA_a /*:unknown*/ = tmpCallComplexCallee(1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -32,9 +32,9 @@ $(a);
 
 `````js filename=intro
 const tmpCallComplexCallee = $($);
-const a = tmpCallComplexCallee(1);
-$(a);
-$(a);
+const tmpClusterSSA_a = tmpCallComplexCallee(1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal

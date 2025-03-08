@@ -19,14 +19,15 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = foo;
-$(tmpCalleeParam);
+foo;
+$(foo);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+foo;
 $(foo);
 `````
 
@@ -57,8 +58,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = foo;
-$( a );
+foo;
+$( foo );
 `````
 
 ## Globals

@@ -66,7 +66,7 @@ x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, x, y);
 `````
 

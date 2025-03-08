@@ -59,7 +59,7 @@ const tmpCallObj = b;
 const tmpBinBothRhs = tmpCallObj.$(1);
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

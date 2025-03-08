@@ -51,7 +51,7 @@ let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 a = +tmpUnaryArg;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

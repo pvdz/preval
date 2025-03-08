@@ -75,7 +75,7 @@ if ($) {
     let a = $$0;
     debugger;
     x = a;
-    $(x, a);
+    $(a, a);
     return undefined;
   };
   f(11);

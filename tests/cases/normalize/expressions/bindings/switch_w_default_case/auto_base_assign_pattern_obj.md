@@ -100,7 +100,7 @@ if (tmpIfTest$3) {
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
-  $(a, b);
+  $(tmpNestedAssignObjPatternRhs, b);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

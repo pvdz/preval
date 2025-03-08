@@ -67,7 +67,7 @@ const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, b);
 `````
 

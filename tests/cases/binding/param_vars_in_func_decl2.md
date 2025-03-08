@@ -60,7 +60,7 @@ const tmpClusterSSA_a = $(10);
 const b = $(20);
 const t = [tmpClusterSSA_a, b];
 m = t;
-$(m);
+$(t);
 `````
 
 ## PST Settled

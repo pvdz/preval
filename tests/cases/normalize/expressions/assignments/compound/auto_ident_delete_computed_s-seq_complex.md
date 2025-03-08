@@ -69,7 +69,7 @@ const tmpDeleteCompProp = $(`y`);
 const tmpBinBothRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, arg);
 `````
 

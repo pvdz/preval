@@ -60,14 +60,14 @@ let f = function () {
   const tmpPrevalAliasThis = this;
   debugger;
   const x = tmpPrevalAliasThis;
-  $(x);
+  $(tmpPrevalAliasThis);
   return undefined;
 };
 const tmpCallObj = f;
 const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam = { pass: 1 };
 const tmpCalleeParam$1 = $;
-$dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam, 1, 2, 3, `yep`, tmpCalleeParam$1);
+$dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam, 1, 2, 3, `yep`, $);
 `````
 
 ## PST Settled

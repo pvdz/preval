@@ -125,7 +125,7 @@ let f = function () {
     const tmpPostUpdArgIdent = $coerce(n, `number`);
     n = tmpPostUpdArgIdent + 1;
     const tmpCalleeParam = n;
-    $(`n:`, tmpCalleeParam);
+    $(`n:`, n);
     const tmpIfTest = n > 10;
     if (tmpIfTest) {
       return n;

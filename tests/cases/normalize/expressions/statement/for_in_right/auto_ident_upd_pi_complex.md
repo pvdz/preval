@@ -94,7 +94,7 @@ let tmpUpdNum = $coerce(tmpUpdProp, `number`);
 let tmpUpdInc = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
 const tmpCalleeParam = tmpUpdInc;
-let tmpForInGen = $forIn(tmpCalleeParam);
+let tmpForInGen = $forIn(tmpUpdInc);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

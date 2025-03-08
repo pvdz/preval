@@ -59,7 +59,7 @@ const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 a = tmpNestedAssignObjPatternRhs;
-$(a, b);
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 ## PST Settled

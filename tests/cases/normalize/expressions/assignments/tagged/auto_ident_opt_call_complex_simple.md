@@ -21,15 +21,14 @@ $(a);
 let a /*:unknown*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
   a = tmpChainElementCall$1;
-  tmpCalleeParam$1 = tmpChainElementCall$1;
+  $(tmpCalleeParam, tmpChainElementCall$1);
 }
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
@@ -40,13 +39,14 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
-let tmpCalleeParam$1 = undefined;
-if (!tmpIfTest) {
+const tmpCalleeParam = [`before `, ` after`];
+if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
+} else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, 1);
   a = tmpChainElementCall$1;
-  tmpCalleeParam$1 = tmpChainElementCall$1;
+  $(tmpCalleeParam, tmpChainElementCall$1);
 }
-$([`before `, ` after`], tmpCalleeParam$1);
 $(a);
 `````
 
@@ -67,7 +67,7 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 a = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall($);
+const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
@@ -75,7 +75,7 @@ if (tmpIfTest) {
 } else {
 }
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 
@@ -86,17 +86,15 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
-let d = undefined;
+const d = [ "before ", " after" ];
 if (c) {
-
+  $( d, undefined );
 }
 else {
   const e = $dotCall( b, $, undefined, 1 );
   a = e;
-  d = e;
+  $( d, e );
 }
-const f = [ "before ", " after" ];
-$( f, d );
 $( a );
 `````
 

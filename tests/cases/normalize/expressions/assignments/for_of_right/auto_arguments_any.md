@@ -19,7 +19,7 @@ $(a);
 
 `````js filename=intro
 const a /*:unknown*/ = arguments;
-const tmpForOfGen /*:unknown*/ = $forOf(a);
+const tmpForOfGen /*:unknown*/ = $forOf(arguments);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
@@ -37,7 +37,7 @@ $(a);
 
 `````js filename=intro
 const a = arguments;
-const tmpForOfGen = $forOf(a);
+const tmpForOfGen = $forOf(arguments);
 while (true) {
   const tmpForOfNext = tmpForOfGen.next();
   if (tmpForOfNext.done) {
@@ -75,7 +75,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = arguments;
 let tmpCalleeParam = a;
-let tmpForOfGen = $forOf(tmpCalleeParam);
+let tmpForOfGen = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
   const tmpIfTest = tmpForOfNext.done;
@@ -93,7 +93,7 @@ With rename=true
 
 `````js filename=intro
 const a = arguments;
-const b = $forOf( a );
+const b = $forOf( arguments );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const c = b.next();
   const d = c.done;

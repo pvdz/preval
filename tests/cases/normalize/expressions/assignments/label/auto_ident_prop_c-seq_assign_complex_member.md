@@ -65,7 +65,7 @@ const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-$(a, b);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 ## PST Settled

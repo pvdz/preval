@@ -65,7 +65,7 @@ const tmpSwitchDisc = $(1);
 $(1);
 $(2);
 a = x;
-$(a, x);
+$(x, x);
 `````
 
 ## PST Settled

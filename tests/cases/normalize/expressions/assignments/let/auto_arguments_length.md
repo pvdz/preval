@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const a /*:unknown*/ = arguments;
-$(a);
+$(arguments);
 $(a);
 `````
 
@@ -29,7 +29,7 @@ $(a);
 
 `````js filename=intro
 const a = arguments;
-$(a);
+$(arguments);
 $(a);
 `````
 
@@ -50,7 +50,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = arguments;
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 
@@ -59,7 +59,7 @@ With rename=true
 
 `````js filename=intro
 const a = arguments;
-$( a );
+$( arguments );
 $( a );
 `````
 

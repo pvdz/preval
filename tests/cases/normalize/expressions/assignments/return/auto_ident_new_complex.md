@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
-const a /*:object*/ = new tmpNewCallee(1);
-$(a);
-$(a);
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -32,9 +32,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const a = new tmpNewCallee(1);
-$(a);
-$(a);
+const tmpClusterSSA_a = new tmpNewCallee(1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal

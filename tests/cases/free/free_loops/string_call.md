@@ -80,7 +80,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpStringFirstArg = counter;
-    const tmpBinLhs = $coerce(tmpStringFirstArg, `string`);
+    const tmpBinLhs = $coerce(counter, `string`);
     const tmpIfTest = tmpBinLhs === 5;
     if (tmpIfTest) {
       counter = counter + 10;

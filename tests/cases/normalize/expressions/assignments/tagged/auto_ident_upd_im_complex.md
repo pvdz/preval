@@ -69,7 +69,7 @@ let tmpUpdInc = tmpUpdNum - 1;
 tmpUpdObj.x = tmpUpdInc;
 a = tmpUpdNum;
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a, b);
 `````
 

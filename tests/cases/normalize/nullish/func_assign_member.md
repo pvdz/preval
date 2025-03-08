@@ -26,8 +26,8 @@ $(f());
 const y /*:unknown*/ = $();
 const tmpIfTest /*:boolean*/ = y == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_y /*:unknown*/ = foo;
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_y);
+  foo;
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(foo);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
   const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(y);
@@ -41,6 +41,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const y = $();
 if (y == null) {
+  foo;
   $($(foo));
 } else {
   $($(y));
@@ -87,13 +88,13 @@ With rename=true
 const a = $();
 const b = a == null;
 if (b) {
-  const c = foo;
-  const d = $( c );
-  $( d );
+  foo;
+  const c = $( foo );
+  $( c );
 }
 else {
-  const e = $( a );
-  $( e );
+  const d = $( a );
+  $( d );
 }
 `````
 

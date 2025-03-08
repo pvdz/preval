@@ -19,15 +19,16 @@ $(x);
 `````js filename=intro
 const tmpArrElement$3 /*:array*/ = [1, 2, 3];
 x = tmpArrElement$3;
-$(x);
+$(tmpArrElement$3);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-x = [1, 2, 3];
-$(x);
+const tmpArrElement$3 = [1, 2, 3];
+x = tmpArrElement$3;
+$(tmpArrElement$3);
 `````
 
 ## Pre Normal
@@ -61,7 +62,7 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3 ];
 x = a;
-$( x );
+$( a );
 `````
 
 ## Globals

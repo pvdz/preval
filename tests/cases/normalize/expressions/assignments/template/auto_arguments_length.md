@@ -19,7 +19,7 @@ $(a);
 
 `````js filename=intro
 const a /*:unknown*/ = arguments;
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpBinBothRhs /*:string*/ = $coerce(arguments, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
@@ -30,7 +30,7 @@ $(a);
 
 `````js filename=intro
 const a = arguments;
-$(`before  ${a}  after`);
+$(`before  ${arguments}  after`);
 $(a);
 `````
 
@@ -51,7 +51,7 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = `before  `;
 a = arguments;
 let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
+const tmpBinBothRhs = $coerce(a, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
@@ -64,7 +64,7 @@ With rename=true
 
 `````js filename=intro
 const a = arguments;
-const b = $coerce( a, "string" );
+const b = $coerce( arguments, "string" );
 const c = `before  ${b}  after`;
 $( c );
 $( a );

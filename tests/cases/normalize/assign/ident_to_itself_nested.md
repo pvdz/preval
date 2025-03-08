@@ -54,7 +54,7 @@ $(a, x);
 let a = $(10);
 let x = $(20);
 x = a;
-$(a, x);
+$(a, a);
 `````
 
 ## PST Settled

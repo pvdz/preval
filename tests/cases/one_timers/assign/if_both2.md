@@ -119,7 +119,7 @@ $(tmpCalleeParam$1);
 `````js filename=intro
 let x = $(100);
 const tmpCalleeParam = x;
-$(tmpCalleeParam);
+$(x);
 const g = function () {
   debugger;
   const tmpIfTest = $(1);
@@ -142,7 +142,7 @@ if (tmpIfTest$1) {
 x = f();
 $(x);
 const tmpCalleeParam$1 = x;
-$(tmpCalleeParam$1);
+$(x);
 `````
 
 ## PST Settled

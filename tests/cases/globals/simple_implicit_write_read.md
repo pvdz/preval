@@ -18,8 +18,8 @@ $(a);
 
 `````js filename=intro
 a = 5;
-const tmpCalleeParam /*:unknown*/ = a;
-$(tmpCalleeParam);
+a;
+$(a);
 $(a);
 `````
 
@@ -28,6 +28,7 @@ $(a);
 
 `````js filename=intro
 a = 5;
+a;
 $(a);
 $(a);
 `````
@@ -46,7 +47,7 @@ $(a);
 `````js filename=intro
 a = 5;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 
@@ -55,8 +56,8 @@ With rename=true
 
 `````js filename=intro
 a = 5;
-const b = a;
-$( b );
+a;
+$( a );
 $( a );
 `````
 

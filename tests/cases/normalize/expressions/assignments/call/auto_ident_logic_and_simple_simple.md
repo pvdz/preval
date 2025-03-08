@@ -50,7 +50,7 @@ if (a) {
 } else {
 }
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

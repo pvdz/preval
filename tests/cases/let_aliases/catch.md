@@ -45,8 +45,7 @@ const a /*:unknown*/ = x;
 try {
   $();
 } catch (e) {
-  const b /*:unknown*/ = x;
-  $(a, b);
+  $(a, x);
   $(f);
 }
 `````
@@ -117,7 +116,7 @@ try {
   $();
 } catch (e) {
   const b = x;
-  $(a, b);
+  $(a, x);
   $(f);
 }
 `````
@@ -142,8 +141,7 @@ try {
   $();
 }
 catch (e) {
-  const f = b;
-  $( d, f );
+  $( d, b );
   $( a );
 }
 `````

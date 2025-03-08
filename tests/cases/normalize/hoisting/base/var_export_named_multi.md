@@ -57,7 +57,7 @@ export { y };
 `````js filename=intro
 let x = undefined;
 let y = undefined;
-$(x, y);
+$(x, undefined);
 x = 10;
 y = 20;
 $(x, y);

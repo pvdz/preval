@@ -56,7 +56,7 @@ let a = { a: 999, b: 1000 };
 const tmpAssignRhsProp = $(b);
 a = tmpAssignRhsProp.c;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, b);
 `````
 

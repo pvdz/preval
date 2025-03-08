@@ -58,7 +58,7 @@ a = function () {
   return undefined;
 };
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

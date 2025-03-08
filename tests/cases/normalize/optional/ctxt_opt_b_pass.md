@@ -59,7 +59,7 @@ const tmpObjLitVal = { c: $ };
 const a = { b: tmpObjLitVal };
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(a);
+const tmpChainElementCall = $(a);
 const tmpChainElementObject = tmpChainElementCall.b;
 const tmpIfTest = tmpChainElementObject != null;
 if (tmpIfTest) {

@@ -85,7 +85,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const a = tmpForInNext.value;
     const b = a;
-    $(b);
+    $(a);
   }
 }
 `````

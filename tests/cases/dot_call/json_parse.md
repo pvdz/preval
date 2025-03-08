@@ -81,7 +81,7 @@ const getMessages = async function ($$0) {
   let $dlr_$$0 = $$0;
   debugger;
   const D$15 = $dlr_$$0;
-  const tmpAwaitArg = fetchFromStore(D$15);
+  const tmpAwaitArg = fetchFromStore($dlr_$$0);
   const l$11 = await tmpAwaitArg;
   const tmpCallCompVal = $JSON_parse;
   const tmpCompObj$1 = l$11[0];

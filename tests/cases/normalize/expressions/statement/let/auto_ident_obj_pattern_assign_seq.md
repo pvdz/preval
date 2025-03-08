@@ -72,7 +72,7 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 xyz = tmpNestedAssignObjPatternRhs;
-$(xyz);
+$(tmpNestedAssignObjPatternRhs);
 $(a, x, y);
 `````
 

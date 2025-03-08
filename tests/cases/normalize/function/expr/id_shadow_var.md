@@ -62,7 +62,7 @@ const r$1 = function () {
   return r$2;
 };
 const f = r$1;
-const x = f();
+const x = r$1();
 const tmpCalleeParam$1 = x;
 const tmpCalleeParam$3 = typeof f;
 $(tmpCalleeParam$1, tmpCalleeParam$3);

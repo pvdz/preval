@@ -21,8 +21,8 @@ $(unknown??length);
 const tmpCalleeParam /*:unknown*/ = unknown;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = length;
-  $(tmpClusterSSA_tmpCalleeParam);
+  length;
+  $(length);
 } else {
   $(tmpCalleeParam);
 }
@@ -34,6 +34,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpCalleeParam = unknown;
 if (tmpCalleeParam == null) {
+  length;
   $(length);
 } else {
   $(tmpCalleeParam);
@@ -67,8 +68,8 @@ With rename=true
 const a = unknown;
 const b = a == null;
 if (b) {
-  const c = length;
-  $( c );
+  length;
+  $( length );
 }
 else {
   $( a );

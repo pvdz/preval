@@ -52,7 +52,7 @@ const varInitAssignLhsComputedObj = obj.a;
 const varInitAssignLhsComputedRhs = 15;
 varInitAssignLhsComputedObj.b = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-$(tmpCalleeParam);
+$(varInitAssignLhsComputedRhs);
 const tmpCompObj = obj.a;
 const tmpCalleeParam$1 = tmpCompObj.b;
 $(tmpCalleeParam$1);

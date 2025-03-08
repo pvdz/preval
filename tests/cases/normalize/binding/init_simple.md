@@ -40,7 +40,7 @@ $(x);
 
 `````js filename=intro
 let x = Infinity;
-$(x);
+$(Infinity);
 `````
 
 ## PST Settled

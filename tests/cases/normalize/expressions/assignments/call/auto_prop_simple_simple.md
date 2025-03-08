@@ -55,7 +55,7 @@ let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 a.b = 2;
 $(a);
 `````

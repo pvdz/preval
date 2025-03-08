@@ -31,11 +31,11 @@ $(y);
 
 `````js filename=intro
 drop1;
-const x /*:unknown*/ = drop2;
-$(x);
+drop2;
+$(drop2);
 $();
-const y /*:unknown*/ = drop3;
-$(y);
+drop3;
+$(drop3);
 `````
 
 ## Denormalized
@@ -43,8 +43,10 @@ $(y);
 
 `````js filename=intro
 drop1;
+drop2;
 $(drop2);
 $();
+drop3;
 $(drop3);
 `````
 
@@ -69,10 +71,10 @@ $(y);
 `````js filename=intro
 drop1;
 const x = drop2;
-$(x);
+$(drop2);
 let y = $();
 y = drop3;
-$(y);
+$(drop3);
 `````
 
 ## PST Settled
@@ -80,11 +82,11 @@ With rename=true
 
 `````js filename=intro
 drop1;
-const a = drop2;
-$( a );
+drop2;
+$( drop2 );
 $();
-const b = drop3;
-$( b );
+drop3;
+$( drop3 );
 `````
 
 ## Globals

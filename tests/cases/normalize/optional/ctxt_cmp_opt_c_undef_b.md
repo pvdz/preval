@@ -63,7 +63,7 @@ $($(a)[$(`b`)][$(`c`)]?.(100));
 const a = {};
 let tmpCalleeParam = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall(a);
+const tmpChainElementCall = $(a);
 const tmpChainRootComputed = $(`b`);
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
 const tmpChainRootComputed$1 = $(`c`);

@@ -44,7 +44,7 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = undefined;
-$(a, arg);
+$(undefined, arg);
 `````
 
 ## PST Settled

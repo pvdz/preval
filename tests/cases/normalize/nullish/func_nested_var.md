@@ -37,8 +37,8 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
-  const tmpClusterSSA_c /*:unknown*/ = length;
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpClusterSSA_c);
+  length;
+  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(length);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
   const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(c);
@@ -63,6 +63,7 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
+  length;
   $($(length));
 } else {
   $($(c));
@@ -127,13 +128,13 @@ else {
   d = a == null;
 }
 if (d) {
-  const f = length;
-  const g = $( f );
-  $( g );
+  length;
+  const f = $( length );
+  $( f );
 }
 else {
-  const h = $( c );
-  $( h );
+  const g = $( c );
+  $( g );
 }
 `````
 

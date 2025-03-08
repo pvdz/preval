@@ -58,7 +58,7 @@ b = c;
 let varInitAssignLhsComputedRhs = b;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
-$(tmpCalleeParam);
+$(varInitAssignLhsComputedRhs);
 `````
 
 ## PST Settled

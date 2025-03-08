@@ -57,7 +57,7 @@ const tmpNestedAssignObj = obj.a;
 const tmpNestedPropAssignRhs = 15;
 tmpNestedAssignObj.b = tmpNestedPropAssignRhs;
 x = tmpNestedPropAssignRhs;
-$(x);
+$(tmpNestedPropAssignRhs);
 const tmpCompObj = obj.a;
 const tmpCalleeParam = tmpCompObj.b;
 $(tmpCalleeParam);

@@ -52,7 +52,7 @@ if (a) {
 } else {
 }
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

@@ -49,7 +49,7 @@ $(a, x);
 `````js filename=intro
 let a = $(10);
 let x = a;
-$(a, x);
+$(a, a);
 `````
 
 ## PST Settled

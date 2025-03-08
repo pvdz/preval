@@ -59,7 +59,7 @@ const tmpCalleeParam = [`before `, ` after`];
 const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a, arg);
 `````
 

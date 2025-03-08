@@ -42,8 +42,7 @@ let f /*:()=>unknown*/ = function () {
 let x /*:unknown*/ = $(1);
 const a /*:unknown*/ = x;
 if ($) {
-  const b /*:unknown*/ = x;
-  $(a, b);
+  $(a, x);
 } else {
 }
 $(f);
@@ -110,7 +109,7 @@ let x = $(1);
 const a = x;
 if ($) {
   const b = x;
-  $(a, b);
+  $(a, x);
 } else {
 }
 $(f);
@@ -133,8 +132,7 @@ let a = function() {
 let b = $( 1 );
 const d = b;
 if ($) {
-  const e = b;
-  $( d, e );
+  $( d, b );
 }
 $( a );
 `````

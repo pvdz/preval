@@ -49,7 +49,7 @@ let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = $coerce(b, `number`);
 b = tmpPostUpdArgIdent + 1;
 a = tmpPostUpdArgIdent;
-$(a, b);
+$(tmpPostUpdArgIdent, b);
 `````
 
 ## PST Settled

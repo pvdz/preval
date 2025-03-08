@@ -43,7 +43,7 @@ let f /*:()=>unknown*/ = function () {
 let x /*:unknown*/ = $(1);
 const a /*:unknown*/ = x;
 try {
-  $(a, a);
+  $(a, x);
   $(f);
 } catch (e) {
   $();
@@ -65,7 +65,7 @@ let f = function () {
 let x = $(1);
 const a = x;
 try {
-  $(a, a);
+  $(a, x);
   $(f);
 } catch (e) {
   $();
@@ -114,7 +114,7 @@ let x = $(1);
 const a = x;
 try {
   const b = x;
-  $(a, b);
+  $(a, x);
   $(f);
 } catch (e) {
   $();
@@ -138,7 +138,7 @@ let a = function() {
 let b = $( 1 );
 const d = b;
 try {
-  $( d, d );
+  $( d, b );
   $( a );
 }
 catch (e) {

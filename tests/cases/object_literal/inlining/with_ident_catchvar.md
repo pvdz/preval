@@ -30,8 +30,7 @@ try {
   } else {
   }
 } catch (e) {
-  const tmpCalleeParam /*:unknown*/ = e;
-  $(tmpCalleeParam);
+  $(e);
 }
 `````
 
@@ -90,8 +89,7 @@ try {
   }
 }
 catch (b) {
-  const c = b;
-  $( c );
+  $( b );
 }
 `````
 

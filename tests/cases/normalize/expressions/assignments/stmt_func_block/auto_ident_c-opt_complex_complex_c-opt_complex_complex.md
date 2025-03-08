@@ -92,7 +92,7 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   a = undefined;
   const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
     const tmpChainRootComputed = $(`x`);

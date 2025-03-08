@@ -68,7 +68,7 @@ b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
 let xyz = varInitAssignLhsComputedRhs;
-$(xyz);
+$(varInitAssignLhsComputedRhs);
 $(a, b, c);
 `````
 

@@ -21,18 +21,18 @@ $(a);
 
 
 `````js filename=intro
-const a /*:object*/ = new $(1);
-$(a);
-$(a);
+const tmpClusterSSA_a /*:object*/ = new $(1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const a = new $(1);
-$(a);
-$(a);
+const tmpClusterSSA_a = new $(1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal

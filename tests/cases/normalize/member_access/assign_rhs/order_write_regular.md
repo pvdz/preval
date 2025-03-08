@@ -99,7 +99,7 @@ const tmpNestedAssignObj = $(obj);
 const tmpNestedPropAssignRhs = 30;
 tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
 x = tmpNestedPropAssignRhs;
-$(x);
+$(tmpNestedPropAssignRhs);
 `````
 
 ## PST Settled

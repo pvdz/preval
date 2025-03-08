@@ -76,7 +76,7 @@ let f = function () {
   let tmpUpdInc = tmpUpdNum - 1;
   tmpUpdObj.x = tmpUpdInc;
   let a = tmpUpdNum;
-  $(a, b);
+  $(tmpUpdNum, b);
   return undefined;
 };
 const tmpCalleeParam$1 = f();

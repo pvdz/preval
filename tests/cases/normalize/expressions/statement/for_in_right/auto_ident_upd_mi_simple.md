@@ -79,7 +79,7 @@ let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = $coerce(b, `number`);
 b = tmpPostUpdArgIdent - 1;
 const tmpCalleeParam = b;
-let tmpForInGen = $forIn(tmpCalleeParam);
+let tmpForInGen = $forIn(b);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

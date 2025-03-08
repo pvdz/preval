@@ -74,7 +74,7 @@ let f = function ($$0) {
   let b = $$0;
   debugger;
   b = a;
-  $(b);
+  $(a);
   return undefined;
 };
 let a = 1;

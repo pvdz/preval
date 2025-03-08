@@ -75,7 +75,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpBinBothLhs = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall($);
+const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpCalleeParam = tmpChainElementCall;
@@ -87,7 +87,7 @@ if (tmpIfTest) {
 }
 let tmpBinBothRhs = undefined;
 const tmpChainRootCall$1 = $;
-const tmpChainElementCall$3 = tmpChainRootCall$1($);
+const tmpChainElementCall$3 = $($);
 const tmpIfTest$1 = tmpChainElementCall$3 != null;
 if (tmpIfTest$1) {
   const tmpCalleeParam$5 = tmpChainElementCall$3;

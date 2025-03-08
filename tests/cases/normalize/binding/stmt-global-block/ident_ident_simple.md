@@ -58,7 +58,7 @@ if (tmpIfTest) {
   let c = 3;
   b = c;
   let a = b;
-  $(a, b, c);
+  $(b, b, c);
 } else {
 }
 `````

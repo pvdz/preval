@@ -69,7 +69,7 @@ let f = function () {
     let c = 3;
     b = c;
     let a = b;
-    $(a, b, c);
+    $(b, b, c);
     return undefined;
   } else {
     return undefined;

@@ -69,7 +69,7 @@ let tmpUpdInc = tmpUpdNum - 1;
 tmpUpdObj.x = tmpUpdInc;
 a = tmpUpdInc;
 let xyz = a;
-$(xyz);
+$(a);
 $(a, b);
 `````
 

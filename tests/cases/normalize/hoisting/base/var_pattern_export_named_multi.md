@@ -57,7 +57,7 @@ export { y };
 `````js filename=intro
 let x = undefined;
 let y = undefined;
-$(x, y);
+$(x, undefined);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];

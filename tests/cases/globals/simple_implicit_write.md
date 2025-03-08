@@ -17,8 +17,8 @@ $(a = 5);
 
 `````js filename=intro
 a = 5;
-const tmpCalleeParam /*:unknown*/ = a;
-$(tmpCalleeParam);
+a;
+$(a);
 `````
 
 ## Denormalized
@@ -26,6 +26,7 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 a = 5;
+a;
 $(a);
 `````
 
@@ -42,7 +43,7 @@ $((a = 5));
 `````js filename=intro
 a = 5;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 `````
 
 ## PST Settled
@@ -50,8 +51,8 @@ With rename=true
 
 `````js filename=intro
 a = 5;
-const b = a;
-$( b );
+a;
+$( a );
 `````
 
 ## Globals

@@ -32,8 +32,8 @@ if (tmpIfTest) {
   const tmpClusterSSA_val /*:object*/ = {};
   $(tmpClusterSSA_val);
 } else {
-  const tmpClusterSSA_val$1 /*:unknown*/ = arg;
-  $(tmpClusterSSA_val$1);
+  arg;
+  $(arg);
 }
 `````
 
@@ -44,6 +44,7 @@ if (tmpIfTest) {
 if (arg === undefined) {
   $({});
 } else {
+  arg;
   $(arg);
 }
 `````
@@ -85,8 +86,8 @@ if (a) {
   $( b );
 }
 else {
-  const c = arg;
-  $( c );
+  arg;
+  $( arg );
 }
 `````
 

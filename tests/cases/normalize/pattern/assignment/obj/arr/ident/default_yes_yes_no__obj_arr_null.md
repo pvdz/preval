@@ -18,7 +18,7 @@ $(y);
 
 `````js filename=intro
 y = null;
-$(y);
+$(null);
 `````
 
 ## Denormalized
@@ -26,7 +26,7 @@ $(y);
 
 `````js filename=intro
 y = null;
-$(y);
+$(null);
 `````
 
 ## Pre Normal
@@ -68,7 +68,7 @@ With rename=true
 
 `````js filename=intro
 y = null;
-$( y );
+$( null );
 `````
 
 ## Globals

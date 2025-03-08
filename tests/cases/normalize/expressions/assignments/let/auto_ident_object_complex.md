@@ -57,7 +57,7 @@ const tmpObjLitVal$1 = 2;
 const tmpObjLitVal$3 = $(3);
 a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

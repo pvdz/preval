@@ -90,7 +90,7 @@ const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   b = 1;
   a = b;
-  $(a, b);
+  $(b, b);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

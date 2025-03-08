@@ -57,7 +57,7 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   $(100);
   a = undefined;
-  $(a);
+  $(undefined);
   return undefined;
 };
 const tmpCalleeParam = f();

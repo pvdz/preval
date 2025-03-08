@@ -37,8 +37,7 @@ let f /*:()=>unknown*/ = function () {
   return tmpReturnArg;
 };
 let x /*:unknown*/ = $(1);
-const a /*:unknown*/ = x;
-$(x, a);
+$(x, x);
 $(f);
 `````
 
@@ -96,7 +95,7 @@ let f = function () {
 let x = $(1);
 const a = x;
 const b = x;
-$(a, b);
+$(a, x);
 $(f);
 `````
 
@@ -115,8 +114,7 @@ let a = function() {
   return c;
 };
 let b = $( 1 );
-const d = b;
-$( b, d );
+$( b, b );
 $( a );
 `````
 

@@ -17,14 +17,15 @@ $(f??x);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = x;
-$(tmpClusterSSA_tmpCalleeParam);
+x;
+$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+x;
 $(x);
 `````
 
@@ -56,8 +57,8 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = x;
-$( a );
+x;
+$( x );
 `````
 
 ## Globals

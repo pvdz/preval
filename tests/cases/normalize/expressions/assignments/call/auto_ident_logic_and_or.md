@@ -79,7 +79,7 @@ if (a) {
   a = $(tmpCalleeParam$5);
 }
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

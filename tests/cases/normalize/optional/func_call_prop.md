@@ -50,7 +50,7 @@ let f = function () {
   debugger;
   let tmpCalleeParam = undefined;
   const tmpChainRootCall = parseInt;
-  const tmpChainElementCall = tmpChainRootCall(15);
+  const tmpChainElementCall = 15;
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainElementCall.foo;

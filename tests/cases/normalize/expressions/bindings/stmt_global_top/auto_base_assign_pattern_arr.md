@@ -57,7 +57,7 @@ const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 a = tmpNestedAssignArrPatternRhs;
-$(a, b);
+$(tmpNestedAssignArrPatternRhs, b);
 `````
 
 ## PST Settled

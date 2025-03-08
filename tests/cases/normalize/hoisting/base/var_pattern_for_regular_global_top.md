@@ -48,7 +48,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-$(x);
+$(undefined);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];

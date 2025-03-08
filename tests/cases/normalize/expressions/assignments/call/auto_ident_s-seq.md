@@ -56,7 +56,7 @@ $(1);
 $(2);
 a = x;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, x);
 `````
 

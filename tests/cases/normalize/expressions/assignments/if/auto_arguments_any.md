@@ -18,8 +18,7 @@ $(a);
 
 
 `````js filename=intro
-const a /*:unknown*/ = arguments;
-$(a);
+$(arguments);
 `````
 
 ## Denormalized
@@ -52,8 +51,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = arguments;
-$( a );
+$( arguments );
 `````
 
 ## Globals

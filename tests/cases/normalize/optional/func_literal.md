@@ -21,8 +21,8 @@ $(f());
 
 
 `````js filename=intro
-const tmpReturnArg /*:unknown*/ = $(3);
-$(tmpReturnArg);
+const tmpCalleeParam$1 /*:unknown*/ = $(3);
+$(tmpCalleeParam$1);
 `````
 
 ## Denormalized

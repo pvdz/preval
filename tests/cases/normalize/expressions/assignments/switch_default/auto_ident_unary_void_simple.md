@@ -59,7 +59,7 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 a = undefined;
-$(a, arg);
+$(undefined, arg);
 `````
 
 ## PST Settled

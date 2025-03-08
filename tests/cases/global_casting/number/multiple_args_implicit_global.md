@@ -54,7 +54,7 @@ const x = +a;
 const tmpArgOverflow = x;
 fail_hard;
 const tmpStringFirstArg = tmpArgOverflow;
-const y = $coerce(tmpStringFirstArg, `number`);
+const y = $coerce(tmpArgOverflow, `number`);
 $(y);
 `````
 

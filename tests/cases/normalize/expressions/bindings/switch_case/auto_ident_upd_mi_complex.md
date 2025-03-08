@@ -77,7 +77,7 @@ if (tmpIfTest) {
   let tmpUpdInc = tmpUpdNum - 1;
   tmpUpdObj.x = tmpUpdInc;
   a = tmpUpdInc;
-  $(a, b);
+  $(tmpUpdInc, b);
 } else {
 }
 `````

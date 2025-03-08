@@ -52,7 +52,7 @@ let tmpBinBothRhs = undefined;
 tmpBinBothRhs = 60;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

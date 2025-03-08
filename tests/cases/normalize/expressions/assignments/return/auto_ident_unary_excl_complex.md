@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const a /*:boolean*/ = !tmpUnaryArg;
-$(a);
-$(a);
+const tmpClusterSSA_a /*:boolean*/ = !tmpUnaryArg;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -32,9 +32,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = !tmpUnaryArg;
-$(a);
-$(a);
+const tmpClusterSSA_a = !tmpUnaryArg;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal

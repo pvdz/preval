@@ -58,7 +58,7 @@ $(f());
 let f = function () {
   debugger;
   let x = undefined;
-  $(x);
+  $(undefined);
   x = 10;
   $(x);
   return x;

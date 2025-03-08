@@ -45,7 +45,7 @@ const tmpBinBothLhs = ``;
 const tmpBinBothRhs = $(1);
 const x = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringFirstArg = x;
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
+const tmpCalleeParam = $coerce(x, `string`);
 $(tmpCalleeParam);
 `````
 

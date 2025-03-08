@@ -66,7 +66,7 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = `before  `;
 a = undefined;
 const tmpChainRootCall = $;
-const tmpChainElementCall = tmpChainRootCall($);
+const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
@@ -74,7 +74,7 @@ if (tmpIfTest) {
 } else {
 }
 let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
+const tmpBinBothRhs = $coerce(a, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;

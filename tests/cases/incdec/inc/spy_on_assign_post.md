@@ -106,7 +106,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpPostUpdArgIdent = $coerce(d, `number`);
     d = tmpPostUpdArgIdent + 1;
     flag = tmpPostUpdArgIdent;
-    $(`d++`, flag);
+    $(`d++`, tmpPostUpdArgIdent);
   } else {
     break;
   }

@@ -50,7 +50,7 @@ let a = { a: 999, b: 1000 };
 a * 0;
 a = NaN;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

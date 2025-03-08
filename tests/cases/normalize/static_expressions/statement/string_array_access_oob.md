@@ -38,7 +38,7 @@ $(`fop`[5]);
 
 `````js filename=intro
 const tmpCalleeParam = undefined;
-$(tmpCalleeParam);
+$(undefined);
 `````
 
 ## PST Settled

@@ -31,14 +31,8 @@ try {
   $(1);
   throw `foo`;
 } catch (err) {
-  const f /*:()=>undefined*/ = function () {
-    debugger;
-    const tmpClusterSSA_b /*:unknown*/ = err;
-    $(err, tmpClusterSSA_b);
-    return undefined;
-  };
-  f();
-  f();
+  $(err, err);
+  $(err, err);
   $(err);
 }
 $(3);
@@ -52,11 +46,8 @@ try {
   $(1);
   throw `foo`;
 } catch (err) {
-  const f = function () {
-    $(err, err);
-  };
-  f();
-  f();
+  $(err, err);
+  $(err, err);
   $(err);
 }
 $(3);
@@ -95,7 +86,7 @@ try {
     let b = $$0;
     debugger;
     b = err;
-    $(err, b);
+    $(err, err);
     return undefined;
   };
   f(11);
@@ -114,14 +105,8 @@ try {
   throw "foo";
 }
 catch (a) {
-  const b = function() {
-    debugger;
-    const c = a;
-    $( a, c );
-    return undefined;
-  };
-  b();
-  b();
+  $( a, a );
+  $( a, a );
   $( a );
 }
 $( 3 );

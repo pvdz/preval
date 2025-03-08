@@ -69,7 +69,7 @@ const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, varInitAssignLhsComputedRhs);
 $(a, b);
 `````
 

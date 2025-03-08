@@ -69,7 +69,7 @@ let f = function () {
   debugger;
   let a = { a: 999, b: 1000 };
   a = tmpPrevalAliasArgumentsAny;
-  $(a);
+  $(tmpPrevalAliasArgumentsAny);
   return undefined;
 };
 const tmpCalleeParam = f();

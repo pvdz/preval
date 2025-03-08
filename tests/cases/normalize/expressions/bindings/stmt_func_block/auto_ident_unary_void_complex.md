@@ -58,7 +58,7 @@ let f = function () {
   debugger;
   $(100);
   let a = undefined;
-  $(a);
+  $(undefined);
   return undefined;
 };
 const tmpCalleeParam = f();

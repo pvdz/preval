@@ -159,7 +159,7 @@ if (tmpIfTest$3) {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  $(a, b, c);
+  $(tmpNestedPropAssignRhs, b, c);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

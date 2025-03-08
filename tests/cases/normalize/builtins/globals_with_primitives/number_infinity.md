@@ -38,7 +38,7 @@ $(Number(Infinity));
 
 `````js filename=intro
 const tmpCalleeParam = Infinity;
-$(tmpCalleeParam);
+$(Infinity);
 `````
 
 ## PST Settled

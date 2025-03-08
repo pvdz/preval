@@ -102,7 +102,7 @@ const tmpNestedAssignComMemberProp = $(`x`);
 const tmpNestedPropAssignRhs = 30;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 x = tmpNestedPropAssignRhs;
-$(x);
+$(tmpNestedPropAssignRhs);
 `````
 
 ## PST Settled

@@ -24,9 +24,9 @@ $(a, arg);
 
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
-const a /*:boolean*/ = delete arg.y;
-$(a);
-$(a, arg);
+const tmpClusterSSA_a /*:boolean*/ = delete arg.y;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Denormalized
@@ -34,9 +34,9 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = delete arg.y;
-$(a);
-$(a, arg);
+const tmpClusterSSA_a = delete arg.y;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Pre Normal

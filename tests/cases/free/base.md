@@ -102,7 +102,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a = $Math_pow(n, 2);
   const b = a / 2;
   const tmpStringFirstArg = b;
-  const c = $coerce(tmpStringFirstArg, `string`);
+  const c = $coerce(b, `string`);
   $(i, c);
   i = i + 1;
   const tmpIfTest = i > 10;

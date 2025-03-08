@@ -58,7 +58,7 @@ let tmpUpdNum = $coerce(tmpUpdVal, `number`);
 let tmpUpdInc = tmpUpdNum - 1;
 tmpUpdObj[tmpUpdProp] = tmpUpdInc;
 let x = tmpUpdInc;
-$(x);
+$(tmpUpdInc);
 `````
 
 ## PST Settled

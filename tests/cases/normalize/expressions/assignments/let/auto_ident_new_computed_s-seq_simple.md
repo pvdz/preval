@@ -56,7 +56,7 @@ const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
 a = new tmpNewCallee(1);
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

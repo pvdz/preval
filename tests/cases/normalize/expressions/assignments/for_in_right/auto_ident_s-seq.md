@@ -6,6 +6,8 @@
 >
 > Normalization of assignments should work the same everywhere they are
 
+Note: the `x` in the for-header rhs should trigger a TDZ
+
 ## Input
 
 `````js filename=intro
@@ -23,7 +25,7 @@ $(a, x);
 $(1);
 $(2);
 const a /*:unknown*/ = x$1;
-const tmpForInGen /*:unknown*/ = $forIn(a);
+const tmpForInGen /*:unknown*/ = $forIn(x$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen.next();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -43,7 +45,7 @@ $(a, 1);
 $(1);
 $(2);
 const a = x$1;
-const tmpForInGen = $forIn(a);
+const tmpForInGen = $forIn(x$1);
 while (true) {
   const tmpForInNext = tmpForInGen.next();
   if (tmpForInNext.done) {
@@ -85,7 +87,7 @@ $(1);
 $(2);
 a = x$1;
 let tmpCalleeParam = a;
-let tmpForInGen = $forIn(tmpCalleeParam);
+let tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;
@@ -105,7 +107,7 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = x$1;
-const b = $forIn( a );
+const b = $forIn( x$1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const c = b.next();
   const d = c.done;

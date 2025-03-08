@@ -76,7 +76,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 $(100);
 const tmpCalleeParam = undefined;
-let tmpForInGen = $forIn(tmpCalleeParam);
+let tmpForInGen = $forIn(undefined);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest = tmpForInNext.done;

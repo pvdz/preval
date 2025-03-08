@@ -57,7 +57,7 @@ const tmpCompObj = b;
 const tmpBinBothRhs = tmpCompObj.c;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, b);
 `````
 

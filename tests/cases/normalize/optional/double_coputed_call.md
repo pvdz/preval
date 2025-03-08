@@ -88,7 +88,7 @@ const tmpChainRootCall = $;
 const tmpCallCallee = tmpChainRootCall;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall$1 = $;
-const tmpChainElementCall$3 = tmpChainRootCall$1(a);
+const tmpChainElementCall$3 = $(a);
 const tmpIfTest = tmpChainElementCall$3 != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $(`x`);

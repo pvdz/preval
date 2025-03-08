@@ -93,7 +93,7 @@ f();
 let f = function () {
   debugger;
   let x = undefined;
-  $(x);
+  $(undefined);
   const tmpCalleeParam = { y: 100 };
   let tmpForInGen = $forIn(tmpCalleeParam);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

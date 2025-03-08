@@ -34,7 +34,7 @@ if (tmpIfTest$1) {
   $(y);
 } else {
   y = arrPatternBeforeDefault;
-  $(y);
+  $(arrPatternBeforeDefault);
 }
 `````
 
@@ -55,7 +55,7 @@ if (arrPatternBeforeDefault === undefined) {
   $(y);
 } else {
   y = arrPatternBeforeDefault;
-  $(y);
+  $(arrPatternBeforeDefault);
 }
 `````
 
@@ -115,7 +115,7 @@ if (g) {
 }
 else {
   y = f;
-  $( y );
+  $( f );
 }
 `````
 

@@ -64,7 +64,7 @@ while (true) {
   const tmpPostUpdArgIdent = $coerce(i, `number`);
   i = tmpPostUpdArgIdent + 1;
   const tmpCalleeParam = i;
-  x = $(tmpCalleeParam, `set`);
+  x = $(i, `set`);
   $(x, `loop`);
 }
 `````
@@ -124,6 +124,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- switch me to ref tracking

@@ -38,7 +38,7 @@ $(parseInt(Infinity));
 
 `````js filename=intro
 const tmpCalleeParam = NaN;
-$(tmpCalleeParam);
+$(NaN);
 `````
 
 ## PST Settled

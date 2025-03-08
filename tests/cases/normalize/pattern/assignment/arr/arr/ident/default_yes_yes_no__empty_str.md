@@ -27,7 +27,7 @@ if (tmpIfTest$1) {
   $(x);
 } else {
   x = arrPatternBeforeDefault$1;
-  $(x);
+  $(arrPatternBeforeDefault$1);
 }
 `````
 
@@ -42,7 +42,7 @@ if (arrPatternBeforeDefault$1 === undefined) {
   $(x);
 } else {
   x = arrPatternBeforeDefault$1;
-  $(x);
+  $(arrPatternBeforeDefault$1);
 }
 `````
 
@@ -95,7 +95,7 @@ if (e) {
 }
 else {
   x = d;
-  $( x );
+  $( d );
 }
 `````
 

@@ -50,7 +50,7 @@ const tmpStringConcatL = $coerce(x, `plustr`);
 const y = `b${tmpStringConcatL}`;
 const z = x + y;
 const xyz = z;
-$(xyz);
+$(z);
 `````
 
 ## PST Settled

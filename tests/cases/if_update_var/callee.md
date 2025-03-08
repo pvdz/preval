@@ -88,7 +88,7 @@ if (tmpIfTest) {
   x = g;
 }
 const y = x;
-y();
+x();
 `````
 
 ## PST Settled

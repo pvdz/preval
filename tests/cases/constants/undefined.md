@@ -40,7 +40,7 @@ $(x);
 
 `````js filename=intro
 const x = undefined;
-$(x);
+$(undefined);
 `````
 
 ## PST Settled

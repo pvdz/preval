@@ -92,7 +92,7 @@ let f = function () {
   const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   let a = varInitAssignLhsComputedRhs;
-  $(a, b, c, d, e);
+  $(varInitAssignLhsComputedRhs, b, c, d, e);
   return undefined;
 };
 const tmpCalleeParam = f();

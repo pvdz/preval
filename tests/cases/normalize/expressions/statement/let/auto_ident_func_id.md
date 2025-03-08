@@ -58,7 +58,7 @@ const f = function () {
   return undefined;
 };
 let xyz = f;
-$(xyz);
+$(f);
 $(a);
 `````
 

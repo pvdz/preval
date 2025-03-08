@@ -52,7 +52,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$1 = b;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, b);
 $(a, b);
 `````
 

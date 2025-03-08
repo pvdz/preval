@@ -71,7 +71,7 @@ let f = function () {
     let c = 3;
     $(b);
     let a = c;
-    $(a, b, c);
+    $(c, b, c);
     return undefined;
   } else {
     return undefined;

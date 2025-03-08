@@ -57,7 +57,7 @@ f();
 let f = function () {
   debugger;
   let x = undefined;
-  $(x);
+  $(undefined);
   const arrAssignPatternRhs = [10];
   const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];

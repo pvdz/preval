@@ -51,7 +51,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallComplexCallee = $($);
 a = tmpCallComplexCallee(1);
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

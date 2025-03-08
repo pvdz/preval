@@ -69,7 +69,7 @@ b = arrPatternSplat[0];
 tmpBinBothRhs = tmpNestedAssignArrPatternRhs;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a, b);
 `````
 

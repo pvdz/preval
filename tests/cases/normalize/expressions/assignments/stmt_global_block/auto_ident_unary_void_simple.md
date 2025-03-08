@@ -51,7 +51,7 @@ $(undefined, 1);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 a = undefined;
-$(a, arg);
+$(undefined, arg);
 `````
 
 ## PST Settled

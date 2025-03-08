@@ -107,7 +107,7 @@ if (tmpIfTest$3) {
   let tmpUpdInc = tmpUpdNum + 1;
   tmpUpdObj.x = tmpUpdInc;
   a = tmpUpdInc;
-  $(a, b);
+  $(tmpUpdInc, b);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

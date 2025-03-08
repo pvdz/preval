@@ -25,8 +25,7 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   a = arguments;
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = arguments;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  $(arguments);
 }
 $(a);
 `````
@@ -86,8 +85,7 @@ if (b) {
 }
 else {
   a = arguments;
-  const d = arguments;
-  $( d );
+  $( arguments );
 }
 $( a );
 `````

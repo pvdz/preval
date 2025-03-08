@@ -49,7 +49,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 $(100);
 const tmpCalleeParam = undefined;
-$(tmpCalleeParam);
+$(undefined);
 $(a);
 `````
 

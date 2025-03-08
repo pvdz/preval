@@ -51,7 +51,7 @@ let a = { a: 999, b: 1000 };
 $(100);
 a = undefined;
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

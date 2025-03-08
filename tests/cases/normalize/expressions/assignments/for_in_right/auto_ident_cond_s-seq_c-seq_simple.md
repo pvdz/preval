@@ -81,7 +81,7 @@ if (tmpIfTest) {
   a = $(tmpCalleeParam$1);
 }
 let tmpCalleeParam = a;
-let tmpForInGen = $forIn(tmpCalleeParam);
+let tmpForInGen = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
   const tmpIfTest$1 = tmpForInNext.done;

@@ -54,7 +54,7 @@ const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 a = tmpBinBothLhs + tmpBinBothRhs;
 let xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

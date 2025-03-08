@@ -56,7 +56,7 @@ const tmpNestedComplexRhs = tmpCompObj.x;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
 let tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 `````
 
 ## PST Settled

@@ -56,7 +56,7 @@ if (x) {
   x = 2;
 }
 let tmpCalleeParam = x;
-$(tmpCalleeParam);
+$(x);
 `````
 
 ## PST Settled

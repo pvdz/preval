@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 $(1);
-const a /*:unknown*/ = arguments;
-$(a);
+arguments;
+$(arguments);
 `````
 
 ## Denormalized
@@ -31,6 +31,7 @@ $(a);
 
 `````js filename=intro
 $(1);
+arguments;
 $(arguments);
 `````
 
@@ -56,7 +57,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 a = arguments;
-$(a);
+$(arguments);
 `````
 
 ## PST Settled
@@ -64,8 +65,8 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-const a = arguments;
-$( a );
+arguments;
+$( arguments );
 `````
 
 ## Globals

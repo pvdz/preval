@@ -46,7 +46,7 @@ $(wow);
 const foo = `five`;
 const bar = foo;
 const wow = bar;
-$(wow);
+$(bar);
 `````
 
 ## PST Settled

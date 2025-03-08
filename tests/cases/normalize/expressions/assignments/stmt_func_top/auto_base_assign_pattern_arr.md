@@ -70,7 +70,7 @@ let f = function () {
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
-  $(a, b);
+  $(tmpNestedAssignArrPatternRhs, b);
   return undefined;
 };
 const tmpCalleeParam$1 = f();

@@ -41,7 +41,7 @@ Date();
 `````js filename=intro
 $();
 const tmpCallComplexCallee = Date;
-tmpCallComplexCallee();
+Date();
 `````
 
 ## PST Settled

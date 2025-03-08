@@ -62,7 +62,7 @@ const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 b = tmpNestedAssignObjPatternRhs.b;
 tmpCalleeParam = tmpNestedAssignObjPatternRhs;
-$(tmpCalleeParam);
+$(tmpNestedAssignObjPatternRhs);
 $(a, b);
 `````
 

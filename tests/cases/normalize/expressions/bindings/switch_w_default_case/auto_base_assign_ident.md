@@ -94,7 +94,7 @@ if (tmpIfTest$3) {
   const tmpNestedComplexRhs = $(2);
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  $(a, b);
+  $(tmpNestedComplexRhs, b);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

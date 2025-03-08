@@ -46,7 +46,7 @@ let b = 1;
 const tmpPostUpdArgIdent = $coerce(b, `number`);
 b = tmpPostUpdArgIdent + 1;
 let a = tmpPostUpdArgIdent;
-$(a, b);
+$(tmpPostUpdArgIdent, b);
 `````
 
 ## PST Settled

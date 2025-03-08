@@ -50,7 +50,7 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = `before  `;
 $(100);
 const tmpCalleeParam$1 = undefined;
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
+const tmpBinBothRhs = $coerce(undefined, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;

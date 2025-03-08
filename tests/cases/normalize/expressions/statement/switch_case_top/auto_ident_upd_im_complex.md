@@ -29,10 +29,11 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(b);
-  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
-  tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
 } else {
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -46,8 +47,8 @@ $(a, b);
 const tmpIfTest = $(1) === $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
-  const tmpPostUpdArgObj = $($(b));
-  tmpPostUpdArgObj.x = tmpPostUpdArgObj.x - 1;
+  const tmpUpdObj = $($(b));
+  tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) - 1;
 }
 $({ a: 999, b: 1000 }, b);
 `````
@@ -80,11 +81,11 @@ const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  let tmpUpdObj = $(tmpCalleeParam);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
 } else {
 }
 $(a, b);
@@ -102,14 +103,15 @@ if (c) {
   const e = $( d );
   const f = $( e );
   const g = f.x;
-  const h = g - 1;
-  f.x = h;
+  const h = $coerce( g, "number" );
+  const i = h - 1;
+  f.x = i;
 }
-const i = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( i, d );
+$( j, d );
 `````
 
 ## Globals

@@ -18,6 +18,15 @@ for (; (a = b?.x?.y); $(1));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(1);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -72,15 +81,6 @@ while (true) {
 $(a);
 `````
 
-## Settled
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(1);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -94,7 +94,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1

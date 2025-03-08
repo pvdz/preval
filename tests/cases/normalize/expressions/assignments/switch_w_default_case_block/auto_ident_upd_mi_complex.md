@@ -46,11 +46,12 @@ const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest$3) {
   const tmpCalleeParam /*:unknown*/ = $(b);
-  const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-  const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs$1 - 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
 } else {
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -79,10 +80,10 @@ if ($(1) === tmpSwitchValue) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 const b = { x: 1 };
 if (tmpIfTest$3) {
-  const tmpNestedAssignObj = $($(b));
-  const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x - 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  const tmpUpdObj = $($(b));
+  const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
@@ -142,11 +143,12 @@ if (tmpIfTest) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs$1 = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 - 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  let tmpUpdObj = $(tmpCalleeParam);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
@@ -189,12 +191,13 @@ if (g) {
   const i = $( h );
   const j = $( i );
   const k = j.x;
-  const l = k - 1;
-  j.x = l;
-  a = l;
+  const l = $coerce( k, "number" );
+  const m = l - 1;
+  j.x = m;
+  a = m;
 }
-const m = c <= 1;
-if (m) {
+const n = c <= 1;
+if (n) {
   $( "fail1" );
 }
 $( "fail2" );

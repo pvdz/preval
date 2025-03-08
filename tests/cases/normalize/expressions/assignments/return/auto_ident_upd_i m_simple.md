@@ -55,8 +55,8 @@ $(a, b);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent - 1;
   a = tmpPostUpdArgIdent;
   return a;
 };

@@ -240,8 +240,9 @@ pcode(1);
 pcode(2);
 let i = 477;
 while (true) {
-  i = i - 1;
-  let tmpBinLhs = i;
+  const tmpPostUpdArgIdent = $coerce(i, `number`);
+  i = tmpPostUpdArgIdent - 1;
+  const tmpBinLhs = i;
   const tmpIfTest$2 = tmpBinLhs > 0;
   if (tmpIfTest$2) {
     const s = pcode(i);

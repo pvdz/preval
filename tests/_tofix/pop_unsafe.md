@@ -22,6 +22,21 @@ ARR.push(n); // this cant be inlined now because if NOOP gets called we don't kn
 $(ARR);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const ARR /*:array*/ = [`a`, `b`, `c`];
+const NOOP /*:()=>unknown*/ = function () {
+  debugger;
+  $(ARR);
+  return undefined;
+};
+$(`c`);
+$(NOOP);
+$(ARR);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,21 +83,6 @@ ARR.push(n);
 $(ARR);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const ARR /*:array*/ = [`a`, `b`, `c`];
-const NOOP /*:()=>unknown*/ = function () {
-  debugger;
-  $(ARR);
-  return undefined;
-};
-$(`c`);
-$(NOOP);
-$(ARR);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -102,7 +102,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'c'

@@ -75,10 +75,9 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent - 1;
+a = b;
 let tmpCalleeParam = a;
 let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

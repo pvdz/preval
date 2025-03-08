@@ -26,6 +26,20 @@ oops: {
 $('end');
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`start`);
+const x /*:unknown*/ = $(1);
+if (x) {
+  $(2);
+} else {
+  $(3);
+}
+$(`end`);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,20 +91,6 @@ while (true) {
 $(`end`);
 `````
 
-## Settled
-
-
-`````js filename=intro
-$(`start`);
-const x /*:unknown*/ = $(1);
-if (x) {
-  $(2);
-} else {
-  $(3);
-}
-$(`end`);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -110,7 +110,7 @@ $( "end" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'start'

@@ -34,10 +34,10 @@ let flag /*:unknown*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest /*:boolean*/ = flag < 10;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs /*:number*/ = c - 1;
-    c = tmpNestedComplexRhs;
-    flag = tmpNestedComplexRhs;
-    $(`--c`, tmpNestedComplexRhs);
+    const tmpPostUpdArgIdent /*:number*/ = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent - 1;
+    flag = c;
+    $(`--c`, flag);
   } else {
     break;
   }
@@ -56,10 +56,9 @@ let c = { valueOf: tmpObjLitVal };
 let flag = 0;
 while (true) {
   if (flag < 10) {
-    const tmpNestedComplexRhs = c - 1;
-    c = tmpNestedComplexRhs;
-    flag = tmpNestedComplexRhs;
-    $(`--c`, tmpNestedComplexRhs);
+    c = $coerce(c, `number`) - 1;
+    flag = c;
+    $(`--c`, flag);
   } else {
     break;
   }
@@ -103,10 +102,9 @@ let flag = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest = flag < 10;
   if (tmpIfTest) {
-    const tmpNestedCompoundLhs = c;
-    const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-    c = tmpNestedComplexRhs;
-    flag = tmpNestedComplexRhs;
+    const tmpPostUpdArgIdent = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent - 1;
+    flag = c;
     $(`--c`, flag);
   } else {
     break;
@@ -129,10 +127,10 @@ let b = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = b < 10;
   if (d) {
-    const e = c - 1;
-    c = e;
-    b = e;
-    $( "--c", e );
+    const e = $coerce( c, "number" );
+    c = e - 1;
+    b = c;
+    $( "--c", b );
   }
   else {
     break;
@@ -163,3 +161,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- Support non-primitive in first arg to $coerce

@@ -20,12 +20,19 @@ while(true) {
 
 
 `````js filename=intro
+const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
+  const tmpUpdVal /*:primitive*/ = $$0;
+  debugger;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdVal, `number`);
+  const tmpRet /*:number*/ = tmpUpdNum + 1;
+  return tmpRet;
+};
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCompoundAssignLhs /*:primitive*/ = arr[0];
-  const tmpAssignComputedRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
-  arr[0] = tmpAssignComputedRhs;
-  $(tmpAssignComputedRhs);
+  const tmpUpdVal$1 /*:primitive*/ = arr[0];
+  const tmpUpdInc /*:number*/ = $frfr(tmpFree, tmpUpdVal$1);
+  arr[0] = tmpUpdInc;
+  $(tmpUpdInc);
 }
 `````
 
@@ -33,11 +40,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpFree = function $free(tmpUpdVal) {
+  const tmpRet = $coerce(tmpUpdVal, `number`) + 1;
+  return tmpRet;
+};
 const arr = [1, 2, 3];
 while (true) {
-  const tmpAssignComputedRhs = arr[0] + 1;
-  arr[0] = tmpAssignComputedRhs;
-  $(tmpAssignComputedRhs);
+  const tmpUpdInc = $frfr(tmpFree, arr[0]);
+  arr[0] = tmpUpdInc;
+  $(tmpUpdInc);
 }
 `````
 
@@ -58,11 +69,12 @@ while (true) {
 `````js filename=intro
 const arr = [1, 2, 3];
 while (true) {
-  const tmpCompoundAssignLhs = arr[0];
-  const tmpAssignComputedObj = arr;
-  const tmpAssignComputedProp = 0;
-  const tmpAssignComputedRhs = tmpCompoundAssignLhs + 1;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  let tmpUpdObj = arr;
+  let tmpUpdProp = 0;
+  let tmpUpdVal = tmpUpdObj[tmpUpdProp];
+  let tmpUpdNum = $coerce(tmpUpdVal, `number`);
+  let tmpUpdInc = tmpUpdNum + 1;
+  tmpUpdObj[tmpUpdProp] = tmpUpdInc;
   const tmpCalleeParam = arr[0];
   $(tmpCalleeParam);
 }
@@ -72,12 +84,19 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
+const a = function b($$0 ) {
+  const c = $$0;
+  debugger;
+  const d = $coerce( c, "number" );
+  const e = d + 1;
+  return e;
+};
+const f = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = a[ 0 ];
-  const c = b + 1;
-  a[0] = c;
-  $( c );
+  const g = f[ 0 ];
+  const h = i( a, g );
+  f[0] = h;
+  $( h );
 }
 `````
 

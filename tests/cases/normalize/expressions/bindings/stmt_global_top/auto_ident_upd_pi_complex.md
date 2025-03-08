@@ -21,11 +21,12 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs, b);
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+$(tmpUpdInc, b);
 `````
 
 ## Denormalized
@@ -33,10 +34,10 @@ $(varInitAssignLhsComputedRhs, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const varInitAssignLhsComputedObj = $($(b));
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs, b);
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = tmpUpdInc;
+$(tmpUpdInc, b);
 `````
 
 ## Pre Normal
@@ -54,11 +55,12 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 const tmpCalleeParam = $(b);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+let a = tmpUpdInc;
 $(a, b);
 `````
 
@@ -70,9 +72,10 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d + 1;
-c.x = e;
-$( e, a );
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
+$( f, a );
 `````
 
 ## Globals

@@ -19,7 +19,8 @@ $(x);
 
 
 `````js filename=intro
-$spy(0);
+const x /*:unknown*/ = $spy(0);
+$coerce(x, `number`);
 throw `Preval: Cannot write to const binding \`x\``;
 `````
 
@@ -27,7 +28,7 @@ throw `Preval: Cannot write to const binding \`x\``;
 (This ought to be the final result)
 
 `````js filename=intro
-$spy(0);
+$coerce($spy(0), `number`);
 throw `Preval: Cannot write to const binding \`x\``;
 `````
 
@@ -46,8 +47,9 @@ $(x);
 
 `````js filename=intro
 const x = $spy(0);
-x = x + 1;
-let y = x;
+const tmpPostUpdArgIdent = $coerce(x, `number`);
+x = tmpPostUpdArgIdent + 1;
+const y = x;
 $(y);
 $(x);
 `````
@@ -56,7 +58,8 @@ $(x);
 With rename=true
 
 `````js filename=intro
-$spy( 0 );
+const a = $spy( 0 );
+$coerce( a, "number" );
 throw "Preval: Cannot write to const binding `x`";
 `````
 
@@ -75,10 +78,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 'Creating spy', 1, 1, [0, 0]
- - eval returned: ('<crash[ Assignment to constant variable. ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'Creating spy', 1, 1, [0, 0]
- - eval returned: ('<crash[ Assignment to constant variable. ]>')
+Denormalized calls: Same

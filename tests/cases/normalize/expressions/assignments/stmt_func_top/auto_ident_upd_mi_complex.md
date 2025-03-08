@@ -25,11 +25,12 @@ $(f());
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-$(tmpNestedPropCompoundComplexRhs, b);
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+$(tmpUpdInc, b);
 $(undefined);
 `````
 
@@ -38,10 +39,10 @@ $(undefined);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpNestedAssignObj = $($(b));
-const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-$(tmpNestedPropCompoundComplexRhs, b);
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+tmpUpdObj.x = tmpUpdInc;
+$(tmpUpdInc, b);
 $(undefined);
 `````
 
@@ -68,11 +69,12 @@ let f = function () {
   let b = { x: 1 };
   let a = { a: 999, b: 1000 };
   const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  let tmpUpdObj = $(tmpCalleeParam);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
   $(a, b);
   return undefined;
 };
@@ -88,9 +90,10 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-$( e, a );
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+$( f, a );
 $( undefined );
 `````
 

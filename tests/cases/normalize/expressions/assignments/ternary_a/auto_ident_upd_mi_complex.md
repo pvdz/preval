@@ -22,18 +22,19 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-if (tmpNestedPropCompoundComplexRhs) {
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdInc) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpNestedPropCompoundComplexRhs, b);
+$(tmpUpdInc, b);
 `````
 
 ## Denormalized
@@ -41,15 +42,15 @@ $(tmpNestedPropCompoundComplexRhs, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpNestedAssignObj = $($(b));
-const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-if (tmpNestedPropCompoundComplexRhs) {
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdInc) {
   $($(100));
 } else {
   $($(200));
 }
-$(tmpNestedPropCompoundComplexRhs, b);
+$(tmpUpdInc, b);
 `````
 
 ## Pre Normal
@@ -70,11 +71,12 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam$1);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-a = tmpNestedPropCompoundComplexRhs;
+let tmpUpdObj = $(tmpCalleeParam$1);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdInc;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -93,17 +95,18 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-if (e) {
-  const f = $( 100 );
-  $( f );
-}
-else {
-  const g = $( 200 );
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+if (f) {
+  const g = $( 100 );
   $( g );
 }
-$( e, a );
+else {
+  const h = $( 200 );
+  $( h );
+}
+$( f, a );
 `````
 
 ## Globals

@@ -21,6 +21,13 @@ $(f(427 + 3));
 $(alias);
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `<max pcode call depth exceeded>; calling \`const tmp = f(undefined, undefined);\``;
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,13 +82,6 @@ $(tmpCalleeParam$7);
 $(alias);
 `````
 
-## Settled
-
-
-`````js filename=intro
-throw `<max pcode call depth exceeded>; calling \`const tmp = f(undefined, undefined);\``;
-`````
-
 ## PST Settled
 With rename=true
 
@@ -93,7 +93,7 @@ throw "<max pcode call depth exceeded>; calling `const tmp = f(undefined, undefi
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Maximum call stack size exceeded ]>')

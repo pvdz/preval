@@ -58,8 +58,9 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothLhs = tmpSwitchDisc;
-b = b - 1;
-let tmpBinBothRhs = b;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent - 1;
+const tmpBinBothRhs = b;
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 $(a, b);
 `````

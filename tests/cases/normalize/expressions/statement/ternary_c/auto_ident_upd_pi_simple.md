@@ -64,7 +64,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  b = b + 1;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent + 1;
 }
 $(a, b);
 `````

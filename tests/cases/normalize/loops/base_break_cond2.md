@@ -66,8 +66,9 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
-    n = n + 1;
-    let tmpCalleeParam = n;
+    const tmpPostUpdArgIdent = $coerce(n, `number`);
+    n = tmpPostUpdArgIdent + 1;
+    const tmpCalleeParam = n;
     $(tmpCalleeParam);
     const tmpIfTest = n < 4;
     if (tmpIfTest) {

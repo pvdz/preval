@@ -20,8 +20,9 @@ $(x);
 
 `````js filename=intro
 const x /*:unknown*/ = $spy(0);
-const tmpClusterSSA_x /*:number*/ = x - 1;
-$(x);
+const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
+$(tmpPostUpdArgIdent);
+const tmpClusterSSA_x /*:number*/ = tmpPostUpdArgIdent - 1;
 $(tmpClusterSSA_x);
 `````
 
@@ -29,10 +30,9 @@ $(tmpClusterSSA_x);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $spy(0);
-const tmpClusterSSA_x = x - 1;
-$(x);
-$(tmpClusterSSA_x);
+const tmpPostUpdArgIdent = $coerce($spy(0), `number`);
+$(tmpPostUpdArgIdent);
+$(tmpPostUpdArgIdent - 1);
 `````
 
 ## Pre Normal
@@ -50,8 +50,8 @@ $(x);
 
 `````js filename=intro
 let x = $spy(0);
-const tmpPostUpdArgIdent = x;
-x = x - 1;
+const tmpPostUpdArgIdent = $coerce(x, `number`);
+x = tmpPostUpdArgIdent - 1;
 let y = tmpPostUpdArgIdent;
 $(y);
 $(x);
@@ -62,9 +62,10 @@ With rename=true
 
 `````js filename=intro
 const a = $spy( 0 );
-const b = a - 1;
-$( a );
+const b = $coerce( a, "number" );
 $( b );
+const c = b - 1;
+$( c );
 `````
 
 ## Globals
@@ -82,23 +83,8 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: 'Creating spy', 1, 1, [0, 0]
- - 2: '$spy[1].valueOf()', 0
- - 3: '<spy[1]>'
- - 4: -1
- - eval returned: undefined
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 'Creating spy', 1, 1, [0, 0]
- - 2: '$spy[1].valueOf()', 0
- - 3: '<spy[1]>'
- - 4: -1
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'Creating spy', 1, 1, [0, 0]
- - 2: '$spy[1].valueOf()', 0
- - 3: '<spy[1]>'
- - 4: -1
- - eval returned: undefined
+Denormalized calls: Same

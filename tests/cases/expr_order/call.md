@@ -47,8 +47,9 @@ $(i, ++i);
 `````js filename=intro
 let i = 0;
 const tmpCalleeParam = i;
-i = i + 1;
-let tmpCalleeParam$1 = i;
+const tmpPostUpdArgIdent = $coerce(i, `number`);
+i = tmpPostUpdArgIdent + 1;
+const tmpCalleeParam$1 = i;
 $(tmpCalleeParam, tmpCalleeParam$1);
 `````
 

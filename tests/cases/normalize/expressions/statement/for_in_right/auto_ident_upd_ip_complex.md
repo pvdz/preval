@@ -22,11 +22,12 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpForInGen /*:unknown*/ = $forIn(tmpPostUpdArgVal);
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpForInGen /*:unknown*/ = $forIn(tmpUpdNum);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen.next();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -45,10 +46,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
-const tmpForInGen = $forIn(tmpPostUpdArgVal);
+const tmpUpdObj = $($(b));
+const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+tmpUpdObj.x = tmpUpdNum + 1;
+const tmpForInGen = $forIn(tmpUpdNum);
 while (true) {
   const tmpForInNext = tmpForInGen.next();
   if (tmpForInNext.done) {
@@ -87,12 +88,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpCalleeParam = tmpPostUpdArgVal;
+let tmpUpdObj = $(tmpCalleeParam$1);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpCalleeParam = tmpUpdNum;
 let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();
@@ -114,24 +115,25 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d + 1;
-c.x = e;
-const f = $forIn( d );
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
+const g = $forIn( e );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f.next();
-  const h = g.done;
-  if (h) {
+  const h = g.next();
+  const i = h.done;
+  if (i) {
     break;
   }
   else {
-    g.value;
+    h.value;
   }
 }
-const i = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( i, a );
+$( j, a );
 `````
 
 ## Globals

@@ -23,6 +23,25 @@ f(1);
 f(2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(number)=>undefined*/ = function ($$0) {
+  const x /*:number*/ = $$0;
+  debugger;
+  if (x) {
+    const obj /*:object*/ = { xyz: x };
+    $(x, obj);
+  } else {
+  }
+  $(`end`);
+  return undefined;
+};
+f(1);
+f(2);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -76,25 +95,6 @@ f(1);
 f(2);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const f /*:(number)=>undefined*/ = function ($$0) {
-  const x /*:number*/ = $$0;
-  debugger;
-  if (x) {
-    const obj /*:object*/ = { xyz: x };
-    $(x, obj);
-  } else {
-  }
-  $(`end`);
-  return undefined;
-};
-f(1);
-f(2);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -117,7 +117,7 @@ a( 2 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, { xyz: '1' }

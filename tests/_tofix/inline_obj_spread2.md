@@ -36,6 +36,15 @@ const b = { ... a };
 $( b );
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpObjLitVal /*:object*/ = { bar: 10 };
+const tmpCalleeParam /*:object*/ = { ...tmpObjLitVal };
+$(tmpCalleeParam);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,15 +71,6 @@ const tmpCalleeParam = { ...tmpObjLitVal };
 $(tmpCalleeParam);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpObjLitVal /*:object*/ = { bar: 10 };
-const tmpCalleeParam /*:object*/ = { ...tmpObjLitVal };
-$(tmpCalleeParam);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -84,7 +84,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { bar: '10' }

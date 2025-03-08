@@ -22,19 +22,21 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdInc) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 /*:unknown*/ = $(b);
-    const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj$1.x;
-    const varInitAssignLhsComputedRhs$1 /*:number*/ = tmpBinLhs$1 - 1;
-    varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-    if (varInitAssignLhsComputedRhs$1) {
+    const tmpUpdObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    const tmpUpdProp$1 /*:unknown*/ = tmpUpdObj$1.x;
+    const tmpUpdNum$1 /*:number*/ = $coerce(tmpUpdProp$1, `number`);
+    const tmpUpdInc$1 /*:number*/ = tmpUpdNum$1 - 1;
+    tmpUpdObj$1.x = tmpUpdInc$1;
+    if (tmpUpdInc$1) {
     } else {
       break;
     }
@@ -50,16 +52,16 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const varInitAssignLhsComputedObj = $($(b));
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdInc) {
   while (true) {
     $(100);
-    const varInitAssignLhsComputedObj$1 = $($(b));
-    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedObj$1.x - 1;
-    varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-    if (!varInitAssignLhsComputedRhs$1) {
+    const tmpUpdObj$1 = $($(b));
+    const tmpUpdInc$1 = $coerce(tmpUpdObj$1.x, `number`) - 1;
+    tmpUpdObj$1.x = tmpUpdInc$1;
+    if (!tmpUpdInc$1) {
       break;
     }
   }
@@ -85,11 +87,12 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpCalleeParam = $(b);
-  const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-  const tmpBinLhs = varInitAssignLhsComputedObj.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  const tmpIfTest = varInitAssignLhsComputedRhs;
+  let tmpUpdObj = $(tmpCalleeParam);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  const tmpIfTest = tmpUpdInc;
   if (tmpIfTest) {
     $(100);
   } else {
@@ -107,17 +110,19 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-if (e) {
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+if (f) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = $( a );
-    const g = $( f );
-    const h = g.x;
-    const i = h - 1;
-    g.x = i;
-    if (i) {
+    const g = $( a );
+    const h = $( g );
+    const i = h.x;
+    const j = $coerce( i, "number" );
+    const k = j - 1;
+    h.x = k;
+    if (k) {
 
     }
     else {
@@ -125,11 +130,11 @@ if (e) {
     }
   }
 }
-const j = {
+const l = {
   a: 999,
   b: 1000,
 };
-$( j, a );
+$( l, a );
 `````
 
 ## Globals

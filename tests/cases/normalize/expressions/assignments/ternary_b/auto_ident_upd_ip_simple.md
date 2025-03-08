@@ -69,8 +69,8 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpPostUpdArgIdent = b;
-  b = b + 1;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent + 1;
   const tmpNestedComplexRhs = tmpPostUpdArgIdent;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

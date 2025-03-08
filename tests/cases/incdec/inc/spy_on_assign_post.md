@@ -34,8 +34,8 @@ let flag /*:unknown*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest /*:boolean*/ = flag < 10;
   if (tmpIfTest) {
-    const tmpPostUpdArgIdent /*:unknown*/ = d;
-    d = d + 1;
+    const tmpPostUpdArgIdent /*:number*/ = $coerce(d, `number`);
+    d = tmpPostUpdArgIdent + 1;
     flag = tmpPostUpdArgIdent;
     $(`d++`, tmpPostUpdArgIdent);
   } else {
@@ -56,8 +56,8 @@ let d = { valueOf: tmpObjLitVal };
 let flag = 0;
 while (true) {
   if (flag < 10) {
-    const tmpPostUpdArgIdent = d;
-    d = d + 1;
+    const tmpPostUpdArgIdent = $coerce(d, `number`);
+    d = tmpPostUpdArgIdent + 1;
     flag = tmpPostUpdArgIdent;
     $(`d++`, tmpPostUpdArgIdent);
   } else {
@@ -103,8 +103,8 @@ let flag = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest = flag < 10;
   if (tmpIfTest) {
-    const tmpPostUpdArgIdent = d;
-    d = d + 1;
+    const tmpPostUpdArgIdent = $coerce(d, `number`);
+    d = tmpPostUpdArgIdent + 1;
     flag = tmpPostUpdArgIdent;
     $(`d++`, flag);
   } else {
@@ -128,8 +128,8 @@ let b = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = b < 10;
   if (d) {
-    const e = c;
-    c = c + 1;
+    const e = $coerce( c, "number" );
+    c = e + 1;
     b = e;
     $( "d++", e );
   }
@@ -154,26 +154,12 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: 'd flag now:', 0
- - 2: 'd++', { valueOf: '"<function>"' }
- - 3: 'd flag now:', { valueOf: '"<function>"' }
- - 4: NaN, { valueOf: '"<function>"' }
- - eval returned: undefined
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 'd flag now:', 0
- - 2: 'd++', { valueOf: '"<function>"' }
- - 3: 'd flag now:', { valueOf: '"<function>"' }
- - 4: NaN, { valueOf: '"<function>"' }
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'd flag now:', 0
- - 2: 'd++', { valueOf: '"<function>"' }
- - 3: 'd flag now:', { valueOf: '"<function>"' }
- - 4: NaN, { valueOf: '"<function>"' }
- - eval returned: undefined
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- Support non-primitive in first arg to $coerce

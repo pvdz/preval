@@ -51,8 +51,9 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-b = b + 1;
-let tmpBinBothRhs = b;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent + 1;
+const tmpBinBothRhs = b;
 tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
 `````

@@ -31,12 +31,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(b);
-    const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$3);
-    const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-    const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+    const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$3);
+    const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+    const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+    const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+    tmpUpdObj.x = tmpUpdInc;
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    varInitAssignLhsComputedRhs.x = tmpAssignMemRhs;
+    tmpUpdInc.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -54,10 +55,10 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const varInitAssignLhsComputedObj = $($(b));
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x + 1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    varInitAssignLhsComputedRhs.x = tmpForOfNext.value;
+    const tmpUpdObj = $($(b));
+    const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+    tmpUpdObj.x = tmpUpdInc;
+    tmpUpdInc.x = tmpForOfNext.value;
   }
 }
 $({ a: 999, b: 1000 }, b);
@@ -99,11 +100,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpCalleeParam$3 = $(b);
-    const varInitAssignLhsComputedObj = $(tmpCalleeParam$3);
-    const tmpBinLhs = varInitAssignLhsComputedObj.x;
-    const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
+    let tmpUpdObj = $(tmpCalleeParam$3);
+    let tmpUpdProp = tmpUpdObj.x;
+    let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+    let tmpUpdInc = tmpUpdNum + 1;
+    tmpUpdObj.x = tmpUpdInc;
+    const tmpAssignMemLhsObj = tmpUpdInc;
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpAssignMemRhs = tmpForOfNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
@@ -130,17 +132,18 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const g = $( d );
     const h = $( g );
     const i = h.x;
-    const j = i + 1;
-    h.x = j;
-    const k = e.value;
-    j.x = k;
+    const j = $coerce( i, "number" );
+    const k = j + 1;
+    h.x = k;
+    const l = e.value;
+    k.x = l;
   }
 }
-const l = {
+const m = {
   a: 999,
   b: 1000,
 };
-$( l, d );
+$( m, d );
 `````
 
 ## Globals

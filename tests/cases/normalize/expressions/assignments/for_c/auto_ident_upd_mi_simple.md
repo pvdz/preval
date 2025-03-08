@@ -20,7 +20,7 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:unknown*/ = 1;
+let b /*:number*/ = 1;
 let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
@@ -29,9 +29,8 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpNestedComplexRhs$1 /*:number*/ = b - 1;
-      b = tmpNestedComplexRhs$1;
-      a = tmpNestedComplexRhs$1;
+      b = b - 1;
+      a = b;
     } else {
       break;
     }
@@ -52,9 +51,8 @@ if ($(1)) {
   a = 0;
   while (true) {
     if ($(1)) {
-      const tmpNestedComplexRhs$1 = b - 1;
-      b = tmpNestedComplexRhs$1;
-      a = tmpNestedComplexRhs$1;
+      b = b - 1;
+      a = b;
     } else {
       break;
     }
@@ -86,10 +84,9 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
+    const tmpPostUpdArgIdent = $coerce(b, `number`);
+    b = tmpPostUpdArgIdent - 1;
+    a = b;
   } else {
     break;
   }
@@ -113,9 +110,8 @@ if (c) {
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
-      const e = a - 1;
-      a = e;
-      b = e;
+      a = a - 1;
+      b = a;
     }
     else {
       break;

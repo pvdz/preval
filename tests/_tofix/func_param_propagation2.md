@@ -27,6 +27,28 @@ const tmpCalleeParam$1 = f(`y`);
 $(tmpCalleeParam$1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(primitive)=>array*/ = function ($$0) {
+  const $dlr_$$0 /*:primitive*/ = $$0;
+  debugger;
+  let b /*:unknown*/ = `bar`;
+  const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;
+  if (tmpIfTest$1) {
+  } else {
+    b = $dlr_$$0;
+  }
+  const tmpReturnArg /*:array*/ = [`x`, b];
+  return tmpReturnArg;
+};
+const tmpCalleeParam /*:array*/ = f();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:array*/ = f(`y`);
+$(tmpCalleeParam$1);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -89,28 +111,6 @@ const tmpCalleeParam$1 = f(`y`);
 $(tmpCalleeParam$1);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const f /*:(primitive)=>array*/ = function ($$0) {
-  const $dlr_$$0 /*:primitive*/ = $$0;
-  debugger;
-  let b /*:unknown*/ = `bar`;
-  const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;
-  if (tmpIfTest$1) {
-  } else {
-    b = $dlr_$$0;
-  }
-  const tmpReturnArg /*:array*/ = [`x`, b];
-  return tmpReturnArg;
-};
-const tmpCalleeParam /*:array*/ = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 /*:array*/ = f(`y`);
-$(tmpCalleeParam$1);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -139,7 +139,7 @@ $( g );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['x', 'bar']

@@ -30,6 +30,31 @@ g();
 $(undefined);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let tmpFuncLock /*:boolean*/ = true;
+const g /*:()=>unknown*/ = function () {
+  debugger;
+  if (tmpFuncLock) {
+    $(`call me once`);
+    if (tmpFuncLock) {
+      tmpFuncLock = false;
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
+  }
+};
+g();
+$(undefined);
+g();
+$(undefined);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -101,31 +126,6 @@ g();
 $(undefined);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let tmpFuncLock /*:boolean*/ = true;
-const g /*:()=>unknown*/ = function () {
-  debugger;
-  if (tmpFuncLock) {
-    $(`call me once`);
-    if (tmpFuncLock) {
-      tmpFuncLock = false;
-      return undefined;
-    } else {
-      return undefined;
-    }
-  } else {
-    throw `Preval: cannot call a locked function (binding overwritten with non-func)`;
-  }
-};
-g();
-$(undefined);
-g();
-$(undefined);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -157,7 +157,7 @@ $( undefined );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'call me once'

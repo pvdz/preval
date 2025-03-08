@@ -18,7 +18,8 @@ $(++x);
 
 `````js filename=intro
 const x /*:unknown*/ = $(1);
-const tmpClusterSSA_x /*:primitive*/ = x + 1;
+const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
+const tmpClusterSSA_x /*:number*/ = tmpPostUpdArgIdent + 1;
 $(tmpClusterSSA_x);
 `````
 
@@ -26,7 +27,7 @@ $(tmpClusterSSA_x);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(1) + 1);
+$($coerce($(1), `number`) + 1);
 `````
 
 ## Pre Normal
@@ -42,8 +43,9 @@ $(++x);
 
 `````js filename=intro
 let x = $(1);
-x = x + 1;
-let tmpCalleeParam = x;
+const tmpPostUpdArgIdent = $coerce(x, `number`);
+x = tmpPostUpdArgIdent + 1;
+const tmpCalleeParam = x;
 $(tmpCalleeParam);
 `````
 
@@ -52,8 +54,9 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = a + 1;
-$( b );
+const b = $coerce( a, "number" );
+const c = b + 1;
+$( c );
 `````
 
 ## Globals

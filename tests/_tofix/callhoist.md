@@ -15,6 +15,30 @@ for (; $(1); a = 0 || $($(1)));
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  a = 0;
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  $(tmpCalleeParam);
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$1 /*:unknown*/ = $(1);
+      $(tmpCalleeParam$1);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(a);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,30 +92,6 @@ while (true) {
 $(a);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  a = 0;
-  const tmpCalleeParam /*:unknown*/ = $(1);
-  $(tmpCalleeParam);
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpCalleeParam$1 /*:unknown*/ = $(1);
-      $(tmpCalleeParam$1);
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -123,7 +123,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1

@@ -28,6 +28,18 @@ a: {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(0);
+if (tmpIfTest) {
+  $(1);
+} else {
+  $(2);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,18 +87,6 @@ while (true) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(0);
-if (tmpIfTest) {
-  $(1);
-} else {
-  $(2);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -104,7 +104,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0

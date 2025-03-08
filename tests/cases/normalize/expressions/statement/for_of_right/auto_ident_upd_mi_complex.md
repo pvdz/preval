@@ -22,11 +22,12 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpForOfGen /*:unknown*/ = $forOf(varInitAssignLhsComputedRhs);
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpForOfGen /*:unknown*/ = $forOf(tmpUpdInc);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
@@ -45,10 +46,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const varInitAssignLhsComputedObj = $($(b));
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpForOfGen = $forOf(varInitAssignLhsComputedRhs);
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpForOfGen = $forOf(tmpUpdInc);
 while (true) {
   const tmpForOfNext = tmpForOfGen.next();
   if (tmpForOfNext.done) {
@@ -87,11 +88,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = varInitAssignLhsComputedRhs;
+let tmpUpdObj = $(tmpCalleeParam$1);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpCalleeParam = tmpUpdInc;
 let tmpForOfGen = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForOfNext = tmpForOfGen.next();
@@ -113,24 +115,25 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-const f = $forOf( e );
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+const g = $forOf( f );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f.next();
-  const h = g.done;
-  if (h) {
+  const h = g.next();
+  const i = h.done;
+  if (i) {
     break;
   }
   else {
-    g.value;
+    h.value;
   }
 }
-const i = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( i, a );
+$( j, a );
 `````
 
 ## Globals

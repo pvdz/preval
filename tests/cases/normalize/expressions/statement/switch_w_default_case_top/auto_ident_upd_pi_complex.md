@@ -45,10 +45,11 @@ const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest$3) {
   const tmpCalleeParam /*:unknown*/ = $(b);
-  const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam);
-  const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
-  const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+  tmpUpdObj.x = tmpUpdInc;
 } else {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$5) {
@@ -77,8 +78,8 @@ if ($(1) === tmpSwitchValue) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 const b = { x: 1 };
 if (tmpIfTest$3) {
-  const tmpAssignMemLhsObj = $($(b));
-  tmpAssignMemLhsObj.x = tmpAssignMemLhsObj.x + 1;
+  const tmpUpdObj = $($(b));
+  tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) + 1;
 } else {
   if (tmpSwitchCaseToStart <= 1) {
     $(`fail1`);
@@ -139,11 +140,11 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpCalleeParam = $(b);
-    const tmpAssignMemLhsObj = $(tmpCalleeParam);
-    const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+    let tmpUpdObj = $(tmpCalleeParam);
+    let tmpUpdProp = tmpUpdObj.x;
+    let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+    let tmpUpdInc = tmpUpdNum + 1;
+    tmpUpdObj.x = tmpUpdInc;
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
@@ -184,21 +185,22 @@ if (f) {
   const h = $( g );
   const i = $( h );
   const j = i.x;
-  const k = j + 1;
-  i.x = k;
+  const k = $coerce( j, "number" );
+  const l = k + 1;
+  i.x = l;
 }
 else {
-  const l = b <= 1;
-  if (l) {
+  const m = b <= 1;
+  if (m) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-const m = {
+const n = {
   a: 999,
   b: 1000,
 };
-$( m, g );
+$( n, g );
 `````
 
 ## Globals

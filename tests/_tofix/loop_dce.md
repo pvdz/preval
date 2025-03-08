@@ -28,6 +28,20 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(x);
+  if ($) {
+  } else {
+    x = 2;
+  }
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -78,20 +92,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-let x /*:number*/ = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(x);
-  if ($) {
-  } else {
-    x = 2;
-  }
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -112,7 +112,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1

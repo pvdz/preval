@@ -20,6 +20,18 @@ do {
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(100);
+new $(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(100);
+  new $(1);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -69,18 +81,6 @@ while (true) {
 $(a);
 `````
 
-## Settled
-
-
-`````js filename=intro
-$(100);
-new $(1);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  new $(1);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -97,7 +97,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100

@@ -28,12 +28,13 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(b);
-  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
-  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
-  tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  a = tmpPostUpdArgVal;
-  $(tmpPostUpdArgVal);
+  const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdNum;
+  $(tmpUpdNum);
 }
 $(a, b);
 `````
@@ -48,11 +49,11 @@ const b = { x: 1 };
 if (tmpIfTest) {
   $($(100));
 } else {
-  const tmpPostUpdArgObj = $($(b));
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  tmpPostUpdArgObj.x = tmpPostUpdArgVal - 1;
-  a = tmpPostUpdArgVal;
-  $(tmpPostUpdArgVal);
+  const tmpUpdObj = $($(b));
+  const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+  tmpUpdObj.x = tmpUpdNum - 1;
+  a = tmpUpdNum;
+  $(tmpUpdNum);
 }
 $(a, b);
 `````
@@ -79,12 +80,12 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   const tmpCalleeParam$1 = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam$1);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const tmpNestedComplexRhs = tmpPostUpdArgVal;
+  let tmpUpdObj = $(tmpCalleeParam$1);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  const tmpNestedComplexRhs = tmpUpdNum;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -110,10 +111,11 @@ else {
   const e = $( c );
   const f = $( e );
   const g = f.x;
-  const h = g - 1;
-  f.x = h;
-  a = g;
-  $( g );
+  const h = $coerce( g, "number" );
+  const i = h - 1;
+  f.x = i;
+  a = h;
+  $( h );
 }
 $( a, c );
 `````

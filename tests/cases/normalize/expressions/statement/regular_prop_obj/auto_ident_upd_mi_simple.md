@@ -52,8 +52,9 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
-b = b - 1;
-let tmpCompObj = b;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent - 1;
+const tmpCompObj = b;
 tmpCompObj.a;
 $(a, b);
 `````

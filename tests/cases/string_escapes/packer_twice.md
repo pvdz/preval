@@ -82,8 +82,8 @@ const tmpCallCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
   if (tmpIfTest) {
   } else {
     while (true) {
-      const tmpPostUpdArgIdent = c;
-      c = c - 1;
+      const tmpPostUpdArgIdent = $coerce(c, `number`);
+      c = tmpPostUpdArgIdent - 1;
       const tmpIfTest$1 = tmpPostUpdArgIdent;
       if (tmpIfTest$1) {
         const tmpAssignComputedObj = r;
@@ -112,8 +112,8 @@ const tmpCallCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
     c = 1;
   }
   while (true) {
-    const tmpPostUpdArgIdent$1 = c;
-    c = c - 1;
+    const tmpPostUpdArgIdent$1 = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent$1 - 1;
     const tmpIfTest$3 = tmpPostUpdArgIdent$1;
     if (tmpIfTest$3) {
       const tmpIfTest$5 = k[c];

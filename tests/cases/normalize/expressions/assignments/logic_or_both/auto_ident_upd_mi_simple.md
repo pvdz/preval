@@ -48,17 +48,17 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent - 1;
+a = b;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  b = b - 1;
-  let tmpNestedComplexRhs$1 = b;
-  a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
+  const tmpPostUpdArgIdent$1 = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent$1 - 1;
+  const tmpNestedComplexRhs = b;
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a, b);

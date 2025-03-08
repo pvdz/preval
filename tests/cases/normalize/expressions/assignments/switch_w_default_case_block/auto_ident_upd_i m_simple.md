@@ -134,8 +134,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent - 1;
   a = tmpPostUpdArgIdent;
 } else {
 }

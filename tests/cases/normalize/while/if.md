@@ -93,8 +93,9 @@ let f = function () {
   debugger;
   let i = 0;
   while (true) {
-    i = i + 1;
-    let tmpBinLhs = i;
+    const tmpPostUpdArgIdent = $coerce(i, `number`);
+    i = tmpPostUpdArgIdent + 1;
+    const tmpBinLhs = i;
     const tmpIfTest = tmpBinLhs < 10;
     if (tmpIfTest) {
       const tmpIfTest$1 = i < 5;

@@ -58,8 +58,8 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpPostUpdArgIdent = b;
-    b = b - 1;
+    const tmpPostUpdArgIdent = $coerce(b, `number`);
+    b = tmpPostUpdArgIdent - 1;
     const tmpNestedComplexRhs = tmpPostUpdArgIdent;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;

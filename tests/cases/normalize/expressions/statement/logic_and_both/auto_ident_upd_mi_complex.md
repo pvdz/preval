@@ -22,16 +22,18 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdInc) {
   const tmpCalleeParam$1 /*:unknown*/ = $(b);
-  const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$1);
-  const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
-  const tmpAssignMemRhs /*:number*/ = tmpCompoundAssignLhs - 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  const tmpUpdObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpUpdProp$1 /*:unknown*/ = tmpUpdObj$1.x;
+  const tmpUpdNum$1 /*:number*/ = $coerce(tmpUpdProp$1, `number`);
+  const tmpUpdInc$1 /*:number*/ = tmpUpdNum$1 - 1;
+  tmpUpdObj$1.x = tmpUpdInc$1;
 } else {
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -43,12 +45,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const varInitAssignLhsComputedObj = $($(b));
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
-  const tmpAssignMemLhsObj = $($(b));
-  tmpAssignMemLhsObj.x = tmpAssignMemLhsObj.x - 1;
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdInc) {
+  const tmpUpdObj$1 = $($(b));
+  tmpUpdObj$1.x = $coerce(tmpUpdObj$1.x, `number`) - 1;
 }
 $({ a: 999, b: 1000 }, b);
 `````
@@ -70,18 +72,19 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpIfTest = varInitAssignLhsComputedRhs;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpIfTest = tmpUpdInc;
 if (tmpIfTest) {
   const tmpCalleeParam$1 = $(b);
-  const tmpAssignMemLhsObj = $(tmpCalleeParam$1);
-  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-  const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
-  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  let tmpUpdObj$1 = $(tmpCalleeParam$1);
+  let tmpUpdProp$1 = tmpUpdObj$1.x;
+  let tmpUpdNum$1 = $coerce(tmpUpdProp$1, `number`);
+  let tmpUpdInc$1 = tmpUpdNum$1 - 1;
+  tmpUpdObj$1.x = tmpUpdInc$1;
 } else {
 }
 $(a, b);
@@ -95,20 +98,22 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-if (e) {
-  const f = $( a );
-  const g = $( f );
-  const h = g.x;
-  const i = h - 1;
-  g.x = i;
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+if (f) {
+  const g = $( a );
+  const h = $( g );
+  const i = h.x;
+  const j = $coerce( i, "number" );
+  const k = j - 1;
+  h.x = k;
 }
-const j = {
+const l = {
   a: 999,
   b: 1000,
 };
-$( j, a );
+$( l, a );
 `````
 
 ## Globals

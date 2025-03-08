@@ -25,20 +25,22 @@ const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(b);
-  const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-  const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 /*:unknown*/ = $(b);
-      const tmpNestedAssignObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj$1.x;
-      const tmpNestedPropCompoundComplexRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
-      tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-      a = tmpNestedPropCompoundComplexRhs$1;
+      const tmpUpdObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+      const tmpUpdProp$1 /*:unknown*/ = tmpUpdObj$1.x;
+      const tmpUpdNum$1 /*:number*/ = $coerce(tmpUpdProp$1, `number`);
+      const tmpUpdInc$1 /*:number*/ = tmpUpdNum$1 + 1;
+      tmpUpdObj$1.x = tmpUpdInc$1;
+      a = tmpUpdInc$1;
     } else {
       break;
     }
@@ -56,16 +58,16 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
-  const tmpNestedAssignObj = $($(b));
-  const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  const tmpUpdObj = $($(b));
+  const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
   while (true) {
     if ($(1)) {
-      const tmpNestedAssignObj$1 = $($(b));
-      const tmpNestedPropCompoundComplexRhs$1 = tmpNestedAssignObj$1.x + 1;
-      tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-      a = tmpNestedPropCompoundComplexRhs$1;
+      const tmpUpdObj$1 = $($(b));
+      const tmpUpdInc$1 = $coerce(tmpUpdObj$1.x, `number`) + 1;
+      tmpUpdObj$1.x = tmpUpdInc$1;
+      a = tmpUpdInc$1;
     } else {
       break;
     }
@@ -98,11 +100,12 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = $(tmpCalleeParam);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    a = tmpNestedPropCompoundComplexRhs;
+    let tmpUpdObj = $(tmpCalleeParam);
+    let tmpUpdProp = tmpUpdObj.x;
+    let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+    let tmpUpdInc = tmpUpdNum + 1;
+    tmpUpdObj.x = tmpUpdInc;
+    a = tmpUpdInc;
   } else {
     break;
   }
@@ -124,18 +127,20 @@ if (b) {
   const d = $( c );
   const e = $( d );
   const f = e.x;
-  const g = f + 1;
-  e.x = g;
-  a = g;
+  const g = $coerce( f, "number" );
+  const h = g + 1;
+  e.x = h;
+  a = h;
   while ($LOOP_UNROLL_10) {
-    const h = $( 1 );
-    if (h) {
-      const i = $( c );
-      const j = $( i );
-      const k = j.x;
-      const l = k + 1;
-      j.x = l;
-      a = l;
+    const i = $( 1 );
+    if (i) {
+      const j = $( c );
+      const k = $( j );
+      const l = k.x;
+      const m = $coerce( l, "number" );
+      const n = m + 1;
+      k.x = n;
+      a = n;
     }
     else {
       break;

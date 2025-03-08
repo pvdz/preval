@@ -22,13 +22,14 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$3 /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpNestedPropCompoundComplexRhs);
-$(tmpNestedPropCompoundComplexRhs, b);
+$(tmpCalleeParam, tmpUpdInc);
+$(tmpUpdInc, b);
 `````
 
 ## Denormalized
@@ -36,11 +37,11 @@ $(tmpNestedPropCompoundComplexRhs, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpNestedAssignObj = $($(b));
-const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-$([`before `, ` after`], tmpNestedPropCompoundComplexRhs);
-$(tmpNestedPropCompoundComplexRhs, b);
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+tmpUpdObj.x = tmpUpdInc;
+$([`before `, ` after`], tmpUpdInc);
+$(tmpUpdInc, b);
 `````
 
 ## Pre Normal
@@ -61,11 +62,12 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$3 = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam$3);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-a = tmpNestedPropCompoundComplexRhs;
+let tmpUpdObj = $(tmpCalleeParam$3);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdInc;
 let tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
@@ -79,11 +81,12 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-const f = [ "before ", " after" ];
-$( f, e );
-$( e, a );
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+const g = [ "before ", " after" ];
+$( g, f );
+$( f, a );
 `````
 
 ## Globals

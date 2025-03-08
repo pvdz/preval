@@ -61,8 +61,9 @@ while (true) {
 let i = 0;
 let x = $(10);
 while (true) {
-  i = i + 1;
-  let tmpCalleeParam = i;
+  const tmpPostUpdArgIdent = $coerce(i, `number`);
+  i = tmpPostUpdArgIdent + 1;
+  const tmpCalleeParam = i;
   x = $(tmpCalleeParam, `set`);
   $(x, `loop`);
 }

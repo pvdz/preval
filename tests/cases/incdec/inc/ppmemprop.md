@@ -18,21 +18,22 @@ $(y);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $spy(100);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+$(tmpUpdInc);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $($spy(100));
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
+const tmpUpdObj = $($spy(100));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = tmpUpdInc;
+$(tmpUpdInc);
 `````
 
 ## Pre Normal
@@ -48,11 +49,12 @@ $(y);
 
 `````js filename=intro
 const tmpCalleeParam = $spy(100);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-let y = varInitAssignLhsComputedRhs;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+let y = tmpUpdInc;
 $(y);
 `````
 
@@ -63,9 +65,10 @@ With rename=true
 const a = $spy( 100 );
 const b = $( a );
 const c = b.x;
-const d = c + 1;
-b.x = d;
-$( d );
+const d = $coerce( c, "number" );
+const e = d + 1;
+b.x = e;
+$( e );
 `````
 
 ## Globals

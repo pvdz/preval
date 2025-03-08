@@ -59,7 +59,8 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
-b = b - 1;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent - 1;
 $(a, b);
 `````
 

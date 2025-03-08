@@ -55,10 +55,9 @@ $(a, b);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent + 1;
+  a = b;
   return a;
 };
 let b = 1;

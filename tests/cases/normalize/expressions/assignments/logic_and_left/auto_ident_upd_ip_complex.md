@@ -22,17 +22,18 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-if (tmpPostUpdArgVal) {
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdNum) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  $(tmpPostUpdArgVal);
+  $(tmpUpdNum);
 }
-$(tmpPostUpdArgVal, b);
+$(tmpUpdNum, b);
 `````
 
 ## Denormalized
@@ -40,15 +41,15 @@ $(tmpPostUpdArgVal, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
-if (tmpPostUpdArgVal) {
+const tmpUpdObj = $($(b));
+const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+tmpUpdObj.x = tmpUpdNum + 1;
+if (tmpUpdNum) {
   $($(100));
 } else {
-  $(tmpPostUpdArgVal);
+  $(tmpUpdNum);
 }
-$(tmpPostUpdArgVal, b);
+$(tmpUpdNum, b);
 `````
 
 ## Pre Normal
@@ -68,12 +69,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = tmpPostUpdArgVal;
+let tmpUpdObj = $(tmpCalleeParam$1);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdNum;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
@@ -91,16 +92,17 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d + 1;
-c.x = e;
-if (d) {
-  const f = $( 100 );
-  $( f );
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
+if (e) {
+  const g = $( 100 );
+  $( g );
 }
 else {
-  $( d );
+  $( e );
 }
-$( d, a );
+$( e, a );
 `````
 
 ## Globals

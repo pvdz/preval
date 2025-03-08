@@ -46,6 +46,41 @@ const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree$1 /*:()=>number*/ = function $free() {
+  debugger;
+  const tmpSaooB /*:string*/ = tmpCalleeParam$5.charAt(0);
+  const tmpRet$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB);
+  return tmpRet$1;
+};
+const tmpFree /*:()=>number*/ = function $free() {
+  debugger;
+  const tmpSaooB$1 /*:string*/ = tmpCalleeParam$1.charAt(0);
+  const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB$1);
+  return tmpRet;
+};
+const f /*:(number)=>string*/ = function ($$0) {
+  const $dlr_$$0 /*:number*/ = $$0;
+  debugger;
+  const out /*:primitive*/ = $dlr_$$0 + b2;
+  unknown = $coerce(out, `plustr`);
+  return unknown;
+};
+const x /*:unknown*/ = $(`co_rn`);
+const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
+const tmpSaooB$4 /*:number*/ = $frfr(tmpFree);
+const tmpCalleeParam /*:string*/ = f(tmpSaooB$4);
+$(tmpCalleeParam);
+const y /*:unknown*/ = $(`m#az#e`);
+const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
+const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1);
+const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
+$(tmpCalleeParam$3);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -144,41 +179,6 @@ const tmpCalleeParam$3 = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpFree$1 /*:()=>number*/ = function $free() {
-  debugger;
-  const tmpSaooB /*:string*/ = tmpCalleeParam$5.charAt(0);
-  const tmpRet$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB);
-  return tmpRet$1;
-};
-const tmpFree /*:()=>number*/ = function $free() {
-  debugger;
-  const tmpSaooB$1 /*:string*/ = tmpCalleeParam$1.charAt(0);
-  const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB$1);
-  return tmpRet;
-};
-const f /*:(number)=>string*/ = function ($$0) {
-  const $dlr_$$0 /*:number*/ = $$0;
-  debugger;
-  const out /*:primitive*/ = $dlr_$$0 + b2;
-  unknown = $coerce(out, `plustr`);
-  return unknown;
-};
-const x /*:unknown*/ = $(`co_rn`);
-const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
-const tmpSaooB$4 /*:number*/ = $frfr(tmpFree);
-const tmpCalleeParam /*:string*/ = f(tmpSaooB$4);
-$(tmpCalleeParam);
-const y /*:unknown*/ = $(`m#az#e`);
-const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
-const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1);
-const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
-$(tmpCalleeParam$3);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -220,7 +220,7 @@ BAD@! Found 2 implicit global bindings:
 
 b2, unknown
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'co_rn'

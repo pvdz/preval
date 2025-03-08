@@ -45,8 +45,9 @@ $(j);
 `````js filename=intro
 let i = 0;
 const tmpBinBothLhs = i;
-i = i + 1;
-let tmpBinBothRhs = i;
+const tmpPostUpdArgIdent = $coerce(i, `number`);
+i = tmpPostUpdArgIdent + 1;
+const tmpBinBothRhs = i;
 let j = tmpBinBothLhs + tmpBinBothRhs;
 $(j);
 `````

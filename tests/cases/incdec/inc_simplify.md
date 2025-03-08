@@ -41,6 +41,50 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b, c, flag);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:number*/ = 0;
+let b /*:number*/ = 0;
+const tmpObjLitVal /*:()=>undefined*/ = function () {
+  debugger;
+  $(`c flag now:`, flag);
+  return undefined;
+};
+let c /*:unknown*/ = { valueOf: tmpObjLitVal };
+const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
+  debugger;
+  $(`d flag now:`, flag);
+  return undefined;
+};
+let d /*:unknown*/ = { valueOf: tmpObjLitVal$1 };
+let flag /*:unknown*/ = 0;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest /*:boolean*/ = flag < 10;
+  if (tmpIfTest) {
+    const tmpPostUpdArgIdent /*:unknown*/ = a;
+    a = a + 1;
+    flag = tmpPostUpdArgIdent;
+    $(`a++`, tmpPostUpdArgIdent);
+    b = b + 1;
+    flag = b;
+    $(`++b`, flag);
+    const tmpPostUpdArgIdent$3 /*:number*/ = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent$3 + 1;
+    flag = c;
+    $(`++c`, flag);
+    const tmpPostUpdArgIdent$5 /*:number*/ = $coerce(d, `number`);
+    d = tmpPostUpdArgIdent$5 + 1;
+    flag = tmpPostUpdArgIdent$5;
+    $(`d++`, tmpPostUpdArgIdent$5);
+  } else {
+    break;
+  }
+}
+$(a, b, c, flag);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,18 +106,16 @@ while (true) {
     a = a + 1;
     flag = tmpPostUpdArgIdent;
     $(`a++`, tmpPostUpdArgIdent);
-    const tmpNestedComplexRhs = b + 1;
-    b = tmpNestedComplexRhs;
-    flag = tmpNestedComplexRhs;
-    $(`++b`, tmpNestedComplexRhs);
-    const tmpNestedComplexRhs$1 = c + 1;
-    c = tmpNestedComplexRhs$1;
-    flag = tmpNestedComplexRhs$1;
-    $(`++c`, tmpNestedComplexRhs$1);
-    const tmpPostUpdArgIdent$1 = d;
-    d = d + 1;
-    flag = tmpPostUpdArgIdent$1;
-    $(`d++`, tmpPostUpdArgIdent$1);
+    b = b + 1;
+    flag = b;
+    $(`++b`, flag);
+    c = $coerce(c, `number`) + 1;
+    flag = c;
+    $(`++c`, flag);
+    const tmpPostUpdArgIdent$5 = $coerce(d, `number`);
+    d = tmpPostUpdArgIdent$5 + 1;
+    flag = tmpPostUpdArgIdent$5;
+    $(`d++`, tmpPostUpdArgIdent$5);
   } else {
     break;
   }
@@ -139,69 +181,22 @@ let flag = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpIfTest = flag < 10;
   if (tmpIfTest) {
-    const tmpPostUpdArgIdent = a;
-    a = a + 1;
+    const tmpPostUpdArgIdent = $coerce(a, `number`);
+    a = tmpPostUpdArgIdent + 1;
     flag = tmpPostUpdArgIdent;
     $(`a++`, flag);
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-    b = tmpNestedComplexRhs;
-    flag = tmpNestedComplexRhs;
+    const tmpPostUpdArgIdent$1 = $coerce(b, `number`);
+    b = tmpPostUpdArgIdent$1 + 1;
+    flag = b;
     $(`++b`, flag);
-    const tmpNestedCompoundLhs$1 = c;
-    const tmpNestedComplexRhs$1 = tmpNestedCompoundLhs$1 + 1;
-    c = tmpNestedComplexRhs$1;
-    flag = tmpNestedComplexRhs$1;
+    const tmpPostUpdArgIdent$3 = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent$3 + 1;
+    flag = c;
     $(`++c`, flag);
-    const tmpPostUpdArgIdent$1 = d;
-    d = d + 1;
-    flag = tmpPostUpdArgIdent$1;
+    const tmpPostUpdArgIdent$5 = $coerce(d, `number`);
+    d = tmpPostUpdArgIdent$5 + 1;
+    flag = tmpPostUpdArgIdent$5;
     $(`d++`, flag);
-  } else {
-    break;
-  }
-}
-$(a, b, c, flag);
-`````
-
-## Settled
-
-
-`````js filename=intro
-let a /*:number*/ = 0;
-let b /*:unknown*/ = 0;
-const tmpObjLitVal /*:()=>undefined*/ = function () {
-  debugger;
-  $(`c flag now:`, flag);
-  return undefined;
-};
-let c /*:unknown*/ = { valueOf: tmpObjLitVal };
-const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
-  debugger;
-  $(`d flag now:`, flag);
-  return undefined;
-};
-let d /*:unknown*/ = { valueOf: tmpObjLitVal$1 };
-let flag /*:unknown*/ = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest /*:boolean*/ = flag < 10;
-  if (tmpIfTest) {
-    const tmpPostUpdArgIdent /*:unknown*/ = a;
-    a = a + 1;
-    flag = tmpPostUpdArgIdent;
-    $(`a++`, tmpPostUpdArgIdent);
-    const tmpNestedComplexRhs /*:number*/ = b + 1;
-    b = tmpNestedComplexRhs;
-    flag = tmpNestedComplexRhs;
-    $(`++b`, tmpNestedComplexRhs);
-    const tmpNestedComplexRhs$1 /*:primitive*/ = c + 1;
-    c = tmpNestedComplexRhs$1;
-    flag = tmpNestedComplexRhs$1;
-    $(`++c`, tmpNestedComplexRhs$1);
-    const tmpPostUpdArgIdent$1 /*:unknown*/ = d;
-    d = d + 1;
-    flag = tmpPostUpdArgIdent$1;
-    $(`d++`, tmpPostUpdArgIdent$1);
   } else {
     break;
   }
@@ -235,18 +230,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     a = a + 1;
     d = i;
     $( "a++", i );
-    const j = b + 1;
-    b = j;
-    d = j;
-    $( "++b", j );
-    const k = e + 1;
-    e = k;
+    b = b + 1;
+    d = b;
+    $( "++b", d );
+    const j = $coerce( e, "number" );
+    e = j + 1;
+    d = e;
+    $( "++c", d );
+    const k = $coerce( g, "number" );
+    g = k + 1;
     d = k;
-    $( "++c", k );
-    const l = g;
-    g = g + 1;
-    d = l;
-    $( "d++", l );
+    $( "d++", k );
   }
   else {
     break;
@@ -259,7 +253,7 @@ $( a, b, e, d );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'a++', 0
@@ -273,38 +267,11 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: 'a++', 0
- - 2: '++b', 1
- - 3: 'c flag now:', 1
- - 4: '++c', NaN
- - 5: 'd flag now:', NaN
- - 6: 'd++', { valueOf: '"<function>"' }
- - 7: 'd flag now:', { valueOf: '"<function>"' }
- - 8: 1, 1, NaN, { valueOf: '"<function>"' }
- - eval returned: undefined
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 'a++', 0
- - 2: '++b', 1
- - 3: 'c flag now:', 1
- - 4: '++c', NaN
- - 5: 'd flag now:', NaN
- - 6: 'd++', { valueOf: '"<function>"' }
- - 7: 'd flag now:', { valueOf: '"<function>"' }
- - 8: 1, 1, NaN, { valueOf: '"<function>"' }
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'a++', 0
- - 2: '++b', 1
- - 3: 'c flag now:', 1
- - 4: '++c', NaN
- - 5: 'd flag now:', NaN
- - 6: 'd++', { valueOf: '"<function>"' }
- - 7: 'd flag now:', { valueOf: '"<function>"' }
- - 8: 1, 1, NaN, { valueOf: '"<function>"' }
- - eval returned: undefined
+Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check

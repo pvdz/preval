@@ -31,11 +31,12 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs$1 /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs$1 - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpIfTest /*:boolean*/ = varInitAssignLhsComputedRhs === tmpSwitchValue;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpIfTest /*:boolean*/ = tmpUpdInc === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -66,10 +67,10 @@ $(a, b);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const b = { x: 1 };
-const varInitAssignLhsComputedObj = $($(b));
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs === tmpSwitchValue) {
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdInc === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -121,11 +122,12 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(b);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-const tmpBinLhs$1 = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs$1 - 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpBinLhs = varInitAssignLhsComputedRhs;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpBinLhs = tmpUpdInc;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 tmpSwitchBreak: {
   if (tmpIfTest) {
@@ -166,34 +168,35 @@ const c = { x: 1 };
 const d = $( c );
 const e = $( d );
 const f = e.x;
-const g = f - 1;
-e.x = g;
-const h = g === a;
-if (h) {
+const g = $coerce( f, "number" );
+const h = g - 1;
+e.x = h;
+const i = h === a;
+if (i) {
   b = 0;
 }
 else {
-  const i = 2 === a;
-  if (i) {
+  const j = 2 === a;
+  if (j) {
     b = 2;
   }
 }
-const j = b <= 0;
-if (j) {
+const k = b <= 0;
+if (k) {
 
 }
 else {
-  const k = b <= 1;
-  if (k) {
+  const l = b <= 1;
+  if (l) {
     $( "fail1" );
   }
   $( "fail2" );
 }
-const l = {
+const m = {
   a: 999,
   b: 1000,
 };
-$( l, c );
+$( m, c );
 `````
 
 ## Globals

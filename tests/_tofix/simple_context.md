@@ -18,6 +18,20 @@ function f() {
 f.call({pass: 1});
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  const tmpPrevalAliasThis /*:object*/ = this;
+  debugger;
+  $(tmpPrevalAliasThis);
+  return undefined;
+};
+const tmpCalleeParam /*:object*/ = { pass: 1 };
+f.call(tmpCalleeParam);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,20 +71,6 @@ const tmpCalleeParam = { pass: 1 };
 $dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  const tmpPrevalAliasThis /*:object*/ = this;
-  debugger;
-  $(tmpPrevalAliasThis);
-  return undefined;
-};
-const tmpCalleeParam /*:object*/ = { pass: 1 };
-f.call(tmpCalleeParam);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -89,7 +89,7 @@ a.call( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { pass: '1' }

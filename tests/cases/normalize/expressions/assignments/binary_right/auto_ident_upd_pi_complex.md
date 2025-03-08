@@ -23,13 +23,14 @@ $(a, b);
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpNestedPropCompoundComplexRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpUpdInc;
 $(tmpCalleeParam);
-$(tmpNestedPropCompoundComplexRhs, b);
+$(tmpUpdInc, b);
 `````
 
 ## Denormalized
@@ -38,11 +39,11 @@ $(tmpNestedPropCompoundComplexRhs, b);
 `````js filename=intro
 const tmpBinBothLhs = $(100);
 const b = { x: 1 };
-const tmpNestedAssignObj = $($(b));
-const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-$(tmpBinBothLhs + tmpNestedPropCompoundComplexRhs);
-$(tmpNestedPropCompoundComplexRhs, b);
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = tmpUpdInc;
+$(tmpBinBothLhs + tmpUpdInc);
+$(tmpUpdInc, b);
 `````
 
 ## Pre Normal
@@ -63,11 +64,12 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam$1);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-a = tmpNestedPropCompoundComplexRhs;
+let tmpUpdObj = $(tmpCalleeParam$1);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdInc;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
@@ -83,11 +85,12 @@ const b = { x: 1 };
 const c = $( b );
 const d = $( c );
 const e = d.x;
-const f = e + 1;
-d.x = f;
-const g = a + f;
-$( g );
-$( f, b );
+const f = $coerce( e, "number" );
+const g = f + 1;
+d.x = g;
+const h = a + g;
+$( h );
+$( g, b );
 `````
 
 ## Globals

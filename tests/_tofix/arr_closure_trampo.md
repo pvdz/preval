@@ -23,6 +23,15 @@ $(_0x5576());
 $(_0x5576());
 `````
 
+## Settled
+
+
+`````js filename=intro
+const _0x5576 /*:array*/ = [`W4BcO8kAW5RdGa`, `AH7cVXhdHa`];
+$(_0x5576);
+$(_0x5576);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -70,15 +79,6 @@ const tmpCalleeParam$1 = _0x5576();
 $(tmpCalleeParam$1);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const _0x5576 /*:array*/ = [`W4BcO8kAW5RdGa`, `AH7cVXhdHa`];
-$(_0x5576);
-$(_0x5576);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -92,7 +92,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: ['W4BcO8kAW5RdGa', 'AH7cVXhdHa']

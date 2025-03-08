@@ -97,8 +97,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpPostUpdArgIdent = b;
-    b = b - 1;
+    const tmpPostUpdArgIdent = $coerce(b, `number`);
+    b = tmpPostUpdArgIdent - 1;
     a = tmpPostUpdArgIdent;
     let tmpAssignMemLhsObj = a;
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;

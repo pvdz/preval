@@ -17,6 +17,19 @@ while (true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let i /*:number*/ = 0;
+$(10);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  i = i + 1;
+  const tmpClusterSSA_x /*:unknown*/ = $(i, `set`);
+  $(tmpClusterSSA_x, `loop`);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,23 +61,11 @@ while (true) {
 let i = 0;
 let x = $(10);
 while (true) {
-  i = i + 1;
-  let tmpCalleeParam = i;
+  const tmpPostUpdArgIdent = $coerce(i, `number`);
+  i = tmpPostUpdArgIdent + 1;
+  const tmpCalleeParam = i;
   x = $(tmpCalleeParam, `set`);
   $(x, `loop`);
-}
-`````
-
-## Settled
-
-
-`````js filename=intro
-let i /*:number*/ = 0;
-$(10);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  i = i + 1;
-  const tmpClusterSSA_x /*:unknown*/ = $(i, `set`);
-  $(tmpClusterSSA_x, `loop`);
 }
 `````
 
@@ -85,7 +86,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10

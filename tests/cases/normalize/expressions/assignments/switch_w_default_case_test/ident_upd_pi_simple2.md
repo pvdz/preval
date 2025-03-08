@@ -76,10 +76,9 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(2);
 let tmpSwitchCaseToStart = 1;
-const tmpNestedCompoundLhs = b;
-const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent + 1;
+a = b;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

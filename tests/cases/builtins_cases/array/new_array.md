@@ -98,8 +98,8 @@ let error = function ($$0) {
       const tmpAssignComputedProp = tmpAssignComMemLhsProp;
       const tmpAssignComputedRhs = tmpPrevalAliasArgumentsAny[key];
       tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-      const tmpPostUpdArgIdent = key;
-      key = key + 1;
+      const tmpPostUpdArgIdent = $coerce(key, `number`);
+      key = tmpPostUpdArgIdent + 1;
     } else {
       break;
     }

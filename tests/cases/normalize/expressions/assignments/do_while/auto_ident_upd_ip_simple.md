@@ -103,8 +103,8 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
-  const tmpPostUpdArgIdent = b;
-  b = b + 1;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent + 1;
   a = tmpPostUpdArgIdent;
   let tmpIfTest = a;
   if (tmpIfTest) {

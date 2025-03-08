@@ -66,10 +66,12 @@ let b = { x: 5 };
 let t = true;
 while (true) {
   if (t) {
-    const tmpBinLhs = b.x;
-    const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-    b.x = varInitAssignLhsComputedRhs;
-    let p = varInitAssignLhsComputedRhs;
+    let tmpUpdObj = b;
+    let tmpUpdProp = tmpUpdObj.x;
+    let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+    let tmpUpdInc = tmpUpdNum - 1;
+    tmpUpdObj.x = tmpUpdInc;
+    let p = tmpUpdInc;
     t = p;
     $(100);
   } else {

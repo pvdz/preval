@@ -82,7 +82,8 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    x = x + 1;
+    const tmpPostUpdArgIdent = $coerce(x, `number`);
+    x = tmpPostUpdArgIdent + 1;
     return x;
   };
   let x = 0;

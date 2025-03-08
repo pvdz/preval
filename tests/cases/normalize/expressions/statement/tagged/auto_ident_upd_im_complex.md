@@ -22,12 +22,13 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$3 /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpPostUpdArgVal);
+$(tmpCalleeParam, tmpUpdNum);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -37,10 +38,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-tmpPostUpdArgObj.x = tmpPostUpdArgVal - 1;
-$([`before `, ` after`], tmpPostUpdArgVal);
+const tmpUpdObj = $($(b));
+const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+tmpUpdObj.x = tmpUpdNum - 1;
+$([`before `, ` after`], tmpUpdNum);
 $({ a: 999, b: 1000 }, b);
 `````
 
@@ -62,12 +63,12 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$3 = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam$3);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpCalleeParam$1 = tmpPostUpdArgVal;
+let tmpUpdObj = $(tmpCalleeParam$3);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpCalleeParam$1 = tmpUpdNum;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, b);
 `````
@@ -80,15 +81,16 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-const f = [ "before ", " after" ];
-$( f, d );
-const g = {
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+const g = [ "before ", " after" ];
+$( g, e );
+const h = {
   a: 999,
   b: 1000,
 };
-$( g, a );
+$( h, a );
 `````
 
 ## Globals

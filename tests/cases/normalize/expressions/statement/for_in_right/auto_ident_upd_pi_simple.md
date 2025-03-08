@@ -76,8 +76,9 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-b = b + 1;
-let tmpCalleeParam = b;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent + 1;
+const tmpCalleeParam = b;
 let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   let tmpForInNext = tmpForInGen.next();

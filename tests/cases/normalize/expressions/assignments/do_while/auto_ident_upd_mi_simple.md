@@ -60,10 +60,9 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent - 1;
+  a = b;
   let tmpIfTest = a;
   if (tmpIfTest) {
   } else {

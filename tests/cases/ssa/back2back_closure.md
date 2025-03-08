@@ -32,8 +32,9 @@ if ($) f();
 `````js filename=intro
 if ($) {
   const x /*:unknown*/ = $(5);
-  const tmpClusterSSA_x /*:primitive*/ = x + 1;
+  const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
   if ($) {
+    const tmpClusterSSA_x /*:number*/ = tmpPostUpdArgIdent + 1;
     $(tmpClusterSSA_x);
   } else {
   }
@@ -46,9 +47,9 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpClusterSSA_x = $(5) + 1;
+  const tmpPostUpdArgIdent = $coerce($(5), `number`);
   if ($) {
-    $(tmpClusterSSA_x);
+    $(tmpPostUpdArgIdent + 1);
   }
 }
 `````
@@ -89,7 +90,8 @@ let f = function () {
       }
     };
     let x = $(5);
-    x = x + 1;
+    const tmpPostUpdArgIdent = $coerce(x, `number`);
+    x = tmpPostUpdArgIdent + 1;
     g();
     return undefined;
   } else {
@@ -108,9 +110,10 @@ With rename=true
 `````js filename=intro
 if ($) {
   const a = $( 5 );
-  const b = a + 1;
+  const b = $coerce( a, "number" );
   if ($) {
-    $( b );
+    const c = b + 1;
+    $( c );
   }
 }
 `````

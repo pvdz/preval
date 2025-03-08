@@ -6784,118 +6784,124 @@ export function phaseNormalize(fdata, fname, prng, options) {
         );
         ASSERT(arg.type !== 'MemberExpression' || !arg.optional, 'optional chaining can not be args to update expressions');
 
-        if (node.prefix) {
-          // Easiest thing is to convert to compound assignment and let other rules handle all edge cases safely
 
-          rule('Prefix update expression must be compound assignment');
-          example('++f()[g()]', 'f()[g()] += 1', () => node.operator === '++');
-          example('--f()[g()]', 'f()[g()] -= 1', () => node.operator === '--');
-          before(node, parentNodeOrWhatever);
+        // The update expression will always first coerce the arg to a number, then increment that number, then
+        // either return the old or the new number depending on pre or postfix, but always the coerced value.
 
-          const finalNode = AST.assignmentExpression(arg, AST.one(), node.operator === '++' ? '+=' : '-=');
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body.splice(i, 1, finalParent);
-
-          after(finalParent);
-          after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        // Postfix is harder because we do need to bother saving the value first so we can return it.
-        // Well ok, it's kinda simple for identifier
+        // For member: We need to cache member expression objects and, if computed, the computed key value as well.
 
         if (arg.type === 'Identifier') {
-          rule('Postfix ident update expression must be compound assignment that returns before-value');
-          example('a++', 'tmp = a, a = a + 1, tmp', () => node.operator === '++');
-          example('a--', 'tmp = a, a = a - 1, tmp', () => node.operator === '--');
-          before(node, parentNodeOrWhatever);
+          if (node.prefix) {
+            // Note: if the arg ends up being a mustBe number then it should fold right back up
+            rule('Prefix ident update expression must be compound assignment that returns after-value');
+            example('++a', 'tmp = $coerce(a, "number"), a = tmp + 1, a', () => node.operator === '++');
+            example('--a', 'tmp = $coerce(a, "number"), a = tmp - 1, a', () => node.operator === '--');
+            before(node, parentNodeOrWhatever);
 
-          const tmpName = createFreshVar('tmpPostUpdArgIdent', fdata);
-          const newNodes = [
-            AST.variableDeclaration(tmpName, arg.name, 'const'),
-            AST.expressionStatement(
-              AST.assignmentExpression(arg.name, AST.binaryExpression(node.operator === '++' ? '+' : '-', arg.name, AST.one())),
-            ),
-          ];
-          const finalNode = AST.identifier(tmpName);
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body.splice(i, 1, ...newNodes, finalParent);
-
-          after(newNodes);
-          after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        // Member expression is a little trickier. Just unconditionally cache the object/prop (imlazy) and then do the same.
-
-        ASSERT(arg.type === 'MemberExpression', 'can only update idents and props');
-        if (arg.computed) {
-          rule('Postfix computed prop update expression must be compound assignment that returns before-value');
-          example('f()[g()]++', 'tmp = f(), tmp2 = g(), tmp3 = tmp[tmp2], tmp[tmp2] = tmp3 + 1, tmp3', () => node.operator === '++');
-          example('f()[g()]--', 'tmp = f(), tmp2 = g(), tmp3 = tmp[tmp2], tmp[tmp2] = tmp3 - 1, tmp3', () => node.operator === '--');
-          before(node, parentNodeOrWhatever);
-
-          const tmpNameObj = createFreshVar('tmpPostUpdArgComObj', fdata);
-          const tmpNameProp = createFreshVar('tmpPostUpdArgComProp', fdata);
-          const tmpNameVal = createFreshVar('tmpPostUpdArgComVal', fdata);
-          const newNodes = [
-            // tmp = f()
-            AST.variableDeclaration(tmpNameObj, arg.object, 'const'),
-            // tmp2 = g()
-            AST.variableDeclaration(tmpNameProp, arg.property, 'const'),
-            // tmp3 = tmp[tmp2]
-            AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, tmpNameProp, true), 'const'),
-            // tmp[tmp2] = tmp3 + 1
-            AST.expressionStatement(
-              AST.assignmentExpression(
-                AST.memberExpression(tmpNameObj, tmpNameProp, true),
-                AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNameVal, AST.one()),
+            const tmpName = createFreshVar('tmpPostUpdArgIdent', fdata);
+            const newNodes = [
+              AST.variableDeclaration(tmpName, AST.callExpression(SYMBOL_COERCE, [AST.identifier(arg.name), AST.primitive('number')]), 'const'),
+              AST.expressionStatement(
+                AST.assignmentExpression(arg.name, AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpName, AST.one())),
               ),
-            ),
-          ];
-          const finalNode = AST.identifier(tmpNameVal);
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body.splice(i, 1, ...newNodes, finalParent);
+            ];
+            const finalNode = AST.identifier(arg.name);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
 
-          after(newNodes);
-          after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
+            after(newNodes);
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          } else {
+            // Note: if the arg ends up being a mustBe number then it should fold right back up
+            rule('Postfix ident update expression must be compound assignment that returns before-value');
+            example('a++', 'tmp = $coerce(a, "number"), a = tmp + 1, tmp', () => node.operator === '++');
+            example('a--', 'tmp = $coerce(a, "number"), a = tmp - 1, tmp', () => node.operator === '--');
+            before(node, parentNodeOrWhatever);
+
+            const tmpName = createFreshVar('tmpPostUpdArgIdent', fdata);
+            const newNodes = [
+              AST.variableDeclaration(tmpName, AST.callExpression(SYMBOL_COERCE, [AST.identifier(arg.name), AST.primitive('number')]), 'const'),
+              AST.expressionStatement(
+                AST.assignmentExpression(arg.name, AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpName, AST.one())),
+              ),
+            ];
+            const finalNode = AST.identifier(tmpName);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        } else if (arg.type === 'MemberExpression') {
+          // We must tear down the member expression first. Cache the object and, if computed, the key.
+          // Then read the value and coerce it to a number. Then increase the number and store it back.
+          // Finally, return the coerced number either before or after increment, depending on node.prefix
+          if (arg.computed) {
+            rule('Prefix update expression to member expression must be compound assignment');
+            example('++f()[g()]', 'const obj = f(); const prop = g(); const tmp = $coerce(obj[prop], "number"); const tmp2 = tmp + 1; obj[prop] = tmp2; tmp2; ', () => node.operator === '++');
+            example('--f()[g()]', 'const obj = f(); const prop = g(); const tmp = $coerce(obj[prop], "number"); const tmp2 = tmp - 1; obj[prop] = tmp2; tmp2; ', () => node.operator === '--');
+            before(node, parentNodeOrWhatever);
+
+            const tmpObjName = createFreshVar('tmpUpdObj', fdata);
+            const tmpPropName = createFreshVar('tmpUpdProp', fdata);
+            const tmpPropVal = createFreshVar('tmpUpdVal', fdata);
+            const tmpNumName = createFreshVar('tmpUpdNum', fdata);
+            const tmpIncName = createFreshVar('tmpUpdInc', fdata);
+
+            const newNodes = [
+              AST.variableDeclaration(tmpObjName, arg.object),
+              AST.variableDeclaration(tmpPropName, arg.property),
+              AST.variableDeclaration(tmpPropVal, AST.memberExpression(tmpObjName, tmpPropName, true)),
+              AST.variableDeclaration(tmpNumName, AST.callExpression(SYMBOL_COERCE, [AST.identifier(tmpPropVal), AST.primitive("number")])),
+              AST.variableDeclaration(tmpIncName, AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNumName, AST.one())),
+              AST.expressionStatement(AST.assignmentExpression(AST.memberExpression(tmpObjName, tmpPropName, true), tmpIncName))
+            ];
+            const finalNode = node.prefix ? AST.identifier(tmpIncName) : AST.identifier(tmpNumName);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalParent);
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          } else {
+            rule('Prefix update expression to member expression must be compound assignment');
+            example('++f().g', 'const obj = f(); const tmp = $coerce(obj.g, "number"); const tmp2 = tmp + 1; obj.g = tmp2; tmp2; ', () => node.operator === '++');
+            example('--f().g', 'const obj = f(); const tmp = $coerce(obj.g, "number"); const tmp2 = tmp - 1; obj.g = tmp2; tmp2; ', () => node.operator === '--');
+            before(node, parentNodeOrWhatever);
+
+            const tmpObjName = createFreshVar('tmpUpdObj', fdata);
+            const tmpPropVal = createFreshVar('tmpUpdProp', fdata);
+            const tmpNumName = createFreshVar('tmpUpdNum', fdata);
+            const tmpIncName = createFreshVar('tmpUpdInc', fdata);
+
+            const newNodes = [
+              AST.variableDeclaration(tmpObjName, arg.object),
+              AST.variableDeclaration(tmpPropVal, AST.memberExpression(tmpObjName, AST.identifier(arg.property.name))),
+              AST.variableDeclaration(tmpNumName, AST.callExpression(SYMBOL_COERCE, [AST.identifier(tmpPropVal), AST.primitive("number")])),
+              AST.variableDeclaration(tmpIncName, AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNumName, AST.one())),
+              AST.expressionStatement(AST.assignmentExpression(AST.memberExpression(tmpObjName, AST.identifier(arg.property.name)), tmpIncName))
+            ];
+            const finalNode = node.prefix ? AST.identifier(tmpIncName) : AST.identifier(tmpNumName);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalParent);
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        } else {
+          // I guess something like "foo"++ could be legal but it would crash. For any such value.
+          todo(`what else can be the arg of a unary without crashing? ${arg.type}`);
         }
-
-        // Slightly less complicated but we still just cache the object all the same.
-
-        rule('Postfix prop update expression must be compound assignment that returns before-value');
-        example('f().x++', 'tmp = f(), tmp3 = tmp.x, tmp.x = tmp2 + 1, tmp2', () => node.operator === '++');
-        example('f().x--', 'tmp = f(), tmp3 = tmp.x, tmp.x = tmp2 - 1, tmp2', () => node.operator === '--');
-        before(node, parentNodeOrWhatever);
-
-        const tmpNameObj = createFreshVar('tmpPostUpdArgObj', fdata);
-        const tmpNameVal = createFreshVar('tmpPostUpdArgVal', fdata);
-
-        const newNodes = [
-          // tmp = f()
-          AST.variableDeclaration(tmpNameObj, arg.object, 'const'),
-          // tmp2 = tmp.x
-          AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, AST.cloneSimple(arg.property)), 'const'),
-          // tmp.x = tmp2 + 1
-          AST.expressionStatement(
-            AST.assignmentExpression(
-              AST.memberExpression(tmpNameObj, AST.cloneSimple(arg.property)),
-              AST.binaryExpression(node.operator === '++' ? '+' : '-', tmpNameVal, AST.one()),
-            ),
-          ),
-        ];
-        const finalNode = AST.identifier(tmpNameVal);
-        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-        body.splice(i, 1, ...newNodes, finalParent);
-
-        after(newNodes);
-        after(finalNode, finalParent);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
+        return;
       }
 
       case 'ArrayExpression': {
@@ -9391,6 +9397,23 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         return true;
       }
+    }
+
+    if (node.handler.body.body.length === 1 && node.handler.body.body[0].type === 'BreakStatement') {
+      todo('Find me a test case for this try { break }');
+      // Breaks cant throw, they are syntactically validated, so we should be able to move them out safely
+      // Unfortunately, moving them out will trigger an infinite loop as we try to have try blocks gobble
+      // up as many previous statements as is safe to do. So instead we'll rely on DCE to clear the remainder
+      // of the try block. And if it's only got this statement, then the try is dead. And we remove it.
+      rule('A `try` block with only a `break` can not catch anything');
+      example('x: { try { break x; } catch {} }', 'x: { break x; }');
+      before(body[i]);
+
+      body[i] = node.handler.body.body[0];
+
+      after(body[i]);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
     }
 
     return false;

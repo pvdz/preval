@@ -21,6 +21,78 @@ l=(b=b.split` `.flatMap(t=>t>-1?[65,t]:107+'-*/'.indexOf(t)))
 (/*await*/ c('11 11 1 - + 4 * 2 /')).instance.exports['']()
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam$5 /*:(unknown)=>unknown*/ = function ($$0) {
+  const t /*:unknown*/ = $$0;
+  debugger;
+  const tmpIfTest /*:boolean*/ = t > -1;
+  if (tmpIfTest) {
+    const tmpClusterSSA_tmpReturnArg$1 /*:array*/ = [65, t];
+    return tmpClusterSSA_tmpReturnArg$1;
+  } else {
+    const tmpBinBothRhs /*:number*/ = `-*/`.indexOf(t);
+    const tmpClusterSSA_tmpReturnArg$2 /*:number*/ = 107 + tmpBinBothRhs;
+    return tmpClusterSSA_tmpReturnArg$2;
+  }
+};
+const c /*:()=>unknown*/ = function () {
+  debugger;
+  const tmpCallObj$1 /*:unknown*/ = WebAssembly;
+  const tmpCallVal /*:unknown*/ = tmpCallObj$1.instantiate;
+  const tmpNewCallee /*:unknown*/ = Int8Array;
+  const tmpCallObj$3 /*:array*/ = [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`];
+  const tmpClusterSSA_b /*:array*/ = tmpCallObj$3.flatMap(tmpCalleeParam$5);
+  const tmpBinLhs /*:number*/ = tmpClusterSSA_b.length;
+  const tmpClusterSSA_l /*:number*/ = tmpBinLhs + 4;
+  const tmpArrElement$37 /*:number*/ = tmpClusterSSA_l - 2;
+  const tmpCalleeParam$3 /*:array*/ = [
+    ,
+    97,
+    115,
+    109,
+    1,
+    ,
+    ,
+    ,
+    1,
+    5,
+    1,
+    96,
+    ,
+    1,
+    127,
+    3,
+    2,
+    1,
+    ,
+    7,
+    4,
+    1,
+    ,
+    ,
+    ,
+    10,
+    tmpClusterSSA_l,
+    1,
+    tmpArrElement$37,
+    ,
+    ...tmpClusterSSA_b,
+    11,
+  ];
+  const tmpCalleeParam$1 /*:object*/ = new tmpNewCallee(tmpCalleeParam$3);
+  const tmpCallCallee /*:unknown*/ = $dotCall(tmpCallVal, tmpCallObj$1, `instantiate`, tmpCalleeParam$1);
+  const tmpCalleeParam /*:unknown*/ = c();
+  const tmpCompObj$1 /*:unknown*/ = tmpCallCallee(tmpCalleeParam);
+  const tmpCompObj /*:unknown*/ = tmpCompObj$1.instance;
+  const tmpCallObj /*:unknown*/ = tmpCompObj.exports;
+  const tmpReturnArg /*:unknown*/ = tmpCallObj[``]();
+  return tmpReturnArg;
+};
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -234,78 +306,6 @@ let c = function ($$0, $$1) {
 };
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpCalleeParam$5 /*:(unknown)=>unknown*/ = function ($$0) {
-  const t /*:unknown*/ = $$0;
-  debugger;
-  const tmpIfTest /*:boolean*/ = t > -1;
-  if (tmpIfTest) {
-    const tmpClusterSSA_tmpReturnArg$1 /*:array*/ = [65, t];
-    return tmpClusterSSA_tmpReturnArg$1;
-  } else {
-    const tmpBinBothRhs /*:number*/ = `-*/`.indexOf(t);
-    const tmpClusterSSA_tmpReturnArg$2 /*:number*/ = 107 + tmpBinBothRhs;
-    return tmpClusterSSA_tmpReturnArg$2;
-  }
-};
-const c /*:()=>unknown*/ = function () {
-  debugger;
-  const tmpCallObj$1 /*:unknown*/ = WebAssembly;
-  const tmpCallVal /*:unknown*/ = tmpCallObj$1.instantiate;
-  const tmpNewCallee /*:unknown*/ = Int8Array;
-  const tmpCallObj$3 /*:array*/ = [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`];
-  const tmpClusterSSA_b /*:array*/ = tmpCallObj$3.flatMap(tmpCalleeParam$5);
-  const tmpBinLhs /*:number*/ = tmpClusterSSA_b.length;
-  const tmpClusterSSA_l /*:number*/ = tmpBinLhs + 4;
-  const tmpArrElement$37 /*:number*/ = tmpClusterSSA_l - 2;
-  const tmpCalleeParam$3 /*:array*/ = [
-    ,
-    97,
-    115,
-    109,
-    1,
-    ,
-    ,
-    ,
-    1,
-    5,
-    1,
-    96,
-    ,
-    1,
-    127,
-    3,
-    2,
-    1,
-    ,
-    7,
-    4,
-    1,
-    ,
-    ,
-    ,
-    10,
-    tmpClusterSSA_l,
-    1,
-    tmpArrElement$37,
-    ,
-    ...tmpClusterSSA_b,
-    11,
-  ];
-  const tmpCalleeParam$1 /*:object*/ = new tmpNewCallee(tmpCalleeParam$3);
-  const tmpCallCallee /*:unknown*/ = $dotCall(tmpCallVal, tmpCallObj$1, `instantiate`, tmpCalleeParam$1);
-  const tmpCalleeParam /*:unknown*/ = c();
-  const tmpCompObj$1 /*:unknown*/ = tmpCallCallee(tmpCalleeParam);
-  const tmpCompObj /*:unknown*/ = tmpCompObj$1.instance;
-  const tmpCallObj /*:unknown*/ = tmpCompObj.exports;
-  const tmpReturnArg /*:unknown*/ = tmpCallObj[``]();
-  return tmpReturnArg;
-};
-`````
-
 ## PST Settled
 With rename=true
 
@@ -352,7 +352,7 @@ BAD@! Found 2 implicit global bindings:
 
 WebAssembly, Int8Array
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined

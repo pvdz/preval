@@ -18,6 +18,13 @@ while ($LOOP_UNROLL_500) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,13 +51,6 @@ let y = 1;
 y = y + 1;
 `````
 
-## Settled
-
-
-`````js filename=intro
-
-`````
-
 ## PST Settled
 With rename=true
 
@@ -62,7 +62,7 @@ With rename=true
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

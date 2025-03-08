@@ -26,6 +26,20 @@ if (x) {
 $(`after`);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:unknown*/ = $(false);
+if (x) {
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $(`body`);
+  }
+} else {
+}
+$(`after`);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -79,20 +93,6 @@ if (x) {
 $(`after`);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const x /*:unknown*/ = $(false);
-if (x) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(`body`);
-  }
-} else {
-}
-$(`after`);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -110,7 +110,7 @@ $( "after" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false

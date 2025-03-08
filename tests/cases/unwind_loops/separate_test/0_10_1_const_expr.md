@@ -73,7 +73,8 @@ while (true) {
   if (tmpIfTest) {
     const x = i * 2;
     $(x);
-    i = i + 1;
+    const tmpPostUpdArgIdent = $coerce(i, `number`);
+    i = tmpPostUpdArgIdent + 1;
   } else {
     break;
   }

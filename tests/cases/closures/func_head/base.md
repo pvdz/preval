@@ -27,7 +27,8 @@ $(x);
 const f /*:()=>undefined*/ = function () {
   debugger;
   $(x);
-  x = x + 1;
+  const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
+  x = tmpPostUpdArgIdent + 1;
   return undefined;
 };
 let x /*:unknown*/ = $(5);
@@ -42,7 +43,7 @@ $(x);
 `````js filename=intro
 const f = function () {
   $(x);
-  x = x + 1;
+  x = $coerce(x, `number`) + 1;
 };
 let x = $(5);
 f();
@@ -72,7 +73,8 @@ $(x);
 let f = function () {
   debugger;
   $(x);
-  x = x + 1;
+  const tmpPostUpdArgIdent = $coerce(x, `number`);
+  x = tmpPostUpdArgIdent + 1;
   return undefined;
 };
 let x = $(5);
@@ -88,7 +90,8 @@ With rename=true
 const a = function() {
   debugger;
   $( b );
-  b = b + 1;
+  const c = $coerce( b, "number" );
+  b = c + 1;
   return undefined;
 };
 let b = $( 5 );

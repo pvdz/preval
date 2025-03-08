@@ -63,8 +63,9 @@ $(f());
 let f = function () {
   debugger;
   let n = 0;
-  n = n + 1;
-  let tmpCalleeParam = n;
+  const tmpPostUpdArgIdent = $coerce(n, `number`);
+  n = tmpPostUpdArgIdent + 1;
+  const tmpCalleeParam = n;
   $(tmpCalleeParam);
   $(`afterwards`);
   return 100;

@@ -20,7 +20,8 @@ $(x);
 
 `````js filename=intro
 const x /*:unknown*/ = $spy(0);
-const tmpClusterSSA_x /*:primitive*/ = x + 1;
+const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
+const tmpClusterSSA_x /*:number*/ = tmpPostUpdArgIdent + 1;
 $(tmpClusterSSA_x);
 $(tmpClusterSSA_x);
 `````
@@ -29,7 +30,7 @@ $(tmpClusterSSA_x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_x = $spy(0) + 1;
+const tmpClusterSSA_x = $coerce($spy(0), `number`) + 1;
 $(tmpClusterSSA_x);
 $(tmpClusterSSA_x);
 `````
@@ -49,7 +50,8 @@ $(x);
 
 `````js filename=intro
 let x = $spy(0);
-x = x + 1;
+const tmpPostUpdArgIdent = $coerce(x, `number`);
+x = tmpPostUpdArgIdent + 1;
 let y = x;
 $(y);
 $(x);
@@ -60,9 +62,10 @@ With rename=true
 
 `````js filename=intro
 const a = $spy( 0 );
-const b = a + 1;
-$( b );
-$( b );
+const b = $coerce( a, "number" );
+const c = b + 1;
+$( c );
+$( c );
 `````
 
 ## Globals

@@ -30,11 +30,12 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpIfTest /*:boolean*/ = tmpPostUpdArgVal === tmpSwitchValue;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpIfTest /*:boolean*/ = tmpUpdNum === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -50,7 +51,7 @@ if (tmpIfTest$5) {
 } else {
 }
 $(`fail2`);
-$(tmpPostUpdArgVal, b);
+$(tmpUpdNum, b);
 `````
 
 ## Denormalized
@@ -60,10 +61,10 @@ $(tmpPostUpdArgVal, b);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
-if (tmpPostUpdArgVal === tmpSwitchValue) {
+const tmpUpdObj = $($(b));
+const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+tmpUpdObj.x = tmpUpdNum + 1;
+if (tmpUpdNum === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -74,7 +75,7 @@ if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
 }
 $(`fail2`);
-$(tmpPostUpdArgVal, b);
+$(tmpUpdNum, b);
 `````
 
 ## Pre Normal
@@ -112,12 +113,12 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = tmpPostUpdArgVal;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdNum;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -153,24 +154,25 @@ const c = { x: 1 };
 const d = $( c );
 const e = $( d );
 const f = e.x;
-const g = f + 1;
-e.x = g;
-const h = f === a;
-if (h) {
+const g = $coerce( f, "number" );
+const h = g + 1;
+e.x = h;
+const i = g === a;
+if (i) {
   b = 0;
 }
 else {
-  const i = 2 === a;
-  if (i) {
+  const j = 2 === a;
+  if (j) {
     b = 2;
   }
 }
-const j = b <= 1;
-if (j) {
+const k = b <= 1;
+if (k) {
   $( "fail1" );
 }
 $( "fail2" );
-$( f, c );
+$( g, c );
 `````
 
 ## Globals

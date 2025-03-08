@@ -57,6 +57,44 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  let B /*:unknown*/ = `jhayon.vercel.app`;
+  const tmpClusterSSA__0x15f773 /*:unknown*/ = $(`x`);
+  const A /*:unknown*/ = tmpClusterSSA__0x15f773.length;
+  const tmpBinBothLhs$30 /*:unknown*/ = A[0];
+  const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
+  if (tmpIfTest$10) {
+    B = A.slice(1);
+  } else {
+    B = A;
+  }
+  const tmpBinBothLhs$32 /*:unknown*/ = tmpClusterSSA__0x26b289.length;
+  const tmpBinBothRhs$32 /*:unknown*/ = B.length;
+  tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
+  tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
+  tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
+  if (tmpClusterSSA__0x5dc746) {
+    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
+    if (tmpClusterSSA__0x5dc746) {
+      const tmpBinBothLhs$34 /*:unknown*/ = tmpClusterSSA__0x26b289.length;
+      const tmpBinBothRhs$34 /*:unknown*/ = A.length;
+      const tmpIfTest$12 /*:boolean*/ = tmpBinBothLhs$34 === tmpBinBothRhs$34;
+      if (tmpIfTest$12) {
+      } else {
+        A.indexOf(`.`);
+      }
+    } else {
+    }
+  } else {
+  }
+} else {
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -175,44 +213,6 @@ if ($) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-if ($) {
-  let B /*:unknown*/ = `jhayon.vercel.app`;
-  const tmpClusterSSA__0x15f773 /*:unknown*/ = $(`x`);
-  const A /*:unknown*/ = tmpClusterSSA__0x15f773.length;
-  const tmpBinBothLhs$30 /*:unknown*/ = A[0];
-  const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
-  if (tmpIfTest$10) {
-    B = A.slice(1);
-  } else {
-    B = A;
-  }
-  const tmpBinBothLhs$32 /*:unknown*/ = tmpClusterSSA__0x26b289.length;
-  const tmpBinBothRhs$32 /*:unknown*/ = B.length;
-  tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-  tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-  tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
-  if (tmpClusterSSA__0x5dc746) {
-    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-    if (tmpClusterSSA__0x5dc746) {
-      const tmpBinBothLhs$34 /*:unknown*/ = tmpClusterSSA__0x26b289.length;
-      const tmpBinBothRhs$34 /*:unknown*/ = A.length;
-      const tmpIfTest$12 /*:boolean*/ = tmpBinBothLhs$34 === tmpBinBothRhs$34;
-      if (tmpIfTest$12) {
-      } else {
-        A.indexOf(`.`);
-      }
-    } else {
-    }
-  } else {
-  }
-} else {
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -257,7 +257,7 @@ BAD@! Found 4 implicit global bindings:
 
 tmpClusterSSA__0x26b289, tmpClusterSSA__0x30c47e, tmpClusterSSA__0x2a669d, tmpClusterSSA__0x5dc746
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'x'

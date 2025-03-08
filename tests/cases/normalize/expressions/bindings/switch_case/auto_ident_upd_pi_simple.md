@@ -59,10 +59,9 @@ const tmpSwitchDisc = 1;
 const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
   b = 1;
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent + 1;
+  a = b;
   $(a, b);
 } else {
 }

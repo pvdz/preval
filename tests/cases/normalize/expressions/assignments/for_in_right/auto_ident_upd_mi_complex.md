@@ -22,11 +22,12 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:number*/ = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpForInGen /*:unknown*/ = $forIn(tmpNestedPropCompoundComplexRhs);
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpForInGen /*:unknown*/ = $forIn(tmpUpdInc);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen.next();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -36,7 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(tmpNestedPropCompoundComplexRhs, b);
+$(tmpUpdInc, b);
 `````
 
 ## Denormalized
@@ -44,10 +45,10 @@ $(tmpNestedPropCompoundComplexRhs, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpNestedAssignObj = $($(b));
-const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpForInGen = $forIn(tmpNestedPropCompoundComplexRhs);
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpForInGen = $forIn(tmpUpdInc);
 while (true) {
   const tmpForInNext = tmpForInGen.next();
   if (tmpForInNext.done) {
@@ -56,7 +57,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$(tmpNestedPropCompoundComplexRhs, b);
+$(tmpUpdInc, b);
 `````
 
 ## Pre Normal
@@ -86,11 +87,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam$1);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-a = tmpNestedPropCompoundComplexRhs;
+let tmpUpdObj = $(tmpCalleeParam$1);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdInc;
 let tmpCalleeParam = a;
 let tmpForInGen = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -113,20 +115,21 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-const f = $forIn( e );
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+const g = $forIn( f );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f.next();
-  const h = g.done;
-  if (h) {
+  const h = g.next();
+  const i = h.done;
+  if (i) {
     break;
   }
   else {
-    g.value;
+    h.value;
   }
 }
-$( e, a );
+$( f, a );
 `````
 
 ## Globals

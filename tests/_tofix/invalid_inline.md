@@ -27,6 +27,20 @@ while (true) {
 $(cTmp);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const cTail /*:unknown*/ = $fail;
+if ($) {
+  $(`keep`);
+  const tmpClusterSSA_cTmp /*:unknown*/ = $($);
+  $(tmpClusterSSA_cTmp);
+} else {
+  $(cTail);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -73,20 +87,6 @@ if ($) {
 $(cTmp);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const cTail /*:unknown*/ = $fail;
-if ($) {
-  $(`keep`);
-  const tmpClusterSSA_cTmp /*:unknown*/ = $($);
-  $(tmpClusterSSA_cTmp);
-} else {
-  $(cTail);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -108,7 +108,7 @@ BAD@! Found 1 implicit global bindings:
 
 $fail
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

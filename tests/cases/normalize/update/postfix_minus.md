@@ -40,8 +40,8 @@ $(x--);
 
 `````js filename=intro
 let x = 1;
-const tmpPostUpdArgIdent = x;
-x = x - 1;
+const tmpPostUpdArgIdent = $coerce(x, `number`);
+x = tmpPostUpdArgIdent - 1;
 const tmpCalleeParam = tmpPostUpdArgIdent;
 $(tmpCalleeParam);
 `````

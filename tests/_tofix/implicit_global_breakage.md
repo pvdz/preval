@@ -23,6 +23,16 @@ while (true) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(2);
+  $1;
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -66,16 +76,6 @@ while (true) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(2);
-  $1;
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -92,7 +92,7 @@ BAD@! Found 1 implicit global bindings:
 
 $1
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

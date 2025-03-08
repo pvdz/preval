@@ -31,6 +31,30 @@ if (tmpIfTest) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(1);
+if (tmpIfTest) {
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  $(tmpCalleeParam);
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 /*:unknown*/ = $(1);
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$1 /*:unknown*/ = $(1);
+      $(tmpCalleeParam$1);
+    } else {
+      break;
+    }
+  }
+  $(0);
+} else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -100,30 +124,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(1);
-if (tmpIfTest) {
-  const tmpCalleeParam /*:unknown*/ = $(1);
-  $(tmpCalleeParam);
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 /*:unknown*/ = $(1);
-    if (tmpIfTest$1) {
-      const tmpCalleeParam$1 /*:unknown*/ = $(1);
-      $(tmpCalleeParam$1);
-    } else {
-      break;
-    }
-  }
-  $(0);
-} else {
-  const a /*:object*/ = { a: 999, b: 1000 };
-  $(a);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -157,7 +157,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1

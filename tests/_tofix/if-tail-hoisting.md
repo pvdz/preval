@@ -30,6 +30,28 @@ if (test) {
 $(x, "final");
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:unknown*/ = undefined;
+const test /*:unknown*/ = $(1);
+if (test) {
+  const a /*:unknown*/ = $(2);
+  x = a;
+} else {
+  const test2 /*:unknown*/ = $(3);
+  if (test2) {
+    const b /*:unknown*/ = $(4);
+    x = b;
+  } else {
+    const c /*:unknown*/ = $(5);
+    x = c;
+  }
+}
+$(x, `final`);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -91,28 +113,6 @@ if (test) {
 $(x, `final`);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let x /*:unknown*/ = undefined;
-const test /*:unknown*/ = $(1);
-if (test) {
-  const a /*:unknown*/ = $(2);
-  x = a;
-} else {
-  const test2 /*:unknown*/ = $(3);
-  if (test2) {
-    const b /*:unknown*/ = $(4);
-    x = b;
-  } else {
-    const c /*:unknown*/ = $(5);
-    x = c;
-  }
-}
-$(x, `final`);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -141,7 +141,7 @@ $( a, "final" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1

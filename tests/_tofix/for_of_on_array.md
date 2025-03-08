@@ -16,6 +16,24 @@ const arr = [1, 2, 3];
 for (const x of arr) $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const arr /*:array*/ = [1, 2, 3];
+const tmpForOfGen /*:unknown*/ = $forOf(arr);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
+  if (tmpIfTest) {
+    break;
+  } else {
+    const x /*:unknown*/ = tmpForOfNext.value;
+    $(x);
+  }
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,24 +86,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-const tmpForOfGen /*:unknown*/ = $forOf(arr);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
-  const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const x /*:unknown*/ = tmpForOfNext.value;
-    $(x);
-  }
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -109,7 +109,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1

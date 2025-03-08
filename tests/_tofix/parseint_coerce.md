@@ -22,6 +22,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpStringFirstArg /*:unknown*/ = $(`1`);
+  const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
+  const y /*:number*/ = parseInt(x);
+  try {
+    $(y);
+  } catch (e) {
+    $(`keepme`);
+  }
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,22 +84,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpStringFirstArg /*:unknown*/ = $(`1`);
-  const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
-  const y /*:number*/ = parseInt(x);
-  try {
-    $(y);
-  } catch (e) {
-    $(`keepme`);
-  }
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -105,7 +105,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '1'

@@ -25,12 +25,13 @@ const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam$1 /*:unknown*/ = $(b);
-  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
-  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-  tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  a = tmpPostUpdArgVal;
-  $(tmpPostUpdArgVal);
+  const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdNum;
+  $(tmpUpdNum);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
@@ -46,11 +47,11 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
-  const tmpPostUpdArgObj = $($(b));
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
-  a = tmpPostUpdArgVal;
-  $(tmpPostUpdArgVal);
+  const tmpUpdObj = $($(b));
+  const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+  tmpUpdObj.x = tmpUpdNum + 1;
+  a = tmpUpdNum;
+  $(tmpUpdNum);
 } else {
   $($(200));
 }
@@ -77,12 +78,12 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam$1 = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam$1);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const tmpNestedComplexRhs = tmpPostUpdArgVal;
+  let tmpUpdObj = $(tmpCalleeParam$1);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  const tmpNestedComplexRhs = tmpUpdNum;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
@@ -106,14 +107,15 @@ if (b) {
   const d = $( c );
   const e = $( d );
   const f = e.x;
-  const g = f + 1;
-  e.x = g;
-  a = f;
-  $( f );
+  const g = $coerce( f, "number" );
+  const h = g + 1;
+  e.x = h;
+  a = g;
+  $( g );
 }
 else {
-  const h = $( 200 );
-  $( h );
+  const i = $( 200 );
+  $( i );
 }
 $( a, c );
 `````

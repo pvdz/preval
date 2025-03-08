@@ -22,12 +22,13 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(varInitAssignLhsComputedRhs);
+  $(tmpUpdInc);
   $(1);
 }
 `````
@@ -36,11 +37,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $($({ x: 1 }));
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpUpdObj = $($({ x: 1 }));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = tmpUpdInc;
 while (true) {
-  $(varInitAssignLhsComputedRhs);
+  $(tmpUpdInc);
   $(1);
 }
 `````
@@ -68,11 +69,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-let xyz = varInitAssignLhsComputedRhs;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+let xyz = tmpUpdInc;
 while (true) {
   $(xyz);
   $(1);
@@ -87,10 +89,11 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d + 1;
-c.x = e;
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( e );
+  $( f );
   $( 1 );
 }
 `````

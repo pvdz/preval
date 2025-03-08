@@ -20,6 +20,18 @@ if ($) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+  const tmpClusterSSA_x /*:unknown*/ = $(2);
+  $(tmpClusterSSA_x);
+} else {
+  $(1);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,18 +69,6 @@ if ($) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-if ($) {
-  const tmpClusterSSA_x /*:unknown*/ = $(2);
-  $(tmpClusterSSA_x);
-} else {
-  $(1);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -86,7 +86,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2

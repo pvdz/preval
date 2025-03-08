@@ -73,8 +73,9 @@ let f = function () {
   let n = 0;
   while (true) {
     $continue: {
-      n = n + 1;
-      let tmpCalleeParam = n;
+      const tmpPostUpdArgIdent = $coerce(n, `number`);
+      n = tmpPostUpdArgIdent + 1;
+      const tmpCalleeParam = n;
       $(tmpCalleeParam);
       const tmpIfTest = n < 8;
       if (tmpIfTest) {

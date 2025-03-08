@@ -31,6 +31,26 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = undefined;
+const b /*:object*/ = { x: 1 };
+const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+let tmpArrSpread /*:unknown*/ = undefined;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
+  a = tmpChainElementObject;
+  tmpArrSpread = tmpChainElementObject;
+}
+const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
+$(tmpCalleeParam);
+$(a);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -88,26 +108,6 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let a /*:unknown*/ = undefined;
-const b /*:object*/ = { x: 1 };
-const tmpChainElementCall /*:unknown*/ = $(b);
-const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpArrSpread /*:unknown*/ = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-  tmpArrSpread = tmpChainElementObject;
-}
-const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
-$(tmpCalleeParam);
-$(a);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -134,7 +134,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: { x: '1' }

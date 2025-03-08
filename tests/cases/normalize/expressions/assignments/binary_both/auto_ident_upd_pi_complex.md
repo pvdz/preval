@@ -22,18 +22,20 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
 const tmpCalleeParam$3 /*:unknown*/ = $(b);
-const tmpNestedAssignObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj$1.x;
-const tmpNestedPropCompoundComplexRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
-tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-const tmpCalleeParam /*:primitive*/ = tmpNestedPropCompoundComplexRhs + tmpNestedPropCompoundComplexRhs$1;
+const tmpUpdObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpUpdProp$1 /*:unknown*/ = tmpUpdObj$1.x;
+const tmpUpdNum$1 /*:number*/ = $coerce(tmpUpdProp$1, `number`);
+const tmpUpdInc$1 /*:number*/ = tmpUpdNum$1 + 1;
+tmpUpdObj$1.x = tmpUpdInc$1;
+const tmpCalleeParam /*:number*/ = tmpUpdInc + tmpUpdInc$1;
 $(tmpCalleeParam);
-$(tmpNestedPropCompoundComplexRhs$1, b);
+$(tmpUpdInc$1, b);
 `````
 
 ## Denormalized
@@ -41,14 +43,14 @@ $(tmpNestedPropCompoundComplexRhs$1, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpNestedAssignObj = $($(b));
-const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpNestedAssignObj$1 = $($(b));
-const tmpNestedPropCompoundComplexRhs$1 = tmpNestedAssignObj$1.x + 1;
-tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-$(tmpNestedPropCompoundComplexRhs + tmpNestedPropCompoundComplexRhs$1);
-$(tmpNestedPropCompoundComplexRhs$1, b);
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpUpdObj$1 = $($(b));
+const tmpUpdInc$1 = $coerce(tmpUpdObj$1.x, `number`) + 1;
+tmpUpdObj$1.x = tmpUpdInc$1;
+$(tmpUpdInc + tmpUpdInc$1);
+$(tmpUpdInc$1, b);
 `````
 
 ## Pre Normal
@@ -68,18 +70,20 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam$1);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-a = tmpNestedPropCompoundComplexRhs;
+let tmpUpdObj = $(tmpCalleeParam$1);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdInc;
 let tmpBinBothLhs = a;
 const tmpCalleeParam$3 = $(b);
-const tmpNestedAssignObj$1 = $(tmpCalleeParam$3);
-const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
-const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
-tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-a = tmpNestedPropCompoundComplexRhs$1;
+let tmpUpdObj$1 = $(tmpCalleeParam$3);
+let tmpUpdProp$1 = tmpUpdObj$1.x;
+let tmpUpdNum$1 = $coerce(tmpUpdProp$1, `number`);
+let tmpUpdInc$1 = tmpUpdNum$1 + 1;
+tmpUpdObj$1.x = tmpUpdInc$1;
+a = tmpUpdInc$1;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
@@ -94,16 +98,18 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d + 1;
-c.x = e;
-const f = $( a );
-const g = $( f );
-const h = g.x;
-const i = h + 1;
-g.x = i;
-const j = e + i;
-$( j );
-$( i, a );
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
+const g = $( a );
+const h = $( g );
+const i = h.x;
+const j = $coerce( i, "number" );
+const k = j + 1;
+h.x = k;
+const l = f + k;
+$( l );
+$( k, a );
 `````
 
 ## Globals

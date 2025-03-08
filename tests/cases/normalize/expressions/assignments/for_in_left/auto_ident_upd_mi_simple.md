@@ -20,7 +20,7 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:unknown*/ = 1;
+let b /*:number*/ = 1;
 let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
@@ -31,11 +31,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpNestedComplexRhs /*:number*/ = b - 1;
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
+    b = b - 1;
+    a = b;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpNestedComplexRhs.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a, b);
@@ -53,10 +52,9 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const tmpNestedComplexRhs = b - 1;
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
-    tmpNestedComplexRhs.x = tmpForInNext.value;
+    b = b - 1;
+    a = b;
+    a.x = tmpForInNext.value;
   }
 }
 $(a, b);
@@ -97,10 +95,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-    b = tmpNestedComplexRhs;
-    a = tmpNestedComplexRhs;
+    const tmpPostUpdArgIdent = $coerce(b, `number`);
+    b = tmpPostUpdArgIdent - 1;
+    a = b;
     let tmpAssignMemLhsObj = a;
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpAssignMemRhs = tmpForInNext.value;
@@ -129,11 +126,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const h = a - 1;
-    a = h;
-    b = h;
-    const i = f.value;
-    h.x = i;
+    a = a - 1;
+    b = a;
+    const h = f.value;
+    b.x = h;
   }
 }
 $( b, a );

@@ -15,6 +15,13 @@ while (true) {
 $(1);
 `````
 
+## Settled
+
+
+`````js filename=intro
+throw `repeat after me`;
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,13 +48,6 @@ while (true) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-throw `repeat after me`;
-`````
-
 ## PST Settled
 With rename=true
 
@@ -59,7 +59,7 @@ throw "repeat after me";
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ repeat after me ]>')

@@ -29,11 +29,12 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(b);
-  const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-  const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  $(tmpNestedPropCompoundComplexRhs, b);
+  const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  $(tmpUpdInc, b);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, b);
@@ -47,10 +48,10 @@ if (tmpIfTest) {
 const tmpIfTest = $(1) === $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
-  const tmpNestedAssignObj = $($(b));
-  const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  $(tmpNestedPropCompoundComplexRhs, b);
+  const tmpUpdObj = $($(b));
+  const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  $(tmpUpdInc, b);
 } else {
   $({ a: 999, b: 1000 }, b);
 }
@@ -84,11 +85,12 @@ const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  let tmpUpdObj = $(tmpCalleeParam);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
 } else {
 }
 $(a, b);
@@ -106,16 +108,17 @@ if (c) {
   const e = $( d );
   const f = $( e );
   const g = f.x;
-  const h = g + 1;
-  f.x = h;
-  $( h, d );
+  const h = $coerce( g, "number" );
+  const i = h + 1;
+  f.x = i;
+  $( i, d );
 }
 else {
-  const i = {
+  const j = {
     a: 999,
     b: 1000,
   };
-  $( i, d );
+  $( j, d );
 }
 `````
 

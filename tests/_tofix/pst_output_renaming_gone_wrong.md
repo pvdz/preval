@@ -27,6 +27,27 @@
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 20;
+$(a);
+const tmpIfTest /*:unknown*/ = $(1);
+$(20);
+if (tmpIfTest) {
+  x = 30;
+  $(30);
+} else {
+}
+const tmpIfTest$1 /*:unknown*/ = $(2);
+$(x);
+if (tmpIfTest$1) {
+  $(40);
+} else {
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -90,27 +111,6 @@ if (tmpIfTest$1) {
 $(x);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let x /*:number*/ = 20;
-$(a);
-const tmpIfTest /*:unknown*/ = $(1);
-$(20);
-if (tmpIfTest) {
-  x = 30;
-  $(30);
-} else {
-}
-const tmpIfTest$1 /*:unknown*/ = $(2);
-$(x);
-if (tmpIfTest$1) {
-  $(40);
-} else {
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -136,7 +136,7 @@ BAD@! Found 1 implicit global bindings:
 
 a
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -18,24 +18,25 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $spy(100);
-const tmpPostUpdArgComObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpPostUpdArgComProp /*:unknown*/ = $spy(1);
-const tmpPostUpdArgComVal /*:unknown*/ = tmpPostUpdArgComObj[tmpPostUpdArgComProp];
-const tmpAssignComputedRhs /*:primitive*/ = tmpPostUpdArgComVal + 1;
-tmpPostUpdArgComObj[tmpPostUpdArgComProp] = tmpAssignComputedRhs;
-$(tmpPostUpdArgComVal);
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = $spy(1);
+const tmpUpdVal /*:unknown*/ = tmpUpdObj[tmpUpdProp];
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdVal, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj[tmpUpdProp] = tmpUpdInc;
+$(tmpUpdNum);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpPostUpdArgComObj = $($spy(100));
-const tmpPostUpdArgComProp = $spy(1);
-const tmpPostUpdArgComVal = tmpPostUpdArgComObj[tmpPostUpdArgComProp];
-const tmpAssignComputedRhs = tmpPostUpdArgComVal + 1;
-tmpPostUpdArgComObj[tmpPostUpdArgComProp] = tmpAssignComputedRhs;
-$(tmpPostUpdArgComVal);
+const tmpUpdObj = $($spy(100));
+const tmpUpdProp = $spy(1);
+const tmpUpdNum = $coerce(tmpUpdObj[tmpUpdProp], `number`);
+const tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj[tmpUpdProp] = tmpUpdInc;
+$(tmpUpdNum);
 `````
 
 ## Pre Normal
@@ -51,14 +52,13 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam = $spy(100);
-const tmpPostUpdArgComObj = $(tmpCalleeParam);
-const tmpPostUpdArgComProp = $spy(1);
-const tmpPostUpdArgComVal = tmpPostUpdArgComObj[tmpPostUpdArgComProp];
-const tmpAssignComputedObj = tmpPostUpdArgComObj;
-const tmpAssignComputedProp = tmpPostUpdArgComProp;
-const tmpAssignComputedRhs = tmpPostUpdArgComVal + 1;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-let x = tmpPostUpdArgComVal;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = $spy(1);
+let tmpUpdVal = tmpUpdObj[tmpUpdProp];
+let tmpUpdNum = $coerce(tmpUpdVal, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj[tmpUpdProp] = tmpUpdInc;
+let x = tmpUpdNum;
 $(x);
 `````
 
@@ -70,9 +70,10 @@ const a = $spy( 100 );
 const b = $( a );
 const c = $spy( 1 );
 const d = b[ c ];
-const e = d + 1;
-b[c] = e;
-$( d );
+const e = $coerce( d, "number" );
+const f = e + 1;
+b[c] = f;
+$( e );
 `````
 
 ## Globals
@@ -92,29 +93,8 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: 'Creating spy', 1, 1, [100, 100]
- - 2: '<spy[1]>'
- - 3: 'Creating spy', 2, 1, [1, 1]
- - 4: '$spy[2].toString()', 1
- - 5: '$spy[2].toString()', 1
- - 6: undefined
- - eval returned: undefined
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 'Creating spy', 1, 1, [100, 100]
- - 2: '<spy[1]>'
- - 3: 'Creating spy', 2, 1, [1, 1]
- - 4: '$spy[2].toString()', 1
- - 5: '$spy[2].toString()', 1
- - 6: undefined
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'Creating spy', 1, 1, [100, 100]
- - 2: '<spy[1]>'
- - 3: 'Creating spy', 2, 1, [1, 1]
- - 4: '$spy[2].toString()', 1
- - 5: '$spy[2].toString()', 1
- - 6: undefined
- - eval returned: undefined
+Denormalized calls: Same

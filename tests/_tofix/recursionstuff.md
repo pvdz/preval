@@ -48,6 +48,38 @@ try {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree2 /*:(primitive)=>boolean*/ = function $free($$0) {
+  const $dlr_$$1 /*:primitive*/ = $$0;
+  debugger;
+  const tmpBinBothLhs /*:string*/ = typeof $dlr_$$1;
+  const tmpRet$2 /*:boolean*/ = tmpBinBothLhs === `string`;
+  return tmpRet$2;
+};
+const selfcaller /*:(primitive)=>undefined*/ = function ($$0) {
+  const $dlr_$$3 /*:primitive*/ = $$0;
+  debugger;
+  $($dlr_$$3);
+  const tmpIfTest /*:boolean*/ = $frfr(tmpFree2, $dlr_$$3);
+  if (tmpIfTest) {
+    return undefined;
+  } else {
+    const nextnum /*:primitive*/ = $dlr_$$3 + 1;
+    selfcaller(nextnum);
+    return undefined;
+  }
+};
+try {
+  selfcaller(0);
+  $(`pass`);
+} catch (e) {
+  $(`fail`);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -157,38 +189,6 @@ try {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpFree2 /*:(primitive)=>boolean*/ = function $free($$0) {
-  const $dlr_$$1 /*:primitive*/ = $$0;
-  debugger;
-  const tmpBinBothLhs /*:string*/ = typeof $dlr_$$1;
-  const tmpRet$2 /*:boolean*/ = tmpBinBothLhs === `string`;
-  return tmpRet$2;
-};
-const selfcaller /*:(primitive)=>undefined*/ = function ($$0) {
-  const $dlr_$$3 /*:primitive*/ = $$0;
-  debugger;
-  $($dlr_$$3);
-  const tmpIfTest /*:boolean*/ = $frfr(tmpFree2, $dlr_$$3);
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const nextnum /*:primitive*/ = $dlr_$$3 + 1;
-    selfcaller(nextnum);
-    return undefined;
-  }
-};
-try {
-  selfcaller(0);
-  $(`pass`);
-} catch (e) {
-  $(`fail`);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -227,7 +227,7 @@ catch (k) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0

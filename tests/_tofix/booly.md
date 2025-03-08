@@ -27,6 +27,20 @@ if (x) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const a /*:unknown*/ = $(67636);
+let x /*:boolean*/ = a !== 67636;
+if (x) {
+  x = true;
+} else {
+  $(`Preval: Cannot write to const binding \`a\``);
+}
+$(x);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -70,20 +84,6 @@ if (x) {
 $(x);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const a /*:unknown*/ = $(67636);
-let x /*:boolean*/ = a !== 67636;
-if (x) {
-  x = true;
-} else {
-  $(`Preval: Cannot write to const binding \`a\``);
-}
-$(x);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -103,7 +103,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 67636

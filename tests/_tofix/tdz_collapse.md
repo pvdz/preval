@@ -15,6 +15,14 @@ const x = TDZ + $; // This will always first evaluate TDZ
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const x /*:primitive*/ = TDZ + $;
+$(x);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,14 +47,6 @@ const x = TDZ + $;
 $(x);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const x /*:primitive*/ = TDZ + $;
-$(x);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -61,7 +61,7 @@ BAD@! Found 1 implicit global bindings:
 
 TDZ
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

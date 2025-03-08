@@ -24,16 +24,15 @@ $(x, y);
 `````js filename=intro
 const y /*:unknown*/ = $(5);
 $(true);
-const tmpNestedComplexRhs /*:number*/ = y - 1;
-let tmpClusterSSA_y /*:unknown*/ = tmpNestedComplexRhs;
-let tmpClusterSSA_x /*:unknown*/ = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
+const tmpPostUpdArgIdent /*:number*/ = $coerce(y, `number`);
+let tmpClusterSSA_y /*:number*/ = tmpPostUpdArgIdent - 1;
+let tmpClusterSSA_x /*:unknown*/ = tmpClusterSSA_y;
+if (tmpClusterSSA_y) {
   while ($LOOP_UNROLL_10) {
     $(tmpClusterSSA_x);
-    const tmpNestedComplexRhs$1 /*:number*/ = tmpClusterSSA_y - 1;
-    tmpClusterSSA_y = tmpNestedComplexRhs$1;
-    tmpClusterSSA_x = tmpNestedComplexRhs$1;
-    if (tmpNestedComplexRhs$1) {
+    tmpClusterSSA_y = tmpClusterSSA_y - 1;
+    tmpClusterSSA_x = tmpClusterSSA_y;
+    if (tmpClusterSSA_x) {
     } else {
       break;
     }
@@ -49,16 +48,14 @@ $(tmpClusterSSA_x, tmpClusterSSA_y);
 `````js filename=intro
 const y = $(5);
 $(true);
-const tmpNestedComplexRhs = y - 1;
-let tmpClusterSSA_y = tmpNestedComplexRhs;
-let tmpClusterSSA_x = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
+let tmpClusterSSA_y = $coerce(y, `number`) - 1;
+let tmpClusterSSA_x = tmpClusterSSA_y;
+if (tmpClusterSSA_y) {
   while (true) {
     $(tmpClusterSSA_x);
-    const tmpNestedComplexRhs$1 = tmpClusterSSA_y - 1;
-    tmpClusterSSA_y = tmpNestedComplexRhs$1;
-    tmpClusterSSA_x = tmpNestedComplexRhs$1;
-    if (!tmpNestedComplexRhs$1) {
+    tmpClusterSSA_y = tmpClusterSSA_y - 1;
+    tmpClusterSSA_x = tmpClusterSSA_y;
+    if (!tmpClusterSSA_x) {
       break;
     }
   }
@@ -88,10 +85,9 @@ let x = true;
 while (true) {
   if (x) {
     $(x);
-    const tmpNestedCompoundLhs = y;
-    const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-    y = tmpNestedComplexRhs;
-    x = tmpNestedComplexRhs;
+    const tmpPostUpdArgIdent = $coerce(y, `number`);
+    y = tmpPostUpdArgIdent - 1;
+    x = y;
   } else {
     break;
   }
@@ -105,16 +101,15 @@ With rename=true
 `````js filename=intro
 const a = $( 5 );
 $( true );
-const b = a - 1;
-let c = b;
-let d = b;
-if (b) {
+const b = $coerce( a, "number" );
+let c = b - 1;
+let d = c;
+if (c) {
   while ($LOOP_UNROLL_10) {
     $( d );
-    const e = c - 1;
-    c = e;
-    d = e;
-    if (e) {
+    c = c - 1;
+    d = c;
+    if (d) {
 
     }
     else {

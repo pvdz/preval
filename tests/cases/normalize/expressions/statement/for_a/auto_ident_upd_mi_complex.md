@@ -22,10 +22,11 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpCompoundAssignLhs /*:unknown*/ = tmpAssignMemLhsObj.x;
-const tmpAssignMemRhs /*:number*/ = tmpCompoundAssignLhs - 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -46,8 +47,8 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpAssignMemLhsObj = $($(b));
-tmpAssignMemLhsObj.x = tmpAssignMemLhsObj.x - 1;
+const tmpUpdObj = $($(b));
+tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) - 1;
 if ($(0)) {
   while (true) {
     if (!$(0)) {
@@ -78,11 +79,11 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
-const tmpAssignMemLhsObj = $(tmpCalleeParam);
-const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
@@ -101,13 +102,14 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-const f = $( 0 );
-if (f) {
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+const g = $( 0 );
+if (g) {
   while ($LOOP_UNROLL_10) {
-    const g = $( 0 );
-    if (g) {
+    const h = $( 0 );
+    if (h) {
 
     }
     else {
@@ -115,11 +117,11 @@ if (f) {
     }
   }
 }
-const h = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( h, a );
+$( i, a );
 `````
 
 ## Globals

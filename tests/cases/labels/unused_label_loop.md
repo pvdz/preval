@@ -41,8 +41,9 @@ foo: while (--x) $(x);
 `````js filename=intro
 let x = 2;
 while (true) {
-  x = x - 1;
-  let tmpIfTest = x;
+  const tmpPostUpdArgIdent = $coerce(x, `number`);
+  x = tmpPostUpdArgIdent - 1;
+  const tmpIfTest = x;
   if (tmpIfTest) {
     $(x);
   } else {

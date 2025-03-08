@@ -25,6 +25,14 @@ const r = f(String);
 $(r);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const r /*:string*/ = String.toString();
+$(r);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -72,14 +80,6 @@ const r = f(String);
 $(r);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const r /*:string*/ = String.toString();
-$(r);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -92,7 +92,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'function() { [native code] }'

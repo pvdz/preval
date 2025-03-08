@@ -54,8 +54,10 @@ while (true) {
   const tmpIfTest = i < 0;
   if (tmpIfTest) {
     $(i);
-    i = i + 1;
-    i = i + 1;
+    const tmpPostUpdArgIdent = $coerce(i, `number`);
+    i = tmpPostUpdArgIdent + 1;
+    const tmpPostUpdArgIdent$1 = $coerce(i, `number`);
+    i = tmpPostUpdArgIdent$1 + 1;
   } else {
     break;
   }

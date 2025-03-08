@@ -22,11 +22,12 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-({ ...tmpPostUpdArgVal });
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+({ ...tmpUpdNum });
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -36,10 +37,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-tmpPostUpdArgObj.x = tmpPostUpdArgVal - 1;
-({ ...tmpPostUpdArgVal });
+const tmpUpdObj = $($(b));
+const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+tmpUpdObj.x = tmpUpdNum - 1;
+({ ...tmpUpdNum });
 $({ a: 999, b: 1000 }, b);
 `````
 
@@ -60,12 +61,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpObjSpreadArg = tmpPostUpdArgVal;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpObjSpreadArg = tmpUpdNum;
 ({ ...tmpObjSpreadArg });
 $(a, b);
 `````
@@ -78,14 +79,15 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-{ ... d };
-const f = {
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+{ ... e };
+const g = {
   a: 999,
   b: 1000,
 };
-$( f, a );
+$( g, a );
 `````
 
 ## Globals

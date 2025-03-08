@@ -33,6 +33,17 @@ try {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+try {
+  fail_early;
+  throw `one`;
+} catch (e) {}
+$(2);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -76,17 +87,6 @@ try {
 $(x);
 `````
 
-## Settled
-
-
-`````js filename=intro
-try {
-  fail_early;
-  throw `one`;
-} catch (e) {}
-$(2);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -107,7 +107,7 @@ BAD@! Found 1 implicit global bindings:
 
 fail_early
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2

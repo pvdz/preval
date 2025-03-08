@@ -390,8 +390,8 @@ const tmpCallCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
   if (tmpIfTest$3) {
   } else {
     while (true) {
-      const tmpPostUpdArgIdent = c;
-      c = c - 1;
+      const tmpPostUpdArgIdent = $coerce(c, `number`);
+      c = tmpPostUpdArgIdent - 1;
       const tmpIfTest$5 = tmpPostUpdArgIdent;
       if (tmpIfTest$5) {
         const tmpAssignComMemLhsObj = r;
@@ -422,8 +422,8 @@ const tmpCallCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
     c = 1;
   }
   while (true) {
-    const tmpPostUpdArgIdent$1 = c;
-    c = c - 1;
+    const tmpPostUpdArgIdent$1 = $coerce(c, `number`);
+    c = tmpPostUpdArgIdent$1 - 1;
     const tmpIfTest$7 = tmpPostUpdArgIdent$1;
     if (tmpIfTest$7) {
       const tmpIfTest$9 = k[c];

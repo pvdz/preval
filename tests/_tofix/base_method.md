@@ -27,6 +27,27 @@ $(f(300));
 $(f('three'));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>unknown*/ = function () {
+  debugger;
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  return undefined;
+};
+f();
+const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
+const tmpCalleeParam /*:string*/ = tmpCalleeParam$1.toString();
+$(tmpCalleeParam);
+f();
+$(`300`);
+f();
+$(`three`);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -85,27 +106,6 @@ const tmpCalleeParam$5 = f(`three`);
 $(tmpCalleeParam$5);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const f /*:()=>unknown*/ = function () {
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  return undefined;
-};
-f();
-const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
-const tmpCalleeParam /*:string*/ = tmpCalleeParam$1.toString();
-$(tmpCalleeParam);
-f();
-$(`300`);
-f();
-$(`three`);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -131,7 +131,7 @@ $( "three" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'no'

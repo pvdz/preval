@@ -20,6 +20,14 @@ const s = f();
 $(s);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const t /*:unknown*/ = $(1, `return`);
+$(t);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,14 +67,6 @@ const s = f();
 $(s);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const t /*:unknown*/ = $(1, `return`);
-$(t);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -79,7 +79,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 1, 'return'

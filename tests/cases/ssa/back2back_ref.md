@@ -25,7 +25,8 @@ if ($) f();
 `````js filename=intro
 if ($) {
   const x /*:unknown*/ = $(5);
-  const tmpClusterSSA_x /*:primitive*/ = x + 1;
+  const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
+  const tmpClusterSSA_x /*:number*/ = tmpPostUpdArgIdent + 1;
   $(tmpClusterSSA_x);
 } else {
 }
@@ -36,7 +37,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $($(5) + 1);
+  $($coerce($(5), `number`) + 1);
 }
 `````
 
@@ -63,7 +64,8 @@ let f = function () {
   debugger;
   if ($) {
     let x = $(5);
-    x = x + 1;
+    const tmpPostUpdArgIdent = $coerce(x, `number`);
+    x = tmpPostUpdArgIdent + 1;
     $(x);
     return undefined;
   } else {
@@ -82,8 +84,9 @@ With rename=true
 `````js filename=intro
 if ($) {
   const a = $( 5 );
-  const b = a + 1;
-  $( b );
+  const b = $coerce( a, "number" );
+  const c = b + 1;
+  $( c );
 }
 `````
 

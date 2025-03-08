@@ -34,6 +34,30 @@ if (y) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+if ($) {
+} else {
+  let tmpClusterSSA_x /*:boolean*/ = true;
+  if ($) {
+    tmpClusterSSA_x = false;
+  } else {
+  }
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_x) {
+      if ($) {
+        tmpClusterSSA_x = false;
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -113,30 +137,6 @@ if (y) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-if ($) {
-} else {
-  let tmpClusterSSA_x /*:boolean*/ = true;
-  if ($) {
-    tmpClusterSSA_x = false;
-  } else {
-  }
-  while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_x) {
-      if ($) {
-        tmpClusterSSA_x = false;
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -166,7 +166,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: undefined

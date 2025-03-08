@@ -71,8 +71,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpPostUpdArgIdent = b;
-  b = b + 1;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent + 1;
   const tmpNestedComplexRhs = tmpPostUpdArgIdent;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

@@ -22,6 +22,17 @@ let x = function (a, b) {
 x(undefined, {x: 1});
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:unknown*/ = $(true);
+if (tmpIfTest) {
+  throw `Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ;`;
+} else {
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,17 +88,6 @@ const tmpCalleeParam$1 = { x: 1 };
 tmpCallCallee(undefined, tmpCalleeParam$1);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpIfTest /*:unknown*/ = $(true);
-if (tmpIfTest) {
-  throw `Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ;`;
-} else {
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -102,7 +102,7 @@ if (a) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: true

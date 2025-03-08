@@ -53,6 +53,38 @@ repeat(0);
 $(repeat);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let closure_cond /*:unknown*/ = false;
+const repeat /*:(unknown)=>undefined*/ = function ($$0) {
+  const arg /*:unknown*/ = $$0;
+  debugger;
+  let inline_me /*:unknown*/ = undefined;
+  if (closure_cond) {
+    inline_me = function () {
+      debugger;
+      $(`a`);
+      return undefined;
+    };
+  } else {
+    inline_me = function () {
+      debugger;
+      $(`b`);
+      return undefined;
+    };
+  }
+  closure_cond = [];
+  inline_me();
+  const tmpCalleeParam /*:primitive*/ = arg + 1;
+  repeat(tmpCalleeParam);
+  return undefined;
+};
+repeat(0);
+$(repeat);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -138,38 +170,6 @@ repeat(0);
 $(repeat);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let closure_cond /*:unknown*/ = false;
-const repeat /*:(unknown)=>undefined*/ = function ($$0) {
-  const arg /*:unknown*/ = $$0;
-  debugger;
-  let inline_me /*:unknown*/ = undefined;
-  if (closure_cond) {
-    inline_me = function () {
-      debugger;
-      $(`a`);
-      return undefined;
-    };
-  } else {
-    inline_me = function () {
-      debugger;
-      $(`b`);
-      return undefined;
-    };
-  }
-  closure_cond = [];
-  inline_me();
-  const tmpCalleeParam /*:primitive*/ = arg + 1;
-  repeat(tmpCalleeParam);
-  return undefined;
-};
-repeat(0);
-$(repeat);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -207,7 +207,7 @@ $( b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'b'

@@ -34,6 +34,35 @@ const func /*:(unknown)=>undefined*/ = function($$0) {
 $(func(0));
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
+  const $dlr_$$0 /*:primitive*/ = $$0;
+  debugger;
+  const onesie /*:number*/ = $dlr_$$0 / $dlr_$$0;
+  const tmpRet /*:string*/ = $coerce(onesie, `string`);
+  return tmpRet;
+};
+const func /*:(primitive)=>string*/ = function ($$0) {
+  const $dlr_$$1 /*:primitive*/ = $$0;
+  debugger;
+  const onestrie /*:string*/ = $frfr(tmpFree, $dlr_$$1);
+  const onetoo /*:number*/ = onestrie.length;
+  const test /*:boolean*/ = 1 === onetoo;
+  if (test) {
+    return `end`;
+  } else {
+    const next /*:primitive*/ = $dlr_$$1 + 1;
+    func(next);
+    return `pass`;
+  }
+};
+const tmpCalleeParam /*:string*/ = func(0);
+$(tmpCalleeParam);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -101,35 +130,6 @@ const tmpCalleeParam = func(0);
 $(tmpCalleeParam);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
-  const $dlr_$$0 /*:primitive*/ = $$0;
-  debugger;
-  const onesie /*:number*/ = $dlr_$$0 / $dlr_$$0;
-  const tmpRet /*:string*/ = $coerce(onesie, `string`);
-  return tmpRet;
-};
-const func /*:(primitive)=>string*/ = function ($$0) {
-  const $dlr_$$1 /*:primitive*/ = $$0;
-  debugger;
-  const onestrie /*:string*/ = $frfr(tmpFree, $dlr_$$1);
-  const onetoo /*:number*/ = onestrie.length;
-  const test /*:boolean*/ = 1 === onetoo;
-  if (test) {
-    return `end`;
-  } else {
-    const next /*:primitive*/ = $dlr_$$1 + 1;
-    func(next);
-    return `pass`;
-  }
-};
-const tmpCalleeParam /*:string*/ = func(0);
-$(tmpCalleeParam);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -164,7 +164,7 @@ $( m );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'pass'

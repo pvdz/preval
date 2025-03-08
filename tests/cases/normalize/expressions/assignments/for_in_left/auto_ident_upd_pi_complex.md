@@ -32,13 +32,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(b);
-    const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam$3);
-    const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    a = tmpNestedPropCompoundComplexRhs;
+    const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$3);
+    const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+    const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+    const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+    tmpUpdObj.x = tmpUpdInc;
+    a = tmpUpdInc;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpNestedPropCompoundComplexRhs.x = tmpAssignMemRhs;
+    tmpUpdInc.x = tmpAssignMemRhs;
   }
 }
 $(a, b);
@@ -56,11 +57,11 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const tmpNestedAssignObj = $($(b));
-    const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    a = tmpNestedPropCompoundComplexRhs;
-    tmpNestedPropCompoundComplexRhs.x = tmpForInNext.value;
+    const tmpUpdObj = $($(b));
+    const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+    tmpUpdObj.x = tmpUpdInc;
+    a = tmpUpdInc;
+    tmpUpdInc.x = tmpForInNext.value;
   }
 }
 $(a, b);
@@ -102,11 +103,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpCalleeParam$3 = $(b);
-    const tmpNestedAssignObj = $(tmpCalleeParam$3);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    a = tmpNestedPropCompoundComplexRhs;
+    let tmpUpdObj = $(tmpCalleeParam$3);
+    let tmpUpdProp = tmpUpdObj.x;
+    let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+    let tmpUpdInc = tmpUpdNum + 1;
+    tmpUpdObj.x = tmpUpdInc;
+    a = tmpUpdInc;
     let tmpAssignMemLhsObj = a;
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpAssignMemRhs = tmpForInNext.value;
@@ -138,11 +140,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const h = $( e );
     const i = $( h );
     const j = i.x;
-    const k = j + 1;
-    i.x = k;
-    a = k;
-    const l = f.value;
-    k.x = l;
+    const k = $coerce( j, "number" );
+    const l = k + 1;
+    i.x = l;
+    a = l;
+    const m = f.value;
+    l.x = m;
   }
 }
 $( a, e );

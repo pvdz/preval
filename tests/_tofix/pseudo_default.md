@@ -23,6 +23,20 @@ if (arg === undefined) {
 $(val);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpIfTest /*:boolean*/ = arg === undefined;
+if (tmpIfTest) {
+  const tmpClusterSSA_val /*:object*/ = {};
+  $(tmpClusterSSA_val);
+} else {
+  const tmpClusterSSA_val$1 /*:unknown*/ = arg;
+  $(tmpClusterSSA_val$1);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,20 +75,6 @@ if (tmpIfTest) {
 $(val);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpIfTest /*:boolean*/ = arg === undefined;
-if (tmpIfTest) {
-  const tmpClusterSSA_val /*:object*/ = {};
-  $(tmpClusterSSA_val);
-} else {
-  const tmpClusterSSA_val$1 /*:unknown*/ = arg;
-  $(tmpClusterSSA_val$1);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -96,7 +96,7 @@ BAD@! Found 1 implicit global bindings:
 
 arg
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

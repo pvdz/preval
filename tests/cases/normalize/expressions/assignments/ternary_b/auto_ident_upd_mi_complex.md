@@ -25,12 +25,13 @@ const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam$1 /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$1);
-  const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-  const varInitAssignLhsComputedRhs /*:number*/ = tmpBinLhs - 1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
+  const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
+  $(tmpUpdInc);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
@@ -46,11 +47,11 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
-  const varInitAssignLhsComputedObj = $($(b));
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x - 1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
+  const tmpUpdObj = $($(b));
+  const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdInc;
+  $(tmpUpdInc);
 } else {
   $($(200));
 }
@@ -77,11 +78,12 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam$1 = $(b);
-  const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
-  const tmpBinLhs = varInitAssignLhsComputedObj.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
+  let tmpUpdObj = $(tmpCalleeParam$1);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  const tmpNestedComplexRhs = tmpUpdInc;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
@@ -105,14 +107,15 @@ if (b) {
   const d = $( c );
   const e = $( d );
   const f = e.x;
-  const g = f - 1;
-  e.x = g;
-  a = g;
-  $( g );
+  const g = $coerce( f, "number" );
+  const h = g - 1;
+  e.x = h;
+  a = h;
+  $( h );
 }
 else {
-  const h = $( 200 );
-  $( h );
+  const i = $( 200 );
+  $( i );
 }
 $( a, c );
 `````

@@ -118,7 +118,8 @@ while (true) {
     $(tmpCalleeParam);
     const tmpCalleeParam$1 = i + 2;
     $(tmpCalleeParam$1);
-    i = i + 1;
+    const tmpPostUpdArgIdent = $coerce(i, `number`);
+    i = tmpPostUpdArgIdent + 1;
   } else {
     break;
   }

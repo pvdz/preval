@@ -20,6 +20,16 @@ while (true) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const rnd /*:number*/ = $Math_random();
+  $(rnd);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,16 +59,6 @@ while (true) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const rnd /*:number*/ = $Math_random();
-  $(rnd);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -73,7 +73,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0.12556649118791485

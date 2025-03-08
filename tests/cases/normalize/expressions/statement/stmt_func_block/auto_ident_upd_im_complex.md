@@ -27,10 +27,11 @@ $(f());
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 $(undefined);
@@ -41,8 +42,8 @@ $(undefined);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-tmpPostUpdArgObj.x = tmpPostUpdArgObj.x - 1;
+const tmpUpdObj = $($(b));
+tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) - 1;
 $({ a: 999, b: 1000 }, b);
 $(undefined);
 `````
@@ -72,11 +73,11 @@ let f = function () {
   let b = { x: 1 };
   let a = { a: 999, b: 1000 };
   const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  let tmpUpdObj = $(tmpCalleeParam);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
   $(a, b);
   return undefined;
 };
@@ -92,13 +93,14 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-const f = {
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+const g = {
   a: 999,
   b: 1000,
 };
-$( f, a );
+$( g, a );
 $( undefined );
 `````
 

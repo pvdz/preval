@@ -54,7 +54,8 @@ $(f());
 let f = function () {
   debugger;
   let b = 1;
-  b = b + 1;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent + 1;
   let a = b;
   $(a, b);
   return undefined;

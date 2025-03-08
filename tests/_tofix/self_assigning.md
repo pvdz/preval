@@ -37,6 +37,45 @@ let _0x4a09/*:(unknown, unknown)=>*/ = function(_0x5796ef, _0x26241c) {
 $(_0x4a09);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let _0x4a09 /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
+  let _0x5796ef /*:unknown*/ = $$0;
+  const _0x26241c /*:unknown*/ = $$1;
+  debugger;
+  _0x4a09 = function ($$0, $$1) {
+    const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ = arguments;
+    const _0x6bfd63 /*:unknown*/ = $$0;
+    debugger;
+    const tmpClusterSSA__0x6bfd63 /*:number*/ = _0x6bfd63 - 208;
+    const _0x34cc82 /*:unknown*/ = _0x4157[tmpClusterSSA__0x6bfd63];
+    const tmpBinLhs /*:unknown*/ = _0x4a09.NCZorg;
+    const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
+    if (tmpIfTest) {
+      _0x4a09.YBuklE = tmpClusterSSA__0x36fe1d;
+      _0x5796ef = tmpPrevalAliasArgumentsAny$1;
+      _0x4a09.NCZorg = true;
+    } else {
+    }
+    const tmpBinBothRhs /*:unknown*/ = _0x4157[0];
+    const _0x3ccddd /*:primitive*/ = tmpClusterSSA__0x6bfd63 + tmpBinBothRhs;
+    const _0x3ffbb4 /*:unknown*/ = _0x5796ef[_0x3ccddd];
+    if (_0x3ffbb4) {
+      return _0x3ffbb4;
+    } else {
+      const tmpClusterSSA__0x34cc82 /*:unknown*/ = _0x4a09.YBuklE(_0x34cc82);
+      _0x5796ef[_0x3ccddd] = tmpClusterSSA__0x34cc82;
+      return tmpClusterSSA__0x34cc82;
+    }
+  };
+  const tmpReturnArg$3 /*:unknown*/ = _0x4a09(_0x5796ef, _0x26241c);
+  return tmpReturnArg$3;
+};
+$(_0x4a09);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -146,45 +185,6 @@ let _0x4a09 = function ($$0, $$1) {
 $(_0x4a09);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let _0x4a09 /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  let _0x5796ef /*:unknown*/ = $$0;
-  const _0x26241c /*:unknown*/ = $$1;
-  debugger;
-  _0x4a09 = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ = arguments;
-    const _0x6bfd63 /*:unknown*/ = $$0;
-    debugger;
-    const tmpClusterSSA__0x6bfd63 /*:number*/ = _0x6bfd63 - 208;
-    const _0x34cc82 /*:unknown*/ = _0x4157[tmpClusterSSA__0x6bfd63];
-    const tmpBinLhs /*:unknown*/ = _0x4a09.NCZorg;
-    const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
-    if (tmpIfTest) {
-      _0x4a09.YBuklE = tmpClusterSSA__0x36fe1d;
-      _0x5796ef = tmpPrevalAliasArgumentsAny$1;
-      _0x4a09.NCZorg = true;
-    } else {
-    }
-    const tmpBinBothRhs /*:unknown*/ = _0x4157[0];
-    const _0x3ccddd /*:primitive*/ = tmpClusterSSA__0x6bfd63 + tmpBinBothRhs;
-    const _0x3ffbb4 /*:unknown*/ = _0x5796ef[_0x3ccddd];
-    if (_0x3ffbb4) {
-      return _0x3ffbb4;
-    } else {
-      const tmpClusterSSA__0x34cc82 /*:unknown*/ = _0x4a09.YBuklE(_0x34cc82);
-      _0x5796ef[_0x3ccddd] = tmpClusterSSA__0x34cc82;
-      return tmpClusterSSA__0x34cc82;
-    }
-  };
-  const tmpReturnArg$3 /*:unknown*/ = _0x4a09(_0x5796ef, _0x26241c);
-  return tmpReturnArg$3;
-};
-$(_0x4a09);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -230,7 +230,7 @@ BAD@! Found 2 implicit global bindings:
 
 _0x4157, tmpClusterSSA__0x36fe1d
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: '<function>'

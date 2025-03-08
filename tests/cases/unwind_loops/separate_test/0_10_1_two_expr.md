@@ -93,7 +93,8 @@ while (true) {
   if (tmpIfTest) {
     $(i, `a`);
     $(i, `b`);
-    i = i + 1;
+    const tmpPostUpdArgIdent = $coerce(i, `number`);
+    i = tmpPostUpdArgIdent + 1;
   } else {
     break;
   }

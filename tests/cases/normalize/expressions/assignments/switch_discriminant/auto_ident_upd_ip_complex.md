@@ -25,12 +25,13 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
 $(100);
-$(tmpPostUpdArgVal, b);
+$(tmpUpdNum, b);
 `````
 
 ## Denormalized
@@ -38,11 +39,11 @@ $(tmpPostUpdArgVal, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
+const tmpUpdObj = $($(b));
+const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+tmpUpdObj.x = tmpUpdNum + 1;
 $(100);
-$(tmpPostUpdArgVal, b);
+$(tmpUpdNum, b);
 `````
 
 ## Pre Normal
@@ -68,12 +69,12 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = tmpPostUpdArgVal;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdNum;
 let tmpSwitchDisc = a;
 $(100);
 $(a, b);
@@ -87,10 +88,11 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d + 1;
-c.x = e;
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
 $( 100 );
-$( d, a );
+$( e, a );
 `````
 
 ## Globals

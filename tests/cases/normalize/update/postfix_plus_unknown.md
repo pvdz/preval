@@ -18,17 +18,15 @@ $(x++);
 
 `````js filename=intro
 const x /*:unknown*/ = $(1);
-x + 0;
-$(x);
+const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
+$(tmpPostUpdArgIdent);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(1);
-x + 0;
-$(x);
+$($coerce($(1), `number`));
 `````
 
 ## Pre Normal
@@ -44,8 +42,8 @@ $(x++);
 
 `````js filename=intro
 let x = $(1);
-const tmpPostUpdArgIdent = x;
-x = x + 1;
+const tmpPostUpdArgIdent = $coerce(x, `number`);
+x = tmpPostUpdArgIdent + 1;
 const tmpCalleeParam = tmpPostUpdArgIdent;
 $(tmpCalleeParam);
 `````
@@ -55,8 +53,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-a + 0;
-$( a );
+const b = $coerce( a, "number" );
+$( b );
 `````
 
 ## Globals

@@ -50,6 +50,39 @@ here: {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let x /*:number*/ = 1;
+let $finalAbruptAction /*:number*/ = 0;
+let $finalCatchArg /*:unknown*/ = undefined;
+try {
+  if ($) {
+    x = 2;
+    $finalAbruptAction = 1;
+  } else {
+    x = 3;
+  }
+} catch ($finalImplicit) {
+  $finalAbruptAction = 2;
+  $finalCatchArg = $finalImplicit;
+}
+$(x);
+const tmpIfTest /*:boolean*/ = $finalAbruptAction === 1;
+if (tmpIfTest) {
+} else {
+  const tmpIfTest$1 /*:boolean*/ = $finalAbruptAction === 2;
+  if (tmpIfTest$1) {
+    throw $finalCatchArg;
+  } else {
+    $(x);
+    x = 4;
+  }
+}
+$(x);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -158,39 +191,6 @@ here: {
 $(x);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let x /*:number*/ = 1;
-let $finalAbruptAction /*:number*/ = 0;
-let $finalCatchArg /*:unknown*/ = undefined;
-try {
-  if ($) {
-    x = 2;
-    $finalAbruptAction = 1;
-  } else {
-    x = 3;
-  }
-} catch ($finalImplicit) {
-  $finalAbruptAction = 2;
-  $finalCatchArg = $finalImplicit;
-}
-$(x);
-const tmpIfTest /*:boolean*/ = $finalAbruptAction === 1;
-if (tmpIfTest) {
-} else {
-  const tmpIfTest$1 /*:boolean*/ = $finalAbruptAction === 2;
-  if (tmpIfTest$1) {
-    throw $finalCatchArg;
-  } else {
-    $(x);
-    x = 4;
-  }
-}
-$(x);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -233,7 +233,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 2

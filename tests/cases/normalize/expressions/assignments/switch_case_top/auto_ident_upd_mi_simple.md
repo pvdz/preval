@@ -72,10 +72,9 @@ const tmpBinBothLhs = tmpSwitchDisc;
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent - 1;
+  a = b;
 } else {
 }
 $(a, b);

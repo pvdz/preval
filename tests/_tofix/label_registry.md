@@ -18,6 +18,15 @@ foo: for(;$(true);) {
 $(2);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(0);
+$(true);
+$(2);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -65,15 +74,6 @@ while (true) {
 $(2);
 `````
 
-## Settled
-
-
-`````js filename=intro
-$(0);
-$(true);
-$(2);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -87,7 +87,7 @@ $( 2 );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 0

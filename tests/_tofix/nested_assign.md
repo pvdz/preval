@@ -21,6 +21,29 @@ while (true) {
 $(x);
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(10);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(20);
+  const tmpIfTest /*:unknown*/ = $(true);
+  if (tmpIfTest) {
+  } else {
+    while ($LOOP_UNROLL_10) {
+      $(20);
+      const tmpIfTest$1 /*:unknown*/ = $(true);
+      if (tmpIfTest$1) {
+        break;
+      } else {
+      }
+    }
+  }
+  $(30);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -73,29 +96,6 @@ while (true) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-$(10);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(20);
-  const tmpIfTest /*:unknown*/ = $(true);
-  if (tmpIfTest) {
-  } else {
-    while ($LOOP_UNROLL_10) {
-      $(20);
-      const tmpIfTest$1 /*:unknown*/ = $(true);
-      if (tmpIfTest$1) {
-        break;
-      } else {
-      }
-    }
-  }
-  $(30);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -124,7 +124,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10

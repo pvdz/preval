@@ -18,6 +18,16 @@ let a = {};
 a.foo = a += $();
 `````
 
+## Settled
+
+
+`````js filename=intro
+const tmpBinBothRhs /*:unknown*/ = $();
+const a /*:object*/ = {};
+const tmpClusterSSA_a /*:primitive*/ = a + tmpBinBothRhs;
+a.foo = tmpClusterSSA_a;
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,16 +58,6 @@ let tmpAssignMemRhs = a;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````
 
-## Settled
-
-
-`````js filename=intro
-const tmpBinBothRhs /*:unknown*/ = $();
-const a /*:object*/ = {};
-const tmpClusterSSA_a /*:primitive*/ = a + tmpBinBothRhs;
-a.foo = tmpClusterSSA_a;
-`````
-
 ## PST Settled
 With rename=true
 
@@ -72,7 +72,7 @@ b.foo = c;
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 

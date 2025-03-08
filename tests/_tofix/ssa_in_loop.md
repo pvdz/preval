@@ -30,6 +30,35 @@ while ($tmpLoopUnrollCheck) {
 $(tmpClusterSSA_s);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const s /*:unknown*/ = $(10);
+parseExpression(lexerFlags$285, astProp$181);
+let tmpClusterSSA_s /*:number*/ = s | 10;
+const tmpClusterSSA_x /*:unknown*/ = $(true);
+if (tmpClusterSSA_x) {
+  parseExpression(lexerFlags$285, astProp$181);
+  tmpClusterSSA_s = tmpClusterSSA_s | 10;
+  const tmpClusterSSA_x$1 /*:unknown*/ = $(true);
+  if (tmpClusterSSA_x$1) {
+    while ($LOOP_UNROLL_10) {
+      parseExpression(lexerFlags$285, astProp$181);
+      tmpClusterSSA_s = tmpClusterSSA_s | 10;
+      const tmpClusterSSA_x$2 /*:unknown*/ = $(true);
+      if (tmpClusterSSA_x$2) {
+      } else {
+        break;
+      }
+    }
+  } else {
+  }
+} else {
+}
+$(tmpClusterSSA_s);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -107,35 +136,6 @@ while (true) {
 $(tmpClusterSSA_s);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const s /*:unknown*/ = $(10);
-parseExpression(lexerFlags$285, astProp$181);
-let tmpClusterSSA_s /*:number*/ = s | 10;
-const tmpClusterSSA_x /*:unknown*/ = $(true);
-if (tmpClusterSSA_x) {
-  parseExpression(lexerFlags$285, astProp$181);
-  tmpClusterSSA_s = tmpClusterSSA_s | 10;
-  const tmpClusterSSA_x$1 /*:unknown*/ = $(true);
-  if (tmpClusterSSA_x$1) {
-    while ($LOOP_UNROLL_10) {
-      parseExpression(lexerFlags$285, astProp$181);
-      tmpClusterSSA_s = tmpClusterSSA_s | 10;
-      const tmpClusterSSA_x$2 /*:unknown*/ = $(true);
-      if (tmpClusterSSA_x$2) {
-      } else {
-        break;
-      }
-    }
-  } else {
-  }
-} else {
-}
-$(tmpClusterSSA_s);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -171,7 +171,7 @@ BAD@! Found 3 implicit global bindings:
 
 parseExpression, lexerFlags$285, astProp$181
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 10

@@ -126,7 +126,8 @@ if (x) {
 while (true) {
   if (flag) {
     $(`inner`, n);
-    n = n + 1;
+    const tmpPostUpdArgIdent = $coerce(n, `number`);
+    n = tmpPostUpdArgIdent + 1;
     const tmpIfTest = n >= 5;
     if (tmpIfTest) {
       flag = false;

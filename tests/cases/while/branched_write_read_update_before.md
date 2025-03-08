@@ -30,7 +30,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpClusterSSA_x /*:unknown*/ = $(10);
   const tmpIfTest /*:number*/ = tmpClusterSSA_x % 2;
   if (tmpIfTest) {
-    const tmpClusterSSA_x$1 /*:primitive*/ = tmpClusterSSA_x + 1;
+    const tmpPostUpdArgIdent /*:number*/ = $coerce(tmpClusterSSA_x, `number`);
+    const tmpClusterSSA_x$1 /*:number*/ = tmpPostUpdArgIdent + 1;
     $(tmpClusterSSA_x$1, `write`);
   } else {
     $(tmpClusterSSA_x, `read`);
@@ -46,7 +47,7 @@ $(1);
 while (true) {
   const tmpClusterSSA_x = $(10);
   if (tmpClusterSSA_x % 2) {
-    $(tmpClusterSSA_x + 1, `write`);
+    $($coerce(tmpClusterSSA_x, `number`) + 1, `write`);
   } else {
     $(tmpClusterSSA_x, `read`);
   }
@@ -77,8 +78,9 @@ while (true) {
   x = $(10);
   const tmpIfTest = x % 2;
   if (tmpIfTest) {
-    x = x + 1;
-    let tmpCalleeParam = x;
+    const tmpPostUpdArgIdent = $coerce(x, `number`);
+    x = tmpPostUpdArgIdent + 1;
+    const tmpCalleeParam = x;
     $(tmpCalleeParam, `write`);
   } else {
     $(x, `read`);
@@ -95,8 +97,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a = $( 10 );
   const b = a % 2;
   if (b) {
-    const c = a + 1;
-    $( c, "write" );
+    const c = $coerce( a, "number" );
+    const d = c + 1;
+    $( d, "write" );
   }
   else {
     $( a, "read" );

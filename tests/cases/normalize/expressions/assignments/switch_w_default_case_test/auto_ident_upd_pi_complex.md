@@ -30,11 +30,12 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpNestedAssignObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs$1 + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpIfTest /*:boolean*/ = tmpNestedPropCompoundComplexRhs === tmpSwitchValue;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpIfTest /*:boolean*/ = tmpUpdInc === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -50,7 +51,7 @@ if (tmpIfTest$5) {
 } else {
 }
 $(`fail2`);
-$(tmpNestedPropCompoundComplexRhs, b);
+$(tmpUpdInc, b);
 `````
 
 ## Denormalized
@@ -60,10 +61,10 @@ $(tmpNestedPropCompoundComplexRhs, b);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const b = { x: 1 };
-const tmpNestedAssignObj = $($(b));
-const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-if (tmpNestedPropCompoundComplexRhs === tmpSwitchValue) {
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdInc === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -74,7 +75,7 @@ if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
 }
 $(`fail2`);
-$(tmpNestedPropCompoundComplexRhs, b);
+$(tmpUpdInc, b);
 `````
 
 ## Pre Normal
@@ -112,11 +113,12 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(b);
-const tmpNestedAssignObj = $(tmpCalleeParam);
-const tmpBinLhs$1 = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 + 1;
-tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-a = tmpNestedPropCompoundComplexRhs;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdInc;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -152,24 +154,25 @@ const c = { x: 1 };
 const d = $( c );
 const e = $( d );
 const f = e.x;
-const g = f + 1;
-e.x = g;
-const h = g === a;
-if (h) {
+const g = $coerce( f, "number" );
+const h = g + 1;
+e.x = h;
+const i = h === a;
+if (i) {
   b = 0;
 }
 else {
-  const i = 2 === a;
-  if (i) {
+  const j = 2 === a;
+  if (j) {
     b = 2;
   }
 }
-const j = b <= 1;
-if (j) {
+const k = b <= 1;
+if (k) {
   $( "fail1" );
 }
 $( "fail2" );
-$( g, c );
+$( h, c );
 `````
 
 ## Globals

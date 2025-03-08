@@ -27,6 +27,26 @@ if (x) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+x = !tmpUnaryArg;
+const tmpBool /*:boolean*/ = !tmpUnaryArg;
+x = tmpBool;
+if (tmpUnaryArg) {
+  $(`b`);
+  x = true;
+} else {
+  $(`a`);
+}
+if (x) {
+  $(`d`);
+} else {
+  $(`c`);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -82,26 +102,6 @@ if (x) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-x = !tmpUnaryArg;
-const tmpBool /*:boolean*/ = !tmpUnaryArg;
-x = tmpBool;
-if (tmpUnaryArg) {
-  $(`b`);
-  x = true;
-} else {
-  $(`a`);
-}
-if (x) {
-  $(`d`);
-} else {
-  $(`c`);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -130,7 +130,7 @@ BAD@! Found 2 implicit global bindings:
 
 tmpUnaryArg, x
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

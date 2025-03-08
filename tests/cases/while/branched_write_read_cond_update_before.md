@@ -36,7 +36,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpIfTest$1 = x % 2;
   }
   if (tmpIfTest$1) {
-    x = x + 1;
+    const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
+    x = tmpPostUpdArgIdent + 1;
     $(x, `write`);
   } else {
     $(x, `read`);
@@ -59,7 +60,7 @@ while (true) {
     tmpIfTest$1 = x % 2;
   }
   if (tmpIfTest$1) {
-    x = x + 1;
+    x = $coerce(x, `number`) + 1;
     $(x, `write`);
   } else {
     $(x, `read`);
@@ -95,8 +96,9 @@ while (true) {
   }
   const tmpIfTest$1 = x % 2;
   if (tmpIfTest$1) {
-    x = x + 1;
-    let tmpCalleeParam = x;
+    const tmpPostUpdArgIdent = $coerce(x, `number`);
+    x = tmpPostUpdArgIdent + 1;
+    const tmpCalleeParam = x;
     $(tmpCalleeParam, `write`);
   } else {
     $(x, `read`);
@@ -120,7 +122,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     c = a % 2;
   }
   if (c) {
-    a = a + 1;
+    const d = $coerce( a, "number" );
+    a = d + 1;
     $( a, "write" );
   }
   else {

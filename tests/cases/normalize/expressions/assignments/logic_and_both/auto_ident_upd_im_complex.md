@@ -22,21 +22,23 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpPostUpdArgVal;
-if (tmpPostUpdArgVal) {
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+let tmpClusterSSA_a /*:unknown*/ = tmpUpdNum;
+if (tmpUpdNum) {
   const tmpCalleeParam$3 /*:unknown*/ = $(b);
-  const tmpPostUpdArgObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
-  const tmpPostUpdArgVal$1 /*:unknown*/ = tmpPostUpdArgObj$1.x;
-  const tmpAssignMemRhs$1 /*:number*/ = tmpPostUpdArgVal$1 - 1;
-  tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-  tmpClusterSSA_a = tmpPostUpdArgVal$1;
-  $(tmpPostUpdArgVal$1);
+  const tmpUpdObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpUpdProp$1 /*:unknown*/ = tmpUpdObj$1.x;
+  const tmpUpdNum$1 /*:number*/ = $coerce(tmpUpdProp$1, `number`);
+  const tmpUpdInc$1 /*:number*/ = tmpUpdNum$1 - 1;
+  tmpUpdObj$1.x = tmpUpdInc$1;
+  tmpClusterSSA_a = tmpUpdNum$1;
+  $(tmpUpdNum$1);
 } else {
-  $(tmpPostUpdArgVal);
+  $(tmpUpdNum);
 }
 $(tmpClusterSSA_a, b);
 `````
@@ -46,18 +48,18 @@ $(tmpClusterSSA_a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-tmpPostUpdArgObj.x = tmpPostUpdArgVal - 1;
-let tmpClusterSSA_a = tmpPostUpdArgVal;
-if (tmpPostUpdArgVal) {
-  const tmpPostUpdArgObj$1 = $($(b));
-  const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
-  tmpPostUpdArgObj$1.x = tmpPostUpdArgVal$1 - 1;
-  tmpClusterSSA_a = tmpPostUpdArgVal$1;
-  $(tmpPostUpdArgVal$1);
+const tmpUpdObj = $($(b));
+const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+tmpUpdObj.x = tmpUpdNum - 1;
+let tmpClusterSSA_a = tmpUpdNum;
+if (tmpUpdNum) {
+  const tmpUpdObj$1 = $($(b));
+  const tmpUpdNum$1 = $coerce(tmpUpdObj$1.x, `number`);
+  tmpUpdObj$1.x = tmpUpdNum$1 - 1;
+  tmpClusterSSA_a = tmpUpdNum$1;
+  $(tmpUpdNum$1);
 } else {
-  $(tmpPostUpdArgVal);
+  $(tmpUpdNum);
 }
 $(tmpClusterSSA_a, b);
 `````
@@ -79,21 +81,21 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam$1);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = tmpPostUpdArgVal;
+let tmpUpdObj = $(tmpCalleeParam$1);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdNum;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpCalleeParam$3 = $(b);
-  const tmpPostUpdArgObj$1 = $(tmpCalleeParam$3);
-  const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
-  const tmpAssignMemLhsObj$1 = tmpPostUpdArgObj$1;
-  const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
-  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs$1;
-  const tmpNestedComplexRhs = tmpPostUpdArgVal$1;
+  let tmpUpdObj$1 = $(tmpCalleeParam$3);
+  let tmpUpdProp$1 = tmpUpdObj$1.x;
+  let tmpUpdNum$1 = $coerce(tmpUpdProp$1, `number`);
+  let tmpUpdInc$1 = tmpUpdNum$1 - 1;
+  tmpUpdObj$1.x = tmpUpdInc$1;
+  const tmpNestedComplexRhs = tmpUpdNum$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
@@ -110,22 +112,24 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-let f = d;
-if (d) {
-  const g = $( a );
-  const h = $( g );
-  const i = h.x;
-  const j = i - 1;
-  h.x = j;
-  f = i;
-  $( i );
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+let g = e;
+if (e) {
+  const h = $( a );
+  const i = $( h );
+  const j = i.x;
+  const k = $coerce( j, "number" );
+  const l = k - 1;
+  i.x = l;
+  g = k;
+  $( k );
 }
 else {
-  $( d );
+  $( e );
 }
-$( f, a );
+$( g, a );
 `````
 
 ## Globals

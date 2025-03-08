@@ -30,11 +30,12 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(b);
-  const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-  const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs /*:primitive*/ = tmpPostUpdArgVal + 1;
-  tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  $(tmpPostUpdArgVal, b);
+  const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+  const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+  const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+  const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  $(tmpUpdNum, b);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, b);
@@ -48,10 +49,10 @@ if (tmpIfTest) {
 const tmpIfTest = $(1) === $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
-  const tmpPostUpdArgObj = $($(b));
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  tmpPostUpdArgObj.x = tmpPostUpdArgVal + 1;
-  $(tmpPostUpdArgVal, b);
+  const tmpUpdObj = $($(b));
+  const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+  tmpUpdObj.x = tmpUpdNum + 1;
+  $(tmpUpdNum, b);
 } else {
   $({ a: 999, b: 1000 }, b);
 }
@@ -87,12 +88,12 @@ const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  a = tmpPostUpdArgVal;
+  let tmpUpdObj = $(tmpCalleeParam);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum + 1;
+  tmpUpdObj.x = tmpUpdInc;
+  a = tmpUpdNum;
 } else {
 }
 $(a, b);
@@ -110,16 +111,17 @@ if (c) {
   const e = $( d );
   const f = $( e );
   const g = f.x;
-  const h = g + 1;
-  f.x = h;
-  $( g, d );
+  const h = $coerce( g, "number" );
+  const i = h + 1;
+  f.x = i;
+  $( h, d );
 }
 else {
-  const i = {
+  const j = {
     a: 999,
     b: 1000,
   };
-  $( i, d );
+  $( j, d );
 }
 `````
 

@@ -22,7 +22,6 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 $(100);
 $(100);
 $(100);
@@ -34,13 +33,13 @@ $(100);
 $(100);
 $(100);
 $(100);
-let b /*:unknown*/ = 12;
+let b /*:number*/ = 12;
+let a /*:unknown*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNestedComplexRhs$1 /*:number*/ = b + 1;
-  b = tmpNestedComplexRhs$1;
-  a = tmpNestedComplexRhs$1;
-  if (tmpNestedComplexRhs$1) {
+  b = b + 1;
+  a = b;
+  if (a) {
   } else {
     break;
   }
@@ -52,7 +51,6 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 $(100);
 $(100);
 $(100);
@@ -65,12 +63,12 @@ $(100);
 $(100);
 $(100);
 let b = 12;
+let a = 12;
 while (true) {
   $(100);
-  const tmpNestedComplexRhs$1 = b + 1;
-  b = tmpNestedComplexRhs$1;
-  a = tmpNestedComplexRhs$1;
-  if (!tmpNestedComplexRhs$1) {
+  b = b + 1;
+  a = b;
+  if (!a) {
     break;
   }
 }
@@ -103,10 +101,9 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
   $(100);
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  const tmpPostUpdArgIdent = $coerce(b, `number`);
+  b = tmpPostUpdArgIdent + 1;
+  a = b;
   let tmpIfTest = a;
   if (tmpIfTest) {
   } else {
@@ -120,7 +117,6 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
 $( 100 );
 $( 100 );
 $( 100 );
@@ -132,20 +128,20 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
+let a = 12;
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = b + 1;
-  b = c;
-  a = c;
-  if (c) {
+  a = a + 1;
+  b = a;
+  if (b) {
 
   }
   else {
     break;
   }
 }
-$( a, b );
+$( b, a );
 `````
 
 ## Globals

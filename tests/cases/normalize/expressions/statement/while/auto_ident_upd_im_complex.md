@@ -22,19 +22,21 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-if (tmpPostUpdArgVal) {
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+if (tmpUpdNum) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 /*:unknown*/ = $(b);
-    const tmpPostUpdArgObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    const tmpPostUpdArgVal$1 /*:unknown*/ = tmpPostUpdArgObj$1.x;
-    const tmpAssignMemRhs$1 /*:number*/ = tmpPostUpdArgVal$1 - 1;
-    tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-    if (tmpPostUpdArgVal$1) {
+    const tmpUpdObj$1 /*:unknown*/ = $(tmpCalleeParam$1);
+    const tmpUpdProp$1 /*:unknown*/ = tmpUpdObj$1.x;
+    const tmpUpdNum$1 /*:number*/ = $coerce(tmpUpdProp$1, `number`);
+    const tmpUpdInc$1 /*:number*/ = tmpUpdNum$1 - 1;
+    tmpUpdObj$1.x = tmpUpdInc$1;
+    if (tmpUpdNum$1) {
     } else {
       break;
     }
@@ -50,16 +52,16 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-tmpPostUpdArgObj.x = tmpPostUpdArgVal - 1;
-if (tmpPostUpdArgVal) {
+const tmpUpdObj = $($(b));
+const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+tmpUpdObj.x = tmpUpdNum - 1;
+if (tmpUpdNum) {
   while (true) {
     $(100);
-    const tmpPostUpdArgObj$1 = $($(b));
-    const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
-    tmpPostUpdArgObj$1.x = tmpPostUpdArgVal$1 - 1;
-    if (!tmpPostUpdArgVal$1) {
+    const tmpUpdObj$1 = $($(b));
+    const tmpUpdNum$1 = $coerce(tmpUpdObj$1.x, `number`);
+    tmpUpdObj$1.x = tmpUpdNum$1 - 1;
+    if (!tmpUpdNum$1) {
       break;
     }
   }
@@ -85,12 +87,12 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  const tmpIfTest = tmpPostUpdArgVal;
+  let tmpUpdObj = $(tmpCalleeParam);
+  let tmpUpdProp = tmpUpdObj.x;
+  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+  let tmpUpdInc = tmpUpdNum - 1;
+  tmpUpdObj.x = tmpUpdInc;
+  const tmpIfTest = tmpUpdNum;
   if (tmpIfTest) {
     $(100);
   } else {
@@ -108,17 +110,19 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d - 1;
-c.x = e;
-if (d) {
+const e = $coerce( d, "number" );
+const f = e - 1;
+c.x = f;
+if (e) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = $( a );
-    const g = $( f );
-    const h = g.x;
-    const i = h - 1;
-    g.x = i;
-    if (h) {
+    const g = $( a );
+    const h = $( g );
+    const i = h.x;
+    const j = $coerce( i, "number" );
+    const k = j - 1;
+    h.x = k;
+    if (j) {
 
     }
     else {
@@ -126,11 +130,11 @@ if (d) {
     }
   }
 }
-const j = {
+const l = {
   a: 999,
   b: 1000,
 };
-$( j, a );
+$( l, a );
 `````
 
 ## Globals

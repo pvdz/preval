@@ -30,6 +30,25 @@ const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let flag /*:unknown*/ = true;
+let b /*:number*/ = 12;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (flag) {
+    $(100);
+    flag = b;
+    b = b + 1;
+  } else {
+    break;
+  }
+}
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a, b);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -86,25 +105,6 @@ const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let flag /*:unknown*/ = true;
-let b /*:number*/ = 12;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (flag) {
-    $(100);
-    flag = b;
-    b = b + 1;
-  } else {
-    break;
-  }
-}
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -132,7 +132,7 @@ $( c, b );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 100

@@ -104,7 +104,8 @@ let f = function () {
     const tmpIfTest = i < Infinity;
     if (tmpIfTest) {
       $(i);
-      i = i + 1;
+      const tmpPostUpdArgIdent = $coerce(i, `number`);
+      i = tmpPostUpdArgIdent + 1;
     } else {
       break;
     }

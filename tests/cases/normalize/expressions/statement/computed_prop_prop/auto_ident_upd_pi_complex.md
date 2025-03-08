@@ -23,12 +23,13 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
 const obj /*:object*/ = {};
-obj[varInitAssignLhsComputedRhs];
+obj[tmpUpdInc];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -38,10 +39,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const varInitAssignLhsComputedObj = $($(b));
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-({}[varInitAssignLhsComputedRhs]);
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = tmpUpdInc;
+({}[tmpUpdInc]);
 $({ a: 999, b: 1000 }, b);
 `````
 
@@ -65,11 +66,12 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 const tmpCalleeParam = $(b);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCompProp = varInitAssignLhsComputedRhs;
+let tmpUpdObj = $(tmpCalleeParam);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpCompProp = tmpUpdInc;
 tmpCompObj[tmpCompProp];
 $(a, b);
 `````
@@ -82,15 +84,16 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d + 1;
-c.x = e;
-const f = {};
-f[ e ];
-const g = {
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
+const g = {};
+g[ f ];
+const h = {
   a: 999,
   b: 1000,
 };
-$( g, a );
+$( h, a );
 `````
 
 ## Globals

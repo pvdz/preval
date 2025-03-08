@@ -18,6 +18,22 @@ $(f());
 $(a);
 `````
 
+## Settled
+
+
+`````js filename=intro
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const f /*:(unused)=>undefined*/ = function ($$0) {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  debugger;
+  a = tmpPrevalAliasArgumentsAny;
+  return undefined;
+};
+f();
+$(undefined);
+$(a);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -71,22 +87,6 @@ $(tmpCalleeParam);
 $(a);
 `````
 
-## Settled
-
-
-`````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
-const f /*:(unused)=>undefined*/ = function ($$0) {
-  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
-  debugger;
-  a = tmpPrevalAliasArgumentsAny;
-  return undefined;
-};
-f();
-$(undefined);
-$(a);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -110,7 +110,7 @@ $( a );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: undefined

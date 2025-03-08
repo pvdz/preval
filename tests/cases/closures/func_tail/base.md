@@ -72,7 +72,8 @@ $(x);
 let f = function () {
   debugger;
   $(x);
-  x = x + 1;
+  const tmpPostUpdArgIdent = $coerce(x, `number`);
+  x = tmpPostUpdArgIdent + 1;
   return undefined;
 };
 let x = 5;

@@ -28,7 +28,8 @@ if ($) $(f()); // The branching prevents certain flattening
 if ($) {
   const x /*:unknown*/ = $(3);
   $(x);
-  let tmpClusterSSA_x /*:primitive*/ = x + 1;
+  const tmpPostUpdArgIdent /*:number*/ = $coerce(x, `number`);
+  let tmpClusterSSA_x /*:number*/ = tmpPostUpdArgIdent + 1;
   $(tmpClusterSSA_x);
   const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
   if (tmpIfTest) {
@@ -56,7 +57,7 @@ if ($) {
 if ($) {
   const x = $(3);
   $(x);
-  let tmpClusterSSA_x = x + 1;
+  let tmpClusterSSA_x = $coerce(x, `number`) + 1;
   $(tmpClusterSSA_x);
   if (!(tmpClusterSSA_x > 5)) {
     while (true) {
@@ -98,8 +99,9 @@ let f = function () {
   let x = $(3);
   $(x);
   while (true) {
-    x = x + 1;
-    let tmpCalleeParam = x;
+    const tmpPostUpdArgIdent = $coerce(x, `number`);
+    x = tmpPostUpdArgIdent + 1;
+    const tmpCalleeParam = x;
     $(tmpCalleeParam);
     const tmpIfTest = x > 5;
     if (tmpIfTest) {
@@ -124,23 +126,24 @@ With rename=true
 if ($) {
   const a = $( 3 );
   $( a );
-  let b = a + 1;
-  $( b );
-  const c = b > 5;
-  if (c) {
+  const b = $coerce( a, "number" );
+  let c = b + 1;
+  $( c );
+  const d = c > 5;
+  if (d) {
 
   }
   else {
     while ($LOOP_UNROLL_10) {
-      b = b + 1;
-      $( b );
-      const d = b > 5;
-      if (d) {
+      c = c + 1;
+      $( c );
+      const e = c > 5;
+      if (e) {
         break;
       }
     }
   }
-  $( b );
+  $( c );
   $( undefined );
 }
 `````
@@ -168,3 +171,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- Support non-primitive in first arg to $coerce

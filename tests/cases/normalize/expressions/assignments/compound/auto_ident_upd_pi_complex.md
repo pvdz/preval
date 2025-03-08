@@ -22,12 +22,13 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$1 /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpBinLhs /*:unknown*/ = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs /*:primitive*/ = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
 const a /*:object*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * varInitAssignLhsComputedRhs;
+const tmpClusterSSA_a /*:number*/ = a * tmpUpdInc;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````
@@ -37,10 +38,10 @@ $(tmpClusterSSA_a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-const varInitAssignLhsComputedObj = $($(b));
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedObj.x + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpClusterSSA_a = { a: 999, b: 1000 } * varInitAssignLhsComputedRhs;
+const tmpUpdObj = $($(b));
+const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpUpdInc;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````
@@ -63,11 +64,12 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = a;
 const tmpCalleeParam$1 = $(b);
-const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs = varInitAssignLhsComputedRhs;
+let tmpUpdObj = $(tmpCalleeParam$1);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpBinBothRhs = tmpUpdInc;
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 $(tmpCalleeParam);
@@ -82,15 +84,16 @@ const a = { x: 1 };
 const b = $( a );
 const c = $( b );
 const d = c.x;
-const e = d + 1;
-c.x = e;
-const f = {
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
+const g = {
   a: 999,
   b: 1000,
 };
-const g = f * e;
-$( g );
-$( g, a );
+const h = g * f;
+$( h );
+$( h, a );
 `````
 
 ## Globals

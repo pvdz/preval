@@ -36,6 +36,35 @@ if (tmpSaooB$1) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+const f /*:(unknown)=>undefined*/ = function ($$0) {
+  const arg /*:unknown*/ = $$0;
+  debugger;
+  const oneOrNan /*:number*/ = arg / arg;
+  const onestr /*:string*/ = $coerce(oneOrNan, `string`);
+  const len /*:number*/ = onestr.length;
+  const isone /*:boolean*/ = len === 1;
+  if (isone) {
+    arg % 0;
+  } else {
+  }
+  const argup /*:primitive*/ = arg + 1;
+  $(argup);
+  return undefined;
+};
+f(500);
+const tmpCalleeParam /*:unknown*/ = $spy();
+const tmpSaooB /*:string*/ = typeof tmpCalleeParam;
+const tmpSaooB$1 /*:boolean*/ = tmpSaooB === `string`;
+if (tmpSaooB$1) {
+} else {
+  f(tmpCalleeParam);
+}
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -111,35 +140,6 @@ if (tmpSaooB$1) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-const f /*:(unknown)=>undefined*/ = function ($$0) {
-  const arg /*:unknown*/ = $$0;
-  debugger;
-  const oneOrNan /*:number*/ = arg / arg;
-  const onestr /*:string*/ = $coerce(oneOrNan, `string`);
-  const len /*:number*/ = onestr.length;
-  const isone /*:boolean*/ = len === 1;
-  if (isone) {
-    arg % 0;
-  } else {
-  }
-  const argup /*:primitive*/ = arg + 1;
-  $(argup);
-  return undefined;
-};
-f(500);
-const tmpCalleeParam /*:unknown*/ = $spy();
-const tmpSaooB /*:string*/ = typeof tmpCalleeParam;
-const tmpSaooB$1 /*:boolean*/ = tmpSaooB === `string`;
-if (tmpSaooB$1) {
-} else {
-  f(tmpCalleeParam);
-}
-`````
-
 ## PST Settled
 With rename=true
 
@@ -174,7 +174,7 @@ else {
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 501

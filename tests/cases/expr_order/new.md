@@ -44,8 +44,9 @@ new $(i, ++i);
 let i = 0;
 const tmpNewCallee = $;
 const tmpCalleeParam = i;
-i = i + 1;
-let tmpCalleeParam$1 = i;
+const tmpPostUpdArgIdent = $coerce(i, `number`);
+i = tmpPostUpdArgIdent + 1;
+const tmpCalleeParam$1 = i;
 new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 

@@ -20,28 +20,39 @@ $(a, b);
 
 
 `````js filename=intro
+const tmpFree /*:(number)=>string*/ = function $free($$0) {
+  const tmpUpdNum$1 /*:number*/ = $$0;
+  debugger;
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpUpdNum$1, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  return tmpRet;
+};
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam$3 /*:unknown*/ = $(b);
-const tmpPostUpdArgObj /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpPostUpdArgVal /*:unknown*/ = tmpPostUpdArgObj.x;
-const tmpAssignMemRhs /*:number*/ = tmpPostUpdArgVal - 1;
-tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpBinBothRhs /*:string*/ = $coerce(tmpPostUpdArgVal, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
+const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
+const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpUpdNum);
 $(tmpCalleeParam);
-$(tmpPostUpdArgVal, b);
+$(tmpUpdNum, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpFree = function $free(tmpUpdNum$1) {
+  const tmpRet = `before  ${tmpUpdNum$1}  after`;
+  return tmpRet;
+};
 const b = { x: 1 };
-const tmpPostUpdArgObj = $($(b));
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-tmpPostUpdArgObj.x = tmpPostUpdArgVal - 1;
-$(`before  ${tmpPostUpdArgVal}  after`);
-$(tmpPostUpdArgVal, b);
+const tmpUpdObj = $($(b));
+const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
+tmpUpdObj.x = tmpUpdNum - 1;
+$($frfr(tmpFree, tmpUpdNum));
+$(tmpUpdNum, b);
 `````
 
 ## Pre Normal
@@ -62,12 +73,12 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = `before  `;
 const tmpCalleeParam$3 = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam$3);
-const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-a = tmpPostUpdArgVal;
+let tmpUpdObj = $(tmpCalleeParam$3);
+let tmpUpdProp = tmpUpdObj.x;
+let tmpUpdNum = $coerce(tmpUpdProp, `number`);
+let tmpUpdInc = tmpUpdNum - 1;
+tmpUpdObj.x = tmpUpdInc;
+a = tmpUpdNum;
 let tmpCalleeParam$1 = a;
 const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
@@ -81,16 +92,23 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = $( a );
-const c = $( b );
-const d = c.x;
-const e = d - 1;
-c.x = e;
-const f = $coerce( d, "string" );
-const g = `before  ${f}  after`;
-$( g );
-$( d, a );
+const a = function b($$0 ) {
+  const c = $$0;
+  debugger;
+  const d = $coerce( c, "string" );
+  const e = `before  ${d}  after`;
+  return e;
+};
+const f = { x: 1 };
+const g = $( f );
+const h = $( g );
+const i = h.x;
+const j = $coerce( i, "number" );
+const k = j - 1;
+h.x = k;
+const l = m( a, j );
+$( l );
+$( j, f );
 `````
 
 ## Globals

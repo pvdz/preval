@@ -34,6 +34,25 @@ const z = g();
 $(z);
 `````
 
+## Settled
+
+
+`````js filename=intro
+const g /*:()=>array*/ = function () {
+  debugger;
+  $(false);
+  $(true);
+  $(false);
+  const g$1 /*:array*/ = [1, 2, 3];
+  return g$1;
+};
+g();
+g();
+$(false);
+const z /*:array*/ = g();
+$(z);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -109,25 +128,6 @@ const z = g();
 $(z);
 `````
 
-## Settled
-
-
-`````js filename=intro
-const g /*:()=>array*/ = function () {
-  debugger;
-  $(false);
-  $(true);
-  $(false);
-  const g$1 /*:array*/ = [1, 2, 3];
-  return g$1;
-};
-g();
-g();
-$(false);
-const z /*:array*/ = g();
-$(z);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -151,7 +151,7 @@ $( c );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: false

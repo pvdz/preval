@@ -17,6 +17,15 @@ existing test
 $(a = 5);
 `````
 
+## Settled
+
+
+`````js filename=intro
+a = 5;
+const tmpCalleeParam /*:unknown*/ = a;
+$(tmpCalleeParam);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,15 +50,6 @@ let tmpCalleeParam = a;
 $(tmpCalleeParam);
 `````
 
-## Settled
-
-
-`````js filename=intro
-a = 5;
-const tmpCalleeParam /*:unknown*/ = a;
-$(tmpCalleeParam);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -65,7 +65,7 @@ BAD@! Found 1 implicit global bindings:
 
 a
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

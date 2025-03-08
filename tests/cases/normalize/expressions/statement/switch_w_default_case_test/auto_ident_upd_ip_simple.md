@@ -110,8 +110,8 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpPostUpdArgIdent = b;
-b = b + 1;
+const tmpPostUpdArgIdent = $coerce(b, `number`);
+b = tmpPostUpdArgIdent + 1;
 const tmpBinLhs = tmpPostUpdArgIdent;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 tmpSwitchBreak: {

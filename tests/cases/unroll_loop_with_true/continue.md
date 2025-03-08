@@ -106,8 +106,8 @@ while (true) {
 let i = 10;
 while (true) {
   $continue: {
-    const tmpPostUpdArgIdent = i;
-    i = i - 1;
+    const tmpPostUpdArgIdent = $coerce(i, `number`);
+    i = tmpPostUpdArgIdent - 1;
     const tmpBinLhs = tmpPostUpdArgIdent;
     const tmpIfTest = tmpBinLhs > 0;
     if (tmpIfTest) {

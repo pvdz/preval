@@ -19,6 +19,34 @@ while (test) {
 }
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+$(`yolo`);
+$(`oops`);
+`````
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -79,34 +107,6 @@ while (true) {
 }
 `````
 
-## Settled
-
-
-`````js filename=intro
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-$(`yolo`);
-$(`oops`);
-`````
-
 ## PST Settled
 With rename=true
 
@@ -139,7 +139,7 @@ $( "oops" );
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - 1: 'yolo'

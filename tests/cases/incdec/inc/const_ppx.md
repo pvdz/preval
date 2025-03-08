@@ -19,7 +19,8 @@ $(x);
 
 
 `````js filename=intro
-$(0);
+const x /*:unknown*/ = $(0);
+$coerce(x, `number`);
 throw `Preval: Cannot write to const binding \`x\``;
 `````
 
@@ -27,7 +28,7 @@ throw `Preval: Cannot write to const binding \`x\``;
 (This ought to be the final result)
 
 `````js filename=intro
-$(0);
+$coerce($(0), `number`);
 throw `Preval: Cannot write to const binding \`x\``;
 `````
 
@@ -46,8 +47,9 @@ $(x);
 
 `````js filename=intro
 const x = $(0);
-x = x + 1;
-let y = x;
+const tmpPostUpdArgIdent = $coerce(x, `number`);
+x = tmpPostUpdArgIdent + 1;
+const y = x;
 $(y);
 $(x);
 `````
@@ -56,7 +58,8 @@ $(x);
 With rename=true
 
 `````js filename=intro
-$( 0 );
+const a = $( 0 );
+$coerce( a, "number" );
 throw "Preval: Cannot write to const binding `x`";
 `````
 

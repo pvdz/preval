@@ -42,10 +42,13 @@ $(++arr[0]);
 
 `````js filename=intro
 const arr = [1, 2, 3];
-const tmpBinLhs = arr[0];
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-arr[0] = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = varInitAssignLhsComputedRhs;
+let tmpUpdObj = arr;
+let tmpUpdProp = 0;
+let tmpUpdVal = tmpUpdObj[tmpUpdProp];
+let tmpUpdNum = $coerce(tmpUpdVal, `number`);
+let tmpUpdInc = tmpUpdNum + 1;
+tmpUpdObj[tmpUpdProp] = tmpUpdInc;
+const tmpCalleeParam = tmpUpdInc;
 $(tmpCalleeParam);
 `````
 
@@ -73,3 +76,7 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- free with zero args, we can eliminate this?
+- arr_mutation: implement array inlining analysis stuff

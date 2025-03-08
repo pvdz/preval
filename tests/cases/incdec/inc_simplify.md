@@ -2,7 +2,7 @@
 
 # inc_simplify.md
 
-> Tofix > inc simplify
+> Incdec > Inc simplify
 >
 > This case is from a regular loop with ++b condition.
 > But the way we transform `a=++x` is `tmp=x; x=x+1; a=tmp`
@@ -274,4 +274,5 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
+- switch me to ref tracking
 - objects in isFree check

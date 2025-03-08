@@ -2,7 +2,7 @@
 
 # write_if_write_else_read.md
 
-> Tofix > write if write else read
+> Constants > Write if write else read
 >
 > Ref tracking cases
 >
@@ -100,3 +100,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- switch me to ref tracking

@@ -31,6 +31,7 @@ import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode } from '../ast.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
+import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 
 export function typeTrackedTricks(fdata) {
   group('\n\n\nFinding type tracking based tricks\n');
@@ -1381,6 +1382,22 @@ function _typeTrackedTricks(fdata) {
 
                 after(node, parentNode);
                 ++changes;
+                break;
+              }
+              case symbo('function', 'toString'): {
+                if (BUILTIN_GLOBAL_FUNC_NAMES.has(node.callee.object.name)) {
+                  rule('Calling .toString() on a global builtin function can be resolved');
+                  example('String.toString();', '"function String() { [native code] }";');
+                  before(parentNode);
+
+                  const newNode = AST.primitive(`function ${node.callee.object.name}() { [native code] }`)
+                  if (parentIndex < 0) parentNode[parentProp] = newNode;
+                  else parentNode[parentProp][parentIndex] = newNode;
+
+                  after(AST.emptyStatement());
+                  ++changes;
+                  break;
+                }
                 break;
               }
               case symbo('number', 'toString'): {

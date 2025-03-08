@@ -21,15 +21,14 @@ $(f());
 
 
 `````js filename=intro
-const tmpCalleeParam /*:string*/ = String.toString();
-$(tmpCalleeParam);
+$(`function String() { [native code] }`);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-$(String.toString());
+$(`function String() { [native code] }`);
 `````
 
 ## Pre Normal
@@ -60,8 +59,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = String.toString();
-$( a );
+$( "function String() { [native code] }" );
 `````
 
 ## Globals
@@ -83,4 +81,4 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $function_toString
+- switch me to ref tracking

@@ -2,10 +2,9 @@
 
 # while_if_double_break.md
 
-> Tofix > while if double break
+> While > While if double break
 >
 > If both branches break then the loop doesn't loop, eh.
-> Need to solve this in a generic way
 
 ## Input
 

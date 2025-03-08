@@ -2,9 +2,7 @@
 
 # try_finally_break.md
 
-> Tofix > try finally break
->
-> Why is the non-looping loop not eliminated?
+> While > Try finally break
 
 ## Input
 

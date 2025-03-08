@@ -2,9 +2,9 @@
 
 # ssa_gone_wrong.md
 
-> Tofix > ssa gone wrong
+> Ssa > Ssa gone wrong
 >
-> Looks like ssa is going off the rails here
+> There was a bug where the assignment inside the loop was not SSA'd
 
 ## Input
 
@@ -124,3 +124,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- switch me to ref tracking

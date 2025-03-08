@@ -2,7 +2,7 @@
 
 # inc_simplify2.md
 
-> Tofix > inc simplify2
+> Incdec > Inc simplify2
 >
 > This case is from a regular loop with ++b condition.
 > But the way we transform `a=++x` is `tmp=x; x=x+1; a=tmp`
@@ -170,3 +170,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- switch me to ref tracking

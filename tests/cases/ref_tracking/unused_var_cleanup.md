@@ -2,7 +2,7 @@
 
 # unused_var_cleanup.md
 
-> Tofix > unused var cleanup
+> Ref tracking > Unused var cleanup
 >
 > Variable assignments that are never read should be dropped
 
@@ -10,7 +10,7 @@
 
 `````js filename=intro
 const x = $(false);
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = true; // <--
 if (x) {
   $(`body`);
   while ($LOOP_UNROLL_10) {

@@ -2,9 +2,9 @@
 
 # trapped_break.md
 
-> Tofix > trapped break
+> Break > Trapped break
 >
-> Breaks can't possibly throw
+> Breaks can't possibly throw so the try is dead code
 
 ## Input
 
@@ -137,3 +137,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- switch me to ref tracking

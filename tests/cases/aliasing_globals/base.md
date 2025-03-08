@@ -19,20 +19,14 @@ $(a, b, c);
 
 
 `````js filename=intro
-const a /*:unknown*/ = unknown1;
-const b /*:unknown*/ = unknown2;
-unknown3;
-$(a, b, unknown3);
+$(unknown1, unknown2, unknown3);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const a = unknown1;
-const b = unknown2;
-unknown3;
-$(a, b, unknown3);
+$(unknown1, unknown2, unknown3);
 `````
 
 ## Pre Normal
@@ -59,10 +53,7 @@ $(a, b, unknown3);
 With rename=true
 
 `````js filename=intro
-const a = unknown1;
-const b = unknown2;
-unknown3;
-$( a, b, unknown3 );
+$( unknown1, unknown2, unknown3 );
 `````
 
 ## Globals

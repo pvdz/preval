@@ -20,7 +20,6 @@ $(y);
 const y /*:unknown*/ = $();
 const tmpIfTest /*:boolean*/ = y == null;
 if (tmpIfTest) {
-  foo;
   $(foo);
 } else {
   $(y);
@@ -33,7 +32,6 @@ if (tmpIfTest) {
 `````js filename=intro
 const y = $();
 if (y == null) {
-  foo;
   $(foo);
 } else {
   $(y);
@@ -68,7 +66,6 @@ With rename=true
 const a = $();
 const b = a == null;
 if (b) {
-  foo;
   $( foo );
 }
 else {

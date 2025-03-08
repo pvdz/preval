@@ -25,7 +25,6 @@ $(f());
 
 
 `````js filename=intro
-x;
 const tmpCalleeParam /*:boolean*/ = Boolean(x);
 $(tmpCalleeParam);
 `````
@@ -34,7 +33,6 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-x;
 $(Boolean(x));
 `````
 
@@ -77,7 +75,6 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-x;
 const a = Boolean( x );
 $( a );
 `````

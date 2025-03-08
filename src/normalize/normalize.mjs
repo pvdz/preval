@@ -3511,6 +3511,23 @@ export function phaseNormalize(fdata, fname, prng, options) {
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
+
+            if (
+              body[i-1]?.type === 'ExpressionStatement' &&
+              body[i-1].expression.type === 'Identifier' &&
+              body[i-1].expression.name === callee.name
+            ) {
+              rule('Ident statement where the ident is used immediately in the as callee on the next statement can drop the ident statement');
+              example('x; x();', '; x();');
+              before(body[i]);
+
+              // Is it going to lead to problems when changing the previous (already visited, not revisited..) statement?
+              body[i-1] = AST.emptyStatement();
+
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
           }
           args.forEach(anode => {
             if (anode.type == 'Identifier') {
@@ -3542,6 +3559,23 @@ export function phaseNormalize(fdata, fname, prng, options) {
                 before(body[i]);
 
                 anode.name = body[i-1].expression.right.name;
+
+                after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
+              if (
+                body[i-1]?.type === 'ExpressionStatement' &&
+                body[i-1].expression.type === 'Identifier' &&
+                body[i-1].expression.name === anode.name
+              ) {
+                rule('Ident statement where the ident is used immediately as an arg on the next statement can drop the ident statement');
+                example('x; f(x);', '; f(x);');
+                before(body[i]);
+
+                // Is it going to lead to problems when changing the previous (already visited, not revisited..) statement?
+                body[i-1] = AST.emptyStatement();
 
                 after(body[i]);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');

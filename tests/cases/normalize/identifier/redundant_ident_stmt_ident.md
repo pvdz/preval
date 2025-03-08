@@ -31,10 +31,8 @@ $(y);
 
 `````js filename=intro
 drop1;
-drop2;
 $(drop2);
 $();
-drop3;
 $(drop3);
 `````
 
@@ -43,10 +41,8 @@ $(drop3);
 
 `````js filename=intro
 drop1;
-drop2;
 $(drop2);
 $();
-drop3;
 $(drop3);
 `````
 
@@ -82,10 +78,8 @@ With rename=true
 
 `````js filename=intro
 drop1;
-drop2;
 $( drop2 );
 $();
-drop3;
 $( drop3 );
 `````
 

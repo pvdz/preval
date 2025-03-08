@@ -997,7 +997,6 @@ const TP$cloneX2$cloneX1 /*:(unused, unknown, unused, unknown, unknown)=>unknown
     const nCeX400 /*:unknown*/ = $$0;
     debugger;
     const fooCalleeParamX11232 /*:unknown*/ = XT(nCeX400);
-    Jq;
     const fooArrElementX3213 /*:unknown*/ = __(fooCalleeParamX11232, Jq);
     const fooCalleeParamX11234 /*:array*/ = [4, SSA_xNeX108, fooArrElementX3213];
     const fooReturnArgX5597 /*:unknown*/ = RP$cloneX5(SSA_bNeX94, $, fooCalleeParamX11234, TNeX211);
@@ -1852,9 +1851,7 @@ $(function ($$0, mNeX765, $$2, gNeX352, yNeX272) {
     return fooReturnArgX5601;
   };
   const fooReturnArgX5596 = function (nCeX400) {
-    const fooCalleeParamX11232 = XT(nCeX400);
-    Jq;
-    const fooArrElementX3213 = __(fooCalleeParamX11232, Jq);
+    const fooArrElementX3213 = __(XT(nCeX400), Jq);
     const fooReturnArgX5597 = RP$cloneX5(SSA_bNeX94, $, [4, SSA_xNeX108, fooArrElementX3213], TNeX211);
     return fooReturnArgX5597;
   };
@@ -4701,7 +4698,6 @@ const c = function($$0,$$1,$$2,$$3,$$4 ) {
     const fb = $$0;
     debugger;
     const fc = XT( fb );
-    Jq;
     const fd = __( fc, Jq );
     const fe = [ 4, j, fd ];
     const ff = RP$cloneX5( l, $, fe, fg );
@@ -5383,7 +5379,7 @@ $( c );
 
 BAD@! Found 37 implicit global bindings:
 
-RP$cloneX5, $yX2, Iq, YE, PA, WE, YA, ZE, JAe, TU, _U, SP, UA, zAe, XT, Jq, __, YE$cloneX5, NP$cloneX2$clone, WA, LP$cloneX2$clone, ZA, KA, QA, $A, Q_$clone, _A, TA, RP, WB, Rq, Mq, PP$cloneX3$clone, Oq, _P$cloneX4$clone, OE$clone, IP$cloneX3$cloneX1
+RP$cloneX5, $yX2, Iq, YE, PA, WE, YA, ZE, JAe, TU, _U, SP, UA, zAe, XT, __, Jq, YE$cloneX5, NP$cloneX2$clone, WA, LP$cloneX2$clone, ZA, KA, QA, $A, Q_$clone, _A, TA, RP, WB, Rq, Mq, PP$cloneX3$clone, Oq, _P$cloneX4$clone, OE$clone, IP$cloneX3$cloneX1
 
 ## Runtime Outcome
 

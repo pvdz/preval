@@ -18,7 +18,6 @@ $(a);
 
 
 `````js filename=intro
-arguments;
 $(arguments);
 `````
 
@@ -26,7 +25,6 @@ $(arguments);
 (This ought to be the final result)
 
 `````js filename=intro
-arguments;
 $(arguments);
 `````
 
@@ -52,7 +50,6 @@ $(arguments);
 With rename=true
 
 `````js filename=intro
-arguments;
 $( arguments );
 `````
 

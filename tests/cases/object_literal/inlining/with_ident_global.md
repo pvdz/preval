@@ -17,7 +17,6 @@ $(obj.f);
 
 
 `````js filename=intro
-wat;
 $(wat);
 `````
 
@@ -25,7 +24,6 @@ $(wat);
 (This ought to be the final result)
 
 `````js filename=intro
-wat;
 $(wat);
 `````
 
@@ -50,7 +48,6 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-wat;
 $( wat );
 `````
 

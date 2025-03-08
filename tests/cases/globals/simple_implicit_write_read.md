@@ -18,7 +18,6 @@ $(a);
 
 `````js filename=intro
 a = 5;
-a;
 $(a);
 $(a);
 `````
@@ -28,7 +27,6 @@ $(a);
 
 `````js filename=intro
 a = 5;
-a;
 $(a);
 $(a);
 `````
@@ -56,7 +54,6 @@ With rename=true
 
 `````js filename=intro
 a = 5;
-a;
 $( a );
 $( a );
 `````

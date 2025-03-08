@@ -21,7 +21,6 @@ const tmpCompObj /*:unknown*/ = $Object_prototype.b;
 const tmpCalleeParam /*:unknown*/ = tmpCompObj.c;
 const tmpIfTest /*:boolean*/ = tmpCalleeParam == null;
 if (tmpIfTest) {
-  d;
   $(d);
 } else {
   $(tmpCalleeParam);
@@ -34,7 +33,6 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpCalleeParam = $Object_prototype.b.c;
 if (tmpCalleeParam == null) {
-  d;
   $(d);
 } else {
   $(tmpCalleeParam);
@@ -72,7 +70,6 @@ const a = $Object_prototype.b;
 const b = a.c;
 const c = b == null;
 if (c) {
-  d;
   $( d );
 }
 else {

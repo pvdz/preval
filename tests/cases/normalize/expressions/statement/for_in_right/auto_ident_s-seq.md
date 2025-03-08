@@ -22,7 +22,6 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-x$1;
 const tmpForInGen /*:unknown*/ = $forIn(x$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen.next();
@@ -43,7 +42,6 @@ $(a, 1);
 `````js filename=intro
 $(1);
 $(2);
-x$1;
 const tmpForInGen = $forIn(x$1);
 while (true) {
   const tmpForInNext = tmpForInGen.next();
@@ -104,7 +102,6 @@ With rename=true
 `````js filename=intro
 $( 1 );
 $( 2 );
-x$1;
 const a = $forIn( x$1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a.next();

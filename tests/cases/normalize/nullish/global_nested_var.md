@@ -34,7 +34,6 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
-  length;
   $(length);
 } else {
   $(c);
@@ -58,7 +57,6 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
-  length;
   $(length);
 } else {
   $(c);
@@ -113,7 +111,6 @@ else {
   d = a == null;
 }
 if (d) {
-  length;
   $( length );
 }
 else {

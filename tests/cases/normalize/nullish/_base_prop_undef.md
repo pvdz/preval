@@ -17,7 +17,6 @@ $(f??x);
 
 
 `````js filename=intro
-x;
 $(x);
 `````
 
@@ -25,7 +24,6 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-x;
 $(x);
 `````
 
@@ -57,7 +55,6 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-x;
 $( x );
 `````
 

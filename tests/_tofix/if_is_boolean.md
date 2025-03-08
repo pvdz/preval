@@ -40,17 +40,10 @@ if (y) {
 `````js filename=intro
 if ($) {
 } else {
-  let tmpClusterSSA_x /*:boolean*/ = true;
-  if ($) {
-    tmpClusterSSA_x = false;
-  } else {
-  }
+  let tmpClusterSSA_x /*:boolean*/ = !$;
   while ($LOOP_UNROLL_9) {
     if (tmpClusterSSA_x) {
-      if ($) {
-        tmpClusterSSA_x = false;
-      } else {
-      }
+      tmpClusterSSA_x /*:boolean*/ = !$
     } else {
       break;
     }

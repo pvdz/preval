@@ -44,11 +44,8 @@ const f /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   return undefined;
 };
 drop1();
-keep1;
 c(keep1);
-drop2;
 f(1, drop2);
-drop3;
 f(undefined, drop3);
 `````
 
@@ -60,11 +57,8 @@ const f = function (args) {
   $(...args);
 };
 drop1();
-keep1;
 c(keep1);
-drop2;
 f(1, drop2);
-drop3;
 f(undefined, drop3);
 `````
 
@@ -99,13 +93,10 @@ let f = function (...$$0 /*:array*/) {
   return undefined;
 };
 drop1();
-keep1;
 c(keep1);
-drop2;
 f(1, drop2);
 let e = undefined;
-drop3;
-f(e, drop3);
+f(undefined, drop3);
 `````
 
 ## PST Settled
@@ -119,11 +110,8 @@ const a = function($$0 ) {
   return undefined;
 };
 drop1();
-keep1;
 c( keep1 );
-drop2;
 a( 1, drop2 );
-drop3;
 a( undefined, drop3 );
 `````
 
@@ -131,7 +119,7 @@ a( undefined, drop3 );
 
 BAD@! Found 5 implicit global bindings:
 
-drop1, keep1, c, drop2, drop3
+drop1, c, keep1, drop2, drop3
 
 ## Runtime Outcome
 

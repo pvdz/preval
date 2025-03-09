@@ -72,7 +72,6 @@ function _refTracked(fdata) {
             // Every read for this param was in a call to the same function name. If arguments is not
             // used, we should be able to drop it, regardless of whether the function escapes.
 
-
             pmeta.reads.every(read => {
               rule('Param that is only used in func calls to the same name as original func, is an unused param');
               example('function f(a) { f(a); }', 'function f() { f(); }');
@@ -81,13 +80,9 @@ function _refTracked(fdata) {
               after(read.parentNode);
               changed += 1;
             });
-
           }
         }
-      })
-
-
-
+      });
     }
 
   });

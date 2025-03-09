@@ -6,6 +6,10 @@
 >
 > Deal with certain primitive with binary ops
 
+## Options
+
+- globals: x
+
 ## Input
 
 `````js filename=intro
@@ -82,7 +86,11 @@ const tmpBinBothLhs$23 /*:unknown*/ = x;
 const tmpBinBothRhs$23 /*:array*/ = [];
 const tmpArrElement$23 /*:boolean*/ = tmpBinBothLhs$23 >= tmpBinBothRhs$23;
 const tmpBinBothLhs$25 /*:unknown*/ = x;
+const tmpBinBothRhs$25 /*:array*/ = [];
+const tmpArrElement$25 /*:boolean*/ = tmpBinBothLhs$25 == tmpBinBothRhs$25;
 const tmpBinBothLhs$27 /*:unknown*/ = x;
+const tmpBinBothRhs$27 /*:array*/ = [];
+const tmpArrElement$27 /*:boolean*/ = tmpBinBothLhs$27 != tmpBinBothRhs$27;
 const tmpBinBothLhs$29 /*:unknown*/ = x;
 const tmpBinBothLhs$31 /*:unknown*/ = x;
 const tmpBinBothLhs$33 /*:unknown*/ = x;
@@ -94,12 +102,8 @@ const tmpArrElement$35 /*:number*/ = tmpBinBothLhs$35 ^ tmpBinBothRhs$35;
 const tmpBinBothLhs$37 /*:unknown*/ = x;
 const tmpBinBothRhs$37 /*:array*/ = [];
 const tmpArrElement$37 /*:number*/ = tmpBinBothLhs$37 | tmpBinBothRhs$37;
-const tmpBinBothRhs$25 /*:array*/ = [];
-const tmpBinBothRhs$27 /*:array*/ = [];
 const tmpBinBothRhs$29 /*:array*/ = [];
 const tmpBinBothRhs$31 /*:array*/ = [];
-const tmpArrElement$25 /*:boolean*/ = tmpBinBothLhs$25 === tmpBinBothRhs$25;
-const tmpArrElement$27 /*:boolean*/ = tmpBinBothLhs$27 !== tmpBinBothRhs$27;
 const tmpArrElement$29 /*:boolean*/ = tmpBinBothLhs$29 === tmpBinBothRhs$29;
 const tmpArrElement$31 /*:boolean*/ = tmpBinBothLhs$31 !== tmpBinBothRhs$31;
 const arr /*:array*/ = [
@@ -152,19 +156,15 @@ const tmpArrElement$17 = x < [];
 const tmpArrElement$19 = x > [];
 const tmpArrElement$21 = x <= [];
 const tmpArrElement$23 = x >= [];
-const tmpBinBothLhs$25 = x;
-const tmpBinBothLhs$27 = x;
+const tmpArrElement$25 = x == [];
+const tmpArrElement$27 = x != [];
 const tmpBinBothLhs$29 = x;
 const tmpBinBothLhs$31 = x;
 const tmpArrElement$33 = x & [];
 const tmpArrElement$35 = x ^ [];
 const tmpArrElement$37 = x | [];
-const tmpBinBothRhs$25 = [];
-const tmpBinBothRhs$27 = [];
 const tmpBinBothRhs$29 = [];
 const tmpBinBothRhs$31 = [];
-const tmpArrElement$25 = tmpBinBothLhs$25 === tmpBinBothRhs$25;
-const tmpArrElement$27 = tmpBinBothLhs$27 !== tmpBinBothRhs$27;
 const tmpArrElement$29 = tmpBinBothLhs$29 === tmpBinBothRhs$29;
 const tmpArrElement$31 = tmpBinBothLhs$31 !== tmpBinBothRhs$31;
 $([
@@ -368,27 +368,27 @@ const bj = x;
 const bk = [];
 const bl = bj >= bk;
 const bm = x;
-const bn = x;
-const bo = x;
+const bn = [];
+const bo = bm == bn;
 const bp = x;
-const bq = x;
-const br = [];
-const bs = bq & br;
+const bq = [];
+const br = bp != bq;
+const bs = x;
 const bt = x;
-const bu = [];
-const bv = bt ^ bu;
-const bw = x;
-const bx = [];
-const by = bw | bx;
-const bz = [];
-const ca = [];
+const bu = x;
+const bv = [];
+const bw = bu & bv;
+const bx = x;
+const by = [];
+const bz = bx ^ by;
+const ca = x;
 const cb = [];
-const cc = [];
-const cd = bm === bz;
-const ce = bn !== ca;
-const cf = bo === cb;
-const cg = bp !== cc;
-const ch = [ c, f, i, l, m, p, s, v, z, bc, bf, bi, bl, cd, ce, cf, cg, bs, bv, by ];
+const cc = ca | cb;
+const cd = [];
+const ce = [];
+const cf = bs === cd;
+const cg = bt !== ce;
+const ch = [ c, f, i, l, m, p, s, v, z, bc, bf, bi, bl, bo, br, cf, cg, bw, bz, cc ];
 $( ch );
 const ci = x;
 const cj = x;
@@ -402,9 +402,7 @@ $( co );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None (except for the 1 globals expected by the test)
 
 ## Runtime Outcome
 

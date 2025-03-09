@@ -21,8 +21,10 @@ $(arr);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(``);
-$coerce(tmpCalleeParam, `string`);
-const arr /*:array*/ = [false];
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam, `string`);
+const tmpBinBothRhs$1 /*:array*/ = [];
+const tmpArrElement /*:boolean*/ = tmpBinBothRhs == tmpBinBothRhs$1;
+const arr /*:array*/ = [tmpArrElement];
 $(arr);
 `````
 
@@ -30,8 +32,8 @@ $(arr);
 (This ought to be the final result)
 
 `````js filename=intro
-$coerce($(``), `string`);
-$([false]);
+const tmpArrElement = $coerce($(``), `string`) == [];
+$([tmpArrElement]);
 `````
 
 ## Pre Normal
@@ -64,9 +66,11 @@ With rename=true
 
 `````js filename=intro
 const a = $( "" );
-$coerce( a, "string" );
-const b = [ false ];
-$( b );
+const b = $coerce( a, "string" );
+const c = [];
+const d = b == c;
+const e = [ d ];
+$( e );
 `````
 
 ## Globals
@@ -84,12 +88,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: ''
- - 2: [false]
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: ''
- - 2: [false]
- - eval returned: undefined
+Denormalized calls: Same

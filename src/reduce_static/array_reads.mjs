@@ -35,6 +35,7 @@ function _arrayReads(fdata) {
 
   let changes = 0;
 
+  // TODO: change to global name iterator
   walk(_walker, ast, 'ast');
   function _walker(node, beforeWalk, nodeType, path) {
     if (beforeWalk) return;

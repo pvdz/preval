@@ -925,7 +925,7 @@ function runTestCase(
       }
       console.log(toNormalizedResult(output.normalized));
       console.log();
-      console.log(toEvaluationResult(evalled, output.implicitGlobals, true));
+      console.log(toEvaluationResult(evalled, output.implicitGlobals, true, mdOptions.globals));
       if (isPcodeTest) {
         console.log(evalled.$pcode.join('\n'));
       }

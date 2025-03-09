@@ -72,6 +72,10 @@ const tmpBinBothRhs$23 /*:array*/ = [`a`, `b`, `c`];
 const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$23;
 const tmpBinBothRhs$25 /*:array*/ = [`a`, `b`, `c`];
 const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$25;
+const tmpBinBothRhs$27 /*:array*/ = [`a`, `b`, `c`];
+const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$27;
+const tmpBinBothRhs$29 /*:array*/ = [`a`, `b`, `c`];
+const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$29;
 const tmpBinBothRhs$35 /*:array*/ = [`a`, `b`, `c`];
 const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$35;
 const tmpBinBothRhs$37 /*:array*/ = [`a`, `b`, `c`];
@@ -93,8 +97,8 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   tmpArrElement$33,
@@ -129,6 +133,8 @@ const tmpArrElement$17 = x < [`a`, `b`, `c`];
 const tmpArrElement$19 = x > [`a`, `b`, `c`];
 const tmpArrElement$21 = x <= [`a`, `b`, `c`];
 const tmpArrElement$23 = x >= [`a`, `b`, `c`];
+const tmpArrElement$25 = x == [`a`, `b`, `c`];
+const tmpArrElement$27 = x != [`a`, `b`, `c`];
 const tmpArrElement$33 = x & [`a`, `b`, `c`];
 const tmpArrElement$35 = x ^ [`a`, `b`, `c`];
 const tmpArrElement$37 = x | [`a`, `b`, `c`];
@@ -147,8 +153,8 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   tmpArrElement$33,
@@ -326,20 +332,24 @@ const y = b <= x;
 const z = [ "a", "b", "c" ];
 const ba = b >= z;
 const bb = [ "a", "b", "c" ];
-const bc = b & bb;
+const bc = b == bb;
 const bd = [ "a", "b", "c" ];
-const be = b ^ bd;
+const be = b != bd;
 const bf = [ "a", "b", "c" ];
-const bg = b | bf;
-const bh = `${k}a,b,c`;
-const bi = [ d, f, h, j, bh, m, o, q, s, u, w, y, ba, false, true, false, true, bc, be, bg ];
-$( bi );
-const bj = [];
-const bk = [];
-const bl = b in bj;
-const bm = b instanceof bk;
-const bn = [ bl, bm ];
-$( bn );
+const bg = b & bf;
+const bh = [ "a", "b", "c" ];
+const bi = b ^ bh;
+const bj = [ "a", "b", "c" ];
+const bk = b | bj;
+const bl = `${k}a,b,c`;
+const bm = [ d, f, h, j, bl, m, o, q, s, u, w, y, ba, bc, be, false, true, bg, bi, bk ];
+$( bm );
+const bn = [];
+const bo = [];
+const bp = b in bn;
+const bq = b instanceof bo;
+const br = [ bp, bq ];
+$( br );
 `````
 
 ## Globals

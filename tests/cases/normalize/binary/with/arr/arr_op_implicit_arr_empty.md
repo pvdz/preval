@@ -13,6 +13,10 @@ There's also a test where we give preval an array without telling
 it the contents (through Array.from).
 Also a variation where the array contents is some strings or numbers.
 
+## Options
+
+- globals: x
+
 ## Input
 
 `````js filename=intro
@@ -77,9 +81,9 @@ const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
 const tmpBinLhs$23 /*:array*/ = [];
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
 const tmpBinLhs$25 /*:array*/ = [];
-const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
+const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 == x;
 const tmpBinLhs$27 /*:array*/ = [];
-const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
+const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 != x;
 const tmpBinLhs$29 /*:array*/ = [];
 const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
 const tmpBinLhs$31 /*:array*/ = [];
@@ -138,8 +142,8 @@ const tmpArrElement$17 = [] < x;
 const tmpArrElement$19 = [] > x;
 const tmpArrElement$21 = [] <= x;
 const tmpArrElement$23 = [] >= x;
-const tmpArrElement$25 = [] === x;
-const tmpArrElement$27 = [] !== x;
+const tmpArrElement$25 = [] == x;
+const tmpArrElement$27 = [] != x;
 const tmpArrElement$29 = [] === x;
 const tmpArrElement$31 = [] !== x;
 const tmpArrElement$33 = [] & x;
@@ -308,9 +312,9 @@ const w = v <= x;
 const y = [];
 const z = y >= x;
 const ba = [];
-const bb = ba === x;
+const bb = ba == x;
 const bc = [];
-const bd = bc !== x;
+const bd = bc != x;
 const be = [];
 const bf = be === x;
 const bg = [];
@@ -333,9 +337,7 @@ $( bt );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None (except for the 1 globals expected by the test)
 
 ## Runtime Outcome
 

@@ -72,6 +72,10 @@ const tmpBinBothRhs$23 /*:array*/ = [];
 const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$23;
 const tmpBinBothRhs$25 /*:array*/ = [];
 const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$25;
+const tmpBinBothRhs$27 /*:array*/ = [];
+const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$27;
+const tmpBinBothRhs$29 /*:array*/ = [];
+const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$29;
 const tmpBinBothRhs$35 /*:array*/ = [];
 const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$35;
 const tmpBinBothRhs$37 /*:array*/ = [];
@@ -92,8 +96,8 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   tmpArrElement$33,
@@ -128,6 +132,8 @@ const tmpArrElement$17 = x < [];
 const tmpArrElement$19 = x > [];
 const tmpArrElement$21 = x <= [];
 const tmpArrElement$23 = x >= [];
+const tmpArrElement$25 = x == [];
+const tmpArrElement$27 = x != [];
 const tmpArrElement$33 = x & [];
 const tmpArrElement$35 = x ^ [];
 const tmpArrElement$37 = x | [];
@@ -145,8 +151,8 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   tmpArrElement$33,
@@ -324,19 +330,23 @@ const y = b <= x;
 const z = [];
 const ba = b >= z;
 const bb = [];
-const bc = b & bb;
+const bc = b == bb;
 const bd = [];
-const be = b ^ bd;
+const be = b != bd;
 const bf = [];
-const bg = b | bf;
-const bh = [ d, f, h, j, k, m, o, q, s, u, w, y, ba, false, true, false, true, bc, be, bg ];
-$( bh );
-const bi = [];
+const bg = b & bf;
+const bh = [];
+const bi = b ^ bh;
 const bj = [];
-const bk = b in bi;
-const bl = b instanceof bj;
-const bm = [ bk, bl ];
-$( bm );
+const bk = b | bj;
+const bl = [ d, f, h, j, k, m, o, q, s, u, w, y, ba, bc, be, false, true, bg, bi, bk ];
+$( bl );
+const bm = [];
+const bn = [];
+const bo = b in bm;
+const bp = b instanceof bn;
+const bq = [ bo, bp ];
+$( bq );
 `````
 
 ## Globals
@@ -357,20 +367,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Inverse input result (there was at least one mismatch even though actual test evalled equal):
- - 1: 0
- - 2: [1, 0, NaN, NaN, '0', 0, 0, 0, 0, false, false, true, true, true, false, false, true, 0, 0, 0]
- - eval returned: ("<crash[ Right-hand side of 'instanceof' is not callable ]>")
-
-Output inverse calls: BAD!!
- - 1: 0
- - 2: [1, 0, NaN, NaN, '0', 0, 0, 0, 0, false, false, true, true, false, true, false, true, 0, 0, 0]
- - eval returned: ("<crash[ Right-hand side of 'instanceof' is not callable ]>")
-
-
-
-Denormalized inverse calls: BAD!!
- - 1: 0
- - 2: [1, 0, NaN, NaN, '0', 0, 0, 0, 0, false, false, true, true, false, true, false, true, 0, 0, 0]
- - eval returned: ("<crash[ Right-hand side of 'instanceof' is not callable ]>")

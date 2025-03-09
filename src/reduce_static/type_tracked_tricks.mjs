@@ -30,7 +30,7 @@ import {
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode } from '../ast.mjs';
-import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 
 export function typeTrackedTricks(fdata) {
@@ -650,57 +650,126 @@ function _typeTrackedTricks(fdata) {
             // In all other cases at least one side is a primitive and the other side is coerced to one if it isn't too
             const lp = AST.isPrimitive(left);
             const rp = AST.isPrimitive(right);
+            const lt = lp ? AST.getPrimitiveType(left) : undefined;
+            const rt = rp ? AST.getPrimitiveType(right) : undefined;
 
-            if (lp && !rp && node.right.type === 'Identifier') {
+            if (lp && rp && lt === rt) {
+              rule('Weak comparison when left and right are same type is strict comparison');
+              example('+x == +y', '+x === +y');
+              before(node);
+
+              mustBeValue = node.operator !== '==';
+            }
+            else if (lp && !rp && node.right.type === 'Identifier') {
               const pv = AST.getPrimitiveValue(node.left);
               // We can assert a few cases using the .typing data
               const meta = fdata.globallyUniqueNamingRegistry.get(node.right.name);
-              if (meta.isConstant || meta.isBuiltin) {
-                if (pv == null && meta.typing.mustBeType && meta.typing.mustBeType !== 'primitive') {
-                  ASSERT(
-                    meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
-                    'already confirmed not to be a primitive',
-                  );
-                  // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
-                  // So as long as that's not the values it can't match.
-                  mustBeValue = node.operator !== '==';
-                }
+              if (pv == null && PRIMITIVE_TYPE_NAMES_TYPEOF.has(meta.typing.mustBeType)) {
+                ASSERT(
+                  meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
+                  'already confirmed not to be a primitive',
+                );
+                // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
+                // So as long as that's not the values it can't match.
+                mustBeValue = node.operator !== '==';
+              }
+              else if (pv == null && ['object', 'array', 'set', 'map', 'regex', 'function'].includes(meta.typing.mustBeType)) {
+                rule('Comparing a null with an object type always results in false');
+                example('null == []', 'false', () => node.operator === '==');
+                before(node);
+
+                // This is comparing object-types which is the same as using strict comparison so we should change to that
+                // (A binary expression must always be an rhs, expression, or init, so no index)
+                parentNode[parentProp] = AST.primitive(node.operator !== '==');
+
+                after(node);
+                ++changes;
               }
             }
+            else if (!lp && rp && node.left.type === 'Identifier') {
 
-            if (!lp && rp && node.left.type === 'Identifier') {
               const pv = AST.getPrimitiveValue(node.right);
               // We can assert a few cases using the .typing data
               const meta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
-              if (meta.isConstant || meta.isBuiltin) {
-                if (pv == null && meta.typing.mustBeType && meta.typing.mustBeType !== 'primitive') {
-                  ASSERT(
-                    meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
-                    'already confirmed not to be a primitive',
-                  );
-                  // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
-                  // So as long as that's not the values it can't match.
-                  mustBeValue = node.operator !== '==';
-                }
+
+              if (pv == null && PRIMITIVE_TYPE_NAMES_TYPEOF.has(meta.typing.mustBeType)) {
+                ASSERT(
+                  meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
+                  'already confirmed not to be a primitive',
+                );
+                // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
+                // So as long as that's not the values it can't match.
+                mustBeValue = node.operator !== '==';
+              }
+              else if (pv == null && ['object', 'array', 'set', 'map', 'regex', 'function'].includes(meta.typing.mustBeType)) {
+                rule('Comparing a null with an object type always results in false');
+                example('null == []', 'false', () => node.operator === '==');
+                before(node);
+
+                // This is comparing object-types which is the same as using strict comparison so we should change to that
+                // (A binary expression must always be an rhs, expression, or init, so no index)
+                parentNode[parentProp] = AST.primitive(node.operator !== '==');
+
+                after(node);
+                ++changes;
               }
             }
 
             if (!lp && !rp) {
-              // We know that when both sides are object but of a different kind, that the result is false
-              // But we may as well consolidate that logic inside the strict comparison handlers. So we just delegate here.
-              rule('When we know each side of a weak comparison must be an object of sorts, use strong comparisons instead');
-              example('[] == []', '[] === []', () => node.operator === '==');
-              example('[] != []', '[] !== []', () => node.operator === '!=');
-              before(node);
+              // We can assert a few cases using the .typing data
+              const lmeta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
+              const rmeta = fdata.globallyUniqueNamingRegistry.get(node.right.name);
 
-              // This is comparing object-types which is the same as using strict comparison so we should change to that
-              node.operator = node.operator === '==' ? '===' : '!==';
+              if (
+                PRIMITIVE_TYPE_NAMES_TYPEOF.has(lmeta.typing.mustBeType) &&
+                PRIMITIVE_TYPE_NAMES_TYPEOF.has(rmeta.typing.mustBeType) &&
+                lmeta.typing.mustBeType === rmeta.typing.mustBeType
+              ) {
+                // We know that when both sides are object but of a different kind, that the result is false
+                // But we may as well consolidate that logic inside the strict comparison handlers. So we just delegate here.
+                rule('When we know each side of a weak comparison must be the same certain primitive, use strong comparisons instead');
+                example('+x == +y', '+x === +y');
+                before(node);
 
-              after(node);
-              ++changes;
+                // This is comparing object-types which is the same as using strict comparison so we should change to that
+                mustBeValue = node.operator !== '==';
+              }
+              else if (
+                lmeta.typing.mustBeType === rmeta.typing.mustBeType &&
+                ['object', 'array', 'set', 'map', 'regex', 'function'].includes(lmeta.typing.mustBeType)
+              ) {
+                // We know that when both sides are object but of a different kind, that the result is false
+                // But we may as well consolidate that logic inside the strict comparison handlers. So we just delegate here.
+                rule('When we know each side of a weak comparison must be an object of sorts, use strong comparisons instead');
+                example('[] == []', '[] === []', () => node.operator === '==');
+                example('[] != []', '[] !== []', () => node.operator === '!=');
+                before(node);
+
+                // This is comparing object-types which is the same as using strict comparison so we should change to that
+                mustBeValue = node.operator !== '==';
+              }
+              else if (
+                lmeta.typing.mustBeType !== rmeta.typing.mustBeType &&
+                ['object', 'array', 'set', 'map', 'regex', 'function'].includes(lmeta.typing.mustBeType) &&
+                ['object', 'array', 'set', 'map', 'regex', 'function'].includes(rmeta.typing.mustBeType)
+              ) {
+                // We know that when both sides are object but of a different kind, that the result is false
+                // But we may as well consolidate that logic inside the strict comparison handlers. So we just delegate here.
+                rule('When we know each side of a weak comparison must be an object of sorts but not the same type, the result is always false');
+                example('[] == {}', 'false');
+                before(node);
+
+                // This is comparing object-types which is the same as using strict comparison so we should change to that
+                // (A binary expression must always be an rhs, expression, or init, so no index)
+                parentNode[parentProp] = AST.primitive(node.operator !== '==');
+
+                after(node);
+                ++changes;
+              }
             }
 
             break;
+
           case '+': {
             let lit;
             let val;

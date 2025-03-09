@@ -43,6 +43,12 @@ Not sure this is very useful to configure to other values but you can set this t
 
 It seeds a consistent prng such that test cases always have the same outcome but each call to Math.random() still gets a different value. It uses the simple xorshift algorithm to generate numbers, which is totally fine for this use case.
 
+- globals: x y z
+
+This way you can ignore implicit globals. If your test includes any implicit globals and you don't care about them, you can squash them getting reported.
+
+This helps clean up test cases and find BAD cases more easily.
+
 ## Ref tracking test
 
 The special ref tracking mode stops the run after the first phase1 pass.

@@ -288,6 +288,5 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- switch me to ref tracking
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_slice

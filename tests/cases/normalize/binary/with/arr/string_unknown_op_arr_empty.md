@@ -71,6 +71,10 @@ const tmpBinBothRhs$23 /*:array*/ = [];
 const tmpArrElement$21 /*:boolean*/ = tmpBinBothRhs <= tmpBinBothRhs$23;
 const tmpBinBothRhs$25 /*:array*/ = [];
 const tmpArrElement$23 /*:boolean*/ = tmpBinBothRhs >= tmpBinBothRhs$25;
+const tmpBinBothRhs$27 /*:array*/ = [];
+const tmpArrElement$25 /*:boolean*/ = tmpBinBothRhs == tmpBinBothRhs$27;
+const tmpBinBothRhs$29 /*:array*/ = [];
+const tmpArrElement$27 /*:boolean*/ = tmpBinBothRhs != tmpBinBothRhs$29;
 const tmpBinBothRhs$35 /*:array*/ = [];
 const tmpArrElement$33 /*:number*/ = tmpBinBothRhs & tmpBinBothRhs$35;
 const tmpBinBothRhs$37 /*:array*/ = [];
@@ -91,8 +95,8 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   tmpArrElement$33,
@@ -125,6 +129,8 @@ const tmpArrElement$17 = tmpBinBothRhs < [];
 const tmpArrElement$19 = tmpBinBothRhs > [];
 const tmpArrElement$21 = tmpBinBothRhs <= [];
 const tmpArrElement$23 = tmpBinBothRhs >= [];
+const tmpArrElement$25 = tmpBinBothRhs == [];
+const tmpArrElement$27 = tmpBinBothRhs != [];
 const tmpArrElement$33 = tmpBinBothRhs & [];
 const tmpArrElement$35 = tmpBinBothRhs ^ [];
 const tmpArrElement$37 = tmpBinBothRhs | [];
@@ -142,8 +148,8 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   tmpArrElement$33,
@@ -322,19 +328,23 @@ const x = b <= w;
 const y = [];
 const z = b >= y;
 const ba = [];
-const bb = b & ba;
+const bb = b == ba;
 const bc = [];
-const bd = b ^ bc;
+const bd = b != bc;
 const be = [];
-const bf = b | be;
-const bg = [ d, f, h, j, b, l, n, p, r, t, v, x, z, false, true, false, true, bb, bd, bf ];
-$( bg );
-const bh = [];
+const bf = b & be;
+const bg = [];
+const bh = b ^ bg;
 const bi = [];
-const bj = b in bh;
-const bk = b instanceof bi;
-const bl = [ bj, bk ];
-$( bl );
+const bj = b | bi;
+const bk = [ d, f, h, j, b, l, n, p, r, t, v, x, z, bb, bd, false, true, bf, bh, bj ];
+$( bk );
+const bl = [];
+const bm = [];
+const bn = b in bl;
+const bo = b instanceof bm;
+const bp = [ bn, bo ];
+$( bp );
 `````
 
 ## Globals
@@ -352,12 +362,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: ''
- - 2: [1, 0, NaN, NaN, '', 0, 0, 0, 0, false, false, true, true, false, true, false, true, 0, 0, 0]
- - eval returned: ("<crash[ Right-hand side of 'instanceof' is not callable ]>")
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: ''
- - 2: [1, 0, NaN, NaN, '', 0, 0, 0, 0, false, false, true, true, false, true, false, true, 0, 0, 0]
- - eval returned: ("<crash[ Right-hand side of 'instanceof' is not callable ]>")
+Denormalized calls: Same

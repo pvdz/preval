@@ -58,7 +58,8 @@ export function fromMarkdownCase(md, fname, config) {
         intro: md,
       },
     };
-  } else if (md[0] === '/' && md[1] === '/') {
+  }
+  else if (md[0] === '/' && md[1] === '/') {
     console.log('Converting new case in', fname, 'to an actual test case');
     // Assume new test case
     return {
@@ -83,17 +84,24 @@ export function fromMarkdownCase(md, fname, config) {
         intro: md.slice(md.indexOf('\n')),
       },
     };
-  } else if (md[0] === '#') {
+  }
+  else if (md[0] === '#') {
     const [mdHead, ...chunks] = md.split('\n## ').filter((s) => !s.startsWith('Eval\n'));
     const mdInput = chunks.filter((s) => s.startsWith('Input\n'))[0];
     const blk = (chunks.filter((s) => s.startsWith('Options\n'))[0] ?? '').trim();
-    const mdOptions = Array.from(blk.matchAll(/^ *- *(\w+)(?:=(.+))?$/gm)).reduce(
+    const mdOptions = Array.from(blk.matchAll(/^ *- *(\w+)(?: *[:=] *(.+))?$/gm)).reduce(
       (options, match) => {
         let [, name, value] = match;
         name = name.trim();
         switch (name.trim()) {
-          case 'maxPass':
+          case 'globals': {
+            // Globals to ignore when reporting implicit globals
+            // Space delimited list
+            value = value.split(' ').map(s => s.trim()).filter(Boolean);
+            break;
+          }
           case 'cloneLimit':
+          case 'maxPass':
             value = parseInt(value.trim());
             if (isNaN(value)) throw new Error('Test case contained invalid value for `' + name + '` (' + value + ')');
             break;
@@ -167,7 +175,8 @@ export function fromMarkdownCase(md, fname, config) {
     if (!fin?.length) throw new Error('Invalid test case');
 
     return testCase;
-  } else {
+  }
+  else {
     throw new Error('Invalid test case? Does not start with `//` nor `#`: ' + fname);
   }
 }
@@ -216,7 +225,7 @@ export function toNormalizedResult(obj) {
   );
 }
 
-export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
+export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsToIgnore = []) {
   function printStack(stack) {
     ASSERT(stack, 'missing stack...?');
     return stack
@@ -262,11 +271,27 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
     ? ''
     : (input_invOutput !== settled_invOutput ? '\n\nDenormalized inverse calls: BAD!!\n' + denorm_invOutput + '\n'  : '');
 
+  const globalsLeft = new Set(implicitGlobals);
+  const ignoresLeft = globalsToIgnore.slice(0);
+  if (globalsToIgnore) {
+    for (const name of globalsLeft) {
+      const pos = ignoresLeft.indexOf(name);
+      if (pos >= 0) {
+        ignoresLeft.splice(pos, 1);
+        globalsLeft.delete(name);
+      }
+    }
+  }
+
   return (
     '\n\n## Globals\n\n' +
-    (implicitGlobals.size > 0
-      ? 'BAD@! Found ' + implicitGlobals.size + ' implicit global bindings:\n\n' + [...implicitGlobals].join(', ')
-      : 'None') +
+    (globalsLeft.size > 0
+      ? 'BAD@! Found ' + globalsLeft.size + ' implicit global bindings:\n\n' + [...globalsLeft].join(', ')
+      : 'None' + (implicitGlobals.size ? ' (except for the ' + implicitGlobals.size + ' globals expected by the test)' : '')) +
+    (ignoresLeft.size > 0
+      ? '\n\nBAD@@! Test expected ' + ignoresLeft.size + ' implicit global bindings that were not seen:\n\n' + [...ignoresLeft].join(', ') + '\n'
+      : ''
+    ) +
     '\n\n## Runtime Outcome\n\n' +
     'Should call `$` with:\n' +
     inputOutput +
@@ -403,7 +428,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
           ? '\n\nRef tracking result:\n\n' + createOpenRefsState(output.globallyUniqueNamingRegistry)
           : wasPcodeTest
           ? evalled.$pcode + '\n'
-          : toEvaluationResult(evalled, output.implicitGlobals, false)
+          : toEvaluationResult(evalled, output.implicitGlobals, false, mdOptions.globals)
       ) +
       (todos.size ?
         '\nTodos triggered:\n' +

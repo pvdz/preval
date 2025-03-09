@@ -24,7 +24,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [`object`, false, NaN, NaN, `object`, undefined];
+const arr /*:array*/ = [-1, false, NaN, NaN, `object`, undefined];
 $(arr);
 `````
 
@@ -32,7 +32,7 @@ $(arr);
 (This ought to be the final result)
 
 `````js filename=intro
-$([`object`, false, NaN, NaN, `object`, undefined]);
+$([-1, false, NaN, NaN, `object`, undefined]);
 `````
 
 ## Pre Normal
@@ -66,7 +66,7 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-const a = [ "object", false, NaN, NaN, "object", undefined ];
+const a = [ -1, false, NaN, NaN, "object", undefined ];
 $( a );
 `````
 
@@ -84,10 +84,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: ['object', false, NaN, NaN, 'object', undefined]
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: ['object', false, NaN, NaN, 'object', undefined]
- - eval returned: undefined
+Denormalized calls: Same

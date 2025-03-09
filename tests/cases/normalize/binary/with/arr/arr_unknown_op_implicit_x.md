@@ -12,6 +12,10 @@ type based transforms.
 This is different from the literal case because those can be
 resolved, and at some point hopefully it will.
 
+## Options
+
+- globals: x
+
 ## Input
 
 `````js filename=intro
@@ -112,11 +116,11 @@ const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
 const tmpCalleeParam$53 /*:array*/ = [];
 const tmpCalleeParam$51 /*:unknown*/ = $(tmpCalleeParam$53);
 const tmpBinLhs$25 /*:array*/ = $Array_from(tmpCalleeParam$51);
-const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
+const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 == x;
 const tmpCalleeParam$57 /*:array*/ = [];
 const tmpCalleeParam$55 /*:unknown*/ = $(tmpCalleeParam$57);
 const tmpBinLhs$27 /*:array*/ = $Array_from(tmpCalleeParam$55);
-const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
+const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 != x;
 const tmpCalleeParam$61 /*:array*/ = [];
 const tmpCalleeParam$59 /*:unknown*/ = $(tmpCalleeParam$61);
 const tmpBinLhs$29 /*:array*/ = $Array_from(tmpCalleeParam$59);
@@ -216,8 +220,8 @@ const tmpArrElement$17 = $Array_from($([])) < x;
 const tmpArrElement$19 = $Array_from($([])) > x;
 const tmpArrElement$21 = $Array_from($([])) <= x;
 const tmpArrElement$23 = $Array_from($([])) >= x;
-const tmpArrElement$25 = $Array_from($([])) === x;
-const tmpArrElement$27 = $Array_from($([])) !== x;
+const tmpArrElement$25 = $Array_from($([])) == x;
+const tmpArrElement$27 = $Array_from($([])) != x;
 const tmpArrElement$29 = $Array_from($([])) === x;
 const tmpArrElement$31 = $Array_from($([])) !== x;
 const tmpArrElement$33 = $Array_from($([])) & x;
@@ -510,11 +514,11 @@ const ca = bz >= x;
 const cb = [];
 const cc = $( cb );
 const cd = $Array_from( cc );
-const ce = cd === x;
+const ce = cd == x;
 const cf = [];
 const cg = $( cf );
 const ch = $Array_from( cg );
-const ci = ch !== x;
+const ci = ch != x;
 const cj = [];
 const ck = $( cj );
 const cl = $Array_from( ck );
@@ -572,9 +576,7 @@ $( ef );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None (except for the 1 globals expected by the test)
 
 ## Runtime Outcome
 

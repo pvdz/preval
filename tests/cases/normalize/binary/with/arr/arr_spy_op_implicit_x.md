@@ -13,6 +13,10 @@ There's also a test where we give preval an array without telling
 it the contents (through Array.from).
 Also a variation where the array contents is empty or some numbers.
 
+## Options
+
+- globals: x
+
 ## Input
 
 `````js filename=intro
@@ -92,10 +96,10 @@ const tmpBinLhs$23 /*:array*/ = [tmpArrElement$63];
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
 const tmpArrElement$65 /*:unknown*/ = $(`== operator`);
 const tmpBinLhs$25 /*:array*/ = [tmpArrElement$65];
-const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
+const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 == x;
 const tmpArrElement$67 /*:unknown*/ = $(`!= operator`);
 const tmpBinLhs$27 /*:array*/ = [tmpArrElement$67];
-const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
+const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 != x;
 const tmpArrElement$69 /*:unknown*/ = $(`=== operator`);
 const tmpBinLhs$29 /*:array*/ = [tmpArrElement$69];
 const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
@@ -175,9 +179,9 @@ const tmpArrElement$21 = [tmpArrElement$61] <= x;
 const tmpArrElement$63 = $(`>= operator`);
 const tmpArrElement$23 = [tmpArrElement$63] >= x;
 const tmpArrElement$65 = $(`== operator`);
-const tmpArrElement$25 = [tmpArrElement$65] === x;
+const tmpArrElement$25 = [tmpArrElement$65] == x;
 const tmpArrElement$67 = $(`!= operator`);
-const tmpArrElement$27 = [tmpArrElement$67] !== x;
+const tmpArrElement$27 = [tmpArrElement$67] != x;
 const tmpArrElement$69 = $(`=== operator`);
 const tmpArrElement$29 = [tmpArrElement$69] === x;
 const tmpArrElement$71 = $(`!== operator`);
@@ -390,10 +394,10 @@ const bm = [ bl ];
 const bn = bm >= x;
 const bo = $( "== operator" );
 const bp = [ bo ];
-const bq = bp === x;
+const bq = bp == x;
 const br = $( "!= operator" );
 const bs = [ br ];
-const bt = bs !== x;
+const bt = bs != x;
 const bu = $( "=== operator" );
 const bv = [ bu ];
 const bw = bv === x;
@@ -423,9 +427,7 @@ $( cq );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None (except for the 1 globals expected by the test)
 
 ## Runtime Outcome
 

@@ -2179,6 +2179,8 @@ export function complexExpressionNodeMightSpy(node, fdata) {
   // Assume `node` is in a normalized state.
   // Can inspect meta.typing.mustBeType for info
 
+  vlog('complexExpressionNodeMightSpy(', node.type, ')');
+
   // A given node may represent an observable action if, aside from the thing the node explicitly
   // does, it may also trigger function calls as a side effect. In any way. Like getters and setters.
   // This means either the operation is safe, or any bindings used in the operation is a constant
@@ -2231,6 +2233,7 @@ export function complexExpressionNodeMightSpy(node, fdata) {
         }
       }
 
+      // TODO: I think this can be dropped now that we convert global Math.xyz to symbo()
       if (
         node.callee.type === 'MemberExpression' &&
         node.callee.object.type === 'Identifier' &&
@@ -2308,7 +2311,10 @@ export function complexExpressionNodeMightSpy(node, fdata) {
       // TODO: stuff when we have enough information to guarantee the operation to unobservable
       // Some operators are unobservable. Most require the operands to be unobservable.
 
-      if (['===', '!==', 'in', 'instanceof'].includes(node.operator)) return false;
+      if (['===', '!==', 'in', 'instanceof'].includes(node.operator)) {
+        // Check implicit globals. They may trigger ref errors.
+        return simpleNodeMightSpy(node.left, fdata, true) || simpleNodeMightSpy(node.right, fdata, true);
+      }
       return simpleNodeMightSpy(node.left, fdata) || simpleNodeMightSpy(node.right, fdata);
     }
     case 'Literal': {
@@ -2343,9 +2349,10 @@ export function complexExpressionNodeMightSpy(node, fdata) {
 
   return true;
 }
-function simpleNodeMightSpy(node, fdata) {
+function simpleNodeMightSpy(node, fdata, onlyReference = false) {
   ASSERT(!isComplexNode(node));
   if (node.type !== 'Identifier') {
+    if (onlyReference) return false; // Non-idents must be literals of sorts in normalized code. Nothing in that ballpark can trigger spies.
     return !isPrimitive(node);
   }
 
@@ -2355,9 +2362,10 @@ function simpleNodeMightSpy(node, fdata) {
   // Answer the question whether this ident may call another function when it gets coerced to a certain type.
 
   const meta = fdata.globallyUniqueNamingRegistry.get(name);
+  if (meta.isImplicitGlobal) return true; // implicit globals can be anything
+  if (onlyReference) return false; // Something like Boolean(x) can not trigger spies on x, only TDZ/ref errors.
   if (meta.isBuiltin) return name === 'undefined' || name === 'NaN' || name === 'Infinity'; // TODO: perhaps this is `true` in all cases?
   if (!meta.isConstant) return true;
-  if (meta.isImplicitGlobal) return true;
   if (!meta.typing.mustBeType) return true; // if we don't know the type we don't know anything
 
   // If this is a primitive then the user cannot observe this action

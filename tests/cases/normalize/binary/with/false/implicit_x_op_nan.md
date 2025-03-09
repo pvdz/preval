@@ -59,11 +59,11 @@ const tmpArrElement$21 /*:boolean*/ = x <= false;
 const tmpArrElement$23 /*:boolean*/ = x >= false;
 const tmpArrElement$25 /*:boolean*/ = x == false;
 const tmpArrElement$27 /*:boolean*/ = x != false;
+const tmpArrElement$29 /*:boolean*/ = x === false;
+const tmpArrElement$31 /*:boolean*/ = x !== false;
 x ** 0;
 const tmpArrElement$35 /*:number*/ = x ^ 0;
 const tmpArrElement$37 /*:number*/ = x | 0;
-const tmpArrElement$29 /*:boolean*/ = x === false;
-const tmpArrElement$31 /*:boolean*/ = x !== false;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -112,11 +112,11 @@ const tmpArrElement$21 = x <= false;
 const tmpArrElement$23 = x >= false;
 const tmpArrElement$25 = x == false;
 const tmpArrElement$27 = x != false;
+const tmpArrElement$29 = x === false;
+const tmpArrElement$31 = x !== false;
 x ** 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
-const tmpArrElement$29 = x === false;
-const tmpArrElement$31 = x !== false;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -248,12 +248,12 @@ const l = x <= false;
 const m = x >= false;
 const n = x == false;
 const o = x != false;
+const p = x === false;
+const q = x !== false;
 x ** 0;
-const p = x ^ 0;
-const q = x | 0;
-const r = x === false;
-const s = x !== false;
-const t = [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, r, s, 0, p, q ];
+const r = x ^ 0;
+const s = x | 0;
+const t = [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, 0, r, s ];
 $( t );
 const u = x in false;
 const v = x instanceof false;

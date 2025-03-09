@@ -69,21 +69,21 @@ const tmpBinLhs$21 /*:regex*/ = /foo/g;
 const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
 const tmpBinLhs$23 /*:regex*/ = /foo/g;
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
+const tmpBinLhs$25 /*:regex*/ = /foo/g;
+const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
+const tmpBinLhs$27 /*:regex*/ = /foo/g;
+const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
+const tmpBinLhs$29 /*:regex*/ = /foo/g;
+const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
+const tmpBinLhs$31 /*:regex*/ = /foo/g;
+const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const tmpBinLhs$33 /*:regex*/ = /foo/g;
 const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
 const tmpBinLhs$35 /*:regex*/ = /foo/g;
 const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
 const tmpBinLhs$37 /*:regex*/ = /foo/g;
 const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
-const tmpBinLhs$25 /*:regex*/ = /foo/g;
-const tmpBinLhs$27 /*:regex*/ = /foo/g;
-const tmpBinLhs$29 /*:regex*/ = /foo/g;
-const tmpBinLhs$31 /*:regex*/ = /foo/g;
 const tmpArrElement$7 /*:string*/ = `/foo/g${tmpStringConcatL}`;
-const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
-const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
-const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
-const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -108,8 +108,8 @@ const arr /*:array*/ = [
 ];
 $(arr);
 const tmpBinLhs$39 /*:regex*/ = /foo/g;
-const tmpBinLhs$41 /*:regex*/ = /foo/g;
 const tmpArrElement$39 /*:boolean*/ = tmpBinLhs$39 in x;
+const tmpBinLhs$41 /*:regex*/ = /foo/g;
 const tmpArrElement$41 /*:boolean*/ = tmpBinLhs$41 instanceof x;
 const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
@@ -132,18 +132,14 @@ const tmpArrElement$17 = /foo/g < x;
 const tmpArrElement$19 = /foo/g > x;
 const tmpArrElement$21 = /foo/g <= x;
 const tmpArrElement$23 = /foo/g >= x;
+const tmpArrElement$25 = /foo/g === x;
+const tmpArrElement$27 = /foo/g !== x;
+const tmpArrElement$29 = /foo/g === x;
+const tmpArrElement$31 = /foo/g !== x;
 const tmpArrElement$33 = /foo/g & x;
 const tmpArrElement$35 = /foo/g ^ x;
 const tmpArrElement$37 = /foo/g | x;
-const tmpBinLhs$25 = /foo/g;
-const tmpBinLhs$27 = /foo/g;
-const tmpBinLhs$29 = /foo/g;
-const tmpBinLhs$31 = /foo/g;
 const tmpArrElement$7 = `/foo/g${tmpStringConcatL}`;
-const tmpArrElement$25 = tmpBinLhs$25 === x;
-const tmpArrElement$27 = tmpBinLhs$27 !== x;
-const tmpArrElement$29 = tmpBinLhs$29 === x;
-const tmpArrElement$31 = tmpBinLhs$31 !== x;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -166,10 +162,8 @@ $([
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
-const tmpBinLhs$39 = /foo/g;
-const tmpBinLhs$41 = /foo/g;
-const tmpArrElement$39 = tmpBinLhs$39 in x;
-const tmpArrElement$41 = tmpBinLhs$41 instanceof x;
+const tmpArrElement$39 = /foo/g in x;
+const tmpArrElement$41 = /foo/g instanceof x;
 $([tmpArrElement$39, tmpArrElement$41]);
 `````
 
@@ -309,27 +303,27 @@ const w = v <= x;
 const y = /foo/g;
 const z = y >= x;
 const ba = /foo/g;
-const bb = ba & x;
+const bb = ba === x;
 const bc = /foo/g;
-const bd = bc ^ x;
+const bd = bc !== x;
 const be = /foo/g;
-const bf = be | x;
+const bf = be === x;
 const bg = /foo/g;
-const bh = /foo/g;
+const bh = bg !== x;
 const bi = /foo/g;
-const bj = /foo/g;
-const bk = `/foo/g${i}`;
-const bl = bg === x;
-const bm = bh !== x;
-const bn = bi === x;
-const bo = bj !== x;
-const bp = [ b, d, f, h, bk, k, m, o, q, s, u, w, z, bl, bm, bn, bo, bb, bd, bf ];
+const bj = bi & x;
+const bk = /foo/g;
+const bl = bk ^ x;
+const bm = /foo/g;
+const bn = bm | x;
+const bo = `/foo/g${i}`;
+const bp = [ b, d, f, h, bo, k, m, o, q, s, u, w, z, bb, bd, bf, bh, bj, bl, bn ];
 $( bp );
 const bq = /foo/g;
-const br = /foo/g;
-const bs = bq in x;
-const bt = br instanceof x;
-const bu = [ bs, bt ];
+const br = bq in x;
+const bs = /foo/g;
+const bt = bs instanceof x;
+const bu = [ br, bt ];
 $( bu );
 `````
 

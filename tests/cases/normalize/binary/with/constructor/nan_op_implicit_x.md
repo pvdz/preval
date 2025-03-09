@@ -57,14 +57,14 @@ const tmpArrElement$17 /*:boolean*/ = `function String() { [native code] }` < x;
 const tmpArrElement$19 /*:boolean*/ = `function String() { [native code] }` > x;
 const tmpArrElement$21 /*:boolean*/ = `function String() { [native code] }` <= x;
 const tmpArrElement$23 /*:boolean*/ = `function String() { [native code] }` >= x;
-x ** 0;
-const tmpArrElement$35 /*:number*/ = 0 ^ x;
-const tmpArrElement$37 /*:number*/ = 0 | x;
-const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
 const tmpArrElement$25 /*:boolean*/ = String === x;
 const tmpArrElement$27 /*:boolean*/ = String !== x;
 const tmpArrElement$29 /*:boolean*/ = String === x;
 const tmpArrElement$31 /*:boolean*/ = String !== x;
+x ** 0;
+const tmpArrElement$35 /*:number*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ = 0 | x;
+const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
 const arr /*:array*/ = [
   NaN,
   NaN,
@@ -111,14 +111,14 @@ const tmpArrElement$17 = `function String() { [native code] }` < x;
 const tmpArrElement$19 = `function String() { [native code] }` > x;
 const tmpArrElement$21 = `function String() { [native code] }` <= x;
 const tmpArrElement$23 = `function String() { [native code] }` >= x;
-x ** 0;
-const tmpArrElement$35 = 0 ^ x;
-const tmpArrElement$37 = 0 | x;
-const tmpArrElement$7 = `function String() { [native code] }${tmpStringConcatL}`;
 const tmpArrElement$25 = String === x;
 const tmpArrElement$27 = String !== x;
 const tmpArrElement$29 = String === x;
 const tmpArrElement$31 = String !== x;
+x ** 0;
+const tmpArrElement$35 = 0 ^ x;
+const tmpArrElement$37 = 0 | x;
+const tmpArrElement$7 = `function String() { [native code] }${tmpStringConcatL}`;
 $([
   NaN,
   NaN,
@@ -254,15 +254,15 @@ const e = "function String() { [native code] }" < x;
 const f = "function String() { [native code] }" > x;
 const g = "function String() { [native code] }" <= x;
 const h = "function String() { [native code] }" >= x;
+const i = String === x;
+const j = String !== x;
+const k = String === x;
+const l = String !== x;
 x ** 0;
-const i = 0 ^ x;
-const j = 0 | x;
-const k = `function String() { [native code] }${a}`;
-const l = String === x;
-const m = String !== x;
-const n = String === x;
-const o = String !== x;
-const p = [ NaN, NaN, NaN, NaN, k, NaN, b, c, d, e, f, g, h, l, m, n, o, 0, i, j ];
+const m = 0 ^ x;
+const n = 0 | x;
+const o = `function String() { [native code] }${a}`;
+const p = [ NaN, NaN, NaN, NaN, o, NaN, b, c, d, e, f, g, h, i, j, k, l, 0, m, n ];
 $( p );
 const q = String in x;
 const r = String instanceof x;

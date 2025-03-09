@@ -59,11 +59,11 @@ const tmpArrElement$21 /*:boolean*/ = -Infinity <= x;
 const tmpArrElement$23 /*:boolean*/ = -Infinity >= x;
 const tmpArrElement$25 /*:boolean*/ = -Infinity == x;
 const tmpArrElement$27 /*:boolean*/ = -Infinity != x;
+const tmpArrElement$29 /*:boolean*/ = -Infinity === x;
+const tmpArrElement$31 /*:boolean*/ = -Infinity !== x;
 x ** 0;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
-const tmpArrElement$29 /*:boolean*/ = -Infinity === x;
-const tmpArrElement$31 /*:boolean*/ = -Infinity !== x;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -112,11 +112,11 @@ const tmpArrElement$21 = -Infinity <= x;
 const tmpArrElement$23 = -Infinity >= x;
 const tmpArrElement$25 = -Infinity == x;
 const tmpArrElement$27 = -Infinity != x;
+const tmpArrElement$29 = -Infinity === x;
+const tmpArrElement$31 = -Infinity !== x;
 x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
-const tmpArrElement$29 = -Infinity === x;
-const tmpArrElement$31 = -Infinity !== x;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -248,12 +248,12 @@ const l = -Infinity <= x;
 const m = -Infinity >= x;
 const n = -Infinity == x;
 const o = -Infinity != x;
+const p = -Infinity === x;
+const q = -Infinity !== x;
 x ** 0;
-const p = 0 ^ x;
-const q = 0 | x;
-const r = -Infinity === x;
-const s = -Infinity !== x;
-const t = [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, r, s, 0, p, q ];
+const r = 0 ^ x;
+const s = 0 | x;
+const t = [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, 0, r, s ];
 $( t );
 const u = -Infinity in x;
 const v = -Infinity instanceof x;

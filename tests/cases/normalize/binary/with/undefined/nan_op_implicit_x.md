@@ -59,11 +59,11 @@ const tmpArrElement$21 /*:boolean*/ = undefined <= x;
 const tmpArrElement$23 /*:boolean*/ = undefined >= x;
 const tmpArrElement$25 /*:boolean*/ = undefined == x;
 const tmpArrElement$27 /*:boolean*/ = undefined != x;
+const tmpArrElement$29 /*:boolean*/ = undefined === x;
+const tmpArrElement$31 /*:boolean*/ = undefined !== x;
 x ** 0;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
-const tmpArrElement$29 /*:boolean*/ = undefined === x;
-const tmpArrElement$31 /*:boolean*/ = undefined !== x;
 const arr /*:array*/ = [
   NaN,
   NaN,
@@ -112,11 +112,11 @@ const tmpArrElement$21 = undefined <= x;
 const tmpArrElement$23 = undefined >= x;
 const tmpArrElement$25 = undefined == x;
 const tmpArrElement$27 = undefined != x;
+const tmpArrElement$29 = undefined === x;
+const tmpArrElement$31 = undefined !== x;
 x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
-const tmpArrElement$29 = undefined === x;
-const tmpArrElement$31 = undefined !== x;
 $([
   NaN,
   NaN,
@@ -253,12 +253,12 @@ const g = undefined <= x;
 const h = undefined >= x;
 const i = undefined == x;
 const j = undefined != x;
+const k = undefined === x;
+const l = undefined !== x;
 x ** 0;
-const k = 0 ^ x;
-const l = 0 | x;
-const m = undefined === x;
-const n = undefined !== x;
-const o = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, e, f, g, h, i, j, m, n, 0, k, l ];
+const m = 0 ^ x;
+const n = 0 | x;
+const o = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, e, f, g, h, i, j, k, l, 0, m, n ];
 $( o );
 const p = undefined in x;
 const q = undefined instanceof x;

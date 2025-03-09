@@ -70,20 +70,20 @@ const tmpBinLhs$21 /*:object*/ = {};
 const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
 const tmpBinLhs$23 /*:object*/ = {};
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
+const tmpBinLhs$25 /*:object*/ = {};
+const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
+const tmpBinLhs$27 /*:object*/ = {};
+const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
+const tmpBinLhs$29 /*:object*/ = {};
+const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
+const tmpBinLhs$31 /*:object*/ = {};
+const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const tmpBinLhs$33 /*:object*/ = {};
 const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
 const tmpBinLhs$35 /*:object*/ = {};
 const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
 const tmpBinLhs$37 /*:object*/ = {};
 const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
-const tmpBinLhs$25 /*:object*/ = {};
-const tmpBinLhs$27 /*:object*/ = {};
-const tmpBinLhs$29 /*:object*/ = {};
-const tmpBinLhs$31 /*:object*/ = {};
-const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
-const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
-const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
-const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -108,8 +108,8 @@ const arr /*:array*/ = [
 ];
 $(arr);
 const tmpBinLhs$39 /*:object*/ = {};
-const tmpBinLhs$41 /*:object*/ = {};
 const tmpArrElement$39 /*:boolean*/ = tmpBinLhs$39 in x;
+const tmpBinLhs$41 /*:object*/ = {};
 const tmpArrElement$41 /*:boolean*/ = tmpBinLhs$41 instanceof x;
 const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
@@ -132,17 +132,13 @@ const tmpArrElement$17 = {} < x;
 const tmpArrElement$19 = {} > x;
 const tmpArrElement$21 = {} <= x;
 const tmpArrElement$23 = {} >= x;
+const tmpArrElement$25 = {} === x;
+const tmpArrElement$27 = {} !== x;
+const tmpArrElement$29 = {} === x;
+const tmpArrElement$31 = {} !== x;
 const tmpArrElement$33 = {} & x;
 const tmpArrElement$35 = {} ^ x;
 const tmpArrElement$37 = {} | x;
-const tmpBinLhs$25 = {};
-const tmpBinLhs$27 = {};
-const tmpBinLhs$29 = {};
-const tmpBinLhs$31 = {};
-const tmpArrElement$25 = tmpBinLhs$25 === x;
-const tmpArrElement$27 = tmpBinLhs$27 !== x;
-const tmpArrElement$29 = tmpBinLhs$29 === x;
-const tmpArrElement$31 = tmpBinLhs$31 !== x;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -165,10 +161,8 @@ $([
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
-const tmpBinLhs$39 = {};
-const tmpBinLhs$41 = {};
-const tmpArrElement$39 = tmpBinLhs$39 in x;
-const tmpArrElement$41 = tmpBinLhs$41 instanceof x;
+const tmpArrElement$39 = {} in x;
+const tmpArrElement$41 = {} instanceof x;
 $([tmpArrElement$39, tmpArrElement$41]);
 `````
 
@@ -309,26 +303,26 @@ const y = w <= x;
 const z = {};
 const ba = z >= x;
 const bb = {};
-const bc = bb & x;
+const bc = bb === x;
 const bd = {};
-const be = bd ^ x;
+const be = bd !== x;
 const bf = {};
-const bg = bf | x;
+const bg = bf === x;
 const bh = {};
-const bi = {};
+const bi = bh !== x;
 const bj = {};
-const bk = {};
-const bl = bh === x;
-const bm = bi !== x;
-const bn = bj === x;
-const bo = bk !== x;
-const bp = [ b, d, f, h, j, l, n, p, r, t, v, y, ba, bl, bm, bn, bo, bc, be, bg ];
+const bk = bj & x;
+const bl = {};
+const bm = bl ^ x;
+const bn = {};
+const bo = bn | x;
+const bp = [ b, d, f, h, j, l, n, p, r, t, v, y, ba, bc, be, bg, bi, bk, bm, bo ];
 $( bp );
 const bq = {};
-const br = {};
-const bs = bq in x;
-const bt = br instanceof x;
-const bu = [ bs, bt ];
+const br = bq in x;
+const bs = {};
+const bt = bs instanceof x;
+const bu = [ br, bt ];
 $( bu );
 `````
 

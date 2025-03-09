@@ -6,6 +6,13 @@
 >
 > Deal with certain primitive with binary ops
 
+In this variant we tell preval that array is an empty array
+so it will probably end up resolving most of these trivial
+cases.
+There's also a test where we give preval an array without telling
+it the contents (through Array.from).
+Also a variation where the array contents is some strings or numbers.
+
 ## Input
 
 `````js filename=intro
@@ -69,20 +76,20 @@ const tmpBinLhs$21 /*:array*/ = [];
 const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
 const tmpBinLhs$23 /*:array*/ = [];
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
+const tmpBinLhs$25 /*:array*/ = [];
+const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
+const tmpBinLhs$27 /*:array*/ = [];
+const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
+const tmpBinLhs$29 /*:array*/ = [];
+const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
+const tmpBinLhs$31 /*:array*/ = [];
+const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const tmpBinLhs$33 /*:array*/ = [];
 const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
 const tmpBinLhs$35 /*:array*/ = [];
 const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
 const tmpBinLhs$37 /*:array*/ = [];
 const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
-const tmpBinLhs$25 /*:array*/ = [];
-const tmpBinLhs$27 /*:array*/ = [];
-const tmpBinLhs$29 /*:array*/ = [];
-const tmpBinLhs$31 /*:array*/ = [];
-const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
-const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
-const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
-const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -107,8 +114,8 @@ const arr /*:array*/ = [
 ];
 $(arr);
 const tmpBinLhs$39 /*:array*/ = [];
-const tmpBinLhs$41 /*:array*/ = [];
 const tmpArrElement$39 /*:boolean*/ = tmpBinLhs$39 in x;
+const tmpBinLhs$41 /*:array*/ = [];
 const tmpArrElement$41 /*:boolean*/ = tmpBinLhs$41 instanceof x;
 const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
@@ -131,17 +138,13 @@ const tmpArrElement$17 = [] < x;
 const tmpArrElement$19 = [] > x;
 const tmpArrElement$21 = [] <= x;
 const tmpArrElement$23 = [] >= x;
+const tmpArrElement$25 = [] === x;
+const tmpArrElement$27 = [] !== x;
+const tmpArrElement$29 = [] === x;
+const tmpArrElement$31 = [] !== x;
 const tmpArrElement$33 = [] & x;
 const tmpArrElement$35 = [] ^ x;
 const tmpArrElement$37 = [] | x;
-const tmpBinLhs$25 = [];
-const tmpBinLhs$27 = [];
-const tmpBinLhs$29 = [];
-const tmpBinLhs$31 = [];
-const tmpArrElement$25 = tmpBinLhs$25 === x;
-const tmpArrElement$27 = tmpBinLhs$27 !== x;
-const tmpArrElement$29 = tmpBinLhs$29 === x;
-const tmpArrElement$31 = tmpBinLhs$31 !== x;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -164,10 +167,8 @@ $([
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
-const tmpBinLhs$39 = [];
-const tmpBinLhs$41 = [];
-const tmpArrElement$39 = tmpBinLhs$39 in x;
-const tmpArrElement$41 = tmpBinLhs$41 instanceof x;
+const tmpArrElement$39 = [] in x;
+const tmpArrElement$41 = [] instanceof x;
 $([tmpArrElement$39, tmpArrElement$41]);
 `````
 
@@ -307,26 +308,26 @@ const w = v <= x;
 const y = [];
 const z = y >= x;
 const ba = [];
-const bb = ba & x;
+const bb = ba === x;
 const bc = [];
-const bd = bc ^ x;
+const bd = bc !== x;
 const be = [];
-const bf = be | x;
+const bf = be === x;
 const bg = [];
-const bh = [];
+const bh = bg !== x;
 const bi = [];
-const bj = [];
-const bk = bg === x;
-const bl = bh !== x;
-const bm = bi === x;
-const bn = bj !== x;
-const bo = [ b, d, f, h, i, k, m, o, q, s, u, w, z, bk, bl, bm, bn, bb, bd, bf ];
+const bj = bi & x;
+const bk = [];
+const bl = bk ^ x;
+const bm = [];
+const bn = bm | x;
+const bo = [ b, d, f, h, i, k, m, o, q, s, u, w, z, bb, bd, bf, bh, bj, bl, bn ];
 $( bo );
 const bp = [];
-const bq = [];
-const br = bp in x;
-const bs = bq instanceof x;
-const bt = [ br, bs ];
+const bq = bp in x;
+const br = [];
+const bs = br instanceof x;
+const bt = [ bq, bs ];
 $( bt );
 `````
 

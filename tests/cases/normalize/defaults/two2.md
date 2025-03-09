@@ -57,10 +57,11 @@ const inner /*:()=>unknown*/ = function () {
   }
 };
 inner();
-inner();
 if ($) {
+  inner();
   $(undefined);
 } else {
+  $(undefined);
 }
 `````
 
@@ -78,8 +79,10 @@ const inner = function () {
   }
 };
 inner();
-inner();
 if ($) {
+  inner();
+  $(undefined);
+} else {
   $(undefined);
 }
 `````
@@ -171,8 +174,11 @@ const c = function() {
   }
 };
 c();
-c();
 if ($) {
+  c();
+  $( undefined );
+}
+else {
   $( undefined );
 }
 `````

@@ -747,7 +747,7 @@ export function phaseNormalOnce(fdata) {
         // cases (and/or default) after it until the first case that breaks the control flow, or the
         // last case if none break. The default will properly apply its behavior in the same way.
 
-        rule('Switch transform, part 2');
+        rule('Switch transform, the long version');
         example(
           'switch (x) { case a(): b(); break; default: c(); case d(): e(); }',
           'let i = 1; if (x === a()) i = 0; else if (x === d()) i = 2; label: { if (i <= 0) b(); break label; if (i <= 1) c(); if (i <= 2) e(); }',

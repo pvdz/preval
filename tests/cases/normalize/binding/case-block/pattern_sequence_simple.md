@@ -22,16 +22,17 @@ $(x, y, z);
 `````js filename=intro
 const tmpSwitchDisc /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
-$(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
+  $(1);
   $(2);
-  const z /*:array*/ = [10, 20, 30];
   const arrPatternSplat /*:array*/ = [...z];
   arrPatternSplat[0];
   arrPatternSplat[1];
   $(1, 2, z);
 } else {
+  $(1, 2, z);
 }
 `````
 
@@ -39,15 +40,16 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpSwitchDisc = $(`a`);
-const tmpBinBothRhs = $(`a`);
-$(1);
-if (tmpSwitchDisc === tmpBinBothRhs) {
+const tmpIfTest = $(`a`) === $(`a`);
+const z = [10, 20, 30];
+if (tmpIfTest) {
+  $(1);
   $(2);
-  const z = [10, 20, 30];
   const arrPatternSplat = [...z];
   arrPatternSplat[0];
   arrPatternSplat[1];
+  $(1, 2, z);
+} else {
   $(1, 2, z);
 }
 `````
@@ -106,14 +108,17 @@ With rename=true
 `````js filename=intro
 const a = $( "a" );
 const b = $( "a" );
-$( 1 );
 const c = a === b;
+const d = [ 10, 20, 30 ];
 if (c) {
+  $( 1 );
   $( 2 );
-  const d = [ 10, 20, 30 ];
   const e = [ ...d ];
   e[ 0 ];
   e[ 1 ];
+  $( 1, 2, d );
+}
+else {
   $( 1, 2, d );
 }
 `````

@@ -78,13 +78,14 @@ function _ifTestMerging(fdata) {
     const parentIndex = pathIndexes[pathIndexes.length - 1];
 
     rule('When both branches of an If start with the same statement except for true/false cases, merge them to before the If with a Boolean(test)');
-    example('if (x) f(true); else f(false);', 'const b = Boolean(x); f(b); if (x) ; else ;');
-    example('if (x) f(false); else f(true);', 'const b = !x; f(b); if (x) ; else ;');
+    example('if (x) { f(true); p; } else { f(false); q; }', 'const b = Boolean(x); f(b); if (x) { p } else { q }');
+    example('if (x) { f(false); p; } else { f(true); q; }', 'const b = !x; f(b); if (x) { p } else { q }');
     before(parentNode.body[parentIndex], node);
 
     // Now move consequent statement[0] to before the If, remove the first statements from each branch. Replace all collected occurrences in A with the test.
     parentNode.body.splice(parentIndex, 0, node.consequent.body.shift());
     node.alternate.body.shift();
+
     if (collect.length) {
       const needInverse = collect.some(({a}) => a.value === false);
       const tmpName = createFreshVar('tmpBool', fdata);
@@ -95,12 +96,7 @@ function _ifTestMerging(fdata) {
       );
       parentNode.body.splice(parentIndex, 0, tmpNode);
       collect.forEach(({ap, prop}) => {
-        if (ap[prop].type === 'Property') {
-          // Special case for object expression properties
-          ap[prop].value = AST.identifier(tmpName);
-        } else {
-          ap[prop] = AST.identifier(tmpName);
-        }
+        ap[prop] = AST.identifier(tmpName);
       });
     }
 

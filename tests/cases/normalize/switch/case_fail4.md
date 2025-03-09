@@ -1,12 +1,10 @@
 # Preval test case
 
-# empty_fallthrough_cases.md
+# case_fail4.md
 
-> Normalize > Switch > Empty fallthrough cases
+> Normalize > Switch > Case fail4
 >
 > Do cases spy
-
-Existing test: regression? the second spy is dropped
 
 ## Input
 
@@ -24,10 +22,11 @@ $();
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 const tmpBinLhs /*:unknown*/ = $spy(0);
-$();
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
+  $();
 } else {
+  $spy(1);
   $();
 }
 `````
@@ -37,9 +36,10 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-const tmpBinLhs = $spy(0);
-$();
-if (!(tmpBinLhs === tmpSwitchValue)) {
+if ($spy(0) === tmpSwitchValue) {
+  $();
+} else {
+  $spy(1);
   $();
 }
 `````
@@ -93,12 +93,12 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $spy( 0 );
-$();
 const c = b === a;
 if (c) {
-
+  $();
 }
 else {
+  $spy( 1 );
   $();
 }
 `````
@@ -120,16 +120,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 1
- - 2: 'Creating spy', 1, 1, [0, 0]
- - 3: 
- - 4: 
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 1
- - 2: 'Creating spy', 1, 1, [0, 0]
- - 3: 
- - 4: 
- - eval returned: undefined
+Denormalized calls: Same

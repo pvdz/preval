@@ -85,13 +85,14 @@ function isSameExpressionExceptBool(nodeA, nodeB, collect, ap, bp, prop) {
       );
     }
     case 'CallExpression': {
+      if (nodeA.callee.type !== nodeB.callee.type) return false;
+      if (!isSameExpressionExceptBool(nodeA.callee, nodeB.callee, collect, nodeA, nodeB, 'callee')) return false;
+      if (nodeA['arguments'].length !== nodeB['arguments'].length) return false;
       return nodeA['arguments'].every((anodeA, i) => {
         const anodeB = nodeB['arguments'][i];
-        if (!anodeA && !anodeB) return true;
-        if (!nodeA || !anodeB) return false;
         if (anodeA.type !== anodeB.type) return false;
-        if (anodeA.type === 'SpreadElement') return isSameExpressionExceptBool(anodeA.argument, anodeB.argument, collect, nodeA, nodeB, 'argument');
-        return isSameExpressionExceptBool(anodeA, anodeB, collect, nodeA['arguments'], nodeB['arguments'], i); // meh. passing on an array
+        if (anodeA.type === 'SpreadElement') return isSameExpressionExceptBool(anodeA.argument, anodeB.argument, collect, anodeA, anodeB, 'argument');
+        return isSameExpressionExceptBool(anodeA, anodeB, collect, nodeA['arguments'], nodeB['arguments'], i);
       });
     }
     case 'MemberExpression': {
@@ -148,7 +149,7 @@ function isSameExpressionExceptBool(nodeA, nodeB, collect, ap, bp, prop) {
         if (pnodeA.computed !== pnodeB.computed) return false;
         if (pnodeA.computed) {
           if (AST.isBoolean(pnodeA.key)) return false; // Either this comes back (`{[true]:x}` becomes `{true: x}`) or it's a mismatch.
-          if (!isSameExpressionExceptBool(pnodeA.key, pnodeB.key, collect, nodeA.properties, nodeB.properties, i)) return false;
+          if (!isSameExpressionExceptBool(pnodeA.key, pnodeB.key, collect, pnodeA, pnodeB, 'key')) return false;
         } else if (pnodeA.key.type === 'Identifier') {
           if (pnodeA.key.name !== pnodeB.key.name) return false;
         } else {
@@ -157,7 +158,7 @@ function isSameExpressionExceptBool(nodeA, nodeB, collect, ap, bp, prop) {
         }
         vlog('- key', i,'is equal:', pnodeA.key);
         // Key ok. Now check value.
-        const r = isSameExpressionExceptBool(pnodeA.value, pnodeB.value, collect, nodeA.properties, nodeB.properties, i);
+        const r = isSameExpressionExceptBool(pnodeA.value, pnodeB.value, collect, pnodeA, pnodeB, 'value');
         vlog('- value equal?', r);
         return r;
       });

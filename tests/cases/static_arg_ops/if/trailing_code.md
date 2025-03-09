@@ -50,8 +50,8 @@ if ($) {
     $();
     return undefined;
   };
-  g_t();
   if ($) {
+    g_t();
     g_f();
     g_t();
     g_f();
@@ -60,6 +60,7 @@ if ($) {
     g_t();
     $(undefined);
   } else {
+    $(undefined);
   }
 } else {
 }
@@ -80,14 +81,16 @@ if ($) {
     $(x);
     $();
   };
-  g_t();
   if ($) {
+    g_t();
     g_f();
     g_t();
     g_f();
     g_f();
     g_t();
     g_t();
+    $(undefined);
+  } else {
     $(undefined);
   }
 }
@@ -182,14 +185,17 @@ if ($) {
     $();
     return undefined;
   };
-  b();
   if ($) {
+    b();
     c();
     b();
     c();
     c();
     b();
     b();
+    $( undefined );
+  }
+  else {
     $( undefined );
   }
 }

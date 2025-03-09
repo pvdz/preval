@@ -1,8 +1,8 @@
 # Preval test case
 
-# callhoist2.md
+# auto_ident_logic_ll_simple_complex2.md
 
-> Tofix > callhoist2
+> Normalize > Expressions > Assignments > For c > Auto ident logic ll simple complex2
 
 The $(a); can be hoisted into the if-else and then the if-branch gets $(0)
 while the else-branch gets the const a decl.
@@ -195,3 +195,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- switch me to ref tracking

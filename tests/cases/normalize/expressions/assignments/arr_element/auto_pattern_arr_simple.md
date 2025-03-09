@@ -73,3 +73,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- Be explicit in allowing or rejecting an array usage with parent type is SpreadElement

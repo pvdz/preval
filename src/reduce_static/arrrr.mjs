@@ -206,7 +206,6 @@ function processAttempt(fdata, queue) {
         }
         return;
       }
-
       if (read.parentNode.type === 'MemberExpression' && read.grandNode.type === 'AssignmentExpression' && read.grandProp !== 'right') {
         vlog(' - At least one read was part of a property write, array mutates, bailing');
         sawMutatedOnce = true;
@@ -510,7 +509,13 @@ function processAttempt(fdata, queue) {
 
               const arr = arrNode.elements.map((enode) => (enode ? AST.getPrimitiveValue(enode) : undefined));
 
-              const finalNode = AST.primitive(op === '+' ? +arr : op === '-' ? -arr : op === '!' ? !arr : typeof arr);
+              const finalNode = AST.primitive({
+                '+': () => +arr,
+                '-': () => -arr,
+                '~': () => ~arr,
+                '!': () => !arr,
+                typeof: () => typeof arr,
+              }[op]());
 
               if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
               else read.grandNode[read.grandProp][read.grandIndex] = finalNode;

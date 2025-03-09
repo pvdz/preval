@@ -36,19 +36,17 @@ $(closure());
 `````js filename=intro
 const x /*:unknown*/ = $(100);
 $(x);
-let tmpClusterSSA_x /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
   $(0);
   const tmpReturnArg$1 /*:unknown*/ = $(2);
-  tmpClusterSSA_x = tmpReturnArg$1;
+  $(tmpReturnArg$1);
   $(tmpReturnArg$1);
 } else {
   const tmpReturnArg /*:unknown*/ = $(1);
-  tmpClusterSSA_x = tmpReturnArg;
+  $(tmpReturnArg);
   $(tmpReturnArg);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Denormalized
@@ -56,18 +54,16 @@ $(tmpClusterSSA_x);
 
 `````js filename=intro
 $($(100));
-let tmpClusterSSA_x = undefined;
 if ($()) {
   $(0);
   const tmpReturnArg$1 = $(2);
-  tmpClusterSSA_x = tmpReturnArg$1;
+  $(tmpReturnArg$1);
   $(tmpReturnArg$1);
 } else {
   const tmpReturnArg = $(1);
-  tmpClusterSSA_x = tmpReturnArg;
+  $(tmpReturnArg);
   $(tmpReturnArg);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Pre Normal
@@ -129,20 +125,18 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 $( a );
-let b = undefined;
-const c = $();
-if (c) {
+const b = $();
+if (b) {
   $( 0 );
-  const d = $( 2 );
-  b = d;
-  $( d );
+  const c = $( 2 );
+  $( c );
+  $( c );
 }
 else {
-  const e = $( 1 );
-  b = e;
-  $( e );
+  const d = $( 1 );
+  $( d );
+  $( d );
 }
-$( b );
 `````
 
 ## Globals

@@ -111,9 +111,10 @@ if (tmpIfTest) {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
+  $(tmpNestedPropAssignRhs, b, c, d, e);
 } else {
+  $(a, b, c, d, e);
 }
-$(a, b, c, d, e);
 `````
 
 ## PST Settled

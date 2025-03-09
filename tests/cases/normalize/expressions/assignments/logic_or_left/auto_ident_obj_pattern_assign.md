@@ -65,11 +65,13 @@ y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, x, y);
 } else {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, x, y);
 }
-$(tmpCalleeParam);
-$(a, x, y);
 `````
 
 ## PST Settled

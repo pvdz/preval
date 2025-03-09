@@ -59,6 +59,8 @@ if (tmpIfTest) {
         break;
       }
     }
+    $(`after (unreachable)`);
+    $(undefined);
   } else {
     const x /*:unknown*/ = tmpForInNext.value;
     $(`loop`, x);
@@ -66,9 +68,9 @@ if (tmpIfTest) {
     throw tmpThrowArg;
   }
 } else {
+  $(`after (unreachable)`);
+  $(undefined);
 }
-$(`after (unreachable)`);
-$(undefined);
 `````
 
 ## Denormalized
@@ -95,14 +97,17 @@ if ($(true)) {
         break;
       }
     }
+    $(`after (unreachable)`);
+    $(undefined);
   } else {
     $(`loop`, tmpForInNext.value);
     const tmpThrowArg = $(7, `throw`);
     throw tmpThrowArg;
   }
+} else {
+  $(`after (unreachable)`);
+  $(undefined);
 }
-$(`after (unreachable)`);
-$(undefined);
 `````
 
 ## Pre Normal
@@ -213,6 +218,8 @@ if (a) {
         break;
       }
     }
+    $( "after (unreachable)" );
+    $( undefined );
   }
   else {
     const m = d.value;
@@ -221,8 +228,10 @@ if (a) {
     throw n;
   }
 }
-$( "after (unreachable)" );
-$( undefined );
+else {
+  $( "after (unreachable)" );
+  $( undefined );
+}
 `````
 
 ## Globals

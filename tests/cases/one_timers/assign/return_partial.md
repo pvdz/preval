@@ -42,12 +42,15 @@ $(x);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(`a`);
+  $(`c`);
+  $(undefined);
+  $(undefined);
 } else {
   $(`b`);
+  $(`c`);
+  $(undefined);
+  $(undefined);
 }
-$(`c`);
-$(undefined);
-$(undefined);
 `````
 
 ## Denormalized
@@ -57,12 +60,15 @@ $(undefined);
 $($(100));
 if ($(1)) {
   $(`a`);
+  $(`c`);
+  $(undefined);
+  $(undefined);
 } else {
   $(`b`);
+  $(`c`);
+  $(undefined);
+  $(undefined);
 }
-$(`c`);
-$(undefined);
-$(undefined);
 `````
 
 ## Pre Normal
@@ -136,13 +142,16 @@ $( a );
 const b = $( 1 );
 if (b) {
   $( "a" );
+  $( "c" );
+  $( undefined );
+  $( undefined );
 }
 else {
   $( "b" );
+  $( "c" );
+  $( undefined );
+  $( undefined );
 }
-$( "c" );
-$( undefined );
-$( undefined );
 `````
 
 ## Globals

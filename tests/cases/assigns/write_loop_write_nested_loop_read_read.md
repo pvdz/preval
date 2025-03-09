@@ -38,9 +38,10 @@ while (true) {
           break;
         }
       }
+      $(tmpClusterSSA_x);
     } else {
+      $(tmpClusterSSA_x);
     }
-    $(tmpClusterSSA_x);
   } else {
     break;
   }
@@ -62,8 +63,10 @@ while (true) {
           break;
         }
       }
+      $(tmpClusterSSA_x);
+    } else {
+      $(tmpClusterSSA_x);
     }
-    $(tmpClusterSSA_x);
   } else {
     break;
   }
@@ -129,8 +132,11 @@ while (true) {
           break;
         }
       }
+      $( b );
     }
-    $( b );
+    else {
+      $( b );
+    }
   }
   else {
     break;

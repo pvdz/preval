@@ -74,13 +74,14 @@ const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
 } else {
   const tmpObjLitVal$1 = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal$1 };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;

@@ -36,9 +36,10 @@ while (true) {
           break;
         }
       }
+      $(`keep`);
     } else {
+      $(`keep`);
     }
-    $(`keep`);
   } else {
     break;
   }
@@ -58,8 +59,10 @@ while (true) {
           break;
         }
       }
+      $(`keep`);
+    } else {
+      $(`keep`);
     }
-    $(`keep`);
   } else {
     break;
   }
@@ -124,8 +127,11 @@ while (true) {
           break;
         }
       }
+      $( "keep" );
     }
-    $( "keep" );
+    else {
+      $( "keep" );
+    }
   }
   else {
     break;

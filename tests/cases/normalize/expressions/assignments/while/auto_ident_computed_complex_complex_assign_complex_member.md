@@ -20,6 +20,7 @@ $(a, b);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
@@ -27,7 +28,6 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -37,21 +37,23 @@ if (tmpNestedAssignPropRhs) {
     const tmpCompProp$1 /*:unknown*/ = $(`d`);
     const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
     tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    a = tmpNestedAssignPropRhs$1;
     if (tmpNestedAssignPropRhs$1) {
     } else {
       break;
     }
   }
+  $(a, b);
 } else {
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
@@ -59,7 +61,6 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while (true) {
     $(100);
@@ -69,13 +70,15 @@ if (tmpNestedAssignPropRhs) {
     const tmpCompProp$1 = $(`d`);
     const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
     tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    a = tmpNestedAssignPropRhs$1;
     if (!tmpNestedAssignPropRhs$1) {
       break;
     }
   }
+  $(a, b);
+} else {
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Pre Normal
@@ -117,27 +120,27 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = {
+let a = undefined;
+const b = {
   c: 10,
   d: 20,
 };
-const b = $( a );
-const c = $( "c" );
-const d = $( a );
-const e = $( "d" );
-const f = d[ e ];
-b[c] = f;
-let g = f;
-if (f) {
+const c = $( b );
+const d = $( "c" );
+const e = $( b );
+const f = $( "d" );
+const g = e[ f ];
+c[d] = g;
+if (g) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const h = $( a );
+    const h = $( b );
     const i = $( "c" );
-    const j = $( a );
+    const j = $( b );
     const k = $( "d" );
     const l = j[ k ];
     h[i] = l;
-    g = l;
+    a = l;
     if (l) {
 
     }
@@ -145,8 +148,11 @@ if (f) {
       break;
     }
   }
+  $( a, b );
 }
-$( g, a );
+else {
+  $( g, b );
+}
 `````
 
 ## Globals

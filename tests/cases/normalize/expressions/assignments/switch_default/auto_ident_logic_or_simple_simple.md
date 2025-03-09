@@ -56,10 +56,11 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 a = 0;
 if (a) {
+  $(a);
 } else {
   a = 2;
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

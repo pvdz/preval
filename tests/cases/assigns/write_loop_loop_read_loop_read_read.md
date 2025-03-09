@@ -29,6 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x, `inner`);
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
+    $(x, `middle`);
   } else {
     while ($LOOP_UNROLL_10) {
       $(x, `inner`);
@@ -38,8 +39,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       } else {
       }
     }
+    $(x, `middle`);
   }
-  $(x, `middle`);
 }
 `````
 
@@ -50,15 +51,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const x = $(10);
 while (true) {
   $(x, `inner`);
-  if (!$(true)) {
+  if ($(true)) {
+    $(x, `middle`);
+  } else {
     while (true) {
       $(x, `inner`);
       if ($(true)) {
         break;
       }
     }
+    $(x, `middle`);
   }
-  $(x, `middle`);
 }
 `````
 
@@ -104,7 +107,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a, "inner" );
   const b = $( true );
   if (b) {
-
+    $( a, "middle" );
   }
   else {
     while ($LOOP_UNROLL_10) {
@@ -114,8 +117,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
         break;
       }
     }
+    $( a, "middle" );
   }
-  $( a, "middle" );
 }
 `````
 

@@ -25,21 +25,23 @@ $(x);
 
 `````js filename=intro
 $(10);
+let x /*:unknown*/ = undefined;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpClusterSSA_x /*:unknown*/ = $(20);
+  const tmpClusterSSA_x /*:unknown*/ = $(20);
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
+    $(tmpClusterSSA_x);
   } else {
     while ($LOOP_UNROLL_10) {
-      tmpClusterSSA_x = $(20);
+      x = $(20);
       const tmpIfTest$1 /*:unknown*/ = $(true);
       if (tmpIfTest$1) {
         break;
       } else {
       }
     }
+    $(x);
   }
-  $(tmpClusterSSA_x);
 }
 `````
 
@@ -48,17 +50,20 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 $(10);
+let x = undefined;
 while (true) {
-  let tmpClusterSSA_x = $(20);
-  if (!$(true)) {
+  const tmpClusterSSA_x = $(20);
+  if ($(true)) {
+    $(tmpClusterSSA_x);
+  } else {
     while (true) {
-      tmpClusterSSA_x = $(20);
+      x = $(20);
       if ($(true)) {
         break;
       }
     }
+    $(x);
   }
-  $(tmpClusterSSA_x);
 }
 `````
 
@@ -100,22 +105,23 @@ With rename=true
 
 `````js filename=intro
 $( 10 );
+let a = undefined;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let a = $( 20 );
-  const b = $( true );
-  if (b) {
-
+  const b = $( 20 );
+  const c = $( true );
+  if (c) {
+    $( b );
   }
   else {
     while ($LOOP_UNROLL_10) {
       a = $( 20 );
-      const c = $( true );
-      if (c) {
+      const d = $( true );
+      if (d) {
         break;
       }
     }
+    $( a );
   }
-  $( a );
 }
 `````
 

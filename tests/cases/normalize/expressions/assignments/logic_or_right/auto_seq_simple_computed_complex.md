@@ -23,13 +23,14 @@ let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
+  $(1);
 } else {
   const tmpObjLitVal /*:unknown*/ = $(1);
   const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(1);
 }
-$(1);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
@@ -44,13 +45,14 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
+  $(1);
 } else {
   const tmpObjLitVal = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(1);
 }
-$(1);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
@@ -74,14 +76,16 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(1);
 } else {
   const tmpObjLitVal = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(1);
 }
-$(tmpCalleeParam);
-$(1);
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
@@ -102,14 +106,15 @@ let a = {
 const b = $( 100 );
 if (b) {
   $( b );
+  $( 1 );
 }
 else {
   const c = $( 1 );
   const d = { b: c };
   a = d;
   $( d );
+  $( 1 );
 }
-$( 1 );
 const e = $( "b" );
 const f = $( 2 );
 a[e] = f;

@@ -28,14 +28,16 @@ if (tmpSwitchDisc) {
   tmpSwitchDisc = $(tmpCalleeParam$1);
 } else {
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpSwitchDisc) {
+  $(100);
+  $(a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   $(tmpCalleeParam$3);
+  $(100);
+  $(a);
 }
-$(100);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -46,11 +48,15 @@ let tmpSwitchDisc = $($(1));
 if (tmpSwitchDisc) {
   tmpSwitchDisc = $($(1));
 }
-if (!tmpSwitchDisc) {
+const a = { a: 999, b: 1000 };
+if (tmpSwitchDisc) {
+  $(100);
+  $(a);
+} else {
   $($(2));
+  $(100);
+  $(a);
 }
-$(100);
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -81,12 +87,14 @@ if (tmpSwitchDisc) {
 } else {
 }
 if (tmpSwitchDisc) {
+  $(100);
+  $(a);
 } else {
   const tmpCalleeParam$3 = $(2);
   tmpSwitchDisc = $(tmpCalleeParam$3);
+  $(100);
+  $(a);
 }
-$(100);
-$(a);
 `````
 
 ## PST Settled
@@ -99,19 +107,20 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-if (b) {
-
-}
-else {
-  const d = $( 2 );
-  $( d );
-}
-$( 100 );
-const e = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( e );
+if (b) {
+  $( 100 );
+  $( d );
+}
+else {
+  const e = $( 2 );
+  $( e );
+  $( 100 );
+  $( d );
+}
 `````
 
 ## Globals

@@ -47,10 +47,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = new $(1);
 if (tmpIfTest) {
+  $(a);
 } else {
   $(100);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

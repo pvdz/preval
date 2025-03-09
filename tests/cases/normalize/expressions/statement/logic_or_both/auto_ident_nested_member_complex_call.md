@@ -31,7 +31,9 @@ const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (varInitAssignLhsComputedRhs$1) {
+  $(a, b, c, 3);
 } else {
   const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
@@ -40,9 +42,8 @@ if (varInitAssignLhsComputedRhs$1) {
   const varInitAssignLhsComputedRhs$3 /*:unknown*/ = $(3);
   varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs$3;
+  $(a, b, c, 3);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, c, 3);
 `````
 
 ## Denormalized
@@ -58,7 +59,10 @@ const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-if (!varInitAssignLhsComputedRhs$1) {
+const a = { a: 999, b: 1000 };
+if (varInitAssignLhsComputedRhs$1) {
+  $(a, b, c, 3);
+} else {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
   const varInitAssignLhsComputedObj$3 = $(c);
@@ -66,8 +70,8 @@ if (!varInitAssignLhsComputedRhs$1) {
   const varInitAssignLhsComputedRhs$3 = $(3);
   varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs$3;
+  $(a, b, c, 3);
 }
-$({ a: 999, b: 1000 }, b, c, 3);
 `````
 
 ## Pre Normal
@@ -100,6 +104,7 @@ const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpIfTest = varInitAssignLhsComputedRhs;
 if (tmpIfTest) {
+  $(a, b, c, d);
 } else {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
@@ -111,8 +116,8 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
   const tmpAssignComputedRhs = varInitAssignLhsComputedRhs$3;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(a, b, c, d);
 }
-$(a, b, c, d);
 `````
 
 ## PST Settled
@@ -128,23 +133,23 @@ const f = $( "y" );
 const g = $( 3 );
 e[f] = g;
 b[c] = g;
-if (g) {
-
-}
-else {
-  const h = $( a );
-  const i = $( "x" );
-  const j = $( d );
-  const k = $( "y" );
-  const l = $( 3 );
-  j[k] = l;
-  h[i] = l;
-}
-const m = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( m, a, d, 3 );
+if (g) {
+  $( h, a, d, 3 );
+}
+else {
+  const i = $( a );
+  const j = $( "x" );
+  const k = $( d );
+  const l = $( "y" );
+  const m = $( 3 );
+  k[l] = m;
+  i[j] = m;
+  $( h, a, d, 3 );
+}
 `````
 
 ## Globals

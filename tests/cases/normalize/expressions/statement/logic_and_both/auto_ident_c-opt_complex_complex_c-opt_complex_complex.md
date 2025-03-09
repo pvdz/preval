@@ -37,24 +37,27 @@ if (tmpIfTest$1) {
     tmpIfTest = tmpChainElementObject$1;
   }
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpChainElementCall$1 /*:unknown*/ = $(b);
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall$1 == null;
   if (tmpIfTest$5) {
+    $(a);
   } else {
     const tmpChainRootComputed$3 /*:unknown*/ = $(`x`);
     const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$3];
     const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject$3 == null;
     if (tmpIfTest$7) {
+      $(a);
     } else {
       const tmpChainRootComputed$5 /*:unknown*/ = $(`y`);
       tmpChainElementObject$3[tmpChainRootComputed$5];
+      $(a);
     }
   }
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -73,18 +76,25 @@ if (!(tmpChainElementCall == null)) {
     tmpIfTest = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $(b);
-  if (!(tmpChainElementCall$1 == null)) {
+  if (tmpChainElementCall$1 == null) {
+    $(a);
+  } else {
     const tmpChainRootComputed$3 = $(`x`);
     const tmpChainElementObject$3 = tmpChainElementCall$1[tmpChainRootComputed$3];
-    if (!(tmpChainElementObject$3 == null)) {
+    if (tmpChainElementObject$3 == null) {
+      $(a);
+    } else {
       const tmpChainRootComputed$5 = $(`y`);
       tmpChainElementObject$3[tmpChainRootComputed$5];
+      $(a);
     }
   }
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -131,13 +141,16 @@ if (tmpIfTest) {
     if (tmpIfTest$7) {
       const tmpChainRootComputed$5 = $(`y`);
       const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
+      $(a);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -165,30 +178,33 @@ else {
     a = j;
   }
 }
-if (a) {
-  const k = $( c );
-  const l = k == null;
-  if (l) {
-
-  }
-  else {
-    const m = $( "x" );
-    const n = k[ m ];
-    const o = n == null;
-    if (o) {
-
-    }
-    else {
-      const p = $( "y" );
-      n[ p ];
-    }
-  }
-}
-const q = {
+const k = {
   a: 999,
   b: 1000,
 };
-$( q );
+if (a) {
+  const l = $( c );
+  const m = l == null;
+  if (m) {
+    $( k );
+  }
+  else {
+    const n = $( "x" );
+    const o = l[ n ];
+    const p = o == null;
+    if (p) {
+      $( k );
+    }
+    else {
+      const q = $( "y" );
+      o[ q ];
+      $( k );
+    }
+  }
+}
+else {
+  $( k );
+}
 `````
 
 ## Globals

@@ -18,43 +18,45 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpBinBothLhs /*:unknown*/ = $(1);
   const tmpBinBothRhs /*:unknown*/ = $(2);
-  a = tmpBinBothLhs + tmpBinBothRhs;
+  let tmpClusterSSA_a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpBinBothLhs$1 /*:unknown*/ = $(1);
       const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-      a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+      tmpClusterSSA_a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
-  a = $(1) + $(2);
+  let tmpClusterSSA_a = $(1) + $(2);
   while (true) {
     if ($(1)) {
-      a = $(1) + $(2);
+      tmpClusterSSA_a = $(1) + $(2);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -92,28 +94,31 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( 1 );
-  const d = $( 2 );
-  a = c + d;
+const a = $( 1 );
+if (a) {
+  const b = $( 1 );
+  const c = $( 2 );
+  let d = b + c;
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
       const f = $( 1 );
       const g = $( 2 );
-      a = f + g;
+      d = f + g;
     }
     else {
       break;
     }
   }
+  $( d );
 }
-$( a );
+else {
+  const h = {
+    a: 999,
+    b: 1000,
+  };
+  $( h );
+}
 `````
 
 ## Globals

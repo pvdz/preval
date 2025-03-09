@@ -63,9 +63,10 @@ let x = $(35);
 const y = x | 32;
 if (y) {
   x = x ^ 32;
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

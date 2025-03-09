@@ -126,10 +126,12 @@ let g = function () {
   const y = f.call(obj, 1, 2, 3);
   if (f) {
     f = false;
+    $(y);
+    return undefined;
   } else {
+    $(y);
+    return undefined;
   }
-  $(y);
-  return undefined;
 };
 const tmpCalleeParam = g();
 $(tmpCalleeParam);

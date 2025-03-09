@@ -26,16 +26,15 @@ if (tmpNestedComplexRhs) {
   tmpNestedComplexRhs = $(tmpCalleeParam$1);
 } else {
 }
-let tmpClusterSSA_a /*:unknown*/ = undefined;
 if (tmpNestedComplexRhs) {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(undefined);
+  $(tmpNestedComplexRhs);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$3);
-  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
+  $(undefined);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 }
-$(undefined);
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -46,14 +45,14 @@ let tmpNestedComplexRhs = $($(1));
 if (tmpNestedComplexRhs) {
   tmpNestedComplexRhs = $($(1));
 }
-let tmpClusterSSA_a = undefined;
 if (tmpNestedComplexRhs) {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(undefined);
+  $(tmpNestedComplexRhs);
 } else {
-  tmpClusterSSA_a = $($(2));
+  const tmpClusterSSA_tmpNestedComplexRhs = $($(2));
+  $(undefined);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 }
-$(undefined);
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -116,17 +115,16 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-let d = undefined;
 if (b) {
-  d = b;
+  $( undefined );
+  $( b );
 }
 else {
-  const e = $( 2 );
-  const f = $( e );
-  d = f;
+  const d = $( 2 );
+  const e = $( d );
+  $( undefined );
+  $( e );
 }
-$( undefined );
-$( d );
 `````
 
 ## Globals

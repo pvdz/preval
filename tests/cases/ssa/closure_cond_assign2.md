@@ -37,25 +37,26 @@ if ($) $(f());
 `````js filename=intro
 if ($) {
   let x /*:number*/ = 0;
-  const g /*:(boolean)=>undefined*/ = function ($$0) {
-    const t /*:boolean*/ = $$0;
+  const g_t /*:()=>unknown*/ = function () {
     debugger;
-    if (t) {
-      x = x + 1;
-      $(x);
-    } else {
-      $(x);
-    }
+    x = x + 1;
+    $(x);
     $();
     return undefined;
   };
-  g(true);
-  g(false);
-  g(true);
-  g(false);
-  g(false);
-  g(true);
-  g(true);
+  const g_f /*:()=>unknown*/ = function () {
+    debugger;
+    $(x);
+    $();
+    return undefined;
+  };
+  g_t();
+  g_f();
+  g_t();
+  g_f();
+  g_f();
+  g_t();
+  g_t();
   $(undefined);
 } else {
 }
@@ -67,22 +68,22 @@ if ($) {
 `````js filename=intro
 if ($) {
   let x = 0;
-  const g = function (t) {
-    if (t) {
-      x = x + 1;
-      $(x);
-    } else {
-      $(x);
-    }
+  const g_t = function () {
+    x = x + 1;
+    $(x);
     $();
   };
-  g(true);
-  g(false);
-  g(true);
-  g(false);
-  g(false);
-  g(true);
-  g(true);
+  const g_f = function () {
+    $(x);
+    $();
+  };
+  g_t();
+  g_f();
+  g_t();
+  g_f();
+  g_f();
+  g_t();
+  g_t();
   $(undefined);
 }
 `````
@@ -126,11 +127,14 @@ let f = function () {
     debugger;
     if (t) {
       x = x + 1;
+      $(x);
+      $();
+      return undefined;
     } else {
+      $(x);
+      $();
+      return undefined;
     }
-    $(x);
-    $();
-    return undefined;
   };
   g(true);
   g(false);
@@ -154,26 +158,26 @@ With rename=true
 `````js filename=intro
 if ($) {
   let a = 0;
-  const b = function($$0 ) {
-    const c = $$0;
+  const b = function() {
     debugger;
-    if (c) {
-      a = a + 1;
-      $( a );
-    }
-    else {
-      $( a );
-    }
+    a = a + 1;
+    $( a );
     $();
     return undefined;
   };
-  b( true );
-  b( false );
-  b( true );
-  b( false );
-  b( false );
-  b( true );
-  b( true );
+  const c = function() {
+    debugger;
+    $( a );
+    $();
+    return undefined;
+  };
+  b();
+  c();
+  b();
+  c();
+  c();
+  b();
+  b();
   $( undefined );
 }
 `````

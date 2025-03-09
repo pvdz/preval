@@ -37,8 +37,8 @@ if (x) {
     $(`again`);
   }
 } else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Denormalized
@@ -51,8 +51,9 @@ if (0 < tmpBinBothRhs) {
   while (true) {
     $(`again`);
   }
+} else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Pre Normal
@@ -109,7 +110,9 @@ if (b) {
     $( "again" );
   }
 }
-$( "after" );
+else {
+  $( "after" );
+}
 `````
 
 ## Globals

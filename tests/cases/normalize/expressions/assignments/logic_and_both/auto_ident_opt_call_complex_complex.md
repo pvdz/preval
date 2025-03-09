@@ -30,21 +30,21 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementCall$1;
 }
 if (a) {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpChainElementCall$3 /*:unknown*/ = $($);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$1) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpCalleeParam$11 /*:unknown*/ = $(1);
     const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, tmpCalleeParam$11);
-    tmpNestedComplexRhs = tmpChainElementCall$5;
+    $(tmpChainElementCall$5);
+    $(tmpChainElementCall$5);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -61,17 +61,19 @@ if (!tmpIfTest) {
   tmpCalleeParam = tmpChainElementCall$1;
 }
 if (a) {
-  let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $($);
-  if (!(tmpChainElementCall$3 == null)) {
-    tmpNestedComplexRhs = $dotCall(tmpChainElementCall$3, $, undefined, $(1));
+  if (tmpChainElementCall$3 == null) {
+    $(undefined);
+    $(undefined);
+  } else {
+    const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, undefined, $(1));
+    $(tmpChainElementCall$5);
+    $(tmpChainElementCall$5);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -116,10 +118,12 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -140,24 +144,23 @@ else {
   d = f;
 }
 if (a) {
-  let g = undefined;
-  const h = $( $ );
-  const i = h == null;
-  if (i) {
-
+  const g = $( $ );
+  const h = g == null;
+  if (h) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const j = $( 1 );
-    const k = $dotCall( h, $, undefined, j );
-    g = k;
+    const i = $( 1 );
+    const j = $dotCall( g, $, undefined, i );
+    $( j );
+    $( j );
   }
-  a = g;
-  $( g );
 }
 else {
   $( d );
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

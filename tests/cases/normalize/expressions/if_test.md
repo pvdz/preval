@@ -53,9 +53,10 @@ x = tmpNestedAssignObjPatternRhs.x;
 tmpIfTest = tmpNestedAssignObjPatternRhs;
 if (tmpIfTest) {
   $(2);
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

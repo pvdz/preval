@@ -43,18 +43,20 @@ if (tmpIfTest) {
   const tmpForInNext /*:unknown*/ = tmpForInGen.next();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
+    $(`infiloop, do not eliminate`);
   } else {
     const x /*:unknown*/ = tmpForInNext.value;
     $(`loop`, x);
     const tmpIfTest$3 /*:unknown*/ = $(1);
     if (tmpIfTest$3) {
       $(`pass`);
+      $(`infiloop, do not eliminate`);
     } else {
       $(`do not visit`);
+      $(`infiloop, do not eliminate`);
     }
   }
   while ($LOOP_UNROLL_10) {
-    $(`infiloop, do not eliminate`);
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
@@ -63,23 +65,27 @@ if (tmpIfTest) {
       const tmpForInNext$1 /*:unknown*/ = tmpForInGen$1.next();
       const tmpIfTest$4 /*:unknown*/ = tmpForInNext$1.done;
       if (tmpIfTest$4) {
+        $(`infiloop, do not eliminate`);
       } else {
         const x$1 /*:unknown*/ = tmpForInNext$1.value;
         $(`loop`, x$1);
         const tmpIfTest$6 /*:unknown*/ = $(1);
         if (tmpIfTest$6) {
           $(`pass`);
+          $(`infiloop, do not eliminate`);
         } else {
           $(`do not visit`);
+          $(`infiloop, do not eliminate`);
         }
       }
     } else {
       break;
     }
   }
+  $(`after (not invoked)`);
 } else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Denormalized
@@ -89,33 +95,42 @@ $(`after (not invoked)`);
 if ($(true)) {
   $(`loop`);
   const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
-  if (!tmpForInNext.done) {
+  if (tmpForInNext.done) {
+    $(`infiloop, do not eliminate`);
+  } else {
     $(`loop`, tmpForInNext.value);
     if ($(1)) {
       $(`pass`);
+      $(`infiloop, do not eliminate`);
     } else {
       $(`do not visit`);
+      $(`infiloop, do not eliminate`);
     }
   }
   while (true) {
-    $(`infiloop, do not eliminate`);
     if ($(true)) {
       $(`loop`);
       const tmpForInNext$1 = $forIn({ a: 1, b: 2 }).next();
-      if (!tmpForInNext$1.done) {
+      if (tmpForInNext$1.done) {
+        $(`infiloop, do not eliminate`);
+      } else {
         $(`loop`, tmpForInNext$1.value);
         if ($(1)) {
           $(`pass`);
+          $(`infiloop, do not eliminate`);
         } else {
           $(`do not visit`);
+          $(`infiloop, do not eliminate`);
         }
       }
     } else {
       break;
     }
   }
+  $(`after (not invoked)`);
+} else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Pre Normal
@@ -204,7 +219,7 @@ if (a) {
   const d = c.next();
   const e = d.done;
   if (e) {
-
+    $( "infiloop, do not eliminate" );
   }
   else {
     const f = d.value;
@@ -212,13 +227,14 @@ if (a) {
     const g = $( 1 );
     if (g) {
       $( "pass" );
+      $( "infiloop, do not eliminate" );
     }
     else {
       $( "do not visit" );
+      $( "infiloop, do not eliminate" );
     }
   }
   while ($LOOP_UNROLL_10) {
-    $( "infiloop, do not eliminate" );
     const h = $( true );
     if (h) {
       $( "loop" );
@@ -230,7 +246,7 @@ if (a) {
       const k = j.next();
       const l = k.done;
       if (l) {
-
+        $( "infiloop, do not eliminate" );
       }
       else {
         const m = k.value;
@@ -238,9 +254,11 @@ if (a) {
         const n = $( 1 );
         if (n) {
           $( "pass" );
+          $( "infiloop, do not eliminate" );
         }
         else {
           $( "do not visit" );
+          $( "infiloop, do not eliminate" );
         }
       }
     }
@@ -248,8 +266,11 @@ if (a) {
       break;
     }
   }
+  $( "after (not invoked)" );
 }
-$( "after (not invoked)" );
+else {
+  $( "after (not invoked)" );
+}
 `````
 
 ## Globals

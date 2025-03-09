@@ -64,10 +64,12 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementCall = tmpChainElementObject$1.e(1);
   tmpCalleeParam$1 = tmpChainElementCall;
+  $(tmpCalleeParam, tmpChainElementCall);
+  $(a);
 } else {
+  $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
 `````
 
 ## PST Settled

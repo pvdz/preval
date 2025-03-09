@@ -69,9 +69,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainRootCall(1);
     a = tmpChainElementCall;
+    $(tmpChainElementCall);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 `````

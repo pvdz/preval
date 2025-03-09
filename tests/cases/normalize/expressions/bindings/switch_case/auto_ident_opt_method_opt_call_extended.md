@@ -83,11 +83,13 @@ if (tmpIfTest) {
     if (tmpIfTest$3) {
       const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
       a = tmpChainElementCall;
+      $(tmpChainElementCall);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 `````

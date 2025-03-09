@@ -18,40 +18,42 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(0);
-  let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
   if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   } else {
-    tmpNestedComplexRhs = 2;
+    $(2);
+    $(2);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(0)) {
   $($(100));
+  $({ a: 999, b: 1000 });
 } else {
-  let tmpNestedComplexRhs = $($(0));
-  if (!tmpNestedComplexRhs) {
-    tmpNestedComplexRhs = 2;
+  const tmpNestedComplexRhs = $($(0));
+  if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
+  } else {
+    $(2);
+    $(2);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -72,6 +74,8 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$1 = $(0);
   let tmpNestedComplexRhs = $(tmpCalleeParam$1);
@@ -81,37 +85,37 @@ if (tmpIfTest) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 0 );
-if (b) {
-  const c = $( 100 );
+const a = $( 0 );
+if (a) {
+  const b = $( 100 );
+  $( b );
+  const c = {
+    a: 999,
+    b: 1000,
+  };
   $( c );
 }
 else {
   const d = $( 0 );
-  let e = $( d );
+  const e = $( d );
   if (e) {
-
+    $( e );
+    $( e );
   }
   else {
-    e = 2;
+    $( 2 );
+    $( 2 );
   }
-  a = e;
-  $( e );
 }
-$( a );
 `````
 
 ## Globals

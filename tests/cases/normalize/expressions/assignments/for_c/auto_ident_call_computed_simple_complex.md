@@ -20,45 +20,47 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCallCompProp /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  a = b[tmpCallCompProp](1);
+  let tmpClusterSSA_a /*:unknown*/ = b[tmpCallCompProp](1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-      a = b[tmpCallCompProp$1](1);
+      tmpClusterSSA_a = b[tmpCallCompProp$1](1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpCallCompProp = $(`\$`);
   const b = { $: $ };
-  a = b[tmpCallCompProp](1);
+  let tmpClusterSSA_a = b[tmpCallCompProp](1);
   while (true) {
     if ($(1)) {
       const tmpCallCompProp$1 = $(`\$`);
-      a = b[tmpCallCompProp$1](1);
+      tmpClusterSSA_a = b[tmpCallCompProp$1](1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -98,27 +100,30 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( "$" );
-  const d = { $: $ };
-  a = d[ c ]( 1 );
+const a = $( 1 );
+if (a) {
+  const b = $( "$" );
+  const c = { $: $ };
+  let d = c[ b ]( 1 );
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
       const f = $( "$" );
-      a = d[ f ]( 1 );
+      d = c[ f ]( 1 );
     }
     else {
       break;
     }
   }
+  $( d );
 }
-$( a );
+else {
+  const g = {
+    a: 999,
+    b: 1000,
+  };
+  $( g );
+}
 `````
 
 ## Globals
@@ -166,3 +171,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- Computed method call but we dont know whats being called

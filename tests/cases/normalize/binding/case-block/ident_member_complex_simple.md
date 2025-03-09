@@ -25,9 +25,10 @@ const b /*:object*/ = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignObj /*:unknown*/ = $(b);
   tmpNestedAssignObj.x = 3;
+  $(1, b, 3);
 } else {
+  $(1, b, 3);
 }
-$(1, b, 3);
 `````
 
 ## Denormalized
@@ -39,8 +40,10 @@ const b = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignObj = $(b);
   tmpNestedAssignObj.x = 3;
+  $(1, b, 3);
+} else {
+  $(1, b, 3);
 }
-$(1, b, 3);
 `````
 
 ## Pre Normal
@@ -98,8 +101,11 @@ const d = { x: 2 };
 if (c) {
   const e = $( d );
   e.x = 3;
+  $( 1, d, 3 );
 }
-$( 1, d, 3 );
+else {
+  $( 1, d, 3 );
+}
 `````
 
 ## Globals

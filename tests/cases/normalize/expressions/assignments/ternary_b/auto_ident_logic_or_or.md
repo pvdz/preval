@@ -18,49 +18,58 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam$1 /*:unknown*/ = $(0);
-  let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
   if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$3);
-    if (tmpNestedComplexRhs) {
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$3);
+    if (tmpClusterSSA_tmpNestedComplexRhs) {
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
     } else {
       const tmpCalleeParam$5 /*:unknown*/ = $(2);
-      tmpNestedComplexRhs = $(tmpCalleeParam$5);
+      const tmpClusterSSA_tmpNestedComplexRhs$1 /*:unknown*/ = $(tmpCalleeParam$5);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
     }
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
-  let tmpNestedComplexRhs = $($(0));
-  if (!tmpNestedComplexRhs) {
-    tmpNestedComplexRhs = $($(1));
-    if (!tmpNestedComplexRhs) {
-      tmpNestedComplexRhs = $($(2));
+  const tmpNestedComplexRhs = $($(0));
+  if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
+  } else {
+    const tmpClusterSSA_tmpNestedComplexRhs = $($(1));
+    if (tmpClusterSSA_tmpNestedComplexRhs) {
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+    } else {
+      const tmpClusterSSA_tmpNestedComplexRhs$1 = $($(2));
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
     }
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $($(200));
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -94,47 +103,51 @@ if (tmpIfTest) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( 0 );
-  let d = $( c );
-  if (d) {
-
+const a = $( 1 );
+if (a) {
+  const b = $( 0 );
+  const c = $( b );
+  if (c) {
+    $( c );
+    $( c );
   }
   else {
-    const e = $( 1 );
-    d = $( e );
-    if (d) {
-
+    const d = $( 1 );
+    const e = $( d );
+    if (e) {
+      $( e );
+      $( e );
     }
     else {
       const f = $( 2 );
-      d = $( f );
+      const g = $( f );
+      $( g );
+      $( g );
     }
   }
-  a = d;
-  $( d );
 }
 else {
-  const g = $( 200 );
-  $( g );
+  const h = $( 200 );
+  $( h );
+  const i = {
+    a: 999,
+    b: 1000,
+  };
+  $( i );
 }
-$( a );
 `````
 
 ## Globals

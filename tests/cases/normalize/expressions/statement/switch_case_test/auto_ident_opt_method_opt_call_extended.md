@@ -24,13 +24,14 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpIfTest$3 /*:boolean*/ = $ == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest$3) {
+  $(a);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   $dotCall($, tmpObjLitVal$1, `e`, 1);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -38,10 +39,14 @@ $(a);
 
 `````js filename=intro
 $(1);
-if (!($ == null)) {
+const tmpIfTest$3 = $ == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest$3) {
+  $(a);
+} else {
   $dotCall($, { e: $ }, `e`, 1);
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -94,18 +99,18 @@ With rename=true
 `````js filename=intro
 $( 1 );
 const a = $ == null;
-if (a) {
-
-}
-else {
-  const b = { e: $ };
-  $dotCall( $, b, "e", 1 );
-}
-const c = {
+const b = {
   a: 999,
   b: 1000,
 };
-$( c );
+if (a) {
+  $( b );
+}
+else {
+  const c = { e: $ };
+  $dotCall( $, c, "e", 1 );
+  $( b );
+}
 `````
 
 ## Globals

@@ -18,47 +18,49 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(1);
   const tmpObjLitVal$3 /*:unknown*/ = $(3);
-  a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+  let tmpClusterSSA_a /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$1 /*:unknown*/ = $(1);
       const tmpObjLitVal$4 /*:unknown*/ = $(3);
-      a = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$4 };
+      tmpClusterSSA_a = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$4 };
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$3 = $(3);
-  a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+  let tmpClusterSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
   while (true) {
     if ($(1)) {
       const tmpObjLitVal$1 = $(1);
       const tmpObjLitVal$4 = $(3);
-      a = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$4 };
+      tmpClusterSSA_a = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$4 };
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -97,25 +99,21 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( 1 );
-  const d = $( 3 );
-  a = {
-    x: c,
+const a = $( 1 );
+if (a) {
+  const b = $( 1 );
+  const c = $( 3 );
+  let d = {
+    x: b,
     y: 2,
-    z: d,
+    z: c,
   };
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
       const f = $( 1 );
       const g = $( 3 );
-      a = {
+      d = {
         x: f,
         y: 2,
         z: g,
@@ -125,8 +123,15 @@ if (b) {
       break;
     }
   }
+  $( d );
 }
-$( a );
+else {
+  const h = {
+    a: 999,
+    b: 1000,
+  };
+  $( h );
+}
 `````
 
 ## Globals

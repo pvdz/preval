@@ -79,9 +79,10 @@ if (tmpIfTest) {
   $(1);
   $(2);
   a = x;
+  $(x, x);
 } else {
+  $(a, x);
 }
-$(a, x);
 `````
 
 ## PST Settled

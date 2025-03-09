@@ -20,41 +20,43 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
-  a = b.$(1);
+  let tmpClusterSSA_a /*:unknown*/ = b.$(1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      a = b.$(1);
+      tmpClusterSSA_a = b.$(1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const b = { $: $ };
-  a = b.$(1);
+  let tmpClusterSSA_a = b.$(1);
   while (true) {
     if ($(1)) {
-      a = b.$(1);
+      tmpClusterSSA_a = b.$(1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -92,25 +94,28 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = { $: $ };
-  a = c.$( 1 );
+const a = $( 1 );
+if (a) {
+  const b = { $: $ };
+  let c = b.$( 1 );
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
-      a = c.$( 1 );
+      c = b.$( 1 );
     }
     else {
       break;
     }
   }
+  $( c );
 }
-$( a );
+else {
+  const e = {
+    a: 999,
+    b: 1000,
+  };
+  $( e );
+}
 `````
 
 ## Globals
@@ -158,3 +163,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- Calling a static method on an ident that is not global and not recorded: $b_$

@@ -28,7 +28,8 @@ x(undefined, {x: 1});
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  throw `Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ;`;
+  propTDZ;
+  throw `Preval: This statement contained a read that reached no writes: \$(propTDZ);`;
 } else {
 }
 `````
@@ -38,7 +39,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(true)) {
-  throw `Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ;`;
+  propTDZ;
+  throw `Preval: This statement contained a read that reached no writes: \$(propTDZ);`;
 }
 `````
 
@@ -71,16 +73,18 @@ let x = function ($$0, $$1) {
     const tmpIfTest$1 = a === undefined;
     if (tmpIfTest$1) {
       tmpCalleeParam = propTDZ;
+      $(propTDZ);
+      return a;
     } else {
       tmpCalleeParam = a;
+      $(a);
+      return a;
+      let bindingPatternObjRoot = b;
+      let propTDZ = bindingPatternObjRoot.x;
+      return undefined;
     }
-    $(tmpCalleeParam);
-    return a;
   } else {
     return a;
-    let bindingPatternObjRoot = b;
-    let propTDZ = bindingPatternObjRoot.x;
-    return undefined;
   }
 };
 const tmpCallCallee = x;
@@ -94,13 +98,16 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  throw "Preval: This statement contained a read that reached no writes: tmpCalleeParam = propTDZ;";
+  propTDZ;
+  throw "Preval: This statement contained a read that reached no writes: $(propTDZ);";
 }
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+propTDZ
 
 ## Runtime Outcome
 
@@ -114,6 +121,10 @@ Normalized calls: BAD!?
  - 1: true
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Post settled calls: Same
+Post settled calls: BAD!!
+ - 1: true
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Denormalized calls: Same
+Denormalized calls: BAD!!
+ - 1: true
+ - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -24,9 +24,10 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(2);
   $(3);
+  $(1, 2, 3);
 } else {
+  $(1, 2, 3);
 }
-$(1, 2, 3);
 `````
 
 ## Denormalized
@@ -36,8 +37,10 @@ $(1, 2, 3);
 if ($(`a`) === $(`a`)) {
   $(2);
   $(3);
+  $(1, 2, 3);
+} else {
+  $(1, 2, 3);
 }
-$(1, 2, 3);
 `````
 
 ## Pre Normal
@@ -92,8 +95,11 @@ const c = a === b;
 if (c) {
   $( 2 );
   $( 3 );
+  $( 1, 2, 3 );
 }
-$( 1, 2, 3 );
+else {
+  $( 1, 2, 3 );
+}
 `````
 
 ## Globals

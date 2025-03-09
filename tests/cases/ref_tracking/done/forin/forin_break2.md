@@ -26,11 +26,12 @@ const tmpForInGen /*:unknown*/ = $forIn(wat);
 const tmpForInNext /*:unknown*/ = tmpForInGen.next();
 const tmpIfTest /*:unknown*/ = tmpForInNext.done;
 if (tmpIfTest) {
+  $();
 } else {
   const x /*:unknown*/ = tmpForInNext.value;
   $(x);
+  $();
 }
-$();
 `````
 
 ## Denormalized
@@ -38,10 +39,12 @@ $();
 
 `````js filename=intro
 const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
-if (!tmpForInNext.done) {
+if (tmpForInNext.done) {
+  $();
+} else {
   $(tmpForInNext.value);
+  $();
 }
-$();
 `````
 
 ## Pre Normal
@@ -99,13 +102,13 @@ const b = $forIn( a );
 const c = b.next();
 const d = c.done;
 if (d) {
-
+  $();
 }
 else {
   const e = c.value;
   $( e );
+  $();
 }
-$();
 `````
 
 ## Globals

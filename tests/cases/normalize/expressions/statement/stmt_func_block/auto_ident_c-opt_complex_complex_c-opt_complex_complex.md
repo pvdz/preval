@@ -29,20 +29,24 @@ const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
+  $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+    $(a);
+    $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     tmpChainElementObject[tmpChainRootComputed$1];
+    $(a);
+    $(undefined);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-$(undefined);
 `````
 
 ## Denormalized
@@ -51,16 +55,24 @@ $(undefined);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest = tmpChainElementCall == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+  $(undefined);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(a);
+    $(undefined);
+  } else {
     const tmpChainRootComputed$1 = $(`y`);
     tmpChainElementObject[tmpChainRootComputed$1];
+    $(a);
+    $(undefined);
   }
 }
-$({ a: 999, b: 1000 });
-$(undefined);
 `````
 
 ## Pre Normal
@@ -98,12 +110,16 @@ let f = function () {
     if (tmpIfTest$1) {
       const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
+      return undefined;
     } else {
+      $(a);
+      return undefined;
     }
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -117,27 +133,29 @@ const a = { y: 1 };
 const b = { x: a };
 const c = $( b );
 const d = c == null;
-if (d) {
-
-}
-else {
-  const e = $( "x" );
-  const f = c[ e ];
-  const g = f == null;
-  if (g) {
-
-  }
-  else {
-    const h = $( "y" );
-    f[ h ];
-  }
-}
-const i = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( i );
-$( undefined );
+if (d) {
+  $( e );
+  $( undefined );
+}
+else {
+  const f = $( "x" );
+  const g = c[ f ];
+  const h = g == null;
+  if (h) {
+    $( e );
+    $( undefined );
+  }
+  else {
+    const i = $( "y" );
+    g[ i ];
+    $( e );
+    $( undefined );
+  }
+}
 `````
 
 ## Globals

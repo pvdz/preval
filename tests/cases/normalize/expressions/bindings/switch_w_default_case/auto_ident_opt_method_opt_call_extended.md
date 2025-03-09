@@ -29,13 +29,15 @@ switch (1) {
 const tmpIfTest$7 /*:boolean*/ = $ == null;
 if (tmpIfTest$7) {
   $(undefined);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   $(tmpChainElementCall);
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Denormalized
@@ -44,11 +46,13 @@ $(`fail2`);
 `````js filename=intro
 if ($ == null) {
   $(undefined);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   $($dotCall($, { e: $ }, `e`, 1));
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Pre Normal
@@ -113,11 +117,13 @@ if (tmpIfTest$3) {
     if (tmpIfTest$7) {
       const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
       a = tmpChainElementCall;
+      $(tmpChainElementCall);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
@@ -139,14 +145,16 @@ With rename=true
 const a = $ == null;
 if (a) {
   $( undefined );
+  $( "fail1" );
+  $( "fail2" );
 }
 else {
   const b = { e: $ };
   const c = $dotCall( $, b, "e", 1 );
   $( c );
+  $( "fail1" );
+  $( "fail2" );
 }
-$( "fail1" );
-$( "fail2" );
 `````
 
 ## Globals

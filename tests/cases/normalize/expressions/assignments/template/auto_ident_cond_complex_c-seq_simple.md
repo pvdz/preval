@@ -18,36 +18,36 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  a = $(60);
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+  const tmpClusterSSA_a /*:unknown*/ = $(60);
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam$3);
-  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpClusterSSA_a$1, `string`);
   const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(tmpClusterSSA_a$1);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 if ($(1)) {
-  a = $(60);
-  $(`before  ${a}  after`);
+  const tmpClusterSSA_a = $(60);
+  $(`before  ${tmpClusterSSA_a}  after`);
+  $(tmpClusterSSA_a);
 } else {
-  a = $($(100));
-  $(`before  ${a}  after`);
+  const tmpClusterSSA_a$1 = $($(100));
+  $(`before  ${tmpClusterSSA_a$1}  after`);
+  $(tmpClusterSSA_a$1);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -85,22 +85,22 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1 );
-if (b) {
-  a = $( 60 );
-  const c = $coerce( a, "string" );
+const a = $( 1 );
+if (a) {
+  const b = $( 60 );
+  const c = $coerce( b, "string" );
   const d = `before  ${c}  after`;
   $( d );
+  $( b );
 }
 else {
   const e = $( 100 );
-  a = $( e );
-  const f = $coerce( a, "string" );
-  const g = `before  ${f}  after`;
-  $( g );
+  const f = $( e );
+  const g = $coerce( f, "string" );
+  const h = `before  ${g}  after`;
+  $( h );
+  $( f );
 }
-$( a );
 `````
 
 ## Globals

@@ -75,10 +75,11 @@ if (tmpIfTest) {
   const tmpNestedComplexRhs = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = 2;
 $(a);

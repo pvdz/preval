@@ -26,11 +26,12 @@ const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 }
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
 
 ## Denormalized
@@ -42,10 +43,11 @@ const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 } else {
   $($(100));
+  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 }
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
 
 ## Pre Normal
@@ -71,11 +73,13 @@ b = tmpNestedAssignObjPatternRhs.b;
 a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -88,12 +92,13 @@ const c = $( b );
 const d = c.b;
 if (c) {
   $( c );
+  $( c, d );
 }
 else {
   const e = $( 100 );
   $( e );
+  $( c, d );
 }
-$( c, d );
 `````
 
 ## Globals

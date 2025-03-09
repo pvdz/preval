@@ -53,10 +53,12 @@ let f = function () {
   let a = 1;
   if (a) {
     a = 2;
+    $(a);
+    return undefined;
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

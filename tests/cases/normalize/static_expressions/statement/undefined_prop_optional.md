@@ -47,10 +47,12 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.foo;
   tmpCalleeParam = tmpChainElementObject;
+  $(tmpChainElementObject);
+  $(`okay, do not DCE`);
 } else {
+  $(tmpCalleeParam);
+  $(`okay, do not DCE`);
 }
-$(tmpCalleeParam);
-$(`okay, do not DCE`);
 `````
 
 ## PST Settled

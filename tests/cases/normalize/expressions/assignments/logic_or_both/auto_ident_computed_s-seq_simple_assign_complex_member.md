@@ -29,19 +29,18 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(tmpNestedAssignPropRhs);
+  $(tmpNestedAssignPropRhs, b);
 } else {
   const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
   const tmpCompObj$1 /*:unknown*/ = $(b);
   const tmpCompProp$1 /*:unknown*/ = $(`d`);
   const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
   b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Denormalized
@@ -54,19 +53,18 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(tmpNestedAssignPropRhs);
+  $(tmpNestedAssignPropRhs, b);
 } else {
   const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Pre Normal
@@ -95,6 +93,8 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignR
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   const varInitAssignLhsComputedObj = b;
   const varInitAssignLhsComputedProp = $(`c`);
@@ -105,9 +105,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -123,20 +123,19 @@ const c = $( b );
 const d = $( "d" );
 const e = c[ d ];
 b[a] = e;
-let f = e;
 if (e) {
   $( e );
+  $( e, b );
 }
 else {
-  const g = $( "c" );
-  const h = $( b );
-  const i = $( "d" );
-  const j = h[ i ];
-  b[g] = j;
-  f = j;
-  $( j );
+  const f = $( "c" );
+  const g = $( b );
+  const h = $( "d" );
+  const i = g[ h ];
+  b[f] = i;
+  $( i );
+  $( i, b );
 }
-$( f, b );
 `````
 
 ## Globals

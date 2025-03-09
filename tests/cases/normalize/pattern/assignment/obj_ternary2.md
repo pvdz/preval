@@ -62,10 +62,11 @@ $(bindingPatternObjRoot);
 let bindingPatternObjRoot = undefined;
 if ($) {
   bindingPatternObjRoot = 1;
+  $(bindingPatternObjRoot);
 } else {
   bindingPatternObjRoot = 2;
+  $(bindingPatternObjRoot);
 }
-$(bindingPatternObjRoot);
 `````
 
 ## PST Settled

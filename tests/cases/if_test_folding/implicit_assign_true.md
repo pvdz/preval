@@ -30,14 +30,10 @@ $(f());
 `````js filename=intro
 const f /*:()=>boolean*/ = function () {
   debugger;
-  let y /*:boolean*/ = false;
-  if (x) {
-  } else {
-    y = true;
-  }
   $(`block`);
   $(`block`);
-  return y;
+  const tmpBool /*:boolean*/ = !x;
+  return tmpBool;
 };
 f();
 const tmpCalleeParam /*:boolean*/ = f();
@@ -49,13 +45,10 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  let y = false;
-  if (!x) {
-    y = true;
-  }
   $(`block`);
   $(`block`);
-  return y;
+  const tmpBool = !x;
+  return tmpBool;
 };
 f();
 $(f());
@@ -90,12 +83,15 @@ let f = function () {
   let y = undefined;
   if (x) {
     y = false;
+    $(`block`);
+    $(`block`);
+    return y;
   } else {
     y = true;
+    $(`block`);
+    $(`block`);
+    return y;
   }
-  $(`block`);
-  $(`block`);
-  return y;
 };
 f();
 const tmpCalleeParam = f();
@@ -108,15 +104,9 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  let b = false;
-  if (x) {
-
-  }
-  else {
-    b = true;
-  }
   $( "block" );
   $( "block" );
+  const b = !x;
   return b;
 };
 a();
@@ -139,6 +129,12 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
+Post settled calls: BAD!!
+ - 1: 'block'
+ - 2: 'block'
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Denormalized calls: Same
+Denormalized calls: BAD!!
+ - 1: 'block'
+ - 2: 'block'
+ - eval returned: ('<crash[ <ref> is not defined ]>')

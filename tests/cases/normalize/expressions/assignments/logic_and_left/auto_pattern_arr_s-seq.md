@@ -65,10 +65,12 @@ a = arrPatternSplat$1[0];
 tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled

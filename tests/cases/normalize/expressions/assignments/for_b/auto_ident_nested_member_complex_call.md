@@ -22,6 +22,7 @@ $(a, b, c, d);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
@@ -31,7 +32,6 @@ const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-let tmpClusterSSA_a /*:unknown*/ = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   while ($LOOP_UNROLL_10) {
     $(1);
@@ -42,21 +42,23 @@ if (varInitAssignLhsComputedRhs) {
     const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
     tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
-    tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
+    a = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {
     } else {
       break;
     }
   }
+  $(a, b, c, 3);
 } else {
+  $(varInitAssignLhsComputedRhs, b, c, 3);
 }
-$(tmpClusterSSA_a, b, c, 3);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 const b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
@@ -66,7 +68,6 @@ const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   while (true) {
     $(1);
@@ -77,13 +78,15 @@ if (varInitAssignLhsComputedRhs) {
     const varInitAssignLhsComputedRhs$1 = $(3);
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
     tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
-    tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
+    a = varInitAssignLhsComputedRhs$1;
     if (!varInitAssignLhsComputedRhs$1) {
       break;
     }
   }
+  $(a, b, c, 3);
+} else {
+  $(varInitAssignLhsComputedRhs, b, c, 3);
 }
-$(tmpClusterSSA_a, b, c, 3);
 `````
 
 ## Pre Normal
@@ -135,27 +138,27 @@ $(a, b, c, d);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = $( a );
-const c = $( "x" );
-const d = { y: 2 };
-const e = $( d );
-const f = $( "y" );
-const g = $( 3 );
-e[f] = g;
-b[c] = g;
-let h = g;
-if (g) {
+let a = undefined;
+const b = { x: 1 };
+const c = $( b );
+const d = $( "x" );
+const e = { y: 2 };
+const f = $( e );
+const g = $( "y" );
+const h = $( 3 );
+f[g] = h;
+c[d] = h;
+if (h) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const i = $( a );
+    const i = $( b );
     const j = $( "x" );
-    const k = $( d );
+    const k = $( e );
     const l = $( "y" );
     const m = $( 3 );
     k[l] = m;
     i[j] = m;
-    h = m;
+    a = m;
     if (m) {
 
     }
@@ -163,8 +166,11 @@ if (g) {
       break;
     }
   }
+  $( a, b, e, 3 );
 }
-$( h, a, d, 3 );
+else {
+  $( h, b, e, 3 );
+}
 `````
 
 ## Globals

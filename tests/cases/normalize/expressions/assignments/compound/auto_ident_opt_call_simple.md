@@ -18,35 +18,35 @@ $(a);
 
 
 `````js filename=intro
-let tmpClusterSSA_a /*:number*/ = NaN;
 const tmpIfTest /*:boolean*/ = $ == null;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
   $(NaN);
+  $(NaN);
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpClusterSSA_a = a * tmpChainElementCall;
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementCall;
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpClusterSSA_a = NaN;
 const tmpIfTest = $ == null;
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
   $(NaN);
+  $(NaN);
 } else {
-  tmpClusterSSA_a = a * $(1);
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$1 = a * $(1);
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -82,22 +82,22 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = NaN;
-const b = $ == null;
-const c = {
+const a = $ == null;
+const b = {
   a: 999,
   b: 1000,
 };
-if (b) {
-  c ** 0;
+if (a) {
+  b ** 0;
+  $( NaN );
   $( NaN );
 }
 else {
-  const d = $( 1 );
-  a = c * d;
-  $( a );
+  const c = $( 1 );
+  const d = b * c;
+  $( d );
+  $( d );
 }
-$( a );
 `````
 
 ## Globals

@@ -31,9 +31,10 @@ if (x) {
   const tmpIfTest /*:unknown*/ = $(2);
   if (tmpIfTest) {
     $(3);
+    $(`fail`);
   } else {
+    $(`fail`);
   }
-  $(`fail`);
 } else {
 }
 `````
@@ -46,8 +47,10 @@ if ($()) {
   $(1);
   if ($(2)) {
     $(3);
+    $(`fail`);
+  } else {
+    $(`fail`);
   }
-  $(`fail`);
 }
 `````
 
@@ -98,8 +101,11 @@ if (a) {
   const b = $( 2 );
   if (b) {
     $( 3 );
+    $( "fail" );
   }
-  $( "fail" );
+  else {
+    $( "fail" );
+  }
 }
 `````
 

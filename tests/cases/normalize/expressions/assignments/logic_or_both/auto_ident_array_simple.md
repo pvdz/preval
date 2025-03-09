@@ -18,14 +18,8 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = [1, 2, 3];
-if (a) {
-  $(a);
-} else {
-  const tmpNestedComplexRhs /*:array*/ = [1, 2, 3];
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a /*:array*/ = [1, 2, 3];
+$(a);
 $(a);
 `````
 
@@ -33,14 +27,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = [1, 2, 3];
-if (a) {
-  $(a);
-} else {
-  const tmpNestedComplexRhs = [1, 2, 3];
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a = [1, 2, 3];
+$(a);
 $(a);
 `````
 
@@ -61,28 +49,23 @@ let a = { a: 999, b: 1000 };
 a = [1, 2, 3];
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpNestedComplexRhs = [1, 2, 3];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = [ 1, 2, 3 ];
-if (a) {
-  $( a );
-}
-else {
-  const b = [ 1, 2, 3 ];
-  a = b;
-  $( b );
-}
+const a = [ 1, 2, 3 ];
+$( a );
 $( a );
 `````
 

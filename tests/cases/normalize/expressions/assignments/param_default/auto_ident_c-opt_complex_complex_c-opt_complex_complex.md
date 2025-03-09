@@ -21,44 +21,51 @@ $(a);
 
 
 `````js filename=intro
-let tmpNestedComplexRhs /*:unknown*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+  $(undefined);
+  $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpNestedComplexRhs = tmpChainElementObject$1;
+    $(undefined);
+    $(tmpChainElementObject$1);
   }
 }
-$(undefined);
-$(tmpNestedComplexRhs);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpNestedComplexRhs = undefined;
 const tmpObjLitVal = { y: 1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+  $(undefined);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(undefined);
+    $(undefined);
+  } else {
     const tmpChainRootComputed$1 = $(`y`);
-    tmpNestedComplexRhs = tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    $(undefined);
+    $(tmpChainElementObject$1);
   }
 }
-$(undefined);
-$(tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -122,29 +129,29 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { y: 1 };
-const c = { x: b };
-const d = $( c );
-const e = d == null;
-if (e) {
-
+const a = { y: 1 };
+const b = { x: a };
+const c = $( b );
+const d = c == null;
+if (d) {
+  $( undefined );
+  $( undefined );
 }
 else {
-  const f = $( "x" );
-  const g = d[ f ];
-  const h = g == null;
-  if (h) {
-
+  const e = $( "x" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    const h = $( "y" );
+    const i = f[ h ];
+    $( undefined );
+    $( i );
   }
 }
-$( undefined );
-$( a );
 `````
 
 ## Globals

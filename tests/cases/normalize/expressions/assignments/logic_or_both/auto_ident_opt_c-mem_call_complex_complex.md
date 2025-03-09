@@ -38,26 +38,28 @@ if (tmpIfTest) {
 }
 if (a) {
   $(a);
+  $(a);
 } else {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpChainElementCall$3 /*:unknown*/ = $(b);
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$3) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$3[tmpChainRootComputed$1];
     const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$1 == null;
     if (tmpIfTest$5) {
+      $(undefined);
+      $(undefined);
     } else {
       const tmpCalleeParam$11 /*:unknown*/ = $(1);
       const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$11);
-      tmpNestedComplexRhs = tmpChainElementCall$5;
+      $(tmpChainElementCall$5);
+      $(tmpChainElementCall$5);
     }
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -76,20 +78,25 @@ if (!(tmpChainElementCall == null)) {
 }
 if (a) {
   $(a);
+  $(a);
 } else {
-  let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $(b);
-  if (!(tmpChainElementCall$3 == null)) {
+  if (tmpChainElementCall$3 == null) {
+    $(undefined);
+    $(undefined);
+  } else {
     const tmpChainRootComputed$1 = $(`\$`);
     const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
-    if (!(tmpChainElementObject$1 == null)) {
-      tmpNestedComplexRhs = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, $(1));
+    if (tmpChainElementObject$1 == null) {
+      $(undefined);
+      $(undefined);
+    } else {
+      const tmpChainElementCall$5 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, $(1));
+      $(tmpChainElementCall$5);
+      $(tmpChainElementCall$5);
     }
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -128,6 +135,8 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall$1 = $;
@@ -149,9 +158,9 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -180,31 +189,31 @@ else {
 }
 if (a) {
   $( a );
+  $( a );
 }
 else {
-  let j = undefined;
-  const k = $( b );
-  const l = k == null;
-  if (l) {
-
+  const j = $( b );
+  const k = j == null;
+  if (k) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const m = $( "$" );
-    const n = k[ m ];
-    const o = n == null;
-    if (o) {
-
+    const l = $( "$" );
+    const m = j[ l ];
+    const n = m == null;
+    if (n) {
+      $( undefined );
+      $( undefined );
     }
     else {
-      const p = $( 1 );
-      const q = $dotCall( n, k, undefined, p );
-      j = q;
+      const o = $( 1 );
+      const p = $dotCall( m, j, undefined, o );
+      $( p );
+      $( p );
     }
   }
-  a = j;
-  $( j );
 }
-$( a );
 `````
 
 ## Globals

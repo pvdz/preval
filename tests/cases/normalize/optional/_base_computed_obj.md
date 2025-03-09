@@ -56,9 +56,10 @@ if (tmpIfTest) {
   const tmpChainRootComputed = x;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpCalleeParam = tmpChainElementObject;
+  $(tmpChainElementObject);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled

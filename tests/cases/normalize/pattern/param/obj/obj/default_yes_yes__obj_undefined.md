@@ -28,9 +28,10 @@ if (tmpClusterSSA_objPatternCrashTest) {
 }
 if (tmpClusterSSA_objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
+  $(`ok`);
 } else {
+  $(`ok`);
 }
-$(`ok`);
 `````
 
 ## Denormalized
@@ -44,8 +45,10 @@ if (!tmpClusterSSA_objPatternCrashTest) {
 }
 if (tmpClusterSSA_objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
+  $(`ok`);
+} else {
+  $(`ok`);
 }
-$(`ok`);
 `````
 
 ## Pre Normal
@@ -119,8 +122,11 @@ else {
 }
 if (c) {
   b.cannotDestructureThis;
+  $( "ok" );
 }
-$( "ok" );
+else {
+  $( "ok" );
+}
 `````
 
 ## Globals

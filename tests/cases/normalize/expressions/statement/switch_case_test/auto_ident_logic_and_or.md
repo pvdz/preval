@@ -28,13 +28,14 @@ if (tmpBinBothRhs) {
   tmpBinBothRhs = $(tmpCalleeParam$1);
 } else {
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpBinBothRhs) {
+  $(a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   $(tmpCalleeParam$3);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -46,10 +47,13 @@ let tmpBinBothRhs = $($(1));
 if (tmpBinBothRhs) {
   tmpBinBothRhs = $($(1));
 }
-if (!tmpBinBothRhs) {
+const a = { a: 999, b: 1000 };
+if (tmpBinBothRhs) {
+  $(a);
+} else {
   $($(2));
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -100,18 +104,18 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-if (b) {
-
-}
-else {
-  const d = $( 2 );
-  $( d );
-}
-const e = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( e );
+if (b) {
+  $( d );
+}
+else {
+  const e = $( 2 );
+  $( e );
+  $( d );
+}
 `````
 
 ## Globals

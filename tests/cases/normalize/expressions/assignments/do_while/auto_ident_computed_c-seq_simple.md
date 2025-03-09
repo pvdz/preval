@@ -22,48 +22,53 @@ $(a, b);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 $(100);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-let tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpAssignRhsCompObj$1 /*:unknown*/ = $(b);
     const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
-    tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
-    if (tmpClusterSSA_a) {
+    a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+    if (a) {
     } else {
       break;
     }
   }
+  $(a, b);
 } else {
+  $(tmpClusterSSA_a, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 $(100);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-let tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 if (tmpClusterSSA_a) {
   while (true) {
     $(100);
     const tmpAssignRhsCompObj$1 = $(b);
     const tmpAssignRhsCompProp$1 = $(`c`);
-    tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
-    if (!tmpClusterSSA_a) {
+    a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+    if (!a) {
       break;
     }
   }
+  $(a, b);
+} else {
+  $(tmpClusterSSA_a, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Pre Normal
@@ -108,26 +113,30 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
+let a = undefined;
 $( 100 );
-const a = { c: 1 };
-const b = $( a );
-const c = $( "c" );
-let d = b[ c ];
-if (d) {
+const b = { c: 1 };
+const c = $( b );
+const d = $( "c" );
+const e = c[ d ];
+if (e) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = $( a );
-    const f = $( "c" );
-    d = e[ f ];
-    if (d) {
+    const f = $( b );
+    const g = $( "c" );
+    a = f[ g ];
+    if (a) {
 
     }
     else {
       break;
     }
   }
+  $( a, b );
 }
-$( d, a );
+else {
+  $( e, b );
+}
 `````
 
 ## Globals

@@ -17,48 +17,50 @@ $($(a)?.[$('x')]?.[$('y')][$('z')]);
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpObjLitVal$1 /*:object*/ = { z: 10 };
 const tmpObjLitVal /*:object*/ = { y: tmpObjLitVal$1 };
 const a /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(a);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+    $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
     const tmpChainRootComputed$3 /*:unknown*/ = $(`z`);
     const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1[tmpChainRootComputed$3];
-    tmpCalleeParam = tmpChainElementObject$3;
+    $(tmpChainElementObject$3);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpObjLitVal$1 = { z: 10 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(undefined);
+  } else {
     const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     const tmpChainRootComputed$3 = $(`z`);
-    tmpCalleeParam = tmpChainElementObject$1[tmpChainRootComputed$3];
+    $(tmpChainElementObject$1[tmpChainRootComputed$3]);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -90,42 +92,42 @@ if (tmpIfTest) {
     const tmpChainRootComputed$3 = $(`z`);
     const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
     tmpCalleeParam = tmpChainElementObject$3;
+    $(tmpChainElementObject$3);
   } else {
+    $(tmpCalleeParam);
   }
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { z: 10 };
-const c = { y: b };
-const d = { x: c };
-const e = $( d );
-const f = e == null;
-if (f) {
-
+const a = { z: 10 };
+const b = { y: a };
+const c = { x: b };
+const d = $( c );
+const e = d == null;
+if (e) {
+  $( undefined );
 }
 else {
-  const g = $( "x" );
-  const h = e[ g ];
-  const i = h == null;
-  if (i) {
-
+  const f = $( "x" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
+    $( undefined );
   }
   else {
-    const j = $( "y" );
-    const k = h[ j ];
-    const l = $( "z" );
-    const m = k[ l ];
-    a = m;
+    const i = $( "y" );
+    const j = g[ i ];
+    const k = $( "z" );
+    const l = j[ k ];
+    $( l );
   }
 }
-$( a );
 `````
 
 ## Globals

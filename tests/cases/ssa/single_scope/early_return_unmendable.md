@@ -44,12 +44,14 @@ const tmpLabeledBlockFunc$3 /*:(unknown)=>undefined*/ = function ($$0) {
       return undefined;
     } else {
       $(2);
+      $(x);
+      return undefined;
     }
   } else {
     $(3);
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 $(tmpLabeledBlockFunc$3);
 `````
@@ -62,14 +64,14 @@ $(function (x) {
   if ($(1)) {
     if ($) {
       $($(1));
-      return undefined;
     } else {
       $(2);
+      $(x);
     }
   } else {
     $(3);
+    $(x);
   }
-  $(x);
 });
 `````
 
@@ -111,12 +113,14 @@ const tmpLabeledBlockFunc$3 = function ($$0) {
       return undefined;
     } else {
       $(2);
+      $(x);
+      return undefined;
     }
   } else {
     $(3);
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 $(tmpLabeledBlockFunc$3);
 `````
@@ -137,13 +141,15 @@ const a = function($$0 ) {
     }
     else {
       $( 2 );
+      $( b );
+      return undefined;
     }
   }
   else {
     $( 3 );
+    $( b );
+    return undefined;
   }
-  $( b );
-  return undefined;
 };
 $( a );
 `````

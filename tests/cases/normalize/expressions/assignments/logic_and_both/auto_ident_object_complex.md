@@ -18,40 +18,26 @@ $(a);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-const tmpObjLitVal$3 /*:unknown*/ = $(3);
-let a /*:unknown*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  const tmpObjLitVal$5 /*:unknown*/ = $(1);
-  const tmpObjLitVal$9 /*:unknown*/ = $(3);
-  const tmpNestedComplexRhs /*:object*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+$(1);
+$(3);
+const tmpObjLitVal$5 /*:unknown*/ = $(1);
+const tmpObjLitVal$9 /*:unknown*/ = $(3);
+const tmpNestedComplexRhs /*:object*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$3 = $(3);
-let a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const tmpCalleeParam = a;
-if (a) {
-  const tmpObjLitVal$5 = $(1);
-  const tmpObjLitVal$9 = $(3);
-  const tmpNestedComplexRhs = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+$(1);
+$(3);
+const tmpObjLitVal$5 = $(1);
+const tmpObjLitVal$9 = $(3);
+const tmpNestedComplexRhs = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -80,38 +66,28 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = { x: tmpObjLitVal$5, y: tmpObjLitVal$7, z: tmpObjLitVal$9 };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
+$( 1 );
+$( 3 );
 const a = $( 1 );
 const b = $( 3 );
-let c = {
+const c = {
   x: a,
   y: 2,
   z: b,
 };
-const d = c;
-if (c) {
-  const e = $( 1 );
-  const f = $( 3 );
-  const g = {
-    x: e,
-    y: 2,
-    z: f,
-  };
-  c = g;
-  $( g );
-}
-else {
-  $( d );
-}
+$( c );
 $( c );
 `````
 

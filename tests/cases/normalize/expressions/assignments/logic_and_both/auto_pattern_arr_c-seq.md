@@ -26,19 +26,20 @@ $(20);
 const tmpCalleeParam$1 /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-let tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
   $(10);
   $(20);
   const tmpCalleeParam$3 /*:array*/ = [1, 2];
   const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
   const arrPatternSplat$3 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-  tmpClusterSSA_a = arrPatternSplat$3[0];
+  const tmpClusterSSA_a$1 /*:unknown*/ = arrPatternSplat$3[0];
   $(tmpNestedAssignArrPatternRhs$1);
+  $(tmpClusterSSA_a$1);
 } else {
   $(tmpNestedAssignArrPatternRhs);
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -50,17 +51,18 @@ const bindingPatternArrRoot = { a: 999, b: 1000 };
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
-let tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
+const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
 if (tmpNestedAssignArrPatternRhs) {
   $(10);
   $(20);
   const tmpNestedAssignArrPatternRhs$1 = $([1, 2]);
-  tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs$1][0];
+  const tmpClusterSSA_a$1 = [...tmpNestedAssignArrPatternRhs$1][0];
   $(tmpNestedAssignArrPatternRhs$1);
+  $(tmpClusterSSA_a$1);
 } else {
   $(tmpNestedAssignArrPatternRhs);
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -95,10 +97,12 @@ if (tmpCalleeParam) {
   const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
   a = arrPatternSplat$3[0];
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
+  $(tmpNestedAssignArrPatternRhs$1);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -116,20 +120,21 @@ $( 20 );
 const c = [ 1, 2 ];
 const d = $( c );
 const e = [ ...d ];
-let f = e[ 0 ];
+const f = e[ 0 ];
 if (d) {
   $( 10 );
   $( 20 );
   const g = [ 1, 2 ];
   const h = $( g );
   const i = [ ...h ];
-  f = i[ 0 ];
+  const j = i[ 0 ];
   $( h );
+  $( j );
 }
 else {
   $( d );
+  $( f );
 }
-$( f );
 `````
 
 ## Globals

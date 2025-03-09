@@ -30,10 +30,11 @@ const objPatternBeforeDefault$1 /*:unknown*/ = objPatternAfterDefault.y;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   y = $(`fail`);
+  $(`bad`);
 } else {
   y = objPatternBeforeDefault$1;
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## Denormalized
@@ -50,10 +51,11 @@ if (objPatternBeforeDefault === undefined) {
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
 if (objPatternBeforeDefault$1 === undefined) {
   y = $(`fail`);
+  $(`bad`);
 } else {
   y = objPatternBeforeDefault$1;
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## Pre Normal
@@ -82,10 +84,11 @@ const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   y = $(`fail`);
+  $(`bad`);
 } else {
   y = objPatternBeforeDefault$1;
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## PST Settled
@@ -106,11 +109,12 @@ const e = b.y;
 const f = e === undefined;
 if (f) {
   y = $( "fail" );
+  $( "bad" );
 }
 else {
   y = e;
+  $( "bad" );
 }
-$( "bad" );
 `````
 
 ## Globals

@@ -20,16 +20,17 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
-  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+  const tmpClusterSSA_a$1 /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.a;
   $(tmpNestedAssignObjPatternRhs$1);
+  $(tmpClusterSSA_a$1);
 } else {
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -37,15 +38,16 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
-let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   const tmpNestedAssignObjPatternRhs$1 = $({ a: 1, b: 2 });
-  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+  const tmpClusterSSA_a$1 = tmpNestedAssignObjPatternRhs$1.a;
   $(tmpNestedAssignObjPatternRhs$1);
+  $(tmpClusterSSA_a$1);
 } else {
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -73,10 +75,12 @@ if (tmpCalleeParam) {
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
   a = tmpNestedAssignObjPatternRhs$1.a;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
+  $(tmpNestedAssignObjPatternRhs$1);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -88,20 +92,21 @@ const a = {
   b: 2,
 };
 const b = $( a );
-let c = b.a;
+const c = b.a;
 if (b) {
   const d = {
     a: 1,
     b: 2,
   };
   const e = $( d );
-  c = e.a;
+  const f = e.a;
   $( e );
+  $( f );
 }
 else {
   $( b );
+  $( c );
 }
-$( c );
 `````
 
 ## Globals

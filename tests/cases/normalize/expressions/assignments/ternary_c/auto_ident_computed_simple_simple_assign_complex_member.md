@@ -20,41 +20,40 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(0);
 const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b);
 } else {
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCompProp /*:unknown*/ = $(`d`);
   const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
   b.c = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 const b = { c: 10, d: 20 };
 if (tmpIfTest) {
   $($(100));
+  $({ a: 999, b: 1000 }, b);
 } else {
   const tmpCompObj = $(b);
   const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   b.c = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -77,6 +76,8 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   const tmpCompObj = $(b);
   const tmpCompProp = $(`d`);
@@ -85,37 +86,37 @@ if (tmpIfTest) {
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 0 );
-const c = {
+const a = $( 0 );
+const b = {
   c: 10,
   d: 20,
 };
-if (b) {
-  const d = $( 100 );
-  $( d );
+if (a) {
+  const c = $( 100 );
+  $( c );
+  const d = {
+    a: 999,
+    b: 1000,
+  };
+  $( d, b );
 }
 else {
-  const e = $( c );
+  const e = $( b );
   const f = $( "d" );
   const g = e[ f ];
-  c.c = g;
-  a = g;
+  b.c = g;
   $( g );
+  $( g, b );
 }
-$( a, c );
 `````
 
 ## Globals

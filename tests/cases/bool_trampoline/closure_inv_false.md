@@ -43,10 +43,11 @@ $(f);
 x = $(0);
 if (x) {
   $(`fail`);
+  $(x);
 } else {
   $(`pass`);
+  $(x);
 }
-$(x);
 `````
 
 ## Denormalized
@@ -64,10 +65,11 @@ $(f);
 x = $(0);
 if (x) {
   $(`fail`);
+  $(x);
 } else {
   $(`pass`);
+  $(x);
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -104,10 +106,11 @@ $(f);
 const tmpIfTest = f();
 if (tmpIfTest) {
   $(`pass`);
+  $(x);
 } else {
   $(`fail`);
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
@@ -126,11 +129,12 @@ $( a );
 b = $( 0 );
 if (b) {
   $( "fail" );
+  $( b );
 }
 else {
   $( "pass" );
+  $( b );
 }
-$( b );
 `````
 
 ## Globals

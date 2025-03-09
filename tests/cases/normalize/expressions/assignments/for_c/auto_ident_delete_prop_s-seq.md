@@ -20,50 +20,52 @@ $(a, arg);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
-  a = delete arg.y;
+  let tmpClusterSSA_a /*:boolean*/ = delete arg.y;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(1);
       $(2);
-      a = delete arg.y;
+      tmpClusterSSA_a = delete arg.y;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, arg);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const arg = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
-  a = delete arg.y;
+  let tmpClusterSSA_a = delete arg.y;
   while (true) {
     if ($(1)) {
       $(1);
       $(2);
-      a = delete arg.y;
+      tmpClusterSSA_a = delete arg.y;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, arg);
+} else {
+  $({ a: 999, b: 1000 }, arg);
 }
-$(a, arg);
 `````
 
 ## Pre Normal
@@ -104,29 +106,32 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-const c = { y: 1 };
-if (b) {
+const a = $( 1 );
+const b = { y: 1 };
+if (a) {
   $( 1 );
   $( 2 );
-  a = delete c.y;
+  let c = delete b.y;
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
       $( 1 );
       $( 2 );
-      a = delete c.y;
+      c = delete b.y;
     }
     else {
       break;
     }
   }
+  $( c, b );
 }
-$( a, c );
+else {
+  const e = {
+    a: 999,
+    b: 1000,
+  };
+  $( e, b );
+}
 `````
 
 ## Globals
@@ -174,3 +179,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- regular property access of an ident feels tricky;

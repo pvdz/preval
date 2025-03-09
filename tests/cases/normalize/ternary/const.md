@@ -49,10 +49,11 @@ let c = 3;
 let foo = undefined;
 if (a) {
   foo = b;
+  $(b);
 } else {
   foo = c;
+  $(c);
 }
-$(foo);
 `````
 
 ## PST Settled

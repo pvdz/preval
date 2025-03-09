@@ -71,11 +71,13 @@ if (tmpIfTest) {
   a = 1;
   if (a) {
     a = 2;
+    $(a);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

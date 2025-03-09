@@ -80,11 +80,13 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainRootProp.c(1);
     a = tmpChainElementCall;
+    $(tmpChainElementCall);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

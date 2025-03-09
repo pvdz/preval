@@ -20,39 +20,41 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  a = new $(1);
+  let tmpClusterSSA_a /*:object*/ = new $(1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      a = new $(1);
+      tmpClusterSSA_a = new $(1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
-  a = new $(1);
+  let tmpClusterSSA_a = new $(1);
   while (true) {
     if ($(1)) {
-      a = new $(1);
+      tmpClusterSSA_a = new $(1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -92,24 +94,27 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  a = new $( 1 );
+const a = $( 1 );
+if (a) {
+  let b = new $( 1 );
   while ($LOOP_UNROLL_10) {
     const c = $( 1 );
     if (c) {
-      a = new $( 1 );
+      b = new $( 1 );
     }
     else {
       break;
     }
   }
+  $( b );
 }
-$( a );
+else {
+  const d = {
+    a: 999,
+    b: 1000,
+  };
+  $( d );
+}
 `````
 
 ## Globals
@@ -157,3 +162,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- Support this node type in isFree: NewExpression

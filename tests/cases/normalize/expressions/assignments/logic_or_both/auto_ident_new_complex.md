@@ -19,15 +19,8 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
-let a /*:unknown*/ = new tmpNewCallee(1);
-if (a) {
-  $(a);
-} else {
-  const tmpNewCallee$1 /*:unknown*/ = $($);
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a /*:object*/ = new tmpNewCallee(1);
+$(a);
 $(a);
 `````
 
@@ -36,15 +29,8 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-let a = new tmpNewCallee(1);
-if (a) {
-  $(a);
-} else {
-  const tmpNewCallee$1 = $($);
-  const tmpNestedComplexRhs = new tmpNewCallee$1(1);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a = new tmpNewCallee(1);
+$(a);
 $(a);
 `````
 
@@ -66,14 +52,16 @@ const tmpNewCallee = $($);
 a = new tmpNewCallee(1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpNewCallee$1 = $($);
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -81,16 +69,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( $ );
-let b = new a( 1 );
-if (b) {
-  $( b );
-}
-else {
-  const c = $( $ );
-  const d = new c( 1 );
-  b = d;
-  $( d );
-}
+const b = new a( 1 );
+$( b );
 $( b );
 `````
 

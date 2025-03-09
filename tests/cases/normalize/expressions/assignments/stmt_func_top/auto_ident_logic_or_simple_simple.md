@@ -55,11 +55,13 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   a = 0;
   if (a) {
+    $(a);
+    return undefined;
   } else {
     a = 2;
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

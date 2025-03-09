@@ -24,11 +24,12 @@ const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg.y;
 if (a) {
   $(true);
+  $(true, arg);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(false, arg);
 }
-$(a, arg);
 `````
 
 ## Denormalized
@@ -36,13 +37,13 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = delete arg.y;
-if (a) {
+if (delete arg.y) {
   $(true);
+  $(true, arg);
 } else {
   $($(100));
+  $(false, arg);
 }
-$(a, arg);
 `````
 
 ## Pre Normal
@@ -64,11 +65,13 @@ let a = { a: 999, b: 1000 };
 a = delete arg.y;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, arg);
 } else {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, arg);
 }
-$(tmpCalleeParam);
-$(a, arg);
 `````
 
 ## PST Settled
@@ -79,12 +82,13 @@ const a = { y: 1 };
 const b = delete a.y;
 if (b) {
   $( true );
+  $( true, a );
 }
 else {
   const c = $( 100 );
   $( c );
+  $( false, a );
 }
-$( b, a );
 `````
 
 ## Globals

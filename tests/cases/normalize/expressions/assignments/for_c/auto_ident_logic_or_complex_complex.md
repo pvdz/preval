@@ -18,12 +18,11 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(0);
-  a = $(tmpCalleeParam);
-  if (a) {
+  let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+  if (tmpClusterSSA_a) {
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(2);
     $(tmpCalleeParam$1);
@@ -32,8 +31,8 @@ if (tmpIfTest) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$2 /*:unknown*/ = $(0);
-      a = $(tmpCalleeParam$2);
-      if (a) {
+      tmpClusterSSA_a = $(tmpCalleeParam$2);
+      if (tmpClusterSSA_a) {
       } else {
         const tmpCalleeParam$4 /*:unknown*/ = $(2);
         $(tmpCalleeParam$4);
@@ -42,33 +41,36 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
-  a = $($(0));
-  if (!a) {
+  let tmpClusterSSA_a = $($(0));
+  if (!tmpClusterSSA_a) {
     $($(2));
   }
   while (true) {
     if ($(1)) {
-      a = $($(0));
-      if (!a) {
+      tmpClusterSSA_a = $($(0));
+      if (!tmpClusterSSA_a) {
         $($(2));
       }
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -110,15 +112,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( 0 );
-  a = $( c );
-  if (a) {
+const a = $( 1 );
+if (a) {
+  const b = $( 0 );
+  let c = $( b );
+  if (c) {
 
   }
   else {
@@ -129,8 +127,8 @@ if (b) {
     const e = $( 1 );
     if (e) {
       const f = $( 0 );
-      a = $( f );
-      if (a) {
+      c = $( f );
+      if (c) {
 
       }
       else {
@@ -142,8 +140,15 @@ if (b) {
       break;
     }
   }
+  $( c );
 }
-$( a );
+else {
+  const h = {
+    a: 999,
+    b: 1000,
+  };
+  $( h );
+}
 `````
 
 ## Globals

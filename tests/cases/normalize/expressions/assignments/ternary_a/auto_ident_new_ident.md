@@ -52,11 +52,13 @@ a = new $(1);
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled

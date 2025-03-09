@@ -47,15 +47,17 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpIfTest$1 = 30;
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpCalleeParam = $(100);
     $(tmpCalleeParam);
+    $(a);
   }
 }
-$(a);
 `````
 
 ## PST Settled

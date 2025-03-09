@@ -53,11 +53,13 @@ b = tmpPostUpdArgIdent + 1;
 a = tmpPostUpdArgIdent;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled

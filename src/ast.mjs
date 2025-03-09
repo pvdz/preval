@@ -57,6 +57,8 @@ export function cloneSimple(node) {
 }
 
 export function cloneSimpleOrTemplate(node) {
+  // Note: we don't need to worry about recursive calling this func because
+  //       in normalized code any expression in the template must be simple.
   return node.type === 'TemplateLiteral'
     ? templateLiteral([...node.quasis.map((te) => te.value.cooked)], [...node.expressions.map((n) => cloneSimpleOrTemplate(n))])
     : cloneSimple(node);

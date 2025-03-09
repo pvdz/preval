@@ -37,12 +37,13 @@ if (tmpIfTest$1) {
     tmpIfTest = tmpChainElementObject$1;
   }
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
 } else {
   $(100);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -60,10 +61,13 @@ if (!(tmpChainElementCall == null)) {
     tmpIfTest = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-if (!tmpIfTest) {
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+} else {
   $(100);
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -100,10 +104,11 @@ if (tmpIfTest$1) {
 } else {
 }
 if (tmpIfTest) {
+  $(a);
 } else {
   $(100);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -131,17 +136,17 @@ else {
     a = j;
   }
 }
-if (a) {
-
-}
-else {
-  $( 100 );
-}
 const k = {
   a: 999,
   b: 1000,
 };
-$( k );
+if (a) {
+  $( k );
+}
+else {
+  $( 100 );
+  $( k );
+}
 `````
 
 ## Globals

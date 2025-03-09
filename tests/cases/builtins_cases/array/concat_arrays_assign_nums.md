@@ -63,9 +63,10 @@ const b = [2];
 let c = undefined;
 if ($) {
   c = a.concat(b);
+  $(c);
 } else {
+  $(c);
 }
-$(c);
 `````
 
 ## PST Settled

@@ -20,18 +20,18 @@ $(a);
 `````js filename=intro
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpClusterSSA_a /*:number*/ = NaN;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
   $(NaN);
+  $(NaN);
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(1);
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
-  tmpClusterSSA_a = a * tmpChainElementCall$1;
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementCall$1;
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -40,16 +40,16 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
-let tmpClusterSSA_a = NaN;
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
   $(NaN);
+  $(NaN);
 } else {
-  tmpClusterSSA_a = a * $dotCall(tmpChainElementCall, $, undefined, $(1));
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$1 = a * $dotCall(tmpChainElementCall, $, undefined, $(1));
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -91,22 +91,22 @@ With rename=true
 `````js filename=intro
 const a = $( $ );
 const b = a == null;
-let c = NaN;
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
 if (b) {
-  d ** 0;
+  c ** 0;
+  $( NaN );
   $( NaN );
 }
 else {
-  const e = $( 1 );
-  const f = $dotCall( a, $, undefined, e );
-  c = d * f;
-  $( c );
+  const d = $( 1 );
+  const e = $dotCall( a, $, undefined, d );
+  const f = c * e;
+  $( f );
+  $( f );
 }
-$( c );
 `````
 
 ## Globals

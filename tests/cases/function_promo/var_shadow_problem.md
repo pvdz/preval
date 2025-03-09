@@ -43,9 +43,10 @@ if ($) {
     const x$1 /*:unknown*/ = $();
     if ($) {
       $(x$1, `keep me inner local`);
+      $(x, `keep me outer local`);
     } else {
+      $(x, `keep me outer local`);
     }
-    $(x, `keep me outer local`);
   } else {
   }
 } else {
@@ -63,8 +64,10 @@ if ($) {
     const x$1 = $();
     if ($) {
       $(x$1, `keep me inner local`);
+      $(x, `keep me outer local`);
+    } else {
+      $(x, `keep me outer local`);
     }
-    $(x, `keep me outer local`);
   }
 }
 `````
@@ -148,8 +151,11 @@ if ($) {
     const b = $();
     if ($) {
       $( b, "keep me inner local" );
+      $( a, "keep me outer local" );
     }
-    $( a, "keep me outer local" );
+    else {
+      $( a, "keep me outer local" );
+    }
   }
 }
 `````

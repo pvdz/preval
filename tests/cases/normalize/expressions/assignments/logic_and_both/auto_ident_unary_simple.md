@@ -54,10 +54,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = typeof x;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, x);
 } else {
+  $(tmpCalleeParam);
+  $(a, x);
 }
-$(tmpCalleeParam);
-$(a, x);
 `````
 
 ## PST Settled

@@ -28,13 +28,15 @@ $(f());
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
+  $(undefined);
 } else {
   tmpChainRootProp.x;
+  $(a);
+  $(undefined);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-$(undefined);
 `````
 
 ## Denormalized
@@ -42,11 +44,16 @@ $(undefined);
 
 `````js filename=intro
 const tmpChainRootProp = $({ x: 1 });
-if (!(tmpChainRootProp == null)) {
+const tmpIfTest = tmpChainRootProp == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+  $(undefined);
+} else {
   tmpChainRootProp.x;
+  $(a);
+  $(undefined);
 }
-$({ a: 999, b: 1000 });
-$(undefined);
 `````
 
 ## Pre Normal
@@ -77,10 +84,12 @@ let f = function () {
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.x;
+    $(a);
+    return undefined;
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -93,18 +102,19 @@ With rename=true
 const a = { x: 1 };
 const b = $( a );
 const c = b == null;
-if (c) {
-
-}
-else {
-  b.x;
-}
 const d = {
   a: 999,
   b: 1000,
 };
-$( d );
-$( undefined );
+if (c) {
+  $( d );
+  $( undefined );
+}
+else {
+  b.x;
+  $( d );
+  $( undefined );
+}
 `````
 
 ## Globals

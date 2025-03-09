@@ -41,12 +41,15 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === 0;
   if (tmpIfTest$1) {
     $(`one`);
+    $(`fail`);
+    $(`pass`);
   } else {
+    $(`fail`);
+    $(`pass`);
   }
-  $(`fail`);
 } else {
+  $(`pass`);
 }
-$(`pass`);
 `````
 
 ## Denormalized
@@ -56,10 +59,15 @@ $(`pass`);
 if ($(1)) {
   if ($(1) === 0) {
     $(`one`);
+    $(`fail`);
+    $(`pass`);
+  } else {
+    $(`fail`);
+    $(`pass`);
   }
-  $(`fail`);
+} else {
+  $(`pass`);
 }
-$(`pass`);
 `````
 
 ## Pre Normal
@@ -142,10 +150,17 @@ if (a) {
   const c = b === 0;
   if (c) {
     $( "one" );
+    $( "fail" );
+    $( "pass" );
   }
-  $( "fail" );
+  else {
+    $( "fail" );
+    $( "pass" );
+  }
 }
-$( "pass" );
+else {
+  $( "pass" );
+}
 `````
 
 ## Globals

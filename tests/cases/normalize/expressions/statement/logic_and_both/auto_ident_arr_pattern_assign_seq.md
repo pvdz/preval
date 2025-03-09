@@ -85,9 +85,10 @@ if (tmpIfTest) {
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   x = arrPatternSplat$1[0];
   y = arrPatternSplat$1[1];
+  $(a, x, y);
 } else {
+  $(a, x, y);
 }
-$(a, x, y);
 `````
 
 ## PST Settled

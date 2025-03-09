@@ -37,29 +37,30 @@ if ($) $(f());
 `````js filename=intro
 if ($) {
   let x /*:number*/ = 0;
-  const g /*:(boolean)=>undefined*/ = function ($$0) {
-    const t /*:boolean*/ = $$0;
+  const g_t /*:()=>unknown*/ = function () {
     debugger;
-    if (t) {
-      x = x + 1;
-      $(x);
-    } else {
-      $(x);
-    }
+    x = x + 1;
+    $(x);
     $();
     return undefined;
   };
+  const g_f /*:()=>unknown*/ = function () {
+    debugger;
+    $(x);
+    $();
+    return undefined;
+  };
+  g_t();
   if ($) {
-    g(true);
-    g(false);
-    g(true);
-    g(false);
-    g(false);
-    g(true);
-    g(true);
+    g_f();
+    g_t();
+    g_f();
+    g_f();
+    g_t();
+    g_t();
+    $(undefined);
   } else {
   }
-  $(undefined);
 } else {
 }
 `````
@@ -70,25 +71,25 @@ if ($) {
 `````js filename=intro
 if ($) {
   let x = 0;
-  const g = function (t) {
-    if (t) {
-      x = x + 1;
-      $(x);
-    } else {
-      $(x);
-    }
+  const g_t = function () {
+    x = x + 1;
+    $(x);
     $();
   };
+  const g_f = function () {
+    $(x);
+    $();
+  };
+  g_t();
   if ($) {
-    g(true);
-    g(false);
-    g(true);
-    g(false);
-    g(false);
-    g(true);
-    g(true);
+    g_f();
+    g_t();
+    g_f();
+    g_f();
+    g_t();
+    g_t();
+    $(undefined);
   }
-  $(undefined);
 }
 `````
 
@@ -133,11 +134,14 @@ let f = function () {
     debugger;
     if (t) {
       x = x + 1;
+      $(x);
+      $();
+      return undefined;
     } else {
+      $(x);
+      $();
+      return undefined;
     }
-    $(x);
-    $();
-    return undefined;
   };
   if ($) {
     g(true);
@@ -165,29 +169,29 @@ With rename=true
 `````js filename=intro
 if ($) {
   let a = 0;
-  const b = function($$0 ) {
-    const c = $$0;
+  const b = function() {
     debugger;
-    if (c) {
-      a = a + 1;
-      $( a );
-    }
-    else {
-      $( a );
-    }
+    a = a + 1;
+    $( a );
     $();
     return undefined;
   };
+  const c = function() {
+    debugger;
+    $( a );
+    $();
+    return undefined;
+  };
+  b();
   if ($) {
-    b( true );
-    b( false );
-    b( true );
-    b( false );
-    b( false );
-    b( true );
-    b( true );
+    c();
+    b();
+    c();
+    c();
+    b();
+    b();
+    $( undefined );
   }
-  $( undefined );
 }
 `````
 

@@ -26,15 +26,16 @@ if (tmpCalleeParam$1) {
 } else {
 }
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpCalleeParam$1) {
   $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 } else {
   const tmpCalleeParam$7 /*:unknown*/ = $(2);
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$7);
   $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -46,12 +47,14 @@ if (tmpCalleeParam$1) {
   tmpCalleeParam$1 = $($(1));
 }
 const tmpCalleeParam = [`before `, ` after`];
+const a = { a: 999, b: 1000 };
 if (tmpCalleeParam$1) {
   $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 } else {
   $(tmpCalleeParam, $($(2)));
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -77,12 +80,14 @@ if (tmpCalleeParam$1) {
 } else {
 }
 if (tmpCalleeParam$1) {
+  $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 } else {
   const tmpCalleeParam$7 = $(2);
   tmpCalleeParam$1 = $(tmpCalleeParam$7);
+  $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
 `````
 
 ## PST Settled
@@ -96,19 +101,20 @@ if (b) {
   b = $( c );
 }
 const d = [ "before ", " after" ];
-if (b) {
-  $( d, b );
-}
-else {
-  const e = $( 2 );
-  const f = $( e );
-  $( d, f );
-}
-const g = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( g );
+if (b) {
+  $( d, b );
+  $( e );
+}
+else {
+  const f = $( 2 );
+  const g = $( f );
+  $( d, g );
+  $( e );
+}
 `````
 
 ## Globals

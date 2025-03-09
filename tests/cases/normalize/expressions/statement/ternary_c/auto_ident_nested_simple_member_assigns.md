@@ -22,9 +22,11 @@ $(a, b, c);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(0);
+const a /*:object*/ = { a: 999, b: 1000 };
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   $(100);
+  $(a, b, 3);
 } else {
   b.x = 3;
   b.x = 3;
@@ -32,9 +34,8 @@ if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
   b.x = 3;
+  $(a, b, 3);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, 3);
 `````
 
 ## Denormalized
@@ -42,9 +43,11 @@ $(a, b, 3);
 
 `````js filename=intro
 const tmpIfTest = $(0);
+const a = { a: 999, b: 1000 };
 const b = { x: 1 };
 if (tmpIfTest) {
   $(100);
+  $(a, b, 3);
 } else {
   b.x = 3;
   b.x = 3;
@@ -52,8 +55,8 @@ if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
   b.x = 3;
+  $(a, b, 3);
 }
-$({ a: 999, b: 1000 }, b, 3);
 `````
 
 ## Pre Normal
@@ -77,6 +80,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
+  $(a, b, c);
 } else {
   const tmpAssignMemLhsObj = b;
   const varInitAssignLhsComputedRhs$7 = c;
@@ -91,8 +95,8 @@ if (tmpIfTest) {
   b.x = varInitAssignLhsComputedRhs;
   const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  $(a, b, c);
 }
-$(a, b, c);
 `````
 
 ## PST Settled
@@ -100,23 +104,24 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-const b = { x: 1 };
-if (a) {
-  $( 100 );
-}
-else {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-}
-const c = {
+const b = {
   a: 999,
   b: 1000,
 };
-$( c, b, 3 );
+const c = { x: 1 };
+if (a) {
+  $( 100 );
+  $( b, c, 3 );
+}
+else {
+  c.x = 3;
+  c.x = 3;
+  c.x = 3;
+  c.x = 3;
+  c.x = 3;
+  c.x = 3;
+  $( b, c, 3 );
+}
 `````
 
 ## Globals

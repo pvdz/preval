@@ -58,10 +58,11 @@ const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
 } else {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = 2;
 $(a);

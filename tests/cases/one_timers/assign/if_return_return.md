@@ -37,11 +37,14 @@ $(x);
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
   $(1);
+  $(2);
+  $(undefined);
+  $(undefined);
 } else {
+  $(2);
+  $(undefined);
+  $(undefined);
 }
-$(2);
-$(undefined);
-$(undefined);
 `````
 
 ## Denormalized
@@ -51,10 +54,14 @@ $(undefined);
 $($(100));
 if ($()) {
   $(1);
+  $(2);
+  $(undefined);
+  $(undefined);
+} else {
+  $(2);
+  $(undefined);
+  $(undefined);
 }
-$(2);
-$(undefined);
-$(undefined);
 `````
 
 ## Pre Normal
@@ -92,10 +99,12 @@ let f = function () {
   const tmpIfTest = $();
   if (tmpIfTest) {
     $(1);
+    $(2);
+    return undefined;
   } else {
+    $(2);
+    return undefined;
   }
-  $(2);
-  return undefined;
 };
 let x = $(100);
 const tmpCalleeParam = closure();
@@ -115,10 +124,15 @@ $( a );
 const b = $();
 if (b) {
   $( 1 );
+  $( 2 );
+  $( undefined );
+  $( undefined );
 }
-$( 2 );
-$( undefined );
-$( undefined );
+else {
+  $( 2 );
+  $( undefined );
+  $( undefined );
+}
 `````
 
 ## Globals

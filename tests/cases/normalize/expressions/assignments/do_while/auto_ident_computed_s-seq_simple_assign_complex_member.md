@@ -22,6 +22,7 @@ $(a, b);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 $(100);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
@@ -29,7 +30,6 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -38,21 +38,23 @@ if (tmpNestedAssignPropRhs) {
     const tmpCompProp$1 /*:unknown*/ = $(`d`);
     const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
     b[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    a = tmpNestedAssignPropRhs$1;
     if (tmpNestedAssignPropRhs$1) {
     } else {
       break;
     }
   }
+  $(a, b);
 } else {
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 $(100);
 const tmpNestedAssignComMemberProp = $(`c`);
 const b = { c: 10, d: 20 };
@@ -60,7 +62,6 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while (true) {
     $(100);
@@ -69,13 +70,15 @@ if (tmpNestedAssignPropRhs) {
     const tmpCompProp$1 = $(`d`);
     const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
     b[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    a = tmpNestedAssignPropRhs$1;
     if (!tmpNestedAssignPropRhs$1) {
       break;
     }
   }
+  $(a, b);
+} else {
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Pre Normal
@@ -125,26 +128,26 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
+let a = undefined;
 $( 100 );
-const a = $( "c" );
-const b = {
+const b = $( "c" );
+const c = {
   c: 10,
   d: 20,
 };
-const c = $( b );
-const d = $( "d" );
-const e = c[ d ];
-b[a] = e;
-let f = e;
-if (e) {
+const d = $( c );
+const e = $( "d" );
+const f = d[ e ];
+c[b] = f;
+if (f) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const g = $( "c" );
-    const h = $( b );
+    const h = $( c );
     const i = $( "d" );
     const j = h[ i ];
-    b[g] = j;
-    f = j;
+    c[g] = j;
+    a = j;
     if (j) {
 
     }
@@ -152,8 +155,11 @@ if (e) {
       break;
     }
   }
+  $( a, c );
 }
-$( f, b );
+else {
+  $( f, c );
+}
 `````
 
 ## Globals

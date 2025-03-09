@@ -20,16 +20,17 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam$3 /*:object*/ = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
-  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+  const tmpClusterSSA_a$1 /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.a;
   $(tmpNestedAssignObjPatternRhs$1);
+  $(tmpClusterSSA_a$1);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -37,15 +38,16 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
-let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpClusterSSA_a);
 } else {
   const tmpNestedAssignObjPatternRhs$1 = $({ a: 1, b: 2 });
-  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+  const tmpClusterSSA_a$1 = tmpNestedAssignObjPatternRhs$1.a;
   $(tmpNestedAssignObjPatternRhs$1);
+  $(tmpClusterSSA_a$1);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -69,14 +71,16 @@ const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 a = tmpNestedAssignObjPatternRhs.a;
 tmpCalleeParam = tmpNestedAssignObjPatternRhs;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$3 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
   a = tmpNestedAssignObjPatternRhs$1.a;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
+  $(tmpNestedAssignObjPatternRhs$1);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -88,9 +92,10 @@ const a = {
   b: 2,
 };
 const b = $( a );
-let c = b.a;
+const c = b.a;
 if (b) {
   $( b );
+  $( c );
 }
 else {
   const d = {
@@ -98,10 +103,10 @@ else {
     b: 2,
   };
   const e = $( d );
-  c = e.a;
+  const f = e.a;
   $( e );
+  $( f );
 }
-$( c );
 `````
 
 ## Globals

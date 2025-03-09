@@ -66,9 +66,10 @@ y = arrPatternSplat[1];
 tmpIfTest = tmpNestedAssignArrPatternRhs;
 if (tmpIfTest) {
   $(100);
+  $(a, x, y);
 } else {
+  $(a, x, y);
 }
-$(a, x, y);
 `````
 
 ## PST Settled

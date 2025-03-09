@@ -22,12 +22,13 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { c: $ };
 const tmpChainElementCall /*:unknown*/ = b.c(1);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpChainElementCall) {
   b.c(1);
+  $(a);
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -35,10 +36,14 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-if (b.c(1)) {
+const tmpChainElementCall = b.c(1);
+const a = { a: 999, b: 1000 };
+if (tmpChainElementCall) {
   b.c(1);
+  $(a);
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -70,11 +75,13 @@ if (tmpIfTest) {
   const tmpIfTest$3 = tmpChainRootProp$1 != null;
   if (tmpIfTest$3) {
     const tmpChainElementCall$1 = tmpChainRootProp$1.c(1);
+    $(a);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -83,14 +90,17 @@ With rename=true
 `````js filename=intro
 const a = { c: $ };
 const b = a.c( 1 );
-if (b) {
-  a.c( 1 );
-}
 const c = {
   a: 999,
   b: 1000,
 };
-$( c );
+if (b) {
+  a.c( 1 );
+  $( c );
+}
+else {
+  $( c );
+}
 `````
 
 ## Globals

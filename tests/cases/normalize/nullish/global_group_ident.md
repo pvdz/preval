@@ -47,9 +47,10 @@ let y = a;
 const tmpIfTest = y == null;
 if (tmpIfTest) {
   y = x;
+  $(x);
 } else {
+  $(y);
 }
-$(y);
 `````
 
 ## PST Settled

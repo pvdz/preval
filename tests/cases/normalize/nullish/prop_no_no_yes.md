@@ -57,9 +57,10 @@ let tmpCalleeParam = tmpCompObj.c;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = d;
+  $(d);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled

@@ -29,20 +29,20 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementCall$1;
 }
 if (a) {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpChainElementCall$3 /*:unknown*/ = $($);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$1) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, 1);
-    tmpNestedComplexRhs = tmpChainElementCall$5;
+    $(tmpChainElementCall$5);
+    $(tmpChainElementCall$5);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -59,17 +59,19 @@ if (!tmpIfTest) {
   tmpCalleeParam = tmpChainElementCall$1;
 }
 if (a) {
-  let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $($);
-  if (!(tmpChainElementCall$3 == null)) {
-    tmpNestedComplexRhs = $dotCall(tmpChainElementCall$3, $, undefined, 1);
+  if (tmpChainElementCall$3 == null) {
+    $(undefined);
+    $(undefined);
+  } else {
+    const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, undefined, 1);
+    $(tmpChainElementCall$5);
+    $(tmpChainElementCall$5);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -108,10 +110,12 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -131,23 +135,22 @@ else {
   d = e;
 }
 if (a) {
-  let f = undefined;
-  const g = $( $ );
-  const h = g == null;
-  if (h) {
-
+  const f = $( $ );
+  const g = f == null;
+  if (g) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const i = $dotCall( g, $, undefined, 1 );
-    f = i;
+    const h = $dotCall( f, $, undefined, 1 );
+    $( h );
+    $( h );
   }
-  a = f;
-  $( f );
 }
 else {
   $( d );
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

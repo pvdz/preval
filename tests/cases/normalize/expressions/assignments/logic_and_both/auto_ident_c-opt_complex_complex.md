@@ -33,21 +33,21 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 }
 if (a) {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpChainElementCall$1 /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
   if (tmpIfTest$1) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`x`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
-    tmpNestedComplexRhs = tmpChainElementObject$1;
+    $(tmpChainElementObject$1);
+    $(tmpChainElementObject$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -66,18 +66,20 @@ if (!tmpIfTest) {
   tmpCalleeParam = tmpChainElementObject;
 }
 if (a) {
-  let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$1 = $(b);
-  if (!(tmpChainElementCall$1 == null)) {
+  if (tmpChainElementCall$1 == null) {
+    $(undefined);
+    $(undefined);
+  } else {
     const tmpChainRootComputed$1 = $(`x`);
-    tmpNestedComplexRhs = tmpChainElementCall$1[tmpChainRootComputed$1];
+    const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+    $(tmpChainElementObject$1);
+    $(tmpChainElementObject$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -120,10 +122,12 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -145,24 +149,23 @@ else {
   e = g;
 }
 if (a) {
-  let h = undefined;
-  const i = $( b );
-  const j = i == null;
-  if (j) {
-
+  const h = $( b );
+  const i = h == null;
+  if (i) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const k = $( "x" );
-    const l = i[ k ];
-    h = l;
+    const j = $( "x" );
+    const k = h[ j ];
+    $( k );
+    $( k );
   }
-  a = h;
-  $( h );
 }
 else {
   $( e );
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

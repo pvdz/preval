@@ -41,15 +41,18 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
+  $(999);
 } else {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$5) {
     $(`fail1`);
+    $(`fail2`);
+    $(999);
   } else {
+    $(`fail2`);
+    $(999);
   }
-  $(`fail2`);
 }
-$(999);
 `````
 
 ## Denormalized
@@ -65,13 +68,18 @@ if ($({ a: 1, b: 2 }) === tmpSwitchValue) {
     tmpSwitchCaseToStart = 2;
   }
 }
-if (!(tmpSwitchCaseToStart <= 0)) {
+if (tmpSwitchCaseToStart <= 0) {
+  $(999);
+} else {
   if (tmpSwitchCaseToStart <= 1) {
     $(`fail1`);
+    $(`fail2`);
+    $(999);
+  } else {
+    $(`fail2`);
+    $(999);
   }
-  $(`fail2`);
 }
-$(999);
 `````
 
 ## Pre Normal
@@ -163,16 +171,20 @@ else {
 }
 const g = b <= 0;
 if (g) {
-
+  $( 999 );
 }
 else {
   const h = b <= 1;
   if (h) {
     $( "fail1" );
+    $( "fail2" );
+    $( 999 );
   }
-  $( "fail2" );
+  else {
+    $( "fail2" );
+    $( 999 );
+  }
 }
-$( 999 );
 `````
 
 ## Globals

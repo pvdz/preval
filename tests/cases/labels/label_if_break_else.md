@@ -70,16 +70,16 @@ try {
 $(x);
 const tmpIfTest /*:boolean*/ = $finalAbruptAction === 1;
 if (tmpIfTest) {
+  $(x);
 } else {
   const tmpIfTest$1 /*:boolean*/ = $finalAbruptAction === 2;
   if (tmpIfTest$1) {
     throw $finalCatchArg;
   } else {
     $(x);
-    x = 4;
+    $(4);
   }
 }
-$(x);
 `````
 
 ## Denormalized
@@ -101,15 +101,16 @@ try {
   $finalCatchArg = $finalImplicit;
 }
 $(x);
-if (!($finalAbruptAction === 1)) {
+if ($finalAbruptAction === 1) {
+  $(x);
+} else {
   if ($finalAbruptAction === 2) {
     throw $finalCatchArg;
   } else {
     $(x);
-    x = 4;
+    $(4);
   }
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -213,7 +214,7 @@ catch (d) {
 $( a );
 const e = b === 1;
 if (e) {
-
+  $( a );
 }
 else {
   const f = b === 2;
@@ -222,10 +223,9 @@ else {
   }
   else {
     $( a );
-    a = 4;
+    $( 4 );
   }
 }
-$( a );
 `````
 
 ## Globals

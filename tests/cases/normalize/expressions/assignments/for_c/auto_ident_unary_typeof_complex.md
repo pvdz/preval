@@ -20,43 +20,45 @@ $(a, arg);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpUnaryArg /*:unknown*/ = $(1);
-  a = typeof tmpUnaryArg;
+  let tmpClusterSSA_a /*:string*/ = typeof tmpUnaryArg;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpUnaryArg$1 /*:unknown*/ = $(1);
-      a = typeof tmpUnaryArg$1;
+      tmpClusterSSA_a = typeof tmpUnaryArg$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, 1);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, 1);
 }
-$(a, 1);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpUnaryArg = $(1);
-  a = typeof tmpUnaryArg;
+  let tmpClusterSSA_a = typeof tmpUnaryArg;
   while (true) {
     if ($(1)) {
       const tmpUnaryArg$1 = $(1);
-      a = typeof tmpUnaryArg$1;
+      tmpClusterSSA_a = typeof tmpUnaryArg$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, 1);
+} else {
+  $({ a: 999, b: 1000 }, 1);
 }
-$(a, 1);
 `````
 
 ## Pre Normal
@@ -95,26 +97,29 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( 1 );
-  a = typeof c;
+const a = $( 1 );
+if (a) {
+  const b = $( 1 );
+  let c = typeof b;
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
       const e = $( 1 );
-      a = typeof e;
+      c = typeof e;
     }
     else {
       break;
     }
   }
+  $( c, 1 );
 }
-$( a, 1 );
+else {
+  const f = {
+    a: 999,
+    b: 1000,
+  };
+  $( f, 1 );
+}
 `````
 
 ## Globals

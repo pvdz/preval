@@ -41,9 +41,10 @@ while (true) {
           break;
         }
       }
+      $(`infiloop, do not eliminate`);
     } else {
+      $(`infiloop, do not eliminate`);
     }
-    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
@@ -65,8 +66,10 @@ while (true) {
           break;
         }
       }
+      $(`infiloop, do not eliminate`);
+    } else {
+      $(`infiloop, do not eliminate`);
     }
-    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
@@ -137,8 +140,11 @@ while (true) {
           break;
         }
       }
+      $( "infiloop, do not eliminate" );
     }
-    $( "infiloop, do not eliminate" );
+    else {
+      $( "infiloop, do not eliminate" );
+    }
   }
   else {
     break;

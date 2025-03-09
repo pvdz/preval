@@ -53,10 +53,11 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(`woohoo`);
 } else {
   $(`exit`);
+  $(`woohoo`);
 }
-$(`woohoo`);
 const tmpIfTest$3 /*:unknown*/ = $(false);
 if (tmpIfTest$3) {
   while ($LOOP_UNROLL_10) {
@@ -68,10 +69,11 @@ if (tmpIfTest$3) {
       break;
     }
   }
+  $(`woohoo`);
 } else {
   $(`exit`);
+  $(`woohoo`);
 }
-$(`woohoo`);
 `````
 
 ## Denormalized
@@ -86,10 +88,11 @@ if ($(false)) {
       break;
     }
   }
+  $(`woohoo`);
 } else {
   $(`exit`);
+  $(`woohoo`);
 }
-$(`woohoo`);
 if ($(false)) {
   while (true) {
     $(`uhoh`);
@@ -98,10 +101,11 @@ if ($(false)) {
       break;
     }
   }
+  $(`woohoo`);
 } else {
   $(`exit`);
+  $(`woohoo`);
 }
-$(`woohoo`);
 `````
 
 ## Pre Normal
@@ -185,11 +189,12 @@ if (a) {
       break;
     }
   }
+  $( "woohoo" );
 }
 else {
   $( "exit" );
+  $( "woohoo" );
 }
-$( "woohoo" );
 const c = $( false );
 if (c) {
   while ($LOOP_UNROLL_10) {
@@ -203,11 +208,12 @@ if (c) {
       break;
     }
   }
+  $( "woohoo" );
 }
 else {
   $( "exit" );
+  $( "woohoo" );
 }
-$( "woohoo" );
 `````
 
 ## Globals

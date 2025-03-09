@@ -70,10 +70,12 @@ let f = function () {
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementCall = tmpChainElementObject$1.e(1);
     a = tmpChainElementCall;
+    $(tmpChainElementCall);
+    return undefined;
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

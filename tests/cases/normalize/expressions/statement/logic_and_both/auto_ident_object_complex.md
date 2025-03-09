@@ -58,9 +58,10 @@ const tmpIfTest = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 if (tmpIfTest) {
   $(1);
   $(3);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

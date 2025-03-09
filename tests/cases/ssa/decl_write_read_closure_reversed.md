@@ -28,21 +28,7 @@ if ($) $(f());
 
 `````js filename=intro
 if ($) {
-  let tmpCalleeParam /*:unknown*/ = undefined;
-  if ($) {
-    let x /*:number*/ = 5;
-    if ($) {
-      x = 10;
-    } else {
-    }
-    if ($) {
-      tmpCalleeParam = 20;
-    } else {
-      tmpCalleeParam = x;
-    }
-  } else {
-  }
-  $(tmpCalleeParam);
+  $(20);
 } else {
 }
 `````
@@ -52,19 +38,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let tmpCalleeParam = undefined;
-  if ($) {
-    let x = 5;
-    if ($) {
-      x = 10;
-    }
-    if ($) {
-      tmpCalleeParam = 20;
-    } else {
-      tmpCalleeParam = x;
-    }
-  }
-  $(tmpCalleeParam);
+  $(20);
 }
 `````
 
@@ -128,20 +102,7 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = undefined;
-  if ($) {
-    let b = 5;
-    if ($) {
-      b = 10;
-    }
-    if ($) {
-      a = 20;
-    }
-    else {
-      a = b;
-    }
-  }
-  $( a );
+  $( 20 );
 }
 `````
 

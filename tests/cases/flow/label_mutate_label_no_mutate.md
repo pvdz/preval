@@ -33,26 +33,24 @@ f();
 
 
 `````js filename=intro
-let x /*:string*/ = `fail`;
 if ($) {
-  x = `pass`;
+  $(`pass`);
 } else {
   $(`fail`);
+  $(`fail`);
 }
-$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = `fail`;
 if ($) {
-  x = `pass`;
+  $(`pass`);
 } else {
   $(`fail`);
+  $(`fail`);
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -106,14 +104,13 @@ f();
 With rename=true
 
 `````js filename=intro
-let a = "fail";
 if ($) {
-  a = "pass";
+  $( "pass" );
 }
 else {
   $( "fail" );
+  $( "fail" );
 }
-$( a );
 `````
 
 ## Globals

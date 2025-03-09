@@ -30,6 +30,7 @@ $('end');
 $(`start`);
 if ($) {
   $(`inner`);
+  $(`end`);
 } else {
   while ($LOOP_UNROLL_10) {
     if ($) {
@@ -38,8 +39,8 @@ if ($) {
     } else {
     }
   }
+  $(`end`);
 }
-$(`end`);
 `````
 
 ## Denormalized
@@ -49,6 +50,7 @@ $(`end`);
 $(`start`);
 if ($) {
   $(`inner`);
+  $(`end`);
 } else {
   while (true) {
     if ($) {
@@ -56,8 +58,8 @@ if ($) {
       break;
     }
   }
+  $(`end`);
 }
-$(`end`);
 `````
 
 ## Pre Normal
@@ -98,6 +100,7 @@ With rename=true
 $( "start" );
 if ($) {
   $( "inner" );
+  $( "end" );
 }
 else {
   while ($LOOP_UNROLL_10) {
@@ -106,8 +109,8 @@ else {
       break;
     }
   }
+  $( "end" );
 }
-$( "end" );
 `````
 
 ## Globals

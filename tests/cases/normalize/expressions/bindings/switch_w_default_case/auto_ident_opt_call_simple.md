@@ -27,12 +27,14 @@ switch (1) {
 const tmpIfTest$5 /*:boolean*/ = $ == null;
 if (tmpIfTest$5) {
   $(undefined);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
   $(tmpChainElementCall);
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Denormalized
@@ -41,11 +43,13 @@ $(`fail2`);
 `````js filename=intro
 if ($ == null) {
   $(undefined);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   $($(1));
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Pre Normal
@@ -99,9 +103,10 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
     const tmpChainElementCall = tmpChainRootCall(1);
     a = tmpChainElementCall;
+    $(tmpChainElementCall);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
@@ -123,13 +128,15 @@ With rename=true
 const a = $ == null;
 if (a) {
   $( undefined );
+  $( "fail1" );
+  $( "fail2" );
 }
 else {
   const b = $( 1 );
   $( b );
+  $( "fail1" );
+  $( "fail2" );
 }
-$( "fail1" );
-$( "fail2" );
 `````
 
 ## Globals

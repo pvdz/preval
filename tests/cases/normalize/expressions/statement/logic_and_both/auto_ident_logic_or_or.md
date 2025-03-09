@@ -30,23 +30,26 @@ if (tmpIfTest) {
     tmpIfTest = $(tmpCalleeParam$3);
   }
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCalleeParam$5 /*:unknown*/ = $(0);
   const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$5);
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpCalleeParam$7 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$7);
     if (tmpClusterSSA_tmpIfTest$1) {
+      $(a);
     } else {
       const tmpCalleeParam$9 /*:unknown*/ = $(2);
       $(tmpCalleeParam$9);
+      $(a);
     }
   }
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -60,14 +63,21 @@ if (!tmpIfTest) {
     tmpIfTest = $($(2));
   }
 }
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  if (!$($(0))) {
-    if (!$($(1))) {
+  if ($($(0))) {
+    $(a);
+  } else {
+    if ($($(1))) {
+      $(a);
+    } else {
       $($(2));
+      $(a);
     }
   }
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -100,18 +110,21 @@ if (tmpIfTest) {
   const tmpCalleeParam$5 = $(0);
   let tmpIfTest$1 = $(tmpCalleeParam$5);
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpCalleeParam$7 = $(1);
     tmpIfTest$1 = $(tmpCalleeParam$7);
     if (tmpIfTest$1) {
+      $(a);
     } else {
       const tmpCalleeParam$9 = $(2);
       $(tmpCalleeParam$9);
+      $(a);
     }
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -134,29 +147,32 @@ else {
     b = $( d );
   }
 }
-if (b) {
-  const e = $( 0 );
-  const f = $( e );
-  if (f) {
-
-  }
-  else {
-    const g = $( 1 );
-    const h = $( g );
-    if (h) {
-
-    }
-    else {
-      const i = $( 2 );
-      $( i );
-    }
-  }
-}
-const j = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( j );
+if (b) {
+  const f = $( 0 );
+  const g = $( f );
+  if (g) {
+    $( e );
+  }
+  else {
+    const h = $( 1 );
+    const i = $( h );
+    if (i) {
+      $( e );
+    }
+    else {
+      const j = $( 2 );
+      $( j );
+      $( e );
+    }
+  }
+}
+else {
+  $( e );
+}
 `````
 
 ## Globals

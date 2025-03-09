@@ -68,9 +68,10 @@ if (tmpIfTest) {
   a = $(tmpCalleeParam);
   if (a) {
     a = 2;
+    $(a);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 `````

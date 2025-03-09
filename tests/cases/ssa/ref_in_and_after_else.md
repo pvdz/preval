@@ -29,14 +29,15 @@ if ($) f();
 
 `````js filename=intro
 if ($) {
-  let x /*:unknown*/ = $(1);
+  const x /*:unknown*/ = $(1);
   if ($) {
-    x = $(2);
-    $(x);
+    const tmpClusterSSA_x /*:unknown*/ = $(2);
+    $(tmpClusterSSA_x);
+    $(tmpClusterSSA_x);
   } else {
     $(x);
+    $(x);
   }
-  $(x);
 } else {
 }
 `````
@@ -46,14 +47,15 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(1);
+  const x = $(1);
   if ($) {
-    x = $(2);
-    $(x);
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
+    $(tmpClusterSSA_x);
   } else {
     $(x);
+    $(x);
   }
-  $(x);
 }
 `````
 
@@ -85,11 +87,13 @@ let f = function () {
   if ($) {
     x = $(2);
     $(x);
+    $(x);
+    return undefined;
   } else {
     $(x);
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 if ($) {
   f();
@@ -102,15 +106,16 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  let a = $( 1 );
+  const a = $( 1 );
   if ($) {
-    a = $( 2 );
-    $( a );
+    const b = $( 2 );
+    $( b );
+    $( b );
   }
   else {
     $( a );
+    $( a );
   }
-  $( a );
 }
 `````
 

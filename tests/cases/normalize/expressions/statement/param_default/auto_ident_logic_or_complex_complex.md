@@ -22,11 +22,12 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(0);
 const p /*:unknown*/ = $(tmpCalleeParam);
 if (p) {
+  $(undefined);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
   $(tmpCalleeParam$1);
+  $(undefined);
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -35,10 +36,12 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-if (!$($(0))) {
+if ($($(0))) {
+  $(undefined);
+} else {
   $($(2));
+  $(undefined);
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -93,13 +96,13 @@ With rename=true
 const a = $( 0 );
 const b = $( a );
 if (b) {
-
+  $( undefined );
 }
 else {
   const c = $( 2 );
   $( c );
+  $( undefined );
 }
-$( undefined );
 const d = {
   a: 999,
   b: 1000,

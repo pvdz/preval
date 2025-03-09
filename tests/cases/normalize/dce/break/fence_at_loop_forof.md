@@ -35,12 +35,13 @@ if (tmpIfTest) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
+    $(`infiloop, do not eliminate`);
   } else {
     const x /*:unknown*/ = tmpForOfNext.value;
     $(`loop`, x);
+    $(`infiloop, do not eliminate`);
   }
   while ($LOOP_UNROLL_10) {
-    $(`infiloop, do not eliminate`);
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
@@ -49,17 +50,20 @@ if (tmpIfTest) {
       const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
       const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
       if (tmpIfTest$4) {
+        $(`infiloop, do not eliminate`);
       } else {
         const x$1 /*:unknown*/ = tmpForOfNext$1.value;
         $(`loop`, x$1);
+        $(`infiloop, do not eliminate`);
       }
     } else {
       break;
     }
   }
+  $(`after (not invoked)`);
 } else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Denormalized
@@ -69,23 +73,30 @@ $(`after (not invoked)`);
 if ($(true)) {
   $(`loop`);
   const tmpForOfNext = $forOf([1, 2]).next();
-  if (!tmpForOfNext.done) {
+  if (tmpForOfNext.done) {
+    $(`infiloop, do not eliminate`);
+  } else {
     $(`loop`, tmpForOfNext.value);
+    $(`infiloop, do not eliminate`);
   }
   while (true) {
-    $(`infiloop, do not eliminate`);
     if ($(true)) {
       $(`loop`);
       const tmpForOfNext$1 = $forOf([1, 2]).next();
-      if (!tmpForOfNext$1.done) {
+      if (tmpForOfNext$1.done) {
+        $(`infiloop, do not eliminate`);
+      } else {
         $(`loop`, tmpForOfNext$1.value);
+        $(`infiloop, do not eliminate`);
       }
     } else {
       break;
     }
   }
+  $(`after (not invoked)`);
+} else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Pre Normal
@@ -156,14 +167,14 @@ if (a) {
   const d = c.next();
   const e = d.done;
   if (e) {
-
+    $( "infiloop, do not eliminate" );
   }
   else {
     const f = d.value;
     $( "loop", f );
+    $( "infiloop, do not eliminate" );
   }
   while ($LOOP_UNROLL_10) {
-    $( "infiloop, do not eliminate" );
     const g = $( true );
     if (g) {
       $( "loop" );
@@ -172,19 +183,23 @@ if (a) {
       const j = i.next();
       const k = j.done;
       if (k) {
-
+        $( "infiloop, do not eliminate" );
       }
       else {
         const l = j.value;
         $( "loop", l );
+        $( "infiloop, do not eliminate" );
       }
     }
     else {
       break;
     }
   }
+  $( "after (not invoked)" );
 }
-$( "after (not invoked)" );
+else {
+  $( "after (not invoked)" );
+}
 `````
 
 ## Globals

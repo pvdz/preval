@@ -20,45 +20,40 @@ $(a, x);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  $(1);
-  $(2);
-  a = 1;
   while ($LOOP_UNROLL_10) {
+    $(1);
+    $(2);
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      $(1);
-      $(2);
     } else {
       break;
     }
   }
+  $(1, 1);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, 1);
 }
-$(a, 1);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
-  $(1);
-  $(2);
-  a = 1;
   while (true) {
-    if ($(1)) {
-      $(1);
-      $(2);
-    } else {
+    $(1);
+    $(2);
+    if (!$(1)) {
       break;
     }
   }
+  $(1, 1);
+} else {
+  $({ a: 999, b: 1000 }, 1);
 }
-$(a, 1);
 `````
 
 ## Pre Normal
@@ -98,27 +93,28 @@ $(a, x);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  $( 1 );
-  $( 2 );
-  a = 1;
+const a = $( 1 );
+if (a) {
   while ($LOOP_UNROLL_10) {
-    const c = $( 1 );
-    if (c) {
-      $( 1 );
-      $( 2 );
+    $( 1 );
+    $( 2 );
+    const b = $( 1 );
+    if (b) {
+
     }
     else {
       break;
     }
   }
+  $( 1, 1 );
 }
-$( a, 1 );
+else {
+  const c = {
+    a: 999,
+    b: 1000,
+  };
+  $( c, 1 );
+}
 `````
 
 ## Globals

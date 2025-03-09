@@ -33,10 +33,11 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
   if (tmpIfTest$1) {
     $(`keep, do not eval`);
+    $(`keep`);
   } else {
+    $(`keep`);
   }
   while ($LOOP_UNROLL_10) {
-    $(`keep`);
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       const tmpSwitchDisc$1 /*:unknown*/ = $(1, `disc`);
@@ -44,15 +45,18 @@ if (tmpIfTest) {
       const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
       if (tmpIfTest$4) {
         $(`keep, do not eval`);
+        $(`keep`);
       } else {
+        $(`keep`);
       }
     } else {
       break;
     }
   }
+  $(`after, do not evaluate (infinite loop)`);
 } else {
+  $(`after, do not evaluate (infinite loop)`);
 }
-$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Denormalized
@@ -62,19 +66,26 @@ $(`after, do not evaluate (infinite loop)`);
 if ($(true)) {
   if ($(1, `disc`) === $(0)) {
     $(`keep, do not eval`);
+    $(`keep`);
+  } else {
+    $(`keep`);
   }
   while (true) {
-    $(`keep`);
     if ($(true)) {
       if ($(1, `disc`) === $(0)) {
         $(`keep, do not eval`);
+        $(`keep`);
+      } else {
+        $(`keep`);
       }
     } else {
       break;
     }
   }
+  $(`after, do not evaluate (infinite loop)`);
+} else {
+  $(`after, do not evaluate (infinite loop)`);
 }
-$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Pre Normal
@@ -135,9 +146,12 @@ if (a) {
   const d = b === c;
   if (d) {
     $( "keep, do not eval" );
+    $( "keep" );
+  }
+  else {
+    $( "keep" );
   }
   while ($LOOP_UNROLL_10) {
-    $( "keep" );
     const e = $( true );
     if (e) {
       const f = $( 1, "disc" );
@@ -145,14 +159,21 @@ if (a) {
       const h = f === g;
       if (h) {
         $( "keep, do not eval" );
+        $( "keep" );
+      }
+      else {
+        $( "keep" );
       }
     }
     else {
       break;
     }
   }
+  $( "after, do not evaluate (infinite loop)" );
 }
-$( "after, do not evaluate (infinite loop)" );
+else {
+  $( "after, do not evaluate (infinite loop)" );
+}
 `````
 
 ## Globals

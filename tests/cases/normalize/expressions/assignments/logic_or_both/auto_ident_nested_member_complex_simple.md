@@ -84,6 +84,8 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignR
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b, c, d);
 } else {
   const varInitAssignLhsComputedObj$1 = $(b);
   const varInitAssignLhsComputedProp$1 = $(`x`);
@@ -96,9 +98,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b, c, d);
 }
-$(tmpCalleeParam);
-$(a, b, c, d);
 `````
 
 ## PST Settled

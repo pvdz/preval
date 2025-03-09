@@ -29,9 +29,10 @@ if (tmpIfTest) {
   const b /*:object*/ = { x: 2 };
   b[varInitAssignLhsComputedProp] = 7;
   $(7, b, 3);
+  $(undefined);
 } else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -43,8 +44,10 @@ if ($(true)) {
   const b = { x: 2 };
   b[varInitAssignLhsComputedProp] = 7;
   $(7, b, 3);
+  $(undefined);
+} else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -100,8 +103,11 @@ if (a) {
   const c = { x: 2 };
   c[b] = 7;
   $( 7, c, 3 );
+  $( undefined );
 }
-$( undefined );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

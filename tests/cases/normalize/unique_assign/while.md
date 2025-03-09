@@ -21,41 +21,44 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = $(1);
+const a /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = a < 10;
 if (tmpIfTest) {
-  a = a + 1;
+  let tmpClusterSSA_a /*:primitive*/ = a + 1;
   while ($LOOP_UNROLL_10) {
-    $(a);
-    const tmpIfTest$1 /*:boolean*/ = a < 10;
+    $(tmpClusterSSA_a);
+    const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_a < 10;
     if (tmpIfTest$1) {
-      a = a + 1;
+      tmpClusterSSA_a = tmpClusterSSA_a + 1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $(1);
+const a = $(1);
 if (a < 10) {
-  a = a + 1;
+  let tmpClusterSSA_a = a + 1;
   while (true) {
-    $(a);
-    if (a < 10) {
-      a = a + 1;
+    $(tmpClusterSSA_a);
+    if (tmpClusterSSA_a < 10) {
+      tmpClusterSSA_a = tmpClusterSSA_a + 1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -91,22 +94,25 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
+const a = $( 1 );
 const b = a < 10;
 if (b) {
-  a = a + 1;
+  let c = a + 1;
   while ($LOOP_UNROLL_10) {
-    $( a );
-    const c = a < 10;
-    if (c) {
-      a = a + 1;
+    $( c );
+    const d = c < 10;
+    if (d) {
+      c = c + 1;
     }
     else {
       break;
     }
   }
+  $( c );
 }
-$( a );
+else {
+  $( a );
+}
 `````
 
 ## Globals

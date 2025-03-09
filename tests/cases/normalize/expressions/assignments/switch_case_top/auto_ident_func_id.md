@@ -79,9 +79,10 @@ if (tmpIfTest) {
     return undefined;
   };
   a = f;
+  $(f);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

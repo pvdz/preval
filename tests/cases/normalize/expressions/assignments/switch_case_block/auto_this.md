@@ -72,9 +72,10 @@ const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   a = undefined;
+  $(undefined);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

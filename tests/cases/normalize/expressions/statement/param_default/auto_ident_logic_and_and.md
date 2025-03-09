@@ -27,11 +27,13 @@ if (p) {
   if (tmpClusterSSA_p) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
     $(tmpCalleeParam$3);
+    $(undefined);
   } else {
+    $(undefined);
   }
 } else {
+  $(undefined);
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -43,9 +45,13 @@ $(a);
 if ($($(1))) {
   if ($($(1))) {
     $($(2));
+    $(undefined);
+  } else {
+    $(undefined);
   }
+} else {
+  $(undefined);
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -111,9 +117,15 @@ if (b) {
   if (d) {
     const e = $( 2 );
     $( e );
+    $( undefined );
+  }
+  else {
+    $( undefined );
   }
 }
-$( undefined );
+else {
+  $( undefined );
+}
 const f = {
   a: 999,
   b: 1000,

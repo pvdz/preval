@@ -25,9 +25,10 @@ const b /*:object*/ = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
   b[tmpNestedAssignComMemberProp] = 7;
+  $(1, b, 3);
 } else {
+  $(1, b, 3);
 }
-$(1, b, 3);
 `````
 
 ## Denormalized
@@ -39,8 +40,10 @@ const b = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberProp = $(`x`);
   b[tmpNestedAssignComMemberProp] = 7;
+  $(1, b, 3);
+} else {
+  $(1, b, 3);
 }
-$(1, b, 3);
 `````
 
 ## Pre Normal
@@ -102,8 +105,11 @@ const d = { x: 2 };
 if (c) {
   const e = $( "x" );
   d[e] = 7;
+  $( 1, d, 3 );
 }
-$( 1, d, 3 );
+else {
+  $( 1, d, 3 );
+}
 `````
 
 ## Globals

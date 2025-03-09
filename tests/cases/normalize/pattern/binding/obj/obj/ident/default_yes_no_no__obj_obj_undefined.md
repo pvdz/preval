@@ -17,8 +17,8 @@ $(y);
 
 
 `````js filename=intro
-const y /*:unknown*/ = $(`pass`);
-$(y);
+const tmpClusterSSA_y /*:unknown*/ = $(`pass`);
+$(tmpClusterSSA_y);
 `````
 
 ## Denormalized
@@ -50,10 +50,11 @@ let y = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = $(`pass`);
+  $(y);
 } else {
   y = objPatternBeforeDefault;
+  $(objPatternBeforeDefault);
 }
-$(y);
 `````
 
 ## PST Settled

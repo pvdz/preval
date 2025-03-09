@@ -20,7 +20,6 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam /*:unknown*/ = $(100);
 const b /*:object*/ = { c: 10, d: 20 };
 if (tmpCalleeParam) {
@@ -29,19 +28,19 @@ if (tmpCalleeParam) {
   const tmpCompProp /*:unknown*/ = $(`d`);
   const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 } else {
   $(tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 const b = { c: 10, d: 20 };
 if (tmpCalleeParam) {
@@ -50,12 +49,12 @@ if (tmpCalleeParam) {
   const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 } else {
   $(tmpCalleeParam);
+  $({ a: 999, b: 1000 }, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -84,38 +83,40 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 } else {
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 100 );
-const c = {
+const a = $( 100 );
+const b = {
   c: 10,
   d: 20,
 };
-if (b) {
-  const d = $( c );
-  const e = $( c );
-  const f = $( "d" );
-  const g = e[ f ];
-  d.c = g;
-  a = g;
-  $( g );
+if (a) {
+  const c = $( b );
+  const d = $( b );
+  const e = $( "d" );
+  const f = d[ e ];
+  c.c = f;
+  $( f );
+  $( f, b );
 }
 else {
-  $( b );
+  $( a );
+  const g = {
+    a: 999,
+    b: 1000,
+  };
+  $( g, b );
 }
-$( a, c );
 `````
 
 ## Globals

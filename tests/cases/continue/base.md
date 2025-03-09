@@ -82,11 +82,13 @@ if (tmpIfTest$1) {
       break;
     }
   }
+  $(`woohoo`);
+  $continue();
 } else {
   $(`exit`);
+  $(`woohoo`);
+  $continue();
 }
-$(`woohoo`);
-$continue();
 `````
 
 ## Denormalized
@@ -110,11 +112,13 @@ if ($(false)) {
       break;
     }
   }
+  $(`woohoo`);
+  $continue();
 } else {
   $(`exit`);
+  $(`woohoo`);
+  $continue();
 }
-$(`woohoo`);
-$continue();
 `````
 
 ## Pre Normal
@@ -220,12 +224,14 @@ if (c) {
       break;
     }
   }
+  $( "woohoo" );
+  a();
 }
 else {
   $( "exit" );
+  $( "woohoo" );
+  a();
 }
-$( "woohoo" );
-a();
 `````
 
 ## Globals

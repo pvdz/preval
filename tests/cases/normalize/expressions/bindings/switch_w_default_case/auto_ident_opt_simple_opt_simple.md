@@ -99,11 +99,13 @@ if (tmpIfTest$3) {
     if (tmpIfTest$7) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       a = tmpChainElementObject$1;
+      $(tmpChainElementObject$1);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;

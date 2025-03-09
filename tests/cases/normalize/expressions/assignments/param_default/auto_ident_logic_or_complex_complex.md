@@ -21,16 +21,15 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
 const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
-let tmpClusterSSA_a /*:unknown*/ = undefined;
 if (tmpNestedComplexRhs) {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(undefined);
+  $(tmpNestedComplexRhs);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
   const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
+  $(undefined);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 }
-$(undefined);
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -38,14 +37,14 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $($(0));
-let tmpClusterSSA_a = undefined;
 if (tmpNestedComplexRhs) {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(undefined);
+  $(tmpNestedComplexRhs);
 } else {
-  tmpClusterSSA_a = $($(2));
+  const tmpClusterSSA_tmpNestedComplexRhs = $($(2));
+  $(undefined);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 }
-$(undefined);
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -99,17 +98,16 @@ With rename=true
 `````js filename=intro
 const a = $( 0 );
 const b = $( a );
-let c = undefined;
 if (b) {
-  c = b;
+  $( undefined );
+  $( b );
 }
 else {
-  const d = $( 2 );
-  const e = $( d );
-  c = e;
+  const c = $( 2 );
+  const d = $( c );
+  $( undefined );
+  $( d );
 }
-$( undefined );
-$( c );
 `````
 
 ## Globals

@@ -21,15 +21,8 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-let a /*:unknown*/ = typeof tmpUnaryArg;
-if (a) {
-  $(a);
-} else {
-  const tmpUnaryArg$1 /*:unknown*/ = $(1);
-  const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg$1;
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a /*:string*/ = typeof tmpUnaryArg;
+$(a);
 $(a, 1);
 `````
 
@@ -38,15 +31,8 @@ $(a, 1);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-let a = typeof tmpUnaryArg;
-if (a) {
-  $(a);
-} else {
-  const tmpUnaryArg$1 = $(1);
-  const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a = typeof tmpUnaryArg;
+$(a);
 $(a, 1);
 `````
 
@@ -70,14 +56,16 @@ const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, arg);
 } else {
   const tmpUnaryArg$1 = $(arg);
   const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, arg);
 }
-$(tmpCalleeParam);
-$(a, arg);
 `````
 
 ## PST Settled
@@ -85,16 +73,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = typeof a;
-if (b) {
-  $( b );
-}
-else {
-  const c = $( 1 );
-  const d = typeof c;
-  b = d;
-  $( d );
-}
+const b = typeof a;
+$( b );
 $( b, 1 );
 `````
 

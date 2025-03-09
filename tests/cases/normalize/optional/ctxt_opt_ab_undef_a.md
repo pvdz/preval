@@ -17,35 +17,37 @@ $($(a)?.b?.c(100));
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $(undefined);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.b;
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+    $(undefined);
   } else {
     const tmpChainElementCall$1 /*:unknown*/ = tmpChainElementObject.c(100);
-    tmpCalleeParam = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(undefined);
-if (!(tmpChainElementCall == null)) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+} else {
   const tmpChainElementObject = tmpChainElementCall.b;
-  if (!(tmpChainElementObject == null)) {
-    tmpCalleeParam = tmpChainElementObject.c(100);
+  if (tmpChainElementObject == null) {
+    $(undefined);
+  } else {
+    $(tmpChainElementObject.c(100));
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -71,35 +73,35 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall$1 = tmpChainElementObject.c(100);
     tmpCalleeParam = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
   } else {
+    $(tmpCalleeParam);
   }
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( undefined );
-const c = b == null;
-if (c) {
-
+const a = $( undefined );
+const b = a == null;
+if (b) {
+  $( undefined );
 }
 else {
-  const d = b.b;
-  const e = d == null;
-  if (e) {
-
+  const c = a.b;
+  const d = c == null;
+  if (d) {
+    $( undefined );
   }
   else {
-    const f = d.c( 100 );
-    a = f;
+    const e = c.c( 100 );
+    $( e );
   }
 }
-$( a );
 `````
 
 ## Globals

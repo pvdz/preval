@@ -54,9 +54,10 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = tmpChainRootProp;
   const tmpCalleeParam$3 = x.y;
   const tmpChainElementCall = $dotCall(tmpCalleeParam, tmpCalleeParam$1, `b`, tmpCalleeParam$3);
+  $(a, x);
 } else {
+  $(a, x);
 }
-$(a, x);
 `````
 
 ## PST Settled

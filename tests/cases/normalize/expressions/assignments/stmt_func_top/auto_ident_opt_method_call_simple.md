@@ -65,10 +65,12 @@ let f = function () {
   if (tmpIfTest) {
     const tmpChainElementCall = tmpChainRootProp.c(1);
     a = tmpChainElementCall;
+    $(tmpChainElementCall);
+    return undefined;
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

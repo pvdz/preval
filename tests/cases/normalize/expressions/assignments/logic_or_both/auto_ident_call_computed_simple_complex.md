@@ -22,16 +22,16 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-let a /*:unknown*/ = b[tmpCallCompProp](1);
+const a /*:unknown*/ = b[tmpCallCompProp](1);
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
   const tmpNestedComplexRhs /*:unknown*/ = b[tmpCallCompProp$1](1);
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -40,16 +40,16 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
 const b = { $: $ };
-let a = b[tmpCallCompProp](1);
+const a = b[tmpCallCompProp](1);
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpCallCompProp$1 = $(`\$`);
   const tmpNestedComplexRhs = b[tmpCallCompProp$1](1);
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -73,15 +73,17 @@ const tmpCallCompProp = $(`\$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCallCompObj$1 = b;
   const tmpCallCompProp$1 = $(`\$`);
   const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -90,17 +92,17 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-let c = b[ a ]( 1 );
+const c = b[ a ]( 1 );
 if (c) {
+  $( c );
   $( c );
 }
 else {
   const d = $( "$" );
   const e = b[ d ]( 1 );
-  c = e;
+  $( e );
   $( e );
 }
-$( c );
 `````
 
 ## Globals

@@ -21,8 +21,10 @@ $(a, b);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(100);
+const a /*:object*/ = { a: 999, b: 1000 };
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
+  $(a, b);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(b);
   const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
@@ -30,9 +32,8 @@ if (tmpIfTest) {
   const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
   const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
   tmpUpdObj.x = tmpUpdInc;
+  $(a, b);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
 `````
 
 ## Denormalized
@@ -40,12 +41,15 @@ $(a, b);
 
 `````js filename=intro
 const tmpIfTest = $(100);
+const a = { a: 999, b: 1000 };
 const b = { x: 1 };
-if (!tmpIfTest) {
+if (tmpIfTest) {
+  $(a, b);
+} else {
   const tmpUpdObj = $($(b));
   tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) + 1;
+  $(a, b);
 }
-$({ a: 999, b: 1000 }, b);
 `````
 
 ## Pre Normal
@@ -66,6 +70,7 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
+  $(a, b);
 } else {
   const tmpCalleeParam = $(b);
   let tmpUpdObj = $(tmpCalleeParam);
@@ -73,8 +78,8 @@ if (tmpIfTest) {
   let tmpUpdNum = $coerce(tmpUpdProp, `number`);
   let tmpUpdInc = tmpUpdNum + 1;
   tmpUpdObj.x = tmpUpdInc;
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
@@ -82,23 +87,23 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-const b = { x: 1 };
-if (a) {
-
-}
-else {
-  const c = $( b );
-  const d = $( c );
-  const e = d.x;
-  const f = $coerce( e, "number" );
-  const g = f + 1;
-  d.x = g;
-}
-const h = {
+const b = {
   a: 999,
   b: 1000,
 };
-$( h, b );
+const c = { x: 1 };
+if (a) {
+  $( b, c );
+}
+else {
+  const d = $( c );
+  const e = $( d );
+  const f = e.x;
+  const g = $coerce( f, "number" );
+  const h = g + 1;
+  e.x = h;
+  $( b, c );
+}
 `````
 
 ## Globals

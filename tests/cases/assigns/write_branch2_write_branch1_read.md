@@ -23,16 +23,17 @@ if ($(10)) {
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(1);
+const x /*:unknown*/ = $(1);
 const tmpIfTest /*:unknown*/ = $(10);
 if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(20);
   if (tmpIfTest$1) {
-    x = $(2);
-    $(x);
+    const tmpClusterSSA_x /*:unknown*/ = $(2);
+    $(tmpClusterSSA_x);
+    $(tmpClusterSSA_x);
   } else {
+    $(x);
   }
-  $(x);
 } else {
 }
 `````
@@ -41,13 +42,15 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(1);
+const x = $(1);
 if ($(10)) {
   if ($(20)) {
-    x = $(2);
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
+    $(tmpClusterSSA_x);
+  } else {
     $(x);
   }
-  $(x);
 }
 `````
 
@@ -76,9 +79,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     x = $(2);
     $(x);
+    $(x);
   } else {
+    $(x);
   }
-  $(x);
 } else {
 }
 `````
@@ -87,15 +91,18 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
+const a = $( 1 );
 const b = $( 10 );
 if (b) {
   const c = $( 20 );
   if (c) {
-    a = $( 2 );
+    const d = $( 2 );
+    $( d );
+    $( d );
+  }
+  else {
     $( a );
   }
-  $( a );
 }
 `````
 

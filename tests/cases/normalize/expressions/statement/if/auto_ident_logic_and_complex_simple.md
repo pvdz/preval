@@ -50,9 +50,10 @@ const tmpCalleeParam = $(1);
 let tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
   tmpIfTest = 2;
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

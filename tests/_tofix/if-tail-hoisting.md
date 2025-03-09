@@ -34,39 +34,35 @@ $(x, "final");
 
 
 `````js filename=intro
-let x /*:unknown*/ = undefined;
 const test /*:unknown*/ = $(1);
 if (test) {
   const a /*:unknown*/ = $(2);
-  x = a;
+  $(a, `final`);
 } else {
   const test2 /*:unknown*/ = $(3);
   if (test2) {
     const b /*:unknown*/ = $(4);
-    x = b;
+    $(b, `final`);
   } else {
     const c /*:unknown*/ = $(5);
-    x = c;
+    $(c, `final`);
   }
 }
-$(x, `final`);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = undefined;
 if ($(1)) {
-  x = $(2);
+  $($(2), `final`);
 } else {
   if ($(3)) {
-    x = $(4);
+    $($(4), `final`);
   } else {
-    x = $(5);
+    $($(5), `final`);
   }
 }
-$(x, `final`);
 `````
 
 ## Pre Normal
@@ -100,41 +96,41 @@ const test = $(1);
 if (test) {
   const a = $(2);
   x = a;
+  $(a, `final`);
 } else {
   const test2 = $(3);
   if (test2) {
     const b = $(4);
     x = b;
+    $(b, `final`);
   } else {
     const c = $(5);
     x = c;
+    $(c, `final`);
   }
 }
-$(x, `final`);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1 );
-if (b) {
-  const c = $( 2 );
-  a = c;
+const a = $( 1 );
+if (a) {
+  const b = $( 2 );
+  $( b, "final" );
 }
 else {
-  const d = $( 3 );
-  if (d) {
-    const e = $( 4 );
-    a = e;
+  const c = $( 3 );
+  if (c) {
+    const d = $( 4 );
+    $( d, "final" );
   }
   else {
-    const f = $( 5 );
-    a = f;
+    const e = $( 5 );
+    $( e, "final" );
   }
 }
-$( a, "final" );
 `````
 
 ## Globals

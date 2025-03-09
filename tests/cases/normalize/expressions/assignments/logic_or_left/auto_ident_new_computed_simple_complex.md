@@ -61,11 +61,13 @@ const tmpNewCallee = tmpCompObj[tmpCompProp];
 a = new tmpNewCallee(1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled

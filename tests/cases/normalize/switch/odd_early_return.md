@@ -88,6 +88,7 @@ $inlinedFunction: {
           const tmpIfTest$15 /*:unknown*/ = $(2);
           if (tmpIfTest$15) {
             $(13);
+            $(3);
           } else {
             const tmpReturnArg$1 /*:unknown*/ = $(14);
             tmpCalleeParam = tmpReturnArg$1;
@@ -95,8 +96,8 @@ $inlinedFunction: {
           }
         }
       } else {
+        $(3);
       }
-      $(3);
     } else {
     }
     const tmpIfTest$17 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
@@ -146,13 +147,15 @@ $inlinedFunction: {
           $(11);
           if ($(2)) {
             $(13);
+            $(3);
           } else {
             tmpCalleeParam = $(14);
             break $inlinedFunction;
           }
         }
+      } else {
+        $(3);
       }
-      $(3);
     }
     if (tmpSwitchCaseToStart <= 2) {
       $(5);
@@ -259,14 +262,15 @@ let f = function () {
           const tmpIfTest$15 = $(2);
           if (tmpIfTest$15) {
             $(13);
+            $(3);
           } else {
             const tmpReturnArg$1 = $(14);
             return tmpReturnArg$1;
           }
         }
       } else {
+        $(3);
       }
-      $(3);
     } else {
     }
     const tmpIfTest$17 = tmpSwitchCaseToStart <= 2;
@@ -337,6 +341,7 @@ $inlinedFunction: {
           const p = $( 2 );
           if (p) {
             $( 13 );
+            $( 3 );
           }
           else {
             const q = $( 14 );
@@ -345,7 +350,9 @@ $inlinedFunction: {
           }
         }
       }
-      $( 3 );
+      else {
+        $( 3 );
+      }
     }
     const r = c <= 2;
     if (r) {

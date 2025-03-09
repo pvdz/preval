@@ -22,11 +22,12 @@ $(a);
 const tmpIfTest$1 /*:unknown*/ = $(30);
 if (tmpIfTest$1) {
   $(60);
+  $(undefined);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpCalleeParam);
+  $(undefined);
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -37,10 +38,11 @@ $(a);
 `````js filename=intro
 if ($(30)) {
   $(60);
+  $(undefined);
 } else {
   $($(100));
+  $(undefined);
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -95,12 +97,13 @@ With rename=true
 const a = $( 30 );
 if (a) {
   $( 60 );
+  $( undefined );
 }
 else {
   const b = $( 100 );
   $( b );
+  $( undefined );
 }
-$( undefined );
 const c = {
   a: 999,
   b: 1000,

@@ -20,28 +20,29 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest$1 /*:unknown*/ = $(1);
-let tmpClusterSSA_a /*:unknown*/ = 60;
 if (tmpIfTest$1) {
+  $(undefined);
+  $(60);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
   const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
-  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
+  $(undefined);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 }
-$(undefined);
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpIfTest$1 = $(1);
-let tmpClusterSSA_a = 60;
-if (!tmpIfTest$1) {
-  tmpClusterSSA_a = $($(100));
+if ($(1)) {
+  $(undefined);
+  $(60);
+} else {
+  const tmpClusterSSA_tmpNestedComplexRhs = $($(100));
+  $(undefined);
+  $(tmpClusterSSA_tmpNestedComplexRhs);
 }
-$(undefined);
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -95,17 +96,16 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 60;
 if (a) {
-
+  $( undefined );
+  $( 60 );
 }
 else {
-  const c = $( 100 );
-  const d = $( c );
-  b = d;
+  const b = $( 100 );
+  const c = $( b );
+  $( undefined );
+  $( c );
 }
-$( undefined );
-$( b );
 `````
 
 ## Globals

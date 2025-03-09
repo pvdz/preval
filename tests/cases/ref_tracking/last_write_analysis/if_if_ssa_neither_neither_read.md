@@ -34,9 +34,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     $(`xyz`);
+    $(tmpClusterSSA_x);
   } else {
+    $(tmpClusterSSA_x);
   }
-  $(tmpClusterSSA_x);
 } else {
 }
 `````
@@ -50,8 +51,10 @@ const tmpClusterSSA_x = $(`b`);
 if ($(1)) {
   if ($(2)) {
     $(`xyz`);
+    $(tmpClusterSSA_x);
+  } else {
+    $(tmpClusterSSA_x);
   }
-  $(tmpClusterSSA_x);
 }
 `````
 
@@ -82,9 +85,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
     $(`xyz`);
+    $(x);
   } else {
+    $(x);
   }
-  $(x);
 } else {
 }
 `````
@@ -101,8 +105,11 @@ if (c) {
   const d = $( 2 );
   if (d) {
     $( "xyz" );
+    $( b );
   }
-  $( b );
+  else {
+    $( b );
+  }
 }
 `````
 

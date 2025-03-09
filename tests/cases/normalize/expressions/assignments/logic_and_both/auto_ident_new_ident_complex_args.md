@@ -22,18 +22,12 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-let a /*:unknown*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpCalleeParam$7 /*:unknown*/ = $(2);
-  const tmpNestedComplexRhs /*:object*/ = new $(tmpCalleeParam$5, tmpCalleeParam$7);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam$5 /*:unknown*/ = $(1);
+const tmpCalleeParam$7 /*:unknown*/ = $(2);
+const tmpNestedComplexRhs /*:object*/ = new $(tmpCalleeParam$5, tmpCalleeParam$7);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Denormalized
@@ -42,18 +36,12 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-let a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam = a;
-if (a) {
-  const tmpCalleeParam$5 = $(1);
-  const tmpCalleeParam$7 = $(2);
-  const tmpNestedComplexRhs = new $(tmpCalleeParam$5, tmpCalleeParam$7);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam$5 = $(1);
+const tmpCalleeParam$7 = $(2);
+const tmpNestedComplexRhs = new $(tmpCalleeParam$5, tmpCalleeParam$7);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -84,10 +72,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -96,19 +86,12 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 2 );
-let c = new $( a, b );
-const d = c;
-if (c) {
-  const e = $( 1 );
-  const f = $( 2 );
-  const g = new $( e, f );
-  c = g;
-  $( g );
-}
-else {
-  $( d );
-}
-$( c );
+new $( a, b );
+const c = $( 1 );
+const d = $( 2 );
+const e = new $( c, d );
+$( e );
+$( e );
 `````
 
 ## Globals

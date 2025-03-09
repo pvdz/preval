@@ -68,10 +68,11 @@ let val = undefined;
 const tmpIfTest = arg === undefined;
 if (tmpIfTest) {
   val = {};
+  $(val);
 } else {
   val = arg;
+  $(arg);
 }
-$(val);
 `````
 
 ## PST Settled

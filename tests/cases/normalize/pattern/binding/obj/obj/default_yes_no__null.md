@@ -58,9 +58,10 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+  $(`bad`);
 } else {
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## PST Settled

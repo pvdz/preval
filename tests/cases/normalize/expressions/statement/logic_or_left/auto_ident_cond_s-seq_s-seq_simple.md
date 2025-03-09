@@ -52,10 +52,11 @@ if (tmpIfTest$1) {
   tmpIfTest = $(tmpCalleeParam);
 }
 if (tmpIfTest) {
+  $(a);
 } else {
   $(100);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

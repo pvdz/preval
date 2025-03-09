@@ -47,7 +47,6 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
@@ -56,7 +55,7 @@ if (tmpIfTest) {
   const tmpBinLhs /*:unknown*/ = tmpNestedAssignObj.x;
   const tmpNestedPropCompoundComplexRhs /*:primitive*/ = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  let tmpClusterSSA_a /*:unknown*/ = tmpNestedPropCompoundComplexRhs;
   while ($LOOP_UNROLL_10) {
     const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpClusterSSA_tmpIfTest$1) {
@@ -65,40 +64,43 @@ if (tmpIfTest) {
       const tmpBinLhs$1 /*:unknown*/ = tmpNestedAssignObj$1.x;
       const tmpNestedPropCompoundComplexRhs$1 /*:primitive*/ = tmpBinLhs$1 + 1;
       tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-      a = tmpNestedPropCompoundComplexRhs$1;
+      tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, b);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
   const tmpNestedAssignObj = $($(b));
   const tmpNestedPropCompoundComplexRhs = tmpNestedAssignObj.x + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  let tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs;
   while (true) {
     if ($(1)) {
       const tmpNestedAssignObj$1 = $($(b));
       const tmpNestedPropCompoundComplexRhs$1 = tmpNestedAssignObj$1.x + 1;
       tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-      a = tmpNestedPropCompoundComplexRhs$1;
+      tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, b);
+} else {
+  $({ a: 999, b: 1000 }, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -172,44 +174,48 @@ if ($tmpLoopUnrollCheck) {
       break;
     }
   }
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-const c = { x: 1 };
-if (b) {
+const a = $( 1 );
+const b = { x: 1 };
+if (a) {
+  const c = $( b );
   const d = $( c );
-  const e = $( d );
-  const f = e.x;
-  const g = f + 1;
-  e.x = g;
-  a = g;
+  const e = d.x;
+  const f = e + 1;
+  d.x = f;
+  let g = f;
   while ($LOOP_UNROLL_10) {
     const h = $( 1 );
     if (h) {
-      const i = $( c );
+      const i = $( b );
       const j = $( i );
       const k = j.x;
       const l = k + 1;
       j.x = l;
-      a = l;
+      g = l;
     }
     else {
       break;
     }
   }
+  $( g, b );
 }
-$( a, c );
+else {
+  const m = {
+    a: 999,
+    b: 1000,
+  };
+  $( m, b );
+}
 `````
 
 ## Globals

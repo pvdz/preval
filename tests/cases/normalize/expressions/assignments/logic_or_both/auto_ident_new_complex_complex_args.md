@@ -23,17 +23,8 @@ $(a);
 const tmpNewCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-let a /*:unknown*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-if (a) {
-  $(a);
-} else {
-  const tmpNewCallee$1 /*:unknown*/ = $($);
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpCalleeParam$7 /*:unknown*/ = $(2);
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a /*:object*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+$(a);
 $(a);
 `````
 
@@ -44,17 +35,8 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-let a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-if (a) {
-  $(a);
-} else {
-  const tmpNewCallee$1 = $($);
-  const tmpCalleeParam$5 = $(1);
-  const tmpCalleeParam$7 = $(2);
-  const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+$(a);
 $(a);
 `````
 
@@ -80,6 +62,8 @@ const tmpCalleeParam$3 = $(2);
 a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpNewCallee$1 = $($);
   const tmpCalleeParam$5 = $(1);
@@ -87,9 +71,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -99,18 +83,8 @@ With rename=true
 const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
-let d = new a( b, c );
-if (d) {
-  $( d );
-}
-else {
-  const e = $( $ );
-  const f = $( 1 );
-  const g = $( 2 );
-  const h = new e( f, g );
-  d = h;
-  $( h );
-}
+const d = new a( b, c );
+$( d );
 $( d );
 `````
 

@@ -27,45 +27,56 @@ $(a);
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpObjLitVal /*:object*/ = { y: 1 };
   const b /*:object*/ = { x: tmpObjLitVal };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpChainRootComputed /*:unknown*/ = $(`x`);
     const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
     if (tmpIfTest$3) {
+      $(a);
     } else {
       const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
       tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
     }
   }
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(1) === $(1)) {
+const tmpIfTest = $(1) === $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   const tmpObjLitVal = { y: 1 };
   const tmpChainElementCall = $({ x: tmpObjLitVal });
-  if (!(tmpChainElementCall == null)) {
+  if (tmpChainElementCall == null) {
+    $(a);
+  } else {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    if (!(tmpChainElementObject == null)) {
+    if (tmpChainElementObject == null) {
+      $(a);
+    } else {
       const tmpChainRootComputed$1 = $(`y`);
       tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
     }
   }
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -108,13 +119,16 @@ if (tmpIfTest) {
     if (tmpIfTest$3) {
       const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -124,32 +138,35 @@ With rename=true
 const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
-if (c) {
-  const d = { y: 1 };
-  const e = { x: d };
-  const f = $( e );
-  const g = f == null;
-  if (g) {
-
-  }
-  else {
-    const h = $( "x" );
-    const i = f[ h ];
-    const j = i == null;
-    if (j) {
-
-    }
-    else {
-      const k = $( "y" );
-      i[ k ];
-    }
-  }
-}
-const l = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( l );
+if (c) {
+  const e = { y: 1 };
+  const f = { x: e };
+  const g = $( f );
+  const h = g == null;
+  if (h) {
+    $( d );
+  }
+  else {
+    const i = $( "x" );
+    const j = g[ i ];
+    const k = j == null;
+    if (k) {
+      $( d );
+    }
+    else {
+      const l = $( "y" );
+      j[ l ];
+      $( d );
+    }
+  }
+}
+else {
+  $( d );
+}
 `````
 
 ## Globals

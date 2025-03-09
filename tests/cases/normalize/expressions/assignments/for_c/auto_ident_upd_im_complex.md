@@ -20,7 +20,6 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
@@ -30,7 +29,7 @@ if (tmpIfTest) {
   const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
   const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
   tmpUpdObj.x = tmpUpdInc;
-  a = tmpUpdNum;
+  let tmpClusterSSA_a /*:unknown*/ = tmpUpdNum;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
@@ -40,40 +39,43 @@ if (tmpIfTest) {
       const tmpUpdNum$1 /*:number*/ = $coerce(tmpUpdProp$1, `number`);
       const tmpUpdInc$1 /*:number*/ = tmpUpdNum$1 - 1;
       tmpUpdObj$1.x = tmpUpdInc$1;
-      a = tmpUpdNum$1;
+      tmpClusterSSA_a = tmpUpdNum$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, b);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
   const tmpUpdObj = $($(b));
   const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
   tmpUpdObj.x = tmpUpdNum - 1;
-  a = tmpUpdNum;
+  let tmpClusterSSA_a = tmpUpdNum;
   while (true) {
     if ($(1)) {
       const tmpUpdObj$1 = $($(b));
       const tmpUpdNum$1 = $coerce(tmpUpdObj$1.x, `number`);
       tmpUpdObj$1.x = tmpUpdNum$1 - 1;
-      a = tmpUpdNum$1;
+      tmpClusterSSA_a = tmpUpdNum$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, b);
+} else {
+  $({ a: 999, b: 1000 }, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -117,37 +119,40 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-const c = { x: 1 };
-if (b) {
+const a = $( 1 );
+const b = { x: 1 };
+if (a) {
+  const c = $( b );
   const d = $( c );
-  const e = $( d );
-  const f = e.x;
-  const g = $coerce( f, "number" );
-  const h = g - 1;
-  e.x = h;
-  a = g;
+  const e = d.x;
+  const f = $coerce( e, "number" );
+  const g = f - 1;
+  d.x = g;
+  let h = f;
   while ($LOOP_UNROLL_10) {
     const i = $( 1 );
     if (i) {
-      const j = $( c );
+      const j = $( b );
       const k = $( j );
       const l = k.x;
       const m = $coerce( l, "number" );
       const n = m - 1;
       k.x = n;
-      a = m;
+      h = m;
     }
     else {
       break;
     }
   }
+  $( h, b );
 }
-$( a, c );
+else {
+  const o = {
+    a: 999,
+    b: 1000,
+  };
+  $( o, b );
+}
 `````
 
 ## Globals

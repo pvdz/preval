@@ -18,43 +18,44 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = 999;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
   const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  a = tmpAssignObjPatternRhs.a;
+  let tmpClusterSSA_a /*:unknown*/ = tmpAssignObjPatternRhs.a;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
       const tmpAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      a = tmpAssignObjPatternRhs$1.a;
+      tmpClusterSSA_a = tmpAssignObjPatternRhs$1.a;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  $(999);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = 999;
 if ($(1)) {
-  a = $({ a: 1, b: 2 }).a;
+  let tmpClusterSSA_a = $({ a: 1, b: 2 }).a;
   while (true) {
     if ($(1)) {
-      a = $({ a: 1, b: 2 }).a;
+      tmpClusterSSA_a = $({ a: 1, b: 2 }).a;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $(999);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -93,15 +94,14 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 999;
-const b = $( 1 );
-if (b) {
-  const c = {
+const a = $( 1 );
+if (a) {
+  const b = {
     a: 1,
     b: 2,
   };
-  const d = $( c );
-  a = d.a;
+  const c = $( b );
+  let d = c.a;
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
@@ -110,14 +110,17 @@ if (b) {
         b: 2,
       };
       const g = $( f );
-      a = g.a;
+      d = g.a;
     }
     else {
       break;
     }
   }
+  $( d );
 }
-$( a );
+else {
+  $( 999 );
+}
 `````
 
 ## Globals
@@ -162,3 +165,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- regular property access of an ident feels tricky;

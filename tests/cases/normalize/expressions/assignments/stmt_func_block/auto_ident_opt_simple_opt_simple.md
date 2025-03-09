@@ -71,12 +71,16 @@ let f = function () {
     if (tmpIfTest$1) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       a = tmpChainElementObject$1;
+      $(tmpChainElementObject$1);
+      return undefined;
     } else {
+      $(a);
+      return undefined;
     }
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

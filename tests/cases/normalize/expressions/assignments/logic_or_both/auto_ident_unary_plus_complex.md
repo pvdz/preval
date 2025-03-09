@@ -19,16 +19,16 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-let a /*:unknown*/ = +tmpUnaryArg;
+const a /*:number*/ = +tmpUnaryArg;
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpUnaryArg$1 /*:unknown*/ = $(100);
   const tmpNestedComplexRhs /*:number*/ = +tmpUnaryArg$1;
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -36,16 +36,16 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-let a = +tmpUnaryArg;
+const a = +tmpUnaryArg;
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpUnaryArg$1 = $(100);
   const tmpNestedComplexRhs = +tmpUnaryArg$1;
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -66,14 +66,16 @@ const tmpUnaryArg = $(100);
 a = +tmpUnaryArg;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpUnaryArg$1 = $(100);
   const tmpNestedComplexRhs = +tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -81,17 +83,17 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-let b = +a;
+const b = +a;
 if (b) {
+  $( b );
   $( b );
 }
 else {
   const c = $( 100 );
   const d = +c;
-  b = d;
+  $( d );
   $( d );
 }
-$( b );
 `````
 
 ## Globals

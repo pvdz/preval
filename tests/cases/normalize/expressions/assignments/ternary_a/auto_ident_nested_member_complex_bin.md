@@ -88,11 +88,13 @@ a = tmpNestedPropAssignRhs;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b, c, d, e);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a, b, c, d, e);
 }
-$(tmpCalleeParam);
-$(a, b, c, d, e);
 `````
 
 ## PST Settled

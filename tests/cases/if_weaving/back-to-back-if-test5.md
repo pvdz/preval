@@ -29,10 +29,11 @@ if (x) {
 `````js filename=intro
 if (tmpUnaryArg) {
   $(`b`);
+  $(`d`);
 } else {
   $(`a`);
+  $(`d`);
 }
-$(`d`);
 `````
 
 ## Denormalized
@@ -41,10 +42,11 @@ $(`d`);
 `````js filename=intro
 if (tmpUnaryArg) {
   $(`b`);
+  $(`d`);
 } else {
   $(`a`);
+  $(`d`);
 }
-$(`d`);
 `````
 
 ## Pre Normal
@@ -89,11 +91,12 @@ With rename=true
 `````js filename=intro
 if (tmpUnaryArg) {
   $( "b" );
+  $( "d" );
 }
 else {
   $( "a" );
+  $( "d" );
 }
-$( "d" );
 `````
 
 ## Globals

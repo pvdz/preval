@@ -20,29 +20,31 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
+const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$1);
-  $(a);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
   $(a);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(1));
+const a = $($(1));
 if (a) {
-  a = $($(2));
-  $(a);
+  const tmpClusterSSA_a = $($(2));
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
   $(a);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -77,16 +79,17 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
   const c = $( 2 );
-  b = $( c );
-  $( b );
+  const d = $( c );
+  $( d );
+  $( d );
 }
 else {
   $( b );
+  $( b );
 }
-$( b );
 `````
 
 ## Globals

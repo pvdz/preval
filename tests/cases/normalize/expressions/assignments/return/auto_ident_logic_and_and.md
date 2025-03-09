@@ -21,45 +21,45 @@ $(a);
 
 
 `````js filename=intro
-let tmpCalleeParam$5 /*:unknown*/ = undefined;
 const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  a = $(tmpCalleeParam$1);
-  if (a) {
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_a$1) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    a = $(tmpCalleeParam$3);
-    tmpCalleeParam$5 = a;
+    const tmpClusterSSA_a$3 /*:unknown*/ = $(tmpCalleeParam$3);
+    $(tmpClusterSSA_a$3);
+    $(tmpClusterSSA_a$3);
   } else {
-    tmpCalleeParam$5 = a;
+    $(tmpClusterSSA_a$1);
+    $(tmpClusterSSA_a$1);
   }
 } else {
-  tmpCalleeParam$5 = a;
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
-$(tmpCalleeParam$5);
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam$5 = undefined;
-let a = $($(1));
-if (a) {
-  a = $($(1));
-  if (a) {
-    a = $($(2));
-    tmpCalleeParam$5 = a;
+const tmpClusterSSA_a = $($(1));
+if (tmpClusterSSA_a) {
+  const tmpClusterSSA_a$1 = $($(1));
+  if (tmpClusterSSA_a$1) {
+    const tmpClusterSSA_a$3 = $($(2));
+    $(tmpClusterSSA_a$3);
+    $(tmpClusterSSA_a$3);
   } else {
-    tmpCalleeParam$5 = a;
+    $(tmpClusterSSA_a$1);
+    $(tmpClusterSSA_a$1);
   }
 } else {
-  tmpCalleeParam$5 = a;
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
-$(tmpCalleeParam$5);
-$(a);
 `````
 
 ## Pre Normal
@@ -107,26 +107,26 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1 );
-let c = $( b );
-if (c) {
-  const d = $( 1 );
-  c = $( d );
-  if (c) {
+const a = $( 1 );
+const b = $( a );
+if (b) {
+  const c = $( 1 );
+  const d = $( c );
+  if (d) {
     const e = $( 2 );
-    c = $( e );
-    a = c;
+    const f = $( e );
+    $( f );
+    $( f );
   }
   else {
-    a = c;
+    $( d );
+    $( d );
   }
 }
 else {
-  a = c;
+  $( b );
+  $( b );
 }
-$( a );
-$( c );
 `````
 
 ## Globals

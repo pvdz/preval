@@ -68,10 +68,11 @@ x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpIfTest = tmpNestedAssignObjPatternRhs;
 if (tmpIfTest) {
+  $(a, x, y);
 } else {
   $(100);
+  $(a, x, y);
 }
-$(a, x, y);
 `````
 
 ## PST Settled

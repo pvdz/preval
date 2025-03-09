@@ -23,26 +23,28 @@ $(a);
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 arrPatternSplat[0];
+let a /*:unknown*/ = undefined;
 $(100);
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-let tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCalleeParam$1 /*:array*/ = [1, 2];
     const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
     const arrPatternSplat$2 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-    tmpClusterSSA_a = arrPatternSplat$2[0];
+    a = arrPatternSplat$2[0];
     if (tmpNestedAssignArrPatternRhs$1) {
     } else {
       break;
     }
   }
+  $(a);
 } else {
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -51,20 +53,23 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 [...bindingPatternArrRoot][0];
+let a = undefined;
 $(100);
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
-let tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
+const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
 if (tmpNestedAssignArrPatternRhs) {
   while (true) {
     $(100);
     const tmpNestedAssignArrPatternRhs$1 = $([1, 2]);
-    tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs$1][0];
+    a = [...tmpNestedAssignArrPatternRhs$1][0];
     if (!tmpNestedAssignArrPatternRhs$1) {
       break;
     }
   }
+  $(a);
+} else {
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -117,27 +122,31 @@ const a = {
 };
 const b = [ ...a ];
 b[ 0 ];
+let c = undefined;
 $( 100 );
-const c = [ 1, 2 ];
-const d = $( c );
-const e = [ ...d ];
-let f = e[ 0 ];
-if (d) {
+const d = [ 1, 2 ];
+const e = $( d );
+const f = [ ...e ];
+const g = f[ 0 ];
+if (e) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const g = [ 1, 2 ];
-    const h = $( g );
-    const i = [ ...h ];
-    f = i[ 0 ];
-    if (h) {
+    const h = [ 1, 2 ];
+    const i = $( h );
+    const j = [ ...i ];
+    c = j[ 0 ];
+    if (i) {
 
     }
     else {
       break;
     }
   }
+  $( c );
 }
-$( f );
+else {
+  $( g );
+}
 `````
 
 ## Globals

@@ -20,24 +20,22 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-let a /*:unknown*/ = arrPatternSplat[0];
+const a /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  $(10);
-  $(20);
-  a = 1;
   while ($LOOP_UNROLL_10) {
+    $(10);
+    $(20);
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      $(10);
-      $(20);
     } else {
       break;
     }
   }
+  $(1);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -45,21 +43,19 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-let a = [...bindingPatternArrRoot][0];
+const a = [...bindingPatternArrRoot][0];
 if ($(1)) {
-  $(10);
-  $(20);
-  a = 1;
   while (true) {
-    if ($(1)) {
-      $(10);
-      $(20);
-    } else {
+    $(10);
+    $(20);
+    if (!$(1)) {
       break;
     }
   }
+  $(1);
+} else {
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -106,24 +102,25 @@ const a = {
   b: 1000,
 };
 const b = [ ...a ];
-let c = b[ 0 ];
+const c = b[ 0 ];
 const d = $( 1 );
 if (d) {
-  $( 10 );
-  $( 20 );
-  c = 1;
   while ($LOOP_UNROLL_10) {
+    $( 10 );
+    $( 20 );
     const e = $( 1 );
     if (e) {
-      $( 10 );
-      $( 20 );
+
     }
     else {
       break;
     }
   }
+  $( 1 );
 }
-$( c );
+else {
+  $( c );
+}
 `````
 
 ## Globals

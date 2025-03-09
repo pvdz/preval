@@ -57,11 +57,11 @@ const inner /*:()=>unknown*/ = function () {
   }
 };
 inner();
+inner();
 if ($) {
-  inner();
+  $(undefined);
 } else {
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -78,10 +78,10 @@ const inner = function () {
   }
 };
 inner();
+inner();
 if ($) {
-  inner();
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -171,10 +171,10 @@ const c = function() {
   }
 };
 c();
+c();
 if ($) {
-  c();
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

@@ -30,9 +30,10 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(1);
   a = { b: tmpObjLitVal };
+  $(1);
 } else {
+  $(1);
 }
-$(1);
 const tmpAssignComMemLhsObj /*:unknown*/ = $(a);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);
@@ -48,8 +49,10 @@ let a = { a: 999, b: 1000 };
 if ($(1) === $(1)) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
+  $(1);
+} else {
+  $(1);
 }
-$(1);
 const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
@@ -87,9 +90,10 @@ const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
+  $(1);
 } else {
+  $(1);
 }
-$(1);
 const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
@@ -113,8 +117,11 @@ const d = b === c;
 if (d) {
   const e = $( 1 );
   a = { b: e };
+  $( 1 );
 }
-$( 1 );
+else {
+  $( 1 );
+}
 const f = $( a );
 const g = $( "b" );
 const h = $( 2 );

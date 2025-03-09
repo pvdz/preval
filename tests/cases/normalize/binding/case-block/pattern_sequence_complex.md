@@ -20,35 +20,36 @@ $(x, y, z);
 `````js filename=intro
 const tmpSwitchDisc /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
+$(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
-const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
-  $(1);
   $(2);
+  const z /*:array*/ = [10, 20, 30];
   const arrAssignPatternRhs /*:unknown*/ = $(z);
   const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   arrPatternSplat[0];
   arrPatternSplat[1];
+  $(1, 2, z);
 } else {
 }
-$(1, 2, z);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpIfTest = $(`a`) === $(`a`);
-const z = [10, 20, 30];
-if (tmpIfTest) {
-  $(1);
+const tmpSwitchDisc = $(`a`);
+const tmpBinBothRhs = $(`a`);
+$(1);
+if (tmpSwitchDisc === tmpBinBothRhs) {
   $(2);
+  const z = [10, 20, 30];
   const arrAssignPatternRhs = $(z);
   const arrPatternSplat = [...arrAssignPatternRhs];
   arrPatternSplat[0];
   arrPatternSplat[1];
+  $(1, 2, z);
 }
-$(1, 2, z);
 `````
 
 ## Pre Normal
@@ -105,17 +106,17 @@ With rename=true
 `````js filename=intro
 const a = $( "a" );
 const b = $( "a" );
+$( 1 );
 const c = a === b;
-const d = [ 10, 20, 30 ];
 if (c) {
-  $( 1 );
   $( 2 );
+  const d = [ 10, 20, 30 ];
   const e = $( d );
   const f = [ ...e ];
   f[ 0 ];
   f[ 1 ];
+  $( 1, 2, d );
 }
-$( 1, 2, d );
 `````
 
 ## Globals

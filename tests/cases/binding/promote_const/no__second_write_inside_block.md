@@ -64,9 +64,10 @@ let x = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   x = 10;
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

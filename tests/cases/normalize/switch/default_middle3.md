@@ -69,9 +69,10 @@ if (tmpIfTest$7) {
 const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$9) {
   $(`c`);
+  $(`d`);
 } else {
+  $(`d`);
 }
-$(`d`);
 `````
 
 ## Denormalized
@@ -99,8 +100,10 @@ if (tmpSwitchCaseToStart <= 1) {
 }
 if (tmpSwitchCaseToStart <= 2) {
   $(`c`);
+  $(`d`);
+} else {
+  $(`d`);
 }
-$(`d`);
 `````
 
 ## Pre Normal
@@ -213,8 +216,11 @@ if (j) {
 const k = b <= 2;
 if (k) {
   $( "c" );
+  $( "d" );
 }
-$( "d" );
+else {
+  $( "d" );
+}
 `````
 
 ## Globals

@@ -27,7 +27,6 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
   const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
@@ -35,12 +34,12 @@ if (tmpNestedAssignPropRhs) {
   const tmpCompProp$1 /*:unknown*/ = $(`d`);
   const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 } else {
   $(tmpNestedAssignPropRhs);
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Denormalized
@@ -54,7 +53,6 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`c`);
@@ -62,12 +60,12 @@ if (tmpNestedAssignPropRhs) {
   const tmpCompProp$1 = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 } else {
   $(tmpNestedAssignPropRhs);
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Pre Normal
@@ -105,10 +103,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 } else {
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -125,21 +125,20 @@ const d = $( a );
 const e = $( "d" );
 const f = d[ e ];
 b[c] = f;
-let g = f;
 if (f) {
-  const h = $( a );
-  const i = $( "c" );
-  const j = $( a );
-  const k = $( "d" );
-  const l = j[ k ];
-  h[i] = l;
-  g = l;
-  $( l );
+  const g = $( a );
+  const h = $( "c" );
+  const i = $( a );
+  const j = $( "d" );
+  const k = i[ j ];
+  g[h] = k;
+  $( k );
+  $( k, a );
 }
 else {
   $( f );
+  $( f, a );
 }
-$( g, a );
 `````
 
 ## Globals

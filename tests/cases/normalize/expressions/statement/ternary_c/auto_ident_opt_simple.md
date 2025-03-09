@@ -21,22 +21,27 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(0);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(0)) {
+const tmpIfTest = $(0);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   $(100);
+  $(a);
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -58,15 +63,17 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   const tmpChainRootProp = b;
   const tmpIfTest$1 = tmpChainRootProp != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
+    $(a);
   } else {
+    $(a);
   }
 }
-$(a);
 `````
 
 ## PST Settled
@@ -74,14 +81,17 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-if (a) {
-  $( 100 );
-}
 const b = {
   a: 999,
   b: 1000,
 };
-$( b );
+if (a) {
+  $( 100 );
+  $( b );
+}
+else {
+  $( b );
+}
 `````
 
 ## Globals

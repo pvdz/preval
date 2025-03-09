@@ -54,9 +54,10 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$5) {
     $(`fail1`);
+    $(`fail2`);
   } else {
+    $(`fail2`);
   }
-  $(`fail2`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
@@ -86,8 +87,10 @@ if (tmpNestedAssignArrPatternRhs === tmpSwitchValue) {
 if (!(tmpSwitchCaseToStart <= 0)) {
   if (tmpSwitchCaseToStart <= 1) {
     $(`fail1`);
+    $(`fail2`);
+  } else {
+    $(`fail2`);
   }
-  $(`fail2`);
 }
 $({ a: 999, b: 1000 }, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
@@ -201,8 +204,11 @@ else {
   const l = b <= 1;
   if (l) {
     $( "fail1" );
+    $( "fail2" );
   }
-  $( "fail2" );
+  else {
+    $( "fail2" );
+  }
 }
 const m = {
   a: 999,

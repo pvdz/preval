@@ -65,6 +65,7 @@ let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
+  $(a, x, y);
 } else {
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
@@ -72,8 +73,8 @@ if (tmpIfTest) {
   const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
+  $(a, x, y);
 }
-$(a, x, y);
 `````
 
 ## PST Settled

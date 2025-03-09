@@ -73,20 +73,23 @@ if (tmpIfTest$7) {
 const tmpIfTest$11 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$11) {
   $(`two`);
+  $(undefined);
 } else {
   const tmpIfTest$13 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
   if (tmpIfTest$13) {
     $(`three`);
+    $(undefined);
   } else {
     const tmpIfTest$15 /*:boolean*/ = tmpSwitchCaseToStart <= 3;
     if (tmpIfTest$15) {
       $(`four`);
+      $(undefined);
     } else {
       $(`def`);
+      $(undefined);
     }
   }
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -118,18 +121,21 @@ if (tmpSwitchCaseToStart <= 0) {
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`two`);
+  $(undefined);
 } else {
   if (tmpSwitchCaseToStart <= 2) {
     $(`three`);
+    $(undefined);
   } else {
     if (tmpSwitchCaseToStart <= 3) {
       $(`four`);
+      $(undefined);
     } else {
       $(`def`);
+      $(undefined);
     }
   }
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -286,23 +292,26 @@ if (g) {
 const i = b <= 1;
 if (i) {
   $( "two" );
+  $( undefined );
 }
 else {
   const j = b <= 2;
   if (j) {
     $( "three" );
+    $( undefined );
   }
   else {
     const k = b <= 3;
     if (k) {
       $( "four" );
+      $( undefined );
     }
     else {
       $( "def" );
+      $( undefined );
     }
   }
 }
-$( undefined );
 `````
 
 ## Globals

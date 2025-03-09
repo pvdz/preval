@@ -100,16 +100,18 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(x);
   x = 30;
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 const tmpIfTest$1 = $(2);
 if (tmpIfTest$1) {
   $(x);
   x = 40;
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

@@ -46,8 +46,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       }
     } else {
       x = 20;
+      $(20);
     }
-    $(x);
   }
 }
 `````
@@ -67,8 +67,8 @@ while (true) {
       }
     } else {
       x = 20;
+      $(20);
     }
-    $(x);
   }
 }
 `````
@@ -114,8 +114,8 @@ while (true) {
       }
     } else {
       x = 20;
+      $(x);
     }
-    $(x);
   }
 }
 `````
@@ -137,8 +137,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
     else {
       a = 20;
+      $( 20 );
     }
-    $( a );
   }
 }
 `````

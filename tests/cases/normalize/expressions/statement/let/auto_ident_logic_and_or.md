@@ -26,15 +26,16 @@ if (xyz) {
   xyz = $(tmpCalleeParam$1);
 } else {
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (xyz) {
   $(xyz);
+  $(a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   const tmpClusterSSA_xyz /*:unknown*/ = $(tmpCalleeParam$3);
   $(tmpClusterSSA_xyz);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -45,12 +46,14 @@ let xyz = $($(1));
 if (xyz) {
   xyz = $($(1));
 }
+const a = { a: 999, b: 1000 };
 if (xyz) {
   $(xyz);
+  $(a);
 } else {
   $($($(2)));
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -76,12 +79,14 @@ if (xyz) {
 } else {
 }
 if (xyz) {
+  $(xyz);
+  $(a);
 } else {
   const tmpCalleeParam$3 = $(2);
   xyz = $(tmpCalleeParam$3);
+  $(xyz);
+  $(a);
 }
-$(xyz);
-$(a);
 `````
 
 ## PST Settled
@@ -94,19 +99,20 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-if (b) {
-  $( b );
-}
-else {
-  const d = $( 2 );
-  const e = $( d );
-  $( e );
-}
-const f = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( f );
+if (b) {
+  $( b );
+  $( d );
+}
+else {
+  const e = $( 2 );
+  const f = $( e );
+  $( f );
+  $( d );
+}
 `````
 
 ## Globals

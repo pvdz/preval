@@ -107,11 +107,12 @@ const a = x;
 if ($) {
   const b = x;
   $(a, x);
+  $(f);
 } else {
   const c = x;
   $(a, x);
+  $(f);
 }
-$(f);
 `````
 
 ## PST Settled

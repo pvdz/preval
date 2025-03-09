@@ -24,14 +24,15 @@ const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const tmpIfTest /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCallCompObj$1 /*:unknown*/ = $(b);
   const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
   tmpCallCompObj$1[tmpCallCompProp$1](1);
+  $(a);
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -41,12 +42,16 @@ $(a);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
-if (tmpCallCompObj[tmpCallCompProp](1)) {
+const tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   const tmpCallCompObj$1 = $(b);
   const tmpCallCompProp$1 = $(`\$`);
   tmpCallCompObj$1[tmpCallCompProp$1](1);
+  $(a);
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -72,9 +77,10 @@ if (tmpIfTest) {
   const tmpCallCompObj$1 = $(b);
   const tmpCallCompProp$1 = $(`\$`);
   tmpCallCompObj$1[tmpCallCompProp$1](1);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -85,16 +91,19 @@ const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
 const d = b[ c ]( 1 );
-if (d) {
-  const e = $( a );
-  const f = $( "$" );
-  e[ f ]( 1 );
-}
-const g = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( g );
+if (d) {
+  const f = $( a );
+  const g = $( "$" );
+  f[ g ]( 1 );
+  $( e );
+}
+else {
+  $( e );
+}
 `````
 
 ## Globals

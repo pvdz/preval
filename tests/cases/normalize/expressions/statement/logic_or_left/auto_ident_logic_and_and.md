@@ -20,6 +20,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
   const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$1);
@@ -27,35 +28,43 @@ if (tmpIfTest) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$3);
     if (tmpClusterSSA_tmpIfTest$1) {
+      $(a);
     } else {
       $(100);
+      $(a);
     }
   } else {
     $(100);
+    $(a);
   }
 } else {
   $(100);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($($(1))) {
+const tmpIfTest = $($(1));
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   if ($($(1))) {
-    if (!$($(2))) {
+    if ($($(2))) {
+      $(a);
+    } else {
       $(100);
+      $(a);
     }
   } else {
     $(100);
+    $(a);
   }
 } else {
   $(100);
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -81,16 +90,19 @@ if (tmpIfTest) {
     const tmpCalleeParam$3 = $(2);
     tmpIfTest = $(tmpCalleeParam$3);
     if (tmpIfTest) {
+      $(a);
     } else {
       $(100);
+      $(a);
     }
   } else {
     $(100);
+    $(a);
   }
 } else {
   $(100);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -99,31 +111,33 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( a );
+const c = {
+  a: 999,
+  b: 1000,
+};
 if (b) {
-  const c = $( 1 );
-  const d = $( c );
-  if (d) {
-    const e = $( 2 );
-    const f = $( e );
-    if (f) {
-
+  const d = $( 1 );
+  const e = $( d );
+  if (e) {
+    const f = $( 2 );
+    const g = $( f );
+    if (g) {
+      $( c );
     }
     else {
       $( 100 );
+      $( c );
     }
   }
   else {
     $( 100 );
+    $( c );
   }
 }
 else {
   $( 100 );
+  $( c );
 }
-const g = {
-  a: 999,
-  b: 1000,
-};
-$( g );
 `````
 
 ## Globals

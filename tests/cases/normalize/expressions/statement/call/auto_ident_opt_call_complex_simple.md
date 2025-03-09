@@ -20,14 +20,15 @@ $(a);
 `````js filename=intro
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(undefined);
+  $(a);
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
   $(tmpChainElementCall$1);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -35,12 +36,15 @@ $(a);
 
 `````js filename=intro
 const tmpChainElementCall = $($);
-if (tmpChainElementCall == null) {
+const tmpIfTest = tmpChainElementCall == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   $(undefined);
+  $(a);
 } else {
   $($dotCall(tmpChainElementCall, $, undefined, 1));
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -64,10 +68,12 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
   tmpCalleeParam = tmpChainElementCall$1;
+  $(tmpChainElementCall$1);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -76,18 +82,19 @@ With rename=true
 `````js filename=intro
 const a = $( $ );
 const b = a == null;
-if (b) {
-  $( undefined );
-}
-else {
-  const c = $dotCall( a, $, undefined, 1 );
-  $( c );
-}
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( d );
+if (b) {
+  $( undefined );
+  $( c );
+}
+else {
+  const d = $dotCall( a, $, undefined, 1 );
+  $( d );
+  $( c );
+}
 `````
 
 ## Globals

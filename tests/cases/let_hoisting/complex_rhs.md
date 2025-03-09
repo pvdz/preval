@@ -105,9 +105,10 @@ let x = danger();
 if ($) {
   f();
   x = $(`do not inline me`);
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

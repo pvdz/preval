@@ -93,10 +93,11 @@ if (tmpIfTest) {
   x = $(`c`);
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
+    $(x);
   } else {
     x = $(`d`);
+    $(x);
   }
-  $(x);
 }
 `````
 

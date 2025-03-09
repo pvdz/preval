@@ -29,14 +29,15 @@ if (a) {
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$7 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$7);
-  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$7);
+  const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
   const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -49,11 +50,12 @@ if (a) {
 }
 if (a) {
   $(`before  ${a}  after`);
+  $(a);
 } else {
-  a = $($(2));
-  $(`before  ${a}  after`);
+  const tmpClusterSSA_a = $($(2));
+  $(`before  ${tmpClusterSSA_a}  after`);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -106,15 +108,16 @@ if (b) {
   const d = $coerce( b, "string" );
   const e = `before  ${d}  after`;
   $( e );
+  $( b );
 }
 else {
   const f = $( 2 );
-  b = $( f );
-  const g = $coerce( b, "string" );
-  const h = `before  ${g}  after`;
-  $( h );
+  const g = $( f );
+  const h = $coerce( g, "string" );
+  const i = `before  ${h}  after`;
+  $( i );
+  $( g );
 }
-$( b );
 `````
 
 ## Globals

@@ -69,9 +69,10 @@ const arrPatternSplat$1 = [...arrPatternStep];
 let x = undefined;
 if ($) {
   x = arrPatternSplat$1.slice(0);
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

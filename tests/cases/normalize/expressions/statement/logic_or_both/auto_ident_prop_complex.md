@@ -23,13 +23,14 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpIfTest /*:unknown*/ = tmpCompObj.c;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a, b);
 } else {
   const tmpCompObj$1 /*:unknown*/ = $(b);
   tmpCompObj$1.c;
+  $(a, b);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
 `````
 
 ## Denormalized
@@ -37,10 +38,14 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-if (!$(b).c) {
+const tmpIfTest = $(b).c;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a, b);
+} else {
   $(b).c;
+  $(a, b);
 }
-$({ a: 999, b: 1000 }, b);
 `````
 
 ## Pre Normal
@@ -62,11 +67,12 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpIfTest = tmpCompObj.c;
 if (tmpIfTest) {
+  $(a, b);
 } else {
   const tmpCompObj$1 = $(b);
   tmpCompObj$1.c;
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
@@ -76,18 +82,18 @@ With rename=true
 const a = { c: 1 };
 const b = $( a );
 const c = b.c;
-if (c) {
-
-}
-else {
-  const d = $( a );
-  d.c;
-}
-const e = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( e, a );
+if (c) {
+  $( d, a );
+}
+else {
+  const e = $( a );
+  e.c;
+  $( d, a );
+}
 `````
 
 ## Globals

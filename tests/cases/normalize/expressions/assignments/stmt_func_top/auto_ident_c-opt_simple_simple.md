@@ -64,10 +64,12 @@ let f = function () {
     const tmpChainRootComputed = `x`;
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     a = tmpChainElementObject;
+    $(tmpChainElementObject);
+    return undefined;
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

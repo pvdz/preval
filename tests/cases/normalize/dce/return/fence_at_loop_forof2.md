@@ -31,11 +31,12 @@ const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
 const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
 if (tmpIfTest) {
   $(`unreachable (but keep because the for body may not be visited...)`);
+  $(undefined);
 } else {
   const x /*:unknown*/ = tmpForOfNext.value;
   $(`for`, x);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -45,10 +46,11 @@ $(undefined);
 const tmpForOfNext = $forOf([1, 2]).next();
 if (tmpForOfNext.done) {
   $(`unreachable (but keep because the for body may not be visited...)`);
+  $(undefined);
 } else {
   $(`for`, tmpForOfNext.value);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -113,12 +115,13 @@ const c = b.next();
 const d = c.done;
 if (d) {
   $( "unreachable (but keep because the for body may not be visited...)" );
+  $( undefined );
 }
 else {
   const e = c.value;
   $( "for", e );
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

@@ -26,46 +26,56 @@ switch (1) {
 
 
 `````js filename=intro
-let tmpClusterSSA_a /*:unknown*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$5) {
+  $(undefined);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$7) {
+    $(undefined);
+    $(`fail1`);
+    $(`fail2`);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpClusterSSA_a = tmpChainElementObject$1;
+    $(tmpChainElementObject$1);
+    $(`fail1`);
+    $(`fail2`);
   }
 }
-$(tmpClusterSSA_a);
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpClusterSSA_a = undefined;
 const tmpObjLitVal = { y: 1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+  $(`fail1`);
+  $(`fail2`);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(undefined);
+    $(`fail1`);
+    $(`fail2`);
+  } else {
     const tmpChainRootComputed$1 = $(`y`);
-    tmpClusterSSA_a = tmpChainElementObject[tmpChainRootComputed$1];
+    $(tmpChainElementObject[tmpChainRootComputed$1]);
+    $(`fail1`);
+    $(`fail2`);
   }
 }
-$(tmpClusterSSA_a);
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Pre Normal
@@ -130,11 +140,13 @@ if (tmpIfTest$3) {
       const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
+      $(tmpChainElementObject$1);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
@@ -153,30 +165,32 @@ if (tmpIfTest$11) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { y: 1 };
-const c = { x: b };
-const d = $( c );
-const e = d == null;
-if (e) {
-
+const a = { y: 1 };
+const b = { x: a };
+const c = $( b );
+const d = c == null;
+if (d) {
+  $( undefined );
+  $( "fail1" );
+  $( "fail2" );
 }
 else {
-  const f = $( "x" );
-  const g = d[ f ];
-  const h = g == null;
-  if (h) {
-
+  const e = $( "x" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
+    $( undefined );
+    $( "fail1" );
+    $( "fail2" );
   }
   else {
-    const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    const h = $( "y" );
+    const i = f[ h ];
+    $( i );
+    $( "fail1" );
+    $( "fail2" );
   }
 }
-$( a );
-$( "fail1" );
-$( "fail2" );
 `````
 
 ## Globals

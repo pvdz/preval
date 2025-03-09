@@ -25,30 +25,28 @@ $(x);
 
 
 `````js filename=intro
-let x /*:number*/ = 10;
 $(5);
 if ($) {
   $(10, `a`);
+  $(10);
 } else {
-  x = 20;
   $(20, `b`);
+  $(20);
 }
-$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 10;
 $(5);
 if ($) {
   $(10, `a`);
+  $(10);
 } else {
-  x = 20;
   $(20, `b`);
+  $(20);
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -76,27 +74,27 @@ $(x);
 if ($) {
   x = 10;
   $(x, `a`);
+  $(x);
 } else {
   x = 20;
   $(x, `b`);
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = 10;
 $( 5 );
 if ($) {
   $( 10, "a" );
+  $( 10 );
 }
 else {
-  a = 20;
   $( 20, "b" );
+  $( 20 );
 }
-$( a );
 `````
 
 ## Globals

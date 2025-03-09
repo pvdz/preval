@@ -25,10 +25,11 @@ const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+  $(undefined);
 } else {
   tmpChainElementCall.x;
+  $(undefined);
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -38,10 +39,12 @@ $(a);
 
 `````js filename=intro
 const tmpChainElementCall = $({ x: 1 });
-if (!(tmpChainElementCall == null)) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+} else {
   tmpChainElementCall.x;
+  $(undefined);
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -101,12 +104,12 @@ const a = { x: 1 };
 const b = $( a );
 const c = b == null;
 if (c) {
-
+  $( undefined );
 }
 else {
   b.x;
+  $( undefined );
 }
-$( undefined );
 const d = {
   a: 999,
   b: 1000,

@@ -23,17 +23,17 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-let a /*:unknown*/ = delete arg.y;
+const a /*:boolean*/ = delete arg.y;
 if (a) {
-  $(a);
+  $(true);
+  $(true, arg);
 } else {
   $(1);
   $(2);
   const tmpNestedComplexRhs /*:boolean*/ = delete arg.y;
-  a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs, arg);
 }
-$(a, arg);
 `````
 
 ## Denormalized
@@ -43,17 +43,16 @@ $(a, arg);
 $(1);
 $(2);
 const arg = { y: 1 };
-let a = delete arg.y;
-if (a) {
-  $(a);
+if (delete arg.y) {
+  $(true);
+  $(true, arg);
 } else {
   $(1);
   $(2);
   const tmpNestedComplexRhs = delete arg.y;
-  a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs, arg);
 }
-$(a, arg);
 `````
 
 ## Pre Normal
@@ -78,6 +77,8 @@ const tmpDeleteObj = arg;
 a = delete tmpDeleteObj.y;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, arg);
 } else {
   $(1);
   $(2);
@@ -85,9 +86,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, arg);
 }
-$(tmpCalleeParam);
-$(a, arg);
 `````
 
 ## PST Settled
@@ -97,18 +98,18 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = { y: 1 };
-let b = delete a.y;
+const b = delete a.y;
 if (b) {
-  $( b );
+  $( true );
+  $( true, a );
 }
 else {
   $( 1 );
   $( 2 );
   const c = delete a.y;
-  b = c;
   $( c );
+  $( c, a );
 }
-$( b, a );
 `````
 
 ## Globals

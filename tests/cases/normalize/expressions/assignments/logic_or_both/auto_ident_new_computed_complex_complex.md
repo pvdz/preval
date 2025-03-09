@@ -24,17 +24,8 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
-let tmpClusterSSA_a /*:unknown*/ = new tmpNewCallee(1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-} else {
-  const tmpCompObj$1 /*:unknown*/ = $(b);
-  const tmpCompProp$1 /*:unknown*/ = $(`\$`);
-  const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
@@ -42,21 +33,11 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const b = { $: $ };
-const tmpCompObj = $(b);
+const tmpCompObj = $({ $: $ });
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-let tmpClusterSSA_a = new tmpNewCallee(1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-} else {
-  const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $(`\$`);
-  const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
-  const tmpNestedComplexRhs = new tmpNewCallee$1(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const tmpClusterSSA_a = new tmpNewCallee(1);
+$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
@@ -82,6 +63,8 @@ const tmpNewCallee = tmpCompObj[tmpCompProp];
 a = new tmpNewCallee(1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $(`\$`);
@@ -89,9 +72,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -102,18 +85,8 @@ const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
 const d = b[ c ];
-let e = new d( 1 );
-if (e) {
-  $( e );
-}
-else {
-  const f = $( a );
-  const g = $( "$" );
-  const h = f[ g ];
-  const i = new h( 1 );
-  e = i;
-  $( i );
-}
+const e = new d( 1 );
+$( e );
 $( e );
 `````
 

@@ -22,42 +22,47 @@ $(a);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 $(100);
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-let tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
+const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCallObj$1 /*:unknown*/ = $(b);
-    tmpClusterSSA_a = tmpCallObj$1.$(1);
-    if (tmpClusterSSA_a) {
+    a = tmpCallObj$1.$(1);
+    if (a) {
     } else {
       break;
     }
   }
+  $(a);
 } else {
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 $(100);
 const b = { $: $ };
-let tmpClusterSSA_a = $(b).$(1);
+const tmpClusterSSA_a = $(b).$(1);
 if (tmpClusterSSA_a) {
   while (true) {
     $(100);
-    tmpClusterSSA_a = $(b).$(1);
-    if (!tmpClusterSSA_a) {
+    a = $(b).$(1);
+    if (!a) {
       break;
     }
   }
+  $(a);
+} else {
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -101,24 +106,28 @@ $(a);
 With rename=true
 
 `````js filename=intro
+let a = undefined;
 $( 100 );
-const a = { $: $ };
-const b = $( a );
-let c = b.$( 1 );
-if (c) {
+const b = { $: $ };
+const c = $( b );
+const d = c.$( 1 );
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = $( a );
-    c = d.$( 1 );
-    if (c) {
+    const e = $( b );
+    a = e.$( 1 );
+    if (a) {
 
     }
     else {
       break;
     }
   }
+  $( a );
 }
-$( c );
+else {
+  $( d );
+}
 `````
 
 ## Globals

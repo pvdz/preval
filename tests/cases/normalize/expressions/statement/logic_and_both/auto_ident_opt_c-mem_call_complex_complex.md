@@ -36,24 +36,27 @@ if (tmpIfTest$1) {
     tmpIfTest = tmpChainElementCall$1;
   }
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpChainElementCall$3 /*:unknown*/ = $(b);
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$5) {
+    $(a);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`\$`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$3[tmpChainRootComputed$1];
     const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject$1 == null;
     if (tmpIfTest$7) {
+      $(a);
     } else {
       const tmpCalleeParam$9 /*:unknown*/ = $(1);
       $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$9);
+      $(a);
     }
   }
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -70,17 +73,24 @@ if (!(tmpChainElementCall == null)) {
     tmpIfTest = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
   }
 }
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpChainElementCall$3 = $(b);
-  if (!(tmpChainElementCall$3 == null)) {
+  if (tmpChainElementCall$3 == null) {
+    $(a);
+  } else {
     const tmpChainRootComputed$1 = $(`\$`);
     const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
-    if (!(tmpChainElementObject$1 == null)) {
+    if (tmpChainElementObject$1 == null) {
+      $(a);
+    } else {
       $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, $(1));
+      $(a);
     }
   }
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -130,13 +140,16 @@ if (tmpIfTest) {
       const tmpCalleeParam$7 = tmpChainElementCall$3;
       const tmpCalleeParam$9 = $(1);
       const tmpChainElementCall$5 = $dotCall(tmpCalleeParam$5, tmpCalleeParam$7, undefined, tmpCalleeParam$9);
+      $(a);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -163,30 +176,33 @@ else {
     a = i;
   }
 }
-if (a) {
-  const j = $( b );
-  const k = j == null;
-  if (k) {
-
-  }
-  else {
-    const l = $( "$" );
-    const m = j[ l ];
-    const n = m == null;
-    if (n) {
-
-    }
-    else {
-      const o = $( 1 );
-      $dotCall( m, j, undefined, o );
-    }
-  }
-}
-const p = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( p );
+if (a) {
+  const k = $( b );
+  const l = k == null;
+  if (l) {
+    $( j );
+  }
+  else {
+    const m = $( "$" );
+    const n = k[ m ];
+    const o = n == null;
+    if (o) {
+      $( j );
+    }
+    else {
+      const p = $( 1 );
+      $dotCall( n, k, undefined, p );
+      $( j );
+    }
+  }
+}
+else {
+  $( j );
+}
 `````
 
 ## Globals

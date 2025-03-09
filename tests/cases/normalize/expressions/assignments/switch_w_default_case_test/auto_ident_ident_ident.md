@@ -101,9 +101,10 @@ if (tmpIfTest$5) {
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $(`fail2`);
+  $(a, b, c);
 } else {
+  $(a, b, c);
 }
-$(a, b, c);
 `````
 
 ## PST Settled

@@ -27,42 +27,53 @@ $(a);
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpChainRootComputed /*:unknown*/ = $(`\$`);
     const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
     if (tmpIfTest$3) {
+      $(a);
     } else {
       const tmpCalleeParam$3 /*:unknown*/ = $(1);
       $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+      $(a);
     }
   }
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(1) === $(1)) {
+const tmpIfTest = $(1) === $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   const tmpChainElementCall = $({ $: $ });
-  if (!(tmpChainElementCall == null)) {
+  if (tmpChainElementCall == null) {
+    $(a);
+  } else {
     const tmpChainRootComputed = $(`\$`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    if (!(tmpChainElementObject == null)) {
+    if (tmpChainElementObject == null) {
+      $(a);
+    } else {
       $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+      $(a);
     }
   }
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -106,13 +117,16 @@ if (tmpIfTest) {
       const tmpCalleeParam$1 = tmpChainElementCall;
       const tmpCalleeParam$3 = $(1);
       const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
+      $(a);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -122,31 +136,34 @@ With rename=true
 const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
-if (c) {
-  const d = { $: $ };
-  const e = $( d );
-  const f = e == null;
-  if (f) {
-
-  }
-  else {
-    const g = $( "$" );
-    const h = e[ g ];
-    const i = h == null;
-    if (i) {
-
-    }
-    else {
-      const j = $( 1 );
-      $dotCall( h, e, undefined, j );
-    }
-  }
-}
-const k = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( k );
+if (c) {
+  const e = { $: $ };
+  const f = $( e );
+  const g = f == null;
+  if (g) {
+    $( d );
+  }
+  else {
+    const h = $( "$" );
+    const i = f[ h ];
+    const j = i == null;
+    if (j) {
+      $( d );
+    }
+    else {
+      const k = $( 1 );
+      $dotCall( i, f, undefined, k );
+      $( d );
+    }
+  }
+}
+else {
+  $( d );
+}
 `````
 
 ## Globals

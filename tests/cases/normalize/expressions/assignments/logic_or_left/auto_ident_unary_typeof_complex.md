@@ -56,11 +56,13 @@ const tmpUnaryArg = $(arg);
 a = typeof tmpUnaryArg;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, arg);
 } else {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, arg);
 }
-$(tmpCalleeParam);
-$(a, arg);
 `````
 
 ## PST Settled

@@ -49,9 +49,10 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+  $(`bad`);
 } else {
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## PST Settled

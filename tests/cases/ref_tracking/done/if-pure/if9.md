@@ -36,20 +36,24 @@ if (tmpIfTest___13__) {
   /*14*/ const tmpIfTest$1___17__ = $(1);
   if (tmpIfTest$1___22__) {
     /*23*/ x___27__ = 10;
-  } /*28*/ else {
+    $(x___31__);
+  } /*32*/ else {
+    $(x___36__);
   }
-} /*29*/ else {
+} /*37*/ else {
+  $(x___41__);
 }
-$(x___33__);
 `````
 
 Ref tracking result:
 
                 | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 33          | none           | 27
-  - w @27      | ########## | 33          | 4              | none
-  - r @33      | 4,27
+  - w @4       | ########## | 36,41       | none           | 27
+  - w @27      | ########## | 31          | 4              | none
+  - r @31      | 27
+  - r @36      | 4
+  - r @41      | 4
 
 tmpIfTest:
   - w @8       | ########## | 13          | none           | none

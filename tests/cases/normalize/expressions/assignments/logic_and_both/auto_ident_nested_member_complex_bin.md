@@ -111,10 +111,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b, c, d, e);
 } else {
+  $(tmpCalleeParam);
+  $(a, b, c, d, e);
 }
-$(tmpCalleeParam);
-$(a, b, c, d, e);
 `````
 
 ## PST Settled

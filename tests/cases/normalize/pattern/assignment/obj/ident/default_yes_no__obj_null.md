@@ -18,7 +18,7 @@ $(x);
 
 `````js filename=intro
 x = null;
-$(x);
+$(null);
 `````
 
 ## Denormalized
@@ -26,7 +26,7 @@ $(x);
 
 `````js filename=intro
 x = null;
-$(x);
+$(null);
 `````
 
 ## Pre Normal
@@ -46,10 +46,11 @@ const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   x = $(`fail`);
+  $(x);
 } else {
   x = objPatternBeforeDefault;
+  $(objPatternBeforeDefault);
 }
-$(x);
 `````
 
 ## PST Settled
@@ -57,7 +58,7 @@ With rename=true
 
 `````js filename=intro
 x = null;
-$( x );
+$( null );
 `````
 
 ## Globals

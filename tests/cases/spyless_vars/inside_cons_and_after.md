@@ -28,9 +28,10 @@ const x /*:number*/ = a * 2;
 if ($) {
   $(`foo`);
   $(x);
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## Denormalized
@@ -42,8 +43,10 @@ const x = +tmpUnaryArg * 2;
 if ($) {
   $(`foo`);
   $(x);
+  $(x);
+} else {
+  $(x);
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -69,9 +72,10 @@ const x = a * 2;
 if ($) {
   $(`foo`);
   $(x);
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
@@ -84,8 +88,11 @@ const c = b * 2;
 if ($) {
   $( "foo" );
   $( c );
+  $( c );
 }
-$( c );
+else {
+  $( c );
+}
 `````
 
 ## Globals

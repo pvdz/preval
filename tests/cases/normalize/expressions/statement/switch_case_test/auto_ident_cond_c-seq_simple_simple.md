@@ -22,14 +22,15 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpIfTest$1 /*:unknown*/ = $(30);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
   $(2);
+  $(a);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpCalleeParam);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -37,12 +38,15 @@ $(a);
 
 `````js filename=intro
 $(1);
-if ($(30)) {
+const tmpIfTest$1 = $(30);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest$1) {
   $(2);
+  $(a);
 } else {
   $($(100));
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -84,18 +88,19 @@ With rename=true
 `````js filename=intro
 $( 1 );
 const a = $( 30 );
-if (a) {
-  $( 2 );
-}
-else {
-  const b = $( 100 );
-  $( b );
-}
-const c = {
+const b = {
   a: 999,
   b: 1000,
 };
-$( c );
+if (a) {
+  $( 2 );
+  $( b );
+}
+else {
+  const c = $( 100 );
+  $( c );
+  $( b );
+}
 `````
 
 ## Globals

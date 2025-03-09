@@ -22,15 +22,16 @@ $(a);
 `````js filename=intro
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
   $(tmpCalleeParam, undefined);
+  $(a);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   $(tmpCalleeParam, tmpChainElementCall);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -39,12 +40,14 @@ $(a);
 `````js filename=intro
 const tmpIfTest$1 = $ == null;
 const tmpCalleeParam = [`before `, ` after`];
+const a = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
   $(tmpCalleeParam, undefined);
+  $(a);
 } else {
   $(tmpCalleeParam, $dotCall($, { e: $ }, `e`, 1));
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -77,12 +80,16 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
     tmpCalleeParam$1 = tmpChainElementCall;
+    $(tmpCalleeParam, tmpChainElementCall);
+    $(a);
   } else {
+    $(tmpCalleeParam, tmpCalleeParam$1);
+    $(a);
   }
 } else {
+  $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
 `````
 
 ## PST Settled
@@ -91,19 +98,20 @@ With rename=true
 `````js filename=intro
 const a = $ == null;
 const b = [ "before ", " after" ];
-if (a) {
-  $( b, undefined );
-}
-else {
-  const c = { e: $ };
-  const d = $dotCall( $, c, "e", 1 );
-  $( b, d );
-}
-const e = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( e );
+if (a) {
+  $( b, undefined );
+  $( c );
+}
+else {
+  const d = { e: $ };
+  const e = $dotCall( $, d, "e", 1 );
+  $( b, e );
+  $( c );
+}
 `````
 
 ## Globals

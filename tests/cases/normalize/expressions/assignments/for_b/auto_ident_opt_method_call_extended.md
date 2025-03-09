@@ -20,42 +20,45 @@ $(a);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
-let tmpClusterSSA_a /*:unknown*/ = tmpChainElementCall;
 if (tmpChainElementCall) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpChainElementCall$1 /*:unknown*/ = tmpObjLitVal$1.e(1);
-    tmpClusterSSA_a = tmpChainElementCall$1;
+    a = tmpChainElementCall$1;
     if (tmpChainElementCall$1) {
     } else {
       break;
     }
   }
+  $(a);
 } else {
+  $(tmpChainElementCall);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 const tmpObjLitVal$1 = { e: $ };
 const tmpChainElementCall = tmpObjLitVal$1.e(1);
-let tmpClusterSSA_a = tmpChainElementCall;
 if (tmpChainElementCall) {
   while (true) {
     $(1);
     const tmpChainElementCall$1 = tmpObjLitVal$1.e(1);
-    tmpClusterSSA_a = tmpChainElementCall$1;
+    a = tmpChainElementCall$1;
     if (!tmpChainElementCall$1) {
       break;
     }
   }
+  $(a);
+} else {
+  $(tmpChainElementCall);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -105,14 +108,14 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { e: $ };
-const b = a.e( 1 );
-let c = b;
-if (b) {
+let a = undefined;
+const b = { e: $ };
+const c = b.e( 1 );
+if (c) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const d = a.e( 1 );
-    c = d;
+    const d = b.e( 1 );
+    a = d;
     if (d) {
 
     }
@@ -120,8 +123,11 @@ if (b) {
       break;
     }
   }
+  $( a );
 }
-$( c );
+else {
+  $( c );
+}
 `````
 
 ## Globals

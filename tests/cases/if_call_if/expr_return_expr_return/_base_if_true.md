@@ -42,13 +42,15 @@ if ($) {
     const tmpClusterSSA_x /*:unknown*/ = $(2);
     if (tmpClusterSSA_x) {
       $(`inner if`, tmpClusterSSA_x);
+      $(undefined, `outer`);
     } else {
       $(`inner else`, tmpClusterSSA_x);
+      $(undefined, `outer`);
     }
   } else {
     $(`inner else`, x);
+    $(undefined, `outer`);
   }
-  $(undefined, `outer`);
 } else {
 }
 `````
@@ -63,13 +65,15 @@ if ($) {
     const tmpClusterSSA_x = $(2);
     if (tmpClusterSSA_x) {
       $(`inner if`, tmpClusterSSA_x);
+      $(undefined, `outer`);
     } else {
       $(`inner else`, tmpClusterSSA_x);
+      $(undefined, `outer`);
     }
   } else {
     $(`inner else`, x);
+    $(undefined, `outer`);
   }
-  $(undefined, `outer`);
 }
 `````
 
@@ -145,15 +149,17 @@ if ($) {
     const b = $( 2 );
     if (b) {
       $( "inner if", b );
+      $( undefined, "outer" );
     }
     else {
       $( "inner else", b );
+      $( undefined, "outer" );
     }
   }
   else {
     $( "inner else", a );
+    $( undefined, "outer" );
   }
-  $( undefined, "outer" );
 }
 `````
 

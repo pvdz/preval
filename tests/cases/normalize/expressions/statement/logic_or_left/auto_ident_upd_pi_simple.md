@@ -51,10 +51,11 @@ const tmpPostUpdArgIdent = $coerce(b, `number`);
 b = tmpPostUpdArgIdent + 1;
 const tmpIfTest = b;
 if (tmpIfTest) {
+  $(a, b);
 } else {
   $(100);
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

@@ -60,10 +60,11 @@ let n = 1;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   n = 2;
+  $(n);
 } else {
   n = 3;
+  $(n);
 }
-$(n);
 `````
 
 ## PST Settled

@@ -27,38 +27,37 @@ $(x, 'third read (C)');
 
 
 `````js filename=intro
-let x /*:number*/ = 1;
 if ($) {
   $(1, `first read (A)`);
   const tmpIfTest /*:unknown*/ = $();
   if (tmpIfTest) {
-    x = 2;
     $(2, `second read (B)`);
+    $(2, `third read (C)`);
   } else {
-    x = 3;
     $(3, `second read (B)`);
+    $(3, `third read (C)`);
   }
 } else {
+  $(1, `third read (C)`);
 }
-$(x, `third read (C)`);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 1;
 if ($) {
   $(1, `first read (A)`);
   if ($()) {
-    x = 2;
     $(2, `second read (B)`);
+    $(2, `third read (C)`);
   } else {
-    x = 3;
     $(3, `second read (B)`);
+    $(3, `third read (C)`);
   }
+} else {
+  $(1, `third read (C)`);
 }
-$(x, `third read (C)`);
 `````
 
 ## Pre Normal
@@ -88,33 +87,37 @@ if ($) {
   const tmpIfTest = $();
   if (tmpIfTest) {
     x = 2;
+    $(x, `second read (B)`);
+    $(x, `third read (C)`);
   } else {
     x = 3;
+    $(x, `second read (B)`);
+    $(x, `third read (C)`);
   }
-  $(x, `second read (B)`);
 } else {
+  $(x, `third read (C)`);
 }
-$(x, `third read (C)`);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = 1;
 if ($) {
   $( 1, "first read (A)" );
-  const b = $();
-  if (b) {
-    a = 2;
+  const a = $();
+  if (a) {
     $( 2, "second read (B)" );
+    $( 2, "third read (C)" );
   }
   else {
-    a = 3;
     $( 3, "second read (B)" );
+    $( 3, "third read (C)" );
   }
 }
-$( a, "third read (C)" );
+else {
+  $( 1, "third read (C)" );
+}
 `````
 
 ## Globals

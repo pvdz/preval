@@ -24,14 +24,14 @@ $(a);
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
-let tmpClusterSSA_a /*:unknown*/ = undefined;
 if (tmpIfTest$1) {
+  $(undefined);
+  $(undefined);
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  tmpClusterSSA_a = tmpChainElementObject;
+  $(undefined);
+  $(tmpChainElementObject);
 }
-$(undefined);
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -39,13 +39,14 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpChainElementCall = $({ x: 1 });
-const tmpIfTest$1 = tmpChainElementCall == null;
-let tmpClusterSSA_a = undefined;
-if (!tmpIfTest$1) {
-  tmpClusterSSA_a = tmpChainElementCall.x;
+if (tmpChainElementCall == null) {
+  $(undefined);
+  $(undefined);
+} else {
+  const tmpChainElementObject = tmpChainElementCall.x;
+  $(undefined);
+  $(tmpChainElementObject);
 }
-$(undefined);
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -104,16 +105,15 @@ With rename=true
 const a = { x: 1 };
 const b = $( a );
 const c = b == null;
-let d = undefined;
 if (c) {
-
+  $( undefined );
+  $( undefined );
 }
 else {
-  const e = b.x;
-  d = e;
+  const d = b.x;
+  $( undefined );
+  $( d );
 }
-$( undefined );
-$( d );
 `````
 
 ## Globals

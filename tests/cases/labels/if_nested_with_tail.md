@@ -46,16 +46,23 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpIfTest$3 /*:unknown*/ = $(3);
     if (tmpIfTest$3) {
+      $(`tail2`);
+      $(`tail1`);
+      $(`end`);
     } else {
       $(`tail3`);
+      $(`tail2`);
+      $(`tail1`);
+      $(`end`);
     }
-    $(`tail2`);
   } else {
+    $(`tail1`);
+    $(`end`);
   }
 } else {
+  $(`tail1`);
+  $(`end`);
 }
-$(`tail1`);
-$(`end`);
 `````
 
 ## Denormalized
@@ -65,14 +72,24 @@ $(`end`);
 $(0);
 if ($(1)) {
   if ($(2)) {
-    if (!$(3)) {
+    if ($(3)) {
+      $(`tail2`);
+      $(`tail1`);
+      $(`end`);
+    } else {
       $(`tail3`);
+      $(`tail2`);
+      $(`tail1`);
+      $(`end`);
     }
-    $(`tail2`);
+  } else {
+    $(`tail1`);
+    $(`end`);
   }
+} else {
+  $(`tail1`);
+  $(`end`);
 }
-$(`tail1`);
-$(`end`);
 `````
 
 ## Pre Normal
@@ -149,16 +166,26 @@ if (a) {
   if (b) {
     const c = $( 3 );
     if (c) {
-
+      $( "tail2" );
+      $( "tail1" );
+      $( "end" );
     }
     else {
       $( "tail3" );
+      $( "tail2" );
+      $( "tail1" );
+      $( "end" );
     }
-    $( "tail2" );
+  }
+  else {
+    $( "tail1" );
+    $( "end" );
   }
 }
-$( "tail1" );
-$( "end" );
+else {
+  $( "tail1" );
+  $( "end" );
+}
 `````
 
 ## Globals

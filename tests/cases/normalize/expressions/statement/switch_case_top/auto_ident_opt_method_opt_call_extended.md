@@ -26,29 +26,37 @@ $(a);
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpIfTest$3 /*:boolean*/ = $ == null;
   if (tmpIfTest$3) {
+    $(a);
   } else {
     const tmpObjLitVal$1 /*:object*/ = { e: $ };
     $dotCall($, tmpObjLitVal$1, `e`, 1);
+    $(a);
   }
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(1) === $(1)) {
-  if (!($ == null)) {
+const tmpIfTest = $(1) === $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  if ($ == null) {
+    $(a);
+  } else {
     $dotCall($, { e: $ }, `e`, 1);
+    $(a);
   }
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -89,13 +97,16 @@ if (tmpIfTest) {
     const tmpIfTest$3 = tmpChainElementObject$3 != null;
     if (tmpIfTest$3) {
       const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
+      $(a);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -105,21 +116,24 @@ With rename=true
 const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
-if (c) {
-  const d = $ == null;
-  if (d) {
-
-  }
-  else {
-    const e = { e: $ };
-    $dotCall( $, e, "e", 1 );
-  }
-}
-const f = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( f );
+if (c) {
+  const e = $ == null;
+  if (e) {
+    $( d );
+  }
+  else {
+    const f = { e: $ };
+    $dotCall( $, f, "e", 1 );
+    $( d );
+  }
+}
+else {
+  $( d );
+}
 `````
 
 ## Globals

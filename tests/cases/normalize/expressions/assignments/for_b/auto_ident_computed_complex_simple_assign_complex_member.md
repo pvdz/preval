@@ -20,13 +20,13 @@ $(a, b);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while ($LOOP_UNROLL_10) {
     $(1);
@@ -35,28 +35,29 @@ if (tmpNestedAssignPropRhs) {
     const tmpCompProp$1 /*:unknown*/ = $(`d`);
     const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
     tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    a = tmpNestedAssignPropRhs$1;
     if (tmpNestedAssignPropRhs$1) {
     } else {
       break;
     }
   }
+  $(a, b);
 } else {
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 const b = { c: 10, d: 20 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while (true) {
     $(1);
@@ -65,13 +66,15 @@ if (tmpNestedAssignPropRhs) {
     const tmpCompProp$1 = $(`d`);
     const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
     tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    a = tmpNestedAssignPropRhs$1;
     if (!tmpNestedAssignPropRhs$1) {
       break;
     }
   }
+  $(a, b);
+} else {
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Pre Normal
@@ -116,25 +119,25 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = {
+let a = undefined;
+const b = {
   c: 10,
   d: 20,
 };
-const b = $( a );
-const c = $( a );
-const d = $( "d" );
-const e = c[ d ];
-b.c = e;
-let f = e;
-if (e) {
+const c = $( b );
+const d = $( b );
+const e = $( "d" );
+const f = d[ e ];
+c.c = f;
+if (f) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const g = $( a );
-    const h = $( a );
+    const g = $( b );
+    const h = $( b );
     const i = $( "d" );
     const j = h[ i ];
     g.c = j;
-    f = j;
+    a = j;
     if (j) {
 
     }
@@ -142,8 +145,11 @@ if (e) {
       break;
     }
   }
+  $( a, b );
 }
-$( f, a );
+else {
+  $( f, b );
+}
 `````
 
 ## Globals

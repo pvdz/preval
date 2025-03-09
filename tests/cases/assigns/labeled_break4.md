@@ -27,25 +27,24 @@
 
 
 `````js filename=intro
-let x /*:number*/ = 10;
 if ($) {
+  $(10);
 } else {
-  x = 20;
+  $(20);
   $(20);
 }
-$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 10;
-if (!$) {
-  x = 20;
+if ($) {
+  $(10);
+} else {
+  $(20);
   $(20);
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -86,15 +85,13 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = 10;
 if ($) {
-
+  $( 10 );
 }
 else {
-  a = 20;
+  $( 20 );
   $( 20 );
 }
-$( a );
 `````
 
 ## Globals

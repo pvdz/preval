@@ -27,29 +27,34 @@ $(a);
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCompProp /*:unknown*/ = $(`\$`);
   const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
   new tmpNewCallee(1);
+  $(a);
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(1) === $(1)) {
+const tmpIfTest = $(1) === $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   const tmpCompObj = $({ $: $ });
   const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   new tmpNewCallee(1);
+  $(a);
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -85,9 +90,10 @@ if (tmpIfTest) {
   const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   new tmpNewCallee(1);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -97,18 +103,21 @@ With rename=true
 const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
-if (c) {
-  const d = { $: $ };
-  const e = $( d );
-  const f = $( "$" );
-  const g = e[ f ];
-  new g( 1 );
-}
-const h = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( h );
+if (c) {
+  const e = { $: $ };
+  const f = $( e );
+  const g = $( "$" );
+  const h = f[ g ];
+  new h( 1 );
+  $( d );
+}
+else {
+  $( d );
+}
 `````
 
 ## Globals

@@ -30,29 +30,27 @@ f();
 
 
 `````js filename=intro
-let x /*:string*/ = `pass`;
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`pass`, `not mutating, not completing`);
   $(`pass`, `should not be considered mutated`);
+  $(`pass`, `after label`);
 } else {
-  x = `fail`;
+  $(`fail`, `after label`);
 }
-$(x, `after label`);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = `pass`;
 if ($(true)) {
   $(`pass`, `not mutating, not completing`);
   $(`pass`, `should not be considered mutated`);
+  $(`pass`, `after label`);
 } else {
-  x = `fail`;
+  $(`fail`, `after label`);
 }
-$(x, `after label`);
 `````
 
 ## Pre Normal
@@ -103,16 +101,15 @@ f();
 With rename=true
 
 `````js filename=intro
-let a = "pass";
-const b = $( true );
-if (b) {
+const a = $( true );
+if (a) {
   $( "pass", "not mutating, not completing" );
   $( "pass", "should not be considered mutated" );
+  $( "pass", "after label" );
 }
 else {
-  a = "fail";
+  $( "fail", "after label" );
 }
-$( a, "after label" );
 `````
 
 ## Globals

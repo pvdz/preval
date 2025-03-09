@@ -22,7 +22,6 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
@@ -33,7 +32,6 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
@@ -47,16 +45,17 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(3, b, c, 3);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b, c, 3);
 }
-$(a, b, c, 3);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const b = { x: 1 };
 const c = { y: 2 };
@@ -67,7 +66,6 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  a = 3;
   while (true) {
     if ($(1)) {
       const tmpNestedAssignComMemberObj$1 = $(b);
@@ -80,8 +78,10 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(3, b, c, 3);
+} else {
+  $({ a: 999, b: 1000 }, b, c, 3);
 }
-$(a, b, c, 3);
 `````
 
 ## Pre Normal
@@ -132,37 +132,39 @@ $(a, b, c, d);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-const c = { x: 1 };
-const d = { y: 2 };
-if (b) {
-  const e = $( c );
-  const f = $( "x" );
-  const g = $( d );
-  const h = $( "y" );
-  g[h] = 3;
-  e[f] = 3;
-  a = 3;
+const a = $( 1 );
+const b = { x: 1 };
+const c = { y: 2 };
+if (a) {
+  const d = $( b );
+  const e = $( "x" );
+  const f = $( c );
+  const g = $( "y" );
+  f[g] = 3;
+  d[e] = 3;
   while ($LOOP_UNROLL_10) {
-    const i = $( 1 );
-    if (i) {
-      const j = $( c );
-      const k = $( "x" );
-      const l = $( d );
-      const m = $( "y" );
-      l[m] = 3;
-      j[k] = 3;
+    const h = $( 1 );
+    if (h) {
+      const i = $( b );
+      const j = $( "x" );
+      const k = $( c );
+      const l = $( "y" );
+      k[l] = 3;
+      i[j] = 3;
     }
     else {
       break;
     }
   }
+  $( 3, b, c, 3 );
 }
-$( a, c, d, 3 );
+else {
+  const m = {
+    a: 999,
+    b: 1000,
+  };
+  $( m, b, c, 3 );
+}
 `````
 
 ## Globals

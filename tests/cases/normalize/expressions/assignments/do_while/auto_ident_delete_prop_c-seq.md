@@ -22,52 +22,56 @@ $(a, arg);
 
 
 `````js filename=intro
+let a /*:boolean*/ = false;
 $(100);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(100);
     $(1);
     $(2);
     const tmpDeleteObj$1 /*:unknown*/ = $(arg);
-    tmpClusterSSA_a = delete tmpDeleteObj$1.y;
-    if (tmpClusterSSA_a) {
+    a = delete tmpDeleteObj$1.y;
+    if (a) {
     } else {
       break;
     }
   }
+  $(a, arg);
 } else {
+  $(false, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = false;
 $(100);
 $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-let tmpClusterSSA_a = delete tmpDeleteObj.y;
-if (tmpClusterSSA_a) {
+if (delete tmpDeleteObj.y) {
   while (true) {
     $(100);
     $(1);
     $(2);
     const tmpDeleteObj$1 = $(arg);
-    tmpClusterSSA_a = delete tmpDeleteObj$1.y;
-    if (!tmpClusterSSA_a) {
+    a = delete tmpDeleteObj$1.y;
+    if (!a) {
       break;
     }
   }
+  $(a, arg);
+} else {
+  $(false, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Pre Normal
@@ -113,28 +117,32 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
+let a = false;
 $( 100 );
 $( 1 );
 $( 2 );
-const a = { y: 1 };
-const b = $( a );
-let c = delete b.y;
-if (c) {
+const b = { y: 1 };
+const c = $( b );
+const d = delete c.y;
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     $( 1 );
     $( 2 );
-    const d = $( a );
-    c = delete d.y;
-    if (c) {
+    const e = $( b );
+    a = delete e.y;
+    if (a) {
 
     }
     else {
       break;
     }
   }
+  $( a, b );
 }
-$( c, a );
+else {
+  $( false, b );
+}
 `````
 
 ## Globals

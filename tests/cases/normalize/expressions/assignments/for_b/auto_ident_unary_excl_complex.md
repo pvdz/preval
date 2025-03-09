@@ -20,6 +20,7 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
 if (tmpUnaryArg) {
+  $(false);
 } else {
   while ($LOOP_UNROLL_10) {
     $(1);
@@ -29,23 +30,25 @@ if (tmpUnaryArg) {
     } else {
     }
   }
+  $(false);
 }
-$(false);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if (!$(100)) {
+if ($(100)) {
+  $(false);
+} else {
   while (true) {
     $(1);
     if ($(100)) {
       break;
     }
   }
+  $(false);
 }
-$(false);
 `````
 
 ## Pre Normal
@@ -85,7 +88,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 if (a) {
-
+  $( false );
 }
 else {
   while ($LOOP_UNROLL_10) {
@@ -95,8 +98,8 @@ else {
       break;
     }
   }
+  $( false );
 }
-$( false );
 `````
 
 ## Globals

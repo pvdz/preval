@@ -39,9 +39,10 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
+  $(`ok`);
 } else {
+  $(`ok`);
 }
-$(`ok`);
 `````
 
 ## Denormalized
@@ -63,8 +64,10 @@ if (!objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
+  $(`ok`);
+} else {
+  $(`ok`);
 }
-$(`ok`);
 `````
 
 ## Pre Normal
@@ -148,8 +151,11 @@ else {
 }
 if (f) {
   e.cannotDestructureThis;
+  $( "ok" );
 }
-$( "ok" );
+else {
+  $( "ok" );
+}
 `````
 
 ## Globals

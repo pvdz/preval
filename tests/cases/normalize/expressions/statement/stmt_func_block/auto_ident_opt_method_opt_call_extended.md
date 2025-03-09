@@ -26,25 +26,32 @@ $(f());
 
 `````js filename=intro
 const tmpIfTest$1 /*:boolean*/ = $ == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
+  $(a);
+  $(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   $dotCall($, tmpObjLitVal$1, `e`, 1);
+  $(a);
+  $(undefined);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-$(undefined);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if (!($ == null)) {
+const tmpIfTest$1 = $ == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest$1) {
+  $(a);
+  $(undefined);
+} else {
   $dotCall($, { e: $ }, `e`, 1);
+  $(a);
+  $(undefined);
 }
-$({ a: 999, b: 1000 });
-$(undefined);
 `````
 
 ## Pre Normal
@@ -82,12 +89,16 @@ let f = function () {
     const tmpIfTest$1 = tmpChainElementObject$3 != null;
     if (tmpIfTest$1) {
       const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
+      $(a);
+      return undefined;
     } else {
+      $(a);
+      return undefined;
     }
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -98,19 +109,20 @@ With rename=true
 
 `````js filename=intro
 const a = $ == null;
-if (a) {
-
-}
-else {
-  const b = { e: $ };
-  $dotCall( $, b, "e", 1 );
-}
-const c = {
+const b = {
   a: 999,
   b: 1000,
 };
-$( c );
-$( undefined );
+if (a) {
+  $( b );
+  $( undefined );
+}
+else {
+  const c = { e: $ };
+  $dotCall( $, c, "e", 1 );
+  $( b );
+  $( undefined );
+}
 `````
 
 ## Globals

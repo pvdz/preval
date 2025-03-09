@@ -17,35 +17,37 @@ $(a.b?.c?.d);
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpChainElementObject /*:unknown*/ = $Object_prototype.b;
 const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
   if (tmpIfTest$1) {
+    $(undefined);
   } else {
     const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1.d;
-    tmpCalleeParam = tmpChainElementObject$3;
+    $(tmpChainElementObject$3);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpChainElementObject = $Object_prototype.b;
-if (!(tmpChainElementObject == null)) {
+if (tmpChainElementObject == null) {
+  $(undefined);
+} else {
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  if (!(tmpChainElementObject$1 == null)) {
-    tmpCalleeParam = tmpChainElementObject$1.d;
+  if (tmpChainElementObject$1 == null) {
+    $(undefined);
+  } else {
+    $(tmpChainElementObject$1.d);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -71,35 +73,35 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$3 = tmpChainElementObject$1.d;
     tmpCalleeParam = tmpChainElementObject$3;
+    $(tmpChainElementObject$3);
   } else {
+    $(tmpCalleeParam);
   }
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $Object_prototype.b;
-const c = b == null;
-if (c) {
-
+const a = $Object_prototype.b;
+const b = a == null;
+if (b) {
+  $( undefined );
 }
 else {
-  const d = b.c;
-  const e = d == null;
-  if (e) {
-
+  const c = a.c;
+  const d = c == null;
+  if (d) {
+    $( undefined );
   }
   else {
-    const f = d.d;
-    a = f;
+    const e = c.d;
+    $( e );
   }
 }
-$( a );
 `````
 
 ## Globals

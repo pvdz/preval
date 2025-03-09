@@ -65,10 +65,11 @@ const objPatternBeforeDefault = arrPatternStep.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   x = a;
+  $(a, a);
 } else {
   x = objPatternBeforeDefault;
+  $(objPatternBeforeDefault, a);
 }
-$(x, a);
 `````
 
 ## PST Settled

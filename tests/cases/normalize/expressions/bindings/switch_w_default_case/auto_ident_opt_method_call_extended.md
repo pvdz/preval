@@ -101,9 +101,10 @@ if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementCall = tmpChainElementObject$1.e(1);
     a = tmpChainElementCall;
+    $(tmpChainElementCall);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;

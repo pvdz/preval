@@ -53,15 +53,17 @@ if (tmpIfTest$1) {
   tmpIfTest = $(tmpCalleeParam);
 }
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpIfTest$3 = 30;
   if (tmpIfTest$3) {
+    $(a);
   } else {
     const tmpCalleeParam$1 = $(100);
     $(tmpCalleeParam$1);
+    $(a);
   }
 }
-$(a);
 `````
 
 ## PST Settled

@@ -23,10 +23,11 @@ $(arr);
 `````js filename=intro
 const arr /*:array*/ = [];
 if ($) {
+  $(arr);
 } else {
   arr[0] = 2;
+  $(arr);
 }
-$(arr);
 `````
 
 ## Denormalized
@@ -34,10 +35,12 @@ $(arr);
 
 `````js filename=intro
 const arr = [];
-if (!$) {
+if ($) {
+  $(arr);
+} else {
   arr[0] = 2;
+  $(arr);
 }
-$(arr);
 `````
 
 ## Pre Normal
@@ -58,10 +61,11 @@ $(arr);
 `````js filename=intro
 const arr = [];
 if ($) {
+  $(arr);
 } else {
   arr[0] = 2;
+  $(arr);
 }
-$(arr);
 `````
 
 ## PST Settled
@@ -70,12 +74,12 @@ With rename=true
 `````js filename=intro
 const a = [];
 if ($) {
-
+  $( a );
 }
 else {
   a[0] = 2;
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

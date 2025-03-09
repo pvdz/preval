@@ -22,8 +22,8 @@ switch (1) {
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpChainRootProp /*:unknown*/ = $(b);
+const tmpClusterSSA_b /*:object*/ = { x: 1 };
+const tmpChainRootProp /*:unknown*/ = $(tmpClusterSSA_b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {
   $(undefined);
@@ -78,9 +78,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
     a = tmpChainElementObject;
+    $(tmpChainElementObject);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 `````

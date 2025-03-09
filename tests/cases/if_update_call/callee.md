@@ -82,10 +82,11 @@ let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = f;
+  f();
 } else {
   x = g;
+  g();
 }
-x();
 `````
 
 ## PST Settled

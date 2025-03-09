@@ -25,10 +25,11 @@ $(arr);
 const arr /*:array*/ = [];
 if ($) {
   arr[0] = 1;
+  $(arr);
 } else {
   arr[0] = 2;
+  $(arr);
 }
-$(arr);
 `````
 
 ## Denormalized
@@ -38,10 +39,11 @@ $(arr);
 const arr = [];
 if ($) {
   arr[0] = 1;
+  $(arr);
 } else {
   arr[0] = 2;
+  $(arr);
 }
-$(arr);
 `````
 
 ## Pre Normal
@@ -64,10 +66,11 @@ $(arr);
 const arr = [];
 if ($) {
   arr[0] = 1;
+  $(arr);
 } else {
   arr[0] = 2;
+  $(arr);
 }
-$(arr);
 `````
 
 ## PST Settled
@@ -77,11 +80,12 @@ With rename=true
 const a = [];
 if ($) {
   a[0] = 1;
+  $( a );
 }
 else {
   a[0] = 2;
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

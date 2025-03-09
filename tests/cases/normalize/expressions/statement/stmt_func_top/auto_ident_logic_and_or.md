@@ -28,14 +28,16 @@ if (tmpIfTest) {
   tmpIfTest = $(tmpCalleeParam$1);
 } else {
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
+  $(undefined);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   $(tmpCalleeParam$3);
+  $(a);
+  $(undefined);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-$(undefined);
 `````
 
 ## Denormalized
@@ -46,11 +48,15 @@ let tmpIfTest = $($(1));
 if (tmpIfTest) {
   tmpIfTest = $($(1));
 }
-if (!tmpIfTest) {
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+  $(undefined);
+} else {
   $($(2));
+  $(a);
+  $(undefined);
 }
-$({ a: 999, b: 1000 });
-$(undefined);
 `````
 
 ## Pre Normal
@@ -81,12 +87,14 @@ let f = function () {
   } else {
   }
   if (tmpIfTest) {
+    $(a);
+    return undefined;
   } else {
     const tmpCalleeParam$3 = $(2);
     $(tmpCalleeParam$3);
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam$5 = f();
 $(tmpCalleeParam$5);
@@ -102,19 +110,20 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-if (b) {
-
-}
-else {
-  const d = $( 2 );
-  $( d );
-}
-const e = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( e );
-$( undefined );
+if (b) {
+  $( d );
+  $( undefined );
+}
+else {
+  const e = $( 2 );
+  $( e );
+  $( d );
+  $( undefined );
+}
 `````
 
 ## Globals

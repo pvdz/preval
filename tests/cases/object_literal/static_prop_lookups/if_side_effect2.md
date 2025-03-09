@@ -85,11 +85,13 @@ const f = function () {
     return undefined;
   };
   if ($) {
+    $(x);
+    return undefined;
   } else {
     g();
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 if ($) {
   f();

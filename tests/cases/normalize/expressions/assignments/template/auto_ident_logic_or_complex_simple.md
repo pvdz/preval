@@ -19,30 +19,30 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$3 /*:unknown*/ = $(0);
-let a /*:unknown*/ = $(tmpCalleeParam$3);
+const a /*:unknown*/ = $(tmpCalleeParam$3);
 if (a) {
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a);
 } else {
-  a = 2;
   $(`before  2  after`);
+  $(2);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(0));
+const a = $($(0));
 if (a) {
   $(`before  ${a}  after`);
+  $(a);
 } else {
-  a = 2;
   $(`before  2  after`);
+  $(2);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -80,17 +80,17 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
+const b = $( a );
 if (b) {
   const c = $coerce( b, "string" );
   const d = `before  ${c}  after`;
   $( d );
+  $( b );
 }
 else {
-  b = 2;
   $( "before  2  after" );
+  $( 2 );
 }
-$( b );
 `````
 
 ## Globals

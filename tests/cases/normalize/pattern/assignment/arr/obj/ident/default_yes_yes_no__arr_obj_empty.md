@@ -70,10 +70,11 @@ const objPatternBeforeDefault = arrPatternStep.x;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   x = $(`pass`);
+  $(x);
 } else {
   x = objPatternBeforeDefault;
+  $(objPatternBeforeDefault);
 }
-$(x);
 `````
 
 ## PST Settled

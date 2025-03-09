@@ -53,6 +53,7 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpChainRootProp = b;
   const tmpIfTest$1 = tmpChainRootProp != null;
@@ -60,10 +61,11 @@ if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    $(a);
   } else {
+    $(a);
   }
 }
-$(a);
 `````
 
 ## PST Settled

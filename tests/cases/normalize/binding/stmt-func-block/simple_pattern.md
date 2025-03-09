@@ -30,9 +30,10 @@ if (tmpIfTest) {
   const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
   const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
   $(z, tmpClusterSSA_x, tmpClusterSSA_y, z);
+  $(undefined);
 } else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -43,8 +44,10 @@ if ($(true)) {
   const z = [10, 20, 30];
   const arrPatternSplat = [...z];
   $(z, arrPatternSplat[0], arrPatternSplat[1], z);
+  $(undefined);
+} else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -102,8 +105,11 @@ if (a) {
   const d = c[ 0 ];
   const e = c[ 1 ];
   $( b, d, e, b );
+  $( undefined );
 }
-$( undefined );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

@@ -22,25 +22,26 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
-} else {
-  a = 2;
-}
+const a /*:unknown*/ = $(tmpCalleeParam);
 $(100);
-$(a);
+if (a) {
+  $(a);
+} else {
+  $(2);
+}
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(0));
-if (!a) {
-  a = 2;
-}
+const a = $($(0));
 $(100);
-$(a);
+if (a) {
+  $(a);
+} else {
+  $(2);
+}
 `````
 
 ## Pre Normal
@@ -79,15 +80,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
+const b = $( a );
+$( 100 );
 if (b) {
-
+  $( b );
 }
 else {
-  b = 2;
+  $( 2 );
 }
-$( 100 );
-$( b );
 `````
 
 ## Globals

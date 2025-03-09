@@ -21,18 +21,16 @@ $(c);
 
 
 `````js filename=intro
-const b /*:unknown*/ = $(2);
+let b /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = b == null;
 let c /*:unknown*/ = undefined;
-let tmpIfTest$1 /*:boolean*/ = false;
 if (tmpIfTest) {
-  const tmpClusterSSA_b /*:unknown*/ = toString;
-  c = tmpClusterSSA_b;
-  tmpIfTest$1 = tmpClusterSSA_b == null;
+  b = toString;
+  c = b;
 } else {
   c = b;
-  tmpIfTest$1 = b == null;
 }
+const tmpIfTest$1 /*:boolean*/ = b == null;
 if (tmpIfTest$1) {
   $(length);
 } else {
@@ -44,19 +42,16 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const b = $(2);
+let b = $(2);
 const tmpIfTest = b == null;
 let c = undefined;
-let tmpIfTest$1 = false;
 if (tmpIfTest) {
-  const tmpClusterSSA_b = toString;
-  c = tmpClusterSSA_b;
-  tmpIfTest$1 = tmpClusterSSA_b == null;
+  b = toString;
+  c = b;
 } else {
   c = b;
-  tmpIfTest$1 = b == null;
 }
-if (tmpIfTest$1) {
+if (b == null) {
   $(length);
 } else {
   $(c);
@@ -88,28 +83,27 @@ let c = b;
 const tmpIfTest$1 = c == null;
 if (tmpIfTest$1) {
   c = length;
+  $(length);
 } else {
+  $(c);
 }
-$(c);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-const a = $( 2 );
+let a = $( 2 );
 const b = a == null;
 let c = undefined;
-let d = false;
 if (b) {
-  const e = toString;
-  c = e;
-  d = e == null;
+  a = toString;
+  c = a;
 }
 else {
   c = a;
-  d = a == null;
 }
+const d = a == null;
 if (d) {
   $( length );
 }

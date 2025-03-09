@@ -82,9 +82,10 @@ if (tmpIfTest) {
   const tmpCallCompObj = b;
   const tmpCallCompProp = $(`\$`);
   a = tmpCallCompObj[tmpCallCompProp](1);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

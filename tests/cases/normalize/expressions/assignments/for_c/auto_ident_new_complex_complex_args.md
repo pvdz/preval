@@ -20,51 +20,53 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpNewCallee /*:unknown*/ = $($);
   const tmpCalleeParam /*:unknown*/ = $(1);
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  let tmpClusterSSA_a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpNewCallee$1 /*:unknown*/ = $($);
       const tmpCalleeParam$2 /*:unknown*/ = $(1);
       const tmpCalleeParam$4 /*:unknown*/ = $(2);
-      a = new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
+      tmpClusterSSA_a = new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpNewCallee = $($);
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  let tmpClusterSSA_a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
   while (true) {
     if ($(1)) {
       const tmpNewCallee$1 = $($);
       const tmpCalleeParam$2 = $(1);
       const tmpCalleeParam$4 = $(2);
-      a = new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
+      tmpClusterSSA_a = new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -105,30 +107,33 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( $ );
-  const d = $( 1 );
-  const e = $( 2 );
-  a = new c( d, e );
+const a = $( 1 );
+if (a) {
+  const b = $( $ );
+  const c = $( 1 );
+  const d = $( 2 );
+  let e = new b( c, d );
   while ($LOOP_UNROLL_10) {
     const f = $( 1 );
     if (f) {
       const g = $( $ );
       const h = $( 1 );
       const i = $( 2 );
-      a = new g( h, i );
+      e = new g( h, i );
     }
     else {
       break;
     }
   }
+  $( e );
 }
-$( a );
+else {
+  const j = {
+    a: 999,
+    b: 1000,
+  };
+  $( j );
+}
 `````
 
 ## Globals
@@ -176,3 +181,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- Support this node type in isFree: NewExpression

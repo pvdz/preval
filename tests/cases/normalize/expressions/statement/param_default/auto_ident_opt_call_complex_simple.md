@@ -22,10 +22,11 @@ $(a);
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+  $(undefined);
 } else {
   $dotCall(tmpChainElementCall, $, undefined, 1);
+  $(undefined);
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -35,10 +36,12 @@ $(a);
 
 `````js filename=intro
 const tmpChainElementCall = $($);
-if (!(tmpChainElementCall == null)) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+} else {
   $dotCall(tmpChainElementCall, $, undefined, 1);
+  $(undefined);
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -95,12 +98,12 @@ With rename=true
 const a = $( $ );
 const b = a == null;
 if (b) {
-
+  $( undefined );
 }
 else {
   $dotCall( a, $, undefined, 1 );
+  $( undefined );
 }
-$( undefined );
 const c = {
   a: 999,
   b: 1000,

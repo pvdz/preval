@@ -21,34 +21,43 @@ $(f());
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
-let a /*:unknown*/ = $(tmpCalleeParam);
+const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
+  $(a);
+  $(undefined);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  a = $(tmpCalleeParam$1);
-  if (a) {
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_a) {
+    $(tmpClusterSSA_a);
+    $(undefined);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    a = $(tmpCalleeParam$3);
+    const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$3);
+    $(tmpClusterSSA_a$1);
+    $(undefined);
   }
 }
-$(a);
-$(undefined);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(0));
-if (!a) {
-  a = $($(1));
-  if (!a) {
-    a = $($(2));
+const a = $($(0));
+if (a) {
+  $(a);
+  $(undefined);
+} else {
+  const tmpClusterSSA_a = $($(1));
+  if (tmpClusterSSA_a) {
+    $(tmpClusterSSA_a);
+    $(undefined);
+  } else {
+    $($($(2)));
+    $(undefined);
   }
 }
-$(a);
-$(undefined);
 `````
 
 ## Pre Normal
@@ -72,17 +81,21 @@ let f = function () {
   const tmpCalleeParam = $(0);
   let a = $(tmpCalleeParam);
   if (a) {
+    $(a);
+    return undefined;
   } else {
     const tmpCalleeParam$1 = $(1);
     a = $(tmpCalleeParam$1);
     if (a) {
+      $(a);
+      return undefined;
     } else {
       const tmpCalleeParam$3 = $(2);
       a = $(tmpCalleeParam$3);
+      $(a);
+      return undefined;
     }
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam$5 = f();
 $(tmpCalleeParam$5);
@@ -93,23 +106,25 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
+const b = $( a );
 if (b) {
-
+  $( b );
+  $( undefined );
 }
 else {
   const c = $( 1 );
-  b = $( c );
-  if (b) {
-
+  const d = $( c );
+  if (d) {
+    $( d );
+    $( undefined );
   }
   else {
-    const d = $( 2 );
-    b = $( d );
+    const e = $( 2 );
+    const f = $( e );
+    $( f );
+    $( undefined );
   }
 }
-$( b );
-$( undefined );
 `````
 
 ## Globals

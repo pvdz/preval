@@ -26,16 +26,17 @@ const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpIfTest /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpDeleteCompObj$1 /*:unknown*/ = $(arg);
   const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
   delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  $(a, arg);
 } else {
+  $(a, arg);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
 `````
 
 ## Denormalized
@@ -47,14 +48,18 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
+const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   $(1);
   $(2);
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $(`y`);
   delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  $(a, arg);
+} else {
+  $(a, arg);
 }
-$({ a: 999, b: 1000 }, arg);
 `````
 
 ## Pre Normal
@@ -84,9 +89,10 @@ if (tmpIfTest) {
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $(`y`);
   delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  $(a, arg);
 } else {
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## PST Settled
@@ -99,18 +105,21 @@ const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
 const d = delete b[ c ];
-if (d) {
-  $( 1 );
-  $( 2 );
-  const e = $( a );
-  const f = $( "y" );
-  delete e[ f ];
-}
-const g = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( g, a );
+if (d) {
+  $( 1 );
+  $( 2 );
+  const f = $( a );
+  const g = $( "y" );
+  delete f[ g ];
+  $( e, a );
+}
+else {
+  $( e, a );
+}
 `````
 
 ## Globals

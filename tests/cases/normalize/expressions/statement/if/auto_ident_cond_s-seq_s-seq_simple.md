@@ -47,11 +47,12 @@ let tmpIfTest = undefined;
 const tmpIfTest$1 = 30;
 if (tmpIfTest$1) {
   tmpIfTest = 60;
+  $(a);
 } else {
   const tmpCalleeParam = $(100);
   tmpIfTest = $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

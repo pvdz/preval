@@ -33,10 +33,11 @@ $(`start`);
 const x /*:unknown*/ = $(1);
 if (x) {
   $(2);
+  $(`end`);
 } else {
   $(3);
+  $(`end`);
 }
-$(`end`);
 `````
 
 ## Denormalized
@@ -46,10 +47,11 @@ $(`end`);
 $(`start`);
 if ($(1)) {
   $(2);
+  $(`end`);
 } else {
   $(3);
+  $(`end`);
 }
-$(`end`);
 `````
 
 ## Pre Normal
@@ -98,11 +100,12 @@ $( "start" );
 const a = $( 1 );
 if (a) {
   $( 2 );
+  $( "end" );
 }
 else {
   $( 3 );
+  $( "end" );
 }
-$( "end" );
 `````
 
 ## Globals

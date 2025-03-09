@@ -82,38 +82,50 @@ if (n <= 11) {
 const x /*:unknown*/ = $();
 const t /*:boolean*/ = 0 === x;
 if (t) {
+  $(`pass`);
 } else {
   const tmpClusterSSA_t /*:boolean*/ = 1 === x;
   if (tmpClusterSSA_t) {
+    $(`pass`);
   } else {
     const tmpClusterSSA_t$1 /*:boolean*/ = 2 === x;
     if (tmpClusterSSA_t$1) {
+      $(`pass`);
     } else {
       const tmpClusterSSA_t$3 /*:boolean*/ = 3 === x;
       if (tmpClusterSSA_t$3) {
+        $(`pass`);
       } else {
         const tmpClusterSSA_t$5 /*:boolean*/ = 4 === x;
         if (tmpClusterSSA_t$5) {
+          $(`pass`);
         } else {
           const tmpClusterSSA_t$7 /*:boolean*/ = 5 === x;
           if (tmpClusterSSA_t$7) {
+            $(`pass`);
           } else {
             const tmpClusterSSA_t$9 /*:boolean*/ = 6 === x;
             if (tmpClusterSSA_t$9) {
+              $(`pass`);
             } else {
               const tmpClusterSSA_t$11 /*:boolean*/ = 7 === x;
               if (tmpClusterSSA_t$11) {
+                $(`pass`);
               } else {
                 const tmpClusterSSA_t$13 /*:boolean*/ = 8 === x;
                 if (tmpClusterSSA_t$13) {
+                  $(`pass`);
                 } else {
                   const tmpClusterSSA_t$15 /*:boolean*/ = 10 === x;
                   if (tmpClusterSSA_t$15) {
+                    $(`pass`);
                   } else {
                     const tmpClusterSSA_t$17 /*:boolean*/ = 9 === x;
                     if (tmpClusterSSA_t$17) {
+                      $(`pass`);
                     } else {
                       $(`must be 11`);
+                      $(`pass`);
                     }
                   }
                 }
@@ -125,7 +137,6 @@ if (t) {
     }
   }
 }
-$(`pass`);
 `````
 
 ## Denormalized
@@ -133,18 +144,41 @@ $(`pass`);
 
 `````js filename=intro
 const x = $();
-if (!(0 === x)) {
-  if (!(1 === x)) {
-    if (!(2 === x)) {
-      if (!(3 === x)) {
-        if (!(4 === x)) {
-          if (!(5 === x)) {
-            if (!(6 === x)) {
-              if (!(7 === x)) {
-                if (!(8 === x)) {
-                  if (!(10 === x)) {
-                    if (!(9 === x)) {
+if (0 === x) {
+  $(`pass`);
+} else {
+  if (1 === x) {
+    $(`pass`);
+  } else {
+    if (2 === x) {
+      $(`pass`);
+    } else {
+      if (3 === x) {
+        $(`pass`);
+      } else {
+        if (4 === x) {
+          $(`pass`);
+        } else {
+          if (5 === x) {
+            $(`pass`);
+          } else {
+            if (6 === x) {
+              $(`pass`);
+            } else {
+              if (7 === x) {
+                $(`pass`);
+              } else {
+                if (8 === x) {
+                  $(`pass`);
+                } else {
+                  if (10 === x) {
+                    $(`pass`);
+                  } else {
+                    if (9 === x) {
+                      $(`pass`);
+                    } else {
                       $(`must be 11`);
+                      $(`pass`);
                     }
                   }
                 }
@@ -156,7 +190,6 @@ if (!(0 === x)) {
     }
   }
 }
-$(`pass`);
 `````
 
 ## Pre Normal
@@ -305,60 +338,61 @@ With rename=true
 const a = $();
 const b = 0 === a;
 if (b) {
-
+  $( "pass" );
 }
 else {
   const c = 1 === a;
   if (c) {
-
+    $( "pass" );
   }
   else {
     const d = 2 === a;
     if (d) {
-
+      $( "pass" );
     }
     else {
       const e = 3 === a;
       if (e) {
-
+        $( "pass" );
       }
       else {
         const f = 4 === a;
         if (f) {
-
+          $( "pass" );
         }
         else {
           const g = 5 === a;
           if (g) {
-
+            $( "pass" );
           }
           else {
             const h = 6 === a;
             if (h) {
-
+              $( "pass" );
             }
             else {
               const i = 7 === a;
               if (i) {
-
+                $( "pass" );
               }
               else {
                 const j = 8 === a;
                 if (j) {
-
+                  $( "pass" );
                 }
                 else {
                   const k = 10 === a;
                   if (k) {
-
+                    $( "pass" );
                   }
                   else {
                     const l = 9 === a;
                     if (l) {
-
+                      $( "pass" );
                     }
                     else {
                       $( "must be 11" );
+                      $( "pass" );
                     }
                   }
                 }
@@ -370,7 +404,6 @@ else {
     }
   }
 }
-$( "pass" );
 `````
 
 ## Globals

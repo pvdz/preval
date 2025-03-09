@@ -26,30 +26,32 @@ $(a.f());
 
 
 `````js filename=intro
-let tmpCalleeParam /*:primitive*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
-    tmpCalleeParam = 10;
+    $(10);
   } else {
+    $(undefined);
   }
 } else {
+  $(undefined);
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 if ($(1)) {
   if ($(2)) {
-    tmpCalleeParam = 10;
+    $(10);
+  } else {
+    $(undefined);
   }
+} else {
+  $(undefined);
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -102,15 +104,19 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1 );
-if (b) {
-  const c = $( 2 );
-  if (c) {
-    a = 10;
+const a = $( 1 );
+if (a) {
+  const b = $( 2 );
+  if (b) {
+    $( 10 );
+  }
+  else {
+    $( undefined );
   }
 }
-$( a );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

@@ -18,40 +18,26 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElement /*:unknown*/ = $(1);
-const tmpArrElement$3 /*:unknown*/ = $(3);
-let a /*:unknown*/ = [tmpArrElement, 2, tmpArrElement$3];
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  const tmpArrElement$5 /*:unknown*/ = $(1);
-  const tmpArrElement$9 /*:unknown*/ = $(3);
-  const tmpNestedComplexRhs /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+$(1);
+$(3);
+const tmpArrElement$5 /*:unknown*/ = $(1);
+const tmpArrElement$9 /*:unknown*/ = $(3);
+const tmpNestedComplexRhs /*:array*/ = [tmpArrElement$5, 2, tmpArrElement$9];
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
-let a = [tmpArrElement, 2, tmpArrElement$3];
-const tmpCalleeParam = a;
-if (a) {
-  const tmpArrElement$5 = $(1);
-  const tmpArrElement$9 = $(3);
-  const tmpNestedComplexRhs = [tmpArrElement$5, 2, tmpArrElement$9];
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+$(1);
+$(3);
+const tmpArrElement$5 = $(1);
+const tmpArrElement$9 = $(3);
+const tmpNestedComplexRhs = [tmpArrElement$5, 2, tmpArrElement$9];
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -80,30 +66,24 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = [tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
+$( 1 );
+$( 3 );
 const a = $( 1 );
 const b = $( 3 );
-let c = [ a, 2, b ];
-const d = c;
-if (c) {
-  const e = $( 1 );
-  const f = $( 3 );
-  const g = [ e, 2, f ];
-  c = g;
-  $( g );
-}
-else {
-  $( d );
-}
+const c = [ a, 2, b ];
+$( c );
 $( c );
 `````
 

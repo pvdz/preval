@@ -20,46 +20,48 @@ $(a, arg);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   const tmpDeleteObj /*:unknown*/ = $(arg);
-  a = delete tmpDeleteObj.y;
+  let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpDeleteObj$1 /*:unknown*/ = $(arg);
-      a = delete tmpDeleteObj$1.y;
+      tmpClusterSSA_a = delete tmpDeleteObj$1.y;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, arg);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const arg = { y: 1 };
 if (tmpIfTest) {
   const tmpDeleteObj = $(arg);
-  a = delete tmpDeleteObj.y;
+  let tmpClusterSSA_a = delete tmpDeleteObj.y;
   while (true) {
     if ($(1)) {
       const tmpDeleteObj$1 = $(arg);
-      a = delete tmpDeleteObj$1.y;
+      tmpClusterSSA_a = delete tmpDeleteObj$1.y;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, arg);
+} else {
+  $({ a: 999, b: 1000 }, arg);
 }
-$(a, arg);
 `````
 
 ## Pre Normal
@@ -98,27 +100,30 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-const c = { y: 1 };
-if (b) {
-  const d = $( c );
-  a = delete d.y;
+const a = $( 1 );
+const b = { y: 1 };
+if (a) {
+  const c = $( b );
+  let d = delete c.y;
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
-      const f = $( c );
-      a = delete f.y;
+      const f = $( b );
+      d = delete f.y;
     }
     else {
       break;
     }
   }
+  $( d, b );
 }
-$( a, c );
+else {
+  const g = {
+    a: 999,
+    b: 1000,
+  };
+  $( g, b );
+}
 `````
 
 ## Globals
@@ -166,3 +171,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- regular property access of an ident feels tricky;

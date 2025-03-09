@@ -72,9 +72,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
     a = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 `````

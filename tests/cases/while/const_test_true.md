@@ -26,8 +26,8 @@ if (x) {
     $(`body`);
   }
 } else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Denormalized
@@ -38,8 +38,9 @@ if ($(true)) {
   while (true) {
     $(`body`);
   }
+} else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Pre Normal
@@ -78,7 +79,9 @@ if (a) {
     $( "body" );
   }
 }
-$( "after" );
+else {
+  $( "after" );
+}
 `````
 
 ## Globals

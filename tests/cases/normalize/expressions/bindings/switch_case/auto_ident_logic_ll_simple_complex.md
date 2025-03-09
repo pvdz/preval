@@ -57,11 +57,12 @@ const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
   a = 0;
   if (a) {
+    $(a);
   } else {
     const tmpCalleeParam = $(1);
     a = $(tmpCalleeParam);
+    $(a);
   }
-  $(a);
 } else {
 }
 `````

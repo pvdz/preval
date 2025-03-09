@@ -61,10 +61,11 @@ const bool = Boolean(tmpCalleeParam);
 let x = undefined;
 if (bool) {
   x = { [`a b`]: 1, b: true };
+  $(x);
 } else {
   x = { [`a b`]: 1, b: false };
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

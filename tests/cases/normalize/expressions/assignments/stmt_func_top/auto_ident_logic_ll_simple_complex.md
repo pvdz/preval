@@ -57,12 +57,14 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   a = 0;
   if (a) {
+    $(a);
+    return undefined;
   } else {
     const tmpCalleeParam = $(1);
     a = $(tmpCalleeParam);
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

@@ -86,9 +86,10 @@ if (tmpIfTest$3) {
   a = 1;
   if (a) {
     a = 2;
+    $(a);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

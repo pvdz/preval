@@ -27,31 +27,39 @@ $(a);
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const b /*:object*/ = { x: 1 };
   const tmpChainRootProp /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
   if (tmpIfTest$1) {
+    $(a);
   } else {
     tmpChainRootProp.x;
+    $(a);
   }
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(1) === $(1)) {
+const tmpIfTest = $(1) === $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   const tmpChainRootProp = $({ x: 1 });
-  if (!(tmpChainRootProp == null)) {
+  if (tmpChainRootProp == null) {
+    $(a);
+  } else {
     tmpChainRootProp.x;
+    $(a);
   }
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -87,11 +95,13 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainRootProp != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
+    $(a);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -101,22 +111,25 @@ With rename=true
 const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
-if (c) {
-  const d = { x: 1 };
-  const e = $( d );
-  const f = e == null;
-  if (f) {
-
-  }
-  else {
-    e.x;
-  }
-}
-const g = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( g );
+if (c) {
+  const e = { x: 1 };
+  const f = $( e );
+  const g = f == null;
+  if (g) {
+    $( d );
+  }
+  else {
+    f.x;
+    $( d );
+  }
+}
+else {
+  $( d );
+}
 `````
 
 ## Globals

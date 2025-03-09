@@ -24,14 +24,15 @@ const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
+  $(a);
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   $(tmpCalleeParam, tmpChainElementObject);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -41,12 +42,14 @@ $(a);
 const tmpChainRootProp = $({ x: 1 });
 const tmpIfTest = tmpChainRootProp == null;
 const tmpCalleeParam = [`before `, ` after`];
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
+  $(a);
 } else {
   $(tmpCalleeParam, tmpChainRootProp.x);
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -72,10 +75,12 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpCalleeParam$1 = tmpChainElementObject;
+  $(tmpCalleeParam, tmpChainElementObject);
+  $(a);
 } else {
+  $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
 `````
 
 ## PST Settled
@@ -86,18 +91,19 @@ const a = { x: 1 };
 const b = $( a );
 const c = b == null;
 const d = [ "before ", " after" ];
-if (c) {
-  $( d, undefined );
-}
-else {
-  const e = b.x;
-  $( d, e );
-}
-const f = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( f );
+if (c) {
+  $( d, undefined );
+  $( e );
+}
+else {
+  const f = b.x;
+  $( d, f );
+  $( e );
+}
 `````
 
 ## Globals

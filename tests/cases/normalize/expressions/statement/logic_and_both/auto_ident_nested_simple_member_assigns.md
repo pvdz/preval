@@ -79,9 +79,10 @@ if (tmpIfTest) {
   b.x = varInitAssignLhsComputedRhs$11;
   const tmpAssignMemRhs = varInitAssignLhsComputedRhs$11;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  $(a, b, c);
 } else {
+  $(a, b, c);
 }
-$(a, b, c);
 `````
 
 ## PST Settled

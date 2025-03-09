@@ -60,11 +60,12 @@ const tmpSwitchDisc = $(1);
 const tmpIfTest = 30;
 if (tmpIfTest) {
   $(2);
+  $(a);
 } else {
   const tmpCalleeParam = $(100);
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

@@ -18,20 +18,11 @@ $(a);
 
 
 `````js filename=intro
-let a /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-if (a) {
-  $(a);
-} else {
-  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
-    debugger;
-    return undefined;
-  };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+$(a);
 $(a);
 `````
 
@@ -39,14 +30,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = function () {};
-if (a) {
-  $(a);
-} else {
-  const tmpNestedComplexRhs = function () {};
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a = function () {};
+$(a);
 $(a);
 `````
 
@@ -77,6 +62,8 @@ a = function () {
 };
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpNestedComplexRhs = function () {
     debugger;
@@ -84,30 +71,20 @@ if (tmpCalleeParam) {
   };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = function() {
+const a = function() {
   debugger;
   return undefined;
 };
-if (a) {
-  $( a );
-}
-else {
-  const b = function() {
-    debugger;
-    return undefined;
-  };
-  a = b;
-  $( b );
-}
+$( a );
 $( a );
 `````
 

@@ -37,9 +37,10 @@ if (tmpNestedComplexRhs) {
       break;
     }
   }
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
@@ -60,8 +61,10 @@ if (tmpNestedComplexRhs) {
       break;
     }
   }
+  $(a, b);
+} else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -123,8 +126,11 @@ if (a) {
       break;
     }
   }
+  $( c, b );
 }
-$( c, b );
+else {
+  $( c, b );
+}
 `````
 
 ## Globals

@@ -91,9 +91,10 @@ if (tmpIfTest) {
   let tmpUpdInc = tmpUpdNum + 1;
   tmpUpdObj.x = tmpUpdInc;
   a = tmpUpdNum;
+  $(tmpUpdNum, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

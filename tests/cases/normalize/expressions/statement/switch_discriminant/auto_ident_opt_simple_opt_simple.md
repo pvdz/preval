@@ -68,12 +68,16 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpSwitchDisc = tmpChainElementObject$1;
+    $(100);
+    $(a);
   } else {
+    $(100);
+    $(a);
   }
 } else {
+  $(100);
+  $(a);
 }
-$(100);
-$(a);
 `````
 
 ## PST Settled

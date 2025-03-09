@@ -24,9 +24,10 @@ $(blob);
 const blob /*:object*/ = { thing: `woop` };
 if ($) {
   blob.thing = `boing`;
+  $(blob);
 } else {
+  $(blob);
 }
-$(blob);
 `````
 
 ## Denormalized
@@ -36,8 +37,10 @@ $(blob);
 const blob = { thing: `woop` };
 if ($) {
   blob.thing = `boing`;
+  $(blob);
+} else {
+  $(blob);
 }
-$(blob);
 `````
 
 ## Pre Normal
@@ -59,9 +62,10 @@ $(blob);
 const blob = { thing: `woop` };
 if ($) {
   blob.thing = `boing`;
+  $(blob);
 } else {
+  $(blob);
 }
-$(blob);
 `````
 
 ## PST Settled
@@ -71,8 +75,11 @@ With rename=true
 const a = { thing: "woop" };
 if ($) {
   a.thing = "boing";
+  $( a );
 }
-$( a );
+else {
+  $( a );
+}
 `````
 
 ## Globals

@@ -87,9 +87,10 @@ if (tmpIfTest) {
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...arrAssignPatternRhs];
   b = arrPatternSplat[0];
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

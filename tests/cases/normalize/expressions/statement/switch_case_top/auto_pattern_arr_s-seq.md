@@ -30,9 +30,10 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(10);
   $(20);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -44,8 +45,10 @@ const a = [...bindingPatternArrRoot][0];
 if ($(1) === $(1)) {
   $(10);
   $(20);
+  $(a);
+} else {
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -77,9 +80,10 @@ const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   $(10);
   $(20);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -98,8 +102,11 @@ const f = d === e;
 if (f) {
   $( 10 );
   $( 20 );
+  $( c );
 }
-$( c );
+else {
+  $( c );
+}
 `````
 
 ## Globals

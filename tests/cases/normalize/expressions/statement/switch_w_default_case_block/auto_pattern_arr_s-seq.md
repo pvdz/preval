@@ -48,15 +48,18 @@ const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(10);
   $(20);
+  $(a);
 } else {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$5) {
     $(`fail1`);
+    $(`fail2`);
+    $(a);
   } else {
+    $(`fail2`);
+    $(a);
   }
-  $(`fail2`);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -77,13 +80,17 @@ if ($(1) === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 0) {
   $(10);
   $(20);
+  $(a);
 } else {
   if (tmpSwitchCaseToStart <= 1) {
     $(`fail1`);
+    $(`fail2`);
+    $(a);
+  } else {
+    $(`fail2`);
+    $(a);
   }
-  $(`fail2`);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -184,15 +191,20 @@ const i = e <= 0;
 if (i) {
   $( 10 );
   $( 20 );
+  $( c );
 }
 else {
   const j = e <= 1;
   if (j) {
     $( "fail1" );
+    $( "fail2" );
+    $( c );
   }
-  $( "fail2" );
+  else {
+    $( "fail2" );
+    $( c );
+  }
 }
-$( c );
 `````
 
 ## Globals

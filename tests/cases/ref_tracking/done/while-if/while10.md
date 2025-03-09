@@ -136,8 +136,8 @@ if ($) {
   }
 } else {
   $(`oh`);
+  $(`end`, 1);
 }
-$(`end`, 1);
 `````
 
 ## Denormalized
@@ -154,8 +154,8 @@ if ($) {
   }
 } else {
   $(`oh`);
+  $(`end`, 1);
 }
-$(`end`, 1);
 `````
 
 ## Pre Normal
@@ -201,8 +201,8 @@ if ($) {
   }
 } else {
   $(`oh`);
+  $(`end`, x);
 }
-$(`end`, x);
 `````
 
 ## PST Settled
@@ -223,8 +223,8 @@ if ($) {
 }
 else {
   $( "oh" );
+  $( "end", 1 );
 }
-$( "end", 1 );
 `````
 
 ## Globals

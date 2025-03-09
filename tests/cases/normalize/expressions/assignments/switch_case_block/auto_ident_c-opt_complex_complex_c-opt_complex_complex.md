@@ -24,52 +24,56 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  a = undefined;
   const tmpObjLitVal /*:object*/ = { y: 1 };
   const b /*:object*/ = { x: tmpObjLitVal };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+    $(undefined);
   } else {
     const tmpChainRootComputed /*:unknown*/ = $(`x`);
     const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
     if (tmpIfTest$3) {
+      $(undefined);
     } else {
       const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
       const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-      a = tmpChainElementObject$1;
+      $(tmpChainElementObject$1);
     }
   }
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1) === $(1)) {
-  a = undefined;
   const tmpObjLitVal = { y: 1 };
   const tmpChainElementCall = $({ x: tmpObjLitVal });
-  if (!(tmpChainElementCall == null)) {
+  if (tmpChainElementCall == null) {
+    $(undefined);
+  } else {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    if (!(tmpChainElementObject == null)) {
+    if (tmpChainElementObject == null) {
+      $(undefined);
+    } else {
       const tmpChainRootComputed$1 = $(`y`);
-      a = tmpChainElementObject[tmpChainRootComputed$1];
+      $(tmpChainElementObject[tmpChainRootComputed$1]);
     }
   }
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -114,50 +118,54 @@ if (tmpIfTest) {
       const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
+      $(tmpChainElementObject$1);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
+const a = $( 1 );
 const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  a = undefined;
-  const e = { y: 1 };
-  const f = { x: e };
-  const g = $( f );
-  const h = g == null;
-  if (h) {
-
+const c = a === b;
+if (c) {
+  const d = { y: 1 };
+  const e = { x: d };
+  const f = $( e );
+  const g = f == null;
+  if (g) {
+    $( undefined );
   }
   else {
-    const i = $( "x" );
-    const j = g[ i ];
-    const k = j == null;
-    if (k) {
-
+    const h = $( "x" );
+    const i = f[ h ];
+    const j = i == null;
+    if (j) {
+      $( undefined );
     }
     else {
-      const l = $( "y" );
-      const m = j[ l ];
-      a = m;
+      const k = $( "y" );
+      const l = i[ k ];
+      $( l );
     }
   }
 }
-$( a );
+else {
+  const m = {
+    a: 999,
+    b: 1000,
+  };
+  $( m );
+}
 `````
 
 ## Globals

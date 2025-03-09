@@ -51,10 +51,11 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
 const tmpIfTest = tmpCompObj.c;
 if (tmpIfTest) {
+  $(a, b);
 } else {
   $(100);
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

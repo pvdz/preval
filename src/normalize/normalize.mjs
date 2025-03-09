@@ -44,6 +44,7 @@ import {
 import globals from '../globals.mjs';
 import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
 import { addLabelReference, createFreshLabelStatement, removeLabelReference } from '../labels.mjs';
+import { cloneSortOfSimple } from '../ast.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -5199,7 +5200,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         // Check if the callee or any arg was just assigned to
         if (body[i-1]?.type === 'VariableDeclaration' || body[i-1]?.type === 'ExpressionStatement') {
-          if (callee.type == 'Identifier') {
+          if (callee.type === 'Identifier') {
             if (
               body[i-1]?.type === 'VariableDeclaration' &&
               body[i-1].declarations[0].init.type === 'Identifier' &&
@@ -5305,6 +5306,22 @@ export function phaseNormalize(fdata, fname, prng, options) {
               }
             }
           })
+        }
+
+        // Pull and duplicate statement-calls into if/else branches
+        if (wrapKind === 'statement' && body[i-1]?.type === 'IfStatement' && !node.arguments.some(anode => AST.isComplexNode(anode))) {
+          rule('A call as statement after an` `if` should be pulled into the `if`');
+          example('if (x) y; else z; f();', 'if (x) { y; f(); } else { z; f(); }');
+          before(body[i-1]);
+          before(body[i]);
+
+          body[i-1].consequent.body.push(AST.expressionStatement(node));
+          body[i-1].alternate.body.push(AST.expressionStatement(cloneSortOfSimple(node)));
+          body.splice(i, 1);
+
+          before(body[i-1]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
         }
 
         // Assert normalized form

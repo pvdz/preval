@@ -89,9 +89,10 @@ if (tmpIfTest$3) {
   if (a) {
     const tmpCalleeParam = $(1);
     a = $(tmpCalleeParam);
+    $(a);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

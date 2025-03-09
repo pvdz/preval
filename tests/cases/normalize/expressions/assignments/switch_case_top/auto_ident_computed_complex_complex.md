@@ -83,9 +83,10 @@ if (tmpIfTest) {
   const tmpAssignRhsCompObj = $(b);
   const tmpAssignRhsCompProp = $(`c`);
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

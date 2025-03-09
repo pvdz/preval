@@ -27,9 +27,10 @@ const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const b /*:object*/ = { x: 3 };
   $(3, b, 3);
+  $(undefined);
 } else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -38,8 +39,10 @@ $(undefined);
 `````js filename=intro
 if ($(true)) {
   $(3, { x: 3 }, 3);
+  $(undefined);
+} else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -89,8 +92,11 @@ const a = $( true );
 if (a) {
   const b = { x: 3 };
   $( 3, b, 3 );
+  $( undefined );
 }
-$( undefined );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

@@ -74,10 +74,12 @@ let f = function () {
   };
   if ($) {
     g();
+    $(x);
+    return undefined;
   } else {
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 if ($) {
   f();

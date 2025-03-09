@@ -28,10 +28,11 @@ const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
 if (tmpNestedAssignArrPatternRhs) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 } else {
   $(tmpNestedAssignArrPatternRhs);
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 }
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````
 
 ## Denormalized
@@ -43,10 +44,11 @@ const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
 const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
 if (tmpNestedAssignArrPatternRhs) {
   $($(100));
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 } else {
   $(tmpNestedAssignArrPatternRhs);
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 }
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````
 
 ## Pre Normal
@@ -74,10 +76,12 @@ a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -92,11 +96,12 @@ const e = d[ 0 ];
 if (c) {
   const f = $( 100 );
   $( f );
+  $( c, e );
 }
 else {
   $( c );
+  $( c, e );
 }
-$( c, e );
 `````
 
 ## Globals

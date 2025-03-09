@@ -38,27 +38,29 @@ $(wat);
 `````js filename=intro
 const s /*:unknown*/ = $(10);
 $(`before`);
-let wat /*:number*/ = s | 10;
+const wat /*:number*/ = s | 10;
 const chk /*:unknown*/ = $(true);
 if (chk) {
   $(`inside`);
-  wat = wat | 10;
+  let tmpClusterSSA_wat /*:number*/ = wat | 10;
   const tmpClusterSSA_chk /*:unknown*/ = $(true);
   if (tmpClusterSSA_chk) {
     while ($LOOP_UNROLL_10) {
       $(`inside`);
-      wat = wat | 10;
+      tmpClusterSSA_wat = tmpClusterSSA_wat | 10;
       const tmpClusterSSA_chk$1 /*:unknown*/ = $(true);
       if (tmpClusterSSA_chk$1) {
       } else {
         break;
       }
     }
+    $(tmpClusterSSA_wat);
   } else {
+    $(tmpClusterSSA_wat);
   }
 } else {
+  $(wat);
 }
-$(wat);
 `````
 
 ## Denormalized
@@ -67,21 +69,25 @@ $(wat);
 `````js filename=intro
 const s = $(10);
 $(`before`);
-let wat = s | 10;
+const wat = s | 10;
 if ($(true)) {
   $(`inside`);
-  wat = wat | 10;
+  let tmpClusterSSA_wat = wat | 10;
   if ($(true)) {
     while (true) {
       $(`inside`);
-      wat = wat | 10;
+      tmpClusterSSA_wat = tmpClusterSSA_wat | 10;
       if (!$(true)) {
         break;
       }
     }
+    $(tmpClusterSSA_wat);
+  } else {
+    $(tmpClusterSSA_wat);
   }
+} else {
+  $(wat);
 }
-$(wat);
 `````
 
 ## Pre Normal
@@ -132,10 +138,11 @@ if (chk) {
       break;
     }
   }
+  $(wat);
 } else {
   count = false;
+  $(wat);
 }
-$(wat);
 `````
 
 ## PST Settled
@@ -144,27 +151,33 @@ With rename=true
 `````js filename=intro
 const a = $( 10 );
 $( "before" );
-let b = a | 10;
+const b = a | 10;
 const c = $( true );
 if (c) {
   $( "inside" );
-  b = b | 10;
-  const d = $( true );
-  if (d) {
+  let d = b | 10;
+  const e = $( true );
+  if (e) {
     while ($LOOP_UNROLL_10) {
       $( "inside" );
-      b = b | 10;
-      const e = $( true );
-      if (e) {
+      d = d | 10;
+      const f = $( true );
+      if (f) {
 
       }
       else {
         break;
       }
     }
+    $( d );
+  }
+  else {
+    $( d );
   }
 }
-$( b );
+else {
+  $( b );
+}
 `````
 
 ## Globals

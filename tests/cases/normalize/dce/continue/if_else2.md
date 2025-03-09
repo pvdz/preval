@@ -34,9 +34,10 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(`after, wont eval due to infinite loop`);
 } else {
+  $(`after, wont eval due to infinite loop`);
 }
-$(`after, wont eval due to infinite loop`);
 `````
 
 ## Denormalized
@@ -50,8 +51,10 @@ if ($(true)) {
       break;
     }
   }
+  $(`after, wont eval due to infinite loop`);
+} else {
+  $(`after, wont eval due to infinite loop`);
 }
-$(`after, wont eval due to infinite loop`);
 `````
 
 ## Pre Normal
@@ -111,8 +114,11 @@ if (a) {
       break;
     }
   }
+  $( "after, wont eval due to infinite loop" );
 }
-$( "after, wont eval due to infinite loop" );
+else {
+  $( "after, wont eval due to infinite loop" );
+}
 `````
 
 ## Globals

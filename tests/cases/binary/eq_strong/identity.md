@@ -93,10 +93,11 @@ if (tmpIfTest$1) {
     $(x, 1);
   } catch ($finalImplicit) {}
   $(2);
+  $(3);
 } else {
   $(`oops`);
+  $(3);
 }
-$(3);
 `````
 
 ## PST Settled

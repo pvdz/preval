@@ -18,38 +18,21 @@ $(a);
 
 
 `````js filename=intro
-let a /*:()=>unknown*/ = function () {
+const tmpNestedComplexRhs /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
-    debugger;
-    return undefined;
-  };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = function () {};
-const tmpCalleeParam = a;
-if (a) {
-  const tmpNestedComplexRhs = function () {};
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+const tmpNestedComplexRhs = function () {};
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -85,32 +68,23 @@ if (tmpCalleeParam) {
   };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = function() {
+const a = function() {
   debugger;
   return undefined;
 };
-const b = a;
-if (a) {
-  const c = function() {
-    debugger;
-    return undefined;
-  };
-  a = c;
-  $( c );
-}
-else {
-  $( b );
-}
+$( a );
 $( a );
 `````
 

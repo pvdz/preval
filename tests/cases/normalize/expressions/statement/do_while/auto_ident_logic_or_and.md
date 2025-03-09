@@ -25,6 +25,7 @@ loopStop: {
   const tmpCalleeParam /*:unknown*/ = $(0);
   const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest) {
+    $(100);
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$1);
@@ -32,6 +33,7 @@ loopStop: {
       const tmpCalleeParam$3 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$3);
       if (tmpClusterSSA_tmpIfTest$1) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -39,10 +41,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$2 /*:unknown*/ = $(0);
   const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$2);
   if (tmpIfTest$1) {
+    $(100);
   } else {
     const tmpCalleeParam$4 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$4);
@@ -50,6 +52,7 @@ loopStop: {
       const tmpCalleeParam$6 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$6);
       if (tmpClusterSSA_tmpIfTest$4) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -57,10 +60,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$5 /*:unknown*/ = $(0);
   const tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$5);
   if (tmpIfTest$2) {
+    $(100);
   } else {
     const tmpCalleeParam$7 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$7);
@@ -68,6 +71,7 @@ loopStop: {
       const tmpCalleeParam$9 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$5 /*:unknown*/ = $(tmpCalleeParam$9);
       if (tmpClusterSSA_tmpIfTest$5) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -75,10 +79,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$8 /*:unknown*/ = $(0);
   const tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$8);
   if (tmpIfTest$3) {
+    $(100);
   } else {
     const tmpCalleeParam$10 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$6 /*:unknown*/ = $(tmpCalleeParam$10);
@@ -86,6 +90,7 @@ loopStop: {
       const tmpCalleeParam$12 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$8 /*:unknown*/ = $(tmpCalleeParam$12);
       if (tmpClusterSSA_tmpIfTest$8) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -93,10 +98,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$11 /*:unknown*/ = $(0);
   const tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$11);
   if (tmpIfTest$4) {
+    $(100);
   } else {
     const tmpCalleeParam$13 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$7 /*:unknown*/ = $(tmpCalleeParam$13);
@@ -104,6 +109,7 @@ loopStop: {
       const tmpCalleeParam$15 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$9 /*:unknown*/ = $(tmpCalleeParam$15);
       if (tmpClusterSSA_tmpIfTest$9) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -111,10 +117,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$14 /*:unknown*/ = $(0);
   const tmpIfTest$5 /*:unknown*/ = $(tmpCalleeParam$14);
   if (tmpIfTest$5) {
+    $(100);
   } else {
     const tmpCalleeParam$16 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$10 /*:unknown*/ = $(tmpCalleeParam$16);
@@ -122,6 +128,7 @@ loopStop: {
       const tmpCalleeParam$18 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$12 /*:unknown*/ = $(tmpCalleeParam$18);
       if (tmpClusterSSA_tmpIfTest$12) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -129,10 +136,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$17 /*:unknown*/ = $(0);
   const tmpIfTest$6 /*:unknown*/ = $(tmpCalleeParam$17);
   if (tmpIfTest$6) {
+    $(100);
   } else {
     const tmpCalleeParam$19 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$11 /*:unknown*/ = $(tmpCalleeParam$19);
@@ -140,6 +147,7 @@ loopStop: {
       const tmpCalleeParam$21 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$13 /*:unknown*/ = $(tmpCalleeParam$21);
       if (tmpClusterSSA_tmpIfTest$13) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -147,10 +155,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$20 /*:unknown*/ = $(0);
   const tmpIfTest$7 /*:unknown*/ = $(tmpCalleeParam$20);
   if (tmpIfTest$7) {
+    $(100);
   } else {
     const tmpCalleeParam$22 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$14 /*:unknown*/ = $(tmpCalleeParam$22);
@@ -158,6 +166,7 @@ loopStop: {
       const tmpCalleeParam$24 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$16 /*:unknown*/ = $(tmpCalleeParam$24);
       if (tmpClusterSSA_tmpIfTest$16) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -165,10 +174,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$23 /*:unknown*/ = $(0);
   const tmpIfTest$8 /*:unknown*/ = $(tmpCalleeParam$23);
   if (tmpIfTest$8) {
+    $(100);
   } else {
     const tmpCalleeParam$25 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$15 /*:unknown*/ = $(tmpCalleeParam$25);
@@ -176,6 +185,7 @@ loopStop: {
       const tmpCalleeParam$27 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$17 /*:unknown*/ = $(tmpCalleeParam$27);
       if (tmpClusterSSA_tmpIfTest$17) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -183,10 +193,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$26 /*:unknown*/ = $(0);
   const tmpIfTest$9 /*:unknown*/ = $(tmpCalleeParam$26);
   if (tmpIfTest$9) {
+    $(100);
   } else {
     const tmpCalleeParam$28 /*:unknown*/ = $(1);
     const tmpClusterSSA_tmpIfTest$18 /*:unknown*/ = $(tmpCalleeParam$28);
@@ -194,6 +204,7 @@ loopStop: {
       const tmpCalleeParam$30 /*:unknown*/ = $(2);
       const tmpClusterSSA_tmpIfTest$20 /*:unknown*/ = $(tmpCalleeParam$30);
       if (tmpClusterSSA_tmpIfTest$20) {
+        $(100);
       } else {
         break loopStop;
       }
@@ -201,7 +212,6 @@ loopStop: {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$29 /*:unknown*/ = $(0);
   const tmpIfTest$10 /*:unknown*/ = $(tmpCalleeParam$29);
   if (tmpIfTest$10) {
@@ -250,106 +260,136 @@ $(a);
 `````js filename=intro
 loopStop: {
   $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
+  if ($($(0))) {
+    $(100);
+  } else {
     if ($($(1))) {
-      if (!$($(2))) {
+      if ($($(2))) {
+        $(100);
+      } else {
         break loopStop;
       }
     } else {
       break loopStop;
     }
   }
-  $(100);
   if (!$($(0))) {
     if ($($(1))) {
       if (!$($(2))) {
@@ -429,7 +469,7 @@ loopStop: {
   const a = $( 0 );
   const b = $( a );
   if (b) {
-
+    $( 100 );
   }
   else {
     const c = $( 1 );
@@ -438,7 +478,7 @@ loopStop: {
       const e = $( 2 );
       const f = $( e );
       if (f) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -448,11 +488,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const g = $( 0 );
   const h = $( g );
   if (h) {
-
+    $( 100 );
   }
   else {
     const i = $( 1 );
@@ -461,7 +500,7 @@ loopStop: {
       const k = $( 2 );
       const l = $( k );
       if (l) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -471,11 +510,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const m = $( 0 );
   const n = $( m );
   if (n) {
-
+    $( 100 );
   }
   else {
     const o = $( 1 );
@@ -484,7 +522,7 @@ loopStop: {
       const q = $( 2 );
       const r = $( q );
       if (r) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -494,11 +532,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const s = $( 0 );
   const t = $( s );
   if (t) {
-
+    $( 100 );
   }
   else {
     const u = $( 1 );
@@ -507,7 +544,7 @@ loopStop: {
       const w = $( 2 );
       const x = $( w );
       if (x) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -517,11 +554,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const y = $( 0 );
   const z = $( y );
   if (z) {
-
+    $( 100 );
   }
   else {
     const ba = $( 1 );
@@ -530,7 +566,7 @@ loopStop: {
       const bc = $( 2 );
       const bd = $( bc );
       if (bd) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -540,11 +576,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const be = $( 0 );
   const bf = $( be );
   if (bf) {
-
+    $( 100 );
   }
   else {
     const bg = $( 1 );
@@ -553,7 +588,7 @@ loopStop: {
       const bi = $( 2 );
       const bj = $( bi );
       if (bj) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -563,11 +598,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const bk = $( 0 );
   const bl = $( bk );
   if (bl) {
-
+    $( 100 );
   }
   else {
     const bm = $( 1 );
@@ -576,7 +610,7 @@ loopStop: {
       const bo = $( 2 );
       const bp = $( bo );
       if (bp) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -586,11 +620,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const bq = $( 0 );
   const br = $( bq );
   if (br) {
-
+    $( 100 );
   }
   else {
     const bs = $( 1 );
@@ -599,7 +632,7 @@ loopStop: {
       const bu = $( 2 );
       const bv = $( bu );
       if (bv) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -609,11 +642,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const bw = $( 0 );
   const bx = $( bw );
   if (bx) {
-
+    $( 100 );
   }
   else {
     const by = $( 1 );
@@ -622,7 +654,7 @@ loopStop: {
       const ca = $( 2 );
       const cb = $( ca );
       if (cb) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -632,11 +664,10 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const cc = $( 0 );
   const cd = $( cc );
   if (cd) {
-
+    $( 100 );
   }
   else {
     const ce = $( 1 );
@@ -645,7 +676,7 @@ loopStop: {
       const cg = $( 2 );
       const ch = $( cg );
       if (ch) {
-
+        $( 100 );
       }
       else {
         break loopStop;
@@ -655,7 +686,6 @@ loopStop: {
       break loopStop;
     }
   }
-  $( 100 );
   const ci = $( 0 );
   const cj = $( ci );
   if (cj) {

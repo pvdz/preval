@@ -22,37 +22,39 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
+let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  a = $(tmpCalleeParam$1);
+  tmpClusterSSA_a = $(tmpCalleeParam$1);
 } else {
 }
-if (a) {
-  $(a);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$3);
-  $(a);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$3);
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(1));
-if (a) {
-  a = $($(1));
+let tmpClusterSSA_a = $($(1));
+if (tmpClusterSSA_a) {
+  tmpClusterSSA_a = $($(1));
 }
-if (a) {
-  $(a);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
-  a = $($(2));
-  $(a);
+  const tmpClusterSSA_a$1 = $($(2));
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -107,13 +109,14 @@ if (b) {
 }
 if (b) {
   $( b );
+  $( b );
 }
 else {
   const d = $( 2 );
-  b = $( d );
-  $( b );
+  const e = $( d );
+  $( e );
+  $( e );
 }
-$( b );
 `````
 
 ## Globals

@@ -20,12 +20,13 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(0);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(b);
   const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
@@ -33,29 +34,27 @@ if (tmpIfTest) {
   const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
   const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
   tmpUpdObj.x = tmpUpdInc;
-  a = tmpUpdInc;
   $(tmpUpdInc);
+  $(tmpUpdInc, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 const b = { x: 1 };
 if (tmpIfTest) {
   $($(100));
+  $({ a: 999, b: 1000 }, b);
 } else {
   const tmpUpdObj = $($(b));
   const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) - 1;
   tmpUpdObj.x = tmpUpdInc;
-  a = tmpUpdInc;
   $(tmpUpdInc);
+  $(tmpUpdInc, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -78,6 +77,8 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   const tmpCalleeParam$1 = $(b);
   let tmpUpdObj = $(tmpCalleeParam$1);
@@ -88,36 +89,36 @@ if (tmpIfTest) {
   const tmpNestedComplexRhs = tmpUpdInc;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 0 );
-const c = { x: 1 };
-if (b) {
-  const d = $( 100 );
-  $( d );
+const a = $( 0 );
+const b = { x: 1 };
+if (a) {
+  const c = $( 100 );
+  $( c );
+  const d = {
+    a: 999,
+    b: 1000,
+  };
+  $( d, b );
 }
 else {
-  const e = $( c );
+  const e = $( b );
   const f = $( e );
   const g = f.x;
   const h = $coerce( g, "number" );
   const i = h - 1;
   f.x = i;
-  a = i;
   $( i );
+  $( i, b );
 }
-$( a, c );
 `````
 
 ## Globals

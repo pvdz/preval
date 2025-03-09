@@ -63,6 +63,8 @@ const f = function () {
 a = f;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const f$1 = function () {
     debugger;
@@ -71,9 +73,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = f$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled

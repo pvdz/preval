@@ -63,9 +63,10 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = tmpCallObj.$(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled

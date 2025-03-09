@@ -20,8 +20,8 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(100);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+$(tmpClusterSSA_tmpCalleeParam);
 const b /*:object*/ = { c: 1 };
 $(1, b);
 `````
@@ -55,11 +55,13 @@ a = b.c;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled

@@ -18,36 +18,34 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
+  $(undefined);
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  a = tmpChainElementCall$1;
   $(tmpCalleeParam, tmpChainElementCall$1);
+  $(tmpChainElementCall$1);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 const tmpCalleeParam = [`before `, ` after`];
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
+  $(undefined);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, 1);
-  a = tmpChainElementCall$1;
   $(tmpCalleeParam, tmpChainElementCall$1);
+  $(tmpChainElementCall$1);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -83,19 +81,18 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( $ );
-const c = b == null;
-const d = [ "before ", " after" ];
-if (c) {
-  $( d, undefined );
+const a = $( $ );
+const b = a == null;
+const c = [ "before ", " after" ];
+if (b) {
+  $( c, undefined );
+  $( undefined );
 }
 else {
-  const e = $dotCall( b, $, undefined, 1 );
-  a = e;
-  $( d, e );
+  const d = $dotCall( a, $, undefined, 1 );
+  $( c, d );
+  $( d );
 }
-$( a );
 `````
 
 ## Globals

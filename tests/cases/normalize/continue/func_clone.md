@@ -32,9 +32,10 @@ if ($) {
       break;
     }
   }
+  $(undefined);
 } else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -48,8 +49,10 @@ if ($) {
       break;
     }
   }
+  $(undefined);
+} else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -111,8 +114,11 @@ if ($) {
       break;
     }
   }
+  $( undefined );
 }
-$( undefined );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

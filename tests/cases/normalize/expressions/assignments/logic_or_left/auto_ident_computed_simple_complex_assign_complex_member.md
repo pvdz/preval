@@ -28,11 +28,12 @@ const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(tmpNestedAssignPropRhs);
+  $(tmpNestedAssignPropRhs, b);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpNestedAssignPropRhs, b);
 `````
 
 ## Denormalized
@@ -47,10 +48,11 @@ const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(tmpNestedAssignPropRhs);
+  $(tmpNestedAssignPropRhs, b);
 } else {
   $($(100));
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpNestedAssignPropRhs, b);
 `````
 
 ## Pre Normal
@@ -79,11 +81,13 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignR
 a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -101,12 +105,13 @@ const e = c[ d ];
 b[a] = e;
 if (e) {
   $( e );
+  $( e, b );
 }
 else {
   const f = $( 100 );
   $( f );
+  $( e, b );
 }
-$( e, b );
 `````
 
 ## Globals

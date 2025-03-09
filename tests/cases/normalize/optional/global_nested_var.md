@@ -24,17 +24,18 @@ $(c);
 let b /*:unknown*/ = undefined;
 const tmpChainRootProp /*:unknown*/ = $(2);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpIfTest$1 /*:boolean*/ = true;
+let tmpChainRootProp$1 /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.toString;
   b = tmpChainElementObject;
-  tmpIfTest$1 = tmpChainElementObject == null;
+  tmpChainRootProp$1 = tmpChainElementObject;
 }
+const tmpIfTest$1 /*:boolean*/ = b == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementObject$1 /*:unknown*/ = b.length;
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainRootProp$1.length;
   $(tmpChainElementObject$1);
 }
 `````
@@ -46,16 +47,16 @@ if (tmpIfTest$1) {
 let b = undefined;
 const tmpChainRootProp = $(2);
 const tmpIfTest = tmpChainRootProp == null;
-let tmpIfTest$1 = true;
+let tmpChainRootProp$1 = undefined;
 if (!tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.toString;
   b = tmpChainElementObject;
-  tmpIfTest$1 = tmpChainElementObject == null;
+  tmpChainRootProp$1 = tmpChainElementObject;
 }
-if (tmpIfTest$1) {
+if (b == null) {
   $(undefined);
 } else {
-  $(b.length);
+  $(tmpChainRootProp$1.length);
 }
 `````
 
@@ -88,9 +89,10 @@ const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.length;
   c = tmpChainElementObject$1;
+  $(tmpChainElementObject$1);
 } else {
+  $(c);
 }
-$(c);
 `````
 
 ## PST Settled
@@ -100,21 +102,22 @@ With rename=true
 let a = undefined;
 const b = $( 2 );
 const c = b == null;
-let d = true;
+let d = undefined;
 if (c) {
 
 }
 else {
   const e = b.toString;
   a = e;
-  d = e == null;
+  d = e;
 }
-if (d) {
+const f = a == null;
+if (f) {
   $( undefined );
 }
 else {
-  const f = a.length;
-  $( f );
+  const g = d.length;
+  $( g );
 }
 `````
 

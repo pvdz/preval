@@ -55,11 +55,12 @@ $(1);
 $(2);
 const tmpIfTest = x;
 if (tmpIfTest) {
+  $(a, x);
 } else {
   $(1);
   $(2);
+  $(a, x);
 }
-$(a, x);
 `````
 
 ## PST Settled

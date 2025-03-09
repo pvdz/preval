@@ -31,12 +31,13 @@ function f() {
 `````js filename=intro
 const f /*:()=>unknown*/ = function () {
   debugger;
+  f();
   if ($) {
-    f();
+    $(1);
+    return undefined;
   } else {
+    return undefined;
   }
-  $(1);
-  return undefined;
 };
 `````
 
@@ -45,10 +46,10 @@ const f /*:()=>unknown*/ = function () {
 
 `````js filename=intro
 const f = function () {
+  f();
   if ($) {
-    f();
+    $(1);
   }
-  $(1);
 };
 `````
 
@@ -84,10 +85,12 @@ let f = function () {
   };
   if ($) {
     f();
+    $(x);
+    return undefined;
   } else {
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 `````
 
@@ -97,11 +100,14 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
+  a();
   if ($) {
-    a();
+    $( 1 );
+    return undefined;
   }
-  $( 1 );
-  return undefined;
+  else {
+    return undefined;
+  }
 };
 `````
 

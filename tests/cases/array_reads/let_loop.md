@@ -25,6 +25,7 @@ $(arr);
 let arr /*:array*/ = [2, 3, 4];
 $(2);
 if ($) {
+  $(arr);
 } else {
   while ($LOOP_UNROLL_10) {
     arr = [2, 3, 4];
@@ -34,8 +35,8 @@ if ($) {
     } else {
     }
   }
+  $(arr);
 }
-$(arr);
 `````
 
 ## Denormalized
@@ -44,7 +45,9 @@ $(arr);
 `````js filename=intro
 let arr = [2, 3, 4];
 $(2);
-if (!$) {
+if ($) {
+  $(arr);
+} else {
   while (true) {
     arr = [2, 3, 4];
     $(2);
@@ -52,8 +55,8 @@ if (!$) {
       break;
     }
   }
+  $(arr);
 }
-$(arr);
 `````
 
 ## Pre Normal
@@ -93,7 +96,7 @@ With rename=true
 let a = [ 2, 3, 4 ];
 $( 2 );
 if ($) {
-
+  $( a );
 }
 else {
   while ($LOOP_UNROLL_10) {
@@ -103,8 +106,8 @@ else {
       break;
     }
   }
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

@@ -39,11 +39,11 @@ $(wat);
 const s /*:unknown*/ = $(10);
 let count /*:boolean*/ = true;
 $(`before`);
-let wat /*:number*/ = s | 10;
+const wat /*:number*/ = s | 10;
 const chk /*:unknown*/ = $(true);
 if (chk) {
   $(`inside`);
-  wat = wat | 10;
+  let tmpClusterSSA_wat /*:number*/ = wat | 10;
   const chk$1 /*:unknown*/ = $(true);
   if (chk$1) {
   } else {
@@ -52,7 +52,7 @@ if (chk) {
   while ($LOOP_UNROLL_10) {
     if (count) {
       $(`inside`);
-      wat = wat | 10;
+      tmpClusterSSA_wat = tmpClusterSSA_wat | 10;
       const chk$2 /*:unknown*/ = $(true);
       if (chk$2) {
       } else {
@@ -62,9 +62,10 @@ if (chk) {
       break;
     }
   }
+  $(tmpClusterSSA_wat);
 } else {
+  $(wat);
 }
-$(wat);
 `````
 
 ## Denormalized
@@ -74,17 +75,17 @@ $(wat);
 const s = $(10);
 let count = true;
 $(`before`);
-let wat = s | 10;
+const wat = s | 10;
 if ($(true)) {
   $(`inside`);
-  wat = wat | 10;
+  let tmpClusterSSA_wat = wat | 10;
   if (!$(true)) {
     count = false;
   }
   while (true) {
     if (count) {
       $(`inside`);
-      wat = wat | 10;
+      tmpClusterSSA_wat = tmpClusterSSA_wat | 10;
       if (!$(true)) {
         count = false;
       }
@@ -92,8 +93,10 @@ if ($(true)) {
       break;
     }
   }
+  $(tmpClusterSSA_wat);
+} else {
+  $(wat);
 }
-$(wat);
 `````
 
 ## Pre Normal
@@ -157,13 +160,13 @@ With rename=true
 const a = $( 10 );
 let b = true;
 $( "before" );
-let c = a | 10;
+const c = a | 10;
 const d = $( true );
 if (d) {
   $( "inside" );
-  c = c | 10;
-  const e = $( true );
-  if (e) {
+  let e = c | 10;
+  const f = $( true );
+  if (f) {
 
   }
   else {
@@ -172,9 +175,9 @@ if (d) {
   while ($LOOP_UNROLL_10) {
     if (b) {
       $( "inside" );
-      c = c | 10;
-      const f = $( true );
-      if (f) {
+      e = e | 10;
+      const g = $( true );
+      if (g) {
 
       }
       else {
@@ -185,8 +188,11 @@ if (d) {
       break;
     }
   }
+  $( e );
 }
-$( c );
+else {
+  $( c );
+}
 `````
 
 ## Globals

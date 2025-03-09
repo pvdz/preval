@@ -77,16 +77,18 @@ const b = $(`x`, `one`);
 const c = $(`x`, `one`);
 const a = b === c;
 if (a) {
+  $(x, `middle`);
 } else {
   x = false;
+  $(x, `middle`);
 }
-$(x, `middle`);
 if (a) {
   x = true;
+  $(x, `end`);
 } else {
   x = false;
+  $(x, `end`);
 }
-$(x, `end`);
 `````
 
 ## PST Settled

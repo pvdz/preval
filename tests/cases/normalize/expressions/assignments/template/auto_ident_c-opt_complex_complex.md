@@ -20,38 +20,36 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(`before  undefined  after`);
+  $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementObject, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpChainElementObject);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpChainElementCall = $({ x: 1 });
 if (tmpChainElementCall == null) {
   $(`before  undefined  after`);
+  $(undefined);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
   $(`before  ${tmpChainElementObject}  after`);
+  $(tmpChainElementObject);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -94,22 +92,21 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = c == null;
-if (d) {
+const a = { x: 1 };
+const b = $( a );
+const c = b == null;
+if (c) {
   $( "before  undefined  after" );
+  $( undefined );
 }
 else {
-  const e = $( "x" );
-  const f = c[ e ];
-  a = f;
-  const g = $coerce( f, "string" );
-  const h = `before  ${g}  after`;
-  $( h );
+  const d = $( "x" );
+  const e = b[ d ];
+  const f = $coerce( e, "string" );
+  const g = `before  ${f}  after`;
+  $( g );
+  $( e );
 }
-$( a );
 `````
 
 ## Globals

@@ -28,19 +28,19 @@ $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-let tmpClusterSSA_a /*:unknown*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
+  $(true);
+  $(true, arg);
 } else {
   $(1);
   $(2);
   const tmpDeleteCompObj$1 /*:unknown*/ = $(arg);
   const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
   const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-  tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Denormalized
@@ -52,19 +52,18 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-let tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
+if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
+  $(true);
+  $(true, arg);
 } else {
   $(1);
   $(2);
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $(`y`);
   const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-  tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Pre Normal
@@ -90,6 +89,8 @@ const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, arg);
 } else {
   $(1);
   $(2);
@@ -98,9 +99,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, arg);
 }
-$(tmpCalleeParam);
-$(a, arg);
 `````
 
 ## PST Settled
@@ -112,9 +113,10 @@ $( 2 );
 const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
-let d = delete b[ c ];
+const d = delete b[ c ];
 if (d) {
-  $( d );
+  $( true );
+  $( true, a );
 }
 else {
   $( 1 );
@@ -122,10 +124,9 @@ else {
   const e = $( a );
   const f = $( "y" );
   const g = delete e[ f ];
-  d = g;
   $( g );
+  $( g, a );
 }
-$( d, a );
 `````
 
 ## Globals

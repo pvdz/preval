@@ -24,37 +24,48 @@ $(a);
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(0);
   const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
     const tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpIfTest$3) {
       const tmpCalleeParam$3 /*:unknown*/ = $(2);
       $(tmpCalleeParam$3);
+      $(a);
     } else {
+      $(a);
     }
   }
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(1) === $(1)) {
-  if (!$($(0))) {
+const tmpIfTest = $(1) === $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  if ($($(0))) {
+    $(a);
+  } else {
     if ($($(1))) {
       $($(2));
+      $(a);
+    } else {
+      $(a);
     }
   }
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -85,18 +96,21 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(0);
   const tmpIfTest$1 = $(tmpCalleeParam);
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpCalleeParam$1 = $(1);
     const tmpIfTest$3 = $(tmpCalleeParam$1);
     if (tmpIfTest$3) {
       const tmpCalleeParam$3 = $(2);
       $(tmpCalleeParam$3);
+      $(a);
     } else {
+      $(a);
     }
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -106,26 +120,32 @@ With rename=true
 const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
-if (c) {
-  const d = $( 0 );
-  const e = $( d );
-  if (e) {
-
-  }
-  else {
-    const f = $( 1 );
-    const g = $( f );
-    if (g) {
-      const h = $( 2 );
-      $( h );
-    }
-  }
-}
-const i = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( i );
+if (c) {
+  const e = $( 0 );
+  const f = $( e );
+  if (f) {
+    $( d );
+  }
+  else {
+    const g = $( 1 );
+    const h = $( g );
+    if (h) {
+      const i = $( 2 );
+      $( i );
+      $( d );
+    }
+    else {
+      $( d );
+    }
+  }
+}
+else {
+  $( d );
+}
 `````
 
 ## Globals

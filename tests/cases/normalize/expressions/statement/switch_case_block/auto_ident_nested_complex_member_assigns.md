@@ -31,6 +31,7 @@ const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
@@ -50,10 +51,10 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+  $(a, b, 3);
 } else {
+  $(a, b, 3);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, 3);
 `````
 
 ## Denormalized
@@ -62,6 +63,7 @@ $(a, b, 3);
 `````js filename=intro
 const tmpIfTest = $(1) === $(1);
 const b = { x: 1 };
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
@@ -81,8 +83,10 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+  $(a, b, 3);
+} else {
+  $(a, b, 3);
 }
-$({ a: 999, b: 1000 }, b, 3);
 `````
 
 ## Pre Normal
@@ -142,9 +146,10 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(a, b, c);
 } else {
+  $(a, b, c);
 }
-$(a, b, c);
 `````
 
 ## PST Settled
@@ -155,31 +160,34 @@ const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
 const d = { x: 1 };
-if (c) {
-  const e = $( d );
-  const f = $( "x" );
-  const g = $( d );
-  const h = $( "x" );
-  const i = $( d );
-  const j = $( "x" );
-  const k = $( d );
-  const l = $( "x" );
-  const m = $( d );
-  const n = $( "x" );
-  const o = $( d );
-  const p = $( "x" );
-  o[p] = 3;
-  m[n] = 3;
-  k[l] = 3;
-  i[j] = 3;
-  g[h] = 3;
-  e[f] = 3;
-}
-const q = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( q, d, 3 );
+if (c) {
+  const f = $( d );
+  const g = $( "x" );
+  const h = $( d );
+  const i = $( "x" );
+  const j = $( d );
+  const k = $( "x" );
+  const l = $( d );
+  const m = $( "x" );
+  const n = $( d );
+  const o = $( "x" );
+  const p = $( d );
+  const q = $( "x" );
+  p[q] = 3;
+  n[o] = 3;
+  l[m] = 3;
+  j[k] = 3;
+  h[i] = 3;
+  f[g] = 3;
+  $( e, d, 3 );
+}
+else {
+  $( e, d, 3 );
+}
 `````
 
 ## Globals

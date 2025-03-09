@@ -24,11 +24,12 @@ const a /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   $(10);
   $(20);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -39,11 +40,12 @@ const bindingPatternArrRoot = { a: 999, b: 1000 };
 const a = [...bindingPatternArrRoot][0];
 if ($(0)) {
   $(100);
+  $(a);
 } else {
   $(10);
   $(20);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -65,11 +67,12 @@ let a = arrPatternSplat[0];
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   $(10);
   $(20);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -85,12 +88,13 @@ const c = b[ 0 ];
 const d = $( 0 );
 if (d) {
   $( 100 );
+  $( c );
 }
 else {
   $( 10 );
   $( 20 );
+  $( c );
 }
-$( c );
 `````
 
 ## Globals

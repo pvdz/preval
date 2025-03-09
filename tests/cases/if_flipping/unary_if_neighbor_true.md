@@ -68,9 +68,10 @@ const b = $(`alt`);
 let test = !a;
 if (test) {
   test = b;
+  $(b);
 } else {
+  $(test);
 }
-$(test);
 `````
 
 ## PST Settled

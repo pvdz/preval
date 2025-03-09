@@ -23,17 +23,17 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-let tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
 if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 } else {
   const tmpCallCompObj$1 /*:unknown*/ = $(b);
   const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
   const tmpNestedComplexRhs /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1](1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -43,17 +43,17 @@ $(tmpClusterSSA_a);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
-let tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 } else {
   const tmpCallCompObj$1 = $(b);
   const tmpCallCompProp$1 = $(`\$`);
   const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -77,15 +77,17 @@ const tmpCallCompProp = $(`\$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCallCompObj$1 = $(b);
   const tmpCallCompProp$1 = $(`\$`);
   const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -95,18 +97,18 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-let d = b[ c ]( 1 );
+const d = b[ c ]( 1 );
 if (d) {
+  $( d );
   $( d );
 }
 else {
   const e = $( a );
   const f = $( "$" );
   const g = e[ f ]( 1 );
-  d = g;
+  $( g );
   $( g );
 }
-$( d );
 `````
 
 ## Globals

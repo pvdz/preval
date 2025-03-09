@@ -76,11 +76,13 @@ if (tmpIfTest) {
   if (a) {
     $(a);
     a = 3;
+    $(a);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

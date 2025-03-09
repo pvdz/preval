@@ -26,12 +26,13 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = $(`d`);
 const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (varInitAssignLhsComputedRhs) {
   $(100);
+  $(a, b);
 } else {
+  $(a, b);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
 `````
 
 ## Denormalized
@@ -44,10 +45,13 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+const a = { a: 999, b: 1000 };
 if (varInitAssignLhsComputedRhs) {
   $(100);
+  $(a, b);
+} else {
+  $(a, b);
 }
-$({ a: 999, b: 1000 }, b);
 `````
 
 ## Pre Normal
@@ -74,9 +78,10 @@ varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const tmpIfTest = varInitAssignLhsComputedRhs;
 if (tmpIfTest) {
   $(100);
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
@@ -92,14 +97,17 @@ const c = $( a );
 const d = $( "d" );
 const e = c[ d ];
 b.c = e;
-if (e) {
-  $( 100 );
-}
 const f = {
   a: 999,
   b: 1000,
 };
-$( f, a );
+if (e) {
+  $( 100 );
+  $( f, a );
+}
+else {
+  $( f, a );
+}
 `````
 
 ## Globals

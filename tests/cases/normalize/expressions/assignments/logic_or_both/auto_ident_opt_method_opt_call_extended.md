@@ -32,19 +32,19 @@ if (tmpIfTest$1) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
   const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$9 == null;
   if (tmpIfTest$5) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
+    $(tmpChainElementCall$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -62,16 +62,18 @@ if (!tmpIfTest$1) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
-  let tmpNestedComplexRhs = undefined;
   const tmpChainElementObject$9 = tmpObjLitVal$1.e;
-  if (!(tmpChainElementObject$9 == null)) {
-    tmpNestedComplexRhs = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+  if (tmpChainElementObject$9 == null) {
+    $(undefined);
+    $(undefined);
+  } else {
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+    $(tmpChainElementCall$1);
+    $(tmpChainElementCall$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -109,6 +111,8 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = b;
@@ -127,9 +131,9 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -150,22 +154,21 @@ else {
 }
 if (a) {
   $( b );
+  $( a );
 }
 else {
-  let f = undefined;
-  const g = d.e;
-  const h = g == null;
-  if (h) {
-
+  const f = d.e;
+  const g = f == null;
+  if (g) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const i = $dotCall( g, d, "e", 1 );
-    f = i;
+    const h = $dotCall( f, d, "e", 1 );
+    $( h );
+    $( h );
   }
-  a = f;
-  $( f );
 }
-$( a );
 `````
 
 ## Globals

@@ -52,9 +52,10 @@ let arr = [1, 2];
 const rra = arr.reverse();
 if ($) {
   arr = $;
+  $(rra);
 } else {
+  $(rra);
 }
-$(rra);
 `````
 
 ## PST Settled

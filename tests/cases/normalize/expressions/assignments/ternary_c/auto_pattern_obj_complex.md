@@ -18,33 +18,33 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = 999;
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(999);
 } else {
   const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  a = tmpNestedAssignObjPatternRhs.a;
+  const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = 999;
 if ($(0)) {
   $($(100));
+  $(999);
 } else {
   const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
-  a = tmpNestedAssignObjPatternRhs.a;
+  const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -66,36 +66,38 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$1 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
   a = tmpNestedAssignObjPatternRhs.a;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+  $(tmpNestedAssignObjPatternRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = 999;
-const b = $( 0 );
-if (b) {
-  const c = $( 100 );
-  $( c );
+const a = $( 0 );
+if (a) {
+  const b = $( 100 );
+  $( b );
+  $( 999 );
 }
 else {
-  const d = {
+  const c = {
     a: 1,
     b: 2,
   };
-  const e = $( d );
-  a = e.a;
+  const d = $( c );
+  const e = d.a;
+  $( d );
   $( e );
 }
-$( a );
 `````
 
 ## Globals

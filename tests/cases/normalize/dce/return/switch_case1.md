@@ -23,30 +23,28 @@ $(f());
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
 const tmpBinBothRhs /*:unknown*/ = $(1, `case`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpReturnArg /*:unknown*/ = $(2, `ret`);
-  tmpCalleeParam = tmpReturnArg;
+  $(tmpReturnArg);
 } else {
   $(`keep, do not eval`);
+  $(undefined);
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 if ($(1, `disc`) === $(1, `case`)) {
-  tmpCalleeParam = $(2, `ret`);
+  $($(2, `ret`));
 } else {
   $(`keep, do not eval`);
+  $(undefined);
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -93,18 +91,17 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1, "disc" );
-const c = $( 1, "case" );
-const d = b === c;
-if (d) {
-  const e = $( 2, "ret" );
-  a = e;
+const a = $( 1, "disc" );
+const b = $( 1, "case" );
+const c = a === b;
+if (c) {
+  const d = $( 2, "ret" );
+  $( d );
 }
 else {
   $( "keep, do not eval" );
+  $( undefined );
 }
-$( a );
 `````
 
 ## Globals

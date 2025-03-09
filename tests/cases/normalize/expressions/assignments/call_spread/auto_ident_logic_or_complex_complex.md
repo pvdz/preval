@@ -19,38 +19,31 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
-let a /*:unknown*/ = $(tmpCalleeParam);
+const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
   $(...a);
+  $(a);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$1);
-  const tmpIfTest /*:boolean*/ = a === ``;
-  if (tmpIfTest) {
-    $();
-  } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
-  }
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+  $(...tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(0));
+const a = $($(0));
 if (a) {
   $(...a);
+  $(a);
 } else {
-  a = $($(2));
-  if (a === ``) {
-    $();
-  } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
-  }
+  const tmpClusterSSA_a = $($(2));
+  $(...tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -84,22 +77,17 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
+const b = $( a );
 if (b) {
   $( ...b );
+  $( b );
 }
 else {
   const c = $( 2 );
-  b = $( c );
-  const d = b === "";
-  if (d) {
-    $();
-  }
-  else {
-    throw "Preval: Attempting to spread primitive that is not an empty string";
-  }
+  const d = $( c );
+  $( ...d );
+  $( d );
 }
-$( b );
 `````
 
 ## Globals

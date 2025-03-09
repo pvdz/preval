@@ -68,6 +68,8 @@ const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
 tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   $(10);
   $(20);
@@ -75,9 +77,9 @@ if (tmpCalleeParam) {
   const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
   a = arrPatternSplat$3[0];
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
+  $(tmpNestedAssignArrPatternRhs$1);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled

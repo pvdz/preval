@@ -69,6 +69,7 @@ x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpIfTest = tmpNestedAssignObjPatternRhs;
 if (tmpIfTest) {
+  $(a, x, y);
 } else {
   $(x);
   $(y);
@@ -77,8 +78,8 @@ if (tmpIfTest) {
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   x = tmpAssignObjPatternRhs.x;
   y = tmpAssignObjPatternRhs.y;
+  $(a, x, y);
 }
-$(a, x, y);
 `````
 
 ## PST Settled

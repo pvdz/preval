@@ -24,12 +24,13 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpIfTest /*:boolean*/ = delete arg.y;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a, arg);
 } else {
   $(100);
+  $(a, arg);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
 `````
 
 ## Denormalized
@@ -39,10 +40,14 @@ $(a, arg);
 $(1);
 $(2);
 const arg = { y: 1 };
-if (!delete arg.y) {
+const tmpIfTest = delete arg.y;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a, arg);
+} else {
   $(100);
+  $(a, arg);
 }
-$({ a: 999, b: 1000 }, arg);
 `````
 
 ## Pre Normal
@@ -66,10 +71,11 @@ $(2);
 const tmpDeleteObj = arg;
 const tmpIfTest = delete tmpDeleteObj.y;
 if (tmpIfTest) {
+  $(a, arg);
 } else {
   $(100);
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## PST Settled
@@ -80,17 +86,17 @@ $( 1 );
 $( 2 );
 const a = { y: 1 };
 const b = delete a.y;
-if (b) {
-
-}
-else {
-  $( 100 );
-}
 const c = {
   a: 999,
   b: 1000,
 };
-$( c, a );
+if (b) {
+  $( c, a );
+}
+else {
+  $( 100 );
+  $( c, a );
+}
 `````
 
 ## Globals

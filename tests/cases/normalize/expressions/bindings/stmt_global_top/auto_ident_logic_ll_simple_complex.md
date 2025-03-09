@@ -43,11 +43,12 @@ $(a);
 `````js filename=intro
 let a = 0;
 if (a) {
+  $(a);
 } else {
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

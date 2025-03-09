@@ -20,10 +20,8 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  a = undefined;
   const tmpObjLitVal /*:object*/ = { y: 1 };
   const b /*:object*/ = { x: tmpObjLitVal };
   const tmpChainElementCall /*:unknown*/ = $(b);
@@ -59,18 +57,18 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(undefined);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
-  a = undefined;
   const tmpObjLitVal = { y: 1 };
   const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
@@ -97,8 +95,10 @@ if ($(1)) {
       break;
     }
   }
+  $(undefined);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -152,50 +152,45 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  a = undefined;
-  const c = { y: 1 };
-  const d = { x: c };
-  const e = $( d );
-  const f = e == null;
-  if (f) {
+const a = $( 1 );
+if (a) {
+  const b = { y: 1 };
+  const c = { x: b };
+  const d = $( c );
+  const e = d == null;
+  if (e) {
 
   }
   else {
-    const g = $( "x" );
-    const h = e[ g ];
-    const i = h == null;
-    if (i) {
+    const f = $( "x" );
+    const g = d[ f ];
+    const h = g == null;
+    if (h) {
 
     }
     else {
-      const j = $( "y" );
-      h[ j ];
+      const i = $( "y" );
+      g[ i ];
     }
   }
   while ($LOOP_UNROLL_10) {
-    const k = $( 1 );
-    if (k) {
-      const l = $( d );
-      const m = l == null;
-      if (m) {
+    const j = $( 1 );
+    if (j) {
+      const k = $( c );
+      const l = k == null;
+      if (l) {
 
       }
       else {
-        const n = $( "x" );
-        const o = l[ n ];
-        const p = o == null;
-        if (p) {
+        const m = $( "x" );
+        const n = k[ m ];
+        const o = n == null;
+        if (o) {
 
         }
         else {
-          const q = $( "y" );
-          o[ q ];
+          const p = $( "y" );
+          n[ p ];
         }
       }
     }
@@ -203,8 +198,15 @@ if (b) {
       break;
     }
   }
+  $( undefined );
 }
-$( a );
+else {
+  const q = {
+    a: 999,
+    b: 1000,
+  };
+  $( q );
+}
 `````
 
 ## Globals

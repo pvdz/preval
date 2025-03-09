@@ -23,18 +23,18 @@ $(a);
 const tmpCallCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-let a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpCallCallee$1 /*:unknown*/ = $($);
   const tmpCalleeParam$5 /*:unknown*/ = $(1);
   const tmpCalleeParam$7 /*:unknown*/ = $(2);
   const tmpNestedComplexRhs /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -42,16 +42,16 @@ $(a);
 
 `````js filename=intro
 const tmpCallCallee = $($);
-let a = tmpCallCallee($(1), $(2));
+const a = tmpCallCallee($(1), $(2));
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpCallCallee$1 = $($);
   const tmpNestedComplexRhs = tmpCallCallee$1($(1), $(2));
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -76,6 +76,8 @@ const tmpCalleeParam$3 = $(2);
 a = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCallCallee$1 = $($);
   const tmpCalleeParam$5 = $(1);
@@ -83,9 +85,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -95,8 +97,9 @@ With rename=true
 const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
-let d = a( b, c );
+const d = a( b, c );
 if (d) {
+  $( d );
   $( d );
 }
 else {
@@ -104,10 +107,9 @@ else {
   const f = $( 1 );
   const g = $( 2 );
   const h = e( f, g );
-  d = h;
+  $( h );
   $( h );
 }
-$( d );
 `````
 
 ## Globals

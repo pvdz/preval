@@ -21,69 +21,68 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpObjLitVal /*:unknown*/ = $(3);
   const tmpObjLitVal$1 /*:unknown*/ = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
+  let tmpClusterSSA_x /*:unknown*/ = tmpObjLitVal;
+  let tmpClusterSSA_y /*:unknown*/ = tmpObjLitVal$1;
   const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  a = tmpNestedAssignObjPatternRhs;
+  let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      $(x);
-      $(y);
+      $(tmpClusterSSA_x);
+      $(tmpClusterSSA_y);
       const tmpObjLitVal$2 /*:unknown*/ = $(3);
       const tmpObjLitVal$4 /*:unknown*/ = $(4);
-      x = tmpObjLitVal$2;
-      y = tmpObjLitVal$4;
+      tmpClusterSSA_x = tmpObjLitVal$2;
+      tmpClusterSSA_y = tmpObjLitVal$4;
       const tmpNestedAssignObjPatternRhs$1 /*:object*/ = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
-      a = tmpNestedAssignObjPatternRhs$1;
+      tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   $(1);
   $(2);
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
-  a = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  let tmpClusterSSA_x = tmpObjLitVal;
+  let tmpClusterSSA_y = tmpObjLitVal$1;
+  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
   while (true) {
     if ($(1)) {
-      $(x);
-      $(y);
+      $(tmpClusterSSA_x);
+      $(tmpClusterSSA_y);
       const tmpObjLitVal$2 = $(3);
       const tmpObjLitVal$4 = $(4);
-      x = tmpObjLitVal$2;
-      y = tmpObjLitVal$4;
-      a = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
+      tmpClusterSSA_x = tmpObjLitVal$2;
+      tmpClusterSSA_y = tmpObjLitVal$4;
+      tmpClusterSSA_a = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
+} else {
+  $({ a: 999, b: 1000 }, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Pre Normal
@@ -130,46 +129,47 @@ $(a, x, y);
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = {
-  a: 999,
-  b: 1000,
-};
-const d = $( 1 );
-if (d) {
+const a = $( 1 );
+if (a) {
   $( 1 );
   $( 2 );
-  const e = $( 3 );
-  const f = $( 4 );
-  a = e;
-  b = f;
-  const g = {
-    x: e,
-    y: f,
+  const b = $( 3 );
+  const c = $( 4 );
+  let d = b;
+  let e = c;
+  const f = {
+    x: b,
+    y: c,
   };
-  c = g;
+  let g = f;
   while ($LOOP_UNROLL_10) {
     const h = $( 1 );
     if (h) {
-      $( a );
-      $( b );
+      $( d );
+      $( e );
       const i = $( 3 );
       const j = $( 4 );
-      a = i;
-      b = j;
+      d = i;
+      e = j;
       const k = {
         x: i,
         y: j,
       };
-      c = k;
+      g = k;
     }
     else {
       break;
     }
   }
+  $( g, d, e );
 }
-$( c, a, b );
+else {
+  const l = {
+    a: 999,
+    b: 1000,
+  };
+  $( l, 1, 2 );
+}
 `````
 
 ## Globals

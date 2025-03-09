@@ -47,13 +47,15 @@ let tmpIfTest = 1;
 if (tmpIfTest) {
   tmpIfTest = 2;
   if (tmpIfTest) {
+    $(a);
   } else {
     $(100);
+    $(a);
   }
 } else {
   $(100);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

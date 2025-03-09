@@ -20,54 +20,56 @@ $(a, arg);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-  a = delete arg[tmpDeleteCompProp];
+  let tmpClusterSSA_a /*:boolean*/ = delete arg[tmpDeleteCompProp];
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       $(1);
       $(2);
       const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
-      a = delete arg[tmpDeleteCompProp$1];
+      tmpClusterSSA_a = delete arg[tmpDeleteCompProp$1];
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, arg);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const arg = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpDeleteCompProp = $(`y`);
-  a = delete arg[tmpDeleteCompProp];
+  let tmpClusterSSA_a = delete arg[tmpDeleteCompProp];
   while (true) {
     if ($(1)) {
       $(1);
       $(2);
       const tmpDeleteCompProp$1 = $(`y`);
-      a = delete arg[tmpDeleteCompProp$1];
+      tmpClusterSSA_a = delete arg[tmpDeleteCompProp$1];
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, arg);
+} else {
+  $({ a: 999, b: 1000 }, arg);
 }
-$(a, arg);
 `````
 
 ## Pre Normal
@@ -109,31 +111,34 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-const c = { y: 1 };
-if (b) {
+const a = $( 1 );
+const b = { y: 1 };
+if (a) {
   $( 1 );
   $( 2 );
-  const d = $( "y" );
-  a = delete c[ d ];
+  const c = $( "y" );
+  let d = delete b[ c ];
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
       $( 1 );
       $( 2 );
       const f = $( "y" );
-      a = delete c[ f ];
+      d = delete b[ f ];
     }
     else {
       break;
     }
   }
+  $( d, b );
 }
-$( a, c );
+else {
+  const g = {
+    a: 999,
+    b: 1000,
+  };
+  $( g, b );
+}
 `````
 
 ## Globals
@@ -181,3 +186,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- computed property access of an ident where the property ident is not recorded;

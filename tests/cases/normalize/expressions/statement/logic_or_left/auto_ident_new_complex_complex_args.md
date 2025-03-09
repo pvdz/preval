@@ -60,10 +60,11 @@ const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpIfTest = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 if (tmpIfTest) {
+  $(a);
 } else {
   $(100);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

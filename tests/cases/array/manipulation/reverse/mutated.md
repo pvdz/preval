@@ -58,9 +58,10 @@ $(tmpCalleeParam);
 const rra = arr.reverse();
 if ($) {
   arr = $;
+  $(rra);
 } else {
+  $(rra);
 }
-$(rra);
 `````
 
 ## PST Settled

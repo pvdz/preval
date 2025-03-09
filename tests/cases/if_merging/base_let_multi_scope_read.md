@@ -50,13 +50,16 @@ x = tmpBool$1;
 if (tmpUnaryArg) {
   $(`b`);
   $(`c`);
+  f();
+  f();
+  f();
 } else {
   $(`a`);
   $(`d`);
+  f();
+  f();
+  f();
 }
-f();
-f();
-f();
 `````
 
 ## Denormalized
@@ -75,13 +78,16 @@ x = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $(`b`);
   $(`c`);
+  f();
+  f();
+  f();
 } else {
   $(`a`);
   $(`d`);
+  f();
+  f();
+  f();
 }
-f();
-f();
-f();
 `````
 
 ## Pre Normal
@@ -138,12 +144,15 @@ if (x) {
 }
 if (x) {
   $(`d`);
+  f();
+  f();
+  f();
 } else {
   $(`c`);
+  f();
+  f();
+  f();
 }
-f();
-f();
-f();
 `````
 
 ## PST Settled
@@ -167,14 +176,17 @@ b = f;
 if (e) {
   $( "b" );
   $( "c" );
+  a();
+  a();
+  a();
 }
 else {
   $( "a" );
   $( "d" );
+  a();
+  a();
+  a();
 }
-a();
-a();
-a();
 `````
 
 ## Globals

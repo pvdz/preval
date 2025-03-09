@@ -27,6 +27,7 @@ const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(b);
   const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
@@ -34,10 +35,10 @@ if (tmpIfTest) {
   const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
   const tmpUpdInc /*:number*/ = tmpUpdNum - 1;
   tmpUpdObj.x = tmpUpdInc;
+  $(a, b);
 } else {
+  $(a, b);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
 `````
 
 ## Denormalized
@@ -46,11 +47,14 @@ $(a, b);
 `````js filename=intro
 const tmpIfTest = $(1) === $(1);
 const b = { x: 1 };
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpUpdObj = $($(b));
   tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) - 1;
+  $(a, b);
+} else {
+  $(a, b);
 }
-$({ a: 999, b: 1000 }, b);
 `````
 
 ## Pre Normal
@@ -86,9 +90,10 @@ if (tmpIfTest) {
   let tmpUpdNum = $coerce(tmpUpdProp, `number`);
   let tmpUpdInc = tmpUpdNum - 1;
   tmpUpdObj.x = tmpUpdInc;
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
@@ -99,19 +104,22 @@ const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
 const d = { x: 1 };
-if (c) {
-  const e = $( d );
-  const f = $( e );
-  const g = f.x;
-  const h = $coerce( g, "number" );
-  const i = h - 1;
-  f.x = i;
-}
-const j = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( j, d );
+if (c) {
+  const f = $( d );
+  const g = $( f );
+  const h = g.x;
+  const i = $coerce( h, "number" );
+  const j = i - 1;
+  g.x = j;
+  $( e, d );
+}
+else {
+  $( e, d );
+}
 `````
 
 ## Globals

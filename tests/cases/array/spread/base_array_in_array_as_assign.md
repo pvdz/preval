@@ -61,9 +61,10 @@ const x = [1, 2, 3];
 let y = [];
 if ($) {
   y = [`a`, ...x, `b`];
+  $(y);
 } else {
+  $(y);
 }
-$(y);
 `````
 
 ## PST Settled

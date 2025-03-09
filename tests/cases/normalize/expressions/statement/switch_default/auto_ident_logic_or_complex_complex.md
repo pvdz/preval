@@ -24,13 +24,14 @@ $(a);
 $(1);
 const tmpCalleeParam /*:unknown*/ = $(0);
 const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
   $(tmpCalleeParam$1);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -38,10 +39,14 @@ $(a);
 
 `````js filename=intro
 $(1);
-if (!$($(0))) {
+const tmpIfTest = $($(0));
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+} else {
   $($(2));
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -68,11 +73,12 @@ const tmpSwitchDisc = $(1);
 const tmpCalleeParam = $(0);
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpCalleeParam$1 = $(2);
   $(tmpCalleeParam$1);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -82,18 +88,18 @@ With rename=true
 $( 1 );
 const a = $( 0 );
 const b = $( a );
-if (b) {
-
-}
-else {
-  const c = $( 2 );
-  $( c );
-}
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( d );
+if (b) {
+  $( c );
+}
+else {
+  const d = $( 2 );
+  $( d );
+  $( c );
+}
 `````
 
 ## Globals

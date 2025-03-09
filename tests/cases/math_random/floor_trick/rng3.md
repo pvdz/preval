@@ -51,14 +51,16 @@ const is_012 = $Math_floor(a);
 const is_123 = is_012 + 1;
 let tmpCalleeParam = is_123 === 1;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
 } else {
   tmpCalleeParam = is_123 === 2;
   if (tmpCalleeParam) {
+    $(tmpCalleeParam);
   } else {
     tmpCalleeParam = is_123 === 3;
+    $(tmpCalleeParam);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled

@@ -50,10 +50,12 @@ const tmpCalleeParam = [`before `, ` after`];
 let tmpCalleeParam$1 = 1;
 if (tmpCalleeParam$1) {
   tmpCalleeParam$1 = 2;
+  $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 } else {
+  $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
 `````
 
 ## PST Settled

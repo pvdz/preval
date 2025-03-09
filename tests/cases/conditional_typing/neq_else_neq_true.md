@@ -54,10 +54,11 @@ $(x);
 const a = $(67636);
 let x = a !== 67636;
 if (x) {
+  $(x);
 } else {
   x = a !== 67636;
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

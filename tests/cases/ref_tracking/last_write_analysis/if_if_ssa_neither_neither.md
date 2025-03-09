@@ -33,11 +33,13 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     $(`xyz`);
+    $(tmpClusterSSA_x);
   } else {
+    $(tmpClusterSSA_x);
   }
 } else {
+  $(tmpClusterSSA_x);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Denormalized
@@ -49,9 +51,13 @@ const tmpClusterSSA_x = $(`b`);
 if ($(1)) {
   if ($(2)) {
     $(`xyz`);
+    $(tmpClusterSSA_x);
+  } else {
+    $(tmpClusterSSA_x);
   }
+} else {
+  $(tmpClusterSSA_x);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Pre Normal
@@ -81,11 +87,13 @@ if (tmpIfTest) {
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
     $(`xyz`);
+    $(x);
   } else {
+    $(x);
   }
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
@@ -100,9 +108,15 @@ if (c) {
   const d = $( 2 );
   if (d) {
     $( "xyz" );
+    $( b );
+  }
+  else {
+    $( b );
   }
 }
-$( b );
+else {
+  $( b );
+}
 `````
 
 ## Globals

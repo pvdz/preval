@@ -24,29 +24,31 @@ $(x);
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(35);
+const x /*:unknown*/ = $(35);
 const y /*:number*/ = x | 32;
 if (y) {
-  x = x ^ 32;
+  const tmpClusterSSA_x /*:number*/ = x ^ 32;
   $(`then`);
+  $(tmpClusterSSA_x);
 } else {
   $(`else`);
+  $(x);
 }
-$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(35);
+const x = $(35);
 if (x | 32) {
-  x = x ^ 32;
+  const tmpClusterSSA_x = x ^ 32;
   $(`then`);
+  $(tmpClusterSSA_x);
 } else {
   $(`else`);
+  $(x);
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -73,26 +75,28 @@ const y = x | 32;
 if (y) {
   x = x ^ 32;
   $(`then`);
+  $(x);
 } else {
   $(`else`);
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = $( 35 );
+const a = $( 35 );
 const b = a | 32;
 if (b) {
-  a = a ^ 32;
+  const c = a ^ 32;
   $( "then" );
+  $( c );
 }
 else {
   $( "else" );
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

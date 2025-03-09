@@ -33,10 +33,11 @@ const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
 const tmpUnaryArg /*:unknown*/ = $(tmpBool);
 if (tmpUnaryArg) {
   $(`b`);
+  $(`d`);
 } else {
   $(`a`);
+  $(`d`);
 }
-$(`d`);
 `````
 
 ## Denormalized
@@ -45,10 +46,11 @@ $(`d`);
 `````js filename=intro
 if ($(Boolean($(true)))) {
   $(`b`);
+  $(`d`);
 } else {
   $(`a`);
+  $(`d`);
 }
-$(`d`);
 `````
 
 ## Pre Normal
@@ -106,11 +108,12 @@ const b = Boolean( a );
 const c = $( b );
 if (c) {
   $( "b" );
+  $( "d" );
 }
 else {
   $( "a" );
+  $( "d" );
 }
-$( "d" );
 `````
 
 ## Globals

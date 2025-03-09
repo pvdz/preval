@@ -89,10 +89,11 @@ const tmpArgOverflowThree = $spy(`c`);
 let tmpCalleeParam$1 = undefined;
 if (tmpArgOverflowLen) {
   tmpCalleeParam$1 = tmpArgOverflowOne[0];
+  $coerce(tmpCalleeParam$1, `string`);
 } else {
   tmpCalleeParam$1 = tmpArgOverflowTwo;
+  $coerce(tmpArgOverflowTwo, `string`);
 }
-$coerce(tmpCalleeParam$1, `string`);
 let tmpUnaryArg = undefined;
 const tmpIfTest = tmpArgOverflowLen > 1;
 if (tmpIfTest) {

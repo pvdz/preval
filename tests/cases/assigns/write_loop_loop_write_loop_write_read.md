@@ -29,6 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(20);
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
+    $(30);
   } else {
     while ($LOOP_UNROLL_10) {
       $(20);
@@ -38,8 +39,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       } else {
       }
     }
+    $(30);
   }
-  $(30);
 }
 `````
 
@@ -50,15 +51,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(10);
 while (true) {
   $(20);
-  if (!$(true)) {
+  if ($(true)) {
+    $(30);
+  } else {
     while (true) {
       $(20);
       if ($(true)) {
         break;
       }
     }
+    $(30);
   }
-  $(30);
 }
 `````
 
@@ -104,7 +107,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 20 );
   const a = $( true );
   if (a) {
-
+    $( 30 );
   }
   else {
     while ($LOOP_UNROLL_10) {
@@ -114,8 +117,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
         break;
       }
     }
+    $( 30 );
   }
-  $( 30 );
 }
 `````
 

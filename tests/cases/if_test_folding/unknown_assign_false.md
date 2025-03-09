@@ -34,8 +34,8 @@ const f /*:()=>boolean*/ = function () {
   const x /*:unknown*/ = $(0);
   $(`block`);
   $(`block`);
-  const y /*:boolean*/ = !x;
-  return y;
+  const tmpIfTestFold /*:boolean*/ = !x;
+  return tmpIfTestFold;
 };
 f();
 const tmpCalleeParam /*:boolean*/ = f();
@@ -50,8 +50,8 @@ const f = function () {
   const x = $(0);
   $(`block`);
   $(`block`);
-  const y = !x;
-  return y;
+  const tmpIfTestFold = !x;
+  return tmpIfTestFold;
 };
 f();
 $(f());
@@ -88,12 +88,15 @@ let f = function () {
   let y = undefined;
   if (x) {
     y = false;
+    $(`block`);
+    $(`block`);
+    return y;
   } else {
     y = true;
+    $(`block`);
+    $(`block`);
+    return y;
   }
-  $(`block`);
-  $(`block`);
-  return y;
 };
 f();
 const tmpCalleeParam = f();

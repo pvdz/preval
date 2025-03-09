@@ -21,9 +21,6 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   $(1);
@@ -32,23 +29,21 @@ if (tmpCalleeParam) {
   const tmpArrElement$1 /*:unknown*/ = $(4);
   const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
+  const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
+  const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
   $(tmpNestedAssignArrPatternRhs);
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 } else {
   $(tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(1);
@@ -57,14 +52,14 @@ if (tmpCalleeParam) {
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
+  const tmpClusterSSA_x = arrPatternSplat[0];
+  const tmpClusterSSA_y = arrPatternSplat[1];
   $(tmpNestedAssignArrPatternRhs);
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 } else {
   $(tmpCalleeParam);
+  $({ a: 999, b: 1000 }, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Pre Normal
@@ -99,39 +94,39 @@ if (tmpCalleeParam) {
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, x, y);
 } else {
+  $(tmpCalleeParam);
+  $(a, x, y);
 }
-$(tmpCalleeParam);
-$(a, x, y);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = {
-  a: 999,
-  b: 1000,
-};
-const d = $( 100 );
-if (d) {
+const a = $( 100 );
+if (a) {
   $( 1 );
   $( 2 );
-  const e = $( 3 );
-  const f = $( 4 );
-  const g = [ e, f ];
-  const h = [ ...g ];
-  a = h[ 0 ];
-  b = h[ 1 ];
-  c = g;
-  $( g );
+  const b = $( 3 );
+  const c = $( 4 );
+  const d = [ b, c ];
+  const e = [ ...d ];
+  const f = e[ 0 ];
+  const g = e[ 1 ];
+  $( d );
+  $( d, f, g );
 }
 else {
-  $( d );
+  $( a );
+  const h = {
+    a: 999,
+    b: 1000,
+  };
+  $( h, 1, 2 );
 }
-$( c, a, b );
 `````
 
 ## Globals

@@ -18,41 +18,42 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 } else {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpIfTest$1 /*:boolean*/ = $ == null;
   if (tmpIfTest$1) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpChainElementCall /*:unknown*/ = $(1);
-    tmpNestedComplexRhs = tmpChainElementCall;
+    $(tmpChainElementCall);
+    $(tmpChainElementCall);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(0)) {
   $($(100));
+  $({ a: 999, b: 1000 });
 } else {
-  let tmpNestedComplexRhs = undefined;
-  if (!($ == null)) {
-    tmpNestedComplexRhs = $(1);
+  if ($ == null) {
+    $(undefined);
+    $(undefined);
+  } else {
+    const tmpChainElementCall = $(1);
+    $(tmpChainElementCall);
+    $(tmpChainElementCall);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -73,6 +74,8 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall = $;
@@ -84,38 +87,37 @@ if (tmpIfTest) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 0 );
-if (b) {
-  const c = $( 100 );
+const a = $( 0 );
+if (a) {
+  const b = $( 100 );
+  $( b );
+  const c = {
+    a: 999,
+    b: 1000,
+  };
   $( c );
 }
 else {
-  let d = undefined;
-  const e = $ == null;
-  if (e) {
-
+  const d = $ == null;
+  if (d) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const f = $( 1 );
-    d = f;
+    const e = $( 1 );
+    $( e );
+    $( e );
   }
-  a = d;
-  $( d );
 }
-$( a );
 `````
 
 ## Globals

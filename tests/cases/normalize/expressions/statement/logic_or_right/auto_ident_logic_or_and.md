@@ -19,37 +19,48 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(100);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(0);
   const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
   if (tmpClusterSSA_tmpIfTest) {
+    $(a);
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
     const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$3 /*:unknown*/ = $(2);
       $(tmpCalleeParam$3);
+      $(a);
     } else {
+      $(a);
     }
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if (!$(100)) {
-  if (!$($(0))) {
+const tmpIfTest = $(100);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+} else {
+  if ($($(0))) {
+    $(a);
+  } else {
     if ($($(1))) {
       $($(2));
+      $(a);
+    } else {
+      $(a);
     }
   }
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -68,21 +79,24 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(100);
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpCalleeParam = $(0);
   tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
+    $(a);
   } else {
     const tmpCalleeParam$1 = $(1);
     const tmpIfTest$1 = $(tmpCalleeParam$1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$3 = $(2);
       $(tmpCalleeParam$3);
+      $(a);
     } else {
+      $(a);
     }
   }
 }
-$(a);
 `````
 
 ## PST Settled
@@ -90,29 +104,32 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-if (a) {
-
-}
-else {
-  const b = $( 0 );
-  const c = $( b );
-  if (c) {
-
-  }
-  else {
-    const d = $( 1 );
-    const e = $( d );
-    if (e) {
-      const f = $( 2 );
-      $( f );
-    }
-  }
-}
-const g = {
+const b = {
   a: 999,
   b: 1000,
 };
-$( g );
+if (a) {
+  $( b );
+}
+else {
+  const c = $( 0 );
+  const d = $( c );
+  if (d) {
+    $( b );
+  }
+  else {
+    const e = $( 1 );
+    const f = $( e );
+    if (f) {
+      const g = $( 2 );
+      $( g );
+      $( b );
+    }
+    else {
+      $( b );
+    }
+  }
+}
 `````
 
 ## Globals

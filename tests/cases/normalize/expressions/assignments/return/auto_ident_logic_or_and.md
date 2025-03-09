@@ -21,45 +21,45 @@ $(a);
 
 
 `````js filename=intro
-let tmpCalleeParam$5 /*:unknown*/ = undefined;
 const tmpCalleeParam /*:unknown*/ = $(0);
-let a /*:unknown*/ = $(tmpCalleeParam);
-if (a) {
-  tmpCalleeParam$5 = a;
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  a = $(tmpCalleeParam$1);
-  if (a) {
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_a$1) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    a = $(tmpCalleeParam$3);
-    tmpCalleeParam$5 = a;
+    const tmpClusterSSA_a$3 /*:unknown*/ = $(tmpCalleeParam$3);
+    $(tmpClusterSSA_a$3);
+    $(tmpClusterSSA_a$3);
   } else {
-    tmpCalleeParam$5 = a;
+    $(tmpClusterSSA_a$1);
+    $(tmpClusterSSA_a$1);
   }
 }
-$(tmpCalleeParam$5);
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam$5 = undefined;
-let a = $($(0));
-if (a) {
-  tmpCalleeParam$5 = a;
+const tmpClusterSSA_a = $($(0));
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
-  a = $($(1));
-  if (a) {
-    a = $($(2));
-    tmpCalleeParam$5 = a;
+  const tmpClusterSSA_a$1 = $($(1));
+  if (tmpClusterSSA_a$1) {
+    const tmpClusterSSA_a$3 = $($(2));
+    $(tmpClusterSSA_a$3);
+    $(tmpClusterSSA_a$3);
   } else {
-    tmpCalleeParam$5 = a;
+    $(tmpClusterSSA_a$1);
+    $(tmpClusterSSA_a$1);
   }
 }
-$(tmpCalleeParam$5);
-$(a);
 `````
 
 ## Pre Normal
@@ -107,26 +107,26 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 0 );
-let c = $( b );
-if (c) {
-  a = c;
+const a = $( 0 );
+const b = $( a );
+if (b) {
+  $( b );
+  $( b );
 }
 else {
-  const d = $( 1 );
-  c = $( d );
-  if (c) {
+  const c = $( 1 );
+  const d = $( c );
+  if (d) {
     const e = $( 2 );
-    c = $( e );
-    a = c;
+    const f = $( e );
+    $( f );
+    $( f );
   }
   else {
-    a = c;
+    $( d );
+    $( d );
   }
 }
-$( a );
-$( c );
 `````
 
 ## Globals

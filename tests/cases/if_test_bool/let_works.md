@@ -109,10 +109,12 @@ let f = function () {
   }
   if ($) {
     x = 10;
+    $(x);
+    return undefined;
   } else {
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 f();
 f();

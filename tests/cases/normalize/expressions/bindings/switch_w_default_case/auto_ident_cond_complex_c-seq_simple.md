@@ -28,13 +28,15 @@ const tmpIfTest$5 /*:unknown*/ = $(1);
 if (tmpIfTest$5) {
   const tmpClusterSSA_a /*:unknown*/ = $(60);
   $(tmpClusterSSA_a);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
   const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
   $(tmpClusterSSA_a$1);
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Denormalized
@@ -43,11 +45,13 @@ $(`fail2`);
 `````js filename=intro
 if ($(1)) {
   $($(60));
+  $(`fail1`);
+  $(`fail2`);
 } else {
   $($($(100)));
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Pre Normal
@@ -98,11 +102,12 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 = $(1);
   if (tmpIfTest$5) {
     a = $(60);
+    $(a);
   } else {
     const tmpCalleeParam = $(100);
     a = $(tmpCalleeParam);
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
@@ -125,14 +130,16 @@ const a = $( 1 );
 if (a) {
   const b = $( 60 );
   $( b );
+  $( "fail1" );
+  $( "fail2" );
 }
 else {
   const c = $( 100 );
   const d = $( c );
   $( d );
+  $( "fail1" );
+  $( "fail2" );
 }
-$( "fail1" );
-$( "fail2" );
 `````
 
 ## Globals

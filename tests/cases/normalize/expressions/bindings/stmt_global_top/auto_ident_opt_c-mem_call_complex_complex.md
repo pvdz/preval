@@ -19,39 +19,41 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`\$`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+    $(undefined);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
     const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
   }
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpChainElementCall = $({ $: $ });
-if (!(tmpChainElementCall == null)) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+} else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
-    a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+  if (tmpChainElementObject == null) {
+    $(undefined);
+  } else {
+    $($dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1)));
   }
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -82,38 +84,38 @@ if (tmpIfTest) {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
     a = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { $: $ };
-const c = $( b );
-const d = c == null;
-if (d) {
-
+const a = { $: $ };
+const b = $( a );
+const c = b == null;
+if (c) {
+  $( undefined );
 }
 else {
-  const e = $( "$" );
-  const f = c[ e ];
-  const g = f == null;
-  if (g) {
-
+  const d = $( "$" );
+  const e = b[ d ];
+  const f = e == null;
+  if (f) {
+    $( undefined );
   }
   else {
-    const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    const g = $( 1 );
+    const h = $dotCall( e, b, undefined, g );
+    $( h );
   }
 }
-$( a );
 `````
 
 ## Globals

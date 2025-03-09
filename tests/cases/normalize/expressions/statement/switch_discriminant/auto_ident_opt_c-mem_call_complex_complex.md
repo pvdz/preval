@@ -26,20 +26,24 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(100);
+  $(a);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`\$`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+    $(100);
+    $(a);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
     $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+    $(100);
+    $(a);
   }
 }
-$(100);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -47,15 +51,23 @@ $(a);
 
 `````js filename=intro
 const tmpChainElementCall = $({ $: $ });
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest = tmpChainElementCall == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(100);
+  $(a);
+} else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(100);
+    $(a);
+  } else {
     $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+    $(100);
+    $(a);
   }
 }
-$(100);
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -94,12 +106,16 @@ if (tmpIfTest) {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
     tmpSwitchDisc = tmpChainElementCall$1;
+    $(100);
+    $(a);
   } else {
+    $(100);
+    $(a);
   }
 } else {
+  $(100);
+  $(a);
 }
-$(100);
-$(a);
 `````
 
 ## PST Settled
@@ -109,27 +125,29 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = b == null;
-if (c) {
-
-}
-else {
-  const d = $( "$" );
-  const e = b[ d ];
-  const f = e == null;
-  if (f) {
-
-  }
-  else {
-    const g = $( 1 );
-    $dotCall( e, b, undefined, g );
-  }
-}
-$( 100 );
-const h = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( h );
+if (c) {
+  $( 100 );
+  $( d );
+}
+else {
+  const e = $( "$" );
+  const f = b[ e ];
+  const g = f == null;
+  if (g) {
+    $( 100 );
+    $( d );
+  }
+  else {
+    const h = $( 1 );
+    $dotCall( f, b, undefined, h );
+    $( 100 );
+    $( d );
+  }
+}
 `````
 
 ## Globals

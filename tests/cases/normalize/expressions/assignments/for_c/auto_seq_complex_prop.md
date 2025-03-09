@@ -33,9 +33,10 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(1);
 } else {
+  $(1);
 }
-$(1);
 const tmpAssignMemLhsObj /*:unknown*/ = $(a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
@@ -58,8 +59,10 @@ if ($(1)) {
       break;
     }
   }
+  $(1);
+} else {
+  $(1);
 }
-$(1);
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = $(2);
 $(a);
@@ -123,8 +126,11 @@ if (b) {
       break;
     }
   }
+  $( 1 );
 }
-$( 1 );
+else {
+  $( 1 );
+}
 const f = $( a );
 const g = $( 2 );
 f.b = g;

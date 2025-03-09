@@ -20,10 +20,8 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  a = undefined;
   const tmpIfTest$3 /*:boolean*/ = $ == null;
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   if (tmpIfTest$3) {
@@ -43,18 +41,18 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(undefined);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
-  a = undefined;
   const tmpIfTest$3 = $ == null;
   const tmpObjLitVal$1 = { e: $ };
   if (!tmpIfTest$3) {
@@ -70,8 +68,10 @@ if ($(1)) {
       break;
     }
   }
+  $(undefined);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -125,39 +125,41 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  a = undefined;
-  const c = $ == null;
-  const d = { e: $ };
-  if (c) {
+const a = $( 1 );
+if (a) {
+  const b = $ == null;
+  const c = { e: $ };
+  if (b) {
 
   }
   else {
-    $dotCall( $, d, "e", 1 );
+    $dotCall( $, c, "e", 1 );
   }
   while ($LOOP_UNROLL_10) {
-    const e = $( 1 );
-    if (e) {
-      const f = d.e;
-      const g = f == null;
-      if (g) {
+    const d = $( 1 );
+    if (d) {
+      const e = c.e;
+      const f = e == null;
+      if (f) {
 
       }
       else {
-        $dotCall( f, d, "e", 1 );
+        $dotCall( e, c, "e", 1 );
       }
     }
     else {
       break;
     }
   }
+  $( undefined );
 }
-$( a );
+else {
+  const g = {
+    a: 999,
+    b: 1000,
+  };
+  $( g );
+}
 `````
 
 ## Globals

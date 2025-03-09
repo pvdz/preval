@@ -26,19 +26,18 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
   const tmpCompObj$1 /*:unknown*/ = $(b);
   const tmpCompProp$1 /*:unknown*/ = $(`d`);
   const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 } else {
   $(tmpNestedAssignPropRhs);
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Denormalized
@@ -51,19 +50,18 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   const varInitAssignLhsComputedObj = $(b);
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
+  $(varInitAssignLhsComputedRhs, b);
 } else {
   $(tmpNestedAssignPropRhs);
+  $(tmpNestedAssignPropRhs, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Pre Normal
@@ -99,10 +97,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 } else {
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -118,20 +118,19 @@ const c = $( a );
 const d = $( "d" );
 const e = c[ d ];
 b.c = e;
-let f = e;
 if (e) {
+  const f = $( a );
   const g = $( a );
-  const h = $( a );
-  const i = $( "d" );
-  const j = h[ i ];
-  g.c = j;
-  f = j;
-  $( j );
+  const h = $( "d" );
+  const i = g[ h ];
+  f.c = i;
+  $( i );
+  $( i, a );
 }
 else {
   $( e );
+  $( e, a );
 }
-$( f, a );
 `````
 
 ## Globals

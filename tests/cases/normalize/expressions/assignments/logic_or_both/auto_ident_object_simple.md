@@ -18,14 +18,8 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { x: 1, y: 2, z: 3 };
-if (a) {
-  $(a);
-} else {
-  const tmpNestedComplexRhs /*:object*/ = { x: 1, y: 2, z: 3 };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a /*:object*/ = { x: 1, y: 2, z: 3 };
+$(a);
 $(a);
 `````
 
@@ -33,14 +27,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { x: 1, y: 2, z: 3 };
-if (a) {
-  $(a);
-} else {
-  const tmpNestedComplexRhs = { x: 1, y: 2, z: 3 };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a = { x: 1, y: 2, z: 3 };
+$(a);
 $(a);
 `````
 
@@ -61,36 +49,27 @@ let a = { a: 999, b: 1000 };
 a = { x: 1, y: 2, z: 3 };
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpNestedComplexRhs = { x: 1, y: 2, z: 3 };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
+const a = {
   x: 1,
   y: 2,
   z: 3,
 };
-if (a) {
-  $( a );
-}
-else {
-  const b = {
-    x: 1,
-    y: 2,
-    z: 3,
-  };
-  a = b;
-  $( b );
-}
+$( a );
 $( a );
 `````
 

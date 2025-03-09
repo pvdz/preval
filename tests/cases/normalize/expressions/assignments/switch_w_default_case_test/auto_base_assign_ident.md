@@ -42,10 +42,12 @@ if (tmpIfTest) {
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
+  $(`fail2`);
+  $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 } else {
+  $(`fail2`);
+  $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 }
-$(`fail2`);
-$(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
 ## Denormalized
@@ -64,9 +66,12 @@ if (tmpNestedComplexRhs === tmpSwitchValue) {
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
+  $(`fail2`);
+  $(tmpNestedComplexRhs, tmpNestedComplexRhs);
+} else {
+  $(`fail2`);
+  $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 }
-$(`fail2`);
-$(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -126,9 +131,10 @@ if (tmpIfTest$5) {
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $(`fail2`);
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
@@ -151,9 +157,13 @@ else {
 const f = b <= 1;
 if (f) {
   $( "fail1" );
+  $( "fail2" );
+  $( c, c );
 }
-$( "fail2" );
-$( c, c );
+else {
+  $( "fail2" );
+  $( c, c );
+}
 `````
 
 ## Globals

@@ -18,30 +18,30 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = $(2);
+const a /*:unknown*/ = $(2);
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpNestedComplexRhs /*:unknown*/ = $(2);
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $(2);
+const a = $(2);
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpNestedComplexRhs = $(2);
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -61,30 +61,32 @@ let a = { a: 999, b: 1000 };
 a = $(2);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   let tmpNestedComplexRhs = undefined;
   tmpNestedComplexRhs = $(2);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = $( 2 );
+const a = $( 2 );
 if (a) {
+  $( a );
   $( a );
 }
 else {
   const b = $( 2 );
-  a = b;
+  $( b );
   $( b );
 }
-$( a );
 `````
 
 ## Globals

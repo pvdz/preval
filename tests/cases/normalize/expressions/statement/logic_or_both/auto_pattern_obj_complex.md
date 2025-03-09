@@ -21,21 +21,24 @@ $(a);
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
+  $(999);
 } else {
   const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
   $(tmpCalleeParam$1);
+  $(999);
 }
-$(999);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if (!$({ a: 1, b: 2 })) {
+if ($({ a: 1, b: 2 })) {
+  $(999);
+} else {
   $({ a: 1, b: 2 });
+  $(999);
 }
-$(999);
 `````
 
 ## Pre Normal
@@ -56,11 +59,12 @@ let a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpCalleeParam$1 = { a: 1, b: 2 };
   $(tmpCalleeParam$1);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -73,7 +77,7 @@ const a = {
 };
 const b = $( a );
 if (b) {
-
+  $( 999 );
 }
 else {
   const c = {
@@ -81,8 +85,8 @@ else {
     b: 2,
   };
   $( c );
+  $( 999 );
 }
-$( 999 );
 `````
 
 ## Globals

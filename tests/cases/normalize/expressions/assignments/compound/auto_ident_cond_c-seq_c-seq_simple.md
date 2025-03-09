@@ -19,19 +19,19 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(30);
-let tmpClusterSSA_a /*:number*/ = 0;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(60);
-  tmpClusterSSA_a = a * tmpClusterSSA_tmpBinBothRhs;
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$1 /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs;
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
   const tmpClusterSSA_tmpBinBothRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpClusterSSA_a = a * tmpClusterSSA_tmpBinBothRhs$1;
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$3 /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs$1;
+  $(tmpClusterSSA_a$3);
+  $(tmpClusterSSA_a$3);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -39,16 +39,16 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpIfTest = $(30);
-let tmpClusterSSA_a = 0;
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  tmpClusterSSA_a = a * $(60);
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$1 = a * $(60);
+  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_a$1);
 } else {
-  tmpClusterSSA_a = a * $($(100));
-  $(tmpClusterSSA_a);
+  const tmpClusterSSA_a$3 = a * $($(100));
+  $(tmpClusterSSA_a$3);
+  $(tmpClusterSSA_a$3);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -85,23 +85,23 @@ With rename=true
 
 `````js filename=intro
 const a = $( 30 );
-let b = 0;
-const c = {
+const b = {
   a: 999,
   b: 1000,
 };
 if (a) {
-  const d = $( 60 );
-  b = c * d;
-  $( b );
+  const c = $( 60 );
+  const d = b * c;
+  $( d );
+  $( d );
 }
 else {
   const e = $( 100 );
   const f = $( e );
-  b = c * f;
-  $( b );
+  const g = b * f;
+  $( g );
+  $( g );
 }
-$( b );
 `````
 
 ## Globals

@@ -21,26 +21,25 @@ $(x);
 
 
 `````js filename=intro
-let x /*:primitive*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(`if`);
 if (tmpIfTest) {
-  x = 10;
+  $(10);
   $(10);
 } else {
+  $(undefined);
 }
-$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = undefined;
 if ($(`if`)) {
-  x = 10;
   $(10);
+  $(10);
+} else {
+  $(undefined);
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -64,22 +63,24 @@ const tmpIfTest = $(`if`);
 if (tmpIfTest) {
   x = 10;
   $(x);
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( "if" );
-if (b) {
-  a = 10;
+const a = $( "if" );
+if (a) {
+  $( 10 );
   $( 10 );
 }
-$( a );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

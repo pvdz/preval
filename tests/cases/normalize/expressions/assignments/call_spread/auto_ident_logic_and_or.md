@@ -27,17 +27,13 @@ if (a) {
 }
 if (a) {
   $(...a);
+  $(a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$3);
-  const tmpIfTest /*:boolean*/ = a === ``;
-  if (tmpIfTest) {
-    $();
-  } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
-  }
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
+  $(...tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -50,15 +46,12 @@ if (a) {
 }
 if (a) {
   $(...a);
+  $(a);
 } else {
-  a = $($(2));
-  if (a === ``) {
-    $();
-  } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
-  }
+  const tmpClusterSSA_a = $($(2));
+  $(...tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -104,19 +97,14 @@ if (b) {
 }
 if (b) {
   $( ...b );
+  $( b );
 }
 else {
   const d = $( 2 );
-  b = $( d );
-  const e = b === "";
-  if (e) {
-    $();
-  }
-  else {
-    throw "Preval: Attempting to spread primitive that is not an empty string";
-  }
+  const e = $( d );
+  $( ...e );
+  $( e );
 }
-$( b );
 `````
 
 ## Globals

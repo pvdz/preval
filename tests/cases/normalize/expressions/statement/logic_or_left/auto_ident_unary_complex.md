@@ -52,10 +52,11 @@ let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x);
 const tmpIfTest = typeof tmpUnaryArg;
 if (tmpIfTest) {
+  $(a, x);
 } else {
   $(100);
+  $(a, x);
 }
-$(a, x);
 `````
 
 ## PST Settled

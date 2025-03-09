@@ -24,9 +24,10 @@ const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault.y;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $(`fail`);
+  $(`bad`);
 } else {
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## Denormalized
@@ -35,8 +36,10 @@ $(`bad`);
 `````js filename=intro
 if (`abc`.x.y === undefined) {
   $(`fail`);
+  $(`bad`);
+} else {
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## Pre Normal
@@ -87,8 +90,11 @@ const b = a.y;
 const c = b === undefined;
 if (c) {
   $( "fail" );
+  $( "bad" );
 }
-$( "bad" );
+else {
+  $( "bad" );
+}
 `````
 
 ## Globals

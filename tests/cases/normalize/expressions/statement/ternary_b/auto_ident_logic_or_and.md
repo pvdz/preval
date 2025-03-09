@@ -19,40 +19,50 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(0);
   const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
     const tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpIfTest$3) {
       const tmpCalleeParam$3 /*:unknown*/ = $(2);
       $(tmpCalleeParam$3);
+      $(a);
     } else {
+      $(a);
     }
   }
 } else {
   $(200);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(1)) {
-  if (!$($(0))) {
+const tmpIfTest = $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  if ($($(0))) {
+    $(a);
+  } else {
     if ($($(1))) {
       $($(2));
+      $(a);
+    } else {
+      $(a);
     }
   }
 } else {
   $(200);
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -74,19 +84,22 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(0);
   const tmpIfTest$1 = $(tmpCalleeParam);
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpCalleeParam$1 = $(1);
     const tmpIfTest$3 = $(tmpCalleeParam$1);
     if (tmpIfTest$3) {
       const tmpCalleeParam$3 = $(2);
       $(tmpCalleeParam$3);
+      $(a);
     } else {
+      $(a);
     }
   }
 } else {
   $(200);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -94,29 +107,33 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
+const b = {
+  a: 999,
+  b: 1000,
+};
 if (a) {
-  const b = $( 0 );
-  const c = $( b );
-  if (c) {
-
+  const c = $( 0 );
+  const d = $( c );
+  if (d) {
+    $( b );
   }
   else {
-    const d = $( 1 );
-    const e = $( d );
-    if (e) {
-      const f = $( 2 );
-      $( f );
+    const e = $( 1 );
+    const f = $( e );
+    if (f) {
+      const g = $( 2 );
+      $( g );
+      $( b );
+    }
+    else {
+      $( b );
     }
   }
 }
 else {
   $( 200 );
+  $( b );
 }
-const g = {
-  a: 999,
-  b: 1000,
-};
-$( g );
 `````
 
 ## Globals

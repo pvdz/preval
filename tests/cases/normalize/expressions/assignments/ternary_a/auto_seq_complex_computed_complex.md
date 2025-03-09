@@ -67,11 +67,13 @@ a = { b: tmpObjLitVal };
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(1);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(1);
 }
-$(tmpCalleeParam);
-$(1);
 const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;

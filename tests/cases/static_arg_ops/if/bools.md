@@ -42,14 +42,14 @@ if ($) {
     $(x);
     return undefined;
   };
+  g_t();
   if ($) {
     g_t();
     g_t();
     g_t();
-    g_t();
+    $(undefined);
   } else {
   }
-  $(undefined);
 } else {
 }
 `````
@@ -64,13 +64,13 @@ if ($) {
     x = x + 1;
     $(x);
   };
+  g_t();
   if ($) {
     g_t();
     g_t();
     g_t();
-    g_t();
+    $(undefined);
   }
-  $(undefined);
 }
 `````
 
@@ -152,13 +152,13 @@ if ($) {
     $( a );
     return undefined;
   };
+  b();
   if ($) {
     b();
     b();
     b();
-    b();
+    $( undefined );
   }
-  $( undefined );
 }
 `````
 

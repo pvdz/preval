@@ -104,9 +104,10 @@ if (tmpIfTest) {
 }
 if (tmpIfTest) {
   tmpFallthrough = true;
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

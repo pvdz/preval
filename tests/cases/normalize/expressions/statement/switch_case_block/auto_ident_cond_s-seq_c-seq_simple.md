@@ -25,22 +25,27 @@ $(a);
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(60);
+  $(a);
 } else {
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(1) === $(1)) {
+const tmpIfTest = $(1) === $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   $(60);
+  $(a);
+} else {
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -73,13 +78,15 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 30;
   if (tmpIfTest$1) {
     $(60);
+    $(a);
   } else {
     const tmpCalleeParam = $(100);
     $(tmpCalleeParam);
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -89,14 +96,17 @@ With rename=true
 const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
-if (c) {
-  $( 60 );
-}
 const d = {
   a: 999,
   b: 1000,
 };
-$( d );
+if (c) {
+  $( 60 );
+  $( d );
+}
+else {
+  $( d );
+}
 `````
 
 ## Globals

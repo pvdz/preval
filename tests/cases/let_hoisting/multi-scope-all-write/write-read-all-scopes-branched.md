@@ -32,7 +32,10 @@ if ($) {
 if ($) {
   $(2);
   $(2);
-  $(2);
+  if ($) {
+    $(2);
+  } else {
+  }
 } else {
 }
 `````
@@ -44,7 +47,9 @@ if ($) {
 if ($) {
   $(2);
   $(2);
-  $(2);
+  if ($) {
+    $(2);
+  }
 }
 `````
 
@@ -80,12 +85,16 @@ const f = function () {
     x = 2;
     if ($) {
       $(x);
+      $(x);
+      return undefined;
     } else {
+      $(x);
+      return undefined;
     }
   } else {
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 if ($) {
   f();
@@ -101,7 +110,9 @@ With rename=true
 if ($) {
   $( 2 );
   $( 2 );
-  $( 2 );
+  if ($) {
+    $( 2 );
+  }
 }
 `````
 

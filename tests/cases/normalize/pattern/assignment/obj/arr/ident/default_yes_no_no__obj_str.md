@@ -18,7 +18,7 @@ $(y);
 
 `````js filename=intro
 y = `a`;
-$(y);
+$(`a`);
 `````
 
 ## Denormalized
@@ -26,7 +26,7 @@ $(y);
 
 `````js filename=intro
 y = `a`;
-$(y);
+$(`a`);
 `````
 
 ## Pre Normal
@@ -50,10 +50,11 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = `fail`;
+  $(y);
 } else {
   y = arrPatternBeforeDefault;
+  $(arrPatternBeforeDefault);
 }
-$(y);
 `````
 
 ## PST Settled
@@ -61,7 +62,7 @@ With rename=true
 
 `````js filename=intro
 y = "a";
-$( y );
+$( "a" );
 `````
 
 ## Globals

@@ -59,9 +59,10 @@ const a = $(67637);
 let x = a === 67636;
 if (x) {
   x = a === 67636;
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

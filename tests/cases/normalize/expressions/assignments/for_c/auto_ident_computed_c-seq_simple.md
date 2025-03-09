@@ -20,50 +20,52 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { c: 1 };
 if (tmpIfTest) {
   const tmpAssignRhsCompObj /*:unknown*/ = $(b);
   const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-  a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+  let tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpAssignRhsCompObj$1 /*:unknown*/ = $(b);
       const tmpAssignRhsCompProp$1 /*:unknown*/ = $(`c`);
-      a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+      tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, b);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const b = { c: 1 };
 if (tmpIfTest) {
   const tmpAssignRhsCompObj = $(b);
   const tmpAssignRhsCompProp = $(`c`);
-  a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+  let tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   while (true) {
     if ($(1)) {
       const tmpAssignRhsCompObj$1 = $(b);
       const tmpAssignRhsCompProp$1 = $(`c`);
-      a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+      tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, b);
+} else {
+  $({ a: 999, b: 1000 }, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -103,29 +105,32 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-const c = { c: 1 };
-if (b) {
-  const d = $( c );
-  const e = $( "c" );
-  a = d[ e ];
+const a = $( 1 );
+const b = { c: 1 };
+if (a) {
+  const c = $( b );
+  const d = $( "c" );
+  let e = c[ d ];
   while ($LOOP_UNROLL_10) {
     const f = $( 1 );
     if (f) {
-      const g = $( c );
+      const g = $( b );
       const h = $( "c" );
-      a = g[ h ];
+      e = g[ h ];
     }
     else {
       break;
     }
   }
+  $( e, b );
 }
-$( a, c );
+else {
+  const i = {
+    a: 999,
+    b: 1000,
+  };
+  $( i, b );
+}
 `````
 
 ## Globals
@@ -173,3 +178,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- computed property access of an ident where the property ident is not recorded;

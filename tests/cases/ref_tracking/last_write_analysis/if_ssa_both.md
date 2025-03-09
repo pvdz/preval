@@ -28,32 +28,35 @@ $(x);
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(`a`);
+const x /*:unknown*/ = $(`a`);
 $(x);
 $(`b`);
 if ($) {
-  x = $(`c`);
+  const tmpClusterSSA_x /*:unknown*/ = $(`c`);
+  $(`break if hoisting optimization ooops`);
+  $(tmpClusterSSA_x);
 } else {
-  x = $(`d`);
+  const tmpClusterSSA_x$1 /*:unknown*/ = $(`d`);
+  $(`break if hoisting optimization ooops`);
+  $(tmpClusterSSA_x$1);
 }
-$(`break if hoisting optimization ooops`);
-$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(`a`);
-$(x);
+$($(`a`));
 $(`b`);
 if ($) {
-  x = $(`c`);
+  const tmpClusterSSA_x = $(`c`);
+  $(`break if hoisting optimization ooops`);
+  $(tmpClusterSSA_x);
 } else {
-  x = $(`d`);
+  const tmpClusterSSA_x$1 = $(`d`);
+  $(`break if hoisting optimization ooops`);
+  $(tmpClusterSSA_x$1);
 }
-$(`break if hoisting optimization ooops`);
-$(x);
 `````
 
 ## Pre Normal
@@ -81,28 +84,32 @@ $(x);
 x = $(`b`);
 if ($) {
   x = $(`c`);
+  $(`break if hoisting optimization ooops`);
+  $(x);
 } else {
   x = $(`d`);
+  $(`break if hoisting optimization ooops`);
+  $(x);
 }
-$(`break if hoisting optimization ooops`);
-$(x);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = $( "a" );
+const a = $( "a" );
 $( a );
 $( "b" );
 if ($) {
-  a = $( "c" );
+  const b = $( "c" );
+  $( "break if hoisting optimization ooops" );
+  $( b );
 }
 else {
-  a = $( "d" );
+  const c = $( "d" );
+  $( "break if hoisting optimization ooops" );
+  $( c );
 }
-$( "break if hoisting optimization ooops" );
-$( a );
 `````
 
 ## Globals

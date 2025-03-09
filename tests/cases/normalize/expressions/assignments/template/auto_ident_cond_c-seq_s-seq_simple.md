@@ -18,32 +18,32 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = 60;
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
   $(`before  60  after`);
+  $(60);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam$3);
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = 60;
 if ($(30)) {
   $(`before  60  after`);
+  $(60);
 } else {
-  a = $($(100));
-  $(`before  ${a}  after`);
+  const tmpClusterSSA_a = $($(100));
+  $(`before  ${tmpClusterSSA_a}  after`);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -81,19 +81,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 60;
-const b = $( 30 );
-if (b) {
+const a = $( 30 );
+if (a) {
   $( "before  60  after" );
+  $( 60 );
 }
 else {
-  const c = $( 100 );
-  a = $( c );
-  const d = $coerce( a, "string" );
+  const b = $( 100 );
+  const c = $( b );
+  const d = $coerce( c, "string" );
   const e = `before  ${d}  after`;
   $( e );
+  $( c );
 }
-$( a );
 `````
 
 ## Globals

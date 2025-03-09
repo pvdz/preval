@@ -20,16 +20,16 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpCalleeParam$1 /*:unknown*/ = $(0);
-let a /*:unknown*/ = $(tmpCalleeParam$1);
+const a /*:unknown*/ = $(tmpCalleeParam$1);
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a);
 } else {
-  a = 2;
   const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + 2;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(2);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -37,14 +37,14 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-let a = $($(0));
+const a = $($(0));
 if (a) {
   $(tmpBinBothLhs + a);
+  $(a);
 } else {
-  a = 2;
   $(tmpBinBothLhs + 2);
+  $(2);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -80,17 +80,17 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 const b = $( 0 );
-let c = $( b );
+const c = $( b );
 if (c) {
   const d = a + c;
   $( d );
+  $( c );
 }
 else {
-  c = 2;
   const e = a + 2;
   $( e );
+  $( 2 );
 }
-$( c );
 `````
 
 ## Globals

@@ -27,14 +27,15 @@ const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const arg /*:object*/ = { y: 1 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpDeleteCompObj /*:unknown*/ = $(arg);
   const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
 } else {
+  $(a, arg);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
 `````
 
 ## Denormalized
@@ -43,12 +44,15 @@ $(a, arg);
 `````js filename=intro
 const tmpIfTest = $(1) === $(1);
 const arg = { y: 1 };
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
+} else {
+  $(a, arg);
 }
-$({ a: 999, b: 1000 }, arg);
 `````
 
 ## Pre Normal
@@ -81,9 +85,10 @@ if (tmpIfTest) {
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
 } else {
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## PST Settled
@@ -94,16 +99,19 @@ const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
 const d = { y: 1 };
-if (c) {
-  const e = $( d );
-  const f = $( "y" );
-  delete e[ f ];
-}
-const g = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( g, d );
+if (c) {
+  const f = $( d );
+  const g = $( "y" );
+  delete f[ g ];
+  $( e, d );
+}
+else {
+  $( e, d );
+}
 `````
 
 ## Globals

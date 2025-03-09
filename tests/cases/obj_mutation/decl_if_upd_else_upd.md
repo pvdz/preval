@@ -53,10 +53,11 @@ $(blob);
 const blob = { thing: `woop` };
 if ($) {
   blob.thing = `boing`;
+  $(blob);
 } else {
   blob.thing = `boing`;
+  $(blob);
 }
-$(blob);
 `````
 
 ## PST Settled

@@ -23,30 +23,32 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(100);
+  $(undefined);
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  a = tmpChainElementObject;
+  $(100);
+  $(tmpChainElementObject);
 }
-$(100);
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpChainElementCall = $({ x: 1 });
-if (!(tmpChainElementCall == null)) {
-  a = tmpChainElementCall.x;
+if (tmpChainElementCall == null) {
+  $(100);
+  $(undefined);
+} else {
+  const tmpChainElementObject = tmpChainElementCall.x;
+  $(100);
+  $(tmpChainElementObject);
 }
-$(100);
-$(a);
 `````
 
 ## Pre Normal
@@ -89,19 +91,18 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = c == null;
-if (d) {
-
+const a = { x: 1 };
+const b = $( a );
+const c = b == null;
+if (c) {
+  $( 100 );
+  $( undefined );
 }
 else {
-  const e = c.x;
-  a = e;
+  const d = b.x;
+  $( 100 );
+  $( d );
 }
-$( 100 );
-$( a );
 `````
 
 ## Globals

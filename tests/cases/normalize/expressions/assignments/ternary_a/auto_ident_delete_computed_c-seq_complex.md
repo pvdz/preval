@@ -29,11 +29,12 @@ const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 if (tmpClusterSSA_a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(true, arg);
 } else {
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(false, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Denormalized
@@ -45,13 +46,13 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (tmpClusterSSA_a) {
+if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
   $($(100));
+  $(true, arg);
 } else {
   $($(200));
+  $(false, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Pre Normal
@@ -79,11 +80,13 @@ a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, arg);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a, arg);
 }
-$(tmpCalleeParam);
-$(a, arg);
 `````
 
 ## PST Settled
@@ -99,12 +102,13 @@ const d = delete b[ c ];
 if (d) {
   const e = $( 100 );
   $( e );
+  $( true, a );
 }
 else {
   const f = $( 200 );
   $( f );
+  $( false, a );
 }
-$( d, a );
 `````
 
 ## Globals

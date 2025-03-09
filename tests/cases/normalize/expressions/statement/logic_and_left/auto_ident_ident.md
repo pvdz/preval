@@ -51,9 +51,10 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 if (b) {
   $(100);
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

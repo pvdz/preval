@@ -24,34 +24,32 @@ $(f());
 
 
 `````js filename=intro
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 const tmpForInNext /*:unknown*/ = tmpForInGen.next();
 const tmpIfTest /*:unknown*/ = tmpForInNext.done;
 if (tmpIfTest) {
   $(`keep, do not eval`);
+  $(undefined);
 } else {
   tmpForInNext.value;
   const tmpReturnArg /*:unknown*/ = $(1, `return`);
-  tmpCalleeParam$1 = tmpReturnArg;
+  $(tmpReturnArg);
 }
-$(tmpCalleeParam$1);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam$1 = undefined;
 const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
 if (tmpForInNext.done) {
   $(`keep, do not eval`);
+  $(undefined);
 } else {
   tmpForInNext.value;
-  tmpCalleeParam$1 = $(1, `return`);
+  $($(1, `return`));
 }
-$(tmpCalleeParam$1);
 `````
 
 ## Pre Normal
@@ -109,23 +107,22 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   a: 1,
   b: 2,
 };
-const c = $forIn( b );
-const d = c.next();
-const e = d.done;
-if (e) {
+const b = $forIn( a );
+const c = b.next();
+const d = c.done;
+if (d) {
   $( "keep, do not eval" );
+  $( undefined );
 }
 else {
-  d.value;
-  const f = $( 1, "return" );
-  a = f;
+  c.value;
+  const e = $( 1, "return" );
+  $( e );
 }
-$( a );
 `````
 
 ## Globals

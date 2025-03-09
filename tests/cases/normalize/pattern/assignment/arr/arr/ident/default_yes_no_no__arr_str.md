@@ -49,10 +49,11 @@ const arrPatternBeforeDefault = arrPatternSplat$1[0];
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   x = $(`fail`);
+  $(x);
 } else {
   x = arrPatternBeforeDefault;
+  $(arrPatternBeforeDefault);
 }
-$(x);
 `````
 
 ## PST Settled

@@ -51,12 +51,14 @@ let a = { a: 999, b: 1000 };
 a = b;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   a = b;
   tmpCalleeParam = b;
+  $(b);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled

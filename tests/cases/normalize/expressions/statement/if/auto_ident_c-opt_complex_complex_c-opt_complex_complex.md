@@ -24,19 +24,21 @@ const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
+  $(a);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
+    $(a);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     tmpChainElementObject[tmpChainRootComputed$1];
+    $(a);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -45,15 +47,21 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest$1 = tmpChainElementCall == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest$1) {
+  $(a);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(a);
+  } else {
     const tmpChainRootComputed$1 = $(`y`);
     tmpChainElementObject[tmpChainRootComputed$1];
+    $(a);
   }
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -85,11 +93,13 @@ if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpIfTest = tmpChainElementObject$1;
+    $(a);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -100,26 +110,26 @@ const a = { y: 1 };
 const b = { x: a };
 const c = $( b );
 const d = c == null;
-if (d) {
-
-}
-else {
-  const e = $( "x" );
-  const f = c[ e ];
-  const g = f == null;
-  if (g) {
-
-  }
-  else {
-    const h = $( "y" );
-    f[ h ];
-  }
-}
-const i = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( i );
+if (d) {
+  $( e );
+}
+else {
+  const f = $( "x" );
+  const g = c[ f ];
+  const h = g == null;
+  if (h) {
+    $( e );
+  }
+  else {
+    const i = $( "y" );
+    g[ i ];
+    $( e );
+  }
+}
 `````
 
 ## Globals

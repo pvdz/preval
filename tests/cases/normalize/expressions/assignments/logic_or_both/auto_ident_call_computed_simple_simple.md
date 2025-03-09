@@ -21,15 +21,15 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-let a /*:unknown*/ = b.$(1);
+const a /*:unknown*/ = b.$(1);
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpNestedComplexRhs /*:unknown*/ = b.$(1);
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -37,15 +37,15 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-let a = b.$(1);
+const a = b.$(1);
 if (a) {
+  $(a);
   $(a);
 } else {
   const tmpNestedComplexRhs = b.$(1);
-  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -67,13 +67,15 @@ let a = { a: 999, b: 1000 };
 a = b.$(1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpNestedComplexRhs = b.$(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -81,16 +83,16 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-let b = a.$( 1 );
+const b = a.$( 1 );
 if (b) {
+  $( b );
   $( b );
 }
 else {
   const c = a.$( 1 );
-  b = c;
+  $( c );
   $( c );
 }
-$( b );
 `````
 
 ## Globals

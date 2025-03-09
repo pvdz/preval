@@ -48,10 +48,11 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 if (arg) {
+  $(a, arg);
 } else {
   $(100);
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## PST Settled

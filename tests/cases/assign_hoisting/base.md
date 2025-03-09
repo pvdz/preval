@@ -30,30 +30,31 @@ $(x);
 
 
 `````js filename=intro
-let x /*:unknown*/ = $(2);
+const x /*:unknown*/ = $(2);
 if ($) {
   $(`block inlining`);
   $(x);
-  x = $(3);
+  const tmpClusterSSA_x /*:unknown*/ = $(3);
+  $(tmpClusterSSA_x);
 } else {
   $(x);
+  $(x);
 }
-$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(2);
+const x = $(2);
 if ($) {
   $(`block inlining`);
   $(x);
-  x = $(3);
+  $($(3));
 } else {
   $(x);
+  $(x);
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -97,26 +98,28 @@ x = $(2);
 if ($) {
   f();
   x = $(3);
+  $(x);
 } else {
   $(x);
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = $( 2 );
+const a = $( 2 );
 if ($) {
   $( "block inlining" );
   $( a );
-  a = $( 3 );
+  const b = $( 3 );
+  $( b );
 }
 else {
   $( a );
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

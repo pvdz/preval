@@ -26,19 +26,21 @@ $(1);
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
+  $(a);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`\$`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
+    $(a);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
     $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+    $(a);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -47,14 +49,20 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpChainElementCall = $({ $: $ });
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest$1 = tmpChainElementCall == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest$1) {
+  $(a);
+} else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(a);
+  } else {
     $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+    $(a);
   }
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -110,26 +118,26 @@ $( 1 );
 const a = { $: $ };
 const b = $( a );
 const c = b == null;
-if (c) {
-
-}
-else {
-  const d = $( "$" );
-  const e = b[ d ];
-  const f = e == null;
-  if (f) {
-
-  }
-  else {
-    const g = $( 1 );
-    $dotCall( e, b, undefined, g );
-  }
-}
-const h = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( h );
+if (c) {
+  $( d );
+}
+else {
+  const e = $( "$" );
+  const f = b[ e ];
+  const g = f == null;
+  if (g) {
+    $( d );
+  }
+  else {
+    const h = $( 1 );
+    $dotCall( f, b, undefined, h );
+    $( d );
+  }
+}
 `````
 
 ## Globals

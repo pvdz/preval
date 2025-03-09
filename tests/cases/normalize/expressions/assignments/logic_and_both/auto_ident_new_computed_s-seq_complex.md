@@ -23,18 +23,12 @@ $(a);
 const tmpCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
-let tmpClusterSSA_a /*:unknown*/ = new tmpNewCallee(1);
-const tmpCalleeParam /*:unknown*/ = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
-  const tmpCompProp$1 /*:unknown*/ = $(`\$`);
-  const tmpNewCallee$1 /*:unknown*/ = b[tmpCompProp$1];
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(tmpClusterSSA_a);
+new tmpNewCallee(1);
+const tmpCompProp$1 /*:unknown*/ = $(`\$`);
+const tmpNewCallee$1 /*:unknown*/ = b[tmpCompProp$1];
+const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Denormalized
@@ -44,18 +38,12 @@ $(tmpClusterSSA_a);
 const tmpCompProp = $(`\$`);
 const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
-let tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpCalleeParam = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
-  const tmpCompProp$1 = $(`\$`);
-  const tmpNewCallee$1 = b[tmpCompProp$1];
-  const tmpNestedComplexRhs = new tmpNewCallee$1(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(tmpClusterSSA_a);
+new tmpNewCallee(1);
+const tmpCompProp$1 = $(`\$`);
+const tmpNewCallee$1 = b[tmpCompProp$1];
+const tmpNestedComplexRhs = new tmpNewCallee$1(1);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -86,10 +74,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -99,19 +89,12 @@ With rename=true
 const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ];
-let d = new c( 1 );
-const e = d;
-if (d) {
-  const f = $( "$" );
-  const g = b[ f ];
-  const h = new g( 1 );
-  d = h;
-  $( h );
-}
-else {
-  $( e );
-}
-$( d );
+new c( 1 );
+const d = $( "$" );
+const e = b[ d ];
+const f = new e( 1 );
+$( f );
+$( f );
 `````
 
 ## Globals

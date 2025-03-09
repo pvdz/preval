@@ -42,9 +42,10 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -69,8 +70,10 @@ if ($(1)) {
       break;
     }
   }
+  $(a);
+} else {
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -142,8 +145,11 @@ if (b) {
       break;
     }
   }
+  $( a );
 }
-$( a );
+else {
+  $( a );
+}
 `````
 
 ## Globals

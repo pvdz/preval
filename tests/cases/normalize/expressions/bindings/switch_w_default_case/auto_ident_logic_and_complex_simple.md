@@ -28,11 +28,13 @@ const tmpCalleeParam /*:unknown*/ = $(1);
 const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
   $(2);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   $(a);
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Denormalized
@@ -42,11 +44,13 @@ $(`fail2`);
 const a = $($(1));
 if (a) {
   $(2);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   $(a);
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Pre Normal
@@ -98,9 +102,10 @@ if (tmpIfTest$3) {
   a = $(tmpCalleeParam);
   if (a) {
     a = 2;
+    $(a);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
@@ -123,12 +128,14 @@ const a = $( 1 );
 const b = $( a );
 if (b) {
   $( 2 );
+  $( "fail1" );
+  $( "fail2" );
 }
 else {
   $( b );
+  $( "fail1" );
+  $( "fail2" );
 }
-$( "fail1" );
-$( "fail2" );
 `````
 
 ## Globals

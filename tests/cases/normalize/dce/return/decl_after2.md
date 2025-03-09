@@ -36,10 +36,11 @@ $(undefined);
 const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
   x = $(`fail too`);
+  $(undefined);
 } else {
   $(`fail`);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -48,10 +49,11 @@ $(undefined);
 `````js filename=intro
 if ($(false)) {
   x = $(`fail too`);
+  $(undefined);
 } else {
   $(`fail`);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -97,11 +99,12 @@ With rename=true
 const a = $( false );
 if (a) {
   x = $( "fail too" );
+  $( undefined );
 }
 else {
   $( "fail" );
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

@@ -27,15 +27,17 @@ const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpBinBothRhs$1 /*:unknown*/ = $(2);
   const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs$1;
   if (tmpIfTest$1) {
     $(11);
+    $(undefined);
   } else {
+    $(undefined);
   }
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -43,12 +45,16 @@ $(undefined);
 
 `````js filename=intro
 const tmpSwitchDisc = $(1);
-if (!(tmpSwitchDisc === $(1))) {
+if (tmpSwitchDisc === $(1)) {
+  $(undefined);
+} else {
   if (tmpSwitchDisc === $(2)) {
     $(11);
+    $(undefined);
+  } else {
+    $(undefined);
   }
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -102,16 +108,19 @@ const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
 if (c) {
-
+  $( undefined );
 }
 else {
   const d = $( 2 );
   const e = a === d;
   if (e) {
     $( 11 );
+    $( undefined );
+  }
+  else {
+    $( undefined );
   }
 }
-$( undefined );
 `````
 
 ## Globals

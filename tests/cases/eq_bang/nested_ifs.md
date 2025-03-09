@@ -49,10 +49,11 @@ if (a) {
   const c /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   if (c) {
     $(`else c1`);
+    $(`else a2`);
   } else {
     $(`then c1`);
+    $(`else a2`);
   }
-  $(`else a2`);
 } else {
   $(`then a1`);
   const tmpBinBothLhs$3 /*:unknown*/ = $(1);
@@ -60,10 +61,11 @@ if (a) {
   const b /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
   if (b) {
     $(`else b1`);
+    $(`then a2`);
   } else {
     $(`then b1`);
+    $(`then a2`);
   }
-  $(`then a2`);
 }
 `````
 
@@ -75,18 +77,20 @@ if ($(1) === $(2)) {
   $(`else a1`);
   if ($(1) === $(2)) {
     $(`else c1`);
+    $(`else a2`);
   } else {
     $(`then c1`);
+    $(`else a2`);
   }
-  $(`else a2`);
 } else {
   $(`then a1`);
   if ($(1) === $(2)) {
     $(`else b1`);
+    $(`then a2`);
   } else {
     $(`then b1`);
+    $(`then a2`);
   }
-  $(`then a2`);
 }
 `````
 
@@ -168,11 +172,12 @@ if (c) {
   const f = d === e;
   if (f) {
     $( "else c1" );
+    $( "else a2" );
   }
   else {
     $( "then c1" );
+    $( "else a2" );
   }
-  $( "else a2" );
 }
 else {
   $( "then a1" );
@@ -181,11 +186,12 @@ else {
   const i = g === h;
   if (i) {
     $( "else b1" );
+    $( "then a2" );
   }
   else {
     $( "then b1" );
+    $( "then a2" );
   }
-  $( "then a2" );
 }
 `````
 

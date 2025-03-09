@@ -37,6 +37,7 @@ function _ifTestBool(fdata) {
 
   let changed = 0;
 
+  // TODO: probably faster to walk the known binding names and check if any of them are used as an if-test
   walk(_walker, ast, 'ast');
   function _walker(node, beforeWalk, nodeType, path) {
     if (beforeWalk) return;

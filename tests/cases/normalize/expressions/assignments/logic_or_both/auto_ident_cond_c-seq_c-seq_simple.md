@@ -34,19 +34,20 @@ if (tmpIfTest) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpIfTest$1 /*:unknown*/ = $(30);
   if (tmpIfTest$1) {
-    tmpNestedComplexRhs = $(60);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(60);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(100);
-    tmpNestedComplexRhs = $(tmpCalleeParam$3);
+    const tmpClusterSSA_tmpNestedComplexRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
+    $(tmpClusterSSA_tmpNestedComplexRhs$1);
+    $(tmpClusterSSA_tmpNestedComplexRhs$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -65,17 +66,18 @@ if (tmpIfTest) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
-  let tmpNestedComplexRhs = undefined;
   if ($(30)) {
-    tmpNestedComplexRhs = $(60);
+    const tmpClusterSSA_tmpNestedComplexRhs = $(60);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   } else {
-    tmpNestedComplexRhs = $($(100));
+    const tmpClusterSSA_tmpNestedComplexRhs$1 = $($(100));
+    $(tmpClusterSSA_tmpNestedComplexRhs$1);
+    $(tmpClusterSSA_tmpNestedComplexRhs$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -101,6 +103,8 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = $(30);
@@ -112,9 +116,9 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -135,21 +139,22 @@ else {
 }
 if (a) {
   $( c );
+  $( a );
 }
 else {
-  let e = undefined;
-  const f = $( 30 );
-  if (f) {
-    e = $( 60 );
+  const e = $( 30 );
+  if (e) {
+    const f = $( 60 );
+    $( f );
+    $( f );
   }
   else {
     const g = $( 100 );
-    e = $( g );
+    const h = $( g );
+    $( h );
+    $( h );
   }
-  a = e;
-  $( e );
 }
-$( a );
 `````
 
 ## Globals

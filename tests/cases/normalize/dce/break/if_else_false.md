@@ -24,9 +24,10 @@ $('after');
 const tmpIfTest /*:unknown*/ = $(false);
 if (tmpIfTest) {
   $(1);
+  $(`after`);
 } else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Denormalized
@@ -35,8 +36,10 @@ $(`after`);
 `````js filename=intro
 if ($(false)) {
   $(1);
+  $(`after`);
+} else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Pre Normal
@@ -78,8 +81,11 @@ With rename=true
 const a = $( false );
 if (a) {
   $( 1 );
+  $( "after" );
 }
-$( "after" );
+else {
+  $( "after" );
+}
 `````
 
 ## Globals

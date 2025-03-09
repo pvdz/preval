@@ -23,19 +23,18 @@ $(a, b);
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-let tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
+const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
   const tmpObjLitVal$1 /*:unknown*/ = $(2);
   const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal$1 };
   const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
-  tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
-  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
+  const tmpClusterSSA_b$1 /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
   $(tmpNestedAssignObjPatternRhs$1);
+  $(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b$1);
 } else {
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 }
-$(tmpClusterSSA_a, tmpClusterSSA_b);
 `````
 
 ## Denormalized
@@ -44,18 +43,17 @@ $(tmpClusterSSA_a, tmpClusterSSA_b);
 `````js filename=intro
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
   const tmpObjLitVal$1 = $(2);
   const tmpNestedAssignObjPatternRhs$1 = $({ b: tmpObjLitVal$1 });
-  tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
-  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
+  const tmpClusterSSA_b$1 = tmpNestedAssignObjPatternRhs$1.b;
   $(tmpNestedAssignObjPatternRhs$1);
+  $(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b$1);
 } else {
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 }
-$(tmpClusterSSA_a, tmpClusterSSA_b);
 `````
 
 ## Pre Normal
@@ -89,10 +87,12 @@ if (tmpCalleeParam) {
   tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 } else {
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -102,20 +102,19 @@ With rename=true
 const a = $( 2 );
 const b = { b: a };
 const c = $( b );
-let d = c.b;
-let e = c;
+const d = c.b;
 if (c) {
-  const f = $( 2 );
-  const g = { b: f };
-  const h = $( g );
-  d = h.b;
-  e = h;
-  $( h );
+  const e = $( 2 );
+  const f = { b: e };
+  const g = $( f );
+  const h = g.b;
+  $( g );
+  $( g, h );
 }
 else {
   $( c );
+  $( c, d );
 }
-$( e, d );
 `````
 
 ## Globals

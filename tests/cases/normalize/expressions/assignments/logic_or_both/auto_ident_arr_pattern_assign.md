@@ -72,6 +72,8 @@ y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, x, y);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpArrElement$3 = $(3);
@@ -83,9 +85,9 @@ if (tmpCalleeParam) {
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, x, y);
 }
-$(tmpCalleeParam);
-$(a, x, y);
 `````
 
 ## PST Settled

@@ -21,7 +21,6 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(30);
 let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
@@ -34,23 +33,23 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 /*:unknown*/ = $(30);
 if (tmpIfTest$1) {
-  a = $(60);
-  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
+  const tmpClusterSSA_a$2 /*:unknown*/ = $(60);
+  const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a$2;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpClusterSSA_a$2);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
-  a = $(tmpCalleeParam$3);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
+  const tmpClusterSSA_a$4 /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a$4;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(tmpClusterSSA_a$4);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpIfTest = $(30);
 let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
@@ -59,13 +58,14 @@ if (tmpIfTest) {
   tmpBinBothLhs = $($(100));
 }
 if ($(30)) {
-  a = $(60);
-  $(tmpBinBothLhs + a);
+  const tmpClusterSSA_a$2 = $(60);
+  $(tmpBinBothLhs + tmpClusterSSA_a$2);
+  $(tmpClusterSSA_a$2);
 } else {
-  a = $($(100));
-  $(tmpBinBothLhs + a);
+  const tmpClusterSSA_a$4 = $($(100));
+  $(tmpBinBothLhs + tmpClusterSSA_a$4);
+  $(tmpClusterSSA_a$4);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -107,31 +107,31 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 30 );
-let c = undefined;
-if (b) {
-  const d = $( 60 );
-  c = d;
+const a = $( 30 );
+let b = undefined;
+if (a) {
+  const c = $( 60 );
+  b = c;
 }
 else {
-  const e = $( 100 );
-  const f = $( e );
-  c = f;
+  const d = $( 100 );
+  const e = $( d );
+  b = e;
 }
-const g = $( 30 );
-if (g) {
-  a = $( 60 );
-  const h = c + a;
+const f = $( 30 );
+if (f) {
+  const g = $( 60 );
+  const h = b + g;
   $( h );
+  $( g );
 }
 else {
   const i = $( 100 );
-  a = $( i );
-  const j = c + a;
+  const j = $( i );
+  const k = b + j;
+  $( k );
   $( j );
 }
-$( a );
 `````
 
 ## Globals

@@ -21,7 +21,6 @@ $(a);
 
 
 `````js filename=intro
-let tmpCalleeParam$5 /*:unknown*/ = undefined;
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
 if (tmpReturnArg) {
@@ -30,14 +29,13 @@ if (tmpReturnArg) {
   if (tmpClusterSSA_tmpReturnArg) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam$3);
-    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg$1;
+    $(tmpClusterSSA_tmpReturnArg$1);
   } else {
-    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg;
+    $(tmpClusterSSA_tmpReturnArg);
   }
 } else {
-  tmpCalleeParam$5 = tmpReturnArg;
+  $(tmpReturnArg);
 }
-$(tmpCalleeParam$5);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -46,19 +44,17 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam$5 = undefined;
 const tmpReturnArg = $($(1));
 if (tmpReturnArg) {
   const tmpClusterSSA_tmpReturnArg = $($(1));
   if (tmpClusterSSA_tmpReturnArg) {
-    tmpCalleeParam$5 = $($(2));
+    $($($(2)));
   } else {
-    tmpCalleeParam$5 = tmpClusterSSA_tmpReturnArg;
+    $(tmpClusterSSA_tmpReturnArg);
   }
 } else {
-  tmpCalleeParam$5 = tmpReturnArg;
+  $(tmpReturnArg);
 }
-$(tmpCalleeParam$5);
 $({ a: 999, b: 1000 });
 `````
 
@@ -107,30 +103,28 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1 );
-const c = $( b );
-if (c) {
-  const d = $( 1 );
-  const e = $( d );
-  if (e) {
-    const f = $( 2 );
-    const g = $( f );
-    a = g;
+const a = $( 1 );
+const b = $( a );
+if (b) {
+  const c = $( 1 );
+  const d = $( c );
+  if (d) {
+    const e = $( 2 );
+    const f = $( e );
+    $( f );
   }
   else {
-    a = e;
+    $( d );
   }
 }
 else {
-  a = c;
+  $( b );
 }
-$( a );
-const h = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( h );
+$( g );
 `````
 
 ## Globals

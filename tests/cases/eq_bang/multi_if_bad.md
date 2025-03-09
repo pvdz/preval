@@ -28,25 +28,27 @@ const a /*:unknown*/ = $(1);
 const b /*:unknown*/ = $(2);
 const same /*:boolean*/ = a === b;
 if (same) {
+  $(true);
 } else {
   $(`a`);
   $(`b`);
   $(`c`);
+  $(false);
 }
-$(same);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const same = $(1) === $(2);
-if (!same) {
+if ($(1) === $(2)) {
+  $(true);
+} else {
   $(`a`);
   $(`b`);
   $(`c`);
+  $(false);
 }
-$(same);
 `````
 
 ## Pre Normal
@@ -70,18 +72,21 @@ const a = $(1);
 const b = $(2);
 const same = a === b;
 if (same) {
+  $(same);
 } else {
   $(`a`);
   if (same) {
+    $(same);
   } else {
     $(`b`);
     if (same) {
+      $(same);
     } else {
       $(`c`);
+      $(same);
     }
   }
 }
-$(same);
 `````
 
 ## PST Settled
@@ -92,14 +97,14 @@ const a = $( 1 );
 const b = $( 2 );
 const c = a === b;
 if (c) {
-
+  $( true );
 }
 else {
   $( "a" );
   $( "b" );
   $( "c" );
+  $( false );
 }
-$( c );
 `````
 
 ## Globals

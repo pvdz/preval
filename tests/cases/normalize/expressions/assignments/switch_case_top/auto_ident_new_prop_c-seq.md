@@ -80,9 +80,10 @@ if (tmpIfTest) {
   const tmpCompObj = $(b);
   const tmpNewCallee = tmpCompObj.$;
   a = new tmpNewCallee(1);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

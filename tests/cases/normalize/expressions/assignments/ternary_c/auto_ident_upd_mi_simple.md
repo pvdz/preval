@@ -20,34 +20,29 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:number*/ = 1;
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, 1);
 } else {
-  b = 0;
-  a = 0;
   $(0);
+  $(0, 0);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
 if ($(0)) {
   $($(100));
+  $({ a: 999, b: 1000 }, 1);
 } else {
-  b = 0;
-  a = 0;
   $(0);
+  $(0, 0);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -70,37 +65,37 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   const tmpPostUpdArgIdent = $coerce(b, `number`);
   b = tmpPostUpdArgIdent - 1;
   const tmpNestedComplexRhs = b;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 0 );
-if (c) {
-  const d = $( 100 );
-  $( d );
+const a = $( 0 );
+if (a) {
+  const b = $( 100 );
+  $( b );
+  const c = {
+    a: 999,
+    b: 1000,
+  };
+  $( c, 1 );
 }
 else {
-  a = 0;
-  b = 0;
   $( 0 );
+  $( 0, 0 );
 }
-$( b, a );
 `````
 
 ## Globals

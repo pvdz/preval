@@ -28,19 +28,19 @@ if (tmpIfTest) {
   tmpCalleeParam = tmpChainElementCall;
 }
 if (a) {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpIfTest$1 /*:boolean*/ = $ == null;
   if (tmpIfTest$1) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpChainElementCall$1 /*:unknown*/ = $(1);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
+    $(tmpChainElementCall$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -55,16 +55,18 @@ if (!($ == null)) {
   tmpCalleeParam = tmpChainElementCall;
 }
 if (a) {
-  let tmpNestedComplexRhs = undefined;
-  if (!($ == null)) {
-    tmpNestedComplexRhs = $(1);
+  if ($ == null) {
+    $(undefined);
+    $(undefined);
+  } else {
+    const tmpChainElementCall$1 = $(1);
+    $(tmpChainElementCall$1);
+    $(tmpChainElementCall$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -101,10 +103,12 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -123,22 +127,21 @@ else {
   b = d;
 }
 if (a) {
-  let e = undefined;
-  const f = $ == null;
-  if (f) {
-
+  const e = $ == null;
+  if (e) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const g = $( 1 );
-    e = g;
+    const f = $( 1 );
+    $( f );
+    $( f );
   }
-  a = e;
-  $( e );
 }
 else {
   $( b );
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

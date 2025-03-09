@@ -27,15 +27,17 @@ $(x);
 let x___4__ = 5;
 if ($) {
   /*8*/ $(x___12__);
-} /*13*/ else {
+  $(x___16__);
+} /*17*/ else {
+  $(x___21__);
 }
-$(x___17__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12,17       | none           | none
+  - w @4       | ########## | 12,16,21    | none           | none
   - r @12      | 4
-  - r @17      | 4
+  - r @16      | 4
+  - r @21      | 4

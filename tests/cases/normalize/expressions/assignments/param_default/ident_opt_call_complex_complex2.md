@@ -45,35 +45,33 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpChainElementCall$2 /*:unknown*/ = $($);
 const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$2 == null;
 if (tmpIfTest$3) {
+  $(undefined);
   $(undefined);
 } else {
   const tmpCallVal$2 /*:unknown*/ = tmpChainElementCall$2.call;
   const tmpCalleeParam$5 /*:unknown*/ = $(1);
   const tmpChainElementCall$5 /*:unknown*/ = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
-  a = tmpChainElementCall$5;
+  $(tmpChainElementCall$5);
   $(tmpChainElementCall$5);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpChainElementCall$2 = $($);
 if (tmpChainElementCall$2 == null) {
   $(undefined);
+  $(undefined);
 } else {
   const tmpChainElementCall$5 = tmpChainElementCall$2.call.call(tmpChainElementCall$2, $, $(1));
-  a = tmpChainElementCall$5;
+  $(tmpChainElementCall$5);
   $(tmpChainElementCall$5);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -163,20 +161,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( $ );
-const c = b == null;
-if (c) {
+const a = $( $ );
+const b = a == null;
+if (b) {
+  $( undefined );
   $( undefined );
 }
 else {
-  const d = b.call;
-  const e = $( 1 );
-  const f = d.call( b, $, e );
-  a = f;
-  $( f );
+  const c = a.call;
+  const d = $( 1 );
+  const e = c.call( a, $, d );
+  $( e );
+  $( e );
 }
-$( a );
 `````
 
 ## Globals

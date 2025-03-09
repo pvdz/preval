@@ -87,9 +87,10 @@ if (tmpIfTest) {
   const tmpDeleteCompObj = arg;
   const tmpDeleteCompProp = $(`y`);
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
 } else {
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## PST Settled

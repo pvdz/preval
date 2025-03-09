@@ -21,17 +21,18 @@ $(a, arg);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(100);
+const a /*:object*/ = { a: 999, b: 1000 };
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
+  $(a, arg);
 } else {
   $(1);
   $(2);
   const tmpDeleteCompObj /*:unknown*/ = $(arg);
   const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, arg);
 `````
 
 ## Denormalized
@@ -39,15 +40,18 @@ $(a, arg);
 
 `````js filename=intro
 const tmpIfTest = $(100);
+const a = { a: 999, b: 1000 };
 const arg = { y: 1 };
-if (!tmpIfTest) {
+if (tmpIfTest) {
+  $(a, arg);
+} else {
   $(1);
   $(2);
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
 }
-$({ a: 999, b: 1000 }, arg);
 `````
 
 ## Pre Normal
@@ -68,14 +72,15 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
+  $(a, arg);
 } else {
   $(1);
   $(2);
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## PST Settled
@@ -83,22 +88,22 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-const b = { y: 1 };
+const b = {
+  a: 999,
+  b: 1000,
+};
+const c = { y: 1 };
 if (a) {
-
+  $( b, c );
 }
 else {
   $( 1 );
   $( 2 );
-  const c = $( b );
-  const d = $( "y" );
-  delete c[ d ];
+  const d = $( c );
+  const e = $( "y" );
+  delete d[ e ];
+  $( b, c );
 }
-const e = {
-  a: 999,
-  b: 1000,
-};
-$( e, b );
 `````
 
 ## Globals

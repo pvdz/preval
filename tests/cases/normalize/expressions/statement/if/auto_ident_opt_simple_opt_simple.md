@@ -57,11 +57,13 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpIfTest = tmpChainElementObject$1;
+    $(a);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

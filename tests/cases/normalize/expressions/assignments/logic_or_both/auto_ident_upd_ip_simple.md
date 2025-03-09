@@ -53,15 +53,17 @@ b = tmpPostUpdArgIdent + 1;
 a = tmpPostUpdArgIdent;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   const tmpPostUpdArgIdent$1 = $coerce(b, `number`);
   b = tmpPostUpdArgIdent$1 + 1;
   const tmpNestedComplexRhs = tmpPostUpdArgIdent$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled

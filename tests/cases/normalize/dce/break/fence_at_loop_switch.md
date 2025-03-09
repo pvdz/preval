@@ -44,11 +44,12 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
   if (tmpIfTest$1) {
     $(`case`);
+    $(`infiloop, do not eliminate`);
   } else {
     $(`do not visit, default`);
+    $(`infiloop, do not eliminate`);
   }
   while ($LOOP_UNROLL_10) {
-    $(`infiloop, do not eliminate`);
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
@@ -57,16 +58,19 @@ if (tmpIfTest) {
       const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
       if (tmpIfTest$4) {
         $(`case`);
+        $(`infiloop, do not eliminate`);
       } else {
         $(`do not visit, default`);
+        $(`infiloop, do not eliminate`);
       }
     } else {
       break;
     }
   }
+  $(`after (not invoked)`);
 } else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Denormalized
@@ -77,24 +81,29 @@ if ($(true)) {
   $(`loop`);
   if ($(true, `dis`) === $(true, `case`)) {
     $(`case`);
+    $(`infiloop, do not eliminate`);
   } else {
     $(`do not visit, default`);
+    $(`infiloop, do not eliminate`);
   }
   while (true) {
-    $(`infiloop, do not eliminate`);
     if ($(true)) {
       $(`loop`);
       if ($(true, `dis`) === $(true, `case`)) {
         $(`case`);
+        $(`infiloop, do not eliminate`);
       } else {
         $(`do not visit, default`);
+        $(`infiloop, do not eliminate`);
       }
     } else {
       break;
     }
   }
+  $(`after (not invoked)`);
+} else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Pre Normal
@@ -162,12 +171,13 @@ if (a) {
   const d = b === c;
   if (d) {
     $( "case" );
+    $( "infiloop, do not eliminate" );
   }
   else {
     $( "do not visit, default" );
+    $( "infiloop, do not eliminate" );
   }
   while ($LOOP_UNROLL_10) {
-    $( "infiloop, do not eliminate" );
     const e = $( true );
     if (e) {
       $( "loop" );
@@ -176,17 +186,22 @@ if (a) {
       const h = f === g;
       if (h) {
         $( "case" );
+        $( "infiloop, do not eliminate" );
       }
       else {
         $( "do not visit, default" );
+        $( "infiloop, do not eliminate" );
       }
     }
     else {
       break;
     }
   }
+  $( "after (not invoked)" );
 }
-$( "after (not invoked)" );
+else {
+  $( "after (not invoked)" );
+}
 `````
 
 ## Globals

@@ -50,10 +50,11 @@ let c = 3;
 let d = 4;
 if (b) {
   a = c;
+  $(c);
 } else {
   a = d;
+  $(d);
 }
-$(a);
 `````
 
 ## PST Settled

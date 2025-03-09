@@ -77,10 +77,11 @@ let cTail = c;
 if ($) {
   cTail = $(`keep`);
   cTmp = $(cTmp);
+  $(cTmp);
 } else {
   cTmp = cTail;
+  $(cTail);
 }
-$(cTmp);
 `````
 
 ## PST Settled

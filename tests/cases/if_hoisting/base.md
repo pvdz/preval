@@ -52,10 +52,11 @@ $(x);
 let x = 0;
 if ($) {
   x = 1;
+  $(x);
 } else {
   x = 1;
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

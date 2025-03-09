@@ -27,12 +27,13 @@ const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpUpdInc) {
+  $(a, b);
 } else {
   $(100);
+  $(a, b);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
 `````
 
 ## Denormalized
@@ -43,10 +44,13 @@ const b = { x: 1 };
 const tmpUpdObj = $($(b));
 const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
 tmpUpdObj.x = tmpUpdInc;
-if (!tmpUpdInc) {
+const a = { a: 999, b: 1000 };
+if (tmpUpdInc) {
+  $(a, b);
+} else {
   $(100);
+  $(a, b);
 }
-$({ a: 999, b: 1000 }, b);
 `````
 
 ## Pre Normal
@@ -73,10 +77,11 @@ let tmpUpdInc = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
 const tmpIfTest = tmpUpdInc;
 if (tmpIfTest) {
+  $(a, b);
 } else {
   $(100);
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
@@ -90,17 +95,17 @@ const d = c.x;
 const e = $coerce( d, "number" );
 const f = e + 1;
 c.x = f;
-if (f) {
-
-}
-else {
-  $( 100 );
-}
 const g = {
   a: 999,
   b: 1000,
 };
-$( g, a );
+if (f) {
+  $( g, a );
+}
+else {
+  $( 100 );
+  $( g, a );
+}
 `````
 
 ## Globals

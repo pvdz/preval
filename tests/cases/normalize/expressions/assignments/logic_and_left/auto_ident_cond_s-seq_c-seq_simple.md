@@ -22,10 +22,11 @@ const a /*:unknown*/ = $(60);
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a);
 } else {
   $(a);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -35,10 +36,11 @@ $(a);
 const a = $(60);
 if (a) {
   $($(100));
+  $(a);
 } else {
   $(a);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -65,10 +67,12 @@ if (tmpIfTest) {
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -79,11 +83,12 @@ const a = $( 60 );
 if (a) {
   const b = $( 100 );
   $( b );
+  $( a );
 }
 else {
   $( a );
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

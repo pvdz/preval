@@ -22,12 +22,12 @@ $();
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 const tmpBinLhs /*:unknown*/ = $spy(0);
+$();
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
 } else {
-  $spy(1);
+  $();
 }
-$();
 `````
 
 ## Denormalized
@@ -35,10 +35,11 @@ $();
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-if (!($spy(0) === tmpSwitchValue)) {
-  $spy(1);
-}
+const tmpBinLhs = $spy(0);
 $();
+if (!(tmpBinLhs === tmpSwitchValue)) {
+  $();
+}
 `````
 
 ## Pre Normal
@@ -90,14 +91,14 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $spy( 0 );
+$();
 const c = b === a;
 if (c) {
 
 }
 else {
-  $spy( 1 );
+  $();
 }
-$();
 `````
 
 ## Globals
@@ -117,6 +118,16 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
+Post settled calls: BAD!!
+ - 1: 1
+ - 2: 'Creating spy', 1, 1, [0, 0]
+ - 3: 
+ - 4: 
+ - eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!!
+ - 1: 1
+ - 2: 'Creating spy', 1, 1, [0, 0]
+ - 3: 
+ - 4: 
+ - eval returned: undefined

@@ -27,33 +27,28 @@ f(2);
 
 
 `````js filename=intro
-const f /*:(number)=>undefined*/ = function ($$0) {
+const f_t /*:(number)=>undefined*/ = function ($$0) {
   const x /*:number*/ = $$0;
   debugger;
-  if (x) {
-    const obj /*:object*/ = { xyz: x };
-    $(x, obj);
-  } else {
-  }
+  const obj /*:object*/ = { xyz: x };
+  $(x, obj);
   $(`end`);
   return undefined;
 };
-f(1);
-f(2);
+f_t(1);
+f_t(2);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (x) {
-  if (x) {
-    $(x, { xyz: x });
-  }
+const f_t = function (x) {
+  $(x, { xyz: x });
   $(`end`);
 };
-f(1);
-f(2);
+f_t(1);
+f_t(2);
 `````
 
 ## Pre Normal
@@ -86,10 +81,12 @@ const f = function ($$0) {
   const obj = { xyz: x };
   if (x) {
     $(x, obj);
+    $(`end`);
+    return undefined;
   } else {
+    $(`end`);
+    return undefined;
   }
-  $(`end`);
-  return undefined;
 };
 f(1);
 f(2);
@@ -102,10 +99,8 @@ With rename=true
 const a = function($$0 ) {
   const b = $$0;
   debugger;
-  if (b) {
-    const c = { xyz: b };
-    $( b, c );
-  }
+  const c = { xyz: b };
+  $( b, c );
   $( "end" );
   return undefined;
 };

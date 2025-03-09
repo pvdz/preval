@@ -21,10 +21,11 @@ $(a);
 `````js filename=intro
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
+  $(undefined);
 } else {
   $(1);
+  $(undefined);
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -33,10 +34,12 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-if (!($ == null)) {
+if ($ == null) {
+  $(undefined);
+} else {
   $(1);
+  $(undefined);
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -91,12 +94,12 @@ With rename=true
 `````js filename=intro
 const a = $ == null;
 if (a) {
-
+  $( undefined );
 }
 else {
   $( 1 );
+  $( undefined );
 }
-$( undefined );
 const b = {
   a: 999,
   b: 1000,

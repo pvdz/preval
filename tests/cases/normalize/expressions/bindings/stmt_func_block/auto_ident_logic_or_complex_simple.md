@@ -26,10 +26,11 @@ const tmpCalleeParam /*:unknown*/ = $(0);
 const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
   $(a);
+  $(undefined);
 } else {
   $(2);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -39,10 +40,11 @@ $(undefined);
 const a = $($(0));
 if (a) {
   $(a);
+  $(undefined);
 } else {
   $(2);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -68,11 +70,13 @@ let f = function () {
   const tmpCalleeParam = $(0);
   let a = $(tmpCalleeParam);
   if (a) {
+    $(a);
+    return undefined;
   } else {
     a = 2;
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
@@ -86,11 +90,12 @@ const a = $( 0 );
 const b = $( a );
 if (b) {
   $( b );
+  $( undefined );
 }
 else {
   $( 2 );
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

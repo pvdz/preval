@@ -27,9 +27,10 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
   $(tmpCalleeParam);
+  $(999);
 } else {
+  $(999);
 }
-$(999);
 `````
 
 ## Denormalized
@@ -38,8 +39,10 @@ $(999);
 `````js filename=intro
 if ($(1) === $(1)) {
   $({ a: 1, b: 2 });
+  $(999);
+} else {
+  $(999);
 }
-$(999);
 `````
 
 ## Pre Normal
@@ -70,9 +73,10 @@ const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpCalleeParam = { a: 1, b: 2 };
   $(tmpCalleeParam);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -88,8 +92,11 @@ if (c) {
     b: 2,
   };
   $( d );
+  $( 999 );
 }
-$( 999 );
+else {
+  $( 999 );
+}
 `````
 
 ## Globals

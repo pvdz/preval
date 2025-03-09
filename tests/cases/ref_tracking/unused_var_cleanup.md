@@ -36,8 +36,8 @@ if (x) {
     $(`body`);
   }
 } else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Denormalized
@@ -48,8 +48,9 @@ if ($(false)) {
   while (true) {
     $(`body`);
   }
+} else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Pre Normal
@@ -87,10 +88,11 @@ if (x) {
       break;
     }
   }
+  $(`after`);
 } else {
   $tmpLoopUnrollCheck = false;
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## PST Settled
@@ -103,7 +105,9 @@ if (a) {
     $( "body" );
   }
 }
-$( "after" );
+else {
+  $( "after" );
+}
 `````
 
 ## Globals

@@ -79,10 +79,12 @@ let f = function () {
   const tmpIfTest = g(1);
   if (tmpIfTest) {
     $(x);
+    $(x);
+    return x;
   } else {
+    $(x);
+    return x;
   }
-  $(x);
-  return x;
 };
 let g = function () {
   debugger;

@@ -24,40 +24,41 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  a = undefined;
   const b /*:object*/ = { x: 1 };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+    $(undefined);
   } else {
     const tmpChainRootComputed /*:unknown*/ = $(`x`);
     const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-    a = tmpChainElementObject;
+    $(tmpChainElementObject);
   }
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1) === $(1)) {
-  a = undefined;
   const tmpChainElementCall = $({ x: 1 });
-  if (!(tmpChainElementCall == null)) {
+  if (tmpChainElementCall == null) {
+    $(undefined);
+  } else {
     const tmpChainRootComputed = $(`x`);
-    a = tmpChainElementCall[tmpChainRootComputed];
+    $(tmpChainElementCall[tmpChainRootComputed]);
   }
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -97,39 +98,42 @@ if (tmpIfTest) {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
+    $(tmpChainElementObject);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
+const a = $( 1 );
 const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  a = undefined;
-  const e = { x: 1 };
-  const f = $( e );
-  const g = f == null;
-  if (g) {
-
+const c = a === b;
+if (c) {
+  const d = { x: 1 };
+  const e = $( d );
+  const f = e == null;
+  if (f) {
+    $( undefined );
   }
   else {
-    const h = $( "x" );
-    const i = f[ h ];
-    a = i;
+    const g = $( "x" );
+    const h = e[ g ];
+    $( h );
   }
 }
-$( a );
+else {
+  const i = {
+    a: 999,
+    b: 1000,
+  };
+  $( i );
+}
 `````
 
 ## Globals

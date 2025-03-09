@@ -49,10 +49,11 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
 let tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
+  $(a);
 } else {
   tmpIfTest = 2;
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

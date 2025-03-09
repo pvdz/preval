@@ -75,11 +75,13 @@ a = tmpNestedAssignArrPatternRhs;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, x, y);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a, x, y);
 }
-$(tmpCalleeParam);
-$(a, x, y);
 `````
 
 ## PST Settled

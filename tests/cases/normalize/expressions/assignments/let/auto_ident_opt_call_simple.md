@@ -19,31 +19,29 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   $(undefined);
+  $(undefined);
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
+  $(tmpChainElementCall);
   $(tmpChainElementCall);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 if ($ == null) {
+  $(undefined);
   $(undefined);
 } else {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
+  $(tmpChainElementCall);
   $(tmpChainElementCall);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -78,17 +76,16 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
-if (b) {
+const a = $ == null;
+if (a) {
+  $( undefined );
   $( undefined );
 }
 else {
-  const c = $( 1 );
-  a = c;
-  $( c );
+  const b = $( 1 );
+  $( b );
+  $( b );
 }
-$( a );
 `````
 
 ## Globals

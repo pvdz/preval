@@ -24,24 +24,31 @@ $(f());
 
 `````js filename=intro
 const tmpIfTest /*:boolean*/ = $ == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
+  $(undefined);
 } else {
   $(1);
+  $(a);
+  $(undefined);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
-$(undefined);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if (!($ == null)) {
+const tmpIfTest = $ == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+  $(undefined);
+} else {
   $(1);
+  $(a);
+  $(undefined);
 }
-$({ a: 999, b: 1000 });
-$(undefined);
 `````
 
 ## Pre Normal
@@ -70,10 +77,12 @@ let f = function () {
   const tmpIfTest = tmpChainRootCall != null;
   if (tmpIfTest) {
     const tmpChainElementCall = tmpChainRootCall(1);
+    $(a);
+    return undefined;
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
@@ -84,18 +93,19 @@ With rename=true
 
 `````js filename=intro
 const a = $ == null;
-if (a) {
-
-}
-else {
-  $( 1 );
-}
 const b = {
   a: 999,
   b: 1000,
 };
-$( b );
-$( undefined );
+if (a) {
+  $( b );
+  $( undefined );
+}
+else {
+  $( 1 );
+  $( b );
+  $( undefined );
+}
 `````
 
 ## Globals

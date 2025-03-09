@@ -20,11 +20,12 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam /*:unknown*/ = $(100);
 const b /*:object*/ = { x: 1 };
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(b);
   const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
@@ -32,29 +33,27 @@ if (tmpCalleeParam) {
   const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
   const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
   tmpUpdObj.x = tmpUpdInc;
-  a = tmpUpdInc;
   $(tmpUpdInc);
+  $(tmpUpdInc, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 const b = { x: 1 };
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
+  $({ a: 999, b: 1000 }, b);
 } else {
   const tmpUpdObj = $($(b));
   const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
   tmpUpdObj.x = tmpUpdInc;
-  a = tmpUpdInc;
   $(tmpUpdInc);
+  $(tmpUpdInc, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -75,6 +74,8 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   const tmpCalleeParam$1 = $(b);
   let tmpUpdObj = $(tmpCalleeParam$1);
@@ -85,35 +86,35 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = tmpUpdInc;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 100 );
-const c = { x: 1 };
-if (b) {
-  $( b );
+const a = $( 100 );
+const b = { x: 1 };
+if (a) {
+  $( a );
+  const c = {
+    a: 999,
+    b: 1000,
+  };
+  $( c, b );
 }
 else {
-  const d = $( c );
+  const d = $( b );
   const e = $( d );
   const f = e.x;
   const g = $coerce( f, "number" );
   const h = g + 1;
   e.x = h;
-  a = h;
   $( h );
+  $( h, b );
 }
-$( a, c );
 `````
 
 ## Globals

@@ -82,10 +82,11 @@ tmpBinaryLeft = a.x;
 tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {
   tmpArg = 2;
+  f(tmpArg);
 } else {
   tmpArg = 3;
+  f(tmpArg);
 }
-f(tmpArg);
 `````
 
 ## PST Settled

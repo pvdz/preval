@@ -38,11 +38,12 @@ const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
 if (tmpIfTest$1787) {
   const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL} (at EOF)`;
   $(`-->`, tmpClusterSSA_fullErrmsg);
+  $(undefined);
 } else {
   const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL}`;
   $(`-->`, tmpBinBothLhs$253);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -53,10 +54,11 @@ const lastType = $(2097173);
 const tmpStringConcatL = $coerce($spy(), `plustr`);
 if (lastType === 2097173) {
   $(`-->`, `Parser error! ${tmpStringConcatL} (at EOF)`);
+  $(undefined);
 } else {
   $(`-->`, `Parser error! ${tmpStringConcatL}`);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -116,12 +118,13 @@ const d = a === 2097173;
 if (d) {
   const e = `Parser error! ${c} (at EOF)`;
   $( "-->", e );
+  $( undefined );
 }
 else {
   const f = `Parser error! ${c}`;
   $( "-->", f );
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

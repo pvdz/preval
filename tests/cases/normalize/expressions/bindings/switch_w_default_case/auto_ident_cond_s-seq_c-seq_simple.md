@@ -87,11 +87,12 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 = 30;
   if (tmpIfTest$5) {
     a = $(60);
+    $(a);
   } else {
     const tmpCalleeParam = $(100);
     a = $(tmpCalleeParam);
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;

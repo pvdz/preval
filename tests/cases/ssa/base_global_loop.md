@@ -29,6 +29,7 @@ let tmpClusterSSA_x /*:number*/ = tmpPostUpdArgIdent + 1;
 $(tmpClusterSSA_x);
 const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
 if (tmpIfTest) {
+  $(tmpClusterSSA_x);
 } else {
   while ($LOOP_UNROLL_10) {
     tmpClusterSSA_x = tmpClusterSSA_x + 1;
@@ -39,8 +40,8 @@ if (tmpIfTest) {
     } else {
     }
   }
+  $(tmpClusterSSA_x);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Denormalized
@@ -51,7 +52,9 @@ const x = $(3);
 $(x);
 let tmpClusterSSA_x = $coerce(x, `number`) + 1;
 $(tmpClusterSSA_x);
-if (!(tmpClusterSSA_x > 5)) {
+if (tmpClusterSSA_x > 5) {
+  $(tmpClusterSSA_x);
+} else {
   while (true) {
     tmpClusterSSA_x = tmpClusterSSA_x + 1;
     $(tmpClusterSSA_x);
@@ -59,8 +62,8 @@ if (!(tmpClusterSSA_x > 5)) {
       break;
     }
   }
+  $(tmpClusterSSA_x);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Pre Normal
@@ -107,7 +110,7 @@ let c = b + 1;
 $( c );
 const d = c > 5;
 if (d) {
-
+  $( c );
 }
 else {
   while ($LOOP_UNROLL_10) {
@@ -118,8 +121,8 @@ else {
       break;
     }
   }
+  $( c );
 }
-$( c );
 `````
 
 ## Globals

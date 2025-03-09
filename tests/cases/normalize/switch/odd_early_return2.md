@@ -39,9 +39,10 @@ $(tmpCalleeParam);
 `````js filename=intro
 if ($) {
   $(2);
+  $(undefined);
 } else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -50,8 +51,10 @@ $(undefined);
 `````js filename=intro
 if ($) {
   $(2);
+  $(undefined);
+} else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -123,8 +126,11 @@ With rename=true
 `````js filename=intro
 if ($) {
   $( 2 );
+  $( undefined );
 }
-$( undefined );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

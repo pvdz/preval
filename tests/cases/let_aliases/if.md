@@ -43,9 +43,10 @@ let x /*:unknown*/ = $(1);
 const a /*:unknown*/ = x;
 if ($) {
   $(a, x);
+  $(f);
 } else {
+  $(f);
 }
-$(f);
 `````
 
 ## Denormalized
@@ -64,8 +65,10 @@ let x = $(1);
 const a = x;
 if ($) {
   $(a, x);
+  $(f);
+} else {
+  $(f);
 }
-$(f);
 `````
 
 ## Pre Normal
@@ -110,9 +113,10 @@ const a = x;
 if ($) {
   const b = x;
   $(a, x);
+  $(f);
 } else {
+  $(f);
 }
-$(f);
 `````
 
 ## PST Settled
@@ -133,8 +137,11 @@ let b = $( 1 );
 const d = b;
 if ($) {
   $( d, b );
+  $( a );
 }
-$( a );
+else {
+  $( a );
+}
 `````
 
 ## Globals

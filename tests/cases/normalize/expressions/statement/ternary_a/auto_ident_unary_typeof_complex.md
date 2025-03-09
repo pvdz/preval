@@ -55,10 +55,11 @@ const tmpUnaryArg = $(arg);
 const tmpIfTest = typeof tmpUnaryArg;
 if (tmpIfTest) {
   $(100);
+  $(a, arg);
 } else {
   $(200);
+  $(a, arg);
 }
-$(a, arg);
 `````
 
 ## PST Settled

@@ -63,10 +63,12 @@ a = { b: tmpObjLitVal };
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(1);
 } else {
+  $(tmpCalleeParam);
+  $(1);
 }
-$(tmpCalleeParam);
-$(1);
 const tmpAssignMemLhsObj = $(a);
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpAssignMemRhs = $(2);

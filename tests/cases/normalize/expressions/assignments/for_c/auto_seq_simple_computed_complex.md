@@ -33,9 +33,10 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(1);
 } else {
+  $(1);
 }
-$(1);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
@@ -58,8 +59,10 @@ if ($(1)) {
       break;
     }
   }
+  $(1);
+} else {
+  $(1);
 }
-$(1);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
@@ -126,8 +129,11 @@ if (b) {
       break;
     }
   }
+  $( 1 );
 }
-$( 1 );
+else {
+  $( 1 );
+}
 const f = $( "b" );
 const g = $( 2 );
 a[f] = g;

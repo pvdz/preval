@@ -52,10 +52,11 @@ const tmpArrElement$1 = 2;
 const tmpArrElement$3 = $(3);
 const tmpIfTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 if (tmpIfTest) {
+  $(a);
 } else {
   $(100);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

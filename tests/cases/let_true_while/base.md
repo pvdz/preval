@@ -37,9 +37,10 @@ if (tmpClusterSSA_y) {
       break;
     }
   }
+  $(tmpClusterSSA_x, tmpClusterSSA_y);
 } else {
+  $(tmpClusterSSA_x, tmpClusterSSA_y);
 }
-$(tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
 ## Denormalized
@@ -59,8 +60,10 @@ if (tmpClusterSSA_y) {
       break;
     }
   }
+  $(tmpClusterSSA_x, tmpClusterSSA_y);
+} else {
+  $(tmpClusterSSA_x, tmpClusterSSA_y);
 }
-$(tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
 ## Pre Normal
@@ -116,8 +119,11 @@ if (c) {
       break;
     }
   }
+  $( d, c );
 }
-$( d, c );
+else {
+  $( d, c );
+}
 `````
 
 ## Globals

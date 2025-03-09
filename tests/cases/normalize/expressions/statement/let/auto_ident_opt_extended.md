@@ -61,10 +61,12 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   xyz = tmpChainElementObject$3;
+  $(tmpChainElementObject$3);
+  $(a);
 } else {
+  $(xyz);
+  $(a);
 }
-$(xyz);
-$(a);
 `````
 
 ## PST Settled

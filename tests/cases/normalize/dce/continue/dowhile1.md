@@ -92,9 +92,10 @@ while (true) {
           break;
         }
       }
+      $(`keep, wont eval due to infinite loop`);
     } else {
+      $(`keep, wont eval due to infinite loop`);
     }
-    $(`keep, wont eval due to infinite loop`);
   } else {
     break;
   }
@@ -116,8 +117,10 @@ while (true) {
           break;
         }
       }
+      $(`keep, wont eval due to infinite loop`);
+    } else {
+      $(`keep, wont eval due to infinite loop`);
     }
-    $(`keep, wont eval due to infinite loop`);
   } else {
     break;
   }
@@ -192,8 +195,11 @@ while (true) {
           break;
         }
       }
+      $( "keep, wont eval due to infinite loop" );
     }
-    $( "keep, wont eval due to infinite loop" );
+    else {
+      $( "keep, wont eval due to infinite loop" );
+    }
   }
   else {
     break;

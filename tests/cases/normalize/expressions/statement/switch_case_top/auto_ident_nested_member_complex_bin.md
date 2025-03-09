@@ -31,6 +31,7 @@ const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
@@ -38,10 +39,10 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
+  $(a, b, c, 3, 4);
 } else {
+  $(a, b, c, 3, 4);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, c, 3, 4);
 `````
 
 ## Denormalized
@@ -51,6 +52,7 @@ $(a, b, c, 3, 4);
 const tmpIfTest = $(1) === $(1);
 const b = { x: 1 };
 const c = { y: 2 };
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
@@ -58,8 +60,10 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
+  $(a, b, c, 3, 4);
+} else {
+  $(a, b, c, 3, 4);
 }
-$({ a: 999, b: 1000 }, b, c, 3, 4);
 `````
 
 ## Pre Normal
@@ -105,9 +109,10 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(a, b, c, d, e);
 } else {
+  $(a, b, c, d, e);
 }
-$(a, b, c, d, e);
 `````
 
 ## PST Settled
@@ -119,19 +124,22 @@ const b = $( 1 );
 const c = a === b;
 const d = { x: 1 };
 const e = { y: 2 };
-if (c) {
-  const f = $( d );
-  const g = $( "x" );
-  const h = $( e );
-  const i = $( "y" );
-  h[i] = 7;
-  f[g] = 7;
-}
-const j = {
+const f = {
   a: 999,
   b: 1000,
 };
-$( j, d, e, 3, 4 );
+if (c) {
+  const g = $( d );
+  const h = $( "x" );
+  const i = $( e );
+  const j = $( "y" );
+  i[j] = 7;
+  g[h] = 7;
+  $( f, d, e, 3, 4 );
+}
+else {
+  $( f, d, e, 3, 4 );
+}
 `````
 
 ## Globals

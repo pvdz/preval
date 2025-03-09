@@ -39,9 +39,10 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(`after (not invoked)`);
 } else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Denormalized
@@ -57,8 +58,10 @@ if ($(true)) {
       break;
     }
   }
+  $(`after (not invoked)`);
+} else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Pre Normal
@@ -118,8 +121,11 @@ if (a) {
       break;
     }
   }
+  $( "after (not invoked)" );
 }
-$( "after (not invoked)" );
+else {
+  $( "after (not invoked)" );
+}
 `````
 
 ## Globals

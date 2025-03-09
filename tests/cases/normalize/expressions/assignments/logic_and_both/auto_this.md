@@ -49,10 +49,12 @@ let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   a = undefined;
   tmpCalleeParam = undefined;
+  $(undefined);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled

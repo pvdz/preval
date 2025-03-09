@@ -23,18 +23,12 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-let tmpClusterSSA_a /*:unknown*/ = new tmpNewCallee(1);
-const tmpCalleeParam /*:unknown*/ = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
-  const tmpCompObj$1 /*:unknown*/ = $(b);
-  const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1.$;
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(tmpClusterSSA_a);
+new tmpNewCallee(1);
+const tmpCompObj$1 /*:unknown*/ = $(b);
+const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1.$;
+const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Denormalized
@@ -43,17 +37,11 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const b = { $: $ };
 const tmpNewCallee = $(b).$;
-let tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpCalleeParam = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
-  const tmpNewCallee$1 = $(b).$;
-  const tmpNestedComplexRhs = new tmpNewCallee$1(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(tmpClusterSSA_a);
+new tmpNewCallee(1);
+const tmpNewCallee$1 = $(b).$;
+const tmpNestedComplexRhs = new tmpNewCallee$1(1);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -82,10 +70,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -95,19 +85,12 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = b.$;
-let d = new c( 1 );
-const e = d;
-if (d) {
-  const f = $( a );
-  const g = f.$;
-  const h = new g( 1 );
-  d = h;
-  $( h );
-}
-else {
-  $( e );
-}
-$( d );
+new c( 1 );
+const d = $( a );
+const e = d.$;
+const f = new e( 1 );
+$( f );
+$( f );
 `````
 
 ## Globals

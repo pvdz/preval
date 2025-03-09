@@ -25,6 +25,7 @@ $(a, b, c, d);
 const tmpIfTest /*:unknown*/ = $(100);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
@@ -32,10 +33,10 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+  $(a, b, c, 3);
 } else {
+  $(a, b, c, 3);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, c, 3);
 `````
 
 ## Denormalized
@@ -45,6 +46,7 @@ $(a, b, c, 3);
 const tmpIfTest = $(100);
 const b = { x: 1 };
 const c = { y: 2 };
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
@@ -52,8 +54,10 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
+  $(a, b, c, 3);
+} else {
+  $(a, b, c, 3);
 }
-$({ a: 999, b: 1000 }, b, c, 3);
 `````
 
 ## Pre Normal
@@ -88,9 +92,10 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(a, b, c, d);
 } else {
+  $(a, b, c, d);
 }
-$(a, b, c, d);
 `````
 
 ## PST Settled
@@ -100,19 +105,22 @@ With rename=true
 const a = $( 100 );
 const b = { x: 1 };
 const c = { y: 2 };
-if (a) {
-  const d = $( b );
-  const e = $( "x" );
-  const f = $( c );
-  const g = $( "y" );
-  f[g] = 3;
-  d[e] = 3;
-}
-const h = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( h, b, c, 3 );
+if (a) {
+  const e = $( b );
+  const f = $( "x" );
+  const g = $( c );
+  const h = $( "y" );
+  g[h] = 3;
+  e[f] = 3;
+  $( d, b, c, 3 );
+}
+else {
+  $( d, b, c, 3 );
+}
 `````
 
 ## Globals

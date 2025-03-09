@@ -21,36 +21,38 @@ $(a);
 const tmpCalleeParam$1 /*:unknown*/ = $(0);
 let a /*:unknown*/ = $(tmpCalleeParam$1);
 if (a) {
-  $(a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(1);
   a = $(tmpCalleeParam$3);
   if (a) {
-    $(a);
   } else {
     const tmpCalleeParam$5 /*:unknown*/ = $(2);
     a = $(tmpCalleeParam$5);
-    if (a) {
-      $(a);
+  }
+}
+if (a) {
+  $(a);
+  $(a);
+} else {
+  const tmpCalleeParam$7 /*:unknown*/ = $(0);
+  const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
+  if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
+  } else {
+    const tmpCalleeParam$9 /*:unknown*/ = $(1);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$9);
+    if (tmpClusterSSA_tmpNestedComplexRhs) {
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
     } else {
-      const tmpCalleeParam$7 /*:unknown*/ = $(0);
-      let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
-      if (tmpNestedComplexRhs) {
-      } else {
-        const tmpCalleeParam$9 /*:unknown*/ = $(1);
-        tmpNestedComplexRhs = $(tmpCalleeParam$9);
-        if (tmpNestedComplexRhs) {
-        } else {
-          const tmpCalleeParam$11 /*:unknown*/ = $(2);
-          tmpNestedComplexRhs = $(tmpCalleeParam$11);
-        }
-      }
-      a = tmpNestedComplexRhs;
-      $(tmpNestedComplexRhs);
+      const tmpCalleeParam$11 /*:unknown*/ = $(2);
+      const tmpClusterSSA_tmpNestedComplexRhs$1 /*:unknown*/ = $(tmpCalleeParam$11);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
     }
   }
 }
-$(a);
 `````
 
 ## Denormalized
@@ -58,30 +60,32 @@ $(a);
 
 `````js filename=intro
 let a = $($(0));
+if (!a) {
+  a = $($(1));
+  if (!a) {
+    a = $($(2));
+  }
+}
 if (a) {
   $(a);
+  $(a);
 } else {
-  a = $($(1));
-  if (a) {
-    $(a);
+  const tmpNestedComplexRhs = $($(0));
+  if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   } else {
-    a = $($(2));
-    if (a) {
-      $(a);
+    const tmpClusterSSA_tmpNestedComplexRhs = $($(1));
+    if (tmpClusterSSA_tmpNestedComplexRhs) {
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
     } else {
-      let tmpNestedComplexRhs = $($(0));
-      if (!tmpNestedComplexRhs) {
-        tmpNestedComplexRhs = $($(1));
-        if (!tmpNestedComplexRhs) {
-          tmpNestedComplexRhs = $($(2));
-        }
-      }
-      a = tmpNestedComplexRhs;
-      $(tmpNestedComplexRhs);
+      const tmpClusterSSA_tmpNestedComplexRhs$1 = $($(2));
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
     }
   }
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -112,6 +116,8 @@ if (a) {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$7 = $(0);
   let tmpNestedComplexRhs = $(tmpCalleeParam$7);
@@ -127,9 +133,9 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -139,43 +145,45 @@ With rename=true
 const a = $( 0 );
 let b = $( a );
 if (b) {
-  $( b );
+
 }
 else {
   const c = $( 1 );
   b = $( c );
   if (b) {
-    $( b );
+
   }
   else {
     const d = $( 2 );
     b = $( d );
-    if (b) {
-      $( b );
+  }
+}
+if (b) {
+  $( b );
+  $( b );
+}
+else {
+  const e = $( 0 );
+  const f = $( e );
+  if (f) {
+    $( f );
+    $( f );
+  }
+  else {
+    const g = $( 1 );
+    const h = $( g );
+    if (h) {
+      $( h );
+      $( h );
     }
     else {
-      const e = $( 0 );
-      let f = $( e );
-      if (f) {
-
-      }
-      else {
-        const g = $( 1 );
-        f = $( g );
-        if (f) {
-
-        }
-        else {
-          const h = $( 2 );
-          f = $( h );
-        }
-      }
-      b = f;
-      $( f );
+      const i = $( 2 );
+      const j = $( i );
+      $( j );
+      $( j );
     }
   }
 }
-$( b );
 `````
 
 ## Globals

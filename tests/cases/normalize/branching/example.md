@@ -291,10 +291,11 @@ const tmpCalleeParam = function ($$0, $$1) {
       const tmpIfTest$3 = tmpBinLhs$1 === `SpreadElement`;
       if (tmpIfTest$3) {
         tmpCalleeParam$3 = AST.spreadElement(tmpName);
+        $dotCall(tmpCallVal$3, tmpCallObj$3, `push`, tmpCalleeParam$3);
       } else {
         tmpCalleeParam$3 = AST.identifier(tmpName);
+        $dotCall(tmpCallVal$3, tmpCallObj$3, `push`, tmpCalleeParam$3);
       }
-      $dotCall(tmpCallVal$3, tmpCallObj$3, `push`, tmpCalleeParam$3);
     } else {
       newElements.push(anode);
     }

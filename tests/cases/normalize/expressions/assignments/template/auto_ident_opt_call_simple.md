@@ -18,33 +18,31 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   $(`before  undefined  after`);
+  $(undefined);
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpChainElementCall);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 if ($ == null) {
   $(`before  undefined  after`);
+  $(undefined);
 } else {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
   $(`before  ${tmpChainElementCall}  after`);
+  $(tmpChainElementCall);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -83,19 +81,18 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
-if (b) {
+const a = $ == null;
+if (a) {
   $( "before  undefined  after" );
+  $( undefined );
 }
 else {
-  const c = $( 1 );
-  a = c;
-  const d = $coerce( c, "string" );
-  const e = `before  ${d}  after`;
-  $( e );
+  const b = $( 1 );
+  const c = $coerce( b, "string" );
+  const d = `before  ${c}  after`;
+  $( d );
+  $( b );
 }
-$( a );
 `````
 
 ## Globals

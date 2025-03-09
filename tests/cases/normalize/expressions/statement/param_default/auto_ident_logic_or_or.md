@@ -22,16 +22,18 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(0);
 const p /*:unknown*/ = $(tmpCalleeParam);
 if (p) {
+  $(undefined);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
   const tmpClusterSSA_p /*:unknown*/ = $(tmpCalleeParam$1);
   if (tmpClusterSSA_p) {
+    $(undefined);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
     $(tmpCalleeParam$3);
+    $(undefined);
   }
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -40,12 +42,16 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-if (!$($(0))) {
-  if (!$($(1))) {
+if ($($(0))) {
+  $(undefined);
+} else {
+  if ($($(1))) {
+    $(undefined);
+  } else {
     $($(2));
+    $(undefined);
   }
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -106,20 +112,20 @@ With rename=true
 const a = $( 0 );
 const b = $( a );
 if (b) {
-
+  $( undefined );
 }
 else {
   const c = $( 1 );
   const d = $( c );
   if (d) {
-
+    $( undefined );
   }
   else {
     const e = $( 2 );
     $( e );
+    $( undefined );
   }
 }
-$( undefined );
 const f = {
   a: 999,
   b: 1000,

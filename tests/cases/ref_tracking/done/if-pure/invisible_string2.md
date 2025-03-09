@@ -33,17 +33,17 @@ if (true) {
 let b___4__ = `def`;
 if ($) {
   /*9*/ b___13__ = $1;
-} /*14*/ else {
-  b___18__ = $2;
+  $($1);
+} /*18*/ else {
+  b___22__ = $2;
+  $($2);
 }
-$(b___22__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 b:
-  - w @4       | ########## | not read    | none           | 13,18
-  - w @13      | ########## | 22          | 4              | none
-  - w @18      | ########## | 22          | 4              | none
-  - r @22      | 13,18
+  - w @4       | ########## | not read    | none           | 13,22
+  - w @13      | ########## | not read    | 4              | none
+  - w @22      | ########## | not read    | 4              | none

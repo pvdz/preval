@@ -39,9 +39,10 @@ if (tmpIfTest) {
   const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
   arrPatternSplat[0];
   arrPatternSplat[1];
+  $(1, 2, z);
 } else {
+  $(1, 2, z);
 }
-$(1, 2, z);
 `````
 
 ## Denormalized
@@ -57,8 +58,10 @@ if (tmpIfTest) {
   const arrPatternSplat = [...arrAssignPatternRhs];
   arrPatternSplat[0];
   arrPatternSplat[1];
+  $(1, 2, z);
+} else {
+  $(1, 2, z);
 }
-$(1, 2, z);
 `````
 
 ## Pre Normal
@@ -124,8 +127,11 @@ if (c) {
   const f = [ ...e ];
   f[ 0 ];
   f[ 1 ];
+  $( 1, 2, d );
 }
-$( 1, 2, d );
+else {
+  $( 1, 2, d );
+}
 `````
 
 ## Globals

@@ -20,58 +20,64 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 } else {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpObjLitVal /*:object*/ = { y: 1 };
   const b /*:object*/ = { x: tmpObjLitVal };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpChainRootComputed /*:unknown*/ = $(`x`);
     const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
     if (tmpIfTest$3) {
+      $(undefined);
+      $(undefined);
     } else {
       const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
       const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-      tmpNestedComplexRhs = tmpChainElementObject$1;
+      $(tmpChainElementObject$1);
+      $(tmpChainElementObject$1);
     }
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(0)) {
   $($(100));
+  $({ a: 999, b: 1000 });
 } else {
-  let tmpNestedComplexRhs = undefined;
   const tmpObjLitVal = { y: 1 };
   const tmpChainElementCall = $({ x: tmpObjLitVal });
-  if (!(tmpChainElementCall == null)) {
+  if (tmpChainElementCall == null) {
+    $(undefined);
+    $(undefined);
+  } else {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    if (!(tmpChainElementObject == null)) {
+    if (tmpChainElementObject == null) {
+      $(undefined);
+      $(undefined);
+    } else {
       const tmpChainRootComputed$1 = $(`y`);
-      tmpNestedComplexRhs = tmpChainElementObject[tmpChainRootComputed$1];
+      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      $(tmpChainElementObject$1);
+      $(tmpChainElementObject$1);
     }
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -95,6 +101,8 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall = $;
@@ -114,50 +122,50 @@ if (tmpIfTest) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 0 );
-if (b) {
-  const c = $( 100 );
+const a = $( 0 );
+if (a) {
+  const b = $( 100 );
+  $( b );
+  const c = {
+    a: 999,
+    b: 1000,
+  };
   $( c );
 }
 else {
-  let d = undefined;
-  const e = { y: 1 };
-  const f = { x: e };
-  const g = $( f );
-  const h = g == null;
-  if (h) {
-
+  const d = { y: 1 };
+  const e = { x: d };
+  const f = $( e );
+  const g = f == null;
+  if (g) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const i = $( "x" );
-    const j = g[ i ];
-    const k = j == null;
-    if (k) {
-
+    const h = $( "x" );
+    const i = f[ h ];
+    const j = i == null;
+    if (j) {
+      $( undefined );
+      $( undefined );
     }
     else {
-      const l = $( "y" );
-      const m = j[ l ];
-      d = m;
+      const k = $( "y" );
+      const l = i[ k ];
+      $( l );
+      $( l );
     }
   }
-  a = d;
-  $( d );
 }
-$( a );
 `````
 
 ## Globals

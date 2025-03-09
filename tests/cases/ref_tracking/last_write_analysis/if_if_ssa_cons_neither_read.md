@@ -37,9 +37,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     $(`123`);
+    $(tmpClusterSSA_x);
   } else {
+    $(tmpClusterSSA_x);
   }
-  $(tmpClusterSSA_x);
 } else {
 }
 `````
@@ -54,8 +55,10 @@ if ($(1)) {
   const tmpClusterSSA_x = $(`c`);
   if ($(2)) {
     $(`123`);
+    $(tmpClusterSSA_x);
+  } else {
+    $(tmpClusterSSA_x);
   }
-  $(tmpClusterSSA_x);
 }
 `````
 
@@ -88,9 +91,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
     $(`123`);
+    $(x);
   } else {
+    $(x);
   }
-  $(x);
 } else {
 }
 `````
@@ -108,8 +112,11 @@ if (b) {
   const d = $( 2 );
   if (d) {
     $( "123" );
+    $( c );
   }
-  $( c );
+  else {
+    $( c );
+  }
 }
 `````
 

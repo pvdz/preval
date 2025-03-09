@@ -48,10 +48,11 @@ let x = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   x = $(`fail`);
+  $(`bad`);
 } else {
   x = arrPatternBeforeDefault;
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## PST Settled

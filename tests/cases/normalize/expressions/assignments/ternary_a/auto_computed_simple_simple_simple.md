@@ -56,10 +56,11 @@ a = { b: tmpObjLitVal };
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 a.b = 2;
 $(a);
 `````

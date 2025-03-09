@@ -18,42 +18,47 @@ $(a);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-    tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+    a = tmpNestedAssignObjPatternRhs$1.a;
     if (tmpNestedAssignObjPatternRhs$1) {
     } else {
       break;
     }
   }
+  $(a);
 } else {
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
-let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   while (true) {
     $(1);
     const tmpNestedAssignObjPatternRhs$1 = $({ a: 1, b: 2 });
-    tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+    a = tmpNestedAssignObjPatternRhs$1.a;
     if (!tmpNestedAssignObjPatternRhs$1) {
       break;
     }
   }
+  $(a);
+} else {
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -94,30 +99,34 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {
+let a = undefined;
+const b = {
   a: 1,
   b: 2,
 };
-const b = $( a );
-let c = b.a;
-if (b) {
+const c = $( b );
+const d = c.a;
+if (c) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const d = {
+    const e = {
       a: 1,
       b: 2,
     };
-    const e = $( d );
-    c = e.a;
-    if (e) {
+    const f = $( e );
+    a = f.a;
+    if (f) {
 
     }
     else {
       break;
     }
   }
+  $( a );
 }
-$( c );
+else {
+  $( d );
+}
 `````
 
 ## Globals

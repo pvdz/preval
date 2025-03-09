@@ -55,10 +55,11 @@ const tmpBinLhs = a.x;
 const tmpIfTest = tmpBinLhs === 1;
 if (tmpIfTest) {
   tmpCalleeParam = 2;
+  tmpCallCallee(tmpCalleeParam);
 } else {
   tmpCalleeParam = 3;
+  tmpCallCallee(tmpCalleeParam);
 }
-tmpCallCallee(tmpCalleeParam);
 `````
 
 ## PST Settled

@@ -24,19 +24,18 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-let tmpClusterSSA_a /*:unknown*/ = delete tmpDeleteObj.y;
-const tmpCalleeParam /*:unknown*/ = tmpClusterSSA_a;
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 if (tmpClusterSSA_a) {
   $(1);
   $(2);
   const tmpDeleteObj$1 /*:unknown*/ = $(arg);
   const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj$1.y;
-  tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs, arg);
 } else {
-  $(tmpCalleeParam);
+  $(false);
+  $(false, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Denormalized
@@ -47,19 +46,17 @@ $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-let tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpCalleeParam = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
+if (delete tmpDeleteObj.y) {
   $(1);
   $(2);
   const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
-  tmpClusterSSA_a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs, arg);
 } else {
-  $(tmpCalleeParam);
+  $(false);
+  $(false, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Pre Normal
@@ -90,10 +87,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, arg);
 } else {
+  $(tmpCalleeParam);
+  $(a, arg);
 }
-$(tmpCalleeParam);
-$(a, arg);
 `````
 
 ## PST Settled
@@ -104,20 +103,19 @@ $( 1 );
 $( 2 );
 const a = { y: 1 };
 const b = $( a );
-let c = delete b.y;
-const d = c;
+const c = delete b.y;
 if (c) {
   $( 1 );
   $( 2 );
-  const e = $( a );
-  const f = delete e.y;
-  c = f;
-  $( f );
+  const d = $( a );
+  const e = delete d.y;
+  $( e );
+  $( e, a );
 }
 else {
-  $( d );
+  $( false );
+  $( false, a );
 }
-$( c, a );
 `````
 
 ## Globals

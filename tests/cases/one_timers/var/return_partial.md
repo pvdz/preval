@@ -31,11 +31,13 @@ $(x);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(`a`);
+  $(`c`);
+  $(undefined);
 } else {
   $(`b`);
+  $(`c`);
+  $(undefined);
 }
-$(`c`);
-$(undefined);
 `````
 
 ## Denormalized
@@ -44,11 +46,13 @@ $(undefined);
 `````js filename=intro
 if ($(1)) {
   $(`a`);
+  $(`c`);
+  $(undefined);
 } else {
   $(`b`);
+  $(`c`);
+  $(undefined);
 }
-$(`c`);
-$(undefined);
 `````
 
 ## Pre Normal
@@ -104,12 +108,14 @@ With rename=true
 const a = $( 1 );
 if (a) {
   $( "a" );
+  $( "c" );
+  $( undefined );
 }
 else {
   $( "b" );
+  $( "c" );
+  $( undefined );
 }
-$( "c" );
-$( undefined );
 `````
 
 ## Globals

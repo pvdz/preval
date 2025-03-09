@@ -38,10 +38,11 @@ if ($) {
   const x /*:unknown*/ = $(0);
   if (x) {
     $(`inner if`, x);
+    $(undefined, `outer`);
   } else {
     $(`inner else`, false);
+    $(undefined, `outer`);
   }
-  $(undefined, `outer`);
 } else {
 }
 `````
@@ -54,10 +55,11 @@ if ($) {
   const x = $(0);
   if (x) {
     $(`inner if`, x);
+    $(undefined, `outer`);
   } else {
     $(`inner else`, false);
+    $(undefined, `outer`);
   }
-  $(undefined, `outer`);
 }
 `````
 
@@ -129,11 +131,12 @@ if ($) {
   const a = $( 0 );
   if (a) {
     $( "inner if", a );
+    $( undefined, "outer" );
   }
   else {
     $( "inner else", false );
+    $( undefined, "outer" );
   }
-  $( undefined, "outer" );
 }
 `````
 

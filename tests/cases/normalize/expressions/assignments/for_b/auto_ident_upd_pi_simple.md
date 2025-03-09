@@ -20,6 +20,7 @@ $(a, b);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 $(1);
 $(1);
 $(1);
@@ -31,7 +32,6 @@ $(1);
 $(1);
 $(1);
 let b /*:number*/ = 12;
-let a /*:unknown*/ = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
   b = b + 1;
@@ -48,6 +48,7 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 $(1);
 $(1);
 $(1);
@@ -59,7 +60,6 @@ $(1);
 $(1);
 $(1);
 let b = 12;
-let a = 12;
 while (true) {
   $(1);
   b = b + 1;
@@ -109,6 +109,7 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
+let a = undefined;
 $( 1 );
 $( 1 );
 $( 1 );
@@ -119,20 +120,19 @@ $( 1 );
 $( 1 );
 $( 1 );
 $( 1 );
-let a = 12;
 let b = 12;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
-  a = a + 1;
-  b = a;
-  if (b) {
+  b = b + 1;
+  a = b;
+  if (a) {
 
   }
   else {
     break;
   }
 }
-$( b, a );
+$( a, b );
 `````
 
 ## Globals

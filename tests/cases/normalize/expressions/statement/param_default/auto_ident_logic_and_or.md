@@ -27,11 +27,12 @@ if (p) {
 } else {
 }
 if (p) {
+  $(undefined);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   $(tmpCalleeParam$3);
+  $(undefined);
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -44,10 +45,12 @@ let p = $($(1));
 if (p) {
   p = $($(1));
 }
-if (!p) {
+if (p) {
+  $(undefined);
+} else {
   $($(2));
+  $(undefined);
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -111,13 +114,13 @@ if (b) {
   b = $( c );
 }
 if (b) {
-
+  $( undefined );
 }
 else {
   const d = $( 2 );
   $( d );
+  $( undefined );
 }
-$( undefined );
 const e = {
   a: 999,
   b: 1000,

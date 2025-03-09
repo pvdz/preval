@@ -19,28 +19,32 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(30);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(60);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$1);
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(30)) {
+const tmpIfTest = $(30);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   $($(60));
+  $(a);
 } else {
   $($($(100)));
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -61,12 +65,14 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpCalleeParam = $(60);
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$1 = $(100);
   tmpCalleeParam = $(tmpCalleeParam$1);
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -74,20 +80,21 @@ With rename=true
 
 `````js filename=intro
 const a = $( 30 );
-if (a) {
-  const b = $( 60 );
-  $( b );
-}
-else {
-  const c = $( 100 );
-  const d = $( c );
-  $( d );
-}
-const e = {
+const b = {
   a: 999,
   b: 1000,
 };
-$( e );
+if (a) {
+  const c = $( 60 );
+  $( c );
+  $( b );
+}
+else {
+  const d = $( 100 );
+  const e = $( d );
+  $( e );
+  $( b );
+}
 `````
 
 ## Globals

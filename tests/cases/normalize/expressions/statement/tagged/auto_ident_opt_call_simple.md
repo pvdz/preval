@@ -20,14 +20,15 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:boolean*/ = $ == null;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
+  $(a);
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
   $(tmpCalleeParam, tmpChainElementCall);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -36,12 +37,14 @@ $(a);
 `````js filename=intro
 const tmpIfTest = $ == null;
 const tmpCalleeParam = [`before `, ` after`];
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
+  $(a);
 } else {
   $(tmpCalleeParam, $(1));
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -65,10 +68,12 @@ const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   tmpCalleeParam$1 = tmpChainElementCall;
+  $(tmpCalleeParam, tmpChainElementCall);
+  $(a);
 } else {
+  $(tmpCalleeParam, tmpCalleeParam$1);
+  $(a);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
 `````
 
 ## PST Settled
@@ -77,18 +82,19 @@ With rename=true
 `````js filename=intro
 const a = $ == null;
 const b = [ "before ", " after" ];
-if (a) {
-  $( b, undefined );
-}
-else {
-  const c = $( 1 );
-  $( b, c );
-}
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( d );
+if (a) {
+  $( b, undefined );
+  $( c );
+}
+else {
+  const d = $( 1 );
+  $( b, d );
+  $( c );
+}
 `````
 
 ## Globals

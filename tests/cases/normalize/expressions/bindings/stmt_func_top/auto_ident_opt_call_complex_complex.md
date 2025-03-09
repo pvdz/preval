@@ -24,12 +24,13 @@ const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(undefined);
+  $(undefined);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(1);
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
   $(tmpChainElementCall$1);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -39,10 +40,11 @@ $(undefined);
 const tmpChainElementCall = $($);
 if (tmpChainElementCall == null) {
   $(undefined);
+  $(undefined);
 } else {
   $($dotCall(tmpChainElementCall, $, undefined, $(1)));
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -73,10 +75,12 @@ let f = function () {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
     a = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
+    return undefined;
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam$5 = f();
 $(tmpCalleeParam$5);
@@ -90,13 +94,14 @@ const a = $( $ );
 const b = a == null;
 if (b) {
   $( undefined );
+  $( undefined );
 }
 else {
   const c = $( 1 );
   const d = $dotCall( a, $, undefined, c );
   $( d );
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

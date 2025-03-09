@@ -27,13 +27,14 @@ if (tmpIfTest$1) {
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
   tmpIfTest = tmpChainElementCall$1;
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   $(200);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -45,12 +46,14 @@ const tmpChainElementCall = $($);
 if (!(tmpChainElementCall == null)) {
   tmpIfTest = $dotCall(tmpChainElementCall, $, undefined, $(1));
 }
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   $(200);
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -81,10 +84,11 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   $(200);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -102,17 +106,18 @@ else {
   const e = $dotCall( b, $, undefined, d );
   a = e;
 }
-if (a) {
-  $( 100 );
-}
-else {
-  $( 200 );
-}
 const f = {
   a: 999,
   b: 1000,
 };
-$( f );
+if (a) {
+  $( 100 );
+  $( f );
+}
+else {
+  $( 200 );
+  $( f );
+}
 `````
 
 ## Globals

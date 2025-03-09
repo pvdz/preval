@@ -20,7 +20,6 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
@@ -29,7 +28,7 @@ if (tmpIfTest) {
   const tmpCompProp /*:unknown*/ = $(`d`);
   const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
   tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
+  let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
@@ -38,21 +37,22 @@ if (tmpIfTest) {
       const tmpCompProp$1 /*:unknown*/ = $(`d`);
       const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
       tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-      a = tmpNestedAssignPropRhs$1;
+      tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, b);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 const b = { c: 10, d: 20 };
 if (tmpIfTest) {
@@ -61,7 +61,7 @@ if (tmpIfTest) {
   const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
+  let tmpClusterSSA_a = tmpNestedAssignPropRhs;
   while (true) {
     if ($(1)) {
       const tmpNestedAssignObj$1 = $(b);
@@ -69,13 +69,15 @@ if (tmpIfTest) {
       const tmpCompProp$1 = $(`d`);
       const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
       tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-      a = tmpNestedAssignPropRhs$1;
+      tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, b);
+} else {
+  $({ a: 999, b: 1000 }, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -119,38 +121,41 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-const c = {
+const a = $( 1 );
+const b = {
   c: 10,
   d: 20,
 };
-if (b) {
-  const d = $( c );
-  const e = $( c );
-  const f = $( "d" );
-  const g = e[ f ];
-  d.c = g;
-  a = g;
+if (a) {
+  const c = $( b );
+  const d = $( b );
+  const e = $( "d" );
+  const f = d[ e ];
+  c.c = f;
+  let g = f;
   while ($LOOP_UNROLL_10) {
     const h = $( 1 );
     if (h) {
-      const i = $( c );
-      const j = $( c );
+      const i = $( b );
+      const j = $( b );
       const k = $( "d" );
       const l = j[ k ];
       i.c = l;
-      a = l;
+      g = l;
     }
     else {
       break;
     }
   }
+  $( g, b );
 }
-$( a, c );
+else {
+  const m = {
+    a: 999,
+    b: 1000,
+  };
+  $( m, b );
+}
 `````
 
 ## Globals

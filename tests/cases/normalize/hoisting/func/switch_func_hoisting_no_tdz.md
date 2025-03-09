@@ -28,10 +28,11 @@ const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`pass`);
+  f();
 } else {
   $(2);
+  f();
 }
-f();
 `````
 
 ## Denormalized
@@ -40,10 +41,11 @@ f();
 `````js filename=intro
 if ($(1) === $(1)) {
   $(`pass`);
+  f();
 } else {
   $(2);
+  f();
 }
-f();
 `````
 
 ## Pre Normal
@@ -101,11 +103,12 @@ const b = $( 1 );
 const c = a === b;
 if (c) {
   $( "pass" );
+  f();
 }
 else {
   $( 2 );
+  f();
 }
-f();
 `````
 
 ## Globals

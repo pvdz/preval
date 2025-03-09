@@ -33,11 +33,13 @@ const f /*:()=>undefined*/ = function () {
   const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
   if (x) {
     $(false, `fail`);
+    $(x, `after`);
+    return undefined;
   } else {
     $(true, `pass`);
+    $(``, `after`);
+    return undefined;
   }
-  $(x, `after`);
-  return undefined;
 };
 f();
 f();
@@ -52,10 +54,11 @@ const f = function () {
   const x = $coerce($(`truthy`), `plustr`);
   if (x) {
     $(false, `fail`);
+    $(x, `after`);
   } else {
     $(true, `pass`);
+    $(``, `after`);
   }
-  $(x, `after`);
 };
 f();
 f();
@@ -93,12 +96,14 @@ let f = function () {
   if (x) {
     const tmpCalleeParam = !x;
     $(tmpCalleeParam, `fail`);
+    $(x, `after`);
+    return undefined;
   } else {
     const tmpCalleeParam$1 = !x;
     $(tmpCalleeParam$1, `pass`);
+    $(x, `after`);
+    return undefined;
   }
-  $(x, `after`);
-  return undefined;
 };
 f();
 f();
@@ -115,12 +120,14 @@ const a = function() {
   const c = $coerce( b, "plustr" );
   if (c) {
     $( false, "fail" );
+    $( c, "after" );
+    return undefined;
   }
   else {
     $( true, "pass" );
+    $( "", "after" );
+    return undefined;
   }
-  $( c, "after" );
-  return undefined;
 };
 a();
 a();

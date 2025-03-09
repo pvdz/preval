@@ -66,6 +66,7 @@ const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
 const tmpIfTest = varInitAssignLhsComputedRhs;
 if (tmpIfTest) {
+  $(a, b, c);
 } else {
   const tmpAssignMemLhsObj = b;
   const varInitAssignLhsComputedRhs$19 = c;
@@ -80,8 +81,8 @@ if (tmpIfTest) {
   b.x = varInitAssignLhsComputedRhs$11;
   const tmpAssignMemRhs = varInitAssignLhsComputedRhs$11;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  $(a, b, c);
 }
-$(a, b, c);
 `````
 
 ## PST Settled

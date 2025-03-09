@@ -55,10 +55,11 @@ const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
   a = 0;
   if (a) {
+    $(a);
   } else {
     a = 2;
+    $(a);
   }
-  $(a);
 } else {
 }
 `````

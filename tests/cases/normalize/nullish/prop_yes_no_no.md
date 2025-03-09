@@ -46,9 +46,10 @@ const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   const tmpAssignRhsProp = b.c;
   tmpCalleeParam = tmpAssignRhsProp.d;
+  $(tmpCalleeParam);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled

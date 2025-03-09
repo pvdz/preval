@@ -32,26 +32,25 @@ $(x);
 
 `````js filename=intro
 const a /*:unknown*/ = $(67636);
-let x /*:boolean*/ = a !== 67636;
+const x /*:boolean*/ = a === 67636;
 if (x) {
-  x = true;
-} else {
   $(`Preval: Cannot write to const binding \`a\``);
+  $(false);
+} else {
+  $(true);
 }
-$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = $(67636) !== 67636;
-if (x) {
-  x = true;
-} else {
+if ($(67636) === 67636) {
   $(`Preval: Cannot write to const binding \`a\``);
+  $(false);
+} else {
+  $(true);
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -78,10 +77,11 @@ let x = a !== 67636;
 if (x) {
   a = 10;
   x = a !== 67636;
+  $(x);
 } else {
   $(`Preval: Cannot write to const binding \`a\``);
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
@@ -89,14 +89,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( 67636 );
-let b = a !== 67636;
+const b = a === 67636;
 if (b) {
-  b = true;
+  $( "Preval: Cannot write to const binding `a`" );
+  $( false );
 }
 else {
-  $( "Preval: Cannot write to const binding `a`" );
+  $( true );
 }
-$( b );
 `````
 
 ## Globals

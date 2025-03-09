@@ -43,10 +43,12 @@ const f /*:()=>undefined*/ = function () {
         break;
       }
     }
+    $(tmpClusterSSA_s);
+    return undefined;
   } else {
+    $(tmpClusterSSA_s);
+    return undefined;
   }
-  $(tmpClusterSSA_s);
-  return undefined;
 };
 f();
 $(undefined);
@@ -70,8 +72,10 @@ const f = function () {
         break;
       }
     }
+    $(tmpClusterSSA_s);
+  } else {
+    $(tmpClusterSSA_s);
   }
-  $(tmpClusterSSA_s);
 };
 f();
 $(undefined);
@@ -146,9 +150,13 @@ const a = function() {
         break;
       }
     }
+    $( c );
+    return undefined;
   }
-  $( c );
-  return undefined;
+  else {
+    $( c );
+    return undefined;
+  }
 };
 a();
 $( undefined );

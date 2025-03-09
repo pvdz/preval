@@ -39,10 +39,11 @@ if (tmpIfTest) {
     $(`fail too`);
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
   } else {
+    $(false);
   }
 } else {
+  $(false);
 }
-$(false);
 `````
 
 ## Denormalized
@@ -53,9 +54,12 @@ if ($(true)) {
   if ($(false)) {
     $(`fail too`);
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+  } else {
+    $(false);
   }
+} else {
+  $(false);
 }
-$(false);
 `````
 
 ## Pre Normal
@@ -91,11 +95,12 @@ if (tmpIfTest) {
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
   } else {
     t = false;
+    $(t);
   }
 } else {
   t = false;
+  $(t);
 }
-$(t);
 `````
 
 ## PST Settled
@@ -109,8 +114,13 @@ if (a) {
     $( "fail too" );
     throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
   }
+  else {
+    $( false );
+  }
 }
-$( false );
+else {
+  $( false );
+}
 `````
 
 ## Globals

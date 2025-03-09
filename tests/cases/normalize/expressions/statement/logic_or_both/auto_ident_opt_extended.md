@@ -60,6 +60,7 @@ if (tmpIfTest$1) {
 } else {
 }
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpChainRootProp$1 = b;
   const tmpIfTest$3 = tmpChainRootProp$1 != null;
@@ -67,10 +68,11 @@ if (tmpIfTest) {
     const tmpChainElementObject$5 = tmpChainRootProp$1.x;
     const tmpChainElementObject$7 = tmpChainElementObject$5.y;
     const tmpChainElementObject$9 = tmpChainElementObject$7.z;
+    $(a);
   } else {
+    $(a);
   }
 }
-$(a);
 `````
 
 ## PST Settled

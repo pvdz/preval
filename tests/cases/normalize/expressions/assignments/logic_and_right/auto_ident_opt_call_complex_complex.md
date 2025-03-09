@@ -18,44 +18,45 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpChainElementCall /*:unknown*/ = $($);
   const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpCalleeParam$5 /*:unknown*/ = $(1);
     const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
+    $(tmpChainElementCall$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall = $($);
-  if (!(tmpChainElementCall == null)) {
-    tmpNestedComplexRhs = $dotCall(tmpChainElementCall, $, undefined, $(1));
+  if (tmpChainElementCall == null) {
+    $(undefined);
+    $(undefined);
+  } else {
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, $(1));
+    $(tmpChainElementCall$1);
+    $(tmpChainElementCall$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -88,40 +89,41 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 100 );
-if (b) {
-  let c = undefined;
-  const d = $( $ );
-  const e = d == null;
-  if (e) {
-
+const a = $( 100 );
+if (a) {
+  const b = $( $ );
+  const c = b == null;
+  if (c) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const f = $( 1 );
-    const g = $dotCall( d, $, undefined, f );
-    c = g;
+    const d = $( 1 );
+    const e = $dotCall( b, $, undefined, d );
+    $( e );
+    $( e );
   }
-  a = c;
-  $( c );
 }
 else {
-  $( b );
+  $( a );
+  const f = {
+    a: 999,
+    b: 1000,
+  };
+  $( f );
 }
-$( a );
 `````
 
 ## Globals

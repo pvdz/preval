@@ -66,13 +66,15 @@ const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpIfTest$1 = 30;
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpCalleeParam = $(100);
     $(tmpCalleeParam);
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

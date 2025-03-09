@@ -20,49 +20,49 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:unknown*/ = 1;
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpNestedComplexRhs /*:unknown*/ = $(2);
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  let tmpClusterSSA_b /*:unknown*/ = tmpNestedComplexRhs;
+  let tmpClusterSSA_a /*:unknown*/ = tmpNestedComplexRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpNestedComplexRhs$1 /*:unknown*/ = $(2);
-      b = tmpNestedComplexRhs$1;
-      a = tmpNestedComplexRhs$1;
+      tmpClusterSSA_b = tmpNestedComplexRhs$1;
+      tmpClusterSSA_a = tmpNestedComplexRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, tmpClusterSSA_b);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, 1);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpNestedComplexRhs = $(2);
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  let tmpClusterSSA_b = tmpNestedComplexRhs;
+  let tmpClusterSSA_a = tmpNestedComplexRhs;
   while (true) {
     if ($(1)) {
       const tmpNestedComplexRhs$1 = $(2);
-      b = tmpNestedComplexRhs$1;
-      a = tmpNestedComplexRhs$1;
+      tmpClusterSSA_b = tmpNestedComplexRhs$1;
+      tmpClusterSSA_a = tmpNestedComplexRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, tmpClusterSSA_b);
+} else {
+  $({ a: 999, b: 1000 }, 1);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -102,29 +102,31 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 1 );
-if (c) {
-  const d = $( 2 );
-  a = d;
-  b = d;
+const a = $( 1 );
+if (a) {
+  const b = $( 2 );
+  let c = b;
+  let d = b;
   while ($LOOP_UNROLL_10) {
     const e = $( 1 );
     if (e) {
       const f = $( 2 );
-      a = f;
-      b = f;
+      c = f;
+      d = f;
     }
     else {
       break;
     }
   }
+  $( d, c );
 }
-$( b, a );
+else {
+  const g = {
+    a: 999,
+    b: 1000,
+  };
+  $( g, 1 );
+}
 `````
 
 ## Globals

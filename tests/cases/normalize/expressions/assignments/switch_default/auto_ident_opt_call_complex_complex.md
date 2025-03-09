@@ -77,9 +77,10 @@ if (tmpIfTest) {
   const tmpCalleeParam$3 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
   a = tmpChainElementCall$1;
+  $(tmpChainElementCall$1);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

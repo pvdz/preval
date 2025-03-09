@@ -228,10 +228,12 @@ let f3 = function () {
     debugger;
     if (t) {
       x$3 = x$3 + 1;
+      $(x$3);
+      return undefined;
     } else {
+      $(x$3);
+      return undefined;
     }
-    $(x$3);
-    return undefined;
   };
   return undefined;
 };

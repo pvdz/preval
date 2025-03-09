@@ -55,10 +55,11 @@ const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   y = $(`fail`);
+  $(`bad`);
 } else {
   y = objPatternBeforeDefault$1;
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## PST Settled

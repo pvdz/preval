@@ -42,9 +42,10 @@ let tmpCalleeParam = true;
 const tmpIfTest = tmpDeleteOpt != null;
 if (tmpIfTest) {
   tmpCalleeParam = delete tmpDeleteOpt.x;
+  $(tmpCalleeParam);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled

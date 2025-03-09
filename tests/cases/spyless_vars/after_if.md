@@ -24,12 +24,13 @@ $(x);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(`1`);
 const a /*:number*/ = +tmpUnaryArg;
+const x /*:number*/ = a * 2;
 if ($) {
   $(`foo`);
+  $(x);
 } else {
+  $(x);
 }
-const x /*:number*/ = a * 2;
-$(x);
 `````
 
 ## Denormalized
@@ -37,11 +38,13 @@ $(x);
 
 `````js filename=intro
 const tmpUnaryArg = $(`1`);
-const a = +tmpUnaryArg;
+const x = +tmpUnaryArg * 2;
 if ($) {
   $(`foo`);
+  $(x);
+} else {
+  $(x);
 }
-$(a * 2);
 `````
 
 ## Pre Normal
@@ -65,9 +68,10 @@ const a = +tmpUnaryArg;
 const x = a * 2;
 if ($) {
   $(`foo`);
+  $(x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
@@ -76,11 +80,14 @@ With rename=true
 `````js filename=intro
 const a = $( "1" );
 const b = +a;
+const c = b * 2;
 if ($) {
   $( "foo" );
+  $( c );
 }
-const c = b * 2;
-$( c );
+else {
+  $( c );
+}
 `````
 
 ## Globals

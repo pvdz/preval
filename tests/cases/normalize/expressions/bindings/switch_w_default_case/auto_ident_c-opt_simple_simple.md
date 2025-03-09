@@ -96,9 +96,10 @@ if (tmpIfTest$3) {
     const tmpChainRootComputed = `x`;
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     a = tmpChainElementObject;
+    $(tmpChainElementObject);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;

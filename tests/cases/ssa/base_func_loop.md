@@ -33,6 +33,8 @@ if ($) {
   $(tmpClusterSSA_x);
   const tmpIfTest /*:boolean*/ = tmpClusterSSA_x > 5;
   if (tmpIfTest) {
+    $(tmpClusterSSA_x);
+    $(undefined);
   } else {
     while ($LOOP_UNROLL_10) {
       tmpClusterSSA_x = tmpClusterSSA_x + 1;
@@ -43,9 +45,9 @@ if ($) {
       } else {
       }
     }
+    $(tmpClusterSSA_x);
+    $(undefined);
   }
-  $(tmpClusterSSA_x);
-  $(undefined);
 } else {
 }
 `````
@@ -59,7 +61,10 @@ if ($) {
   $(x);
   let tmpClusterSSA_x = $coerce(x, `number`) + 1;
   $(tmpClusterSSA_x);
-  if (!(tmpClusterSSA_x > 5)) {
+  if (tmpClusterSSA_x > 5) {
+    $(tmpClusterSSA_x);
+    $(undefined);
+  } else {
     while (true) {
       tmpClusterSSA_x = tmpClusterSSA_x + 1;
       $(tmpClusterSSA_x);
@@ -67,9 +72,9 @@ if ($) {
         break;
       }
     }
+    $(tmpClusterSSA_x);
+    $(undefined);
   }
-  $(tmpClusterSSA_x);
-  $(undefined);
 }
 `````
 
@@ -131,7 +136,8 @@ if ($) {
   $( c );
   const d = c > 5;
   if (d) {
-
+    $( c );
+    $( undefined );
   }
   else {
     while ($LOOP_UNROLL_10) {
@@ -142,9 +148,9 @@ if ($) {
         break;
       }
     }
+    $( c );
+    $( undefined );
   }
-  $( c );
-  $( undefined );
 }
 `````
 

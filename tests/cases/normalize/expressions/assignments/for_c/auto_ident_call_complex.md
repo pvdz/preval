@@ -18,43 +18,45 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCallComplexCallee /*:unknown*/ = $($);
-  a = tmpCallComplexCallee(1);
+  let tmpClusterSSA_a /*:unknown*/ = tmpCallComplexCallee(1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCallComplexCallee$1 /*:unknown*/ = $($);
-      a = tmpCallComplexCallee$1(1);
+      tmpClusterSSA_a = tmpCallComplexCallee$1(1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpCallComplexCallee = $($);
-  a = tmpCallComplexCallee(1);
+  let tmpClusterSSA_a = tmpCallComplexCallee(1);
   while (true) {
     if ($(1)) {
       const tmpCallComplexCallee$1 = $($);
-      a = tmpCallComplexCallee$1(1);
+      tmpClusterSSA_a = tmpCallComplexCallee$1(1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -91,26 +93,29 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( $ );
-  a = c( 1 );
+const a = $( 1 );
+if (a) {
+  const b = $( $ );
+  let c = b( 1 );
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
       const e = $( $ );
-      a = e( 1 );
+      c = e( 1 );
     }
     else {
       break;
     }
   }
+  $( c );
 }
-$( a );
+else {
+  const f = {
+    a: 999,
+    b: 1000,
+  };
+  $( f );
+}
 `````
 
 ## Globals

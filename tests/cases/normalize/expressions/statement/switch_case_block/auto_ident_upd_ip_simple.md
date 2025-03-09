@@ -79,9 +79,10 @@ const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpPostUpdArgIdent = $coerce(b, `number`);
   b = tmpPostUpdArgIdent + 1;
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

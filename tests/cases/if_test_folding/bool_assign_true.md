@@ -89,12 +89,15 @@ let f = function () {
   let y = undefined;
   if (x) {
     y = false;
+    $(`block`);
+    $(`block`);
+    return y;
   } else {
     y = true;
+    $(`block`);
+    $(`block`);
+    return y;
   }
-  $(`block`);
-  $(`block`);
-  return y;
 };
 f();
 const tmpCalleeParam = f();

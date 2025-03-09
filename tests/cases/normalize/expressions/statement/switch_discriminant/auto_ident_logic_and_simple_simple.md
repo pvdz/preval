@@ -57,10 +57,12 @@ let a = { a: 999, b: 1000 };
 let tmpSwitchDisc = 1;
 if (tmpSwitchDisc) {
   tmpSwitchDisc = 2;
+  $(100);
+  $(a);
 } else {
+  $(100);
+  $(a);
 }
-$(100);
-$(a);
 `````
 
 ## PST Settled

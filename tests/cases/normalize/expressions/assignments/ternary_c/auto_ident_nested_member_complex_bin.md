@@ -23,13 +23,14 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(0);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, b, c, 3, 4);
 } else {
   const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
   const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
@@ -37,22 +38,21 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-  a = 7;
   $(7);
+  $(7, b, c, 3, 4);
 }
-$(a, b, c, 3, 4);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 const b = { x: 1 };
 const c = { y: 2 };
 if (tmpIfTest) {
   $($(100));
+  $({ a: 999, b: 1000 }, b, c, 3, 4);
 } else {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);
@@ -60,10 +60,9 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp$1 = $(`y`);
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-  a = 7;
   $(7);
+  $(7, b, c, 3, 4);
 }
-$(a, b, c, 3, 4);
 `````
 
 ## Pre Normal
@@ -92,6 +91,8 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b, c, d, e);
 } else {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);
@@ -104,37 +105,37 @@ if (tmpIfTest) {
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b, c, d, e);
 }
-$(tmpCalleeParam);
-$(a, b, c, d, e);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 0 );
-const c = { x: 1 };
-const d = { y: 2 };
-if (b) {
-  const e = $( 100 );
-  $( e );
+const a = $( 0 );
+const b = { x: 1 };
+const c = { y: 2 };
+if (a) {
+  const d = $( 100 );
+  $( d );
+  const e = {
+    a: 999,
+    b: 1000,
+  };
+  $( e, b, c, 3, 4 );
 }
 else {
-  const f = $( c );
+  const f = $( b );
   const g = $( "x" );
-  const h = $( d );
+  const h = $( c );
   const i = $( "y" );
   h[i] = 7;
   f[g] = 7;
-  a = 7;
   $( 7 );
+  $( 7, b, c, 3, 4 );
 }
-$( a, c, d, 3, 4 );
 `````
 
 ## Globals

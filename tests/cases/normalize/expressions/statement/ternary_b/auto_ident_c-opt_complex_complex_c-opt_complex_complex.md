@@ -21,48 +21,58 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpObjLitVal /*:object*/ = { y: 1 };
   const b /*:object*/ = { x: tmpObjLitVal };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpChainRootComputed /*:unknown*/ = $(`x`);
     const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
     if (tmpIfTest$3) {
+      $(a);
     } else {
       const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
       tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
     }
   }
 } else {
   $(200);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(1)) {
+const tmpIfTest = $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   const tmpObjLitVal = { y: 1 };
   const tmpChainElementCall = $({ x: tmpObjLitVal });
-  if (!(tmpChainElementCall == null)) {
+  if (tmpChainElementCall == null) {
+    $(a);
+  } else {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    if (!(tmpChainElementObject == null)) {
+    if (tmpChainElementObject == null) {
+      $(a);
+    } else {
       const tmpChainRootComputed$1 = $(`y`);
       tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
     }
   }
 } else {
   $(200);
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -94,14 +104,17 @@ if (tmpIfTest) {
     if (tmpIfTest$3) {
       const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
 } else {
   $(200);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -109,35 +122,36 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
+const b = {
+  a: 999,
+  b: 1000,
+};
 if (a) {
-  const b = { y: 1 };
-  const c = { x: b };
-  const d = $( c );
-  const e = d == null;
-  if (e) {
-
+  const c = { y: 1 };
+  const d = { x: c };
+  const e = $( d );
+  const f = e == null;
+  if (f) {
+    $( b );
   }
   else {
-    const f = $( "x" );
-    const g = d[ f ];
-    const h = g == null;
-    if (h) {
-
+    const g = $( "x" );
+    const h = e[ g ];
+    const i = h == null;
+    if (i) {
+      $( b );
     }
     else {
-      const i = $( "y" );
-      g[ i ];
+      const j = $( "y" );
+      h[ j ];
+      $( b );
     }
   }
 }
 else {
   $( 200 );
+  $( b );
 }
-const j = {
-  a: 999,
-  b: 1000,
-};
-$( j );
 `````
 
 ## Globals

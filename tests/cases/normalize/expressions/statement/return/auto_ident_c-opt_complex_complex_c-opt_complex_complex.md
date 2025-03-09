@@ -23,24 +23,24 @@ $(a);
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+    $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpCalleeParam = tmpChainElementObject$1;
+    $(tmpChainElementObject$1);
   }
 }
-$(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -49,18 +49,20 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpObjLitVal = { y: 1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(undefined);
+  } else {
     const tmpChainRootComputed$1 = $(`y`);
-    tmpCalleeParam = tmpChainElementObject[tmpChainRootComputed$1];
+    $(tmpChainElementObject[tmpChainRootComputed$1]);
   }
 }
-$(tmpCalleeParam);
 $({ a: 999, b: 1000 });
 `````
 
@@ -116,33 +118,31 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { y: 1 };
-const c = { x: b };
-const d = $( c );
-const e = d == null;
-if (e) {
-
+const a = { y: 1 };
+const b = { x: a };
+const c = $( b );
+const d = c == null;
+if (d) {
+  $( undefined );
 }
 else {
-  const f = $( "x" );
-  const g = d[ f ];
-  const h = g == null;
-  if (h) {
-
+  const e = $( "x" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
+    $( undefined );
   }
   else {
-    const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    const h = $( "y" );
+    const i = f[ h ];
+    $( i );
   }
 }
-$( a );
-const k = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( k );
+$( j );
 `````
 
 ## Globals

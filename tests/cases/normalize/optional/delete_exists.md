@@ -55,9 +55,10 @@ const tmpDeleteOpt = o;
 const tmpIfTest = tmpDeleteOpt != null;
 if (tmpIfTest) {
   delete tmpDeleteOpt.x;
+  $(o);
 } else {
+  $(o);
 }
-$(o);
 `````
 
 ## PST Settled

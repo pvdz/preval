@@ -21,48 +21,39 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpObjLitVal /*:unknown*/ = $(3);
   const tmpObjLitVal$1 /*:unknown*/ = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
   const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  a = tmpNestedAssignObjPatternRhs;
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   $(1);
   $(2);
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  a = tmpNestedAssignObjPatternRhs;
   $(tmpNestedAssignObjPatternRhs);
+  $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 } else {
   $($(200));
+  $({ a: 999, b: 1000 }, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Pre Normal
@@ -97,43 +88,41 @@ if (tmpIfTest) {
   tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, x, y);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a, x, y);
 }
-$(tmpCalleeParam);
-$(a, x, y);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = {
-  a: 999,
-  b: 1000,
-};
-const d = $( 1 );
-if (d) {
+const a = $( 1 );
+if (a) {
   $( 1 );
   $( 2 );
-  const e = $( 3 );
-  const f = $( 4 );
-  a = e;
-  b = f;
-  const g = {
-    x: e,
-    y: f,
+  const b = $( 3 );
+  const c = $( 4 );
+  const d = {
+    x: b,
+    y: c,
   };
-  c = g;
-  $( g );
+  $( d );
+  $( d, b, c );
 }
 else {
-  const h = $( 200 );
-  $( h );
+  const e = $( 200 );
+  $( e );
+  const f = {
+    a: 999,
+    b: 1000,
+  };
+  $( f, 1, 2 );
 }
-$( c, a, b );
 `````
 
 ## Globals

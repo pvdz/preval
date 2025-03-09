@@ -103,10 +103,11 @@ const bit = objDestructible & 1;
 const set = bit === 1;
 if (set) {
   y = 16;
+  $(y);
 } else {
   y = 32;
+  $(y);
 }
-$(y);
 `````
 
 ## PST Settled

@@ -25,11 +25,14 @@ if (tmpIfTest) {
   tmpIfTest = $(tmpCalleeParam$1);
 } else {
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
   const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$3);
   if (tmpClusterSSA_tmpIfTest) {
+    $(a);
   } else {
     const tmpCalleeParam$5 /*:unknown*/ = $(1);
     let tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$5);
@@ -39,14 +42,14 @@ if (tmpIfTest) {
     } else {
     }
     if (tmpClusterSSA_tmpIfTest$1) {
+      $(a);
     } else {
       const tmpCalleeParam$9 /*:unknown*/ = $(2);
       $(tmpCalleeParam$9);
+      $(a);
     }
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -57,18 +60,25 @@ let tmpIfTest = $($(1));
 if (tmpIfTest) {
   tmpIfTest = $($(1));
 }
-if (!tmpIfTest) {
-  if (!$($(2))) {
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+} else {
+  if ($($(2))) {
+    $(a);
+  } else {
     let tmpClusterSSA_tmpIfTest$1 = $($(1));
     if (tmpClusterSSA_tmpIfTest$1) {
       tmpClusterSSA_tmpIfTest$1 = $($(1));
     }
-    if (!tmpClusterSSA_tmpIfTest$1) {
+    if (tmpClusterSSA_tmpIfTest$1) {
+      $(a);
+    } else {
       $($(2));
+      $(a);
     }
   }
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -93,10 +103,12 @@ if (tmpIfTest) {
 } else {
 }
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpCalleeParam$3 = $(2);
   tmpIfTest = $(tmpCalleeParam$3);
   if (tmpIfTest) {
+    $(a);
   } else {
     const tmpCalleeParam$5 = $(1);
     tmpIfTest = $(tmpCalleeParam$5);
@@ -106,13 +118,14 @@ if (tmpIfTest) {
     } else {
     }
     if (tmpIfTest) {
+      $(a);
     } else {
       const tmpCalleeParam$9 = $(2);
       $(tmpCalleeParam$9);
+      $(a);
     }
   }
 }
-$(a);
 `````
 
 ## PST Settled
@@ -125,36 +138,36 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-if (b) {
-
-}
-else {
-  const d = $( 2 );
-  const e = $( d );
-  if (e) {
-
-  }
-  else {
-    const f = $( 1 );
-    let g = $( f );
-    if (g) {
-      const h = $( 1 );
-      g = $( h );
-    }
-    if (g) {
-
-    }
-    else {
-      const i = $( 2 );
-      $( i );
-    }
-  }
-}
-const j = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( j );
+if (b) {
+  $( d );
+}
+else {
+  const e = $( 2 );
+  const f = $( e );
+  if (f) {
+    $( d );
+  }
+  else {
+    const g = $( 1 );
+    let h = $( g );
+    if (h) {
+      const i = $( 1 );
+      h = $( i );
+    }
+    if (h) {
+      $( d );
+    }
+    else {
+      const j = $( 2 );
+      $( j );
+      $( d );
+    }
+  }
+}
 `````
 
 ## Globals

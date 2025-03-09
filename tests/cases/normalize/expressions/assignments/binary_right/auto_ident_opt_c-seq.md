@@ -21,20 +21,19 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(undefined);
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
   const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementObject;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(tmpChainElementObject);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -42,16 +41,15 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-let a = undefined;
 const tmpChainRootProp = $({ x: 1 });
 if (tmpChainRootProp == null) {
   $(tmpBinBothLhs + undefined);
+  $(undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
   $(tmpBinBothLhs + tmpChainElementObject);
+  $(tmpChainElementObject);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -90,21 +88,20 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-let b = undefined;
-const c = { x: 1 };
-const d = $( c );
-const e = d == null;
-if (e) {
-  const f = a + undefined;
-  $( f );
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+if (d) {
+  const e = a + undefined;
+  $( e );
+  $( undefined );
 }
 else {
-  const g = d.x;
-  b = g;
-  const h = a + g;
-  $( h );
+  const f = c.x;
+  const g = a + f;
+  $( g );
+  $( f );
 }
-$( b );
 `````
 
 ## Globals

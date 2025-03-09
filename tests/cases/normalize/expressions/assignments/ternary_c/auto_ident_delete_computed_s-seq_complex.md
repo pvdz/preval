@@ -20,41 +20,40 @@ $(a, arg);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(0);
 const arg /*:object*/ = { y: 1 };
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, arg);
 } else {
   $(1);
   $(2);
   const tmpDeleteCompProp /*:unknown*/ = $(`y`);
   const tmpNestedComplexRhs /*:boolean*/ = delete arg[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs, arg);
 }
-$(a, arg);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 const arg = { y: 1 };
 if (tmpIfTest) {
   $($(100));
+  $({ a: 999, b: 1000 }, arg);
 } else {
   $(1);
   $(2);
   const tmpDeleteCompProp = $(`y`);
   const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs, arg);
 }
-$(a, arg);
 `````
 
 ## Pre Normal
@@ -77,6 +76,8 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, arg);
 } else {
   $(1);
   $(2);
@@ -85,34 +86,34 @@ if (tmpIfTest) {
   const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, arg);
 }
-$(tmpCalleeParam);
-$(a, arg);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 0 );
-const c = { y: 1 };
-if (b) {
-  const d = $( 100 );
-  $( d );
+const a = $( 0 );
+const b = { y: 1 };
+if (a) {
+  const c = $( 100 );
+  $( c );
+  const d = {
+    a: 999,
+    b: 1000,
+  };
+  $( d, b );
 }
 else {
   $( 1 );
   $( 2 );
   const e = $( "y" );
-  const f = delete c[ e ];
-  a = f;
+  const f = delete b[ e ];
   $( f );
+  $( f, b );
 }
-$( a, c );
 `````
 
 ## Globals

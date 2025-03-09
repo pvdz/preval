@@ -19,37 +19,37 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
+const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
-  a = 2;
   $(...2);
+  $(2);
 } else {
   const tmpIfTest /*:boolean*/ = a === ``;
   if (tmpIfTest) {
     $();
+    $(``);
   } else {
     throw `Preval: Attempting to spread primitive that is not an empty string`;
   }
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(1));
+const a = $($(1));
 if (a) {
-  a = 2;
   $(...2);
+  $(2);
 } else {
   if (a === ``) {
     $();
+    $(``);
   } else {
     throw `Preval: Attempting to spread primitive that is not an empty string`;
   }
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -82,21 +82,21 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
-  b = 2;
   $( ...2 );
+  $( 2 );
 }
 else {
   const c = b === "";
   if (c) {
     $();
+    $( "" );
   }
   else {
     throw "Preval: Attempting to spread primitive that is not an empty string";
   }
 }
-$( b );
 `````
 
 ## Globals

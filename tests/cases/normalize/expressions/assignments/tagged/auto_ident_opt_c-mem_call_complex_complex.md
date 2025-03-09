@@ -20,42 +20,51 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
+  $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`\$`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+    $(tmpCalleeParam, undefined);
+    $(undefined);
   } else {
     const tmpCalleeParam$7 /*:unknown*/ = $(1);
     const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$7);
-    a = tmpChainElementCall$1;
+    $(tmpCalleeParam, tmpChainElementCall$1);
+    $(tmpChainElementCall$1);
   }
 }
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, a);
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpChainElementCall = $({ $: $ });
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest = tmpChainElementCall == null;
+const tmpCalleeParam = [`before `, ` after`];
+if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
+  $(undefined);
+} else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
-    a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+  if (tmpChainElementObject == null) {
+    $(tmpCalleeParam, undefined);
+    $(undefined);
+  } else {
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+    $(tmpCalleeParam, tmpChainElementCall$1);
+    $(tmpChainElementCall$1);
   }
 }
-$([`before `, ` after`], a);
-$(a);
 `````
 
 ## Pre Normal
@@ -102,29 +111,29 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { $: $ };
-const c = $( b );
-const d = c == null;
-if (d) {
-
+const a = { $: $ };
+const b = $( a );
+const c = b == null;
+const d = [ "before ", " after" ];
+if (c) {
+  $( d, undefined );
+  $( undefined );
 }
 else {
   const e = $( "$" );
-  const f = c[ e ];
+  const f = b[ e ];
   const g = f == null;
   if (g) {
-
+    $( d, undefined );
+    $( undefined );
   }
   else {
     const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    const i = $dotCall( f, b, undefined, h );
+    $( d, i );
+    $( i );
   }
 }
-const j = [ "before ", " after" ];
-$( j, a );
-$( a );
 `````
 
 ## Globals

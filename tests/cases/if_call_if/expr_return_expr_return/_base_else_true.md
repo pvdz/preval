@@ -40,15 +40,17 @@ if ($) {
   const x /*:unknown*/ = $(1);
   if (x) {
     $(`inner if`, x);
+    $(undefined, `outer`);
   } else {
     const tmpClusterSSA_x /*:unknown*/ = $(2);
     if (tmpClusterSSA_x) {
       $(`inner if`, tmpClusterSSA_x);
+      $(undefined, `outer`);
     } else {
       $(`inner else`, tmpClusterSSA_x);
+      $(undefined, `outer`);
     }
   }
-  $(undefined, `outer`);
 } else {
 }
 `````
@@ -61,15 +63,17 @@ if ($) {
   const x = $(1);
   if (x) {
     $(`inner if`, x);
+    $(undefined, `outer`);
   } else {
     const tmpClusterSSA_x = $(2);
     if (tmpClusterSSA_x) {
       $(`inner if`, tmpClusterSSA_x);
+      $(undefined, `outer`);
     } else {
       $(`inner else`, tmpClusterSSA_x);
+      $(undefined, `outer`);
     }
   }
-  $(undefined, `outer`);
 }
 `````
 
@@ -143,17 +147,19 @@ if ($) {
   const a = $( 1 );
   if (a) {
     $( "inner if", a );
+    $( undefined, "outer" );
   }
   else {
     const b = $( 2 );
     if (b) {
       $( "inner if", b );
+      $( undefined, "outer" );
     }
     else {
       $( "inner else", b );
+      $( undefined, "outer" );
     }
   }
-  $( undefined, "outer" );
 }
 `````
 

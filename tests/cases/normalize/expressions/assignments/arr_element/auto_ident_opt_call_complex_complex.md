@@ -27,20 +27,19 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
   tmpBinBothLhs = tmpChainElementCall$1;
 }
-let tmpClusterSSA_a /*:unknown*/ = undefined;
 const tmpChainElementCall$3 /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(undefined);
 } else {
   const tmpCalleeParam$11 /*:unknown*/ = $(1);
   const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, tmpCalleeParam$11);
-  tmpClusterSSA_a = tmpChainElementCall$5;
   const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$5;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(tmpChainElementCall$5);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -53,16 +52,15 @@ let tmpBinBothLhs = undefined;
 if (!tmpIfTest) {
   tmpBinBothLhs = $dotCall(tmpChainElementCall, $, undefined, $(1));
 }
-let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$3 = $($);
 if (tmpChainElementCall$3 == null) {
   $(tmpBinBothLhs + undefined);
+  $(undefined);
 } else {
   const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, undefined, $(1));
-  tmpClusterSSA_a = tmpChainElementCall$5;
   $(tmpBinBothLhs + tmpChainElementCall$5);
+  $(tmpChainElementCall$5);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -125,21 +123,20 @@ else {
   const e = $dotCall( a, $, undefined, d );
   c = e;
 }
-let f = undefined;
-const g = $( $ );
-const h = g == null;
-if (h) {
-  const i = c + undefined;
-  $( i );
+const f = $( $ );
+const g = f == null;
+if (g) {
+  const h = c + undefined;
+  $( h );
+  $( undefined );
 }
 else {
-  const j = $( 1 );
-  const k = $dotCall( g, $, undefined, j );
-  f = k;
-  const l = c + k;
-  $( l );
+  const i = $( 1 );
+  const j = $dotCall( f, $, undefined, i );
+  const k = c + j;
+  $( k );
+  $( j );
 }
-$( f );
 `````
 
 ## Globals

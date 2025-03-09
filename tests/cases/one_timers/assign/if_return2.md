@@ -32,10 +32,12 @@ const x /*:unknown*/ = $(100, `init`);
 $(x, `closure`);
 if ($) {
   $(1, `f`);
+  $(undefined, `x`);
+  $(undefined, `closure`);
 } else {
+  $(undefined, `x`);
+  $(undefined, `closure`);
 }
-$(undefined, `x`);
-$(undefined, `closure`);
 `````
 
 ## Denormalized
@@ -45,9 +47,12 @@ $(undefined, `closure`);
 $($(100, `init`), `closure`);
 if ($) {
   $(1, `f`);
+  $(undefined, `x`);
+  $(undefined, `closure`);
+} else {
+  $(undefined, `x`);
+  $(undefined, `closure`);
 }
-$(undefined, `x`);
-$(undefined, `closure`);
 `````
 
 ## Pre Normal
@@ -104,9 +109,13 @@ const a = $( 100, "init" );
 $( a, "closure" );
 if ($) {
   $( 1, "f" );
+  $( undefined, "x" );
+  $( undefined, "closure" );
 }
-$( undefined, "x" );
-$( undefined, "closure" );
+else {
+  $( undefined, "x" );
+  $( undefined, "closure" );
+}
 `````
 
 ## Globals

@@ -20,46 +20,50 @@ $(a, arg);
 
 
 `````js filename=intro
+let a /*:boolean*/ = false;
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-let tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpDeleteCompObj$1 /*:unknown*/ = $(arg);
     const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
-    tmpClusterSSA_a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-    if (tmpClusterSSA_a) {
+    a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+    if (a) {
     } else {
       break;
     }
   }
+  $(a, arg);
 } else {
+  $(false, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+let a = false;
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-let tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (tmpClusterSSA_a) {
+if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
   while (true) {
     $(100);
     const tmpDeleteCompObj$1 = $(arg);
     const tmpDeleteCompProp$1 = $(`y`);
-    tmpClusterSSA_a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-    if (!tmpClusterSSA_a) {
+    a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+    if (!a) {
       break;
     }
   }
+  $(a, arg);
+} else {
+  $(false, arg);
 }
-$(tmpClusterSSA_a, arg);
 `````
 
 ## Pre Normal
@@ -96,25 +100,29 @@ $(a, arg);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = $( a );
-const c = $( "y" );
-let d = delete b[ c ];
-if (d) {
+let a = false;
+const b = { y: 1 };
+const c = $( b );
+const d = $( "y" );
+const e = delete c[ d ];
+if (e) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = $( a );
-    const f = $( "y" );
-    d = delete e[ f ];
-    if (d) {
+    const f = $( b );
+    const g = $( "y" );
+    a = delete f[ g ];
+    if (a) {
 
     }
     else {
       break;
     }
   }
+  $( a, b );
 }
-$( d, a );
+else {
+  $( false, b );
+}
 `````
 
 ## Globals

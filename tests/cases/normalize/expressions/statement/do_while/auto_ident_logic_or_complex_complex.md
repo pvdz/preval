@@ -25,123 +25,133 @@ loopStop: {
   const tmpCalleeParam /*:unknown*/ = $(0);
   const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
   if (tmpIfTest) {
+    $(100);
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam$1);
     if (tmpClusterSSA_tmpIfTest) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$2 /*:unknown*/ = $(0);
   const tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$2);
   if (tmpIfTest$1) {
+    $(100);
   } else {
     const tmpCalleeParam$4 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$1 /*:unknown*/ = $(tmpCalleeParam$4);
     if (tmpClusterSSA_tmpIfTest$1) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$3 /*:unknown*/ = $(0);
   const tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$3);
   if (tmpIfTest$2) {
+    $(100);
   } else {
     const tmpCalleeParam$5 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$2 /*:unknown*/ = $(tmpCalleeParam$5);
     if (tmpClusterSSA_tmpIfTest$2) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$6 /*:unknown*/ = $(0);
   const tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$6);
   if (tmpIfTest$3) {
+    $(100);
   } else {
     const tmpCalleeParam$8 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$3 /*:unknown*/ = $(tmpCalleeParam$8);
     if (tmpClusterSSA_tmpIfTest$3) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$7 /*:unknown*/ = $(0);
   const tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$7);
   if (tmpIfTest$4) {
+    $(100);
   } else {
     const tmpCalleeParam$9 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$4 /*:unknown*/ = $(tmpCalleeParam$9);
     if (tmpClusterSSA_tmpIfTest$4) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$10 /*:unknown*/ = $(0);
   const tmpIfTest$5 /*:unknown*/ = $(tmpCalleeParam$10);
   if (tmpIfTest$5) {
+    $(100);
   } else {
     const tmpCalleeParam$12 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$5 /*:unknown*/ = $(tmpCalleeParam$12);
     if (tmpClusterSSA_tmpIfTest$5) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$11 /*:unknown*/ = $(0);
   const tmpIfTest$6 /*:unknown*/ = $(tmpCalleeParam$11);
   if (tmpIfTest$6) {
+    $(100);
   } else {
     const tmpCalleeParam$13 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$6 /*:unknown*/ = $(tmpCalleeParam$13);
     if (tmpClusterSSA_tmpIfTest$6) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$14 /*:unknown*/ = $(0);
   const tmpIfTest$7 /*:unknown*/ = $(tmpCalleeParam$14);
   if (tmpIfTest$7) {
+    $(100);
   } else {
     const tmpCalleeParam$16 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$7 /*:unknown*/ = $(tmpCalleeParam$16);
     if (tmpClusterSSA_tmpIfTest$7) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$15 /*:unknown*/ = $(0);
   const tmpIfTest$8 /*:unknown*/ = $(tmpCalleeParam$15);
   if (tmpIfTest$8) {
+    $(100);
   } else {
     const tmpCalleeParam$17 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$8 /*:unknown*/ = $(tmpCalleeParam$17);
     if (tmpClusterSSA_tmpIfTest$8) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$18 /*:unknown*/ = $(0);
   const tmpIfTest$9 /*:unknown*/ = $(tmpCalleeParam$18);
   if (tmpIfTest$9) {
+    $(100);
   } else {
     const tmpCalleeParam$20 /*:unknown*/ = $(2);
     const tmpClusterSSA_tmpIfTest$9 /*:unknown*/ = $(tmpCalleeParam$20);
     if (tmpClusterSSA_tmpIfTest$9) {
+      $(100);
     } else {
       break loopStop;
     }
   }
-  $(100);
   const tmpCalleeParam$19 /*:unknown*/ = $(0);
   const tmpIfTest$10 /*:unknown*/ = $(tmpCalleeParam$19);
   if (tmpIfTest$10) {
@@ -178,66 +188,96 @@ $(a);
 `````js filename=intro
 loopStop: {
   $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
-  if (!$($(0))) {
-    if (!$($(2))) {
+  if ($($(0))) {
+    $(100);
+  } else {
+    if ($($(2))) {
+      $(100);
+    } else {
       break loopStop;
     }
   }
-  $(100);
   if (!$($(0))) {
     if (!$($(2))) {
       break loopStop;
@@ -303,163 +343,153 @@ loopStop: {
   const a = $( 0 );
   const b = $( a );
   if (b) {
-
+    $( 100 );
   }
   else {
     const c = $( 2 );
     const d = $( c );
     if (d) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const e = $( 0 );
   const f = $( e );
   if (f) {
-
+    $( 100 );
   }
   else {
     const g = $( 2 );
     const h = $( g );
     if (h) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const i = $( 0 );
   const j = $( i );
   if (j) {
-
+    $( 100 );
   }
   else {
     const k = $( 2 );
     const l = $( k );
     if (l) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const m = $( 0 );
   const n = $( m );
   if (n) {
-
+    $( 100 );
   }
   else {
     const o = $( 2 );
     const p = $( o );
     if (p) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const q = $( 0 );
   const r = $( q );
   if (r) {
-
+    $( 100 );
   }
   else {
     const s = $( 2 );
     const t = $( s );
     if (t) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const u = $( 0 );
   const v = $( u );
   if (v) {
-
+    $( 100 );
   }
   else {
     const w = $( 2 );
     const x = $( w );
     if (x) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const y = $( 0 );
   const z = $( y );
   if (z) {
-
+    $( 100 );
   }
   else {
     const ba = $( 2 );
     const bb = $( ba );
     if (bb) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const bc = $( 0 );
   const bd = $( bc );
   if (bd) {
-
+    $( 100 );
   }
   else {
     const be = $( 2 );
     const bf = $( be );
     if (bf) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const bg = $( 0 );
   const bh = $( bg );
   if (bh) {
-
+    $( 100 );
   }
   else {
     const bi = $( 2 );
     const bj = $( bi );
     if (bj) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const bk = $( 0 );
   const bl = $( bk );
   if (bl) {
-
+    $( 100 );
   }
   else {
     const bm = $( 2 );
     const bn = $( bm );
     if (bn) {
-
+      $( 100 );
     }
     else {
       break loopStop;
     }
   }
-  $( 100 );
   const bo = $( 0 );
   const bp = $( bo );
   if (bp) {

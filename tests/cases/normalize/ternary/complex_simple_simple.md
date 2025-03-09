@@ -71,10 +71,11 @@ let b = undefined;
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
   b = 4;
+  $(a, b);
 } else {
   b = 5;
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

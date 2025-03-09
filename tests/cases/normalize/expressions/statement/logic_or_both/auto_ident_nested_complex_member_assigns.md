@@ -120,6 +120,7 @@ const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpIfTest = varInitAssignLhsComputedRhs;
 if (tmpIfTest) {
+  $(a, b, c);
 } else {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
@@ -147,8 +148,8 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj$11[varInitAssignLhsComputedProp$11] = varInitAssignLhsComputedRhs$11;
   const tmpAssignComputedRhs = varInitAssignLhsComputedRhs$11;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(a, b, c);
 }
-$(a, b, c);
 `````
 
 ## PST Settled

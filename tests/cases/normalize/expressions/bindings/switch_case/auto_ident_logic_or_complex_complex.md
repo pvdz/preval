@@ -69,11 +69,12 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(0);
   a = $(tmpCalleeParam);
   if (a) {
+    $(a);
   } else {
     const tmpCalleeParam$1 = $(2);
     a = $(tmpCalleeParam$1);
+    $(a);
   }
-  $(a);
 } else {
 }
 `````

@@ -30,9 +30,10 @@ if (a) {
       break;
     }
   }
+  $(a, 1);
 } else {
+  $(a, 1);
 }
-$(a, 1);
 `````
 
 ## Denormalized
@@ -48,8 +49,10 @@ if (a) {
       break;
     }
   }
+  $(a, 1);
+} else {
+  $(a, 1);
 }
-$(a, 1);
 `````
 
 ## Pre Normal
@@ -96,8 +99,11 @@ if (a) {
       break;
     }
   }
+  $( a, 1 );
 }
-$( a, 1 );
+else {
+  $( a, 1 );
+}
 `````
 
 ## Globals

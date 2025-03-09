@@ -20,55 +20,56 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:unknown*/ = {};
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(2);
   const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
+  let tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+  let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$1 /*:unknown*/ = $(2);
       const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal$1 };
       const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      b = tmpNestedAssignObjPatternRhs$1.b;
-      a = tmpNestedAssignObjPatternRhs$1;
+      tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+      tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, tmpClusterSSA_b);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  const b /*:object*/ = {};
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpObjLitVal = $(2);
   const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
+  let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+  let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
   while (true) {
     if ($(1)) {
       const tmpObjLitVal$1 = $(2);
       const tmpNestedAssignObjPatternRhs$1 = $({ b: tmpObjLitVal$1 });
-      b = tmpNestedAssignObjPatternRhs$1.b;
-      a = tmpNestedAssignObjPatternRhs$1;
+      tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+      tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, tmpClusterSSA_b);
+} else {
+  $({ a: 999, b: 1000 }, {});
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -110,33 +111,36 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-let a = {};
-let b = {
-  a: 999,
-  b: 1000,
-};
-const c = $( 1 );
-if (c) {
-  const d = $( 2 );
-  const e = { b: d };
-  const f = $( e );
-  a = f.b;
-  b = f;
+const a = $( 1 );
+if (a) {
+  const b = $( 2 );
+  const c = { b: b };
+  const d = $( c );
+  let e = d.b;
+  let f = d;
   while ($LOOP_UNROLL_10) {
     const g = $( 1 );
     if (g) {
       const h = $( 2 );
       const i = { b: h };
       const j = $( i );
-      a = j.b;
-      b = j;
+      e = j.b;
+      f = j;
     }
     else {
       break;
     }
   }
+  $( f, e );
 }
-$( b, a );
+else {
+  const k = {
+    a: 999,
+    b: 1000,
+  };
+  const l = {};
+  $( k, l );
+}
 `````
 
 ## Globals

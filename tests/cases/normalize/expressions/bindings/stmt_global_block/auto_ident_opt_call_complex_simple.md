@@ -62,9 +62,10 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
   a = tmpChainElementCall$1;
+  $(tmpChainElementCall$1);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

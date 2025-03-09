@@ -79,17 +79,22 @@ let f = function () {
   const x = 0;
   if (x) {
     $(`a`);
+    $(`after outer`);
+    return undefined;
   } else {
     const y = 1;
     if (y) {
       $(`b`);
+      $(`after inner`);
+      $(`after outer`);
+      return undefined;
     } else {
       $(`c`);
+      $(`after inner`);
+      $(`after outer`);
+      return undefined;
     }
-    $(`after inner`);
   }
-  $(`after outer`);
-  return undefined;
 };
 f();
 `````

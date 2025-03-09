@@ -23,10 +23,11 @@ $(blob);
 `````js filename=intro
 const blob /*:object*/ = { thing: `woop` };
 if ($) {
+  $(blob);
 } else {
   blob.thing = `boing`;
+  $(blob);
 }
-$(blob);
 `````
 
 ## Denormalized
@@ -34,10 +35,12 @@ $(blob);
 
 `````js filename=intro
 const blob = { thing: `woop` };
-if (!$) {
+if ($) {
+  $(blob);
+} else {
   blob.thing = `boing`;
+  $(blob);
 }
-$(blob);
 `````
 
 ## Pre Normal
@@ -58,10 +61,11 @@ $(blob);
 `````js filename=intro
 const blob = { thing: `woop` };
 if ($) {
+  $(blob);
 } else {
   blob.thing = `boing`;
+  $(blob);
 }
-$(blob);
 `````
 
 ## PST Settled
@@ -70,12 +74,12 @@ With rename=true
 `````js filename=intro
 const a = { thing: "woop" };
 if ($) {
-
+  $( a );
 }
 else {
   a.thing = "boing";
+  $( a );
 }
-$( a );
 `````
 
 ## Globals

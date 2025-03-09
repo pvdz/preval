@@ -26,10 +26,11 @@ const a /*:unknown*/ = b[tmpAssignRhsCompProp];
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a, b);
 } else {
   $(a);
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Denormalized
@@ -41,10 +42,11 @@ const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
 if (a) {
   $($(100));
+  $(a, b);
 } else {
   $(a);
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Pre Normal
@@ -69,10 +71,12 @@ a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -85,11 +89,12 @@ const c = b[ a ];
 if (c) {
   const d = $( 100 );
   $( d );
+  $( c, b );
 }
 else {
   $( c );
+  $( c, b );
 }
-$( c, b );
 `````
 
 ## Globals

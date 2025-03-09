@@ -49,11 +49,13 @@ $(a);
 let a = { a: 999, b: 1000 };
 let xyz = 0;
 if (xyz) {
+  $(xyz);
+  $(a);
 } else {
   xyz = 2;
+  $(xyz);
+  $(a);
 }
-$(xyz);
-$(a);
 `````
 
 ## PST Settled

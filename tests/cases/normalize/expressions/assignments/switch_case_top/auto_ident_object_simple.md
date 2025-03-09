@@ -70,9 +70,10 @@ const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   a = { x: 1, y: 2, z: 3 };
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

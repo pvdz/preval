@@ -19,33 +19,35 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$3 /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam$3);
+const a /*:unknown*/ = $(tmpCalleeParam$3);
 if (a) {
   const tmpCalleeParam$5 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$5);
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$5);
+  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpClusterSSA_a);
 } else {
   const tmpClusterSSA_tmpBinBothRhs$1 /*:string*/ = $coerce(a, `string`);
   const tmpClusterSSA_tmpCalleeParam$1 /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(1));
+const a = $($(1));
 if (a) {
-  a = $($(2));
-  $(`before  ${a}  after`);
+  const tmpClusterSSA_a = $($(2));
+  $(`before  ${tmpClusterSSA_a}  after`);
+  $(tmpClusterSSA_a);
 } else {
   $(`before  ${a}  after`);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -84,20 +86,21 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
   const c = $( 2 );
-  b = $( c );
-  const d = $coerce( b, "string" );
-  const e = `before  ${d}  after`;
-  $( e );
+  const d = $( c );
+  const e = $coerce( d, "string" );
+  const f = `before  ${e}  after`;
+  $( f );
+  $( d );
 }
 else {
-  const f = $coerce( b, "string" );
-  const g = `before  ${f}  after`;
-  $( g );
+  const g = $coerce( b, "string" );
+  const h = `before  ${g}  after`;
+  $( h );
+  $( b );
 }
-$( b );
 `````
 
 ## Globals

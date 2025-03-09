@@ -59,9 +59,10 @@ if (tmpIfTest$3) {
   const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$9) {
     $(`fail1`);
+    $(`fail2`);
   } else {
+    $(`fail2`);
   }
-  $(`fail2`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -89,8 +90,10 @@ if (tmpSwitchCaseToStart <= 0) {
 } else {
   if (tmpSwitchCaseToStart <= 1) {
     $(`fail1`);
+    $(`fail2`);
+  } else {
+    $(`fail2`);
   }
-  $(`fail2`);
 }
 $({ a: 999, b: 1000 });
 `````
@@ -211,8 +214,11 @@ else {
   const l = b <= 1;
   if (l) {
     $( "fail1" );
+    $( "fail2" );
   }
-  $( "fail2" );
+  else {
+    $( "fail2" );
+  }
 }
 const m = {
   a: 999,

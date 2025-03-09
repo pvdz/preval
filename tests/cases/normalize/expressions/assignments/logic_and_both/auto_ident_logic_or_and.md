@@ -35,23 +35,27 @@ if (a) {
 const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpCalleeParam$7 /*:unknown*/ = $(0);
-  let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
+  const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
   if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   } else {
     const tmpCalleeParam$9 /*:unknown*/ = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$9);
-    if (tmpNestedComplexRhs) {
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$9);
+    if (tmpClusterSSA_tmpNestedComplexRhs) {
       const tmpCalleeParam$11 /*:unknown*/ = $(2);
-      tmpNestedComplexRhs = $(tmpCalleeParam$11);
+      const tmpClusterSSA_tmpNestedComplexRhs$1 /*:unknown*/ = $(tmpCalleeParam$11);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
     } else {
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
     }
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -67,19 +71,25 @@ if (!a) {
 }
 const tmpCalleeParam = a;
 if (a) {
-  let tmpNestedComplexRhs = $($(0));
-  if (!tmpNestedComplexRhs) {
-    tmpNestedComplexRhs = $($(1));
-    if (tmpNestedComplexRhs) {
-      tmpNestedComplexRhs = $($(2));
+  const tmpNestedComplexRhs = $($(0));
+  if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
+  } else {
+    const tmpClusterSSA_tmpNestedComplexRhs = $($(1));
+    if (tmpClusterSSA_tmpNestedComplexRhs) {
+      const tmpClusterSSA_tmpNestedComplexRhs$1 = $($(2));
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+    } else {
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
     }
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -124,10 +134,12 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -150,25 +162,30 @@ else {
 const e = b;
 if (b) {
   const f = $( 0 );
-  let g = $( f );
+  const g = $( f );
   if (g) {
-
+    $( g );
+    $( g );
   }
   else {
     const h = $( 1 );
-    g = $( h );
-    if (g) {
-      const i = $( 2 );
-      g = $( i );
+    const i = $( h );
+    if (i) {
+      const j = $( 2 );
+      const k = $( j );
+      $( k );
+      $( k );
+    }
+    else {
+      $( i );
+      $( i );
     }
   }
-  b = g;
-  $( g );
 }
 else {
   $( e );
+  $( b );
 }
-$( b );
 `````
 
 ## Globals

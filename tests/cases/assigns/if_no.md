@@ -68,11 +68,12 @@ if ($) {
 let x = 1;
 if ($) {
   $(x);
+  $(x);
 } else {
   $(x);
   x = 2;
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

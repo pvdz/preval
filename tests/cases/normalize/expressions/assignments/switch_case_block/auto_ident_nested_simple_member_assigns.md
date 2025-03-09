@@ -107,9 +107,10 @@ if (tmpIfTest) {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.x = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
+  $(tmpNestedPropAssignRhs, b, c);
 } else {
+  $(a, b, c);
 }
-$(a, b, c);
 `````
 
 ## PST Settled

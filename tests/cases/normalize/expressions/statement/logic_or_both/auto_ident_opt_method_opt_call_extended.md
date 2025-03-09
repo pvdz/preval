@@ -28,17 +28,19 @@ if (tmpIfTest$3) {
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   tmpIfTest = tmpChainElementCall;
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
   const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject$9 == null;
   if (tmpIfTest$7) {
+    $(a);
   } else {
     $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+    $(a);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -51,13 +53,18 @@ const tmpObjLitVal$1 = { e: $ };
 if (!tmpIfTest$3) {
   tmpIfTest = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
-if (!tmpIfTest) {
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+} else {
   const tmpChainElementObject$9 = tmpObjLitVal$1.e;
-  if (!(tmpChainElementObject$9 == null)) {
+  if (tmpChainElementObject$9 == null) {
+    $(a);
+  } else {
     $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+    $(a);
   }
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -94,6 +101,7 @@ if (tmpIfTest$1) {
 } else {
 }
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpChainRootProp$1 = b;
   const tmpIfTest$5 = tmpChainRootProp$1 != null;
@@ -104,12 +112,14 @@ if (tmpIfTest) {
     const tmpIfTest$7 = tmpChainElementObject$9 != null;
     if (tmpIfTest$7) {
       const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpChainElementObject$7, `e`, 1);
+      $(a);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
 }
-$(a);
 `````
 
 ## PST Settled
@@ -126,24 +136,24 @@ else {
   const d = $dotCall( $, c, "e", 1 );
   a = d;
 }
-if (a) {
-
-}
-else {
-  const e = c.e;
-  const f = e == null;
-  if (f) {
-
-  }
-  else {
-    $dotCall( e, c, "e", 1 );
-  }
-}
-const g = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( g );
+if (a) {
+  $( e );
+}
+else {
+  const f = c.e;
+  const g = f == null;
+  if (g) {
+    $( e );
+  }
+  else {
+    $dotCall( f, c, "e", 1 );
+    $( e );
+  }
+}
 `````
 
 ## Globals

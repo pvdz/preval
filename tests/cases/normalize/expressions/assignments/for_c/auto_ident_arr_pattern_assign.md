@@ -21,18 +21,15 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpArrElement /*:unknown*/ = $(3);
   const tmpArrElement$1 /*:unknown*/ = $(4);
   const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
+  let tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
+  let tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
+  let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignArrPatternRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
@@ -40,48 +37,49 @@ if (tmpIfTest) {
       const tmpArrElement$4 /*:unknown*/ = $(4);
       const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$2, tmpArrElement$4];
       const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-      x = arrPatternSplat$1[0];
-      y = arrPatternSplat$1[1];
-      a = tmpNestedAssignArrPatternRhs$1;
+      tmpClusterSSA_x = arrPatternSplat$1[0];
+      tmpClusterSSA_y = arrPatternSplat$1[1];
+      tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
+  let tmpClusterSSA_x = arrPatternSplat[0];
+  let tmpClusterSSA_y = arrPatternSplat[1];
+  let tmpClusterSSA_a = tmpNestedAssignArrPatternRhs;
   while (true) {
     if ($(1)) {
       const tmpArrElement$2 = $(3);
       const tmpArrElement$4 = $(4);
       const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$4];
       const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-      x = arrPatternSplat$1[0];
-      y = arrPatternSplat$1[1];
-      a = tmpNestedAssignArrPatternRhs$1;
+      tmpClusterSSA_x = arrPatternSplat$1[0];
+      tmpClusterSSA_y = arrPatternSplat$1[1];
+      tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
+} else {
+  $({ a: 999, b: 1000 }, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Pre Normal
@@ -127,21 +125,15 @@ $(a, x, y);
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-let c = {
-  a: 999,
-  b: 1000,
-};
-const d = $( 1 );
-if (d) {
-  const e = $( 3 );
-  const f = $( 4 );
-  const g = [ e, f ];
-  const h = [ ...g ];
-  a = h[ 0 ];
-  b = h[ 1 ];
-  c = g;
+const a = $( 1 );
+if (a) {
+  const b = $( 3 );
+  const c = $( 4 );
+  const d = [ b, c ];
+  const e = [ ...d ];
+  let f = e[ 0 ];
+  let g = e[ 1 ];
+  let h = d;
   while ($LOOP_UNROLL_10) {
     const i = $( 1 );
     if (i) {
@@ -149,16 +141,23 @@ if (d) {
       const k = $( 4 );
       const l = [ j, k ];
       const m = [ ...l ];
-      a = m[ 0 ];
-      b = m[ 1 ];
-      c = l;
+      f = m[ 0 ];
+      g = m[ 1 ];
+      h = l;
     }
     else {
       break;
     }
   }
+  $( h, f, g );
 }
-$( c, a, b );
+else {
+  const n = {
+    a: 999,
+    b: 1000,
+  };
+  $( n, 1, 2 );
+}
 `````
 
 ## Globals

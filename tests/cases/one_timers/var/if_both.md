@@ -49,10 +49,11 @@ const tmpIfTest$1 /*:unknown*/ = $(1);
 if (tmpIfTest$1) {
   $(`c`);
   g();
+  $(undefined);
 } else {
   $(`d`);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -70,10 +71,11 @@ const g = function () {
 if ($(1)) {
   $(`c`);
   g();
+  $(undefined);
 } else {
   $(`d`);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -155,11 +157,12 @@ const c = $( 1 );
 if (c) {
   $( "c" );
   a();
+  $( undefined );
 }
 else {
   $( "d" );
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

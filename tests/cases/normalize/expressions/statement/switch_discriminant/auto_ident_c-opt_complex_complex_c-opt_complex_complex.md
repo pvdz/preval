@@ -27,20 +27,24 @@ const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(100);
+  $(a);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+    $(100);
+    $(a);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     tmpChainElementObject[tmpChainRootComputed$1];
+    $(100);
+    $(a);
   }
 }
-$(100);
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -49,16 +53,24 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest = tmpChainElementCall == null;
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(100);
+  $(a);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(100);
+    $(a);
+  } else {
     const tmpChainRootComputed$1 = $(`y`);
     tmpChainElementObject[tmpChainRootComputed$1];
+    $(100);
+    $(a);
   }
 }
-$(100);
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -96,12 +108,16 @@ if (tmpIfTest) {
     const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpSwitchDisc = tmpChainElementObject$1;
+    $(100);
+    $(a);
   } else {
+    $(100);
+    $(a);
   }
 } else {
+  $(100);
+  $(a);
 }
-$(100);
-$(a);
 `````
 
 ## PST Settled
@@ -112,27 +128,29 @@ const a = { y: 1 };
 const b = { x: a };
 const c = $( b );
 const d = c == null;
-if (d) {
-
-}
-else {
-  const e = $( "x" );
-  const f = c[ e ];
-  const g = f == null;
-  if (g) {
-
-  }
-  else {
-    const h = $( "y" );
-    f[ h ];
-  }
-}
-$( 100 );
-const i = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( i );
+if (d) {
+  $( 100 );
+  $( e );
+}
+else {
+  const f = $( "x" );
+  const g = c[ f ];
+  const h = g == null;
+  if (h) {
+    $( 100 );
+    $( e );
+  }
+  else {
+    const i = $( "y" );
+    g[ i ];
+    $( 100 );
+    $( e );
+  }
+}
 `````
 
 ## Globals

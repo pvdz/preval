@@ -20,16 +20,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpObjLitVal$3 /*:unknown*/ = $(3);
-let a /*:unknown*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-if (a) {
-  $(a);
-} else {
-  const tmpObjLitVal$5 /*:unknown*/ = $(1);
-  const tmpObjLitVal$9 /*:unknown*/ = $(3);
-  const tmpNestedComplexRhs /*:object*/ = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(a);
 $(a);
 `````
 
@@ -39,16 +31,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-let a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-if (a) {
-  $(a);
-} else {
-  const tmpObjLitVal$5 = $(1);
-  const tmpObjLitVal$9 = $(3);
-  const tmpNestedComplexRhs = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(a);
 $(a);
 `````
 
@@ -72,6 +56,8 @@ const tmpObjLitVal$3 = $(3);
 a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpObjLitVal$5 = $(1);
   const tmpObjLitVal$7 = 2;
@@ -79,9 +65,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = { x: tmpObjLitVal$5, y: tmpObjLitVal$7, z: tmpObjLitVal$9 };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -90,25 +76,12 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 3 );
-let c = {
+const c = {
   x: a,
   y: 2,
   z: b,
 };
-if (c) {
-  $( c );
-}
-else {
-  const d = $( 1 );
-  const e = $( 3 );
-  const f = {
-    x: d,
-    y: 2,
-    z: e,
-  };
-  c = f;
-  $( f );
-}
+$( c );
 $( c );
 `````
 

@@ -101,10 +101,12 @@ if ($) {
     $(b);
     return undefined;
   };
+  f(1);
+  f(2);
 } else {
+  f(1);
+  f(2);
 }
-f(1);
-f(2);
 `````
 
 ## PST Settled

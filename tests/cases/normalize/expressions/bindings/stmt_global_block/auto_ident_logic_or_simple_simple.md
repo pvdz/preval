@@ -45,10 +45,11 @@ $(2);
 `````js filename=intro
 let a = 0;
 if (a) {
+  $(a);
 } else {
   a = 2;
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

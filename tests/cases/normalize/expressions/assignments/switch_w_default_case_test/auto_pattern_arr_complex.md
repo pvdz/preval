@@ -46,10 +46,12 @@ if (tmpIfTest) {
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
+  $(`fail2`);
+  $(tmpClusterSSA_a);
 } else {
+  $(`fail2`);
+  $(tmpClusterSSA_a);
 }
-$(`fail2`);
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -71,9 +73,12 @@ if (tmpNestedAssignArrPatternRhs === tmpSwitchValue) {
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
+  $(`fail2`);
+  $(tmpClusterSSA_a);
+} else {
+  $(`fail2`);
+  $(tmpClusterSSA_a);
 }
-$(`fail2`);
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -135,9 +140,10 @@ if (tmpIfTest$5) {
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $(`fail2`);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -169,9 +175,13 @@ else {
 const k = d <= 1;
 if (k) {
   $( "fail1" );
+  $( "fail2" );
+  $( h );
 }
-$( "fail2" );
-$( h );
+else {
+  $( "fail2" );
+  $( h );
+}
 `````
 
 ## Globals

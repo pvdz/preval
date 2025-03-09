@@ -18,32 +18,18 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = [];
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  const tmpNestedComplexRhs /*:array*/ = [];
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+const tmpNestedComplexRhs /*:array*/ = [];
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = [];
-const tmpCalleeParam = a;
-if (a) {
-  const tmpNestedComplexRhs = [];
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+const tmpNestedComplexRhs = [];
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -66,26 +52,20 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = [];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = [];
-const b = a;
-if (a) {
-  const c = [];
-  a = c;
-  $( c );
-}
-else {
-  $( b );
-}
+const a = [];
+$( a );
 $( a );
 `````
 

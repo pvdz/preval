@@ -32,13 +32,14 @@ $(x);
 let x /*:unknown*/ = $(1);
 $(3);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (x) {
-    x = $ === 2;
-  } else {
-    x = $ === 3;
-  }
   try {
-    $(1);
+    if (x) {
+      x = $ === 2;
+      $(1);
+    } else {
+      x = $ === 3;
+      $(1);
+    }
   } catch (e) {
     $(`fail`);
   }
@@ -52,13 +53,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 let x = $(1);
 $(3);
 while (true) {
-  if (x) {
-    x = $ === 2;
-  } else {
-    x = $ === 3;
-  }
   try {
-    $(1);
+    if (x) {
+      x = $ === 2;
+      $(1);
+    } else {
+      x = $ === 3;
+      $(1);
+    }
   } catch (e) {
     $(`fail`);
   }
@@ -95,10 +97,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     if (x) {
       x = $ === 2;
+      $(1);
     } else {
       x = $ === 3;
+      $(1);
     }
-    $(1);
   } catch (e) {
     $(`fail`);
   }
@@ -112,14 +115,15 @@ With rename=true
 let a = $( 1 );
 $( 3 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (a) {
-    a = $ === 2;
-  }
-  else {
-    a = $ === 3;
-  }
   try {
-    $( 1 );
+    if (a) {
+      a = $ === 2;
+      $( 1 );
+    }
+    else {
+      a = $ === 3;
+      $( 1 );
+    }
   }
   catch (b) {
     $( "fail" );

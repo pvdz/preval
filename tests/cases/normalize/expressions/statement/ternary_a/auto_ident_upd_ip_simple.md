@@ -54,10 +54,11 @@ b = tmpPostUpdArgIdent + 1;
 const tmpIfTest = tmpPostUpdArgIdent;
 if (tmpIfTest) {
   $(100);
+  $(a, b);
 } else {
   $(200);
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

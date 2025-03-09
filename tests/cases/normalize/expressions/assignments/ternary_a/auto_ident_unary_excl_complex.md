@@ -19,15 +19,16 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
+const a /*:boolean*/ = !tmpUnaryArg;
 if (tmpUnaryArg) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a);
 } else {
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(a);
 }
-const a /*:boolean*/ = !tmpUnaryArg;
-$(a);
 `````
 
 ## Denormalized
@@ -35,12 +36,14 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
+const a = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $($(200));
+  $(a);
 } else {
   $($(100));
+  $(a);
 }
-$(!tmpUnaryArg);
 `````
 
 ## Pre Normal
@@ -63,11 +66,13 @@ a = !tmpUnaryArg;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -75,16 +80,17 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
+const b = !a;
 if (a) {
-  const b = $( 200 );
+  const c = $( 200 );
+  $( c );
   $( b );
 }
 else {
-  const c = $( 100 );
-  $( c );
+  const d = $( 100 );
+  $( d );
+  $( b );
 }
-const d = !a;
-$( d );
 `````
 
 ## Globals

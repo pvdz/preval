@@ -67,10 +67,12 @@ let f = function () {
   if (tmpIfTest) {
     const tmpChainRootComputed = `x`;
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+    $(a);
+    return undefined;
   } else {
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

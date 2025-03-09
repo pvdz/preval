@@ -26,10 +26,11 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(1);
 } else {
   $(tmpCalleeParam);
+  $(1);
 }
-$(1);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
 a.b = tmpAssignMemRhs;
 $(a);
@@ -46,10 +47,11 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
+  $(1);
 } else {
   $(tmpCalleeParam);
+  $(1);
 }
-$(1);
 a.b = $(2);
 $(a);
 `````
@@ -75,10 +77,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(1);
 } else {
+  $(tmpCalleeParam);
+  $(1);
 }
-$(tmpCalleeParam);
-$(1);
 const tmpAssignMemLhsObj = a;
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpAssignMemRhs = $(2);
@@ -100,11 +104,12 @@ if (b) {
   const d = { b: c };
   a = d;
   $( d );
+  $( 1 );
 }
 else {
   $( b );
+  $( 1 );
 }
-$( 1 );
 const e = $( 2 );
 a.b = e;
 $( a );

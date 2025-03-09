@@ -60,11 +60,13 @@ let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
 let tmpSwitchDisc = $(tmpCalleeParam);
 if (tmpSwitchDisc) {
+  $(100);
+  $(a);
 } else {
   tmpSwitchDisc = 2;
+  $(100);
+  $(a);
 }
-$(100);
-$(a);
 `````
 
 ## PST Settled

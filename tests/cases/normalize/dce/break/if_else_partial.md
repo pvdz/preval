@@ -27,6 +27,7 @@ const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(1);
   if (tmpIfTest$1) {
+    $(`after`);
   } else {
     $(`keep, do not eval`);
     while ($LOOP_UNROLL_10) {
@@ -42,10 +43,11 @@ if (tmpIfTest) {
         break;
       }
     }
+    $(`after`);
   }
 } else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Denormalized
@@ -53,7 +55,9 @@ $(`after`);
 
 `````js filename=intro
 if ($(true)) {
-  if (!$(1)) {
+  if ($(1)) {
+    $(`after`);
+  } else {
     $(`keep, do not eval`);
     while (true) {
       if ($(true)) {
@@ -66,9 +70,11 @@ if ($(true)) {
         break;
       }
     }
+    $(`after`);
   }
+} else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Pre Normal
@@ -113,7 +119,7 @@ const a = $( true );
 if (a) {
   const b = $( 1 );
   if (b) {
-
+    $( "after" );
   }
   else {
     $( "keep, do not eval" );
@@ -132,9 +138,12 @@ if (a) {
         break;
       }
     }
+    $( "after" );
   }
 }
-$( "after" );
+else {
+  $( "after" );
+}
 `````
 
 ## Globals

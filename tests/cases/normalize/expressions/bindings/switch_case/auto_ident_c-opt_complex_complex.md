@@ -22,8 +22,8 @@ switch (1) {
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
-const tmpChainElementCall /*:unknown*/ = $(b);
+const tmpClusterSSA_b /*:object*/ = { x: 1 };
+const tmpChainElementCall /*:unknown*/ = $(tmpClusterSSA_b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
   $(undefined);
@@ -82,9 +82,10 @@ if (tmpIfTest) {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
+    $(tmpChainElementObject);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 `````

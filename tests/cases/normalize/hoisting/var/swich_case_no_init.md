@@ -24,32 +24,34 @@ $(x);
 
 
 `````js filename=intro
-let x /*:primitive*/ = undefined;
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === 0;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === 1;
   if (tmpIfTest$1) {
-    x = 20;
+    $(20);
   } else {
+    $(undefined);
   }
 }
-$(x);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = undefined;
 const tmpSwitchDisc = $(1);
-if (!(tmpSwitchDisc === 0)) {
+if (tmpSwitchDisc === 0) {
+  $(undefined);
+} else {
   if (tmpSwitchDisc === 1) {
-    x = 20;
+    $(20);
+  } else {
+    $(undefined);
   }
 }
-$(x);
 `````
 
 ## Pre Normal
@@ -97,19 +99,20 @@ $(x);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1 );
-const c = b === 0;
-if (c) {
-
+const a = $( 1 );
+const b = a === 0;
+if (b) {
+  $( undefined );
 }
 else {
-  const d = b === 1;
-  if (d) {
-    a = 20;
+  const c = a === 1;
+  if (c) {
+    $( 20 );
+  }
+  else {
+    $( undefined );
   }
 }
-$( a );
 `````
 
 ## Globals

@@ -29,18 +29,20 @@ $(x);
 `````js filename=intro
 const x /*:unknown*/ = $(`a`);
 $(x);
-let tmpClusterSSA_x /*:unknown*/ = $(`b`);
+const tmpClusterSSA_x /*:unknown*/ = $(`b`);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  tmpClusterSSA_x = $(`c`);
+  const tmpClusterSSA_x$1 /*:unknown*/ = $(`c`);
   const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
+    $(tmpClusterSSA_x$1);
   } else {
-    tmpClusterSSA_x = $(`d`);
+    const tmpClusterSSA_x$3 /*:unknown*/ = $(`d`);
+    $(tmpClusterSSA_x$3);
   }
 } else {
+  $(tmpClusterSSA_x);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Denormalized
@@ -48,14 +50,17 @@ $(tmpClusterSSA_x);
 
 `````js filename=intro
 $($(`a`));
-let tmpClusterSSA_x = $(`b`);
+const tmpClusterSSA_x = $(`b`);
 if ($(1)) {
-  tmpClusterSSA_x = $(`c`);
-  if (!$(2)) {
-    tmpClusterSSA_x = $(`d`);
+  const tmpClusterSSA_x$1 = $(`c`);
+  if ($(2)) {
+    $(tmpClusterSSA_x$1);
+  } else {
+    $($(`d`));
   }
+} else {
+  $(tmpClusterSSA_x);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Pre Normal
@@ -87,12 +92,14 @@ if (tmpIfTest) {
   x = $(`c`);
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
+    $(x);
   } else {
     x = $(`d`);
+    $(x);
   }
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled
@@ -101,19 +108,22 @@ With rename=true
 `````js filename=intro
 const a = $( "a" );
 $( a );
-let b = $( "b" );
+const b = $( "b" );
 const c = $( 1 );
 if (c) {
-  b = $( "c" );
-  const d = $( 2 );
-  if (d) {
-
+  const d = $( "c" );
+  const e = $( 2 );
+  if (e) {
+    $( d );
   }
   else {
-    b = $( "d" );
+    const f = $( "d" );
+    $( f );
   }
 }
-$( b );
+else {
+  $( b );
+}
 `````
 
 ## Globals

@@ -22,16 +22,17 @@ $(a, b);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(100);
 const b /*:object*/ = { c: 10, d: 20 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCompProp /*:unknown*/ = $(`d`);
   const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
   b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+  $(a, b);
 } else {
+  $(a, b);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
 `````
 
 ## Denormalized
@@ -40,14 +41,17 @@ $(a, b);
 `````js filename=intro
 const tmpIfTest = $(100);
 const b = { c: 10, d: 20 };
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsProp = $(`c`);
   const tmpCompObj = $(b);
   const tmpCompProp = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+  $(a, b);
+} else {
+  $(a, b);
 }
-$({ a: 999, b: 1000 }, b);
 `````
 
 ## Pre Normal
@@ -76,9 +80,10 @@ if (tmpIfTest) {
   const tmpCompProp = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
@@ -90,18 +95,21 @@ const b = {
   c: 10,
   d: 20,
 };
-if (a) {
-  const c = $( "c" );
-  const d = $( b );
-  const e = $( "d" );
-  const f = d[ e ];
-  b[c] = f;
-}
-const g = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( g, b );
+if (a) {
+  const d = $( "c" );
+  const e = $( b );
+  const f = $( "d" );
+  const g = e[ f ];
+  b[d] = g;
+  $( c, b );
+}
+else {
+  $( c, b );
+}
 `````
 
 ## Globals

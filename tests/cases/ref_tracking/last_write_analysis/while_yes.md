@@ -39,9 +39,10 @@ if (tmpClusterSSA_x) {
       break;
     }
   }
+  $(tmpClusterSSA_x);
 } else {
+  $(tmpClusterSSA_x);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Denormalized
@@ -57,8 +58,10 @@ if (tmpClusterSSA_x) {
       break;
     }
   }
+  $(tmpClusterSSA_x);
+} else {
+  $(tmpClusterSSA_x);
 }
-$(tmpClusterSSA_x);
 `````
 
 ## Pre Normal
@@ -112,8 +115,11 @@ if (b) {
       break;
     }
   }
+  $( b );
 }
-$( b );
+else {
+  $( b );
+}
 `````
 
 ## Globals

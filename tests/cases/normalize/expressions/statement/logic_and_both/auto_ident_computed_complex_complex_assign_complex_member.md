@@ -27,6 +27,7 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = $(`d`);
 const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (varInitAssignLhsComputedRhs) {
   const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
@@ -34,10 +35,10 @@ if (varInitAssignLhsComputedRhs) {
   const tmpCompProp$1 /*:unknown*/ = $(`d`);
   const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+  $(a, b);
 } else {
+  $(a, b);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b);
 `````
 
 ## Denormalized
@@ -51,6 +52,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const a = { a: 999, b: 1000 };
 if (varInitAssignLhsComputedRhs) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`c`);
@@ -58,8 +60,10 @@ if (varInitAssignLhsComputedRhs) {
   const tmpCompProp$1 = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj$1[tmpCompProp$1];
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+  $(a, b);
+} else {
+  $(a, b);
 }
-$({ a: 999, b: 1000 }, b);
 `````
 
 ## Pre Normal
@@ -94,9 +98,10 @@ if (tmpIfTest) {
   const tmpCompProp$1 = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj$1[tmpCompProp$1];
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
@@ -113,19 +118,22 @@ const d = $( a );
 const e = $( "d" );
 const f = d[ e ];
 b[c] = f;
-if (f) {
-  const g = $( a );
-  const h = $( "c" );
-  const i = $( a );
-  const j = $( "d" );
-  const k = i[ j ];
-  g[h] = k;
-}
-const l = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( l, a );
+if (f) {
+  const h = $( a );
+  const i = $( "c" );
+  const j = $( a );
+  const k = $( "d" );
+  const l = j[ k ];
+  h[i] = l;
+  $( g, a );
+}
+else {
+  $( g, a );
+}
 `````
 
 ## Globals

@@ -24,13 +24,14 @@ const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpNestedAssignObjPatternRhs) {
   $(100);
+  $(a, tmpClusterSSA_b);
 } else {
   $(200);
+  $(a, tmpClusterSSA_b);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
 `````
 
 ## Denormalized
@@ -40,12 +41,14 @@ $(a, tmpClusterSSA_b);
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const a = { a: 999, b: 1000 };
 if (tmpNestedAssignObjPatternRhs) {
   $(100);
+  $(a, tmpClusterSSA_b);
 } else {
   $(200);
+  $(a, tmpClusterSSA_b);
 }
-$({ a: 999, b: 1000 }, tmpClusterSSA_b);
 `````
 
 ## Pre Normal
@@ -72,10 +75,11 @@ b = tmpNestedAssignObjPatternRhs.b;
 tmpIfTest = tmpNestedAssignObjPatternRhs;
 if (tmpIfTest) {
   $(100);
+  $(a, b);
 } else {
   $(200);
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled
@@ -86,17 +90,18 @@ const a = $( 2 );
 const b = { b: a };
 const c = $( b );
 const d = c.b;
-if (c) {
-  $( 100 );
-}
-else {
-  $( 200 );
-}
 const e = {
   a: 999,
   b: 1000,
 };
-$( e, d );
+if (c) {
+  $( 100 );
+  $( e, d );
+}
+else {
+  $( 200 );
+  $( e, d );
+}
 `````
 
 ## Globals

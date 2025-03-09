@@ -27,9 +27,9 @@ const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
-let tmpClusterSSA_a /*:unknown*/ = tmpUpdNum;
 if (tmpUpdNum) {
   $(tmpUpdNum);
+  $(tmpUpdNum, b);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(b);
   const tmpUpdObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
@@ -37,10 +37,9 @@ if (tmpUpdNum) {
   const tmpUpdNum$1 /*:number*/ = $coerce(tmpUpdProp$1, `number`);
   const tmpUpdInc$1 /*:number*/ = tmpUpdNum$1 + 1;
   tmpUpdObj$1.x = tmpUpdInc$1;
-  tmpClusterSSA_a = tmpUpdNum$1;
   $(tmpUpdNum$1);
+  $(tmpUpdNum$1, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Denormalized
@@ -51,17 +50,16 @@ const b = { x: 1 };
 const tmpUpdObj = $($(b));
 const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
 tmpUpdObj.x = tmpUpdNum + 1;
-let tmpClusterSSA_a = tmpUpdNum;
 if (tmpUpdNum) {
   $(tmpUpdNum);
+  $(tmpUpdNum, b);
 } else {
   const tmpUpdObj$1 = $($(b));
   const tmpUpdNum$1 = $coerce(tmpUpdObj$1.x, `number`);
   tmpUpdObj$1.x = tmpUpdNum$1 + 1;
-  tmpClusterSSA_a = tmpUpdNum$1;
   $(tmpUpdNum$1);
+  $(tmpUpdNum$1, b);
 }
-$(tmpClusterSSA_a, b);
 `````
 
 ## Pre Normal
@@ -89,6 +87,8 @@ tmpUpdObj.x = tmpUpdInc;
 a = tmpUpdNum;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   const tmpCalleeParam$3 = $(b);
   let tmpUpdObj$1 = $(tmpCalleeParam$3);
@@ -99,9 +99,9 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = tmpUpdNum$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -115,21 +115,20 @@ const d = c.x;
 const e = $coerce( d, "number" );
 const f = e + 1;
 c.x = f;
-let g = e;
 if (e) {
   $( e );
+  $( e, a );
 }
 else {
-  const h = $( a );
-  const i = $( h );
-  const j = i.x;
-  const k = $coerce( j, "number" );
-  const l = k + 1;
-  i.x = l;
-  g = k;
-  $( k );
+  const g = $( a );
+  const h = $( g );
+  const i = h.x;
+  const j = $coerce( i, "number" );
+  const k = j + 1;
+  h.x = k;
+  $( j );
+  $( j, a );
 }
-$( g, a );
 `````
 
 ## Globals

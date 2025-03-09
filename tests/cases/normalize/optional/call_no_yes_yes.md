@@ -26,7 +26,6 @@ $(a().b?.().c?.().d);
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const a$1 /*:object*/ = {
   a() {
     debugger;
@@ -48,25 +47,25 @@ const a$1 /*:object*/ = {
 const tmpChainElementObject /*:unknown*/ = a$1.b;
 const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, a$1, `b`);
   const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.c;
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
   if (tmpIfTest$1) {
+    $(undefined);
   } else {
     const tmpChainElementCall$3 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, `c`);
     const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$3.d;
-    tmpCalleeParam = tmpChainElementObject$3;
+    $(tmpChainElementObject$3);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const a$1 = {
   a() {
     return a$1;
@@ -82,14 +81,17 @@ const a$1 = {
   },
 };
 const tmpChainElementObject = a$1.b;
-if (!(tmpChainElementObject == null)) {
+if (tmpChainElementObject == null) {
+  $(undefined);
+} else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, a$1, `b`);
   const tmpChainElementObject$1 = tmpChainElementCall$1.c;
-  if (!(tmpChainElementObject$1 == null)) {
-    tmpCalleeParam = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, `c`).d;
+  if (tmpChainElementObject$1 == null) {
+    $(undefined);
+  } else {
+    $($dotCall(tmpChainElementObject$1, tmpChainElementCall$1, `c`).d);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -160,55 +162,55 @@ if (tmpIfTest) {
     const tmpChainElementCall$3 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, `c`);
     const tmpChainElementObject$3 = tmpChainElementCall$3.d;
     tmpCalleeParam = tmpChainElementObject$3;
+    $(tmpChainElementObject$3);
   } else {
+    $(tmpCalleeParam);
   }
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   a(  ) {
     debugger;
-    return b;
+    return a;
   },
   b(  ) {
     debugger;
-    return b;
+    return a;
   },
   c(  ) {
     debugger;
-    return b;
+    return a;
   },
   d(  ) {
     debugger;
-    return b;
+    return a;
   },
 };
-const c = b.b;
-const d = c == null;
-if (d) {
-
+const b = a.b;
+const c = b == null;
+if (c) {
+  $( undefined );
 }
 else {
-  const e = $dotCall( c, b, "b" );
-  const f = e.c;
-  const g = f == null;
-  if (g) {
-
+  const d = $dotCall( b, a, "b" );
+  const e = d.c;
+  const f = e == null;
+  if (f) {
+    $( undefined );
   }
   else {
-    const h = $dotCall( f, e, "c" );
-    const i = h.d;
-    a = i;
+    const g = $dotCall( e, d, "c" );
+    const h = g.d;
+    $( h );
   }
 }
-$( a );
 `````
 
 ## Globals

@@ -26,6 +26,7 @@ $(a, b, c, d, e);
 const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
@@ -33,11 +34,11 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
+  $(a, b, c, 3, 4);
 } else {
   $(200);
+  $(a, b, c, 3, 4);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, b, c, 3, 4);
 `````
 
 ## Denormalized
@@ -47,6 +48,7 @@ $(a, b, c, 3, 4);
 const tmpIfTest = $(1);
 const b = { x: 1 };
 const c = { y: 2 };
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
@@ -54,10 +56,11 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
+  $(a, b, c, 3, 4);
 } else {
   $(200);
+  $(a, b, c, 3, 4);
 }
-$({ a: 999, b: 1000 }, b, c, 3, 4);
 `````
 
 ## Pre Normal
@@ -94,10 +97,11 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  $(a, b, c, d, e);
 } else {
   $(200);
+  $(a, b, c, d, e);
 }
-$(a, b, c, d, e);
 `````
 
 ## PST Settled
@@ -107,22 +111,23 @@ With rename=true
 const a = $( 1 );
 const b = { x: 1 };
 const c = { y: 2 };
-if (a) {
-  const d = $( b );
-  const e = $( "x" );
-  const f = $( c );
-  const g = $( "y" );
-  f[g] = 7;
-  d[e] = 7;
-}
-else {
-  $( 200 );
-}
-const h = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( h, b, c, 3, 4 );
+if (a) {
+  const e = $( b );
+  const f = $( "x" );
+  const g = $( c );
+  const h = $( "y" );
+  g[h] = 7;
+  e[f] = 7;
+  $( d, b, c, 3, 4 );
+}
+else {
+  $( 200 );
+  $( d, b, c, 3, 4 );
+}
 `````
 
 ## Globals

@@ -31,20 +31,20 @@ if (tmpIfTest) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpChainElementCall$3 /*:unknown*/ = $($);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
   if (tmpIfTest$1) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpCalleeParam$11 /*:unknown*/ = $(1);
     const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, tmpCalleeParam$11);
-    tmpNestedComplexRhs = tmpChainElementCall$5;
+    $(tmpChainElementCall$5);
+    $(tmpChainElementCall$5);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -62,16 +62,18 @@ if (!tmpIfTest) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
-  let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $($);
-  if (!(tmpChainElementCall$3 == null)) {
-    tmpNestedComplexRhs = $dotCall(tmpChainElementCall$3, $, undefined, $(1));
+  if (tmpChainElementCall$3 == null) {
+    $(undefined);
+    $(undefined);
+  } else {
+    const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, undefined, $(1));
+    $(tmpChainElementCall$5);
+    $(tmpChainElementCall$5);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -102,6 +104,8 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall$1 = $;
@@ -117,9 +121,9 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -141,23 +145,22 @@ else {
 }
 if (a) {
   $( d );
+  $( a );
 }
 else {
-  let g = undefined;
-  const h = $( $ );
-  const i = h == null;
-  if (i) {
-
+  const g = $( $ );
+  const h = g == null;
+  if (h) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const j = $( 1 );
-    const k = $dotCall( h, $, undefined, j );
-    g = k;
+    const i = $( 1 );
+    const j = $dotCall( g, $, undefined, i );
+    $( j );
+    $( j );
   }
-  a = g;
-  $( g );
 }
-$( a );
 `````
 
 ## Globals

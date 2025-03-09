@@ -30,32 +30,30 @@ $(f());
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
   $(`loop`);
   const tmpReturnArg /*:unknown*/ = $(100, `return`);
-  tmpCalleeParam = tmpReturnArg;
+  $(tmpReturnArg);
 } else {
   $(`after (not invoked)`);
+  $(undefined);
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 if ($(true)) {
   $(`loop`);
   $(`loop`);
-  tmpCalleeParam = $(100, `return`);
+  $($(100, `return`));
 } else {
   $(`after (not invoked)`);
+  $(undefined);
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -114,18 +112,17 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( true );
-if (b) {
+const a = $( true );
+if (a) {
   $( "loop" );
   $( "loop" );
-  const c = $( 100, "return" );
-  a = c;
+  const b = $( 100, "return" );
+  $( b );
 }
 else {
   $( "after (not invoked)" );
+  $( undefined );
 }
-$( a );
 `````
 
 ## Globals

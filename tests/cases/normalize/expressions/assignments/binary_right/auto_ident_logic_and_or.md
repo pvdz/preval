@@ -29,13 +29,14 @@ if (a) {
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$5);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$5);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -49,11 +50,12 @@ if (a) {
 }
 if (a) {
   $(tmpBinBothLhs + a);
+  $(a);
 } else {
-  a = $($(2));
-  $(tmpBinBothLhs + a);
+  const tmpClusterSSA_a = $($(2));
+  $(tmpBinBothLhs + tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -103,14 +105,15 @@ if (c) {
 if (c) {
   const e = a + c;
   $( e );
+  $( c );
 }
 else {
   const f = $( 2 );
-  c = $( f );
-  const g = a + c;
+  const g = $( f );
+  const h = a + g;
+  $( h );
   $( g );
 }
-$( c );
 `````
 
 ## Globals

@@ -34,6 +34,7 @@ const x /*:unknown*/ = $(1);
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (x) {
+    $(2);
   } else {
     const tmpCalleeParam /*:primitive*/ = arr[0];
     try {
@@ -42,8 +43,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     } catch (e) {
       $(`fail`);
     }
+    $(2);
   }
-  $(2);
 }
 `````
 
@@ -54,7 +55,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const x = $(1);
 const arr = [1, 2, 3];
 while (true) {
-  if (!x) {
+  if (x) {
+    $(2);
+  } else {
     const tmpCalleeParam = arr[0];
     try {
       $(tmpCalleeParam);
@@ -62,8 +65,8 @@ while (true) {
     } catch (e) {
       $(`fail`);
     }
+    $(2);
   }
-  $(2);
 }
 `````
 
@@ -119,7 +122,7 @@ const a = $( 1 );
 const b = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (a) {
-
+    $( 2 );
   }
   else {
     const c = b[ 0 ];
@@ -130,8 +133,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     catch (d) {
       $( "fail" );
     }
+    $( 2 );
   }
-  $( 2 );
 }
 `````
 

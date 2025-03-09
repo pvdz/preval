@@ -51,10 +51,11 @@ $(x);
 `````js filename=intro
 let x = $(1);
 if (x) {
+  $(x);
 } else {
   x = 2;
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

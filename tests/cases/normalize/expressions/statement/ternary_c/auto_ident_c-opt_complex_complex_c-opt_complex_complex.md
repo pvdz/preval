@@ -21,48 +21,58 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(0);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   const tmpObjLitVal /*:object*/ = { y: 1 };
   const b /*:object*/ = { x: tmpObjLitVal };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+    $(a);
   } else {
     const tmpChainRootComputed /*:unknown*/ = $(`x`);
     const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
     if (tmpIfTest$3) {
+      $(a);
     } else {
       const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
       tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
     }
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(0)) {
+const tmpIfTest = $(0);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   const tmpObjLitVal = { y: 1 };
   const tmpChainElementCall = $({ x: tmpObjLitVal });
-  if (!(tmpChainElementCall == null)) {
+  if (tmpChainElementCall == null) {
+    $(a);
+  } else {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    if (!(tmpChainElementObject == null)) {
+    if (tmpChainElementObject == null) {
+      $(a);
+    } else {
       const tmpChainRootComputed$1 = $(`y`);
       tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
     }
   }
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -85,6 +95,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   const tmpChainRootCall = $;
   const tmpChainElementCall = $(b);
@@ -96,12 +107,14 @@ if (tmpIfTest) {
     if (tmpIfTest$3) {
       const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      $(a);
     } else {
+      $(a);
     }
   } else {
+    $(a);
   }
 }
-$(a);
 `````
 
 ## PST Settled
@@ -109,35 +122,36 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-if (a) {
-  $( 100 );
-}
-else {
-  const b = { y: 1 };
-  const c = { x: b };
-  const d = $( c );
-  const e = d == null;
-  if (e) {
-
-  }
-  else {
-    const f = $( "x" );
-    const g = d[ f ];
-    const h = g == null;
-    if (h) {
-
-    }
-    else {
-      const i = $( "y" );
-      g[ i ];
-    }
-  }
-}
-const j = {
+const b = {
   a: 999,
   b: 1000,
 };
-$( j );
+if (a) {
+  $( 100 );
+  $( b );
+}
+else {
+  const c = { y: 1 };
+  const d = { x: c };
+  const e = $( d );
+  const f = e == null;
+  if (f) {
+    $( b );
+  }
+  else {
+    const g = $( "x" );
+    const h = e[ g ];
+    const i = h == null;
+    if (i) {
+      $( b );
+    }
+    else {
+      const j = $( "y" );
+      h[ j ];
+      $( b );
+    }
+  }
+}
 `````
 
 ## Globals

@@ -18,41 +18,40 @@ $(a, b, x, y, z);
 
 
 `````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
 const tmpSwitchDisc /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
   const arrPatternSplat$1 /*:array*/ = [...z];
-  x = arrPatternSplat$1[1];
-  y = arrPatternSplat$1[2];
+  const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat$1[1];
+  const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat$1[2];
   const arrPatternSplat /*:array*/ = [...z];
   arrPatternSplat[0];
   arrPatternSplat[1];
+  $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
+  $(1, 2, 1, 2, z);
 }
-$(1, 2, x, y, z);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 const tmpIfTest = $(`a`) === $(`a`);
 const z = [10, 20, 30];
 if (tmpIfTest) {
   const arrPatternSplat$1 = [...z];
-  x = arrPatternSplat$1[1];
-  y = arrPatternSplat$1[2];
+  const tmpClusterSSA_x = arrPatternSplat$1[1];
+  const tmpClusterSSA_y = arrPatternSplat$1[2];
   const arrPatternSplat = [...z];
   arrPatternSplat[0];
   arrPatternSplat[1];
+  $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
+} else {
+  $(1, 2, 1, 2, z);
 }
-$(1, 2, x, y, z);
 `````
 
 ## Pre Normal
@@ -114,21 +113,22 @@ $(a, b, x, y, z);
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-const c = $( "a" );
-const d = $( "a" );
-const e = c === d;
-const f = [ 10, 20, 30 ];
-if (e) {
-  const g = [ ...f ];
-  a = g[ 1 ];
-  b = g[ 2 ];
-  const h = [ ...f ];
+const a = $( "a" );
+const b = $( "a" );
+const c = a === b;
+const d = [ 10, 20, 30 ];
+if (c) {
+  const e = [ ...d ];
+  const f = e[ 1 ];
+  const g = e[ 2 ];
+  const h = [ ...d ];
   h[ 0 ];
   h[ 1 ];
+  $( 1, 2, f, g, d );
 }
-$( 1, 2, a, b, f );
+else {
+  $( 1, 2, 1, 2, d );
+}
 `````
 
 ## Globals

@@ -60,11 +60,12 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
+  $(a, b);
 } else {
   const tmpPostUpdArgIdent = $coerce(b, `number`);
   b = tmpPostUpdArgIdent - 1;
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

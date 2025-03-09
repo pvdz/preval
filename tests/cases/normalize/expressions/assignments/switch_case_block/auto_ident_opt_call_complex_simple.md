@@ -22,37 +22,38 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  a = undefined;
   const tmpChainElementCall /*:unknown*/ = $($);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+    $(undefined);
   } else {
     const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-    a = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
   }
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1) === $(1)) {
-  a = undefined;
   const tmpChainElementCall = $($);
-  if (!(tmpChainElementCall == null)) {
-    a = $dotCall(tmpChainElementCall, $, undefined, 1);
+  if (tmpChainElementCall == null) {
+    $(undefined);
+  } else {
+    $($dotCall(tmpChainElementCall, $, undefined, 1));
   }
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -89,37 +90,40 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
     a = tmpChainElementCall$1;
+    $(tmpChainElementCall$1);
   } else {
+    $(a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
+const a = $( 1 );
 const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  a = undefined;
-  const e = $( $ );
-  const f = e == null;
-  if (f) {
-
+const c = a === b;
+if (c) {
+  const d = $( $ );
+  const e = d == null;
+  if (e) {
+    $( undefined );
   }
   else {
-    const g = $dotCall( e, $, undefined, 1 );
-    a = g;
+    const f = $dotCall( d, $, undefined, 1 );
+    $( f );
   }
 }
-$( a );
+else {
+  const g = {
+    a: 999,
+    b: 1000,
+  };
+  $( g );
+}
 `````
 
 ## Globals

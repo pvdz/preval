@@ -32,11 +32,12 @@ if (tmpIfTest) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
+    $(`keep`);
   } else {
     tmpForOfNext.value;
+    $(`keep`);
   }
   while ($LOOP_UNROLL_10) {
-    $(`keep`);
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       const tmpCalleeParam$1 /*:array*/ = [10, 20];
@@ -44,16 +45,19 @@ if (tmpIfTest) {
       const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
       const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
       if (tmpIfTest$4) {
+        $(`keep`);
       } else {
         tmpForOfNext$1.value;
+        $(`keep`);
       }
     } else {
       break;
     }
   }
+  $(`after`);
 } else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Denormalized
@@ -62,22 +66,29 @@ $(`after`);
 `````js filename=intro
 if ($(true)) {
   const tmpForOfNext = $forOf([10, 20]).next();
-  if (!tmpForOfNext.done) {
+  if (tmpForOfNext.done) {
+    $(`keep`);
+  } else {
     tmpForOfNext.value;
+    $(`keep`);
   }
   while (true) {
-    $(`keep`);
     if ($(true)) {
       const tmpForOfNext$1 = $forOf([10, 20]).next();
-      if (!tmpForOfNext$1.done) {
+      if (tmpForOfNext$1.done) {
+        $(`keep`);
+      } else {
         tmpForOfNext$1.value;
+        $(`keep`);
       }
     } else {
       break;
     }
   }
+  $(`after`);
+} else {
+  $(`after`);
 }
-$(`after`);
 `````
 
 ## Pre Normal
@@ -143,13 +154,13 @@ if (a) {
   const d = c.next();
   const e = d.done;
   if (e) {
-
+    $( "keep" );
   }
   else {
     d.value;
+    $( "keep" );
   }
   while ($LOOP_UNROLL_10) {
-    $( "keep" );
     const f = $( true );
     if (f) {
       const g = [ 10, 20 ];
@@ -157,18 +168,22 @@ if (a) {
       const i = h.next();
       const j = i.done;
       if (j) {
-
+        $( "keep" );
       }
       else {
         i.value;
+        $( "keep" );
       }
     }
     else {
       break;
     }
   }
+  $( "after" );
 }
-$( "after" );
+else {
+  $( "after" );
+}
 `````
 
 ## Globals

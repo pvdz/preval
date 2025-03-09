@@ -31,13 +31,15 @@ const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$5 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$5) {
   $(undefined);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   $(tmpChainElementObject);
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Denormalized
@@ -47,12 +49,14 @@ $(`fail2`);
 const tmpChainElementCall = $({ x: 1 });
 if (tmpChainElementCall == null) {
   $(undefined);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   const tmpChainRootComputed = $(`x`);
   $(tmpChainElementCall[tmpChainRootComputed]);
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Pre Normal
@@ -112,9 +116,10 @@ if (tmpIfTest$3) {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
+    $(tmpChainElementObject);
   } else {
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
@@ -138,14 +143,16 @@ const b = $( a );
 const c = b == null;
 if (c) {
   $( undefined );
+  $( "fail1" );
+  $( "fail2" );
 }
 else {
   const d = $( "x" );
   const e = b[ d ];
   $( e );
+  $( "fail1" );
+  $( "fail2" );
 }
-$( "fail1" );
-$( "fail2" );
 `````
 
 ## Globals

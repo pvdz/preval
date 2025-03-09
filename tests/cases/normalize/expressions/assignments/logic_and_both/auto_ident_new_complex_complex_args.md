@@ -23,19 +23,13 @@ $(a);
 const tmpNewCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-let a /*:unknown*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam /*:unknown*/ = a;
-if (a) {
-  const tmpNewCallee$1 /*:unknown*/ = $($);
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpCalleeParam$7 /*:unknown*/ = $(2);
-  const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpNewCallee$1 /*:unknown*/ = $($);
+const tmpCalleeParam$5 /*:unknown*/ = $(1);
+const tmpCalleeParam$7 /*:unknown*/ = $(2);
+const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Denormalized
@@ -45,19 +39,13 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-let a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam = a;
-if (a) {
-  const tmpNewCallee$1 = $($);
-  const tmpCalleeParam$5 = $(1);
-  const tmpCalleeParam$7 = $(2);
-  const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpNewCallee$1 = $($);
+const tmpCalleeParam$5 = $(1);
+const tmpCalleeParam$7 = $(2);
+const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 ## Pre Normal
@@ -88,10 +76,12 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 } else {
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -101,20 +91,13 @@ With rename=true
 const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
-let d = new a( b, c );
-const e = d;
-if (d) {
-  const f = $( $ );
-  const g = $( 1 );
-  const h = $( 2 );
-  const i = new f( g, h );
-  d = i;
-  $( i );
-}
-else {
-  $( e );
-}
-$( d );
+new a( b, c );
+const d = $( $ );
+const e = $( 1 );
+const f = $( 2 );
+const g = new d( e, f );
+$( g );
+$( g );
 `````
 
 ## Globals

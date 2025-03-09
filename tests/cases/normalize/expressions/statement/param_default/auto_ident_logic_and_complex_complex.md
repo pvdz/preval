@@ -24,9 +24,10 @@ const p /*:unknown*/ = $(tmpCalleeParam);
 if (p) {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
   $(tmpCalleeParam$1);
+  $(undefined);
 } else {
+  $(undefined);
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -37,8 +38,10 @@ $(a);
 `````js filename=intro
 if ($($(1))) {
   $($(2));
+  $(undefined);
+} else {
+  $(undefined);
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -95,8 +98,11 @@ const b = $( a );
 if (b) {
   const c = $( 2 );
   $( c );
+  $( undefined );
 }
-$( undefined );
+else {
+  $( undefined );
+}
 const d = {
   a: 999,
   b: 1000,

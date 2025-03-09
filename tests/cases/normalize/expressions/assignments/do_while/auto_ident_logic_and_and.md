@@ -25,11 +25,11 @@ const tmpCalleeParam /*:unknown*/ = $(1);
 let a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  a = $(tmpCalleeParam$1);
-  if (a) {
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_a) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    a = $(tmpCalleeParam$3);
-    if (a) {
+    const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$3);
+    if (tmpClusterSSA_a$1) {
       while ($LOOP_UNROLL_10) {
         $(100);
         const tmpCalleeParam$2 /*:unknown*/ = $(1);
@@ -51,13 +51,16 @@ if (a) {
           break;
         }
       }
+      $(a);
     } else {
+      $(tmpClusterSSA_a$1);
     }
   } else {
+    $(tmpClusterSSA_a);
   }
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -67,10 +70,10 @@ $(a);
 $(100);
 let a = $($(1));
 if (a) {
-  a = $($(1));
-  if (a) {
-    a = $($(2));
-    if (a) {
+  const tmpClusterSSA_a = $($(1));
+  if (tmpClusterSSA_a) {
+    const tmpClusterSSA_a$1 = $($(2));
+    if (tmpClusterSSA_a$1) {
       while (true) {
         $(100);
         a = $($(1));
@@ -88,10 +91,16 @@ if (a) {
           break;
         }
       }
+      $(a);
+    } else {
+      $(tmpClusterSSA_a$1);
     }
+  } else {
+    $(tmpClusterSSA_a);
   }
+} else {
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -148,21 +157,21 @@ const a = $( 1 );
 let b = $( a );
 if (b) {
   const c = $( 1 );
-  b = $( c );
-  if (b) {
-    const d = $( 2 );
-    b = $( d );
-    if (b) {
+  const d = $( c );
+  if (d) {
+    const e = $( 2 );
+    const f = $( e );
+    if (f) {
       while ($LOOP_UNROLL_10) {
         $( 100 );
-        const e = $( 1 );
-        b = $( e );
+        const g = $( 1 );
+        b = $( g );
         if (b) {
-          const f = $( 1 );
-          b = $( f );
+          const h = $( 1 );
+          b = $( h );
           if (b) {
-            const g = $( 2 );
-            b = $( g );
+            const i = $( 2 );
+            b = $( i );
             if (b) {
 
             }
@@ -178,10 +187,19 @@ if (b) {
           break;
         }
       }
+      $( b );
+    }
+    else {
+      $( f );
     }
   }
+  else {
+    $( d );
+  }
 }
-$( b );
+else {
+  $( b );
+}
 `````
 
 ## Globals

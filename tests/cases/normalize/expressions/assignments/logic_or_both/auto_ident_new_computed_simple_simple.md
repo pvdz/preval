@@ -20,14 +20,8 @@ $(a);
 
 
 `````js filename=intro
-let tmpClusterSSA_a /*:unknown*/ = new $(1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-} else {
-  const tmpNestedComplexRhs /*:object*/ = new $(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const tmpClusterSSA_a /*:object*/ = new $(1);
+$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
@@ -35,14 +29,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpClusterSSA_a = new $(1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-} else {
-  const tmpNestedComplexRhs = new $(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-}
+const tmpClusterSSA_a = new $(1);
+$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
@@ -66,29 +54,24 @@ const tmpNewCallee = b.$;
 a = new tmpNewCallee(1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpNewCallee$1 = b.$;
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = new $( 1 );
-if (a) {
-  $( a );
-}
-else {
-  const b = new $( 1 );
-  a = b;
-  $( b );
-}
+const a = new $( 1 );
+$( a );
 $( a );
 `````
 

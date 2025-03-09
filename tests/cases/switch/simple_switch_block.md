@@ -28,46 +28,45 @@ $(f());
 
 
 `````js filename=intro
-let tmpCalleeParam /*:number*/ = 1;
 const tmpUnaryArg /*:unknown*/ = $(`x`);
 const tmpSwitchDisc /*:string*/ = typeof tmpUnaryArg;
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === `string`;
 if (tmpIfTest) {
+  $(1);
 } else {
   const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === `number`;
   if (tmpIfTest$1) {
-    tmpCalleeParam = 2;
+    $(2);
   } else {
     const tmpIfTest$3 /*:boolean*/ = tmpSwitchDisc === `boolean`;
     if (tmpIfTest$3) {
-      tmpCalleeParam = 3;
+      $(3);
     } else {
-      tmpCalleeParam = 4;
+      $(4);
     }
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = 1;
 const tmpUnaryArg = $(`x`);
 const tmpSwitchDisc = typeof tmpUnaryArg;
-if (!(tmpSwitchDisc === `string`)) {
+if (tmpSwitchDisc === `string`) {
+  $(1);
+} else {
   if (tmpSwitchDisc === `number`) {
-    tmpCalleeParam = 2;
+    $(2);
   } else {
     if (tmpSwitchDisc === `boolean`) {
-      tmpCalleeParam = 3;
+      $(3);
     } else {
-      tmpCalleeParam = 4;
+      $(4);
     }
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -130,29 +129,27 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-let a = 1;
-const b = $( "x" );
-const c = typeof b;
-const d = c === "string";
-if (d) {
-
+const a = $( "x" );
+const b = typeof a;
+const c = b === "string";
+if (c) {
+  $( 1 );
 }
 else {
-  const e = c === "number";
-  if (e) {
-    a = 2;
+  const d = b === "number";
+  if (d) {
+    $( 2 );
   }
   else {
-    const f = c === "boolean";
-    if (f) {
-      a = 3;
+    const e = b === "boolean";
+    if (e) {
+      $( 3 );
     }
     else {
-      a = 4;
+      $( 4 );
     }
   }
 }
-$( a );
 `````
 
 ## Globals

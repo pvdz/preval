@@ -20,45 +20,54 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpObjLitVal /*:object*/ = { y: 1 };
 const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
+  $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+    $(tmpCalleeParam, undefined);
+    $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    a = tmpChainElementObject$1;
+    $(tmpCalleeParam, tmpChainElementObject$1);
+    $(tmpChainElementObject$1);
   }
 }
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, a);
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpObjLitVal = { y: 1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+const tmpIfTest = tmpChainElementCall == null;
+const tmpCalleeParam = [`before `, ` after`];
+if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
+  $(undefined);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(tmpCalleeParam, undefined);
+    $(undefined);
+  } else {
     const tmpChainRootComputed$1 = $(`y`);
-    a = tmpChainElementObject[tmpChainRootComputed$1];
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    $(tmpCalleeParam, tmpChainElementObject$1);
+    $(tmpChainElementObject$1);
   }
 }
-$([`before `, ` after`], a);
-$(a);
 `````
 
 ## Pre Normal
@@ -104,30 +113,30 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { y: 1 };
-const c = { x: b };
-const d = $( c );
-const e = d == null;
-if (e) {
-
+const a = { y: 1 };
+const b = { x: a };
+const c = $( b );
+const d = c == null;
+const e = [ "before ", " after" ];
+if (d) {
+  $( e, undefined );
+  $( undefined );
 }
 else {
   const f = $( "x" );
-  const g = d[ f ];
+  const g = c[ f ];
   const h = g == null;
   if (h) {
-
+    $( e, undefined );
+    $( undefined );
   }
   else {
     const i = $( "y" );
     const j = g[ i ];
-    a = j;
+    $( e, j );
+    $( j );
   }
 }
-const k = [ "before ", " after" ];
-$( k, a );
-$( a );
 `````
 
 ## Globals

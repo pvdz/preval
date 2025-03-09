@@ -19,20 +19,19 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-let a /*:unknown*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(undefined);
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(1);
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
-  a = tmpChainElementCall$1;
   const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$1;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(tmpChainElementCall$1);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -40,16 +39,15 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-let a = undefined;
 const tmpChainElementCall = $($);
 if (tmpChainElementCall == null) {
   $(tmpBinBothLhs + undefined);
+  $(undefined);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, $(1));
-  a = tmpChainElementCall$1;
   $(tmpBinBothLhs + tmpChainElementCall$1);
+  $(tmpChainElementCall$1);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -90,21 +88,20 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-let b = undefined;
-const c = $( $ );
-const d = c == null;
-if (d) {
-  const e = a + undefined;
-  $( e );
+const b = $( $ );
+const c = b == null;
+if (c) {
+  const d = a + undefined;
+  $( d );
+  $( undefined );
 }
 else {
-  const f = $( 1 );
-  const g = $dotCall( c, $, undefined, f );
-  b = g;
-  const h = a + g;
-  $( h );
+  const e = $( 1 );
+  const f = $dotCall( b, $, undefined, e );
+  const g = a + f;
+  $( g );
+  $( f );
 }
-$( b );
 `````
 
 ## Globals

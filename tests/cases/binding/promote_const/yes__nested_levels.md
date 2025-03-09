@@ -34,13 +34,14 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     const tmpIfTest$3 /*:unknown*/ = $(3);
+    $(10);
     if (tmpIfTest$3) {
       $(10);
     } else {
     }
   } else {
+    $(10);
   }
-  $(10);
 } else {
 }
 `````
@@ -51,11 +52,14 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(1)) {
   if ($(2)) {
-    if ($(3)) {
+    const tmpIfTest$3 = $(3);
+    $(10);
+    if (tmpIfTest$3) {
       $(10);
     }
+  } else {
+    $(10);
   }
-  $(10);
 }
 `````
 
@@ -88,11 +92,13 @@ if (tmpIfTest) {
     const tmpIfTest$3 = $(3);
     if (tmpIfTest$3) {
       $(x);
+      $(x);
     } else {
+      $(x);
     }
   } else {
+    $(x);
   }
-  $(x);
 } else {
 }
 `````
@@ -106,11 +112,14 @@ if (a) {
   const b = $( 2 );
   if (b) {
     const c = $( 3 );
+    $( 10 );
     if (c) {
       $( 10 );
     }
   }
-  $( 10 );
+  else {
+    $( 10 );
+  }
 }
 `````
 

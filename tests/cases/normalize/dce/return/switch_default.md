@@ -26,30 +26,28 @@ $(f());
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
 const tmpBinBothRhs /*:unknown*/ = $(0);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`wrong branch`);
+  $(undefined);
 } else {
   const tmpReturnArg /*:unknown*/ = $(2, `ret`);
-  tmpCalleeParam = tmpReturnArg;
+  $(tmpReturnArg);
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 if ($(1, `disc`) === $(0)) {
   $(`wrong branch`);
+  $(undefined);
 } else {
-  tmpCalleeParam = $(2, `ret`);
+  $($(2, `ret`));
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -99,18 +97,17 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1, "disc" );
-const c = $( 0 );
-const d = b === c;
-if (d) {
+const a = $( 1, "disc" );
+const b = $( 0 );
+const c = a === b;
+if (c) {
   $( "wrong branch" );
+  $( undefined );
 }
 else {
-  const e = $( 2, "ret" );
-  a = e;
+  const d = $( 2, "ret" );
+  $( d );
 }
-$( a );
 `````
 
 ## Globals

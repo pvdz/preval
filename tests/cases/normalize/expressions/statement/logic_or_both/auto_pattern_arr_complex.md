@@ -24,11 +24,12 @@ const a /*:unknown*/ = arrPatternSplat[0];
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpCalleeParam$1 /*:array*/ = [1, 2];
   $(tmpCalleeParam$1);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -37,10 +38,12 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const a = [...bindingPatternArrRoot][0];
-if (!$([1, 2])) {
+if ($([1, 2])) {
+  $(a);
+} else {
   $([1, 2]);
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -62,11 +65,12 @@ let a = arrPatternSplat[0];
 const tmpCalleeParam = [1, 2];
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpCalleeParam$1 = [1, 2];
   $(tmpCalleeParam$1);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -82,13 +86,13 @@ const c = b[ 0 ];
 const d = [ 1, 2 ];
 const e = $( d );
 if (e) {
-
+  $( c );
 }
 else {
   const f = [ 1, 2 ];
   $( f );
+  $( c );
 }
-$( c );
 `````
 
 ## Globals

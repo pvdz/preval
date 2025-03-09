@@ -46,9 +46,10 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.foo;
   y = tmpChainElementObject;
+  $(tmpChainElementObject);
 } else {
+  $(y);
 }
-$(y);
 `````
 
 ## PST Settled

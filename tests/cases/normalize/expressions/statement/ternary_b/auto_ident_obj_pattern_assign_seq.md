@@ -21,40 +21,34 @@ $(a, x, y);
 
 
 `````js filename=intro
-let x /*:unknown*/ = 1;
-let y /*:unknown*/ = 2;
 const tmpIfTest /*:unknown*/ = $(1);
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpObjLitVal /*:unknown*/ = $(3);
   const tmpObjLitVal$1 /*:unknown*/ = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
+  $(a, tmpObjLitVal, tmpObjLitVal$1);
 } else {
   $(200);
+  $(a, 1, 2);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a, x, y);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-if ($(1)) {
+const tmpIfTest = $(1);
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
   $(1);
   $(2);
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
+  $(a, $(3), $(4));
 } else {
   $(200);
+  $(a, 1, 2);
 }
-$({ a: 999, b: 1000 }, x, y);
 `````
 
 ## Pre Normal
@@ -84,35 +78,33 @@ if (tmpIfTest) {
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpAssignObjPatternRhs.x;
   y = tmpAssignObjPatternRhs.y;
+  $(a, x, y);
 } else {
   $(200);
+  $(a, x, y);
 }
-$(a, x, y);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = 1;
-let b = 2;
-const c = $( 1 );
-if (c) {
-  $( 1 );
-  $( 2 );
-  const d = $( 3 );
-  const e = $( 4 );
-  a = d;
-  b = e;
-}
-else {
-  $( 200 );
-}
-const f = {
+const a = $( 1 );
+const b = {
   a: 999,
   b: 1000,
 };
-$( f, a, b );
+if (a) {
+  $( 1 );
+  $( 2 );
+  const c = $( 3 );
+  const d = $( 4 );
+  $( b, c, d );
+}
+else {
+  $( 200 );
+  $( b, 1, 2 );
+}
 `````
 
 ## Globals

@@ -59,12 +59,14 @@ let f = function () {
   const tmpIfTest = 30;
   if (tmpIfTest) {
     $(60);
+    $(a);
+    return undefined;
   } else {
     const tmpCalleeParam = $(100);
     $(tmpCalleeParam);
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);

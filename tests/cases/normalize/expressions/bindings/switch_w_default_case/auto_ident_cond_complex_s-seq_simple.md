@@ -27,13 +27,15 @@ switch (1) {
 const tmpIfTest$5 /*:unknown*/ = $(1);
 if (tmpIfTest$5) {
   $(60);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
   const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
   $(tmpClusterSSA_a);
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Denormalized
@@ -42,11 +44,13 @@ $(`fail2`);
 `````js filename=intro
 if ($(1)) {
   $(60);
+  $(`fail1`);
+  $(`fail2`);
 } else {
   $($($(100)));
+  $(`fail1`);
+  $(`fail2`);
 }
-$(`fail1`);
-$(`fail2`);
 `````
 
 ## Pre Normal
@@ -97,11 +101,12 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 = $(1);
   if (tmpIfTest$5) {
     a = 60;
+    $(a);
   } else {
     const tmpCalleeParam = $(100);
     a = $(tmpCalleeParam);
+    $(a);
   }
-  $(a);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
@@ -123,14 +128,16 @@ With rename=true
 const a = $( 1 );
 if (a) {
   $( 60 );
+  $( "fail1" );
+  $( "fail2" );
 }
 else {
   const b = $( 100 );
   const c = $( b );
   $( c );
+  $( "fail1" );
+  $( "fail2" );
 }
-$( "fail1" );
-$( "fail2" );
 `````
 
 ## Globals

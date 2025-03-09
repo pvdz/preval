@@ -23,11 +23,12 @@ $(a, b);
 const a /*:unknown*/ = $(1);
 if (a) {
   $(a);
+  $(a, 1);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a, 1);
 }
-$(a, 1);
 `````
 
 ## Denormalized
@@ -37,10 +38,11 @@ $(a, 1);
 const a = $(1);
 if (a) {
   $(a);
+  $(a, 1);
 } else {
   $($(100));
+  $(a, 1);
 }
-$(a, 1);
 `````
 
 ## Pre Normal
@@ -62,11 +64,13 @@ let a = { a: 999, b: 1000 };
 a = $(b);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a, b);
 } else {
   tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
+  $(a, b);
 }
-$(tmpCalleeParam);
-$(a, b);
 `````
 
 ## PST Settled
@@ -76,12 +80,13 @@ With rename=true
 const a = $( 1 );
 if (a) {
   $( a );
+  $( a, 1 );
 }
 else {
   const b = $( 100 );
   $( b );
+  $( a, 1 );
 }
-$( a, 1 );
 `````
 
 ## Globals

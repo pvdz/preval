@@ -69,6 +69,7 @@ let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
+  $(a, x, y);
 } else {
   $(x);
   $(y);
@@ -77,8 +78,8 @@ if (tmpIfTest) {
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpAssignObjPatternRhs.x;
   y = tmpAssignObjPatternRhs.y;
+  $(a, x, y);
 }
-$(a, x, y);
 `````
 
 ## PST Settled

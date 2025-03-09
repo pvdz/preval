@@ -26,17 +26,19 @@ const b /*:object*/ = { x: tmpObjLitVal };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+  $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
+    $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     tmpChainElementObject[tmpChainRootComputed$1];
+    $(undefined);
   }
 }
-$(undefined);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -47,15 +49,19 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const tmpChainElementCall = $({ x: tmpObjLitVal });
-if (!(tmpChainElementCall == null)) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+} else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  if (!(tmpChainElementObject == null)) {
+  if (tmpChainElementObject == null) {
+    $(undefined);
+  } else {
     const tmpChainRootComputed$1 = $(`y`);
     tmpChainElementObject[tmpChainRootComputed$1];
+    $(undefined);
   }
 }
-$(undefined);
 $({ a: 999, b: 1000 });
 `````
 
@@ -125,21 +131,21 @@ const b = { x: a };
 const c = $( b );
 const d = c == null;
 if (d) {
-
+  $( undefined );
 }
 else {
   const e = $( "x" );
   const f = c[ e ];
   const g = f == null;
   if (g) {
-
+    $( undefined );
   }
   else {
     const h = $( "y" );
     f[ h ];
+    $( undefined );
   }
 }
-$( undefined );
 const i = {
   a: 999,
   b: 1000,

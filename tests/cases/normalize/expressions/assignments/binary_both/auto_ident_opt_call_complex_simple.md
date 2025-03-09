@@ -26,19 +26,18 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
   tmpBinBothLhs = tmpChainElementCall$1;
 }
-let tmpClusterSSA_a /*:unknown*/ = undefined;
 const tmpChainElementCall$3 /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + undefined;
   $(tmpClusterSSA_tmpCalleeParam);
+  $(undefined);
 } else {
   const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, 1);
-  tmpClusterSSA_a = tmpChainElementCall$5;
   const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$5;
   $(tmpClusterSSA_tmpCalleeParam$1);
+  $(tmpChainElementCall$5);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Denormalized
@@ -51,16 +50,15 @@ let tmpBinBothLhs = undefined;
 if (!tmpIfTest) {
   tmpBinBothLhs = $dotCall(tmpChainElementCall, $, undefined, 1);
 }
-let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$3 = $($);
 if (tmpChainElementCall$3 == null) {
   $(tmpBinBothLhs + undefined);
+  $(undefined);
 } else {
   const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, undefined, 1);
-  tmpClusterSSA_a = tmpChainElementCall$5;
   $(tmpBinBothLhs + tmpChainElementCall$5);
+  $(tmpChainElementCall$5);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Pre Normal
@@ -116,20 +114,19 @@ else {
   const d = $dotCall( a, $, undefined, 1 );
   c = d;
 }
-let e = undefined;
-const f = $( $ );
-const g = f == null;
-if (g) {
-  const h = c + undefined;
-  $( h );
+const e = $( $ );
+const f = e == null;
+if (f) {
+  const g = c + undefined;
+  $( g );
+  $( undefined );
 }
 else {
-  const i = $dotCall( f, $, undefined, 1 );
-  e = i;
-  const j = c + i;
-  $( j );
+  const h = $dotCall( e, $, undefined, 1 );
+  const i = c + h;
+  $( i );
+  $( h );
 }
-$( e );
 `````
 
 ## Globals

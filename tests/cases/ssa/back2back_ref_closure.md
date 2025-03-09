@@ -36,11 +36,11 @@ if ($) {
     debugger;
     return undefined;
   };
+  $(tmpSSA_x);
   if ($) {
     $(tmpSSA_x);
   } else {
   }
-  $(tmpSSA_x);
 } else {
 }
 `````
@@ -51,10 +51,10 @@ if ($) {
 `````js filename=intro
 if ($) {
   const tmpSSA_x = function () {};
+  $(tmpSSA_x);
   if ($) {
     $(tmpSSA_x);
   }
-  $(tmpSSA_x);
 }
 `````
 
@@ -123,10 +123,10 @@ if ($) {
     debugger;
     return undefined;
   };
+  $( a );
   if ($) {
     $( a );
   }
-  $( a );
 }
 `````
 

@@ -30,7 +30,6 @@ $(f());
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 4;
 const tmpIfTest /*:boolean*/ = 0 === tmpSwitchValue;
@@ -59,6 +58,7 @@ if (tmpIfTest) {
 const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$7) {
   $(2);
+  $(undefined);
 } else {
   const tmpIfTest$9 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$9) {
@@ -69,18 +69,17 @@ if (tmpIfTest$7) {
   if (tmpIfTest$11) {
     $(5);
     const tmpReturnArg /*:unknown*/ = $(6);
-    tmpCalleeParam = tmpReturnArg;
+    $(tmpReturnArg);
   } else {
+    $(undefined);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 4;
 if (0 === tmpSwitchValue) {
@@ -100,16 +99,18 @@ if (0 === tmpSwitchValue) {
 }
 if (tmpSwitchCaseToStart <= 0) {
   $(2);
+  $(undefined);
 } else {
   if (tmpSwitchCaseToStart <= 1) {
     $(3);
   }
   if (tmpSwitchCaseToStart <= 2) {
     $(5);
-    tmpCalleeParam = $(6);
+    $($(6));
+  } else {
+    $(undefined);
   }
 }
-$(tmpCalleeParam);
 `````
 
 ## Pre Normal
@@ -207,51 +208,53 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1 );
-let c = 4;
-const d = 0 === b;
-if (d) {
-  c = 0;
+const a = $( 1 );
+let b = 4;
+const c = 0 === a;
+if (c) {
+  b = 0;
 }
 else {
-  const e = $( 1 );
-  const f = e === b;
-  if (f) {
-    c = 1;
+  const d = $( 1 );
+  const e = d === a;
+  if (e) {
+    b = 1;
   }
   else {
-    const g = $( 4 );
-    const h = g === b;
-    if (h) {
-      c = 2;
+    const f = $( 4 );
+    const g = f === a;
+    if (g) {
+      b = 2;
     }
     else {
-      const i = $( 7 );
-      const j = i === b;
-      if (j) {
-        c = 3;
+      const h = $( 7 );
+      const i = h === a;
+      if (i) {
+        b = 3;
       }
     }
   }
 }
-const k = c <= 0;
-if (k) {
+const j = b <= 0;
+if (j) {
   $( 2 );
+  $( undefined );
 }
 else {
-  const l = c <= 1;
-  if (l) {
+  const k = b <= 1;
+  if (k) {
     $( 3 );
   }
-  const m = c <= 2;
-  if (m) {
+  const l = b <= 2;
+  if (l) {
     $( 5 );
-    const n = $( 6 );
-    a = n;
+    const m = $( 6 );
+    $( m );
+  }
+  else {
+    $( undefined );
   }
 }
-$( a );
 `````
 
 ## Globals

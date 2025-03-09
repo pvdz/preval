@@ -34,9 +34,10 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
+  $(`ok`);
 } else {
+  $(`ok`);
 }
-$(`ok`);
 `````
 
 ## Denormalized
@@ -57,8 +58,10 @@ if (!objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
+  $(`ok`);
+} else {
+  $(`ok`);
 }
-$(`ok`);
 `````
 
 ## Pre Normal
@@ -90,9 +93,10 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+  $(`ok`);
 } else {
+  $(`ok`);
 }
-$(`ok`);
 `````
 
 ## PST Settled
@@ -119,8 +123,11 @@ else {
 }
 if (c) {
   b.cannotDestructureThis;
+  $( "ok" );
 }
-$( "ok" );
+else {
+  $( "ok" );
+}
 `````
 
 ## Globals

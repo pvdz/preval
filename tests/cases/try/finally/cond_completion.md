@@ -26,10 +26,11 @@ log(f());
 `````js filename=intro
 const tmpCallCallee /*:unknown*/ = log;
 if (a) {
+  tmpCallCallee(3);
 } else {
   b;
+  tmpCallCallee(3);
 }
-tmpCallCallee(3);
 `````
 
 ## Denormalized
@@ -37,10 +38,12 @@ tmpCallCallee(3);
 
 `````js filename=intro
 const tmpCallCallee = log;
-if (!a) {
+if (a) {
+  tmpCallCallee(3);
+} else {
   b;
+  tmpCallCallee(3);
 }
-tmpCallCallee(3);
 `````
 
 ## Pre Normal
@@ -130,12 +133,12 @@ With rename=true
 `````js filename=intro
 const c = log;
 if (a) {
-
+  c( 3 );
 }
 else {
   b;
+  c( 3 );
 }
-c( 3 );
 `````
 
 ## Globals

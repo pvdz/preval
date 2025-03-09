@@ -20,49 +20,51 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCompProp /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
   const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
-  a = new tmpNewCallee(1);
+  let tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCompProp$1 /*:unknown*/ = $(`\$`);
       const tmpNewCallee$1 /*:unknown*/ = b[tmpCompProp$1];
-      a = new tmpNewCallee$1(1);
+      tmpClusterSSA_a = new tmpNewCallee$1(1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpCompProp = $(`\$`);
   const b = { $: $ };
   const tmpNewCallee = b[tmpCompProp];
-  a = new tmpNewCallee(1);
+  let tmpClusterSSA_a = new tmpNewCallee(1);
   while (true) {
     if ($(1)) {
       const tmpCompProp$1 = $(`\$`);
       const tmpNewCallee$1 = b[tmpCompProp$1];
-      a = new tmpNewCallee$1(1);
+      tmpClusterSSA_a = new tmpNewCallee$1(1);
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -103,29 +105,32 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( "$" );
-  const d = { $: $ };
-  const e = d[ c ];
-  a = new e( 1 );
+const a = $( 1 );
+if (a) {
+  const b = $( "$" );
+  const c = { $: $ };
+  const d = c[ b ];
+  let e = new d( 1 );
   while ($LOOP_UNROLL_10) {
     const f = $( 1 );
     if (f) {
       const g = $( "$" );
-      const h = d[ g ];
-      a = new h( 1 );
+      const h = c[ g ];
+      e = new h( 1 );
     }
     else {
       break;
     }
   }
+  $( e );
 }
-$( a );
+else {
+  const i = {
+    a: 999,
+    b: 1000,
+  };
+  $( i );
+}
 `````
 
 ## Globals
@@ -173,3 +178,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - objects in isFree check
+- Support this node type in isFree: NewExpression

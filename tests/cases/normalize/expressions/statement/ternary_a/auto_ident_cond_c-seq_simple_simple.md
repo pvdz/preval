@@ -26,13 +26,14 @@ if (tmpIfTest$1) {
   const tmpCalleeParam /*:unknown*/ = $(100);
   tmpIfTest = $(tmpCalleeParam);
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   $(200);
+  $(a);
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -45,12 +46,14 @@ if ($(30)) {
 } else {
   tmpIfTest = $($(100));
 }
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   $(200);
+  $(a);
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -77,10 +80,11 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
   $(100);
+  $(a);
 } else {
   $(200);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled
@@ -96,17 +100,18 @@ else {
   const c = $( 100 );
   a = $( c );
 }
-if (a) {
-  $( 100 );
-}
-else {
-  $( 200 );
-}
 const d = {
   a: 999,
   b: 1000,
 };
-$( d );
+if (a) {
+  $( 100 );
+  $( d );
+}
+else {
+  $( 200 );
+  $( d );
+}
 `````
 
 ## Globals

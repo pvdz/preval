@@ -67,10 +67,11 @@ const a = $();
 let x = undefined;
 if (bool) {
   x = { [a]: 1, b: true };
+  $(x);
 } else {
   x = { [a]: 1, b: false };
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

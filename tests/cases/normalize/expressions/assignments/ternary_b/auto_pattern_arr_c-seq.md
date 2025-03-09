@@ -20,7 +20,7 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-let a /*:unknown*/ = arrPatternSplat[0];
+const a /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(10);
@@ -28,13 +28,14 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 /*:array*/ = [1, 2];
   const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
   const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  a = arrPatternSplat$1[0];
+  const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
   $(tmpNestedAssignArrPatternRhs);
+  $(tmpClusterSSA_a);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam);
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -42,17 +43,18 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-let a = [...bindingPatternArrRoot][0];
+const a = [...bindingPatternArrRoot][0];
 if ($(1)) {
   $(10);
   $(20);
   const tmpNestedAssignArrPatternRhs = $([1, 2]);
-  a = [...tmpNestedAssignArrPatternRhs][0];
+  const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
   $(tmpNestedAssignArrPatternRhs);
+  $(tmpClusterSSA_a);
 } else {
   $($(200));
+  $(a);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -81,11 +83,13 @@ if (tmpIfTest) {
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat$1[0];
   tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+  $(tmpNestedAssignArrPatternRhs);
+  $(a);
 } else {
   tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -97,7 +101,7 @@ const a = {
   b: 1000,
 };
 const b = [ ...a ];
-let c = b[ 0 ];
+const c = b[ 0 ];
 const d = $( 1 );
 if (d) {
   $( 10 );
@@ -105,14 +109,15 @@ if (d) {
   const e = [ 1, 2 ];
   const f = $( e );
   const g = [ ...f ];
-  c = g[ 0 ];
+  const h = g[ 0 ];
   $( f );
-}
-else {
-  const h = $( 200 );
   $( h );
 }
-$( c );
+else {
+  const i = $( 200 );
+  $( i );
+  $( c );
+}
 `````
 
 ## Globals

@@ -23,10 +23,11 @@ const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = `fail`;
+  $(`bad`);
 } else {
   y = arrPatternBeforeDefault;
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## Denormalized
@@ -37,10 +38,11 @@ const objPatternNoDefault = $Object_prototype.x;
 const arrPatternBeforeDefault = [...objPatternNoDefault][0];
 if (arrPatternBeforeDefault === undefined) {
   y = `fail`;
+  $(`bad`);
 } else {
   y = arrPatternBeforeDefault;
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## Pre Normal
@@ -64,10 +66,11 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = `fail`;
+  $(`bad`);
 } else {
   y = arrPatternBeforeDefault;
+  $(`bad`);
 }
-$(`bad`);
 `````
 
 ## PST Settled
@@ -80,11 +83,12 @@ const c = b[ 0 ];
 const d = c === undefined;
 if (d) {
   y = "fail";
+  $( "bad" );
 }
 else {
   y = c;
+  $( "bad" );
 }
-$( "bad" );
 `````
 
 ## Globals

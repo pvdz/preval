@@ -33,25 +33,29 @@ if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(true);
   if (tmpIfTest$1) {
     $(`loop`);
+    $(`infiloop, do not eliminate`);
   } else {
+    $(`infiloop, do not eliminate`);
   }
   while ($LOOP_UNROLL_10) {
-    $(`infiloop, do not eliminate`);
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
       const tmpIfTest$4 /*:unknown*/ = $(true);
       if (tmpIfTest$4) {
         $(`loop`);
+        $(`infiloop, do not eliminate`);
       } else {
+        $(`infiloop, do not eliminate`);
       }
     } else {
       break;
     }
   }
+  $(`after (not invoked)`);
 } else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Denormalized
@@ -62,20 +66,27 @@ if ($(true)) {
   $(`loop`);
   if ($(true)) {
     $(`loop`);
+    $(`infiloop, do not eliminate`);
+  } else {
+    $(`infiloop, do not eliminate`);
   }
   while (true) {
-    $(`infiloop, do not eliminate`);
     if ($(true)) {
       $(`loop`);
       if ($(true)) {
         $(`loop`);
+        $(`infiloop, do not eliminate`);
+      } else {
+        $(`infiloop, do not eliminate`);
       }
     } else {
       break;
     }
   }
+  $(`after (not invoked)`);
+} else {
+  $(`after (not invoked)`);
 }
-$(`after (not invoked)`);
 `````
 
 ## Pre Normal
@@ -129,23 +140,33 @@ if (a) {
   const b = $( true );
   if (b) {
     $( "loop" );
+    $( "infiloop, do not eliminate" );
+  }
+  else {
+    $( "infiloop, do not eliminate" );
   }
   while ($LOOP_UNROLL_10) {
-    $( "infiloop, do not eliminate" );
     const c = $( true );
     if (c) {
       $( "loop" );
       const d = $( true );
       if (d) {
         $( "loop" );
+        $( "infiloop, do not eliminate" );
+      }
+      else {
+        $( "infiloop, do not eliminate" );
       }
     }
     else {
       break;
     }
   }
+  $( "after (not invoked)" );
 }
-$( "after (not invoked)" );
+else {
+  $( "after (not invoked)" );
+}
 `````
 
 ## Globals

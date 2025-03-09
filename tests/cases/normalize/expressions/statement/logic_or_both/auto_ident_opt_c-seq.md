@@ -29,17 +29,19 @@ if (tmpIfTest$1) {
   const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   tmpIfTest = tmpChainElementObject;
 }
+const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpChainRootProp$1 /*:unknown*/ = $(b);
   const tmpIfTest$3 /*:boolean*/ = tmpChainRootProp$1 == null;
   if (tmpIfTest$3) {
+    $(a);
   } else {
     tmpChainRootProp$1.x;
+    $(a);
   }
 }
-const a /*:object*/ = { a: 999, b: 1000 };
-$(a);
 `````
 
 ## Denormalized
@@ -52,13 +54,18 @@ const tmpChainRootProp = $(b);
 if (!(tmpChainRootProp == null)) {
   tmpIfTest = tmpChainRootProp.x;
 }
-if (!tmpIfTest) {
+const a = { a: 999, b: 1000 };
+if (tmpIfTest) {
+  $(a);
+} else {
   const tmpChainRootProp$1 = $(b);
-  if (!(tmpChainRootProp$1 == null)) {
+  if (tmpChainRootProp$1 == null) {
+    $(a);
+  } else {
     tmpChainRootProp$1.x;
+    $(a);
   }
 }
-$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -86,15 +93,17 @@ if (tmpIfTest$1) {
 } else {
 }
 if (tmpIfTest) {
+  $(a);
 } else {
   const tmpChainRootProp$1 = $(b);
   const tmpIfTest$3 = tmpChainRootProp$1 != null;
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+    $(a);
   } else {
+    $(a);
   }
 }
-$(a);
 `````
 
 ## PST Settled
@@ -112,24 +121,24 @@ else {
   const e = c.x;
   a = e;
 }
-if (a) {
-
-}
-else {
-  const f = $( b );
-  const g = f == null;
-  if (g) {
-
-  }
-  else {
-    f.x;
-  }
-}
-const h = {
+const f = {
   a: 999,
   b: 1000,
 };
-$( h );
+if (a) {
+  $( f );
+}
+else {
+  const g = $( b );
+  const h = g == null;
+  if (h) {
+    $( f );
+  }
+  else {
+    g.x;
+    $( f );
+  }
+}
 `````
 
 ## Globals

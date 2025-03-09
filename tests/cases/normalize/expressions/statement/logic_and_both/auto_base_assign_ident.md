@@ -63,9 +63,10 @@ b = $(2);
 let tmpIfTest = b;
 if (tmpIfTest) {
   b = $(2);
+  $(a, b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## PST Settled

@@ -56,11 +56,13 @@ let f = function () {
   debugger;
   let a = 0;
   if (a) {
+    $(a);
+    return undefined;
   } else {
     a = 2;
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -20,10 +20,8 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  a = undefined;
   const b /*:object*/ = { $: $ };
   const tmpChainElementCall /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
@@ -58,18 +56,18 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(undefined);
 } else {
+  const a /*:object*/ = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
-  a = undefined;
   const b = { $: $ };
   const tmpChainElementCall = $(b);
   if (!(tmpChainElementCall == null)) {
@@ -93,8 +91,10 @@ if ($(1)) {
       break;
     }
   }
+  $(undefined);
+} else {
+  $({ a: 999, b: 1000 });
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -149,49 +149,44 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  a = undefined;
-  const c = { $: $ };
-  const d = $( c );
-  const e = d == null;
-  if (e) {
+const a = $( 1 );
+if (a) {
+  const b = { $: $ };
+  const c = $( b );
+  const d = c == null;
+  if (d) {
 
   }
   else {
-    const f = $( "$" );
-    const g = d[ f ];
-    const h = g == null;
-    if (h) {
+    const e = $( "$" );
+    const f = c[ e ];
+    const g = f == null;
+    if (g) {
 
     }
     else {
-      const i = $( 1 );
-      $dotCall( g, d, undefined, i );
+      const h = $( 1 );
+      $dotCall( f, c, undefined, h );
     }
   }
   while ($LOOP_UNROLL_10) {
-    const j = $( 1 );
-    if (j) {
-      const k = $( c );
-      const l = k == null;
-      if (l) {
+    const i = $( 1 );
+    if (i) {
+      const j = $( b );
+      const k = j == null;
+      if (k) {
 
       }
       else {
-        const m = $( "$" );
-        const n = k[ m ];
-        const o = n == null;
-        if (o) {
+        const l = $( "$" );
+        const m = j[ l ];
+        const n = m == null;
+        if (n) {
 
         }
         else {
-          const p = $( 1 );
-          $dotCall( n, k, undefined, p );
+          const o = $( 1 );
+          $dotCall( m, j, undefined, o );
         }
       }
     }
@@ -199,8 +194,15 @@ if (b) {
       break;
     }
   }
+  $( undefined );
 }
-$( a );
+else {
+  const p = {
+    a: 999,
+    b: 1000,
+  };
+  $( p );
+}
 `````
 
 ## Globals

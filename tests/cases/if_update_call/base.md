@@ -62,10 +62,11 @@ let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = 100;
+  $(x);
 } else {
   x = 200;
+  $(x);
 }
-$(x);
 `````
 
 ## PST Settled

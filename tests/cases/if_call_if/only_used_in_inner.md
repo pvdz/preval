@@ -42,13 +42,15 @@ if ($) {
   if (outerTest) {
     const tmpClusterSSA_innerTest /*:unknown*/ = $(3);
     if (tmpClusterSSA_innerTest) {
+      $(undefined);
     } else {
       $(2);
+      $(undefined);
     }
   } else {
     $(2);
+    $(undefined);
   }
-  $(undefined);
 } else {
 }
 `````
@@ -59,13 +61,16 @@ if ($) {
 `````js filename=intro
 if ($) {
   if ($(0)) {
-    if (!$(3)) {
+    if ($(3)) {
+      $(undefined);
+    } else {
       $(2);
+      $(undefined);
     }
   } else {
     $(2);
+    $(undefined);
   }
-  $(undefined);
 }
 `````
 
@@ -142,16 +147,17 @@ if ($) {
   if (a) {
     const b = $( 3 );
     if (b) {
-
+      $( undefined );
     }
     else {
       $( 2 );
+      $( undefined );
     }
   }
   else {
     $( 2 );
+    $( undefined );
   }
-  $( undefined );
 }
 `````
 

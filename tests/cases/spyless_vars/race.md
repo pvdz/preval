@@ -57,9 +57,10 @@ const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === $;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+  $(a, z);
 } else {
+  $(a, z);
 }
-$(a, z);
 `````
 
 ## PST Settled

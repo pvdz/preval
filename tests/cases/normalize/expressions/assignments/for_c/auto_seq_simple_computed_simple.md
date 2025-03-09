@@ -33,9 +33,10 @@ if (tmpIfTest) {
       break;
     }
   }
+  $(1);
 } else {
+  $(1);
 }
-$(1);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
 a.b = tmpAssignMemRhs;
 $(a);
@@ -57,8 +58,10 @@ if ($(1)) {
       break;
     }
   }
+  $(1);
+} else {
+  $(1);
 }
-$(1);
 a.b = $(2);
 $(a);
 `````
@@ -121,8 +124,11 @@ if (b) {
       break;
     }
   }
+  $( 1 );
 }
-$( 1 );
+else {
+  $( 1 );
+}
 const f = $( 2 );
 a.b = f;
 $( a );

@@ -52,10 +52,11 @@ const tmpObjLitVal$1 = 2;
 const tmpObjLitVal$3 = $(3);
 const tmpIfTest = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 if (tmpIfTest) {
+  $(a);
 } else {
   $(100);
+  $(a);
 }
-$(a);
 `````
 
 ## PST Settled

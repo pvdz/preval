@@ -27,12 +27,13 @@ const tmpCalleeParam /*:unknown*/ = $(0);
 const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
   $(a);
+  $(undefined);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
   const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
   $(tmpClusterSSA_a);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -42,10 +43,11 @@ $(undefined);
 const a = $($(0));
 if (a) {
   $(a);
+  $(undefined);
 } else {
   $($($(2)));
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -73,12 +75,14 @@ let f = function () {
   const tmpCalleeParam = $(0);
   a = $(tmpCalleeParam);
   if (a) {
+    $(a);
+    return undefined;
   } else {
     const tmpCalleeParam$1 = $(2);
     a = $(tmpCalleeParam$1);
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
@@ -92,13 +96,14 @@ const a = $( 0 );
 const b = $( a );
 if (b) {
   $( b );
+  $( undefined );
 }
 else {
   const c = $( 2 );
   const d = $( c );
   $( d );
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

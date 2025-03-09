@@ -37,6 +37,7 @@ if (a) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$7 /*:unknown*/ = $(1);
   let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
@@ -46,14 +47,15 @@ if (a) {
   } else {
   }
   if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   } else {
     const tmpCalleeParam$11 /*:unknown*/ = $(2);
-    tmpNestedComplexRhs = $(tmpCalleeParam$11);
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$11);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -73,18 +75,21 @@ if (a) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
   let tmpNestedComplexRhs = $($(1));
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = $($(1));
   }
-  if (!tmpNestedComplexRhs) {
-    tmpNestedComplexRhs = $($(2));
+  if (tmpNestedComplexRhs) {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
+  } else {
+    const tmpClusterSSA_tmpNestedComplexRhs = $($(2));
+    $(tmpClusterSSA_tmpNestedComplexRhs);
+    $(tmpClusterSSA_tmpNestedComplexRhs);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -115,6 +120,8 @@ if (a) {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   const tmpCalleeParam$7 = $(1);
   let tmpNestedComplexRhs = $(tmpCalleeParam$7);
@@ -130,9 +137,9 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -156,6 +163,7 @@ else {
 }
 if (b) {
   $( d );
+  $( b );
 }
 else {
   const f = $( 1 );
@@ -165,16 +173,16 @@ else {
     g = $( h );
   }
   if (g) {
-
+    $( g );
+    $( g );
   }
   else {
     const i = $( 2 );
-    g = $( i );
+    const j = $( i );
+    $( j );
+    $( j );
   }
-  b = g;
-  $( g );
 }
-$( b );
 `````
 
 ## Globals

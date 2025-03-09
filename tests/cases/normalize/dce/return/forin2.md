@@ -25,34 +25,32 @@ $(f());
 
 
 `````js filename=intro
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
 const tmpCalleeParam /*:array*/ = [10, 20];
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
 const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
 if (tmpIfTest) {
   $(`keep, do not eval`);
+  $(undefined);
 } else {
   tmpForOfNext.value;
   const tmpReturnArg /*:unknown*/ = $(1, `return`);
-  tmpCalleeParam$1 = tmpReturnArg;
+  $(tmpReturnArg);
 }
-$(tmpCalleeParam$1);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam$1 = undefined;
 const tmpForOfNext = $forOf([10, 20]).next();
 if (tmpForOfNext.done) {
   $(`keep, do not eval`);
+  $(undefined);
 } else {
   tmpForOfNext.value;
-  tmpCalleeParam$1 = $(1, `return`);
+  $($(1, `return`));
 }
-$(tmpCalleeParam$1);
 `````
 
 ## Pre Normal
@@ -111,20 +109,19 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = [ 10, 20 ];
-const c = $forOf( b );
-const d = c.next();
-const e = d.done;
-if (e) {
+const a = [ 10, 20 ];
+const b = $forOf( a );
+const c = b.next();
+const d = c.done;
+if (d) {
   $( "keep, do not eval" );
+  $( undefined );
 }
 else {
-  d.value;
-  const f = $( 1, "return" );
-  a = f;
+  c.value;
+  const e = $( 1, "return" );
+  $( e );
 }
-$( a );
 `````
 
 ## Globals

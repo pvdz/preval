@@ -24,12 +24,13 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpClusterSSA_a /*:unknown*/ = $(60);
   $(tmpClusterSSA_a);
+  $(undefined);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
   const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
   $(tmpClusterSSA_a$1);
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -38,10 +39,11 @@ $(undefined);
 `````js filename=intro
 if ($(1)) {
   $($(60));
+  $(undefined);
 } else {
   $($($(100)));
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -66,12 +68,14 @@ let f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     a = $(60);
+    $(a);
+    return undefined;
   } else {
     const tmpCalleeParam = $(100);
     a = $(tmpCalleeParam);
+    $(a);
+    return undefined;
   }
-  $(a);
-  return undefined;
 };
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
@@ -85,13 +89,14 @@ const a = $( 1 );
 if (a) {
   const b = $( 60 );
   $( b );
+  $( undefined );
 }
 else {
   const c = $( 100 );
   const d = $( c );
   $( d );
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

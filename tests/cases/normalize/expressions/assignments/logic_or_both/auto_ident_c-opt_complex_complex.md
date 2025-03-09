@@ -34,20 +34,20 @@ if (tmpIfTest) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
-  let tmpNestedComplexRhs /*:unknown*/ = undefined;
   const tmpChainElementCall$1 /*:unknown*/ = $(b);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
   if (tmpIfTest$1) {
+    $(undefined);
+    $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`x`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
-    tmpNestedComplexRhs = tmpChainElementObject$1;
+    $(tmpChainElementObject$1);
+    $(tmpChainElementObject$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Denormalized
@@ -67,17 +67,19 @@ if (!tmpIfTest) {
 }
 if (a) {
   $(tmpCalleeParam);
+  $(a);
 } else {
-  let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$1 = $(b);
-  if (!(tmpChainElementCall$1 == null)) {
+  if (tmpChainElementCall$1 == null) {
+    $(undefined);
+    $(undefined);
+  } else {
     const tmpChainRootComputed$1 = $(`x`);
-    tmpNestedComplexRhs = tmpChainElementCall$1[tmpChainRootComputed$1];
+    const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+    $(tmpChainElementObject$1);
+    $(tmpChainElementObject$1);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
-$(a);
 `````
 
 ## Pre Normal
@@ -108,6 +110,8 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
+  $(a);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootCall$1 = $;
@@ -121,9 +125,9 @@ if (tmpCalleeParam) {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(a);
 }
-$(tmpCalleeParam);
-$(a);
 `````
 
 ## PST Settled
@@ -146,23 +150,22 @@ else {
 }
 if (a) {
   $( e );
+  $( a );
 }
 else {
-  let h = undefined;
-  const i = $( b );
-  const j = i == null;
-  if (j) {
-
+  const h = $( b );
+  const i = h == null;
+  if (i) {
+    $( undefined );
+    $( undefined );
   }
   else {
-    const k = $( "x" );
-    const l = i[ k ];
-    h = l;
+    const j = $( "x" );
+    const k = h[ j ];
+    $( k );
+    $( k );
   }
-  a = h;
-  $( h );
 }
-$( a );
 `````
 
 ## Globals

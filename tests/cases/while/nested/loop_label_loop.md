@@ -34,6 +34,7 @@ let x /*:number*/ = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const t /*:unknown*/ = $(x);
   if (t) {
+    $(x);
   } else {
     x = 20;
     while ($LOOP_UNROLL_10) {
@@ -44,8 +45,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       } else {
       }
     }
+    $(20);
   }
-  $(x);
 }
 `````
 
@@ -55,7 +56,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let x = 10;
 while (true) {
-  if (!$(x)) {
+  if ($(x)) {
+    $(x);
+  } else {
     x = 20;
     while (true) {
       $(20);
@@ -63,8 +66,8 @@ while (true) {
         break;
       }
     }
+    $(20);
   }
-  $(x);
 }
 `````
 
@@ -116,7 +119,7 @@ let a = 10;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = $( a );
   if (b) {
-
+    $( a );
   }
   else {
     a = 20;
@@ -127,8 +130,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
         break;
       }
     }
+    $( 20 );
   }
-  $( a );
 }
 `````
 

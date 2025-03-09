@@ -30,9 +30,10 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs, 2, 3);
+  $(undefined);
 } else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Denormalized
@@ -45,8 +46,10 @@ if ($(true)) {
   const varInitAssignLhsComputedRhs = $(3);
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs, 2, 3);
+  $(undefined);
+} else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## Pre Normal
@@ -101,8 +104,11 @@ if (a) {
   const c = $( 3 );
   b.x = c;
   $( c, 2, 3 );
+  $( undefined );
 }
-$( undefined );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

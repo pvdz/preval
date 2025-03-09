@@ -31,49 +31,45 @@ $(f(), 'final');
 
 
 `````js filename=intro
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(2);
   if (tmpIfTest$1) {
     const tmpReturnArg /*:unknown*/ = $(3);
-    tmpCalleeParam = tmpReturnArg;
+    $(tmpReturnArg, `final`);
   } else {
     const tmpReturnArg$1 /*:unknown*/ = $(4);
-    tmpCalleeParam = tmpReturnArg$1;
+    $(tmpReturnArg$1, `final`);
   }
 } else {
   const tmpIfTest$3 /*:unknown*/ = $(5);
   if (tmpIfTest$3) {
     const tmpReturnArg$3 /*:unknown*/ = $(6);
-    tmpCalleeParam = tmpReturnArg$3;
+    $(tmpReturnArg$3, `final`);
   } else {
     const tmpReturnArg$5 /*:unknown*/ = $(7);
-    tmpCalleeParam = tmpReturnArg$5;
+    $(tmpReturnArg$5, `final`);
   }
 }
-$(tmpCalleeParam, `final`);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 if ($(1)) {
   if ($(2)) {
-    tmpCalleeParam = $(3);
+    $($(3), `final`);
   } else {
-    tmpCalleeParam = $(4);
+    $($(4), `final`);
   }
 } else {
   if ($(5)) {
-    tmpCalleeParam = $(6);
+    $($(6), `final`);
   } else {
-    tmpCalleeParam = $(7);
+    $($(7), `final`);
   }
 }
-$(tmpCalleeParam, `final`);
 `````
 
 ## Pre Normal
@@ -134,31 +130,29 @@ $(tmpCalleeParam, `final`);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 1 );
-if (b) {
-  const c = $( 2 );
-  if (c) {
-    const d = $( 3 );
-    a = d;
+const a = $( 1 );
+if (a) {
+  const b = $( 2 );
+  if (b) {
+    const c = $( 3 );
+    $( c, "final" );
   }
   else {
-    const e = $( 4 );
-    a = e;
+    const d = $( 4 );
+    $( d, "final" );
   }
 }
 else {
-  const f = $( 5 );
-  if (f) {
-    const g = $( 6 );
-    a = g;
+  const e = $( 5 );
+  if (e) {
+    const f = $( 6 );
+    $( f, "final" );
   }
   else {
-    const h = $( 7 );
-    a = h;
+    const g = $( 7 );
+    $( g, "final" );
   }
 }
-$( a, "final" );
 `````
 
 ## Globals

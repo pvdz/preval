@@ -13,8 +13,6 @@ before the implicit globals that don't exist.
 
 `````js filename=intro
 let x = false;
-//const b = $('x', 'one');
-//const c = $('x', 'one');
 const a = b === c;
 if (a) {
 } else {
@@ -117,3 +115,6 @@ Post settled calls: BAD!!
 Denormalized calls: BAD!!
  - 1: false, 'middle'
  - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Todos triggered:
+- switch me to ref tracking

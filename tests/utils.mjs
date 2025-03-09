@@ -407,7 +407,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
       ) +
       (todos.size ?
         '\nTodos triggered:\n' +
-        Array.from(todos).map(desc => '- ' + desc).join('\n')
+        Array.from(todos).map(desc => '- ' + desc).join('\n') + '\n'
         : '')
     )) +
   '';

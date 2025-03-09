@@ -1,0 +1,360 @@
+# Preval test case
+
+# string_unknown_op_arr_numbers.md
+
+> Normalize > Binary > With > Arr > String unknown op arr numbers
+>
+> Deal with certain primitive with binary ops
+
+## Input
+
+`````js filename=intro
+const x = `${$('')}`;
+const arr = [
+  x ** [10, 20, 30],
+  x * [10, 20, 30],
+  x / [10, 20, 30],
+  x % [10, 20, 30],
+  x + [10, 20, 30],
+  x - [10, 20, 30],
+  x << [10, 20, 30],
+  x >> [10, 20, 30],
+  x >>> [10, 20, 30],
+  x < [10, 20, 30],
+  x > [10, 20, 30],
+  x <= [10, 20, 30],
+  x >= [10, 20, 30],
+  x == [10, 20, 30],
+  x != [10, 20, 30],
+  x === [10, 20, 30],
+  x !== [10, 20, 30],
+  x & [10, 20, 30],
+  x ^ [10, 20, 30],
+  x | [10, 20, 30],
+];
+$(arr);
+
+const arr2 = [
+  x in [],
+  x instanceof [],
+];
+$(arr2);
+`````
+
+## Settled
+
+
+`````js filename=intro
+const tmpCalleeParam /*:unknown*/ = $(``);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam, `string`);
+const tmpBinBothRhs$1 /*:array*/ = [10, 20, 30];
+const tmpArrElement /*:number*/ = tmpBinBothRhs ** tmpBinBothRhs$1;
+const tmpBinBothRhs$3 /*:array*/ = [10, 20, 30];
+const tmpArrElement$1 /*:number*/ = tmpBinBothRhs * tmpBinBothRhs$3;
+const tmpBinBothRhs$5 /*:array*/ = [10, 20, 30];
+const tmpArrElement$3 /*:number*/ = tmpBinBothRhs / tmpBinBothRhs$5;
+const tmpBinBothRhs$7 /*:array*/ = [10, 20, 30];
+const tmpArrElement$5 /*:number*/ = tmpBinBothRhs % tmpBinBothRhs$7;
+const tmpBinBothRhs$11 /*:array*/ = [10, 20, 30];
+const tmpArrElement$9 /*:number*/ = tmpBinBothRhs - tmpBinBothRhs$11;
+const tmpBinBothRhs$13 /*:array*/ = [10, 20, 30];
+const tmpArrElement$11 /*:number*/ = tmpBinBothRhs << tmpBinBothRhs$13;
+const tmpBinBothRhs$15 /*:array*/ = [10, 20, 30];
+const tmpArrElement$13 /*:number*/ = tmpBinBothRhs >> tmpBinBothRhs$15;
+const tmpBinBothRhs$17 /*:array*/ = [10, 20, 30];
+const tmpArrElement$15 /*:number*/ = tmpBinBothRhs >>> tmpBinBothRhs$17;
+const tmpBinBothRhs$19 /*:array*/ = [10, 20, 30];
+const tmpArrElement$17 /*:boolean*/ = tmpBinBothRhs < tmpBinBothRhs$19;
+const tmpBinBothRhs$21 /*:array*/ = [10, 20, 30];
+const tmpArrElement$19 /*:boolean*/ = tmpBinBothRhs > tmpBinBothRhs$21;
+const tmpBinBothRhs$23 /*:array*/ = [10, 20, 30];
+const tmpArrElement$21 /*:boolean*/ = tmpBinBothRhs <= tmpBinBothRhs$23;
+const tmpBinBothRhs$25 /*:array*/ = [10, 20, 30];
+const tmpArrElement$23 /*:boolean*/ = tmpBinBothRhs >= tmpBinBothRhs$25;
+const tmpBinBothRhs$35 /*:array*/ = [10, 20, 30];
+const tmpArrElement$33 /*:number*/ = tmpBinBothRhs & tmpBinBothRhs$35;
+const tmpBinBothRhs$37 /*:array*/ = [10, 20, 30];
+const tmpArrElement$35 /*:number*/ = tmpBinBothRhs ^ tmpBinBothRhs$37;
+const tmpBinBothRhs$39 /*:array*/ = [10, 20, 30];
+const tmpArrElement$37 /*:number*/ = tmpBinBothRhs | tmpBinBothRhs$39;
+const tmpArrElement$7 /*:string*/ = `${tmpBinBothRhs}10,20,30`;
+const arr /*:array*/ = [
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  false,
+  true,
+  false,
+  true,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+const tmpBinBothRhs$41 /*:array*/ = [];
+const tmpBinBothRhs$43 /*:array*/ = [];
+const tmpArrElement$39 /*:boolean*/ = tmpBinBothRhs in tmpBinBothRhs$41;
+const tmpArrElement$41 /*:boolean*/ = tmpBinBothRhs instanceof tmpBinBothRhs$43;
+const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
+$(arr2);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const tmpBinBothRhs = $coerce($(``), `string`);
+const tmpArrElement = tmpBinBothRhs ** [10, 20, 30];
+const tmpArrElement$1 = tmpBinBothRhs * [10, 20, 30];
+const tmpArrElement$3 = tmpBinBothRhs / [10, 20, 30];
+const tmpArrElement$5 = tmpBinBothRhs % [10, 20, 30];
+const tmpArrElement$9 = tmpBinBothRhs - [10, 20, 30];
+const tmpArrElement$11 = tmpBinBothRhs << [10, 20, 30];
+const tmpArrElement$13 = tmpBinBothRhs >> [10, 20, 30];
+const tmpArrElement$15 = tmpBinBothRhs >>> [10, 20, 30];
+const tmpArrElement$17 = tmpBinBothRhs < [10, 20, 30];
+const tmpArrElement$19 = tmpBinBothRhs > [10, 20, 30];
+const tmpArrElement$21 = tmpBinBothRhs <= [10, 20, 30];
+const tmpArrElement$23 = tmpBinBothRhs >= [10, 20, 30];
+const tmpArrElement$33 = tmpBinBothRhs & [10, 20, 30];
+const tmpArrElement$35 = tmpBinBothRhs ^ [10, 20, 30];
+const tmpArrElement$37 = tmpBinBothRhs | [10, 20, 30];
+const tmpArrElement$7 = `${tmpBinBothRhs}10,20,30`;
+$([
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  false,
+  true,
+  false,
+  true,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+]);
+const tmpBinBothRhs$41 = [];
+const tmpBinBothRhs$43 = [];
+const tmpArrElement$39 = tmpBinBothRhs in tmpBinBothRhs$41;
+const tmpArrElement$41 = tmpBinBothRhs instanceof tmpBinBothRhs$43;
+$([tmpArrElement$39, tmpArrElement$41]);
+`````
+
+## Pre Normal
+
+
+`````js filename=intro
+const x = `` + $coerce($(``), `string`) + ``;
+const arr = [
+  x ** [10, 20, 30],
+  x * [10, 20, 30],
+  x / [10, 20, 30],
+  x % [10, 20, 30],
+  x + [10, 20, 30],
+  x - [10, 20, 30],
+  x << [10, 20, 30],
+  x >> [10, 20, 30],
+  x >>> [10, 20, 30],
+  x < [10, 20, 30],
+  x > [10, 20, 30],
+  x <= [10, 20, 30],
+  x >= [10, 20, 30],
+  x == [10, 20, 30],
+  x != [10, 20, 30],
+  x === [10, 20, 30],
+  x !== [10, 20, 30],
+  x & [10, 20, 30],
+  x ^ [10, 20, 30],
+  x | [10, 20, 30],
+];
+$(arr);
+const arr2 = [x in [], x instanceof []];
+$(arr2);
+`````
+
+## Normalized
+
+
+`````js filename=intro
+const tmpBinBothLhs = ``;
+const tmpCalleeParam = $(``);
+const tmpBinBothRhs = $coerce(tmpCalleeParam, `string`);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const x = $coerce(tmpBinLhs, `plustr`);
+const tmpBinBothLhs$1 = x;
+const tmpBinBothRhs$1 = [10, 20, 30];
+const tmpArrElement = tmpBinBothLhs$1 ** tmpBinBothRhs$1;
+const tmpBinBothLhs$3 = x;
+const tmpBinBothRhs$3 = [10, 20, 30];
+const tmpArrElement$1 = tmpBinBothLhs$3 * tmpBinBothRhs$3;
+const tmpBinBothLhs$5 = x;
+const tmpBinBothRhs$5 = [10, 20, 30];
+const tmpArrElement$3 = tmpBinBothLhs$5 / tmpBinBothRhs$5;
+const tmpBinBothLhs$7 = x;
+const tmpBinBothRhs$7 = [10, 20, 30];
+const tmpArrElement$5 = tmpBinBothLhs$7 % tmpBinBothRhs$7;
+const tmpBinBothLhs$9 = x;
+const tmpBinBothRhs$9 = [10, 20, 30];
+const tmpArrElement$7 = tmpBinBothLhs$9 + tmpBinBothRhs$9;
+const tmpBinBothLhs$11 = x;
+const tmpBinBothRhs$11 = [10, 20, 30];
+const tmpArrElement$9 = tmpBinBothLhs$11 - tmpBinBothRhs$11;
+const tmpBinBothLhs$13 = x;
+const tmpBinBothRhs$13 = [10, 20, 30];
+const tmpArrElement$11 = tmpBinBothLhs$13 << tmpBinBothRhs$13;
+const tmpBinBothLhs$15 = x;
+const tmpBinBothRhs$15 = [10, 20, 30];
+const tmpArrElement$13 = tmpBinBothLhs$15 >> tmpBinBothRhs$15;
+const tmpBinBothLhs$17 = x;
+const tmpBinBothRhs$17 = [10, 20, 30];
+const tmpArrElement$15 = tmpBinBothLhs$17 >>> tmpBinBothRhs$17;
+const tmpBinBothLhs$19 = x;
+const tmpBinBothRhs$19 = [10, 20, 30];
+const tmpArrElement$17 = tmpBinBothLhs$19 < tmpBinBothRhs$19;
+const tmpBinBothLhs$21 = x;
+const tmpBinBothRhs$21 = [10, 20, 30];
+const tmpArrElement$19 = tmpBinBothLhs$21 > tmpBinBothRhs$21;
+const tmpBinBothLhs$23 = x;
+const tmpBinBothRhs$23 = [10, 20, 30];
+const tmpArrElement$21 = tmpBinBothLhs$23 <= tmpBinBothRhs$23;
+const tmpBinBothLhs$25 = x;
+const tmpBinBothRhs$25 = [10, 20, 30];
+const tmpArrElement$23 = tmpBinBothLhs$25 >= tmpBinBothRhs$25;
+const tmpBinBothLhs$27 = x;
+const tmpBinBothRhs$27 = [10, 20, 30];
+const tmpArrElement$25 = tmpBinBothLhs$27 == tmpBinBothRhs$27;
+const tmpBinBothLhs$29 = x;
+const tmpBinBothRhs$29 = [10, 20, 30];
+const tmpArrElement$27 = tmpBinBothLhs$29 != tmpBinBothRhs$29;
+const tmpBinBothLhs$31 = x;
+const tmpBinBothRhs$31 = [10, 20, 30];
+const tmpArrElement$29 = tmpBinBothLhs$31 === tmpBinBothRhs$31;
+const tmpBinBothLhs$33 = x;
+const tmpBinBothRhs$33 = [10, 20, 30];
+const tmpArrElement$31 = tmpBinBothLhs$33 !== tmpBinBothRhs$33;
+const tmpBinBothLhs$35 = x;
+const tmpBinBothRhs$35 = [10, 20, 30];
+const tmpArrElement$33 = tmpBinBothLhs$35 & tmpBinBothRhs$35;
+const tmpBinBothLhs$37 = x;
+const tmpBinBothRhs$37 = [10, 20, 30];
+const tmpArrElement$35 = tmpBinBothLhs$37 ^ tmpBinBothRhs$37;
+const tmpBinBothLhs$39 = x;
+const tmpBinBothRhs$39 = [10, 20, 30];
+const tmpArrElement$37 = tmpBinBothLhs$39 | tmpBinBothRhs$39;
+const arr = [
+  tmpArrElement,
+  tmpArrElement$1,
+  tmpArrElement$3,
+  tmpArrElement$5,
+  tmpArrElement$7,
+  tmpArrElement$9,
+  tmpArrElement$11,
+  tmpArrElement$13,
+  tmpArrElement$15,
+  tmpArrElement$17,
+  tmpArrElement$19,
+  tmpArrElement$21,
+  tmpArrElement$23,
+  tmpArrElement$25,
+  tmpArrElement$27,
+  tmpArrElement$29,
+  tmpArrElement$31,
+  tmpArrElement$33,
+  tmpArrElement$35,
+  tmpArrElement$37,
+];
+$(arr);
+const tmpBinBothLhs$41 = x;
+const tmpBinBothRhs$41 = [];
+const tmpArrElement$39 = tmpBinBothLhs$41 in tmpBinBothRhs$41;
+const tmpBinBothLhs$43 = x;
+const tmpBinBothRhs$43 = [];
+const tmpArrElement$41 = tmpBinBothLhs$43 instanceof tmpBinBothRhs$43;
+const arr2 = [tmpArrElement$39, tmpArrElement$41];
+$(arr2);
+`````
+
+## PST Settled
+With rename=true
+
+`````js filename=intro
+const a = $( "" );
+const b = $coerce( a, "string" );
+const c = [ 10, 20, 30 ];
+const d = b ** c;
+const e = [ 10, 20, 30 ];
+const f = b * e;
+const g = [ 10, 20, 30 ];
+const h = b / g;
+const i = [ 10, 20, 30 ];
+const j = b % i;
+const k = [ 10, 20, 30 ];
+const l = b - k;
+const m = [ 10, 20, 30 ];
+const n = b << m;
+const o = [ 10, 20, 30 ];
+const p = b >> o;
+const q = [ 10, 20, 30 ];
+const r = b >>> q;
+const s = [ 10, 20, 30 ];
+const t = b < s;
+const u = [ 10, 20, 30 ];
+const v = b > u;
+const w = [ 10, 20, 30 ];
+const x = b <= w;
+const y = [ 10, 20, 30 ];
+const z = b >= y;
+const ba = [ 10, 20, 30 ];
+const bb = b & ba;
+const bc = [ 10, 20, 30 ];
+const bd = b ^ bc;
+const be = [ 10, 20, 30 ];
+const bf = b | be;
+const bg = `${b}10,20,30`;
+const bh = [ d, f, h, j, bg, l, n, p, r, t, v, x, z, false, true, false, true, bb, bd, bf ];
+$( bh );
+const bi = [];
+const bj = [];
+const bk = b in bi;
+const bl = b instanceof bj;
+const bm = [ bk, bl ];
+$( bm );
+`````
+
+## Globals
+
+None
+
+## Runtime Outcome
+
+Should call `$` with:
+ - 1: ''
+ - 2: [NaN, NaN, NaN, NaN, '10,20,30', NaN, 0, 0, 0, true, false, true, false, false, true, false, true, 0, 0, 0]
+ - eval returned: ("<crash[ Right-hand side of 'instanceof' is not callable ]>")
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Post settled calls: Same
+
+Denormalized calls: Same

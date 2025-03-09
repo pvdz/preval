@@ -1,8 +1,8 @@
 # Preval test case
 
-# implicit_x_op_nan.md
+# arr_empty_op_number_unknown.md
 
-> Normalize > Binary > With > Arr > Implicit x op nan
+> Normalize > Binary > With > Arr > Arr empty op number unknown
 >
 > Deal with certain primitive with binary ops
 

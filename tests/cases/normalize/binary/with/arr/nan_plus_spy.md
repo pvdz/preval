@@ -1,8 +1,8 @@
 # Preval test case
 
-# nan_plus_x.md
+# nan_plus_spy.md
 
-> Normalize > Binary > With > Arr > Nan plus x
+> Normalize > Binary > With > Arr > Nan plus spy
 >
 > Deal with certain primitive with binary ops
 

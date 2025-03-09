@@ -1,16 +1,21 @@
 # Preval test case
 
-# nan_op_x.md
+# arr_op_implicit_arr_empty.md
 
-> Normalize > Binary > With > Arr > Nan op x
+> Normalize > Binary > With > Arr > Arr op implicit arr empty
 >
 > Deal with certain primitive with binary ops
+
+In this variant we tell preval that array is an empty array
+so it will probably end up resolving most of these trivial
+cases.
+There's also a test where we give preval an array without telling
+it the contents (through Array.from).
+Also a variation where the array contents is some strings or numbers.
 
 ## Input
 
 `````js filename=intro
-const x = $spy();
-
 const arr = [
   [] ** x,
   [] * x,
@@ -46,7 +51,6 @@ $(arr2);
 
 
 `````js filename=intro
-const x /*:unknown*/ = $spy();
 const tmpBinLhs /*:array*/ = [];
 const tmpArrElement /*:number*/ = tmpBinLhs ** x;
 const tmpBinLhs$1 /*:array*/ = [];
@@ -72,20 +76,20 @@ const tmpBinLhs$21 /*:array*/ = [];
 const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
 const tmpBinLhs$23 /*:array*/ = [];
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
+const tmpBinLhs$25 /*:array*/ = [];
+const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
+const tmpBinLhs$27 /*:array*/ = [];
+const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
+const tmpBinLhs$29 /*:array*/ = [];
+const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
+const tmpBinLhs$31 /*:array*/ = [];
+const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const tmpBinLhs$33 /*:array*/ = [];
 const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
 const tmpBinLhs$35 /*:array*/ = [];
 const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
 const tmpBinLhs$37 /*:array*/ = [];
 const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
-const tmpBinLhs$25 /*:array*/ = [];
-const tmpBinLhs$27 /*:array*/ = [];
-const tmpBinLhs$29 /*:array*/ = [];
-const tmpBinLhs$31 /*:array*/ = [];
-const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 === x;
-const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 !== x;
-const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
-const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -110,8 +114,8 @@ const arr /*:array*/ = [
 ];
 $(arr);
 const tmpBinLhs$39 /*:array*/ = [];
-const tmpBinLhs$41 /*:array*/ = [];
 const tmpArrElement$39 /*:boolean*/ = tmpBinLhs$39 in x;
+const tmpBinLhs$41 /*:array*/ = [];
 const tmpArrElement$41 /*:boolean*/ = tmpBinLhs$41 instanceof x;
 const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
@@ -121,7 +125,6 @@ $(arr2);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $spy();
 const tmpArrElement = [] ** x;
 const tmpArrElement$1 = [] * x;
 const tmpArrElement$3 = [] / x;
@@ -135,17 +138,13 @@ const tmpArrElement$17 = [] < x;
 const tmpArrElement$19 = [] > x;
 const tmpArrElement$21 = [] <= x;
 const tmpArrElement$23 = [] >= x;
+const tmpArrElement$25 = [] === x;
+const tmpArrElement$27 = [] !== x;
+const tmpArrElement$29 = [] === x;
+const tmpArrElement$31 = [] !== x;
 const tmpArrElement$33 = [] & x;
 const tmpArrElement$35 = [] ^ x;
 const tmpArrElement$37 = [] | x;
-const tmpBinLhs$25 = [];
-const tmpBinLhs$27 = [];
-const tmpBinLhs$29 = [];
-const tmpBinLhs$31 = [];
-const tmpArrElement$25 = tmpBinLhs$25 === x;
-const tmpArrElement$27 = tmpBinLhs$27 !== x;
-const tmpArrElement$29 = tmpBinLhs$29 === x;
-const tmpArrElement$31 = tmpBinLhs$31 !== x;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -168,10 +167,8 @@ $([
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
-const tmpBinLhs$39 = [];
-const tmpBinLhs$41 = [];
-const tmpArrElement$39 = tmpBinLhs$39 in x;
-const tmpArrElement$41 = tmpBinLhs$41 instanceof x;
+const tmpArrElement$39 = [] in x;
+const tmpArrElement$41 = [] instanceof x;
 $([tmpArrElement$39, tmpArrElement$41]);
 `````
 
@@ -179,7 +176,6 @@ $([tmpArrElement$39, tmpArrElement$41]);
 
 
 `````js filename=intro
-const x = $spy();
 const arr = [
   [] ** x,
   [] * x,
@@ -211,7 +207,6 @@ $(arr2);
 
 
 `````js filename=intro
-const x = $spy();
 const tmpBinLhs = [];
 const tmpArrElement = tmpBinLhs ** x;
 const tmpBinLhs$1 = [];
@@ -287,82 +282,65 @@ $(arr2);
 With rename=true
 
 `````js filename=intro
-const a = $spy();
-const b = [];
-const c = b ** a;
-const d = [];
-const e = d * a;
-const f = [];
-const g = f / a;
-const h = [];
-const i = h % a;
-const j = $coerce( a, "plustr" );
-const k = [];
-const l = k - a;
-const m = [];
-const n = m << a;
-const o = [];
-const p = o >> a;
-const q = [];
-const r = q >>> a;
-const s = [];
-const t = s < a;
-const u = [];
-const v = u > a;
-const w = [];
-const x = w <= a;
+const a = [];
+const b = a ** x;
+const c = [];
+const d = c * x;
+const e = [];
+const f = e / x;
+const g = [];
+const h = g % x;
+const i = $coerce( x, "plustr" );
+const j = [];
+const k = j - x;
+const l = [];
+const m = l << x;
+const n = [];
+const o = n >> x;
+const p = [];
+const q = p >>> x;
+const r = [];
+const s = r < x;
+const t = [];
+const u = t > x;
+const v = [];
+const w = v <= x;
 const y = [];
-const z = y >= a;
+const z = y >= x;
 const ba = [];
-const bb = ba & a;
+const bb = ba === x;
 const bc = [];
-const bd = bc ^ a;
+const bd = bc !== x;
 const be = [];
-const bf = be | a;
+const bf = be === x;
 const bg = [];
-const bh = [];
+const bh = bg !== x;
 const bi = [];
-const bj = [];
-const bk = bg === a;
-const bl = bh !== a;
-const bm = bi === a;
-const bn = bj !== a;
-const bo = [ c, e, g, i, j, l, n, p, r, t, v, x, z, bk, bl, bm, bn, bb, bd, bf ];
+const bj = bi & x;
+const bk = [];
+const bl = bk ^ x;
+const bm = [];
+const bn = bm | x;
+const bo = [ b, d, f, h, i, k, m, o, q, s, u, w, z, bb, bd, bf, bh, bj, bl, bn ];
 $( bo );
 const bp = [];
-const bq = [];
-const br = bp in a;
-const bs = bq instanceof a;
-const bt = [ br, bs ];
+const bq = bp in x;
+const br = [];
+const bs = br instanceof x;
+const bt = [ bq, bs ];
 $( bt );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x
 
 ## Runtime Outcome
 
 Should call `$` with:
- - 1: 'Creating spy', 1, 0, ['spy', 12345]
- - 2: '$spy[1].valueOf()'
- - 3: '$spy[1].valueOf()'
- - 4: '$spy[1].valueOf()'
- - 5: '$spy[1].valueOf()'
- - 6: '$spy[1].valueOf()'
- - 7: '$spy[1].valueOf()'
- - 8: '$spy[1].valueOf()'
- - 9: '$spy[1].valueOf()'
- - 10: '$spy[1].valueOf()'
- - 11: '$spy[1].valueOf()'
- - 12: '$spy[1].valueOf()'
- - 13: '$spy[1].valueOf()'
- - 14: '$spy[1].valueOf()'
- - 15: '$spy[1].valueOf()'
- - 16: '$spy[1].valueOf()'
- - 17: '$spy[1].valueOf()'
- - 18: [0, 0, 0, 0, '12345', -12345, 0, 0, 0, true, false, true, false, false, true, false, true, 0, 12345, 12345]
- - eval returned: ("<crash[ Right-hand side of 'instanceof' is not callable ]>")
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

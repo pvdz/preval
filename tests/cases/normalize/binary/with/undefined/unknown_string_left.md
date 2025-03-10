@@ -45,10 +45,6 @@ $(x instanceof undefined);
 const tmpBinBothRhs /*:unknown*/ = $(`ok`);
 const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 const tmpArrElement$7 /*:string*/ = x + undefined;
-const tmpArrElement$17 /*:boolean*/ = x < undefined;
-const tmpArrElement$19 /*:boolean*/ = x > undefined;
-const tmpArrElement$21 /*:boolean*/ = x <= undefined;
-const tmpArrElement$23 /*:boolean*/ = x >= undefined;
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;
 const tmpArrElement$15 /*:number*/ = x >>> 0;
@@ -64,10 +60,10 @@ const arr /*:array*/ = [
   tmpArrElement$11,
   tmpArrElement$13,
   tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
+  false,
+  false,
+  false,
+  false,
   false,
   true,
   false,
@@ -89,10 +85,6 @@ $(tmpCalleeParam$1);
 `````js filename=intro
 const x = $coerce($(`ok`), `plustr`);
 const tmpArrElement$7 = x + undefined;
-const tmpArrElement$17 = x < undefined;
-const tmpArrElement$19 = x > undefined;
-const tmpArrElement$21 = x <= undefined;
-const tmpArrElement$23 = x >= undefined;
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
 const tmpArrElement$15 = x >>> 0;
@@ -108,10 +100,10 @@ $([
   tmpArrElement$11,
   tmpArrElement$13,
   tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
+  false,
+  false,
+  false,
+  false,
   false,
   true,
   false,
@@ -177,10 +169,14 @@ const tmpArrElement$9 = NaN;
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
 const tmpArrElement$15 = x >>> 0;
-const tmpArrElement$17 = x < undefined;
-const tmpArrElement$19 = x > undefined;
-const tmpArrElement$21 = x <= undefined;
-const tmpArrElement$23 = x >= undefined;
+$coerce(x, `number`);
+const tmpArrElement$17 = false;
+$coerce(x, `number`);
+const tmpArrElement$19 = false;
+$coerce(x, `number`);
+const tmpArrElement$21 = false;
+$coerce(x, `number`);
+const tmpArrElement$23 = false;
 const tmpArrElement$25 = x == undefined;
 const tmpArrElement$27 = x != undefined;
 const tmpArrElement$29 = x === undefined;
@@ -225,21 +221,17 @@ With rename=true
 const a = $( "ok" );
 const b = $coerce( a, "plustr" );
 const c = b + undefined;
-const d = b < undefined;
-const e = b > undefined;
-const f = b <= undefined;
-const g = b >= undefined;
-const h = b << 0;
-const i = b >> 0;
-const j = b >>> 0;
-const k = b ^ 0;
-const l = b | 0;
-const m = [ NaN, NaN, NaN, NaN, c, NaN, h, i, j, d, e, f, g, false, true, false, true, 0, k, l ];
-$( m );
-const n = b in undefined;
-$( n );
-const o = b instanceof undefined;
-$( o );
+const d = b << 0;
+const e = b >> 0;
+const f = b >>> 0;
+const g = b ^ 0;
+const h = b | 0;
+const i = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, false, false, false, false, false, true, false, true, 0, g, h ];
+$( i );
+const j = b in undefined;
+$( j );
+const k = b instanceof undefined;
+$( k );
 `````
 
 ## Globals

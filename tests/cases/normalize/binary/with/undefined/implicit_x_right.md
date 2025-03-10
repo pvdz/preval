@@ -53,10 +53,10 @@ x ** 0;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
 const tmpArrElement$15 /*:number*/ = 0 >>> x;
-const tmpArrElement$17 /*:boolean*/ = undefined < x;
-const tmpArrElement$19 /*:boolean*/ = undefined > x;
-const tmpArrElement$21 /*:boolean*/ = undefined <= x;
-const tmpArrElement$23 /*:boolean*/ = undefined >= x;
+$coerce(x, `number`);
+$coerce(x, `number`);
+$coerce(x, `number`);
+$coerce(x, `number`);
 const tmpArrElement$25 /*:boolean*/ = undefined == x;
 const tmpArrElement$27 /*:boolean*/ = undefined != x;
 const tmpArrElement$29 /*:boolean*/ = undefined === x;
@@ -74,10 +74,10 @@ const arr /*:array*/ = [
   tmpArrElement$11,
   tmpArrElement$13,
   tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
+  false,
+  false,
+  false,
+  false,
   tmpArrElement$25,
   tmpArrElement$27,
   tmpArrElement$29,
@@ -106,10 +106,10 @@ x ** 0;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;
 const tmpArrElement$15 = 0 >>> x;
-const tmpArrElement$17 = undefined < x;
-const tmpArrElement$19 = undefined > x;
-const tmpArrElement$21 = undefined <= x;
-const tmpArrElement$23 = undefined >= x;
+$coerce(x, `number`);
+$coerce(x, `number`);
+$coerce(x, `number`);
+$coerce(x, `number`);
 const tmpArrElement$25 = undefined == x;
 const tmpArrElement$27 = undefined != x;
 const tmpArrElement$29 = undefined === x;
@@ -127,10 +127,10 @@ $([
   tmpArrElement$11,
   tmpArrElement$13,
   tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
+  false,
+  false,
+  false,
+  false,
   tmpArrElement$25,
   tmpArrElement$27,
   tmpArrElement$29,
@@ -192,10 +192,14 @@ const tmpArrElement$9 = NaN;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;
 const tmpArrElement$15 = 0 >>> x;
-const tmpArrElement$17 = undefined < x;
-const tmpArrElement$19 = undefined > x;
-const tmpArrElement$21 = undefined <= x;
-const tmpArrElement$23 = undefined >= x;
+$coerce(x, `number`);
+const tmpArrElement$17 = false;
+$coerce(x, `number`);
+const tmpArrElement$19 = false;
+$coerce(x, `number`);
+const tmpArrElement$21 = false;
+$coerce(x, `number`);
+const tmpArrElement$23 = false;
 const tmpArrElement$25 = undefined == x;
 const tmpArrElement$27 = undefined != x;
 const tmpArrElement$29 = undefined === x;
@@ -246,23 +250,23 @@ x ** 0;
 const b = 0 << x;
 const c = 0 >> x;
 const d = 0 >>> x;
-const e = undefined < x;
-const f = undefined > x;
-const g = undefined <= x;
-const h = undefined >= x;
-const i = undefined == x;
-const j = undefined != x;
-const k = undefined === x;
-const l = undefined !== x;
+$coerce( x, "number" );
+$coerce( x, "number" );
+$coerce( x, "number" );
+$coerce( x, "number" );
+const e = undefined == x;
+const f = undefined != x;
+const g = undefined === x;
+const h = undefined !== x;
 x ** 0;
-const m = 0 ^ x;
-const n = 0 | x;
-const o = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, e, f, g, h, i, j, k, l, 0, m, n ];
-$( o );
-const p = undefined in x;
-$( p );
-const q = undefined instanceof x;
-$( q );
+const i = 0 ^ x;
+const j = 0 | x;
+const k = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, false, false, false, false, e, f, g, h, 0, i, j ];
+$( k );
+const l = undefined in x;
+$( l );
+const m = undefined instanceof x;
+$( m );
 `````
 
 ## Globals

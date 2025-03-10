@@ -45,10 +45,6 @@ $(undefined instanceof x);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const x /*:primitive*/ = 1 + tmpBinBothRhs;
 const tmpArrElement$7 /*:primitive*/ = undefined + x;
-const tmpArrElement$17 /*:boolean*/ = undefined < x;
-const tmpArrElement$19 /*:boolean*/ = undefined > x;
-const tmpArrElement$21 /*:boolean*/ = undefined <= x;
-const tmpArrElement$23 /*:boolean*/ = undefined >= x;
 const tmpArrElement$25 /*:boolean*/ = undefined == x;
 const tmpArrElement$27 /*:boolean*/ = undefined != x;
 const tmpArrElement$11 /*:number*/ = 0 << x;
@@ -68,10 +64,10 @@ const arr /*:array*/ = [
   tmpArrElement$11,
   tmpArrElement$13,
   tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
+  false,
+  false,
+  false,
+  false,
   tmpArrElement$25,
   tmpArrElement$27,
   tmpArrElement$29,
@@ -94,10 +90,6 @@ $(tmpCalleeParam$1);
 const tmpBinBothRhs = $(1);
 const x = 1 + tmpBinBothRhs;
 const tmpArrElement$7 = undefined + x;
-const tmpArrElement$17 = undefined < x;
-const tmpArrElement$19 = undefined > x;
-const tmpArrElement$21 = undefined <= x;
-const tmpArrElement$23 = undefined >= x;
 const tmpArrElement$25 = undefined == x;
 const tmpArrElement$27 = undefined != x;
 const tmpArrElement$11 = 0 << x;
@@ -117,10 +109,10 @@ $([
   tmpArrElement$11,
   tmpArrElement$13,
   tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
+  false,
+  false,
+  false,
+  false,
   tmpArrElement$25,
   tmpArrElement$27,
   tmpArrElement$29,
@@ -186,10 +178,14 @@ const tmpArrElement$9 = NaN;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;
 const tmpArrElement$15 = 0 >>> x;
-const tmpArrElement$17 = undefined < x;
-const tmpArrElement$19 = undefined > x;
-const tmpArrElement$21 = undefined <= x;
-const tmpArrElement$23 = undefined >= x;
+$coerce(x, `number`);
+const tmpArrElement$17 = false;
+$coerce(x, `number`);
+const tmpArrElement$19 = false;
+$coerce(x, `number`);
+const tmpArrElement$21 = false;
+$coerce(x, `number`);
+const tmpArrElement$23 = false;
 const tmpArrElement$25 = undefined == x;
 const tmpArrElement$27 = undefined != x;
 const tmpArrElement$29 = undefined === x;
@@ -234,25 +230,21 @@ With rename=true
 const a = $( 1 );
 const b = 1 + a;
 const c = undefined + b;
-const d = undefined < b;
-const e = undefined > b;
-const f = undefined <= b;
-const g = undefined >= b;
-const h = undefined == b;
-const i = undefined != b;
-const j = 0 << b;
-const k = 0 >> b;
-const l = 0 >>> b;
-const m = undefined === b;
-const n = undefined !== b;
-const o = 0 ^ b;
-const p = 0 | b;
-const q = [ NaN, NaN, NaN, NaN, c, NaN, j, k, l, d, e, f, g, h, i, m, n, 0, o, p ];
-$( q );
-const r = undefined in b;
-$( r );
-const s = undefined instanceof b;
-$( s );
+const d = undefined == b;
+const e = undefined != b;
+const f = 0 << b;
+const g = 0 >> b;
+const h = 0 >>> b;
+const i = undefined === b;
+const j = undefined !== b;
+const k = 0 ^ b;
+const l = 0 | b;
+const m = [ NaN, NaN, NaN, NaN, c, NaN, f, g, h, false, false, false, false, d, e, i, j, 0, k, l ];
+$( m );
+const n = undefined in b;
+$( n );
+const o = undefined instanceof b;
+$( o );
 `````
 
 ## Globals

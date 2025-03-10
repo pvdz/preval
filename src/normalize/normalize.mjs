@@ -2718,6 +2718,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               if (pv !== pvn) {
                 // This means the primitive will coerce to a simpler value (int) with the bitwise operator
                 // The coercion happens regardless of the other operand so we should apply that immediately.
+                // Note: it would coerce `undefined` first to a number `NaN` then to a 32bit int `0`.
                 rule(
                   'An operand to bitwise operators (`&`, `|`, `^`) will unconditionally coerce a primitive operand that is not a 32bit int',
                 );
@@ -2753,6 +2754,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               if (pv !== pvn) {
                 // This means the primitive will coerce to a simpler value (int) with the bitwise operator
                 // The coercion happens regardless of the other operand so we should apply that immediately.
+                // Note: it would coerce `undefined` first to a number `NaN` then to a 32bit int `0`.
                 rule(
                   'An operand to bitwise operators (`&`, `|`, `^`) will unconditionally coerce a primitive operand that is not a 32bit int',
                 );
@@ -3007,6 +3009,86 @@ export function phaseNormalize(fdata, fname, prng, options) {
             return true;
           }
         }
+
+        // Coercion of undefined to number is always nan
+        if (node.left.name === 'undefined' || node.right.name === 'undefined') {
+          if (['&', '|', '^', '<<', '>>', '>>>', '**', '*', '/', '-', '%'].includes(node.operator)) {
+            rule('Using `undefined` in any numeric binary op will result in NaN');
+            example('undefined * 10;', 'NaN;');
+            before(node, body[i]);
+
+            const finalNode = AST.identifier('NaN');
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+            if (node.left.name !== 'undefined') {
+              body.splice(i, 0, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [node.left, AST.primitive("number")])));
+            }
+            if (node.right.name !== 'undefined') {
+              body.splice(i, 0, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [node.right, AST.primitive("number")])));
+            }
+
+            before(node, body[i]);
+            return true;
+          }
+          if (['<', '<=', '>', '>='].includes(node.operator)) {
+            rule('Using `undefined` in any relative bin op will result in false');
+            example('undefined < "who";', 'false;');
+            before(node, body[i]);
+
+            const finalNode = AST.fals();
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+            if (node.left.name !== 'undefined') {
+              body.splice(i, 0, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [node.left, AST.primitive("number")])));
+            }
+            if (node.right.name !== 'undefined') {
+              body.splice(i, 0, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [node.right, AST.primitive("number")])));
+            }
+
+            before(node, body[i]);
+            return true;
+          }
+        }
+
+        // The null/false case is slightly different because that numeric coercion results in zero
+        if (AST.isNull(node.left) || AST.isNull(node.right) || AST.isFalse(node.left) || AST.isFalse(node.right)) {
+          if (['&', '|', '^', '<<', '>>', '>>>', '**', '*', '/', '-', '%'].includes(node.operator)) {
+            rule('Using `null` or `false` in any numeric binary op will coerce it to +0');
+            example('null * 10;', '0 * 10;');
+            example('false * 10;', '0 * 10;');
+            before(node, body[i]);
+
+            if (AST.isNull(node.left) || AST.isFalse(node.left)) {
+              node.left = AST.zero();
+            }
+            if (AST.isNull(node.right) || AST.isFalse(node.right)) {
+              node.right = AST.zero();
+            }
+
+            before(node, body[i]);
+            return true;
+          }
+          if (['<', '<=', '>', '>='].includes(node.operator)) {
+            // In a round-about way, null and false always end up being coerced to a number with relational ops. Even when the
+            // other side is a string (because the alt condition requires both sides being a string).
+            // Coercion to number results in zero. So we should be able to replace them with zero.
+            rule('Using `false` or `null` in any relative bin op will coerce it to zero');
+            example('null < "who";', '0 < "who";');
+            example('false < "who";', '0 < "who";');
+            before(node, body[i]);
+
+            if (AST.isNull(node.left) || AST.isFalse(node.left)) {
+              node.left = AST.zero();
+            }
+            if (AST.isNull(node.right) || AST.isFalse(node.right)) {
+              node.right = AST.zero();
+            }
+
+            before(node, body[i]);
+            return true;
+          }
+        }
+
 
         if (
           node.left.type === 'Identifier' &&

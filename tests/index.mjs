@@ -403,7 +403,7 @@ function runTestCase(
 
   function createGlobalPrevalSymbols(stack, $, $spy) {
 
-    function objPatternRest(obj, withoutTheseProps, propName) {
+    function $objPatternRest(obj, withoutTheseProps, propName) {
       // Ugly hack that will work. Rest is a shallow clone.
       if (obj === null || obj === undefined) {
         // This is what would happen at runtime.
@@ -480,7 +480,7 @@ function runTestCase(
     const frameworkInjectedGlobals = {
       '$': $,
       '$spy': $spy,
-      [BUILTIN_REST_HANDLER_NAME]: objPatternRest,
+      [BUILTIN_REST_HANDLER_NAME]: $objPatternRest,
       [SYMBOL_DOTCALL]: $dotCall,
       [SYMBOL_COERCE]: $coerce,
       [SYMBOL_PRNG]: $prng,

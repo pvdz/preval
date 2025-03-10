@@ -99,13 +99,14 @@ $( b );
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+objPatternRest
 
 ## Runtime Outcome
 
 Should call `$` with:
- - 1: { 0: '"a"', 1: '"b"', 2: '"c"' }
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

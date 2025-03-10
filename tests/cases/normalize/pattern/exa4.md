@@ -64,7 +64,7 @@ const obj /*:object*/ = {
 const a /*:unknown*/ = obj.a;
 const objPatternNoDefault /*:unknown*/ = obj.b;
 const tmpCalleeParam$1 /*:array*/ = [];
-const rest /*:unknown*/ = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+const rest /*:unknown*/ = $objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 const c /*:unknown*/ = obj.c;
 $(a, c, rest);
 `````
@@ -101,7 +101,7 @@ const obj = {
   },
 };
 const a = obj.a;
-const rest = objPatternRest(obj.b, [], undefined);
+const rest = $objPatternRest(obj.b, [], undefined);
 $(a, obj.c, rest);
 `````
 
@@ -186,7 +186,7 @@ let a = bindingPatternObjRoot.a;
 let objPatternNoDefault = bindingPatternObjRoot.b;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
-let rest = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+let rest = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 let c = bindingPatternObjRoot.c;
 $(a, c, rest);
 `````
@@ -231,7 +231,7 @@ const a = {
 const h = a.a;
 const i = a.b;
 const j = [];
-const k = objPatternRest( i, j, undefined );
+const k = $objPatternRest( i, j, undefined );
 const l = a.c;
 $( h, l, k );
 `````

@@ -19,7 +19,7 @@ export const IMPLICIT_GLOBAL_PREFIX = '$prevalImplicit$';
  * Abstraction of an object spread (`{...xyz}`) so we can eliminate it from source code.
  * Pretty much an Object.assign but actually still does a spread when called (in tests)
  */
-export const BUILTIN_REST_HANDLER_NAME = 'objPatternRest';
+export const BUILTIN_REST_HANDLER_NAME = '$objPatternRest';
 
 /**
  * Syntactic clue that this was an actual method call before, not an arbitrary .call method

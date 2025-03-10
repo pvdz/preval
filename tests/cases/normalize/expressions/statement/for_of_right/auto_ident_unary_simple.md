@@ -6,6 +6,12 @@
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 
+## Options
+
+(Doing `for (x in x)` is TDZ issue)
+
+- globals: x$1
+
 ## Input
 
 `````js filename=intro
@@ -116,9 +122,7 @@ $( e, 1 );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x$1
+None (except for the 1 globals expected by the test)
 
 ## Runtime Outcome
 

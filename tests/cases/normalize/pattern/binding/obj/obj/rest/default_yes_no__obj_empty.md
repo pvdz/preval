@@ -28,7 +28,7 @@ if (tmpIfTest) {
   tmpCalleeParam$1 = objPatternBeforeDefault;
 }
 const tmpCalleeParam$3 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+const y /*:unknown*/ = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -43,7 +43,7 @@ if (objPatternBeforeDefault === undefined) {
 } else {
   tmpCalleeParam$1 = objPatternBeforeDefault;
 }
-$(objPatternRest(tmpCalleeParam$1, [], undefined));
+$($objPatternRest(tmpCalleeParam$1, [], undefined));
 `````
 
 ## Pre Normal
@@ -70,7 +70,7 @@ if (tmpIfTest) {
 }
 const tmpCalleeParam$1 = objPatternAfterDefault;
 const tmpCalleeParam$3 = [];
-const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+const y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -90,7 +90,7 @@ else {
   b = a;
 }
 const f = [];
-const g = objPatternRest( b, f, undefined );
+const g = $objPatternRest( b, f, undefined );
 $( g );
 `````
 

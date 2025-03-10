@@ -47,7 +47,7 @@ const tmpAssignObjPatternRhs = undefined;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
-y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+y = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(`bad`);
 `````
 

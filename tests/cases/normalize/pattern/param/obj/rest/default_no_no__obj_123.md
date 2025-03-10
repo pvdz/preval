@@ -21,7 +21,7 @@ $(f({ x: 1, b: 2, c: 3 }, 10));
 `````js filename=intro
 const tmpCalleeParam$7 /*:object*/ = { x: 1, b: 2, c: 3 };
 const tmpCalleeParam$3 /*:array*/ = [];
-const x /*:unknown*/ = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$3, `x`);
+const x /*:unknown*/ = $objPatternRest(tmpCalleeParam$7, tmpCalleeParam$3, `x`);
 $(x);
 `````
 
@@ -30,7 +30,7 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam$7 = { x: 1, b: 2, c: 3 };
-$(objPatternRest(tmpCalleeParam$7, [], `x`));
+$($objPatternRest(tmpCalleeParam$7, [], `x`));
 `````
 
 ## Pre Normal
@@ -63,7 +63,7 @@ let f = function ($$0) {
   }
   const tmpCalleeParam$1 = bindingPatternObjRoot;
   const tmpCalleeParam$3 = [];
-  let x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, `x`);
+  let x = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, `x`);
   return x;
 };
 const tmpCallCallee = f;
@@ -82,7 +82,7 @@ const a = {
   c: 3,
 };
 const b = [];
-const c = objPatternRest( a, b, "x" );
+const c = $objPatternRest( a, b, "x" );
 $( c );
 `````
 

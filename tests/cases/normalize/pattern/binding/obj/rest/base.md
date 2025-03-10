@@ -19,7 +19,7 @@ $(x);
 `````js filename=intro
 const bindingPatternObjRoot /*:object*/ = { x: 1, b: 2, c: 3 };
 const tmpCalleeParam$1 /*:array*/ = [];
-const x /*:unknown*/ = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, `x`);
+const x /*:unknown*/ = $objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, `x`);
 $(x);
 `````
 
@@ -28,7 +28,7 @@ $(x);
 
 `````js filename=intro
 const bindingPatternObjRoot = { x: 1, b: 2, c: 3 };
-$(objPatternRest(bindingPatternObjRoot, [], `x`));
+$($objPatternRest(bindingPatternObjRoot, [], `x`));
 `````
 
 ## Pre Normal
@@ -46,7 +46,7 @@ $(x);
 const bindingPatternObjRoot = { x: 1, b: 2, c: 3 };
 const tmpCalleeParam = bindingPatternObjRoot;
 const tmpCalleeParam$1 = [];
-const x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
+const x = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
 $(x);
 `````
 
@@ -60,7 +60,7 @@ const a = {
   c: 3,
 };
 const b = [];
-const c = objPatternRest( a, b, "x" );
+const c = $objPatternRest( a, b, "x" );
 $( c );
 `````
 

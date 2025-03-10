@@ -20,7 +20,7 @@ $(x);
 const tmpCalleeParam /*:object*/ = { a: `pass` };
 const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
-x = objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
+x = $objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
@@ -28,7 +28,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-x = objPatternRest($({ a: `pass` }), [], undefined);
+x = $objPatternRest($({ a: `pass` }), [], undefined);
 $(x);
 `````
 
@@ -57,7 +57,7 @@ if (tmpIfTest) {
 }
 const tmpCalleeParam$1 = arrPatternStep;
 const tmpCalleeParam$3 = [];
-x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+x = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
@@ -68,7 +68,7 @@ With rename=true
 const a = { a: "pass" };
 const b = $( a );
 const c = [];
-x = objPatternRest( b, c, undefined );
+x = $objPatternRest( b, c, undefined );
 $( x );
 `````
 

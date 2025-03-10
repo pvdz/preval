@@ -19,7 +19,7 @@ $(x);
 `````js filename=intro
 const tmpArrElement /*:object*/ = { x: 1, y: 2, z: 3 };
 const tmpCalleeParam$3 /*:array*/ = [];
-x = objPatternRest(tmpArrElement, tmpCalleeParam$3, undefined);
+x = $objPatternRest(tmpArrElement, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
@@ -27,7 +27,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-x = objPatternRest({ x: 1, y: 2, z: 3 }, [], undefined);
+x = $objPatternRest({ x: 1, y: 2, z: 3 }, [], undefined);
 $(x);
 `````
 
@@ -57,7 +57,7 @@ if (tmpIfTest) {
 }
 const tmpCalleeParam$1 = arrPatternStep;
 const tmpCalleeParam$3 = [];
-x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+x = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
@@ -71,7 +71,7 @@ const a = {
   z: 3,
 };
 const b = [];
-x = objPatternRest( a, b, undefined );
+x = $objPatternRest( a, b, undefined );
 $( x );
 `````
 

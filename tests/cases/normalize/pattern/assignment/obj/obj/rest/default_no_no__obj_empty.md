@@ -19,7 +19,7 @@ $('bad');
 `````js filename=intro
 const objPatternNoDefault /*:unknown*/ = $Object_prototype.x;
 const tmpCalleeParam$1 /*:array*/ = [];
-y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+y = $objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $(`bad`);
 `````
 
@@ -27,7 +27,7 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-y = objPatternRest($Object_prototype.x, [], undefined);
+y = $objPatternRest($Object_prototype.x, [], undefined);
 $(`bad`);
 `````
 
@@ -49,7 +49,7 @@ const tmpAssignObjPatternRhs = {};
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
-y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+y = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(`bad`);
 `````
 
@@ -59,7 +59,7 @@ With rename=true
 `````js filename=intro
 const a = $Object_prototype.x;
 const b = [];
-y = objPatternRest( a, b, undefined );
+y = $objPatternRest( a, b, undefined );
 $( "bad" );
 `````
 

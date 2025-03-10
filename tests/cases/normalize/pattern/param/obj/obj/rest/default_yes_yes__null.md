@@ -71,7 +71,7 @@ let f = function ($$0) {
   }
   const tmpCalleeParam$3 = objPatternAfterDefault;
   const tmpCalleeParam$5 = [];
-  let y = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+  let y = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
   return `bad`;
 };
 const tmpCalleeParam$7 = f(null, 10);

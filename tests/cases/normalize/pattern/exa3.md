@@ -58,7 +58,7 @@ const a /*:unknown*/ = obj.a;
 const objPatternNoDefault /*:unknown*/ = obj.b;
 const c /*:unknown*/ = objPatternNoDefault.c;
 const tmpCalleeParam$1 /*:array*/ = [`c`];
-const rest /*:unknown*/ = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+const rest /*:unknown*/ = $objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $(a, c, rest);
 `````
 
@@ -91,7 +91,7 @@ const obj = {
 };
 const a = obj.a;
 const objPatternNoDefault = obj.b;
-$(a, objPatternNoDefault.c, objPatternRest(objPatternNoDefault, [`c`], undefined));
+$(a, objPatternNoDefault.c, $objPatternRest(objPatternNoDefault, [`c`], undefined));
 `````
 
 ## Pre Normal
@@ -166,7 +166,7 @@ let objPatternNoDefault = bindingPatternObjRoot.b;
 let c = objPatternNoDefault.c;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [`c`];
-let rest = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+let rest = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(a, c, rest);
 `````
 
@@ -206,7 +206,7 @@ const g = a.a;
 const h = a.b;
 const i = h.c;
 const j = [ "c" ];
-const k = objPatternRest( h, j, undefined );
+const k = $objPatternRest( h, j, undefined );
 $( g, i, k );
 `````
 

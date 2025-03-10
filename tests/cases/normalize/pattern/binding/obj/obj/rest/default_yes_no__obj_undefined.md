@@ -20,7 +20,7 @@ $(y);
 const tmpCalleeParam /*:object*/ = { a: `pass` };
 const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
+const y /*:unknown*/ = $objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -29,7 +29,7 @@ $(y);
 
 `````js filename=intro
 const objPatternAfterDefault = $({ a: `pass` });
-$(objPatternRest(objPatternAfterDefault, [], undefined));
+$($objPatternRest(objPatternAfterDefault, [], undefined));
 `````
 
 ## Pre Normal
@@ -56,7 +56,7 @@ if (tmpIfTest) {
 }
 const tmpCalleeParam$1 = objPatternAfterDefault;
 const tmpCalleeParam$3 = [];
-const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+const y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -67,7 +67,7 @@ With rename=true
 const a = { a: "pass" };
 const b = $( a );
 const c = [];
-const d = objPatternRest( b, c, undefined );
+const d = $objPatternRest( b, c, undefined );
 $( d );
 `````
 

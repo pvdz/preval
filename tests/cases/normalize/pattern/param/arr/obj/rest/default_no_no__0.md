@@ -56,7 +56,7 @@ let f = function ($$0) {
   let arrPatternStep = arrPatternSplat[0];
   const tmpCalleeParam = arrPatternStep;
   const tmpCalleeParam$1 = [];
-  let x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+  let x = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return x;
 };
 const tmpCalleeParam$3 = f(0, 200);

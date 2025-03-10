@@ -21,7 +21,7 @@ a = 2;
 b = 3;
 const tmpAssignObjPatternRhs /*:object*/ = { x: 1, a: 2, b: 3, c: 4 };
 const tmpCalleeParam$1 /*:array*/ = [`a`, `b`];
-x = objPatternRest(tmpAssignObjPatternRhs, tmpCalleeParam$1, `x`);
+x = $objPatternRest(tmpAssignObjPatternRhs, tmpCalleeParam$1, `x`);
 $(x);
 `````
 
@@ -31,7 +31,7 @@ $(x);
 `````js filename=intro
 a = 2;
 b = 3;
-x = objPatternRest({ x: 1, a: 2, b: 3, c: 4 }, [`a`, `b`], `x`);
+x = $objPatternRest({ x: 1, a: 2, b: 3, c: 4 }, [`a`, `b`], `x`);
 $(x);
 `````
 
@@ -52,7 +52,7 @@ a = tmpAssignObjPatternRhs.a;
 b = tmpAssignObjPatternRhs.b;
 const tmpCalleeParam = tmpAssignObjPatternRhs;
 const tmpCalleeParam$1 = [`a`, `b`];
-x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
+x = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
 $(x);
 `````
 
@@ -69,7 +69,7 @@ const c = {
   c: 4,
 };
 const d = [ "a", "b" ];
-x = objPatternRest( c, d, "x" );
+x = $objPatternRest( c, d, "x" );
 $( x );
 `````
 

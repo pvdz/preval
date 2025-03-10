@@ -22,7 +22,7 @@ $(f({ x: undefined, b: 11, c: 12 }, 10));
 const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
 const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpCalleeParam$5 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(tmpClusterSSA_objPatternAfterDefault, tmpCalleeParam$5, undefined);
+const y /*:unknown*/ = $objPatternRest(tmpClusterSSA_objPatternAfterDefault, tmpCalleeParam$5, undefined);
 $(y);
 `````
 
@@ -31,7 +31,7 @@ $(y);
 
 `````js filename=intro
 const tmpClusterSSA_objPatternAfterDefault = $({ a: `pass` });
-$(objPatternRest(tmpClusterSSA_objPatternAfterDefault, [], undefined));
+$($objPatternRest(tmpClusterSSA_objPatternAfterDefault, [], undefined));
 `````
 
 ## Pre Normal
@@ -74,7 +74,7 @@ let f = function ($$0) {
   }
   const tmpCalleeParam$3 = objPatternAfterDefault;
   const tmpCalleeParam$5 = [];
-  let y = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+  let y = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
   return y;
 };
 const tmpCallCallee = f;
@@ -90,7 +90,7 @@ With rename=true
 const a = { a: "pass" };
 const b = $( a );
 const c = [];
-const d = objPatternRest( b, c, undefined );
+const d = $objPatternRest( b, c, undefined );
 $( d );
 `````
 

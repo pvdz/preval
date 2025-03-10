@@ -20,14 +20,14 @@ f(null);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:array*/ = [];
-objPatternRest(null, tmpCalleeParam$1, `x`);
+$objPatternRest(null, tmpCalleeParam$1, `x`);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-objPatternRest(null, [], `x`);
+$objPatternRest(null, [], `x`);
 `````
 
 ## Pre Normal
@@ -53,7 +53,7 @@ let f = function ($$0) {
   let bindingPatternObjRoot = tmpParamBare;
   const tmpCalleeParam = bindingPatternObjRoot;
   const tmpCalleeParam$1 = [];
-  let x = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
+  let x = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
   return `bad`;
 };
 f(null);
@@ -64,7 +64,7 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-objPatternRest( null, a, "x" );
+$objPatternRest( null, a, "x" );
 `````
 
 ## Globals

@@ -57,7 +57,7 @@ let f = function ($$0) {
   let objPatternNoDefault = bindingPatternObjRoot.x;
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
-  let y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+  let y = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return `bad`;
 };
 const tmpCalleeParam$3 = f(null, 10);

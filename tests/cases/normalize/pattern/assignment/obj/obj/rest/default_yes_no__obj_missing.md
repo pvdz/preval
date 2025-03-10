@@ -28,7 +28,7 @@ if (tmpIfTest) {
   tmpCalleeParam$1 = objPatternBeforeDefault;
 }
 const tmpCalleeParam$3 /*:array*/ = [];
-y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -43,7 +43,7 @@ if (objPatternBeforeDefault === undefined) {
 } else {
   tmpCalleeParam$1 = objPatternBeforeDefault;
 }
-y = objPatternRest(tmpCalleeParam$1, [], undefined);
+y = $objPatternRest(tmpCalleeParam$1, [], undefined);
 $(y);
 `````
 
@@ -71,7 +71,7 @@ if (tmpIfTest) {
 }
 const tmpCalleeParam$1 = objPatternAfterDefault;
 const tmpCalleeParam$3 = [];
-y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -91,7 +91,7 @@ else {
   b = a;
 }
 const f = [];
-y = objPatternRest( b, f, undefined );
+y = $objPatternRest( b, f, undefined );
 $( y );
 `````
 

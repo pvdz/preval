@@ -34,7 +34,7 @@ if (tmpIfTest$1) {
   tmpCalleeParam$3 = arrPatternBeforeDefault;
 }
 const tmpCalleeParam$5 /*:array*/ = [];
-const x /*:unknown*/ = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+const x /*:unknown*/ = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
 $(x);
 `````
 
@@ -51,7 +51,7 @@ if (arrPatternBeforeDefault === undefined) {
 } else {
   tmpCalleeParam$3 = arrPatternBeforeDefault;
 }
-$(objPatternRest(tmpCalleeParam$3, [], undefined));
+$($objPatternRest(tmpCalleeParam$3, [], undefined));
 `````
 
 ## Pre Normal
@@ -95,7 +95,7 @@ let f = function ($$0) {
   }
   const tmpCalleeParam$3 = arrPatternStep;
   const tmpCalleeParam$5 = [];
-  let x = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+  let x = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
   return x;
 };
 const tmpCalleeParam$7 = f();
@@ -122,7 +122,7 @@ else {
   f = e;
 }
 const j = [];
-const k = objPatternRest( f, j, undefined );
+const k = $objPatternRest( f, j, undefined );
 $( k );
 `````
 

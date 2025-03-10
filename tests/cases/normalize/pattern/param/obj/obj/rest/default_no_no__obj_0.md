@@ -20,7 +20,7 @@ $(f({ x: 0, b: 11, c: 12 }, 10));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(0, tmpCalleeParam$1, undefined);
+const y /*:unknown*/ = $objPatternRest(0, tmpCalleeParam$1, undefined);
 $(y);
 `````
 
@@ -28,7 +28,7 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-$(objPatternRest(0, [], undefined));
+$($objPatternRest(0, [], undefined));
 `````
 
 ## Pre Normal
@@ -57,7 +57,7 @@ let f = function ($$0) {
   let objPatternNoDefault = bindingPatternObjRoot.x;
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
-  let y = objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
+  let y = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
   return y;
 };
 const tmpCallCallee = f;
@@ -71,7 +71,7 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-const b = objPatternRest( 0, a, undefined );
+const b = $objPatternRest( 0, a, undefined );
 $( b );
 `````
 

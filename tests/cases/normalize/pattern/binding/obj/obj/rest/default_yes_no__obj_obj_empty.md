@@ -19,7 +19,7 @@ $(y);
 `````js filename=intro
 const tmpObjLitVal /*:object*/ = {};
 const tmpCalleeParam$3 /*:array*/ = [];
-const y /*:unknown*/ = objPatternRest(tmpObjLitVal, tmpCalleeParam$3, undefined);
+const y /*:unknown*/ = $objPatternRest(tmpObjLitVal, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -28,7 +28,7 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = {};
-$(objPatternRest(tmpObjLitVal, [], undefined));
+$($objPatternRest(tmpObjLitVal, [], undefined));
 `````
 
 ## Pre Normal
@@ -56,7 +56,7 @@ if (tmpIfTest) {
 }
 const tmpCalleeParam$1 = objPatternAfterDefault;
 const tmpCalleeParam$3 = [];
-const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+const y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -66,7 +66,7 @@ With rename=true
 `````js filename=intro
 const a = {};
 const b = [];
-const c = objPatternRest( a, b, undefined );
+const c = $objPatternRest( a, b, undefined );
 $( c );
 `````
 

@@ -64,7 +64,7 @@ let f = function ($$0) {
   }
   const tmpCalleeParam$1 = arrPatternStep;
   const tmpCalleeParam$3 = [];
-  let x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+  let x = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
   return `bad`;
 };
 const tmpCalleeParam$5 = f(undefined, 200);

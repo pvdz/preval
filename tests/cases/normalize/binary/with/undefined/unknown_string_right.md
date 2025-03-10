@@ -44,6 +44,7 @@ $(undefined instanceof x);
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(ok);
 const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+const tmpArrElement /*:number*/ = undefined ** x;
 const tmpArrElement$7 /*:string*/ = undefined + x;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
@@ -51,7 +52,7 @@ const tmpArrElement$15 /*:number*/ = 0 >>> x;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -84,6 +85,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const x = $coerce($(ok), `plustr`);
+const tmpArrElement = undefined ** x;
 const tmpArrElement$7 = undefined + x;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;
@@ -91,7 +93,7 @@ const tmpArrElement$15 = 0 >>> x;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -155,8 +157,7 @@ $(undefined instanceof x);
 const tmpBinBothLhs = ``;
 const tmpBinBothRhs = $(ok);
 const x = tmpBinBothLhs + tmpBinBothRhs;
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = undefined ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -220,18 +221,19 @@ With rename=true
 `````js filename=intro
 const a = $( ok );
 const b = $coerce( a, "plustr" );
-const c = undefined + b;
-const d = 0 << b;
-const e = 0 >> b;
-const f = 0 >>> b;
-const g = 0 ^ b;
-const h = 0 | b;
-const i = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, false, false, false, false, false, true, false, true, 0, g, h ];
-$( i );
-const j = undefined in b;
+const c = undefined ** b;
+const d = undefined + b;
+const e = 0 << b;
+const f = 0 >> b;
+const g = 0 >>> b;
+const h = 0 ^ b;
+const i = 0 | b;
+const j = [ c, NaN, NaN, NaN, d, NaN, e, f, g, false, false, false, false, false, true, false, true, 0, h, i ];
 $( j );
-const k = undefined instanceof b;
+const k = undefined in b;
 $( k );
+const l = undefined instanceof b;
+$( l );
 `````
 
 ## Globals

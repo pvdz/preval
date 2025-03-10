@@ -41,10 +41,10 @@ import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../s
 import {
   createFreshVar,
 } from '../bindings.mjs';
-import globals from '../globals.mjs';
+import globals, { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
 import { addLabelReference, createFreshLabelStatement, removeLabelReference } from '../labels.mjs';
-import { cloneSortOfSimple } from '../ast.mjs';
+import { cloneSortOfSimple, isNumberValueNode } from '../ast.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -2775,17 +2775,21 @@ export function phaseNormalize(fdata, fname, prng, options) {
               const pv = AST.getPrimitiveValue(node.left);
               // Note: it seems that if x is a string, then isNaN(x) === isNaN(Number(x)), so the string case should be covered too
               if (isNaN(pv)) {
-                rule('A NaN operand left to binary math operators (`*`, `/`, etc) will cause the result to be NaN');
-                example('f(x * NaN);', 'x * 1; f(NaN);');
-                before(node, body[i]);
+                // NaN ** 0 = 1, NaN ** 1 = NaN, so skip that one.
+                if (node.operator !== '**') {
+                  rule('A NaN operand left to binary math operators (`*`, `/`, etc) will cause the result to be NaN');
+                  example('f(x * NaN);', 'x * 1; f(NaN);');
+                  before(node, body[i]);
 
-                const finalNode = AST.identifier('NaN');
-                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                body.splice(i, 1, AST.expressionStatement(AST.binaryExpression('*', node.right, AST.literal(0))), finalParent);
+                  const finalNode = AST.identifier('NaN');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, AST.expressionStatement(AST.binaryExpression('*', node.right, AST.literal(0))), finalParent);
 
-                after(finalParent, body[i]);
-                return true;
-              } else if ([true, false, null].includes(pv) || typeof pv === 'string') {
+                  after(finalParent, body[i]);
+                  return true;
+                }
+              }
+              else if ([true, false, null].includes(pv) || typeof pv === 'string') {
                 const pvn = Number(pv);
                 ASSERT(!isNaN(pvn), 'we tried to check that before...', lp, pv, pvn);
                 if (pv !== pvn) {
@@ -2818,7 +2822,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
                 after(finalParent, body[i]);
                 return true;
-              } else if ([true, false, null].includes(pv) || typeof pv === 'string') {
+              }
+              else if ([true, false, null].includes(pv) || typeof pv === 'string') {
                 const pvn = Number(pv);
                 ASSERT(!isNaN(pvn), 'we tried to check that before...', lp, pv, pvn);
                 if (pv !== pvn) {
@@ -2968,9 +2973,9 @@ export function phaseNormalize(fdata, fname, prng, options) {
         if (['+', '&', '|', '^', '<<', '>>', '>>>', '**', '*', '/', '-', '%', '<', '<=', '>', '>='].includes(node.operator)) {
           // Support serializing some globals. Mostly for jsf*ck cases.
           const isBuiltinConstructor =
-            node.left.type === 'Identifier' && ['Array', 'Object', 'Boolean', 'Number', 'String', 'RegExp'].includes(node.left.name)
+            node.left.type === 'Identifier' && BUILTIN_GLOBAL_FUNC_NAMES.has(node.left.name)
               ? node.left
-              : node.right.type === 'Identifier' && ['Array', 'Object', 'Boolean', 'Number', 'String', 'RegExp'].includes(node.right.name)
+              : node.right.type === 'Identifier' && BUILTIN_GLOBAL_FUNC_NAMES.has(node.right.name)
                 ? node.right
                 : null;
           if (isBuiltinConstructor) {
@@ -3012,7 +3017,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
         // Coercion of undefined to number is always nan
         if (node.left.name === 'undefined' || node.right.name === 'undefined') {
-          if (['&', '|', '^', '<<', '>>', '>>>', '**', '*', '/', '-', '%'].includes(node.operator)) {
+          // Note: notable exception is **
+          if (['&', '|', '^', '<<', '>>', '>>>', '*', '/', '-', '%'].includes(node.operator)) {
             rule('Using `undefined` in any numeric binary op will result in NaN');
             example('undefined * 10;', 'NaN;');
             before(node, body[i]);
@@ -3027,7 +3033,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               body.splice(i, 0, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [node.right, AST.primitive("number")])));
             }
 
-            before(node, body[i]);
+            after(node, body[i]);
             return true;
           }
           if (['<', '<=', '>', '>='].includes(node.operator)) {
@@ -3045,7 +3051,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
               body.splice(i, 0, AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [node.right, AST.primitive("number")])));
             }
 
-            before(node, body[i]);
+            after(node, body[i]);
             return true;
           }
         }
@@ -3088,7 +3094,6 @@ export function phaseNormalize(fdata, fname, prng, options) {
             return true;
           }
         }
-
 
         if (
           node.left.type === 'Identifier' &&
@@ -6190,7 +6195,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           if (
             node.object.type === 'Identifier' &&
-            ['Boolean', 'Number', 'String', 'Function', 'Regex', 'Array', 'Object', 'Set', 'Map', 'WeakSet', 'WeakMap'].includes(node.object.name)
+            BUILTIN_GLOBAL_FUNC_NAMES.has(node.object.name)
           ) {
             if (wrapKind === 'statement') {
               rule('A statement that is a property on a built in constructor should be removed');
@@ -7980,6 +7985,43 @@ export function phaseNormalize(fdata, fname, prng, options) {
 
           after(body[i]);
           return true;
+        }
+
+        if (
+          node.argument.type === 'Identifier' &&
+          BUILTIN_GLOBAL_FUNC_NAMES.has(node.argument.name) &&
+          ['~', '-', '+', '!', 'typeof'].includes(node.operator)
+        ) {
+          if (node.operator === '!') {
+            rule('Builtin functions with ! unary op are converted to true');
+            example('!String', '!true');
+            before(body[i]);
+
+            node.argument = AST.tru();
+
+            after(body[i]);
+            return true;
+          }
+          else if (node.operator === 'typeof') {
+            rule('Builtin functions with typeof unary op are converted to "function"');
+            example('~String', '-1');
+            before(body[i]);
+
+            node.argument = AST.primitive('function');
+
+            after(body[i]);
+            return true;
+          }
+          else {
+            rule('Builtin functions with numeric unary ops are converted to NaN');
+            example('~String', '-1');
+            before(body[i]);
+
+            node.argument = AST.nan();
+
+            after(body[i]);
+            return true;
+          }
         }
 
         // Probably too late to enforce this unary rule now. Stuff depends on wanting to inline Infinity/NaN

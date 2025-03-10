@@ -20,8 +20,7 @@ $(parseInt.name);
 `````js filename=intro
 $(`String`);
 $(`Array`);
-const tmpCalleeParam$3 /*:unknown*/ = parseInt.name;
-$(tmpCalleeParam$3);
+$(`parseInt`);
 `````
 
 ## Denormalized
@@ -30,7 +29,7 @@ $(tmpCalleeParam$3);
 `````js filename=intro
 $(`String`);
 $(`Array`);
-$(parseInt.name);
+$(`parseInt`);
 `````
 
 ## Pre Normal
@@ -50,7 +49,7 @@ const tmpCalleeParam = `String`;
 $(tmpCalleeParam);
 const tmpCalleeParam$1 = `Array`;
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = parseInt.name;
+const tmpCalleeParam$3 = `parseInt`;
 $(tmpCalleeParam$3);
 `````
 
@@ -60,8 +59,7 @@ With rename=true
 `````js filename=intro
 $( "String" );
 $( "Array" );
-const a = parseInt.name;
-$( a );
+$( "parseInt" );
 `````
 
 ## Globals

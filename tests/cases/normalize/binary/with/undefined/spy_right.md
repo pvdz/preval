@@ -42,7 +42,7 @@ $(undefined instanceof x);
 
 `````js filename=intro
 const x /*:unknown*/ = $spy();
-x ** 0;
+const tmpArrElement /*:number*/ = undefined ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -63,7 +63,7 @@ const tmpArrElement$37 /*:number*/ = 0 | x;
 const tmpArrElement$29 /*:boolean*/ = undefined === x;
 const tmpArrElement$31 /*:boolean*/ = undefined !== x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -96,7 +96,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const x = $spy();
-x ** 0;
+const tmpArrElement = undefined ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -117,7 +117,7 @@ const tmpArrElement$37 = 0 | x;
 const tmpArrElement$29 = undefined === x;
 const tmpArrElement$31 = undefined !== x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -179,8 +179,7 @@ $(undefined instanceof x);
 
 `````js filename=intro
 const x = $spy();
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = undefined ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -243,32 +242,32 @@ With rename=true
 
 `````js filename=intro
 const a = $spy();
+const b = undefined ** a;
 a ** 0;
 a ** 0;
 a ** 0;
+const c = undefined + a;
 a ** 0;
-const b = undefined + a;
-a ** 0;
-const c = 0 << a;
-const d = 0 >> a;
-const e = 0 >>> a;
+const d = 0 << a;
+const e = 0 >> a;
+const f = 0 >>> a;
 $coerce( a, "number" );
 $coerce( a, "number" );
 $coerce( a, "number" );
 $coerce( a, "number" );
-const f = undefined == a;
-const g = undefined != a;
+const g = undefined == a;
+const h = undefined != a;
 a ** 0;
-const h = 0 ^ a;
-const i = 0 | a;
-const j = undefined === a;
-const k = undefined !== a;
-const l = [ NaN, NaN, NaN, NaN, b, NaN, c, d, e, false, false, false, false, f, g, j, k, 0, h, i ];
-$( l );
-const m = undefined in a;
+const i = 0 ^ a;
+const j = 0 | a;
+const k = undefined === a;
+const l = undefined !== a;
+const m = [ b, NaN, NaN, NaN, c, NaN, d, e, f, false, false, false, false, g, h, k, l, 0, i, j ];
 $( m );
-const n = undefined instanceof a;
+const n = undefined in a;
 $( n );
+const o = undefined instanceof a;
+$( o );
 `````
 
 ## Globals

@@ -56,7 +56,7 @@ const x /*:object*/ = {
     return 100;
   },
 };
-x ** 0;
+const tmpArrElement /*:number*/ = undefined ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -73,7 +73,7 @@ x ** 0;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -115,7 +115,7 @@ const x = {
     return 100;
   },
 };
-x ** 0;
+const tmpArrElement = undefined ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -132,7 +132,7 @@ x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -215,8 +215,7 @@ const x = {
     return 100;
   },
 };
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = undefined ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -290,28 +289,28 @@ const a = {
     return 100;
   },
 };
+const c = undefined ** a;
 a ** 0;
 a ** 0;
 a ** 0;
+const d = undefined + a;
 a ** 0;
-const c = undefined + a;
-a ** 0;
-const d = 0 << a;
-const e = 0 >> a;
-const f = 0 >>> a;
+const e = 0 << a;
+const f = 0 >> a;
+const g = 0 >>> a;
 $coerce( a, "number" );
 $coerce( a, "number" );
 $coerce( a, "number" );
 $coerce( a, "number" );
 a ** 0;
-const g = 0 ^ a;
-const h = 0 | a;
-const i = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, false, false, false, false, false, true, false, true, 0, g, h ];
-$( i );
-const j = undefined in a;
+const h = 0 ^ a;
+const i = 0 | a;
+const j = [ c, NaN, NaN, NaN, d, NaN, e, f, g, false, false, false, false, false, true, false, true, 0, h, i ];
 $( j );
-const k = undefined instanceof a;
+const k = undefined in a;
 $( k );
+const l = undefined instanceof a;
+$( l );
 `````
 
 ## Globals

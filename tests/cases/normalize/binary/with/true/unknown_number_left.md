@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 
 const arr = [
   x ** true,
@@ -43,12 +43,12 @@ $(x instanceof true);
 
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:primitive*/ = 1 + tmpBinBothRhs;
+const x /*:number*/ = 1 * tmpBinBothRhs;
 const tmpArrElement /*:number*/ = x ** 1;
 const tmpArrElement$1 /*:number*/ = x * 1;
 const tmpArrElement$3 /*:number*/ = x / 1;
 const tmpArrElement$5 /*:number*/ = x % 1;
-const tmpArrElement$7 /*:primitive*/ = x + true;
+const tmpArrElement$7 /*:number*/ = x + true;
 const tmpArrElement$9 /*:number*/ = x - 1;
 const tmpArrElement$11 /*:number*/ = x << 1;
 const tmpArrElement$13 /*:number*/ = x >> 1;
@@ -59,8 +59,6 @@ const tmpArrElement$21 /*:boolean*/ = x <= true;
 const tmpArrElement$23 /*:boolean*/ = x >= true;
 const tmpArrElement$25 /*:boolean*/ = x == true;
 const tmpArrElement$27 /*:boolean*/ = x != true;
-const tmpArrElement$29 /*:boolean*/ = x === true;
-const tmpArrElement$31 /*:boolean*/ = x !== true;
 const tmpArrElement$33 /*:number*/ = x & 1;
 const tmpArrElement$35 /*:number*/ = x ^ 1;
 const tmpArrElement$37 /*:number*/ = x | 1;
@@ -80,8 +78,8 @@ const arr /*:array*/ = [
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
   tmpArrElement$33,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -98,7 +96,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);
-const x = 1 + tmpBinBothRhs;
+const x = 1 * tmpBinBothRhs;
 const tmpArrElement = x ** 1;
 const tmpArrElement$1 = x * 1;
 const tmpArrElement$3 = x / 1;
@@ -114,8 +112,6 @@ const tmpArrElement$21 = x <= true;
 const tmpArrElement$23 = x >= true;
 const tmpArrElement$25 = x == true;
 const tmpArrElement$27 = x != true;
-const tmpArrElement$29 = x === true;
-const tmpArrElement$31 = x !== true;
 const tmpArrElement$33 = x & 1;
 const tmpArrElement$35 = x ^ 1;
 const tmpArrElement$37 = x | 1;
@@ -135,8 +131,8 @@ $([
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
   tmpArrElement$33,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -149,7 +145,7 @@ $(x instanceof true);
 
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 const arr = [
   x ** true,
   x * true,
@@ -183,7 +179,7 @@ $(x instanceof true);
 `````js filename=intro
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs + tmpBinBothRhs;
+const x = tmpBinBothLhs * tmpBinBothRhs;
 const tmpArrElement = x ** 1;
 const tmpArrElement$1 = x * 1;
 const tmpArrElement$3 = x / 1;
@@ -238,7 +234,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = 1 + a;
+const b = 1 * a;
 const c = b ** 1;
 const d = b * 1;
 const e = b / 1;
@@ -254,17 +250,15 @@ const n = b <= true;
 const o = b >= true;
 const p = b == true;
 const q = b != true;
-const r = b === true;
-const s = b !== true;
-const t = b & 1;
-const u = b ^ 1;
-const v = b | 1;
-const w = [ c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v ];
+const r = b & 1;
+const s = b ^ 1;
+const t = b | 1;
+const u = [ c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, false, true, r, s, t ];
+$( u );
+const v = b in true;
+$( v );
+const w = b instanceof true;
 $( w );
-const x = b in true;
-$( x );
-const y = b instanceof true;
-$( y );
 `````
 
 ## Globals
@@ -275,8 +269,8 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: [2, 2, 2, 0, 3, 1, 4, 1, 1, false, true, false, true, false, true, false, true, 0, 3, 3]
- - eval returned: ("<crash[ Cannot use 'in' operator to search for '2' in true ]>")
+ - 2: [1, 1, 1, 0, 2, 0, 2, 0, 0, false, false, true, true, true, false, false, true, 1, 0, 1]
+ - eval returned: ("<crash[ Cannot use 'in' operator to search for '1' in true ]>")
 
 Pre normalization calls: Same
 

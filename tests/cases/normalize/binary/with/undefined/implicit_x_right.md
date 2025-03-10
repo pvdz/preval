@@ -44,7 +44,7 @@ $(undefined instanceof x);
 
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement /*:number*/ = undefined ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -65,7 +65,7 @@ x ** 0;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -97,7 +97,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement = undefined ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -118,7 +118,7 @@ x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -178,8 +178,7 @@ $(undefined instanceof x);
 
 
 `````js filename=intro
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = undefined ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -241,32 +240,32 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
+const a = undefined ** x;
 x ** 0;
 x ** 0;
 x ** 0;
+const b = undefined + x;
 x ** 0;
-const a = undefined + x;
-x ** 0;
-const b = 0 << x;
-const c = 0 >> x;
-const d = 0 >>> x;
+const c = 0 << x;
+const d = 0 >> x;
+const e = 0 >>> x;
 $coerce( x, "number" );
 $coerce( x, "number" );
 $coerce( x, "number" );
 $coerce( x, "number" );
-const e = undefined == x;
-const f = undefined != x;
-const g = undefined === x;
-const h = undefined !== x;
+const f = undefined == x;
+const g = undefined != x;
+const h = undefined === x;
+const i = undefined !== x;
 x ** 0;
-const i = 0 ^ x;
-const j = 0 | x;
-const k = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, false, false, false, false, e, f, g, h, 0, i, j ];
-$( k );
-const l = undefined in x;
+const j = 0 ^ x;
+const k = 0 | x;
+const l = [ a, NaN, NaN, NaN, b, NaN, c, d, e, false, false, false, false, f, g, h, i, 0, j, k ];
 $( l );
-const m = undefined instanceof x;
+const m = undefined in x;
 $( m );
+const n = undefined instanceof x;
+$( n );
 `````
 
 ## Globals

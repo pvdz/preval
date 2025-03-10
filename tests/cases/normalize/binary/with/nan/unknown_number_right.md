@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 
 const arr = [
   NaN ** x,
@@ -43,15 +43,16 @@ $(NaN instanceof x);
 
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:primitive*/ = 1 + tmpBinBothRhs;
-const tmpArrElement$7 /*:primitive*/ = NaN + x;
+const x /*:number*/ = 1 * tmpBinBothRhs;
+const tmpArrElement /*:number*/ = NaN ** x;
+const tmpArrElement$7 /*:number*/ = NaN + x;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
 const tmpArrElement$15 /*:number*/ = 0 >>> x;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -84,7 +85,8 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);
-const x = 1 + tmpBinBothRhs;
+const x = 1 * tmpBinBothRhs;
+const tmpArrElement = NaN ** x;
 const tmpArrElement$7 = NaN + x;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;
@@ -92,7 +94,7 @@ const tmpArrElement$15 = 0 >>> x;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -121,7 +123,7 @@ $(NaN instanceof x);
 
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 const arr = [
   NaN ** x,
   NaN * x,
@@ -155,9 +157,8 @@ $(NaN instanceof x);
 `````js filename=intro
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs + tmpBinBothRhs;
-x * 0;
-const tmpArrElement = NaN;
+const x = tmpBinBothLhs * tmpBinBothRhs;
+const tmpArrElement = NaN ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -222,19 +223,20 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = 1 + a;
-const c = NaN + b;
-const d = 0 << b;
-const e = 0 >> b;
-const f = 0 >>> b;
-const g = 0 ^ b;
-const h = 0 | b;
-const i = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, false, false, false, false, false, true, false, true, 0, g, h ];
-$( i );
-const j = NaN in b;
+const b = 1 * a;
+const c = NaN ** b;
+const d = NaN + b;
+const e = 0 << b;
+const f = 0 >> b;
+const g = 0 >>> b;
+const h = 0 ^ b;
+const i = 0 | b;
+const j = [ c, NaN, NaN, NaN, d, NaN, e, f, g, false, false, false, false, false, true, false, true, 0, h, i ];
 $( j );
-const k = NaN instanceof b;
+const k = NaN in b;
 $( k );
+const l = NaN instanceof b;
+$( l );
 `````
 
 ## Globals
@@ -245,8 +247,8 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: [NaN, NaN, NaN, NaN, NaN, NaN, 0, 0, 0, false, false, false, false, false, true, false, true, 0, 2, 2]
- - eval returned: ("<crash[ Cannot use 'in' operator to search for 'NaN' in 2 ]>")
+ - 2: [NaN, NaN, NaN, NaN, NaN, NaN, 0, 0, 0, false, false, false, false, false, true, false, true, 0, 1, 1]
+ - eval returned: ("<crash[ Cannot use 'in' operator to search for 'NaN' in 1 ]>")
 
 Pre normalization calls: Same
 

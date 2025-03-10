@@ -55,7 +55,7 @@ $(arr2);
 
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement /*:number*/ = `10,20,30` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -77,7 +77,7 @@ const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const tmpArrElement$7 /*:string*/ = `10,20,30${tmpStringConcatL}`;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -111,7 +111,7 @@ $(arr2);
 (This ought to be the final result)
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement = `10,20,30` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -131,7 +131,7 @@ const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 const tmpArrElement$7 = `10,20,30${tmpStringConcatL}`;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -267,35 +267,35 @@ $(arr2);
 With rename=true
 
 `````js filename=intro
+const a = "10,20,30" ** x;
 x ** 0;
 x ** 0;
 x ** 0;
+const b = $coerce( x, "plustr" );
 x ** 0;
-const a = $coerce( x, "plustr" );
+const c = 0 << x;
+const d = 0 >> x;
+const e = 0 >>> x;
+const f = "10,20,30" < x;
+const g = "10,20,30" > x;
+const h = "10,20,30" <= x;
+const i = "10,20,30" >= x;
+const j = [ 10, 20, 30 ];
+const k = j == x;
+const l = [ 10, 20, 30 ];
+const m = l != x;
 x ** 0;
-const b = 0 << x;
-const c = 0 >> x;
-const d = 0 >>> x;
-const e = "10,20,30" < x;
-const f = "10,20,30" > x;
-const g = "10,20,30" <= x;
-const h = "10,20,30" >= x;
-const i = [ 10, 20, 30 ];
-const j = i == x;
-const k = [ 10, 20, 30 ];
-const l = k != x;
-x ** 0;
-const m = 0 ^ x;
-const n = 0 | x;
-const o = `10,20,30${a}`;
-const p = [ NaN, NaN, NaN, NaN, o, NaN, b, c, d, e, f, g, h, j, l, false, true, 0, m, n ];
-$( p );
-const q = [ 10, 20, 30 ];
-const r = q in x;
-const s = [ 10, 20, 30 ];
-const t = s instanceof x;
-const u = [ r, t ];
-$( u );
+const n = 0 ^ x;
+const o = 0 | x;
+const p = `10,20,30${b}`;
+const q = [ a, NaN, NaN, NaN, p, NaN, c, d, e, f, g, h, i, k, m, false, true, 0, n, o ];
+$( q );
+const r = [ 10, 20, 30 ];
+const s = r in x;
+const t = [ 10, 20, 30 ];
+const u = t instanceof x;
+const v = [ s, u ];
+$( v );
 `````
 
 ## Globals

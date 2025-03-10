@@ -682,6 +682,10 @@ export function newExpression(callee, args) {
   };
 }
 
+export function nan() {
+  return identifier('NaN');
+}
+
 export function nul() {
   return literal(null, true);
 }
@@ -954,6 +958,10 @@ export function unaryExpression(operator, argument) {
   };
 }
 
+export function undef() {
+  return identifier('undefined');
+}
+
 export function updateExpression(operator, argument, prefix, yesNotTransforming) {
   ASSERT(yesNotTransforming, 'This is not considered normalized. Do not use this func during transforms. Confirm by passing the arg.');
   ASSERT(operator === '--' || operator === '++');
@@ -1045,6 +1053,11 @@ export function isFalse(node) {
 export function isNumberLiteral(node) {
   ASSERT(typeof node === 'object');
   return node.type === 'Literal' && typeof node.value === 'number';
+}
+export function isNumberValueNode(node) {
+  return isNumberLiteral(node) || (
+    node.type === 'Identifier' && (node.name === 'NaN' || node.name === 'Infinity')
+  );
 }
 export function isStringLiteral(node, allowLiteral = false) {
   ASSERT(typeof node !== 'string' && node, 'should receive a node, not a string', node);

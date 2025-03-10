@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 
 const arr = [
   null ** x,
@@ -43,12 +43,12 @@ $(null instanceof x);
 
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:primitive*/ = 1 + tmpBinBothRhs;
+const x /*:number*/ = 1 * tmpBinBothRhs;
 const tmpArrElement /*:number*/ = 0 ** x;
 const tmpArrElement$1 /*:number*/ = 0 * x;
 const tmpArrElement$3 /*:number*/ = 0 / x;
 const tmpArrElement$5 /*:number*/ = 0 % x;
-const tmpArrElement$7 /*:primitive*/ = null + x;
+const tmpArrElement$7 /*:number*/ = null + x;
 const tmpArrElement$9 /*:number*/ = 0 - x;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
@@ -57,10 +57,6 @@ const tmpArrElement$17 /*:boolean*/ = 0 < x;
 const tmpArrElement$19 /*:boolean*/ = 0 > x;
 const tmpArrElement$21 /*:boolean*/ = 0 <= x;
 const tmpArrElement$23 /*:boolean*/ = 0 >= x;
-const tmpArrElement$25 /*:boolean*/ = null == x;
-const tmpArrElement$27 /*:boolean*/ = null != x;
-const tmpArrElement$29 /*:boolean*/ = null === x;
-const tmpArrElement$31 /*:boolean*/ = null !== x;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
@@ -77,10 +73,10 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
+  false,
+  true,
   0,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -97,7 +93,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);
-const x = 1 + tmpBinBothRhs;
+const x = 1 * tmpBinBothRhs;
 const tmpArrElement = 0 ** x;
 const tmpArrElement$1 = 0 * x;
 const tmpArrElement$3 = 0 / x;
@@ -111,10 +107,6 @@ const tmpArrElement$17 = 0 < x;
 const tmpArrElement$19 = 0 > x;
 const tmpArrElement$21 = 0 <= x;
 const tmpArrElement$23 = 0 >= x;
-const tmpArrElement$25 = null == x;
-const tmpArrElement$27 = null != x;
-const tmpArrElement$29 = null === x;
-const tmpArrElement$31 = null !== x;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 $([
@@ -131,10 +123,10 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
+  false,
+  true,
   0,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -147,7 +139,7 @@ $(null instanceof x);
 
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 const arr = [
   null ** x,
   null * x,
@@ -181,7 +173,7 @@ $(null instanceof x);
 `````js filename=intro
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs + tmpBinBothRhs;
+const x = tmpBinBothLhs * tmpBinBothRhs;
 const tmpArrElement = 0 ** x;
 const tmpArrElement$1 = 0 * x;
 const tmpArrElement$3 = 0 / x;
@@ -237,7 +229,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = 1 + a;
+const b = 1 * a;
 const c = 0 ** b;
 const d = 0 * b;
 const e = 0 / b;
@@ -251,18 +243,14 @@ const l = 0 < b;
 const m = 0 > b;
 const n = 0 <= b;
 const o = 0 >= b;
-const p = null == b;
-const q = null != b;
-const r = null === b;
-const s = null !== b;
-const t = 0 ^ b;
-const u = 0 | b;
-const v = [ c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, 0, t, u ];
-$( v );
-const w = null in b;
-$( w );
-const x = null instanceof b;
-$( x );
+const p = 0 ^ b;
+const q = 0 | b;
+const r = [ c, d, e, f, g, h, i, j, k, l, m, n, o, false, true, false, true, 0, p, q ];
+$( r );
+const s = null in b;
+$( s );
+const t = null instanceof b;
+$( t );
 `````
 
 ## Globals
@@ -273,8 +261,8 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: [0, 0, 0, 0, 2, -2, 0, 0, 0, true, false, true, false, false, true, false, true, 0, 2, 2]
- - eval returned: ("<crash[ Cannot use 'in' operator to search for 'null' in 2 ]>")
+ - 2: [0, 0, 0, 0, 1, -1, 0, 0, 0, true, false, true, false, false, true, false, true, 0, 1, 1]
+ - eval returned: ("<crash[ Cannot use 'in' operator to search for 'null' in 1 ]>")
 
 Pre normalization calls: Same
 

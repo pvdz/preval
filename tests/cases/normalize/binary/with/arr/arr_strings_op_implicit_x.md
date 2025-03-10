@@ -55,7 +55,7 @@ $(arr2);
 
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement /*:number*/ = `a,b,c` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -77,7 +77,7 @@ const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const tmpArrElement$7 /*:string*/ = `a,b,c${tmpStringConcatL}`;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -111,7 +111,7 @@ $(arr2);
 (This ought to be the final result)
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement = `a,b,c` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -131,7 +131,7 @@ const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 const tmpArrElement$7 = `a,b,c${tmpStringConcatL}`;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -267,35 +267,35 @@ $(arr2);
 With rename=true
 
 `````js filename=intro
+const a = "a,b,c" ** x;
 x ** 0;
 x ** 0;
 x ** 0;
+const b = $coerce( x, "plustr" );
 x ** 0;
-const a = $coerce( x, "plustr" );
+const c = 0 << x;
+const d = 0 >> x;
+const e = 0 >>> x;
+const f = "a,b,c" < x;
+const g = "a,b,c" > x;
+const h = "a,b,c" <= x;
+const i = "a,b,c" >= x;
+const j = [ "a", "b", "c" ];
+const k = j == x;
+const l = [ "a", "b", "c" ];
+const m = l != x;
 x ** 0;
-const b = 0 << x;
-const c = 0 >> x;
-const d = 0 >>> x;
-const e = "a,b,c" < x;
-const f = "a,b,c" > x;
-const g = "a,b,c" <= x;
-const h = "a,b,c" >= x;
-const i = [ "a", "b", "c" ];
-const j = i == x;
-const k = [ "a", "b", "c" ];
-const l = k != x;
-x ** 0;
-const m = 0 ^ x;
-const n = 0 | x;
-const o = `a,b,c${a}`;
-const p = [ NaN, NaN, NaN, NaN, o, NaN, b, c, d, e, f, g, h, j, l, false, true, 0, m, n ];
-$( p );
-const q = [ "a", "b", "c" ];
-const r = q in x;
-const s = [ "a", "b", "c" ];
-const t = s instanceof x;
-const u = [ r, t ];
-$( u );
+const n = 0 ^ x;
+const o = 0 | x;
+const p = `a,b,c${b}`;
+const q = [ a, NaN, NaN, NaN, p, NaN, c, d, e, f, g, h, i, k, m, false, true, 0, n, o ];
+$( q );
+const r = [ "a", "b", "c" ];
+const s = r in x;
+const t = [ "a", "b", "c" ];
+const u = t instanceof x;
+const v = [ s, u ];
+$( v );
 `````
 
 ## Globals

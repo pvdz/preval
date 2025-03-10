@@ -24,10 +24,7 @@ $(arr);
 
 
 `````js filename=intro
-const tmpArrElement /*:number*/ = ~String;
-const tmpArrElement$3 /*:number*/ = -String;
-const tmpArrElement$5 /*:number*/ = +String;
-const arr /*:array*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `function`, undefined];
+const arr /*:array*/ = [-1, false, NaN, NaN, `function`, undefined];
 $(arr);
 `````
 
@@ -35,10 +32,7 @@ $(arr);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrElement = ~String;
-const tmpArrElement$3 = -String;
-const tmpArrElement$5 = +String;
-$([tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `function`, undefined]);
+$([-1, false, NaN, NaN, `function`, undefined]);
 `````
 
 ## Pre Normal
@@ -53,10 +47,10 @@ $(arr);
 
 
 `````js filename=intro
-const tmpArrElement = ~String;
-const tmpArrElement$1 = !String;
-const tmpArrElement$3 = -String;
-const tmpArrElement$5 = +String;
+const tmpArrElement = -1;
+const tmpArrElement$1 = false;
+const tmpArrElement$3 = NaN;
+const tmpArrElement$5 = NaN;
 const tmpArrElement$7 = `function`;
 const tmpArrElement$9 = undefined;
 const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
@@ -67,11 +61,8 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-const a = ~String;
-const b = -String;
-const c = +String;
-const d = [ a, false, b, c, "function", undefined ];
-$( d );
+const a = [ -1, false, NaN, NaN, "function", undefined ];
+$( a );
 `````
 
 ## Globals

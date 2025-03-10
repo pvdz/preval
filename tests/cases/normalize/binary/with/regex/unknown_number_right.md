@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 
 const arr = [
   /foo/g ** x,
@@ -43,7 +43,7 @@ $(/foo/g instanceof x);
 
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:primitive*/ = 1 + tmpBinBothRhs;
+const x /*:number*/ = 1 * tmpBinBothRhs;
 const tmpBinLhs /*:regex*/ = /foo/g;
 const tmpArrElement /*:number*/ = tmpBinLhs ** x;
 const tmpBinLhs$1 /*:regex*/ = /foo/g;
@@ -52,7 +52,7 @@ const tmpBinLhs$3 /*:regex*/ = /foo/g;
 const tmpArrElement$3 /*:number*/ = tmpBinLhs$3 / x;
 const tmpBinLhs$5 /*:regex*/ = /foo/g;
 const tmpArrElement$5 /*:number*/ = tmpBinLhs$5 % x;
-const tmpStringConcatL /*:string*/ = $coerce(x, `plustr`);
+const tmpStringConcatL /*:string*/ = $coerce(x, `string`);
 const tmpBinLhs$9 /*:regex*/ = /foo/g;
 const tmpArrElement$9 /*:number*/ = tmpBinLhs$9 - x;
 const tmpBinLhs$11 /*:regex*/ = /foo/g;
@@ -79,11 +79,7 @@ const tmpBinLhs$35 /*:regex*/ = /foo/g;
 const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
 const tmpBinLhs$37 /*:regex*/ = /foo/g;
 const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
-const tmpBinLhs$29 /*:regex*/ = /foo/g;
-const tmpBinLhs$31 /*:regex*/ = /foo/g;
 const tmpArrElement$7 /*:string*/ = `/foo/g${tmpStringConcatL}`;
-const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
-const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -100,8 +96,8 @@ const arr /*:array*/ = [
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
   tmpArrElement$33,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -120,12 +116,12 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);
-const x = 1 + tmpBinBothRhs;
+const x = 1 * tmpBinBothRhs;
 const tmpArrElement = /foo/g ** x;
 const tmpArrElement$1 = /foo/g * x;
 const tmpArrElement$3 = /foo/g / x;
 const tmpArrElement$5 = /foo/g % x;
-const tmpStringConcatL = $coerce(x, `plustr`);
+const tmpStringConcatL = $coerce(x, `string`);
 const tmpArrElement$9 = /foo/g - x;
 const tmpArrElement$11 = /foo/g << x;
 const tmpArrElement$13 = /foo/g >> x;
@@ -139,11 +135,7 @@ const tmpArrElement$27 = /foo/g != x;
 const tmpArrElement$33 = /foo/g & x;
 const tmpArrElement$35 = /foo/g ^ x;
 const tmpArrElement$37 = /foo/g | x;
-const tmpBinLhs$29 = /foo/g;
-const tmpBinLhs$31 = /foo/g;
 const tmpArrElement$7 = `/foo/g${tmpStringConcatL}`;
-const tmpArrElement$29 = tmpBinLhs$29 === x;
-const tmpArrElement$31 = tmpBinLhs$31 !== x;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -160,8 +152,8 @@ $([
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
   tmpArrElement$33,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -174,7 +166,7 @@ $(/foo/g instanceof x);
 
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 const arr = [
   /foo/g ** x,
   /foo/g * x,
@@ -208,7 +200,7 @@ $(/foo/g instanceof x);
 `````js filename=intro
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs + tmpBinBothRhs;
+const x = tmpBinBothLhs * tmpBinBothRhs;
 const tmpBinLhs = /foo/g;
 const tmpArrElement = tmpBinLhs ** x;
 const tmpBinLhs$1 = /foo/g;
@@ -285,7 +277,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = 1 + a;
+const b = 1 * a;
 const c = /foo/g;
 const d = c ** b;
 const e = /foo/g;
@@ -294,7 +286,7 @@ const g = /foo/g;
 const h = g / b;
 const i = /foo/g;
 const j = i % b;
-const k = $coerce( b, "plustr" );
+const k = $coerce( b, "string" );
 const l = /foo/g;
 const m = l - b;
 const n = /foo/g;
@@ -321,19 +313,15 @@ const bh = /foo/g;
 const bi = bh ^ b;
 const bj = /foo/g;
 const bk = bj | b;
-const bl = /foo/g;
-const bm = /foo/g;
-const bn = `/foo/g${k}`;
-const bo = bl === b;
-const bp = bm !== b;
-const bq = [ d, f, h, j, bn, m, o, q, s, u, w, y, ba, bc, be, bo, bp, bg, bi, bk ];
+const bl = `/foo/g${k}`;
+const bm = [ d, f, h, j, bl, m, o, q, s, u, w, y, ba, bc, be, false, true, bg, bi, bk ];
+$( bm );
+const bn = /foo/g;
+const bo = bn in b;
+$( bo );
+const bp = /foo/g;
+const bq = bp instanceof b;
 $( bq );
-const br = /foo/g;
-const bs = br in b;
-$( bs );
-const bt = /foo/g;
-const bu = bt instanceof b;
-$( bu );
 `````
 
 ## Globals
@@ -344,8 +332,8 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: [NaN, NaN, NaN, NaN, '/foo/g2', NaN, 0, 0, 0, false, false, false, false, false, true, false, true, 0, 2, 2]
- - eval returned: ("<crash[ Cannot use 'in' operator to search for '[object RegExp]' in 2 ]>")
+ - 2: [NaN, NaN, NaN, NaN, '/foo/g1', NaN, 0, 0, 0, false, false, false, false, false, true, false, true, 0, 1, 1]
+ - eval returned: ("<crash[ Cannot use 'in' operator to search for '[object RegExp]' in 1 ]>")
 
 Pre normalization calls: Same
 

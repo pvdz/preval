@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 
 const arr = [
   String ** x,
@@ -42,16 +42,11 @@ $(String instanceof x);
 
 
 `````js filename=intro
-const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
-  const x$1 /*:primitive*/ = $$0;
-  debugger;
-  const tmpStringConcatL /*:string*/ = $coerce(x$1, `plustr`);
-  const tmpRet /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
-  return tmpRet;
-};
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:primitive*/ = 1 + tmpBinBothRhs;
-const tmpArrElement$7 /*:string*/ = $frfr(tmpFree, x);
+const x /*:number*/ = 1 * tmpBinBothRhs;
+const tmpStringConcatL /*:string*/ = $coerce(x, `string`);
+const tmpArrElement /*:number*/ = `function String() { [native code] }` ** x;
+const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
 const tmpArrElement$15 /*:number*/ = 0 >>> x;
@@ -61,12 +56,10 @@ const tmpArrElement$21 /*:boolean*/ = `function String() { [native code] }` <= x
 const tmpArrElement$23 /*:boolean*/ = `function String() { [native code] }` >= x;
 const tmpArrElement$25 /*:boolean*/ = String == x;
 const tmpArrElement$27 /*:boolean*/ = String != x;
-const tmpArrElement$29 /*:boolean*/ = String === x;
-const tmpArrElement$31 /*:boolean*/ = String !== x;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -81,8 +74,8 @@ const arr /*:array*/ = [
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
   0,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -98,13 +91,11 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(x$1) {
-  const tmpRet = `function String() { [native code] }${x$1}`;
-  return tmpRet;
-};
 const tmpBinBothRhs = $(1);
-const x = 1 + tmpBinBothRhs;
-const tmpArrElement$7 = $frfr(tmpFree, x);
+const x = 1 * tmpBinBothRhs;
+const tmpStringConcatL = $coerce(x, `string`);
+const tmpArrElement = `function String() { [native code] }` ** x;
+const tmpArrElement$7 = `function String() { [native code] }${tmpStringConcatL}`;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;
 const tmpArrElement$15 = 0 >>> x;
@@ -114,12 +105,10 @@ const tmpArrElement$21 = `function String() { [native code] }` <= x;
 const tmpArrElement$23 = `function String() { [native code] }` >= x;
 const tmpArrElement$25 = String == x;
 const tmpArrElement$27 = String != x;
-const tmpArrElement$29 = String === x;
-const tmpArrElement$31 = String !== x;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -134,8 +123,8 @@ $([
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
   0,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -148,7 +137,7 @@ $(String instanceof x);
 
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 const arr = [
   String ** x,
   String * x,
@@ -182,9 +171,8 @@ $(String instanceof x);
 `````js filename=intro
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs + tmpBinBothRhs;
-x * 0;
-const tmpArrElement = NaN;
+const x = tmpBinBothLhs * tmpBinBothRhs;
+const tmpArrElement = `function String() { [native code] }` ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -243,35 +231,28 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $coerce( c, "plustr" );
-  const e = `function String() { [native code] }${d}`;
-  return e;
-};
-const f = $( 1 );
-const g = 1 + f;
-const h = i( a, g );
-const j = 0 << g;
-const k = 0 >> g;
-const l = 0 >>> g;
-const m = "function String() { [native code] }" < g;
-const n = "function String() { [native code] }" > g;
-const o = "function String() { [native code] }" <= g;
-const p = "function String() { [native code] }" >= g;
-const q = String == g;
-const r = String != g;
-const s = String === g;
-const t = String !== g;
-const u = 0 ^ g;
-const v = 0 | g;
-const w = [ NaN, NaN, NaN, NaN, h, NaN, j, k, l, m, n, o, p, q, r, s, t, 0, u, v ];
-$( w );
-const x = String in g;
-$( x );
-const y = String instanceof g;
-$( y );
+const a = $( 1 );
+const b = 1 * a;
+const c = $coerce( b, "string" );
+const d = "function String() { [native code] }" ** b;
+const e = `function String() { [native code] }${c}`;
+const f = 0 << b;
+const g = 0 >> b;
+const h = 0 >>> b;
+const i = "function String() { [native code] }" < b;
+const j = "function String() { [native code] }" > b;
+const k = "function String() { [native code] }" <= b;
+const l = "function String() { [native code] }" >= b;
+const m = String == b;
+const n = String != b;
+const o = 0 ^ b;
+const p = 0 | b;
+const q = [ d, NaN, NaN, NaN, e, NaN, f, g, h, i, j, k, l, m, n, false, true, 0, o, p ];
+$( q );
+const r = String in b;
+$( r );
+const s = String instanceof b;
+$( s );
 `````
 
 ## Globals
@@ -282,8 +263,8 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: [NaN, NaN, NaN, NaN, 'function() { [native code] }2', NaN, 0, 0, 0, false, false, false, false, false, true, false, true, 0, 2, 2]
- - eval returned: ("<crash[ Cannot use 'in' operator to search for 'function() { [native code] }' in 2 ]>")
+ - 2: [NaN, NaN, NaN, NaN, 'function() { [native code] }1', NaN, 0, 0, 0, false, false, false, false, false, true, false, true, 0, 1, 1]
+ - eval returned: ("<crash[ Cannot use 'in' operator to search for 'function() { [native code] }' in 1 ]>")
 
 Pre normalization calls: Same
 

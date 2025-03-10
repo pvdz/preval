@@ -60,7 +60,7 @@ const x /*:object*/ = {
     return 100;
   },
 };
-x ** 0;
+const tmpArrElement /*:number*/ = `function String() { [native code] }` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -78,7 +78,7 @@ const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -120,7 +120,7 @@ const x = {
     return 100;
   },
 };
-x ** 0;
+const tmpArrElement = `function String() { [native code] }` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -138,7 +138,7 @@ const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 const tmpArrElement$7 = `function String() { [native code] }${tmpStringConcatL}`;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -221,8 +221,7 @@ const x = {
     return 100;
   },
 };
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = `function String() { [native code] }` ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -293,29 +292,29 @@ const a = {
     return 100;
   },
 };
+const c = "function String() { [native code] }" ** a;
 a ** 0;
 a ** 0;
 a ** 0;
+const d = $coerce( a, "plustr" );
 a ** 0;
-const c = $coerce( a, "plustr" );
+const e = 0 << a;
+const f = 0 >> a;
+const g = 0 >>> a;
+const h = "function String() { [native code] }" < a;
+const i = "function String() { [native code] }" > a;
+const j = "function String() { [native code] }" <= a;
+const k = "function String() { [native code] }" >= a;
 a ** 0;
-const d = 0 << a;
-const e = 0 >> a;
-const f = 0 >>> a;
-const g = "function String() { [native code] }" < a;
-const h = "function String() { [native code] }" > a;
-const i = "function String() { [native code] }" <= a;
-const j = "function String() { [native code] }" >= a;
-a ** 0;
-const k = 0 ^ a;
-const l = 0 | a;
-const m = `function String() { [native code] }${c}`;
-const n = [ NaN, NaN, NaN, NaN, m, NaN, d, e, f, g, h, i, j, false, true, false, true, 0, k, l ];
-$( n );
-const o = String in a;
+const l = 0 ^ a;
+const m = 0 | a;
+const n = `function String() { [native code] }${d}`;
+const o = [ c, NaN, NaN, NaN, n, NaN, e, f, g, h, i, j, k, false, true, false, true, 0, l, m ];
 $( o );
-const p = String instanceof a;
+const p = String in a;
 $( p );
+const q = String instanceof a;
+$( q );
 `````
 
 ## Globals

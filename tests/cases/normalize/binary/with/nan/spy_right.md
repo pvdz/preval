@@ -42,7 +42,7 @@ $(NaN instanceof x);
 
 `````js filename=intro
 const x /*:unknown*/ = $spy();
-x ** 0;
+const tmpArrElement /*:number*/ = NaN ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -61,7 +61,7 @@ x ** 0;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -94,7 +94,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const x = $spy();
-x ** 0;
+const tmpArrElement = NaN ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -113,7 +113,7 @@ x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -175,8 +175,7 @@ $(NaN instanceof x);
 
 `````js filename=intro
 const x = $spy();
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = NaN ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -241,30 +240,30 @@ With rename=true
 
 `````js filename=intro
 const a = $spy();
+const b = NaN ** a;
+a ** 0;
+a ** 0;
+a ** 0;
+const c = NaN + a;
+a ** 0;
+const d = 0 << a;
+const e = 0 >> a;
+const f = 0 >>> a;
 a ** 0;
 a ** 0;
 a ** 0;
 a ** 0;
-const b = NaN + a;
-a ** 0;
-const c = 0 << a;
-const d = 0 >> a;
-const e = 0 >>> a;
 a ** 0;
 a ** 0;
 a ** 0;
-a ** 0;
-a ** 0;
-a ** 0;
-a ** 0;
-const f = 0 ^ a;
-const g = 0 | a;
-const h = [ NaN, NaN, NaN, NaN, b, NaN, c, d, e, false, false, false, false, false, true, false, true, 0, f, g ];
-$( h );
-const i = NaN in a;
+const g = 0 ^ a;
+const h = 0 | a;
+const i = [ b, NaN, NaN, NaN, c, NaN, d, e, f, false, false, false, false, false, true, false, true, 0, g, h ];
 $( i );
-const j = NaN instanceof a;
+const j = NaN in a;
 $( j );
+const k = NaN instanceof a;
+$( k );
 `````
 
 ## Globals

@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 
 const arr = [
   x ** NaN,
@@ -43,8 +43,8 @@ $(x instanceof NaN);
 
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:primitive*/ = 1 + tmpBinBothRhs;
-const tmpArrElement$7 /*:primitive*/ = x + NaN;
+const x /*:number*/ = 1 * tmpBinBothRhs;
+const tmpArrElement$7 /*:number*/ = x + NaN;
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;
 const tmpArrElement$15 /*:number*/ = x >>> 0;
@@ -84,7 +84,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);
-const x = 1 + tmpBinBothRhs;
+const x = 1 * tmpBinBothRhs;
 const tmpArrElement$7 = x + NaN;
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
@@ -121,7 +121,7 @@ $(x instanceof NaN);
 
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 const arr = [
   x ** NaN,
   x * NaN,
@@ -155,7 +155,7 @@ $(x instanceof NaN);
 `````js filename=intro
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs + tmpBinBothRhs;
+const x = tmpBinBothLhs * tmpBinBothRhs;
 x * 0;
 const tmpArrElement = NaN;
 x * 0;
@@ -222,7 +222,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = 1 + a;
+const b = 1 * a;
 const c = b + NaN;
 const d = b << 0;
 const e = b >> 0;
@@ -245,8 +245,8 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: [NaN, NaN, NaN, NaN, NaN, NaN, 2, 2, 2, false, false, false, false, false, true, false, true, 0, 2, 2]
- - eval returned: ("<crash[ Cannot use 'in' operator to search for '2' in NaN ]>")
+ - 2: [NaN, NaN, NaN, NaN, NaN, NaN, 1, 1, 1, false, false, false, false, false, true, false, true, 0, 1, 1]
+ - eval returned: ("<crash[ Cannot use 'in' operator to search for '1' in NaN ]>")
 
 Pre normalization calls: Same
 

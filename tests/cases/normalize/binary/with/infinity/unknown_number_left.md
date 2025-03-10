@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 
 const arr = [
   x ** Infinity,
@@ -43,12 +43,12 @@ $(x instanceof Infinity);
 
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:primitive*/ = 1 + tmpBinBothRhs;
+const x /*:number*/ = 1 * tmpBinBothRhs;
 const tmpArrElement /*:number*/ = x ** Infinity;
 const tmpArrElement$1 /*:number*/ = x * Infinity;
 const tmpArrElement$3 /*:number*/ = x / Infinity;
 const tmpArrElement$5 /*:number*/ = x % Infinity;
-const tmpArrElement$7 /*:primitive*/ = x + Infinity;
+const tmpArrElement$7 /*:number*/ = x + Infinity;
 const tmpArrElement$9 /*:number*/ = x - Infinity;
 const tmpArrElement$17 /*:boolean*/ = x < Infinity;
 const tmpArrElement$19 /*:boolean*/ = x > Infinity;
@@ -97,7 +97,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpBinBothRhs = $(1);
-const x = 1 + tmpBinBothRhs;
+const x = 1 * tmpBinBothRhs;
 const tmpArrElement = x ** Infinity;
 const tmpArrElement$1 = x * Infinity;
 const tmpArrElement$3 = x / Infinity;
@@ -147,7 +147,7 @@ $(x instanceof Infinity);
 
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 const arr = [
   x ** Infinity,
   x * Infinity,
@@ -181,7 +181,7 @@ $(x instanceof Infinity);
 `````js filename=intro
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs + tmpBinBothRhs;
+const x = tmpBinBothLhs * tmpBinBothRhs;
 const tmpArrElement = x ** Infinity;
 const tmpArrElement$1 = x * Infinity;
 const tmpArrElement$3 = x / Infinity;
@@ -237,7 +237,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = 1 + a;
+const b = 1 * a;
 const c = b ** Infinity;
 const d = b * Infinity;
 const e = b / Infinity;
@@ -273,8 +273,8 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: [Infinity, Infinity, 0, 2, Infinity, -Infinity, 2, 2, 2, true, false, true, false, false, true, false, true, 0, 2, 2]
- - eval returned: ("<crash[ Cannot use 'in' operator to search for '2' in Infinity ]>")
+ - 2: [NaN, Infinity, 0, 1, Infinity, -Infinity, 1, 1, 1, true, false, true, false, false, true, false, true, 0, 1, 1]
+ - eval returned: ("<crash[ Cannot use 'in' operator to search for '1' in Infinity ]>")
 
 Pre normalization calls: Same
 

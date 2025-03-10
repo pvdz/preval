@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 
 const arr = [
   x ** String,
@@ -42,15 +42,15 @@ $(x instanceof String);
 
 
 `````js filename=intro
-const tmpFree /*:(primitive)=>string*/ = function $free($$0) {
-  const x$1 /*:primitive*/ = $$0;
+const tmpFree /*:(number)=>string*/ = function $free($$0) {
+  const x$1 /*:number*/ = $$0;
   debugger;
-  const tmpStringConcatR /*:string*/ = $coerce(x$1, `plustr`);
+  const tmpStringConcatR /*:string*/ = $coerce(x$1, `string`);
   const tmpRet /*:string*/ = `${tmpStringConcatR}function String() { [native code] }`;
   return tmpRet;
 };
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:primitive*/ = 1 + tmpBinBothRhs;
+const x /*:number*/ = 1 * tmpBinBothRhs;
 const tmpArrElement$7 /*:string*/ = $frfr(tmpFree, x);
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;
@@ -61,8 +61,6 @@ const tmpArrElement$21 /*:boolean*/ = x <= `function String() { [native code] }`
 const tmpArrElement$23 /*:boolean*/ = x >= `function String() { [native code] }`;
 const tmpArrElement$25 /*:boolean*/ = x == String;
 const tmpArrElement$27 /*:boolean*/ = x != String;
-const tmpArrElement$29 /*:boolean*/ = x === String;
-const tmpArrElement$31 /*:boolean*/ = x !== String;
 const tmpArrElement$35 /*:number*/ = x ^ 0;
 const tmpArrElement$37 /*:number*/ = x | 0;
 const arr /*:array*/ = [
@@ -81,8 +79,8 @@ const arr /*:array*/ = [
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
   0,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -103,7 +101,7 @@ const tmpFree = function $free(x$1) {
   return tmpRet;
 };
 const tmpBinBothRhs = $(1);
-const x = 1 + tmpBinBothRhs;
+const x = 1 * tmpBinBothRhs;
 const tmpArrElement$7 = $frfr(tmpFree, x);
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
@@ -114,8 +112,6 @@ const tmpArrElement$21 = x <= `function String() { [native code] }`;
 const tmpArrElement$23 = x >= `function String() { [native code] }`;
 const tmpArrElement$25 = x == String;
 const tmpArrElement$27 = x != String;
-const tmpArrElement$29 = x === String;
-const tmpArrElement$31 = x !== String;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
 $([
@@ -134,8 +130,8 @@ $([
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
+  false,
+  true,
   0,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -148,7 +144,7 @@ $(x instanceof String);
 
 
 `````js filename=intro
-const x = 1 + $(1);
+const x = 1 * $(1);
 const arr = [
   x ** String,
   x * String,
@@ -182,7 +178,7 @@ $(x instanceof String);
 `````js filename=intro
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs + tmpBinBothRhs;
+const x = tmpBinBothLhs * tmpBinBothRhs;
 x * 0;
 const tmpArrElement = NaN;
 x * 0;
@@ -246,12 +242,12 @@ With rename=true
 const a = function b($$0 ) {
   const c = $$0;
   debugger;
-  const d = $coerce( c, "plustr" );
+  const d = $coerce( c, "string" );
   const e = `${d}function String() { [native code] }`;
   return e;
 };
 const f = $( 1 );
-const g = 1 + f;
+const g = 1 * f;
 const h = i( a, g );
 const j = g << 0;
 const k = g >> 0;
@@ -262,16 +258,14 @@ const o = g <= "function String() { [native code] }";
 const p = g >= "function String() { [native code] }";
 const q = g == String;
 const r = g != String;
-const s = g === String;
-const t = g !== String;
-const u = g ^ 0;
-const v = g | 0;
-const w = [ NaN, NaN, NaN, NaN, h, NaN, j, k, l, m, n, o, p, q, r, s, t, 0, u, v ];
+const s = g ^ 0;
+const t = g | 0;
+const u = [ NaN, NaN, NaN, NaN, h, NaN, j, k, l, m, n, o, p, q, r, false, true, 0, s, t ];
+$( u );
+const v = g in String;
+$( v );
+const w = g instanceof String;
 $( w );
-const x = g in String;
-$( x );
-const y = g instanceof String;
-$( y );
 `````
 
 ## Globals
@@ -282,7 +276,7 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: [NaN, NaN, NaN, NaN, '2function() { [native code] }', NaN, 2, 2, 2, false, false, false, false, false, true, false, true, 0, 2, 2]
+ - 2: [NaN, NaN, NaN, NaN, '1function() { [native code] }', NaN, 1, 1, 1, false, false, false, false, false, true, false, true, 0, 1, 1]
  - 3: false
  - 4: false
  - eval returned: undefined

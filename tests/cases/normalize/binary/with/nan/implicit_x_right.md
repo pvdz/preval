@@ -44,7 +44,7 @@ $(NaN instanceof x);
 
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement /*:number*/ = NaN ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -63,7 +63,7 @@ x ** 0;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -95,7 +95,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement = NaN ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -114,7 +114,7 @@ x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -174,8 +174,7 @@ $(NaN instanceof x);
 
 
 `````js filename=intro
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = NaN ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -241,30 +240,30 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
+const a = NaN ** x;
+x ** 0;
+x ** 0;
+x ** 0;
+const b = NaN + x;
+x ** 0;
+const c = 0 << x;
+const d = 0 >> x;
+const e = 0 >>> x;
 x ** 0;
 x ** 0;
 x ** 0;
 x ** 0;
-const a = NaN + x;
-x ** 0;
-const b = 0 << x;
-const c = 0 >> x;
-const d = 0 >>> x;
 x ** 0;
 x ** 0;
 x ** 0;
-x ** 0;
-x ** 0;
-x ** 0;
-x ** 0;
-const e = 0 ^ x;
-const f = 0 | x;
-const g = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, false, false, false, false, false, true, false, true, 0, e, f ];
-$( g );
-const h = NaN in x;
+const f = 0 ^ x;
+const g = 0 | x;
+const h = [ a, NaN, NaN, NaN, b, NaN, c, d, e, false, false, false, false, false, true, false, true, 0, f, g ];
 $( h );
-const i = NaN instanceof x;
+const i = NaN in x;
 $( i );
+const j = NaN instanceof x;
+$( j );
 `````
 
 ## Globals

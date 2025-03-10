@@ -44,7 +44,7 @@ $(String instanceof x);
 
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement /*:number*/ = `function String() { [native code] }` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -66,7 +66,7 @@ const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStringConcatL}`;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -98,7 +98,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-x ** 0;
+const tmpArrElement = `function String() { [native code] }` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -120,7 +120,7 @@ const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 const tmpArrElement$7 = `function String() { [native code] }${tmpStringConcatL}`;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -180,8 +180,7 @@ $(String instanceof x);
 
 
 `````js filename=intro
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = `function String() { [native code] }` ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -240,33 +239,33 @@ $(tmpCalleeParam$1);
 With rename=true
 
 `````js filename=intro
+const a = "function String() { [native code] }" ** x;
 x ** 0;
 x ** 0;
 x ** 0;
+const b = $coerce( x, "plustr" );
 x ** 0;
-const a = $coerce( x, "plustr" );
+const c = 0 << x;
+const d = 0 >> x;
+const e = 0 >>> x;
+const f = "function String() { [native code] }" < x;
+const g = "function String() { [native code] }" > x;
+const h = "function String() { [native code] }" <= x;
+const i = "function String() { [native code] }" >= x;
+const j = String == x;
+const k = String != x;
+const l = String === x;
+const m = String !== x;
 x ** 0;
-const b = 0 << x;
-const c = 0 >> x;
-const d = 0 >>> x;
-const e = "function String() { [native code] }" < x;
-const f = "function String() { [native code] }" > x;
-const g = "function String() { [native code] }" <= x;
-const h = "function String() { [native code] }" >= x;
-const i = String == x;
-const j = String != x;
-const k = String === x;
-const l = String !== x;
-x ** 0;
-const m = 0 ^ x;
-const n = 0 | x;
-const o = `function String() { [native code] }${a}`;
-const p = [ NaN, NaN, NaN, NaN, o, NaN, b, c, d, e, f, g, h, i, j, k, l, 0, m, n ];
-$( p );
-const q = String in x;
+const n = 0 ^ x;
+const o = 0 | x;
+const p = `function String() { [native code] }${b}`;
+const q = [ a, NaN, NaN, NaN, p, NaN, c, d, e, f, g, h, i, j, k, l, m, 0, n, o ];
 $( q );
-const r = String instanceof x;
+const r = String in x;
 $( r );
+const s = String instanceof x;
+$( s );
 `````
 
 ## Globals

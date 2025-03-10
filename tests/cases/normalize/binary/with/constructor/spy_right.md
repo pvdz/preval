@@ -42,7 +42,7 @@ $(String instanceof x);
 
 `````js filename=intro
 const x /*:unknown*/ = $spy();
-x ** 0;
+const tmpArrElement /*:number*/ = `function String() { [native code] }` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -64,7 +64,7 @@ const tmpArrElement$7 /*:string*/ = `function String() { [native code] }${tmpStr
 const tmpArrElement$29 /*:boolean*/ = String === x;
 const tmpArrElement$31 /*:boolean*/ = String !== x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -97,7 +97,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const x = $spy();
-x ** 0;
+const tmpArrElement = `function String() { [native code] }` ** x;
 x ** 0;
 x ** 0;
 x ** 0;
@@ -119,7 +119,7 @@ const tmpArrElement$7 = `function String() { [native code] }${tmpStringConcatL}`
 const tmpArrElement$29 = String === x;
 const tmpArrElement$31 = String !== x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -181,8 +181,7 @@ $(String instanceof x);
 
 `````js filename=intro
 const x = $spy();
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = `function String() { [native code] }` ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -242,33 +241,33 @@ With rename=true
 
 `````js filename=intro
 const a = $spy();
+const b = "function String() { [native code] }" ** a;
 a ** 0;
 a ** 0;
 a ** 0;
+const c = $coerce( a, "plustr" );
 a ** 0;
-const b = $coerce( a, "plustr" );
+const d = 0 << a;
+const e = 0 >> a;
+const f = 0 >>> a;
+const g = "function String() { [native code] }" < a;
+const h = "function String() { [native code] }" > a;
+const i = "function String() { [native code] }" <= a;
+const j = "function String() { [native code] }" >= a;
+const k = String == a;
+const l = String != a;
 a ** 0;
-const c = 0 << a;
-const d = 0 >> a;
-const e = 0 >>> a;
-const f = "function String() { [native code] }" < a;
-const g = "function String() { [native code] }" > a;
-const h = "function String() { [native code] }" <= a;
-const i = "function String() { [native code] }" >= a;
-const j = String == a;
-const k = String != a;
-a ** 0;
-const l = 0 ^ a;
-const m = 0 | a;
-const n = `function String() { [native code] }${b}`;
-const o = String === a;
-const p = String !== a;
-const q = [ NaN, NaN, NaN, NaN, n, NaN, c, d, e, f, g, h, i, j, k, o, p, 0, l, m ];
-$( q );
-const r = String in a;
+const m = 0 ^ a;
+const n = 0 | a;
+const o = `function String() { [native code] }${c}`;
+const p = String === a;
+const q = String !== a;
+const r = [ b, NaN, NaN, NaN, o, NaN, d, e, f, g, h, i, j, k, l, p, q, 0, m, n ];
 $( r );
-const s = String instanceof a;
+const s = String in a;
 $( s );
+const t = String instanceof a;
+$( t );
 `````
 
 ## Globals

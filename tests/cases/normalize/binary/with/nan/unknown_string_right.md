@@ -44,6 +44,7 @@ $(NaN instanceof x);
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(ok);
 const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+const tmpArrElement /*:number*/ = NaN ** x;
 const tmpArrElement$7 /*:string*/ = NaN + x;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
@@ -51,7 +52,7 @@ const tmpArrElement$15 /*:number*/ = 0 >>> x;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -84,6 +85,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const x = $coerce($(ok), `plustr`);
+const tmpArrElement = NaN ** x;
 const tmpArrElement$7 = NaN + x;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;
@@ -91,7 +93,7 @@ const tmpArrElement$15 = 0 >>> x;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 $([
-  NaN,
+  tmpArrElement,
   NaN,
   NaN,
   NaN,
@@ -155,8 +157,7 @@ $(NaN instanceof x);
 const tmpBinBothLhs = ``;
 const tmpBinBothRhs = $(ok);
 const x = tmpBinBothLhs + tmpBinBothRhs;
-x * 0;
-const tmpArrElement = NaN;
+const tmpArrElement = NaN ** x;
 x * 0;
 const tmpArrElement$1 = NaN;
 x * 0;
@@ -222,18 +223,19 @@ With rename=true
 `````js filename=intro
 const a = $( ok );
 const b = $coerce( a, "plustr" );
-const c = NaN + b;
-const d = 0 << b;
-const e = 0 >> b;
-const f = 0 >>> b;
-const g = 0 ^ b;
-const h = 0 | b;
-const i = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, false, false, false, false, false, true, false, true, 0, g, h ];
-$( i );
-const j = NaN in b;
+const c = NaN ** b;
+const d = NaN + b;
+const e = 0 << b;
+const f = 0 >> b;
+const g = 0 >>> b;
+const h = 0 ^ b;
+const i = 0 | b;
+const j = [ c, NaN, NaN, NaN, d, NaN, e, f, g, false, false, false, false, false, true, false, true, 0, h, i ];
 $( j );
-const k = NaN instanceof b;
+const k = NaN in b;
 $( k );
+const l = NaN instanceof b;
+$( l );
 `````
 
 ## Globals

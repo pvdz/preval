@@ -6,6 +6,13 @@
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 
+## Options
+
+Known TDZ problem
+
+- skipEval
+- globals: x$1
+
 ## Input
 
 `````js filename=intro
@@ -116,28 +123,20 @@ $( e, 1 );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x$1
+None (except for the 1 globals expected by the test)
 
 ## Runtime Outcome
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: { a: '999', b: '1000' }, 1
- - eval returned: undefined
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: { a: '999', b: '1000' }, 1
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: { a: '999', b: '1000' }, 1
- - eval returned: undefined
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

@@ -6,6 +6,13 @@
 >
 > Normalization of assignments should work the same everywhere they are
 
+## Options
+
+Known TDZ problem
+
+- skipEval
+- globals: x$1
+
 ## Input
 
 `````js filename=intro
@@ -117,25 +124,20 @@ $( b, 1 );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x$1
+None (except for the 1 globals expected by the test)
 
 ## Runtime Outcome
 
 Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

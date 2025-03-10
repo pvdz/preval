@@ -6,6 +6,10 @@
 >
 > When the assignment in an `if` is a true/false in each branch, we can base it on the test.
 
+## Options
+
+- globals: x
+
 ## Input
 
 `````js filename=intro
@@ -116,9 +120,7 @@ $( c );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None (except for the 1 globals expected by the test)
 
 ## Runtime Outcome
 

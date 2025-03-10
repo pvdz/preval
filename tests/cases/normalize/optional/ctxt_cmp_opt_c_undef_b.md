@@ -108,7 +108,7 @@ Should call `$` with:
  - 1: {}
  - 2: 'b'
  - 3: 'c'
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 

@@ -11,6 +11,7 @@
 TDZ
 
 - skipEval
+- globals: x$1
 
 ## Input
 
@@ -143,9 +144,7 @@ $( g, 1, b );
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x$1
+None (except for the 1 globals expected by the test)
 
 ## Runtime Outcome
 

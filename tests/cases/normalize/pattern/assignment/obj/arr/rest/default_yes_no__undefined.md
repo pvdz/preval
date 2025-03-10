@@ -71,7 +71,7 @@ None
 ## Runtime Outcome
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 

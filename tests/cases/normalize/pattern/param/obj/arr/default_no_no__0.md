@@ -80,15 +80,12 @@ None
 ## Runtime Outcome
 
 Should call `$` with:
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+Denormalized calls: Same

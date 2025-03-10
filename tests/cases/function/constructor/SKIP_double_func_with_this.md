@@ -15,7 +15,24 @@ const b = Function(`return this`);
 $(b());
 `````
 
+## Settled
+
+
+`````js filename=intro
+$(window);
+$(window);
+`````
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(window);
+$(window);
+`````
+
 ## Pre Normal
+
 
 `````js filename=intro
 const a = Function(`return this`);
@@ -26,61 +43,46 @@ $(b());
 
 ## Normalized
 
-`````js filename=intro
-const a = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  return tmpPrevalAliasThis;
-};
-const tmpCallCallee = $;
-const tmpCalleeParam = a();
-tmpCallCallee(tmpCalleeParam);
-const b = function () {
-  const tmpPrevalAliasThis$1 = this;
-  debugger;
-  return tmpPrevalAliasThis$1;
-};
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = b();
-tmpCallCallee$1(tmpCalleeParam$1);
-`````
-
-## Output
 
 `````js filename=intro
 const a = function () {
-  const tmpPrevalAliasThis = this;
   debugger;
-  return tmpPrevalAliasThis;
+  return window;
 };
 const tmpCalleeParam = a();
 $(tmpCalleeParam);
 const b = function () {
-  const tmpPrevalAliasThis$1 = this;
   debugger;
-  return tmpPrevalAliasThis$1;
+  return window;
 };
 const tmpCalleeParam$1 = b();
 $(tmpCalleeParam$1);
+`````
+
+## PST Settled
+With rename=true
+
+`````js filename=intro
+$( window );
+$( window );
 `````
 
 ## Globals
 
 None
 
-## Result
+## Runtime Outcome
 
 Should call `$` with:
  - eval returned: ('<crash[ Maximum call stack size exceeded ]>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD?!
- - 1: undefined
- - 2: undefined
- - eval returned: undefined
+Normalized calls: BAD!?
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
-Final output calls: BAD!!
- - 1: undefined
- - 2: undefined
- - eval returned: undefined
+Post settled calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Denormalized calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not defined ]>')

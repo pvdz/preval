@@ -10,6 +10,9 @@
 
 (Doing `for (x in x)` is TDZ issue)
 
+TDZ
+
+- skipEval
 - globals: x$1
 
 ## Input
@@ -133,26 +136,15 @@ None (except for the 1 globals expected by the test)
 ## Runtime Outcome
 
 Should call `$` with:
- - 1: 1
- - 2: 2
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: 1
- - 2: 2
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 1
- - 2: 2
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 1
- - 2: 2
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

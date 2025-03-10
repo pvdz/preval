@@ -73,11 +73,8 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Denormalized calls: Same

@@ -727,8 +727,8 @@ function runTestCase(
         .replace(/.*Preval: Attempting to spread primitive that is not an empty string.*/,  '<ref> is not function/iterable')
         .replace(/Preval: cannot call a locked function \(binding overwritten with non-func\)/, '<ref> is not function/iterable')
         .replace(/function ?\(\) ?\{/g, 'function() {')
-        .replace(/Cannot read propert.*? of .*/g, 'Cannot read property <ref> of <ref2>')
-        //.replace(/Cannot read propert.*? of .*/g, '<ref> is not function/iterable') // Ultimately, not doing this creates more noise than signal.
+        //.replace(/Cannot read propert.*? of .*/g, 'Cannot read property <ref> of <ref2>')
+        .replace(/Cannot read propert.*? of .*/g, '<ref> is not function/iterable') // Ultimately, not doing this creates more noise than signal.
         .replace(/(?:Preval: )?Cannot access ['`][\w$]+['`] before initialization/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: This statement contained a read that reached no writes.*/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: TDZ triggered for.*/, "Cannot access '<ref>' before initialization")

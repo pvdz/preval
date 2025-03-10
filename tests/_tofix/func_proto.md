@@ -6,6 +6,7 @@
 >
 > The function has its own prototype object, not to be confused
 > with func.__proto__ which would point to Function.prototype
+> It should not resolve to $(undefined)
 
 ## Input
 

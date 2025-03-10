@@ -30,7 +30,7 @@ $dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCallObj = $({ b: $ });
-tmpCallObj.b(`b`, $(1), $(2));
+tmpCallObj.b($(1), $(2));
 `````
 
 ## Pre Normal
@@ -84,9 +84,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: { b: '"<$>"' }
- - 2: 1
- - 3: 2
- - 4: 'b', 1, 2
- - eval returned: undefined
+Denormalized calls: Same

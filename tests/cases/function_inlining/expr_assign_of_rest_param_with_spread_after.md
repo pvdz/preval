@@ -47,8 +47,8 @@ $(x);
 
 `````js filename=intro
 let x = 0;
-const g = function ($$0, b) {
-  x = b;
+const g = function ($$0, ...$$1 /*:array*/) {
+  x = $$1;
 };
 const arr = $([1, 2]);
 g(10, 20, 30, 40, ...arr, 50, 60);
@@ -132,7 +132,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: [1, 2]
- - 2: 20
- - eval returned: undefined
+Denormalized calls: Same

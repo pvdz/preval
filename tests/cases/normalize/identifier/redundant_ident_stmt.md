@@ -53,7 +53,8 @@ f(undefined, drop3);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (args) {
+const f = function (...$$0 /*:array*/) {
+  const args = $$0;
   $(...args);
 };
 drop1();

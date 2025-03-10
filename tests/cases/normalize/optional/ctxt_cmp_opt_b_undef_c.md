@@ -45,7 +45,7 @@ if (tmpChainElementObject == null) {
   $(undefined);
 } else {
   const tmpChainRootComputed$1 = $(`c`);
-  $(tmpChainElementObject[tmpChainRootComputed$1](undefined, 100));
+  $(tmpChainElementObject[tmpChainRootComputed$1](100));
 }
 `````
 

@@ -56,7 +56,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const oops = function (args) {
+const oops = function (...$$0 /*:array*/) {
+  const args = $$0;
   $(...args);
   x = `fail`;
 };
@@ -165,7 +166,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 5
- - 2: false
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+Denormalized calls: Same

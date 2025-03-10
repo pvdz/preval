@@ -43,8 +43,9 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjLitVal$1 = function (a$1) {
+const tmpObjLitVal$1 = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis = this;
+  const a$1 = $$0;
   $($(a$1), tmpPrevalAliasThis);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
@@ -152,9 +153,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: { b: '{"c":"\\"<function>\\""}' }
- - 2: 100
- - 3: 100, { c: '"<function>"' }
- - 4: undefined
- - eval returned: undefined
+Denormalized calls: Same

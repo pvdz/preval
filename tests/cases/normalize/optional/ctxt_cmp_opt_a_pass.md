@@ -46,8 +46,9 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjLitVal$1 = function (a$1) {
+const tmpObjLitVal$1 = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis = this;
+  const a$1 = $$0;
   $($(a$1), tmpPrevalAliasThis);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
@@ -60,7 +61,7 @@ if (tmpChainElementCall == null) {
   const tmpChainRootComputed = $(`b`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpChainRootComputed$1 = $(`c`);
-  $(tmpChainElementObject[tmpChainRootComputed$1](undefined, 100));
+  $(tmpChainElementObject[tmpChainRootComputed$1](100));
 }
 `````
 
@@ -166,10 +167,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: { b: '{"c":"\\"<function>\\""}' }
- - 2: 'b'
- - 3: 'c'
- - 4: undefined
- - 5: undefined, { c: '"<function>"' }
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Denormalized calls: Same

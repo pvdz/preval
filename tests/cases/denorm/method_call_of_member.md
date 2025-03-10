@@ -56,7 +56,6 @@ const spy = {
   },
 };
 spy.x(
-  `x`,
   {
     get x() {
       $(`x2`);

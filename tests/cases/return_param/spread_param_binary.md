@@ -48,7 +48,8 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (x) {
+const f = function (...$$0 /*:array*/) {
+  const x = $$0;
   $(`no`);
   $(`inlining`);
   $(`please`);
@@ -147,17 +148,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'no'
- - 2: 'inlining'
- - 3: 'please'
- - 4: 501
- - 5: 'no'
- - 6: 'inlining'
- - 7: 'please'
- - 8: 502
- - 9: 'no'
- - 10: 'inlining'
- - 11: 'please'
- - 12: 'three500'
- - eval returned: undefined
+Denormalized calls: Same

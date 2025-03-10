@@ -737,6 +737,13 @@ export function property(key, value, shorthand = false, computed = false, kind =
   };
 }
 
+export function restElement(argument) {
+  return {
+    type: 'RestElement',
+    argument,
+  };
+}
+
 export function returnStatement(argument = null) {
   if (typeof argument === 'string') argument = identifier(argument);
 

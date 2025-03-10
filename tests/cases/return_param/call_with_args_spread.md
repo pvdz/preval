@@ -72,20 +72,20 @@ const f = function () {
   $(`inlining`);
   $(`please`);
 };
-const tmpCalleeParam$1 = function (args) {
-  $(`pass1`, args);
+const tmpCalleeParam$1 = function (...$$0 /*:array*/) {
+  $(`pass1`, $$0);
 };
 f();
 tmpCalleeParam$1(1, `two`, null, NaN);
 $(undefined);
-const tmpCalleeParam$5 = function (args$1) {
-  $(`pass2`, args$1);
+const tmpCalleeParam$5 = function (...$$0 /*:array*/) {
+  $(`pass2`, $$0);
 };
 f();
 tmpCalleeParam$5(1, `two`, null, NaN);
 $(undefined);
-const tmpCalleeParam$9 = function (args$3) {
-  $(`pass3`, args$3);
+const tmpCalleeParam$9 = function (...$$0 /*:array*/) {
+  $(`pass3`, $$0);
 };
 f();
 tmpCalleeParam$9(1, `two`, null, NaN);
@@ -240,20 +240,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'no'
- - 2: 'inlining'
- - 3: 'please'
- - 4: 'pass1', 1
- - 5: undefined
- - 6: 'no'
- - 7: 'inlining'
- - 8: 'please'
- - 9: 'pass2', 1
- - 10: undefined
- - 11: 'no'
- - 12: 'inlining'
- - 13: 'please'
- - 14: 'pass3', 1
- - 15: undefined
- - eval returned: undefined
+Denormalized calls: Same

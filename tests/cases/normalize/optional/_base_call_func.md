@@ -31,8 +31,8 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (args) {
-  $(`f`, args);
+const f = function (...$$0 /*:array*/) {
+  $(`f`, $$0);
 };
 f(1, 2, 3);
 $(undefined);
@@ -103,7 +103,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'f', 1
- - 2: undefined
- - eval returned: undefined
+Denormalized calls: Same

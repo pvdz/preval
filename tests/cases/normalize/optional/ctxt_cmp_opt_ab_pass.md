@@ -53,7 +53,7 @@ if (tmpChainElementCall == null) {
     $(undefined);
   } else {
     const tmpChainRootComputed$1 = $(`c`);
-    $(tmpChainElementObject[tmpChainRootComputed$1](undefined, 100));
+    $(tmpChainElementObject[tmpChainRootComputed$1](100));
   }
 }
 `````
@@ -141,10 +141,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: { b: '{"c":"\\"<$>\\""}' }
- - 2: 'b'
- - 3: 'c'
- - 4: undefined, 100
- - 5: undefined
- - eval returned: undefined
+Denormalized calls: Same

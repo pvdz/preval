@@ -62,7 +62,6 @@ const x = {
   },
 };
 x.y(
-  `y`,
   {
     get b() {
       $(`b.get`);
@@ -158,8 +157,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'y.get'
- - 2: 'b.get'
- - 3: 'y', 100
- - eval returned: undefined
+Denormalized calls: Same

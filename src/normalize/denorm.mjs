@@ -55,6 +55,7 @@ export function denorm(fdata, resolve, req, options) {
 
           node.callee = node.arguments.shift(); // member expression
           node.arguments.shift(); // second arg; object of member expression of the first arg
+          node.arguments.shift(); // third arg; original property name
 
           after(node);
           changed = true;
@@ -88,9 +89,12 @@ export function denorm(fdata, resolve, req, options) {
 
           const init = next.declarations[0].init;
           if (init.type === 'Param') {
-            vlog('Dropping alias for', next.declarations[0].id.name, '=', next.declarations[0].init);
-            node.params[init.index] = next.declarations[0].id;
-            node.body.body[pointer-1  ] = AST.emptyStatement(); // keep meta pointers alive
+            // RestElement causes trouble so leave it
+            if (!node.params[init.index].rest) {
+              vlog('Dropping alias for', next.declarations[0].id.name, '=', next.declarations[0].init);
+              node.params[init.index] = next.declarations[0].id;
+              node.body.body[pointer - 1] = AST.emptyStatement(); // keep meta pointers alive
+            }
           } else if (init.type === 'ThisExpression') {
             // Keep but skip (`const alias = this`).
           } else if (init.type === 'Identifier' && init.name === 'arguments') {

@@ -33,7 +33,8 @@ $(r);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (x) {
+const f = function (...$$0 /*:array*/) {
+  const x = $$0;
   return x;
 };
 $(f(1, 2, 3));
@@ -94,6 +95,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 1
- - eval returned: undefined
+Denormalized calls: Same

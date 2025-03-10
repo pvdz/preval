@@ -48,7 +48,8 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (x) {
+const f = function (...$$0 /*:array*/) {
+  const x = $$0;
   $(`no`);
   $(`inlining`);
   $(`please`);

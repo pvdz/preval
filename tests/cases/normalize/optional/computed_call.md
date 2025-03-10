@@ -43,9 +43,9 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjLitVal = function (args) {
+const tmpObjLitVal = function (...$$0 /*:array*/) {
   const tmpPrevalAliasThis = this;
-  $(args, tmpPrevalAliasThis.y);
+  $($$0, tmpPrevalAliasThis.y);
 };
 const tmpChainElementCall = $({ x: tmpObjLitVal, y: 100 });
 const tmpChainRootComputed = $(`x`);
@@ -142,8 +142,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: { x: '"<function>"', y: '100' }
- - 2: 'x'
- - 3: 1, 100
- - eval returned: undefined
+Denormalized calls: Same

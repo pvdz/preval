@@ -61,37 +61,22 @@ const x /*:object*/ = {
     return 100;
   },
 };
-const tmpBinBothRhs /*:array*/ = [];
-const tmpArrElement /*:number*/ = x ** tmpBinBothRhs;
-const tmpBinBothRhs$1 /*:array*/ = [];
-const tmpArrElement$1 /*:number*/ = x * tmpBinBothRhs$1;
-const tmpBinBothRhs$3 /*:array*/ = [];
-const tmpArrElement$3 /*:number*/ = x / tmpBinBothRhs$3;
-const tmpBinBothRhs$5 /*:array*/ = [];
-const tmpArrElement$5 /*:number*/ = x % tmpBinBothRhs$5;
+const tmpArrElement /*:number*/ = x ** 0;
+const tmpArrElement$1 /*:number*/ = x * 0;
+const tmpArrElement$3 /*:number*/ = x / 0;
+const tmpArrElement$5 /*:number*/ = x % 0;
 const tmpArrElement$7 /*:string*/ = $coerce(x, `plustr`);
-const tmpBinBothRhs$9 /*:array*/ = [];
-const tmpArrElement$9 /*:number*/ = x - tmpBinBothRhs$9;
-const tmpBinBothRhs$11 /*:array*/ = [];
-const tmpArrElement$11 /*:number*/ = x << tmpBinBothRhs$11;
-const tmpBinBothRhs$13 /*:array*/ = [];
-const tmpArrElement$13 /*:number*/ = x >> tmpBinBothRhs$13;
-const tmpBinBothRhs$15 /*:array*/ = [];
-const tmpArrElement$15 /*:number*/ = x >>> tmpBinBothRhs$15;
-const tmpBinBothRhs$17 /*:array*/ = [];
-const tmpArrElement$17 /*:boolean*/ = x < tmpBinBothRhs$17;
-const tmpBinBothRhs$19 /*:array*/ = [];
-const tmpArrElement$19 /*:boolean*/ = x > tmpBinBothRhs$19;
-const tmpBinBothRhs$21 /*:array*/ = [];
-const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$21;
-const tmpBinBothRhs$23 /*:array*/ = [];
-const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$23;
-const tmpBinBothRhs$33 /*:array*/ = [];
-const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$33;
-const tmpBinBothRhs$35 /*:array*/ = [];
-const tmpArrElement$35 /*:number*/ = x ^ tmpBinBothRhs$35;
-const tmpBinBothRhs$37 /*:array*/ = [];
-const tmpArrElement$37 /*:number*/ = x | tmpBinBothRhs$37;
+const tmpArrElement$9 /*:number*/ = x - 0;
+const tmpArrElement$11 /*:number*/ = x << 0;
+const tmpArrElement$13 /*:number*/ = x >> 0;
+const tmpArrElement$15 /*:number*/ = x >>> 0;
+const tmpArrElement$17 /*:boolean*/ = x < ``;
+const tmpArrElement$19 /*:boolean*/ = x > ``;
+const tmpArrElement$21 /*:boolean*/ = x <= ``;
+const tmpArrElement$23 /*:boolean*/ = x >= ``;
+x ** 0;
+const tmpArrElement$35 /*:number*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ = x | 0;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -110,7 +95,7 @@ const arr /*:array*/ = [
   true,
   false,
   true,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ];
@@ -137,22 +122,22 @@ const x = {
     return 100;
   },
 };
-const tmpArrElement = x ** [];
-const tmpArrElement$1 = x * [];
-const tmpArrElement$3 = x / [];
-const tmpArrElement$5 = x % [];
+const tmpArrElement = x ** 0;
+const tmpArrElement$1 = x * 0;
+const tmpArrElement$3 = x / 0;
+const tmpArrElement$5 = x % 0;
 const tmpArrElement$7 = $coerce(x, `plustr`);
-const tmpArrElement$9 = x - [];
-const tmpArrElement$11 = x << [];
-const tmpArrElement$13 = x >> [];
-const tmpArrElement$15 = x >>> [];
-const tmpArrElement$17 = x < [];
-const tmpArrElement$19 = x > [];
-const tmpArrElement$21 = x <= [];
-const tmpArrElement$23 = x >= [];
-const tmpArrElement$33 = x & [];
-const tmpArrElement$35 = x ^ [];
-const tmpArrElement$37 = x | [];
+const tmpArrElement$9 = x - 0;
+const tmpArrElement$11 = x << 0;
+const tmpArrElement$13 = x >> 0;
+const tmpArrElement$15 = x >>> 0;
+const tmpArrElement$17 = x < ``;
+const tmpArrElement$19 = x > ``;
+const tmpArrElement$21 = x <= ``;
+const tmpArrElement$23 = x >= ``;
+x ** 0;
+const tmpArrElement$35 = x ^ 0;
+const tmpArrElement$37 = x | 0;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -171,7 +156,7 @@ $([
   true,
   false,
   true,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
@@ -349,45 +334,30 @@ const a = {
     return 100;
   },
 };
-const c = [];
-const d = a ** c;
-const e = [];
-const f = a * e;
-const g = [];
-const h = a / g;
-const i = [];
-const j = a % i;
-const k = $coerce( a, "plustr" );
-const l = [];
-const m = a - l;
-const n = [];
-const o = a << n;
-const p = [];
-const q = a >> p;
-const r = [];
-const s = a >>> r;
+const c = a ** 0;
+const d = a * 0;
+const e = a / 0;
+const f = a % 0;
+const g = $coerce( a, "plustr" );
+const h = a - 0;
+const i = a << 0;
+const j = a >> 0;
+const k = a >>> 0;
+const l = a < "";
+const m = a > "";
+const n = a <= "";
+const o = a >= "";
+a ** 0;
+const p = a ^ 0;
+const q = a | 0;
+const r = [ c, d, e, f, g, h, i, j, k, l, m, n, o, false, true, false, true, 0, p, q ];
+$( r );
+const s = [];
 const t = [];
-const u = a < t;
-const v = [];
-const w = a > v;
-const x = [];
-const y = a <= x;
-const z = [];
-const ba = a >= z;
-const bb = [];
-const bc = a & bb;
-const bd = [];
-const be = a ^ bd;
-const bf = [];
-const bg = a | bf;
-const bh = [ d, f, h, j, k, m, o, q, s, u, w, y, ba, false, true, false, true, bc, be, bg ];
-$( bh );
-const bi = [];
-const bj = [];
-const bk = a in bi;
-const bl = a instanceof bj;
-const bm = [ bk, bl ];
-$( bm );
+const u = a in s;
+const v = a instanceof t;
+const w = [ u, v ];
+$( w );
 `````
 
 ## Globals

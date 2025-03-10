@@ -31,8 +31,8 @@ $(x, 'end');
 
 
 `````js filename=intro
-$(false, `middle`);
 const a /*:boolean*/ = b === c;
+$(false, `middle`);
 $(a, `end`);
 `````
 
@@ -40,8 +40,9 @@ $(a, `end`);
 (This ought to be the final result)
 
 `````js filename=intro
+const a = b === c;
 $(false, `middle`);
-$(b === c, `end`);
+$(a, `end`);
 `````
 
 ## Pre Normal
@@ -88,8 +89,8 @@ if (a) {
 With rename=true
 
 `````js filename=intro
-$( false, "middle" );
 const a = b === c;
+$( false, "middle" );
 $( a, "end" );
 `````
 
@@ -108,13 +109,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: false, 'middle'
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: false, 'middle'
- - eval returned: ('<crash[ <ref> is not defined ]>')
-
-Todos triggered:
-- switch me to ref tracking
+Denormalized calls: Same

@@ -26,28 +26,12 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpBinLhs /*:array*/ = [];
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+if (tmpIfTest$1) {
+  $(`fail2`);
 } else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
-} else {
-  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    $(`fail1`);
-    $(`fail2`);
-  } else {
-    $(`fail2`);
-  }
+  $(`fail1`);
+  $(`fail2`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -58,21 +42,11 @@ $(a);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-if ([] === tmpSwitchValue) {
-  tmpSwitchCaseToStart = 0;
+if (2 === tmpSwitchValue) {
+  $(`fail2`);
 } else {
-  if (2 === tmpSwitchValue) {
-    tmpSwitchCaseToStart = 2;
-  }
-}
-if (!(tmpSwitchCaseToStart <= 0)) {
-  if (tmpSwitchCaseToStart <= 1) {
-    $(`fail1`);
-    $(`fail2`);
-  } else {
-    $(`fail2`);
-  }
+  $(`fail1`);
+  $(`fail2`);
 }
 $({ a: 999, b: 1000 });
 `````
@@ -146,37 +120,19 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = 1;
-const c = [];
-const d = c === a;
-if (d) {
-  b = 0;
+const b = 2 === a;
+if (b) {
+  $( "fail2" );
 }
 else {
-  const e = 2 === a;
-  if (e) {
-    b = 2;
-  }
+  $( "fail1" );
+  $( "fail2" );
 }
-const f = b <= 0;
-if (f) {
-
-}
-else {
-  const g = b <= 1;
-  if (g) {
-    $( "fail1" );
-    $( "fail2" );
-  }
-  else {
-    $( "fail2" );
-  }
-}
-const h = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( h );
+$( c );
 `````
 
 ## Globals

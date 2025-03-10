@@ -29,33 +29,16 @@ const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a /*:unknown*/ = arrPatternSplat[0];
 const tmpSwitchValue /*:unknown*/ = $(1);
-let tmpSwitchCaseToStart /*:number*/ = 1;
 $(10);
 $(20);
-const tmpBinLhs /*:array*/ = [1, 2];
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
+const tmpIfTest$1 /*:boolean*/ = 2 === tmpSwitchValue;
+if (tmpIfTest$1) {
+  $(`fail2`);
   $(a);
 } else {
-  const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    $(`fail1`);
-    $(`fail2`);
-    $(a);
-  } else {
-    $(`fail2`);
-    $(a);
-  }
+  $(`fail1`);
+  $(`fail2`);
+  $(a);
 }
 `````
 
@@ -66,27 +49,15 @@ if (tmpIfTest$3) {
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const a = [...bindingPatternArrRoot][0];
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 $(10);
 $(20);
-if ([1, 2] === tmpSwitchValue) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  if (2 === tmpSwitchValue) {
-    tmpSwitchCaseToStart = 2;
-  }
-}
-if (tmpSwitchCaseToStart <= 0) {
+if (2 === tmpSwitchValue) {
+  $(`fail2`);
   $(a);
 } else {
-  if (tmpSwitchCaseToStart <= 1) {
-    $(`fail1`);
-    $(`fail2`);
-    $(a);
-  } else {
-    $(`fail2`);
-    $(a);
-  }
+  $(`fail1`);
+  $(`fail2`);
+  $(a);
 }
 `````
 
@@ -169,35 +140,17 @@ const a = {
 const b = [ ...a ];
 const c = b[ 0 ];
 const d = $( 1 );
-let e = 1;
 $( 10 );
 $( 20 );
-const f = [ 1, 2 ];
-const g = f === d;
-if (g) {
-  e = 0;
-}
-else {
-  const h = 2 === d;
-  if (h) {
-    e = 2;
-  }
-}
-const i = e <= 0;
-if (i) {
+const e = 2 === d;
+if (e) {
+  $( "fail2" );
   $( c );
 }
 else {
-  const j = e <= 1;
-  if (j) {
-    $( "fail1" );
-    $( "fail2" );
-    $( c );
-  }
-  else {
-    $( "fail2" );
-    $( c );
-  }
+  $( "fail1" );
+  $( "fail2" );
+  $( c );
 }
 `````
 

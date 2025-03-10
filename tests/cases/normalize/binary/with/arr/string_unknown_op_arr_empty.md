@@ -47,40 +47,24 @@ $(arr2);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(``);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam, `string`);
-const tmpBinBothRhs$1 /*:array*/ = [];
-const tmpArrElement /*:number*/ = tmpBinBothRhs ** tmpBinBothRhs$1;
-const tmpBinBothRhs$3 /*:array*/ = [];
-const tmpArrElement$1 /*:number*/ = tmpBinBothRhs * tmpBinBothRhs$3;
-const tmpBinBothRhs$5 /*:array*/ = [];
-const tmpArrElement$3 /*:number*/ = tmpBinBothRhs / tmpBinBothRhs$5;
-const tmpBinBothRhs$7 /*:array*/ = [];
-const tmpArrElement$5 /*:number*/ = tmpBinBothRhs % tmpBinBothRhs$7;
-const tmpBinBothRhs$11 /*:array*/ = [];
-const tmpArrElement$9 /*:number*/ = tmpBinBothRhs - tmpBinBothRhs$11;
-const tmpBinBothRhs$13 /*:array*/ = [];
-const tmpArrElement$11 /*:number*/ = tmpBinBothRhs << tmpBinBothRhs$13;
-const tmpBinBothRhs$15 /*:array*/ = [];
-const tmpArrElement$13 /*:number*/ = tmpBinBothRhs >> tmpBinBothRhs$15;
-const tmpBinBothRhs$17 /*:array*/ = [];
-const tmpArrElement$15 /*:number*/ = tmpBinBothRhs >>> tmpBinBothRhs$17;
-const tmpBinBothRhs$19 /*:array*/ = [];
-const tmpArrElement$17 /*:boolean*/ = tmpBinBothRhs < tmpBinBothRhs$19;
-const tmpBinBothRhs$21 /*:array*/ = [];
-const tmpArrElement$19 /*:boolean*/ = tmpBinBothRhs > tmpBinBothRhs$21;
-const tmpBinBothRhs$23 /*:array*/ = [];
-const tmpArrElement$21 /*:boolean*/ = tmpBinBothRhs <= tmpBinBothRhs$23;
-const tmpBinBothRhs$25 /*:array*/ = [];
-const tmpArrElement$23 /*:boolean*/ = tmpBinBothRhs >= tmpBinBothRhs$25;
 const tmpBinBothRhs$27 /*:array*/ = [];
 const tmpArrElement$25 /*:boolean*/ = tmpBinBothRhs == tmpBinBothRhs$27;
 const tmpBinBothRhs$29 /*:array*/ = [];
 const tmpArrElement$27 /*:boolean*/ = tmpBinBothRhs != tmpBinBothRhs$29;
-const tmpBinBothRhs$35 /*:array*/ = [];
-const tmpArrElement$33 /*:number*/ = tmpBinBothRhs & tmpBinBothRhs$35;
-const tmpBinBothRhs$37 /*:array*/ = [];
-const tmpArrElement$35 /*:number*/ = tmpBinBothRhs ^ tmpBinBothRhs$37;
-const tmpBinBothRhs$39 /*:array*/ = [];
-const tmpArrElement$37 /*:number*/ = tmpBinBothRhs | tmpBinBothRhs$39;
+const tmpArrElement /*:number*/ = tmpBinBothRhs ** 0;
+const tmpArrElement$1 /*:number*/ = tmpBinBothRhs * 0;
+const tmpArrElement$3 /*:number*/ = tmpBinBothRhs / 0;
+const tmpArrElement$5 /*:number*/ = tmpBinBothRhs % 0;
+const tmpArrElement$9 /*:number*/ = tmpBinBothRhs - 0;
+const tmpArrElement$11 /*:number*/ = tmpBinBothRhs << 0;
+const tmpArrElement$13 /*:number*/ = tmpBinBothRhs >> 0;
+const tmpArrElement$15 /*:number*/ = tmpBinBothRhs >>> 0;
+const tmpArrElement$17 /*:boolean*/ = tmpBinBothRhs < ``;
+const tmpArrElement$19 /*:boolean*/ = tmpBinBothRhs > ``;
+const tmpArrElement$21 /*:boolean*/ = tmpBinBothRhs <= ``;
+const tmpArrElement$23 /*:boolean*/ = tmpBinBothRhs >= ``;
+const tmpArrElement$35 /*:number*/ = tmpBinBothRhs ^ 0;
+const tmpArrElement$37 /*:number*/ = tmpBinBothRhs | 0;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -99,7 +83,7 @@ const arr /*:array*/ = [
   tmpArrElement$27,
   false,
   true,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ];
@@ -117,23 +101,22 @@ $(arr2);
 
 `````js filename=intro
 const tmpBinBothRhs = $coerce($(``), `string`);
-const tmpArrElement = tmpBinBothRhs ** [];
-const tmpArrElement$1 = tmpBinBothRhs * [];
-const tmpArrElement$3 = tmpBinBothRhs / [];
-const tmpArrElement$5 = tmpBinBothRhs % [];
-const tmpArrElement$9 = tmpBinBothRhs - [];
-const tmpArrElement$11 = tmpBinBothRhs << [];
-const tmpArrElement$13 = tmpBinBothRhs >> [];
-const tmpArrElement$15 = tmpBinBothRhs >>> [];
-const tmpArrElement$17 = tmpBinBothRhs < [];
-const tmpArrElement$19 = tmpBinBothRhs > [];
-const tmpArrElement$21 = tmpBinBothRhs <= [];
-const tmpArrElement$23 = tmpBinBothRhs >= [];
 const tmpArrElement$25 = tmpBinBothRhs == [];
 const tmpArrElement$27 = tmpBinBothRhs != [];
-const tmpArrElement$33 = tmpBinBothRhs & [];
-const tmpArrElement$35 = tmpBinBothRhs ^ [];
-const tmpArrElement$37 = tmpBinBothRhs | [];
+const tmpArrElement = tmpBinBothRhs ** 0;
+const tmpArrElement$1 = tmpBinBothRhs * 0;
+const tmpArrElement$3 = tmpBinBothRhs / 0;
+const tmpArrElement$5 = tmpBinBothRhs % 0;
+const tmpArrElement$9 = tmpBinBothRhs - 0;
+const tmpArrElement$11 = tmpBinBothRhs << 0;
+const tmpArrElement$13 = tmpBinBothRhs >> 0;
+const tmpArrElement$15 = tmpBinBothRhs >>> 0;
+const tmpArrElement$17 = tmpBinBothRhs < ``;
+const tmpArrElement$19 = tmpBinBothRhs > ``;
+const tmpArrElement$21 = tmpBinBothRhs <= ``;
+const tmpArrElement$23 = tmpBinBothRhs >= ``;
+const tmpArrElement$35 = tmpBinBothRhs ^ 0;
+const tmpArrElement$37 = tmpBinBothRhs | 0;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -152,7 +135,7 @@ $([
   tmpArrElement$27,
   false,
   true,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
@@ -304,47 +287,31 @@ With rename=true
 const a = $( "" );
 const b = $coerce( a, "string" );
 const c = [];
-const d = b ** c;
+const d = b == c;
 const e = [];
-const f = b * e;
-const g = [];
-const h = b / g;
-const i = [];
-const j = b % i;
-const k = [];
-const l = b - k;
-const m = [];
-const n = b << m;
-const o = [];
-const p = b >> o;
-const q = [];
-const r = b >>> q;
-const s = [];
-const t = b < s;
-const u = [];
-const v = b > u;
+const f = b != e;
+const g = b ** 0;
+const h = b * 0;
+const i = b / 0;
+const j = b % 0;
+const k = b - 0;
+const l = b << 0;
+const m = b >> 0;
+const n = b >>> 0;
+const o = b < "";
+const p = b > "";
+const q = b <= "";
+const r = b >= "";
+const s = b ^ 0;
+const t = b | 0;
+const u = [ g, h, i, j, b, k, l, m, n, o, p, q, r, d, f, false, true, 0, s, t ];
+$( u );
+const v = [];
 const w = [];
-const x = b <= w;
-const y = [];
-const z = b >= y;
-const ba = [];
-const bb = b == ba;
-const bc = [];
-const bd = b != bc;
-const be = [];
-const bf = b & be;
-const bg = [];
-const bh = b ^ bg;
-const bi = [];
-const bj = b | bi;
-const bk = [ d, f, h, j, b, l, n, p, r, t, v, x, z, bb, bd, false, true, bf, bh, bj ];
-$( bk );
-const bl = [];
-const bm = [];
-const bn = b in bl;
-const bo = b instanceof bm;
-const bp = [ bn, bo ];
-$( bp );
+const x = b in v;
+const y = b instanceof w;
+const z = [ x, y ];
+$( z );
 `````
 
 ## Globals

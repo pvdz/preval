@@ -19,19 +19,18 @@ $(a);
 
 `````js filename=intro
 const a /*:object*/ = { a: 999, b: 1000 };
-const tmpBinBothRhs /*:array*/ = [1, 2, 3];
-const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+a ** 0;
+$(NaN);
+$(NaN);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = { a: 999, b: 1000 } * [1, 2, 3];
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+({ a: 999, b: 1000 } ** 0);
+$(NaN);
+$(NaN);
 `````
 
 ## Pre Normal
@@ -64,10 +63,9 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ 1, 2, 3 ];
-const c = a * b;
-$( c );
-$( c );
+a ** 0;
+$( NaN );
+$( NaN );
 `````
 
 ## Globals

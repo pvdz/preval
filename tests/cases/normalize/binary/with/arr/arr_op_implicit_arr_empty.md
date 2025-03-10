@@ -55,45 +55,26 @@ $(arr2);
 
 
 `````js filename=intro
-const tmpBinLhs /*:array*/ = [];
-const tmpArrElement /*:number*/ = tmpBinLhs ** x;
-const tmpBinLhs$1 /*:array*/ = [];
-const tmpArrElement$1 /*:number*/ = tmpBinLhs$1 * x;
-const tmpBinLhs$3 /*:array*/ = [];
-const tmpArrElement$3 /*:number*/ = tmpBinLhs$3 / x;
-const tmpBinLhs$5 /*:array*/ = [];
-const tmpArrElement$5 /*:number*/ = tmpBinLhs$5 % x;
+const tmpArrElement /*:number*/ = 0 ** x;
+const tmpArrElement$1 /*:number*/ = 0 * x;
+const tmpArrElement$3 /*:number*/ = 0 / x;
+const tmpArrElement$5 /*:number*/ = 0 % x;
 const tmpArrElement$7 /*:string*/ = $coerce(x, `plustr`);
-const tmpBinLhs$9 /*:array*/ = [];
-const tmpArrElement$9 /*:number*/ = tmpBinLhs$9 - x;
-const tmpBinLhs$11 /*:array*/ = [];
-const tmpArrElement$11 /*:number*/ = tmpBinLhs$11 << x;
-const tmpBinLhs$13 /*:array*/ = [];
-const tmpArrElement$13 /*:number*/ = tmpBinLhs$13 >> x;
-const tmpBinLhs$15 /*:array*/ = [];
-const tmpArrElement$15 /*:number*/ = tmpBinLhs$15 >>> x;
-const tmpBinLhs$17 /*:array*/ = [];
-const tmpArrElement$17 /*:boolean*/ = tmpBinLhs$17 < x;
-const tmpBinLhs$19 /*:array*/ = [];
-const tmpArrElement$19 /*:boolean*/ = tmpBinLhs$19 > x;
-const tmpBinLhs$21 /*:array*/ = [];
-const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
-const tmpBinLhs$23 /*:array*/ = [];
-const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
+const tmpArrElement$9 /*:number*/ = 0 - x;
+const tmpArrElement$11 /*:number*/ = 0 << x;
+const tmpArrElement$13 /*:number*/ = 0 >> x;
+const tmpArrElement$15 /*:number*/ = 0 >>> x;
+const tmpArrElement$17 /*:boolean*/ = `` < x;
+const tmpArrElement$19 /*:boolean*/ = `` > x;
+const tmpArrElement$21 /*:boolean*/ = `` <= x;
+const tmpArrElement$23 /*:boolean*/ = `` >= x;
 const tmpBinLhs$25 /*:array*/ = [];
 const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 == x;
 const tmpBinLhs$27 /*:array*/ = [];
 const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 != x;
-const tmpBinLhs$29 /*:array*/ = [];
-const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
-const tmpBinLhs$31 /*:array*/ = [];
-const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
-const tmpBinLhs$33 /*:array*/ = [];
-const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
-const tmpBinLhs$35 /*:array*/ = [];
-const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
-const tmpBinLhs$37 /*:array*/ = [];
-const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
+x ** 0;
+const tmpArrElement$35 /*:number*/ = 0 ^ x;
+const tmpArrElement$37 /*:number*/ = 0 | x;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -110,9 +91,9 @@ const arr /*:array*/ = [
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
+  false,
+  true,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ];
@@ -129,26 +110,24 @@ $(arr2);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrElement = [] ** x;
-const tmpArrElement$1 = [] * x;
-const tmpArrElement$3 = [] / x;
-const tmpArrElement$5 = [] % x;
+const tmpArrElement = 0 ** x;
+const tmpArrElement$1 = 0 * x;
+const tmpArrElement$3 = 0 / x;
+const tmpArrElement$5 = 0 % x;
 const tmpArrElement$7 = $coerce(x, `plustr`);
-const tmpArrElement$9 = [] - x;
-const tmpArrElement$11 = [] << x;
-const tmpArrElement$13 = [] >> x;
-const tmpArrElement$15 = [] >>> x;
-const tmpArrElement$17 = [] < x;
-const tmpArrElement$19 = [] > x;
-const tmpArrElement$21 = [] <= x;
-const tmpArrElement$23 = [] >= x;
+const tmpArrElement$9 = 0 - x;
+const tmpArrElement$11 = 0 << x;
+const tmpArrElement$13 = 0 >> x;
+const tmpArrElement$15 = 0 >>> x;
+const tmpArrElement$17 = `` < x;
+const tmpArrElement$19 = `` > x;
+const tmpArrElement$21 = `` <= x;
+const tmpArrElement$23 = `` >= x;
 const tmpArrElement$25 = [] == x;
 const tmpArrElement$27 = [] != x;
-const tmpArrElement$29 = [] === x;
-const tmpArrElement$31 = [] !== x;
-const tmpArrElement$33 = [] & x;
-const tmpArrElement$35 = [] ^ x;
-const tmpArrElement$37 = [] | x;
+x ** 0;
+const tmpArrElement$35 = 0 ^ x;
+const tmpArrElement$37 = 0 | x;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -165,9 +144,9 @@ $([
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
+  false,
+  true,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
@@ -286,53 +265,34 @@ $(arr2);
 With rename=true
 
 `````js filename=intro
-const a = [];
-const b = a ** x;
-const c = [];
-const d = c * x;
-const e = [];
-const f = e / x;
-const g = [];
-const h = g % x;
-const i = $coerce( x, "plustr" );
-const j = [];
-const k = j - x;
-const l = [];
-const m = l << x;
+const a = 0 ** x;
+const b = 0 * x;
+const c = 0 / x;
+const d = 0 % x;
+const e = $coerce( x, "plustr" );
+const f = 0 - x;
+const g = 0 << x;
+const h = 0 >> x;
+const i = 0 >>> x;
+const j = "" < x;
+const k = "" > x;
+const l = "" <= x;
+const m = "" >= x;
 const n = [];
-const o = n >> x;
+const o = n == x;
 const p = [];
-const q = p >>> x;
-const r = [];
-const s = r < x;
-const t = [];
-const u = t > x;
-const v = [];
-const w = v <= x;
-const y = [];
-const z = y >= x;
-const ba = [];
-const bb = ba == x;
-const bc = [];
-const bd = bc != x;
-const be = [];
-const bf = be === x;
-const bg = [];
-const bh = bg !== x;
-const bi = [];
-const bj = bi & x;
-const bk = [];
-const bl = bk ^ x;
-const bm = [];
-const bn = bm | x;
-const bo = [ b, d, f, h, i, k, m, o, q, s, u, w, z, bb, bd, bf, bh, bj, bl, bn ];
-$( bo );
-const bp = [];
-const bq = bp in x;
-const br = [];
-const bs = br instanceof x;
-const bt = [ bq, bs ];
-$( bt );
+const q = p != x;
+x ** 0;
+const r = 0 ^ x;
+const s = 0 | x;
+const t = [ a, b, c, d, e, f, g, h, i, j, k, l, m, o, q, false, true, 0, r, s ];
+$( t );
+const u = [];
+const v = u in x;
+const w = [];
+const y = w instanceof x;
+const z = [ v, y ];
+$( z );
 `````
 
 ## Globals

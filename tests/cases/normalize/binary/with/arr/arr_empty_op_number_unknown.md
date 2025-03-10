@@ -49,63 +49,42 @@ $(arr2);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = x;
-const tmpBinBothRhs /*:array*/ = [];
-const tmpArrElement /*:number*/ = tmpBinBothLhs ** tmpBinBothRhs;
+const tmpArrElement /*:number*/ = tmpBinBothLhs ** 0;
 const tmpBinBothLhs$1 /*:unknown*/ = x;
-const tmpBinBothRhs$1 /*:array*/ = [];
-const tmpArrElement$1 /*:number*/ = tmpBinBothLhs$1 * tmpBinBothRhs$1;
+const tmpArrElement$1 /*:number*/ = tmpBinBothLhs$1 * 0;
 const tmpBinBothLhs$3 /*:unknown*/ = x;
-const tmpBinBothRhs$3 /*:array*/ = [];
-const tmpArrElement$3 /*:number*/ = tmpBinBothLhs$3 / tmpBinBothRhs$3;
+const tmpArrElement$3 /*:number*/ = tmpBinBothLhs$3 / 0;
 const tmpBinBothLhs$5 /*:unknown*/ = x;
-const tmpBinBothRhs$5 /*:array*/ = [];
-const tmpArrElement$5 /*:number*/ = tmpBinBothLhs$5 % tmpBinBothRhs$5;
+const tmpArrElement$5 /*:number*/ = tmpBinBothLhs$5 % 0;
 const tmpArrElement$7 /*:string*/ = $coerce(x, `plustr`);
 const tmpBinBothLhs$9 /*:unknown*/ = x;
-const tmpBinBothRhs$9 /*:array*/ = [];
-const tmpArrElement$9 /*:number*/ = tmpBinBothLhs$9 - tmpBinBothRhs$9;
+const tmpArrElement$9 /*:number*/ = tmpBinBothLhs$9 - 0;
 const tmpBinBothLhs$11 /*:unknown*/ = x;
-const tmpBinBothRhs$11 /*:array*/ = [];
-const tmpArrElement$11 /*:number*/ = tmpBinBothLhs$11 << tmpBinBothRhs$11;
+const tmpArrElement$11 /*:number*/ = tmpBinBothLhs$11 << 0;
 const tmpBinBothLhs$13 /*:unknown*/ = x;
-const tmpBinBothRhs$13 /*:array*/ = [];
-const tmpArrElement$13 /*:number*/ = tmpBinBothLhs$13 >> tmpBinBothRhs$13;
+const tmpArrElement$13 /*:number*/ = tmpBinBothLhs$13 >> 0;
 const tmpBinBothLhs$15 /*:unknown*/ = x;
-const tmpBinBothRhs$15 /*:array*/ = [];
-const tmpArrElement$15 /*:number*/ = tmpBinBothLhs$15 >>> tmpBinBothRhs$15;
+const tmpArrElement$15 /*:number*/ = tmpBinBothLhs$15 >>> 0;
 const tmpBinBothLhs$17 /*:unknown*/ = x;
-const tmpBinBothRhs$17 /*:array*/ = [];
-const tmpArrElement$17 /*:boolean*/ = tmpBinBothLhs$17 < tmpBinBothRhs$17;
+const tmpArrElement$17 /*:boolean*/ = tmpBinBothLhs$17 < ``;
 const tmpBinBothLhs$19 /*:unknown*/ = x;
-const tmpBinBothRhs$19 /*:array*/ = [];
-const tmpArrElement$19 /*:boolean*/ = tmpBinBothLhs$19 > tmpBinBothRhs$19;
+const tmpArrElement$19 /*:boolean*/ = tmpBinBothLhs$19 > ``;
 const tmpBinBothLhs$21 /*:unknown*/ = x;
-const tmpBinBothRhs$21 /*:array*/ = [];
-const tmpArrElement$21 /*:boolean*/ = tmpBinBothLhs$21 <= tmpBinBothRhs$21;
+const tmpArrElement$21 /*:boolean*/ = tmpBinBothLhs$21 <= ``;
 const tmpBinBothLhs$23 /*:unknown*/ = x;
-const tmpBinBothRhs$23 /*:array*/ = [];
-const tmpArrElement$23 /*:boolean*/ = tmpBinBothLhs$23 >= tmpBinBothRhs$23;
+const tmpArrElement$23 /*:boolean*/ = tmpBinBothLhs$23 >= ``;
 const tmpBinBothLhs$25 /*:unknown*/ = x;
 const tmpBinBothRhs$25 /*:array*/ = [];
 const tmpArrElement$25 /*:boolean*/ = tmpBinBothLhs$25 == tmpBinBothRhs$25;
 const tmpBinBothLhs$27 /*:unknown*/ = x;
 const tmpBinBothRhs$27 /*:array*/ = [];
 const tmpArrElement$27 /*:boolean*/ = tmpBinBothLhs$27 != tmpBinBothRhs$27;
-const tmpBinBothLhs$29 /*:unknown*/ = x;
-const tmpBinBothLhs$31 /*:unknown*/ = x;
 const tmpBinBothLhs$33 /*:unknown*/ = x;
-const tmpBinBothRhs$33 /*:array*/ = [];
-const tmpArrElement$33 /*:number*/ = tmpBinBothLhs$33 & tmpBinBothRhs$33;
+tmpBinBothLhs$33 ** 0;
 const tmpBinBothLhs$35 /*:unknown*/ = x;
-const tmpBinBothRhs$35 /*:array*/ = [];
-const tmpArrElement$35 /*:number*/ = tmpBinBothLhs$35 ^ tmpBinBothRhs$35;
+const tmpArrElement$35 /*:number*/ = tmpBinBothLhs$35 ^ 0;
 const tmpBinBothLhs$37 /*:unknown*/ = x;
-const tmpBinBothRhs$37 /*:array*/ = [];
-const tmpArrElement$37 /*:number*/ = tmpBinBothLhs$37 | tmpBinBothRhs$37;
-const tmpBinBothRhs$29 /*:array*/ = [];
-const tmpBinBothRhs$31 /*:array*/ = [];
-const tmpArrElement$29 /*:boolean*/ = tmpBinBothLhs$29 === tmpBinBothRhs$29;
-const tmpArrElement$31 /*:boolean*/ = tmpBinBothLhs$31 !== tmpBinBothRhs$31;
+const tmpArrElement$37 /*:number*/ = tmpBinBothLhs$37 | 0;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -122,9 +101,9 @@ const arr /*:array*/ = [
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
+  false,
+  true,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ];
@@ -143,30 +122,24 @@ $(arr2);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrElement = x ** [];
-const tmpArrElement$1 = x * [];
-const tmpArrElement$3 = x / [];
-const tmpArrElement$5 = x % [];
+const tmpArrElement = x ** 0;
+const tmpArrElement$1 = x * 0;
+const tmpArrElement$3 = x / 0;
+const tmpArrElement$5 = x % 0;
 const tmpArrElement$7 = $coerce(x, `plustr`);
-const tmpArrElement$9 = x - [];
-const tmpArrElement$11 = x << [];
-const tmpArrElement$13 = x >> [];
-const tmpArrElement$15 = x >>> [];
-const tmpArrElement$17 = x < [];
-const tmpArrElement$19 = x > [];
-const tmpArrElement$21 = x <= [];
-const tmpArrElement$23 = x >= [];
+const tmpArrElement$9 = x - 0;
+const tmpArrElement$11 = x << 0;
+const tmpArrElement$13 = x >> 0;
+const tmpArrElement$15 = x >>> 0;
+const tmpArrElement$17 = x < ``;
+const tmpArrElement$19 = x > ``;
+const tmpArrElement$21 = x <= ``;
+const tmpArrElement$23 = x >= ``;
 const tmpArrElement$25 = x == [];
 const tmpArrElement$27 = x != [];
-const tmpBinBothLhs$29 = x;
-const tmpBinBothLhs$31 = x;
-const tmpArrElement$33 = x & [];
-const tmpArrElement$35 = x ^ [];
-const tmpArrElement$37 = x | [];
-const tmpBinBothRhs$29 = [];
-const tmpBinBothRhs$31 = [];
-const tmpArrElement$29 = tmpBinBothLhs$29 === tmpBinBothRhs$29;
-const tmpArrElement$31 = tmpBinBothLhs$31 !== tmpBinBothRhs$31;
+x ** 0;
+const tmpArrElement$35 = x ^ 0;
+const tmpArrElement$37 = x | 0;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -183,9 +156,9 @@ $([
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
+  false,
+  true,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
@@ -331,73 +304,52 @@ With rename=true
 
 `````js filename=intro
 const a = x;
-const b = [];
-const c = a ** b;
-const d = x;
-const e = [];
-const f = d * e;
+const b = a ** 0;
+const c = x;
+const d = c * 0;
+const e = x;
+const f = e / 0;
 const g = x;
-const h = [];
-const i = g / h;
+const h = g % 0;
+const i = $coerce( x, "plustr" );
 const j = x;
-const k = [];
-const l = j % k;
-const m = $coerce( x, "plustr" );
+const k = j - 0;
+const l = x;
+const m = l << 0;
 const n = x;
-const o = [];
-const p = n - o;
-const q = x;
-const r = [];
-const s = q << r;
+const o = n >> 0;
+const p = x;
+const q = p >>> 0;
+const r = x;
+const s = r < "";
 const t = x;
-const u = [];
-const v = t >> u;
-const w = x;
-const y = [];
-const z = w >>> y;
+const u = t > "";
+const v = x;
+const w = v <= "";
+const y = x;
+const z = y >= "";
 const ba = x;
 const bb = [];
-const bc = ba < bb;
+const bc = ba == bb;
 const bd = x;
 const be = [];
-const bf = bd > be;
+const bf = bd != be;
 const bg = x;
-const bh = [];
-const bi = bg <= bh;
+bg ** 0;
+const bh = x;
+const bi = bh ^ 0;
 const bj = x;
-const bk = [];
-const bl = bj >= bk;
+const bk = bj | 0;
+const bl = [ b, d, f, h, i, k, m, o, q, s, u, w, z, bc, bf, false, true, 0, bi, bk ];
+$( bl );
 const bm = x;
-const bn = [];
-const bo = bm == bn;
-const bp = x;
-const bq = [];
-const br = bp != bq;
-const bs = x;
-const bt = x;
-const bu = x;
-const bv = [];
-const bw = bu & bv;
-const bx = x;
-const by = [];
-const bz = bx ^ by;
-const ca = x;
-const cb = [];
-const cc = ca | cb;
-const cd = [];
-const ce = [];
-const cf = bs === cd;
-const cg = bt !== ce;
-const ch = [ c, f, i, l, m, p, s, v, z, bc, bf, bi, bl, bo, br, cf, cg, bw, bz, cc ];
-$( ch );
-const ci = x;
-const cj = x;
-const ck = [];
-const cl = [];
-const cm = ci in ck;
-const cn = cj instanceof cl;
-const co = [ cm, cn ];
-$( co );
+const bn = x;
+const bo = [];
+const bp = [];
+const bq = bm in bo;
+const br = bn instanceof bp;
+const bs = [ bq, br ];
+$( bs );
 `````
 
 ## Globals

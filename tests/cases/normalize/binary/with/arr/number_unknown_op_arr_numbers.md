@@ -47,49 +47,28 @@ $(arr2);
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const x /*:number*/ = 1 * tmpBinBothRhs;
-const tmpBinBothRhs$1 /*:array*/ = [10, 20, 30];
-const tmpArrElement /*:number*/ = x ** tmpBinBothRhs$1;
-const tmpBinBothRhs$3 /*:array*/ = [10, 20, 30];
-const tmpArrElement$1 /*:number*/ = x * tmpBinBothRhs$3;
-const tmpBinBothRhs$5 /*:array*/ = [10, 20, 30];
-const tmpArrElement$3 /*:number*/ = x / tmpBinBothRhs$5;
-const tmpBinBothRhs$7 /*:array*/ = [10, 20, 30];
-const tmpArrElement$5 /*:number*/ = x % tmpBinBothRhs$7;
 const tmpStringConcatR /*:string*/ = $coerce(x, `string`);
-const tmpBinBothRhs$11 /*:array*/ = [10, 20, 30];
-const tmpArrElement$9 /*:number*/ = x - tmpBinBothRhs$11;
-const tmpBinBothRhs$13 /*:array*/ = [10, 20, 30];
-const tmpArrElement$11 /*:number*/ = x << tmpBinBothRhs$13;
-const tmpBinBothRhs$15 /*:array*/ = [10, 20, 30];
-const tmpArrElement$13 /*:number*/ = x >> tmpBinBothRhs$15;
-const tmpBinBothRhs$17 /*:array*/ = [10, 20, 30];
-const tmpArrElement$15 /*:number*/ = x >>> tmpBinBothRhs$17;
-const tmpBinBothRhs$19 /*:array*/ = [10, 20, 30];
-const tmpArrElement$17 /*:boolean*/ = x < tmpBinBothRhs$19;
-const tmpBinBothRhs$21 /*:array*/ = [10, 20, 30];
-const tmpArrElement$19 /*:boolean*/ = x > tmpBinBothRhs$21;
-const tmpBinBothRhs$23 /*:array*/ = [10, 20, 30];
-const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$23;
-const tmpBinBothRhs$25 /*:array*/ = [10, 20, 30];
-const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$25;
 const tmpBinBothRhs$27 /*:array*/ = [10, 20, 30];
 const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$27;
 const tmpBinBothRhs$29 /*:array*/ = [10, 20, 30];
 const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$29;
-const tmpBinBothRhs$35 /*:array*/ = [10, 20, 30];
-const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$35;
-const tmpBinBothRhs$37 /*:array*/ = [10, 20, 30];
-const tmpArrElement$35 /*:number*/ = x ^ tmpBinBothRhs$37;
-const tmpBinBothRhs$39 /*:array*/ = [10, 20, 30];
-const tmpArrElement$37 /*:number*/ = x | tmpBinBothRhs$39;
 const tmpArrElement$7 /*:string*/ = `${tmpStringConcatR}10,20,30`;
+const tmpArrElement$11 /*:number*/ = x << 0;
+const tmpArrElement$13 /*:number*/ = x >> 0;
+const tmpArrElement$15 /*:number*/ = x >>> 0;
+const tmpArrElement$17 /*:boolean*/ = x < `10,20,30`;
+const tmpArrElement$19 /*:boolean*/ = x > `10,20,30`;
+const tmpArrElement$21 /*:boolean*/ = x <= `10,20,30`;
+const tmpArrElement$23 /*:boolean*/ = x >= `10,20,30`;
+const tmpArrElement$35 /*:number*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ = x | 0;
 const arr /*:array*/ = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
+  NaN,
+  NaN,
+  NaN,
+  NaN,
   tmpArrElement$7,
-  tmpArrElement$9,
+  NaN,
   tmpArrElement$11,
   tmpArrElement$13,
   tmpArrElement$15,
@@ -101,7 +80,7 @@ const arr /*:array*/ = [
   tmpArrElement$27,
   false,
   true,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ];
@@ -120,32 +99,26 @@ $(arr2);
 `````js filename=intro
 const tmpBinBothRhs = $(1);
 const x = 1 * tmpBinBothRhs;
-const tmpArrElement = x ** [10, 20, 30];
-const tmpArrElement$1 = x * [10, 20, 30];
-const tmpArrElement$3 = x / [10, 20, 30];
-const tmpArrElement$5 = x % [10, 20, 30];
 const tmpStringConcatR = $coerce(x, `string`);
-const tmpArrElement$9 = x - [10, 20, 30];
-const tmpArrElement$11 = x << [10, 20, 30];
-const tmpArrElement$13 = x >> [10, 20, 30];
-const tmpArrElement$15 = x >>> [10, 20, 30];
-const tmpArrElement$17 = x < [10, 20, 30];
-const tmpArrElement$19 = x > [10, 20, 30];
-const tmpArrElement$21 = x <= [10, 20, 30];
-const tmpArrElement$23 = x >= [10, 20, 30];
 const tmpArrElement$25 = x == [10, 20, 30];
 const tmpArrElement$27 = x != [10, 20, 30];
-const tmpArrElement$33 = x & [10, 20, 30];
-const tmpArrElement$35 = x ^ [10, 20, 30];
-const tmpArrElement$37 = x | [10, 20, 30];
 const tmpArrElement$7 = `${tmpStringConcatR}10,20,30`;
+const tmpArrElement$11 = x << 0;
+const tmpArrElement$13 = x >> 0;
+const tmpArrElement$15 = x >>> 0;
+const tmpArrElement$17 = x < `10,20,30`;
+const tmpArrElement$19 = x > `10,20,30`;
+const tmpArrElement$21 = x <= `10,20,30`;
+const tmpArrElement$23 = x >= `10,20,30`;
+const tmpArrElement$35 = x ^ 0;
+const tmpArrElement$37 = x | 0;
 $([
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
+  NaN,
+  NaN,
+  NaN,
+  NaN,
   tmpArrElement$7,
-  tmpArrElement$9,
+  NaN,
   tmpArrElement$11,
   tmpArrElement$13,
   tmpArrElement$15,
@@ -157,7 +130,7 @@ $([
   tmpArrElement$27,
   false,
   true,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
@@ -306,50 +279,29 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = 1 * a;
-const c = [ 10, 20, 30 ];
-const d = b ** c;
-const e = [ 10, 20, 30 ];
-const f = b * e;
-const g = [ 10, 20, 30 ];
-const h = b / g;
-const i = [ 10, 20, 30 ];
-const j = b % i;
-const k = $coerce( b, "string" );
-const l = [ 10, 20, 30 ];
-const m = b - l;
-const n = [ 10, 20, 30 ];
-const o = b << n;
-const p = [ 10, 20, 30 ];
-const q = b >> p;
-const r = [ 10, 20, 30 ];
-const s = b >>> r;
-const t = [ 10, 20, 30 ];
-const u = b < t;
-const v = [ 10, 20, 30 ];
-const w = b > v;
-const x = [ 10, 20, 30 ];
-const y = b <= x;
-const z = [ 10, 20, 30 ];
-const ba = b >= z;
-const bb = [ 10, 20, 30 ];
-const bc = b == bb;
-const bd = [ 10, 20, 30 ];
-const be = b != bd;
-const bf = [ 10, 20, 30 ];
-const bg = b & bf;
-const bh = [ 10, 20, 30 ];
-const bi = b ^ bh;
-const bj = [ 10, 20, 30 ];
-const bk = b | bj;
-const bl = `${k}10,20,30`;
-const bm = [ d, f, h, j, bl, m, o, q, s, u, w, y, ba, bc, be, false, true, bg, bi, bk ];
-$( bm );
-const bn = [];
-const bo = [];
-const bp = b in bn;
-const bq = b instanceof bo;
-const br = [ bp, bq ];
-$( br );
+const c = $coerce( b, "string" );
+const d = [ 10, 20, 30 ];
+const e = b == d;
+const f = [ 10, 20, 30 ];
+const g = b != f;
+const h = `${c}10,20,30`;
+const i = b << 0;
+const j = b >> 0;
+const k = b >>> 0;
+const l = b < "10,20,30";
+const m = b > "10,20,30";
+const n = b <= "10,20,30";
+const o = b >= "10,20,30";
+const p = b ^ 0;
+const q = b | 0;
+const r = [ NaN, NaN, NaN, NaN, h, NaN, i, j, k, l, m, n, o, e, g, false, true, 0, p, q ];
+$( r );
+const s = [];
+const t = [];
+const u = b in s;
+const v = b instanceof t;
+const w = [ u, v ];
+$( w );
 `````
 
 ## Globals

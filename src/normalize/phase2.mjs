@@ -107,6 +107,7 @@ import { ifTestInvIdent } from '../reduce_static/if_test_inv_ident.mjs';
 import { ifWeaving } from '../reduce_static/if_weaving.mjs';
 import { ifTestNested } from '../reduce_static/if_test_nested.mjs';
 import { frfrTricks } from '../reduce_static/frfr_tricks.mjs';
+import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -275,6 +276,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     ifelseifelse(fdata) ||
     ifCallIf(fdata) ||
     arrrrrr(fdata) ||
+    arrCoerce(fdata) ||
     recursiveFuncs(fdata) ||
     labelScoping(fdata) ||
     objlitPropAccess(fdata) ||

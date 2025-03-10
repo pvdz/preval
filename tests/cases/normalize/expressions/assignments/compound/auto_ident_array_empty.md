@@ -19,8 +19,7 @@ $(a);
 
 `````js filename=intro
 const a /*:object*/ = { a: 999, b: 1000 };
-const tmpBinBothRhs /*:array*/ = [];
-const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
+const tmpClusterSSA_a /*:number*/ = a * 0;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
@@ -29,7 +28,7 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = { a: 999, b: 1000 } * [];
+const tmpClusterSSA_a = { a: 999, b: 1000 } * 0;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
@@ -64,10 +63,9 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [];
-const c = a * b;
-$( c );
-$( c );
+const b = a * 0;
+$( b );
+$( b );
 `````
 
 ## Globals

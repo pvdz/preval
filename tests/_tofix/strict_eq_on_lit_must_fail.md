@@ -30,12 +30,8 @@ $(tmpCalleeParam);
 const tmpBinLhs$1 /*:object*/ = {};
 const tmpCalleeParam$1 /*:boolean*/ = tmpBinLhs$1 !== x;
 $(tmpCalleeParam$1);
-const tmpBinLhs$3 /*:array*/ = [];
-const tmpCalleeParam$3 /*:boolean*/ = tmpBinLhs$3 === x;
-$(tmpCalleeParam$3);
-const tmpBinLhs$5 /*:array*/ = [];
-const tmpCalleeParam$5 /*:boolean*/ = tmpBinLhs$5 !== x;
-$(tmpCalleeParam$5);
+$(false);
+$(true);
 const tmpBinLhs$7 /*:regex*/ = /x/;
 const tmpCalleeParam$7 /*:boolean*/ = tmpBinLhs$7 === x;
 $(tmpCalleeParam$7);
@@ -50,8 +46,8 @@ $(tmpCalleeParam$9);
 `````js filename=intro
 $({} === x);
 $({} !== x);
-$([] === x);
-$([] !== x);
+$(false);
+$(true);
 $(/x/ === x);
 $(/x/ !== x);
 `````
@@ -102,18 +98,14 @@ $( b );
 const c = {};
 const d = c !== x;
 $( d );
-const e = [];
+$( false );
+$( true );
+const e = /x/;
 const f = e === x;
 $( f );
-const g = [];
+const g = /x/;
 const h = g !== x;
 $( h );
-const i = /x/;
-const j = i === x;
-$( j );
-const k = /x/;
-const l = k !== x;
-$( l );
 `````
 
 ## Globals
@@ -134,3 +126,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- We have to retain the other expression for tdz/ref error reasons

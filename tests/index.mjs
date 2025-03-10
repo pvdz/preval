@@ -415,8 +415,14 @@ function runTestCase(
           const {} = obj;
         }
       }
-      const clone = { ...obj };
-      withoutTheseProps.forEach((name) => delete clone[name]); // delete is huge deopt so this needs to be handled differently for a prod release.
+      // We have to iterate over the keys because if we do a `clone={...obj}; delete clone[key]`
+      // we trigger getters that we may not want to trigger.
+      const clone = {};
+      for (const key in obj) {
+        if (Object.hasOwn(obj, key) && !withoutTheseProps.includes(key)) {
+          clone[key] = obj[key];
+        }
+      }
       return clone;
     }
 
@@ -722,6 +728,7 @@ function runTestCase(
         .replace(/Preval: cannot call a locked function \(binding overwritten with non-func\)/, '<ref> is not function/iterable')
         .replace(/function ?\(\) ?\{/g, 'function() {')
         .replace(/Cannot read propert.*? of .*/g, 'Cannot read property <ref> of <ref2>')
+        //.replace(/Cannot read propert.*? of .*/g, '<ref> is not function/iterable') // Ultimately, not doing this creates more noise than signal.
         .replace(/(?:Preval: )?Cannot access ['`][\w$]+['`] before initialization/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: This statement contained a read that reached no writes.*/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: TDZ triggered for.*/, "Cannot access '<ref>' before initialization")

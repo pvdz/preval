@@ -226,29 +226,8 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: 'a'
- - 2: 'b'
- - 3: 'b'
- - 4: 'c'
- - 5: 'd'
- - 6: 'a', 'b', { d: '"c"', e: '"d"' }
- - eval returned: undefined
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 'a'
- - 2: 'b'
- - 3: 'b'
- - 4: 'c'
- - 5: 'd'
- - 6: 'a', 'b', { d: '"c"', e: '"d"' }
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'a'
- - 2: 'b'
- - 3: 'b'
- - 4: 'c'
- - 5: 'd'
- - 6: 'a', 'b', { d: '"c"', e: '"d"' }
- - eval returned: undefined
+Denormalized calls: Same

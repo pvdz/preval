@@ -5,7 +5,7 @@ import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, after, assertNoDupeNodes, rule, riskyRule, example } from '../utils.mjs';
 import { VERBOSE_TRACING } from '../constants.mjs';
 import * as AST from '../ast.mjs';
-import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 import { isComplexNode } from '../ast.mjs';
 
 export function denorm(fdata, resolve, req, options) {
@@ -197,16 +197,17 @@ export function denorm(fdata, resolve, req, options) {
           else if (
             init.type === 'CallExpression' &&
             init.callee.type === 'Identifier' &&
-            init.callee.name === '$coerce' &&
+            init.callee.name === SYMBOL_COERCE &&
+            AST.getPrimitiveValue(init.arguments[1]) === 'string' && // plustr is not same as template concat so don't merge them
             // We should be able to safely collapse this if this call is assigned to a fresh
             // var, there is one read/write for this var, and the var read is in a template
-            // `const x = $coerce(a, 'plustr'); const y = `(${x})``
+            // `const x = $coerce(a, 'string'); const y = `(${x})``
             nextExpr?.type === 'TemplateLiteral' &&
             nextExpr.expressions[0]?.type === 'Identifier' &&
             nextExpr.expressions[0].name === varname
           ) {
             rule('When the $coerce result is used in a template next to it, move its first arg into it');
-            example("const x = $coerce(a, 'plustr'); const y = `(${x})`", "const y = `(${a})`");
+            example("const x = $coerce(a, 'string'); const y = `(${x})`", "const y = `(${a})`");
             before(parentNode.body[parentIndex]);
             before(parentNode.body[parentIndex + 1]);
 

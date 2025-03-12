@@ -27,7 +27,8 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`(${val})`);
+const x = $coerce(val, `plustr`);
+$(`(${x})`);
 `````
 
 ## Pre Normal

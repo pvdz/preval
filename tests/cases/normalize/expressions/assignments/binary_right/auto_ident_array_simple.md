@@ -30,7 +30,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`${$(100)}1,2,3`);
+const tmpStringConcatR = $coerce($(100), `plustr`);
+$(`${tmpStringConcatR}1,2,3`);
 $([1, 2, 3]);
 `````
 

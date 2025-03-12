@@ -70,7 +70,9 @@ const obj = {
     return a;
   },
   set x(v) {
-    s = s + `write[${v}];`;
+    const tmpBinBothLhs = s;
+    const tmpStringConcatL = $coerce(v, `plustr`);
+    s = tmpBinBothLhs + `write[${tmpStringConcatL}];`;
     a = a + v;
     return a;
   },

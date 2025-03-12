@@ -11,229 +11,256 @@ Especially in global, I think we can do better
 ## Input
 
 `````js filename=intro
-let _0x4a09/*:(unknown, unknown)=>*/ = function(_0x5796ef, _0x26241c) {
-  _0x4a09 = function(_0x6bfd63, $$1) {
-    const tmpPrevalAliasArgumentsAny = arguments;
-    const tmpClusterSSA__0x6bfd63/*:number*/ = _0x6bfd63 - 208;
-    const _0x34cc82 = _0x4157[tmpClusterSSA__0x6bfd63];
-    if (_0x4a09.NCZorg === undefined) {
-      _0x4a09.YBuklE = tmpClusterSSA__0x36fe1d;
-      _0x5796ef = tmpPrevalAliasArgumentsAny;
-      _0x4a09.NCZorg = true;
+const arr = $([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]);
+let func/*:(unknown, unknown)=>*/ = function(arg1, arg2) {
+  func = function(newArg1, unusedNewArg2) {
+    const index/*:number*/ = newArg1 - 1;
+    const arrval = arr[index];
+    if (func.IS_EXPANDO_SET === undefined) {
+      func.THIS_IS_AN_EXPANDO = $spy;
+      arg1 = arguments;
+      func.IS_EXPANDO_SET = true;
     }
-    const _0x3ccddd/*:primitive*/ = tmpClusterSSA__0x6bfd63 + _0x4157[0];
-    const _0x3ffbb4 = _0x5796ef[_0x3ccddd];
-    if (_0x3ffbb4) {
-      return _0x3ffbb4;
+    const newIndex/*:primitive*/ = index + arr[0];
+    const arguments_x = arg1[newIndex];                           // Note: at this point this is the original inner `arguments`
+    if (arguments_x) {
+      return arguments_x;
     } else {
-      const tmpClusterSSA__0x34cc82 = _0x4a09.YBuklE(_0x34cc82);
-      _0x5796ef[_0x3ccddd] = tmpClusterSSA__0x34cc82;
-      return tmpClusterSSA__0x34cc82;
+      const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
+      arg1[newIndex] = expando_result;
+      return expando_result;
     }
   };
-  const tmpReturnArg$3 = _0x4a09(_0x5796ef, _0x26241c);
-  return tmpReturnArg$3;
+  const r = func(arg1, arg2);
+  return r;
 };
-$(_0x4a09);
+// If func escapes and we can't assert the first call to it, we are SooL.
+// We need to know the values of the args of the first call otherwise we
+// won't know what the closure value for newArg1 is.
+// Arg2 seems unused but since `arguments` is stored and cached in a
+// closure, it may not be dead either.
+// The function tends to be aliased too, which complicates the search.
+// But we can still assert what the first call site is of this func.
+const alias = func;
+const a = alias(3, 4);
+const b = func(1, 2);
+$(a, b);
 `````
 
 ## Settled
 
 
 `````js filename=intro
-let _0x4a09 /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  let _0x5796ef /*:unknown*/ = $$0;
-  const _0x26241c /*:unknown*/ = $$1;
+const tmpCalleeParam /*:array*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+const arr /*:unknown*/ = $(tmpCalleeParam);
+let func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
+  let arg1 /*:unknown*/ = $$0;
+  const arg2 /*:unknown*/ = $$1;
   debugger;
-  _0x4a09 = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ = arguments;
-    const _0x6bfd63 /*:unknown*/ = $$0;
+  func = function ($$0, $$1) {
+    const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+    const newArg1 /*:unknown*/ = $$0;
     debugger;
-    const tmpClusterSSA__0x6bfd63 /*:number*/ = _0x6bfd63 - 208;
-    const _0x34cc82 /*:unknown*/ = _0x4157[tmpClusterSSA__0x6bfd63];
-    const tmpBinLhs /*:unknown*/ = _0x4a09.NCZorg;
+    const index /*:number*/ = newArg1 - 1;
+    const arrval /*:unknown*/ = arr[index];
+    const tmpBinLhs /*:unknown*/ = func.IS_EXPANDO_SET;
     const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
     if (tmpIfTest) {
-      _0x4a09.YBuklE = tmpClusterSSA__0x36fe1d;
-      _0x5796ef = tmpPrevalAliasArgumentsAny$1;
-      _0x4a09.NCZorg = true;
+      func.THIS_IS_AN_EXPANDO = $spy;
+      arg1 = tmpPrevalAliasArgumentsAny;
+      func.IS_EXPANDO_SET = true;
     } else {
     }
-    const tmpBinBothRhs /*:unknown*/ = _0x4157[0];
-    const _0x3ccddd /*:primitive*/ = tmpClusterSSA__0x6bfd63 + tmpBinBothRhs;
-    const _0x3ffbb4 /*:unknown*/ = _0x5796ef[_0x3ccddd];
-    if (_0x3ffbb4) {
-      return _0x3ffbb4;
+    const tmpBinBothRhs /*:unknown*/ = arr[0];
+    const newIndex /*:primitive*/ = index + tmpBinBothRhs;
+    const arguments_x /*:unknown*/ = arg1[newIndex];
+    if (arguments_x) {
+      return arguments_x;
     } else {
-      const tmpClusterSSA__0x34cc82 /*:unknown*/ = _0x4a09.YBuklE(_0x34cc82);
-      _0x5796ef[_0x3ccddd] = tmpClusterSSA__0x34cc82;
-      return tmpClusterSSA__0x34cc82;
+      const expando_result /*:unknown*/ = func.THIS_IS_AN_EXPANDO(arrval);
+      arg1[newIndex] = expando_result;
+      return expando_result;
     }
   };
-  const tmpReturnArg$3 /*:unknown*/ = _0x4a09(_0x5796ef, _0x26241c);
-  return tmpReturnArg$3;
+  const r /*:unknown*/ = func(arg1, arg2);
+  return r;
 };
-$(_0x4a09);
+const a /*:unknown*/ = func(3, 4);
+const b /*:unknown*/ = func(1, 2);
+$(a, b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let _0x4a09 = function (_0x5796ef, _0x26241c) {
-  _0x4a09 = function (_0x6bfd63, $$1) {
-    const tmpPrevalAliasArgumentsAny$1 = arguments;
-    const tmpClusterSSA__0x6bfd63 = _0x6bfd63 - 208;
-    const _0x34cc82 = _0x4157[tmpClusterSSA__0x6bfd63];
-    if (_0x4a09.NCZorg === undefined) {
-      _0x4a09.YBuklE = tmpClusterSSA__0x36fe1d;
-      _0x5796ef = tmpPrevalAliasArgumentsAny$1;
-      _0x4a09.NCZorg = true;
+const arr = $([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]);
+let func = function (arg1, arg2) {
+  func = function (newArg1, $$1) {
+    const tmpPrevalAliasArgumentsAny = arguments;
+    const index = newArg1 - 1;
+    const arrval = arr[index];
+    if (func.IS_EXPANDO_SET === undefined) {
+      func.THIS_IS_AN_EXPANDO = $spy;
+      arg1 = tmpPrevalAliasArgumentsAny;
+      func.IS_EXPANDO_SET = true;
     }
-    const _0x3ccddd = tmpClusterSSA__0x6bfd63 + _0x4157[0];
-    const _0x3ffbb4 = _0x5796ef[_0x3ccddd];
-    if (_0x3ffbb4) {
-      return _0x3ffbb4;
+    const newIndex = index + arr[0];
+    const arguments_x = arg1[newIndex];
+    if (arguments_x) {
+      return arguments_x;
     } else {
-      const tmpClusterSSA__0x34cc82 = _0x4a09.YBuklE(_0x34cc82);
-      _0x5796ef[_0x3ccddd] = tmpClusterSSA__0x34cc82;
-      return tmpClusterSSA__0x34cc82;
+      const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
+      arg1[newIndex] = expando_result;
+      return expando_result;
     }
   };
-  const tmpReturnArg$3 = _0x4a09(_0x5796ef, _0x26241c);
-  return tmpReturnArg$3;
+  const r = func(arg1, arg2);
+  return r;
 };
-$(_0x4a09);
+$(func(3, 4), func(1, 2));
 `````
 
 ## Pre Normal
 
 
 `````js filename=intro
-let _0x4a09 = function ($$0, $$1) {
-  let _0x5796ef = $$0;
-  let _0x26241c = $$1;
+const arr = $([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]);
+let func = function ($$0, $$1) {
+  let arg1 = $$0;
+  let arg2 = $$1;
   debugger;
-  _0x4a09 = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny$1 = arguments;
-    let _0x6bfd63 = $$0;
-    let $dlr_$$1 = $$1;
+  func = function ($$0, $$1) {
+    const tmpPrevalAliasArgumentsAny = arguments;
+    let newArg1 = $$0;
+    let unusedNewArg2 = $$1;
     debugger;
-    const tmpPrevalAliasArgumentsAny = tmpPrevalAliasArgumentsAny$1;
-    const tmpClusterSSA__0x6bfd63 = _0x6bfd63 - 208;
-    const _0x34cc82 = _0x4157[tmpClusterSSA__0x6bfd63];
-    if (_0x4a09.NCZorg === undefined) {
-      _0x4a09.YBuklE = tmpClusterSSA__0x36fe1d;
-      _0x5796ef = tmpPrevalAliasArgumentsAny;
-      _0x4a09.NCZorg = true;
+    const index = newArg1 - 1;
+    const arrval = arr[index];
+    if (func.IS_EXPANDO_SET === undefined) {
+      func.THIS_IS_AN_EXPANDO = $spy;
+      arg1 = tmpPrevalAliasArgumentsAny;
+      func.IS_EXPANDO_SET = true;
     }
-    const _0x3ccddd = tmpClusterSSA__0x6bfd63 + _0x4157[0];
-    const _0x3ffbb4 = _0x5796ef[_0x3ccddd];
-    if (_0x3ffbb4) {
-      return _0x3ffbb4;
+    const newIndex = index + arr[0];
+    const arguments_x = arg1[newIndex];
+    if (arguments_x) {
+      return arguments_x;
     } else {
-      const tmpClusterSSA__0x34cc82 = _0x4a09.YBuklE(_0x34cc82);
-      _0x5796ef[_0x3ccddd] = tmpClusterSSA__0x34cc82;
-      return tmpClusterSSA__0x34cc82;
+      const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
+      arg1[newIndex] = expando_result;
+      return expando_result;
     }
   };
-  const tmpReturnArg$3 = _0x4a09(_0x5796ef, _0x26241c);
-  return tmpReturnArg$3;
+  const r = func(arg1, arg2);
+  return r;
 };
-$(_0x4a09);
+const alias = func;
+const a = alias(3, 4);
+const b = func(1, 2);
+$(a, b);
 `````
 
 ## Normalized
 
 
 `````js filename=intro
-let _0x4a09 = function ($$0, $$1) {
-  let _0x5796ef = $$0;
-  let _0x26241c = $$1;
+const tmpCalleeParam = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+const arr = $(tmpCalleeParam);
+let func = function ($$0, $$1) {
+  let arg1 = $$0;
+  let arg2 = $$1;
   debugger;
-  _0x4a09 = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny$1 = arguments;
-    let _0x6bfd63 = $$0;
-    let $dlr_$$1 = $$1;
+  func = function ($$0, $$1) {
+    const tmpPrevalAliasArgumentsAny = arguments;
+    let newArg1 = $$0;
+    let unusedNewArg2 = $$1;
     debugger;
-    const tmpPrevalAliasArgumentsAny = tmpPrevalAliasArgumentsAny$1;
-    const tmpClusterSSA__0x6bfd63 = _0x6bfd63 - 208;
-    const _0x34cc82 = _0x4157[tmpClusterSSA__0x6bfd63];
-    const tmpBinLhs = _0x4a09.NCZorg;
+    const index = newArg1 - 1;
+    const arrval = arr[index];
+    const tmpBinLhs = func.IS_EXPANDO_SET;
     const tmpIfTest = tmpBinLhs === undefined;
     if (tmpIfTest) {
-      _0x4a09.YBuklE = tmpClusterSSA__0x36fe1d;
-      _0x5796ef = tmpPrevalAliasArgumentsAny;
-      _0x4a09.NCZorg = true;
+      func.THIS_IS_AN_EXPANDO = $spy;
+      arg1 = tmpPrevalAliasArgumentsAny;
+      func.IS_EXPANDO_SET = true;
     } else {
     }
-    const tmpBinBothLhs = tmpClusterSSA__0x6bfd63;
-    const tmpBinBothRhs = _0x4157[0];
-    const _0x3ccddd = tmpBinBothLhs + tmpBinBothRhs;
-    const _0x3ffbb4 = _0x5796ef[_0x3ccddd];
-    if (_0x3ffbb4) {
-      return _0x3ffbb4;
+    const tmpBinBothLhs = index;
+    const tmpBinBothRhs = arr[0];
+    const newIndex = tmpBinBothLhs + tmpBinBothRhs;
+    const arguments_x = arg1[newIndex];
+    if (arguments_x) {
+      return arguments_x;
     } else {
-      const tmpClusterSSA__0x34cc82 = _0x4a09.YBuklE(_0x34cc82);
-      _0x5796ef[_0x3ccddd] = tmpClusterSSA__0x34cc82;
-      return tmpClusterSSA__0x34cc82;
+      const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
+      arg1[newIndex] = expando_result;
+      return expando_result;
     }
   };
-  const tmpReturnArg$3 = _0x4a09(_0x5796ef, _0x26241c);
-  return tmpReturnArg$3;
+  const r = func(arg1, arg2);
+  return r;
 };
-$(_0x4a09);
+const alias = func;
+const a = func(3, 4);
+const b = func(1, 2);
+$(a, b);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-let a = function($$0,$$1 ) {
-  let b = $$0;
-  const c = $$1;
+const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
+const b = $( a );
+let c = function($$0,$$1 ) {
+  let d = $$0;
+  const e = $$1;
   debugger;
-  a = function($$0,$$1 ) {
-    const d = e;
-    const f = $$0;
+  c = function($$0,$$1 ) {
+    const f = g;
+    const h = $$0;
     debugger;
-    const g = f - 208;
-    const h = _0x4157[ g ];
-    const i = a.NCZorg;
-    const j = i === undefined;
-    if (j) {
-      a.YBuklE = tmpClusterSSA__0x36fe1d;
-      b = d;
-      a.NCZorg = true;
+    const i = h - 1;
+    const j = b[ i ];
+    const k = c.IS_EXPANDO_SET;
+    const l = k === undefined;
+    if (l) {
+      c.THIS_IS_AN_EXPANDO = $spy;
+      d = f;
+      c.IS_EXPANDO_SET = true;
     }
-    const k = _0x4157[ 0 ];
-    const l = g + k;
-    const m = b[ l ];
-    if (m) {
-      return m;
+    const m = b[ 0 ];
+    const n = i + m;
+    const o = d[ n ];
+    if (o) {
+      return o;
     }
     else {
-      const n = a.YBuklE( h );
-      b[l] = n;
-      return n;
+      const p = c.THIS_IS_AN_EXPANDO( j );
+      d[n] = p;
+      return p;
     }
   };
-  const o = a( b, c );
-  return o;
+  const q = c( d, e );
+  return q;
 };
-$( a );
+const r = c( 3, 4 );
+const s = c( 1, 2 );
+$( r, s );
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-_0x4157, tmpClusterSSA__0x36fe1d
+None
 
 ## Runtime Outcome
 
 Should call `$` with:
- - 1: '<function>'
+ - 1: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+ - 2: 'Creating spy', 1, 1, [300, 300]
+ - 3: 'Creating spy', 2, 1, [100, 100]
+ - 4: '<spy[1]>', '<spy[2]>'
  - eval returned: undefined
 
 Pre normalization calls: Same

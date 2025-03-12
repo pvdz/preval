@@ -54,9 +54,11 @@ if (t) {
 const s = $(`s`);
 const t = $(`t`);
 if (t) {
-  $(`abcdef${t}`);
+  const tmpStringConcatL = $coerce(t, `plustr`);
+  $(`abcdef${tmpStringConcatL}`);
 } else {
-  $(`abcghi${s}`);
+  const tmpStringConcatL$1 = $coerce(s, `plustr`);
+  $(`abcghi${tmpStringConcatL$1}`);
 }
 `````
 

@@ -25,7 +25,8 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`this \`thing\`${$(`here`)}is \`quoted\``);
+const tmpStringConcatL = $coerce($(`here`), `plustr`);
+$(`this \`thing\`${tmpStringConcatL}is \`quoted\``);
 `````
 
 ## Pre Normal

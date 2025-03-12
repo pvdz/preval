@@ -70,7 +70,9 @@ const obj = {
     return a;
   },
   set x(v) {
-    s = s + `write[${v}];`;
+    const tmpBinBothLhs = s;
+    const tmpStringConcatL = $coerce(v, `plustr`);
+    s = tmpBinBothLhs + `write[${tmpStringConcatL}];`;
     a = a + v;
     return a;
   },
@@ -183,9 +185,4 @@ Normalized calls: Same
 
 Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'Creating spy', 1, 0, ['spy', 12345]
- - 2: '$spy[1].toString()'
- - 3: '$spy[1].valueOf()'
- - 4: 12345, 'write[spy];'
- - eval returned: undefined
+Denormalized calls: Same

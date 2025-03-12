@@ -617,6 +617,7 @@ export function createWriteRef(obj) {
 
     ...rest
   } = obj;
+  ASSERT(kind === 'var' || kind === 'assign' || kind === 'other', 'update write kind', kind);
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
   ASSERT(typeof innerLoop === 'number');

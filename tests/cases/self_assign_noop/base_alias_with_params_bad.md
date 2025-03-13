@@ -26,7 +26,7 @@ var f = function(a, b) {
 function h() {
   const g = f;
   f(1, 2);
-  g(3, 4); // invoked too late, this is bad!
+  g(3, 4); // invoked too late, this blocks the transform !
 }
 $(h);
 `````

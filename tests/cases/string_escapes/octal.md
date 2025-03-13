@@ -6,6 +6,12 @@
 >
 > Welcome to the webcompat corner
 
+## Options
+
+Octals dont play well.
+
+- skipEval
+
 ## Input
 
 `````js filename=intro

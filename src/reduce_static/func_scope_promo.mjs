@@ -175,7 +175,7 @@ export function findClosureRefs(funcNode) {
   // TODO: I think we can simplify this to a single flat set considering our normalization rules. Local binding names should be unique and not the same as a discovered global binding. After that we should trust that if a local name is referenced, that the name must target that local binding and not a global binding.
   const blockReferences = [];
 
-  vlog('Walking...');
+  vgroup('findClosureRefs: Walking...');
   walk(_funcWalker, funcNode, 'body');
   function _funcWalker(node, before, nodeType, path) {
     const key = nodeType + ':' + (before ? 'before' : 'after');
@@ -212,6 +212,8 @@ export function findClosureRefs(funcNode) {
       }
     }
   }
+  vlog('/findClosureRefs walk');
+  vgroupEnd();
 
   vlog('Verifying local from closure...');
   // "A reference is a closure when `not one` of the parent blocks contained a var decl for this name"
@@ -222,6 +224,7 @@ export function findClosureRefs(funcNode) {
       closures.add(name);
     }
   });
+  vlog('- found', closures.size, 'closures');
 
   return closures;
 }

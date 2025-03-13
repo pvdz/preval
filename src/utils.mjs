@@ -417,12 +417,22 @@ export function isSameNodeByPrintingExpensive(A, B) {
   return tmat(A, true) === tmat(B, true);
 }
 
-export function allReadsAreCallsOrAliasing(fdata, meta) {
+export function allReadsAreCallsOrAliasingOrRecursive(fdata, meta, recursionBlockChain) {
   // Given a binding, determine if all reads from this binding are regular calls.
   // Allow for aliases, only as constants (so only as var decls, not assignments)
   // and in that case also do the same check for the alias.
+  // The alias must have 1 read and 1 write and must be called immediately because
+  // otherwise it may still cause problems. We check it mostly to eliminate a red herring.
   if (meta.reads.some((rw, i) => {
     ASSERT(rw.kind === 'read', 'a read is a read'); // If this fails just return false here
+
+    // If the usage is _inside_ the inner func then that's fine. We don't care what happens
+    // to the func once it can call the inner func. So ignore any recursive reads.
+    if (rw.blockChain.startsWith(recursionBlockChain)) {
+      vlog('  - this is a recursive usage; ignored', recursionBlockChain, '<=', rw.blockChain);
+      return false;
+    }
+
 
     if (rw.parentNode.type === 'CallExpression') {
       if (rw.parentProp !== 'callee') {
@@ -434,7 +444,6 @@ export function allReadsAreCallsOrAliasing(fdata, meta) {
 
     if (rw.parentNode.type === 'VariableDeclarator' && rw.parentProp === 'init') {
       ASSERT(rw.parentProp === 'init', 'if not right then it would not be a read');
-      ASSERT(rw.parentNode.id.type === 'Identifier', 'no big deal if it isnt, we can just return true here, but i think normalized code has ids for all var decls');
 
       // Verify that left is only assigned to once and only called otherwise
       const aliasMeta = fdata.globallyUniqueNamingRegistry.get(rw.parentNode.id.name);
@@ -443,12 +452,21 @@ export function allReadsAreCallsOrAliasing(fdata, meta) {
         vlog('   - bail: alias is written more than once');
         return true;
       }
+      if (aliasMeta.reads.length !== 1) {
+        vlog('   - bail: alias is read more than once');
+        return true;
+      }
 
-      if (aliasMeta.reads.some(rw => {
-        // All reads are regular func calls to this name
-        return !(rw.parentNode.type === 'CallExpression' && rw.parentProp === 'callee');
-      })) {
+      if (aliasMeta.reads[0].parentNode.type !== 'CallExpression' || aliasMeta.reads[0].parentProp !== 'callee') {
         vlog('   - bail: alias was not only called');
+        return true;
+      }
+
+      if (
+        aliasMeta.writes[0].blockBody !== aliasMeta.reads[0].blockBody ||
+        aliasMeta.writes[0].blockIndex + 1 !== aliasMeta.reads[0].blockIndex
+      ) {
+        vlog('  - bail: alias was not immediately invoked');
         return true;
       }
 

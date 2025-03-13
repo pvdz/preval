@@ -1,8 +1,8 @@
 # Preval test case
 
-# base_alias.md
+# base_alias2.md
 
-> Self assign noop > Base alias
+> Self assign noop > Base alias2
 >
 > This is targeting a specific trick used by certain obfuscators.
 > The pattern will create a function, then reassign a new function to that same binding. In this 
@@ -24,6 +24,10 @@
 >
 > We will also support an alias check. If the function is assigned to another binding, we check
 > this binding to confirm that it is only ever used as a function call.
+
+The trouble is when calling the alias again later it still calls the original outer
+function. So we must make sure that either the outer function gets called before
+creating the alias, or the alias is never called again and does not escape.
 
 ## Input
 

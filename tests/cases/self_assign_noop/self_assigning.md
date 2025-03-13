@@ -2,7 +2,7 @@
 
 # self_assigning.md
 
-> Tofix > self assigning
+> Self assign noop > Self assigning
 
 Point is that this function is called and immediately overrides itself, then calls itself again.
 
@@ -11,7 +11,7 @@ Especially in global, I think we can do better
 ## Input
 
 `````js filename=intro
-const arr = $([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]);
+const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let func/*:(unknown, unknown)=>*/ = function(arg1, arg2) {
   func = function(newArg1, unusedNewArg2) {
     const index/*:number*/ = newArg1 - 1;
@@ -51,39 +51,33 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:array*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-const arr /*:unknown*/ = $(tmpCalleeParam);
-let func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
-  let arg1 /*:unknown*/ = $$0;
-  const arg2 /*:unknown*/ = $$1;
+let tmpExpando /*:primitive*/ = undefined;
+const arr /*:array*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1) {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  const newArg1 /*:unknown*/ = $$0;
   debugger;
-  func = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
-    const newArg1 /*:unknown*/ = $$0;
-    debugger;
-    const index /*:number*/ = newArg1 - 1;
-    const arrval /*:unknown*/ = arr[index];
-    const tmpBinLhs /*:unknown*/ = func.IS_EXPANDO_SET;
-    const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
-    if (tmpIfTest) {
-      func.THIS_IS_AN_EXPANDO = $spy;
-      arg1 = tmpPrevalAliasArgumentsAny;
-      func.IS_EXPANDO_SET = true;
-    } else {
-    }
-    const tmpBinBothRhs /*:unknown*/ = arr[0];
-    const newIndex /*:primitive*/ = index + tmpBinBothRhs;
-    const arguments_x /*:unknown*/ = arg1[newIndex];
-    if (arguments_x) {
-      return arguments_x;
-    } else {
-      const expando_result /*:unknown*/ = func.THIS_IS_AN_EXPANDO(arrval);
-      arg1[newIndex] = expando_result;
-      return expando_result;
-    }
-  };
-  const r /*:unknown*/ = func(arg1, arg2);
-  return r;
+  let tmpssa3_tmpExpando$1 /*:unknown*/ = undefined;
+  let tmpssa3_arg1 /*:unknown*/ = 3;
+  const index /*:number*/ = newArg1 - 1;
+  const arrval /*:primitive*/ = arr[index];
+  const tmpBinLhs /*:unknown*/ = tmpExpando;
+  const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
+  if (tmpIfTest) {
+    tmpssa3_tmpExpando$1 = $spy;
+    tmpssa3_arg1 = tmpPrevalAliasArgumentsAny;
+    tmpExpando = true;
+  } else {
+  }
+  const newIndex /*:number*/ = index + 100;
+  const arguments_x /*:unknown*/ = tmpssa3_arg1[newIndex];
+  if (arguments_x) {
+    return arguments_x;
+  } else {
+    const expando_result /*:unknown*/ = tmpssa3_tmpExpando$1.call(func, arrval);
+    tmpssa3_arg1[newIndex] = expando_result;
+    return expando_result;
+  }
 };
 const a /*:unknown*/ = func(3, 4);
 const b /*:unknown*/ = func(1, 2);
@@ -94,29 +88,28 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const arr = $([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]);
-let func = function (arg1, arg2) {
-  func = function (newArg1, $$1) {
-    const tmpPrevalAliasArgumentsAny = arguments;
-    const index = newArg1 - 1;
-    const arrval = arr[index];
-    if (func.IS_EXPANDO_SET === undefined) {
-      func.THIS_IS_AN_EXPANDO = $spy;
-      arg1 = tmpPrevalAliasArgumentsAny;
-      func.IS_EXPANDO_SET = true;
-    }
-    const newIndex = index + arr[0];
-    const arguments_x = arg1[newIndex];
-    if (arguments_x) {
-      return arguments_x;
-    } else {
-      const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
-      arg1[newIndex] = expando_result;
-      return expando_result;
-    }
-  };
-  const r = func(arg1, arg2);
-  return r;
+let tmpExpando = undefined;
+const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+const func = function (newArg1, $$1) {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  let tmpssa3_tmpExpando$1 = undefined;
+  let tmpssa3_arg1 = 3;
+  const index = newArg1 - 1;
+  const arrval = arr[index];
+  if (tmpExpando === undefined) {
+    tmpssa3_tmpExpando$1 = $spy;
+    tmpssa3_arg1 = tmpPrevalAliasArgumentsAny;
+    tmpExpando = true;
+  }
+  const newIndex = index + 100;
+  const arguments_x = tmpssa3_arg1[newIndex];
+  if (arguments_x) {
+    return arguments_x;
+  } else {
+    const expando_result = tmpssa3_tmpExpando$1.call(func, arrval);
+    tmpssa3_arg1[newIndex] = expando_result;
+    return expando_result;
+  }
 };
 $(func(3, 4), func(1, 2));
 `````
@@ -125,7 +118,7 @@ $(func(3, 4), func(1, 2));
 
 
 `````js filename=intro
-const arr = $([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]);
+const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let func = function ($$0, $$1) {
   let arg1 = $$0;
   let arg2 = $$1;
@@ -165,8 +158,7 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCalleeParam = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-const arr = $(tmpCalleeParam);
+const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let func = function ($$0, $$1) {
   let arg1 = $$0;
   let arg2 = $$1;
@@ -211,43 +203,37 @@ $(a, b);
 With rename=true
 
 `````js filename=intro
-const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
-const b = $( a );
-let c = function($$0,$$1 ) {
-  let d = $$0;
-  const e = $$1;
+let a = undefined;
+const b = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
+const c = function($$0,$$1 ) {
+  const d = e;
+  const f = $$0;
   debugger;
-  c = function($$0,$$1 ) {
-    const f = g;
-    const h = $$0;
-    debugger;
-    const i = h - 1;
-    const j = b[ i ];
-    const k = c.IS_EXPANDO_SET;
-    const l = k === undefined;
-    if (l) {
-      c.THIS_IS_AN_EXPANDO = $spy;
-      d = f;
-      c.IS_EXPANDO_SET = true;
-    }
-    const m = b[ 0 ];
-    const n = i + m;
-    const o = d[ n ];
-    if (o) {
-      return o;
-    }
-    else {
-      const p = c.THIS_IS_AN_EXPANDO( j );
-      d[n] = p;
-      return p;
-    }
-  };
-  const q = c( d, e );
-  return q;
+  let g = undefined;
+  let h = 3;
+  const i = f - 1;
+  const j = b[ i ];
+  const k = a;
+  const l = k === undefined;
+  if (l) {
+    g = $spy;
+    h = d;
+    a = true;
+  }
+  const m = i + 100;
+  const n = h[ m ];
+  if (n) {
+    return n;
+  }
+  else {
+    const o = g.call( c, j );
+    h[m] = o;
+    return o;
+  }
 };
-const r = c( 3, 4 );
-const s = c( 1, 2 );
-$( r, s );
+const p = c( 3, 4 );
+const q = c( 1, 2 );
+$( p, q );
 `````
 
 ## Globals
@@ -257,16 +243,19 @@ None
 ## Runtime Outcome
 
 Should call `$` with:
- - 1: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
- - 2: 'Creating spy', 1, 1, [300, 300]
- - 3: 'Creating spy', 2, 1, [100, 100]
- - 4: '<spy[1]>', '<spy[2]>'
+ - 1: 'Creating spy', 1, 1, [300, 300]
+ - 2: 'Creating spy', 2, 1, [100, 100]
+ - 3: '<spy[1]>', '<spy[2]>'
  - eval returned: undefined
 
 Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
+Post settled calls: BAD!!
+ - 1: 'Creating spy', 1, 1, [300, 300]
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
-Denormalized calls: Same
+Denormalized calls: BAD!!
+ - 1: 'Creating spy', 1, 1, [300, 300]
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')

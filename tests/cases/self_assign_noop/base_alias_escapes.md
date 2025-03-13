@@ -1,8 +1,8 @@
 # Preval test case
 
-# base_alias.md
+# base_alias_escapes.md
 
-> Self assign noop > Base alias
+> Self assign noop > Base alias escapes
 >
 > This is targeting a specific trick used by certain obfuscators.
 > The pattern will create a function, then reassign a new function to that same binding. In this 
@@ -25,6 +25,8 @@
 > We will also support an alias check. If the function is assigned to another binding, we check
 > this binding to confirm that it is only ever used as a function call.
 
+The alias should not be allowed to escape, though.
+
 ## Input
 
 `````js filename=intro
@@ -38,6 +40,7 @@ function h() {
     const g = f;
     f();
     g();
+    $(g); // <-- vbad case!
 }
 $(h);
 `````
@@ -61,6 +64,7 @@ const h /*:()=>undefined*/ = function () {
   const g /*:unknown*/ = f;
   f();
   g();
+  $(g);
   return undefined;
 };
 $(h);
@@ -81,6 +85,7 @@ $(function () {
   const g = f;
   f();
   g();
+  $(g);
 });
 `````
 
@@ -94,6 +99,7 @@ let h = function () {
   const g = f;
   f();
   g();
+  $(g);
 };
 f = function () {
   debugger;
@@ -116,6 +122,7 @@ let h = function () {
   const g = f;
   f();
   g();
+  $(g);
   return undefined;
 };
 f = function () {
@@ -150,6 +157,7 @@ const c = function() {
   const d = a;
   a();
   d();
+  $( d );
   return undefined;
 };
 $( c );

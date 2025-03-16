@@ -992,8 +992,10 @@ function _staticArgOpOutlining(fdata) {
     } else if (stmt.expression.type === 'AssignmentExpression') {
       expr = stmt.expression.right;
       stmt.expression.right = AST.identifier(newLocalParamName);
-    } else if (stmt.expression.type === 'UnaryExpression' || stmt.expression.type === 'BinaryExpression'
-      || stmt.expression.type === 'CallExpression'
+    } else if (
+      stmt.expression.type === 'UnaryExpression' ||
+      stmt.expression.type === 'BinaryExpression' ||
+      stmt.expression.type === 'CallExpression'
     ) {
       expr = stmt.expression;
       stmt.expression = AST.identifier(newLocalParamName);

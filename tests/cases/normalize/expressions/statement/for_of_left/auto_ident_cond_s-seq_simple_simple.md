@@ -27,9 +27,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpAssignMemLhsObj /*:unknown*/ = $(2);
+    const tmpClusterSSA_tmpAssignMemLhsObj /*:unknown*/ = $(2);
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpClusterSSA_tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -46,8 +46,8 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const tmpAssignMemLhsObj = $(2);
-    tmpAssignMemLhsObj.x = tmpForOfNext.value;
+    const tmpClusterSSA_tmpAssignMemLhsObj = $(2);
+    tmpClusterSSA_tmpAssignMemLhsObj.x = tmpForOfNext.value;
   }
 }
 $({ a: 999, b: 1000 });

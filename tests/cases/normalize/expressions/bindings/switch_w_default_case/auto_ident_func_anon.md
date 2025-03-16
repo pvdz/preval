@@ -24,11 +24,11 @@ switch (1) {
 
 
 `````js filename=intro
-const a /*:()=>unknown*/ = function () {
+const tmpClusterSSA_a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-$(a);
+$(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
 `````

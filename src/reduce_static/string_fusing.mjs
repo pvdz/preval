@@ -20,11 +20,13 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
+import { normalizeTemplateSimple } from '../ast.mjs';
 
 export function stringFusing(fdata) {
   group('\n\n\nSearching for strings to fuse together');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _stringFusing(fdata);
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   groupEnd();
   return r;
 }
@@ -34,13 +36,53 @@ function _stringFusing(fdata, nodeType, path) {
   let changed = 0;
 
   walk(_walker, ast, 'ast');
-  function _walker(node, beforeWalk, _, path) {
+  function _walker(_node, beforeWalk, _, path) {
     if (beforeWalk) return;
 
-    if (node.type === 'BinaryExpression' && node.operator === '+') {
-      if (processBinary(node, fdata, path)) ++changed;
-    } else if (node.type === 'TemplateLiteral') {
-      if (processTemplate(node, fdata, path)) ++changed;
+    const parentNode = path.nodes[path.nodes.length - 2];
+    const parentProp = path.props[path.props.length - 1];
+    const parentIndex = path.indexes[path.indexes.length - 1];
+
+    if (parentProp === 'ast') return;
+
+    let nodeChanged = false;
+
+    {
+      // Get fresh node in case this transform changed it already
+      const node = parentIndex < 0 ? parentNode[parentProp] : parentNode[parentProp][parentIndex];
+
+      if (node.type === 'BinaryExpression' && node.operator === '+') {
+        if (processBinary(fdata, path, parentNode, parentProp, parentIndex)) {
+          changed += 1;
+          nodeChanged = true;
+        }
+      } else if (node.type === 'TemplateLiteral') {
+        if (processTemplate(fdata, path, parentNode, parentProp, parentIndex)) {
+          changed += 1;
+          nodeChanged = true;
+        }
+      }
+    }
+
+    if (nodeChanged) {
+      vgroup();
+      const parentNode = path.nodes[path.nodes.length - 2];
+      const parentProp = path.props[path.props.length - 1];
+      source(parentNode[parentProp], true);
+      const node = parentIndex < 0 ? parentNode[parentProp] : parentNode[parentProp][parentIndex];
+      const normNode = AST.normalizeTemplateSimple(node);
+      if (normNode !== node) {
+        const parentNode = path.nodes[path.nodes.length - 2];
+        const parentProp = path.props[path.props.length - 1];
+        const parentIndex = path.indexes[path.indexes.length - 1];
+
+        rule('Nested templates should be flattened immediately');
+        before(parentNode[parentProp]);
+        if (parentIndex < 0) parentNode[parentProp] = normNode;
+        else parentNode[parentProp][parentIndex] = normNode;
+        after(normNode);
+      }
+      vgroupEnd();
     }
   }
 
@@ -52,54 +94,66 @@ function _stringFusing(fdata, nodeType, path) {
   log('Strings fused together: 0.');
 }
 
-function processTemplate(node, fdata, path) {
+function processTemplate(fdata, path, parentNode, parentProp, parentIndex) {
   vgroup('Found a template');
-  source(node);
-  const r = _processTemplate(node, fdata, path);
+  const node = parentIndex < 0 ? parentNode[parentProp] : parentNode[parentProp][parentIndex];
+  source(node, true);
+  const r = _processTemplate(fdata, path, parentNode, parentProp, parentIndex);
   vgroupEnd();
   return r;
 }
-function _processTemplate(node, fdata, path) {
+function _processTemplate(fdata, path, parentNode, parentProp, parentIndex) {
+  const node = parentIndex < 0 ? parentNode[parentProp] : parentNode[parentProp][parentIndex];
   let changed = false;
   for (let ei = node.expressions.length - 1; ei >= 0; --ei) {
     let expr = node.expressions[ei];
 
     if (expr.type === 'Identifier') {
-      vlog('Expr is the identifier `' + expr.name + '`. Is it a constant string type?');
+      vlog('Expr', ei, 'of the template is the identifier `' + expr.name + '`. Is it a constant string type?');
       const meta = fdata.globallyUniqueNamingRegistry.get(expr.name, fdata);
-      if (meta.isConstant && meta.constValueRef.node.type === 'TemplateLiteral') {
-        const parentNode = path.nodes[path.nodes.length - 2];
-        const expr = meta.constValueRef.node;
-        // Fold the referenced template into this one
+      if (meta.isConstant && meta.constValueRef) {
+        const stmt = meta.constValueRef.containerNode;
+        const init = stmt.declarations[0].init;
+        vlog('- const:', !!meta.isConstant, ', init type:', init.type);
+        if (meta.isConstant && init.type === 'TemplateLiteral') {
+          source(init, true);
 
-        // Okay should be safe to concat to a string
-        // We can append this to the quasi but then we have to deal with raw/cooked stuff. So we just inject it as another expression.
-        // Another rule will clean it up properly. That way I don't have to duplicate that logic here.
+          // Okay should be safe to concat to a string
+          // We can append this to the quasi but then we have to deal with raw/cooked stuff. So we just inject it as another expression.
+          // Another rule will clean it up properly. That way I don't have to duplicate that logic here.
 
-        rule('Adding a template to a primitive ident should be resolved statically');
-        example('`a${b}c` + 15', '`a${b}c${15}`');
-        before(node, parentNode);
+          rule('Adding a template to a primitive ident should be resolved statically');
+          example('`a${b}c` + 15', '`a${b}c${15}`');
+          before(meta.constValueRef.containerParent[meta.constValueRef.containerIndex]);
+          before(stmt);
 
-        const newTemplateNode = AST.cloneSimpleOrTemplate(expr);
+          node.expressions[ei] = AST.cloneSimpleOrTemplate(init);
 
-        node.expressions[ei] = newTemplateNode;
-
-        after(node, parentNode);
-        changed = true;
+          after(stmt);
+          changed = true;
+        } else {
+          vlog('- no. skipping');
+        }
+      } else {
+        vlog('- not a const or it has not init');
       }
     }
   }
+
   return changed;
 }
 
-function processBinary(node, fdata, path) {
+function processBinary(fdata, path, parentNode, parentProp, parentIndex) {
   vgroup('Found a binary +');
-  source(node);
-  const r = _processBinary(node, fdata, path);
+  const node = parentIndex < 0 ? parentNode[parentProp] : parentNode[parentProp][parentIndex];
+  source(node, true);
+  const changed = _processBinary(fdata, path, parentNode, parentProp, parentIndex);
   vgroupEnd();
-  return r;
+  return changed;
 }
-function _processBinary(node, fdata, path) {
+function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
+  const node = parentIndex < 0 ? parentNode[parentProp] : parentNode[parentProp][parentIndex];
+
   // If the lhs is a template or primitive and the right is a template or
   // primitive (and at least one is a template) merge them into one template
 
@@ -108,9 +162,12 @@ function _processBinary(node, fdata, path) {
 
   if (left.type === 'Identifier') {
     const meta = fdata.globallyUniqueNamingRegistry.get(left.name, fdata);
-    if (meta.isConstant) {
-      if (meta.constValueRef.node.type === 'TemplateLiteral') {
-        left = meta.constValueRef.node;
+    if (meta.isConstant && meta.constValueRef) {
+      const stmt = meta.constValueRef.containerNode;
+      const init = stmt.declarations[0].init;
+
+      if (init.type === 'TemplateLiteral') {
+        left = init;
       } else if (['boolean', 'number', 'string'].includes(meta.typing.mustBeType)) {
         left = AST.identifier(left.name);
       } else {
@@ -124,10 +181,16 @@ function _processBinary(node, fdata, path) {
   }
   if (right.type === 'Identifier') {
     const meta = fdata.globallyUniqueNamingRegistry.get(right.name, fdata);
-    if (meta.isConstant && meta.constValueRef.node.type === 'TemplateLiteral') {
-      right = meta.constValueRef.node;
-    } else if (['boolean', 'number', 'string'].includes(meta.typing.mustBeType)) {
-      right = AST.identifier(right.name);
+    if (meta.isConstant && meta.constValueRef) {
+      const stmt = meta.constValueRef.containerNode;
+      const init = stmt.declarations[0].init;
+      if (init.type === 'TemplateLiteral') {
+        right = init;
+      } else if (['boolean', 'number', 'string'].includes(meta.typing.mustBeType)) {
+        right = AST.identifier(right.name);
+      } else {
+        right = undefined;
+      }
     } else {
       right = undefined;
     }

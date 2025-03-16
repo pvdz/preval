@@ -182,6 +182,7 @@ Denormalized calls: Same
 
 Todos triggered:
 - type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $string_charCodeAt
-- Support non-primitive in first arg to $coerce
+- Support this node type in isFree: TemplateLiteral
 - Support referencing this builtin in isFree: $
 - - at least one of the frfr args was not isFree, bailing
+- Support non-primitive in first arg to $coerce

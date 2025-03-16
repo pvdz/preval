@@ -15,111 +15,6 @@ let b = { x: 1 };
 for (; b?.["x"]; $(1));
 `````
 
-## PST Output:
-
-With rename=true
-
-`````js filename=intro
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-const a = { x: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = a.x;
-  if (b) {
-    $( 1 );
-  }
-  else {
-    break;
-  }
-}
-`````
-
-## PST Output:
-
-With rename=true
-
-`````js filename=intro
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-const a = { x: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = a.x;
-  if (b) {
-    $( 1 );
-  }
-  else {
-    break;
-  }
-}
-`````
-
-## PST Output:
-
-With rename=true
-
-`````js filename=intro
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-const a = { x: 1 };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = a.x;
-  if (b) {
-    $( 1 );
-  }
-  else {
-    break;
-  }
-}
-`````
-
-## PST Output:
-
-With rename=true
-
-`````js filename=intro
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-$( 1 );
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( 1 );
-}
-`````
-
 ## Settled
 
 
@@ -224,3 +119,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- objects in isFree check

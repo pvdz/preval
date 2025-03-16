@@ -156,6 +156,6 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- arr_mutation: implement array inlining analysis stuff
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+- arr_mutation: implement array inlining analysis stuff

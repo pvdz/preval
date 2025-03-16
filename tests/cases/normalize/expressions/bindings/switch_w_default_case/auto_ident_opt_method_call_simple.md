@@ -26,8 +26,8 @@ switch (1) {
 
 
 `````js filename=intro
-const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = b.c(1);
+const tmpClusterSSA_b /*:object*/ = { c: $ };
+const tmpChainElementCall /*:unknown*/ = tmpClusterSSA_b.c(1);
 $(tmpChainElementCall);
 $(`fail1`);
 $(`fail2`);

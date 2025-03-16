@@ -5394,3 +5394,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- Support this node type in isFree: LabeledStatement

@@ -32,13 +32,13 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const f /*:(primitive)=>array*/ = function ($$0) {
-  const $dlr_$$0 /*:primitive*/ = $$0;
+  const $dlr_$$1 /*:primitive*/ = $$0;
   debugger;
   let b /*:unknown*/ = `bar`;
-  const tmpIfTest$1 /*:boolean*/ = $dlr_$$0 === undefined;
+  const tmpIfTest$1 /*:boolean*/ = $dlr_$$1 === undefined;
   if (tmpIfTest$1) {
   } else {
-    b = $dlr_$$0;
+    b = $dlr_$$1;
   }
   const tmpReturnArg /*:array*/ = [`x`, b];
   return tmpReturnArg;
@@ -53,10 +53,10 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function ($dlr_$$0) {
+const f = function ($dlr_$$1) {
   let b = `bar`;
-  if (!($dlr_$$0 === undefined)) {
-    b = $dlr_$$0;
+  if (!($dlr_$$1 === undefined)) {
+    b = $dlr_$$1;
   }
   const tmpReturnArg = [`x`, b];
   return tmpReturnArg;

@@ -158,4 +158,5 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
+- objects in isFree check
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

@@ -23,20 +23,18 @@ $(a);
 $(1);
 const tmpCalleeParam /*:unknown*/ = $(0);
 const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam);
-const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpBinBothRhs) {
-  $(a);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
   const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
   if (tmpClusterSSA_tmpBinBothRhs) {
-    $(a);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
     $(tmpCalleeParam$3);
-    $(a);
   }
 }
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
 `````
 
 ## Denormalized
@@ -44,18 +42,12 @@ if (tmpBinBothRhs) {
 
 `````js filename=intro
 $(1);
-const tmpBinBothRhs = $($(0));
-const a = { a: 999, b: 1000 };
-if (tmpBinBothRhs) {
-  $(a);
-} else {
-  if ($($(1))) {
-    $(a);
-  } else {
+if (!$($(0))) {
+  if (!$($(1))) {
     $($(2));
-    $(a);
   }
 }
+$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -102,25 +94,25 @@ With rename=true
 $( 1 );
 const a = $( 0 );
 const b = $( a );
-const c = {
+if (b) {
+
+}
+else {
+  const c = $( 1 );
+  const d = $( c );
+  if (d) {
+
+  }
+  else {
+    const e = $( 2 );
+    $( e );
+  }
+}
+const f = {
   a: 999,
   b: 1000,
 };
-if (b) {
-  $( c );
-}
-else {
-  const d = $( 1 );
-  const e = $( d );
-  if (e) {
-    $( c );
-  }
-  else {
-    const f = $( 2 );
-    $( f );
-    $( c );
-  }
-}
+$( f );
 `````
 
 ## Globals

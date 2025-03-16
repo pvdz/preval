@@ -22,21 +22,21 @@ switch (1) {
 
 
 `````js filename=intro
-const arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj /*:unknown*/ = $(arg);
+const tmpClusterSSA_arg /*:object*/ = { y: 1 };
+const tmpDeleteCompObj /*:unknown*/ = $(tmpClusterSSA_arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-$(tmpClusterSSA_a, arg);
+$(tmpClusterSSA_a, tmpClusterSSA_arg);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const arg = { y: 1 };
-const tmpDeleteCompObj = $(arg);
+const tmpClusterSSA_arg = { y: 1 };
+const tmpDeleteCompObj = $(tmpClusterSSA_arg);
 const tmpDeleteCompProp = $(`y`);
-$(delete tmpDeleteCompObj[tmpDeleteCompProp], arg);
+$(delete tmpDeleteCompObj[tmpDeleteCompProp], tmpClusterSSA_arg);
 `````
 
 ## Pre Normal

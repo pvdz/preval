@@ -23,9 +23,9 @@ switch (1) {
 
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b[tmpCallCompProp](1);
-$(a);
+const tmpClusterSSA_b /*:object*/ = { $: $ };
+const tmpClusterSSA_a /*:unknown*/ = tmpClusterSSA_b[tmpCallCompProp](1);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized

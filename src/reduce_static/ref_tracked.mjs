@@ -186,40 +186,86 @@ function _refTracked(fdata) {
           if (write.parentNode.type === 'AssignmentExpression') {
             // TODO: same if it's a builtin or other "predictable" value. But maybe another rule would already do this anyways?
             assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
-            if (AST.isPrimitive(write.parentNode.right)) {
-              // Covered by tests/cases/arr_mutation/arr_loop_case_assign.md
-              rule('A read that can only reach one write and that write assigns a primitive can be replaced by the primitive value; rhs');
-              example('x = 10; f(x);', 'x = 10; f(10);');
-              before(read.blockBody[read.blockIndex]);
+            const rhs = write.parentNode.right;
+            if (AST.isPrimitive(rhs)) {
+              const newNode = AST.primitive(AST.getPrimitiveValue(rhs));
 
-              const newNode = AST.primitive(AST.getPrimitiveValue(write.parentNode.right));
-              if (read.parentIndex < 0) read.parentNode[read.parentProp] = newNode;
-              else read.parentNode[read.parentProp][read.parentIndex] = newNode;
+              if (rhs.type === 'TemplateLiteral' && read.parentNode.type === 'TemplateLiteral') {
+                // Prevent doing `a${`b`}` because that requires another normalization pass.
+                // So here just apply the concat.
+                rule('A read that can only reach one write and that write assigns a string can be replaced by the primitive value; rhs string concat');
+                example('const x = "b"; const y = \`a\${x}c\`;', 'const x = "b"; const y = \`abc\`;');
+                before(read.blockBody[read.blockIndex]);
 
-              after(read.blockBody[read.blockIndex]);
-              ++changed;
-              assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
-              return;
+                ASSERT(rhs.expressions.length === 0, 'the template should be a string, not a concat', rhs);
+                ASSERT(read.parentIndex >= 0, 'should be an expression in teh template', read);
+
+                read.parentNode[read.parentProp][read.parentIndex] = newNode;
+                const squashedNode = AST.normalizeTemplateSimple(read.parentNode);
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = squashedNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = squashedNode;
+
+                after(read.blockBody[read.blockIndex]);
+                ++changed;
+                assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+                return;
+              } else {
+                // Covered by tests/cases/arr_mutation/arr_loop_case_assign.md
+                rule('A read that can only reach one write and that write assigns a primitive can be replaced by the primitive value; rhs');
+                example('x = 10; f(x);', 'x = 10; f(10);');
+                before(read.blockBody[read.blockIndex]);
+
+                if (read.parentIndex < 0) read.parentNode[read.parentProp] = newNode;
+                else read.parentNode[read.parentProp][read.parentIndex] = newNode;
+
+                after(read.blockBody[read.blockIndex]);
+                ++changed;
+                assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+                return;
+              }
             } else {
-              vlog('RHS is not a primitive:', write.parentNode.right.type);
+              vlog('RHS is not a primitive:', rhs.type);
             }
           }
           else if (write.parentNode.type === 'VariableDeclarator') {
             // TODO: same if it's a builtin or other "predictable" value. But maybe another rule would already do this anyways?
-            if (AST.isPrimitive(write.parentNode.init)) {
-              // Covered by tests/cases/_base/concat.md
-              rule('A read that can only reach one write and that write assigns a primitive can be replaced by the primitive value; init');
-              example('const x = 10; f(x);', 'const x = 10; f(10);');
-              before(read.blockBody[read.blockIndex]);
+            const init = write.parentNode.init;
+            if (AST.isPrimitive(init)) {
+              const newNode = AST.primitive(AST.getPrimitiveValue(init));
 
-              const newNode = AST.primitive(AST.getPrimitiveValue(write.parentNode.init));
-              if (read.parentIndex < 0) read.parentNode[read.parentProp] = newNode;
-              else read.parentNode[read.parentProp][read.parentIndex] = newNode;
+              if (init.type === 'TemplateLiteral' && read.parentNode.type === 'TemplateLiteral') {
+                // Prevent doing `a${`b`}` because that requires another normalization pass.
+                // So here just apply the concat.
+                rule('A read that can only reach one write and that write assigns a string can be replaced by the primitive value; init string concat');
+                example('const x = "b"; const y = \`a\${x}c\`;', 'const x = "b"; const y = \`abc\`;');
+                before(read.blockBody[read.blockIndex]);
 
-              after(read.blockBody[read.blockIndex]);
-              ++changed;
-              assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
-              return;
+                ASSERT(init.expressions.length === 0, 'the template should be a string, not a concat', init);
+                ASSERT(read.parentIndex >= 0, 'should be an expression in teh template', read);
+
+                read.parentNode[read.parentProp][read.parentIndex] = newNode;
+                const squashedNode = AST.normalizeTemplateSimple(read.parentNode);
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = squashedNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = squashedNode;
+
+                after(read.blockBody[read.blockIndex]);
+                ++changed;
+                assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+                return;
+              } else {
+                // Covered by tests/cases/_base/concat.md
+                rule('A read that can only reach one write and that write assigns a primitive can be replaced by the primitive value; init');
+                example('const x = 10; f(x);', 'const x = 10; f(10);');
+                before(read.blockBody[read.blockIndex]);
+
+                if (read.parentIndex < 0) read.parentNode[read.parentProp] = newNode;
+                else read.parentNode[read.parentProp][read.parentIndex] = newNode;
+
+                after(read.blockBody[read.blockIndex]);
+                ++changed;
+                assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+                return;
+              }
             } else {
               vlog('Init is not a primitive:', write.parentNode.init.type);
             }

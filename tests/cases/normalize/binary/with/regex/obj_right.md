@@ -82,6 +82,10 @@ const tmpBinLhs$21 /*:regex*/ = /foo/g;
 const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
 const tmpBinLhs$23 /*:regex*/ = /foo/g;
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
+const tmpBinLhs$25 /*:regex*/ = /foo/g;
+const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 == x;
+const tmpBinLhs$27 /*:regex*/ = /foo/g;
+const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 != x;
 const tmpBinLhs$33 /*:regex*/ = /foo/g;
 const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
 const tmpBinLhs$35 /*:regex*/ = /foo/g;
@@ -103,8 +107,8 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   tmpArrElement$33,
@@ -148,6 +152,8 @@ const tmpArrElement$17 = /foo/g < x;
 const tmpArrElement$19 = /foo/g > x;
 const tmpArrElement$21 = /foo/g <= x;
 const tmpArrElement$23 = /foo/g >= x;
+const tmpArrElement$25 = /foo/g == x;
+const tmpArrElement$27 = /foo/g != x;
 const tmpArrElement$33 = /foo/g & x;
 const tmpArrElement$35 = /foo/g ^ x;
 const tmpArrElement$37 = /foo/g | x;
@@ -166,8 +172,8 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   tmpArrElement$33,
@@ -349,20 +355,24 @@ const y = x <= b;
 const z = /foo/g;
 const ba = z >= b;
 const bb = /foo/g;
-const bc = bb & b;
+const bc = bb == b;
 const bd = /foo/g;
-const be = bd ^ b;
+const be = bd != b;
 const bf = /foo/g;
-const bg = bf | b;
-const bh = `/foo/g${k}`;
-const bi = [ d, f, h, j, bh, m, o, q, s, u, w, y, ba, false, true, false, true, bc, be, bg ];
-$( bi );
+const bg = bf & b;
+const bh = /foo/g;
+const bi = bh ^ b;
 const bj = /foo/g;
-const bk = bj in b;
-$( bk );
-const bl = /foo/g;
-const bm = bl instanceof b;
+const bk = bj | b;
+const bl = `/foo/g${k}`;
+const bm = [ d, f, h, j, bl, m, o, q, s, u, w, y, ba, bc, be, false, true, bg, bi, bk ];
 $( bm );
+const bn = /foo/g;
+const bo = bn in b;
+$( bo );
+const bp = /foo/g;
+const bq = bp instanceof b;
+$( bq );
 `````
 
 ## Globals

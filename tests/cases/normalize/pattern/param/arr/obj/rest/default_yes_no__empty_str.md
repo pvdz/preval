@@ -20,9 +20,9 @@ $(f('', 200));
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: `pass` };
-const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const tmpClusterSSA_arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
-const x /*:unknown*/ = $objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
+const x /*:unknown*/ = $objPatternRest(tmpClusterSSA_arrPatternStep, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
@@ -30,8 +30,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const arrPatternStep = $({ a: `pass` });
-$($objPatternRest(arrPatternStep, [], undefined));
+const tmpClusterSSA_arrPatternStep = $({ a: `pass` });
+$($objPatternRest(tmpClusterSSA_arrPatternStep, [], undefined));
 `````
 
 ## Pre Normal

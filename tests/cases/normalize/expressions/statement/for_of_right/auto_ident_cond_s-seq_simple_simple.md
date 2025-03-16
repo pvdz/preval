@@ -18,8 +18,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(2);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2);
+const tmpForOfGen /*:unknown*/ = $forOf(tmpClusterSSA_tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;

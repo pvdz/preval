@@ -1,6 +1,6 @@
 import walk from '../lib/walk.mjs';
 import {walkStmt, WALK_NO_FURTHER, HARD_STOP} from '../lib/walk_stmt_norm.mjs';
-import {ASSERT, source, tmat, vlog, log, todo} from './utils.mjs';
+import {ASSERT, source, tmat, vlog, log, vgroup, vgroupEnd, todo} from './utils.mjs';
 import { $p } from './$p.mjs';
 import { createFreshVar } from './bindings.mjs';
 import {
@@ -88,6 +88,14 @@ export function cloneSortOfSimple(node) {
     return binaryExpression(
       node.op, cloneSimple(node.left), cloneSimple(node.right),
     );
+  }
+
+  if (node.type === 'Literal' && node.raw.startsWith('/')) {
+    return regex(node.pattern, node.flags, node.raw);
+  }
+
+  if (node.type === 'UnaryExpression' && !isComplexNode(node.argument)) {
+    return unaryExpression(node.operator, cloneSortOfSimple(node.argument));
   }
 
   return cloneSimpleOrTemplate(node);
@@ -954,7 +962,7 @@ export function tryFinallyStatement(block, finalizer) {
 }
 
 export function unaryExpression(operator, argument) {
-  ASSERT(typeof operator === 'string');
+  ASSERT(typeof operator === 'string', 'operator is a string', operator);
   if (typeof argument === 'string') argument = identifier(argument);
 
   return {
@@ -1333,7 +1341,9 @@ export function isSortOfSimpleNode(node) {
   return (
     (node.type === 'AssignmentExpression' && isSimpleNodeOrSimpleMember(node.left) && isSimpleNodeOrSimpleMember(node.right)) ||
     (node.type === 'BinaryExpression' && isSimpleNodeOrSimpleMember(node.left) && isSimpleNodeOrSimpleMember(node.right)) ||
-    (node.type === 'CallExpression' && isSimpleNodeOrSimpleMember(node.callee) && node.arguments.every(node => isSimpleNodeOrSimpleMember(node)))
+    (node.type === 'CallExpression' && isSimpleNodeOrSimpleMember(node.callee) && node.arguments.every(node => isSimpleNodeOrSimpleMember(node))) ||
+    (node.type === 'Literal' && node.raw.startsWith('/')) || // regex
+    (node.type === 'UnaryExpression' && !isComplexNode(node.argument))
   );
 }
 
@@ -2757,4 +2767,65 @@ export function getExpressionFromNormalizedStatement(stmtNode) {
   ASSERT(stmtNode.type === 'ExpressionStatement', 'in normalized code arbitrary expressions in statements must be var init, assign rhs, or just an expr statement', stmtNode.type);
   if (stmtNode.expression.type === 'AssignmentExpression') return stmtNode.expression.right;
   return stmtNode.expression;
+}
+
+
+export function normalizeTemplateSimple(node) {
+  vgroup('normalizeTemplateSimple; Walking the', node.expressions.length, 'expressions of the template...');
+  let newNode = node;
+  for (let i = newNode.expressions.length - 1; i >= 0; --i) {
+    const outerExpressions = newNode.expressions.slice(0);
+    const outerQuasis = newNode.quasis.slice(0);
+    const expr = outerExpressions[i];
+    vlog('- expr', i, 'is', expr.type);
+    if (isPrimitive(expr)) {
+      vlog('- Inlining primitive at', i);
+      // Drop the expression that represents the primitive
+      // Squash the value of the quasi at the same position of the expression, with the primitive and its next expression sibling
+      const val = getPrimitiveValue(expr);
+      outerExpressions.splice(i, 1); // Drop the expr
+      outerQuasis[i].value.cooked += val + outerQuasis[i + 1].value.cooked; // merge left str + prim value + right str into one str
+      outerQuasis.splice(i + 1, 1); // Drop the right str
+      newNode = templateLiteral(
+        outerQuasis.map((te) => te.value.cooked),
+        outerExpressions,
+      );
+    }
+    else if (expr.type === 'TemplateLiteral') {
+      vlog('- Inlining non-primitive template at', i);
+
+      // So we have a template nested in another template
+      // `a${`A${x}B`}b`
+      // So we have outer:
+      // 'a', tpl, 'b'
+      // And we have inner
+      // 'A', x, 'B'
+      // The template is one expression and so we want to go from `'a' tpl 'b'` to `'aA' x 'Bb'`
+      // This means that for a template at position i, we merge the left-most string of the inner
+      // template with the string at position i and we merge the right most string of the inner
+      // template with the string at position i+1. We then remove the expression at position i
+      // (which is the template) and replace it with all the expressions inside the inner template.
+      // We don't remove any strings but we move all the inner template strings except the outer most
+      // into the outer strings, between index i and i+1.
+      // Then we should end up with `aA${x}Bb`
+
+      const innerExpressions = expr.expressions;
+      const leftMost = expr.quasis[0];
+      const rightMost = expr.quasis[expr.quasis.length - 1];
+      const innerQuasis = expr.quasis.slice(1, -1);
+
+      ASSERT(outerExpressions.length > 0);
+      outerExpressions.splice(i, 1, ...innerExpressions);
+      outerQuasis[i].value.cooked = outerQuasis[i].value.cooked + leftMost.value.cooked;
+      outerQuasis[i + 1].value.cooked = rightMost.value.cooked + outerQuasis[i + 1].value.cooked;
+      outerQuasis.splice(i + 1, 0, ...innerQuasis);
+      newNode = templateLiteral(
+        outerQuasis.map((te) => te.value.cooked),
+        outerExpressions,
+      );
+    }
+  }
+  vgroupEnd();
+
+  return newNode;
 }

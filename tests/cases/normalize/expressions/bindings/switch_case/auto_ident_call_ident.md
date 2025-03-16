@@ -20,8 +20,8 @@ switch (1) {
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(1);
-$(a);
+const tmpClusterSSA_a /*:unknown*/ = $(1);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized

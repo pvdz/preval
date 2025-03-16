@@ -24,8 +24,8 @@ switch (1) {
 
 
 `````js filename=intro
-const a /*:regex*/ = /foo/;
-$(a);
+const tmpClusterSSA_a /*:regex*/ = /foo/;
+$(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
 `````

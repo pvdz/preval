@@ -20,8 +20,8 @@ $(f());
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(60);
-$(a);
+const tmpClusterSSA_a /*:unknown*/ = $(60);
+$(tmpClusterSSA_a);
 $(undefined);
 `````
 

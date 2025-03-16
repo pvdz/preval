@@ -143,4 +143,5 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
 - Calling a static method on an ident that is not global and not recorded: $tmpClusterSSA_tmpForInGen_next

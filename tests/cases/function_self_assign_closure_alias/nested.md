@@ -36,9 +36,10 @@ const g /*:()=>array*/ = function () {
   const tmpssa2_a$1 /*:array*/ = [1, 2, 3];
   return tmpssa2_a$1;
 };
-g();
-g();
-$(false);
+const tmpBinBothLhs$5 /*:array*/ = g();
+const tmpBinBothRhs$5 /*:array*/ = g();
+const tmpCalleeParam$5 /*:boolean*/ = tmpBinBothLhs$5 === tmpBinBothRhs$5;
+$(tmpCalleeParam$5);
 const tmpCalleeParam$7 /*:array*/ = g();
 $(tmpCalleeParam$7);
 `````
@@ -54,9 +55,8 @@ const g = function () {
   const tmpssa2_a$1 = [1, 2, 3];
   return tmpssa2_a$1;
 };
-g();
-g();
-$(false);
+const tmpBinBothLhs$5 = g();
+$(tmpBinBothLhs$5 === g());
 $(g());
 `````
 
@@ -130,11 +130,12 @@ const a = function() {
   const b = [ 1, 2, 3 ];
   return b;
 };
-a();
-a();
-$( false );
 const c = a();
-$( c );
+const d = a();
+const e = c === d;
+$( e );
+const f = a();
+$( f );
 `````
 
 ## Globals

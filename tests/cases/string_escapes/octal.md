@@ -64,18 +64,12 @@ None
 ## Runtime Outcome
 
 Should call `$` with:
- - eval returned: ('<crash[ Octal escape sequences are not allowed in strict mode. ]>')
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - 1: '\u000b\u000f\u0019\u00008\u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009'
- - eval returned: undefined
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: '\u000b\u000f\u0019\u00008\u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009'
- - eval returned: undefined
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: '\u000b\u000f\u0019\u00008\u00029\u0011\u0012\u0007\u000e\u00008\u0007\u00009'
- - eval returned: undefined
+Denormalized calls: Same

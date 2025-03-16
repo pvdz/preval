@@ -18,8 +18,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(60);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(60);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };

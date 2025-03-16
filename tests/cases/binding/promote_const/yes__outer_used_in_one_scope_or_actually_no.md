@@ -34,8 +34,8 @@ f();
 
 `````js filename=intro
 $(`something`);
-const x /*:unknown*/ = $(`oops`);
-$(x);
+const tmpClusterSSA_x /*:unknown*/ = $(`oops`);
+$(tmpClusterSSA_x);
 `````
 
 ## Denormalized

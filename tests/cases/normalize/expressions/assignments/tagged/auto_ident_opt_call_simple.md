@@ -18,32 +18,28 @@ $(a);
 
 
 `````js filename=intro
+let a /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
-const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 if (tmpIfTest) {
-  $(tmpCalleeParam, undefined);
-  $(undefined);
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
-  $(tmpCalleeParam, tmpChainElementCall);
-  $(tmpChainElementCall);
+  a = tmpChainElementCall;
 }
+const tmpCalleeParam /*:array*/ = [`before `, ` after`];
+$(tmpCalleeParam, a);
+$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpIfTest = $ == null;
-const tmpCalleeParam = [`before `, ` after`];
-if (tmpIfTest) {
-  $(tmpCalleeParam, undefined);
-  $(undefined);
-} else {
-  const tmpChainElementCall = $(1);
-  $(tmpCalleeParam, tmpChainElementCall);
-  $(tmpChainElementCall);
+let a = undefined;
+if (!($ == null)) {
+  a = $(1);
 }
+$([`before `, ` after`], a);
+$(a);
 `````
 
 ## Pre Normal
@@ -78,17 +74,18 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $ == null;
-const b = [ "before ", " after" ];
-if (a) {
-  $( b, undefined );
-  $( undefined );
+let a = undefined;
+const b = $ == null;
+if (b) {
+
 }
 else {
   const c = $( 1 );
-  $( b, c );
-  $( c );
+  a = c;
 }
+const d = [ "before ", " after" ];
+$( d, a );
+$( a );
 `````
 
 ## Globals

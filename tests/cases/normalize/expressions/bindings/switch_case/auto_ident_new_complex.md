@@ -21,8 +21,8 @@ switch (1) {
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
-const a /*:object*/ = new tmpNewCallee(1);
-$(a);
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized

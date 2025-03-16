@@ -126,3 +126,7 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- regular property access of an ident feels tricky;
+- Support this node type as init in isFree:

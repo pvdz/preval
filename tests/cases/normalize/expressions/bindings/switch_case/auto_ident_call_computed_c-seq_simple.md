@@ -22,8 +22,8 @@ switch (1) {
 
 
 `````js filename=intro
-const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
+const tmpClusterSSA_b /*:object*/ = { $: $ };
+const tmpCallObj /*:unknown*/ = $(tmpClusterSSA_b);
 const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
 $(tmpClusterSSA_a);
 `````

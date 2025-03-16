@@ -158,4 +158,5 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
+- regular property access of an ident feels tricky;
 - regular property of a primitive;

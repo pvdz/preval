@@ -18,9 +18,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(60);
+const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(60);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -29,8 +29,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(60);
-$([`before `, ` after`], tmpCalleeParam$1);
+const tmpClusterSSA_tmpCalleeParam$1 = $(60);
+$([`before `, ` after`], tmpClusterSSA_tmpCalleeParam$1);
 $({ a: 999, b: 1000 });
 `````
 

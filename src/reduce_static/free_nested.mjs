@@ -164,7 +164,8 @@ function _freeNested(fdata, $prng, usePrng) {
         let finalNode;
         if (initIsPrimitive) {
           finalNode = AST.primitive(AST.getPrimitiveValue(init));
-        } else {
+        }
+        else {
           switch (init.type) {
             case 'Identifier': {
               finalNode = valueNodeToArgNode(init, funcNode, callNode);
@@ -176,7 +177,8 @@ function _freeNested(fdata, $prng, usePrng) {
               let newCallee;
               if (callee.type === 'Identifier') {
                 newCallee = AST.cloneSimple(valueNodeToArgNode(callee, funcNode, callNode))
-              } else if (callee.type === 'MemberExpression') {
+              }
+              else if (callee.type === 'MemberExpression') {
                 if (callee.computed) {
                   newCallee = AST.memberExpression(
                     AST.cloneSimple(valueNodeToArgNode(callee.object, funcNode, callNode)),
@@ -189,7 +191,8 @@ function _freeNested(fdata, $prng, usePrng) {
                     AST.cloneSimple(callee.property),
                   );
                 }
-              } else {
+              }
+              else {
                 // I guess it's a primitive now? Or what...
                 newCallee = AST.cloneSimple(callee)
               }
@@ -217,8 +220,17 @@ function _freeNested(fdata, $prng, usePrng) {
               ASSERT(finalNode.quasis.length === finalNode.expressions.length+1, 'quasi:expr ratio mismatch', finalNode.quasis, finalNode.expressions);
               break;
             }
+            case 'Literal': {
+              ASSERT(init.raw.startsWith('/'), 'literal should be regex literal', init);
+              finalNode = AST.cloneSortOfSimple(init);
+              break;
+            }
+            case 'UnaryExpression': {
+              finalNode = AST.unaryExpression(init.operator, valueNodeToArgNode(init.argument, funcNode, callNode));
+              break;
+            }
             default: {
-              ASSERT(false, 'support this type', init.type);
+              ASSERT(false, 'support this type', init, init.type);
             }
           }
         }
@@ -438,7 +450,7 @@ function _freeNested(fdata, $prng, usePrng) {
       const targetName = valueNode.name;
       const n = funcNode.$p.paramNameToIndex.get(targetName);
       if (n >= 0) {
-        return AST.cloneSimple(callNode.arguments[n+1]) || AST.identifier('undefined');
+        return callNode.arguments[n+1] ? AST.cloneSimple(callNode.arguments[n+1]) : AST.identifier('undefined');
       } else {
         // Then this ought to be a global (builtin or explicit), which would not be passed in as an arg.
         ASSERT(targetName === '$' || targetName === SYMBOL_FRFR || BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) || fdata.globallyUniqueNamingRegistry.get(targetName)?.constValueRef?.node?.$p.blockChain === '1,', 'if there is no arg then the var must refer to a global of sorts', targetName);

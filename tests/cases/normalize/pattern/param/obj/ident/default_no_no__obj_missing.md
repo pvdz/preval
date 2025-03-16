@@ -19,8 +19,8 @@ $(f({ b: 2, c: 3 }, 10));
 
 
 `````js filename=intro
-const x /*:unknown*/ = $Object_prototype.x;
-$(x);
+const x$1 /*:unknown*/ = $Object_prototype.x;
+$(x$1);
 `````
 
 ## Denormalized

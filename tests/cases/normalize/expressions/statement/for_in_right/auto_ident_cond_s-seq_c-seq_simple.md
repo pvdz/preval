@@ -18,8 +18,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(60);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(60);
+const tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen.next();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;

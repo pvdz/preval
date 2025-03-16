@@ -29,8 +29,8 @@ switch (1) {
 const tmpCallCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
+const tmpClusterSSA_a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
 `````

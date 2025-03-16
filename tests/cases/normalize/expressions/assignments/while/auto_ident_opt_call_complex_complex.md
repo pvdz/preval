@@ -196,3 +196,7 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- objects in isFree check
+- Support referencing this builtin in isFree: $

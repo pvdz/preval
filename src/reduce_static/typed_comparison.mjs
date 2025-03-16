@@ -279,11 +279,27 @@ function _typedComparison(fdata) {
     vlog('- processIdentIdent(', node1.type, node2.name, ')');
 
     const meta1 = fdata.globallyUniqueNamingRegistry.get(node1.name);
-    if (!meta1.typing.mustBeType || meta1.typing.mustBeType === 'primitive') return; // This might be a string that's equal to the literal so we can't predict inequality
     const meta2 = fdata.globallyUniqueNamingRegistry.get(node2.name);
-    if (!meta2.typing.mustBeType || meta2.typing.mustBeType === 'primitive') return; // This might be a string that's equal to the literal so we can't predict inequality
 
-    if (meta1.typing.mustBeType === meta2.mustBeType) return; // if types match then we can't predict inequality for unknown values
+    // We ony want to allow solid types
+    // For example, all arrays are objects. But primitives cannot match an object. So it can get a bit complex.
+    const solids = new Set(['array', 'function', 'class', 'set', 'map', 'regex', 'promise']);
+    const prims = new Set(['undefined', 'null', 'boolean', 'number', 'string']);
+
+    const mustBe1 = meta1.typing.mustBeType;
+    const mustBe2 = meta2.typing.mustBeType;
+
+    vlog('The mustbes:', [meta1.typing.mustBeType, meta2.typing.mustBeType]);
+    // Only do this when we're certain.
+    if (!mustBe1 || !mustBe2) return;
+    if (mustBe1 === mustBe2 || !(
+      (solids.has(mustBe1) && solids.has(mustBe2)) || // two different concrete object types
+      (prims.has(mustBe1) && prims.has(mustBe2)) ||   // two different concrete prims
+      ((mustBe1 === 'primitive' && prims.has(mustBe1)) && !(solids.has(mustBe2) || mustBe2 === 'object')) || // any primitive vs any object type
+      ((mustBe2 === 'primitive' && prims.has(mustBe2)) && !(solids.has(mustBe1) || mustBe1 === 'object'))    // any primitive vs any object type
+    )) {
+      return;
+    }
 
     rule('Two idents with known types that are different are always strictly inequal');
     example('const foo = 5; const b = []; $(foo === b)', '$(false)');

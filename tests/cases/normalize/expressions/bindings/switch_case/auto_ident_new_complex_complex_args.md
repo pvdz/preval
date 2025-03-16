@@ -25,8 +25,8 @@ switch (1) {
 const tmpNewCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
+const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized

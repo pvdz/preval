@@ -20,16 +20,16 @@ $(a);
 
 
 `````js filename=intro
-let xyz /*:unknown*/ = undefined;
+let a /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  xyz = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````
@@ -38,12 +38,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-let xyz = undefined;
+let a = undefined;
 if (!($ == null)) {
-  xyz = $dotCall($, { e: $ }, `e`, 1);
+  a = $dotCall($, { e: $ }, `e`, 1);
 }
 while (true) {
-  $(xyz);
+  $(a);
   $(1);
 }
 `````

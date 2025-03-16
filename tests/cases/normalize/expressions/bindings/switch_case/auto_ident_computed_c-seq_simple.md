@@ -22,21 +22,21 @@ switch (1) {
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 1 };
-const tmpAssignRhsCompObj /*:unknown*/ = $(b);
+const tmpClusterSSA_b /*:object*/ = { c: 1 };
+const tmpAssignRhsCompObj /*:unknown*/ = $(tmpClusterSSA_b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(tmpClusterSSA_a, b);
+$(tmpClusterSSA_a, tmpClusterSSA_b);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const b = { c: 1 };
-const tmpAssignRhsCompObj = $(b);
+const tmpClusterSSA_b = { c: 1 };
+const tmpAssignRhsCompObj = $(tmpClusterSSA_b);
 const tmpAssignRhsCompProp = $(`c`);
-$(tmpAssignRhsCompObj[tmpAssignRhsCompProp], b);
+$(tmpAssignRhsCompObj[tmpAssignRhsCompProp], tmpClusterSSA_b);
 `````
 
 ## Pre Normal

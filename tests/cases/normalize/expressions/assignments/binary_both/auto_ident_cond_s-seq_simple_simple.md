@@ -20,21 +20,21 @@ $(a);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(2);
 const tmpClusterSSA_a /*:unknown*/ = $(2);
-const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
+const a /*:unknown*/ = $(2);
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(2);
 const tmpClusterSSA_a = $(2);
-$(a + tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = $(2);
+$(tmpClusterSSA_a + a);
+$(a);
 `````
 
 ## Pre Normal

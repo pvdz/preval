@@ -27,14 +27,14 @@ x();
 
 
 `````js filename=intro
-throw `Preval: TDZ triggered for this read: x\$1;`;
+throw `Preval: This statement contained a read that reached no writes: x\$1;`;
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-throw `Preval: TDZ triggered for this read: x\$1;`;
+throw `Preval: This statement contained a read that reached no writes: x\$1;`;
 `````
 
 ## Pre Normal
@@ -77,7 +77,7 @@ x();
 With rename=true
 
 `````js filename=intro
-throw "Preval: TDZ triggered for this read: x$1;";
+throw "Preval: This statement contained a read that reached no writes: x$1;";
 `````
 
 ## Globals

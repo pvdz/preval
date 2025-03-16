@@ -59,8 +59,8 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1) {
   debugger;
   let tmpssa3_tmpExpando$1 /*:unknown*/ = undefined;
   let tmpssa3_arg1 /*:unknown*/ = 3;
-  const index /*:number*/ = newArg1 - 1;
-  const arrval /*:primitive*/ = arr[index];
+  const index$1 /*:number*/ = newArg1 - 1;
+  const arrval /*:primitive*/ = arr[index$1];
   const tmpBinLhs /*:unknown*/ = tmpExpando;
   const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
   if (tmpIfTest) {
@@ -69,7 +69,7 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1) {
     tmpExpando = true;
   } else {
   }
-  const newIndex /*:number*/ = index + 100;
+  const newIndex /*:number*/ = index$1 + 100;
   const arguments_x /*:unknown*/ = tmpssa3_arg1[newIndex];
   if (arguments_x) {
     return arguments_x;
@@ -94,14 +94,14 @@ const func = function (newArg1, $$1) {
   const tmpPrevalAliasArgumentsAny = arguments;
   let tmpssa3_tmpExpando$1 = undefined;
   let tmpssa3_arg1 = 3;
-  const index = newArg1 - 1;
-  const arrval = arr[index];
+  const index$1 = newArg1 - 1;
+  const arrval = arr[index$1];
   if (tmpExpando === undefined) {
     tmpssa3_tmpExpando$1 = $spy;
     tmpssa3_arg1 = tmpPrevalAliasArgumentsAny;
     tmpExpando = true;
   }
-  const newIndex = index + 100;
+  const newIndex = index$1 + 100;
   const arguments_x = tmpssa3_arg1[newIndex];
   if (arguments_x) {
     return arguments_x;

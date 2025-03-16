@@ -18,8 +18,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParamSpread /*:unknown*/ = $(2);
-$(...tmpCalleeParamSpread);
+const tmpClusterSSA_tmpCalleeParamSpread /*:unknown*/ = $(2);
+$(...tmpClusterSSA_tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -28,8 +28,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParamSpread = $(2);
-$(...tmpCalleeParamSpread);
+const tmpClusterSSA_tmpCalleeParamSpread = $(2);
+$(...tmpClusterSSA_tmpCalleeParamSpread);
 $({ a: 999, b: 1000 });
 `````
 

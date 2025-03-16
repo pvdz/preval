@@ -20,26 +20,26 @@ $(a);
 
 
 `````js filename=intro
-let tmpThrowArg /*:unknown*/ = undefined;
+let a /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpThrowArg = tmpChainElementCall;
+  a = tmpChainElementCall;
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpThrowArg = undefined;
+let a = undefined;
 if (!($ == null)) {
-  tmpThrowArg = $dotCall($, { e: $ }, `e`, 1);
+  a = $dotCall($, { e: $ }, `e`, 1);
 }
-throw tmpThrowArg;
+throw a;
 `````
 
 ## Pre Normal

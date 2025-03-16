@@ -26,20 +26,20 @@ $(f(0));
 
 
 `````js filename=intro
-const g /*:(primitive)=>primitive*/ = function ($$0) {
-  const n$1 /*:primitive*/ = $$0;
+const h /*:(primitive)=>primitive*/ = function ($$0) {
+  const n$3 /*:primitive*/ = $$0;
   debugger;
-  const tmpCalleeParam /*:primitive*/ = n$1 + 1;
-  const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
+  const tmpBinLhs /*:unknown*/ = $(n$3);
   const tmpIfTest /*:boolean*/ = tmpBinLhs > 1000;
   if (tmpIfTest) {
-    return tmpCalleeParam;
+    return n$3;
   } else {
-    const tmpReturnArg$3 /*:primitive*/ = g(tmpCalleeParam);
+    const tmpSaooB$1 /*:primitive*/ = n$3 + 1;
+    const tmpReturnArg$3 /*:primitive*/ = h(tmpSaooB$1);
     return tmpReturnArg$3;
   }
 };
-const tmpCalleeParam$1 /*:primitive*/ = g(0);
+const tmpCalleeParam$1 /*:primitive*/ = h(1);
 $(tmpCalleeParam$1);
 `````
 
@@ -47,16 +47,15 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const g = function (n$1) {
-  const tmpCalleeParam = n$1 + 1;
-  if ($(tmpCalleeParam) > 1000) {
-    return tmpCalleeParam;
+const h = function (n$3) {
+  if ($(n$3) > 1000) {
+    return n$3;
   } else {
-    const tmpReturnArg$3 = g(tmpCalleeParam);
+    const tmpReturnArg$3 = h(n$3 + 1);
     return tmpReturnArg$3;
   }
 };
-$(g(0));
+$(h(1));
 `````
 
 ## Pre Normal
@@ -123,18 +122,18 @@ With rename=true
 const a = function($$0 ) {
   const b = $$0;
   debugger;
-  const c = b + 1;
-  const d = $( c );
-  const e = d > 1000;
-  if (e) {
-    return c;
+  const c = $( b );
+  const d = c > 1000;
+  if (d) {
+    return b;
   }
   else {
-    const f = a( c );
+    const e = b + 1;
+    const f = a( e );
     return f;
   }
 };
-const g = a( 0 );
+const g = a( 1 );
 $( g );
 `````
 

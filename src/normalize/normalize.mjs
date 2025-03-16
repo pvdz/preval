@@ -7237,59 +7237,7 @@ export function phaseNormalize(fdata, fname, prng, options) {
           return true;
         }
 
-        vlog('Walking the', node.expressions.length, 'expressions of the template...');
-        let newNode = node;
-        for (let i = newNode.expressions.length - 1; i >= 0; --i) {
-          const outerExpressions = newNode.expressions.slice(0);
-          const outerQuasis = newNode.quasis.slice(0);
-          const expr = outerExpressions[i];
-          if (AST.isPrimitive(expr)) {
-            vlog('- Inlining primitive at', i);
-            // Drop the expression that represents the primitive
-            // Squash the value of the quasi at the same position of the expression, with the primitive and its next expression sibling
-            const val = AST.getPrimitiveValue(expr);
-            outerExpressions.splice(i, 1); // Drop the expr
-            outerQuasis[i].value.cooked += val + outerQuasis[i + 1].value.cooked; // merge left str + prim value + right str into one str
-            outerQuasis.splice(i + 1, 1); // Drop the right str
-            newNode = AST.templateLiteral(
-              outerQuasis.map((te) => te.value.cooked),
-              outerExpressions,
-            );
-          } else if (expr.type === 'TemplateLiteral') {
-            vlog('- Inlining non-primitive template at', i);
-
-            // So we have a template nested in another template
-            // `a${`A${x}B`}b`
-            // So we have outer:
-            // 'a', tpl, 'b'
-            // And we have inner
-            // 'A', x, 'B'
-            // The template is one expression and so we want to go from `'a' tpl 'b'` to `'aA' x 'Bb'`
-            // This means that for a template at position i, we merge the left-most string of the inner
-            // template with the string at position i and we merge the right most string of the inner
-            // template with the string at position i+1. We then remove the expression at position i
-            // (which is the template) and replace it with all the expressions inside the inner template.
-            // We don't remove any strings but we move all the inner template strings except the outer most
-            // into the outer strings, between index i and i+1.
-            // Then we should end up with `aA${x}Bb`
-
-            const innerExpressions = expr.expressions;
-            const leftMost = expr.quasis[0];
-            const rightMost = expr.quasis[expr.quasis.length - 1];
-            const innerQuasis = expr.quasis.slice(1, -1);
-
-            ASSERT(outerExpressions.length > 0);
-            outerExpressions.splice(i, 1, ...innerExpressions);
-            outerQuasis[i].value.cooked = outerQuasis[i].value.cooked + leftMost.value.cooked;
-            outerQuasis[i + 1].value.cooked = rightMost.value.cooked + outerQuasis[i + 1].value.cooked;
-            outerQuasis.splice(i + 1, 0, ...innerQuasis);
-            newNode = AST.templateLiteral(
-              outerQuasis.map((te) => te.value.cooked),
-              outerExpressions,
-            );
-          }
-        }
-
+        const newNode = AST.normalizeTemplateSimple(node);
         if (node !== newNode) {
           rule('A template with primitive expressions must resolve statically');
           example('`a${1}b`', '`a1b`');

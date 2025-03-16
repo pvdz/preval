@@ -73,6 +73,8 @@ const tmpArrElement$17 /*:boolean*/ = `function String() { [native code] }` < x;
 const tmpArrElement$19 /*:boolean*/ = `function String() { [native code] }` > x;
 const tmpArrElement$21 /*:boolean*/ = `function String() { [native code] }` <= x;
 const tmpArrElement$23 /*:boolean*/ = `function String() { [native code] }` >= x;
+const tmpArrElement$25 /*:boolean*/ = String == x;
+const tmpArrElement$27 /*:boolean*/ = String != x;
 x ** 0;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
@@ -91,8 +93,8 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   0,
@@ -133,6 +135,8 @@ const tmpArrElement$17 = `function String() { [native code] }` < x;
 const tmpArrElement$19 = `function String() { [native code] }` > x;
 const tmpArrElement$21 = `function String() { [native code] }` <= x;
 const tmpArrElement$23 = `function String() { [native code] }` >= x;
+const tmpArrElement$25 = String == x;
+const tmpArrElement$27 = String != x;
 x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
@@ -151,8 +155,8 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
   false,
   true,
   0,
@@ -305,16 +309,18 @@ const h = "function String() { [native code] }" < a;
 const i = "function String() { [native code] }" > a;
 const j = "function String() { [native code] }" <= a;
 const k = "function String() { [native code] }" >= a;
+const l = String == a;
+const m = String != a;
 a ** 0;
-const l = 0 ^ a;
-const m = 0 | a;
-const n = `function String() { [native code] }${d}`;
-const o = [ c, NaN, NaN, NaN, n, NaN, e, f, g, h, i, j, k, false, true, false, true, 0, l, m ];
-$( o );
-const p = String in a;
-$( p );
-const q = String instanceof a;
+const n = 0 ^ a;
+const o = 0 | a;
+const p = `function String() { [native code] }${d}`;
+const q = [ c, NaN, NaN, NaN, p, NaN, e, f, g, h, i, j, k, l, m, false, true, 0, n, o ];
 $( q );
+const r = String in a;
+$( r );
+const s = String instanceof a;
+$( s );
 `````
 
 ## Globals

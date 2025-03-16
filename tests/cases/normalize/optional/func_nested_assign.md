@@ -22,8 +22,8 @@ $(f());
 
 `````js filename=intro
 $();
-const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(15);
-$(tmpClusterSSA_tmpReturnArg);
+const tmpReturnArg /*:unknown*/ = $(15);
+$(tmpReturnArg);
 `````
 
 ## Denormalized

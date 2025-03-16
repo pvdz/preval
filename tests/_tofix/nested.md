@@ -46,9 +46,10 @@ const g /*:()=>array*/ = function () {
   const g$1 /*:array*/ = [1, 2, 3];
   return g$1;
 };
-g();
-g();
-$(false);
+const x /*:array*/ = g();
+const y /*:array*/ = g();
+const xy /*:boolean*/ = x === y;
+$(xy);
 const z /*:array*/ = g();
 $(z);
 `````
@@ -64,9 +65,8 @@ const g = function () {
   const g$1 = [1, 2, 3];
   return g$1;
 };
-g();
-g();
-$(false);
+const x = g();
+$(x === g());
 $(g());
 `````
 
@@ -140,11 +140,12 @@ const a = function() {
   const b = [ 1, 2, 3 ];
   return b;
 };
-a();
-a();
-$( false );
 const c = a();
-$( c );
+const d = a();
+const e = c === d;
+$( e );
+const f = a();
+$( f );
 `````
 
 ## Globals

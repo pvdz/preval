@@ -1,8 +1,8 @@
 # Preval test case
 
-# wowwhat.md
+# wowwhat4.md
 
-> Normalize > Compound > Wowwhat
+> Normalize > Compound > Wowwhat4
 >
 > When decomposing compound assignments to properties we must make sure to retain observable runtime semantics. Consider: "what if the property is a getter?"
 
@@ -10,8 +10,8 @@
 
 `````js filename=intro
 const spy = {
-  valueOf(){ return 1; },
-  toString(){ return 'a'; },
+  valueOf(){ return 'a'; },
+  toString(){ return 1; },
 };
 $('a' + spy === `a${spy}`);
 
@@ -21,36 +21,49 @@ $('a' + spy === `a${spy}`);
 
 
 `````js filename=intro
+const tmpFree /*:(string, string)=>boolean*/ = function $free($$0, $$1) {
+  const tmpBinBothRhs$2 /*:string*/ = $$0;
+  const tmpStringConcatL$1 /*:string*/ = $$1;
+  debugger;
+  const tmpBinBothLhs /*:string*/ = `a${tmpStringConcatL$1}`;
+  const tmpBinLhs /*:string*/ = `a${tmpBinBothRhs$2}`;
+  const tmpRet /*:boolean*/ = tmpBinBothLhs === tmpBinLhs;
+  return tmpRet;
+};
 const spy /*:object*/ = {
   valueOf() {
     debugger;
-    return 1;
+    return `a`;
   },
   toString() {
     debugger;
-    return `a`;
+    return 1;
   },
 };
-$coerce(spy, `plustr`);
-$coerce(spy, `string`);
-$(false);
+const tmpStringConcatL /*:string*/ = $coerce(spy, `plustr`);
+const tmpBinBothRhs$1 /*:string*/ = $coerce(spy, `string`);
+const tmpCalleeParam /*:boolean*/ = $frfr(tmpFree, tmpBinBothRhs$1, tmpStringConcatL);
+$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpFree = function $free(tmpBinBothRhs$2, tmpStringConcatL$1) {
+  const tmpRet = `a${tmpStringConcatL$1}` === `a${tmpBinBothRhs$2}`;
+  return tmpRet;
+};
 const spy = {
   valueOf() {
-    return 1;
-  },
-  toString() {
     return `a`;
   },
+  toString() {
+    return 1;
+  },
 };
-$coerce(spy, `plustr`);
-$coerce(spy, `string`);
-$(false);
+const tmpStringConcatL = $coerce(spy, `plustr`);
+$($frfr(tmpFree, $coerce(spy, `string`), tmpStringConcatL));
 `````
 
 ## Pre Normal
@@ -60,11 +73,11 @@ $(false);
 const spy = {
   valueOf() {
     debugger;
-    return 1;
+    return `a`;
   },
   toString() {
     debugger;
-    return `a`;
+    return 1;
   },
 };
 $(`a` + spy === `a` + $coerce(spy, `string`) + ``);
@@ -77,11 +90,11 @@ $(`a` + spy === `a` + $coerce(spy, `string`) + ``);
 const spy = {
   valueOf() {
     debugger;
-    return 1;
+    return `a`;
   },
   toString() {
     debugger;
-    return `a`;
+    return 1;
   },
 };
 const tmpStringConcatL = $coerce(spy, `plustr`);
@@ -98,19 +111,29 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = {
+const a = function b($$0,$$1 ) {
+  const c = $$0;
+  const d = $$1;
+  debugger;
+  const e = `a${d}`;
+  const f = `a${c}`;
+  const g = e === f;
+  return g;
+};
+const h = {
   valueOf(  ) {
-    debugger;
-    return 1;
-  },
-  toString(  ) {
     debugger;
     return "a";
   },
+  toString(  ) {
+    debugger;
+    return 1;
+  },
 };
-$coerce( a, "plustr" );
-$coerce( a, "string" );
-$( false );
+const i = $coerce( h, "plustr" );
+const j = $coerce( h, "string" );
+const k = l( a, j, i );
+$( k );
 `````
 
 ## Globals

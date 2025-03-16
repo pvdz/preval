@@ -21,17 +21,15 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ = undefined;
-let tmpCalleeParam /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   a = tmpChainElementCall;
-  tmpCalleeParam = tmpChainElementCall;
 }
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 } else {
   const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
@@ -52,16 +50,13 @@ if (a) {
 
 `````js filename=intro
 let a = undefined;
-let tmpCalleeParam = undefined;
 const tmpIfTest$1 = $ == null;
 const tmpObjLitVal$1 = { e: $ };
 if (!tmpIfTest$1) {
-  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  a = tmpChainElementCall;
-  tmpCalleeParam = tmpChainElementCall;
+  a = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 } else {
   const tmpChainElementObject$9 = tmpObjLitVal$1.e;
@@ -141,32 +136,30 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = $ == null;
-const d = { e: $ };
-if (c) {
+const b = $ == null;
+const c = { e: $ };
+if (b) {
 
 }
 else {
-  const e = $dotCall( $, d, "e", 1 );
-  a = e;
-  b = e;
+  const d = $dotCall( $, c, "e", 1 );
+  a = d;
 }
 if (a) {
-  $( b );
+  $( a );
   $( a );
 }
 else {
-  const f = d.e;
-  const g = f == null;
-  if (g) {
+  const e = c.e;
+  const f = e == null;
+  if (f) {
     $( undefined );
     $( undefined );
   }
   else {
-    const h = $dotCall( f, d, "e", 1 );
-    $( h );
-    $( h );
+    const g = $dotCall( e, c, "e", 1 );
+    $( g );
+    $( g );
   }
 }
 `````

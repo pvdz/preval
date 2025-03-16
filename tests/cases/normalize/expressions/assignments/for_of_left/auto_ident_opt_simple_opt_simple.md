@@ -30,7 +30,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    a = undefined;
+    a = 1;
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     (1).x = tmpAssignMemRhs;
   }
@@ -49,7 +49,7 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    a = undefined;
+    a = 1;
     const tmpAssignMemRhs = tmpForOfNext.value;
     (1).x = tmpAssignMemRhs;
   }
@@ -133,7 +133,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    a = undefined;
+    a = 1;
     const g = e.value;
     1.x = g;
   }
@@ -160,4 +160,5 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
+- objects in isFree check
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

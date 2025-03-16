@@ -16,14 +16,18 @@ $({} != {});
 
 
 `````js filename=intro
-$(true);
+const tmpBinBothLhs /*:object*/ = {};
+const tmpBinBothRhs /*:object*/ = {};
+const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs != tmpBinBothRhs;
+$(tmpCalleeParam);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-$(true);
+const tmpBinBothLhs = {};
+$(tmpBinBothLhs != {});
 `````
 
 ## Pre Normal
@@ -47,7 +51,10 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-$( true );
+const a = {};
+const b = {};
+const c = a != b;
+$( c );
 `````
 
 ## Globals

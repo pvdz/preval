@@ -1008,6 +1008,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           parentNode,
         );
         ASSERT(node.expressions.length+1 === node.quasis.length, 'one more quasi than ident', node);
+        ASSERT(node.expressions.every(enode => enode.type !== 'TemplateLiteral'), 'Any transforms leaving nested templates behind should go to normalize or call AST.normalizeTemplateSimple on the result first', node);
         break;
       }
 

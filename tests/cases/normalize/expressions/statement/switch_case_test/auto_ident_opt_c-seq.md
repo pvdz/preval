@@ -26,13 +26,12 @@ $(1);
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
-const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest$1) {
-  $(a);
 } else {
   tmpChainRootProp.x;
-  $(a);
 }
+const a /*:object*/ = { a: 999, b: 1000 };
+$(a);
 `````
 
 ## Denormalized
@@ -41,14 +40,10 @@ if (tmpIfTest$1) {
 `````js filename=intro
 $(1);
 const tmpChainRootProp = $({ x: 1 });
-const tmpIfTest$1 = tmpChainRootProp == null;
-const a = { a: 999, b: 1000 };
-if (tmpIfTest$1) {
-  $(a);
-} else {
+if (!(tmpChainRootProp == null)) {
   tmpChainRootProp.x;
-  $(a);
 }
+$({ a: 999, b: 1000 });
 `````
 
 ## Pre Normal
@@ -94,17 +89,17 @@ $( 1 );
 const a = { x: 1 };
 const b = $( a );
 const c = b == null;
+if (c) {
+
+}
+else {
+  b.x;
+}
 const d = {
   a: 999,
   b: 1000,
 };
-if (c) {
-  $( d );
-}
-else {
-  b.x;
-  $( d );
-}
+$( d );
 `````
 
 ## Globals

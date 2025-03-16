@@ -22,8 +22,8 @@ switch (1) {
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 1 };
-$(1, b);
+const tmpClusterSSA_b /*:object*/ = { c: 1 };
+$(1, tmpClusterSSA_b);
 `````
 
 ## Denormalized

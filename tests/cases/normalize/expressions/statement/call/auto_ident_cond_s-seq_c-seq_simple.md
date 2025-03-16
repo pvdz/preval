@@ -18,8 +18,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(60);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(60);
+$(tmpClusterSSA_tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

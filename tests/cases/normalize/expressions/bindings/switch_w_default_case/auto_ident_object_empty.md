@@ -24,8 +24,8 @@ switch (1) {
 
 
 `````js filename=intro
-const a /*:object*/ = {};
-$(a);
+const tmpClusterSSA_a /*:object*/ = {};
+$(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
 `````

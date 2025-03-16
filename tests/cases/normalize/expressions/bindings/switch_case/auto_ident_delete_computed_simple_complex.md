@@ -23,9 +23,9 @@ switch (1) {
 
 `````js filename=intro
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const arg /*:object*/ = { y: 1 };
-const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-$(a, arg);
+const tmpClusterSSA_arg /*:object*/ = { y: 1 };
+const tmpClusterSSA_a /*:boolean*/ = delete tmpClusterSSA_arg[tmpDeleteCompProp];
+$(tmpClusterSSA_a, tmpClusterSSA_arg);
 `````
 
 ## Denormalized
@@ -33,8 +33,8 @@ $(a, arg);
 
 `````js filename=intro
 const tmpDeleteCompProp = $(`y`);
-const arg = { y: 1 };
-$(delete arg[tmpDeleteCompProp], arg);
+const tmpClusterSSA_arg = { y: 1 };
+$(delete tmpClusterSSA_arg[tmpDeleteCompProp], tmpClusterSSA_arg);
 `````
 
 ## Pre Normal

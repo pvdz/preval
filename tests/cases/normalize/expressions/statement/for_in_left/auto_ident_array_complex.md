@@ -153,5 +153,5 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- arr_mutation: implement array inlining analysis stuff
 - Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+- arr_mutation: implement array inlining analysis stuff

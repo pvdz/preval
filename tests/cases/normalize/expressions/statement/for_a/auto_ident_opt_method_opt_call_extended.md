@@ -152,3 +152,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- regular property access of an ident feels tricky;

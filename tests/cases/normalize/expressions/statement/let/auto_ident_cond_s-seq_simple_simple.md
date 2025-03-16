@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const xyz /*:unknown*/ = $(2);
-$(xyz);
+const tmpClusterSSA_xyz /*:unknown*/ = $(2);
+$(tmpClusterSSA_xyz);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

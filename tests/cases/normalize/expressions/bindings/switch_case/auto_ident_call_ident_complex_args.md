@@ -24,8 +24,8 @@ switch (1) {
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
+const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpClusterSSA_a);
 `````
 
 ## Denormalized

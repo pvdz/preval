@@ -83,12 +83,20 @@ const tmpBinLhs$21 /*:object*/ = {};
 const tmpArrElement$21 /*:boolean*/ = tmpBinLhs$21 <= x;
 const tmpBinLhs$23 /*:object*/ = {};
 const tmpArrElement$23 /*:boolean*/ = tmpBinLhs$23 >= x;
+const tmpBinLhs$25 /*:object*/ = {};
+const tmpArrElement$25 /*:boolean*/ = tmpBinLhs$25 == x;
+const tmpBinLhs$27 /*:object*/ = {};
+const tmpArrElement$27 /*:boolean*/ = tmpBinLhs$27 != x;
 const tmpBinLhs$33 /*:object*/ = {};
 const tmpArrElement$33 /*:number*/ = tmpBinLhs$33 & x;
 const tmpBinLhs$35 /*:object*/ = {};
 const tmpArrElement$35 /*:number*/ = tmpBinLhs$35 ^ x;
 const tmpBinLhs$37 /*:object*/ = {};
 const tmpArrElement$37 /*:number*/ = tmpBinLhs$37 | x;
+const tmpBinLhs$29 /*:object*/ = {};
+const tmpBinLhs$31 /*:object*/ = {};
+const tmpArrElement$29 /*:boolean*/ = tmpBinLhs$29 === x;
+const tmpArrElement$31 /*:boolean*/ = tmpBinLhs$31 !== x;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -103,10 +111,10 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
+  tmpArrElement$29,
+  tmpArrElement$31,
   tmpArrElement$33,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -148,9 +156,15 @@ const tmpArrElement$17 = {} < x;
 const tmpArrElement$19 = {} > x;
 const tmpArrElement$21 = {} <= x;
 const tmpArrElement$23 = {} >= x;
+const tmpArrElement$25 = {} == x;
+const tmpArrElement$27 = {} != x;
 const tmpArrElement$33 = {} & x;
 const tmpArrElement$35 = {} ^ x;
 const tmpArrElement$37 = {} | x;
+const tmpBinLhs$29 = {};
+const tmpBinLhs$31 = {};
+const tmpArrElement$29 = tmpBinLhs$29 === x;
+const tmpArrElement$31 = tmpBinLhs$31 !== x;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -165,10 +179,10 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  false,
-  true,
-  false,
-  true,
+  tmpArrElement$25,
+  tmpArrElement$27,
+  tmpArrElement$29,
+  tmpArrElement$31,
   tmpArrElement$33,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -349,19 +363,27 @@ const z = y <= b;
 const ba = {};
 const bb = ba >= b;
 const bc = {};
-const bd = bc & b;
+const bd = bc == b;
 const be = {};
-const bf = be ^ b;
+const bf = be != b;
 const bg = {};
-const bh = bg | b;
-const bi = [ d, f, h, j, l, n, p, r, t, v, x, z, bb, false, true, false, true, bd, bf, bh ];
-$( bi );
-const bj = {};
-const bk = bj in b;
-$( bk );
-const bl = {};
-const bm = bl instanceof b;
-$( bm );
+const bh = bg & b;
+const bi = {};
+const bj = bi ^ b;
+const bk = {};
+const bl = bk | b;
+const bm = {};
+const bn = {};
+const bo = bm === b;
+const bp = bn !== b;
+const bq = [ d, f, h, j, l, n, p, r, t, v, x, z, bb, bd, bf, bo, bp, bh, bj, bl ];
+$( bq );
+const br = {};
+const bs = br in b;
+$( bs );
+const bt = {};
+const bu = bt instanceof b;
+$( bu );
 `````
 
 ## Globals

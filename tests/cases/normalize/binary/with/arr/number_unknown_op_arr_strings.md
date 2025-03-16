@@ -47,12 +47,11 @@ $(arr2);
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const x /*:number*/ = 1 * tmpBinBothRhs;
-const tmpStringConcatR /*:string*/ = $coerce(x, `string`);
 const tmpBinBothRhs$27 /*:array*/ = [`a`, `b`, `c`];
 const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$27;
 const tmpBinBothRhs$29 /*:array*/ = [`a`, `b`, `c`];
 const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$29;
-const tmpArrElement$7 /*:string*/ = `${tmpStringConcatR}a,b,c`;
+const tmpArrElement$7 /*:string*/ = `${x}a,b,c`;
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;
 const tmpArrElement$15 /*:number*/ = x >>> 0;
@@ -99,10 +98,9 @@ $(arr2);
 `````js filename=intro
 const tmpBinBothRhs = $(1);
 const x = 1 * tmpBinBothRhs;
-const tmpStringConcatR = $coerce(x, `string`);
 const tmpArrElement$25 = x == [`a`, `b`, `c`];
 const tmpArrElement$27 = x != [`a`, `b`, `c`];
-const tmpArrElement$7 = `${tmpStringConcatR}a,b,c`;
+const tmpArrElement$7 = `${x}a,b,c`;
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
 const tmpArrElement$15 = x >>> 0;
@@ -279,29 +277,28 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = 1 * a;
-const c = $coerce( b, "string" );
-const d = [ "a", "b", "c" ];
-const e = b == d;
-const f = [ "a", "b", "c" ];
-const g = b != f;
-const h = `${c}a,b,c`;
-const i = b << 0;
-const j = b >> 0;
-const k = b >>> 0;
-const l = b < "a,b,c";
-const m = b > "a,b,c";
-const n = b <= "a,b,c";
-const o = b >= "a,b,c";
-const p = b ^ 0;
-const q = b | 0;
-const r = [ NaN, NaN, NaN, NaN, h, NaN, i, j, k, l, m, n, o, e, g, false, true, 0, p, q ];
-$( r );
+const c = [ "a", "b", "c" ];
+const d = b == c;
+const e = [ "a", "b", "c" ];
+const f = b != e;
+const g = `${b}a,b,c`;
+const h = b << 0;
+const i = b >> 0;
+const j = b >>> 0;
+const k = b < "a,b,c";
+const l = b > "a,b,c";
+const m = b <= "a,b,c";
+const n = b >= "a,b,c";
+const o = b ^ 0;
+const p = b | 0;
+const q = [ NaN, NaN, NaN, NaN, g, NaN, h, i, j, k, l, m, n, d, f, false, true, 0, o, p ];
+$( q );
+const r = [];
 const s = [];
-const t = [];
-const u = b in s;
-const v = b instanceof t;
-const w = [ u, v ];
-$( w );
+const t = b in r;
+const u = b instanceof s;
+const v = [ t, u ];
+$( v );
 `````
 
 ## Globals

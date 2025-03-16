@@ -124,3 +124,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- free with zero args, we can eliminate this?

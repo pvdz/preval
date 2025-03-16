@@ -505,7 +505,9 @@ function _typeTrackedTricks(fdata) {
               case 'array':
               case 'object':
               case 'set':
-              case 'map': {
+              case 'map':
+              case 'promise':
+              {
                 // Covered by tests/cases/type_tracked/typeof/base_object.md
                 rule('A `typeof` on a value that must be an object type can be resolved');
                 example('typeof /foo/;', '"object";');
@@ -521,8 +523,6 @@ function _typeTrackedTricks(fdata) {
               }
               case 'class': // Note: typeof class is 'function' !
               case 'function':
-              case 'map':
-              case 'set':
               {
                 // Covered by tests/cases/type_tracked/typeof/base_function.md
                 rule('A `typeof` on a value that must be a function can be resolved');
@@ -557,7 +557,6 @@ function _typeTrackedTricks(fdata) {
         const left = node.left;
         const right = node.right;
         vlog('bin expr:', left.type, '`' + node.operator + '`', right.type);
-        let mustBeValue = undefined; // undefined | true | false
         switch (node.operator) {
           case '===':
           case '!==': {
@@ -591,8 +590,15 @@ function _typeTrackedTricks(fdata) {
                     'const a = $(undefined); const b = $(undefined); a === b;',
                     'const a = $(undefined); const b = $(undefined); true;',
                   );
+                  before(node, grandNode);
                   vlog('left mustBeType:', lt, ', right mustBeType:', rt, ', op:', node.operator, ', result:', node.operator === '!==');
-                  mustBeValue = node.operator === '!=='; // When op is !==, return true because typing mismatch. When ===, return false.
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator === '!==');
+                  else parentNode[parentProp][parentIndex] = AST.primitive(node.operator === '!==');
+
+                  after(AST.fals(), grandNode);
+                  ++changes;
+                  break;
                 }
               } else {
                 // Since `===` and `!==` are type sensitive, we can predict their outcome even if we
@@ -613,7 +619,13 @@ function _typeTrackedTricks(fdata) {
                 // Covered: tests/cases/bit_hacks/and_eq_bad.md
                 rule('Strict n/equal comparison between an ident and a primitive depends on their type');
                 example('const x = 1 * f(2); g(x === "");', 'const x = 1 * f(2); g(false);');
-                mustBeValue = node.operator === '!==';
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator === '!==');
+                else parentNode[parentProp][parentIndex] = AST.primitive(node.operator === '!==');
+
+                after(AST.fals(), grandNode);
+                ++changes;
+                break;
               } else {
                 // The typing for left is not known or does not match the type of the primitive to the right.
               }
@@ -629,7 +641,14 @@ function _typeTrackedTricks(fdata) {
                 // Covered: tests/cases/bit_hacks/and_eq_bad.md
                 rule('Strict n/equal comparison between a primitive and an ident depends on their type');
                 example('const x = 1 * f(2); g("" === x);', 'const x = 1 * f(2); g(false);');
-                mustBeValue = node.operator === '!=='; // Note: we're acting as if op is ===
+                // Note: we're acting as if op is ===
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator === '!==');
+                else parentNode[parentProp][parentIndex] = AST.primitive(node.operator === '!==');
+
+                after(AST.fals(), grandNode);
+                ++changes;
+                break;
               } else {
                 // The typing for right is not known or does not match the type of the primitive to the left.
               }
@@ -653,27 +672,50 @@ function _typeTrackedTricks(fdata) {
             const lt = lp ? AST.getPrimitiveType(left) : undefined;
             const rt = rp ? AST.getPrimitiveType(right) : undefined;
 
+            vlog('Primitive types:', [lt, rt]);
+
             if (lp && rp && lt === rt) {
-              rule('Weak comparison when left and right are same type is strict comparison');
+              rule('Weak comparison when left and right are same primitive type is strict comparison');
               example('+x == +y', '+x === +y');
               before(node);
 
-              mustBeValue = node.operator !== '==';
+              node.operator = node.operator === '==' ? '===' : '!==';
+
+              after(node);
+              ++changes;
+              break;
             }
             else if (lp && !rp && node.right.type === 'Identifier') {
               const pv = AST.getPrimitiveValue(node.left);
               // We can assert a few cases using the .typing data
               const meta = fdata.globallyUniqueNamingRegistry.get(node.right.name);
-              if (pv == null && PRIMITIVE_TYPE_NAMES_TYPEOF.has(meta.typing.mustBeType)) {
+              if (
+                (pv === undefined || pv == null) &&
+                meta.typing.mustBeType !== 'null' &&
+                meta.typing.mustBeType !== 'undefined' &&
+                PRIMITIVE_TYPE_NAMES_TYPEOF.has(meta.typing.mustBeType)
+              ) {
                 ASSERT(
                   meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
                   'already confirmed not to be a primitive',
                 );
                 // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
                 // So as long as that's not the values it can't match.
-                mustBeValue = node.operator !== '==';
+                rule('Weak comparison of nullables to non-nullable never works out; left');
+                example('null == 0', 'false');
+                before(node);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator !== '==');
+                else parentNode[parentProp][parentIndex] = AST.primitive(node.operator !== '==');
+
+                after(AST.fals(), grandNode);
+                ++changes;
+                break;
               }
-              else if (pv == null && ['object', 'array', 'set', 'map', 'regex', 'function'].includes(meta.typing.mustBeType)) {
+              else if (
+                pv == null &&
+                ['object', 'array', 'set', 'map', 'regex', 'function', 'promise'].includes(meta.typing.mustBeType)
+              ) {
                 rule('Comparing a null with an object type always results in false');
                 example('null == []', 'false', () => node.operator === '==');
                 before(node);
@@ -692,16 +734,33 @@ function _typeTrackedTricks(fdata) {
               // We can assert a few cases using the .typing data
               const meta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
 
-              if (pv == null && PRIMITIVE_TYPE_NAMES_TYPEOF.has(meta.typing.mustBeType)) {
+              if (
+                (pv === undefined || pv == null) &&
+                meta.typing.mustBeType !== 'null' &&
+                meta.typing.mustBeType !== 'undefined' &&
+                PRIMITIVE_TYPE_NAMES_TYPEOF.has(meta.typing.mustBeType)
+              ) {
                 ASSERT(
                   meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
                   'already confirmed not to be a primitive',
                 );
                 // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
                 // So as long as that's not the values it can't match.
-                mustBeValue = node.operator !== '==';
+                rule('Weak comparison of nullables to non-nullable never works out; right');
+                example('null == 0', 'false');
+                before(node);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator !== '==');
+                else parentNode[parentProp][parentIndex] = AST.primitive(node.operator !== '==');
+
+                after(AST.fals(), grandNode);
+                ++changes;
+                break;
               }
-              else if (pv == null && ['object', 'array', 'set', 'map', 'regex', 'function'].includes(meta.typing.mustBeType)) {
+              else if (
+                pv == null &&
+                ['object', 'array', 'set', 'map', 'regex', 'function'].includes(meta.typing.mustBeType)
+              ) {
                 rule('Comparing a null with an object type always results in false');
                 example('null == []', 'false', () => node.operator === '==');
                 before(node);
@@ -712,6 +771,7 @@ function _typeTrackedTricks(fdata) {
 
                 after(node);
                 ++changes;
+                break;
               }
             }
 
@@ -732,11 +792,15 @@ function _typeTrackedTricks(fdata) {
                 before(node);
 
                 // This is comparing object-types which is the same as using strict comparison so we should change to that
-                mustBeValue = node.operator !== '==';
+                node.operator = node.operator === '==' ? '===' : '!==';
+
+                after(node);
+                ++changes;
+                break;
               }
               else if (
                 lmeta.typing.mustBeType === rmeta.typing.mustBeType &&
-                ['object', 'array', 'set', 'map', 'regex', 'function'].includes(lmeta.typing.mustBeType)
+                ['array', 'set', 'map', 'regex', 'function'].includes(lmeta.typing.mustBeType)
               ) {
                 // We know that when both sides are object but of a different kind, that the result is false
                 // But we may as well consolidate that logic inside the strict comparison handlers. So we just delegate here.
@@ -746,12 +810,16 @@ function _typeTrackedTricks(fdata) {
                 before(node);
 
                 // This is comparing object-types which is the same as using strict comparison so we should change to that
-                mustBeValue = node.operator !== '==';
+                node.operator = node.operator === '==' ? '===' : '!==';
+
+                after(AST.fals(), grandNode);
+                ++changes;
+                break;
               }
               else if (
                 lmeta.typing.mustBeType !== rmeta.typing.mustBeType &&
-                ['object', 'array', 'set', 'map', 'regex', 'function'].includes(lmeta.typing.mustBeType) &&
-                ['object', 'array', 'set', 'map', 'regex', 'function'].includes(rmeta.typing.mustBeType)
+                ['array', 'set', 'map', 'regex', 'function'].includes(lmeta.typing.mustBeType) &&
+                ['array', 'set', 'map', 'regex', 'function'].includes(rmeta.typing.mustBeType)
               ) {
                 // We know that when both sides are object but of a different kind, that the result is false
                 // But we may as well consolidate that logic inside the strict comparison handlers. So we just delegate here.
@@ -920,26 +988,6 @@ function _typeTrackedTricks(fdata) {
           }
         }
 
-        vlog('mustBeValue is:', mustBeValue);
-        if (mustBeValue === true) {
-          before(node, grandNode);
-
-          if (parentIndex < 0) parentNode[parentProp] = AST.tru();
-          else parentNode[parentProp][parentIndex] = AST.tru();
-
-          after(AST.tru(), grandNode);
-          ++changes;
-        } else if (mustBeValue === false) {
-          before(node, grandNode);
-
-          if (parentIndex < 0) parentNode[parentProp] = AST.fals();
-          else parentNode[parentProp][parentIndex] = AST.fals();
-          // Covered by tests/cases/bit_hacks/and_eq_bad.md
-
-          after(AST.fals(), grandNode);
-          ++changes;
-        }
-
         break;
       }
       case 'CallExpression': {
@@ -991,7 +1039,6 @@ function _typeTrackedTricks(fdata) {
                         }
                       }
                     });
-                    node.arguments.splice(0, 3); // Drop `Function`, the context ref, and the prop name
 
                     // Mark all args as tainted, just in case.
                     // We should not need to taint Function and $dotCall metas for this.
@@ -1006,7 +1053,8 @@ function _typeTrackedTricks(fdata) {
                         }
                       }
                     });
-                    node.arguments.splice(0, 3); // Drop `Function` and the context ref
+
+                    node.arguments.splice(0, 3); // Drop `Function`, the context ref, and the prop name
 
                     after(node);
                     ++changes;

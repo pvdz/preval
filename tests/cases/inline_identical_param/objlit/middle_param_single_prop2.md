@@ -24,18 +24,28 @@ f(3, tmpCalleeParam$13, `z`);
 
 
 `````js filename=intro
-const tmpCalleeParam$7 /*:object*/ = { a: 1 };
-$(1, `y`, tmpCalleeParam$7);
-const tmpCalleeParam$13 /*:object*/ = { a: 3 };
-$(3, `z`, tmpCalleeParam$13);
+const f /*:(number, number, string)=>undefined*/ = function ($$0, $$1, $$2) {
+  const x /*:number*/ = $$0;
+  const a$1 /*:number*/ = $$1;
+  const y /*:string*/ = $$2;
+  debugger;
+  const a /*:object*/ = { a: a$1 };
+  $(x, y, a);
+  return undefined;
+};
+f(1, 1, `y`);
+f(3, 3, `z`);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-$(1, `y`, { a: 1 });
-$(3, `z`, { a: 3 });
+const f = function (x, a$1, y) {
+  $(x, y, { a: a$1 });
+};
+f(1, 1, `y`);
+f(3, 3, `z`);
 `````
 
 ## Pre Normal
@@ -81,10 +91,17 @@ f(3, tmpCalleeParam$13, `z`);
 With rename=true
 
 `````js filename=intro
-const a = { a: 1 };
-$( 1, "y", a );
-const b = { a: 3 };
-$( 3, "z", b );
+const a = function($$0,$$1,$$2 ) {
+  const b = $$0;
+  const c = $$1;
+  const d = $$2;
+  debugger;
+  const e = { a: c };
+  $( b, d, e );
+  return undefined;
+};
+a( 1, 1, "y" );
+a( 3, 3, "z" );
 `````
 
 ## Globals

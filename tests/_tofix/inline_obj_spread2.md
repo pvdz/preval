@@ -16,26 +16,6 @@ const tmpCalleeParam = { ...tmpObjLitVal }; // Should preval realize that this i
 $(tmpCalleeParam);
 `````
 
-## PST Output:
-
-With rename=true
-
-`````js filename=intro
-const a = { bar: 10 };
-const b = { ... a };
-$( b );
-`````
-
-## PST Output:
-
-With rename=true
-
-`````js filename=intro
-const a = { bar: 10 };
-const b = { ... a };
-$( b );
-`````
-
 ## Settled
 
 

@@ -992,7 +992,13 @@ export function getCleanTypingObject() {
     // string. If anything, this should then be the primitive type that this binding must be.
     // TODO: what if there are multiple options? Or even like bool/undefined/null? "falsy/truthy"
     // TODO: add `date` as a first class type
-    mustBeType: undefined, // undefined|false|enum. 'null', 'array' (lit), 'object' (plain), 'function', 'class', 'set', 'map', 'regex', <typeof primitive>. Undefined means undetermined. When false, the type can not be determined safely.
+    // undefined|false|enum.
+    // 'undefined', 'null', 'boolean', 'number', 'string', 'primitive',
+    // 'unknown',
+    // 'object', 'array', 'function', 'class', 'set', 'map', 'regex', 'promise',
+    // Undefined means undetermined.
+    // When false, the type could not be determined safely.
+    mustBeType: undefined,
     mustBeFalsy: undefined, // undefined|bool: only true if value is known to be one of: false, null, undefined, 0, -0, '', NaN. When false, known not to (always) be falsy.
     mustBeTruthy: undefined, // undefined|bool: only true if known to be a value that is not one of the falsy ones :) When false, known not to (always) be truthy.
     mustBeValue: undefined, // undefined|null|<primitive>: must be exactly this value.

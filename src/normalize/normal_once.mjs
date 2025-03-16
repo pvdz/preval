@@ -1567,7 +1567,7 @@ export function phaseNormalOnce(fdata) {
     vgroupEnd();
   }
 
-  if (VERBOSE_TRACING) vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  //if (VERBOSE_TRACING) vlog('\nCurrent state (normal_once)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 }
 function hoistingOnce(hoistingRoot, from) {
   ASSERT(

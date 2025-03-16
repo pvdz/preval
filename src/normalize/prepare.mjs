@@ -916,7 +916,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
         : [...globallyUniqueLabelRegistry.keys()].join(', '),
     );
 
-    vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+    //vlog('\nCurrent state (prepare)\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   }
   log('End of phase 1');
   groupEnd();

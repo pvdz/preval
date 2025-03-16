@@ -572,6 +572,7 @@ function collectFromSimpleOrFail(node, reffed) {
     ASSERT(!node.computed, 'this is trickier');
     return collectFromSimpleOrFail(node.object, reffed);
   }
+  ASSERT(node.type !== 'TemplateLiteral', 'if a template literal hits here its parent is probably not normalized; some transform should have called AST.normalizeTemplateSimple or go back through normalize first', node);
   ASSERT(node.type === 'Identifier', 'add support for anything else', node.type);
   vlog('  - collected:', node.name, node.$p.blockChain);
   reffed.push(node);

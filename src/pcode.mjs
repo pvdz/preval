@@ -459,7 +459,7 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt) {
       // Templates are fine because all references should be primitives
       // Let's let them normalize to simple expressions though, and in particular no nested templates
       return expr.expressions.every(enode => {
-        if (enode.type === 'TemplateLiteral') return false; // Normalize it first
+        if (enode.type === 'TemplateLiteral') return false; // Normalize it first. If this trips, figure out why there's a nested template literal in normalized code. That's probably a bug.
         if (AST.isPrimitive(enode)) return true;
         ASSERT(enode.type === 'Identifier', 'I think all expressions are idents or prims (or nested templates) in normalized code...?', enode);
         return pcanCompileExpr(locals, calls, enode, fdata, stmt)

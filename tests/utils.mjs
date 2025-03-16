@@ -149,7 +149,7 @@ export function fromMarkdownCase(md, fname, config) {
       mdChunks: chunks
         .filter(
           (s) =>
-            // Remove these names because they will be auto-generated (or maybe because ew don't want them?)
+            // Remove these names because they will be auto-generated (or maybe because we don't want them anymore?)
             !s.startsWith('Output\n') &&
             !s.startsWith('Pcode output\n') &&
             !s.startsWith('Pre Normal\n') &&
@@ -160,10 +160,18 @@ export function fromMarkdownCase(md, fname, config) {
             !s.startsWith('Denormalized\n') &&
             !s.startsWith('Settled\n') &&
             !s.startsWith('PST Settled\n') &&
+            !s.startsWith('PST Output\n') &&
+            !s.startsWith('PST Output:\n') &&
             !s.startsWith('Result\n') &&
             !s.startsWith('Runtime Outcome\n'),
         )
-        .map((s) => '## ' + s.trim()),
+        .map((s) => {
+          const t = s.trim();
+          const x = '## ' + t
+          if (s.startsWith('Input\n') || s.startsWith('Options\n')) return x;
+          if (s.endsWith('HEADERCHECKME')) return x;
+          return x + '\nHEADERCHECKME\n';
+        }),
       fin: {},
     };
 

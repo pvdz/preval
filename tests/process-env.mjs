@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 import { isMainThread, workerData } from 'worker_threads';
 
 export function parseTestArgs() {
@@ -15,7 +16,8 @@ export function parseTestArgs() {
     fileVerbatim: false,
     logPasses: false,
     logPhases: false,
-    logDir: '',
+    logDir: '', // result etc.
+    logDirExtra: '', // noisy artifact files
     logFrom: 0,
     implicitThisIdent: undefined,
     noTrace: undefined, // Force set VERBOSE_TRACING=false regardless of input size? If undefined, defaults to verbose.
@@ -112,7 +114,7 @@ export function parseTestArgs() {
 
       case '--log': {
         config.logPhases = true;
-        config.logDir = '';
+        if (!config.logDir) config.logDir = '';
         config.skipEval = true;
         break;
       }
@@ -127,7 +129,7 @@ export function parseTestArgs() {
 
       case '--log-passes': {
         config.logPasses = true;
-        config.logDir = '';
+        if (!config.logDir) config.logDir = '';
         config.skipEval = true;
         break;
       }
@@ -220,6 +222,15 @@ export function parseTestArgs() {
   }
 
   if (config.verbose === false) config.verboseTracing = false;
+
+  if (config.logDir) {
+    fs.mkdirSync(config.logDir, {recursive: true});
+    config.logDirExtra = path.join(config.logDir, 'extra');
+    fs.mkdirSync(config.logDirExtra, {recursive: true});
+  } else {
+    config.logDir = '';
+    config.logDirExtra = '';
+  }
 
   return config;
 }

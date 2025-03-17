@@ -39,7 +39,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
   {
     const {
-      logDir, logPasses, logPhases, logFrom, maxPass, cloneLimit, allowEval, unrollLimit,
+      logDir, logDirExtra, logPasses, logPhases, logFrom, maxPass, cloneLimit, allowEval, unrollLimit,
       implicitThisIdent, refTest, pcodeTest, risky, prngSeed,
       ...rest
     } = options;

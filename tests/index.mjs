@@ -222,6 +222,7 @@ function runTestCase(
     else if (withOutput) console.log('\n--- Actual call now ---\n');
 
     let lastWrite = 0;
+    let lastWrittenContent = '';
     output = preval({
       entryPointFile: 'intro',
       stdio: CONFIG.verbose === true || (CONFIG.verbose === undefined && withOutput) ? undefined : () => {}, // handler receives all console calls, first arg is handler string. cant prevent the overhead but does suppress the output
@@ -253,6 +254,7 @@ function runTestCase(
         logPasses: CONFIG.logPasses,
         logPhases: CONFIG.logPhases,
         logDir: CONFIG.logDir,
+        logDirExtra: CONFIG.logDirExtra,
         logFrom: CONFIG.logFrom,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
         refTest: isRefTest,
@@ -268,7 +270,7 @@ function runTestCase(
           // never see again, like `var`, patterns, param defaults, etc.
           if (options.logPasses) {
             console.log('--log-passes: Logging one-time-normalized state to disk for', nextFname);
-            const f = path.join(options.logDir, 'preval.a.f' + queueFileCounter + '.onetime.normalized.log.js');
+            const f = path.join(options.logDirExtra, 'preval.a.f' + queueFileCounter + '.onetime.normalized.log.js');
             console.log('-', f, '(', preCode.length, 'bytes) ->', nextFname);
             fs.writeFileSync(f, '// Normalized output after one pass [' + nextFname + ']\n// Command: ' + process.argv.join(' ') + '\n' + preCode);
           }
@@ -278,7 +280,7 @@ function runTestCase(
             const now = Date.now();
             if (passes >= options.logFrom) {
               const code = tmat(fdata.tenkoOutput.ast, true);
-              const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.normalized.log.js');
+              const f = path.join(options.logDirExtra, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.normalized.log.js');
               console.log('--log-passes: Logging normalized output to disk:', f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
               fs.writeFileSync(f, `// Normalized output after pass ${passes} [` + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + code);
             } else {
@@ -292,7 +294,7 @@ function runTestCase(
             if (options.logFrom === 0) {
               console.log('--log-passes: Logging first normalized state to disk...');
               allFileNames.forEach((fname, i) => {
-                const f = path.join(options.logDir, 'preval.b.f' + i + '.firstpass.normalized.log.js');
+                const f = path.join(options.logDirExtra, 'preval.b.f' + i + '.firstpass.normalized.log.js');
                 console.log('-', f, '(', contents.normalized[fname].length, 'bytes) ->', fname);
                 fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + contents.normalized[fname]);
               });
@@ -306,7 +308,7 @@ function runTestCase(
             const now = Date.now();
             if (passes >= options.logFrom) {
               const fstr = fi ? `f${fi}.` : '';
-              const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.' + fstr + 'result.log.js');
+              const f = path.join(options.logDirExtra, 'preval.pass' + String(passes).padStart(4, '0') + '.' + fstr + 'result.log.js');
               console.log('--log: Logging current result to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
               fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + outCode);
             } else {
@@ -314,18 +316,6 @@ function runTestCase(
             }
             lastWrite = now;
           }
-        },
-        onFinal(outCode, passes, fi, options) {
-          const now = Date.now();
-          if (options.logPasses || options.logPasses) {
-            // Log the settled final result in a consistent filename
-            const fstr = fi ? `f${fi}.` : '';
-            // Write regardless of logFrom because most likely we'll want to see this one.
-            const f = path.join(options.logDir, `preval.pass.all_settled.${fstr}log.js`);
-            console.log('--log: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '');
-            fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n// Command: ' + process.argv.join(' ') + '\n' + outCode);
-          }
-          lastWrite = now;
         },
         onError(kind, error, ast, options) {
           if (options.logPasses) {
@@ -354,17 +344,33 @@ function runTestCase(
           if (options.logPhases) {
             const fstr = fi ? `f${fi}.` : '';
             if (passIndex >= options.logFrom) {
-              const logFname = phaseIndex === -1
-                ? `preval.pass.denormalize.${fstr}log.js`
-                : `preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.${fstr}log.js`;
-              const f = path.join(options.logDir, logFname);
-              console.log(`--log: Logging state of ${passString} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, into ${changed.next}` : '');
-              fs.writeFileSync(f,
-                `// Resulting output at ${passString} [${fname}]\n` +
-                `// Command: ${process.argv.join(' ')}\n` +
-                `// Last phase2/3 plugin result: ${changed ? JSON.stringify(changed) : '(none)'}\n` +
-                code
-              );
+              if (phaseIndex === -1) {
+                // This is the very last step and the content is denormalized
+                // We also write the last normalized state to the toplevel logDir
+
+                //`preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.${fstr}log.js`;
+                const f = path.join(options.logDir, `preval.pass.denormalize.${fstr}log.js`);
+                console.log(`--log: Logging state of ${passString} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, into ${changed.next}` : '');
+                fs.writeFileSync(f,
+                  `// Resulting output at ${passString} [${fname}]\n` +
+                  `// Command: ${process.argv.join(' ')}\n` +
+                  `// Last phase2/3 plugin result: ${changed ? JSON.stringify(changed) : '(none)'}\n` +
+                  code
+                );
+                const g = path.join(options.logDir, `preval.last.pass.${fstr}log.js`);
+                fs.writeFileSync(g, lastWrittenContent);
+              } else {
+                const logFname =`preval.pass.${passIndex}.loop.${phaseLoopIndex}.phase${phaseIndex}.${fstr}log.js`;
+                const f = path.join(options.logDirExtra, logFname);
+                console.log(`--log: Logging state of ${passString} to disk:`, f, '(', code.length, 'bytes)', lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, into ${changed.next}` : '');
+                const content =
+                  `// Resulting output at ${passString} [${fname}]\n` +
+                  `// Command: ${process.argv.join(' ')}\n` +
+                  `// Last phase2/3 plugin result: ${changed ? JSON.stringify(changed) : '(none)'}\n` +
+                  code
+                fs.writeFileSync(f, content);
+                lastWrittenContent = content;
+              }
             } else {
               console.log(`--log: Not logging ${passString} (${code.length} bytes) because logFrom is ${options.logFrom}`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, into ${changed.next}` : '');
             }

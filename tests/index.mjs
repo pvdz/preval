@@ -730,7 +730,7 @@ function runTestCase(
         .replace(/.*? is not (a function|iterable)/, '<ref> is not function/iterable')
         .replace(/.*Cannot read property 'call' of .*/, '<ref> is not function/iterable') // We transform member calls to .call() so the test should be okay to assume they are the same error
         .replace(/.*Found non-callable @@iterator.*/,  '<ref> is not function/iterable')
-        .replace(/.*Preval: Attempting to spread primitive that is not an empty string.*/,  '<ref> is not function/iterable')
+        .replace(/.*Preval: Attempting to spread falsy primitive that is not an empty string.*/,  '<ref> is not function/iterable')
         .replace(/Preval: cannot call a locked function \(binding overwritten with non-func\)/, '<ref> is not function/iterable')
         .replace(/function ?\(\) ?\{/g, 'function() {')
         //.replace(/Cannot read propert.*? of .*/g, 'Cannot read property <ref> of <ref2>')
@@ -739,7 +739,6 @@ function runTestCase(
         .replace(/Preval: This statement contained a read that reached no writes.*/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: TDZ triggered for.*/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: Cannot write to const binding .*/, 'Assignment to constant variable.')
-        .replace(/Preval: Attempting to spread primitive that is not an empty string.*/, 'Found non-callable @@iterator')
         .replace(/Spread syntax requires.*/, '<ref> is not function/iterable')
          .replace(/.*max pcode call depth.*/, 'Maximum call stack size exceeded')
 

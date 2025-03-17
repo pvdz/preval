@@ -81,7 +81,7 @@ function _ifFalsySpread(fdata) {
                   AST.ifStatement(
                     AST.binaryExpression('!==', AST.cloneSimple(r.node), AST.primitive('')),
                     AST.blockStatement(
-                      AST.throwStatement(AST.primitive('Preval: Attempting to spread primitive that is not an empty string')),
+                      AST.throwStatement(AST.primitive('Preval: Attempting to spread a falsy primitive that is not an empty string')),
                     ),
                     AST.blockStatement(),
                   ),

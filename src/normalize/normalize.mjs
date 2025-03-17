@@ -4573,7 +4573,8 @@ export function phaseNormalize(fdata, fname, prng, options) {
               body.splice(i, 1, ...newNodes, finalParent);
 
               after(newNodes);
-              after(finalNode, finalParent);
+              after(finalParent);
+              after(parentNodeOrWhatever);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             } else {
@@ -5149,17 +5150,22 @@ export function phaseNormalize(fdata, fname, prng, options) {
               vlog('Skipping callee for', callee.name);
               tmpName = SYMBOL_DOTCALL;
             }
-            else if (callee.name !== SYMBOL_COERCE) {
+            else if (callee.name === SYMBOL_COERCE) {
+              vlog('Skipping callee for', callee.name);
+              tmpName = SYMBOL_COERCE;
+            } else {
               tmpName = createFreshVar('tmpCallCallee', fdata);
               newNodes.push(AST.variableDeclaration(tmpName, callee, 'const'));
             }
+            // Note: frfr first call must remain a free func ref.
             normalizeCallArgs(args, newArgs, newNodes);
+            if (callee.name === SYMBOL_FRFR) newArgs[0] = AST.cloneSimple(args[0]);
             const finalNode = AST.callExpression(tmpName, newArgs);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body.splice(i, 1, ...newNodes, finalParent);
 
             after(newNodes);
-            after(finalNode, finalParent);
+            after(finalParent);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }

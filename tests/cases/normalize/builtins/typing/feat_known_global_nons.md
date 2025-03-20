@@ -198,6 +198,6 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_sign
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_sin
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_hypot
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sign
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_hypot

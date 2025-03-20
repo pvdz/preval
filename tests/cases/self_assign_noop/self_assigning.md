@@ -259,3 +259,6 @@ Post settled calls: BAD!!
 Denormalized calls: BAD!!
  - 1: 'Creating spy', 1, 1, [300, 300]
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Todos triggered:
+- inline computed array property read

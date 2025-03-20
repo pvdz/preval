@@ -24,7 +24,7 @@ $(ARR);
 
 
 `````js filename=intro
-const ARR /*:array*/ = [`a`, `b`, `c`];
+const ARR /*:array*/ = [`a`, `b`];
 const NOOP /*:()=>unknown*/ = function () {
   debugger;
   $(ARR);
@@ -32,6 +32,7 @@ const NOOP /*:()=>unknown*/ = function () {
 };
 $(`c`);
 $(NOOP);
+ARR.push(`c`);
 $(ARR);
 `````
 
@@ -39,12 +40,13 @@ $(ARR);
 (This ought to be the final result)
 
 `````js filename=intro
-const ARR = [`a`, `b`, `c`];
+const ARR = [`a`, `b`];
 const NOOP = function () {
   $(ARR);
 };
 $(`c`);
 $(NOOP);
+ARR.push(`c`);
 $(ARR);
 `````
 
@@ -85,7 +87,7 @@ $(ARR);
 With rename=true
 
 `````js filename=intro
-const a = [ "a", "b", "c" ];
+const a = [ "a", "b" ];
 const b = function() {
   debugger;
   $( a );
@@ -93,6 +95,7 @@ const b = function() {
 };
 $( "c" );
 $( b );
+a.push( "c" );
 $( a );
 `````
 

@@ -89,4 +89,4 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_floor
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_floor

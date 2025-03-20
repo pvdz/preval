@@ -185,4 +185,5 @@ Denormalized calls: Same
 
 Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
 - objects in isFree check

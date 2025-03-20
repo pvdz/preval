@@ -973,51 +973,51 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_from
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_isArray
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_of
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Date_now
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Date_UTC
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Date_parse
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $JSON_stringify
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_abs
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_acos
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_acosh
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_asin
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_asinh
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_atan
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_atan2
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_atanh
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_cbrt
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_ceil
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_clz32
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_cos
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_cosh
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_exp
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_expm1
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_floor
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_fround
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_hypot
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_imul
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log10
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log1p
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log2
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_max
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_min
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_pow
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_random
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_round
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_sign
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_sin
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_isFinite
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_isInteger
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_isNaN
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_isSafeInteger
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_parseFloat
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Number_parseInt
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_is
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_isFrozen
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Object_isSealed
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $String_fromCodePoint
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $String_raw
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_isArray
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_of
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_now
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_UTC
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_parse
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $JSON_stringify
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_abs
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acos
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acosh
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asin
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asinh
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan2
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atanh
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cbrt
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_ceil
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_clz32
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cos
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cosh
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_exp
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_expm1
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_floor
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_fround
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_hypot
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_imul
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log10
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log1p
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log2
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_round
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sign
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isFinite
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isInteger
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isNaN
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isSafeInteger
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseFloat
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseInt
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_is
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isFrozen
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isSealed
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_fromCodePoint
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_raw

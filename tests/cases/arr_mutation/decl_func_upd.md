@@ -27,8 +27,9 @@ const f /*:()=>unknown*/ = function () {
   arr[0] = 1;
   return undefined;
 };
-const arr /*:array*/ = [1];
+const arr /*:array*/ = [];
 $(f);
+arr[0] = 1;
 $(arr);
 `````
 
@@ -39,8 +40,9 @@ $(arr);
 const f = function () {
   arr[0] = 1;
 };
-const arr = [1];
+const arr = [];
 $(f);
+arr[0] = 1;
 $(arr);
 `````
 
@@ -82,8 +84,9 @@ const a = function() {
   b[0] = 1;
   return undefined;
 };
-const b = [ 1 ];
+const b = [];
 $( a );
+b[0] = 1;
 $( b );
 `````
 
@@ -105,3 +108,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- processArrayWriteReadImmutableBinding slow path

@@ -1,8 +1,8 @@
 # Preval test case
 
-# fixme.js
+# simplify_call.md
 
-> {??} > Home > Ptr > Proj > Preval > Private > Abuse > Fixme
+> Free > Simplify call
 >
 > There was a problem where a $frfr that would be simplified
 > would get its first arg aliased, which would trigger an assertion
@@ -186,6 +186,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push

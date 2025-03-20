@@ -31,7 +31,7 @@ if (a) {
     $();
     $(``);
   } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
+    throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;
   }
 }
 `````
@@ -49,7 +49,7 @@ if (a) {
     $();
     $(``);
   } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
+    throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;
   }
 }
 `````
@@ -99,7 +99,7 @@ else {
     $( "" );
   }
   else {
-    throw "Preval: Attempting to spread primitive that is not an empty string";
+    throw "Preval: Attempting to spread a falsy primitive that is not an empty string";
   }
 }
 `````

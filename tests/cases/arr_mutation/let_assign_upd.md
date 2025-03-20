@@ -22,15 +22,13 @@ $(arr);
 
 
 `````js filename=intro
-let arr /*:array*/ = [0];
-arr[0] = 1;
+let arr /*:array*/ = [1];
 $(arr);
 const tmpBinLhs$1 /*:unknown*/ = arr[0];
 const tmpIfTest /*:boolean*/ = tmpBinLhs$1 < 10;
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
-    arr = [0];
-    arr[0] = 1;
+    arr = [1];
     $(arr);
     const tmpBinLhs$2 /*:unknown*/ = arr[0];
     const tmpIfTest$1 /*:boolean*/ = tmpBinLhs$2 < 10;
@@ -49,13 +47,11 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-let arr = [0];
-arr[0] = 1;
+let arr = [1];
 $(arr);
 if (arr[0] < 10) {
   while (true) {
-    arr = [0];
-    arr[0] = 1;
+    arr = [1];
     $(arr);
     if (!(arr[0] < 10)) {
       break;
@@ -113,15 +109,13 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-let a = [ 0 ];
-a[0] = 1;
+let a = [ 1 ];
 $( a );
 const b = a[ 0 ];
 const c = b < 10;
 if (c) {
   while ($LOOP_UNROLL_10) {
-    a = [ 0 ];
-    a[0] = 1;
+    a = [ 1 ];
     $( a );
     const d = a[ 0 ];
     const e = d < 10;

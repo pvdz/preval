@@ -68,3 +68,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- Maybe support type tracked trick of string.concat with spread

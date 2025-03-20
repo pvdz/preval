@@ -506,7 +506,6 @@ export function createReadRef(obj) {
   const {
     name, // The var name, unique in this scope. Owner meta should have the same name.
     kind,
-    isPropWrite,
     parentNode, // parent of the node
     parentProp,
     parentIndex,
@@ -549,13 +548,11 @@ export function createReadRef(obj) {
   ASSERT(blockBodies.length === blockIndexes.length, 'each block body should have an index', blockBodies, blockIndexes);
   ASSERT(ifChain);
   ASSERT(funcChain);
-  ASSERT(typeof isPropWrite === 'boolean', 'newer prop isPropWrite, should be set');
 
   return {
     name,
     action: 'read',
     kind, // "export" | "read"
-    isPropWrite, // If kind=read, is this actually a property write on this object?
     parentNode, // parent of the node
     parentProp,
     parentIndex,
@@ -636,7 +633,6 @@ export function createWriteRef(obj) {
     name,
     action: 'write',
     kind,
-    isPropWrite: false, // A binding mutation is not a property write
     parentNode,
     parentProp,
     parentIndex,

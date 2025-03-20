@@ -30,7 +30,7 @@ if (x) {
   if (tmpIfTest) {
     $(`falsy`);
   } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
+    throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;
   }
 }
 `````
@@ -46,7 +46,7 @@ if (x) {
   if (x === ``) {
     $(`falsy`);
   } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
+    throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;
   }
 }
 `````
@@ -91,7 +91,7 @@ else {
     $( "falsy" );
   }
   else {
-    throw "Preval: Attempting to spread primitive that is not an empty string";
+    throw "Preval: Attempting to spread a falsy primitive that is not an empty string";
   }
 }
 `````

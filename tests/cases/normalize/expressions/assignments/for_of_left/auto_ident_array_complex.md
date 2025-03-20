@@ -152,3 +152,4 @@ Denormalized calls: Same
 
 Todos triggered:
 - Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+- arr_mutation: implement array inlining analysis stuff

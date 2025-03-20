@@ -103,5 +103,5 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_concat
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_concat
 - free with zero args, we can eliminate this?

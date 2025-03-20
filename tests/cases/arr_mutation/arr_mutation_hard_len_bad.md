@@ -86,6 +86,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- arr_mutation: implement array inlining analysis stuff

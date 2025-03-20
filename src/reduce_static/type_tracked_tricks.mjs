@@ -1251,7 +1251,7 @@ function _typeTrackedTricks(fdata) {
             }
             default: {
               if (BUILTIN_SYMBOLS.has(node.callee.name)) {
-                todo(`type trackeed tricks can possibly support resolving the type for calling this builtin symbol: ${node.callee.name}`);
+                todo(`type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: ${node.callee.name}`);
               }
             }
           }
@@ -1283,14 +1283,23 @@ function _typeTrackedTricks(fdata) {
             }
 
             switch (symbol) {
-              case symbo('array', 'shift'): {
-                // This is done in another rule
-                // I think in arr_mutation?
+              case symbo('array', 'flatMap'): {
+                // This is a whole other level due to the callback.
+                if (node.arguments.length === 0) {
+                  todo('support $array_flatmap without arguments');
+                } else {
+                  todo('support $array_flatmap with arguments?');
+                }
                 break;
               }
               case symbo('array', 'join'): {
                 // We can do this provided we can determine the concrete value of all elements of the array
                 // See the 'join' case in arr_mutation
+                break;
+              }
+              case symbo('array', 'push'): {
+                // We can do this provided we can determine the concrete value of all elements of the array
+                // See the 'push' case in arr_mutation
                 break;
               }
               case symbo('array', 'reverse'): {
@@ -1324,6 +1333,21 @@ function _typeTrackedTricks(fdata) {
                   changes += 1;
                 }
 
+                break;
+              }
+              case symbo('array', 'shift'): {
+                // We can do this provided we can determine the concrete value of all elements of the array
+                // See the 'shift' case in arr_mutation
+                break;
+              }
+              case symbo('array', 'toString'): {
+                // We can do this provided we can determine the concrete value of all elements of the array
+                // See the 'toString' case in arr_mutation
+                break;
+              }
+              case symbo('array', 'unshift'): {
+                // We can do this provided we can determine the concrete value of all elements of the array
+                // See the 'unshift' case in arr_mutation
                 break;
               }
               case symbo('boolean', 'toString'): {
@@ -1619,6 +1643,48 @@ function _typeTrackedTricks(fdata) {
                   after(parentNode);
                   ++changes;
                   break;
+                } else {
+                  todo('Maybe support type tracked trick of string.concat with spread');
+                }
+                break;
+              }
+              case symbo('string', 'charCodeAt'): {
+                const arglen = node.arguments.length;
+                if (isPrim && (arglen === 0 || AST.isPrimitive(node.arguments[0]))) {
+                  // 'foo'.charAt(0)
+
+                  rule('Calling `charCodeAt` on a string with primitive args should resolve the call');
+                  example('"hello, world".charAt(7)', '20; $, "w"');
+                  before(blockBody[blockIndex]);
+
+                  const ctxString = AST.getPrimitiveValue(node.callee.object);
+                  const rest = node.arguments.slice(1);
+                  const result = ctxString.charCodeAt(AST.getPrimitiveValue(node.arguments[0]));
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                  if (rest.length > 0) {
+                    // Inject excessive args as statements to preserve reference errors
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        });
+                      },
+                    });
+                  }
+
+                  after(blockBody[blockIndex]);
+                  ++changes;
+                  break;
+                } else {
+                  if (!isPrim) {
+                    todo(`Support string.charCodeAt when the object is not a string literal`);
+                  } else {
+                    todo(`Support string.charCodeAt when the arg is not a string literal`);
+                  }
                 }
                 break;
               }
@@ -2077,7 +2143,7 @@ function _typeTrackedTricks(fdata) {
               }
               default: {
                 if (BUILTIN_SYMBOLS.has(symbo(mustBe, node.callee.property.name))) {
-                  todo(`type trackeed tricks can possibly support resolving the type for calling this builtin symbol: ${symbo(mustBe, node.callee.property.name)}`);
+                  todo(`type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: ${symbo(mustBe, node.callee.property.name)}`);
                 }
               }
             }

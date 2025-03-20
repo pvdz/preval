@@ -78,4 +78,4 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $number_toPrecision
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $number_toPrecision

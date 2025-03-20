@@ -189,3 +189,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- Assigning a much bigger value to arr.length than the len

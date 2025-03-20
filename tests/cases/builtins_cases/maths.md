@@ -141,7 +141,7 @@ Denormalized calls: Same
 
 Todos triggered:
 - maybe fix the type for calling this builtin?
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_sin
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_pow
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_min
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_max
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max

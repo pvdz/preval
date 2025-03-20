@@ -100,4 +100,4 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $object_toString
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $object_toString

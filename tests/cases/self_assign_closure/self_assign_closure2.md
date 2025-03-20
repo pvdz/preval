@@ -99,3 +99,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- inline computed array property read

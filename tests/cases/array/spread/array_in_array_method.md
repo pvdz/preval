@@ -85,3 +85,6 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
+
+Todos triggered:
+- calling $array_join on an array that has other reads, must verify they dont mutate the array first

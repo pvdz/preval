@@ -27,7 +27,7 @@ if (tmpCalleeParamSpread) {
   if (tmpIfTest) {
     $();
   } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
+    throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -45,7 +45,7 @@ if (tmpCalleeParamSpread) {
   if (tmpCalleeParamSpread === ``) {
     $();
   } else {
-    throw `Preval: Attempting to spread primitive that is not an empty string`;
+    throw `Preval: Attempting to spread a falsy primitive that is not an empty string`;
   }
 }
 $({ a: 999, b: 1000 });
@@ -90,7 +90,7 @@ else {
     $();
   }
   else {
-    throw "Preval: Attempting to spread primitive that is not an empty string";
+    throw "Preval: Attempting to spread a falsy primitive that is not an empty string";
   }
 }
 const d = {

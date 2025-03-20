@@ -113,5 +113,5 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_random
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
 - Support this ident in isFree CallExpression: $Math_random

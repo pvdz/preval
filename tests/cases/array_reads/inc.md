@@ -78,5 +78,6 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
+- inline computed array property read
 - free with zero args, we can eliminate this?
 - arr_mutation: implement array inlining analysis stuff

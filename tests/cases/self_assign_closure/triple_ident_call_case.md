@@ -492,4 +492,4 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_push
+- processArrayWriteReadImmutableBinding slow path

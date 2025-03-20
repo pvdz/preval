@@ -35,9 +35,7 @@ const f /*:()=>unknown*/ = function () {
   return undefined;
 };
 f();
-const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
-const tmpCalleeParam /*:string*/ = tmpCalleeParam$1.toString();
-$(tmpCalleeParam);
+$(`1,2,3`);
 f();
 $(`300`);
 f();
@@ -54,7 +52,7 @@ const f = function () {
   $(`please`);
 };
 f();
-$([1, 2, 3].toString());
+$(`1,2,3`);
 f();
 $(`300`);
 f();
@@ -114,9 +112,7 @@ const a = function() {
   return undefined;
 };
 a();
-const b = [ 1, 2, 3 ];
-const c = b.toString();
-$( c );
+$( "1,2,3" );
 a();
 $( "300" );
 a();
@@ -151,6 +147,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $array_toString

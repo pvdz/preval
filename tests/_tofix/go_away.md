@@ -10,241 +10,146 @@
 
 `````js filename=intro
 function f() {
-  const tmpSSA_i$51/*:array*/ = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
-  const tmpSSA_n$37/*:array*/ = [];
-  const tmpBinBothRhs$175/*:string*/ = typeof Uint8Array;
-  if (`undefined` === tmpBinBothRhs$175) {
-    a$27 = Array;
-  } else {
-    a$27 = Uint8Array;
-  }
+  const chars/*:array*/ = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
+  const index2char/*:array*/ = [];
   const tmpAssignComMemLhsProp$14/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$14] = 0;
+  index2char[tmpAssignComMemLhsProp$14] = 0;
   const tmpAssignComMemLhsProp$12/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(1);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$12] = 1;
+  index2char[tmpAssignComMemLhsProp$12] = 1;
   const tmpAssignComMemLhsProp$16/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(2);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$16] = 2;
+  index2char[tmpAssignComMemLhsProp$16] = 2;
   const tmpAssignComMemLhsProp$17/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(3);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$17] = 3;
+  index2char[tmpAssignComMemLhsProp$17] = 3;
   const tmpAssignComMemLhsProp$18/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(4);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$18] = 4;
+  index2char[tmpAssignComMemLhsProp$18] = 4;
   const tmpAssignComMemLhsProp$19/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(5);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$19] = 5;
+  index2char[tmpAssignComMemLhsProp$19] = 5;
   const tmpAssignComMemLhsProp$20/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(6);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$20] = 6;
+  index2char[tmpAssignComMemLhsProp$20] = 6;
   const tmpAssignComMemLhsProp$21/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(7);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$21] = 7;
+  index2char[tmpAssignComMemLhsProp$21] = 7;
   const tmpAssignComMemLhsProp$22/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(8);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$22] = 8;
+  index2char[tmpAssignComMemLhsProp$22] = 8;
   const tmpAssignComMemLhsProp$24/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(9);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$24] = 9;
+  index2char[tmpAssignComMemLhsProp$24] = 9;
   const tmpAssignComMemLhsProp$25/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(10);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$25] = 10;
+  index2char[tmpAssignComMemLhsProp$25] = 10;
   let tmpClusterSSA_s$27/*:number*/ = 11;
   while (true) {
     if (tmpClusterSSA_s$27 < 64) {
       const tmpAssignComputedRhs$73 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$27];
-      tmpSSA_i$51[tmpClusterSSA_s$27] = tmpAssignComputedRhs$73;
+      chars[tmpClusterSSA_s$27] = tmpAssignComputedRhs$73;
       const tmpAssignComMemLhsProp$26/*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(tmpClusterSSA_s$27);
-      tmpSSA_n$37[tmpAssignComMemLhsProp$26] = tmpClusterSSA_s$27;
+      index2char[tmpAssignComMemLhsProp$26] = tmpClusterSSA_s$27;
       tmpClusterSSA_s$27 = tmpClusterSSA_s$27 + 1;
     } else {
       break;
     }
   }
   const tmpAssignComMemLhsProp$13/*:number*/ = `-`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$13] = 62;
+  index2char[tmpAssignComMemLhsProp$13] = 62;
   const tmpAssignComMemLhsProp$15/*:number*/ = `_`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$15] = 63;
+  index2char[tmpAssignComMemLhsProp$15] = 63;
 
 
-  $(tmpSSA_n$37, tmpSSA_i$51)
+  $(index2char, chars)
 };
-$(f);
+$(f());
 `````
 
 ## Settled
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  const tmpBinBothRhs$175 /*:string*/ = typeof Uint8Array;
-  const tmpIfTest /*:boolean*/ = `undefined` === tmpBinBothRhs$175;
-  if (tmpIfTest) {
-    a$27 = Array;
+const index2char /*:array*/ = [];
+index2char[65] = 0;
+index2char[66] = 1;
+index2char[67] = 2;
+index2char[68] = 3;
+index2char[69] = 4;
+index2char[70] = 5;
+index2char[71] = 6;
+index2char[72] = 7;
+index2char[73] = 8;
+index2char[74] = 9;
+index2char[75] = 10;
+index2char[76] = 11;
+index2char[77] = 12;
+index2char[78] = 13;
+index2char[79] = 14;
+index2char[80] = 15;
+index2char[81] = 16;
+index2char[82] = 17;
+index2char[83] = 18;
+index2char[84] = 19;
+index2char[85] = 20;
+index2char[86] = 21;
+let tmpClusterSSA_s$1 /*:number*/ = 22;
+const chars /*:array*/ = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_s$1 < 64;
+  if (tmpIfTest$1) {
+    const tmpAssignComputedRhs$1 /*:unknown*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
+    chars[tmpClusterSSA_s$1] = tmpAssignComputedRhs$1;
+    const tmpAssignComMemLhsProp$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(
+      tmpClusterSSA_s$1,
+    );
+    index2char[tmpAssignComMemLhsProp$1] = tmpClusterSSA_s$1;
+    tmpClusterSSA_s$1 = tmpClusterSSA_s$1 + 1;
   } else {
-    a$27 = Uint8Array;
+    break;
   }
-  const tmpAssignComMemLhsProp$14 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(0);
-  const tmpSSA_n$37 /*:array*/ = [];
-  tmpSSA_n$37[tmpAssignComMemLhsProp$14] = 0;
-  const tmpAssignComMemLhsProp$12 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(1);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$12] = 1;
-  const tmpAssignComMemLhsProp$16 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(2);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$16] = 2;
-  const tmpAssignComMemLhsProp$17 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(3);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$17] = 3;
-  const tmpAssignComMemLhsProp$18 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(4);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$18] = 4;
-  const tmpAssignComMemLhsProp$19 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(5);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$19] = 5;
-  const tmpAssignComMemLhsProp$20 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(6);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$20] = 6;
-  const tmpAssignComMemLhsProp$21 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(7);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$21] = 7;
-  const tmpAssignComMemLhsProp$22 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(8);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$22] = 8;
-  const tmpAssignComMemLhsProp$24 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(9);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$24] = 9;
-  const tmpAssignComMemLhsProp$25 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(10);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$25] = 10;
-  const tmpAssignComMemLhsProp$26 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(11);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$26] = 11;
-  const tmpAssignComMemLhsProp$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(12);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$1] = 12;
-  const tmpAssignComMemLhsProp$2 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(13);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$2] = 13;
-  const tmpAssignComMemLhsProp$3 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(14);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$3] = 14;
-  const tmpAssignComMemLhsProp$4 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(15);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$4] = 15;
-  const tmpAssignComMemLhsProp$5 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(16);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$5] = 16;
-  const tmpAssignComMemLhsProp$6 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(17);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$6] = 17;
-  const tmpAssignComMemLhsProp$7 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(18);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$7] = 18;
-  const tmpAssignComMemLhsProp$8 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(19);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$8] = 19;
-  const tmpAssignComMemLhsProp$9 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(20);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$9] = 20;
-  const tmpAssignComMemLhsProp$10 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(21);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$10] = 21;
-  let tmpClusterSSA_s$1 /*:number*/ = 22;
-  const tmpSSA_i$51 /*:array*/ = [
-    `A`,
-    `B`,
-    `C`,
-    `D`,
-    `E`,
-    `F`,
-    `G`,
-    `H`,
-    `I`,
-    `J`,
-    `K`,
-    `L`,
-    `M`,
-    `N`,
-    `O`,
-    `P`,
-    `Q`,
-    `R`,
-    `S`,
-    `T`,
-    `U`,
-    `V`,
-  ];
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpIfTest$2 /*:boolean*/ = tmpClusterSSA_s$1 < 64;
-    if (tmpIfTest$2) {
-      const tmpAssignComputedRhs$1 /*:unknown*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
-      tmpSSA_i$51[tmpClusterSSA_s$1] = tmpAssignComputedRhs$1;
-      const tmpAssignComMemLhsProp$11 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(
-        tmpClusterSSA_s$1,
-      );
-      tmpSSA_n$37[tmpAssignComMemLhsProp$11] = tmpClusterSSA_s$1;
-      tmpClusterSSA_s$1 = tmpClusterSSA_s$1 + 1;
-    } else {
-      break;
-    }
-  }
-  const tmpAssignComMemLhsProp$13 /*:number*/ = `-`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$13] = 62;
-  const tmpAssignComMemLhsProp$15 /*:number*/ = `_`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$15] = 63;
-  $(tmpSSA_n$37, tmpSSA_i$51);
-  return undefined;
-};
-$(f);
+}
+index2char[45] = 62;
+index2char[95] = 63;
+$(index2char, chars);
+$(undefined);
 `````
 
 ## Denormalized
 (This ought to be the final result)
 
 `````js filename=intro
-$(function () {
-  const tmpBinBothRhs$175 = typeof Uint8Array;
-  if (`undefined` === tmpBinBothRhs$175) {
-    a$27 = Array;
+const index2char = [];
+index2char[65] = 0;
+index2char[66] = 1;
+index2char[67] = 2;
+index2char[68] = 3;
+index2char[69] = 4;
+index2char[70] = 5;
+index2char[71] = 6;
+index2char[72] = 7;
+index2char[73] = 8;
+index2char[74] = 9;
+index2char[75] = 10;
+index2char[76] = 11;
+index2char[77] = 12;
+index2char[78] = 13;
+index2char[79] = 14;
+index2char[80] = 15;
+index2char[81] = 16;
+index2char[82] = 17;
+index2char[83] = 18;
+index2char[84] = 19;
+index2char[85] = 20;
+index2char[86] = 21;
+let tmpClusterSSA_s$1 = 22;
+const chars = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`];
+while (true) {
+  if (tmpClusterSSA_s$1 < 64) {
+    const tmpAssignComputedRhs$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
+    chars[tmpClusterSSA_s$1] = tmpAssignComputedRhs$1;
+    const tmpAssignComMemLhsProp$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(tmpClusterSSA_s$1);
+    index2char[tmpAssignComMemLhsProp$1] = tmpClusterSSA_s$1;
+    tmpClusterSSA_s$1 = tmpClusterSSA_s$1 + 1;
   } else {
-    a$27 = Uint8Array;
+    break;
   }
-  const tmpAssignComMemLhsProp$14 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(0);
-  const tmpSSA_n$37 = [];
-  tmpSSA_n$37[tmpAssignComMemLhsProp$14] = 0;
-  const tmpAssignComMemLhsProp$12 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(1);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$12] = 1;
-  const tmpAssignComMemLhsProp$16 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(2);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$16] = 2;
-  const tmpAssignComMemLhsProp$17 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(3);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$17] = 3;
-  const tmpAssignComMemLhsProp$18 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(4);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$18] = 4;
-  const tmpAssignComMemLhsProp$19 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(5);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$19] = 5;
-  const tmpAssignComMemLhsProp$20 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(6);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$20] = 6;
-  const tmpAssignComMemLhsProp$21 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(7);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$21] = 7;
-  const tmpAssignComMemLhsProp$22 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(8);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$22] = 8;
-  const tmpAssignComMemLhsProp$24 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(9);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$24] = 9;
-  const tmpAssignComMemLhsProp$25 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(10);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$25] = 10;
-  const tmpAssignComMemLhsProp$26 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(11);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$26] = 11;
-  const tmpAssignComMemLhsProp$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(12);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$1] = 12;
-  const tmpAssignComMemLhsProp$2 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(13);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$2] = 13;
-  const tmpAssignComMemLhsProp$3 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(14);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$3] = 14;
-  const tmpAssignComMemLhsProp$4 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(15);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$4] = 15;
-  const tmpAssignComMemLhsProp$5 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(16);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$5] = 16;
-  const tmpAssignComMemLhsProp$6 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(17);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$6] = 17;
-  const tmpAssignComMemLhsProp$7 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(18);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$7] = 18;
-  const tmpAssignComMemLhsProp$8 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(19);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$8] = 19;
-  const tmpAssignComMemLhsProp$9 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(20);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$9] = 20;
-  const tmpAssignComMemLhsProp$10 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(21);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$10] = 21;
-  let tmpClusterSSA_s$1 = 22;
-  const tmpSSA_i$51 = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`];
-  while (true) {
-    if (tmpClusterSSA_s$1 < 64) {
-      const tmpAssignComputedRhs$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
-      tmpSSA_i$51[tmpClusterSSA_s$1] = tmpAssignComputedRhs$1;
-      const tmpAssignComMemLhsProp$11 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(tmpClusterSSA_s$1);
-      tmpSSA_n$37[tmpAssignComMemLhsProp$11] = tmpClusterSSA_s$1;
-      tmpClusterSSA_s$1 = tmpClusterSSA_s$1 + 1;
-    } else {
-      break;
-    }
-  }
-  const tmpAssignComMemLhsProp$13 = `-`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$13] = 62;
-  const tmpAssignComMemLhsProp$15 = `_`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$15] = 63;
-  $(tmpSSA_n$37, tmpSSA_i$51);
-});
+}
+index2char[45] = 62;
+index2char[95] = 63;
+$(index2char, chars);
+$(undefined);
 `````
 
 ## Pre Normal
@@ -253,55 +158,49 @@ $(function () {
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSSA_i$51 = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
-  const tmpSSA_n$37 = [];
-  const tmpBinBothRhs$175 = typeof Uint8Array;
-  if (`undefined` === tmpBinBothRhs$175) {
-    a$27 = Array;
-  } else {
-    a$27 = Uint8Array;
-  }
+  const chars = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
+  const index2char = [];
   const tmpAssignComMemLhsProp$14 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$14] = 0;
+  index2char[tmpAssignComMemLhsProp$14] = 0;
   const tmpAssignComMemLhsProp$12 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(1);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$12] = 1;
+  index2char[tmpAssignComMemLhsProp$12] = 1;
   const tmpAssignComMemLhsProp$16 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(2);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$16] = 2;
+  index2char[tmpAssignComMemLhsProp$16] = 2;
   const tmpAssignComMemLhsProp$17 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(3);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$17] = 3;
+  index2char[tmpAssignComMemLhsProp$17] = 3;
   const tmpAssignComMemLhsProp$18 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(4);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$18] = 4;
+  index2char[tmpAssignComMemLhsProp$18] = 4;
   const tmpAssignComMemLhsProp$19 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(5);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$19] = 5;
+  index2char[tmpAssignComMemLhsProp$19] = 5;
   const tmpAssignComMemLhsProp$20 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(6);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$20] = 6;
+  index2char[tmpAssignComMemLhsProp$20] = 6;
   const tmpAssignComMemLhsProp$21 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(7);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$21] = 7;
+  index2char[tmpAssignComMemLhsProp$21] = 7;
   const tmpAssignComMemLhsProp$22 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(8);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$22] = 8;
+  index2char[tmpAssignComMemLhsProp$22] = 8;
   const tmpAssignComMemLhsProp$24 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(9);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$24] = 9;
+  index2char[tmpAssignComMemLhsProp$24] = 9;
   const tmpAssignComMemLhsProp$25 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(10);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$25] = 10;
+  index2char[tmpAssignComMemLhsProp$25] = 10;
   let tmpClusterSSA_s$27 = 11;
   while (true) {
     if (tmpClusterSSA_s$27 < 64) {
       const tmpAssignComputedRhs$73 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$27];
-      tmpSSA_i$51[tmpClusterSSA_s$27] = tmpAssignComputedRhs$73;
+      chars[tmpClusterSSA_s$27] = tmpAssignComputedRhs$73;
       const tmpAssignComMemLhsProp$26 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(tmpClusterSSA_s$27);
-      tmpSSA_n$37[tmpAssignComMemLhsProp$26] = tmpClusterSSA_s$27;
+      index2char[tmpAssignComMemLhsProp$26] = tmpClusterSSA_s$27;
       tmpClusterSSA_s$27 = tmpClusterSSA_s$27 + 1;
     } else {
       break;
     }
   }
   const tmpAssignComMemLhsProp$13 = `-`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$13] = 62;
+  index2char[tmpAssignComMemLhsProp$13] = 62;
   const tmpAssignComMemLhsProp$15 = `_`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$15] = 63;
-  $(tmpSSA_n$37, tmpSSA_i$51);
+  index2char[tmpAssignComMemLhsProp$15] = 63;
+  $(index2char, chars);
 };
-$(f);
+$(f());
 `````
 
 ## Normalized
@@ -310,154 +209,303 @@ $(f);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSSA_i$51 = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
-  const tmpSSA_n$37 = [];
-  const tmpBinBothRhs$175 = typeof Uint8Array;
-  const tmpIfTest = `undefined` === tmpBinBothRhs$175;
-  if (tmpIfTest) {
-    a$27 = Array;
-  } else {
-    a$27 = Uint8Array;
-  }
+  const chars = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
+  const index2char = [];
   const tmpAssignComMemLhsProp$14 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$14] = 0;
+  index2char[tmpAssignComMemLhsProp$14] = 0;
   const tmpAssignComMemLhsProp$12 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(1);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$12] = 1;
+  index2char[tmpAssignComMemLhsProp$12] = 1;
   const tmpAssignComMemLhsProp$16 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(2);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$16] = 2;
+  index2char[tmpAssignComMemLhsProp$16] = 2;
   const tmpAssignComMemLhsProp$17 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(3);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$17] = 3;
+  index2char[tmpAssignComMemLhsProp$17] = 3;
   const tmpAssignComMemLhsProp$18 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(4);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$18] = 4;
+  index2char[tmpAssignComMemLhsProp$18] = 4;
   const tmpAssignComMemLhsProp$19 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(5);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$19] = 5;
+  index2char[tmpAssignComMemLhsProp$19] = 5;
   const tmpAssignComMemLhsProp$20 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(6);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$20] = 6;
+  index2char[tmpAssignComMemLhsProp$20] = 6;
   const tmpAssignComMemLhsProp$21 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(7);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$21] = 7;
+  index2char[tmpAssignComMemLhsProp$21] = 7;
   const tmpAssignComMemLhsProp$22 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(8);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$22] = 8;
+  index2char[tmpAssignComMemLhsProp$22] = 8;
   const tmpAssignComMemLhsProp$24 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(9);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$24] = 9;
+  index2char[tmpAssignComMemLhsProp$24] = 9;
   const tmpAssignComMemLhsProp$25 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(10);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$25] = 10;
+  index2char[tmpAssignComMemLhsProp$25] = 10;
   let tmpClusterSSA_s$27 = 11;
   while (true) {
-    const tmpIfTest$1 = tmpClusterSSA_s$27 < 64;
-    if (tmpIfTest$1) {
+    const tmpIfTest = tmpClusterSSA_s$27 < 64;
+    if (tmpIfTest) {
       const tmpAssignComputedRhs$73 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$27];
-      tmpSSA_i$51[tmpClusterSSA_s$27] = tmpAssignComputedRhs$73;
+      chars[tmpClusterSSA_s$27] = tmpAssignComputedRhs$73;
       const tmpAssignComMemLhsProp$26 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(tmpClusterSSA_s$27);
-      tmpSSA_n$37[tmpAssignComMemLhsProp$26] = tmpClusterSSA_s$27;
+      index2char[tmpAssignComMemLhsProp$26] = tmpClusterSSA_s$27;
       tmpClusterSSA_s$27 = tmpClusterSSA_s$27 + 1;
     } else {
       break;
     }
   }
   const tmpAssignComMemLhsProp$13 = `-`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$13] = 62;
+  index2char[tmpAssignComMemLhsProp$13] = 62;
   const tmpAssignComMemLhsProp$15 = `_`.charCodeAt(0);
-  tmpSSA_n$37[tmpAssignComMemLhsProp$15] = 63;
-  $(tmpSSA_n$37, tmpSSA_i$51);
+  index2char[tmpAssignComMemLhsProp$15] = 63;
+  $(index2char, chars);
   return undefined;
 };
-$(f);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## PST Settled
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = typeof Uint8Array;
-  const c = "undefined" === b;
-  if (c) {
-    a$27 = Array;
+const a = [];
+a[65] = 0;
+a[66] = 1;
+a[67] = 2;
+a[68] = 3;
+a[69] = 4;
+a[70] = 5;
+a[71] = 6;
+a[72] = 7;
+a[73] = 8;
+a[74] = 9;
+a[75] = 10;
+a[76] = 11;
+a[77] = 12;
+a[78] = 13;
+a[79] = 14;
+a[80] = 15;
+a[81] = 16;
+a[82] = 17;
+a[83] = 18;
+a[84] = 19;
+a[85] = 20;
+a[86] = 21;
+let b = 22;
+const c = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V" ];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const d = b < 64;
+  if (d) {
+    const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[ b ];
+    c[b] = e;
+    const f = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( b );
+    a[f] = b;
+    b = b + 1;
   }
   else {
-    a$27 = Uint8Array;
+    break;
   }
-  const d = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 0 );
-  const e = [];
-  e[d] = 0;
-  const f = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 1 );
-  e[f] = 1;
-  const g = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 2 );
-  e[g] = 2;
-  const h = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 3 );
-  e[h] = 3;
-  const i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 4 );
-  e[i] = 4;
-  const j = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 5 );
-  e[j] = 5;
-  const k = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 6 );
-  e[k] = 6;
-  const l = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 7 );
-  e[l] = 7;
-  const m = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 8 );
-  e[m] = 8;
-  const n = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 9 );
-  e[n] = 9;
-  const o = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 10 );
-  e[o] = 10;
-  const p = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 11 );
-  e[p] = 11;
-  const q = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 12 );
-  e[q] = 12;
-  const r = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 13 );
-  e[r] = 13;
-  const s = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 14 );
-  e[s] = 14;
-  const t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 15 );
-  e[t] = 15;
-  const u = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 16 );
-  e[u] = 16;
-  const v = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 17 );
-  e[v] = 17;
-  const w = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 18 );
-  e[w] = 18;
-  const x = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 19 );
-  e[x] = 19;
-  const y = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 20 );
-  e[y] = 20;
-  const z = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( 21 );
-  e[z] = 21;
-  let ba = 22;
-  const bb = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V" ];
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const bc = ba < 64;
-    if (bc) {
-      const bd = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[ ba ];
-      bb[ba] = bd;
-      const be = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( ba );
-      e[be] = ba;
-      ba = ba + 1;
-    }
-    else {
-      break;
-    }
-  }
-  const bf = "-".charCodeAt( 0 );
-  e[bf] = 62;
-  const bg = "_".charCodeAt( 0 );
-  e[bg] = 63;
-  $( e, bb );
-  return undefined;
-};
-$( a );
+}
+a[45] = 62;
+a[95] = 63;
+$( a, c );
+$( undefined );
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-Uint8Array, a$27
+None
 
 ## Runtime Outcome
 
 Should call `$` with:
- - 1: '<function>'
+ - 1: 
+  [
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    62,
+    ,
+    62,
+    ,
+    63,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    ,
+    ,
+    ,
+    ,
+    63,
+    ,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+  ],
+  [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z',
+    '0',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '+',
+    '/',
+  ],
+
+ - 2: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same
@@ -469,4 +517,4 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $string_charCodeAt
+- Support string.charCodeAt when the arg is not a string literal

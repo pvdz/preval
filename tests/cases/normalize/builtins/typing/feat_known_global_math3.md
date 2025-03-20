@@ -200,11 +200,11 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log10
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log1p
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_log2
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_max
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_min
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_pow
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_random
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_round
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log10
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log1p
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log2
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_round

@@ -110,4 +110,4 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Buffer_from
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Buffer_from

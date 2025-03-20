@@ -151,7 +151,7 @@ function processAttempt(fdata, queue) {
       vlog('verifyAfterObjectAssign(): Checking', rwOrder.length - wi - 1, 'refs, starting at', wi);
       for (let ri = wi; ri < rwOrder.length; ++ri) {
         const ref = rwOrder[ri];
-        vgroup('- ref', ri, ';', ref.action + ':' + ref.kind + ':' + ref.isPropWrite, ref.pfuncNode.$p.pid, ref.parentNode.type);
+        vgroup('- ref', ri, ';', ref.action + ':' + ref.kind, ref.pfuncNode.$p.pid, ref.parentNode.type);
         const r = processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri);
         vgroupEnd();
         if (r) break;

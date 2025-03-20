@@ -78,4 +78,4 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $string_match
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $string_match

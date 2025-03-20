@@ -1,8 +1,8 @@
 # Preval test case
 
-# wowwhat2.md
+# plus_vs_tpl2.md
 
-> Normalize > Compound > Wowwhat2
+> Normalize > Compound > Plus vs tpl2
 >
 > When decomposing compound assignments to properties we must make sure to retain observable runtime semantics. Consider: "what if the property is a getter?"
 

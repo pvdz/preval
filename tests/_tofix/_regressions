@@ -44,7 +44,16 @@
 // rename `AST.isPrimitive` to `AST.isPrimitiveValue` or something? objPatternRest -> $objRest, tmpClusterSSA -> ssa
 // I added an option for considering function statements as decls but i should make that a proper option
 // denorm could check if ssa_ prefixed vars have no unprefixed counterparts anymore and revert their name to it in that case (same for others)
-
+// PST printing 1.x wrong, needs parens or double dot
 
 tests/cases/function_statements/dropping_the_d_func.md
 tests/cases/free/free_loops/gambling.md
+
+
+
+tests/cases/binary/neq_weak/diff_objs.md
+-$(true);
++const tmpBinBothLhs /*:object*/ = {};
++const tmpBinBothRhs /*:object*/ = {};
++const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs != tmpBinBothRhs;
++$(tmpCalleeParam);

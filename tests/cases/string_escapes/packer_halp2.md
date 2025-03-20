@@ -393,3 +393,4 @@ Todos triggered:
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - objects in isFree check
 - Assert whether the binding is written before/inside the loop, if not we can still totally do this
+- inline computed array property read

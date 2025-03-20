@@ -632,7 +632,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               = createReadRef({
               name,
               kind: grandNode.type === 'ExportNamedDeclaration' ? 'export' : 'read',
-              isPropWrite: parentNode.type === 'MemberExpression' && grandNode.type === 'AssignmentExpression' && parentProp === 'object' && grandProp === 'left',
               parentNode,
               parentProp,
               parentIndex,

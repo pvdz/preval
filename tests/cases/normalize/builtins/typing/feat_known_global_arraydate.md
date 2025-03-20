@@ -225,13 +225,13 @@ Post settled calls: Same
 Denormalized calls: Same
 
 Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_from
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_isArray
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Array_of
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Date_now
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Date_UTC
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Date_parse
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $JSON_stringify
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_abs
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_acos
-- type trackeed tricks can possibly support resolving the type for calling this builtin symbol: $Math_acosh
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_isArray
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_of
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_now
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_UTC
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_parse
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $JSON_stringify
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_abs
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acos
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acosh

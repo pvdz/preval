@@ -19,6 +19,7 @@ $(f());
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,37 +43,6 @@ $(b[tmpCompProp]);
 $({ a: 999, b: 1000 }, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return (1, 2, b)[$(`c`)];
-};
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpCompObj = b;
-  const tmpCompProp = $(`c`);
-  const tmpReturnArg = tmpCompObj[tmpCompProp];
-  return tmpReturnArg;
-};
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +59,15 @@ const d = {
 $( d, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'c'

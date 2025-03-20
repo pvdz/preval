@@ -16,6 +16,7 @@ throw typeof $(arg);
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpUnaryArg /*:unknown*/ = $(1);
 const tmpThrowArg /*:string*/ = typeof tmpUnaryArg;
 throw tmpThrowArg;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,26 +36,6 @@ const tmpThrowArg = typeof tmpUnaryArg;
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-throw typeof $(arg);
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(arg);
-const tmpThrowArg = typeof tmpUnaryArg;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +46,15 @@ const b = typeof a;
 throw b;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -17,6 +17,7 @@ loopStop: {
 $(A);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(A);
 $(`mefirst`);
 $(`oops`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,26 +35,6 @@ $(`mefirst`);
 $(`oops`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let A = $(`mefirst`);
-loopStop: {
-  A = `oops`;
-  break loopStop;
-}
-$(A);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let A = $(`mefirst`);
-A = `oops`;
-$(A);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +44,15 @@ $( "mefirst" );
 $( "oops" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'mefirst'

@@ -12,6 +12,7 @@
 $(String[$LOOP_DONE_UNROLLING_ALWAYS_TRUE]);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam /*:unknown*/ = String.true;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,20 +29,6 @@ $(tmpCalleeParam);
 $(String.true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(String[$LOOP_DONE_UNROLLING_ALWAYS_TRUE]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = String.true;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +38,15 @@ const a = String.true;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

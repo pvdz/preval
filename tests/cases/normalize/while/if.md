@@ -20,6 +20,7 @@ function f() {
 if ($) f();
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -69,53 +71,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let i = 0;
-  while (++i < 10) {
-    if (i < 5) $(i, `sub`);
-    else $(i, `sup`);
-  }
-  $(i);
-};
-if ($) f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let i = 0;
-  while (true) {
-    const tmpPostUpdArgIdent = $coerce(i, `number`);
-    i = tmpPostUpdArgIdent + 1;
-    const tmpBinLhs = i;
-    const tmpIfTest = tmpBinLhs < 10;
-    if (tmpIfTest) {
-      const tmpIfTest$1 = i < 5;
-      if (tmpIfTest$1) {
-        $(i, `sub`);
-      } else {
-        $(i, `sup`);
-      }
-    } else {
-      break;
-    }
-  }
-  $(i);
-  return undefined;
-};
-if ($) {
-  f();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -144,11 +99,21 @@ if ($) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: DebuggerStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 'sub'
@@ -170,6 +135,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: DebuggerStatement

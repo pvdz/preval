@@ -13,6 +13,7 @@ function f(...args){ $('f', args); }
 $(f?.(1, 2, 3));
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ f(1, 2, 3);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,39 +40,6 @@ f(1, 2, 3);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function (...$$0 /*:array*/) {
-  let args = $$0;
-  debugger;
-  $(`f`, args);
-};
-$(f?.(1, 2, 3));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function (...$$0 /*:array*/) {
-  let args = $$0;
-  debugger;
-  $(`f`, args);
-  return undefined;
-};
-let tmpCalleeParam = undefined;
-const tmpChainRootCall = f;
-const tmpIfTest = tmpChainRootCall != null;
-if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootCall(1, 2, 3);
-  tmpCalleeParam = tmpChainElementCall;
-  $(tmpChainElementCall);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +55,15 @@ a( 1, 2, 3 );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'f', [1, 2, 3]

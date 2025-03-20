@@ -15,6 +15,7 @@ const x = $dotCall(tmpCallVal, rex, 'test', 'why is foo always used', $, unknown
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(x);
 unknown;
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,24 +33,6 @@ unknown;
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const rex = /foo/;
-const tmpCallVal = rex.test;
-const x = $dotCall(tmpCallVal, rex, `test`, `why is foo always used`, $, unknown);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const rex = /foo/;
-const x = rex.test(`why is foo always used`, $, unknown);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,13 +42,17 @@ unknown;
 $( true );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -16,6 +16,7 @@ label: a = new ($(b)[$("$")])(1);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,28 +40,6 @@ const tmpNewCallee = tmpCompObj[tmpCompProp];
 $(new tmpNewCallee(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-label: a = new ($(b)[$(`\$`)])(1);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj[tmpCompProp];
-a = new tmpNewCallee(1);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +53,15 @@ const e = new d( 1 );
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { $: '"<$>"' }

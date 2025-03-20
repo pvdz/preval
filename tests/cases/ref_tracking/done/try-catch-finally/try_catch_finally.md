@@ -27,6 +27,7 @@ try {
 $(a); // can observe 2, 3, and 4. not 1: that's an uncaught throw.
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -55,7 +56,9 @@ if ($implicitThrow___53__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 a:

@@ -14,6 +14,7 @@ var x = a += $(2);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpNestedComplexRhs /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpNestedComplexRhs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,30 +34,6 @@ const a = $(1);
 $(a + $(2));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-let a = $(1);
-x = a += $(2);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-let a = $(1);
-const tmpNestedCompoundLhs = a;
-const tmpBinBothLhs = tmpNestedCompoundLhs;
-const tmpBinBothRhs = $(2);
-const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
-a = tmpNestedComplexRhs;
-x = tmpNestedComplexRhs;
-$(tmpNestedComplexRhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +45,15 @@ const c = a + b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

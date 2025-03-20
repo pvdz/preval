@@ -17,6 +17,7 @@ obj[(a = b++)];
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ obj[1];
 $(1, 2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,32 +36,6 @@ $(1, 2);
 $(1, 2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = b++)];
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-const tmpPostUpdArgIdent = $coerce(b, `number`);
-b = tmpPostUpdArgIdent + 1;
-a = tmpPostUpdArgIdent;
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +46,15 @@ a[ 1 ];
 $( 1, 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 2

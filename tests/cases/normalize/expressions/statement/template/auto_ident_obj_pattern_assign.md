@@ -17,6 +17,7 @@ $(`before  ${({ x, y } = { x: $(3), y: $(4) })}  after`);
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,39 +43,6 @@ $(`before  ${{ x: tmpObjLitVal, y: tmpObjLitVal$1 }}  after`);
 $({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce(({ x: x, y: y } = { x: $(3), y: $(4) }), `string`) + `  after`);
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-let tmpCalleeParam$1 = undefined;
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
-tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
-const tmpBinBothRhs = $coerce(tmpNestedAssignObjPatternRhs, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a, x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +64,15 @@ const f = {
 $( f, a, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

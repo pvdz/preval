@@ -45,6 +45,7 @@ while (true) {
 $('woohoo');
 `````
 
+
 ## Settled
 
 
@@ -349,6 +350,7 @@ loopStop$1: {
 $(`woohoo`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -581,97 +583,6 @@ loopStop$1: {
 $(`woohoo`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  $continue: {
-    {
-      if ($(false)) {
-        $(`uhoh`);
-        break $continue;
-      }
-      if ($(false)) {
-        $(`neither`);
-        break $continue;
-      }
-      $(`exit`);
-      break;
-    }
-  }
-}
-$(`woohoo`);
-while (true) {
-  let continued = false;
-  if ($(false)) {
-    $(`uhoh`);
-  } else {
-    continued = true;
-  }
-  if (!continued) {
-    if ($(false)) {
-      $(`neither`);
-    } else {
-      continued = true;
-    }
-  }
-  if (!continued) {
-    $(`exit`);
-    break;
-  }
-}
-$(`woohoo`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  $continue: {
-    const tmpIfTest = $(false);
-    if (tmpIfTest) {
-      $(`uhoh`);
-      break $continue;
-    } else {
-      const tmpIfTest$1 = $(false);
-      if (tmpIfTest$1) {
-        $(`neither`);
-        break $continue;
-      } else {
-        $(`exit`);
-        break;
-      }
-    }
-  }
-}
-$(`woohoo`);
-while (true) {
-  let continued = false;
-  const tmpIfTest$3 = $(false);
-  if (tmpIfTest$3) {
-    $(`uhoh`);
-  } else {
-    continued = true;
-  }
-  if (continued) {
-  } else {
-    const tmpIfTest$5 = $(false);
-    if (tmpIfTest$5) {
-      $(`neither`);
-    } else {
-      continued = true;
-    }
-    if (continued) {
-    } else {
-      $(`exit`);
-      break;
-    }
-  }
-}
-$(`woohoo`);
-`````
 
 ## PST Settled
 With rename=true
@@ -977,11 +888,15 @@ loopStop$1: {
 $( "woohoo" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

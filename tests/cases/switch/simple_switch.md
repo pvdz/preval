@@ -24,6 +24,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -69,57 +71,6 @@ if (tmpSwitchDisc === `string`) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  tmpSwitchBreak: {
-    const tmpSwitchDisc = typeof $(`x`);
-    if (tmpSwitchDisc === `string`) {
-      return 1;
-    } else if (tmpSwitchDisc === `number`) {
-      return 2;
-    } else if (tmpSwitchDisc === `boolean`) {
-      return 3;
-    } else if (true) {
-      return 4;
-    } else {
-    }
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpUnaryArg = $(`x`);
-  const tmpSwitchDisc = typeof tmpUnaryArg;
-  const tmpIfTest = tmpSwitchDisc === `string`;
-  if (tmpIfTest) {
-    return 1;
-  } else {
-    const tmpIfTest$1 = tmpSwitchDisc === `number`;
-    if (tmpIfTest$1) {
-      return 2;
-    } else {
-      const tmpIfTest$3 = tmpSwitchDisc === `boolean`;
-      if (tmpIfTest$3) {
-        return 3;
-      } else {
-        return 4;
-      }
-    }
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -148,11 +99,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x'

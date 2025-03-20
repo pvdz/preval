@@ -21,12 +21,14 @@ const tmpCallCallee= tmpCallComplexCallee();
 tmpCallCallee(`$('win')`);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 eval(`$('win')`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,44 +37,6 @@ eval(`$('win')`);
 eval(`$('win')`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpBinBothRhs$205 = String.name;
-const tmpStringConcatL = $coerce(tmpBinBothRhs$205, `plustr`);
-const tmpCallCompProp$1 = `to` + $coerce(tmpStringConcatL, `string`) + ``;
-const tmpCallCompVal$1 = (31)[tmpCallCompProp$1];
-const tmpBinBothRhs$141 = $dotCall(tmpCallCompVal$1, 31, `toString`, `32`);
-const tmpStringConcatL$2 = $coerce(tmpBinBothRhs$141, `plustr`);
-const tmpCalleeParam$1 = `return e` + $coerce(tmpStringConcatL$2, `string`) + `al`;
-const tmpCallComplexCallee = Function(tmpCalleeParam$1);
-const tmpCallCallee = tmpCallComplexCallee();
-tmpCallCallee(`$('win')`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothRhs$205 = `String`;
-const tmpStringConcatL = $coerce(tmpBinBothRhs$205, `plustr`);
-const tmpBinBothLhs = `to`;
-const tmpBinBothRhs = $coerce(tmpStringConcatL, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCallCompProp$1 = $coerce(tmpBinLhs, `plustr`);
-const tmpCallCompVal$1 = (31)[tmpCallCompProp$1];
-const tmpBinBothRhs$141 = $dotCall(tmpCallCompVal$1, 31, `toString`, `32`);
-const tmpStringConcatL$2 = $coerce(tmpBinBothRhs$141, `plustr`);
-const tmpBinBothLhs$1 = `return e`;
-const tmpBinBothRhs$1 = $coerce(tmpStringConcatL$2, `string`);
-const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-const tmpCalleeParam$1 = `${tmpStringConcatR}al`;
-const tmpCallComplexCallee = Function(tmpCalleeParam$1);
-const tmpCallCallee = tmpCallComplexCallee();
-tmpCallCallee(`$('win')`);
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +45,15 @@ With rename=true
 eval( "$('win')" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

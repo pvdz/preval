@@ -15,6 +15,7 @@ function f({ x: [y = 'fail'] }) {
 $(f(0, 10));
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ arrPatternSplat[0];
 $(`bad`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,45 +36,6 @@ const objPatternNoDefault = (0).x;
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: [y = `fail`],
-  } = tmpParamBare;
-  return `bad`;
-};
-$(f(0, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let y = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    y = `fail`;
-    return `bad`;
-  } else {
-    y = arrPatternBeforeDefault;
-    return `bad`;
-  }
-};
-const tmpCalleeParam = f(0, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +47,22 @@ b[ 0 ];
 $( "bad" );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -100,7 +74,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

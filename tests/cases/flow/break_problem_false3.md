@@ -49,6 +49,7 @@ let f = function () {
 f();
 `````
 
+
 ## Settled
 
 
@@ -62,6 +63,7 @@ if (tmpIfTest$3) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -73,103 +75,6 @@ if ($(false)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  const tmpLabeledBlockFunc = function ($$0, ...$$1 /*:array*/) {
-    let $dlr_$$0 = $$0;
-    let $dlr_$$1 = $$1;
-    debugger;
-    let x$3 = $dlr_$$1;
-    const tmpLabeledBlockFunc$1 = function ($$0) {
-      let $dlr_$$2 = $$0;
-      debugger;
-      let x$7 = $dlr_$$2;
-      const tmpIfTest$3 = $(false);
-      if (tmpIfTest$3) {
-        const tmpReturnArg$1 = tmpAfterLabel(x$7);
-        return tmpReturnArg$1;
-      } else {
-        const tmpReturnArg$3 = tmpAfterLabel$1(x$7);
-        return tmpReturnArg$3;
-      }
-    };
-    const tmpAfterLabel$1 = function ($$0) {
-      let $dlr_$$4 = $$0;
-      debugger;
-      let x$5 = $dlr_$$4;
-      x$5 = `pass`;
-      const tmpReturnArg$5 = tmpAfterLabel(x$5);
-      return tmpReturnArg$5;
-    };
-    const tmpReturnArg$7 = tmpLabeledBlockFunc$1(x$3);
-    return tmpReturnArg$7;
-  };
-  const tmpAfterLabel = function ($$0) {
-    let $dlr_$$6 = $$0;
-    debugger;
-    let x$1 = $dlr_$$6;
-    $(x$1);
-    return undefined;
-  };
-  const tmpReturnArg$9 = tmpLabeledBlockFunc(x);
-  return tmpReturnArg$9;
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  const tmpLabeledBlockFunc = function ($$0, ...$$1 /*:array*/) {
-    let $dlr_$$0 = $$0;
-    let $dlr_$$1 = $$1;
-    debugger;
-    let x$3 = $dlr_$$1;
-    const tmpLabeledBlockFunc$1 = function ($$0) {
-      let $dlr_$$2 = $$0;
-      debugger;
-      let x$7 = $dlr_$$2;
-      const tmpIfTest$3 = $(false);
-      if (tmpIfTest$3) {
-        const tmpReturnArg$1 = tmpAfterLabel(x$7);
-        return tmpReturnArg$1;
-      } else {
-        const tmpReturnArg$3 = tmpAfterLabel$1(x$7);
-        return tmpReturnArg$3;
-      }
-    };
-    const tmpAfterLabel$1 = function ($$0) {
-      let $dlr_$$4 = $$0;
-      debugger;
-      let x$5 = $dlr_$$4;
-      x$5 = `pass`;
-      const tmpReturnArg$5 = tmpAfterLabel(x$5);
-      return tmpReturnArg$5;
-    };
-    const tmpReturnArg$7 = tmpLabeledBlockFunc$1(x$3);
-    return tmpReturnArg$7;
-  };
-  const tmpAfterLabel = function ($$0) {
-    let $dlr_$$6 = $$0;
-    debugger;
-    let x$1 = $dlr_$$6;
-    $($dlr_$$6);
-    return undefined;
-  };
-  const tmpReturnArg$9 = tmpLabeledBlockFunc(x);
-  return tmpReturnArg$9;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -185,11 +90,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- drop unused rest param?
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false
@@ -203,6 +118,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- drop unused rest param?

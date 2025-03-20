@@ -15,6 +15,7 @@ const arr = [function(){ return this; }];
 $(arr[0]() === arr);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpCalleeParam /*:boolean*/ = tmpBinLhs === arr;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,34 +44,6 @@ const arr = [tmpArrElement];
 $(arr[0]() === arr);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [
-  function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    return tmpPrevalAliasThis;
-  },
-];
-$(arr[0]() === arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  return tmpPrevalAliasThis;
-};
-const arr = [tmpArrElement];
-const tmpBinLhs = arr[0]();
-const tmpCalleeParam = tmpBinLhs === arr;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +60,21 @@ const e = d === c;
 $( e );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true
@@ -103,6 +87,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

@@ -14,6 +14,7 @@ $`before ${([a] = $([1, 2]))} after`;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ $(tmpCalleeParam, tmpNestedAssignArrPatternRhs);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,32 +44,6 @@ $([`before `, ` after`], tmpNestedAssignArrPatternRhs);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let [a] = { a: 999, b: 1000 };
-$([`before `, ` after`], ([a] = $([1, 2])));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-const tmpCalleeParam = [`before `, ` after`];
-let tmpCalleeParam$1 = undefined;
-const tmpCalleeParam$3 = [1, 2];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$3);
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-a = arrPatternSplat$1[0];
-tmpCalleeParam$1 = tmpNestedAssignArrPatternRhs;
-$(tmpCalleeParam, tmpNestedAssignArrPatternRhs);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +64,22 @@ $( g, d );
 $( f );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -104,7 +91,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

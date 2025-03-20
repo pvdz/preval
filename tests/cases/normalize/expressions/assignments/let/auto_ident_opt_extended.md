@@ -17,6 +17,7 @@ $(xyz);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(a);
 $(100);
 $(100);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,39 +35,6 @@ $(100);
 $(100);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: { z: 100 } } };
-let a = { a: 999, b: 1000 };
-let xyz = (a = b?.x.y.z);
-$(xyz);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$3;
-} else {
-}
-let xyz = a;
-$(a);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +44,15 @@ $( 100 );
 $( 100 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

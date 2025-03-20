@@ -16,6 +16,7 @@ $(100) + ((1, 2, b)[$("c")] = $(b)[$("d")]);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,33 +49,6 @@ tmpBinBothLhs + varInitAssignLhsComputedRhs;
 $({ a: 999, b: 1000 }, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-$(100) + ((1, 2, b)[$(`c`)] = $(b)[$(`d`)]);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(100);
-const varInitAssignLhsComputedObj = b;
-const varInitAssignLhsComputedProp = $(`c`);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs = varInitAssignLhsComputedRhs;
-tmpBinBothLhs + tmpBinBothRhs;
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -97,11 +72,15 @@ const g = {
 $( g, c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

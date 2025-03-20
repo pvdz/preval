@@ -15,12 +15,14 @@ x = obj['foo'];
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(10);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,25 +31,6 @@ $(10);
 $(10);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { foo: 10 };
-let x = 10;
-x = obj[`foo`];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { foo: 10 };
-let x = 10;
-x = obj.foo;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +39,15 @@ With rename=true
 $( 10 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

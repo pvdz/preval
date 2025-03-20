@@ -33,6 +33,7 @@ drop3;
 f(e, drop3);
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ f(1, drop2);
 f(undefined, drop3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,42 +65,6 @@ f(1, drop2);
 f(undefined, drop3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function (...$$0 /*:array*/) {
-  let args = $$0;
-  debugger;
-  $(...args);
-};
-drop1;
-drop1();
-keep1;
-c(keep1);
-drop2;
-f(1, drop2);
-let e;
-drop3;
-f(e, drop3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function (...$$0 /*:array*/) {
-  let args = $$0;
-  debugger;
-  $(...args);
-  return undefined;
-};
-drop1();
-c(keep1);
-f(1, drop2);
-let e = undefined;
-f(undefined, drop3);
-`````
 
 ## PST Settled
 With rename=true
@@ -116,13 +82,17 @@ a( 1, drop2 );
 a( undefined, drop3 );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 5 implicit global bindings:
 
 drop1, c, keep1, drop2, drop3
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

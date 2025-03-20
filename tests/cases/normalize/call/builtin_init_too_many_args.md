@@ -13,6 +13,7 @@ const x = isNaN($spy('a'), $spy('b'), $spy('c'));
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const x /*:boolean*/ = isNaN(tmpArgOverflow);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,24 +36,6 @@ $spy(`c`);
 $(isNaN(tmpArgOverflow));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = isNaN($spy(`a`), $spy(`b`), $spy(`c`));
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArgOverflow = $spy(`a`);
-$spy(`b`);
-$spy(`c`);
-const x = isNaN(tmpArgOverflow);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +48,15 @@ const b = isNaN( a );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']

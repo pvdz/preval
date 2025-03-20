@@ -15,6 +15,7 @@ function f([[] = $(['fail2'])] = $(['pass3'])) {
 $(f(undefined, 200));
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (tmpIfTest$1) {
 $(`ok`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,50 +53,6 @@ if (arrPatternBeforeDefault === undefined) {
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [[] = $([`fail2`])] = tmpParamBare === undefined ? $([`pass3`]) : tmpParamBare;
-  return `ok`;
-};
-$(f(undefined, 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = [`pass3`];
-    bindingPatternArrRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternArrRoot = tmpParamBare;
-  }
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = [`fail2`];
-    arrPatternStep = $(tmpCalleeParam$1);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  let arrPatternSplat$1 = [...arrPatternStep];
-  return `ok`;
-};
-const tmpCalleeParam$3 = f(undefined, 200);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -117,11 +75,22 @@ else {
 $( "ok" );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['pass3']
@@ -135,7 +104,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

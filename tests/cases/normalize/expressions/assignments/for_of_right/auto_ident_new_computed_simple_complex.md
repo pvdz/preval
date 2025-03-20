@@ -16,6 +16,7 @@ for (let x of (a = new b[$("$")](1)));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -56,49 +58,6 @@ while (true) {
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-{
-  let tmpForOfGen = $forOf((a = new b[$(`\$`)](1)));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      let x = tmpForOfNext.value;
-    }
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj[tmpCompProp];
-a = new tmpNewCallee(1);
-let tmpCalleeParam = a;
-let tmpForOfGen = $forOf(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    let x = tmpForOfNext.value;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -122,11 +81,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( d );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '$'
@@ -140,6 +109,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

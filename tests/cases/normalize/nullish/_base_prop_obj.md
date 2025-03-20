@@ -13,6 +13,7 @@ var f = {x: 10};
 $(f??x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const f /*:object*/ = { x: 10 };
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,30 +30,6 @@ $(f);
 $({ x: 10 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = undefined;
-f = { x: 10 };
-$(f ?? x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = undefined;
-f = { x: 10 };
-let tmpCalleeParam = f;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = x;
-  $(x);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +39,15 @@ const a = { x: 10 };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '10' }

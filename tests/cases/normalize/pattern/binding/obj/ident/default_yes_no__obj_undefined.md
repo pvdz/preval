@@ -13,6 +13,7 @@ const { x = $('pass') } = { x: undefined };
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,30 +30,6 @@ $(tmpClusterSSA_x);
 $($(`pass`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: x = $(`pass`) } = { x: undefined };
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = { x: undefined };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let x = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $(`pass`);
-  $(x);
-} else {
-  x = objPatternBeforeDefault;
-  $(objPatternBeforeDefault);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +39,15 @@ const a = $( "pass" );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

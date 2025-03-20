@@ -17,6 +17,7 @@
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(y);
 y = 2;
 $(y);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,31 +35,6 @@ y = 2;
 $(y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[
-  {
-    x: { y: y },
-  },
-] = [{ x: { x: 1, y: 2, z: 3 }, y: 11 }, 10];
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { x: 1, y: 2, z: 3 };
-const tmpArrElement = { x: tmpObjLitVal, y: 11 };
-const arrAssignPatternRhs = [tmpArrElement, 10];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternNoDefault = arrPatternStep.x;
-y = objPatternNoDefault.y;
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,13 +44,24 @@ y = 2;
 $( y );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 y
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -85,7 +73,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

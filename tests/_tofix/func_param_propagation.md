@@ -24,6 +24,7 @@ $(f('x')); // [x, bar]
 $(f('x', 'y')); // [x, y]
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ const tmpCalleeParam$1 /*:array*/ = f(`y`);
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,52 +64,6 @@ $(f());
 $(f(`y`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
-  debugger;
-  let a = tmpParamBare === undefined ? b : tmpParamBare;
-  let b = tmpParamBare$1 === undefined ? `bar` : tmpParamBare$1;
-  return [a, b];
-};
-$(f(`x`));
-$(f(`x`, `y`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
-  debugger;
-  let a = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
-  } else {
-    a = tmpParamBare;
-    let b = undefined;
-    const tmpIfTest$1 = tmpParamBare$1 === undefined;
-    if (tmpIfTest$1) {
-      b = `bar`;
-    } else {
-      b = tmpParamBare$1;
-    }
-    const tmpReturnArg = [a, b];
-    return tmpReturnArg;
-  }
-};
-const tmpCalleeParam = f(`x`);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(`x`, `y`);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -133,11 +89,15 @@ const g = a( "y" );
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['x', 'bar']

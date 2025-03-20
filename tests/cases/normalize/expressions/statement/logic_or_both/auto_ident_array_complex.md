@@ -14,6 +14,7 @@ let a = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,32 +35,6 @@ $(3);
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-[$(1), 2, $(3)] || [$(1), 2, $(3)];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpArrElement = $(1);
-const tmpArrElement$1 = 2;
-const tmpArrElement$3 = $(3);
-const tmpIfTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-if (tmpIfTest) {
-  $(a);
-} else {
-  $(1);
-  $(3);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +49,15 @@ const a = {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

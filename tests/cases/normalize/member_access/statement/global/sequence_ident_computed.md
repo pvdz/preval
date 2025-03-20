@@ -16,6 +16,7 @@ let c = 1, b = "foo";
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const tmpCompProp /*:unknown*/ = $(`length`);
 `foo`[tmpCompProp];
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,28 +38,6 @@ const tmpCompProp = $(`length`);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let c = 1,
-  b = `foo`;
-($(1), b)[$(`length`)];
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let c = 1;
-let b = `foo`;
-$(1);
-const tmpCompObj = b;
-const tmpCompProp = $(`length`);
-tmpCompObj[tmpCompProp];
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +49,15 @@ const a = $( "length" );
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

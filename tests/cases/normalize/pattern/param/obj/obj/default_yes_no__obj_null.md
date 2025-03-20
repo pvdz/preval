@@ -15,6 +15,7 @@ function f({ x: {} = $({ x: 'fail' }) }) {
 $(f({ x: null, b: 11, c: 12 }, 10));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f({ x: null, b: 11, c: 12 }, 10));
 null.cannotDestructureThis;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,53 +33,6 @@ null.cannotDestructureThis;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: {} = $({ x: `fail` }) } = tmpParamBare;
-  return `bad`;
-};
-$(f({ x: null, b: 11, c: 12 }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { x: `fail` };
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  let objPatternCrashTest = objPatternAfterDefault === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = objPatternAfterDefault === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return `bad`;
-  } else {
-    return `bad`;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$3 = { x: null, b: 11, c: 12 };
-const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 10);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +42,15 @@ null.cannotDestructureThis;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

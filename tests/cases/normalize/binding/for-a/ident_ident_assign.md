@@ -13,6 +13,7 @@ let a = 1, b = 2, c = 3, d = 4;
 for (let a = b = $(c).y = $(d);false;) $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpNestedAssignPropRhs /*:unknown*/ = $(4);
 tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,37 +32,6 @@ const tmpNestedAssignObj = $(3);
 tmpNestedAssignObj.y = $(4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = 2,
-  c = 3,
-  d = 4;
-{
-  let a$1 = (b = $(c).y = $(d));
-  while (false) {
-    $(a$1, b, c);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
-let d = 4;
-const tmpNestedAssignObj = $(c);
-const tmpNestedAssignPropRhs = $(d);
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-b = tmpNestedPropAssignRhs;
-let a$1 = b;
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +42,15 @@ const b = $( 4 );
 a.y = b;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

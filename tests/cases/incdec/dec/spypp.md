@@ -15,6 +15,7 @@ $(y);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const tmpClusterSSA_x /*:number*/ = tmpPostUpdArgIdent - 1;
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,27 +37,6 @@ $(tmpPostUpdArgIdent);
 $(tmpPostUpdArgIdent - 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $spy(0);
-let y = x--;
-$(y);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $spy(0);
-const tmpPostUpdArgIdent = $coerce(x, `number`);
-x = tmpPostUpdArgIdent - 1;
-let y = tmpPostUpdArgIdent;
-$(tmpPostUpdArgIdent);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +49,15 @@ const c = b - 1;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [0, 0]

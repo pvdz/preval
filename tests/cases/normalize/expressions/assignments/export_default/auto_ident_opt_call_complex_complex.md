@@ -14,6 +14,7 @@ export default a = $($)?.($(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,37 +52,6 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = $($)?.($(1)));
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpCalleeParam = tmpChainElementCall;
-  const tmpCalleeParam$1 = tmpChainRootCall;
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
-  a = tmpChainElementCall$1;
-} else {
-}
-let tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -103,11 +74,15 @@ export { d as default };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

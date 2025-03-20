@@ -21,6 +21,7 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(7, tmpClusterSSA_b, tmpClusterSSA_c, 3, 4);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -51,56 +53,6 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(7, tmpClusterSSA_b, tmpClusterSSA_c, 3, 4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let b;
-  let c;
-  let d;
-  let e;
-  let a;
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    (b = { x: 1 }), (c = { y: 2 }), (d = 3), (e = 4);
-    a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e;
-    $(a, b, c, d, e);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = undefined;
-let c = undefined;
-let d = undefined;
-let e = undefined;
-let a = undefined;
-const tmpSwitchDisc = 1;
-const tmpIfTest = tmpSwitchDisc === 1;
-if (tmpIfTest) {
-  b = { x: 1 };
-  c = { y: 2 };
-  d = 3;
-  e = 4;
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
-  const varInitAssignLhsComputedRhs = d + e;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  $(tmpNestedPropAssignRhs, b, c, d, e);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -117,11 +69,15 @@ b[c] = 7;
 $( 7, a, d, 3, 4 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

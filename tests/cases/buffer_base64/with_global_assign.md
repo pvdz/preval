@@ -22,6 +22,7 @@ $(f("cGF0aA")); // path
 $(unknown);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ $(`path`);
 $(unknown);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,43 +59,6 @@ $(`path`);
 $(unknown);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  unknown = x;
-  Buffer;
-  const tmp = Buffer.from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
-  return tmp2;
-};
-let unknown = $(1);
-$(f);
-$(f(`cGF0aA`));
-$(unknown);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  unknown = x;
-  const tmp = $Buffer_from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
-  return tmp2;
-};
-let unknown = $(1);
-$(f);
-const tmpCalleeParam = f(`cGF0aA`);
-$(tmpCalleeParam);
-$(unknown);
-`````
 
 ## PST Settled
 With rename=true
@@ -114,11 +79,21 @@ $( "path" );
 $( c );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Buffer_from
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -134,6 +109,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Buffer_from

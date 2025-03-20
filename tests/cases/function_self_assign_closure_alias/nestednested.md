@@ -37,6 +37,7 @@ $(ff() === gg());
 $(outer);
 `````
 
+
 ## Settled
 
 
@@ -92,6 +93,7 @@ $(tmpCalleeParam$13);
 $(outer);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -132,96 +134,6 @@ $(tmpBinBothLhs$5 === gg());
 $(outer);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let outer = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    const a = [];
-    f = function ($$0, $$1) {
-      let $dlr_$$0 = $$0;
-      let $dlr_$$1 = $$1;
-      debugger;
-      return a;
-    };
-    const tmpReturnArg$23 = f();
-    return tmpReturnArg$23;
-  };
-  const g = f;
-  f() === f();
-  g() !== g();
-  g() === f();
-  return [f, g];
-};
-const [ff, gg] = outer();
-$(ff(), ff());
-$(ff() === ff());
-$(gg(), gg());
-$(gg() === gg());
-$(gg() === ff());
-$(ff() === gg());
-$(outer);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let outer = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    const a = [];
-    f = function ($$0, $$1) {
-      let $dlr_$$0 = $$0;
-      let $dlr_$$1 = $$1;
-      debugger;
-      return a;
-    };
-    const tmpReturnArg$23 = f();
-    return tmpReturnArg$23;
-  };
-  const g = f;
-  f();
-  f();
-  g();
-  g();
-  g();
-  f();
-  const tmpReturnArg = [f, g];
-  return tmpReturnArg;
-};
-const bindingPatternArrRoot = outer();
-const arrPatternSplat = [...bindingPatternArrRoot];
-const ff = arrPatternSplat[0];
-const gg = arrPatternSplat[1];
-const tmpCalleeParam = ff();
-const tmpCalleeParam$1 = ff();
-$(tmpCalleeParam, tmpCalleeParam$1);
-const tmpBinBothLhs = ff();
-const tmpBinBothRhs = ff();
-const tmpCalleeParam$3 = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = gg();
-const tmpCalleeParam$7 = gg();
-$(tmpCalleeParam$5, tmpCalleeParam$7);
-const tmpBinBothLhs$1 = gg();
-const tmpBinBothRhs$1 = gg();
-const tmpCalleeParam$9 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-$(tmpCalleeParam$9);
-const tmpBinBothLhs$3 = gg();
-const tmpBinBothRhs$3 = ff();
-const tmpCalleeParam$11 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-$(tmpCalleeParam$11);
-const tmpBinBothLhs$5 = ff();
-const tmpBinBothRhs$5 = gg();
-const tmpCalleeParam$13 = tmpBinBothLhs$5 === tmpBinBothRhs$5;
-$(tmpCalleeParam$13);
-$(outer);
-`````
 
 ## PST Settled
 With rename=true
@@ -278,11 +190,22 @@ $( z );
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [], []
@@ -301,7 +224,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

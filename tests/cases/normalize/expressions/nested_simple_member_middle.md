@@ -13,6 +13,7 @@ var a = 10, b = {}, c = 30;
 $(a = $(b).x = c);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ tmpNestedAssignObj.x = 30;
 $(30);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,34 +34,6 @@ tmpNestedAssignObj.x = 30;
 $(30);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-(a = 10), (b = {}), (c = 30);
-$((a = $(b).x = c));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-a = 10;
-b = {};
-c = 30;
-const tmpNestedAssignObj = $(b);
-const tmpNestedPropAssignRhs = c;
-tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpCalleeParam = a;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +45,15 @@ b.x = 30;
 $( 30 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

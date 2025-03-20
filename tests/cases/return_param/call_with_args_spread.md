@@ -23,6 +23,7 @@ $(f(function(...args){ $('pass2', args); }));
 $(f(function(...args){ $('pass3', args); }));
 `````
 
+
 ## Settled
 
 
@@ -63,6 +64,7 @@ tmpCalleeParam$9(1, `two`, null, NaN);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -92,83 +94,6 @@ tmpCalleeParam$9(1, `two`, null, NaN);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = x(1, `two`, null, NaN);
-  return y;
-};
-$(
-  f(function (...$$0 /*:array*/) {
-    let args = $$0;
-    debugger;
-    $(`pass1`, args);
-  }),
-);
-$(
-  f(function (...$$0 /*:array*/) {
-    let args$1 = $$0;
-    debugger;
-    $(`pass2`, args$1);
-  }),
-);
-$(
-  f(function (...$$0 /*:array*/) {
-    let args$3 = $$0;
-    debugger;
-    $(`pass3`, args$3);
-  }),
-);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = x(1, `two`, null, NaN);
-  return y;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = function (...$$0 /*:array*/) {
-  let args = $$0;
-  debugger;
-  $(`pass1`, args);
-  return undefined;
-};
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-const tmpCallCallee$1 = f;
-const tmpCalleeParam$5 = function (...$$0 /*:array*/) {
-  let args$1 = $$0;
-  debugger;
-  $(`pass2`, args$1);
-  return undefined;
-};
-const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
-$(tmpCalleeParam$3);
-const tmpCallCallee$3 = f;
-const tmpCalleeParam$9 = function (...$$0 /*:array*/) {
-  let args$3 = $$0;
-  debugger;
-  $(`pass3`, args$3);
-  return undefined;
-};
-const tmpCalleeParam$7 = tmpCallCallee$3(tmpCalleeParam$9);
-$(tmpCalleeParam$7);
-`````
 
 ## PST Settled
 With rename=true
@@ -210,11 +135,15 @@ f( 1, "two", null, NaN );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'no'

@@ -19,6 +19,7 @@ if (t) {
 }
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const t /*:boolean*/ = x <= 100;
 $(t);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,31 +37,6 @@ $(t);
 $($(100) <= 100);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(100);
-const t = x <= 100;
-if (t) {
-  $(true);
-} else {
-  $(false);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(100);
-const t = x <= 100;
-if (t) {
-  $(true);
-} else {
-  $(false);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +47,15 @@ const b = a <= 100;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

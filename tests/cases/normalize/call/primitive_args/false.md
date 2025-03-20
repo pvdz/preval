@@ -12,12 +12,14 @@
 $(false);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(false);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,19 +28,6 @@ $(false);
 $(false);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(false);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(false);
-`````
 
 ## PST Settled
 With rename=true
@@ -47,11 +36,15 @@ With rename=true
 $( false );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

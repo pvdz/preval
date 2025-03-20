@@ -15,6 +15,7 @@ function f({ x: { ...y } = $({ a: 'fail' }) } = $({ x: { a: 'pass2' } })) {
 $(f(undefined, 10));
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const y /*:unknown*/ = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undef
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,52 +54,6 @@ if (objPatternBeforeDefault === undefined) {
 $($objPatternRest(tmpCalleeParam$3, [], undefined));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: { ...y } = $({ a: `fail` }) } = tmpParamBare === undefined ? $({ x: { a: `pass2` } }) : tmpParamBare;
-  return y;
-};
-$(f(undefined, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpObjLitVal = { a: `pass2` };
-    const tmpCalleeParam = { x: tmpObjLitVal };
-    bindingPatternObjRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternObjRoot = tmpParamBare;
-  }
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = { a: `fail` };
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const tmpCalleeParam$3 = objPatternAfterDefault;
-  const tmpCalleeParam$5 = [];
-  let y = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
-  return y;
-};
-const tmpCalleeParam$7 = f(undefined, 10);
-$(tmpCalleeParam$7);
-`````
 
 ## PST Settled
 With rename=true
@@ -122,11 +78,15 @@ const j = $objPatternRest( e, i, undefined );
 $( j );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '{"a":"\\"pass2\\""}' }

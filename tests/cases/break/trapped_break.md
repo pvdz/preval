@@ -26,6 +26,7 @@ lab: {
 $(x); // x=1
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,47 +62,6 @@ if (x < 0) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(1);
-lab: {
-  if (x < 0) {
-    break lab;
-  }
-  if (x === 1) {
-    try {
-      break lab;
-    } catch (e) {
-      $(`ded`);
-    }
-  }
-  x = 2;
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(1);
-lab: {
-  const tmpIfTest = x < 0;
-  if (tmpIfTest) {
-    break lab;
-  } else {
-    const tmpIfTest$1 = x === 1;
-    if (tmpIfTest$1) {
-      break lab;
-    } else {
-      x = 2;
-    }
-  }
-}
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -122,11 +83,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -18,6 +18,7 @@ const {x: {y: {z: a}}} = 1
 { let a = 1; }
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
 objPatternNoDefault$1.z;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,34 +36,6 @@ objPatternNoDefault$1.z;
 (1).x.y.z;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let a$1 = 1;
-}
-const {
-  x: {
-    y: { z: a },
-  },
-} = 1;
-{
-  let a$3 = 1;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a$1 = 1;
-const bindingPatternObjRoot = 1;
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-const a = objPatternNoDefault$1.z;
-let a$3 = 1;
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +46,15 @@ const b = a.y;
 b.z;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

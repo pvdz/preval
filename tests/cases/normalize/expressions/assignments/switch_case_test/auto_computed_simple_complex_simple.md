@@ -17,6 +17,7 @@ a[$("b")] = 2;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const a /*:object*/ = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,37 +43,6 @@ a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (tmpSwitchDisc === (a = { b: $(1) })) {
-  } else {
-  }
-}
-a[$(`b`)] = 2;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-const tmpBinBothLhs = tmpSwitchDisc;
-const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-let tmpBinBothRhs = a;
-const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $(`b`);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +56,15 @@ c[b] = 2;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

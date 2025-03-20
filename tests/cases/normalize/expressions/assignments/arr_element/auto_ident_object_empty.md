@@ -14,6 +14,7 @@ $((a = {}) + (a = {}));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,28 +37,6 @@ $(a + tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a = {}) + (a = {}));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = {};
-let tmpBinBothLhs = a;
-a = {};
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +49,15 @@ $( c );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '[object Object][object Object]'

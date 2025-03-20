@@ -12,12 +12,14 @@
 do var x = 0; while (false);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,27 +28,6 @@ do var x = 0; while (false);
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-while (true) {
-  x = 0;
-  if (false) {
-  } else {
-    break;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-x = 0;
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +36,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

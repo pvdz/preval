@@ -13,12 +13,14 @@ const x = null;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(null);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ $(null);
 $(null);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = null;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = null;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 $( null );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: null

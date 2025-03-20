@@ -23,6 +23,7 @@ $(f());
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -56,6 +57,7 @@ f();
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -83,50 +85,6 @@ f();
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let s = $(10);
-  let x = true;
-  while (x) {
-    const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
-    s = s | 10;
-    x = $(true);
-  }
-  $(s);
-};
-$(f());
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let s = $(10);
-  let x = true;
-  while (true) {
-    if (x) {
-      const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
-      s = s | 10;
-      x = $(true);
-    } else {
-      break;
-    }
-  }
-  $(s);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -164,13 +122,17 @@ a();
 $( undefined );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 3 implicit global bindings:
 
 parseExpression, lexerFlags$285, astProp$181
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

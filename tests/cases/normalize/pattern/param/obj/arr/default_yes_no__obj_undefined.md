@@ -15,6 +15,7 @@ function f({ x: [] = $(['fail']) }) {
 $(f({ x: undefined, a: 11, b: 12 }, 10));
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
 $(`ok`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,44 +36,6 @@ const objPatternAfterDefault = $([`fail`]);
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: [] = $([`fail`]) } = tmpParamBare;
-  return `ok`;
-};
-$(f({ x: undefined, a: 11, b: 12 }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = [`fail`];
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  let arrPatternSplat = [...objPatternAfterDefault];
-  return `ok`;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$3 = { x: undefined, a: 11, b: 12 };
-const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 10);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +47,15 @@ const b = $( a );
 $( "ok" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['fail']

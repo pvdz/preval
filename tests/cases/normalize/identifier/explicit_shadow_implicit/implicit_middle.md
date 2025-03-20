@@ -20,6 +20,7 @@ $(n);
 }
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const n$1 /*:unknown*/ = $(10);
 $(n$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,31 +42,6 @@ $(n);
 $($(10));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let n$3 = $(10);
-  $(n$3);
-}
-$(n);
-{
-  let n$1 = $(10);
-  $(n$1);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let n$3 = $(10);
-$(n$3);
-$(n);
-let n$1 = $(10);
-$(n$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,13 +54,17 @@ const b = $( 10 );
 $( b );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 n
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

@@ -30,6 +30,7 @@ try {
 $(x); // reads x = 2,3
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -45,7 +46,9 @@ try /*7*/ {
 $(x___25__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

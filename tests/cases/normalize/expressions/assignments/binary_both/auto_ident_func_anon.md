@@ -14,6 +14,7 @@ $((a = function () {}) + (a = function () {}));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,41 +43,6 @@ $(a + tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$(
-  (a = function () {
-    debugger;
-  }) +
-    (a = function () {
-      debugger;
-    }),
-);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = function () {
-  debugger;
-  return undefined;
-};
-let tmpBinBothLhs = a;
-a = function () {
-  debugger;
-  return undefined;
-};
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -94,11 +61,15 @@ $( c );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'function() {return undefined;}function() {return undefined;}'

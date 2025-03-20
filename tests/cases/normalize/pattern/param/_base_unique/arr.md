@@ -16,12 +16,14 @@ function f([ x ]) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,37 +32,6 @@ function f([ x ]) {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [x$1] = tmpParamBare;
-  {
-    let x$3 = 2;
-  }
-  return x$1;
-};
-let x = 1;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let x$1 = arrPatternSplat[0];
-  let x$3 = 2;
-  return x$1;
-};
-let x = 1;
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +40,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

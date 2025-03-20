@@ -21,6 +21,7 @@ switch ($(1)) {
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 $(3, b, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -75,61 +77,6 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 $(3, b, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = 3;
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (tmpSwitchDisc === (a = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = c)) {
-  } else {
-  }
-}
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = 3;
-let a = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-const tmpBinBothLhs = tmpSwitchDisc;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(b);
-const varInitAssignLhsComputedProp$1 = $(`x`);
-const varInitAssignLhsComputedObj$3 = $(b);
-const varInitAssignLhsComputedProp$3 = $(`x`);
-const varInitAssignLhsComputedObj$5 = $(b);
-const varInitAssignLhsComputedProp$5 = $(`x`);
-const varInitAssignLhsComputedObj$7 = $(b);
-const varInitAssignLhsComputedProp$7 = $(`x`);
-const varInitAssignLhsComputedRhs$7 = c;
-varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$7;
-const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpBinBothRhs = a;
-const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -158,11 +105,15 @@ b[c] = 3;
 $( 3, a, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

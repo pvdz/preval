@@ -12,6 +12,7 @@
 a ? ({ x } = 1) : c;
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ if (a) {
   c;
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,24 +36,6 @@ if (a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-a ? ({ x: x } = 1) : c;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if (a) {
-  const tmpAssignObjPatternRhs = 1;
-  x = tmpAssignObjPatternRhs.x;
-} else {
-  c;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -65,13 +49,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 3 implicit global bindings:
 
 a, x, c
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

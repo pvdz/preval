@@ -19,6 +19,7 @@ f();
 $(String(arr));
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ const tmpCalleeParam /*:string*/ = $coerce(arr, `string`);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,38 +52,6 @@ f();
 $($coerce(arr, `string`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`updating`);
-  arr[0] = `pass`;
-};
-const arr = [`fail`, 2, 3];
-f();
-f();
-$(String(arr));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`updating`);
-  arr[0] = `pass`;
-  return undefined;
-};
-const arr = [`fail`, 2, 3];
-f();
-f();
-const tmpStringFirstArg = arr;
-const tmpCalleeParam = $coerce(arr, `string`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -100,11 +70,15 @@ const c = $coerce( b, "string" );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'updating'

@@ -14,6 +14,7 @@ export let [a, b] = [, x, y] = z;
 $(a, b, x, y, z);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const b /*:unknown*/ = arrPatternSplat[1];
 export { a, b };
 $(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,37 +46,6 @@ export { a, b };
 $(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2,
-  z = [10, 20, 30];
-let [a, b] = ([, x, y] = z);
-export { a, b };
-$(a, b, x, y, z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-let bindingPatternArrRoot = undefined;
-const tmpNestedAssignArrPatternRhs = z;
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat$1[1];
-y = arrPatternSplat$1[2];
-bindingPatternArrRoot = tmpNestedAssignArrPatternRhs;
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-let b = arrPatternSplat[1];
-export { a, b };
-$(a, b, x, y, z);
-`````
 
 ## PST Settled
 With rename=true
@@ -91,11 +62,22 @@ export { f as a,g as b };
 $( f, g, c, d, a );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -107,7 +89,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

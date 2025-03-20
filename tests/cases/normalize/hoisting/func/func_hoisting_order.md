@@ -20,6 +20,7 @@ function a(){}
 $(a,b,d,f,h,x);
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ const x /*:()=>unknown*/ = function () {
 $(a, b, d, f, h, x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -65,68 +67,6 @@ $(
 );
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-};
-let b = function () {
-  debugger;
-};
-let d = function () {
-  debugger;
-};
-let f = function () {
-  debugger;
-};
-let h = function () {
-  debugger;
-};
-let l = function () {
-  debugger;
-};
-let x = function () {
-  debugger;
-};
-$(a, b, d, f, h, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-  return undefined;
-};
-let b = function () {
-  debugger;
-  return undefined;
-};
-let d = function () {
-  debugger;
-  return undefined;
-};
-let f = function () {
-  debugger;
-  return undefined;
-};
-let h = function () {
-  debugger;
-  return undefined;
-};
-let l = function () {
-  debugger;
-  return undefined;
-};
-let x = function () {
-  debugger;
-  return undefined;
-};
-$(a, b, d, f, h, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -159,11 +99,15 @@ const f = function() {
 $( a, b, c, d, e, f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>', '<function>', '<function>', '<function>', '<function>', '<function>'

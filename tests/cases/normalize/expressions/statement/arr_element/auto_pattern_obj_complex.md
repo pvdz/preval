@@ -14,6 +14,7 @@ $({ a: 1, b: 2 }) + $({ a: 1, b: 2 });
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(999);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,28 +36,6 @@ $({ a: 1, b: 2 }) + $({ a: 1, b: 2 });
 $(999);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let { a: a } = { a: 999, b: 1000 };
-$({ a: 1, b: 2 }) + $({ a: 1, b: 2 });
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-const tmpCalleeParam = { a: 1, b: 2 };
-const tmpBinBothLhs = $(tmpCalleeParam);
-const tmpCalleeParam$1 = { a: 1, b: 2 };
-const tmpBinBothRhs = $(tmpCalleeParam$1);
-tmpBinBothLhs + tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +55,15 @@ b + d;
 $( 999 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }

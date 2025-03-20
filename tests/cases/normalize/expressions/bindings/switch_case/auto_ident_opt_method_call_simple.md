@@ -18,6 +18,7 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpChainElementCall /*:unknown*/ = tmpClusterSSA_b.c(1);
 $(tmpChainElementCall);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,46 +36,6 @@ $(tmpChainElementCall);
 $({ c: $ }.c(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let b;
-  let a;
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    b = { c: $ };
-    a = b?.c(1);
-    $(a);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = undefined;
-let a = undefined;
-const tmpSwitchDisc = 1;
-const tmpIfTest = tmpSwitchDisc === 1;
-if (tmpIfTest) {
-  b = { c: $ };
-  a = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementCall = tmpChainRootProp.c(1);
-    a = tmpChainElementCall;
-    $(tmpChainElementCall);
-  } else {
-    $(a);
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +46,15 @@ const b = a.c( 1 );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

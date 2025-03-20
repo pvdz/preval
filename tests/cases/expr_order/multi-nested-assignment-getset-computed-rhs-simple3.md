@@ -33,6 +33,7 @@ function g(x) {
 g(d);
 `````
 
+
 ## Settled
 
 
@@ -58,6 +59,7 @@ const objd /*:object*/ = {
 $(objd);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -78,67 +80,6 @@ $({
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let g = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(x());
-};
-const objd = {
-  get foo() {
-    debugger;
-    return 100;
-  },
-  set foo($$0) {
-    let a = $$0;
-    debugger;
-    return 4000;
-  },
-};
-const d = function () {
-  debugger;
-  $(`a`);
-  $(`b`);
-  return objd;
-};
-d();
-g(d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let g = function ($$0) {
-  let x = $$0;
-  debugger;
-  const tmpCalleeParam = x();
-  $(tmpCalleeParam);
-  return undefined;
-};
-const objd = {
-  get foo() {
-    debugger;
-    return 100;
-  },
-  set foo($$0) {
-    let a = $$0;
-    debugger;
-    return 4000;
-  },
-};
-const d = function () {
-  debugger;
-  $(`a`);
-  $(`b`);
-  return objd;
-};
-d();
-g(d);
-`````
 
 ## PST Settled
 With rename=true
@@ -165,11 +106,15 @@ const b = {
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

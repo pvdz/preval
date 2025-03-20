@@ -30,6 +30,7 @@ $(f);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ $(f);
 $(1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,54 +54,6 @@ $(function () {
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    try {
-      return $;
-      $(arr[0]);
-      arr.reverse();
-    } catch (e) {
-      $(`fail`);
-    }
-    x = 2;
-    $(x);
-  }
-};
-let x = 1;
-f();
-$(f);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    try {
-      return $;
-    } catch (e) {
-      $(`fail`);
-    }
-    x = 2;
-    $(x);
-  }
-  return undefined;
-};
-let x = 1;
-f();
-$(f);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -113,11 +67,15 @@ $( a );
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

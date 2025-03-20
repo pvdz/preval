@@ -12,12 +12,14 @@
 $(null?.toString());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,28 +28,6 @@ $(undefined);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(null?.toString());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = null;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootProp.toString();
-  tmpCalleeParam = tmpChainElementCall;
-  $(tmpChainElementCall);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +36,21 @@ With rename=true
 $( undefined );
 `````
 
+
+## Todos triggered
+
+
+- Method on primitive was not found, do we miss anything?
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined
@@ -73,6 +63,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Method on primitive was not found, do we miss anything?

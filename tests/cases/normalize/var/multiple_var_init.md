@@ -12,6 +12,7 @@
 var a = $(1), b = $(2), c = $(3);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $(1);
 $(2);
 $(3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,27 +32,6 @@ $(2);
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-(a = $(1)), (b = $(2)), (c = $(3));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-a = $(1);
-b = $(2);
-c = $(3);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +42,15 @@ $( 2 );
 $( 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

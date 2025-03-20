@@ -15,6 +15,7 @@ obj[(a = this)];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(a);
 $Object_prototype.undefined;
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,28 +33,6 @@ $Object_prototype.undefined;
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = undefined)];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-a = undefined;
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +42,15 @@ $Object_prototype.undefined;
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

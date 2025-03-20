@@ -20,6 +20,7 @@ do {
 $(a, b, c, d);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -54,54 +56,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3;
-let a = { a: 999, b: 1000 };
-while (true) {
-  {
-    $(100);
-  }
-  if ((a = $(b)[$(`x`)] = $(c)[$(`y`)] = d)) {
-  } else {
-    break;
-  }
-}
-$(a, b, c, d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let a = { a: 999, b: 1000 };
-while (true) {
-  $(100);
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
-  const varInitAssignLhsComputedRhs = d;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a, b, c, d);
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +74,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100
@@ -162,6 +126,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

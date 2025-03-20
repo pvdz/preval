@@ -16,6 +16,7 @@ $(Number($spy(1, 2)));
 $(Number($spy('x', 'y')));
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const tmpCalleeParam$3 /*:number*/ = $coerce(tmpStringFirstArg$3, `number`);
 $(tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,29 +42,6 @@ $($coerce($spy(1, 2), `number`));
 $($coerce($spy(`x`, `y`), `number`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(Number($spy()));
-$(Number($spy(1, 2)));
-$(Number($spy(`x`, `y`)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpStringFirstArg = $spy();
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
-$(tmpCalleeParam);
-const tmpStringFirstArg$1 = $spy(1, 2);
-const tmpCalleeParam$1 = $coerce(tmpStringFirstArg$1, `number`);
-$(tmpCalleeParam$1);
-const tmpStringFirstArg$3 = $spy(`x`, `y`);
-const tmpCalleeParam$3 = $coerce(tmpStringFirstArg$3, `number`);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +58,15 @@ const f = $coerce( e, "number" );
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]

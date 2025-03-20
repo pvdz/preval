@@ -13,6 +13,7 @@ const { x: [y = 'fail'] = $(['fail2']) } = undefined;
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('bad');
 undefined.x;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,40 +31,6 @@ undefined.x;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: [y = `fail`] = $([`fail2`]) } = undefined;
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = undefined;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = [`fail2`];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let y = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  y = `fail`;
-  $(`bad`);
-} else {
-  y = arrPatternBeforeDefault;
-  $(`bad`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +40,22 @@ undefined.x;
 throw "[Preval]: Can not reach here";
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -88,7 +67,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

@@ -13,6 +13,7 @@
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('bad');
 x = undefined.x;
 $(`bad`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,24 +31,6 @@ x = undefined.x;
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[{ x: x }] = ``;
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arrAssignPatternRhs = ``;
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-x = arrPatternStep.x;
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -56,13 +40,24 @@ x = undefined.x;
 $( "bad" );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -74,7 +69,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

@@ -17,6 +17,7 @@ for (; ({ x, y } = { x: $(3), y: $(4) }); $(1));
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,44 +41,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-{
-  while (({ x: x, y: y } = { x: $(3), y: $(4) })) {
-    $(1);
-  }
-}
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-while (true) {
-  let tmpIfTest = undefined;
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
-  tmpIfTest = tmpNestedAssignObjPatternRhs;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a, x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +53,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

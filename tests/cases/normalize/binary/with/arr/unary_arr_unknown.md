@@ -26,6 +26,7 @@ const arr = [
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -55,6 +56,7 @@ const arr /*:array*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, 
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -71,52 +73,6 @@ $Array_from($([]));
 $([tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [
-  ~Array.from($([])),
-  !Array.from($([])),
-  -Array.from($([])),
-  +Array.from($([])),
-  typeof Array.from($([])),
-  void Array.from($([])),
-];
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = [];
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpUnaryArg = $Array_from(tmpCalleeParam);
-const tmpArrElement = ~tmpUnaryArg;
-const tmpCalleeParam$5 = [];
-const tmpCalleeParam$3 = $(tmpCalleeParam$5);
-const tmpUnaryArg$1 = $Array_from(tmpCalleeParam$3);
-const tmpArrElement$1 = !tmpUnaryArg$1;
-const tmpCalleeParam$9 = [];
-const tmpCalleeParam$7 = $(tmpCalleeParam$9);
-const tmpUnaryArg$3 = $Array_from(tmpCalleeParam$7);
-const tmpArrElement$3 = -tmpUnaryArg$3;
-const tmpCalleeParam$13 = [];
-const tmpCalleeParam$11 = $(tmpCalleeParam$13);
-const tmpUnaryArg$5 = $Array_from(tmpCalleeParam$11);
-const tmpArrElement$5 = +tmpUnaryArg$5;
-const tmpCalleeParam$17 = [];
-const tmpCalleeParam$15 = $(tmpCalleeParam$17);
-const tmpUnaryArg$7 = $Array_from(tmpCalleeParam$15);
-const tmpArrElement$7 = typeof tmpUnaryArg$7;
-const tmpCalleeParam$21 = [];
-const tmpCalleeParam$19 = $(tmpCalleeParam$21);
-$Array_from(tmpCalleeParam$19);
-const tmpArrElement$9 = undefined;
-const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -147,11 +103,21 @@ const s = [ d, false, j, n, "object", undefined ];
 $( s );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []
@@ -170,6 +136,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from

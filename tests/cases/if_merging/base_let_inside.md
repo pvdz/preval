@@ -20,6 +20,7 @@ else $('b');
 if (x) $('d'); else $('c');
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ if (tmpUnaryArg) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,49 +51,6 @@ if ($(Boolean($(true)))) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x;
-if ($(true)) {
-  x = !$(true);
-} else {
-  x = !$(false);
-}
-if (x) {
-  x = 10;
-  $(`a`);
-} else $(`b`);
-if (x) $(`d`);
-else $(`c`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg = $(true);
-  x = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 = $(false);
-  x = !tmpUnaryArg$1;
-}
-if (x) {
-  x = 10;
-  $(`a`);
-} else {
-  $(`b`);
-}
-if (x) {
-  $(`d`);
-} else {
-  $(`c`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -110,11 +69,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

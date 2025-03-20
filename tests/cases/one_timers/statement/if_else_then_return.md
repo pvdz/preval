@@ -20,6 +20,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,39 +49,6 @@ if ($()) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($()) {
-    $(1);
-  } else {
-    $(2);
-  }
-  return $(3);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    $(2);
-  }
-  const tmpReturnArg = $(3);
-  return tmpReturnArg;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -96,11 +65,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

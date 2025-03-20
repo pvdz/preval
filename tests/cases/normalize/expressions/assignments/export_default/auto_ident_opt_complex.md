@@ -16,6 +16,7 @@ export default a = $(b)?.x;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,36 +54,6 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = $(b)?.x);
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-} else {
-}
-let tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +76,15 @@ export { e as default };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

@@ -12,12 +12,14 @@
 ([ x = a ] = [1]);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 x = 1;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,27 +28,6 @@ x = 1;
 x = 1;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[x = a] = [1];
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arrAssignPatternRhs = [1];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = a;
-} else {
-  x = arrPatternBeforeDefault;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -55,13 +36,24 @@ With rename=true
 x = 1;
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -73,7 +65,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

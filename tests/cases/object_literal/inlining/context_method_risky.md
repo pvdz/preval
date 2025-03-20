@@ -21,6 +21,7 @@ $(obj.encode());
 $(obj.str); // changed!
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ const tmpCalleeParam$3 /*:unknown*/ = obj.str;
 $(tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,41 +56,6 @@ $(obj.encode());
 $(obj.str);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  encode: function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    tmpPrevalAliasThis.str = `changed`;
-    $(tmpPrevalAliasThis.str);
-  },
-  str: `abc`,
-};
-$(obj.encode());
-$(obj.str);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  tmpPrevalAliasThis.str = `changed`;
-  const tmpCalleeParam = tmpPrevalAliasThis.str;
-  $(tmpCalleeParam);
-  return undefined;
-};
-const obj = { encode: tmpObjLitVal, str: `abc` };
-const tmpCalleeParam$1 = obj.encode();
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = obj.str;
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -112,11 +79,15 @@ const f = d.str;
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'changed'

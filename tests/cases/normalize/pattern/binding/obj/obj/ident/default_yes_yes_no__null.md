@@ -13,6 +13,7 @@ const { x: { y = $('fail') } = $({ y: 'fail2' }) } = null;
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('bad');
 null.x;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,39 +31,6 @@ null.x;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: { y: y = $(`fail`) } = $({ y: `fail2` }) } = null;
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = null;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { y: `fail2` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-let y = undefined;
-const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  y = $(`fail`);
-  $(`bad`);
-} else {
-  y = objPatternBeforeDefault$1;
-  $(`bad`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +40,15 @@ null.x;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

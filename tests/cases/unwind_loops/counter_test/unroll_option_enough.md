@@ -22,6 +22,7 @@ while (counter) {
 }
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ $(`test 3`);
 $(`test 2`);
 $(`test 1`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -74,33 +76,6 @@ $(`test 2`);
 $(`test 1`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let counter = 20;
-while (counter) {
-  $(`test ` + counter);
-  counter = counter - 1;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let counter = 20;
-while (true) {
-  if (counter) {
-    const tmpStringConcatL = $coerce(counter, `plustr`);
-    const tmpCalleeParam = `test ${tmpStringConcatL}`;
-    $(tmpCalleeParam);
-    counter = counter - 1;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -128,11 +103,23 @@ $( "test 2" );
 $( "test 1" );
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: TemplateLiteral
+- maybe we can inline a primitive into a frfr that is called multiple times, too?
+- - at least one of the frfr args was not isFree, bailing
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'test 20'
@@ -164,8 +151,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: TemplateLiteral
-- maybe we can inline a primitive into a frfr that is called multiple times, too?
-- - at least one of the frfr args was not isFree, bailing

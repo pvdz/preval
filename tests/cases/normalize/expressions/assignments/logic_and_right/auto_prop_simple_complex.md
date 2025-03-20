@@ -15,6 +15,7 @@ a.b = $(2);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ a.b = tmpAssignMemRhs;
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,36 +54,6 @@ a.b = $(2);
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$($(100) && (a = { b: $(1) }));
-a.b = $(2);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
-if (tmpCalleeParam) {
-  const tmpObjLitVal = $(1);
-  const tmpNestedComplexRhs = { b: tmpObjLitVal };
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-const tmpAssignMemLhsObj = a;
-const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -106,11 +78,15 @@ a.b = e;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

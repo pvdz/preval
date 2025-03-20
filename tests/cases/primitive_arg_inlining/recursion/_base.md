@@ -19,6 +19,7 @@ function f(n) {
 $(f(0));
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ const f /*:(primitive)=>unknown*/ = function ($$0) {
 throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,33 +46,6 @@ const f = function (n) {
 throw `<max pcode call depth exceeded>; calling \`const tmpCalleeParam\$1 = f(0);\``;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let n = $$0;
-  debugger;
-  return f(n + 1);
-};
-$(f(0));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let n = $$0;
-  debugger;
-  const tmpCallCallee = f;
-  const tmpCalleeParam = n + 1;
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 = f(0);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +61,15 @@ const a = function($$0 ) {
 throw "<max pcode call depth exceeded>; calling `const tmpCalleeParam$1 = f(0);`";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Maximum call stack size exceeded ]>')

@@ -20,6 +20,7 @@ f("first1", {a: 1, b: 2, c: 'hi', d: parseInt}, "last1");
 f("first2", {a: 3, b: 4, c: true, d: null}, "last2");
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ f(`first1`, 1, `last1`, 2, `hi`, parseInt);
 f(`first2`, 3, `last2`, 4, true, null);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -56,58 +58,6 @@ f(`first1`, 1, `last1`, 2, `hi`, parseInt);
 f(`first2`, 3, `last2`, 4, true, null);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2) {
-  let x = $$0;
-  let obj = $$1;
-  let y = $$2;
-  debugger;
-  $(x, y, obj.a);
-  $(x, y, obj.b);
-  $(x, y, obj.c);
-  $(x, y, obj.d);
-};
-f(`first1`, { a: 1, b: 2, c: `hi`, d: parseInt }, `last1`);
-f(`first2`, { a: 3, b: 4, c: true, d: null }, `last2`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2) {
-  let x = $$0;
-  let obj = $$1;
-  let y = $$2;
-  debugger;
-  const tmpCalleeParam = x;
-  const tmpCalleeParam$1 = y;
-  const tmpCalleeParam$3 = obj.a;
-  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-  const tmpCalleeParam$5 = x;
-  const tmpCalleeParam$7 = y;
-  const tmpCalleeParam$9 = obj.b;
-  $(tmpCalleeParam$5, tmpCalleeParam$7, tmpCalleeParam$9);
-  const tmpCalleeParam$11 = x;
-  const tmpCalleeParam$13 = y;
-  const tmpCalleeParam$15 = obj.c;
-  $(tmpCalleeParam$11, tmpCalleeParam$13, tmpCalleeParam$15);
-  const tmpCalleeParam$17 = x;
-  const tmpCalleeParam$19 = y;
-  const tmpCalleeParam$21 = obj.d;
-  $(tmpCalleeParam$17, tmpCalleeParam$19, tmpCalleeParam$21);
-  return undefined;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$23 = { a: 1, b: 2, c: `hi`, d: parseInt };
-tmpCallCallee(`first1`, tmpCalleeParam$23, `last1`);
-const tmpCallCallee$1 = f;
-const tmpCalleeParam$25 = { a: 3, b: 4, c: true, d: null };
-tmpCallCallee$1(`first2`, tmpCalleeParam$25, `last2`);
-`````
 
 ## PST Settled
 With rename=true
@@ -131,11 +81,15 @@ a( "first1", 1, "last1", 2, "hi", parseInt );
 a( "first2", 3, "last2", 4, true, null );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'first1', 'last1', 1

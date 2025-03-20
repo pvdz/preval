@@ -16,6 +16,7 @@ for (a = b?.x.y.z; ; $(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,43 +36,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: { z: 100 } } };
-let a = { a: 999, b: 1000 };
-{
-  a = b?.x.y.z;
-  while (true) {
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$3;
-} else {
-}
-while (true) {
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +46,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- regular property access of an ident feels tricky;
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -123,7 +99,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- regular property access of an ident feels tricky;
-- objects in isFree check

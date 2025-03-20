@@ -15,6 +15,7 @@ const arrPatternSplat = [ ...tmpCalleeParam$3 ];
 $(tmpCalleeParam$1, arrPatternSplat);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const arrPatternSplat /*:array*/ = [undefined, undefined, undefined, 1, 20, 30];
 $(undefined, arrPatternSplat);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,25 +32,6 @@ $(undefined, arrPatternSplat);
 $(undefined, [undefined, undefined, undefined, 1, 20, 30]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let tmpCalleeParam$1 = undefined;
-const tmpCalleeParam$3 = [, , , 1, 20, 30];
-const arrPatternSplat = [...tmpCalleeParam$3];
-$(tmpCalleeParam$1, arrPatternSplat);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam$1 = undefined;
-const tmpCalleeParam$3 = [, , , 1, 20, 30];
-const arrPatternSplat = [...tmpCalleeParam$3];
-$(tmpCalleeParam$1, arrPatternSplat);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +41,15 @@ const a = [ undefined, undefined, undefined, 1, 20, 30 ];
 $( undefined, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined, [undefined, undefined, undefined, 1, 20, 30]

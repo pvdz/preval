@@ -22,6 +22,7 @@ const a = {
 $(a.f());
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,47 +49,6 @@ if ($(0)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = {
-  foo: 10,
-  f: function f() {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    if ($(0)) {
-      $(`fail`);
-    } else {
-      return tmpPrevalAliasThis.foo;
-    }
-  },
-};
-$(a.f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = 10;
-const f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-    $(`fail`);
-    return undefined;
-  } else {
-    const tmpReturnArg = tmpPrevalAliasThis.foo;
-    return tmpReturnArg;
-  }
-};
-const tmpObjLitVal$1 = f;
-const a = { foo: tmpObjLitVal, f: tmpObjLitVal$1 };
-const tmpCalleeParam = a.f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -103,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

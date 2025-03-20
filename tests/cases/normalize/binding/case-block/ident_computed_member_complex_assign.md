@@ -18,6 +18,7 @@ switch ($('a')) { case $('a'): let a = $(obj)[$('x')] = $(obj)[$('y')] = $(d); b
 $(a, b, c, d, obj);
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ const b /*:object*/ = { x: 2 };
 $(1, b, 3, 4, obj);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -76,81 +78,6 @@ if (tmpIfTest) {
 $(1, { x: 2 }, 3, 4, obj);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let obj = {
-  get c() {
-    debugger;
-    $(`get`);
-  },
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`set`);
-  },
-};
-let a = 1,
-  b = { x: 2 },
-  c = 3,
-  d = 4;
-tmpSwitchBreak: {
-  let a$1;
-  const tmpSwitchDisc = $(`a`);
-  if (tmpSwitchDisc === $(`a`)) {
-    a$1 = $(obj)[$(`x`)] = $(obj)[$(`y`)] = $(d);
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, b, c, d, obj);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let obj = {
-  get c() {
-    debugger;
-    $(`get`);
-    return undefined;
-  },
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`set`);
-    return undefined;
-  },
-};
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-let d = 4;
-tmpSwitchBreak: {
-  let a$1 = undefined;
-  const tmpSwitchDisc = $(`a`);
-  const tmpBinBothLhs = tmpSwitchDisc;
-  const tmpBinBothRhs = $(`a`);
-  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  if (tmpIfTest) {
-    const tmpNestedAssignComMemberObj = $(obj);
-    const tmpNestedAssignComMemberProp = $(`x`);
-    const varInitAssignLhsComputedObj = $(obj);
-    const varInitAssignLhsComputedProp = $(`y`);
-    const varInitAssignLhsComputedRhs = $(d);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    a$1 = tmpNestedPropAssignRhs;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, b, c, d, obj);
-`````
 
 ## PST Settled
 With rename=true
@@ -184,11 +111,15 @@ const j = { x: 2 };
 $( 1, j, 3, 4, d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

@@ -24,6 +24,7 @@ A: {
 $(6);
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ A: {
 $(6);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -72,51 +74,6 @@ A: {
 $(6);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-x = $(0);
-A: {
-  $(1, x);
-  B: {
-    while (true) {
-      if ($(`a`, x)) break A;
-      if ($(`b`, x)) break B;
-      $(42);
-    }
-  }
-  $(5, x);
-}
-$(6);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-A: {
-  x = $(0);
-  $(1, x);
-  while (true) {
-    const tmpIfTest = $(`a`, x);
-    if (tmpIfTest) {
-      break A;
-    } else {
-      const tmpIfTest$1 = $(`b`, x);
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        $(42);
-      }
-    }
-  }
-  $(5, x);
-}
-$(6);
-`````
 
 ## PST Settled
 With rename=true
@@ -145,11 +102,15 @@ A: {
 $( 6 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

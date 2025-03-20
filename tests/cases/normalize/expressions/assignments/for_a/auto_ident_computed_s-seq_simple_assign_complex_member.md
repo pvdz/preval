@@ -16,6 +16,7 @@ for (a = (1, 2, b)[$("c")] = $(b)[$("d")]; ; $(1));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -46,39 +48,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-{
-  a = (1, 2, b)[$(`c`)] = $(b)[$(`d`)];
-  while (true) {
-    $(1);
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpNestedAssignComMemberObj = b;
-const tmpNestedAssignComMemberProp = $(`c`);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-while (true) {
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +67,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'c'

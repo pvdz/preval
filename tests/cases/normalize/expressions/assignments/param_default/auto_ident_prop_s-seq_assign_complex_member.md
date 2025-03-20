@@ -17,6 +17,7 @@ $(f());
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ b.c = varInitAssignLhsComputedRhs;
 $(undefined);
 $(varInitAssignLhsComputedRhs, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,51 +45,6 @@ $(undefined);
 $(varInitAssignLhsComputedRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = tmpParamBare === undefined ? (a = (1, 2, b).c = $(b)[$(`d`)]) : tmpParamBare;
-};
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const varInitAssignLhsComputedObj = b;
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-    varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-    return undefined;
-  } else {
-    p = tmpParamBare;
-    return undefined;
-  }
-};
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -105,11 +62,15 @@ $( undefined );
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

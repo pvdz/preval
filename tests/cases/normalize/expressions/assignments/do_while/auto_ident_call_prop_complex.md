@@ -18,6 +18,7 @@ do {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ if (tmpClusterSSA_a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -65,42 +67,6 @@ if (tmpClusterSSA_a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-while (true) {
-  {
-    $(100);
-  }
-  if ((a = $(b).$(1))) {
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-while (true) {
-  $(100);
-  const tmpCallObj = $(b);
-  a = tmpCallObj.$(1);
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -130,11 +96,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100
@@ -172,6 +148,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

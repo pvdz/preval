@@ -27,6 +27,7 @@ const tmpCalleeParam$1 = f(`y`);
 $(tmpCalleeParam$1);
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ const tmpCalleeParam$1 /*:array*/ = f(`y`);
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -65,51 +67,6 @@ $(f());
 $(f(`y`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const tmpParamBare$1 = $dlr_$$0;
-  let b = `bar`;
-  const tmpIfTest$1 = tmpParamBare$1 === undefined;
-  if (tmpIfTest$1) {
-  } else {
-    b = tmpParamBare$1;
-  }
-  const tmpReturnArg = [`x`, b];
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(`y`);
-$(tmpCalleeParam$1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const tmpParamBare$1 = $dlr_$$0;
-  let b = `bar`;
-  const tmpIfTest$1 = tmpParamBare$1 === undefined;
-  if (tmpIfTest$1) {
-  } else {
-    b = tmpParamBare$1;
-  }
-  const tmpReturnArg = [`x`, b];
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(`y`);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -135,11 +92,15 @@ const g = a( "y" );
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['x', 'bar']

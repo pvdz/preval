@@ -14,6 +14,7 @@ export default function(){}
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ export { tmpAnonDefaultExport as default };
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,30 +39,6 @@ export { tmpAnonDefaultExport as default };
 $(f);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(f);
-const tmpAnonDefaultExport = function () {
-  debugger;
-};
-export { tmpAnonDefaultExport as default };
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(f);
-const tmpAnonDefaultExport = function () {
-  debugger;
-  return undefined;
-};
-export { tmpAnonDefaultExport as default };
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,13 +53,17 @@ export { a as default };
 $( f );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 f
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

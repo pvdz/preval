@@ -18,6 +18,7 @@ if ($) {
 }
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,28 +39,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if ($) {
-  if ($) {
-    $(`keep me`);
-  } else {
-    $(`eliminate me`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if ($) {
-  $(`keep me`);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +49,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'keep me'

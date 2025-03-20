@@ -15,12 +15,14 @@ const x = $dotCall(tmpCallVal, rex, 'test', 'why is foo always used');
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,24 +31,6 @@ $(true);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const rex = /foo/;
-const tmpCallVal = rex.test;
-const x = $dotCall(tmpCallVal, rex, `test`, `why is foo always used`);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const rex = /foo/;
-const x = rex.test(`why is foo always used`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +39,15 @@ With rename=true
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

@@ -14,6 +14,7 @@ let a = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,26 +37,6 @@ const tmpArrElToSpread = $(1) + $(2);
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-[...($(1) + $(2))];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-const tmpArrElToSpread = tmpBinBothLhs + tmpBinBothRhs;
-[...tmpArrElToSpread];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +53,15 @@ const d = {
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

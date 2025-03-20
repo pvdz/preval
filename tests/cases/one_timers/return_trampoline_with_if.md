@@ -38,6 +38,7 @@ $(parseIdentifierRest);
 
 `````
 
+
 ## Settled
 
 
@@ -68,6 +69,7 @@ const parseIdentifierRest /*:()=>number*/ = function () {
 $(parseIdentifierRest);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -93,62 +95,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const inlineMe = function () {
-  debugger;
-  if ($(1)) {
-    if ($(1)) {
-      return 10;
-    }
-  } else {
-    $(100);
-  }
-  if ($) {
-    return 3;
-  } else {
-    return 4;
-  }
-};
-const parseIdentifierRest = function () {
-  debugger;
-  const s$15 = inlineMe(c$53);
-  return s$15;
-};
-$(parseIdentifierRest);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const inlineMe = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      return 10;
-    } else {
-    }
-  } else {
-    $(100);
-  }
-  if ($) {
-    return 3;
-  } else {
-    return 4;
-  }
-};
-const parseIdentifierRest = function () {
-  debugger;
-  const s$15 = inlineMe(c$53);
-  return s$15;
-};
-$(parseIdentifierRest);
-`````
 
 ## PST Settled
 With rename=true
@@ -181,13 +127,17 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 c$53
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

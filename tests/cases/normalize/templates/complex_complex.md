@@ -12,6 +12,7 @@
 $(`abc ${ $(10) } ${ $(20) } def`);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpCalleeParam /*:string*/ = `abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,30 +35,6 @@ const tmpBinBothRhs = $coerce($(20), `string`);
 $(`abc ${tmpBinBothRhs$1} ${tmpBinBothRhs} def`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`abc ` + $coerce($(10), `string`) + ` ` + $coerce($(20), `string`) + ` def`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs$1 = `abc `;
-const tmpCalleeParam$1 = $(10);
-const tmpBinBothRhs$1 = $coerce(tmpCalleeParam$1, `string`);
-const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-const tmpBinBothLhs = `${tmpStringConcatR} `;
-const tmpCalleeParam$3 = $(20);
-const tmpBinBothRhs = $coerce(tmpCalleeParam$3, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR$1 = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR$1} def`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +48,21 @@ const e = `abc ${b} ${d} def`;
 $( e );
 `````
 
+
+## Todos triggered
+
+
+- find test case where template ends up with multiple expressions
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10
@@ -89,6 +77,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- find test case where template ends up with multiple expressions

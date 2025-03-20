@@ -22,6 +22,7 @@ f(4);
 f(x);                         // At this point, x is set to 3, the first call to f() above, so no PASS output
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ f(4);
 f(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,55 +70,6 @@ f(4);
 f(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $({
-  valueOf: function () {
-    debugger;
-    $(`PASS`);
-  },
-});
-Number(x);
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  x = $coerce(c, `number`);
-  $(1);
-  $(2);
-  $(c);
-};
-f(3);
-f(4);
-f(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function () {
-  debugger;
-  $(`PASS`);
-  return undefined;
-};
-const tmpCalleeParam = { valueOf: tmpObjLitVal };
-let x = $(tmpCalleeParam);
-$coerce(x, `number`);
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  x = $coerce(c, `number`);
-  $(1);
-  $(2);
-  $(c);
-  return undefined;
-};
-f(3);
-f(4);
-f(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -144,11 +97,15 @@ d( 4 );
 d( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { valueOf: '"<function>"' }

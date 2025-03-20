@@ -13,6 +13,7 @@ const { x: [...y] = $(['fail']) } = { x: [, , , 1], a: 11, b: 12 };
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const y /*:array*/ = [undefined, undefined, undefined, 1];
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,33 +30,6 @@ $(y);
 $([undefined, undefined, undefined, 1]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: [...y] = $([`fail`]) } = { x: [, , , 1], a: 11, b: 12 };
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = [, , , 1];
-const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = [`fail`];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
-const y = arrPatternSplat.slice(0);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +39,21 @@ const a = [ undefined, undefined, undefined, 1 ];
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [undefined, undefined, undefined, 1]
@@ -81,6 +66,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

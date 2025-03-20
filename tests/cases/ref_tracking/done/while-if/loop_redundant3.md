@@ -24,6 +24,7 @@
 }
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -39,7 +40,9 @@ while ($LOOP_UNROLL_500___8__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 a:

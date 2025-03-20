@@ -13,6 +13,7 @@ let x = 0;
 $({ x } = 1);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $({ x } = 1);
 (1).x;
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,25 +31,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 0;
-$(({ x: x } = 1));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 0;
-let tmpCalleeParam = undefined;
-const tmpNestedAssignObjPatternRhs = 1;
-x = tmpNestedAssignObjPatternRhs.x;
-tmpCalleeParam = tmpNestedAssignObjPatternRhs;
-$(tmpNestedAssignObjPatternRhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +40,15 @@ With rename=true
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

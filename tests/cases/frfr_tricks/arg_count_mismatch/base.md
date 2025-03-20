@@ -30,6 +30,7 @@ const rs = r + s;
 $(rs);
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ const rs /*:string*/ = $frfr(tmpFree, xs, ys);
 $(rs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,61 +65,6 @@ const xs = $coerce($spy(`x`), `plustr`);
 $($frfr(tmpFree, xs, $coerce($spy(`y`), `plustr`)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function $free($$0) {
-  let a = $$0;
-  debugger;
-  const one = a + 5;
-  const two = one.slice(1);
-  return two;
-};
-const g = function $free($$0) {
-  let a$1 = $$0;
-  debugger;
-  const one$1 = a$1 + 100;
-  const two$1 = a$1.slice(2);
-  return two$1;
-};
-const x = $spy(`x`);
-const xs = x + ``;
-const y = $spy(`y`);
-const ys = y + ``;
-const r = $frfr(f, xs, ys);
-const s = $frfr(g, xs, ys);
-const rs = r + s;
-$(rs);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function $free($$0) {
-  let a = $$0;
-  debugger;
-  const one = a + 5;
-  const two = one.slice(1);
-  return two;
-};
-const g = function $free($$0) {
-  let a$1 = $$0;
-  debugger;
-  const one$1 = a$1 + 100;
-  const two$1 = a$1.slice(2);
-  return two$1;
-};
-const x = $spy(`x`);
-const xs = $coerce(x, `plustr`);
-const y = $spy(`y`);
-const ys = $coerce(y, `plustr`);
-const r = $frfr(f, xs, ys);
-const s = $frfr(g, xs, ys);
-const rs = r + s;
-$(rs);
-`````
 
 ## PST Settled
 With rename=true
@@ -140,11 +87,21 @@ const l = m( a, i, k );
 $( l );
 `````
 
+
+## Todos triggered
+
+
+- frfr and free arg mismatch
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['x', 'x']
@@ -161,6 +118,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- frfr and free arg mismatch

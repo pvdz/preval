@@ -16,6 +16,7 @@ while (tmpLoopRetCode) {
 }
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,35 +55,6 @@ if (!$) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let tmpLoopRetCode = true;
-while (tmpLoopRetCode) {
-  if ($) {
-    tmpLoopRetCode = false;
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpLoopRetCode = true;
-while (true) {
-  if (tmpLoopRetCode) {
-    if ($) {
-      tmpLoopRetCode = false;
-    } else {
-    }
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -106,11 +79,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support referencing this builtin in isFree: $
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined
@@ -122,6 +105,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support referencing this builtin in isFree: $

@@ -20,12 +20,14 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`x`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,30 +36,6 @@ $(`x`);
 $(`x`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return x;
-};
-const x = `x`;
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return x;
-};
-const x = `x`;
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +44,15 @@ With rename=true
 $( "x" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x'

@@ -16,6 +16,7 @@ throw (a = ($(1), $(2), x));
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(1);
 $(2);
 throw 1;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,28 +36,6 @@ $(2);
 throw 1;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-throw (a = ($(1), $(2), x));
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-$(1);
-$(2);
-a = x;
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +46,15 @@ $( 2 );
 throw 1;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

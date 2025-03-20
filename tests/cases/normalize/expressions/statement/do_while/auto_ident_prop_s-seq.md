@@ -18,6 +18,7 @@ do {
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -71,41 +73,6 @@ while (true) {
 $({ a: 999, b: 1000 }, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  {
-    $(100);
-  }
-  if ((1, 2, b).c) {
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  $(100);
-  const tmpCompObj = b;
-  const tmpIfTest = tmpCompObj.c;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -140,11 +107,21 @@ const c = {
 $( c, a );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100
@@ -182,6 +159,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

@@ -24,6 +24,7 @@ $(/x/ === x);
 $(/x/ !== x);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ const tmpCalleeParam$9 /*:boolean*/ = tmpBinLhs$9 !== x;
 $(tmpCalleeParam$9);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,41 +62,6 @@ $(/x/ === x);
 $(/x/ !== x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$({} === x);
-$({} !== x);
-$([] === x);
-$([] !== x);
-$(/x/ === x);
-$(/x/ !== x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinLhs = {};
-const tmpCalleeParam = tmpBinLhs === x;
-$(tmpCalleeParam);
-const tmpBinLhs$1 = {};
-const tmpCalleeParam$1 = tmpBinLhs$1 !== x;
-$(tmpCalleeParam$1);
-const tmpBinLhs$3 = [];
-const tmpCalleeParam$3 = tmpBinLhs$3 === x;
-$(tmpCalleeParam$3);
-const tmpBinLhs$5 = [];
-const tmpCalleeParam$5 = tmpBinLhs$5 !== x;
-$(tmpCalleeParam$5);
-const tmpBinLhs$7 = /x/;
-const tmpCalleeParam$7 = tmpBinLhs$7 === x;
-$(tmpCalleeParam$7);
-const tmpBinLhs$9 = /x/;
-const tmpCalleeParam$9 = tmpBinLhs$9 !== x;
-$(tmpCalleeParam$9);
-`````
 
 ## PST Settled
 With rename=true
@@ -118,11 +85,15 @@ const h = g !== x;
 $( h );
 `````
 
+
 ## Globals
+
 
 None (except for the 1 globals expected by the test)
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -14,6 +14,7 @@ const a = {b: $};
 $(a)[b()](1);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpCallCompProp /*:unknown*/ = $(`b`);
 tmpCallCompObj[tmpCallCompProp](1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,32 +35,6 @@ const tmpCallCompProp = $(`b`);
 tmpCallCompObj[tmpCallCompProp](1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = function () {
-  debugger;
-  return $(`b`);
-};
-const a = { b: $ };
-$(a)[b()](1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = function () {
-  debugger;
-  const tmpReturnArg = $(`b`);
-  return tmpReturnArg;
-};
-const a = { b: $ };
-const tmpCallCompObj = $(a);
-const tmpCallCompProp = b();
-tmpCallCompObj[tmpCallCompProp](1);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +46,15 @@ const c = $( "b" );
 b[ c ]( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { b: '"<$>"' }

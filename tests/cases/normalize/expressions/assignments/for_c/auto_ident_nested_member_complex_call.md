@@ -18,6 +18,7 @@ for (; $(1); a = $(b)[$("x")] = $(c)[$("y")] = $(d));
 $(a, b, c, d);
 `````
 
+
 ## Settled
 
 
@@ -56,6 +57,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -92,49 +94,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3;
-let a = { a: 999, b: 1000 };
-{
-  while ($(1)) {
-    a = $(b)[$(`x`)] = $(c)[$(`y`)] = $(d);
-  }
-}
-$(a, b, c, d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $(`x`);
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $(`y`);
-    const varInitAssignLhsComputedRhs = $(d);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-  } else {
-    break;
-  }
-}
-$(a, b, c, d);
-`````
 
 ## PST Settled
 With rename=true
@@ -179,11 +138,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -221,6 +190,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

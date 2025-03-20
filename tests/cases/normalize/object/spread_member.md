@@ -13,6 +13,7 @@ const obj = { foo: { bar: 10 } };
 $({...obj.foo});
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:object*/ = { ...tmpObjLitVal };
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,24 +32,6 @@ const tmpObjLitVal = { bar: 10 };
 $({ ...tmpObjLitVal });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { foo: { bar: 10 } };
-$({ ...obj.foo });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { bar: 10 };
-const obj = { foo: tmpObjLitVal };
-const tmpObjSpread = obj.foo;
-const tmpCalleeParam = { ...tmpObjSpread };
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +42,15 @@ const b = { ... a };
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { bar: '10' }

@@ -29,6 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(i);
 `````
 
+
 ## Settled
 
 
@@ -57,6 +58,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(i);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -76,49 +78,6 @@ while (true) {
 $(i);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let i = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const r = $(i);
-  const n = r * 1;
-  const a = $Math_pow(n, 2);
-  const b = a / 2;
-  const c = $coerce(b, `string`);
-  $(i, c);
-  i = i + 1;
-  const tmpIfTest = i > 10;
-  if (tmpIfTest) {
-    break;
-  } else {
-  }
-}
-$(i);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const r = $(i);
-  const n = r * 1;
-  const a = $Math_pow(n, 2);
-  const b = a / 2;
-  const c = $coerce(b, `string`);
-  $(i, c);
-  i = i + 1;
-  const tmpIfTest = i > 10;
-  if (tmpIfTest) {
-    break;
-  } else {
-  }
-}
-$(i);
-`````
 
 ## PST Settled
 With rename=true
@@ -147,11 +106,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( g );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0
@@ -186,6 +155,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow

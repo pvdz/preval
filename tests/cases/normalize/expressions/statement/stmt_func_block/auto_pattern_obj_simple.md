@@ -13,12 +13,14 @@ let { a, b } = { a: 1, b: 2 };
 $(a, b);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(1, 2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,23 +29,6 @@ $(1, 2);
 $(1, 2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let { a: a, b: b } = { a: 1, b: 2 };
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternObjRoot = { a: 1, b: 2 };
-let a = bindingPatternObjRoot.a;
-let b = bindingPatternObjRoot.b;
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +37,15 @@ With rename=true
 $( 1, 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 2

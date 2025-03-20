@@ -12,12 +12,14 @@
 $('hello'.concat());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`hello`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(`hello`);
 $(`hello`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`hello`.concat());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `hello`.concat();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( "hello" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'hello'

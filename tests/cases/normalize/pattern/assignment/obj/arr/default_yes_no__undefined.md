@@ -13,6 +13,7 @@
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('bad');
 undefined.x;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,31 +31,6 @@ undefined.x;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: [] = $([`fail`]) } = undefined);
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = undefined;
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = [`fail`];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +40,15 @@ undefined.x;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

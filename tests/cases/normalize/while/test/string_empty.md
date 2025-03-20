@@ -15,12 +15,14 @@ while ('') {
 $('after');
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`after`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,22 +31,6 @@ $(`after`);
 $(`after`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (``) {
-  $(`loop`);
-}
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`after`);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +39,15 @@ With rename=true
 $( "after" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'after'

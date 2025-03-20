@@ -13,6 +13,7 @@ const { x: {} = $({ x: 'pass' }) } = 0;
 $('ok');
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if (objPatternCrashTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -64,40 +66,6 @@ if (objPatternCrashTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: {} = $({ x: `pass` }) } = 0;
-$(`ok`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = 0;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { x: `pass` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-let objPatternCrashTest = objPatternAfterDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternAfterDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-  $(`ok`);
-} else {
-  $(`ok`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -130,11 +98,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '"pass"' }

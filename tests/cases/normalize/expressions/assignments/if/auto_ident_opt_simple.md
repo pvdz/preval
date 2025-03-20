@@ -16,12 +16,14 @@ if ((a = b?.x));
 $(a);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,33 +32,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-if ((a = b?.x));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest$1 = tmpChainRootProp != null;
-if (tmpIfTest$1) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-} else {
-}
-let tmpIfTest = a;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +40,15 @@ With rename=true
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

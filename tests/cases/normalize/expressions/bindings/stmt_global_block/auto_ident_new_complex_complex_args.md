@@ -17,6 +17,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,28 +40,6 @@ const tmpCalleeParam$1 = $(2);
 $(new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let b = { $: $ };
-  let a = new ($($))($(1), $(2));
-  $(a);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-const tmpNewCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-let a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +52,15 @@ const d = new a( b, c );
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

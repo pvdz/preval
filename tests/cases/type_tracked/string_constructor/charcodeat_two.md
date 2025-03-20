@@ -12,12 +12,14 @@
 $(String.fromCharCode(80, 70));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`PF`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(`PF`);
 $(`PF`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(String.fromCharCode(80, 70));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = $String_fromCharCode(80, 70);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( "PF" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'PF'

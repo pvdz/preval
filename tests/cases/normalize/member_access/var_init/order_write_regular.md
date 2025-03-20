@@ -18,6 +18,7 @@ let x = $(obj).x = 30;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ varInitAssignLhsComputedObj.x = 30;
 $(30);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -56,48 +58,6 @@ varInitAssignLhsComputedObj.x = 30;
 $(30);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  get x() {
-    debugger;
-    return $(10);
-  },
-  set x($$0) {
-    let _ = $$0;
-    debugger;
-    $(20);
-  },
-};
-let x = ($(obj).x = 30);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = {
-  get x() {
-    debugger;
-    const tmpReturnArg = $(10);
-    return tmpReturnArg;
-  },
-  set x($$0) {
-    let _ = $$0;
-    debugger;
-    $(20);
-    return undefined;
-  },
-};
-const varInitAssignLhsComputedObj = $(obj);
-const varInitAssignLhsComputedRhs = 30;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-let x = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +80,15 @@ c.x = 30;
 $( 30 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '<get/set>' }

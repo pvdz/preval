@@ -18,6 +18,7 @@ class x {
 $(new x().y());
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCallObj.y();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,44 +59,6 @@ const x = class {
 $(new x().y());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = class {
-  y($$0) {
-    const tmpParamBare = $$0;
-    debugger;
-    let arg = tmpParamBare === undefined ? $(10, `default`) : tmpParamBare;
-    return arg;
-  }
-};
-$(new x().y());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = class {
-  y($$0) {
-    const tmpParamBare = $$0;
-    debugger;
-    let arg = undefined;
-    const tmpIfTest = tmpParamBare === undefined;
-    if (tmpIfTest) {
-      arg = $(10, `default`);
-      return arg;
-    } else {
-      arg = tmpParamBare;
-      return arg;
-    }
-  }
-};
-const tmpCallObj = new x();
-const tmpCalleeParam = tmpCallObj.y();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -119,11 +83,15 @@ const f = e.y();
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10, 'default'

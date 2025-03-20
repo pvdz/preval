@@ -16,6 +16,7 @@ const str = 'abc'
 $(obj.encode());
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(obj.encode());
 $(abc);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,34 +34,6 @@ $(abc);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  encode: function () {
-    debugger;
-    $(abc);
-  },
-};
-const str = `abc`;
-$(obj.encode());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function () {
-  debugger;
-  $(abc);
-  return undefined;
-};
-const obj = { encode: tmpObjLitVal };
-const str = `abc`;
-const tmpCalleeParam = obj.encode();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,13 +43,17 @@ $( abc );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 abc
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

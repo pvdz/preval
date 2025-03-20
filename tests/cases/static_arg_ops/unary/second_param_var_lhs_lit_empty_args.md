@@ -20,6 +20,7 @@ $(f('a', 'x'));
 $(f(true, false));
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(NaN);
 $(NaN);
 $(NaN);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,50 +42,6 @@ $(NaN);
 $(NaN);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2, $$3, $$4) {
-  let no = $$0;
-  let noo = $$1;
-  let nooo = $$2;
-  let a = $$3;
-  let b = $$4;
-  debugger;
-  const x = ~b;
-  return x + a;
-};
-$(f(1, 2));
-$(f(2, 100));
-$(f(`a`, `x`));
-$(f(true, false));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2, $$3, $$4) {
-  let no = $$0;
-  let noo = $$1;
-  let nooo = $$2;
-  let a = $$3;
-  let b = $$4;
-  debugger;
-  const x = ~b;
-  const tmpReturnArg = x + a;
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f(1, 2);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2, 100);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`a`, `x`);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(true, false);
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +53,15 @@ $( NaN );
 $( NaN );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: NaN

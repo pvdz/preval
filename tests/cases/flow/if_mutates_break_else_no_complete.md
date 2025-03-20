@@ -26,6 +26,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,49 +55,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `pass`;
-  foo: {
-    if ($(true)) {
-      $(x, `not mutating, not completing`);
-    } else {
-      x = `fail`;
-      break foo;
-    }
-    $(x, `should not be considered mutated`);
-  }
-  $(x, `after label`);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `pass`;
-  foo: {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(x, `not mutating, not completing`);
-      $(x, `should not be considered mutated`);
-    } else {
-      x = `fail`;
-      break foo;
-    }
-  }
-  $(x, `after label`);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -112,11 +71,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

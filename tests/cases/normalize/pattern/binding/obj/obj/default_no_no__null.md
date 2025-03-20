@@ -13,6 +13,7 @@ const { x: {} } = null;
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('bad');
 null.x;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,34 +31,6 @@ null.x;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: {},
-} = null;
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = null;
-const objPatternNoDefault = bindingPatternObjRoot.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternNoDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-  $(`bad`);
-} else {
-  $(`bad`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +40,15 @@ null.x;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

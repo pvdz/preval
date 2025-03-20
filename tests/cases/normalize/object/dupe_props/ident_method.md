@@ -13,6 +13,7 @@ const x = {a: $('prop'), a(){}};
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const x /*:object*/ = {
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,32 +37,6 @@ $(`prop`);
 $({ a() {} });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = {
-  a: $(`prop`),
-  a() {
-    debugger;
-  },
-};
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`prop`);
-const x = {
-  a() {
-    debugger;
-    return undefined;
-  },
-};
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +50,15 @@ const a = { a(  ) {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'prop'

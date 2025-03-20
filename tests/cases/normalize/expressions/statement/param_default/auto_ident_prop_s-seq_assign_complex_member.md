@@ -17,6 +17,7 @@ $(f());
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,50 +45,6 @@ $(undefined);
 $({ a: 999, b: 1000 }, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = tmpParamBare === undefined ? ((1, 2, b).c = $(b)[$(`d`)]) : tmpParamBare;
-};
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpNestedAssignObj = b;
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-    p = tmpNestedPropAssignRhs;
-    return undefined;
-  } else {
-    p = tmpParamBare;
-    return undefined;
-  }
-};
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -108,11 +66,15 @@ const e = {
 $( e, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

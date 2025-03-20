@@ -17,6 +17,7 @@ export default a = { x, y } = ($(x), $(y), { x: $(3), y: $(4) });
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignObjPatternRhs;
 export { tmpAnonDefaultExport as default };
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -45,37 +47,6 @@ export { tmpAnonDefaultExport as default };
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = { x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }));
-export { tmpAnonDefaultExport as default };
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-$(x);
-$(y);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
-a = tmpNestedAssignObjPatternRhs;
-let tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
-$(a, x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -94,11 +65,15 @@ export { d as default };
 $( c, a, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

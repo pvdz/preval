@@ -22,6 +22,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,44 +64,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let y = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    [5, 6, $, missing];
-    $(y);
-    if (++y === $) break;
-  } catch (e) {
-    $(`fail`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = 1;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    missing;
-    $(y);
-    const tmpPostUpdArgIdent = $coerce(y, `number`);
-    y = tmpPostUpdArgIdent + 1;
-    const tmpBinLhs = y;
-    const tmpIfTest = tmpBinLhs === $;
-    if (tmpIfTest) {
-      break;
-    } else {
-    }
-  } catch (e) {
-    $(`fail`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -122,13 +86,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 missing
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'fail'

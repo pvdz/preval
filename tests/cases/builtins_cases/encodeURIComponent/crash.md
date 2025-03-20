@@ -14,6 +14,7 @@ $(encodeURIComponent("\uD800"));
 $(encodeURIComponent("\uDFFF"));
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const tmpCalleeParam$3 /*:string*/ = encodeURIComponent(`\udfff`);
 $(tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,26 +36,6 @@ $(encodeURIComponent(`\ud800`));
 $(encodeURIComponent(`\udfff`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(encodeURIComponent(`\ud800\udfff`));
-$(encodeURIComponent(`\ud800`));
-$(encodeURIComponent(`\udfff`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = encodeURIComponent(`\ud800\udfff`);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = encodeURIComponent(`\ud800`);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = encodeURIComponent(`\udfff`);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +48,15 @@ const b = encodeURIComponent( "\udfff" );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '%F0%90%8F%BF'

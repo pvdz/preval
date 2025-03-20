@@ -14,6 +14,7 @@ for (let xyz = [1, 2, 3]; ; $(1)) $(xyz);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,32 +38,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  let xyz = [1, 2, 3];
-  while (true) {
-    $(xyz);
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let xyz = [1, 2, 3];
-while (true) {
-  $(xyz);
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +50,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2, 3]
@@ -116,6 +102,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

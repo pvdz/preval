@@ -51,6 +51,7 @@ rule('I want it my way');
 rule('You have to listen to me');
 `````
 
+
 ## Settled
 
 
@@ -58,6 +59,7 @@ rule('You have to listen to me');
 $(`purpleRule:reset "I want it my way"`);
 $(`purpleRule:reset "You have to listen to me"`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -67,51 +69,6 @@ $(`purpleRule:reset "I want it my way"`);
 $(`purpleRule:reset "You have to listen to me"`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let rule = function ($$0) {
-  let desc = $$0;
-  debugger;
-  const func = $;
-  const a = PURPLE + `Rule:`;
-  const b = a + RESET;
-  const c = b + ` "`;
-  const d = c + desc;
-  const e = d + `"`;
-  func(e);
-};
-const PURPLE = `purple`;
-const RESET = `reset`;
-rule(`I want it my way`);
-rule(`You have to listen to me`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let rule = function ($$0) {
-  let desc = $$0;
-  debugger;
-  const func = $;
-  const tmpStringConcatR = $coerce(PURPLE, `plustr`);
-  const a = `${tmpStringConcatR}Rule:`;
-  const b = a + RESET;
-  const tmpStringConcatR$1 = $coerce(b, `plustr`);
-  const c = `${tmpStringConcatR$1} "`;
-  const d = c + desc;
-  const tmpStringConcatR$3 = $coerce(d, `plustr`);
-  const e = `${tmpStringConcatR$3}"`;
-  func(e);
-  return undefined;
-};
-const PURPLE = `purple`;
-const RESET = `reset`;
-rule(`I want it my way`);
-rule(`You have to listen to me`);
-`````
 
 ## PST Settled
 With rename=true
@@ -121,11 +78,15 @@ $( "purpleRule:reset \"I want it my way\"" );
 $( "purpleRule:reset \"You have to listen to me\"" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'purpleRule:reset "I want it my way"'

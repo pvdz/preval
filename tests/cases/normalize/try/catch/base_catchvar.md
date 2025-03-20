@@ -17,6 +17,7 @@ try {
 $(3);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ try {
 }
 $(3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,29 +43,6 @@ try {
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-try {
-  $(1);
-} catch (e) {
-  $(2);
-}
-$(3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-try {
-  $(1);
-} catch (e) {
-  $(2);
-}
-$(3);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +57,15 @@ catch (a) {
 $( 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

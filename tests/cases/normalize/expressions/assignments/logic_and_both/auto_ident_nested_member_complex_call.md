@@ -21,6 +21,7 @@ $(
 $(a, b, c, d);
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ if (varInitAssignLhsComputedRhs) {
   $(varInitAssignLhsComputedRhs, b, c, 3);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -79,56 +81,6 @@ if (varInitAssignLhsComputedRhs) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3;
-let a = { a: 999, b: 1000 };
-$((a = $(b)[$(`x`)] = $(c)[$(`y`)] = $(d)) && (a = $(b)[$(`x`)] = $(c)[$(`y`)] = $(d)));
-$(a, b, c, d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let a = { a: 999, b: 1000 };
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = $(d);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  const varInitAssignLhsComputedObj$1 = $(b);
-  const varInitAssignLhsComputedProp$1 = $(`x`);
-  const varInitAssignLhsComputedObj$3 = $(c);
-  const varInitAssignLhsComputedProp$3 = $(`y`);
-  const varInitAssignLhsComputedRhs$3 = $(d);
-  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs$1;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(a, b, c, d);
-} else {
-  $(tmpCalleeParam);
-  $(a, b, c, d);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -160,11 +112,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

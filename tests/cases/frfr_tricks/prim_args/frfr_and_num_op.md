@@ -22,6 +22,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,50 +54,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const freeFunc1 = function $free($$0, $$1) {
-  let x = $$0;
-  let y = $$1;
-  debugger;
-  return y * (x + 287);
-};
-let limiter = 0;
-while (true) {
-  const a = $frfr(freeFunc1, 1, limiter);
-  const b = limiter % 41344;
-  $(unknown);
-  $(a + b);
-  limiter = $(1) | 0;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const freeFunc1 = function $free($$0, $$1) {
-  let x = $$0;
-  let y = $$1;
-  debugger;
-  const tmpBinBothLhs = y;
-  const tmpBinBothRhs = x + 287;
-  const tmpReturnArg = tmpBinBothLhs * tmpBinBothRhs;
-  return tmpReturnArg;
-};
-let limiter = 0;
-while (true) {
-  const a = $frfr(freeFunc1, 1, limiter);
-  const b = limiter % 41344;
-  $(unknown);
-  const tmpCalleeParam = a + b;
-  $(tmpCalleeParam);
-  const tmpBinLhs = $(1);
-  limiter = tmpBinLhs | 0;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -113,13 +71,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

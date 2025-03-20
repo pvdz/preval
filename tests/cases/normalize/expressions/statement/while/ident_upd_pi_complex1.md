@@ -19,6 +19,7 @@ while (t) {
 $(b);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const b /*:object*/ = { x: 0 };
 $(b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,42 +46,6 @@ $(100);
 $({ x: 0 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 5 };
-let t = true;
-while (t) {
-  let p = --b.x;
-  t = p;
-  $(100);
-}
-$(b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 5 };
-let t = true;
-while (true) {
-  if (t) {
-    let tmpUpdObj = b;
-    let tmpUpdProp = tmpUpdObj.x;
-    let tmpUpdNum = $coerce(tmpUpdProp, `number`);
-    let tmpUpdInc = tmpUpdNum - 1;
-    tmpUpdObj.x = tmpUpdInc;
-    let p = tmpUpdInc;
-    t = p;
-    $(100);
-  } else {
-    break;
-  }
-}
-$(b);
-`````
 
 ## PST Settled
 With rename=true
@@ -94,11 +60,21 @@ const a = { x: 0 };
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100
@@ -116,6 +92,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

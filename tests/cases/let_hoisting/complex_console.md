@@ -24,6 +24,7 @@ if ($) {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,49 +53,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let danger = function () {
-  debugger;
-  if ($) {
-    danger = null;
-    return 1;
-  }
-};
-const f = console.log(`ok`);
-let x = danger();
-if ($) {
-  $(f);
-  x = $(`do not inline me`);
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let danger = function () {
-  debugger;
-  if ($) {
-    danger = null;
-    return 1;
-  } else {
-    return undefined;
-  }
-};
-const f = console.log(`ok`);
-let x = danger();
-if ($) {
-  $(f);
-  x = $(`do not inline me`);
-  $(x);
-} else {
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -110,11 +69,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

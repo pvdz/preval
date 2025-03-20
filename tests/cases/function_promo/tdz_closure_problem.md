@@ -26,6 +26,7 @@ function f() {
 if ($) f();
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,51 +49,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let g = function () {
-    debugger;
-    $($throwTDZError(`Preval: TDZ triggered for this read: \$(x\$1)`));
-    let x$1 = $(`inner`);
-    if ($) $(`prevent premature elimination`);
-  };
-  let x = $(`outer`);
-  g();
-  if ($) $(`prevent premature elimination`);
-};
-if ($) f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let g = function () {
-    debugger;
-    throw `Preval: TDZ triggered for this read: \$(x\$1)`;
-    let x$1 = 0;
-    return undefined;
-  };
-  let x = $(`outer`);
-  g();
-  if ($) {
-    $(`prevent premature elimination`);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-if ($) {
-  f();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -103,11 +60,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'outer'

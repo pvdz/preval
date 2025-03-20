@@ -24,6 +24,7 @@ $(x, 'x');
 closure();
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,51 +57,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const closure = function () {
-  debugger;
-  return $(x, `closure`);
-};
-const f = function () {
-  debugger;
-  if ($) {
-    $(1, `f`);
-  }
-};
-let x = $(100, `init`);
-closure();
-x = f();
-$(x, `x`);
-closure();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const closure = function () {
-  debugger;
-  const tmpReturnArg = $(x, `closure`);
-  return tmpReturnArg;
-};
-const f = function () {
-  debugger;
-  if ($) {
-    $(1, `f`);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-let x = $(100, `init`);
-closure();
-x = f();
-$(x, `x`);
-closure();
-`````
 
 ## PST Settled
 With rename=true
@@ -118,11 +75,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100, 'init'

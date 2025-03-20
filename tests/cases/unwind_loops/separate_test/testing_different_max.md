@@ -18,6 +18,7 @@ while (test) {
 }
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -70,35 +72,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let counter = 0;
-let test = counter < 10;
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 20;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let counter = 0;
-let test = counter < 10;
-while (true) {
-  if (test) {
-    $(`yolo`);
-    counter = counter + 1;
-    test = counter < 20;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -129,11 +102,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'yolo'

@@ -15,6 +15,7 @@ export let a = new (1, 2, b)["$"](1);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const a /*:object*/ = new $(1);
 export { a };
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,27 +35,6 @@ export { a };
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = new (1, 2, b)[`\$`](1);
-export { a };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-const tmpCompObj = b;
-const tmpNewCallee = tmpCompObj.$;
-let a = new tmpNewCallee(1);
-export { a };
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +45,15 @@ export { a as a };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

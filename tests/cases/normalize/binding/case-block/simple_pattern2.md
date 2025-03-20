@@ -37,6 +37,7 @@ tmpSwitchBreak: {
 $(a, x, y, z);
 `````
 
+
 ## Settled
 
 
@@ -55,6 +56,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -70,69 +72,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-let a$1 = undefined;
-const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpNestedAssignArrPatternRhs = z;
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    a$1 = tmpNestedAssignArrPatternRhs;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, x, y, z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-let a$1 = undefined;
-const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-tmpSwitchBreak: {
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpNestedAssignArrPatternRhs = z;
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    a$1 = tmpNestedAssignArrPatternRhs;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, x, y, z);
-`````
 
 ## PST Settled
 With rename=true
@@ -153,11 +92,22 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'
@@ -172,7 +122,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

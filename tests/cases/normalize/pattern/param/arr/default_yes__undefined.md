@@ -15,6 +15,7 @@ function f([] = $('pass')) {
 $(f(undefined, 200));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const bindingPatternArrRoot /*:unknown*/ = $(`pass`);
 [...bindingPatternArrRoot];
 $(`ok`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,39 +35,6 @@ const bindingPatternArrRoot = $(`pass`);
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [] = tmpParamBare === undefined ? $(`pass`) : tmpParamBare;
-  return `ok`;
-};
-$(f(undefined, 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    bindingPatternArrRoot = $(`pass`);
-  } else {
-    bindingPatternArrRoot = tmpParamBare;
-  }
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  return `ok`;
-};
-const tmpCalleeParam = f(undefined, 200);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +45,15 @@ const a = $( "pass" );
 $( "ok" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

@@ -15,6 +15,7 @@ let obj = {};
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const a /*:unknown*/ = $(60);
 a.a;
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,33 +35,6 @@ a.a;
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-(a = (10, 20, 30) ? (40, 50, $(60)) : $($(100)))[`a`];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpIfTest = 30;
-if (tmpIfTest) {
-  a = $(60);
-} else {
-  const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
-}
-let tmpCompObj = a;
-tmpCompObj.a;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +45,15 @@ a.a;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 60

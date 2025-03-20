@@ -17,6 +17,7 @@ switch (([a] = ($(10), $(20), $([1, 2])))) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ $(100);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,39 +50,6 @@ $(100);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let [a] = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = ([a] = ($(10), $(20), $([1, 2])));
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-let tmpSwitchDisc = undefined;
-$(10);
-$(20);
-const tmpCalleeParam = [1, 2];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-a = arrPatternSplat$1[0];
-tmpSwitchDisc = tmpNestedAssignArrPatternRhs;
-$(100);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -102,11 +71,22 @@ $( 100 );
 $( f );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -118,7 +98,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

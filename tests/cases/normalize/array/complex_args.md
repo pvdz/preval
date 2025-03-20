@@ -12,6 +12,7 @@
 $([5 + 5, $(), Array.prototype.length]);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:array*/ = [10, tmpArrElement$1, 0];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,24 +31,6 @@ const tmpArrElement$1 = $();
 $([10, tmpArrElement$1, 0]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$([5 + 5, $(), Array.prototype.length]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement = 10;
-const tmpArrElement$1 = $();
-const tmpCompObj = $Array_prototype;
-const tmpArrElement$3 = tmpCompObj.length;
-const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +41,15 @@ const b = [ 10, a, 0 ];
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

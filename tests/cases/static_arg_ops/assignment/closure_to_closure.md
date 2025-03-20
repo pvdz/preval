@@ -20,6 +20,7 @@ f($);
 f($);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ tmpSSA_b = a;
 f();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,38 +56,6 @@ tmpSSA_b = a;
 f();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  b = a;
-  $(a);
-  $(b);
-};
-let a = $();
-let b = $();
-f($);
-f($);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  b = a;
-  $(a);
-  $(b);
-  return undefined;
-};
-let a = $();
-let b = $();
-f($);
-f($);
-`````
 
 ## PST Settled
 With rename=true
@@ -105,11 +75,15 @@ c = b;
 a();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

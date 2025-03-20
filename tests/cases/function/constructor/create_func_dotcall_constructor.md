@@ -15,6 +15,7 @@ const f = (function(){}).constructor(a, b, c, d);
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,28 +34,6 @@ const f = Function(a, b, c, d);
 $(f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-}.constructor(a, b, c, d);
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallObj = function () {
-  debugger;
-  return undefined;
-};
-const f = tmpCallObj.constructor(a, b, c, d);
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,13 +44,17 @@ const f = e();
 $( f );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 4 implicit global bindings:
 
 a, b, c, d
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

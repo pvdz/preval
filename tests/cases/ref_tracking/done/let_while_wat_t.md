@@ -28,6 +28,7 @@ while (true) {
 $(x);         // x: Can only reach the last write, but preval should detect at least both writes
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -45,7 +46,9 @@ while (true) {
 $(x___28__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 y:

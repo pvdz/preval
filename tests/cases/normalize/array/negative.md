@@ -14,6 +14,7 @@ The AST node for negative numbers is a unary expression so it requires an explic
 $([-100]);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:array*/ = [-100];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,20 +31,6 @@ $(tmpCalleeParam);
 $([-100]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$([-100]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [-100];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +40,15 @@ const a = [ -100 ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [-100]

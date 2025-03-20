@@ -13,6 +13,7 @@ const max = $(10);
 for (let i=0; i<10; i += Infinity) $(i);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ for (let i=0; i<10; i += Infinity) $(i);
 $(10);
 $(0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,36 +31,6 @@ $(10);
 $(0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const max = $(10);
-{
-  let i = 0;
-  while (i < 10) {
-    $(i);
-    i += Infinity;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const max = $(10);
-let i = 0;
-while (true) {
-  const tmpIfTest = i < 10;
-  if (tmpIfTest) {
-    $(i);
-    i = i + Infinity;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +40,15 @@ $( 10 );
 $( 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

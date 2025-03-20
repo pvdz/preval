@@ -16,6 +16,7 @@ $(`before  ${$(b)}  after`);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,31 +38,6 @@ $(`before  ${$(1)}  after`);
 $({ a: 999, b: 1000 }, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce($(b), `string`) + `  after`);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-const tmpCalleeParam$1 = $(b);
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +54,15 @@ const d = {
 $( d, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

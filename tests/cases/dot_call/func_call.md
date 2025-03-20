@@ -16,6 +16,7 @@ function f() {
 f.call({pass: 1}, 1, 2, 3, 'yep', $);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpCalleeParam /*:object*/ = { pass: 1 };
 f.call(tmpCalleeParam, 1, 2, 3, `yep`, $);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,36 +41,6 @@ f.call(tmpCalleeParam, 1, 2, 3, `yep`, $);
 }.call({ pass: 1 }, 1, 2, 3, `yep`, $));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const x = tmpPrevalAliasThis;
-  $(x);
-};
-f.call({ pass: 1 }, 1, 2, 3, `yep`, $);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const x = tmpPrevalAliasThis;
-  $(tmpPrevalAliasThis);
-  return undefined;
-};
-const tmpCallObj = f;
-const tmpCallVal = tmpCallObj.call;
-const tmpCalleeParam = { pass: 1 };
-const tmpCalleeParam$1 = $;
-$dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam, 1, 2, 3, `yep`, $);
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +56,15 @@ const c = { pass: 1 };
 a.call( c, 1, 2, 3, "yep", $ );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { pass: '1' }

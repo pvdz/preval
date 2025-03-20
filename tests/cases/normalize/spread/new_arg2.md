@@ -15,6 +15,7 @@ const tmpObjLitVal = [7];
 new String(8.5, 8, ...tmpObjLitVal);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ new String(8.5, 8, ...tmpObjLitVal);
 const tmpObjLitVal /*:array*/ = [7];
 new String(8.5, 8, ...tmpObjLitVal);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,25 +37,6 @@ const tmpObjLitVal = [7];
 new String(8.5, 8, ...tmpObjLitVal);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-(2).c;
-(5)[6];
-const tmpObjLitVal = [7];
-new String(8.5, 8, ...tmpObjLitVal);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-(2).c;
-(5)[6];
-const tmpObjLitVal = [7];
-new String(8.5, 8, ...tmpObjLitVal);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +48,15 @@ const a = [ 7 ];
 new String( 8.5, 8, ...a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

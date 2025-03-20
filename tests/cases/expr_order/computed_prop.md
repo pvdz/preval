@@ -12,6 +12,7 @@
 $(1)[$(2)];
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCompObj /*:unknown*/ = $(1);
 const tmpCompProp /*:unknown*/ = $(2);
 tmpCompObj[tmpCompProp];
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,21 +32,6 @@ const tmpCompProp = $(2);
 tmpCompObj[tmpCompProp];
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(1)[$(2)];
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCompObj = $(1);
-const tmpCompProp = $(2);
-tmpCompObj[tmpCompProp];
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +42,15 @@ const b = $( 2 );
 a[ b ];
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

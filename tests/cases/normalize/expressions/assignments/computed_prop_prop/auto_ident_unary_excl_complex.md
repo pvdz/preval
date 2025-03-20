@@ -15,6 +15,7 @@ obj[(a = !$(100))];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const a /*:boolean*/ = !tmpUnaryArg;
 obj[a];
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,29 +39,6 @@ obj[a];
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = !$(100))];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-const tmpUnaryArg = $(100);
-a = !tmpUnaryArg;
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +51,15 @@ b[ c ];
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

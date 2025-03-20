@@ -16,6 +16,7 @@ $({ [(a = ++b)]: 10 });
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(tmpCalleeParam);
 $(2, 2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,31 +35,6 @@ $({ [2]: 10 });
 $(2, 2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-$({ [(a = ++b)]: 10 });
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = $coerce(b, `number`);
-b = tmpPostUpdArgIdent + 1;
-a = b;
-let tmpObjLitPropKey = a;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +45,15 @@ $( a );
 $( 2, 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 2: '10' }

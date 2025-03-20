@@ -14,6 +14,7 @@ $($(100) + (a = function f() {}));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ $(tmpCalleeParam);
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,36 +40,6 @@ $(tmpBinBothLhs + f);
 $(f);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$(
-  $(100) +
-    (a = function f() {
-      debugger;
-    }),
-);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(100);
-const f = function () {
-  debugger;
-  return undefined;
-};
-a = f;
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +55,15 @@ $( c );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

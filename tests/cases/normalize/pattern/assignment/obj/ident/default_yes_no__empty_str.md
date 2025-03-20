@@ -13,6 +13,7 @@
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,29 +44,6 @@ if (objPatternBeforeDefault === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: x = $(`pass`) } = ``);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = ``;
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $(`pass`);
-  $(x);
-} else {
-  x = objPatternBeforeDefault;
-  $(objPatternBeforeDefault);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -82,13 +61,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

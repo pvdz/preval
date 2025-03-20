@@ -33,6 +33,7 @@ $('after');
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -64,6 +65,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -93,59 +95,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let n = 0;
-let flag = true;
-$(`before`);
-const x = $(`what`);
-if (x) {
-} else {
-  flag = false;
-}
-while (flag) {
-  $(`inner`, n);
-  ++n;
-  if (n >= 5) {
-    flag = false;
-  } else {
-  }
-}
-$(`after`);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let n = 0;
-let flag = true;
-$(`before`);
-const x = $(`what`);
-if (x) {
-} else {
-  flag = false;
-}
-while (true) {
-  if (flag) {
-    $(`inner`, n);
-    const tmpPostUpdArgIdent = $coerce(n, `number`);
-    n = tmpPostUpdArgIdent + 1;
-    const tmpIfTest = n >= 5;
-    if (tmpIfTest) {
-      flag = false;
-    } else {
-    }
-  } else {
-    break;
-  }
-}
-$(`after`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -179,11 +128,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before'

@@ -16,6 +16,7 @@ let a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const b /*:object*/ = { c: 2 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,33 +34,6 @@ $(a, b);
 $({ a: 999, b: 1000 }, { c: 2 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-((1, 2, b).c = 2) + ((1, 2, b).c = 2);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const varInitAssignLhsComputedObj = b;
-const varInitAssignLhsComputedRhs = 2;
-varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpBinBothLhs = varInitAssignLhsComputedRhs;
-const varInitAssignLhsComputedObj$1 = b;
-const varInitAssignLhsComputedRhs$1 = 2;
-varInitAssignLhsComputedObj$1.c = varInitAssignLhsComputedRhs$1;
-const tmpBinBothRhs = varInitAssignLhsComputedRhs$1;
-tmpBinBothLhs + tmpBinBothRhs;
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +47,15 @@ const b = { c: 2 };
 $( a, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '999', b: '1000' }, { c: '2' }

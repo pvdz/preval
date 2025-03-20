@@ -14,6 +14,7 @@ $(`before  ${(a = [1, 2, 3])}  after`);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const a /*:array*/ = [1, 2, 3];
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,30 +33,6 @@ $(`before  1,2,3  after`);
 $([1, 2, 3]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce((a = [1, 2, 3]), `string`) + `  after`);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-a = [1, 2, 3];
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +43,15 @@ const a = [ 1, 2, 3 ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before 1,2,3 after'

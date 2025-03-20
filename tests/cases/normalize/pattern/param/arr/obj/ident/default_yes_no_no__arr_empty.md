@@ -15,6 +15,7 @@ function f([{ x = $('pass') }]) {
 $(f([], 200));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f([], 200));
 undefined.x;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,45 +33,6 @@ undefined.x;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [{ x: x = $(`pass`) }] = tmpParamBare;
-  return `bad`;
-};
-$(f([], 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternStep = arrPatternSplat[0];
-  let objPatternBeforeDefault = arrPatternStep.x;
-  let x = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    x = $(`pass`);
-    return `bad`;
-  } else {
-    x = objPatternBeforeDefault;
-    return `bad`;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = [];
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 200);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +42,22 @@ undefined.x;
 throw "[Preval]: Can not reach here";
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -95,7 +69,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -14,6 +14,7 @@ for (let xyz = 1 ? (40, 50, $(60)) : $($(100)); ; $(1)) $(xyz);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,33 +38,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  let xyz = 1 ? (40, 50, $(60)) : $($(100));
-  while (true) {
-    $(xyz);
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let xyz = undefined;
-xyz = $(60);
-while (true) {
-  $(xyz);
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +50,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 60

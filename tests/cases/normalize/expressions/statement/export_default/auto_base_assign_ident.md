@@ -16,6 +16,7 @@ export default b = $(2);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,28 +39,6 @@ export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 }, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (b = $(2));
-export { tmpAnonDefaultExport as default };
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-b = $(2);
-let tmpAnonDefaultExport = b;
-export { tmpAnonDefaultExport as default };
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +54,15 @@ const c = {
 $( c, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

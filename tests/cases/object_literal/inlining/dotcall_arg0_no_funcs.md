@@ -15,6 +15,7 @@ const obj = {f: 123};
 $dotCall(h, obj, undefined); // obj has no funcs heh
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const h /*:()=>unknown*/ = function () {
 const obj /*:object*/ = { f: 123 };
 $dotCall(h, obj, undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,39 +43,6 @@ $dotCall(
 );
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  $();
-};
-const h = function () {
-  debugger;
-  $();
-};
-const obj = { f: 123 };
-$dotCall(h, obj, undefined);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const h = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const obj = { f: 123 };
-$dotCall(h, obj, undefined);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +57,15 @@ const b = { f: 123 };
 $dotCall( a, b, undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

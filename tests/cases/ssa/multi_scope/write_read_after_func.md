@@ -28,6 +28,7 @@ if (y) {
 }
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ if (y) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,50 +61,6 @@ if ($(`a`) === `undefined`) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(`a`);
-const g = function () {
-  debugger;
-  const tmpAssignRhsProp$105 = tmpthis$63.getInitialState;
-  y = tmpAssignRhsProp$105._isMockFunction;
-  if (y) {
-    $(1);
-  } else {
-    $(2);
-  }
-};
-let y = x === `undefined`;
-if (y) {
-  g();
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(`a`);
-const g = function () {
-  debugger;
-  const tmpAssignRhsProp$105 = tmpthis$63.getInitialState;
-  y = tmpAssignRhsProp$105._isMockFunction;
-  if (y) {
-    $(1);
-    return undefined;
-  } else {
-    $(2);
-    return undefined;
-  }
-};
-let y = x === `undefined`;
-if (y) {
-  g();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -122,13 +80,17 @@ if (b) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 tmpthis$63
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

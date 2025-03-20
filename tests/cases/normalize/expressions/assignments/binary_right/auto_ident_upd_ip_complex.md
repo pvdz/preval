@@ -16,6 +16,7 @@ $($(100) + (a = $($(b)).x++));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ $(tmpCalleeParam);
 $(tmpUpdNum, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,35 +48,6 @@ $(tmpBinBothLhs + tmpUpdNum);
 $(tmpUpdNum, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-$($(100) + (a = $($(b)).x++));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(100);
-const tmpCalleeParam$1 = $(b);
-let tmpUpdObj = $(tmpCalleeParam$1);
-let tmpUpdProp = tmpUpdObj.x;
-let tmpUpdNum = $coerce(tmpUpdProp, `number`);
-let tmpUpdInc = tmpUpdNum + 1;
-tmpUpdObj.x = tmpUpdInc;
-a = tmpUpdNum;
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -93,11 +66,15 @@ $( h );
 $( f, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

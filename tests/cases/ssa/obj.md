@@ -21,6 +21,7 @@ const tmpArrElement$517 = function () {
 if ($) $(tmpArrElement$517());
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,45 +53,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpArrElement$517 = function () {
-  debugger;
-  let obj = undefined;
-  const f = function ($$0) {
-    let c = $$0;
-    debugger;
-    obj.bla = c;
-  };
-  obj = { selfRef: f };
-};
-if ($) $(tmpArrElement$517());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement$517 = function () {
-  debugger;
-  let obj = undefined;
-  const f = function ($$0) {
-    let c = $$0;
-    debugger;
-    obj.bla = c;
-    return undefined;
-  };
-  obj = { selfRef: f };
-  return undefined;
-};
-if ($) {
-  const tmpCalleeParam = tmpArrElement$517();
-  $(tmpCalleeParam);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -107,11 +70,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

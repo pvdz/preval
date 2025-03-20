@@ -12,12 +12,14 @@
 const { x } = 1;
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 (1).x;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ const { x } = 1;
 (1).x;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: x } = 1;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = 1;
-const x = bindingPatternObjRoot.x;
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 1.x;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

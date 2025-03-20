@@ -14,6 +14,7 @@ throw [1, 2, 3];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $(a);
 const tmpThrowArg /*:array*/ = [1, 2, 3];
 throw tmpThrowArg;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,23 +32,6 @@ const tmpThrowArg = [1, 2, 3];
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-throw [1, 2, 3];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpThrowArg = [1, 2, 3];
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +41,15 @@ const a = [ 1, 2, 3 ];
 throw a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ 1,2,3 ]>')

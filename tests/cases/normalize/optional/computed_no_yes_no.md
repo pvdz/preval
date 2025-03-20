@@ -14,12 +14,14 @@ const b = 'b', c = 'c', d = 'd';
 $(a[b]?.[c][d]);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(10);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,43 +30,6 @@ $(10);
 $(10);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = { b: { c: { d: 10 } } };
-const b = `b`,
-  c = `c`,
-  d = `d`;
-$(a[b]?.[c][d]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { d: 10 };
-const tmpObjLitVal = { c: tmpObjLitVal$1 };
-const a = { b: tmpObjLitVal };
-const b = `b`;
-const c = `c`;
-const d = `d`;
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = a;
-const tmpChainRootComputed = b;
-const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-const tmpIfTest = tmpChainElementObject != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed$1 = c;
-  const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-  const tmpChainRootComputed$3 = d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
-  tmpCalleeParam = tmpChainElementObject$3;
-  $(tmpChainElementObject$3);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +38,15 @@ With rename=true
 $( 10 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

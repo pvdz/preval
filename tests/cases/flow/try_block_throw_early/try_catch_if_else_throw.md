@@ -27,6 +27,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ try {
 }
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -65,52 +67,6 @@ try {
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    fail_early;
-    if ($) {
-      x = `pass`;
-      throw `yes`;
-    } else {
-      throw `too`;
-    }
-  } catch (e) {
-    $(x, `mutation is observable in the catch`);
-  }
-  $(x);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    fail_early;
-    if ($) {
-      x = `pass`;
-      throw `yes`;
-    } else {
-      throw `too`;
-    }
-  } catch (e) {
-    $(x, `mutation is observable in the catch`);
-  }
-  $(x);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -133,13 +89,17 @@ catch (b) {
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 fail_early
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'fail', 'mutation is observable in the catch'

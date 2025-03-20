@@ -20,6 +20,7 @@ $(f());
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,43 +44,6 @@ $({ x: tmpObjLitVal, y: tmpObjLitVal$1 });
 $({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return ({ x: x, y: y } = { x: $(3), y: $(4) });
-};
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let tmpReturnArg = undefined;
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
-  tmpReturnArg = tmpNestedAssignObjPatternRhs;
-  return tmpReturnArg;
-};
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +63,15 @@ const d = {
 $( d, a, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

@@ -13,12 +13,14 @@ const x = encodeURIComponent(true);
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`true`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ $(`true`);
 $(`true`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = encodeURIComponent(true);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = encodeURIComponent(true);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 $( "true" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'true'

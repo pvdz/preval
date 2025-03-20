@@ -15,12 +15,14 @@ const x = $dotCall(tmpCallVal, arr, 'push', 3);
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,24 +31,6 @@ $(3);
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2];
-const tmpCallVal = arr.push;
-const x = $dotCall(tmpCallVal, arr, `push`, 3);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2];
-const x = arr.push(3);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +39,15 @@ With rename=true
 $( 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

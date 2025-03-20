@@ -16,12 +16,14 @@ throw typeof x;
 $(a, x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `number`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,25 +32,6 @@ throw `number`;
 throw `number`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-throw typeof x;
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-const tmpThrowArg = typeof x;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +40,15 @@ With rename=true
 throw "number";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ number ]>')

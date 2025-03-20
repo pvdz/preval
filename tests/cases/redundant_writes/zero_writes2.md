@@ -26,6 +26,7 @@ while (true) {
 $(x, 'last'); // unknown ref (!)
 `````
 
+
 ## Settled
 
 
@@ -55,6 +56,7 @@ while (true) {
 $(x, `last`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -82,73 +84,6 @@ while (true) {
 $(x, `last`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let y = $(true);
-while (true) {
-  if (y) {
-    $(y, `before`);
-    let x$1 = undefined;
-    const obj = { a: 1, b: 2 };
-    {
-      let tmpForInGen = $forIn(obj);
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        let tmpForInNext = tmpForInGen.next();
-        if (tmpForInNext.done) {
-          break;
-        } else {
-          x$1 = tmpForInNext.value;
-          {
-            $continue: {
-              {
-                $(x$1, y);
-                break $continue;
-              }
-            }
-          }
-        }
-      }
-    }
-    $(x$1, y, `after`);
-    y = $(true);
-  } else {
-    break;
-  }
-}
-$(x, `last`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = undefined;
-while (true) {
-  y = $(true);
-  if (y) {
-    $(y, `before`);
-    let x$1 = undefined;
-    const obj = { a: 1, b: 2 };
-    let tmpForInGen = $forIn(obj);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForInNext = tmpForInGen.next();
-      const tmpIfTest = tmpForInNext.done;
-      if (tmpIfTest) {
-        break;
-      } else {
-        x$1 = tmpForInNext.value;
-        $(x$1, y);
-      }
-    }
-    $(x$1, y, `after`);
-  } else {
-    break;
-  }
-}
-$(x, `last`);
-`````
 
 ## PST Settled
 With rename=true
@@ -184,13 +119,23 @@ while (true) {
 $( x, "last" );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true
@@ -228,6 +173,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

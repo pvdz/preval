@@ -16,6 +16,7 @@ $(`before  ${(a = (1, 2, $(b))?.x)}  after`);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,39 +52,6 @@ if (tmpChainRootProp == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce((a = (1, 2, $(b))?.x), `string`) + `  after`);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-a = undefined;
-const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-} else {
-}
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +73,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

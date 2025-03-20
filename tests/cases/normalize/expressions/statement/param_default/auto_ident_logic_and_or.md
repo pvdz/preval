@@ -15,6 +15,7 @@ $(f());
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,54 +56,6 @@ if (tmpClusterSSA_p) {
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = tmpParamBare === undefined ? ($($(1)) && $($(1))) || $($(2)) : tmpParamBare;
-};
-let a = { a: 999, b: 1000 };
-$(f());
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = $(1);
-    p = $(tmpCalleeParam);
-    if (p) {
-      const tmpCalleeParam$1 = $(1);
-      p = $(tmpCalleeParam$1);
-    } else {
-    }
-    if (p) {
-      return undefined;
-    } else {
-      const tmpCalleeParam$3 = $(2);
-      p = $(tmpCalleeParam$3);
-      return undefined;
-    }
-  } else {
-    p = tmpParamBare;
-    return undefined;
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$5 = f();
-$(tmpCalleeParam$5);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -128,11 +82,15 @@ const e = {
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

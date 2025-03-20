@@ -20,12 +20,14 @@ try {
 $(glbl);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(window);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,38 +36,6 @@ $(window);
 $(window);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let glbl;
-try {
-  const tmpCallComplexCallee = Function(`return this`);
-  const tmpReturnArg = tmpCallComplexCallee();
-  glbl = tmpReturnArg;
-} catch (e) {
-  glbl = window;
-}
-$(glbl);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let glbl = undefined;
-try {
-  const tmpCallComplexCallee = function () {
-    debugger;
-    return window;
-  };
-  const tmpReturnArg = tmpCallComplexCallee();
-  glbl = tmpReturnArg;
-} catch (e) {
-  glbl = window;
-}
-$(glbl);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +44,15 @@ With rename=true
 $( window );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Maximum call stack size exceeded ]>')

@@ -15,12 +15,14 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(NaN);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,28 +31,6 @@ $(NaN);
 $(NaN);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return NaN;
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return NaN;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +39,15 @@ With rename=true
 $( NaN );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: NaN

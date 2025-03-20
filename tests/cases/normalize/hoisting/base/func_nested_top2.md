@@ -18,12 +18,14 @@ function g() {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,36 +34,6 @@ function g() {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let g = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    return 100;
-  };
-  f();
-};
-g();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let g = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    return 100;
-  };
-  f();
-  return undefined;
-};
-g();
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +42,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

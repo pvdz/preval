@@ -15,12 +15,14 @@ const x = $dotCall(tmpCallVal, bool, 'toString');
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`true`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,24 +31,6 @@ $(`true`);
 $(`true`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const bool = true;
-const tmpCallVal = bool.toString;
-const x = $dotCall(tmpCallVal, bool, `toString`);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bool = true;
-const x = bool.toString();
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +39,15 @@ With rename=true
 $( "true" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'true'

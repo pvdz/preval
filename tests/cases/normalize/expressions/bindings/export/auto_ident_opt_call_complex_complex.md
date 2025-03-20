@@ -13,6 +13,7 @@ export let a = $($)?.($(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ export { a };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,34 +45,6 @@ export { a };
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $($)?.($(1));
-export { a };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpCalleeParam = tmpChainElementCall;
-  const tmpCalleeParam$1 = tmpChainRootCall;
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
-  a = tmpChainElementCall$1;
-} else {
-}
-export { a };
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -91,11 +65,15 @@ export { a as a };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

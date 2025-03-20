@@ -18,6 +18,7 @@ do {
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,41 +63,6 @@ if (delete tmpDeleteObj.y) {
 $({ a: 999, b: 1000 }, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  {
-    $(100);
-  }
-  if (delete $(arg)[`y`]) {
-  } else {
-    break;
-  }
-}
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  $(100);
-  const tmpDeleteObj = $(arg);
-  const tmpIfTest = delete tmpDeleteObj.y;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -125,11 +92,21 @@ const f = {
 $( f, a );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100
@@ -167,6 +144,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

@@ -15,6 +15,7 @@ function f({ x = $('pass') }) {
 $(f({ x: undefined }, 10));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,43 +32,6 @@ $(tmpClusterSSA_x);
 $($(`pass`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: x = $(`pass`) } = tmpParamBare;
-  return x;
-};
-$(f({ x: undefined }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let x = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    x = $(`pass`);
-    return x;
-  } else {
-    x = objPatternBeforeDefault;
-    return x;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = { x: undefined };
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +41,15 @@ const a = $( "pass" );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

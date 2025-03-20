@@ -50,6 +50,7 @@ $(closure());
 $(8);
 `````
 
+
 ## Settled
 
 
@@ -82,6 +83,7 @@ $(undefined);
 $(8);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -113,106 +115,6 @@ $(undefined);
 $(8);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let closure = function () {
-  debugger;
-  return x;
-};
-let f = function () {
-  debugger;
-  let a = function () {
-    debugger;
-    $(`a1`);
-    $(`a2`);
-  };
-  let b = function () {
-    debugger;
-    $(`b1`);
-    $(`b2`);
-  };
-  $(3.1);
-  $(3.2);
-  $(3.3);
-  $(4.1);
-  $(4.2);
-  $(4.3);
-  a();
-  $(5.1);
-  $(5.2);
-  $(5.3);
-  $(6.1);
-  $(6.2);
-  $(6.3);
-  b();
-  $(7.1);
-  $(7.2);
-  $(7.3);
-};
-let x = $(100);
-$(closure());
-$(1);
-$(2);
-x = f();
-$(x);
-$(closure());
-$(8);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let closure = function () {
-  debugger;
-  return x;
-};
-let f = function () {
-  debugger;
-  let a = function () {
-    debugger;
-    $(`a1`);
-    $(`a2`);
-    return undefined;
-  };
-  let b = function () {
-    debugger;
-    $(`b1`);
-    $(`b2`);
-    return undefined;
-  };
-  $(3.1);
-  $(3.2);
-  $(3.3);
-  $(4.1);
-  $(4.2);
-  $(4.3);
-  a();
-  $(5.1);
-  $(5.2);
-  $(5.3);
-  $(6.1);
-  $(6.2);
-  $(6.3);
-  b();
-  $(7.1);
-  $(7.2);
-  $(7.3);
-  return undefined;
-};
-let x = $(100);
-const tmpCalleeParam = closure();
-$(tmpCalleeParam);
-$(1);
-$(2);
-x = f();
-$(x);
-const tmpCalleeParam$1 = closure();
-$(tmpCalleeParam$1);
-$(8);
-`````
 
 ## PST Settled
 With rename=true
@@ -246,11 +148,15 @@ $( undefined );
 $( 8 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

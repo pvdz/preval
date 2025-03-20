@@ -17,6 +17,7 @@ const obj = {
 $($(obj)[$('x')]);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCompObj[tmpCompProp];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -56,46 +58,6 @@ const tmpCompProp = $(`x`);
 $(tmpCompObj[tmpCompProp]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  get x() {
-    debugger;
-    return $(10);
-  },
-  set x($$0) {
-    let _ = $$0;
-    debugger;
-    $(20);
-  },
-};
-$($(obj)[$(`x`)]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = {
-  get x() {
-    debugger;
-    const tmpReturnArg = $(10);
-    return tmpReturnArg;
-  },
-  set x($$0) {
-    let _ = $$0;
-    debugger;
-    $(20);
-    return undefined;
-  },
-};
-const tmpCompObj = $(obj);
-const tmpCompProp = $(`x`);
-const tmpCalleeParam = tmpCompObj[tmpCompProp];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -119,11 +81,15 @@ const e = c[ d ];
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '<get/set>' }

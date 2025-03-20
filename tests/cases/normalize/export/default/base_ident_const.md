@@ -14,6 +14,7 @@ const FOO = $(1);
 export default FOO;
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const FOO /*:unknown*/ = $(1);
 const tmpAnonDefaultExport /*:unknown*/ = FOO;
 export { tmpAnonDefaultExport as default };
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,23 +34,6 @@ const tmpAnonDefaultExport = FOO;
 export { tmpAnonDefaultExport as default };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const FOO = $(1);
-const tmpAnonDefaultExport = FOO;
-export { tmpAnonDefaultExport as default };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const FOO = $(1);
-const tmpAnonDefaultExport = FOO;
-export { tmpAnonDefaultExport as default };
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +44,15 @@ const b = a;
 export { b as default };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

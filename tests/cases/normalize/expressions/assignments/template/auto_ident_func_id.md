@@ -14,6 +14,7 @@ $(`before  ${(a = function f() {})}  after`);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(`before  function(){}  after`);
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,43 +37,6 @@ $(`before  function(){}  after`);
 $(f);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$(
-  `before  ` +
-    $coerce(
-      (a = function f() {
-        debugger;
-      }),
-      `string`,
-    ) +
-    `  after`,
-);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-const f = function () {
-  debugger;
-  return undefined;
-};
-a = f;
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +50,15 @@ $( "before  function(){}  after" );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before function() {return undefined;} after'

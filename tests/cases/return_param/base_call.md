@@ -23,6 +23,7 @@ $(f(2));
 $(f('three'));
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ f();
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`2()\``;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,55 +61,6 @@ f();
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`2()\``;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = x();
-  return y;
-};
-$(
-  f(function () {
-    debugger;
-    $(`pass`);
-  }),
-);
-$(f(2));
-$(f(`three`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = x();
-  return y;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = function () {
-  debugger;
-  $(`pass`);
-  return undefined;
-};
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-const tmpCalleeParam$3 = f(2);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(`three`);
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -128,11 +81,21 @@ a();
 throw "[Preval]: Call expression with illegal callee must crash before this line ; `2()`";
 `````
 
+
+## Todos triggered
+
+
+- maybe support this call case too
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'no'
@@ -152,6 +115,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- maybe support this call case too

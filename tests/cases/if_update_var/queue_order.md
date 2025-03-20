@@ -35,6 +35,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ $(a);
 $(1);
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -51,66 +53,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const b = { x: 1 };
-({ a: 999, b: 1000 });
-let a = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b[`x`];
-  a = tmpChainElementObject;
-}
-let tmpCalleeParam = a;
-if (a) {
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject$1 = b[`x`];
-    tmpNestedComplexRhs = tmpChainElementObject$1;
-  }
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-} else {
-}
-$(tmpCalleeParam);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const b = { x: 1 };
-let a = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-}
-let tmpCalleeParam = a;
-if (a) {
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject$1 = b.x;
-    tmpNestedComplexRhs = tmpChainElementObject$1;
-  }
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(a);
-} else {
-  $(tmpCalleeParam);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +62,15 @@ $( 1 );
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -20,6 +20,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ $(a);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,37 +42,6 @@ $({ $: $ }[tmpCallCompProp](1));
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  {
-    let b = { $: $ };
-    let a = b[$(`\$`)](1);
-    $(a);
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let b = { $: $ };
-  const tmpCallCompObj = b;
-  const tmpCallCompProp = $(`\$`);
-  let a = tmpCallCompObj[tmpCallCompProp](1);
-  $(a);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +54,15 @@ $( c );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '$'

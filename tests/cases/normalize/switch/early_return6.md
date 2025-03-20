@@ -28,6 +28,7 @@ const tmpReturnArg$11 = tmpBranchingB(1);
 $(tmpReturnArg$11);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ $(tmpReturnArg$11);
 $(0);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,54 +46,6 @@ $(0);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpBranchingB = function ($$0) {
-  let v = $$0;
-  debugger;
-  const x = 1 === v;
-  if (x) {
-    $(0);
-  } else {
-    const y = 2 === v;
-    if (y) {
-      $(1);
-    } else {
-      $(2);
-    }
-  }
-};
-const tmpReturnArg$11 = tmpBranchingB(1);
-$(tmpReturnArg$11);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBranchingB = function ($$0) {
-  let v = $$0;
-  debugger;
-  const x = 1 === v;
-  if (x) {
-    $(0);
-    return undefined;
-  } else {
-    const y = 2 === v;
-    if (y) {
-      $(1);
-      return undefined;
-    } else {
-      $(2);
-      return undefined;
-    }
-  }
-};
-const tmpReturnArg$11 = tmpBranchingB(1);
-$(tmpReturnArg$11);
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +55,15 @@ $( 0 );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

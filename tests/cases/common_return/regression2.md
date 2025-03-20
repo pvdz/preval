@@ -42,6 +42,7 @@ const a = function () {
 $(a());
 `````
 
+
 ## Settled
 
 
@@ -73,6 +74,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -100,93 +102,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const d = function ($$0) {
-  let x = $$0;
-  debugger;
-  if ($) {
-    $(`d`);
-    return x;
-  } else {
-    return x;
-  }
-};
-const c = function () {
-  debugger;
-  $(`c`);
-  return d($(10));
-};
-const b = function () {
-  debugger;
-  if ($) {
-    $(`b`);
-    return c();
-  } else {
-    return c();
-  }
-};
-const a = function () {
-  debugger;
-  if ($) {
-    $(`a`);
-    return b();
-  } else {
-    return b();
-  }
-};
-$(a());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const d = function ($$0) {
-  let x = $$0;
-  debugger;
-  if ($) {
-    $(`d`);
-    return x;
-  } else {
-    return x;
-  }
-};
-const c = function () {
-  debugger;
-  $(`c`);
-  const tmpCallCallee = d;
-  const tmpCalleeParam = $(10);
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
-  return tmpReturnArg;
-};
-const b = function () {
-  debugger;
-  if ($) {
-    $(`b`);
-    const tmpReturnArg$1 = c();
-    return tmpReturnArg$1;
-  } else {
-    const tmpReturnArg$3 = c();
-    return tmpReturnArg$3;
-  }
-};
-const a = function () {
-  debugger;
-  if ($) {
-    $(`a`);
-    const tmpReturnArg$5 = b();
-    return tmpReturnArg$5;
-  } else {
-    const tmpReturnArg$7 = b();
-    return tmpReturnArg$7;
-  }
-};
-const tmpCalleeParam$1 = a();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -222,11 +137,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

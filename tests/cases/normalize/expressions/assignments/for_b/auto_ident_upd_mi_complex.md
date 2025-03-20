@@ -16,6 +16,7 @@ for (; (a = --$($(b)).x); $(1));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ if (tmpUpdInc) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,43 +77,6 @@ if (tmpUpdInc) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-{
-  while ((a = --$($(b)).x)) {
-    $(1);
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpCalleeParam = $(b);
-  let tmpUpdObj = $(tmpCalleeParam);
-  let tmpUpdProp = tmpUpdObj.x;
-  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
-  let tmpUpdInc = tmpUpdNum - 1;
-  tmpUpdObj.x = tmpUpdInc;
-  a = tmpUpdInc;
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -149,11 +114,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -168,6 +143,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

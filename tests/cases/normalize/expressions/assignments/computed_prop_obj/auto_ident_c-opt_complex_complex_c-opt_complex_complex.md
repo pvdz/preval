@@ -17,6 +17,7 @@ let obj = {};
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ a.a;
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,45 +63,6 @@ a.a;
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: 1 } };
-let a = { a: 999, b: 1000 };
-let obj = {};
-(a = $(b)?.[$(`x`)]?.[$(`y`)])[`a`];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-let obj = {};
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed$1 = $(`y`);
-    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    a = tmpChainElementObject$1;
-  } else {
-  }
-} else {
-}
-let tmpCompObj = a;
-tmpCompObj.a;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -130,11 +93,15 @@ a.a;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '{"y":"1"}' }

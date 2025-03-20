@@ -16,6 +16,7 @@ for (; $(1); a = (1, 2, b)[$("c")]);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -64,38 +66,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-{
-  while ($(1)) {
-    a = (1, 2, b)[$(`c`)];
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpAssignRhsCompObj = b;
-    const tmpAssignRhsCompProp = $(`c`);
-    a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -127,11 +97,22 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- computed property access of an ident where the property ident is not recorded;
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -169,7 +150,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- computed property access of an ident where the property ident is not recorded;

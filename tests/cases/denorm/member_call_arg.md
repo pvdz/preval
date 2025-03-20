@@ -15,6 +15,7 @@ const c = $coerce(b, `plustr`);
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const b /*:string*/ = encodeURIComponent(a);
 $(b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,25 +33,6 @@ $(b);
 $(encodeURIComponent(inline.value));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = inline.value;
-const b = encodeURIComponent(a);
-const c = $coerce(b, `plustr`);
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = inline.value;
-const b = encodeURIComponent(a);
-const c = $coerce(b, `plustr`);
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,13 +43,17 @@ const b = encodeURIComponent( a );
 $( b );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 inline
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

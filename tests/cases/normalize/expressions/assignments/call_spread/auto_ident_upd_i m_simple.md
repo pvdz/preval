@@ -16,6 +16,7 @@ $(...(a = b--));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(a, b);
 $(...1);
 $(1, 0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,29 +34,6 @@ $(...1);
 $(1, 0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-$(...(a = b--));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = $coerce(b, `number`);
-b = tmpPostUpdArgIdent - 1;
-a = tmpPostUpdArgIdent;
-let tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +43,15 @@ $( ...1 );
 $( 1, 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

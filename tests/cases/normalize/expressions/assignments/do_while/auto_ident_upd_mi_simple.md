@@ -18,6 +18,7 @@ do {
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(a, b);
 $(100);
 $(0, 0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,43 +36,6 @@ $(100);
 $(0, 0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-while (true) {
-  {
-    $(100);
-  }
-  if ((a = --b)) {
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-while (true) {
-  $(100);
-  const tmpPostUpdArgIdent = $coerce(b, `number`);
-  b = tmpPostUpdArgIdent - 1;
-  a = b;
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +45,21 @@ $( 100 );
 $( 0, 0 );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100
@@ -98,6 +73,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

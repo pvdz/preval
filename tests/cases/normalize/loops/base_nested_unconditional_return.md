@@ -22,6 +22,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ $(`middle`);
 $(`inner`);
 $(100);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,43 +44,6 @@ $(`inner`);
 $(100);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`outer`);
-  while (true) {
-    $(`middle`);
-    while (true) {
-      $(`inner`);
-      return 100;
-    }
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`outer`);
-  while (true) {
-    $(`middle`);
-    while (true) {
-      $(`inner`);
-      return 100;
-    }
-  }
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +55,15 @@ $( "inner" );
 $( 100 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'outer'

@@ -13,6 +13,7 @@ const y = (1, 2, $())??foo
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,27 +40,6 @@ if (y == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = (1, 2, $()) ?? foo;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = $();
-const tmpIfTest = y == null;
-if (tmpIfTest) {
-  y = foo;
-  $(foo);
-} else {
-  $(y);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -74,13 +55,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 foo
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

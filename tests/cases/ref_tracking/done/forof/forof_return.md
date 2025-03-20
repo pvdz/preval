@@ -25,6 +25,7 @@ function f() {
 $(f());
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -52,7 +53,9 @@ const tmpCalleeParam$1___67__ = f___69__();
 $(tmpCalleeParam$1___73__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                      | reads      | read by     | overWrites     | overwritten by
 f:

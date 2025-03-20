@@ -15,6 +15,7 @@ obj[(a = function () {})];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ obj[a];
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,35 +39,6 @@ const a = function () {};
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[
-  (a = function () {
-    debugger;
-  })
-];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-a = function () {
-  debugger;
-  return undefined;
-};
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +53,15 @@ b[ a ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

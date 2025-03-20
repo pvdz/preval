@@ -18,12 +18,14 @@ try {
 considerMutated(x) // always true
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 considerMutated(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,27 +34,6 @@ considerMutated(1);
 considerMutated(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 0;
-try {
-  x = 1;
-} catch (e) {}
-considerMutated(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 0;
-try {
-  x = 1;
-} catch (e) {}
-considerMutated(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,13 +42,17 @@ With rename=true
 considerMutated( 1 );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 considerMutated
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

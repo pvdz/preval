@@ -29,6 +29,7 @@
 }
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -49,7 +50,9 @@ x___47__ = 4;
 $(x___51__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

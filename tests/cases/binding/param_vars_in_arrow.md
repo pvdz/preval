@@ -16,6 +16,7 @@ const f = (a) => {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const tmpReturnArg /*:array*/ = [tmpClusterSSA_a$1, b$1];
 $(tmpReturnArg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,36 +37,6 @@ const b$1 = $(20);
 $([tmpClusterSSA_a$1, b$1]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = ($$0) => {
-  let a$1 = $$0;
-  debugger;
-  let b$1 = undefined;
-  (a$1 = $(10)), (b$1 = $(20));
-  return [a$1, b$1];
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let a$1 = $$0;
-  debugger;
-  let b$1 = undefined;
-  a$1 = $(10);
-  b$1 = $(20);
-  const tmpReturnArg = [a$1, b$1];
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +48,15 @@ const c = [ a, b ];
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

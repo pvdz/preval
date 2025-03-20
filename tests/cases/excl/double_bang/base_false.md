@@ -15,6 +15,7 @@ const c = !b;
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const c /*:boolean*/ = Boolean(a);
 $(c);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,25 +33,6 @@ $(c);
 $(Boolean($(0)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(0);
-const b = !a;
-const c = !b;
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(0);
-const b = !a;
-const c = !b;
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +43,15 @@ const b = Boolean( a );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

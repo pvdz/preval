@@ -16,6 +16,7 @@ $`before ${(a = b?.x.y.z)} after`;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(tmpCalleeParam, 100);
 $(100);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,39 +35,6 @@ $([`before `, ` after`], 100);
 $(100);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: { z: 100 } } };
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = b?.x.y.z));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$3;
-} else {
-}
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +45,15 @@ $( a, 100 );
 $( 100 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['before ', ' after'], 100

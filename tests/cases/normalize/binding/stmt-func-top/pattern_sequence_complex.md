@@ -17,6 +17,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ $(a, b, 1, 2, z);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,42 +47,6 @@ $(arrPatternSplat[0], arrPatternSplat[1], 1, 2, z);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = 1,
-    y = 2,
-    z = [10, 20, 30];
-  let [a, b] = ($(x), $(y), $(z));
-  $(a, b, x, y, z);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = 1;
-  let y = 2;
-  let z = [10, 20, 30];
-  $(x);
-  $(y);
-  let bindingPatternArrRoot = $(z);
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let a = arrPatternSplat[0];
-  let b = arrPatternSplat[1];
-  $(a, b, x, y, z);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -97,11 +63,22 @@ $( d, e, 1, 2, a );
 $( undefined );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -118,7 +95,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -19,12 +19,14 @@ const x = f();
 $(x, typeof f);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `Preval: Cannot write to const binding \`funcexprname\``;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,34 +35,6 @@ throw `Preval: Cannot write to const binding \`funcexprname\``;
 throw `Preval: Cannot write to const binding \`funcexprname\``;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function funcexprname() {
-  debugger;
-  funcexprname = 20;
-  return funcexprname;
-};
-const x = f();
-$(x, typeof f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const funcexprname = function () {
-  debugger;
-  funcexprname = 20;
-  return funcexprname;
-};
-const f = funcexprname;
-const x = funcexprname();
-const tmpCalleeParam = x;
-const tmpCalleeParam$1 = typeof f;
-$(tmpCalleeParam, tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +43,15 @@ With rename=true
 throw "Preval: Cannot write to const binding `funcexprname`";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Assignment to constant variable. ]>')

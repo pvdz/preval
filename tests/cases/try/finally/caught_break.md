@@ -23,6 +23,7 @@ try {
 }
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ try {
 $(5);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,64 +61,6 @@ try {
 $(5);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  $finally: {
-    try {
-      $(1);
-      A: {
-        $(2);
-        if ($(3)) {
-          break A;
-        }
-        $(4);
-      }
-    } catch ($finalImplicit) {
-      $(5);
-      throw $finalImplicit;
-    }
-  }
-  {
-    $(5);
-  }
-  if ($implicitThrow) throw $finalCatchArg;
-  else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
-try {
-  A: {
-    $(1);
-    $(2);
-    const tmpIfTest = $(3);
-    if (tmpIfTest) {
-      break A;
-    } else {
-      $(4);
-    }
-  }
-} catch ($finalImplicit) {
-  $(5);
-  throw $finalImplicit;
-}
-$(5);
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -140,11 +84,15 @@ catch (b) {
 $( 5 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

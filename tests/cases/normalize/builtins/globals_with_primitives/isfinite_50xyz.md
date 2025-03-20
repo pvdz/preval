@@ -14,12 +14,14 @@ This is different from `parseInt`...
 $(isFinite("50xyz"));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(false);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ $(false);
 $(false);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(isFinite(`50xyz`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = false;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +38,15 @@ With rename=true
 $( false );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

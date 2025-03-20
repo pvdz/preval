@@ -16,6 +16,7 @@ throw (a = $(b)?.x);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (tmpIfTest) {
 throw tmpThrowArg;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,34 +47,6 @@ if (!tmpIfTest) {
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-throw (a = $(b)?.x);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-} else {
-}
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +66,15 @@ else {
 throw d;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

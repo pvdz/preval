@@ -15,12 +15,14 @@ for (let i=0; i<0; ++i) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,40 +31,6 @@ for (let i=0; i<0; ++i) {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let i = 0;
-  while (i < 0) {
-    {
-      $(i);
-      ++i;
-    }
-    ++i;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = 0;
-while (true) {
-  const tmpIfTest = i < 0;
-  if (tmpIfTest) {
-    $(i);
-    const tmpPostUpdArgIdent = $coerce(i, `number`);
-    i = tmpPostUpdArgIdent + 1;
-    const tmpPostUpdArgIdent$1 = $coerce(i, `number`);
-    i = tmpPostUpdArgIdent$1 + 1;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +39,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

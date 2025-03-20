@@ -14,6 +14,7 @@ $({ [(a = 1 ? (40, 50, 60) : $($(100)))]: 10 });
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(tmpCalleeParam);
 $(60);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,27 +33,6 @@ $({ [60]: 10 });
 $(60);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$({ [(a = 1 ? (40, 50, 60) : $($(100)))]: 10 });
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 60;
-let tmpObjLitPropKey = a;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +43,15 @@ $( a );
 $( 60 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 60: '10' }

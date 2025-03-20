@@ -23,6 +23,7 @@ if ($()) {
 $(a); // can observe  1 2 3
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -45,7 +46,9 @@ if (tmpIfTest___12__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 a:

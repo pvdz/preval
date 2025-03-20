@@ -20,6 +20,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(c, flag);
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(c, flag);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -66,52 +68,6 @@ while (true) {
 $(c, flag);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let c = {
-  valueOf: () => {
-    debugger;
-    $(`c flag now:`, flag);
-  },
-};
-let flag = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (flag < 10) {
-    flag = ++c;
-    $(`++c`, flag);
-  } else {
-    break;
-  }
-}
-$(c, flag);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function () {
-  debugger;
-  $(`c flag now:`, flag);
-  return undefined;
-};
-let c = { valueOf: tmpObjLitVal };
-let flag = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest = flag < 10;
-  if (tmpIfTest) {
-    const tmpPostUpdArgIdent = $coerce(c, `number`);
-    c = tmpPostUpdArgIdent + 1;
-    flag = c;
-    $(`++c`, c);
-  } else {
-    break;
-  }
-}
-$(c, flag);
-`````
 
 ## PST Settled
 With rename=true
@@ -139,11 +95,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( c, b );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Support non-primitive in first arg to $coerce
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'c flag now:', 0
@@ -158,7 +125,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Support non-primitive in first arg to $coerce

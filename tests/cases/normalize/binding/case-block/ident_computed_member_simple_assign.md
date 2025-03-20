@@ -18,6 +18,7 @@ switch ($('a')) { case $('a'): let a = b[$('x')] = $(c)[$('y')] = $(d); break; }
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,81 +60,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let obj = {
-  get c() {
-    debugger;
-    $(`get`);
-  },
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`set`);
-  },
-};
-let a = 1,
-  b = { x: 2 },
-  c = 3,
-  d = 4;
-tmpSwitchBreak: {
-  let a$1;
-  const tmpSwitchDisc = $(`a`);
-  if (tmpSwitchDisc === $(`a`)) {
-    a$1 = b[$(`x`)] = $(c)[$(`y`)] = $(d);
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let obj = {
-  get c() {
-    debugger;
-    $(`get`);
-    return undefined;
-  },
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`set`);
-    return undefined;
-  },
-};
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-let d = 4;
-tmpSwitchBreak: {
-  let a$1 = undefined;
-  const tmpSwitchDisc = $(`a`);
-  const tmpBinBothLhs = tmpSwitchDisc;
-  const tmpBinBothRhs = $(`a`);
-  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  if (tmpIfTest) {
-    const tmpNestedAssignComMemberObj = b;
-    const tmpNestedAssignComMemberProp = $(`x`);
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $(`y`);
-    const varInitAssignLhsComputedRhs = $(d);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    a$1 = tmpNestedPropAssignRhs;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -156,11 +83,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

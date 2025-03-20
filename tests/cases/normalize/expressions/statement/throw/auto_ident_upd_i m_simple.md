@@ -16,12 +16,14 @@ throw b--;
 $(a, b);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw 1;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,27 +32,6 @@ throw 1;
 throw 1;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-throw b--;
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = $coerce(b, `number`);
-b = tmpPostUpdArgIdent - 1;
-const tmpThrowArg = tmpPostUpdArgIdent;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +40,15 @@ With rename=true
 throw 1;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ 1 ]>')

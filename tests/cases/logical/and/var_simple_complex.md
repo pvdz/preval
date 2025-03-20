@@ -13,6 +13,7 @@ const x = 1 && $(2);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpClusterSSA_x /*:unknown*/ = $(2);
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,26 +30,6 @@ $(tmpClusterSSA_x);
 $($(2));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = 1 && $(2);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-if (x) {
-  x = $(2);
-  $(x);
-} else {
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +39,15 @@ const a = $( 2 );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

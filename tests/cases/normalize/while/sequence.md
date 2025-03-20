@@ -13,6 +13,7 @@ let x = 1;
 while (((x = x * 'str'), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x))) {}
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -69,39 +71,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-while (((x = x * `str`), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x))) {}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-while (true) {
-  x * 0;
-  x = NaN;
-  x = x * 8;
-  x = x * x;
-  x = x.x;
-  let tmpIfTest = undefined;
-  const tmpChainRootProp = x;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementCall = tmpChainRootProp.x(x);
-    tmpIfTest = tmpChainElementCall;
-  } else {
-  }
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -140,11 +109,22 @@ if (b) {
 }
 `````
 
+
+## Todos triggered
+
+
+- regular property access of an ident feels tricky;
+- regular property of a primitive;
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined
@@ -156,7 +136,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- regular property access of an ident feels tricky;
-- regular property of a primitive;

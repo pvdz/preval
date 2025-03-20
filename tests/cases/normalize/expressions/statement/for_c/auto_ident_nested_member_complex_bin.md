@@ -19,6 +19,7 @@ for (; $(1); $(b)[$("x")] = $(c)[$("y")] = d + e);
 $(a, b, c, d, e);
 `````
 
+
 ## Settled
 
 
@@ -52,6 +53,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3, 4);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -82,51 +84,6 @@ if (tmpIfTest) {
 $({ a: 999, b: 1000 }, b, c, 3, 4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3,
-  e = 4;
-let a = { a: 999, b: 1000 };
-{
-  while ($(1)) {
-    $(b)[$(`x`)] = $(c)[$(`y`)] = d + e;
-  }
-}
-$(a, b, c, d, e);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let e = 4;
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpAssignComMemLhsObj = $(b);
-    const tmpAssignComMemLhsProp = $(`x`);
-    const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-    const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $(`y`);
-    const varInitAssignLhsComputedRhs = d + e;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-  } else {
-    break;
-  }
-}
-$(a, b, c, d, e);
-`````
 
 ## PST Settled
 With rename=true
@@ -164,11 +121,21 @@ const m = {
 $( m, b, c, 3, 4 );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -206,6 +173,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

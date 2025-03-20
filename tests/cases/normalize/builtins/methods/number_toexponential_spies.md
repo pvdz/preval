@@ -14,6 +14,7 @@ const y = $spy('b');
 200..toExponential(x, y);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const x /*:unknown*/ = $spy(`a`);
 $spy(`b`);
 $coerce(x, `number`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,23 +34,6 @@ $spy(`b`);
 $coerce(x, `number`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $spy(`a`);
-const y = $spy(`b`);
-(200).toExponential(x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $spy(`a`);
-const y = $spy(`b`);
-$coerce(x, `number`);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +44,15 @@ $spy( "b" );
 $coerce( a, "number" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']

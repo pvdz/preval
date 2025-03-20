@@ -17,6 +17,7 @@ $(f());
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const tmpClusterSSA_a /*:object*/ = { x: 1, y: 2, z: 3 };
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,33 +37,6 @@ $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return (a = { x: 1, y: 2, z: 3 });
-};
-let a = { a: 999, b: 1000 };
-$(f());
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  a = { x: 1, y: 2, z: 3 };
-  return a;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +51,15 @@ $( a );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1', y: '2', z: '3' }

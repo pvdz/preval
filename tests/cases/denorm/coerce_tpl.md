@@ -14,6 +14,7 @@ const y = `(${x})`;
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const y /*:string*/ = `(${x})`;
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,27 +33,6 @@ const x = $coerce(val, `plustr`);
 $(`(${x})`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $coerce(val, `plustr`);
-const y = `(` + $coerce(x, `string`) + `)`;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $coerce(val, `plustr`);
-const tmpBinBothLhs = `(`;
-const tmpBinBothRhs = $coerce(x, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const y = `${tmpStringConcatR})`;
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,13 +43,17 @@ const b = `(${a})`;
 $( b );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 val
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

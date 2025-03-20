@@ -16,6 +16,7 @@ for ((a = $(b)?.[$("x")]?.[$("y")]).x in $({ x: 1 }));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -83,66 +85,6 @@ while (true) {
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: 1 } };
-let a = { a: 999, b: 1000 };
-{
-  let tmpForInGen = $forIn($({ x: 1 }));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      (a = $(b)?.[$(`x`)]?.[$(`y`)]).x = tmpForInNext.value;
-    }
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-let tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    a = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpChainRootComputed = $(`x`);
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$3 = tmpChainElementObject != null;
-      if (tmpIfTest$3) {
-        const tmpChainRootComputed$1 = $(`y`);
-        const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-        a = tmpChainElementObject$1;
-      } else {
-      }
-    } else {
-    }
-    let tmpAssignMemLhsObj = a;
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -190,11 +132,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -210,7 +163,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

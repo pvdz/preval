@@ -23,12 +23,14 @@ function x(foo = x, {x}) {
 x();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `Preval: This statement contained a read that reached no writes: x\$1;`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,41 +39,6 @@ throw `Preval: This statement contained a read that reached no writes: x\$1;`;
 throw `Preval: This statement contained a read that reached no writes: x\$1;`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
-  debugger;
-  let foo = tmpParamBare === undefined ? x$1 : tmpParamBare;
-  let { x: x$1 } = tmpParamBare$1;
-};
-x();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
-  debugger;
-  let foo = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    foo = x$1;
-  } else {
-    foo = tmpParamBare;
-  }
-  let bindingPatternObjRoot = tmpParamBare$1;
-  let x$1 = bindingPatternObjRoot.x;
-  return undefined;
-};
-x();
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +47,15 @@ With rename=true
 throw "Preval: This statement contained a read that reached no writes: x$1;";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')

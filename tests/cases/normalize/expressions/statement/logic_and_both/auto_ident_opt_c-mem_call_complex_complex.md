@@ -16,6 +16,7 @@ $(b)?.[$("$")]?.($(1)) && $(b)?.[$("$")]?.($(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -93,64 +95,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-$(b)?.[$(`\$`)]?.($(1)) && $(b)?.[$(`\$`)]?.($(1));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall != null;
-if (tmpIfTest$1) {
-  const tmpChainRootComputed = $(`\$`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 = tmpChainElementObject != null;
-  if (tmpIfTest$3) {
-    const tmpCalleeParam = tmpChainElementObject;
-    const tmpCalleeParam$1 = tmpChainElementCall;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
-    tmpIfTest = tmpChainElementCall$1;
-  } else {
-  }
-} else {
-}
-if (tmpIfTest) {
-  const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$3 = $(b);
-  const tmpIfTest$5 = tmpChainElementCall$3 != null;
-  if (tmpIfTest$5) {
-    const tmpChainRootComputed$1 = $(`\$`);
-    const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
-    const tmpIfTest$7 = tmpChainElementObject$1 != null;
-    if (tmpIfTest$7) {
-      const tmpCalleeParam$5 = tmpChainElementObject$1;
-      const tmpCalleeParam$7 = tmpChainElementCall$3;
-      const tmpCalleeParam$9 = $(1);
-      const tmpChainElementCall$5 = $dotCall(tmpCalleeParam$5, tmpCalleeParam$7, undefined, tmpCalleeParam$9);
-      $(a);
-    } else {
-      $(a);
-    }
-  } else {
-    $(a);
-  }
-} else {
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -205,11 +149,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { $: '"<$>"' }

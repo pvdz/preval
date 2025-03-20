@@ -15,6 +15,7 @@ eval("hello'`world'");
 eval('hello\\"\\`world"');
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ eval(`hello"'world"`);
 eval(`hello'\`world'`);
 eval(`hello\\"\\\`world"`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,25 +37,6 @@ eval(`hello'\`world'`);
 eval(`hello\\"\\\`world"`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-eval(`hello"\`world"`);
-eval(`hello"'world"`);
-eval(`hello'\`world'`);
-eval(`hello\\"\\\`world"`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-eval(`hello"\`world"`);
-eval(`hello"'world"`);
-eval(`hello'\`world'`);
-eval(`hello\\"\\\`world"`);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +48,15 @@ eval( "hello'`world'" );
 eval( "hello\\\"\\`world\"" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Unexpected string ]>')

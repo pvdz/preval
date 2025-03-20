@@ -15,6 +15,7 @@ const f = /foo/.constructor('bar', 'g');
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const f /*:regex*/ = /bar/g;
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,22 +32,6 @@ $(f);
 $(/bar/g);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = /foo/.constructor(`bar`, `g`);
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallObj = /foo/;
-const f = tmpCallObj.constructor(`bar`, `g`);
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +41,15 @@ const a = /bar/g;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

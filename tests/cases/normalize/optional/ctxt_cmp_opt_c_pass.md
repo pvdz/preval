@@ -13,6 +13,7 @@ const a = {b: {c: $}};
 $($(a)[$('b')][$('c')]?.(100));
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,36 +52,6 @@ if (tmpChainElementObject$1 == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = { b: { c: $ } };
-$($(a)[$(`b`)][$(`c`)]?.(100));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { c: $ };
-const a = { b: tmpObjLitVal };
-let tmpCalleeParam = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(a);
-const tmpChainRootComputed = $(`b`);
-const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-const tmpChainRootComputed$1 = $(`c`);
-const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-const tmpIfTest = tmpChainElementObject$1 != null;
-if (tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainElementObject, undefined, 100);
-  tmpCalleeParam = tmpChainElementCall$1;
-  $(tmpChainElementCall$1);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -102,11 +74,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { b: '{"c":"\\"<$>\\""}' }

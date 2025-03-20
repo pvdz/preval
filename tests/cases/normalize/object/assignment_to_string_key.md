@@ -14,6 +14,7 @@ o['x'] = 2;
 $(o);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const o /*:object*/ = { x: 2 };
 $(o);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,22 +31,6 @@ $(o);
 $({ x: 2 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const o = { x: 1 };
-o[`x`] = 2;
-$(o);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const o = { x: 2 };
-$(o);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +40,15 @@ const a = { x: 2 };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '2' }

@@ -16,6 +16,7 @@ $(x);
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ $(x);
 $(c);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,26 +41,6 @@ $(tmpCompObj[tmpCompProp]);
 $(c);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = ($(1), $(2))[$(`toString`)];
-$(x);
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-const tmpCompObj = $(2);
-const tmpCompProp = $(`toString`);
-let x = tmpCompObj[tmpCompProp];
-$(x);
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,13 +54,17 @@ $( d );
 $( c );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 c
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -18,6 +18,7 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 tmpClusterSSA_b.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, tmpClusterSSA_b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,43 +44,6 @@ tmpClusterSSA_b.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, tmpClusterSSA_b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let b;
-  let a;
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    b = { c: 10, d: 20 };
-    a = b[`c`] = $(b)[$(`d`)];
-    $(a, b);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = undefined;
-let a = undefined;
-const tmpSwitchDisc = 1;
-const tmpIfTest = tmpSwitchDisc === 1;
-if (tmpIfTest) {
-  b = { c: 10, d: 20 };
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.c = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  $(tmpNestedPropAssignRhs, b);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +60,15 @@ a.c = d;
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

@@ -28,6 +28,7 @@ $(`after (not invoked)`);
 
 `````
 
+
 ## Settled
 
 
@@ -71,6 +72,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -104,68 +106,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x = undefined;
-    {
-      let tmpForInGen = $forIn(tmpForInDeclRhs);
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        let tmpForInNext = tmpForInGen.next();
-        if (tmpForInNext.done) {
-          break;
-        } else {
-          x = tmpForInNext.value;
-          {
-            $(`loop`, x);
-            break;
-          }
-        }
-      }
-    }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
-  }
-}
-$(`after (not invoked)`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x = undefined;
-    let tmpForInGen = $forIn(tmpForInDeclRhs);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForInNext = tmpForInGen.next();
-      const tmpIfTest$1 = tmpForInNext.done;
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        x = tmpForInNext.value;
-        $(`loop`, x);
-        break;
-      }
-    }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
-  }
-}
-$(`after (not invoked)`);
-`````
 
 ## PST Settled
 With rename=true
@@ -220,11 +160,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

@@ -13,6 +13,7 @@ let b = [5, 6, 7];
 for (; b?.[0]; $(1));
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,40 +33,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = [5, 6, 7];
-{
-  while (b?.[0]) {
-    $(1);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = [5, 6, 7];
-while (true) {
-  let tmpIfTest = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed = 0;
-    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-    tmpIfTest = tmpChainElementObject;
-  } else {
-  }
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +43,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -17,6 +17,7 @@ if ($) {
 }
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,27 +38,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if ($) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    tdz;
-  }
-} else {
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if ($) {
-  tdz;
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -67,13 +48,17 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 tdz
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

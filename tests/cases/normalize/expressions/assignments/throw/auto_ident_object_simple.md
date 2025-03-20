@@ -14,6 +14,7 @@ throw (a = { x: 1, y: 2, z: 3 });
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $(a);
 const a /*:object*/ = { x: 1, y: 2, z: 3 };
 throw a;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,24 +32,6 @@ const a = { x: 1, y: 2, z: 3 };
 throw a;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-throw (a = { x: 1, y: 2, z: 3 });
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = { x: 1, y: 2, z: 3 };
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +45,15 @@ const a = {
 throw a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ [object Object] ]>')

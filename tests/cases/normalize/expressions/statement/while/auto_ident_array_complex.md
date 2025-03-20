@@ -14,6 +14,7 @@ while ([$(1), 2, $(3)]) $(100);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,33 +38,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-while ([$(1), 2, $(3)]) $(100);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpArrElement = $(1);
-  const tmpArrElement$1 = 2;
-  const tmpArrElement$3 = $(3);
-  const tmpIfTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +50,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -24,6 +24,7 @@ let { a, b: { ...rest }, c } = obj;
 $(a, c, rest);
 `````
 
+
 ## Settled
 
 
@@ -69,6 +70,7 @@ const c /*:unknown*/ = obj.c;
 $(a, c, rest);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -105,91 +107,6 @@ const rest = $objPatternRest(obj.b, [], undefined);
 $(a, obj.c, rest);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let obj = {
-  get a() {
-    debugger;
-    return $(`a`);
-  },
-  get b() {
-    debugger;
-    return {
-      get c() {
-        debugger;
-        return $(`b`);
-      },
-      get d() {
-        debugger;
-        return $(`c`);
-      },
-      get e() {
-        debugger;
-        return $(`d`);
-      },
-    };
-  },
-  get c() {
-    debugger;
-    return $(`c`);
-  },
-};
-let {
-  a: a,
-  b: { ...rest },
-  c: c,
-} = obj;
-$(a, c, rest);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let obj = {
-  get a() {
-    debugger;
-    const tmpReturnArg = $(`a`);
-    return tmpReturnArg;
-  },
-  get b() {
-    debugger;
-    const tmpReturnArg$1 = {
-      get c() {
-        debugger;
-        const tmpReturnArg$3 = $(`b`);
-        return tmpReturnArg$3;
-      },
-      get d() {
-        debugger;
-        const tmpReturnArg$5 = $(`c`);
-        return tmpReturnArg$5;
-      },
-      get e() {
-        debugger;
-        const tmpReturnArg$7 = $(`d`);
-        return tmpReturnArg$7;
-      },
-    };
-    return tmpReturnArg$1;
-  },
-  get c() {
-    debugger;
-    const tmpReturnArg$9 = $(`c`);
-    return tmpReturnArg$9;
-  },
-};
-let bindingPatternObjRoot = obj;
-let a = bindingPatternObjRoot.a;
-let objPatternNoDefault = bindingPatternObjRoot.b;
-const tmpCalleeParam = objPatternNoDefault;
-const tmpCalleeParam$1 = [];
-let rest = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
-let c = bindingPatternObjRoot.c;
-$(a, c, rest);
-`````
 
 ## PST Settled
 With rename=true
@@ -236,11 +153,15 @@ const l = a.c;
 $( h, l, k );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

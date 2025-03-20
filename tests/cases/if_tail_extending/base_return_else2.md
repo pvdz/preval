@@ -49,6 +49,7 @@ const f = function() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -75,6 +76,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -99,97 +101,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const tmpAfterLabel = function ($$0) {
-    let $tmpLoopUnrollCheck$1 = $$0;
-    debugger;
-    if ($tmpLoopUnrollCheck$1) {
-      while ($LOOP_UNROLL_10) {
-        if (x) {
-          $(1);
-          if ($) {
-            $(2);
-          } else {
-            return undefined;
-          }
-        } else {
-          break;
-        }
-      }
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  let $tmpLoopUnrollCheck = true;
-  if (x) {
-    $(1);
-    if ($) {
-      $(2);
-      const tmpReturnArg$1 = tmpAfterLabel($tmpLoopUnrollCheck);
-      return tmpReturnArg$1;
-    } else {
-      return undefined;
-    }
-  } else {
-    $tmpLoopUnrollCheck = false;
-    const tmpReturnArg = tmpAfterLabel($tmpLoopUnrollCheck);
-    return tmpReturnArg;
-  }
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const tmpAfterLabel = function ($$0) {
-    let $tmpLoopUnrollCheck$1 = $$0;
-    debugger;
-    if ($tmpLoopUnrollCheck$1) {
-      while ($LOOP_UNROLL_10) {
-        if (x) {
-          $(1);
-          if ($) {
-            $(2);
-          } else {
-            return undefined;
-          }
-        } else {
-          break;
-        }
-      }
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  let $tmpLoopUnrollCheck = true;
-  if (x) {
-    $(1);
-    if ($) {
-      $(2);
-      const tmpReturnArg$1 = tmpAfterLabel($tmpLoopUnrollCheck);
-      return tmpReturnArg$1;
-    } else {
-      return undefined;
-    }
-  } else {
-    $tmpLoopUnrollCheck = false;
-    const tmpReturnArg = tmpAfterLabel($tmpLoopUnrollCheck);
-    return tmpReturnArg;
-  }
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -217,13 +128,17 @@ if (x) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

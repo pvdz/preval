@@ -14,12 +14,14 @@ const x = [1, 2, 3];
 $('the end');
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`the end`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,23 +30,6 @@ $(`the end`);
 $(`the end`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = [1, 2, 3];
-[`a`, ...x, `b`];
-$(`the end`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = [1, 2, 3];
-[...x];
-$(`the end`);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +38,15 @@ With rename=true
 $( "the end" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'the end'

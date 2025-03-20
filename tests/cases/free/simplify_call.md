@@ -31,6 +31,7 @@ try {
 $('thend');
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ try {
 $(`thend`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -79,63 +81,6 @@ try {
 $(`thend`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpFree$21 = function $free($$0) {
-  let tmpUnaryArg$489 = $$0;
-  debugger;
-  const tmpBinLhs$139 = -tmpUnaryArg$489;
-  const tmpBinLhs$141 = -tmpBinLhs$139;
-  return tmpBinLhs$141;
-};
-const _0xb34c4b = [`a`, `b`];
-const _0xcb1177 = $;
-try {
-  if ($frfr(tmpFree$21, parseInt(_0xcb1177(824)))) {
-  } else {
-    _0xb34c4b.push(_0xb34c4b.shift());
-  }
-} catch (_0xa7aced$11) {
-  _0xb34c4b.push(_0xb34c4b.shift());
-}
-$(`thend`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpFree$21 = function $free($$0) {
-  let tmpUnaryArg$489 = $$0;
-  debugger;
-  const tmpBinLhs$139 = -tmpUnaryArg$489;
-  const tmpBinLhs$141 = -tmpBinLhs$139;
-  return tmpBinLhs$141;
-};
-const _0xb34c4b = [`a`, `b`];
-const _0xcb1177 = $;
-try {
-  const tmpCalleeParam = tmpFree$21;
-  const tmpCalleeParam$3 = _0xcb1177(824);
-  const tmpCalleeParam$1 = parseInt(tmpCalleeParam$3);
-  const tmpIfTest = $frfr(tmpFree$21, tmpCalleeParam$1);
-  if (tmpIfTest) {
-  } else {
-    const tmpCallObj = _0xb34c4b;
-    const tmpCallVal = tmpCallObj.push;
-    const tmpCalleeParam$5 = _0xb34c4b.shift();
-    $dotCall(tmpCallVal, tmpCallObj, `push`, tmpCalleeParam$5);
-  }
-} catch (_0xa7aced$11) {
-  const tmpCallObj$1 = _0xb34c4b;
-  const tmpCallVal$1 = tmpCallObj$1.push;
-  const tmpCalleeParam$7 = _0xb34c4b.shift();
-  $dotCall(tmpCallVal$1, tmpCallObj$1, `push`, tmpCalleeParam$7);
-}
-$(`thend`);
-`````
 
 ## PST Settled
 With rename=true
@@ -168,11 +113,15 @@ catch (l) {
 $( "thend" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 824

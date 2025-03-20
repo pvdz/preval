@@ -18,26 +18,21 @@ pcode(5, 20);
 pcode(19, 38);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let pcode = function ($$0) {
-  let a = $$0;
-  debugger;
-  return a;
-};
-pcode(5, 20);
-pcode(19, 38);
-`````
 
 ## Pcode output
+
 
 `````fileintro
 pcode =
     [ r0 = $$0 - ]
     [ return r0 - ]
 `````
+
+
+
+
+## Pcode result
+
 
 Running function "pcode":
 

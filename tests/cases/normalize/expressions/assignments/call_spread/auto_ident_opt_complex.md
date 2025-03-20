@@ -16,6 +16,7 @@ $(...(a = $(b)?.x));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,35 +50,6 @@ if (tmpChainElementCall == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-$(...(a = $(b)?.x));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-} else {
-}
-let tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -96,11 +69,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

@@ -25,6 +25,7 @@ const x = f();
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ $(`c`);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,53 +65,6 @@ $(`c`);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let g = function () {
-    debugger;
-    if ($(1)) {
-      $(`a`);
-      g();
-    } else {
-      $(`b`);
-    }
-  };
-  g();
-  $(`c`);
-};
-const x = f();
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let g = function () {
-    debugger;
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      $(`a`);
-      g();
-      return undefined;
-    } else {
-      $(`b`);
-      return undefined;
-    }
-  };
-  g();
-  $(`c`);
-  return undefined;
-};
-const x = f();
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -133,11 +88,15 @@ $( "c" );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

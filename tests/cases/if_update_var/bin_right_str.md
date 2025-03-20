@@ -21,6 +21,7 @@ const y = 'left' + x;
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,35 +46,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-if ($(true)) {
-  x = 100;
-} else {
-  x = 200;
-}
-const y = `left` + x;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  x = 100;
-} else {
-  x = 200;
-}
-const tmpStringConcatL = $coerce(x, `plustr`);
-const y = `left${tmpStringConcatL}`;
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +60,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

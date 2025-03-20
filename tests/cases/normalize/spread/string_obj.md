@@ -13,6 +13,7 @@ const x = "hello";
 $({...x});
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:object*/ = { [`0`]: `h`, [`1`]: `e`, [`2`]: `l`, [`3`]: 
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,22 +30,6 @@ $(tmpCalleeParam);
 $({ [`0`]: `h`, [`1`]: `e`, [`2`]: `l`, [`3`]: `l`, [`4`]: `o` });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = `hello`;
-$({ ...x });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = `hello`;
-const tmpCalleeParam = { ...x };
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +45,15 @@ const a = {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 0: '"h"', 1: '"e"', 2: '"l"', 3: '"l"', 4: '"o"' }

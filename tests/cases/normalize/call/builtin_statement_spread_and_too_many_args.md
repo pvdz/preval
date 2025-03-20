@@ -12,6 +12,7 @@
 isNaN(...$([1, 2, 3, 4]), $spy('b'), $spy('c'));
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $spy(`c`);
 $coerce(tmpArgOverflow, `number`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,25 +38,6 @@ $spy(`c`);
 $coerce(tmpArgOverflow, `number`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-isNaN(...$([1, 2, 3, 4]), $spy(`b`), $spy(`c`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [1, 2, 3, 4];
-const tmpArrSpread = $(tmpCalleeParam);
-const tmpCompObj = [...tmpArrSpread];
-const tmpArgOverflow = tmpCompObj[0];
-$spy(`b`);
-$spy(`c`);
-$coerce(tmpArgOverflow, `number`);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +52,22 @@ $spy( "c" );
 $coerce( d, "number" );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2, 3, 4]
@@ -88,7 +82,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

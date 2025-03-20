@@ -18,6 +18,7 @@ while (test) {
 }
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ $(`yolo`);
 $(`yolo`);
 $(`yolo`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -52,35 +54,6 @@ $(`yolo`);
 $(`yolo`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let counter = 0;
-let test = counter < 10;
-while (test) {
-  $(`yolo`);
-  test = counter < 10;
-  counter = counter + 1;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let counter = 0;
-let test = counter < 10;
-while (true) {
-  if (test) {
-    $(`yolo`);
-    test = counter < 10;
-    counter = counter + 1;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +72,15 @@ $( "yolo" );
 $( "yolo" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'yolo'

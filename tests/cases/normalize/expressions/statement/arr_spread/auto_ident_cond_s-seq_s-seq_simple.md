@@ -14,6 +14,7 @@ let a = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $(a);
 [...60];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,31 +32,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-[...((10, 20, 30) ? (40, 50, 60) : $($(100)))];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpArrElToSpread = undefined;
-const tmpIfTest = 30;
-if (tmpIfTest) {
-  tmpArrElToSpread = 60;
-} else {
-  const tmpCalleeParam = $(100);
-  tmpArrElToSpread = $(tmpCalleeParam);
-}
-[...tmpArrElToSpread];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +41,15 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

@@ -16,6 +16,7 @@ throw $(b)[$("c")];
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpThrowArg /*:unknown*/ = tmpCompObj[tmpCompProp];
 throw tmpThrowArg;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,27 +39,6 @@ const tmpThrowArg = tmpCompObj[tmpCompProp];
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-throw $(b)[$(`c`)];
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-const tmpThrowArg = tmpCompObj[tmpCompProp];
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +51,15 @@ const d = b[ c ];
 throw d;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '1' }

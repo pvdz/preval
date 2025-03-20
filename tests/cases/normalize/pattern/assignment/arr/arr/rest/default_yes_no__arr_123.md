@@ -13,6 +13,7 @@
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $(x);
 [...1];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,32 +31,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[[...x] = $(`pass`)] = [1, 2, 3, 4, 5];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arrAssignPatternRhs = [1, 2, 3, 4, 5];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  arrPatternStep = $(`pass`);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const arrPatternSplat$1 = [...arrPatternStep];
-x = arrPatternSplat$1.slice(0);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +40,23 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -80,8 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

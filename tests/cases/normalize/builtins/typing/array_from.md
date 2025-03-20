@@ -14,6 +14,7 @@ const arr = Array.from(str);
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const arr /*:array*/ = $Array_from(str);
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,23 +32,6 @@ $(arr);
 $($Array_from($(`abc`)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const str = $(`abc`);
-const arr = Array.from(str);
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const str = $(`abc`);
-const arr = $Array_from(str);
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +42,21 @@ const b = $Array_from( a );
 $( b );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'abc'
@@ -75,6 +70,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from

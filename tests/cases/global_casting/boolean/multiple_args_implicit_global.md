@@ -16,6 +16,7 @@ const y = Boolean(x, $, 1, fail_hard, "twee");
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const x /*:boolean*/ = a === b;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,29 +39,6 @@ fail_hard;
 $(a === b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(`a`);
-const b = $(`b`);
-const x = a === b;
-const y = Boolean(x, $, 1, fail_hard, `twee`);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(`a`);
-const b = $(`b`);
-const x = a === b;
-const tmpArgOverflow = x;
-fail_hard;
-const y = Boolean(tmpArgOverflow);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,13 +51,17 @@ const c = a === b;
 $( c );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 fail_hard
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

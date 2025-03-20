@@ -18,6 +18,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,31 +50,6 @@ if (!$()) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    break;
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    break;
-  } else {
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +69,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

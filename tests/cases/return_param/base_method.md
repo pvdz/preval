@@ -23,6 +23,7 @@ $(f(300));
 $(f('three'));
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ f();
 $(`three`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,46 +61,6 @@ f();
 $(`three`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = x.toString();
-  return y;
-};
-$(f([1, 2, 3]));
-$(f(300));
-$(f(`three`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = x.toString();
-  return y;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = [1, 2, 3];
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-const tmpCalleeParam$3 = f(300);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(`three`);
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -119,11 +81,15 @@ a();
 $( "three" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'no'

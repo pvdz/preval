@@ -14,6 +14,7 @@ const y = ['a', ...x, 'b'];
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const y /*:array*/ = [`a`, undefined, undefined, undefined, `b`];
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,23 +31,6 @@ $(y);
 $([`a`, undefined, undefined, undefined, `b`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = [, , ,];
-const y = [`a`, ...x, `b`];
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = [, , ,];
-const y = [`a`, ...x, `b`];
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +40,15 @@ const a = [ "a", undefined, undefined, undefined, "b" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['a', undefined, undefined, undefined, 'b']

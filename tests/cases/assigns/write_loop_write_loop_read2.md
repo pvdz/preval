@@ -17,6 +17,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,32 +44,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let i = 0;
-let x = $(10);
-while (true) {
-  x = $(++i, `set`);
-  $(x, `loop`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = 0;
-let x = $(10);
-while (true) {
-  const tmpPostUpdArgIdent = $coerce(i, `number`);
-  i = tmpPostUpdArgIdent + 1;
-  const tmpCalleeParam = i;
-  x = $(i, `set`);
-  $(x, `loop`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +58,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

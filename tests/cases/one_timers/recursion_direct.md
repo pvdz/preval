@@ -18,6 +18,7 @@ function f() {
 // Yes that means this test ends with an empty output. Or should, anyways.
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const f /*:()=>unknown*/ = function () {
 };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,30 +42,6 @@ const f = function () {
 };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = 1;
-  f();
-  $(x);
-};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = 1;
-  f();
-  $(x);
-  return undefined;
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +55,15 @@ const a = function() {
 };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

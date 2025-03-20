@@ -24,6 +24,7 @@ const t = r.repeat(2)
 $(t);
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ const t /*:string*/ = $frfr(tmpFree, xs, ys);
 $(t);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -56,45 +58,6 @@ const xs = $coerce($(`x`), `plustr`);
 $($frfr(tmpFree, xs, $coerce($(`y`), `plustr`)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function $free($$0) {
-  let a = $$0;
-  debugger;
-  const one = a + 5;
-  const two = one.slice(1);
-  return two;
-};
-const x = $(`x`);
-const xs = x + ``;
-const y = $(`y`);
-const ys = y + ``;
-const r = $frfr(f, xs, ys);
-const t = r.repeat(2);
-$(t);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function $free($$0) {
-  let a = $$0;
-  debugger;
-  const one = a + 5;
-  const two = one.slice(1);
-  return two;
-};
-const x = $(`x`);
-const xs = $coerce(x, `plustr`);
-const y = $(`y`);
-const ys = $coerce(y, `plustr`);
-const r = $frfr(f, xs, ys);
-const t = r.repeat(2);
-$(t);
-`````
 
 ## PST Settled
 With rename=true
@@ -116,11 +79,22 @@ const k = l( a, h, j );
 $( k );
 `````
 
+
+## Todos triggered
+
+
+- frfr and free arg mismatch
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $string_repeat
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x'
@@ -135,7 +109,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- frfr and free arg mismatch
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $string_repeat

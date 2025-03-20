@@ -13,6 +13,7 @@
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ y = arrPatternSplat.slice(0);
 $(`bad`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,32 +48,6 @@ y = [...objPatternAfterDefault].slice(0);
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: [...y] = $([`fail`]) } = 1);
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = 1;
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = [`fail`];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
-y = arrPatternSplat.slice(0);
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -92,13 +68,23 @@ y = e.slice( 0 );
 $( "bad" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 y
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['fail']
@@ -111,6 +97,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

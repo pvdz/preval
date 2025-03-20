@@ -15,12 +15,14 @@ function f({ x = $('fail') }) {
 $(f({ x: 'abc' }, 10));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`abc`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,43 +31,6 @@ $(`abc`);
 $(`abc`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: x = $(`fail`) } = tmpParamBare;
-  return x;
-};
-$(f({ x: `abc` }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let x = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    x = $(`fail`);
-    return x;
-  } else {
-    x = objPatternBeforeDefault;
-    return x;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = { x: `abc` };
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +39,15 @@ With rename=true
 $( "abc" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'abc'

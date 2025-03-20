@@ -28,6 +28,7 @@ var x = {
 x.y(a.b);
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ const tmpCalleeParam /*:unknown*/ = a.b;
 $dotCall(tmpCallVal, x, `y`, tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -71,54 +73,6 @@ x.y(
 );
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-a = {
-  get b() {
-    debugger;
-    $(`b.get`);
-    return 100;
-  },
-};
-x = {
-  get y() {
-    debugger;
-    $(`y.get`);
-    return $;
-  },
-};
-x.y(a.b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-a = {
-  get b() {
-    debugger;
-    $(`b.get`);
-    return 100;
-  },
-};
-x = {
-  get y() {
-    debugger;
-    $(`y.get`);
-    return $;
-  },
-};
-const tmpCallObj = x;
-const tmpCallVal = tmpCallObj.y;
-const tmpCalleeParam = a.b;
-$dotCall(tmpCallVal, tmpCallObj, `y`, tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -139,11 +93,15 @@ const d = c.b;
 $dotCall( b, a, "y", d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'y.get'

@@ -13,6 +13,7 @@
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('bad');
 [...null];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,39 +31,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: [y = `fail`] = $([`fail2`]) } = { x: null, a: 11, b: 12 });
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = { x: null, a: 11, b: 12 };
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = [`fail2`];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  y = `fail`;
-  $(`bad`);
-} else {
-  y = arrPatternBeforeDefault;
-  $(`bad`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +40,22 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -87,7 +67,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

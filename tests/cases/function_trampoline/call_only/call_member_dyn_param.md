@@ -16,6 +16,7 @@ const obj = {$};
 f(obj, '$'); // In this test, this is the call we expect to be replaced by trampoline inlining...
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const obj /*:object*/ = { $: $ };
 obj.$(1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,34 +33,6 @@ obj.$(1);
 ({ $: $ }.$(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0, $$1) {
-  let obj$1 = $$0;
-  let str = $$1;
-  debugger;
-  obj$1[str](1);
-};
-const obj = { $: $ };
-f(obj, `\$`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0, $$1) {
-  let obj$1 = $$0;
-  let str = $$1;
-  debugger;
-  obj$1[str](1);
-  return undefined;
-};
-const obj = { $: $ };
-f(obj, `\$`);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +42,15 @@ const a = { $: $ };
 a.$( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

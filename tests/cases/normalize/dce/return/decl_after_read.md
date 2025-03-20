@@ -25,6 +25,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,39 +50,6 @@ if ($(false)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($(false)) {
-    $($throwTDZError(`Preval: TDZ triggered for this read: \$(x)`));
-  }
-  return;
-  let x = $(`fail`);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-    throw `Preval: TDZ triggered for this read: \$(x)`;
-  } else {
-    return undefined;
-    let x = $(`fail`);
-    return undefined;
-  }
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

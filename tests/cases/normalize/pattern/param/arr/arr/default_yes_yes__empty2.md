@@ -47,12 +47,14 @@ const f = function (tmpParamBare) {
 $(f());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -61,82 +63,6 @@ $(undefined);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let tmpParamBare = $$0;
-  debugger;
-  const a = function () {
-    debugger;
-    const A = [`pass3`];
-    const e = function () {
-      debugger;
-      X = A;
-      d(A);
-    };
-    const d = function () {
-      debugger;
-      [...X];
-    };
-    if (A) {
-      e(A);
-    } else {
-      d();
-    }
-  };
-  let X = undefined;
-  const N = true;
-  if (N) {
-    return a();
-  } else {
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let tmpParamBare = $$0;
-  debugger;
-  const a = function () {
-    debugger;
-    const A = [`pass3`];
-    const e = function () {
-      debugger;
-      X = A;
-      d(A);
-      return undefined;
-    };
-    const d = function () {
-      debugger;
-      [...X];
-      return undefined;
-    };
-    if (A) {
-      e(A);
-      return undefined;
-    } else {
-      d();
-      return undefined;
-    }
-  };
-  let X = undefined;
-  const N = true;
-  if (N) {
-    const tmpReturnArg = a();
-    return tmpReturnArg;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -145,11 +71,15 @@ With rename=true
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

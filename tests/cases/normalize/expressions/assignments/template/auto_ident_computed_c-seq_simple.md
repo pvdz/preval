@@ -16,6 +16,7 @@ $(`before  ${(a = (1, 2, $(b))[$("c")])}  after`);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,34 +44,6 @@ $(`before  ${tmpClusterSSA_a}  after`);
 $(tmpClusterSSA_a, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce((a = (1, 2, $(b))[$(`c`)]), `string`) + `  after`);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $(`c`);
-a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +59,15 @@ $( f );
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '1' }

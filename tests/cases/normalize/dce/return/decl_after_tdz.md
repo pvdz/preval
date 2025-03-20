@@ -26,12 +26,14 @@ $inlinedFunction:
 tmpCallComplexCallee();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,42 +42,6 @@ $(0);
 $(0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let tmpCallComplexCallee = undefined;
-$inlinedFunction: {
-  const f = function () {
-    debugger;
-    null;
-    $(0);
-    return undefined;
-  };
-  tmpCallComplexCallee = f;
-  break $inlinedFunction;
-  const x = undefined;
-}
-tmpCallComplexCallee();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCallComplexCallee = undefined;
-$inlinedFunction: {
-  const f = function () {
-    debugger;
-    $(0);
-    return undefined;
-  };
-  tmpCallComplexCallee = f;
-  break $inlinedFunction;
-  const x = undefined;
-}
-tmpCallComplexCallee();
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +50,15 @@ With rename=true
 $( 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")

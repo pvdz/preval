@@ -16,6 +16,7 @@ throw ({ b } = $({ b: $(2) }));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ tmpNestedAssignObjPatternRhs.b;
 throw tmpNestedAssignObjPatternRhs;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,30 +39,6 @@ tmpNestedAssignObjPatternRhs.b;
 throw tmpNestedAssignObjPatternRhs;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-throw ({ b: b } = $({ b: $(2) }));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-let tmpThrowArg = undefined;
-const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-b = tmpNestedAssignObjPatternRhs.b;
-tmpThrowArg = tmpNestedAssignObjPatternRhs;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +51,15 @@ c.b;
 throw c;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

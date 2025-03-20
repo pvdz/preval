@@ -16,6 +16,7 @@ for (; (a = b?.c.d.e(1)); $(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (tmpChainElementCall) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,48 +63,6 @@ if (tmpChainElementCall) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: { d: { e: $ } } };
-let a = { a: 999, b: 1000 };
-{
-  while ((a = b?.c.d.e(1))) {
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let b = { c: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-while (true) {
-  a = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementCall = tmpChainElementObject$1.e(1);
-    a = tmpChainElementCall;
-  } else {
-  }
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -130,11 +90,22 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Calling a static method on an ident that is not global and not recorded: $tmpObjLitVal$1_e
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -172,7 +143,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Calling a static method on an ident that is not global and not recorded: $tmpObjLitVal$1_e

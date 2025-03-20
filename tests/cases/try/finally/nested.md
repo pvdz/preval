@@ -24,6 +24,7 @@ try {
 }
 `````
 
+
 ## Settled
 
 
@@ -65,6 +66,7 @@ if ($implicitThrow$3) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -105,137 +107,6 @@ if ($implicitThrow$3) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let $implicitThrow$3 = false;
-  let $finalStep = false;
-  let $finalStep$1 = false;
-  let $finalCatchArg$3 = undefined;
-  let $finalArg = undefined;
-  let $finalArg$1 = undefined;
-  $finally$3: {
-    try {
-      {
-        let $implicitThrow = false;
-        let $finalCatchArg = undefined;
-        $finally: {
-          try {
-            $(1);
-          } catch ($finalImplicit) {
-            $(2);
-            {
-              $finalStep = true;
-              $finalArg = $finalImplicit;
-              break $finally$3;
-            }
-          }
-        }
-        {
-          $(2);
-        }
-        if ($implicitThrow) {
-          $finalStep$1 = true;
-          $finalArg$1 = $finalCatchArg;
-          break $finally$3;
-        } else {
-        }
-      }
-    } catch ($finalImplicit$3) {
-      $implicitThrow$3 = true;
-      $finalCatchArg$3 = $finalImplicit$3;
-    }
-  }
-  {
-    {
-      let $implicitThrow$1 = false;
-      let $finalCatchArg$1 = undefined;
-      $finally$1: {
-        try {
-          $(3);
-        } catch ($finalImplicit$1) {
-          $(4);
-          throw $finalImplicit$1;
-        }
-      }
-      {
-        $(4);
-      }
-      if ($implicitThrow$1) throw $finalCatchArg$1;
-      else {
-      }
-    }
-  }
-  if ($implicitThrow$3) throw $finalCatchArg$3;
-  else if ($finalStep) throw $finalArg;
-  else if ($finalStep$1) throw $finalArg$1;
-  else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let $implicitThrow$3 = false;
-let $finalStep = false;
-let $finalStep$1 = false;
-let $finalCatchArg$3 = undefined;
-let $finalArg = undefined;
-let $finalArg$1 = undefined;
-$finally$3: {
-  try {
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    try {
-      $(1);
-    } catch ($finalImplicit) {
-      $(2);
-      $finalStep = true;
-      $finalArg = $finalImplicit;
-      break $finally$3;
-    }
-    $(2);
-    if ($implicitThrow) {
-      $finalStep$1 = true;
-      $finalArg$1 = $finalCatchArg;
-      break $finally$3;
-    } else {
-    }
-  } catch ($finalImplicit$3) {
-    $implicitThrow$3 = true;
-    $finalCatchArg$3 = $finalImplicit$3;
-  }
-}
-let $implicitThrow$1 = false;
-let $finalCatchArg$1 = undefined;
-try {
-  $(3);
-} catch ($finalImplicit$1) {
-  $(4);
-  throw $finalImplicit$1;
-}
-$(4);
-if ($implicitThrow$1) {
-  throw $finalCatchArg$1;
-} else {
-  if ($implicitThrow$3) {
-    throw $finalCatchArg$3;
-  } else {
-    if ($finalStep) {
-      throw $finalArg;
-    } else {
-      if ($finalStep$1) {
-        throw $finalArg$1;
-      } else {
-      }
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -281,11 +152,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

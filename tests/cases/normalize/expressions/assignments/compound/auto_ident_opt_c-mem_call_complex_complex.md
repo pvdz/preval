@@ -16,6 +16,7 @@ $((a *= $(b)?.[$("$")]?.($(1))));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,46 +62,6 @@ $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-$((a *= $(b)?.[$(`\$`)]?.($(1))));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
-let tmpBinBothRhs = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = $(`\$`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = tmpChainElementObject;
-    const tmpCalleeParam$3 = tmpChainElementCall;
-    const tmpCalleeParam$5 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpCalleeParam$1, tmpCalleeParam$3, undefined, tmpCalleeParam$5);
-    tmpBinBothRhs = tmpChainElementCall$1;
-  } else {
-  }
-} else {
-}
-a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
-$(a);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -134,11 +96,15 @@ $( k );
 $( k );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { $: '"<$>"' }

@@ -31,6 +31,7 @@ $(f(2));
 $(f('three'));
 `````
 
+
 ## Settled
 
 
@@ -57,6 +58,7 @@ f();
 $(NaN);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -79,57 +81,6 @@ f();
 $(NaN);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = ~x;
-  if ($(true)) {
-    $(`a`);
-    return NaN;
-  } else {
-    $(`b`);
-    return NaN;
-  }
-};
-$(f(1));
-$(f(2));
-$(f(`three`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = ~x;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`a`);
-    return NaN;
-  } else {
-    $(`b`);
-    return NaN;
-  }
-};
-const tmpCalleeParam = f(1);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`three`);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -158,11 +109,15 @@ a();
 $( NaN );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'no'

@@ -14,12 +14,14 @@ const y = x;
 $(y); // Should be inlined to -5
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(Infinity);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,23 +30,6 @@ $(Infinity);
 $(Infinity);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = +Infinity;
-const y = x;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = Infinity;
-const y = x;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +38,15 @@ With rename=true
 $( Infinity );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: Infinity

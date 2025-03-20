@@ -13,6 +13,7 @@ const { x: { y } } = { x: { x: 1, z: 3 }, b: 11, c: 12 };
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const y /*:unknown*/ = $Object_prototype.y;
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,26 +30,6 @@ $(y);
 $($Object_prototype.y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: { y: y },
-} = { x: { x: 1, z: 3 }, b: 11, c: 12 };
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { x: 1, z: 3 };
-const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternNoDefault.y;
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +39,15 @@ const a = $Object_prototype.y;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

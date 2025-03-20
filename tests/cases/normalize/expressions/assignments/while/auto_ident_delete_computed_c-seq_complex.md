@@ -16,6 +16,7 @@ while ((a = delete ($(1), $(2), $(arg))[$("y")])) $(100);
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ if (tmpClusterSSA_a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -74,37 +76,6 @@ if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-while ((a = delete ($(1), $(2), $(arg))[$(`y`)])) $(100);
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  $(1);
-  $(2);
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $(`y`);
-  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
-}
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -139,11 +110,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -181,6 +162,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

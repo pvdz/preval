@@ -21,6 +21,7 @@ for (lhs in rhs) {
 }
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,56 +64,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let lhs = undefined;
-{
-  let tmpForInGen = $forIn(rhs);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      lhs = tmpForInNext.value;
-      {
-        if ($) {
-          const rhs$1 = [$throwTDZError(`Preval: TDZ triggered for this read: [firstElement]`)];
-          $(rhs$1);
-        } else {
-          $(`init`);
-        }
-        let firstElement = undefined;
-      }
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let lhs = undefined;
-let tmpForInGen = $forIn(rhs);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    lhs = tmpForInNext.value;
-    if ($) {
-      throw `Preval: TDZ triggered for this read: [firstElement]`;
-      const rhs$1 = 0;
-    } else {
-      $(`init`);
-      let firstElement = undefined;
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -136,13 +88,23 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 rhs
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -154,6 +116,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

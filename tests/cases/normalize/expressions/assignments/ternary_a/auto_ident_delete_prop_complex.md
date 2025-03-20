@@ -16,6 +16,7 @@ $((a = delete $(arg).y) ? $(100) : $(200));
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (tmpClusterSSA_a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,36 +51,6 @@ if (delete tmpDeleteObj.y) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$((a = delete $(arg).y) ? $(100) : $(200));
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
-const tmpDeleteObj = $(arg);
-a = delete tmpDeleteObj.y;
-let tmpIfTest = a;
-if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
-  $(a, arg);
-} else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
-  $(a, arg);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +71,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }

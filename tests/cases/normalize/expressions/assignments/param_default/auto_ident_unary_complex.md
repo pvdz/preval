@@ -17,6 +17,7 @@ $(f());
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg;
 $(tmpNestedComplexRhs, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,47 +38,6 @@ $(undefined);
 $(typeof tmpUnaryArg, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let arg = tmpParamBare === undefined ? (a = typeof $(x)) : tmpParamBare;
-};
-let x = 1;
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let arg = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpUnaryArg = $(x);
-    const tmpNestedComplexRhs = typeof tmpUnaryArg;
-    a = tmpNestedComplexRhs;
-    arg = tmpNestedComplexRhs;
-    return undefined;
-  } else {
-    arg = tmpParamBare;
-    return undefined;
-  }
-};
-let x = 1;
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +49,15 @@ const b = typeof a;
 $( b, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

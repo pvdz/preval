@@ -24,6 +24,7 @@ if (f($(0))) $('fail');
 else $('pass');
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ if (tmpBoolTrampoline) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,45 +65,6 @@ if ($($(0))) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let arg = $$0;
-  debugger;
-  const x = $(arg);
-  const y = Boolean(x);
-  return y;
-};
-$(f);
-$(f);
-if (f($(0))) $(`fail`);
-else $(`pass`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let arg = $$0;
-  debugger;
-  const x = $(arg);
-  const y = Boolean(x);
-  return y;
-};
-$(f);
-$(f);
-const tmpCallCallee = f;
-const tmpCalleeParam = $(0);
-const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-if (tmpIfTest) {
-  $(`fail`);
-} else {
-  $(`pass`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -126,11 +89,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

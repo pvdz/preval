@@ -19,6 +19,7 @@ const q = f(...x); // This should NOT be inlined (for now) because we can't safe
 $(q);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ const q /*:unknown*/ = f(...x);
 $(q);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,35 +48,6 @@ const f = function (y) {
 $(f(...x));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(`pass`);
-const f = function ($$0) {
-  let y = $$0;
-  debugger;
-  const r = $(y);
-  return r;
-};
-const q = f(...x);
-$(q);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(`pass`);
-const f = function ($$0) {
-  let y = $$0;
-  debugger;
-  const r = $(y);
-  return r;
-};
-const q = f(...x);
-$(q);
-`````
 
 ## PST Settled
 With rename=true
@@ -91,11 +64,15 @@ const e = b( ...a );
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

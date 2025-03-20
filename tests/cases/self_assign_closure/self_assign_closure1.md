@@ -17,12 +17,14 @@ let a = function(){
 $(a() === a());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,41 +33,6 @@ $(true);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  a = function () {
-    debugger;
-    return arr;
-  };
-  return a();
-};
-$(a() === a());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  a = function () {
-    debugger;
-    return arr;
-  };
-  const tmpReturnArg = a();
-  return tmpReturnArg;
-};
-const tmpBinBothLhs = a();
-const tmpBinBothRhs = a();
-const tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +41,15 @@ With rename=true
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

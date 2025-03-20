@@ -18,6 +18,7 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ switch (1) {
 const tmpNestedComplexRhs /*:unknown*/ = $(2);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,40 +36,6 @@ const tmpNestedComplexRhs = $(2);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let b;
-  let a;
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    b = 1;
-    a = b = $(2);
-    $(a, b);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = undefined;
-let a = undefined;
-const tmpSwitchDisc = 1;
-const tmpIfTest = tmpSwitchDisc === 1;
-if (tmpIfTest) {
-  b = 1;
-  const tmpNestedComplexRhs = $(2);
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs, b);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +45,15 @@ const a = $( 2 );
 $( a, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

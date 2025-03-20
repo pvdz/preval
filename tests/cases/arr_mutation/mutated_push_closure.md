@@ -18,6 +18,7 @@ function f() {
 }
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ arr.splice(1, 5);
 arr.push(`a`, `b`);
 $(arr);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,34 +40,6 @@ arr.push(`a`, `b`);
 $(arr);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  arr.splice(1, 5);
-};
-const arr = [1, 2, 3, 4];
-f();
-arr.push(`a`, `b`);
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  arr.splice(1, 5);
-  return undefined;
-};
-const arr = [1, 2, 3, 4];
-f();
-arr.push(`a`, `b`);
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +51,22 @@ a.push( "a", "b" );
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- processArrayWriteReadImmutableBinding slow path
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_splice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 'a', 'b']
@@ -94,7 +79,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- processArrayWriteReadImmutableBinding slow path
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_splice

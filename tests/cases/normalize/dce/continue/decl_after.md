@@ -22,6 +22,7 @@ while ($(true)) {
 $('after, wont eval due to infinite loop');
 `````
 
+
 ## Settled
 
 
@@ -53,6 +54,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -79,45 +81,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($(true)) {
-  $continue: {
-    {
-      if ($(false)) $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
-      break $continue;
-      let x = $(`fail`);
-    }
-  }
-}
-$(`after, wont eval due to infinite loop`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $continue: {
-      const tmpIfTest$1 = $(false);
-      if (tmpIfTest$1) {
-        $(`fail too`);
-        throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-      } else {
-        break $continue;
-        let x = $(`fail`);
-      }
-    }
-  } else {
-    break;
-  }
-}
-$(`after, wont eval due to infinite loop`);
-`````
 
 ## PST Settled
 With rename=true
@@ -152,11 +115,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

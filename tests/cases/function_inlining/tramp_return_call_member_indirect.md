@@ -21,12 +21,14 @@ const r = f(String);
 $(r);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`function String() { [native code] }`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,45 +37,6 @@ $(`function String() { [native code] }`);
 $(`function String() { [native code] }`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function ($$0) {
-  let b = $$0;
-  debugger;
-  const y = b.toString();
-  return y;
-};
-const f = function ($$0) {
-  let a = $$0;
-  debugger;
-  const x = g(a);
-  return x;
-};
-const r = f(String);
-$(r);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function ($$0) {
-  let b = $$0;
-  debugger;
-  const y = b.toString();
-  return y;
-};
-const f = function ($$0) {
-  let a = $$0;
-  debugger;
-  const x = g(a);
-  return x;
-};
-const r = f(String);
-$(r);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +45,15 @@ With rename=true
 $( "function String() { [native code] }" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'function() { [native code] }'

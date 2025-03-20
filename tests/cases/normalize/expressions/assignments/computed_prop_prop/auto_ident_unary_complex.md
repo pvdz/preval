@@ -17,6 +17,7 @@ obj[(a = typeof $(x))];
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const a /*:string*/ = typeof tmpUnaryArg;
 obj[a];
 $(a, 1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,31 +41,6 @@ obj[a];
 $(a, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = typeof $(x))];
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-const tmpUnaryArg = $(x);
-a = typeof tmpUnaryArg;
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +53,15 @@ b[ c ];
 $( c, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -26,6 +26,7 @@ while ($LOOP_UNROLL_10) {
 $(cTmp);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ $(1);
 $(3);
 $(`pass`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,44 +46,6 @@ $(3);
 $(`pass`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let cTmp = $(1);
-let n = 1;
-$(3);
-while ($LOOP_UNROLL_10) {
-  n = n + 1;
-  const tmpIfTest$1 = n < 2;
-  if (tmpIfTest$1) {
-    $(3);
-  } else {
-    cTmp = `pass`;
-    break;
-  }
-}
-$(cTmp);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let cTmp = $(1);
-let n = 1;
-while ($LOOP_UNROLL_10) {
-  $(3);
-  n = n + 1;
-  const tmpIfTest$1 = n < 2;
-  if (tmpIfTest$1) {
-  } else {
-    cTmp = `pass`;
-    break;
-  }
-}
-$(cTmp);
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +56,15 @@ $( 3 );
 $( "pass" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

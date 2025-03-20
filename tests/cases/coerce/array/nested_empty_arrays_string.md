@@ -16,12 +16,14 @@ const f = $coerce(e, 'string');
 $(f);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`,`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,31 +32,6 @@ $(`,`);
 $(`,`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = [];
-const b = [a];
-const c = [];
-const d = [c];
-const e = [b, d];
-const f = $coerce(e, `string`);
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = [];
-const b = [a];
-const c = [];
-const d = [c];
-const e = [b, d];
-const f = $coerce(e, `string`);
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +40,15 @@ With rename=true
 $( "," );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ','

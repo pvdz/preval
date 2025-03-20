@@ -20,12 +20,14 @@ let a = b.a;
 
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $.a;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,37 +36,6 @@ $.a;
 $.a;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    a = $;
-    return undefined;
-  }
-};
-let b = $;
-let a = b.a;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    a = $;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-let b = $;
-let a = b.a;
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +44,15 @@ With rename=true
 $.a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

@@ -16,6 +16,7 @@ for (const key in obj) {
 $('done');
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`done`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,46 +53,6 @@ while (true) {
 $(`done`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { x: 1, y: `two` };
-{
-  let tmpForInGen = $forIn(obj);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      const key = tmpForInNext.value;
-      {
-        $(`key`, key);
-      }
-    }
-  }
-}
-$(`done`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { x: 1, y: `two` };
-let tmpForInGen = $forIn(obj);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const key = tmpForInNext.value;
-    $(`key`, key);
-  }
-}
-$(`done`);
-`````
 
 ## PST Settled
 With rename=true
@@ -115,11 +77,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( "done" );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'key', 'x'
@@ -134,6 +106,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

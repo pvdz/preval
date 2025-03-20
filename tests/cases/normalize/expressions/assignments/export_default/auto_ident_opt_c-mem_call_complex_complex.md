@@ -16,6 +16,7 @@ export default a = $(b)?.[$("$")]?.($(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ export { a as default };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,45 +59,6 @@ export { a as default };
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = $(b)?.[$(`\$`)]?.($(1)));
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = $(`\$`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam = tmpChainElementObject;
-    const tmpCalleeParam$1 = tmpChainElementCall;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
-  } else {
-  }
-} else {
-}
-let tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -125,11 +88,15 @@ export { a as default };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

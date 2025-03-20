@@ -14,6 +14,7 @@ const y = x !== '';
 $('out:', y);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const y /*:boolean*/ = Boolean(x);
 $(`out:`, y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,24 +33,6 @@ $(`out:`, y);
 $(`out:`, Boolean($coerce($(`full`), `string`)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = String($(`full`));
-const y = x !== ``;
-$(`out:`, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpStringFirstArg = $(`full`);
-const x = $coerce(tmpStringFirstArg, `string`);
-const y = x !== ``;
-$(`out:`, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +44,15 @@ const c = Boolean( b );
 $( "out:", c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'full'

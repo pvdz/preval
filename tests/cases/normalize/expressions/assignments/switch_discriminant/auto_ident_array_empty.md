@@ -17,6 +17,7 @@ switch ((a = [])) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const a /*:array*/ = [];
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,31 +36,6 @@ $(100);
 $([]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = (a = []);
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = [];
-let tmpSwitchDisc = a;
-$(100);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +46,15 @@ const a = [];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

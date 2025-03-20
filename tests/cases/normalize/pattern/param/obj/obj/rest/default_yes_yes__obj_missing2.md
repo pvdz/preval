@@ -14,6 +14,7 @@ let objPatternBeforeDefault = tmpParamBare.x;
 $(objPatternBeforeDefault);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 $(objPatternBeforeDefault);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,23 +31,6 @@ $(objPatternBeforeDefault);
 $($Object_prototype.x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpParamBare = { b: 11, c: 12 };
-let objPatternBeforeDefault = tmpParamBare.x;
-$(objPatternBeforeDefault);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpParamBare = { b: 11, c: 12 };
-let objPatternBeforeDefault = tmpParamBare.x;
-$(objPatternBeforeDefault);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +40,15 @@ const a = $Object_prototype.x;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

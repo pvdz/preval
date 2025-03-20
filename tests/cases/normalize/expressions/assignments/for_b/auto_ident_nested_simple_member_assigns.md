@@ -17,6 +17,7 @@ for (; (a = b.x = b.x = b.x = b.x = b.x = b.x = c); $(1));
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -49,52 +51,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = 3;
-let a = { a: 999, b: 1000 };
-{
-  while ((a = b.x = b.x = b.x = b.x = b.x = b.x = c)) {
-    $(1);
-  }
-}
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = 3;
-let a = { a: 999, b: 1000 };
-while (true) {
-  const varInitAssignLhsComputedRhs$7 = c;
-  b.x = varInitAssignLhsComputedRhs$7;
-  const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-  b.x = varInitAssignLhsComputedRhs$5;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-  b.x = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  b.x = varInitAssignLhsComputedRhs;
-  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.x = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -112,11 +68,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -154,6 +120,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

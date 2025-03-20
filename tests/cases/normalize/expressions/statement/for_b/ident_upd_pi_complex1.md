@@ -13,6 +13,7 @@ let b = { x: 1 };
 $($(b).x += 1);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,26 +37,6 @@ varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-$(($(b).x += 1));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-const varInitAssignLhsComputedObj = $(b);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +50,15 @@ b.x = d;
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

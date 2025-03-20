@@ -17,6 +17,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const a /*:boolean*/ = delete tmpDeleteObj.y;
 $(a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,26 +38,6 @@ const tmpDeleteObj = $(arg);
 $(delete tmpDeleteObj.y, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let arg = { y: 1 };
-  let a = delete $(arg)[`y`];
-  $(a, arg);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-const tmpDeleteObj = $(arg);
-let a = delete tmpDeleteObj.y;
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +49,15 @@ const c = delete b.y;
 $( c, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }

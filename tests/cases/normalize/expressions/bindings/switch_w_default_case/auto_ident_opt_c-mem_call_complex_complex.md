@@ -22,6 +22,7 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ if (tmpIfTest$5) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,89 +77,6 @@ if (tmpChainElementCall == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let b;
-  let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else if (2 === tmpSwitchValue) tmpSwitchCaseToStart = 2;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      b = { $: $ };
-      a = $(b)?.[$(`\$`)]?.($(1));
-      $(a);
-    }
-    if (tmpSwitchCaseToStart <= 1) {
-      $(`fail1`);
-    }
-    if (tmpSwitchCaseToStart <= 2) {
-      $(`fail2`);
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = undefined;
-let a = undefined;
-const tmpSwitchValue = 1;
-let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
-  b = { $: $ };
-  a = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest$5 = tmpChainElementCall != null;
-  if (tmpIfTest$5) {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$7 = tmpChainElementObject != null;
-    if (tmpIfTest$7) {
-      const tmpCalleeParam = tmpChainElementObject;
-      const tmpCalleeParam$1 = tmpChainElementCall;
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
-      a = tmpChainElementCall$1;
-      $(tmpChainElementCall$1);
-    } else {
-      $(a);
-    }
-  } else {
-    $(a);
-  }
-} else {
-}
-const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$9) {
-  $(`fail1`);
-} else {
-}
-const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$11) {
-  $(`fail2`);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -190,11 +109,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { $: '"<$>"' }

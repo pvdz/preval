@@ -14,6 +14,7 @@ $((a *= $($)?.($(1))));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,38 +54,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a *= $($)?.($(1))));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
-let tmpBinBothRhs = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpCalleeParam$1 = tmpChainElementCall;
-  const tmpCalleeParam$3 = tmpChainRootCall;
-  const tmpCalleeParam$5 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpCalleeParam$1, tmpCalleeParam$3, undefined, tmpCalleeParam$5);
-  tmpBinBothRhs = tmpChainElementCall$1;
-} else {
-}
-a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
-$(a);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -109,11 +79,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

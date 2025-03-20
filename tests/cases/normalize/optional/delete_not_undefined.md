@@ -13,6 +13,7 @@ let o = $(undefined);
 delete o?.x;
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,26 +37,6 @@ if (!(o == null)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let o = $(undefined);
-delete o?.x;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let o = $(undefined);
-const tmpDeleteOpt = o;
-const tmpIfTest = tmpDeleteOpt != null;
-if (tmpIfTest) {
-  delete tmpDeleteOpt.x;
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +52,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

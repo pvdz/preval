@@ -21,6 +21,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,57 +55,6 @@ if (tmpForOfNext.done) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  {
-    let tmpForOfGen = $forOf([1, 2]);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForOfNext = tmpForOfGen.next();
-      if (tmpForOfNext.done) {
-        break;
-      } else {
-        let x = tmpForOfNext.value;
-        {
-          $(`for`, x);
-          return;
-        }
-      }
-    }
-  }
-  $(`unreachable (but keep because the for body may not be visited...)`);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpCalleeParam = [1, 2];
-  let tmpForOfGen = $forOf(tmpCalleeParam);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    const tmpIfTest = tmpForOfNext.done;
-    if (tmpIfTest) {
-      break;
-    } else {
-      let x = tmpForOfNext.value;
-      $(`for`, x);
-      return undefined;
-    }
-  }
-  $(`unreachable (but keep because the for body may not be visited...)`);
-  return undefined;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -124,11 +75,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'for', 1

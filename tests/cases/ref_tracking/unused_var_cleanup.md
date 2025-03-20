@@ -26,6 +26,7 @@ if (x) {
 $(`after`);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,47 +55,6 @@ if ($(false)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(false);
-let $tmpLoopUnrollCheck = true;
-if (x) {
-  $(`body`);
-  while ($LOOP_UNROLL_10) {
-    if (x) {
-      $(`body`);
-    } else {
-      break;
-    }
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(false);
-let $tmpLoopUnrollCheck = true;
-if (x) {
-  while ($LOOP_UNROLL_10) {
-    $(`body`);
-    if (x) {
-    } else {
-      break;
-    }
-  }
-  $(`after`);
-} else {
-  $tmpLoopUnrollCheck = false;
-  $(`after`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -110,11 +71,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

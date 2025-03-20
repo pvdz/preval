@@ -22,6 +22,7 @@ finally {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(x);
 $(1);
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,45 +40,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-{
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  $finally: {
-    try {
-    } catch ($finalImplicit) {
-      $(x);
-      throw $finalImplicit;
-    }
-  }
-  {
-    $(x);
-  }
-  if ($implicitThrow) throw $finalCatchArg;
-  else {
-  }
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
-$(x);
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +49,15 @@ $( 1 );
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

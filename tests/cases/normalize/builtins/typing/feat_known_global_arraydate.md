@@ -25,6 +25,7 @@ $(typeof Math.acos($spy('Math.acos')));
 $(typeof Math.acosh($spy('Math.acosh')));
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ $coerce(tmpCalleeParam$37, `number`);
 $(`number`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -86,67 +88,6 @@ $coerce($spy(`Math.acosh`), `number`);
 $(`number`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof Array.from($spy(`Array.from`)));
-$(typeof Array.isArray($spy(`Array.isArray`)));
-$(typeof Array.of($spy(`Array.of`)));
-$(typeof Date.now($spy(`Date.now`)));
-$(typeof Date.UTC($spy(`Date.UTC`)));
-$(typeof Date.parse($spy(`Date.parse`)));
-$(typeof JSON.stringify($spy(`JSON.stringify`)));
-$(typeof Math.abs($spy(`Math.abs`)));
-$(typeof Math.acos($spy(`Math.acos`)));
-$(typeof Math.acosh($spy(`Math.acosh`)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = $spy(`Array.from`);
-const tmpUnaryArg = $Array_from(tmpCalleeParam$1);
-const tmpCalleeParam = typeof tmpUnaryArg;
-$(tmpCalleeParam);
-const tmpCalleeParam$5 = $spy(`Array.isArray`);
-const tmpUnaryArg$1 = $Array_isArray(tmpCalleeParam$5);
-const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$9 = $spy(`Array.of`);
-const tmpUnaryArg$3 = $Array_of(tmpCalleeParam$9);
-const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-$(tmpCalleeParam$7);
-const tmpCalleeParam$13 = $spy(`Date.now`);
-const tmpUnaryArg$5 = $Date_now(tmpCalleeParam$13);
-const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-$(tmpCalleeParam$11);
-const tmpCalleeParam$17 = $spy(`Date.UTC`);
-const tmpUnaryArg$7 = $Date_UTC(tmpCalleeParam$17);
-const tmpCalleeParam$15 = typeof tmpUnaryArg$7;
-$(tmpCalleeParam$15);
-const tmpCalleeParam$21 = $spy(`Date.parse`);
-const tmpUnaryArg$9 = $Date_parse(tmpCalleeParam$21);
-const tmpCalleeParam$19 = typeof tmpUnaryArg$9;
-$(tmpCalleeParam$19);
-const tmpCalleeParam$25 = $spy(`JSON.stringify`);
-const tmpUnaryArg$11 = $JSON_stringify(tmpCalleeParam$25);
-const tmpCalleeParam$23 = typeof tmpUnaryArg$11;
-$(tmpCalleeParam$23);
-const tmpCalleeParam$29 = $spy(`Math.abs`);
-const tmpUnaryArg$13 = $Math_abs(tmpCalleeParam$29);
-const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
-$(tmpCalleeParam$27);
-const tmpCalleeParam$33 = $spy(`Math.acos`);
-const tmpUnaryArg$15 = $Math_acos(tmpCalleeParam$33);
-const tmpCalleeParam$31 = typeof tmpUnaryArg$15;
-$(tmpCalleeParam$31);
-const tmpCalleeParam$37 = $spy(`Math.acosh`);
-const tmpUnaryArg$17 = $Math_acosh(tmpCalleeParam$37);
-const tmpCalleeParam$35 = typeof tmpUnaryArg$17;
-$(tmpCalleeParam$35);
-`````
 
 ## PST Settled
 With rename=true
@@ -182,11 +123,30 @@ $coerce( i, "number" );
 $( "number" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_isArray
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_of
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_now
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_UTC
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_parse
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $JSON_stringify
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_abs
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acos
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acosh
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Array.from', 'Array.from']
@@ -223,15 +183,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_isArray
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_of
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_now
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_UTC
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_parse
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $JSON_stringify
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_abs
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acos
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acosh

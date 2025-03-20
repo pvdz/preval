@@ -19,6 +19,7 @@ if (y !== 200) {
 }
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,34 +49,6 @@ if (y === 200) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(200);
-const y = x & 200;
-$(y);
-if (y !== 200) {
-  $(`fail`);
-} else {
-  $(`pass`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(200);
-const y = x & 200;
-$(y);
-const tmpIfTest = y !== 200;
-if (tmpIfTest) {
-  $(`fail`);
-} else {
-  $(`pass`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +66,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 200

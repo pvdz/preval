@@ -17,6 +17,7 @@ $(f());
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const b /*:unknown*/ = $(2);
 $(undefined);
 $(b, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,47 +37,6 @@ $(undefined);
 $(b, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = tmpParamBare === undefined ? (a = b = $(2)) : tmpParamBare;
-};
-let b = 1;
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    b = $(2);
-    let tmpNestedComplexRhs = b;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-    return undefined;
-  } else {
-    p = tmpParamBare;
-    return undefined;
-  }
-};
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +47,15 @@ $( undefined );
 $( a, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

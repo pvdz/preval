@@ -30,6 +30,7 @@ const rs = r + s;
 $(rs);
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ const rs /*:primitive*/ = $frfr(tmpFree, xs, ys);
 $(rs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,69 +70,6 @@ const xs = $coerce($spy(`x`), `plustr`);
 $($frfr(tmpFree, xs, $coerce($spy(`y`), `plustr`)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function $free($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const one = parseInt(a + 5, b);
-  const two = one.slice(1);
-  return two;
-};
-const g = function $free($$0, $$1) {
-  let a$1 = $$0;
-  let b$1 = $$1;
-  debugger;
-  const one$1 = parseInt(a$1 + 500, b$1);
-  const two$1 = a$1.slice(2);
-  return two$1;
-};
-const x = $spy(`x`);
-const xs = x + ``;
-const y = $spy(`y`);
-const ys = y + ``;
-const r = $frfr(f, xs, ys);
-const s = $frfr(g, r, ys);
-const rs = r + s;
-$(rs);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function $free($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const tmpCalleeParam = a + 5;
-  const tmpCalleeParam$1 = b;
-  const one = parseInt(tmpCalleeParam, b);
-  const two = one.slice(1);
-  return two;
-};
-const g = function $free($$0, $$1) {
-  let a$1 = $$0;
-  let b$1 = $$1;
-  debugger;
-  const tmpCalleeParam$3 = a$1 + 500;
-  const tmpCalleeParam$5 = b$1;
-  const one$1 = parseInt(tmpCalleeParam$3, b$1);
-  const two$1 = a$1.slice(2);
-  return two$1;
-};
-const x = $spy(`x`);
-const xs = $coerce(x, `plustr`);
-const y = $spy(`y`);
-const ys = $coerce(y, `plustr`);
-const r = $frfr(f, xs, ys);
-const s = $frfr(g, r, ys);
-const rs = r + s;
-$(rs);
-`````
 
 ## PST Settled
 With rename=true
@@ -156,11 +95,15 @@ const n = o( a, k, m );
 $( n );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['x', 'x']

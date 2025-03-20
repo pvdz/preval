@@ -21,6 +21,7 @@ $dotCall($console_group, console, 'group', 'a', 'b', ...c);
 $dotCall($console_groupEnd, console, 'groupEnd', 'a', 'b', ...c);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ console.group(`a`, `b`, ...c);
 console.groupEnd(`a`, `b`, ...c);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,38 +56,6 @@ console.group(`a`, `b`, ...c);
 console.groupEnd(`a`, `b`, ...c);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = $([1, 2, 3, `consle test case`]);
-$dotCall($console_log, console, `log`, `a`, `b`, ...c);
-$dotCall($console_warn, console, `warn`, `a`, `b`, ...c);
-$dotCall($console_error, console, `error`, `a`, `b`, ...c);
-$dotCall($console_dir, console, `dir`, `a`, `b`, ...c);
-$dotCall($console_debug, console, `debug`, `a`, `b`, ...c);
-$dotCall($console_time, console, `time`, `a`, `b`, ...c);
-$dotCall($console_timeEnd, console, `timeEnd`, `a`, `b`, ...c);
-$dotCall($console_group, console, `group`, `a`, `b`, ...c);
-$dotCall($console_groupEnd, console, `groupEnd`, `a`, `b`, ...c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [1, 2, 3, `consle test case`];
-const arr = $(tmpCalleeParam);
-$dotCall($console_log, console, `log`, `a`, `b`, ...c);
-$dotCall($console_warn, console, `warn`, `a`, `b`, ...c);
-$dotCall($console_error, console, `error`, `a`, `b`, ...c);
-$dotCall($console_dir, console, `dir`, `a`, `b`, ...c);
-$dotCall($console_debug, console, `debug`, `a`, `b`, ...c);
-$dotCall($console_time, console, `time`, `a`, `b`, ...c);
-$dotCall($console_timeEnd, console, `timeEnd`, `a`, `b`, ...c);
-$dotCall($console_group, console, `group`, `a`, `b`, ...c);
-$dotCall($console_groupEnd, console, `groupEnd`, `a`, `b`, ...c);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,13 +74,17 @@ console.group( "a", "b", ...c );
 console.groupEnd( "a", "b", ...c );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 c
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2, 3, 'consle test case']

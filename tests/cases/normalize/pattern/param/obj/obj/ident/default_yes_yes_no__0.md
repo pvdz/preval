@@ -15,6 +15,7 @@ function f({ x: { y = $('fail') } = $({ y: 'pass2' }) }) {
 $(f(0, 10));
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,50 +59,6 @@ if (objPatternBeforeDefault$1 === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: { y: y = $(`fail`) } = $({ y: `pass2` }) } = tmpParamBare;
-  return y;
-};
-$(f(0, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { y: `pass2` };
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  let y = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-  if (tmpIfTest$1) {
-    y = $(`fail`);
-    return y;
-  } else {
-    y = objPatternBeforeDefault$1;
-    return y;
-  }
-};
-const tmpCalleeParam$1 = f(0, 10);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -127,11 +85,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '"pass2"' }

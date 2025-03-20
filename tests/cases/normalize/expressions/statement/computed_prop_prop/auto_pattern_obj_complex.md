@@ -15,6 +15,7 @@ obj[$({ a: 1, b: 2 })];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ obj[tmpCompProp];
 $(999);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,29 +37,6 @@ const tmpCompProp = $({ a: 1, b: 2 });
 $(999);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let { a: a } = { a: 999, b: 1000 };
-let obj = {};
-obj[$({ a: 1, b: 2 })];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-let obj = {};
-const tmpCompObj = obj;
-const tmpCalleeParam = { a: 1, b: 2 };
-const tmpCompProp = $(tmpCalleeParam);
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +52,15 @@ c[ b ];
 $( 999 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }

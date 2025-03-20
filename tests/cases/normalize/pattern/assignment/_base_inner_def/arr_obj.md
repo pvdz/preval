@@ -14,6 +14,7 @@ var x, a = 100;
 $(x, a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,38 +41,6 @@ if (objPatternBeforeDefault === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-a = 100;
-[{ x: x = a }] = [{}];
-$(x, a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-a = 100;
-const tmpArrElement = {};
-const arrAssignPatternRhs = [tmpArrElement];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternBeforeDefault = arrPatternStep.x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = a;
-  $(a, a);
-} else {
-  x = objPatternBeforeDefault;
-  $(objPatternBeforeDefault, a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +56,22 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100, 100
@@ -103,7 +84,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

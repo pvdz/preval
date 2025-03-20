@@ -18,6 +18,7 @@ if ($(0)) {
 }
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,34 +48,6 @@ if ($(0)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = Boolean($);
-$(!x);
-if ($(0)) {
-  $(`fail`);
-} else {
-  $(Boolean(x));
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = Boolean($);
-const tmpCalleeParam = !x;
-$(tmpCalleeParam);
-const tmpIfTest = $(0);
-if (tmpIfTest) {
-  $(`fail`);
-} else {
-  const tmpCalleeParam$1 = Boolean(x);
-  $(tmpCalleeParam$1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -91,11 +65,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

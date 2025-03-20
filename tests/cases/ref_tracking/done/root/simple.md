@@ -20,6 +20,7 @@ x = 30;
 $(x);
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -32,7 +33,9 @@ x___17__ = 30;
 $(x___21__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

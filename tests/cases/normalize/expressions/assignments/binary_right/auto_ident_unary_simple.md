@@ -16,6 +16,7 @@ $($(100) + (a = typeof x));
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ $(tmpCalleeParam);
 $(`number`, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,29 +38,6 @@ $(`${tmpStringConcatR}number`);
 $(`number`, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-$($(100) + (a = typeof x));
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(100);
-a = typeof x;
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +50,15 @@ $( c );
 $( "number", 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

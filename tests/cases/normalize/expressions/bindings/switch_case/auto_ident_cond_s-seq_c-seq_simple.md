@@ -16,6 +16,7 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpClusterSSA_a /*:unknown*/ = $(60);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,41 +33,6 @@ $(tmpClusterSSA_a);
 $($(60));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let a;
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    a = (10, 20, 30) ? (40, 50, $(60)) : $($(100));
-    $(a);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-const tmpSwitchDisc = 1;
-const tmpIfTest = tmpSwitchDisc === 1;
-if (tmpIfTest) {
-  const tmpIfTest$1 = 30;
-  if (tmpIfTest$1) {
-    a = $(60);
-    $(a);
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
-    $(a);
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +42,15 @@ const a = $( 60 );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 60

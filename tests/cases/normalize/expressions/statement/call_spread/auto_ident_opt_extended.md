@@ -16,6 +16,7 @@ $(...b?.x.y.z);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,37 +35,6 @@ $(...100);
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: { z: 100 } } };
-let a = { a: 999, b: 1000 };
-$(...b?.x.y.z);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  tmpCalleeParamSpread = tmpChainElementObject$3;
-} else {
-}
-$(...tmpCalleeParamSpread);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +48,15 @@ const a = {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

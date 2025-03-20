@@ -14,6 +14,7 @@ const b = 2;
 a < b; // This shouldn't be eliminated because it triggers the valueOf above
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const a /*:unknown*/ = $(tmpCalleeParam);
 a ** 0;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,24 +32,6 @@ a ** 0;
 $({ valueOf: $ }) ** 0;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $({ valueOf: $ });
-const b = 2;
-a < b;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = { valueOf: $ };
-const a = $(tmpCalleeParam);
-const b = 2;
-a < b;
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +42,15 @@ const b = $( a );
 b ** 0;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { valueOf: '"<$>"' }

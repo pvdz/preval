@@ -14,6 +14,7 @@ let a = (b.x, c).foo;
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const b /*:object*/ = { x: 2 };
 $(a, b, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,27 +32,6 @@ $(a, b, 3);
 $((3).foo, { x: 2 }, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 2 },
-  c = 3;
-let a = (b.x, c).foo;
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 2 };
-let c = 3;
-b.x;
-const tmpCompObj = c;
-let a = tmpCompObj.foo;
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +42,15 @@ const b = { x: 2 };
 $( a, b, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined, { x: '2' }, 3

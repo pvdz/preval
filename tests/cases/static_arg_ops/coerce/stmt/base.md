@@ -17,6 +17,7 @@ f(3);
 f(4);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ $coerce(x, `number`);
 f();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,38 +51,6 @@ $coerce(x, `number`);
 f();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(`50`);
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  $coerce(x, `number`);
-  $(1);
-  $(2);
-};
-f(3);
-f(4);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(`50`);
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  $coerce(x, `number`);
-  $(1);
-  $(2);
-  return undefined;
-};
-f(3);
-f(4);
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +69,15 @@ $coerce( a, "number" );
 b();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '50'

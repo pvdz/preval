@@ -17,6 +17,7 @@ try {
 $('after', blob)
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const blob /*:array*/ = [1, 2, 3];
 $(`after`, blob);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,25 +34,6 @@ $(`after`, blob);
 $(`after`, [1, 2, 3]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const blob = [1, 2, 3];
-try {
-} catch (e) {
-  $(`catch`, blob.shift());
-}
-$(`after`, blob);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const blob = [1, 2, 3];
-$(`after`, blob);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +43,15 @@ const a = [ 1, 2, 3 ];
 $( "after", a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'after', [1, 2, 3]

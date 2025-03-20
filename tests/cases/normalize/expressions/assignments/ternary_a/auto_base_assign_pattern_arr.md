@@ -16,6 +16,7 @@ $((a = [b] = $([$(2)])) ? $(100) : $(200));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ if (tmpNestedAssignArrPatternRhs) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,40 +54,6 @@ if (tmpNestedAssignArrPatternRhs) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-$((a = [b] = $([$(2)])) ? $(100) : $(200));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
-const tmpArrElement = $(2);
-const tmpCalleeParam$1 = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-a = tmpNestedAssignArrPatternRhs;
-let tmpIfTest = a;
-if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
-  $(a, b);
-} else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
-  $(a, b);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -108,11 +76,22 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -129,7 +108,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

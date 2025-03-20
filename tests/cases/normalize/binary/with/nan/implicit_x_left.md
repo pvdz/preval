@@ -40,6 +40,7 @@ $(x in NaN);
 $(x instanceof NaN);
 `````
 
+
 ## Settled
 
 
@@ -91,6 +92,7 @@ const tmpCalleeParam$1 /*:boolean*/ = x instanceof NaN;
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -139,103 +141,6 @@ $(x in NaN);
 $(x instanceof NaN);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [
-  x ** NaN,
-  x * NaN,
-  x / NaN,
-  x % NaN,
-  x + NaN,
-  x - NaN,
-  x << NaN,
-  x >> NaN,
-  x >>> NaN,
-  x < NaN,
-  x > NaN,
-  x <= NaN,
-  x >= NaN,
-  x == NaN,
-  x != NaN,
-  x === NaN,
-  x !== NaN,
-  x & NaN,
-  x ^ NaN,
-  x | NaN,
-];
-$(arr);
-$(x in NaN);
-$(x instanceof NaN);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-x * 0;
-const tmpArrElement = NaN;
-x * 0;
-const tmpArrElement$1 = NaN;
-x * 0;
-const tmpArrElement$3 = NaN;
-x * 0;
-const tmpArrElement$5 = NaN;
-const tmpArrElement$7 = x + NaN;
-x * 0;
-const tmpArrElement$9 = NaN;
-const tmpArrElement$11 = x << 0;
-const tmpArrElement$13 = x >> 0;
-const tmpArrElement$15 = x >>> 0;
-x * 0;
-const tmpArrElement$17 = false;
-x * 0;
-const tmpArrElement$19 = false;
-x * 0;
-const tmpArrElement$21 = false;
-x * 0;
-const tmpArrElement$23 = false;
-x * 0;
-const tmpArrElement$25 = false;
-x * 0;
-const tmpArrElement$27 = true;
-x;
-const tmpArrElement$29 = false;
-x;
-const tmpArrElement$31 = true;
-x & 0;
-const tmpArrElement$33 = 0;
-const tmpArrElement$35 = x ^ 0;
-const tmpArrElement$37 = x | 0;
-const arr = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpCalleeParam = x in NaN;
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = x instanceof NaN;
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -267,11 +172,15 @@ const i = x instanceof NaN;
 $( i );
 `````
 
+
 ## Globals
+
 
 None (except for the 1 globals expected by the test)
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

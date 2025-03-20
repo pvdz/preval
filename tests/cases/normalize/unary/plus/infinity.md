@@ -12,12 +12,14 @@
 $(+Infinity);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(Infinity);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(Infinity);
 $(Infinity);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(+Infinity);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = Infinity;
-$(Infinity);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( Infinity );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: Infinity

@@ -22,6 +22,7 @@ switch ($(1)) {
 }
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -65,58 +67,6 @@ if (tmpSwitchDisc === $spy(0)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (tmpSwitchDisc === $spy(0)) {
-    $(`false`);
-    break tmpSwitchBreak;
-  } else if (tmpSwitchDisc === $spy(1)) {
-    $(`true`);
-    break tmpSwitchBreak;
-  } else if (tmpSwitchDisc === $spy(2)) {
-    $(`false`);
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  const tmpBinBothLhs = tmpSwitchDisc;
-  const tmpBinBothRhs = $spy(0);
-  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  if (tmpIfTest) {
-    $(`false`);
-    break tmpSwitchBreak;
-  } else {
-    const tmpBinBothLhs$1 = tmpSwitchDisc;
-    const tmpBinBothRhs$1 = $spy(1);
-    const tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-    if (tmpIfTest$1) {
-      $(`true`);
-      break tmpSwitchBreak;
-    } else {
-      const tmpBinBothLhs$3 = tmpSwitchDisc;
-      const tmpBinBothRhs$3 = $spy(2);
-      const tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-      if (tmpIfTest$3) {
-        $(`false`);
-        break tmpSwitchBreak;
-      } else {
-      }
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -144,11 +94,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

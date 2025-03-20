@@ -33,6 +33,7 @@ f();
 f();
 `````
 
+
 ## Settled
 
 
@@ -60,6 +61,7 @@ f();
 f();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -81,60 +83,6 @@ f();
 f();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let curtype = 0;
-const f = function () {
-  debugger;
-  const tmpIfTest = curtype === 16472;
-  if (tmpIfTest) {
-    curtype = $(`random`);
-    undefined;
-    const tmpIfTest$1 = curtype === 16473;
-    if (tmpIfTest$1) {
-      $(`x`);
-      return undefined;
-    } else {
-      $(`y`);
-      return undefined;
-    }
-  } else {
-    $(`a`);
-    return undefined;
-  }
-};
-f();
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let curtype = 0;
-const f = function () {
-  debugger;
-  const tmpIfTest = curtype === 16472;
-  if (tmpIfTest) {
-    curtype = $(`random`);
-    const tmpIfTest$1 = curtype === 16473;
-    if (tmpIfTest$1) {
-      $(`x`);
-      return undefined;
-    } else {
-      $(`y`);
-      return undefined;
-    }
-  } else {
-    $(`a`);
-    return undefined;
-  }
-};
-f();
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -165,11 +113,15 @@ b();
 b();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

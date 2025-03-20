@@ -15,6 +15,7 @@ const sp2 = $spy();
 $(`b${sp2}`);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const tmpBinLhs /*:string*/ = `b${tmpBinBothRhs}`;
 $(tmpBinLhs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,31 +40,6 @@ $(`b${tmpStringConcatL}`);
 $(`b${$spy()}`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const sp = $spy();
-$(`b` + sp);
-const sp2 = $spy();
-$(`b` + $coerce(sp2, `string`) + ``);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const sp = $spy();
-const tmpStringConcatL = $coerce(sp, `plustr`);
-const tmpCalleeParam = `b${tmpStringConcatL}`;
-$(tmpCalleeParam);
-const sp2 = $spy();
-const tmpBinBothLhs = `b`;
-const tmpBinBothRhs = $coerce(sp2, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam$1 = $coerce(tmpBinLhs, `plustr`);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +55,15 @@ const f = `b${e}`;
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]

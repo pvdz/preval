@@ -15,6 +15,7 @@ $(x);
 if ($(10)) $(x, 'branch')
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,29 +43,6 @@ if ($(10)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(1);
-x = $(2);
-$(x);
-if ($(10)) $(x, `branch`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(1);
-x = $(2);
-$(x);
-const tmpIfTest = $(10);
-if (tmpIfTest) {
-  $(x, `branch`);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +57,15 @@ if (b) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

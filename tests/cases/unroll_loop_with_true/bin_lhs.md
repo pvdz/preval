@@ -13,12 +13,14 @@ const x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE + 1;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ $(2);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE + 1;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = 2;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

@@ -14,6 +14,7 @@ const y = x === false;
 $('out:', y);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $('out:', y);
 new Map();
 $(`out:`, false);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,23 +32,6 @@ new Map();
 $(`out:`, false);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = new Map();
-const y = x === false;
-$(`out:`, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = new Map();
-const y = x === false;
-$(`out:`, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +41,15 @@ new Map();
 $( "out:", false );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'out:', false

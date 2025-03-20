@@ -13,6 +13,7 @@ const x = new String($LOOP_DONE_UNROLLING_ALWAYS_TRUE);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:object*/ = new String(true);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ $(x);
 $(new String(true));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = new String($LOOP_DONE_UNROLLING_ALWAYS_TRUE);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = new String(true);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +39,15 @@ const a = new String( true );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 0: '"t"', 1: '"r"', 2: '"u"', 3: '"e"' }

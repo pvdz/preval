@@ -26,12 +26,14 @@ f();
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 s;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,46 +42,6 @@ s;
 s;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let x = $$0;
-  debugger;
-  while (1) {
-    let t = 1;
-    if (3 === s) t = 0;
-    stop: {
-      break stop;
-    }
-  }
-  x + 1;
-};
-f();
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let x = $$0;
-  debugger;
-  while (true) {
-    let t = 1;
-    const tmpIfTest = 3 === s;
-    if (tmpIfTest) {
-      t = 0;
-    } else {
-    }
-  }
-  return undefined;
-};
-f();
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -88,13 +50,23 @@ With rename=true
 s;
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: DebuggerStatement
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 s
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -106,6 +78,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: DebuggerStatement

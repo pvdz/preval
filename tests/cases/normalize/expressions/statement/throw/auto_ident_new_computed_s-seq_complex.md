@@ -16,6 +16,7 @@ throw new (1, 2, b)[$("$")](1);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpThrowArg /*:object*/ = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,28 +39,6 @@ const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-throw new (1, 2, b)[$(`\$`)](1);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpCompObj = b;
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj[tmpCompProp];
-const tmpThrowArg = new tmpNewCallee(1);
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +51,15 @@ const d = new c( 1 );
 throw d;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '$'

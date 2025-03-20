@@ -14,12 +14,14 @@ throw (a = "foo");
 $(a);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `foo`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,24 +30,6 @@ throw `foo`;
 throw `foo`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-throw (a = `foo`);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = `foo`;
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +38,15 @@ With rename=true
 throw "foo";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ foo ]>')

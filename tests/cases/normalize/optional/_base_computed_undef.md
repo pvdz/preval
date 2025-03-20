@@ -14,12 +14,14 @@ var x = 10;
 $(f?.[x]);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,37 +30,6 @@ $(undefined);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = undefined;
-let x = undefined;
-f = undefined;
-x = 10;
-$(f?.[x]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = undefined;
-let x = undefined;
-f = undefined;
-x = 10;
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = f;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = x;
-  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-  tmpCalleeParam = tmpChainElementObject;
-  $(tmpChainElementObject);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +38,15 @@ With rename=true
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

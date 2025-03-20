@@ -57,6 +57,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -106,6 +107,7 @@ $(index2char, chars);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -152,110 +154,6 @@ $(index2char, chars);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const chars = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
-  const index2char = [];
-  const tmpAssignComMemLhsProp$14 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(0);
-  index2char[tmpAssignComMemLhsProp$14] = 0;
-  const tmpAssignComMemLhsProp$12 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(1);
-  index2char[tmpAssignComMemLhsProp$12] = 1;
-  const tmpAssignComMemLhsProp$16 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(2);
-  index2char[tmpAssignComMemLhsProp$16] = 2;
-  const tmpAssignComMemLhsProp$17 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(3);
-  index2char[tmpAssignComMemLhsProp$17] = 3;
-  const tmpAssignComMemLhsProp$18 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(4);
-  index2char[tmpAssignComMemLhsProp$18] = 4;
-  const tmpAssignComMemLhsProp$19 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(5);
-  index2char[tmpAssignComMemLhsProp$19] = 5;
-  const tmpAssignComMemLhsProp$20 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(6);
-  index2char[tmpAssignComMemLhsProp$20] = 6;
-  const tmpAssignComMemLhsProp$21 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(7);
-  index2char[tmpAssignComMemLhsProp$21] = 7;
-  const tmpAssignComMemLhsProp$22 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(8);
-  index2char[tmpAssignComMemLhsProp$22] = 8;
-  const tmpAssignComMemLhsProp$24 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(9);
-  index2char[tmpAssignComMemLhsProp$24] = 9;
-  const tmpAssignComMemLhsProp$25 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(10);
-  index2char[tmpAssignComMemLhsProp$25] = 10;
-  let tmpClusterSSA_s$27 = 11;
-  while (true) {
-    if (tmpClusterSSA_s$27 < 64) {
-      const tmpAssignComputedRhs$73 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$27];
-      chars[tmpClusterSSA_s$27] = tmpAssignComputedRhs$73;
-      const tmpAssignComMemLhsProp$26 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(tmpClusterSSA_s$27);
-      index2char[tmpAssignComMemLhsProp$26] = tmpClusterSSA_s$27;
-      tmpClusterSSA_s$27 = tmpClusterSSA_s$27 + 1;
-    } else {
-      break;
-    }
-  }
-  const tmpAssignComMemLhsProp$13 = `-`.charCodeAt(0);
-  index2char[tmpAssignComMemLhsProp$13] = 62;
-  const tmpAssignComMemLhsProp$15 = `_`.charCodeAt(0);
-  index2char[tmpAssignComMemLhsProp$15] = 63;
-  $(index2char, chars);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const chars = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`];
-  const index2char = [];
-  const tmpAssignComMemLhsProp$14 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(0);
-  index2char[tmpAssignComMemLhsProp$14] = 0;
-  const tmpAssignComMemLhsProp$12 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(1);
-  index2char[tmpAssignComMemLhsProp$12] = 1;
-  const tmpAssignComMemLhsProp$16 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(2);
-  index2char[tmpAssignComMemLhsProp$16] = 2;
-  const tmpAssignComMemLhsProp$17 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(3);
-  index2char[tmpAssignComMemLhsProp$17] = 3;
-  const tmpAssignComMemLhsProp$18 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(4);
-  index2char[tmpAssignComMemLhsProp$18] = 4;
-  const tmpAssignComMemLhsProp$19 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(5);
-  index2char[tmpAssignComMemLhsProp$19] = 5;
-  const tmpAssignComMemLhsProp$20 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(6);
-  index2char[tmpAssignComMemLhsProp$20] = 6;
-  const tmpAssignComMemLhsProp$21 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(7);
-  index2char[tmpAssignComMemLhsProp$21] = 7;
-  const tmpAssignComMemLhsProp$22 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(8);
-  index2char[tmpAssignComMemLhsProp$22] = 8;
-  const tmpAssignComMemLhsProp$24 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(9);
-  index2char[tmpAssignComMemLhsProp$24] = 9;
-  const tmpAssignComMemLhsProp$25 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(10);
-  index2char[tmpAssignComMemLhsProp$25] = 10;
-  let tmpClusterSSA_s$27 = 11;
-  while (true) {
-    const tmpIfTest = tmpClusterSSA_s$27 < 64;
-    if (tmpIfTest) {
-      const tmpAssignComputedRhs$73 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$27];
-      chars[tmpClusterSSA_s$27] = tmpAssignComputedRhs$73;
-      const tmpAssignComMemLhsProp$26 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(tmpClusterSSA_s$27);
-      index2char[tmpAssignComMemLhsProp$26] = tmpClusterSSA_s$27;
-      tmpClusterSSA_s$27 = tmpClusterSSA_s$27 + 1;
-    } else {
-      break;
-    }
-  }
-  const tmpAssignComMemLhsProp$13 = `-`.charCodeAt(0);
-  index2char[tmpAssignComMemLhsProp$13] = 62;
-  const tmpAssignComMemLhsProp$15 = `_`.charCodeAt(0);
-  index2char[tmpAssignComMemLhsProp$15] = 63;
-  $(index2char, chars);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -305,11 +203,21 @@ $( a, c );
 $( undefined );
 `````
 
+
+## Todos triggered
+
+
+- Support string.charCodeAt when the arg is not a string literal
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 
@@ -515,6 +423,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support string.charCodeAt when the arg is not a string literal

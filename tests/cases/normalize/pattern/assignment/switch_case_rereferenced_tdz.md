@@ -28,12 +28,14 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,63 +44,6 @@ switch (1) {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let a;
-  let b;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 2;
-  if (0 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 1;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      a = 10;
-      b = 20;
-    }
-    if (tmpSwitchCaseToStart <= 1) {
-      [a, b] = [30, 40];
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-const tmpSwitchValue = 1;
-let tmpSwitchCaseToStart = 2;
-const tmpIfTest = 0 === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-  }
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
-  a = 10;
-  b = 20;
-} else {
-}
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$5) {
-  const arrAssignPatternRhs = [30, 40];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  a = arrPatternSplat[0];
-  b = arrPatternSplat[1];
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -107,11 +52,22 @@ With rename=true
 
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')
@@ -123,7 +79,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

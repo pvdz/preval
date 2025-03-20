@@ -15,6 +15,7 @@ function f({ x: [...y] = $(['fail']) }) {
 $(f(null, 10));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f(null, 10));
 null.x;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,43 +33,6 @@ null.x;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: [...y] = $([`fail`]) } = tmpParamBare;
-  return `bad`;
-};
-$(f(null, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = [`fail`];
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  let arrPatternSplat = [...objPatternAfterDefault];
-  let y = arrPatternSplat.slice(0);
-  return `bad`;
-};
-const tmpCalleeParam$1 = f(null, 10);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +42,21 @@ null.x;
 throw "[Preval]: Can not reach here";
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -93,6 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

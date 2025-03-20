@@ -14,6 +14,7 @@ let a = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,36 +53,6 @@ tmpBinBothLhs + $(100);
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-($($(0)) || $($(1)) || $($(2))) + $(100);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(0);
-let tmpBinBothLhs = $(tmpCalleeParam);
-if (tmpBinBothLhs) {
-} else {
-  const tmpCalleeParam$1 = $(1);
-  tmpBinBothLhs = $(tmpCalleeParam$1);
-  if (tmpBinBothLhs) {
-  } else {
-    const tmpCalleeParam$3 = $(2);
-    tmpBinBothLhs = $(tmpCalleeParam$3);
-  }
-}
-const tmpBinBothRhs = $(100);
-tmpBinBothLhs + tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -111,11 +83,15 @@ const f = {
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

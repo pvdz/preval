@@ -15,6 +15,7 @@ function f({ x = $('pass') } = $({ x: 'fail2' })) {
 $(f(0, 10));
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,48 +43,6 @@ if (objPatternBeforeDefault === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: x = $(`pass`) } = tmpParamBare === undefined ? $({ x: `fail2` }) : tmpParamBare;
-  return x;
-};
-$(f(0, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { x: `fail2` };
-    bindingPatternObjRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternObjRoot = tmpParamBare;
-  }
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let x = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    x = $(`pass`);
-    return x;
-  } else {
-    x = objPatternBeforeDefault;
-    return x;
-  }
-};
-const tmpCalleeParam$1 = f(0, 10);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +59,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

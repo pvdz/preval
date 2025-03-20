@@ -16,6 +16,7 @@ $(b)?.x + $(b)?.x;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,43 +63,6 @@ tmpBinBothLhs + tmpBinBothRhs;
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-$(b)?.x + $(b)?.x;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-let tmpBinBothLhs = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  tmpBinBothLhs = tmpChainElementObject;
-} else {
-}
-let tmpBinBothRhs = undefined;
-const tmpChainRootCall$1 = $;
-const tmpChainElementCall$1 = $(b);
-const tmpIfTest$1 = tmpChainElementCall$1 != null;
-if (tmpIfTest$1) {
-  const tmpChainElementObject$1 = tmpChainElementCall$1.x;
-  tmpBinBothRhs = tmpChainElementObject$1;
-} else {
-}
-tmpBinBothLhs + tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -132,11 +97,15 @@ const j = {
 $( j );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

@@ -28,6 +28,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr[0]);
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ const tmpCalleeParam /*:primitive*/ = arr[0];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -65,52 +67,6 @@ while (true) {
 $(arr[0]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x = arr[0];
-  $(x);
-  try {
-    const y = parseInt(x);
-    if (y) {
-      const el = arr.shift();
-      arr.push(el);
-    } else {
-      break;
-    }
-  } catch (e) {
-    $(`keepme`);
-  }
-}
-$(arr[0]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x = arr[0];
-  $(x);
-  try {
-    const y = parseInt(x);
-    if (y) {
-      const el = arr.shift();
-      arr.push(el);
-    } else {
-      break;
-    }
-  } catch (e) {
-    $(`keepme`);
-  }
-}
-const tmpCalleeParam = arr[0];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -133,11 +89,15 @@ const e = a[ 0 ];
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

@@ -13,6 +13,7 @@ let b = 2, c = 3, d = 4;
 for (var a = 1; ; ) $(d);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(4);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,35 +33,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = 2,
-  c = 3,
-  d = 4;
-{
-  a = 1;
-  while (true) {
-    $(d);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = 2;
-let c = 3;
-let d = 4;
-a = 1;
-while (true) {
-  $(d);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +43,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 4

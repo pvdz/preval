@@ -12,6 +12,7 @@
 $('hello'.lastIndexOf('e', 4, $, unknown));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $('hello'.lastIndexOf('e', 4, $, unknown));
 unknown;
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ unknown;
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`hello`.lastIndexOf(`e`, 4, $, unknown));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `hello`.lastIndexOf(`e`, 4, $, unknown);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,13 +39,17 @@ unknown;
 $( 1 );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

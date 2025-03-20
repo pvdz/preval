@@ -12,6 +12,7 @@
 parseInt(...$([]), $spy('b'), $spy('c'));
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ if (tmpIfTest) {
 +tmpUnaryArg;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -69,44 +71,6 @@ if (tmpArgOverflowLen > 1) {
 +tmpUnaryArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-parseInt(...$([]), $spy(`b`), $spy(`c`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [];
-const tmpArrSpread = $(tmpCalleeParam);
-const tmpArgOverflowOne = [...tmpArrSpread];
-const tmpArgOverflowLen = tmpArgOverflowOne.length;
-const tmpArgOverflowTwo = $spy(`b`);
-const tmpArgOverflowThree = $spy(`c`);
-let tmpCalleeParam$1 = undefined;
-if (tmpArgOverflowLen) {
-  tmpCalleeParam$1 = tmpArgOverflowOne[0];
-  $coerce(tmpCalleeParam$1, `string`);
-} else {
-  tmpCalleeParam$1 = tmpArgOverflowTwo;
-  $coerce(tmpArgOverflowTwo, `string`);
-}
-let tmpUnaryArg = undefined;
-const tmpIfTest = tmpArgOverflowLen > 1;
-if (tmpIfTest) {
-  tmpUnaryArg = tmpArgOverflowOne[1];
-} else {
-  if (tmpArgOverflowLen) {
-    tmpUnaryArg = tmpArgOverflowTwo;
-  } else {
-    tmpUnaryArg = tmpArgOverflowThree;
-  }
-}
-+tmpUnaryArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -141,11 +105,21 @@ else {
 +h;
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []
@@ -162,6 +136,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

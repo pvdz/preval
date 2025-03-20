@@ -16,6 +16,7 @@ $((a = ($(1), $(2), $(x))) && $(100));
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,35 +51,6 @@ if (a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-$((a = ($(1), $(2), $(x))) && $(100));
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-$(1);
-$(2);
-a = $(x);
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
-  $(a, x);
-} else {
-  $(tmpCalleeParam);
-  $(a, x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -97,11 +70,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

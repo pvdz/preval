@@ -32,6 +32,7 @@ while (count) {
 $(wat);
 `````
 
+
 ## Settled
 
 
@@ -68,6 +69,7 @@ if (chk) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -99,59 +101,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const s = $(10);
-let count = $LOOP_UNROLL_10;
-$(`before`);
-let wat = s | 10;
-let chk = $(true);
-if (chk) {
-} else {
-  count = false;
-}
-while (count) {
-  $(`inside`);
-  wat = wat | 10;
-  const chk$1 = $(true);
-  if (chk$1) {
-  } else {
-    count = false;
-  }
-}
-$(wat);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const s = $(10);
-let count = true;
-$(`before`);
-let wat = s | 10;
-let chk = $(true);
-if (chk) {
-} else {
-  count = false;
-}
-while (true) {
-  if (count) {
-    $(`inside`);
-    wat = wat | 10;
-    const chk$1 = $(true);
-    if (chk$1) {
-    } else {
-      count = false;
-    }
-  } else {
-    break;
-  }
-}
-$(wat);
-`````
 
 ## PST Settled
 With rename=true
@@ -195,11 +144,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

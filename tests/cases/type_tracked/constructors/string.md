@@ -13,6 +13,7 @@ const x = "" + $(1);
 $(String(x)); // Is the same as `x` and dropping the `String` call should not be observable
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,25 +31,6 @@ $(x);
 $($coerce($(1), `plustr`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = `` + $(1);
-$(String(x));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringFirstArg = x;
-const tmpCalleeParam = $coerce(x, `string`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +41,15 @@ const b = $coerce( a, "plustr" );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

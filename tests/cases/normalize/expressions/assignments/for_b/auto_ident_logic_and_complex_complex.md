@@ -14,6 +14,7 @@ for (; (a = $($(1)) && $($(2))); $(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ if (a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -80,41 +82,6 @@ if (a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  while ((a = $($(1)) && $($(2)))) {
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpCalleeParam = $(1);
-  a = $(tmpCalleeParam);
-  if (a) {
-    const tmpCalleeParam$1 = $(2);
-    a = $(tmpCalleeParam$1);
-  } else {
-  }
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -155,11 +122,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -197,6 +174,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

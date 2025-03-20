@@ -18,12 +18,14 @@ $(x !== true);
 
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,43 +34,6 @@ $(true);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    return $(`toString`);
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-$(x !== true);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    const tmpReturnArg = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-const tmpCalleeParam = x !== true;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +42,15 @@ With rename=true
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

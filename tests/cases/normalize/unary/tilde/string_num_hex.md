@@ -12,12 +12,14 @@
 $(~"0x0a05");
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(-2566);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(-2566);
 $(-2566);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(~`0x0a05`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = -2566;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( -2566 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: -2566

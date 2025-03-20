@@ -20,6 +20,7 @@ if (x === 2 || x === 3) $('pass');
 else $('fail');
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,32 +56,6 @@ if (x === 2) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(0);
-if (x === 2 || x === 3) $(`pass`);
-else $(`fail`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(0);
-let tmpIfTest = x === 2;
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  tmpIfTest = x === 3;
-  if (tmpIfTest) {
-    $(`pass`);
-  } else {
-    $(`fail`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +77,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

@@ -38,6 +38,7 @@ if ($) {
 }
 `````
 
+
 ## Settled
 
 
@@ -66,6 +67,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -88,68 +90,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = $(1);
-  let tmpLoopRetCode = true;
-  let tmpLoopBody = function () {
-    debugger;
-    x = $(2);
-    $(x);
-    if ($) {
-      tmpLoopRetCode = false;
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
-  }
-};
-if ($) {
-  f();
-} else {
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = $(1);
-  let tmpLoopRetCode = true;
-  let tmpLoopBody = function () {
-    debugger;
-    x = $(2);
-    $(x);
-    if ($) {
-      tmpLoopRetCode = false;
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  while (true) {
-    if (tmpLoopRetCode) {
-      tmpLoopBody();
-    } else {
-      break;
-    }
-  }
-  return undefined;
-};
-if ($) {
-  f();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -181,11 +121,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

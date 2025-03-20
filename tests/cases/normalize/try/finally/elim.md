@@ -24,6 +24,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ $(3);
 $(`fail2`);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -58,64 +60,6 @@ $(`fail2`);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  {
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    $finally: {
-      try {
-        $(1);
-        fail;
-        $(`fail`);
-      } catch ($finalImplicit) {
-        $(3);
-        throw $finalImplicit;
-      }
-    }
-    {
-      $(3);
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else {
-    }
-  }
-  $(`fail2`);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  try {
-    $(1);
-    fail;
-    $(`fail`);
-  } catch ($finalImplicit) {
-    $(3);
-    throw $finalImplicit;
-  }
-  $(3);
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    $(`fail2`);
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -135,13 +79,17 @@ $( "fail2" );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 fail
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

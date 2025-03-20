@@ -16,6 +16,7 @@ while (([b] = $([$(2)]))) $(100);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -65,38 +67,6 @@ if (tmpNestedAssignArrPatternRhs) {
 $({ a: 999, b: 1000 }, tmpClusterSSA_b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-while (([b] = $([$(2)]))) $(100);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-while (true) {
-  let tmpIfTest = undefined;
-  const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
-  tmpIfTest = tmpNestedAssignArrPatternRhs;
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -130,11 +100,22 @@ const j = {
 $( j, e );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -172,7 +153,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

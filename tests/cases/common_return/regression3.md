@@ -27,6 +27,7 @@ c();
 c();
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ c();
 c();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,58 +77,6 @@ c();
 c();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const d = function ($$0) {
-  let x = $$0;
-  debugger;
-  if ($) {
-    $(`d`);
-    return x;
-  } else {
-    return x;
-  }
-};
-const c = function () {
-  debugger;
-  $(`c`);
-  $(d($(10)), d($(20)));
-};
-c();
-c();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const d = function ($$0) {
-  let x = $$0;
-  debugger;
-  if ($) {
-    $(`d`);
-    return x;
-  } else {
-    return x;
-  }
-};
-const c = function () {
-  debugger;
-  $(`c`);
-  const tmpCallCallee = d;
-  const tmpCalleeParam$3 = $(10);
-  const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$3);
-  const tmpCallCallee$1 = d;
-  const tmpCalleeParam$5 = $(20);
-  const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$5);
-  $(tmpCalleeParam, tmpCalleeParam$1);
-  return undefined;
-};
-c();
-c();
-`````
 
 ## PST Settled
 With rename=true
@@ -156,11 +106,15 @@ b();
 b();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'c'

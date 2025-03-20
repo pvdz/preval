@@ -13,6 +13,7 @@ const obj = {a: {b: {c: $()}}};
 $(obj??a??b??c);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const obj /*:object*/ = { a: tmpObjLitVal };
 $(obj);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,41 +36,6 @@ const tmpObjLitVal = { b: tmpObjLitVal$1 };
 $({ a: tmpObjLitVal });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { a: { b: { c: $() } } };
-$(obj ?? a ?? b ?? c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$3 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-let tmpCalleeParam = obj;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = a;
-} else {
-}
-const tmpIfTest$1 = tmpCalleeParam == null;
-if (tmpIfTest$1) {
-  tmpCalleeParam = b;
-} else {
-}
-const tmpIfTest$3 = tmpCalleeParam == null;
-if (tmpIfTest$3) {
-  tmpCalleeParam = c;
-  $(c);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +48,15 @@ const d = { a: c };
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

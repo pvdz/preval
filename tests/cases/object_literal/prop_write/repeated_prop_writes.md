@@ -22,6 +22,7 @@ do {
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ const b /*:object*/ = { x: 3 };
 $(a, b, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,63 +44,6 @@ $(100);
 $({ a: 999, b: 1000 }, { x: 3 }, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = 3;
-let a = { a: 999, b: 1000 };
-while (true) {
-  {
-    $(100);
-    if (b.x === 3) {
-      break;
-    }
-  }
-  if ((b.x = b.x = b.x = b.x = b.x = b.x = c)) {
-  } else {
-    break;
-  }
-}
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = 3;
-let a = { a: 999, b: 1000 };
-while (true) {
-  $(100);
-  const tmpBinLhs = b.x;
-  const tmpIfTest = tmpBinLhs === 3;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const varInitAssignLhsComputedRhs$9 = c;
-    b.x = varInitAssignLhsComputedRhs$9;
-    const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
-    b.x = varInitAssignLhsComputedRhs$7;
-    const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-    b.x = varInitAssignLhsComputedRhs$5;
-    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$3;
-    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-    b.x = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    b.x = varInitAssignLhsComputedRhs;
-    const tmpIfTest$1 = varInitAssignLhsComputedRhs;
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
-  }
-}
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -114,11 +59,21 @@ const b = { x: 3 };
 $( a, b, 3 );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100
@@ -133,6 +88,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

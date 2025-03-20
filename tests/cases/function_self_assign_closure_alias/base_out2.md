@@ -59,6 +59,7 @@ a();
 b();
 `````
 
+
 ## Settled
 
 
@@ -91,6 +92,7 @@ a();
 b();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -115,65 +117,6 @@ a();
 b();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const b = function () {
-  debugger;
-  $(`before`);
-  a = function () {
-    debugger;
-    $(`replaced`);
-  };
-  $(`after`);
-};
-let a = function () {
-  debugger;
-  $(`before`);
-  a = function () {
-    debugger;
-    $(`replaced`);
-  };
-  $(`after`);
-};
-b();
-b();
-a();
-b();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const b = function () {
-  debugger;
-  $(`before`);
-  a = function () {
-    debugger;
-    $(`replaced`);
-    return undefined;
-  };
-  $(`after`);
-  return undefined;
-};
-let a = function () {
-  debugger;
-  $(`before`);
-  a = function () {
-    debugger;
-    $(`replaced`);
-    return undefined;
-  };
-  $(`after`);
-  return undefined;
-};
-b();
-b();
-a();
-b();
-`````
 
 ## PST Settled
 With rename=true
@@ -207,11 +150,15 @@ a();
 b();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before'

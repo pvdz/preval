@@ -21,8 +21,6 @@ export const ORANGE = '\x1b[38;5;214m';
 export const GOOD = '\x1b[40m 🙂 \x1b[0m';
 export const BAD = '\x1b[41m 👎 \x1b[0m';
 
-const PRINT_DENORMALIZED = true;
-
 export function ASSERT(a, desc = '', ...rest) {
   if (!a) {
     console.log('ASSERT failed: ' + desc);
@@ -163,6 +161,9 @@ export function fromMarkdownCase(md, fname, config) {
             !s.startsWith('PST Output\n') &&
             !s.startsWith('PST Output:\n') &&
             !s.startsWith('Result\n') &&
+            !s.startsWith('Todos triggered\n') &&
+            !s.startsWith('Ref tracking result\n') &&
+            !s.startsWith('Pcode result\n') &&
             !s.startsWith('Runtime Outcome\n'),
         )
         .map((s) => {
@@ -213,9 +214,16 @@ export function fmat(code) {
   }
 }
 
-export function toPreResult(obj) {
+function toTodosSection(todos) {
   return (
-    '\n\n## Pre Normal\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
+    '## Todos triggered\n\n\n' +
+    Array.from(todos).map(desc => '- ' + desc).join('\n')
+  )
+}
+
+export function toPreNormalSection(obj) {
+  return (
+    '## Pre Normal\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
     Object.keys(obj)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .map((key) => '`````js filename=' + key + '\n' + fmat(obj[key]).trim() + '\n`````')
@@ -223,12 +231,95 @@ export function toPreResult(obj) {
   );
 }
 
-export function toNormalizedResult(obj) {
+export function toNormalizedSection(obj) {
   return (
-    '\n\n## Normalized\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
+    '## Normalized\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
     Object.keys(obj)
       .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
       .map((key) => '`````js filename=' + key + '\n' + fmat(obj[key]).trim() + '\n`````')
+      .join('\n\n')
+  );
+}
+
+function toSettledSection(obj) {
+  return (
+    '## Settled\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
+    Object.keys(obj)
+    .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+    .map((key) => '`````js filename=' + key + '\n' + fmat(obj[key]).trim() + '\n`````')
+    .join('\n\n')
+  )
+}
+
+function toDenormalizedSection(obj) {
+  return (
+    '## Denormalized\n(This ought to be the final result)\n\n' + // two lines. this way diff always captures this as the hunk header (with the default U3)
+    Object.keys(obj)
+    .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+    .map((key) => '`````js filename=' + key + '\n' + fmat(obj[key]).trim() + '\n`````')
+    .join('\n\n')
+  )
+}
+
+function toPstSettledSection(obj, implicitGlobals, explicitGlobals) {
+  return (
+    '## PST Settled\n' +
+    'With rename=true\n\n' +
+    Object.keys(obj)
+      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+      .map((key) => {
+        const pst = obj[key];
+        //console.log('PST:');
+        //console.dir(pst, {depth: null});
+        verifyPst(pst);
+
+        const code = printPst(pst, {
+          rename: true,
+          globals: new Set(Array.from(implicitGlobals).concat(Array.from(explicitGlobals))),
+        });
+
+        return '`````js filename=' + key + '\n' + code.trim() + '\n`````';
+      })
+      .join('\n\n')
+  )
+}
+
+function toSpecialRefTestSection(obj) {
+  setPrintPids(true);
+  const str = (
+    // Special ref test result
+    '## Output\n\n' +
+    '(Annotated with pids)\n\n' +
+    Object.keys(obj)
+      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+      .map((key) => '`````filename=' + key + '\n' + fmat(tmat(obj[key], true)).trim() + '\n`````')
+      .join('\n\n')
+  );
+  setPrintPids(false);
+
+  return str;
+}
+
+export function toSpecialPcodeSection(pcodeData) {
+  // Special pcode test result
+  return (
+    '## Pcode output\n\n\n' +
+    Object.keys(pcodeData) // fname
+      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+      .map((fname) => {
+        const list = [];
+        pcodeData[fname].forEach(({pcode, name}, id) => {
+          if (typeof id === 'number') return;
+
+          list.push(`${name} =\n${
+            printPcode(pcode, 4)
+          }`);
+        });
+        return '`````file' + fname + '\n' +
+          list.join('\n\n')
+          .trim() +
+          '\n`````\n\n'
+      })
       .join('\n\n')
   );
 }
@@ -256,8 +347,8 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsT
   const normalizedEvalResult = inputOutput === normalizedOutput ? ' Same' : ' BAD!?\n' + normalizedOutput;
   const finalEvalResult = skipFinal
     ? ''
-    : (PRINT_DENORMALIZED ? 'Post settled' : 'Final output') + ' calls:' + (inputOutput === settledOutput ? ' Same\n' + (PRINT_DENORMALIZED ? '\n' : '') : ' BAD!!\n' + settledOutput + '\n' + (PRINT_DENORMALIZED ? '\n' : ''));
-  const denormEvalResult = (skipFinal || !PRINT_DENORMALIZED)
+    : 'Post settled calls:' + (inputOutput === settledOutput ? ' Same\n\n' : ' BAD!!\n' + settledOutput + '\n\n');
+  const denormEvalResult = skipFinal
     ? ''
     : 'Denormalized calls:' + (inputOutput === denormOutput ? ' Same\n' : ' BAD!!\n' + denormOutput + '\n');
   const hasError = !(inputOutput === preOutput && inputOutput === normalizedOutput && (skipFinal || inputOutput === settledOutput) && (skipFinal || inputOutput === denormOutput));
@@ -292,7 +383,7 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsT
   }
 
   return (
-    '\n\n## Globals\n\n' +
+    '## Globals\n\n\n' +
     (globalsLeft.size > 0
       ? 'BAD@! Found ' + globalsLeft.size + ' implicit global bindings:\n\n' + [...globalsLeft].join(', ')
       : 'None' + (implicitGlobals.size ? ' (except for the ' + implicitGlobals.size + ' globals expected by the test)' : '')) +
@@ -300,7 +391,7 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsT
       ? '\n\nBAD@@! Test expected ' + ignoresLeft.size + ' implicit global bindings that were not seen:\n\n' + [...ignoresLeft].join(', ') + '\n'
       : ''
     ) +
-    '\n\n## Runtime Outcome\n\n' +
+    '\n\n\n## Runtime Outcome\n\n\n' +
     'Should call `$` with:\n' +
     inputOutput +
     '\n\n' +
@@ -358,92 +449,35 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
   const wasRefTest = CONFIG.refTest || mdOptions?.refTest;
   const wasPcodeTest = CONFIG.pcodeTest || mdOptions?.pcodeTest;
 
-  let mdBody =
-    ((CONFIG.logPasses || CONFIG.logPhases) ? '<trimmed, see logs>' : (
-
-      (wasPcodeTest || wasRefTest ? '' : (
-        '\n\n## Settled\n\n\n' + // two empty lines. this way diff always captures this as the hunk header (with the default U3)
-        Object.keys(output.files)
-        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-        .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
-        .join('\n\n')
-      )) +
-
-      (!PRINT_DENORMALIZED || wasPcodeTest || wasRefTest ? '' : (
-        '\n\n## Denormalized\n(This ought to be the final result)\n\n' + // two lines. this way diff always captures this as the hunk header (with the default U3)
-        Object.keys(output.denormed)
-        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-        .map((key) => '`````js filename=' + key + '\n' + fmat(output.denormed[key]).trim() + '\n`````')
-        .join('\n\n')
-      )) +
-
-      (wasRefTest || CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
-      (wasRefTest || wasPcodeTest || CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
-      (!wasRefTest ? '' : (
-        (setPrintPids(true), '') +
-
-        '\n\n## Output\n\n' +
-        '(Annotated with pids)\n\n' +
-        Object.keys(output.files)
-        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-        .map((key) => '`````filename=' + key + '\n' + fmat(tmat(output.lastPhase1Ast, true)).trim() + '\n`````')
-        .join('\n\n') +
-
-        (setPrintPids(false), '')
-      )) +
-      (!wasPcodeTest ? '' : (
-        '\n\n## Pcode output\n\n' +
-        Object.keys(pcodeData) // fname
-        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-        .map((fname) => {
-          const list = [];
-          pcodeData[fname].forEach(({pcode, name}, id) => {
-            if (typeof id === 'number') return;
-
-            list.push(`${name} =\n${
-              printPcode(pcode, 4)
-            }`);
-          });
-          return '`````file' + fname + '\n' +
-            list.join('\n\n')
-            .trim() +
-            '\n`````\n\n'
-        })
-        .join('\n\n')
-      )) +
-      (wasPcodeTest || wasRefTest ? '' : (
-        '\n\n## PST Settled\n' +
-        'With rename=true\n\n' +
-        Object.keys(output.files)
-        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-        .map((key) => {
-          const pst = output.settledPst;
-          //console.log('PST:');
-          //console.dir(pst, {depth: null});
-          verifyPst(pst);
-
-          const code = printPst(pst, {
-            rename: true,
-            globals: new Set(Array.from(output.implicitGlobals).concat(Array.from(output.explicitGlobals))),
-          });
-
-          return '`````js filename=' + key + '\n' + code.trim() + '\n`````';
-        })
-        .join('\n\n')
-      )) +
-      (
-        wasRefTest
-          ? '\n\nRef tracking result:\n\n' + createOpenRefsState(output.globallyUniqueNamingRegistry)
-          : wasPcodeTest
-          ? evalled.$pcode + '\n'
-          : toEvaluationResult(evalled, output.implicitGlobals, false, mdOptions.globals)
-      ) +
-      (todos.size ?
-        '\nTodos triggered:\n' +
-        Array.from(todos).map(desc => '- ' + desc).join('\n') + '\n'
-        : '')
-    )) +
-  '';
+  let mdBody;
+  if (CONFIG.logPasses || CONFIG.logPhases) {
+    mdBody = '<trimmed, see logs>';
+  }
+  else if (wasPcodeTest) {
+    mdBody = '\n\n\n' + [
+      toSpecialPcodeSection(pcodeData),
+      (todos.size ? toTodosSection(todos) : ''),
+      '## Pcode result\n\n\n' + evalled.$pcode,
+    ].filter(Boolean).join('\n\n\n');
+  }
+  else if (wasRefTest) {
+    mdBody = '\n\n\n' + [
+      toSpecialRefTestSection(output.lastPhase1Ast),
+      (todos.size ? toTodosSection(todos) : ''),
+      '## Ref tracking result\n\n\n' + createOpenRefsState(output.globallyUniqueNamingRegistry),
+    ].filter(Boolean).join('\n\n\n');
+  }
+  else {
+    mdBody = '\n\n\n' + [
+      toSettledSection(output.files),
+      toDenormalizedSection(output.denormed),
+      toPstSettledSection(output.settledPst, output.implicitGlobals, output.explicitGlobals),
+      (todos.size ? toTodosSection(todos) : ''),
+      toEvaluationResult(evalled, output.implicitGlobals, false, mdOptions.globals),
+      //(wasRefTest || CONFIG.onlyOutput ? '' : toPreNormalSection(output.pre)),
+      //(wasRefTest || wasPcodeTest || CONFIG.onlyOutput ? '' : toNormalizedSection(output.normalized)),
+    ].filter(Boolean).join('\n\n\n');
+  }
 
   if (CONFIG.trimDollar) mdBody = mdBody.replace(/\$\d+/g, '');
 
@@ -504,57 +538,3 @@ async function yn(msg = 'Answer?') {
 
   return true;
 }
-
-/**
- // hack to get package version at certain day blabla
-
- var names = [
- 'gatsby',
- 'gatsby-image',
- 'gatsby-link',
- 'gatsby-plugin-google-tagmanager',
- 'gatsby-plugin-i18next',
- 'gatsby-plugin-react-helmet',
- //'gatsby-plugin-react-svg',
- //'gatsby-plugin-resolve-src',
- //'gatsby-plugin-robots-txt',
- 'gatsby-plugin-sharp',
- 'gatsby-plugin-styled-components',
- 'gatsby-react-router-scroll',
- 'gatsby-source-contentful',
- 'gatsby-source-filesystem',
- 'gatsby-transformer-remark',
- 'gatsby-transformer-sharp',
- ];
- //names.forEach(name => { // only need to do this once unless you need to refresh. it just stores the remote fetch locally.
-//require('https').get('https://registry.npmjs.org/' + name, res => { res.setEncoding('utf8'); let body = ''; res.on('data', d => body += d); res.on('end', () => console.log('finished:', name, require('fs').writeFileSync('npm.' + name + '.json', body, 'utf8')))})
-//})
- var maps = new Map
- var init = new Map
- names.forEach(name => {
-  var json = JSON.parse(require('fs').readFileSync('npm.' + name + '.json')).time;
-  var older = 'latest'
-  for (const key in json) {
-    if (!/^[\d.]+$/.test(key)) delete json[key]; // prune anything that's not a regular publish
-    else if (json[key] < '2020-10-15') older = key, delete json[key]; // prune older than target contentful ver pubdate. remember the last one before target date
-  }
-  var map = new Map; for (const key in json) map.set(json[key].slice(0, 10), key);
-  maps.set(name, map)
-  init.set(name, older); // initial version (as per prior to target date)
-})
- init
-
- // start at date of target version and walk forward to today. if any version changed on any day then copy the version and stamp it as a set
- // https://github.com/gatsbyjs/gatsby/commit/2494ae111f56e412071b103f202124c71c309e9b#diff-01f6ae9ad71849950b24e4800c23defcd1440600c57d6cabbf2a4cac7bfbe8d0 (oct 15th)
- var sets = new Map; var today = new Date; var day = new Date('2020-10-15');
- while (day <= today) {
-  var c = false;
-  maps.forEach((vers, name) => { if (vers.has(day.toISOString().slice(0,10))) c =init.set(name, vers.get(day.toISOString().slice(0,10))) && (c || name === 'gatsby-source-contentful'); })
-  if (c) sets.set(day.toISOString().slice(0,10), new Map(init))
-  day.setDate(day.getDate() + 1)
-}
-
- var arr = []
- sets.forEach((map, day) => arr.push('// ' + day + '\nyarn --ignore-engines add ' + [...map.entries()].map(([name, ver]) => name + '@' + ver).join(' ')) )
- console.log(arr.join('\n\n'))
- */

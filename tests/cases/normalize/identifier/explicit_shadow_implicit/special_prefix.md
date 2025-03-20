@@ -17,6 +17,7 @@
 $($implicit$foo);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $($implicit$foo$1);
 $($implicit$foo);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,25 +36,6 @@ $($(1));
 $($implicit$foo);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  const $implicit$foo$1 = $(1);
-  $($implicit$foo$1);
-}
-$($implicit$foo);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const $implicit$foo$1 = $(1);
-$($implicit$foo$1);
-$($implicit$foo);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,13 +46,17 @@ $( a );
 $( $implicit$foo );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 $implicit$foo
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

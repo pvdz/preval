@@ -13,6 +13,7 @@ const x = $(1) === $(2);
 $(typeof x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $(1);
 $(2);
 $(`boolean`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,24 +33,6 @@ $(2);
 $(`boolean`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(1) === $(2);
-$(typeof x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-const x = tmpBinBothLhs === tmpBinBothRhs;
-const tmpCalleeParam = typeof x;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +43,15 @@ $( 2 );
 $( "boolean" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

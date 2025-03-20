@@ -27,6 +27,7 @@ f('');
 f('foop');
 `````
 
+
 ## Settled
 
 
@@ -55,6 +56,7 @@ f(``);
 f(`foop`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -74,58 +76,6 @@ f(``);
 f(`foop`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let y = $$0;
-  debugger;
-  const x = `` + y;
-  if (x) {
-  } else {
-    const g = function ($$0) {
-      let z = $$0;
-      debugger;
-      $(`keepme`);
-      return [x, z];
-    };
-    $(g(10), `pass`);
-    $(g(20), `pass`);
-  }
-};
-f(``);
-f(`foop`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let y = $$0;
-  debugger;
-  const x = $coerce(y, `plustr`);
-  if (x) {
-    return undefined;
-  } else {
-    const g = function ($$0) {
-      let z = $$0;
-      debugger;
-      $(`keepme`);
-      const tmpReturnArg = [x, z];
-      return tmpReturnArg;
-    };
-    const tmpCalleeParam = g(10);
-    $(tmpCalleeParam, `pass`);
-    const tmpCalleeParam$1 = g(20);
-    $(tmpCalleeParam$1, `pass`);
-    return undefined;
-  }
-};
-f(``);
-f(`foop`);
-`````
 
 ## PST Settled
 With rename=true
@@ -156,11 +106,15 @@ a( "" );
 a( "foop" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'keepme'

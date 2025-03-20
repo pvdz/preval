@@ -16,6 +16,7 @@ $((a = b?.c(1)) || (a = b?.c(1)));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if (tmpChainElementCall) {
   $(tmpChainElementCall$1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -48,49 +50,6 @@ if (tmpChainElementCall) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: $ };
-let a = { a: 999, b: 1000 };
-$((a = b?.c(1)) || (a = b?.c(1)));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: $ };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootProp.c(1);
-  a = tmpChainElementCall;
-} else {
-}
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  $(tmpCalleeParam);
-  $(a);
-} else {
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp$1 = b;
-  const tmpIfTest$1 = tmpChainRootProp$1 != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementCall$1 = tmpChainRootProp$1.c(1);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
-  } else {
-  }
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -109,11 +68,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

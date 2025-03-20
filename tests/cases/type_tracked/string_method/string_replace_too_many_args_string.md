@@ -12,6 +12,7 @@
 $('hello world'.replace(' ', ', ', $, unknown));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $('hello world'.replace(' ', ', ', $, unknown));
 unknown;
 $(`hello, world`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ unknown;
 $(`hello, world`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`hello world`.replace(` `, `, `, $, unknown));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `hello world`.replace(` `, `, `, $, unknown);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,13 +39,17 @@ unknown;
 $( "hello, world" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

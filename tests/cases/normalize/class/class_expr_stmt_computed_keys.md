@@ -15,6 +15,7 @@
 });
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@
 $(`a`);
 $(`b`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,27 +33,6 @@ $(`a`);
 $(`b`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-(class x {
-  [$(`a`)]() {
-    debugger;
-  }
-  [$(`b`)]() {
-    debugger;
-  }
-});
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpClassComputedKey = $(`a`);
-const tmpClassComputedKey$1 = $(`b`);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +42,15 @@ $( "a" );
 $( "b" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

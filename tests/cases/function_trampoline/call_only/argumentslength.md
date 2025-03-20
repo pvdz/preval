@@ -15,12 +15,14 @@ const f = function(a, b, c, d, e) {
 f(1, 2, 3, 4, 5); // The use of `arguments.length` should prevent inlining this call, for now, although inlining the arg count probably won't take very long
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(5);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,40 +31,6 @@ $(5);
 $(5);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  $(tmpPrevalAliasArgumentsLen);
-};
-f(1, 2, 3, 4, 5);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  $(tmpPrevalAliasArgumentsLen);
-  return undefined;
-};
-f(1, 2, 3, 4, 5);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +39,15 @@ With rename=true
 $( 5 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 5

@@ -14,6 +14,7 @@ $((a = [1, 2, 3]) + (a = [1, 2, 3]));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpClusterSSA_a /*:array*/ = [1, 2, 3];
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,28 +33,6 @@ $(`1,2,31,2,3`);
 $([1, 2, 3]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a = [1, 2, 3]) + (a = [1, 2, 3]));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = [1, 2, 3];
-let tmpBinBothLhs = a;
-a = [1, 2, 3];
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +43,15 @@ const a = [ 1, 2, 3 ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '1,2,31,2,3'

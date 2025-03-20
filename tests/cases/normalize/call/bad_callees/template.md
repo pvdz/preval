@@ -14,6 +14,7 @@ $('before');
 $('after');
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpBinBothRhs /*:string*/ = $coerce($, `string`);
 tmpBinBothRhs();
 $(`after`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,27 +36,6 @@ tmpBinBothRhs();
 $(`after`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`before`);
-(`` + $coerce($, `string`) + ``)();
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`before`);
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $coerce($, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCallComplexCallee = $coerce(tmpBinLhs, `plustr`);
-tmpCallComplexCallee();
-$(`after`);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +47,15 @@ a();
 $( "after" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before'

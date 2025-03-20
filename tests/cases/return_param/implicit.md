@@ -31,6 +31,7 @@ $(f(2));
 $(f('three'));
 `````
 
+
 ## Settled
 
 
@@ -57,6 +58,7 @@ const tmpCalleeParam$3 /*:unknown*/ = f();
 $(tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -78,57 +80,6 @@ $(f());
 $(f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = ~x;
-  if ($(true)) {
-    $(`a`);
-    return foo;
-  } else {
-    $(`b`);
-    return foo;
-  }
-};
-$(f(1));
-$(f(2));
-$(f(`three`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  $(`please`);
-  const y = ~x;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`a`);
-    return foo;
-  } else {
-    $(`b`);
-    return foo;
-  }
-};
-const tmpCalleeParam = f(1);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`three`);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -157,13 +108,17 @@ const e = a();
 $( e );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 foo
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'no'

@@ -27,6 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(x); // x=5
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -46,7 +47,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___7__) {
 $(x___33__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

@@ -23,6 +23,7 @@ $(f(2));
 $(f('three'));
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ const tmpCalleeParam$3 /*:number*/ = f(`three`);
 $(tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,44 +61,6 @@ $(f(2));
 $(f(`three`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  const bad = $(`please`);
-  const y = bad | x;
-  return y;
-};
-$(f(1));
-$(f(2));
-$(f(`three`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(`no`);
-  $(`inlining`);
-  const bad = $(`please`);
-  const y = bad | x;
-  return y;
-};
-const tmpCalleeParam = f(1);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`three`);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -119,11 +83,15 @@ const g = a( "three" );
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'no'

@@ -17,6 +17,7 @@ const rra = arr.reverse();
 $(rra);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ arr.reverse();
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,31 +45,6 @@ arr.reverse();
 $(arr);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4];
-if ($) {
-  $(arr.pop());
-}
-const rra = arr.reverse();
-$(rra);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4];
-if ($) {
-  const tmpCalleeParam = arr.pop();
-  $(tmpCalleeParam);
-} else {
-}
-const rra = arr.reverse();
-$(rra);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +59,21 @@ a.reverse();
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_pop
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 4
@@ -100,6 +87,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_pop

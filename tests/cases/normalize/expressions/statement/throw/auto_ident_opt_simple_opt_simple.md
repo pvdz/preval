@@ -16,12 +16,14 @@ throw b?.x?.y;
 $(a);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw 1;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,38 +32,6 @@ throw 1;
 throw 1;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: 1 } };
-let a = { a: 999, b: 1000 };
-throw b?.x?.y;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-let tmpThrowArg = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpThrowArg = tmpChainElementObject$1;
-  } else {
-  }
-} else {
-}
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +40,15 @@ With rename=true
 throw 1;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ 1 ]>')

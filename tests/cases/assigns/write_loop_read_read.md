@@ -16,6 +16,7 @@ while ($(true)) {
 $(x, 'after');
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,32 +57,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(10);
-while ($(true)) {
-  $(x, `loop`);
-}
-$(x, `after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(10);
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(x, `loop`);
-  } else {
-    break;
-  }
-}
-$(x, `after`);
-`````
 
 ## PST Settled
 With rename=true
@@ -106,11 +82,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

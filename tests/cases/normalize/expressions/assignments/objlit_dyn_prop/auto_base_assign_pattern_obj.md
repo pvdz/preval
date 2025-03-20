@@ -16,6 +16,7 @@ $({ [(a = { b } = $({ b: $(2) }))]: 10 });
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(tmpCalleeParam);
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,33 +42,6 @@ $({ [tmpNestedAssignObjPatternRhs]: 10 });
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-$({ [(a = { b: b } = $({ b: $(2) }))]: 10 });
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-const tmpObjLitVal = $(2);
-const tmpCalleeParam$1 = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-b = tmpNestedAssignObjPatternRhs.b;
-a = tmpNestedAssignObjPatternRhs;
-let tmpObjLitPropKey = a;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +56,15 @@ $( e );
 $( c, d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

@@ -20,6 +20,7 @@ $(
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ const tmpClusterSSA_y$1 /*:unknown*/ = arrPatternSplat$1[1];
 $(tmpNestedAssignArrPatternRhs$1);
 $(tmpNestedAssignArrPatternRhs$1, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -60,54 +62,6 @@ $(tmpNestedAssignArrPatternRhs$1);
 $(tmpNestedAssignArrPatternRhs$1, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-$((a = [x, y] = ($(x), $(y), [$(3), $(4)])) && (a = [x, y] = ($(x), $(y), [$(3), $(4)])));
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-$(x);
-$(y);
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-a = tmpNestedAssignArrPatternRhs;
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = undefined;
-  $(x);
-  $(y);
-  const tmpArrElement$3 = $(3);
-  const tmpArrElement$5 = $(4);
-  const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-  x = arrPatternSplat$1[0];
-  y = arrPatternSplat$1[1];
-  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs$1;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(a, x, y);
-} else {
-  $(tmpCalleeParam);
-  $(a, x, y);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -129,11 +83,22 @@ $( e );
 $( e, g, h );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -155,7 +120,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

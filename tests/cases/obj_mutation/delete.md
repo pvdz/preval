@@ -13,12 +13,14 @@ const blob = {thing: 'bloop'};
 delete blob.thing;
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ delete blob.thing;
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const blob = { thing: `bloop` };
-delete blob.thing;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const blob = { thing: `bloop` };
-delete blob.thing;
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

@@ -12,12 +12,14 @@
 $("fop"[1]);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`o`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(`o`);
 $(`o`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`fop`[1]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `o`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( "o" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'o'

@@ -15,12 +15,14 @@ const arr = [1, 2, 3];
 $(++arr[0]);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,28 +31,6 @@ $(2);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-$(++arr[0]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-let tmpUpdObj = arr;
-let tmpUpdProp = 0;
-let tmpUpdVal = tmpUpdObj[tmpUpdProp];
-let tmpUpdNum = $coerce(tmpUpdVal, `number`);
-let tmpUpdInc = tmpUpdNum + 1;
-tmpUpdObj[tmpUpdProp] = tmpUpdInc;
-const tmpCalleeParam = tmpUpdInc;
-$(tmpUpdInc);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +39,23 @@ With rename=true
 $( 2 );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- free with zero args, we can eliminate this?
+- arr_mutation: implement array inlining analysis stuff
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -76,8 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- free with zero args, we can eliminate this?
-- arr_mutation: implement array inlining analysis stuff

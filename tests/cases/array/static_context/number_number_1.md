@@ -12,12 +12,14 @@
 $(Number([1]));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,21 +28,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(Number([1]));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpStringFirstArg = [1];
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -49,11 +36,15 @@ With rename=true
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

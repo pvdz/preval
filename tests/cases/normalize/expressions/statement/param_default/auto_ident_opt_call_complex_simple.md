@@ -15,6 +15,7 @@ $(f());
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,51 +47,6 @@ if (tmpChainElementCall == null) {
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = tmpParamBare === undefined ? $($)?.(1) : tmpParamBare;
-};
-let a = { a: 999, b: 1000 };
-$(f());
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    p = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = $($);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
-      p = tmpChainElementCall$1;
-      return undefined;
-    } else {
-      return undefined;
-    }
-  } else {
-    p = tmpParamBare;
-    return undefined;
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -111,11 +68,15 @@ const c = {
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

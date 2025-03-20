@@ -14,6 +14,7 @@ for (let xyz = (a = function f() {}); ; $(1)) $(xyz);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,39 +41,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  let xyz = (a = function f() {
-    debugger;
-  });
-  while (true) {
-    $(xyz);
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  return undefined;
-};
-a = f;
-let xyz = a;
-while (true) {
-  $(xyz);
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +56,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

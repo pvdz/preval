@@ -16,6 +16,7 @@ $((a = b["c"]) && $(100));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const b /*:object*/ = { c: 1 };
 $(1, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,33 +36,6 @@ $($(100));
 $(1, { c: 1 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-$((a = b[`c`]) && $(100));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-a = b.c;
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
-  $(a, b);
-} else {
-  $(tmpCalleeParam);
-  $(a, b);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +47,15 @@ const b = { c: 1 };
 $( 1, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

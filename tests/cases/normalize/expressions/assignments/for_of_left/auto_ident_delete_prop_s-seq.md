@@ -16,6 +16,7 @@ for ((a = delete ($(1), $(2), arg).y).x of $({ x: 1 }));
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,53 +64,6 @@ while (true) {
 $(a, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-{
-  let tmpForOfGen = $forOf($({ x: 1 }));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      (a = delete ($(1), $(2), arg).y).x = tmpForOfNext.value;
-    }
-  }
-}
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-let tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    $(1);
-    $(2);
-    const tmpDeleteObj = arg;
-    a = delete tmpDeleteObj.y;
-    let tmpAssignMemLhsObj = a;
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
-}
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -139,11 +94,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( a, e );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -156,7 +122,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

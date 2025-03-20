@@ -15,6 +15,7 @@ const obj = {f: g};
 $dotCall(h, obj, undefined); // not calling an obj prop value
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ const obj /*:object*/ = { f: g };
 $dotCall(h, obj, undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,39 +51,6 @@ $dotCall(
 );
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  $();
-};
-const h = function () {
-  debugger;
-  $();
-};
-const obj = { f: g };
-$dotCall(h, obj, undefined);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const h = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const obj = { f: g };
-$dotCall(h, obj, undefined);
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +70,15 @@ const c = { f: a };
 $dotCall( b, c, undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

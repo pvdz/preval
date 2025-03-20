@@ -13,6 +13,7 @@ let x = --$($spy(100))[$spy(1)];
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ tmpUpdObj[tmpUpdProp] = tmpUpdInc;
 $(tmpUpdInc);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,28 +40,6 @@ tmpUpdObj[tmpUpdProp] = tmpUpdInc;
 $(tmpUpdInc);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = --$($spy(100))[$spy(1)];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = $spy(100);
-let tmpUpdObj = $(tmpCalleeParam);
-let tmpUpdProp = $spy(1);
-let tmpUpdVal = tmpUpdObj[tmpUpdProp];
-let tmpUpdNum = $coerce(tmpUpdVal, `number`);
-let tmpUpdInc = tmpUpdNum - 1;
-tmpUpdObj[tmpUpdProp] = tmpUpdInc;
-let x = tmpUpdInc;
-$(tmpUpdInc);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +55,15 @@ b[c] = f;
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [100, 100]

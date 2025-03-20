@@ -12,6 +12,7 @@
 $(`abc ${ $(1) } def`);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:string*/ = `abc ${tmpBinBothRhs} def`;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,25 +31,6 @@ $(tmpCalleeParam);
 $(`abc ${$(1)} def`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`abc ` + $coerce($(1), `string`) + ` def`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = `abc `;
-const tmpCalleeParam$1 = $(1);
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR} def`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +42,15 @@ const c = `abc ${b} def`;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

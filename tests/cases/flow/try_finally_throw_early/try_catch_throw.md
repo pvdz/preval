@@ -22,6 +22,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ try {
 }
 $(`pass`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -46,42 +48,6 @@ try {
 $(`pass`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    x = `pass`;
-    throw `yes`;
-  } catch (e) {
-    $(`caught`);
-  }
-  $(x);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    x = `pass`;
-    throw `yes`;
-  } catch (e) {
-    $(`caught`);
-  }
-  $(x);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -96,11 +62,15 @@ catch (a) {
 $( "pass" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'caught'

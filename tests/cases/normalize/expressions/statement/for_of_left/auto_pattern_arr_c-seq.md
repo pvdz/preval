@@ -14,6 +14,7 @@ for (($(10), $(20), $([1, 2])).x of $({ x: 1 }));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,52 +64,6 @@ while (true) {
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let [a] = { a: 999, b: 1000 };
-{
-  let tmpForOfGen = $forOf($({ x: 1 }));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      ($(10), $(20), $([1, 2])).x = tmpForOfNext.value;
-    }
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-let tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    $(10);
-    $(20);
-    const tmpCalleeParam$3 = [1, 2];
-    const tmpAssignMemLhsObj = $(tmpCalleeParam$3);
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -140,11 +96,23 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( c );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -156,8 +124,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

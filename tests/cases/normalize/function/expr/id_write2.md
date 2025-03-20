@@ -22,12 +22,14 @@ const tmpCalleeParam$1 = typeof f;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `Preval: Cannot write to const binding \`r\``;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,39 +38,6 @@ throw `Preval: Cannot write to const binding \`r\``;
 throw `Preval: Cannot write to const binding \`r\``;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const r = function () {
-  debugger;
-  r = 20;
-  return r;
-};
-const f = r;
-const x = f();
-const tmpCallCallee = $;
-const tmpCalleeParam = x;
-const tmpCalleeParam$1 = typeof f;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const r = function () {
-  debugger;
-  r = 20;
-  return r;
-};
-const f = r;
-const x = r();
-const tmpCallCallee = $;
-const tmpCalleeParam = x;
-const tmpCalleeParam$1 = typeof f;
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +46,15 @@ With rename=true
 throw "Preval: Cannot write to const binding `r`";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Assignment to constant variable. ]>')

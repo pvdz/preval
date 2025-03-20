@@ -16,6 +16,7 @@ while (new (1, 2, $(b))[$("$")](1)) $(100);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,35 +46,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-while (new (1, 2, $(b))[$(`\$`)](1)) $(100);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
-  const tmpIfTest = new tmpNewCallee(1);
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +61,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { $: '"<$>"' }
@@ -130,6 +113,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

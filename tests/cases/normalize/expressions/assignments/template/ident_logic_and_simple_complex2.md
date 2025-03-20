@@ -15,6 +15,7 @@ $(`before  ${(a = 1 && $($(obj)))}  after`);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,59 +61,6 @@ $(`before  ${tmpClusterSSA_a}  after`);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  toString() {
-    debugger;
-    $(`toString`);
-    return `x`;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return `y`;
-  },
-};
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce((a = 1 && $($(obj))), `string`) + `  after`);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = {
-  toString() {
-    debugger;
-    $(`toString`);
-    return `x`;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return `y`;
-  },
-};
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-a = 1;
-if (a) {
-  const tmpCalleeParam$3 = $(obj);
-  a = $(tmpCalleeParam$3);
-} else {
-}
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -137,11 +86,15 @@ $( e );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { toString: '"<function>"', valueOf: '"<function>"' }

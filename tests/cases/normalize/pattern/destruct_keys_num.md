@@ -14,6 +14,7 @@ let {
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const c /*:unknown*/ = x[200];
 $(c);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,25 +32,6 @@ $(c);
 $({ [200]: 3 }[200]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = { [200]: 3 };
-let { [200]: c } = x;
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = { [200]: 3 };
-let bindingPatternObjRoot = x;
-let dynKey = 200;
-let c = bindingPatternObjRoot[dynKey];
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +42,15 @@ const b = a[ 200 ];
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

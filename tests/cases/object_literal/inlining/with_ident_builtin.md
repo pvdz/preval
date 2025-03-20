@@ -13,12 +13,14 @@ const obj = {f: Array};
 $(obj.f);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(Array);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,22 +29,6 @@ $(Array);
 $(Array);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { f: Array };
-$(obj.f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { f: Array };
-const tmpCalleeParam = obj.f;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +37,15 @@ With rename=true
 $( Array );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

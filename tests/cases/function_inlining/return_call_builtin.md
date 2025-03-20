@@ -15,6 +15,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpCalleeParam /*:unknown*/ = $(10);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,29 +32,6 @@ $(tmpCalleeParam);
 $($(10));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return $(10);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpReturnArg = $(10);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +41,15 @@ const a = $( 10 );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

@@ -14,12 +14,14 @@ const b = 0 ? 4 : 5
 $(a, b)
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(2, 5);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,25 +30,6 @@ $(2, 5);
 $(2, 5);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = 1 ? 2 : 3;
-const b = 0 ? 4 : 5;
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-a = 2;
-let b = undefined;
-b = 5;
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +38,15 @@ With rename=true
 $( 2, 5 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2, 5

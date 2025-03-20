@@ -13,12 +13,14 @@ const x = $dotCall(Function, {eliminate:'me'}, undefined, 'return "pass";');
 $(x());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`pass`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,24 +29,6 @@ $(`pass`);
 $(`pass`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $dotCall(Function, { eliminate: `me` }, undefined, `return "pass";`);
-$(x());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = Function;
-const tmpCalleeParam$1 = { eliminate: `me` };
-const x = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, `return "pass";`);
-const tmpCalleeParam$3 = x();
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +37,15 @@ With rename=true
 $( "pass" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

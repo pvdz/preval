@@ -15,6 +15,7 @@ $(xyz);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(a);
 $(undefined);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,26 +33,6 @@ $(undefined);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let xyz = (a = undefined);
-$(xyz);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = undefined;
-let xyz = a;
-$(a);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +42,15 @@ $( undefined );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

@@ -21,6 +21,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -74,45 +76,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (x) {
-    $(1);
-    if ($) {
-      throw `error`;
-    }
-    $(2);
-  }
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    if (x) {
-      $(1);
-      if ($) {
-        throw `error`;
-      } else {
-        $(2);
-      }
-    } else {
-      break;
-    }
-  }
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -143,13 +106,17 @@ if (x) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

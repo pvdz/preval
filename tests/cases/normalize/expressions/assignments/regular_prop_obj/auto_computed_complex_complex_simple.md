@@ -16,6 +16,7 @@ $(a)[$("b")] = 2;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,32 +44,6 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-(a = { b: $(1) }).a;
-$(a)[$(`b`)] = 2;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-let tmpCompObj = a;
-tmpCompObj.a;
-const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $(`b`);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +58,15 @@ c[d] = 2;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

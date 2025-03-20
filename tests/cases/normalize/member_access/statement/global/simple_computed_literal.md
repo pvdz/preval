@@ -13,12 +13,14 @@ const obj = {foo: 10};
 obj['foo'];
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ obj['foo'];
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { foo: 10 };
-obj[`foo`];
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { foo: 10 };
-obj.foo;
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

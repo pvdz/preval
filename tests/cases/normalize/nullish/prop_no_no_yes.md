@@ -13,6 +13,7 @@ const a = {};
 $(a.b.c??d);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,29 +41,6 @@ if (tmpCalleeParam == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = {};
-$(a.b.c ?? d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = {};
-const tmpCompObj = a.b;
-let tmpCalleeParam = tmpCompObj.c;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = d;
-  $(d);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -78,13 +57,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 d
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

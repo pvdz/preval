@@ -14,6 +14,7 @@ throw [$(1), 2, $(3)];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpArrElement$3 /*:unknown*/ = $(3);
 const tmpThrowArg /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 throw tmpThrowArg;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,26 +36,6 @@ const tmpThrowArg = [tmpArrElement, 2, tmpArrElement$3];
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-throw [$(1), 2, $(3)];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpArrElement = $(1);
-const tmpArrElement$1 = 2;
-const tmpArrElement$3 = $(3);
-const tmpThrowArg = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +47,15 @@ const c = [ a, 2, b ];
 throw c;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

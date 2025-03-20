@@ -17,12 +17,14 @@ if (x) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`pass`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,36 +33,6 @@ $(`pass`);
 $(`pass`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = function () {
-  debugger;
-  $(`fail`);
-};
-if (x) {
-  $(`pass`);
-} else {
-  $(`false`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = function () {
-  debugger;
-  $(`fail`);
-  return undefined;
-};
-if (x) {
-  $(`pass`);
-} else {
-  $(`false`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +41,15 @@ With rename=true
 $( "pass" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

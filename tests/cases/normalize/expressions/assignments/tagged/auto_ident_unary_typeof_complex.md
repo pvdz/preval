@@ -16,6 +16,7 @@ $`before ${(a = typeof $(arg))} after`;
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const a /*:string*/ = typeof tmpUnaryArg;
 $(tmpCalleeParam, a);
 $(a, 1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,29 +40,6 @@ $(tmpCalleeParam, a);
 $(a, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = typeof $(arg)));
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-const tmpUnaryArg = $(arg);
-a = typeof tmpUnaryArg;
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +52,15 @@ $( b, c );
 $( c, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

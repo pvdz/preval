@@ -13,12 +13,14 @@ const f = (31).toString(17);
 $(f);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`1e`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ $(`1e`);
 $(`1e`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = (31).toString(17);
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = `1e`;
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 $( "1e" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '1e'

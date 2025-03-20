@@ -16,6 +16,7 @@ $`before ${(a = b = $(2))} after`;
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(tmpCalleeParam, tmpNestedComplexRhs);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,30 +37,6 @@ $([`before `, ` after`], tmpNestedComplexRhs);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = b = $(2)));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-const tmpNestedComplexRhs = $(2);
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +48,15 @@ $( b, a );
 $( a, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

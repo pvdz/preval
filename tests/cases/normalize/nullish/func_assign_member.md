@@ -19,6 +19,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,38 +48,6 @@ if (y == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let y = undefined;
-  y = (1, 2, $()) ?? foo;
-  return $(y);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let y = undefined;
-  y = $();
-  const tmpIfTest = y == null;
-  if (tmpIfTest) {
-    y = foo;
-  } else {
-  }
-  const tmpReturnArg = $(y);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,13 +65,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 foo
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

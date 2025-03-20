@@ -19,6 +19,7 @@ x = $(obj)[$('x')] = 30;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 30;
 $(30);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,51 +61,6 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 30;
 $(30);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  get x() {
-    debugger;
-    return $(10);
-  },
-  set x($$0) {
-    let _ = $$0;
-    debugger;
-    $(20);
-  },
-};
-let x = 10;
-x = $(obj)[$(`x`)] = 30;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = {
-  get x() {
-    debugger;
-    const tmpReturnArg = $(10);
-    return tmpReturnArg;
-  },
-  set x($$0) {
-    let _ = $$0;
-    debugger;
-    $(20);
-    return undefined;
-  },
-};
-let x = 10;
-const tmpNestedAssignComMemberObj = $(obj);
-const tmpNestedAssignComMemberProp = $(`x`);
-const tmpNestedPropAssignRhs = 30;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-x = tmpNestedPropAssignRhs;
-$(tmpNestedPropAssignRhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -127,11 +84,15 @@ c[d] = 30;
 $( 30 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '<get/set>' }

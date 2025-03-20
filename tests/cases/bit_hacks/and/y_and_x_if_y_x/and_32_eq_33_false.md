@@ -20,6 +20,7 @@ if (x) {
 }
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,33 +48,6 @@ if (spy & 32) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = $spy(17);
-const x = spy & 32;
-if (x) {
-  $(`fail`, spy === 33);
-} else {
-  $(`pass`, spy === 33);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = $spy(17);
-const x = spy & 32;
-if (x) {
-  const tmpCalleeParam = spy === 33;
-  $(`fail`, tmpCalleeParam);
-} else {
-  const tmpCalleeParam$1 = spy === 33;
-  $(`pass`, tmpCalleeParam$1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [17, 17]

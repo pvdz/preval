@@ -16,6 +16,7 @@ $(a).b = 2;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpAssignMemLhsObj /*:unknown*/ = $(tmpNestedComplexRhs);
 tmpAssignMemLhsObj.b = 2;
 $(tmpNestedComplexRhs);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,48 +42,6 @@ tmpAssignMemLhsObj.b = 2;
 $(tmpNestedComplexRhs);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = tmpParamBare === undefined ? (a = { b: $(1) }) : tmpParamBare;
-};
-let a = { a: 999, b: 1000 };
-$(f());
-$(a).b = 2;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpObjLitVal = $(1);
-    const tmpNestedComplexRhs = { b: tmpObjLitVal };
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-    return undefined;
-  } else {
-    p = tmpParamBare;
-    return undefined;
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj.b = 2;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +55,15 @@ c.b = 2;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

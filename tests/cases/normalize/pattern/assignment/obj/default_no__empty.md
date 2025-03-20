@@ -13,12 +13,14 @@
 $('bad');
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`bad`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,31 +29,6 @@ $(`bad`);
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({} = 1);
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = 1;
-let objPatternCrashTest = tmpAssignObjPatternRhs === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = tmpAssignObjPatternRhs === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
-  $(`bad`);
-} else {
-  $(`bad`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +37,15 @@ With rename=true
 $( "bad" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'bad'

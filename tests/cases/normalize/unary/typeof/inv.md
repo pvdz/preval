@@ -12,6 +12,7 @@
 $(typeof !$(100));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $(typeof !$(100));
 $(100);
 $(`boolean`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,21 +30,6 @@ $(100);
 $(`boolean`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof !$(100));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(100);
-const tmpCalleeParam = `boolean`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +39,15 @@ $( 100 );
 $( "boolean" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

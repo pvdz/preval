@@ -31,6 +31,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,45 +70,6 @@ $([...tmpArrSpread]);
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
-let tmpArrSpread = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-  tmpArrSpread = tmpChainElementObject;
-}
-const tmpCalleeParam = [...tmpArrSpread];
-$(tmpCalleeParam);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
-let tmpArrSpread = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-  tmpArrSpread = tmpChainElementObject;
-}
-const tmpCalleeParam = [...tmpArrSpread];
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -130,11 +93,15 @@ $( g );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

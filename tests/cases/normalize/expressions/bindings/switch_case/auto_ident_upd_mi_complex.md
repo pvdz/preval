@@ -18,6 +18,7 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ tmpUpdObj.x = tmpUpdInc;
 $(tmpUpdInc, tmpClusterSSA_b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,44 +45,6 @@ tmpUpdObj.x = tmpUpdInc;
 $(tmpUpdInc, tmpClusterSSA_b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let b;
-  let a;
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    b = { x: 1 };
-    a = --$($(b)).x;
-    $(a, b);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = undefined;
-let a = undefined;
-const tmpSwitchDisc = 1;
-const tmpIfTest = tmpSwitchDisc === 1;
-if (tmpIfTest) {
-  b = { x: 1 };
-  const tmpCalleeParam = $(b);
-  let tmpUpdObj = $(tmpCalleeParam);
-  let tmpUpdProp = tmpUpdObj.x;
-  let tmpUpdNum = $coerce(tmpUpdProp, `number`);
-  let tmpUpdInc = tmpUpdNum - 1;
-  tmpUpdObj.x = tmpUpdInc;
-  a = tmpUpdInc;
-  $(tmpUpdInc, b);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -96,11 +60,15 @@ c.x = f;
 $( f, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

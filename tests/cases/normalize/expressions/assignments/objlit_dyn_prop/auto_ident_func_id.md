@@ -14,6 +14,7 @@ $({ [(a = function f() {})]: 10 });
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ $(tmpCalleeParam);
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,35 +38,6 @@ $({ [f]: 10 });
 $(f);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$({
-  [(a = function f() {
-    debugger;
-  })]: 10,
-});
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  return undefined;
-};
-a = f;
-let tmpObjLitPropKey = a;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +52,15 @@ $( b );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 'function() {return undefined;}': '10' }

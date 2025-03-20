@@ -32,6 +32,7 @@ $(b());
 $(a()[1]);
 `````
 
+
 ## Settled
 
 
@@ -56,6 +57,7 @@ const tmpCalleeParam$3 /*:unknown*/ = tmpCompObj[1];
 $(tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -74,52 +76,6 @@ $(b());
 $(a()[1]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-a = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  a = function () {
-    debugger;
-    return arr;
-  };
-  return a();
-};
-b = a;
-$(a());
-$(b());
-$(a()[1]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-a = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  a = function () {
-    debugger;
-    return arr;
-  };
-  const tmpReturnArg = a();
-  return tmpReturnArg;
-};
-b = a;
-const tmpCalleeParam = a();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = b();
-$(tmpCalleeParam$1);
-const tmpCompObj = a();
-const tmpCalleeParam$3 = tmpCompObj[1];
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -145,11 +101,15 @@ const h = g[ 1 ];
 $( h );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2, 3]

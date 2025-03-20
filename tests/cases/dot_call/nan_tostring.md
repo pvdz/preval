@@ -15,12 +15,14 @@ const x = $dotCall(tmpCallVal, naN, 'toString');
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`NaN`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,24 +31,6 @@ $(`NaN`);
 $(`NaN`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const naN = NaN;
-const tmpCallVal = naN.toString;
-const x = $dotCall(tmpCallVal, naN, `toString`);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const naN = NaN;
-const x = naN.toString();
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +39,15 @@ With rename=true
 $( "NaN" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'NaN'

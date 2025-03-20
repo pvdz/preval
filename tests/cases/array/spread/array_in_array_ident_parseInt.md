@@ -16,6 +16,7 @@ const y = ['a', ...x, 'b'];
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const y /*:array*/ = [`a`, 1, parseInt, 3, `b`];
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,30 +42,6 @@ if ($) {
 $([`a`, 1, parseInt, 3, `b`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $(10);
-const x = [1, parseInt, 3];
-if ($) a = $(20);
-const y = [`a`, ...x, `b`];
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = $(10);
-const x = [1, parseInt, 3];
-if ($) {
-  a = $(20);
-} else {
-}
-const y = [`a`, ...x, `b`];
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +55,15 @@ const a = [ "a", 1, parseInt, 3, "b" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

@@ -18,6 +18,7 @@ In strict mode the funcdecl is a hoisted lexical binding, not a var binding.
 f(); // Fails in strict mode (would be fine otherwise)
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ f(); // Fails in strict mode (would be fine otherwise)
 $(1);
 f();
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,32 +36,6 @@ $(1);
 f();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let f$1 = function () {
-    debugger;
-    $(1);
-  };
-  f$1();
-}
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f$1 = function () {
-  debugger;
-  $(1);
-  return undefined;
-};
-f$1();
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -69,13 +45,17 @@ $( 1 );
 f();
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 f
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

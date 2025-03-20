@@ -14,6 +14,7 @@ let x = 100;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpClusterSSA_x /*:unknown*/ = $objPatternRest(tmpArrElement, tmpCalleePar
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,29 +34,6 @@ const tmpArrElement = {};
 $($objPatternRest(tmpArrElement, [], undefined));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 100;
-[{ ...x }] = [{}];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 100;
-const tmpArrElement = {};
-const arrAssignPatternRhs = [tmpArrElement];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const tmpCalleeParam = arrPatternStep;
-const tmpCalleeParam$1 = [];
-x = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +45,22 @@ const c = $objPatternRest( a, b, undefined );
 $( c );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}
@@ -83,7 +73,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

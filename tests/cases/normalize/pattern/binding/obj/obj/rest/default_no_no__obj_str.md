@@ -13,6 +13,7 @@ const { x: { ...y } } = { x: 'abc', b: 11, c: 12 };
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const y /*:unknown*/ = $objPatternRest(`abc`, tmpCalleeParam$1, undefined);
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,27 +31,6 @@ $(y);
 $($objPatternRest(`abc`, [], undefined));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: { ...y },
-} = { x: `abc`, b: 11, c: 12 };
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = { x: `abc`, b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const tmpCalleeParam = objPatternNoDefault;
-const tmpCalleeParam$1 = [];
-const y = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +41,15 @@ const b = $objPatternRest( "abc", a, undefined );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 0: '"a"', 1: '"b"', 2: '"c"' }

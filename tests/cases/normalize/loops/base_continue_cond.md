@@ -21,6 +21,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(n);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,52 +45,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let n = 0;
-  while (true) {
-    $continue: {
-      {
-        $(++n);
-        if (n < 8) break $continue;
-      }
-    }
-  }
-  $(`afterwards`);
-  return 100;
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let n = 0;
-  while (true) {
-    $continue: {
-      const tmpPostUpdArgIdent = $coerce(n, `number`);
-      n = tmpPostUpdArgIdent + 1;
-      const tmpCalleeParam = n;
-      $(n);
-      const tmpIfTest = n < 8;
-      if (tmpIfTest) {
-        break $continue;
-      } else {
-      }
-    }
-  }
-  return undefined;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +57,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -143,6 +109,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

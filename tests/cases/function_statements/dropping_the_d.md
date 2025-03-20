@@ -36,6 +36,7 @@ This is a webcompat thing. In nodejs this throws an error. In the browser it's f
 }
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ const tmpCalleeParam /*:unknown*/ = THIS_IS_DA____();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,33 +53,6 @@ $(tmpCalleeParam);
 $(THIS_IS_DA____());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  {
-    let THIS_IS_DA____$1 = function () {
-      debugger;
-      $(`hello`);
-    };
-  }
-  $(THIS_IS_DA____());
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let THIS_IS_DA____$1 = function () {
-  debugger;
-  $(`hello`);
-  return undefined;
-};
-const tmpCalleeParam = THIS_IS_DA____();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -87,13 +62,17 @@ const a = THIS_IS_DA____();
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 THIS_IS_DA____
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

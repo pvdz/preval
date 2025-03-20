@@ -15,6 +15,7 @@ let b = "foo";
 $(($(1), b).length);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(($(1), b).length);
 $(1);
 $(3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,24 +33,6 @@ $(1);
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = `foo`;
-$(($(1), b).length);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = `foo`;
-$(1);
-const tmpCompObj = b;
-const tmpCalleeParam = tmpCompObj.length;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +42,15 @@ $( 1 );
 $( 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

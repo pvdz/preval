@@ -25,6 +25,7 @@ if (x & 8) {
 }
 `````
 
+
 ## Settled
 
 
@@ -56,6 +57,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,46 +79,6 @@ if ($frfr(tmpFree$1, x)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = +$spy(26);
-if (x & 8) {
-  if (x & 2) {
-    if (x & 32) {
-      if (x & 16) {
-        $(`it is 58`);
-      }
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpUnaryArg = $spy(26);
-const x = +tmpUnaryArg;
-const tmpIfTest = x & 8;
-if (tmpIfTest) {
-  const tmpIfTest$1 = x & 2;
-  if (tmpIfTest$1) {
-    const tmpIfTest$3 = x & 32;
-    if (tmpIfTest$3) {
-      const tmpIfTest$5 = x & 16;
-      if (tmpIfTest$5) {
-        $(`it is 58`);
-      } else {
-      }
-    } else {
-    }
-  } else {
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -147,11 +109,15 @@ if (l) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [26, 26]

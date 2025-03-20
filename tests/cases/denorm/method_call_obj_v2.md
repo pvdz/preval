@@ -17,6 +17,7 @@ if (stuff) {
 }
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (stuff) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,34 +44,6 @@ if (stuff) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const cook = document.cookie;
-const stuff = cook.match(/x/);
-if (stuff) {
-  const deco = decodeURIComponent(stuff[1]);
-  unknown = deco;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const cook = document.cookie;
-const tmpCallObj = cook;
-const tmpCallVal = tmpCallObj.match;
-const tmpCalleeParam = /x/;
-const stuff = $dotCall(tmpCallVal, tmpCallObj, `match`, tmpCalleeParam);
-if (stuff) {
-  const tmpCalleeParam$1 = stuff[1];
-  const deco = decodeURIComponent(tmpCalleeParam$1);
-  unknown = deco;
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -85,13 +59,17 @@ if (c) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

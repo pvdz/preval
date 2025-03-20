@@ -16,6 +16,7 @@ $([...(a = typeof $(arg))]);
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ $(tmpCalleeParam);
 $(a, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,29 +39,6 @@ $([...a]);
 $(a, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-$([...(a = typeof $(arg))]);
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(arg);
-a = typeof tmpUnaryArg;
-let tmpArrSpread = a;
-const tmpCalleeParam = [...tmpArrSpread];
-$(tmpCalleeParam);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +51,15 @@ $( c );
 $( b, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

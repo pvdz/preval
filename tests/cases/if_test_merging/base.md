@@ -18,6 +18,7 @@ if (bool) {
 }
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpBool /*:boolean*/ = Boolean(tmpCalleeParam);
 $(tmpBool);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,30 +36,6 @@ $(tmpBool);
 $(Boolean($(true)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const bool = Boolean($(true));
-if (bool) {
-  $(true);
-} else {
-  $(false);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = $(true);
-const bool = Boolean(tmpCalleeParam);
-if (bool) {
-  $(true);
-} else {
-  $(false);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +46,15 @@ const b = Boolean( a );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

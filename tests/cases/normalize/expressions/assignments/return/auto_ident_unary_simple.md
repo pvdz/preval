@@ -19,6 +19,7 @@ $(f());
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(a, x);
 $(`number`);
 $(`number`, 1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,35 +37,6 @@ $(`number`);
 $(`number`, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return (a = typeof x);
-};
-let x = 1;
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  a = typeof x;
-  return a;
-};
-let x = 1;
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +46,15 @@ $( "number" );
 $( "number", 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'number'

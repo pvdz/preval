@@ -37,6 +37,7 @@ $(false in x);
 $(false instanceof x);
 `````
 
+
 ## Settled
 
 
@@ -91,6 +92,7 @@ const tmpCalleeParam$1 /*:boolean*/ = false instanceof x;
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -142,92 +144,6 @@ $(false in x);
 $(false instanceof x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $spy();
-const arr = [
-  false ** x,
-  false * x,
-  false / x,
-  false % x,
-  false + x,
-  false - x,
-  false << x,
-  false >> x,
-  false >>> x,
-  false < x,
-  false > x,
-  false <= x,
-  false >= x,
-  false == x,
-  false != x,
-  false === x,
-  false !== x,
-  false & x,
-  false ^ x,
-  false | x,
-];
-$(arr);
-$(false in x);
-$(false instanceof x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $spy();
-const tmpArrElement = 0 ** x;
-const tmpArrElement$1 = 0 * x;
-const tmpArrElement$3 = 0 / x;
-const tmpArrElement$5 = 0 % x;
-const tmpArrElement$7 = false + x;
-const tmpArrElement$9 = 0 - x;
-const tmpArrElement$11 = 0 << x;
-const tmpArrElement$13 = 0 >> x;
-const tmpArrElement$15 = 0 >>> x;
-const tmpArrElement$17 = 0 < x;
-const tmpArrElement$19 = 0 > x;
-const tmpArrElement$21 = 0 <= x;
-const tmpArrElement$23 = 0 >= x;
-const tmpArrElement$25 = false == x;
-const tmpArrElement$27 = false != x;
-const tmpArrElement$29 = false === x;
-const tmpArrElement$31 = false !== x;
-x & 0;
-const tmpArrElement$33 = 0;
-const tmpArrElement$35 = 0 ^ x;
-const tmpArrElement$37 = 0 | x;
-const arr = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpCalleeParam = false in x;
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = false instanceof x;
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -262,11 +178,15 @@ const w = false instanceof a;
 $( w );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]

@@ -19,6 +19,7 @@ const arr = [a, b, c];
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const arr /*:array*/ = [a, b, c];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,29 +44,6 @@ const c = x instanceof Array;
 $([a, b, c]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = {};
-const a = x instanceof String;
-const b = x instanceof Function;
-const c = x instanceof Array;
-const arr = [a, b, c];
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = {};
-const a = x instanceof String;
-const b = x instanceof Function;
-const c = x instanceof Array;
-const arr = [a, b, c];
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +57,15 @@ const e = [ b, c, d ];
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [false, false, false]

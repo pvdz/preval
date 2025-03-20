@@ -13,6 +13,7 @@ let x = $();
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:unknown*/ = $();
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ $(x);
 $($());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $();
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $();
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +39,15 @@ const a = $();
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

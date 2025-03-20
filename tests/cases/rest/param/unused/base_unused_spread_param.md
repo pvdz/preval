@@ -15,6 +15,7 @@ function f(...rest) {
 f();
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const rest /*:array*/ = [];
 $(rest);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,30 +32,6 @@ $(rest);
 $([]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function (...$$0 /*:array*/) {
-  let rest = $$0;
-  debugger;
-  $(rest);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function (...$$0 /*:array*/) {
-  let rest = $$0;
-  debugger;
-  $(rest);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +41,21 @@ const a = [];
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- drop unused rest param?
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []
@@ -80,6 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- drop unused rest param?

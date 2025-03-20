@@ -15,6 +15,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ tmpCompObj.length;
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,30 +34,6 @@ $(`foo`).length;
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`foo`).length;
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpCompObj = $(`foo`);
-  tmpCompObj.length;
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +44,15 @@ a.length;
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'foo'

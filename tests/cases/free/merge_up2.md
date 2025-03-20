@@ -31,6 +31,7 @@ if (x) {
 }
 `````
 
+
 ## Settled
 
 
@@ -60,6 +61,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -78,65 +80,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpFree = function $free($$0, $$1, $$2) {
-  let chr3 = $$0;
-  let x$1 = $$1;
-  let chr$1 = $$2;
-  debugger;
-  const tmpIfTest$3 = x$1 & 48;
-  const tmpRet = tmpIfTest$3 === 48;
-  const ret2 = tmpRet + chr$1 + chr3;
-  return ret2;
-};
-const tmpUnaryArg = $spy(1);
-const x = +tmpUnaryArg;
-if (x) {
-  const unknown = $(`abc`);
-  const somestr = String(unknown);
-  const chr = somestr.charAt(1);
-  const tmpIfTest$5 = $frfr(tmpFree, chr, x, chr);
-  if (tmpIfTest$5) {
-    $(`it is 58`);
-  } else {
-  }
-} else {
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpFree = function $free($$0, $$1, $$2) {
-  let chr3 = $$0;
-  let x$1 = $$1;
-  let chr$1 = $$2;
-  debugger;
-  const tmpIfTest$3 = x$1 & 48;
-  const tmpRet = tmpIfTest$3 === 48;
-  const tmpBinLhs = tmpRet + chr$1;
-  const ret2 = tmpBinLhs + chr3;
-  return ret2;
-};
-const tmpUnaryArg = $spy(1);
-const x = +tmpUnaryArg;
-if (x) {
-  const unknown = $(`abc`);
-  const tmpStringFirstArg = unknown;
-  const somestr = $coerce(unknown, `string`);
-  const chr = somestr.charAt(1);
-  const tmpIfTest$5 = $frfr(tmpFree, chr, x, chr);
-  if (tmpIfTest$5) {
-    $(`it is 58`);
-  } else {
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -165,11 +108,15 @@ if (k) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [1, 1]

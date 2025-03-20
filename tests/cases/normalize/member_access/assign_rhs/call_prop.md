@@ -14,6 +14,7 @@ x = $('foo').length;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const x /*:unknown*/ = tmpAssignRhsProp.length;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,24 +32,6 @@ $(x);
 $($(`foo`).length);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 10;
-x = $(`foo`).length;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 10;
-const tmpAssignRhsProp = $(`foo`);
-x = tmpAssignRhsProp.length;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +42,15 @@ const b = a.length;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'foo'

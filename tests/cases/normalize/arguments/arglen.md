@@ -14,6 +14,7 @@ function f() {
 }
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const f /*:()=>unknown*/ = function () {
 };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,30 +38,6 @@ const f = function () {
 };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  const tmpPrevalAliasThis = this;
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  debugger;
-  f.apply(tmpPrevalAliasThis, tmpPrevalAliasArgumentsLen);
-};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  const tmpPrevalAliasThis = this;
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  debugger;
-  f.apply(tmpPrevalAliasThis, tmpPrevalAliasArgumentsLen);
-  return undefined;
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +52,15 @@ const a = function() {
 };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

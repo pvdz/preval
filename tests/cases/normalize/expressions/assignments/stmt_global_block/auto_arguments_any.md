@@ -16,12 +16,14 @@
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(arguments);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,25 +32,6 @@ $(arguments);
 $(arguments);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  a = arguments;
-  $(a);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = arguments;
-$(arguments);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,13 +40,17 @@ With rename=true
 $( arguments );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 arguments
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<Global Arguments>'

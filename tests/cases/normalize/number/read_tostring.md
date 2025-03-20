@@ -14,6 +14,7 @@ $(f);
 $(f + '');
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $(f + '');
 $($number_toString);
 $(`function toString() { [native code] }`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,24 +32,6 @@ $($number_toString);
 $(`function toString() { [native code] }`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = (31).toString;
-$(f);
-$(f + ``);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = $Number_prototype.toString;
-$(f);
-const tmpCalleeParam = $coerce(f, `plustr`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +41,15 @@ $( $number_toString );
 $( "function toString() { [native code] }" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

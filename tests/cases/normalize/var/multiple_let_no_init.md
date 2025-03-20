@@ -16,6 +16,7 @@ $(b);
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(undefined);
 $(undefined);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,27 +36,6 @@ $(undefined);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a, b, c;
-$(a);
-$(b);
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-$(a);
-$(b);
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +46,15 @@ $( undefined );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

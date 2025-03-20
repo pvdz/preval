@@ -14,12 +14,14 @@ foo: {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,21 +30,6 @@ foo: {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-foo: {
-  break foo;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +38,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

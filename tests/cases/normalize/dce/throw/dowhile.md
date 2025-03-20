@@ -18,6 +18,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(f());
 const tmpThrowArg /*:unknown*/ = $(1, `throw`);
 throw tmpThrowArg;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,41 +36,6 @@ const tmpThrowArg = $(1, `throw`);
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    {
-      throw $(1, `throw`);
-      $(`fail`);
-    }
-    if ($(true)) {
-    } else {
-      break;
-    }
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    const tmpThrowArg = $(1, `throw`);
-    throw tmpThrowArg;
-  }
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +45,15 @@ const a = $( 1, "throw" );
 throw a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 'throw'

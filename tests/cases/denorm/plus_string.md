@@ -20,6 +20,7 @@ const d = c + e;
 $(d);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const d /*:string*/ = tmpBinLhs + e;
 $(d);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,30 +40,6 @@ $(d);
 $(`; ${tmpForInNext.value}` + e);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = tmpForInNext.value;
-const b = a;
-const c = `; ` + $coerce(b, `string`) + ``;
-const d = c + e;
-$(d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = tmpForInNext.value;
-const b = a;
-const tmpBinBothLhs = `; `;
-const tmpBinBothRhs = $coerce(b, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const c = $coerce(tmpBinLhs, `plustr`);
-const d = c + e;
-$(d);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,13 +52,17 @@ const d = c + e;
 $( d );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 tmpForInNext, e
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

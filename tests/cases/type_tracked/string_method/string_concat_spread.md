@@ -11,6 +11,7 @@ const x = 'foo'.concat(a, ...b); // the spread prevents changing into a template
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ const x /*:string*/ = `foo`.concat(a, ...b);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -26,21 +28,6 @@ $(x);
 $(`foo`.concat(a, ...b));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = `foo`.concat(a, ...b);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = `foo`.concat(a, ...b);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,13 +37,23 @@ const c = "foo".concat( a, ...b );
 $( c );
 `````
 
+
+## Todos triggered
+
+
+- Maybe support type tracked trick of string.concat with spread
+
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 a, b
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -68,6 +65,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Maybe support type tracked trick of string.concat with spread

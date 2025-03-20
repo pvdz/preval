@@ -15,6 +15,7 @@ const y = x & 32; // Redundant
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(x);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,26 +36,6 @@ $(x);
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(100) & 32;
-$(x);
-const y = x & 32;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinLhs = $(100);
-const x = tmpBinLhs & 32;
-$(x);
-const y = x & 32;
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +47,15 @@ $( b );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

@@ -16,6 +16,7 @@ x = $(2); // After inlining the above, this should become a constant anyways
 $(x, 'b');
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const x /*:unknown*/ = $(2);
 $(x, `b`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,27 +37,6 @@ $(undefined, `a`);
 $($(2), `b`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-$(1);
-$(x, `a`);
-x = $(2);
-$(x, `b`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-$(1);
-$(x, `a`);
-x = $(2);
-$(x, `b`);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +48,15 @@ const a = $( 2 );
 $( a, "b" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

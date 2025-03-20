@@ -31,6 +31,7 @@ const tmpArrElement$513 = function () {
 if ($) tmpArrElement$513();
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,47 +64,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpArrElement$513 = function () {
-  debugger;
-  let needle = undefined;
-  $(144);
-  const a = function () {
-    debugger;
-    needle.f();
-  };
-  needle = { a: a };
-  $(needle);
-  return undefined;
-};
-if ($) tmpArrElement$513();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement$513 = function () {
-  debugger;
-  let needle = undefined;
-  $(144);
-  const a = function () {
-    debugger;
-    needle.f();
-    return undefined;
-  };
-  needle = { a: a };
-  $(needle);
-  return undefined;
-};
-if ($) {
-  tmpArrElement$513();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +81,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 144

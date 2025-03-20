@@ -14,6 +14,7 @@ if ((a = $($(0)) || ($($(1)) && $($(2)))));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,35 +54,6 @@ if (a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-if ((a = $($(0)) || ($($(1)) && $($(2)))));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(0);
-a = $(tmpCalleeParam);
-if (a) {
-} else {
-  const tmpCalleeParam$1 = $(1);
-  a = $(tmpCalleeParam$1);
-  if (a) {
-    const tmpCalleeParam$3 = $(2);
-    a = $(tmpCalleeParam$3);
-  } else {
-  }
-}
-let tmpIfTest = a;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -105,11 +78,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

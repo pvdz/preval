@@ -18,12 +18,14 @@ In particular, the pattern's "y" should be replaced with a different name.
 { let a = 1; }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 a = (1).x;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,28 +34,6 @@ a = (1).x;
 a = (1).x;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let a$3 = 1;
-}
-({ x: a } = 1);
-{
-  let a$1 = 1;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a$3 = 1;
-const tmpAssignObjPatternRhs = 1;
-a = tmpAssignObjPatternRhs.x;
-let a$1 = 1;
-`````
 
 ## PST Settled
 With rename=true
@@ -62,13 +42,17 @@ With rename=true
 a = 1.x;
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 a
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

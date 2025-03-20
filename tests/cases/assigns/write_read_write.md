@@ -16,6 +16,7 @@ $(x);
 x = $('redundant'); // This assignment should be dropped (but the expression is kept)
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ $(tmpClusterSSA_x);
 $(`redundant`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,27 +38,6 @@ $($(2));
 $(`redundant`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(1);
-$(x);
-x = $(2);
-$(x);
-x = $(`redundant`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(1);
-$(x);
-x = $(2);
-$(x);
-x = $(`redundant`);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +50,15 @@ $( b );
 $( "redundant" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

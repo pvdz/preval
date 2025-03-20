@@ -5,7 +5,7 @@ import path from 'path';
 import { preval } from '../src/index.mjs';
 import * as AST from '../src/ast.mjs';
 import {setPrintVarTyping} from '../lib/printer.mjs';
-import { RED, GREEN, YELLOW, BLUE, WHITE, BOLD, RESET, WHITE_BLACK, ORANGE, GOOD, BAD, fmat, fromMarkdownCase, toEvaluationResult, toMarkdownCase, toNormalizedResult, ASSERT, } from './utils.mjs';
+import { RED, GREEN, YELLOW, BLUE, WHITE, BOLD, RESET, WHITE_BLACK, ORANGE, GOOD, BAD, fmat, fromMarkdownCase, toEvaluationResult, toMarkdownCase, toNormalizedSection, ASSERT, } from './utils.mjs';
 import { DIM, VERBOSE_TRACING, } from '../src/constants.mjs';
 import { SYMBOL_FOROF, SYMBOL_FORIN, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE, SYMBOL_FRFR } from '../src/symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, sym_prefix, symbo } from '../src/symbols_builtins.mjs';
@@ -935,7 +935,7 @@ function runTestCase(
         console.log('BAD!! Preval did not throw an error but was expected to:');
         console.log(lastError);
       }
-      console.log(toNormalizedResult(output.normalized));
+      console.log(toNormalizedSection(output.normalized));
       console.log();
       console.log(toEvaluationResult(evalled, output.implicitGlobals, true, mdOptions.globals));
       if (isPcodeTest) {

@@ -13,6 +13,7 @@ const x = $(1) * $(2); // Must be number
 $(x === null); // Must be false
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ tmpBinBothLhs ** 0;
 tmpBinBothRhs ** 0;
 $(false);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,24 +37,6 @@ tmpBinBothRhs ** 0;
 $(false);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(1) * $(2);
-$(x === null);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-const x = tmpBinBothLhs * tmpBinBothRhs;
-const tmpCalleeParam = x === null;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +49,15 @@ b ** 0;
 $( false );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

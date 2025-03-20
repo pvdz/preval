@@ -13,6 +13,7 @@ class x extends $(String) {}
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const x /*:class*/ = class extends tmpClassSuper {};
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,22 +32,6 @@ const tmpClassSuper = $(String);
 $(class extends tmpClassSuper {});
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = class extends $(String) {};
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpClassSuper = $(String);
-let x = class extends tmpClassSuper {};
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +44,15 @@ const b = class   {
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

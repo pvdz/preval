@@ -18,6 +18,7 @@ const arr = [a, b];
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const arr /*:array*/ = [a, b];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,27 +41,6 @@ const b = x instanceof NaN;
 $([a, b]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = {};
-const a = x in NaN;
-const b = x instanceof NaN;
-const arr = [a, b];
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = {};
-const a = x in NaN;
-const b = x instanceof NaN;
-const arr = [a, b];
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +53,15 @@ const d = [ b, c ];
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot use 'in' operator to search for '#<Object>' in NaN ]>")

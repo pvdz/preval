@@ -14,6 +14,7 @@ if (({ x } = { x: $(1) })) $(2);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpObjLitVal /*:unknown*/ = $(1);
 $(2);
 $(tmpObjLitVal);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,32 +34,6 @@ $(2);
 $(tmpObjLitVal);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x;
-if (({ x: x } = { x: $(1) })) $(2);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-let tmpIfTest = undefined;
-const tmpObjLitVal = $(1);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal };
-x = tmpNestedAssignObjPatternRhs.x;
-tmpIfTest = tmpNestedAssignObjPatternRhs;
-if (tmpIfTest) {
-  $(2);
-  $(x);
-} else {
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +44,15 @@ $( 2 );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

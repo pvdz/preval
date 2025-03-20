@@ -13,6 +13,7 @@ $(undefined?.foo);
 $('okay, do not DCE');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('okay, do not DCE');
 $(undefined);
 $(`okay, do not DCE`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,31 +31,6 @@ $(undefined);
 $(`okay, do not DCE`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(undefined?.foo);
-$(`okay, do not DCE`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = undefined;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.foo;
-  tmpCalleeParam = tmpChainElementObject;
-  $(tmpChainElementObject);
-  $(`okay, do not DCE`);
-} else {
-  $(tmpCalleeParam);
-  $(`okay, do not DCE`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +40,15 @@ $( undefined );
 $( "okay, do not DCE" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

@@ -31,6 +31,7 @@ while (true) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -68,6 +69,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -96,57 +98,6 @@ if (maybegx) {
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let b = { x: 1 };
-while (true) {
-  let maybegx = undefined;
-  const f = $;
-  const g = f(b);
-  const same = g != null;
-  if (same) {
-    const x = $(`x`);
-    const gx = g[x];
-    maybegx = gx;
-  } else {
-  }
-  if (maybegx) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let b = { x: 1 };
-while (true) {
-  let maybegx = undefined;
-  const f = $;
-  const g = $(b);
-  const same = g != null;
-  if (same) {
-    const x = $(`x`);
-    const gx = g[x];
-    maybegx = gx;
-  } else {
-  }
-  if (maybegx) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -193,11 +144,22 @@ const l = {
 $( l );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Support referencing this builtin in isFree: $
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -235,7 +197,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Support referencing this builtin in isFree: $

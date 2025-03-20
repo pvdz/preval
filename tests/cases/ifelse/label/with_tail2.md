@@ -25,12 +25,14 @@ const B = function () {
 B();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,53 +41,6 @@ $(true);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const A = function () {
-  debugger;
-};
-const B = function () {
-  debugger;
-  const C = function () {
-    debugger;
-    const x = $(true);
-    if (x) {
-      A();
-    }
-  };
-  const r = C();
-  return r;
-};
-B();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const A = function () {
-  debugger;
-  return undefined;
-};
-const B = function () {
-  debugger;
-  const C = function () {
-    debugger;
-    const x = $(true);
-    if (x) {
-      A();
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  const r = C();
-  return r;
-};
-B();
-`````
 
 ## PST Settled
 With rename=true
@@ -94,11 +49,15 @@ With rename=true
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

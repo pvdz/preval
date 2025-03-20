@@ -51,6 +51,7 @@ const arr2 = [
 $(arr2);
 `````
 
+
 ## Settled
 
 
@@ -107,6 +108,7 @@ const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -157,111 +159,6 @@ const tmpArrElement$41 = [`a`, `b`, `c`] instanceof x;
 $([tmpArrElement$39, tmpArrElement$41]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [
-  [`a`, `b`, `c`] ** x,
-  [`a`, `b`, `c`] * x,
-  [`a`, `b`, `c`] / x,
-  [`a`, `b`, `c`] % x,
-  [`a`, `b`, `c`] + x,
-  [`a`, `b`, `c`] - x,
-  [`a`, `b`, `c`] << x,
-  [`a`, `b`, `c`] >> x,
-  [`a`, `b`, `c`] >>> x,
-  [`a`, `b`, `c`] < x,
-  [`a`, `b`, `c`] > x,
-  [`a`, `b`, `c`] <= x,
-  [`a`, `b`, `c`] >= x,
-  [`a`, `b`, `c`] == x,
-  [`a`, `b`, `c`] != x,
-  [`a`, `b`, `c`] === x,
-  [`a`, `b`, `c`] !== x,
-  [`a`, `b`, `c`] & x,
-  [`a`, `b`, `c`] ^ x,
-  [`a`, `b`, `c`] | x,
-];
-$(arr);
-const arr2 = [[`a`, `b`, `c`] in x, [`a`, `b`, `c`] instanceof x];
-$(arr2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinLhs = [`a`, `b`, `c`];
-const tmpArrElement = tmpBinLhs ** x;
-const tmpBinLhs$1 = [`a`, `b`, `c`];
-const tmpArrElement$1 = tmpBinLhs$1 * x;
-const tmpBinLhs$3 = [`a`, `b`, `c`];
-const tmpArrElement$3 = tmpBinLhs$3 / x;
-const tmpBinLhs$5 = [`a`, `b`, `c`];
-const tmpArrElement$5 = tmpBinLhs$5 % x;
-const tmpBinLhs$7 = [`a`, `b`, `c`];
-const tmpArrElement$7 = tmpBinLhs$7 + x;
-const tmpBinLhs$9 = [`a`, `b`, `c`];
-const tmpArrElement$9 = tmpBinLhs$9 - x;
-const tmpBinLhs$11 = [`a`, `b`, `c`];
-const tmpArrElement$11 = tmpBinLhs$11 << x;
-const tmpBinLhs$13 = [`a`, `b`, `c`];
-const tmpArrElement$13 = tmpBinLhs$13 >> x;
-const tmpBinLhs$15 = [`a`, `b`, `c`];
-const tmpArrElement$15 = tmpBinLhs$15 >>> x;
-const tmpBinLhs$17 = [`a`, `b`, `c`];
-const tmpArrElement$17 = tmpBinLhs$17 < x;
-const tmpBinLhs$19 = [`a`, `b`, `c`];
-const tmpArrElement$19 = tmpBinLhs$19 > x;
-const tmpBinLhs$21 = [`a`, `b`, `c`];
-const tmpArrElement$21 = tmpBinLhs$21 <= x;
-const tmpBinLhs$23 = [`a`, `b`, `c`];
-const tmpArrElement$23 = tmpBinLhs$23 >= x;
-const tmpBinLhs$25 = [`a`, `b`, `c`];
-const tmpArrElement$25 = tmpBinLhs$25 == x;
-const tmpBinLhs$27 = [`a`, `b`, `c`];
-const tmpArrElement$27 = tmpBinLhs$27 != x;
-const tmpBinLhs$29 = [`a`, `b`, `c`];
-const tmpArrElement$29 = tmpBinLhs$29 === x;
-const tmpBinLhs$31 = [`a`, `b`, `c`];
-const tmpArrElement$31 = tmpBinLhs$31 !== x;
-const tmpBinLhs$33 = [`a`, `b`, `c`];
-const tmpArrElement$33 = tmpBinLhs$33 & x;
-const tmpBinLhs$35 = [`a`, `b`, `c`];
-const tmpArrElement$35 = tmpBinLhs$35 ^ x;
-const tmpBinLhs$37 = [`a`, `b`, `c`];
-const tmpArrElement$37 = tmpBinLhs$37 | x;
-const arr = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpBinLhs$39 = [`a`, `b`, `c`];
-const tmpArrElement$39 = tmpBinLhs$39 in x;
-const tmpBinLhs$41 = [`a`, `b`, `c`];
-const tmpArrElement$41 = tmpBinLhs$41 instanceof x;
-const arr2 = [tmpArrElement$39, tmpArrElement$41];
-$(arr2);
-`````
 
 ## PST Settled
 With rename=true
@@ -298,11 +195,15 @@ const v = [ s, u ];
 $( v );
 `````
 
+
 ## Globals
+
 
 None (except for the 1 globals expected by the test)
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

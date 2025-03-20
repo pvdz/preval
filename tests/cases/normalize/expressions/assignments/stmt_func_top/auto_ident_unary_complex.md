@@ -19,6 +19,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(a, 1);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,36 +40,6 @@ $(typeof tmpUnaryArg, 1);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = 1;
-  let a = { a: 999, b: 1000 };
-  a = typeof $(x);
-  $(a, x);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = 1;
-  let a = { a: 999, b: 1000 };
-  const tmpUnaryArg = $(x);
-  a = typeof tmpUnaryArg;
-  $(a, x);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +51,15 @@ $( b, 1 );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

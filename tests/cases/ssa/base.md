@@ -16,6 +16,7 @@ x = $(10);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const tmpClusterSSA_x /*:unknown*/ = $(10);
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,25 +36,6 @@ $($(5));
 $($(10));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(5);
-$(x);
-x = $(10);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(5);
-$(x);
-x = $(10);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +47,15 @@ const b = $( 10 );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 5

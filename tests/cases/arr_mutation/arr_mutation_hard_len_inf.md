@@ -19,6 +19,7 @@ a.length = Infinity;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const a /*:array*/ = [1, 2, 3, 4, 5];
 a.length = Infinity;
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,25 +41,6 @@ a.length = Infinity;
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = [1, 2, 3, 4, 5];
-const d = $();
-a.length = Infinity;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = [1, 2, 3, 4, 5];
-const d = $();
-a.length = Infinity;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +52,15 @@ a.length = Infinity;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

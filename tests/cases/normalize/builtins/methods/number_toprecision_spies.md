@@ -14,6 +14,7 @@ const y = $spy('b');
 200..toPrecision(x, y);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const y /*:unknown*/ = $spy(`b`);
 (200).toPrecision(x, y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,23 +32,6 @@ const y /*:unknown*/ = $spy(`b`);
 (200).toPrecision($spy(`a`), $spy(`b`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $spy(`a`);
-const y = $spy(`b`);
-(200).toPrecision(x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $spy(`a`);
-const y = $spy(`b`);
-(200).toPrecision(x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +42,21 @@ const b = $spy( "b" );
 200.toPrecision( a, b );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $number_toPrecision
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']
@@ -76,6 +71,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $number_toPrecision

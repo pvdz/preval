@@ -14,6 +14,7 @@ $((a = 1 && $($(1))) + (a = 1 && $($(1))));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,38 +39,6 @@ $(tmpClusterSSA_a$1 + tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a = 1 && $($(1))) + (a = 1 && $($(1))));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 1;
-if (a) {
-  const tmpCalleeParam$1 = $(1);
-  a = $(tmpCalleeParam$1);
-} else {
-}
-let tmpBinBothLhs = a;
-a = 1;
-if (a) {
-  const tmpCalleeParam$3 = $(1);
-  a = $(tmpCalleeParam$3);
-} else {
-}
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +53,15 @@ $( e );
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -22,6 +22,7 @@ function a() {
 $(a().b().c().d);
 `````
 
+
 ## Settled
 
 
@@ -50,6 +51,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCompObj.d;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -71,67 +73,6 @@ const a$1 = {
 $(a$1.b().c().d);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-  const a$1 = {
-    a() {
-      debugger;
-      return a$1;
-    },
-    b() {
-      debugger;
-      return a$1;
-    },
-    c() {
-      debugger;
-      return a$1;
-    },
-    d() {
-      debugger;
-      return a$1;
-    },
-  };
-  return a$1;
-};
-$(a().b().c().d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-  const a$1 = {
-    a() {
-      debugger;
-      return a$1;
-    },
-    b() {
-      debugger;
-      return a$1;
-    },
-    c() {
-      debugger;
-      return a$1;
-    },
-    d() {
-      debugger;
-      return a$1;
-    },
-  };
-  return a$1;
-};
-const tmpCallObj$1 = a();
-const tmpCallObj = tmpCallObj$1.b();
-const tmpCompObj = tmpCallObj.c();
-const tmpCalleeParam = tmpCompObj.d;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -161,11 +102,15 @@ const d = c.d;
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

@@ -14,6 +14,7 @@ $((a = { x: 1, y: 2, z: 3 }) && (a = { x: 1, y: 2, z: 3 }));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpNestedComplexRhs /*:object*/ = { x: 1, y: 2, z: 3 };
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,33 +34,6 @@ $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a = { x: 1, y: 2, z: 3 }) && (a = { x: 1, y: 2, z: 3 }));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = { x: 1, y: 2, z: 3 };
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = { x: 1, y: 2, z: 3 };
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(a);
-} else {
-  $(tmpCalleeParam);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +48,15 @@ $( a );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1', y: '2', z: '3' }

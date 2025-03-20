@@ -12,12 +12,14 @@
 function i({x: [ y ]} = c ) { return y }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,40 +28,6 @@ function i({x: [ y ]} = c ) { return y }
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let i = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: [y],
-  } = tmpParamBare === undefined ? c : tmpParamBare;
-  return y;
-};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    bindingPatternObjRoot = c;
-  } else {
-    bindingPatternObjRoot = tmpParamBare;
-  }
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let y = arrPatternSplat[0];
-  return y;
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +36,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

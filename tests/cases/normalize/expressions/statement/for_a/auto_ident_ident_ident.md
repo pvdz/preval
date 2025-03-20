@@ -17,6 +17,7 @@ for (b = 2; $(0); );
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 2, 2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,37 +52,6 @@ if ($(0)) {
 $({ a: 999, b: 1000 }, 2, 2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1,
-  c = 2;
-let a = { a: 999, b: 1000 };
-{
-  b = 2;
-  while ($(0)) {}
-}
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let c = 2;
-let a = { a: 999, b: 1000 };
-b = 2;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -105,11 +76,15 @@ const c = {
 $( c, 2, 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

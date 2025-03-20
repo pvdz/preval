@@ -16,6 +16,7 @@ let a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,39 +51,6 @@ tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $({ a: 999, b: 1000 }, tmpClusterSSA_b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-([b] = $([$(2)])) + ([b] = $([$(2)]));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-let tmpBinBothLhs = undefined;
-const tmpArrElement = $(2);
-const tmpCalleeParam = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-tmpBinBothLhs = tmpNestedAssignArrPatternRhs;
-let tmpBinBothRhs = undefined;
-const tmpArrElement$1 = $(2);
-const tmpCalleeParam$1 = [tmpArrElement$1];
-const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-b = arrPatternSplat$1[0];
-tmpBinBothRhs = tmpNestedAssignArrPatternRhs$1;
-tmpBinBothLhs + tmpBinBothRhs;
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -105,11 +74,22 @@ const j = {
 $( j, i );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -126,7 +106,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

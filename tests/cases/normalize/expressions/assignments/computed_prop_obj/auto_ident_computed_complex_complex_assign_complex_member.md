@@ -17,6 +17,7 @@ let obj = {};
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropR
 tmpNestedAssignPropRhs.a;
 $(tmpNestedAssignPropRhs, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -47,36 +49,6 @@ tmpNestedAssignPropRhs.a;
 $(tmpNestedAssignPropRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-let obj = {};
-(a = $(b)[$(`c`)] = $(b)[$(`d`)])[`a`];
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`c`);
-const tmpCompObj$1 = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpCompObj = a;
-tmpCompObj.a;
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -96,11 +68,15 @@ f.a;
 $( f, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

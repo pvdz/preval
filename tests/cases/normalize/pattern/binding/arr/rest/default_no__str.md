@@ -13,6 +13,7 @@ const [...x] = 'abc';
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:array*/ = [`a`, `b`, `c`];
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,23 +30,6 @@ $(x);
 $([`a`, `b`, `c`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const [...x] = `abc`;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternArrRoot = `abc`;
-const arrPatternSplat = [...bindingPatternArrRoot];
-const x = arrPatternSplat.slice(0);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +39,21 @@ const a = [ "a", "b", "c" ];
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['a', 'b', 'c']
@@ -71,6 +66,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

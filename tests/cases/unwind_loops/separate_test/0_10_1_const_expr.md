@@ -15,6 +15,7 @@ for (let i=0; i<10; ++i) {
 }
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ $(14);
 $(16);
 $(18);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -47,39 +49,6 @@ $(16);
 $(18);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let i = 0;
-  while (i < 10) {
-    {
-      const x = i * 2;
-      $(x);
-    }
-    ++i;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = 0;
-while (true) {
-  const tmpIfTest = i < 10;
-  if (tmpIfTest) {
-    const x = i * 2;
-    $(x);
-    const tmpPostUpdArgIdent = $coerce(i, `number`);
-    i = tmpPostUpdArgIdent + 1;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -97,11 +66,15 @@ $( 16 );
 $( 18 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

@@ -15,6 +15,7 @@ x = $(2); // SSA since all future reads can only inspect this write
 $(x, 'b');
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const tmpClusterSSA_x /*:unknown*/ = $(2);
 $(tmpClusterSSA_x, `b`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,25 +35,6 @@ $($(1), `a`);
 $($(2), `b`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(1);
-$(x, `a`);
-x = $(2);
-$(x, `b`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(1);
-$(x, `a`);
-x = $(2);
-$(x, `b`);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +46,15 @@ const b = $( 2 );
 $( b, "b" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

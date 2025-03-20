@@ -13,6 +13,7 @@ let a = {x: {y: {z: 10}}};
 $($(a)?.[$('x')]?.[$('y')][$('z')]);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,43 +65,6 @@ if (tmpChainElementCall == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { x: { y: { z: 10 } } };
-$($(a)?.[$(`x`)]?.[$(`y`)][$(`z`)]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { z: 10 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let a = { x: tmpObjLitVal };
-let tmpCalleeParam = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(a);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed$1 = $(`y`);
-    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    const tmpChainRootComputed$3 = $(`z`);
-    const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
-    tmpCalleeParam = tmpChainElementObject$3;
-    $(tmpChainElementObject$3);
-  } else {
-    $(tmpCalleeParam);
-  }
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -130,11 +95,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '{"y":"{\\"z\\":\\"10\\"}"}' }

@@ -12,12 +12,14 @@
 $(''.replace(/^/, String));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(``);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,22 +28,6 @@ $(``);
 $(``);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(``.replace(/^/, String));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = /^/;
-const tmpCalleeParam$3 = String;
-const tmpCalleeParam = ``.replace(tmpCalleeParam$1, tmpCalleeParam$3);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +36,15 @@ With rename=true
 $( "" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ''

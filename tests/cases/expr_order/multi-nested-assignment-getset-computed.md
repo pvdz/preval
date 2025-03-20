@@ -29,6 +29,7 @@ $$(a, b, c, d, e);
 $$(obja, objb, objc, objd, obje);
 `````
 
+
 ## Settled
 
 
@@ -179,6 +180,7 @@ tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -307,315 +309,6 @@ tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-let d = undefined;
-let e = undefined;
-let obja = undefined;
-let objb = undefined;
-let objc = undefined;
-let objd = undefined;
-let obje = undefined;
-let tmp = function (...$$0 /*:array*/) {
-  let a$1 = $$0;
-  debugger;
-  $([`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1]);
-  return a$1[0];
-};
-obja = {
-  get a() {
-    debugger;
-    tmp(`a.get`);
-    return 110;
-  },
-  set a($$0) {
-    let x = $$0;
-    debugger;
-    tmp(`a.set`, x);
-    return 1000;
-  },
-};
-objb = {
-  get b() {
-    debugger;
-    tmp(`b.get`);
-    a = 210;
-    return 100;
-  },
-  set b($$0) {
-    let x$1 = $$0;
-    debugger;
-    tmp(`b.set`, x$1);
-    a = 2100;
-    return 2000;
-  },
-};
-objc = {
-  get c() {
-    debugger;
-    tmp(`c.get`);
-    a = 310;
-    b = 320;
-    return 100;
-  },
-  set c($$0) {
-    let x$3 = $$0;
-    debugger;
-    tmp(`c.set`, x$3);
-    a = 3100;
-    b = 3200;
-    return 3000;
-  },
-};
-objd = {
-  get d() {
-    debugger;
-    tmp(`d.get`);
-    a = 410;
-    b = 420;
-    c = 430;
-    return 100;
-  },
-  set d($$0) {
-    let x$5 = $$0;
-    debugger;
-    tmp(`d.set`, x$5);
-    a = 4100;
-    b = 4200;
-    c = 4300;
-    return 4000;
-  },
-};
-obje = {
-  get e() {
-    debugger;
-    tmp(`e.get`);
-    a = 510;
-    b = 520;
-    c = 530;
-    d = 540;
-    return 100;
-  },
-  set e($$0) {
-    let x$7 = $$0;
-    debugger;
-    tmp(`e.set`, x$7);
-    a = 5100;
-    b = 5200;
-    c = 5300;
-    d = 5400;
-    return 5000;
-  },
-};
-a = function () {
-  debugger;
-  tmp(`a`);
-  return obja;
-};
-b = function () {
-  debugger;
-  tmp(`b`);
-  a = 21;
-  return objb;
-};
-c = function () {
-  debugger;
-  tmp(`c`);
-  a = 31;
-  b = 32;
-  return objc;
-};
-d = function () {
-  debugger;
-  tmp(`d`);
-  a = 41;
-  b = 42;
-  c = 43;
-  return objd;
-};
-e = function () {
-  debugger;
-  tmp(`e`);
-  a = 51;
-  b = 52;
-  c = 53;
-  d = 54;
-  return obje;
-};
-tmp((a()[tmp(`a`)] = b()[tmp(`b`)] = c()[tmp(`c`)] = d()[tmp(`d`)] = e()));
-tmp(a, b, c, d, e);
-tmp(obja, objb, objc, objd, obje);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-let d = undefined;
-let e = undefined;
-let obja = undefined;
-let objb = undefined;
-let objc = undefined;
-let objd = undefined;
-let obje = undefined;
-let tmp = function (...$$0 /*:array*/) {
-  let a$1 = $$0;
-  debugger;
-  const tmpCalleeParam = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
-  $(tmpCalleeParam);
-  const tmpReturnArg = a$1[0];
-  return tmpReturnArg;
-};
-obja = {
-  get a() {
-    debugger;
-    tmp(`a.get`);
-    return 110;
-  },
-  set a($$0) {
-    let x = $$0;
-    debugger;
-    tmp(`a.set`, x);
-    return 1000;
-  },
-};
-objb = {
-  get b() {
-    debugger;
-    tmp(`b.get`);
-    a = 210;
-    return 100;
-  },
-  set b($$0) {
-    let x$1 = $$0;
-    debugger;
-    tmp(`b.set`, x$1);
-    a = 2100;
-    return 2000;
-  },
-};
-objc = {
-  get c() {
-    debugger;
-    tmp(`c.get`);
-    a = 310;
-    b = 320;
-    return 100;
-  },
-  set c($$0) {
-    let x$3 = $$0;
-    debugger;
-    tmp(`c.set`, x$3);
-    a = 3100;
-    b = 3200;
-    return 3000;
-  },
-};
-objd = {
-  get d() {
-    debugger;
-    tmp(`d.get`);
-    a = 410;
-    b = 420;
-    c = 430;
-    return 100;
-  },
-  set d($$0) {
-    let x$5 = $$0;
-    debugger;
-    tmp(`d.set`, x$5);
-    a = 4100;
-    b = 4200;
-    c = 4300;
-    return 4000;
-  },
-};
-obje = {
-  get e() {
-    debugger;
-    tmp(`e.get`);
-    a = 510;
-    b = 520;
-    c = 530;
-    d = 540;
-    return 100;
-  },
-  set e($$0) {
-    let x$7 = $$0;
-    debugger;
-    tmp(`e.set`, x$7);
-    a = 5100;
-    b = 5200;
-    c = 5300;
-    d = 5400;
-    return 5000;
-  },
-};
-a = function () {
-  debugger;
-  tmp(`a`);
-  return obja;
-};
-b = function () {
-  debugger;
-  tmp(`b`);
-  a = 21;
-  return objb;
-};
-c = function () {
-  debugger;
-  tmp(`c`);
-  a = 31;
-  b = 32;
-  return objc;
-};
-d = function () {
-  debugger;
-  tmp(`d`);
-  a = 41;
-  b = 42;
-  c = 43;
-  return objd;
-};
-e = function () {
-  debugger;
-  tmp(`e`);
-  a = 51;
-  b = 52;
-  c = 53;
-  d = 54;
-  return obje;
-};
-const tmpCallCallee = tmp;
-const varInitAssignLhsComputedObj = a();
-const varInitAssignLhsComputedProp = tmp(`a`);
-const varInitAssignLhsComputedObj$1 = b();
-const varInitAssignLhsComputedProp$1 = tmp(`b`);
-const varInitAssignLhsComputedObj$3 = c();
-const varInitAssignLhsComputedProp$3 = tmp(`c`);
-const varInitAssignLhsComputedObj$5 = d();
-const varInitAssignLhsComputedProp$5 = tmp(`d`);
-const varInitAssignLhsComputedRhs$5 = e();
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-tmpCallCallee(varInitAssignLhsComputedRhs);
-tmp(a, b, c, d, e);
-tmp(obja, objb, objc, objd, obje);
-`````
 
 ## PST Settled
 With rename=true
@@ -767,11 +460,15 @@ a( o, d, e, f, g );
 a( h, i, j, k, l );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

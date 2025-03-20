@@ -23,6 +23,7 @@ const rs = r + '';
 $(rs);
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ const rs /*:string*/ = $frfr(tmpFree, xs, ys);
 $(rs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,51 +59,6 @@ const xs = $coerce($spy(`x`), `plustr`);
 $($frfr(tmpFree, xs, $coerce($spy(`y`), `plustr`)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function $free($$0, $$1, $$2) {
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  debugger;
-  const one = parseInt(a + 5, b);
-  const two = one.slice(1, c);
-  return two;
-};
-const x = $spy(`x`);
-const xs = x + ``;
-const y = $spy(`y`);
-const ys = y + ``;
-const r = $frfr(f, xs, 10, ys);
-const rs = r + ``;
-$(rs);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function $free($$0, $$1, $$2) {
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  debugger;
-  const tmpCalleeParam = a + 5;
-  const tmpCalleeParam$1 = b;
-  const one = parseInt(tmpCalleeParam, b);
-  const two = one.slice(1, c);
-  return two;
-};
-const x = $spy(`x`);
-const xs = $coerce(x, `plustr`);
-const y = $spy(`y`);
-const ys = $coerce(y, `plustr`);
-const r = $frfr(f, xs, 10, ys);
-const rs = $coerce(r, `plustr`);
-$(rs);
-`````
 
 ## PST Settled
 With rename=true
@@ -125,11 +82,15 @@ const m = n( a, j, l );
 $( m );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['x', 'x']

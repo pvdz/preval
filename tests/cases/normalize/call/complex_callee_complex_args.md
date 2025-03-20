@@ -12,6 +12,7 @@
 $($)($(1), $(2));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $(2);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,22 +32,6 @@ const tmpCallCallee = $($);
 tmpCallCallee($(1), $(2));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$($)($(1), $(2));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +43,15 @@ const c = $( 2 );
 a( b, c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

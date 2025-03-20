@@ -13,12 +13,14 @@ let x = `${[]}`;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(``);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,25 +29,6 @@ $(``);
 $(``);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = `` + $coerce([], `string`) + ``;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpCalleeParam = [];
-const tmpBinBothRhs = $coerce(tmpCalleeParam, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = $coerce(tmpBinLhs, `plustr`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +37,15 @@ With rename=true
 $( "" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ''

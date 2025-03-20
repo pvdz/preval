@@ -16,6 +16,7 @@ throw (a = delete $(arg).y);
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 throw tmpClusterSSA_a;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,27 +37,6 @@ const tmpClusterSSA_a = delete tmpDeleteObj.y;
 throw tmpClusterSSA_a;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-throw (a = delete $(arg).y);
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(arg);
-a = delete tmpDeleteObj.y;
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +48,15 @@ const c = delete b.y;
 throw c;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }

@@ -23,12 +23,14 @@ TDZ errors are not properly emulated so a n eval mismatch is expected
 switch (1) { default: let x = x; $('fail'); }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`fail`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,29 +39,6 @@ $(`fail`);
 $(`fail`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let x;
-  const tmpSwitchDisc = 1;
-  if (true) {
-    x = x;
-    $(`fail`);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-const tmpSwitchDisc = 1;
-$(`fail`);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +47,15 @@ With rename=true
 $( "fail" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')

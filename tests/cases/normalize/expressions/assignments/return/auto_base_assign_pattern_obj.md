@@ -19,6 +19,7 @@ $(f());
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ $(tmpNestedAssignObjPatternRhs);
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,39 +44,6 @@ $(tmpNestedAssignObjPatternRhs);
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return (a = { b: b } = $({ b: $(2) }));
-};
-let b = {};
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  return a;
-};
-let b = {};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +57,15 @@ $( c );
 $( c, d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

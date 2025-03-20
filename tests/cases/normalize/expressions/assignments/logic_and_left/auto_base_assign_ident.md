@@ -16,6 +16,7 @@ $((a = b = $(2)) && $(100));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if (tmpNestedComplexRhs) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,35 +47,6 @@ if (tmpNestedComplexRhs) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-$((a = b = $(2)) && $(100));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpNestedComplexRhs = $(2);
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
-  $(a, b);
-} else {
-  $(tmpCalleeParam);
-  $(a, b);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -91,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

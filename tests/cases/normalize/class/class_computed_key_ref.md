@@ -15,12 +15,14 @@ class x {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,30 +31,6 @@ class x {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = `y`;
-let x = class {
-  [y]() {
-    debugger;
-  }
-};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const y = `y`;
-let x = class {
-  [y]() {
-    debugger;
-    return undefined;
-  }
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +39,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

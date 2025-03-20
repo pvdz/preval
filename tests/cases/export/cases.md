@@ -24,6 +24,7 @@ export {h as i};
 export default function(){};
 `````
 
+
 ## Settled
 
 
@@ -52,6 +53,7 @@ export { c };
 export { f };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -74,61 +76,6 @@ export { c };
 export { f };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let c = undefined;
-let f = function () {
-  debugger;
-};
-let a = 1;
-export { a };
-const b = 2;
-export { b };
-c = 3;
-let X = class {};
-export { X };
-let g = 1;
-export { g };
-let h = 2;
-export { h as i };
-const tmpAnonDefaultExport = function () {
-  debugger;
-};
-export { tmpAnonDefaultExport as default };
-export { c };
-export { f };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let c = undefined;
-let f = function () {
-  debugger;
-  return undefined;
-};
-let a = 1;
-export { a };
-const b = 2;
-export { b };
-c = 3;
-let X = class {};
-export { X };
-let g = 1;
-export { g };
-let h = 2;
-export { h as i };
-const tmpAnonDefaultExport = function () {
-  debugger;
-  return undefined;
-};
-export { tmpAnonDefaultExport as default };
-export { c };
-export { f };
-`````
 
 ## PST Settled
 With rename=true
@@ -160,11 +107,15 @@ export { h as c };
 export { a as f };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

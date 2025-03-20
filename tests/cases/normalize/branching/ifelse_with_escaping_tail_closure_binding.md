@@ -28,6 +28,7 @@ const f = function () {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ $(xyz, `g`);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -66,52 +68,6 @@ $(xyz, `g`);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const g = function () {
-    debugger;
-    $(xyz, `g`);
-  };
-  const t = $([g]);
-  if ($) {
-    $(1);
-  }
-  const xyz = $();
-  t[0]();
-  return g();
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const g = function () {
-    debugger;
-    $(xyz, `g`);
-    return undefined;
-  };
-  const tmpCalleeParam = [g];
-  const t = $(tmpCalleeParam);
-  if ($) {
-    $(1);
-  } else {
-  }
-  const xyz = $();
-  t[0]();
-  const tmpReturnArg = g();
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -133,11 +89,15 @@ $( b, "g" );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['<function>']

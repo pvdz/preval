@@ -12,12 +12,14 @@
 function i({x: {y: {z = a }}}) { return z }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,44 +28,6 @@ function i({x: {y: {z = a }}}) { return z }
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let i = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: {
-      y: { z: z = a },
-    },
-  } = tmpParamBare;
-  return z;
-};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let objPatternBeforeDefault = objPatternNoDefault$1.z;
-  let z = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    z = a;
-    return z;
-  } else {
-    z = objPatternBeforeDefault;
-    return z;
-  }
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +36,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

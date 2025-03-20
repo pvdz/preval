@@ -16,6 +16,7 @@ if ($(true)) {
 }
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,38 +48,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if ($(true)) {
-  let x = 1,
-    y = 2,
-    z = [10, 20, 30];
-  let [a, b] = ($(x), $(y), z);
-  $(a, b, x, y, z);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  let x = 1;
-  let y = 2;
-  let z = [10, 20, 30];
-  $(x);
-  $(y);
-  let bindingPatternArrRoot = z;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let a = arrPatternSplat[0];
-  let b = arrPatternSplat[1];
-  $(a, b, x, y, z);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +65,22 @@ if (a) {
 }
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true
@@ -115,7 +96,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

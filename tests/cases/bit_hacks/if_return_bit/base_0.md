@@ -17,6 +17,7 @@ function f(a) {
 $((f($(0))));
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const x$1 /*:number*/ = tmpCalleeParam$1 & 16;
 $(x$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,39 +35,6 @@ $(x$1);
 $($(0) & 16);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  const x = a & 16;
-  if (x) return 16;
-  else return 0;
-};
-$(f($(0)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  const x = a & 16;
-  if (x) {
-    return 16;
-  } else {
-    return 0;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = $(0);
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +45,15 @@ const b = a & 16;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

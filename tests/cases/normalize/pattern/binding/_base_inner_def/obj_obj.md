@@ -12,6 +12,7 @@
 const {x: {y: {z = a }}} = 1;
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,33 +37,6 @@ if ((1).x.y.z === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: {
-    y: { z: z = a },
-  },
-} = 1;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = 1;
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-const objPatternBeforeDefault = objPatternNoDefault$1.z;
-let z = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  z = a;
-} else {
-  z = objPatternBeforeDefault;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -76,13 +51,17 @@ if (e) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 a
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

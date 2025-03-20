@@ -18,6 +18,7 @@ while (true) {
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,35 +61,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arr = [1, 2, 3];
-while (true) {
-  arr = [2, 3, 4];
-  $(arr[0]);
-  if ($) break;
-}
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arr = [1, 2, 3];
-while (true) {
-  arr = [2, 3, 4];
-  const tmpCalleeParam = arr[0];
-  $(tmpCalleeParam);
-  if ($) {
-    break;
-  } else {
-  }
-}
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -110,11 +83,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -128,6 +111,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

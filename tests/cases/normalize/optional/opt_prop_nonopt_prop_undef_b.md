@@ -13,6 +13,7 @@ const a = {};
 $(a?.b.c);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
 $(tmpChainElementObject$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,31 +31,6 @@ $(tmpChainElementObject$1);
 $($Object_prototype.b.c);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = {};
-$(a?.b.c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = {};
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = a;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  tmpCalleeParam = tmpChainElementObject$1;
-  $(tmpChainElementObject$1);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +41,15 @@ const b = a.c;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

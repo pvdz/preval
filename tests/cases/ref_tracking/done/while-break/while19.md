@@ -26,6 +26,7 @@ while (true) {
 $(x); // x=5, always
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -46,7 +47,9 @@ x___35__ = 5;
 $(x___39__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                 | reads      | read by     | overWrites     | overwritten by
 x:

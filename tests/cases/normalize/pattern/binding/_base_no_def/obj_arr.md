@@ -12,6 +12,7 @@
 const {x: [ y ]} = 1
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
 arrPatternSplat[0];
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,24 +31,6 @@ const objPatternNoDefault = (1).x;
 [...objPatternNoDefault][0];
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: [y],
-} = 1;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = 1;
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const arrPatternSplat = [...objPatternNoDefault];
-const y = arrPatternSplat[0];
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +41,22 @@ const b = [ ...a ];
 b[ 0 ];
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -73,7 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

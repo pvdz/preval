@@ -41,6 +41,7 @@ $(x);                   // x=1 8
 x = $(9);
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -93,7 +94,9 @@ if (x___9__) {
 x___144__ = $(9);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 x:

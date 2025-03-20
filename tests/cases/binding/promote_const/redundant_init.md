@@ -36,6 +36,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -66,6 +67,7 @@ if (tmpIfTest$32854) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -95,73 +97,6 @@ if (tmpIfTest$32854) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if (tmpIfTest$32854) {
-    let tmpReturnArg$21651 = undefined;
-    const tmpCalleeParam$36039 = $(1);
-    const tmpCalleeParam$36040 = $(2);
-    const tmpCalleeParam$36041 = SSA_SNe$596[4];
-    const tmpCalleeParam$36042 = SSA_SNe$596[2];
-    const tmpCalleeParam$36043 = SSA_SNe$596[3];
-    const tmpCalleeParam$36044 = SSA_SNe$596[1];
-    tmpReturnArg$21651 = $(
-      100,
-      tmpCalleeParam$36039,
-      101,
-      tmpCalleeParam$36040,
-      tmpCalleeParam$36041,
-      tmpCalleeParam$36042,
-      tmpCalleeParam$36043,
-      102,
-      tmpCalleeParam$36044,
-    );
-    return tmpReturnArg$21651;
-  }
-};
-const SSA_SNe$596 = $([10, 20, 30, 40]);
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if (tmpIfTest$32854) {
-    let tmpReturnArg$21651 = undefined;
-    const tmpCalleeParam$36039 = $(1);
-    const tmpCalleeParam$36040 = $(2);
-    const tmpCalleeParam$36041 = SSA_SNe$596[4];
-    const tmpCalleeParam$36042 = SSA_SNe$596[2];
-    const tmpCalleeParam$36043 = SSA_SNe$596[3];
-    const tmpCalleeParam$36044 = SSA_SNe$596[1];
-    tmpReturnArg$21651 = $(
-      100,
-      tmpCalleeParam$36039,
-      101,
-      tmpCalleeParam$36040,
-      tmpCalleeParam$36041,
-      tmpCalleeParam$36042,
-      tmpCalleeParam$36043,
-      102,
-      tmpCalleeParam$36044,
-    );
-    return tmpReturnArg$21651;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = [10, 20, 30, 40];
-const SSA_SNe$596 = $(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -184,13 +119,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 tmpIfTest$32854
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [10, 20, 30, 40]

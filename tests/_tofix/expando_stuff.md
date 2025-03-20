@@ -38,6 +38,7 @@ const b = func(1, 2);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -75,6 +76,7 @@ const b /*:unknown*/ = func(1, 2);
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -105,83 +107,6 @@ const func = function ($dlr_$$0, $$1) {
 $(func(3, 4), func(1, 2));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-let arg1 = 3;
-let arg2 = 4;
-let func = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny$1 = arguments;
-  let $dlr_$$0 = $$0;
-  let $dlr_$$1 = $$1;
-  debugger;
-  const tmpPrevalAliasArgumentsAny = tmpPrevalAliasArgumentsAny$1;
-  const newArg1 = $dlr_$$0;
-  const index = newArg1 - 1;
-  const arrval = arr[index];
-  const tmpBinLhs = func.IS_EXPANDO_SET;
-  const tmpIfTest = tmpBinLhs === undefined;
-  if (tmpIfTest) {
-    func.THIS_IS_AN_EXPANDO = $spy;
-    arg1 = tmpPrevalAliasArgumentsAny;
-    func.IS_EXPANDO_SET = true;
-  } else {
-  }
-  const newIndex = index + 100;
-  const arguments_x = arg1[newIndex];
-  if (arguments_x) {
-    return arguments_x;
-  } else {
-    const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
-    arg1[newIndex] = expando_result;
-    return expando_result;
-  }
-};
-const a = func(3, 4);
-const b = func(1, 2);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-let arg1 = 3;
-let arg2 = 4;
-let func = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny$1 = arguments;
-  let $dlr_$$0 = $$0;
-  let $dlr_$$1 = $$1;
-  debugger;
-  const tmpPrevalAliasArgumentsAny = tmpPrevalAliasArgumentsAny$1;
-  const newArg1 = $dlr_$$0;
-  const index = newArg1 - 1;
-  const arrval = arr[index];
-  const tmpBinLhs = func.IS_EXPANDO_SET;
-  const tmpIfTest = tmpBinLhs === undefined;
-  if (tmpIfTest) {
-    func.THIS_IS_AN_EXPANDO = $spy;
-    arg1 = tmpPrevalAliasArgumentsAny;
-    func.IS_EXPANDO_SET = true;
-  } else {
-  }
-  const newIndex = index + 100;
-  const arguments_x = arg1[newIndex];
-  if (arguments_x) {
-    return arguments_x;
-  } else {
-    const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
-    arg1[newIndex] = expando_result;
-    return expando_result;
-  }
-};
-const a = func(3, 4);
-const b = func(1, 2);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -220,11 +145,21 @@ const q = c( 1, 2 );
 $( p, q );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [300, 300]
@@ -243,6 +178,3 @@ Post settled calls: BAD!!
 Denormalized calls: BAD!!
  - 1: 'Creating spy', 1, 1, [300, 300]
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
-
-Todos triggered:
-- inline computed array property read

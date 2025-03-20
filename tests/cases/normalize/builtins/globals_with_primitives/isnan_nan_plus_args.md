@@ -12,6 +12,7 @@
 $(isNaN(NaN, 1, "two", implicitGlobal, 3));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $(isNaN(NaN, 1, "two", implicitGlobal, 3));
 implicitGlobal;
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,22 +30,6 @@ implicitGlobal;
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(isNaN(NaN, 1, `two`, implicitGlobal, 3));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArgOverflow = NaN;
-implicitGlobal;
-const tmpCalleeParam = isNaN(tmpArgOverflow);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,13 +39,17 @@ implicitGlobal;
 $( true );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 implicitGlobal
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

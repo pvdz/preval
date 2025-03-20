@@ -13,6 +13,7 @@ const a = (...arg) => x;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const a /*:(unused)=>unknown*/ = function ($$0) {
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,29 +35,6 @@ $(function ($$0) {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = (...$$0) => {
-  let arg = $$0;
-  debugger;
-  return x;
-};
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = function (...$$0 /*:array*/) {
-  let arg = $$0;
-  debugger;
-  return x;
-};
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,13 +47,23 @@ const a = function($$0 ) {
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- drop unused rest param?
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -87,6 +76,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- drop unused rest param?

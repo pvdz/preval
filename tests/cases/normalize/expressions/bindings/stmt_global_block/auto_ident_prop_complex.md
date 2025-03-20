@@ -17,6 +17,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const a /*:unknown*/ = tmpCompObj.c;
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,26 +37,6 @@ const b = { c: 1 };
 $($(b).c, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let b = { c: 1 };
-  let a = $(b).c;
-  $(a, b);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-const tmpCompObj = $(b);
-let a = tmpCompObj.c;
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +48,15 @@ const c = b.c;
 $( c, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '1' }

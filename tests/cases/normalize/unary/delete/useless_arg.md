@@ -12,6 +12,7 @@
 $(delete $(1));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $(delete $(1));
 $(1);
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,21 +30,6 @@ $(1);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(delete $(1));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-const tmpCalleeParam = true;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +39,15 @@ $( 1 );
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

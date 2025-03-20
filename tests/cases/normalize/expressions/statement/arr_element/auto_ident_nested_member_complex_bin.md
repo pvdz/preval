@@ -19,6 +19,7 @@ let a = { a: 999, b: 1000 };
 $(a, b, c, d, e);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3, 4);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,49 +64,6 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 7;
 $({ a: 999, b: 1000 }, b, c, 3, 4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3,
-  e = 4;
-let a = { a: 999, b: 1000 };
-($(b)[$(`x`)] = $(c)[$(`y`)] = d + e) + ($(b)[$(`x`)] = $(c)[$(`y`)] = d + e);
-$(a, b, c, d, e);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let e = 4;
-let a = { a: 999, b: 1000 };
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $(`y`);
-const varInitAssignLhsComputedRhs$1 = d + e;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpBinBothLhs = varInitAssignLhsComputedRhs;
-const varInitAssignLhsComputedObj$3 = $(b);
-const varInitAssignLhsComputedProp$3 = $(`x`);
-const varInitAssignLhsComputedObj$5 = $(c);
-const varInitAssignLhsComputedProp$5 = $(`y`);
-const varInitAssignLhsComputedRhs$5 = d + e;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-const tmpBinBothRhs = varInitAssignLhsComputedRhs$3;
-tmpBinBothLhs + tmpBinBothRhs;
-$(a, b, c, d, e);
-`````
 
 ## PST Settled
 With rename=true
@@ -131,11 +90,15 @@ const k = {
 $( k, a, d, 3, 4 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

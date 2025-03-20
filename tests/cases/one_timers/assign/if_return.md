@@ -27,6 +27,7 @@ $(x, 'x-global');
 $(closure(), 'closure-global2');
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $(tmpClusterSSA_x, `closure-return`);
 $(tmpCalleeParam$1, `closure-global2`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,54 +65,6 @@ if ($()) {
 $($(tmpClusterSSA_x, `closure-return`), `closure-global2`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let closure = function () {
-  debugger;
-  return $(x, `closure-return`);
-};
-let f = function () {
-  debugger;
-  if ($()) {
-    return $(1, `f-return`);
-  }
-};
-let x = $(100, `init`);
-$(closure(), `closure-global1`);
-x = f();
-$(x, `x-global`);
-$(closure(), `closure-global2`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let closure = function () {
-  debugger;
-  const tmpReturnArg = $(x, `closure-return`);
-  return tmpReturnArg;
-};
-let f = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    const tmpReturnArg$1 = $(1, `f-return`);
-    return tmpReturnArg$1;
-  } else {
-    return undefined;
-  }
-};
-let x = $(100, `init`);
-const tmpCalleeParam = closure();
-$(tmpCalleeParam, `closure-global1`);
-x = f();
-$(x, `x-global`);
-const tmpCalleeParam$1 = closure();
-$(tmpCalleeParam$1, `closure-global2`);
-`````
 
 ## PST Settled
 With rename=true
@@ -133,11 +87,15 @@ const f = $( c, "closure-return" );
 $( f, "closure-global2" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100, 'init'

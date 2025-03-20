@@ -16,6 +16,7 @@ $({ [(a = (1, 2, b).c)]: 10 });
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const b /*:object*/ = { c: 1 };
 $(1, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,30 +36,6 @@ $({ [1]: 10 });
 $(1, { c: 1 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-$({ [(a = (1, 2, b).c)]: 10 });
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpAssignRhsProp = b;
-a = tmpAssignRhsProp.c;
-let tmpObjLitPropKey = a;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +47,15 @@ const b = { c: 1 };
 $( 1, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 1: '10' }

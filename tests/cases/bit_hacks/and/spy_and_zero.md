@@ -12,6 +12,7 @@
 $($spy(0xffffffffffffffffffffffffffffffff) & 0);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ tmpBinLhs ** 0;
 $(0);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,22 +31,6 @@ $spy(3.402823669209385e38) ** 0;
 $(0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$($spy(3.402823669209385e38) & 0);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinLhs = $spy(3.402823669209385e38);
-tmpBinLhs & 0;
-const tmpCalleeParam = 0;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +41,15 @@ a ** 0;
 $( 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [3.402823669209385e38, 3.402823669209385e38]

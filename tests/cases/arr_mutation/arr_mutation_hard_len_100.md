@@ -19,6 +19,7 @@ a.length = 100;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const a /*:array*/ = [1, 2, 3, 4, 5];
 a.length = 100;
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,25 +41,6 @@ a.length = 100;
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = [1, 2, 3, 4, 5];
-const d = $();
-a.length = 100;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = [1, 2, 3, 4, 5];
-const d = $();
-a.length = 100;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +52,21 @@ a.length = 100;
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- Assigning a much bigger value to arr.length than the len
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 
@@ -189,6 +182,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Assigning a much bigger value to arr.length than the len

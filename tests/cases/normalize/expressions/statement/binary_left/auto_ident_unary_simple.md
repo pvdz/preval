@@ -16,6 +16,7 @@ typeof x + $(100);
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,27 +36,6 @@ $coerce($(100), `plustr`);
 $({ a: 999, b: 1000 }, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-typeof x + $(100);
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = typeof x;
-const tmpBinBothRhs = $(100);
-tmpBinBothLhs + tmpBinBothRhs;
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +50,15 @@ const b = {
 $( b, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

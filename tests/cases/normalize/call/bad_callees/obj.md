@@ -14,6 +14,7 @@ $('before');
 $('after');
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpCallComplexCallee /*:object*/ = { a: 1, b: 2 };
 tmpCallComplexCallee();
 $(`after`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,24 +36,6 @@ tmpCallComplexCallee();
 $(`after`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`before`);
-({ a: 1, b: 2 }());
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`before`);
-const tmpCallComplexCallee = { a: 1, b: 2 };
-tmpCallComplexCallee();
-$(`after`);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +50,15 @@ a();
 $( "after" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before'

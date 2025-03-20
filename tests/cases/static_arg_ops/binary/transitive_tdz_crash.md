@@ -22,6 +22,7 @@ f(1800);
 g(272);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ $(583);
 $(888);
 $(1262);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,49 +42,6 @@ $(888);
 $(1262);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let arg = $$0;
-  debugger;
-  const tmp = arg - 1902;
-  g(tmp);
-};
-const g = function ($$0) {
-  let a2 = $$0;
-  debugger;
-  const x = a2 - -990;
-  $(x);
-};
-f(1495);
-f(1800);
-g(272);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let arg = $$0;
-  debugger;
-  const tmp = arg - 1902;
-  g(tmp);
-  return undefined;
-};
-const g = function ($$0) {
-  let a2 = $$0;
-  debugger;
-  const x = a2 - -990;
-  $(x);
-  return undefined;
-};
-f(1495);
-f(1800);
-g(272);
-`````
 
 ## PST Settled
 With rename=true
@@ -93,11 +52,15 @@ $( 888 );
 $( 1262 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 583

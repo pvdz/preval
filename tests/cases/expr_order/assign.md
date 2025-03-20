@@ -16,12 +16,14 @@ let j = i + ++i;
 $(j);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,27 +32,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let i = 0;
-let j = i + ++i;
-$(j);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = 0;
-const tmpBinBothLhs = i;
-const tmpPostUpdArgIdent = $coerce(i, `number`);
-i = tmpPostUpdArgIdent + 1;
-const tmpBinBothRhs = i;
-let j = tmpBinBothLhs + tmpBinBothRhs;
-$(j);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +40,15 @@ With rename=true
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

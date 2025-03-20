@@ -16,6 +16,7 @@ $((a = typeof x) ? $(100) : $(200));
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(tmpClusterSSA_tmpCalleeParam);
 $(`number`, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,35 +35,6 @@ $($(100));
 $(`number`, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-$((a = typeof x) ? $(100) : $(200));
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
-a = typeof x;
-let tmpIfTest = a;
-if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
-  $(a, x);
-} else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
-  $(a, x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +45,15 @@ $( a );
 $( "number", 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

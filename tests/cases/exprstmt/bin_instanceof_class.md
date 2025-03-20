@@ -13,6 +13,7 @@ const spy = {toString(){ $('fail'); }, valueOf(){ $('fail'); }};
 spy instanceof class {};
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpBinBothRhs /*:class*/ = class {};
 undefined instanceof tmpBinBothRhs;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,43 +30,6 @@ undefined instanceof tmpBinBothRhs;
 undefined instanceof class {};
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`fail`);
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-  },
-};
-spy instanceof class {};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-};
-const tmpBinBothLhs = undefined;
-const tmpBinBothRhs = class {};
-undefined instanceof tmpBinBothRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +41,15 @@ const a = class   {
 undefined instanceof a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

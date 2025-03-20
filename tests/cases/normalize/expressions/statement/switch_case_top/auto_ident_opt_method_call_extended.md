@@ -19,6 +19,7 @@ switch ($(1)) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,49 +52,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: { d: { e: $ } } };
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (tmpSwitchDisc === $(1)) {
-    b?.c.d.e(1);
-  } else {
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let b = { c: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-const tmpBinBothLhs = tmpSwitchDisc;
-const tmpBinBothRhs = $(1);
-const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-if (tmpIfTest) {
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementCall = tmpChainElementObject$1.e(1);
-    $(a);
-  } else {
-    $(a);
-  }
-} else {
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -115,11 +74,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

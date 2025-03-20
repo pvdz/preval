@@ -13,12 +13,14 @@ var x = {}, a = 1, b = 2, c = 3;
 x[a + b] = c;
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,34 +29,6 @@ x[a + b] = c;
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-let x = undefined;
-(x = {}), (a = 1), (b = 2), (c = 3);
-x[a + b] = c;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-let x = undefined;
-x = {};
-a = 1;
-b = 2;
-c = 3;
-const tmpAssignComMemLhsObj = x;
-const tmpAssignComMemLhsProp = a + b;
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +37,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

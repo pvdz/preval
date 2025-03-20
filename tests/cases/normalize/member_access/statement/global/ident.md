@@ -12,12 +12,14 @@
 $.length;
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $.length;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,19 +28,6 @@ $.length;
 $.length;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$.length;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$.length;
-`````
 
 ## PST Settled
 With rename=true
@@ -47,11 +36,15 @@ With rename=true
 $.length;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

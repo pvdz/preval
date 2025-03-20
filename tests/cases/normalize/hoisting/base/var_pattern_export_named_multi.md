@@ -14,6 +14,7 @@ export var [x] = [10], [y] = [20];
 $(x, y);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ export { x };
 const y /*:number*/ = 20;
 export { y };
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,36 +40,6 @@ const y = 20;
 export { y };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-let y = undefined;
-$(x, y);
-([x] = [10]), ([y] = [20]);
-$(x, y);
-export { x };
-export { y };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-let y = undefined;
-$(x, undefined);
-const arrAssignPatternRhs = [10];
-const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-const arrAssignPatternRhs$1 = [20];
-const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-y = arrPatternSplat$1[0];
-$(x, y);
-export { x };
-export { y };
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +53,22 @@ const b = 20;
 export { b as y };
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -97,7 +80,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

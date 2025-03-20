@@ -13,6 +13,7 @@ const spy = {toString(){ $('pass'); }, valueOf(){ $('fail'); }};
 spy in 150; // This'll crash
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const spy /*:object*/ = {
 spy in 150;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,41 +48,6 @@ spy in 150;
 } in 150);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`pass`);
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-  },
-};
-spy in 150;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`pass`);
-    return undefined;
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-};
-spy in 150;
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +68,15 @@ const a = {
 a in 150;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot use 'in' operator to search for '[object Object]' in 150 ]>")

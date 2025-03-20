@@ -17,6 +17,7 @@
 $(z);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ z = $objPatternRest(tmpObjLitVal$3, tmpCalleeParam$1, undefined);
 $(z);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,33 +37,6 @@ z = $objPatternRest({ z: 1, a: 2, b: 3 }, [], undefined);
 $(z);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({
-  x: {
-    y: { ...z },
-  },
-} = { x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 });
-$(z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = 13;
-const tmpObjLitVal$3 = { z: 1, a: 2, b: 3 };
-const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, z: 14 };
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-const tmpCalleeParam = objPatternNoDefault$1;
-const tmpCalleeParam$1 = [];
-z = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
-$(z);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,13 +52,17 @@ z = $objPatternRest( a, b, undefined );
 $( z );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 z
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -16,6 +16,7 @@ $`before ${(a = delete ($(1), $(2), $(arg)).y)} after`;
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ $(tmpCalleeParam, tmpClusterSSA_a);
 $(tmpClusterSSA_a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,31 +45,6 @@ $([`before `, ` after`], tmpClusterSSA_a);
 $(tmpClusterSSA_a, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = delete ($(1), $(2), $(arg)).y));
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-$(1);
-$(2);
-const tmpDeleteObj = $(arg);
-a = delete tmpDeleteObj.y;
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +60,15 @@ $( d, c );
 $( c, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

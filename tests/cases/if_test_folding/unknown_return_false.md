@@ -22,6 +22,7 @@ f();
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const tmpBoolTrampolineB /*:boolean*/ = !tmpBoolTrampoline;
 $(tmpBoolTrampolineB);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,42 +43,6 @@ const tmpBoolTrampoline = $(0);
 $(!tmpBoolTrampoline);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const x = $(0);
-  let y = undefined;
-  if (x) {
-    return false;
-  } else {
-    return true;
-  }
-};
-f();
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const x = $(0);
-  let y = undefined;
-  if (x) {
-    return false;
-  } else {
-    return true;
-  }
-};
-f();
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +54,15 @@ const b = !a;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

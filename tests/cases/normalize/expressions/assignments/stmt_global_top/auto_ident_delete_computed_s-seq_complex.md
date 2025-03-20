@@ -16,6 +16,7 @@ a = delete ($(1), $(2), arg)[$("y")];
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,29 +41,6 @@ const arg = { y: 1 };
 $(delete arg[tmpDeleteCompProp], arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-a = delete ($(1), $(2), arg)[$(`y`)];
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$(1);
-$(2);
-const tmpDeleteCompObj = arg;
-const tmpDeleteCompProp = $(`y`);
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +54,15 @@ const c = delete b[ a ];
 $( c, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -23,6 +23,7 @@ if (x) {
 $(x)
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,37 +50,6 @@ if ($(67637) === 67636) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $(67637);
-let x = a === 67636;
-if (x) {
-} else {
-  if ($) a = 67636;
-  x = a === 67636;
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = $(67637);
-let x = a === 67636;
-if (x) {
-  $(x);
-} else {
-  if ($) {
-    a = 67636;
-  } else {
-  }
-  x = a === 67636;
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +66,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 67637

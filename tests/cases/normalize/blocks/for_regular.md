@@ -12,6 +12,7 @@
 for ($(1); $(2); $(3)) $(4);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,34 +50,6 @@ if ($(2)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  $(1);
-  while ($(2)) {
-    $(4);
-    $(3);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-while (true) {
-  const tmpIfTest = $(2);
-  if (tmpIfTest) {
-    $(4);
-    $(3);
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +72,15 @@ if (a) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

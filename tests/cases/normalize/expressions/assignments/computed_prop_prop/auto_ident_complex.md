@@ -17,6 +17,7 @@ obj[(a = $(b))];
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ obj[a];
 $(a, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,30 +38,6 @@ const a = $(1);
 $(a, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = $(b))];
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-a = $(b);
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +49,15 @@ b[ a ];
 $( a, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

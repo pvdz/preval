@@ -16,6 +16,7 @@ for (let x in (a = { b } = $({ b: $(2) })));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -56,50 +58,6 @@ while (true) {
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-{
-  let tmpForInGen = $forIn((a = { b: b } = $({ b: $(2) })));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      let x = tmpForInNext.value;
-    }
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-const tmpObjLitVal = $(2);
-const tmpCalleeParam$1 = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-b = tmpNestedAssignObjPatternRhs.b;
-a = tmpNestedAssignObjPatternRhs;
-let tmpCalleeParam = a;
-let tmpForInGen = $forIn(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    let x = tmpForInNext.value;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -123,11 +81,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( c, d );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -142,6 +110,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

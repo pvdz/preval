@@ -25,6 +25,7 @@ B();
 
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,46 +47,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const B = function () {
-  debugger;
-  const C = function () {
-    debugger;
-    const x = $(true);
-    if (x) {
-      $(`inner`);
-    }
-  };
-  const r = C();
-  return r;
-};
-B();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const B = function () {
-  debugger;
-  const C = function () {
-    debugger;
-    const x = $(true);
-    if (x) {
-      $(`inner`);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  const r = C();
-  return r;
-};
-B();
-`````
 
 ## PST Settled
 With rename=true
@@ -96,11 +58,15 @@ if (a) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

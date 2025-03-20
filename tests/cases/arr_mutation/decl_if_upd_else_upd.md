@@ -18,6 +18,7 @@ if ($) {
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if ($) {
   $(arr);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -46,32 +48,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [];
-if ($) {
-  arr[0] = 1;
-} else {
-  arr[0] = 2;
-}
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [];
-if ($) {
-  arr[0] = 1;
-  $(arr);
-} else {
-  arr[0] = 2;
-  $(arr);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1]

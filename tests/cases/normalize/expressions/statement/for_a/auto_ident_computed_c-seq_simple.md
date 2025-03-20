@@ -16,6 +16,7 @@ for ((1, 2, $(b))[$("c")]; $(0); );
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,37 +59,6 @@ if ($(0)) {
 $({ a: 999, b: 1000 }, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-{
-  (1, 2, $(b))[$(`c`)];
-  while ($(0)) {}
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-tmpCompObj[tmpCompProp];
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -116,11 +87,21 @@ const f = {
 $( f, a );
 `````
 
+
+## Todos triggered
+
+
+- computed property access of an ident where the property ident is not recorded;
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '1' }
@@ -136,6 +117,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- computed property access of an ident where the property ident is not recorded;

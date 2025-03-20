@@ -18,6 +18,7 @@ while (x) {
 }
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,35 +63,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (x) {
-  const tmpIfTest = $(`yes`);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  if (x) {
-    const tmpIfTest = $(`yes`);
-    if (tmpIfTest) {
-    } else {
-      break;
-    }
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -116,13 +89,17 @@ if (x) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

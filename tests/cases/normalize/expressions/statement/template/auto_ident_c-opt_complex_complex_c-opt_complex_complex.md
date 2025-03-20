@@ -16,6 +16,7 @@ $(`before  ${$(b)?.[$("x")]?.[$("y")]}  after`);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,47 +65,6 @@ $(`before  ${tmpCalleeParam$1}  after`);
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: 1 } };
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce($(b)?.[$(`x`)]?.[$(`y`)], `string`) + `  after`);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-let tmpCalleeParam$1 = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed$1 = $(`y`);
-    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpCalleeParam$1 = tmpChainElementObject$1;
-  } else {
-  }
-} else {
-}
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -140,11 +101,15 @@ const m = {
 $( m );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '{"y":"1"}' }

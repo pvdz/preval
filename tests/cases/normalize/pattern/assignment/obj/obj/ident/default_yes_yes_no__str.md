@@ -13,6 +13,7 @@
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,38 +60,6 @@ if (objPatternBeforeDefault$1 === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: { y: y = $(`fail`) } = $({ y: `pass2` }) } = `abc`);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = `abc`;
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { y: `pass2` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  y = $(`fail`);
-  $(y);
-} else {
-  y = objPatternBeforeDefault$1;
-  $(objPatternBeforeDefault$1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -117,13 +87,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 y
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '"pass2"' }

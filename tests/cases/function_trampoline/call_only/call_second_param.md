@@ -15,12 +15,14 @@ const f = function(a, b, c, d, e) {
 f(1, 2, 3, 4, 5); // This should end up being $(3)
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,38 +31,6 @@ $(3);
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  $(c);
-};
-f(1, 2, 3, 4, 5);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  $(c);
-  return undefined;
-};
-f(1, 2, 3, 4, 5);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +39,15 @@ With rename=true
 $( 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

@@ -22,6 +22,7 @@ while (test) {
 }
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ if (test) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -69,43 +71,6 @@ if (2 < max) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
-const len = arr.length;
-const max = $(10);
-let counter = 2;
-let test = 2 < max;
-while (test) {
-  const tmpCalleeParam$1891 = arr[counter];
-  $(tmpCalleeParam$1891);
-  counter = counter + 1;
-  test = counter < len;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
-const len = arr.length;
-const max = $(10);
-let counter = 2;
-let test = 2 < max;
-while (true) {
-  if (test) {
-    const tmpCalleeParam$1891 = arr[counter];
-    $(tmpCalleeParam$1891);
-    counter = counter + 1;
-    test = counter < len;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -132,11 +97,15 @@ if (b) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

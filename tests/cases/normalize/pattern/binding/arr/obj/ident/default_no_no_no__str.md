@@ -13,6 +13,7 @@ const [{ x }] = 'abc';
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:unknown*/ = `a`.x;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,24 +30,6 @@ $(x);
 $(`a`.x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const [{ x: x }] = `abc`;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternArrRoot = `abc`;
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const x = arrPatternStep.x;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +39,22 @@ const a = "a".x;
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined
@@ -72,7 +67,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

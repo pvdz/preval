@@ -19,6 +19,7 @@ const x = eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -105,6 +106,7 @@ const x /*:unknown*/ = eval(tmpClusterSSA_p);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -178,149 +180,6 @@ $(
 );
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = eval(
-  (function ($$0, $$1, $$2, $$3, $$4, $$5) {
-    let p = $$0;
-    let a = $$1;
-    let c = $$2;
-    let k = $$3;
-    let e = $$4;
-    let r = $$5;
-    debugger;
-    e = function ($$0) {
-      let c$1 = $$0;
-      debugger;
-      return c$1.toString(a);
-    };
-    if (!``.replace(/^/, String)) {
-      while (c--) r[e(c)] = k[c] || e(c);
-      k = [
-        function ($$0) {
-          let e$1 = $$0;
-          debugger;
-          return r[e$1];
-        },
-      ];
-      e = function () {
-        debugger;
-        return `\\w+`;
-      };
-      c = 1;
-    }
-    while (c--) if (k[c]) p = p.replace(new RegExp(`\\b` + e(c) + `\\b`, `g`), k[c]);
-    return p;
-  })(
-    `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
-    36,
-    36,
-    `|||||||||||||||function||||return||String|if|replace|while||10||eval|new|RegExp|x20f||u0020g|not_expr|split`.split(`|`),
-    0,
-    {},
-  ),
-);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-  let p = $$0;
-  let a = $$1;
-  let c = $$2;
-  let k = $$3;
-  let e = $$4;
-  let r = $$5;
-  debugger;
-  e = function ($$0) {
-    let c$1 = $$0;
-    debugger;
-    const tmpReturnArg = c$1.toString(a);
-    return tmpReturnArg;
-  };
-  const tmpCalleeParam$5 = /^/;
-  const tmpCalleeParam$7 = String;
-  const tmpIfTest = ``.replace(tmpCalleeParam$5, tmpCalleeParam$7);
-  if (tmpIfTest) {
-  } else {
-    while (true) {
-      const tmpPostUpdArgIdent = $coerce(c, `number`);
-      c = tmpPostUpdArgIdent - 1;
-      const tmpIfTest$1 = tmpPostUpdArgIdent;
-      if (tmpIfTest$1) {
-        const tmpAssignComMemLhsObj = r;
-        const tmpAssignComMemLhsProp = e(c);
-        const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-        const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-        let tmpAssignComputedRhs = k[c];
-        if (tmpAssignComputedRhs) {
-        } else {
-          tmpAssignComputedRhs = e(c);
-        }
-        tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-      } else {
-        break;
-      }
-    }
-    const tmpArrElement = function ($$0) {
-      let e$1 = $$0;
-      debugger;
-      const tmpReturnArg$1 = r[e$1];
-      return tmpReturnArg$1;
-    };
-    k = [tmpArrElement];
-    e = function () {
-      debugger;
-      return `\\w+`;
-    };
-    c = 1;
-  }
-  while (true) {
-    const tmpPostUpdArgIdent$1 = $coerce(c, `number`);
-    c = tmpPostUpdArgIdent$1 - 1;
-    const tmpIfTest$3 = tmpPostUpdArgIdent$1;
-    if (tmpIfTest$3) {
-      const tmpIfTest$5 = k[c];
-      if (tmpIfTest$5) {
-        const tmpCallObj = p;
-        const tmpCallVal = tmpCallObj.replace;
-        const tmpNewCallee = RegExp;
-        const tmpBinBothLhs = `\\b`;
-        const tmpBinBothRhs = e(c);
-        const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-        const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-        const tmpCalleeParam$13 = `${tmpStringConcatR}\\b`;
-        const tmpCalleeParam$9 = new tmpNewCallee(tmpCalleeParam$13, `g`);
-        const tmpCalleeParam$11 = k[c];
-        p = $dotCall(tmpCallVal, tmpCallObj, `replace`, tmpCalleeParam$9, tmpCalleeParam$11);
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-  return p;
-};
-const tmpCalleeParam$1 = `|||||||||||||||function||||return||String|if|replace|while||10||eval|new|RegExp|x20f||u0020g|not_expr|split`.split(
-  `|`,
-);
-const tmpCalleeParam$3 = {};
-const tmpCalleeParam = tmpCallCallee(
-  `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
-  36,
-  36,
-  tmpCalleeParam$1,
-  0,
-  tmpCalleeParam$3,
-);
-const x = eval(tmpCalleeParam);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -371,11 +230,24 @@ const l = eval( k );
 $( l );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- objects in isFree check
+- Assert whether the binding is written before/inside the loop, if not we can still totally do this
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a`b"c\'d\\e f g${not_expr}h/i'
@@ -388,9 +260,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- objects in isFree check
-- Assert whether the binding is written before/inside the loop, if not we can still totally do this
-- inline computed array property read

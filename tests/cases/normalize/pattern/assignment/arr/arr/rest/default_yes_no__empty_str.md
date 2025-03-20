@@ -13,6 +13,7 @@
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ x = arrPatternSplat$1.slice(0);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,32 +34,6 @@ x = [...arrPatternStep].slice(0);
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[[...x] = $(`pass`)] = ``;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arrAssignPatternRhs = ``;
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  arrPatternStep = $(`pass`);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const arrPatternSplat$1 = [...arrPatternStep];
-x = arrPatternSplat$1.slice(0);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,13 +45,25 @@ x = b.slice( 0 );
 $( x );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'
@@ -88,8 +76,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

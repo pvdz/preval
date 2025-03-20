@@ -12,12 +12,14 @@
 class x extends $(String) {}
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(String);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(String);
 $(String);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = class extends $(String) {};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpClassSuper = $(String);
-let x = class extends tmpClassSuper {};
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( String );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

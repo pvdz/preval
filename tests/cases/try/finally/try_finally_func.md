@@ -27,6 +27,7 @@ try {
 }
 `````
 
+
 ## Settled
 
 
@@ -58,6 +59,7 @@ const f /*:()=>primitive*/ = function () {
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -83,106 +85,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let $implicitThrow$1 = false;
-  let $finalCatchArg$1 = undefined;
-  $finally$1: {
-    try {
-    } catch ($finalImplicit$1) {
-      $implicitThrow$1 = true;
-      $finalCatchArg$1 = $finalImplicit$1;
-    }
-  }
-  {
-    let f = function () {
-      debugger;
-      let x = 1;
-      {
-        let $implicitThrow = false;
-        let $finalStep = false;
-        let $finalCatchArg = undefined;
-        let $finalArg = undefined;
-        $finally: {
-          try {
-            if ($()) {
-              x = 2;
-              {
-                $finalStep = true;
-                $finalArg = 100;
-                break $finally;
-              }
-            }
-          } catch ($finalImplicit) {
-            $(x);
-            throw $finalImplicit;
-          }
-        }
-        {
-          $(x);
-        }
-        if ($implicitThrow) throw $finalCatchArg;
-        else if ($finalStep) return $finalArg;
-        else {
-        }
-      }
-    };
-    $(f);
-  }
-  if ($implicitThrow$1) throw $finalCatchArg$1;
-  else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let $implicitThrow$1 = false;
-let $finalCatchArg$1 = undefined;
-let f = function () {
-  debugger;
-  let x = 1;
-  let $implicitThrow = false;
-  let $finalStep = false;
-  let $finalCatchArg = undefined;
-  let $finalArg = undefined;
-  $finally: {
-    try {
-      const tmpIfTest = $();
-      if (tmpIfTest) {
-        x = 2;
-        $finalStep = true;
-        $finalArg = 100;
-        break $finally;
-      } else {
-      }
-    } catch ($finalImplicit) {
-      $(x);
-      throw $finalImplicit;
-    }
-  }
-  $(x);
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    if ($finalStep) {
-      return $finalArg;
-    } else {
-      return undefined;
-    }
-  }
-};
-$(f);
-if ($implicitThrow$1) {
-  throw $finalCatchArg$1;
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -216,11 +118,15 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

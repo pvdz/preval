@@ -13,6 +13,7 @@ const { x: [y = 'fail'] = $(['pass2']) } = 'abc';
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,40 +57,6 @@ if (arrPatternBeforeDefault === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: [y = `fail`] = $([`pass2`]) } = `abc`;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = `abc`;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = [`pass2`];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let y = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  y = `fail`;
-  $(y);
-} else {
-  y = arrPatternBeforeDefault;
-  $(arrPatternBeforeDefault);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -115,11 +83,22 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['pass2']
@@ -133,7 +112,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

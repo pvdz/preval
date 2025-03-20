@@ -26,6 +26,7 @@ while (true) {
 $(y, 'last');
 `````
 
+
 ## Settled
 
 
@@ -56,6 +57,7 @@ while (true) {
 $(y, `last`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -84,73 +86,6 @@ while (true) {
 $(y, `last`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let y = $(true);
-while (true) {
-  if (y) {
-    $(y, `before`);
-    let x = undefined;
-    const obj = { a: 1, b: 2 };
-    {
-      let tmpForInGen = $forIn(obj);
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        let tmpForInNext = tmpForInGen.next();
-        if (tmpForInNext.done) {
-          break;
-        } else {
-          x = tmpForInNext.value;
-          {
-            $continue: {
-              {
-                $(x, y);
-                break $continue;
-              }
-            }
-          }
-        }
-      }
-    }
-    $(x, y, `after`);
-    y = $(true);
-  } else {
-    break;
-  }
-}
-$(y, `last`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = undefined;
-while (true) {
-  y = $(true);
-  if (y) {
-    $(y, `before`);
-    let x = undefined;
-    const obj = { a: 1, b: 2 };
-    let tmpForInGen = $forIn(obj);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForInNext = tmpForInGen.next();
-      const tmpIfTest = tmpForInNext.done;
-      if (tmpIfTest) {
-        break;
-      } else {
-        x = tmpForInNext.value;
-        $(x, y);
-      }
-    }
-    $(x, y, `after`);
-  } else {
-    break;
-  }
-}
-$(y, `last`);
-`````
 
 ## PST Settled
 With rename=true
@@ -187,11 +122,21 @@ while (true) {
 $( a, "last" );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true
@@ -229,6 +174,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

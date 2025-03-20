@@ -23,6 +23,7 @@ A: for (const y in x) {
 $('c');
 `````
 
+
 ## Settled
 
 
@@ -55,6 +56,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`c`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -81,65 +83,6 @@ while (true) {
 $(`c`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = { a: 0, b: 1 };
-A: {
-  let tmpForInGen = $forIn(x);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      const y = tmpForInNext.value;
-      {
-        $continue: {
-          {
-            while (true) {
-              $(`a`);
-              if ($(true)) {
-                break $continue;
-              }
-              $(`fail`);
-            }
-            $(`b`);
-          }
-        }
-      }
-    }
-  }
-}
-$(`c`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = { a: 0, b: 1 };
-let tmpForInGen = $forIn(x);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const y = tmpForInNext.value;
-    while (true) {
-      $(`a`);
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        $(`fail`);
-      }
-    }
-  }
-}
-$(`c`);
-`````
 
 ## PST Settled
 With rename=true
@@ -178,11 +121,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( "c" );
 `````
 
+
+## Todos triggered
+
+
+- regular property access of an ident feels tricky;
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'
@@ -199,7 +153,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- regular property access of an ident feels tricky;
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

@@ -20,6 +20,7 @@ while (count) {
 }
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (chk) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,39 +46,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let count = true;
-let chk = $(true);
-if (chk) {
-} else {
-  count = false;
-}
-while (count) {
-  $(`inside`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let count = true;
-let chk = $(true);
-if (chk) {
-} else {
-  count = false;
-}
-while (true) {
-  if (count) {
-    $(`inside`);
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +59,15 @@ if (a) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

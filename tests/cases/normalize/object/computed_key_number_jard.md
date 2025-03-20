@@ -12,6 +12,7 @@
 $({[1e4]: 10}); // This will create a key 1000, not '1e4'. Luckily this shouldn't matter for the AST but dangerous if keys get normalized to strings.
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam /*:object*/ = { [10000]: 10 };
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,20 +29,6 @@ $(tmpCalleeParam);
 $({ [10000]: 10 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$({ [10000]: 10 });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = { [10000]: 10 };
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +38,15 @@ const a = { [ 10000 ]: 10 };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 10000: '10' }

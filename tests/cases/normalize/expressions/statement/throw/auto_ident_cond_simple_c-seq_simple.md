@@ -14,6 +14,7 @@ throw 1 ? (40, 50, $(60)) : $($(100));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $(a);
 const tmpThrowArg /*:unknown*/ = $(60);
 throw tmpThrowArg;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,24 +32,6 @@ const tmpThrowArg = $(60);
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-throw 1 ? (40, 50, $(60)) : $($(100));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpThrowArg = undefined;
-tmpThrowArg = $(60);
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +41,15 @@ const a = $( 60 );
 throw a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 60

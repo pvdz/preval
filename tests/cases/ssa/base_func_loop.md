@@ -21,6 +21,7 @@ function f() {
 if ($) $(f()); // The branching prevents certain flattening
 `````
 
+
 ## Settled
 
 
@@ -52,6 +53,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -78,51 +80,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = $(3);
-  $(x);
-  while (true) {
-    $(++x);
-    if (x > 5) break;
-  }
-  $(x);
-};
-if ($) $(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = $(3);
-  $(x);
-  while (true) {
-    const tmpPostUpdArgIdent = $coerce(x, `number`);
-    x = tmpPostUpdArgIdent + 1;
-    const tmpCalleeParam = x;
-    $(x);
-    const tmpIfTest = x > 5;
-    if (tmpIfTest) {
-      break;
-    } else {
-    }
-  }
-  $(x);
-  return undefined;
-};
-if ($) {
-  const tmpCalleeParam$1 = f();
-  $(tmpCalleeParam$1);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -154,11 +111,21 @@ if ($) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support non-primitive in first arg to $coerce
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3
@@ -177,6 +144,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support non-primitive in first arg to $coerce

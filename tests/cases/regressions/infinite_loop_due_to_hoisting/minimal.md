@@ -15,12 +15,14 @@ function f() {}
 f(a.x === 1 ? 2 : 3);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,38 +31,6 @@ f(a.x === 1 ? 2 : 3);
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-};
-const a = { x: 1 };
-f(a.x === 1 ? 2 : 3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return undefined;
-};
-const a = { x: 1 };
-const tmpCallCallee = f;
-let tmpCalleeParam = undefined;
-const tmpBinLhs = a.x;
-const tmpIfTest = tmpBinLhs === 1;
-if (tmpIfTest) {
-  tmpCalleeParam = 2;
-  tmpCallCallee(tmpCalleeParam);
-} else {
-  tmpCalleeParam = 3;
-  tmpCallCallee(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +39,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

@@ -15,12 +15,14 @@ let i = 0;
 new $(i, ++i);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 new $(0, 1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,26 +31,6 @@ new $(0, 1);
 new $(0, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let i = 0;
-new $(i, ++i);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = 0;
-const tmpNewCallee = $;
-const tmpCalleeParam = i;
-const tmpPostUpdArgIdent = $coerce(i, `number`);
-i = tmpPostUpdArgIdent + 1;
-const tmpCalleeParam$1 = i;
-new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +39,15 @@ With rename=true
 new $( 0, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0, 1

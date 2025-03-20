@@ -18,6 +18,7 @@ while ($(true)) {
 $('after, do not evaluate (infinite loop)');
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,38 +55,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($(true)) {
-  while (true) {
-    {
-      break;
-      $(`fail`);
-    }
-    if ($(true)) {
-    } else {
-      break;
-    }
-  }
-}
-$(`after, do not evaluate (infinite loop)`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(`after, do not evaluate (infinite loop)`);
-`````
 
 ## PST Settled
 With rename=true
@@ -108,11 +78,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

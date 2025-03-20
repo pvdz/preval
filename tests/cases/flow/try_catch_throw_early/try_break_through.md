@@ -29,6 +29,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,53 +60,6 @@ if (!$) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  foo: {
-    try {
-      if ($) {
-        return;
-      } else {
-        x = `pass`;
-        throw `too`;
-      }
-      x = `fail2`;
-    } catch (e) {
-      $(`caught`);
-    }
-    $(x);
-  }
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    if ($) {
-      return undefined;
-    } else {
-      x = `pass`;
-      throw `too`;
-    }
-  } catch (e) {
-    $(`caught`);
-  }
-  $(x);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -124,11 +79,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

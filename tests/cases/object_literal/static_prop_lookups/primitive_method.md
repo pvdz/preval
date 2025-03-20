@@ -13,6 +13,7 @@ const o = {oops: 'fail'};
 $(o.oops());
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $(o.oops());
 `fail`();
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`\`fail\`()\``;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,22 +31,6 @@ throw `[Preval]: Call expression with illegal callee must crash before this line
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`\`fail\`()\``;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const o = { oops: `fail` };
-$(o.oops());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const o = { oops: `fail` };
-const tmpCalleeParam = o.oops();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +40,21 @@ With rename=true
 throw "[Preval]: Call expression with illegal callee must crash before this line ; ``fail`()`";
 `````
 
+
+## Todos triggered
+
+
+- maybe support this call case too
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -70,6 +66,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- maybe support this call case too

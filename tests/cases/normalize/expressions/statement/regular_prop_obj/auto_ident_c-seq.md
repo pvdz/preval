@@ -17,6 +17,7 @@ let obj = {};
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,30 +41,6 @@ $(1).a;
 $({ a: 999, b: 1000 }, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-($(1), $(2), $(x)).a;
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-$(1);
-$(2);
-const tmpCompObj = $(x);
-tmpCompObj.a;
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +57,15 @@ const b = {
 $( b, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

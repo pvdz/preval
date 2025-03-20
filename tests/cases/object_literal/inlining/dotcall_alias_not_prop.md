@@ -15,6 +15,7 @@ const alias = obj.g;
 $dotCall(alias, obj, 'g');
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const obj /*:object*/ = { f: g };
 obj.g();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,30 +39,6 @@ const g = function () {
 ({ f: g }.g());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  return `win`;
-};
-const obj = { f: g };
-const alias = obj.g;
-$dotCall(alias, obj, `g`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  return `win`;
-};
-const obj = { f: g };
-obj.g();
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +52,15 @@ const b = { f: a };
 b.g();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

@@ -16,6 +16,7 @@ while ((a = b?.c(1))) $(100);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (tmpChainElementCall) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,40 +63,6 @@ if (tmpChainElementCall) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: $ };
-let a = { a: 999, b: 1000 };
-while ((a = b?.c(1))) $(100);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: $ };
-let a = { a: 999, b: 1000 };
-while (true) {
-  a = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementCall = tmpChainRootProp.c(1);
-    a = tmpChainElementCall;
-  } else {
-  }
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -122,11 +90,22 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Calling a static method on an ident that is not global and not recorded: $b_c
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -164,7 +143,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Calling a static method on an ident that is not global and not recorded: $b_c

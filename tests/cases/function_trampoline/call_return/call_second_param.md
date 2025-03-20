@@ -17,6 +17,7 @@ const q = f(1, 2, 3, 4, 5); // This should end up being $(3)
 $(q);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const q /*:unknown*/ = $(3);
 $(q);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,41 +34,6 @@ $(q);
 $($(3));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  const r = $(c);
-  return r;
-};
-const q = f(1, 2, 3, 4, 5);
-$(q);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  const r = $(c);
-  return r;
-};
-const q = f(1, 2, 3, 4, 5);
-$(q);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +43,15 @@ const a = $( 3 );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

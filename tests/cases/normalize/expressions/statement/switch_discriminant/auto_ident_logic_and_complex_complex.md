@@ -17,6 +17,7 @@ switch ($($(1)) && $($(2))) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (tmpSwitchDisc) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,38 +53,6 @@ if (tmpSwitchDisc) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $($(1)) && $($(2));
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(1);
-let tmpSwitchDisc = $(tmpCalleeParam);
-if (tmpSwitchDisc) {
-  const tmpCalleeParam$1 = $(2);
-  tmpSwitchDisc = $(tmpCalleeParam$1);
-  $(100);
-  $(a);
-} else {
-  $(100);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -106,11 +76,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

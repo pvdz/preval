@@ -21,6 +21,7 @@ const tmpReturnArg = tmpCallObj.split(`^`);
 $(tmpReturnArg);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const tmpReturnArg /*:array*/ = [`use strict`, `__extends`];
 $(tmpReturnArg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,37 +38,6 @@ $(tmpReturnArg);
 $([`use strict`, `__extends`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const _0x11B59 = [`u`, `s`, `e`, ` `, `s`, `t`, `r`, `i`, `c`, `t`, `%`, `_`, `_`, `e`, `x`, `t`, `e`, `n`, `d`, `s`];
-const tmpCallObj$11 = _0x11B59.join(``);
-const tmpCallObj$9 = tmpCallObj$11.split(`%`);
-const tmpCallObj$7 = tmpCallObj$9.join(`^`);
-const tmpCallObj$5 = tmpCallObj$7.split(`#1`);
-const tmpCallObj$3 = tmpCallObj$5.join(`%`);
-const tmpCallObj$1 = tmpCallObj$3.split(`#0`);
-const tmpCallObj = tmpCallObj$1.join(`#`);
-const tmpReturnArg = tmpCallObj.split(`^`);
-$(tmpReturnArg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const _0x11B59 = [`u`, `s`, `e`, ` `, `s`, `t`, `r`, `i`, `c`, `t`, `%`, `_`, `_`, `e`, `x`, `t`, `e`, `n`, `d`, `s`];
-const tmpCallObj$11 = _0x11B59.join(``);
-const tmpCallObj$9 = tmpCallObj$11.split(`%`);
-const tmpCallObj$7 = tmpCallObj$9.join(`^`);
-const tmpCallObj$5 = tmpCallObj$7.split(`#1`);
-const tmpCallObj$3 = tmpCallObj$5.join(`%`);
-const tmpCallObj$1 = tmpCallObj$3.split(`#0`);
-const tmpCallObj = tmpCallObj$1.join(`#`);
-const tmpReturnArg = tmpCallObj.split(`^`);
-$(tmpReturnArg);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +47,15 @@ const a = [ "use strict", "__extends" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['use strict', '__extends']

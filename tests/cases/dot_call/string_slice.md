@@ -15,12 +15,14 @@ const x = $dotCall(tmpCallVal, str, 'slice', 2, 4);
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`rl`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,24 +31,6 @@ $(`rl`);
 $(`rl`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const str = `worldy`;
-const tmpCallVal = str.slice;
-const x = $dotCall(tmpCallVal, str, `slice`, 2, 4);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const str = `worldy`;
-const x = str.slice(2, 4);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +39,15 @@ With rename=true
 $( "rl" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'rl'

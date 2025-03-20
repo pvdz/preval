@@ -16,6 +16,7 @@ export default a = b?.x?.y;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const a /*:number*/ = 1;
 export { a as default };
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,41 +36,6 @@ export { a as default };
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: { y: 1 } };
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = b?.x?.y);
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    a = tmpChainElementObject$1;
-  } else {
-  }
-} else {
-}
-let tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +46,15 @@ export { a as default };
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

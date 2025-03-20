@@ -20,6 +20,7 @@ try {
 $(x);
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -29,7 +30,9 @@ let x___4__ = 1;
 $(x___9__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

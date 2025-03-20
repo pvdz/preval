@@ -14,6 +14,7 @@ $(({ a } = $({ a: 1, b: 2 })) + $(100));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,31 +39,6 @@ $(tmpNestedAssignObjPatternRhs + $(100));
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let { a: a } = { a: 999, b: 1000 };
-$(({ a: a } = $({ a: 1, b: 2 })) + $(100));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-let tmpBinBothLhs = undefined;
-const tmpCalleeParam$1 = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-a = tmpNestedAssignObjPatternRhs.a;
-tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
-const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +56,15 @@ $( e );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }

@@ -20,6 +20,7 @@ if (x) {
 }
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,35 +41,6 @@ if (!$) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = true;
-if ($) {
-} else {
-  x = false;
-}
-if (x) {
-} else {
-  $(3);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = true;
-if ($) {
-} else {
-  x = false;
-}
-if (x) {
-} else {
-  $(3);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +54,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

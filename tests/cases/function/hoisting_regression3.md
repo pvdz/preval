@@ -22,6 +22,7 @@ $(() => {
 });
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ const tmpCalleeParam /*:()=>unknown*/ = function () {
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,47 +64,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(() => {
-  debugger;
-  let incorrectlyhoisted$3 = function () {
-    debugger;
-    let C = $({});
-    C[`innerHTML`] = wheredoyougoto;
-  };
-  if ($) {
-    return;
-  }
-  let wheredoyougoto = $();
-  return incorrectlyhoisted$3;
-});
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = function () {
-  debugger;
-  let incorrectlyhoisted$3 = function () {
-    debugger;
-    const tmpCalleeParam$1 = {};
-    let C = $(tmpCalleeParam$1);
-    C.innerHTML = wheredoyougoto;
-    return undefined;
-  };
-  if ($) {
-    return undefined;
-  } else {
-  }
-  let wheredoyougoto = $();
-  return incorrectlyhoisted$3;
-};
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -126,11 +87,15 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

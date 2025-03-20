@@ -12,6 +12,7 @@
 $('hello   world'.slice(5, 10, $, unknown));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $('hello   world'.slice(5, 10, $, unknown));
 unknown;
 $(`   wo`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ unknown;
 $(`   wo`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`hello   world`.slice(5, 10, $, unknown));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `hello   world`.slice(5, 10, $, unknown);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,13 +39,17 @@ unknown;
 $( "   wo" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

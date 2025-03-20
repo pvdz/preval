@@ -15,6 +15,7 @@ function f({ x: { y = $('fail') } = $({ y: 'fail2' }) }) {
 $(f(null, 10));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f(null, 10));
 null.x;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,50 +33,6 @@ null.x;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: { y: y = $(`fail`) } = $({ y: `fail2` }) } = tmpParamBare;
-  return `bad`;
-};
-$(f(null, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { y: `fail2` };
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  let objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  let y = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-  if (tmpIfTest$1) {
-    y = $(`fail`);
-    return `bad`;
-  } else {
-    y = objPatternBeforeDefault$1;
-    return `bad`;
-  }
-};
-const tmpCalleeParam$1 = f(null, 10);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +42,15 @@ null.x;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

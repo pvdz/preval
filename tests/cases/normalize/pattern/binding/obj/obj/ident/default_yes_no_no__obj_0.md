@@ -13,6 +13,7 @@ const { x: { y = $('pass') } } = { x: 0, b: 11, c: 12 };
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,33 +41,6 @@ if (objPatternBeforeDefault === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: { y: y = $(`pass`) },
-} = { x: 0, b: 11, c: 12 };
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = { x: 0, b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const objPatternBeforeDefault = objPatternNoDefault.y;
-let y = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  y = $(`pass`);
-  $(y);
-} else {
-  y = objPatternBeforeDefault;
-  $(objPatternBeforeDefault);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +57,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

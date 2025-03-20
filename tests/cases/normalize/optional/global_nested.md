@@ -13,6 +13,7 @@ const obj = {a: {b: $()}};
 $(obj?.a?.b);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpObjLitVal$1 /*:unknown*/ = $();
 $(tmpObjLitVal$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,38 +30,6 @@ $(tmpObjLitVal$1);
 $($());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { a: { b: $() } };
-$(obj?.a?.b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = $();
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = obj;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.a;
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject$1 = tmpChainElementObject.b;
-    tmpCalleeParam = tmpChainElementObject$1;
-    $(tmpChainElementObject$1);
-  } else {
-    $(tmpCalleeParam);
-  }
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +39,15 @@ const a = $();
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

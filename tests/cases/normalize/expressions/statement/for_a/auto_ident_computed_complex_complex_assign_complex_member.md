@@ -16,6 +16,7 @@ for ($(b)[$("c")] = $(b)[$("d")]; $(0); );
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,42 +65,6 @@ if ($(0)) {
 $({ a: 999, b: 1000 }, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-{
-  $(b)[$(`c`)] = $(b)[$(`d`)];
-  while ($(0)) {}
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $(`c`);
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -133,11 +99,15 @@ const i = {
 $( i, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

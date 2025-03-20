@@ -18,6 +18,7 @@ ARR.push(item);
 $(NOOP);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const NOOP /*:()=>unknown*/ = function () {
 $(NOOP);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,34 +43,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const ARR = [`a`, `b`, `c`];
-const NOOP = function () {
-  debugger;
-  $(ARR);
-};
-const item = ARR.shift();
-ARR.push(item);
-$(NOOP);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const ARR = [`a`, `b`, `c`];
-const NOOP = function () {
-  debugger;
-  $(ARR);
-  return undefined;
-};
-const item = ARR.shift();
-ARR.push(item);
-$(NOOP);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +57,15 @@ const b = function() {
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

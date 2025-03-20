@@ -15,6 +15,7 @@ $(a)["b"] = $(2);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,33 +44,6 @@ tmpAssignMemLhsObj.b = $(2);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a *= { b: $(1) }));
-$(a)[`b`] = $(2);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
-const tmpObjLitVal = $(1);
-const tmpBinBothRhs = { b: tmpObjLitVal };
-a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
-$(a);
-const tmpAssignMemLhsObj = $(a);
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +63,15 @@ e.b = f;
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -17,6 +17,7 @@ b.x = 3;
 $(b);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const b /*:object*/ = { x: 3 };
 $(b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,23 +34,6 @@ $(b);
 $({ x: 3 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const b = { x: 1 };
-b.x = 3;
-b.x = 3;
-$(b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const b = { x: 3 };
-$(b);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +43,15 @@ const a = { x: 3 };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '3' }

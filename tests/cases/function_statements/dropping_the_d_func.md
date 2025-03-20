@@ -38,6 +38,7 @@ function f() {
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ const f /*:()=>undefined*/ = function () {
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,49 +62,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  {
-    let THIS_IS_DA____$1 = function () {
-      debugger;
-      $(`hello`);
-    };
-  }
-  $(THIS_IS_DA____());
-};
-let g = function () {
-  debugger;
-  $(`always here`);
-};
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let THIS_IS_DA____$1 = function () {
-    debugger;
-    $(`hello`);
-    return undefined;
-  };
-  const tmpCalleeParam = THIS_IS_DA____();
-  $(tmpCalleeParam);
-  return undefined;
-};
-let g = function () {
-  debugger;
-  $(`always here`);
-  return undefined;
-};
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -117,13 +76,17 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 THIS_IS_DA____
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

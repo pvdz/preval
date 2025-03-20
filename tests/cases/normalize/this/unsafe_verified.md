@@ -23,6 +23,7 @@ function f() {
 $(f.call({y: 1}));
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ const tmpCalleeParam /*:unknown*/ = f.call(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,49 +56,6 @@ const f = function () {
 $(f.call({ y: 1 }));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  let g = function () {
-    debugger;
-    $(x);
-    return x.y;
-  };
-  const x = tmpPrevalAliasThis;
-  $(x);
-  return g();
-};
-$(f.call({ y: 1 }));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  let g = function () {
-    debugger;
-    $(x);
-    const tmpReturnArg = x.y;
-    return tmpReturnArg;
-  };
-  const x = tmpPrevalAliasThis;
-  $(tmpPrevalAliasThis);
-  const tmpReturnArg$1 = g();
-  return tmpReturnArg$1;
-};
-const tmpCallObj = f;
-const tmpCallVal = tmpCallObj.call;
-const tmpCalleeParam$1 = { y: 1 };
-const tmpCalleeParam = $dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -115,11 +74,15 @@ const e = a.call( d );
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }

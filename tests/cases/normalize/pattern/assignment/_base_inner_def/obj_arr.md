@@ -12,6 +12,7 @@
 ({x: [ y = a ]} = 1);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,30 +42,6 @@ if (arrPatternBeforeDefault === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({
-  x: [y = a],
-} = 1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = 1;
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const arrPatternSplat = [...objPatternNoDefault];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  y = a;
-} else {
-  y = arrPatternBeforeDefault;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -81,13 +59,24 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 a, y
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -99,7 +88,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

@@ -14,6 +14,7 @@
 $(function(){ $(this.x); }.apply({x: 15}, ['x']));
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCallObj.apply(tmpCalleeParam$1, tmpCallee
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,35 +45,6 @@ const tmpCalleeParam$1 = { x: 15 };
 $(tmpCallObj.apply(tmpCalleeParam$1, [`x`]));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(
-  function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    $(tmpPrevalAliasThis.x);
-  }.apply({ x: 15 }, [`x`]),
-);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = { x: 15 };
-const tmpCalleeParam$3 = [`x`];
-const tmpCallObj = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const tmpCalleeParam$5 = tmpPrevalAliasThis.x;
-  $(tmpCalleeParam$5);
-  return undefined;
-};
-const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +63,15 @@ const f = a.apply( d, e );
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 15

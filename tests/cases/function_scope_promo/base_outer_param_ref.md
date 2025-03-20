@@ -25,6 +25,7 @@ function h(x) {
 $(h($(10)));
 `````
 
+
 ## Settled
 
 
@@ -53,6 +54,7 @@ if ($) {
   $(tmpCalleeParam$1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -83,84 +85,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let h = function ($$0) {
-  let x = $$0;
-  debugger;
-  let f = function () {
-    debugger;
-    let g = function () {
-      debugger;
-      if ($) {
-        $(`prevent`);
-        $(`simple`);
-        $(`inlining`);
-      }
-      return x;
-    };
-    if ($) {
-      $(`prevent`);
-      $(`simple`);
-      $(`inlining`);
-    }
-    return g();
-  };
-  if ($) {
-    $(`prevent`);
-    $(`simple`);
-    $(`inlining`);
-  }
-  return f();
-};
-$(h($(10)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let h = function ($$0) {
-  let x = $$0;
-  debugger;
-  let f = function () {
-    debugger;
-    let g = function () {
-      debugger;
-      if ($) {
-        $(`prevent`);
-        $(`simple`);
-        $(`inlining`);
-        return x;
-      } else {
-        return x;
-      }
-    };
-    if ($) {
-      $(`prevent`);
-      $(`simple`);
-      $(`inlining`);
-    } else {
-    }
-    const tmpReturnArg = g();
-    return tmpReturnArg;
-  };
-  if ($) {
-    $(`prevent`);
-    $(`simple`);
-    $(`inlining`);
-  } else {
-  }
-  const tmpReturnArg$1 = f();
-  return tmpReturnArg$1;
-};
-const tmpCallCallee = h;
-const tmpCalleeParam$1 = $(10);
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -194,11 +118,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

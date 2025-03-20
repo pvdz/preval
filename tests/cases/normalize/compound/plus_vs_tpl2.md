@@ -17,6 +17,7 @@ $('a' + spy === `a${spy}`);
 
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ const tmpCalleeParam /*:boolean*/ = $frfr(tmpFree, tmpBinBothRhs$1, tmpStringCon
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -66,46 +68,6 @@ const tmpStringConcatL = $coerce(spy, `plustr`);
 $($frfr(tmpFree, $coerce(spy, `string`), tmpStringConcatL));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = {
-  valueOf() {
-    debugger;
-    return `a`;
-  },
-  toString() {
-    debugger;
-    return `b`;
-  },
-};
-$(`a` + spy === `a` + $coerce(spy, `string`) + ``);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = {
-  valueOf() {
-    debugger;
-    return `a`;
-  },
-  toString() {
-    debugger;
-    return `b`;
-  },
-};
-const tmpStringConcatL = $coerce(spy, `plustr`);
-const tmpBinBothLhs = `a${tmpStringConcatL}`;
-const tmpBinBothLhs$1 = `a`;
-const tmpBinBothRhs$1 = $coerce(spy, `string`);
-const tmpBinLhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothRhs = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -136,11 +98,15 @@ const k = l( a, j, i );
 $( k );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

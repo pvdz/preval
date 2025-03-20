@@ -25,6 +25,7 @@ if (f()) $('pass'); // Always returns a promise and promises are truthy
 else $('fail');
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ f();
 $(`pass`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -56,43 +58,6 @@ f();
 $(`pass`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = async function ($$0) {
-  let x = $$0;
-  debugger;
-  x = $(0);
-  const y = await x;
-  return y;
-};
-$(f);
-$(f);
-if (f()) $(`pass`);
-else $(`fail`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = async function ($$0) {
-  let x = $$0;
-  debugger;
-  x = $(0);
-  const y = await x;
-  return y;
-};
-$(f);
-$(f);
-const tmpIfTest = f();
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -110,11 +75,21 @@ a();
 $( "pass" );
 `````
 
+
+## Todos triggered
+
+
+- inline async functions safely (because await)
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -130,6 +105,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline async functions safely (because await)

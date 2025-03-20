@@ -28,6 +28,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,53 +61,6 @@ if (!$) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    if ($) {
-      return;
-    } else {
-      x = `pass`;
-      throw `too`;
-    }
-    x = `fail2`;
-  } catch (e) {
-    throw_early;
-    $(`caught`);
-  }
-  $(x);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    if ($) {
-      return undefined;
-    } else {
-      x = `pass`;
-      throw `too`;
-    }
-  } catch (e) {
-    throw_early;
-    $(`caught`);
-  }
-  $(x);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -126,13 +81,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 throw_early
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

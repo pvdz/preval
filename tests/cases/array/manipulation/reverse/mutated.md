@@ -18,6 +18,7 @@ if ($) {
 $(rra);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const arr /*:array*/ = [3, 2, 1];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,34 +37,6 @@ $(4);
 $([3, 2, 1]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arr = [1, 2, 3, 4];
-$(arr.pop());
-const rra = arr.reverse();
-if ($) {
-  arr = $;
-}
-$(rra);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arr = [1, 2, 3, 4];
-const tmpCalleeParam = arr.pop();
-$(tmpCalleeParam);
-const rra = arr.reverse();
-if ($) {
-  arr = $;
-  $(rra);
-} else {
-  $(rra);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +47,15 @@ const a = [ 3, 2, 1 ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 4

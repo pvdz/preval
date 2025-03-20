@@ -17,6 +17,7 @@ const q = f(1, 2, 3, 4, 5); // The use of `arguments` should prevent inlining th
 $(q);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const q /*:unknown*/ = f(1, 2, 3, 4, 5);
 $(q);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,43 +44,6 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
 $(f(1, 2, 3, 4, 5));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  const r = $(tmpPrevalAliasArgumentsAny);
-  return r;
-};
-const q = f(1, 2, 3, 4, 5);
-$(q);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  const r = $(tmpPrevalAliasArgumentsAny);
-  return r;
-};
-const q = f(1, 2, 3, 4, 5);
-$(q);
-`````
 
 ## PST Settled
 With rename=true
@@ -94,11 +59,15 @@ const e = a( 1, 2, 3, 4, 5 );
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 0: '1', 1: '2', 2: '3', 3: '4', 4: '5' }

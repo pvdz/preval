@@ -15,6 +15,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpReturnArg /*:object*/ = { a: 10, b: 20, c: 30 };
 $(tmpReturnArg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,29 +32,6 @@ $(tmpReturnArg);
 $({ a: 10, b: 20, c: 30 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return { a: 10, b: 20, c: 30 };
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpReturnArg = { a: 10, b: 20, c: 30 };
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +45,15 @@ const a = {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '10', b: '20', c: '30' }

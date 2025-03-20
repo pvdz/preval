@@ -16,6 +16,7 @@ const y = ['a', ...x, 'b'];
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ const y /*:array*/ = [`a`, 1, tmpBinLhs, 3, `b`];
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,41 +50,6 @@ const tmpBinLhs = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
 $([`a`, 1, tmpBinLhs, 3, `b`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $(10);
-const x = [1, `` + $coerce($(`x`), `string`) + ` ` + $coerce($(`y`), `string`) + ``, 3];
-if ($) a = $(20);
-const y = [`a`, ...x, `b`];
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = $(10);
-const tmpArrElement = 1;
-const tmpBinBothLhs$1 = ``;
-const tmpCalleeParam = $(`x`);
-const tmpBinBothRhs$1 = $coerce(tmpCalleeParam, `string`);
-const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-const tmpBinBothLhs = `${tmpStringConcatR} `;
-const tmpCalleeParam$1 = $(`y`);
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpArrElement$1 = $coerce(tmpBinLhs, `plustr`);
-const x = [tmpArrElement, tmpArrElement$1, 3];
-if ($) {
-  a = $(20);
-} else {
-}
-const y = [`a`, ...x, `b`];
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +68,15 @@ const f = [ "a", 1, e, 3, "b" ];
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

@@ -32,6 +32,7 @@ let f = function () {
 f();
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ $(`b`);
 $(`after inner`);
 $(`after outer`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -50,67 +52,6 @@ $(`after inner`);
 $(`after outer`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpIfTest = 0;
-  if (tmpIfTest) {
-    $(`a`);
-  } else {
-    const tmpIfTest$1 = 1;
-    if (tmpIfTest$1) {
-      $(`b`);
-    } else {
-      const tmpIfTest$2 = 2;
-      if (tmpIfTest$2) {
-        $(`c`);
-      }
-    }
-    $(`after inner`);
-  }
-  $(`after outer`);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpIfTest = 0;
-  if (tmpIfTest) {
-    $(`a`);
-    $(`after outer`);
-    return undefined;
-  } else {
-    const tmpIfTest$1 = 1;
-    if (tmpIfTest$1) {
-      $(`b`);
-      $(`after inner`);
-      $(`after outer`);
-      return undefined;
-    } else {
-      const tmpIfTest$2 = 2;
-      if (tmpIfTest$2) {
-        $(`c`);
-        $(`after inner`);
-        $(`after outer`);
-        return undefined;
-      } else {
-        $(`after inner`);
-        $(`after outer`);
-        return undefined;
-      }
-    }
-  }
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -121,11 +62,15 @@ $( "after inner" );
 $( "after outer" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'b'

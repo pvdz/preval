@@ -12,6 +12,7 @@
 ({ x } = 1).foo
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@
 x = (1).x;
 (1).foo;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,23 +30,6 @@ x = (1).x;
 (1).foo;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: x } = 1).foo;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCompObj = undefined;
-const tmpNestedAssignObjPatternRhs = 1;
-x = tmpNestedAssignObjPatternRhs.x;
-tmpCompObj = tmpNestedAssignObjPatternRhs;
-tmpCompObj.foo;
-`````
 
 ## PST Settled
 With rename=true
@@ -54,13 +39,17 @@ x = 1.x;
 1.foo;
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

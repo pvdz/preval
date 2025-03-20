@@ -20,6 +20,7 @@ $(arr[1]);
 $(arr.length);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ $(2);
 $(3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,45 +53,6 @@ $(2);
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(arr[0], arr[1], arr[2], arr[3]);
-  return arr[2];
-};
-const arr = [1, 2, 3];
-$(f());
-$(f);
-$(arr[1]);
-$(arr.length);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpCalleeParam = arr[0];
-  const tmpCalleeParam$1 = arr[1];
-  const tmpCalleeParam$3 = arr[2];
-  const tmpCalleeParam$5 = arr[3];
-  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
-  const tmpReturnArg = arr[2];
-  return tmpReturnArg;
-};
-const arr = [1, 2, 3];
-const tmpCalleeParam$7 = f();
-$(tmpCalleeParam$7);
-$(f);
-const tmpCalleeParam$9 = arr[1];
-$(tmpCalleeParam$9);
-const tmpCalleeParam$11 = arr.length;
-$(tmpCalleeParam$11);
-`````
 
 ## PST Settled
 With rename=true
@@ -107,11 +70,21 @@ $( 2 );
 $( 3 );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 2, 3, undefined
@@ -128,6 +101,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

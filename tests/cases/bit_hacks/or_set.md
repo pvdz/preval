@@ -23,6 +23,7 @@ if (test) {
 }
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if (a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,42 +57,6 @@ if (x & 1) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = x & 1;
-let test = a === 1;
-if (test) {
-} else {
-  const b = x & 4;
-  test = b === 4;
-}
-if (test) {
-  $(`yes`);
-} else {
-  $(`no 2`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = x & 1;
-let test = a === 1;
-if (test) {
-  $(`yes`);
-} else {
-  const b = x & 4;
-  test = b === 4;
-  if (test) {
-    $(`yes`);
-  } else {
-    $(`no 2`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -111,13 +77,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -43,6 +43,7 @@ if ($tmpLoopUnrollCheck) {
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -76,6 +77,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -103,82 +105,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-const b = { x: 1 };
-let $tmpLoopUnrollCheck = true;
-if (tmpIfTest) {
-  const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      const tmpCalleeParam$1 = $(b);
-      const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
-      const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
-      const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
-      tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-      a = tmpNestedPropCompoundComplexRhs$1;
-      tmpIfTest = $(1);
-    } else {
-      break;
-    }
-  }
-} else {
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-const b = { x: 1 };
-let $tmpLoopUnrollCheck = true;
-if (tmpIfTest) {
-  const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      const tmpCalleeParam$1 = $(b);
-      const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
-      const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
-      const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
-      tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-      a = tmpNestedPropCompoundComplexRhs$1;
-      tmpIfTest = $(1);
-    } else {
-      break;
-    }
-  }
-  $(a, b);
-} else {
-  $(a, b);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -218,11 +144,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

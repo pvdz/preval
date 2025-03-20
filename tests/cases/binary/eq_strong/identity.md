@@ -31,6 +31,7 @@ if (tmpIfTest$1) {
 $(3);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ try {
 $(2);
 $(3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -53,52 +55,6 @@ $(2);
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let tmpSwitchCaseToStart = 1;
-let tmpIfTest$1 = true;
-const tmpIfTest = $ === $;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-}
-if (tmpIfTest$1) {
-  try {
-    $(x, 1);
-  } catch ($finalImplicit) {}
-  $(2);
-} else {
-  $(`oops`);
-}
-$(3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpSwitchCaseToStart = 1;
-let tmpIfTest$1 = true;
-const tmpIfTest = true;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-}
-if (tmpIfTest$1) {
-  try {
-    $(x, 1);
-  } catch ($finalImplicit) {}
-  $(2);
-  $(3);
-} else {
-  $(`oops`);
-  $(3);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -114,13 +70,17 @@ $( 2 );
 $( 3 );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

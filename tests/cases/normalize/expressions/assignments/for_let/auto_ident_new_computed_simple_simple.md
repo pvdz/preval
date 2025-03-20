@@ -16,6 +16,7 @@ for (let xyz = (a = new b["$"](1)); ; $(1)) $(xyz);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,36 +40,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-{
-  let xyz = (a = new b[`\$`](1));
-  while (true) {
-    $(xyz);
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpNewCallee = b.$;
-a = new tmpNewCallee(1);
-let xyz = a;
-while (true) {
-  $(xyz);
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +52,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: NewExpression
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -122,6 +104,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: NewExpression

@@ -20,6 +20,7 @@ do {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   new $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,42 +46,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-while (true) {
-  {
-    $(100);
-  }
-  if ((a = new b[`\$`](1))) {
-  } else {
-    break;
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-while (true) {
-  $(100);
-  const tmpNewCallee = b.$;
-  a = new tmpNewCallee(1);
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -93,11 +59,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Support this node type in isFree: NewExpression
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100
@@ -135,7 +112,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Support this node type in isFree: NewExpression

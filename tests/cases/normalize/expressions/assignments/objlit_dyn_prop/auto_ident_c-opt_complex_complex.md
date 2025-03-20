@@ -16,6 +16,7 @@ $({ [(a = $(b)?.[$("x")])]: 10 });
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,38 +57,6 @@ $({ [tmpObjLitPropKey]: 10 });
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-$({ [(a = $(b)?.[$(`x`)])]: 10 });
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-} else {
-}
-let tmpObjLitPropKey = a;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -111,11 +81,15 @@ $( h );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

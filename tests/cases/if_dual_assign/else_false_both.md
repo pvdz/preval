@@ -26,6 +26,7 @@ if (a) {
 $(x, 'end');
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const a /*:boolean*/ = b === c;
 $(a, `end`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,49 +49,6 @@ $(false, `middle`);
 $(b === c, `end`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = false;
-const b = $(`x`, `one`);
-const c = $(`x`, `one`);
-const a = b === c;
-if (a) {
-} else {
-  x = false;
-}
-$(x, `middle`);
-if (a) {
-  x = true;
-} else {
-  x = false;
-}
-$(x, `end`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = false;
-const b = $(`x`, `one`);
-const c = $(`x`, `one`);
-const a = b === c;
-if (a) {
-  $(x, `middle`);
-} else {
-  x = false;
-  $(x, `middle`);
-}
-if (a) {
-  x = true;
-  $(x, `end`);
-} else {
-  x = false;
-  $(x, `end`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -102,11 +61,15 @@ const c = a === b;
 $( c, "end" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x', 'one'

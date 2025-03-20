@@ -15,6 +15,7 @@ function f([x = $('fail')] = $('fail2')) {
 $(f(0, 200));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f(0, 200));
 [...0];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,48 +33,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [x = $(`fail`)] = tmpParamBare === undefined ? $(`fail2`) : tmpParamBare;
-  return `bad`;
-};
-$(f(0, 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    bindingPatternArrRoot = $(`fail2`);
-  } else {
-    bindingPatternArrRoot = tmpParamBare;
-  }
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let x = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    x = $(`fail`);
-    return `bad`;
-  } else {
-    x = arrPatternBeforeDefault;
-    return `bad`;
-  }
-};
-const tmpCalleeParam = f(0, 200);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +42,22 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -98,7 +69,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

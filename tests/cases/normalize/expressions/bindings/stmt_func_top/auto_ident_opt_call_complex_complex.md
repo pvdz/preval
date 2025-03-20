@@ -16,6 +16,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,44 +49,6 @@ if (tmpChainElementCall == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let a = $($)?.($(1));
-  $(a);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let a = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpCalleeParam = tmpChainElementCall;
-    const tmpCalleeParam$1 = tmpChainRootCall;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
-    $(tmpChainElementCall$1);
-    return undefined;
-  } else {
-    $(a);
-    return undefined;
-  }
-};
-const tmpCalleeParam$5 = f();
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +68,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

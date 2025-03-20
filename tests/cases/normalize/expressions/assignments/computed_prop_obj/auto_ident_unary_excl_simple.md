@@ -17,6 +17,7 @@ let obj = {};
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(a, arg);
 false.a;
 $(false, 1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,29 +35,6 @@ false.a;
 $(false, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-(a = !arg)[`a`];
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-a = !arg;
-let tmpCompObj = a;
-tmpCompObj.a;
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +44,15 @@ false.a;
 $( false, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false, 1

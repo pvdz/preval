@@ -15,6 +15,7 @@ while ([...$([1, 2, 3])]) {
 $('after');
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,32 +40,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ([...$([1, 2, 3])]) {
-  $(`loop`);
-}
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpCalleeParam = [1, 2, 3];
-  const tmpArrSpread = $(tmpCalleeParam);
-  const tmpIfTest = [...tmpArrSpread];
-  if (tmpIfTest) {
-    $(`loop`);
-  } else {
-    break;
-  }
-}
-$(`after`);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +53,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2, 3]

@@ -24,6 +24,7 @@ $(typeof Math.imul($spy('Math.imul')));
 $(typeof Math.log($spy('Math.log')));
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ $coerce(tmpCalleeParam$29, `number`);
 $(`number`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,57 +79,6 @@ $coerce($spy(`Math.log`), `number`);
 $(`number`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof Math.cos($spy(`Math.cos`)));
-$(typeof Math.cosh($spy(`Math.cosh`)));
-$(typeof Math.exp($spy(`Math.exp`)));
-$(typeof Math.expm1($spy(`Math.expm1`)));
-$(typeof Math.floor($spy(`Math.floor`)));
-$(typeof Math.fround($spy(`Math.fround`)));
-$(typeof Math.imul($spy(`Math.imul`)));
-$(typeof Math.log($spy(`Math.log`)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = $spy(`Math.cos`);
-const tmpUnaryArg = $Math_cos(tmpCalleeParam$1);
-const tmpCalleeParam = typeof tmpUnaryArg;
-$(tmpCalleeParam);
-const tmpCalleeParam$5 = $spy(`Math.cosh`);
-const tmpUnaryArg$1 = $Math_cosh(tmpCalleeParam$5);
-const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$9 = $spy(`Math.exp`);
-const tmpUnaryArg$3 = $Math_exp(tmpCalleeParam$9);
-const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-$(tmpCalleeParam$7);
-const tmpCalleeParam$13 = $spy(`Math.expm1`);
-const tmpUnaryArg$5 = $Math_expm1(tmpCalleeParam$13);
-const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-$(tmpCalleeParam$11);
-const tmpCalleeParam$17 = $spy(`Math.floor`);
-const tmpUnaryArg$7 = $Math_floor(tmpCalleeParam$17);
-const tmpCalleeParam$15 = typeof tmpUnaryArg$7;
-$(tmpCalleeParam$15);
-const tmpCalleeParam$21 = $spy(`Math.fround`);
-const tmpUnaryArg$9 = $Math_fround(tmpCalleeParam$21);
-const tmpCalleeParam$19 = typeof tmpUnaryArg$9;
-$(tmpCalleeParam$19);
-const tmpCalleeParam$25 = $spy(`Math.imul`);
-const tmpUnaryArg$11 = $Math_imul(tmpCalleeParam$25);
-const tmpCalleeParam$23 = typeof tmpUnaryArg$11;
-$(tmpCalleeParam$23);
-const tmpCalleeParam$29 = $spy(`Math.log`);
-const tmpUnaryArg$13 = $Math_log(tmpCalleeParam$29);
-const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
-$(tmpCalleeParam$27);
-`````
 
 ## PST Settled
 With rename=true
@@ -159,11 +110,28 @@ $coerce( h, "number" );
 $( "number" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cos
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cosh
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_exp
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_expm1
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_floor
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_fround
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_imul
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Math.cos', 'Math.cos']
@@ -199,13 +167,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cos
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cosh
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_exp
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_expm1
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_floor
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_fround
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_imul
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log

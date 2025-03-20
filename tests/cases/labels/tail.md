@@ -21,6 +21,7 @@ $continue: {
 $('end');
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(`start`);
 $(`inner`);
 $(`end`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,28 +41,6 @@ $(`inner`);
 $(`end`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`start`);
-$continue: {
-  while (true) {
-    $(`inner`);
-    break $continue;
-  }
-}
-$(`end`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`start`);
-$(`inner`);
-$(`end`);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +51,15 @@ $( "inner" );
 $( "end" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'start'

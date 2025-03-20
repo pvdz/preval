@@ -17,6 +17,7 @@ $(xyz);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -45,35 +47,6 @@ $(tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-let xyz = (a = b[$(`c`)] = $(b)[$(`d`)]);
-$(xyz);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpNestedAssignComMemberObj = b;
-const tmpNestedAssignComMemberProp = $(`c`);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let xyz = a;
-$(a);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +65,15 @@ $( e );
 $( e, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'c'

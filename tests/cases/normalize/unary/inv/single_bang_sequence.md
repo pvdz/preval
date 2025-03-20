@@ -13,6 +13,7 @@ var x;
 $(!((x = 'foo'), $(x)));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,24 +32,6 @@ const tmpUnaryArg = $(`foo`);
 $(!tmpUnaryArg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-$(!((x = `foo`), $(x)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-x = `foo`;
-const tmpUnaryArg = $(x);
-const tmpCalleeParam = !tmpUnaryArg;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +42,15 @@ const b = !a;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'foo'

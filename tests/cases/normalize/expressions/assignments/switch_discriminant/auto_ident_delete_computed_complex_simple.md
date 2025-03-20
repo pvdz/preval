@@ -19,6 +19,7 @@ switch ((a = delete $(arg)["y"])) {
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 $(100);
 $(tmpClusterSSA_a, arg);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,34 +43,6 @@ $(100);
 $(tmpClusterSSA_a, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = (a = delete $(arg)[`y`]);
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpDeleteObj = $(arg);
-a = delete tmpDeleteObj.y;
-let tmpSwitchDisc = a;
-$(100);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +55,15 @@ $( 100 );
 $( c, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }

@@ -14,12 +14,14 @@ const x = $coerce(method, 'plustr')
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`function flat() { [native code] }`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,24 +30,6 @@ $(`function flat() { [native code] }`);
 $(`function flat() { [native code] }`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const method = [].flat;
-const x = $coerce(method, `plustr`);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCompObj = [];
-const method = tmpCompObj.flat;
-const x = $coerce(method, `plustr`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +38,15 @@ With rename=true
 $( "function flat() { [native code] }" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'function() { [native code] }'

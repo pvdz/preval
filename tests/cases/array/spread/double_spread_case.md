@@ -26,6 +26,7 @@ const zz = ['z', ...y, ...x, 'z'];
 $(aa, zz, a, b);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ const aa /*:array*/ = [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterS
 const zz /*:array*/ = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`];
 $(aa, zz, tmpClusterSSA_a$1, tmpClusterSSA_b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -59,39 +61,6 @@ $(
 );
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $(`x`);
-let b = $(`y`);
-const x = [a, a, a, a, 2, 3];
-a = $(`u`);
-b = $(`w`);
-const y = [1, b, a, a, b, 3];
-a = $(`o`);
-b = $(`p`);
-const aa = [`a`, ...x, ...y, `a`];
-const zz = [`z`, ...y, ...x, `z`];
-$(aa, zz, a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = $(`x`);
-let b = $(`y`);
-const x = [a, a, a, a, 2, 3];
-a = $(`u`);
-b = $(`w`);
-const y = [1, b, a, a, b, 3];
-a = $(`o`);
-b = $(`p`);
-const aa = [`a`, ...x, ...y, `a`];
-const zz = [`z`, ...y, ...x, `z`];
-$(aa, zz, a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -108,11 +77,15 @@ const g = [ "z", 1, c, b, b, c, 3, a, a, a, a, 2, 3, "z" ];
 $( f, g, d, e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x'

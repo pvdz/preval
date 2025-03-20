@@ -14,6 +14,7 @@ let a = b[$('x')] = c + d;
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const b /*:object*/ = { x: 2 };
 b[varInitAssignLhsComputedProp] = 7;
 $(7, b, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,31 +36,6 @@ b[varInitAssignLhsComputedProp] = 7;
 $(7, b, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 2 },
-  c = 3,
-  d = 4;
-let a = (b[$(`x`)] = c + d);
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 2 };
-let c = 3;
-let d = 4;
-const varInitAssignLhsComputedObj = b;
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedRhs = c + d;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +47,15 @@ b[a] = 7;
 $( 7, b, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x'

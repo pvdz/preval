@@ -30,6 +30,7 @@ d();
 $(d);
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ d();
 $(d);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,55 +77,6 @@ d();
 $(d);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const objd = {
-  get foo() {
-    debugger;
-    return 100;
-  },
-  set foo($$0) {
-    let a = $$0;
-    debugger;
-    return 4000;
-  },
-};
-const d = function () {
-  debugger;
-  $(`a`);
-  $(`b`);
-  return objd;
-};
-d();
-$(d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const objd = {
-  get foo() {
-    debugger;
-    return 100;
-  },
-  set foo($$0) {
-    let a = $$0;
-    debugger;
-    return 4000;
-  },
-};
-const d = function () {
-  debugger;
-  $(`a`);
-  $(`b`);
-  return objd;
-};
-d();
-$(d);
-`````
 
 ## PST Settled
 With rename=true
@@ -149,11 +102,15 @@ b();
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

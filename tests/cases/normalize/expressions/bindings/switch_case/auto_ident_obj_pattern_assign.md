@@ -19,6 +19,7 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLit
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,46 +40,6 @@ const tmpObjLitVal$1 = $(4);
 $({ x: tmpObjLitVal, y: tmpObjLitVal$1 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let x;
-  let y;
-  let a;
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    (x = 1), (y = 2);
-    a = { x: x, y: y } = { x: $(3), y: $(4) };
-    $(a, x, y);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-let y = undefined;
-let a = undefined;
-const tmpSwitchDisc = 1;
-const tmpIfTest = tmpSwitchDisc === 1;
-if (tmpIfTest) {
-  x = 1;
-  y = 2;
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
-  a = tmpNestedAssignObjPatternRhs;
-  $(tmpNestedAssignObjPatternRhs, x, y);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +54,15 @@ const c = {
 $( c, a, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

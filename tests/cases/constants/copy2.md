@@ -15,12 +15,14 @@ const wow = bar;
 $(wow)
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`five`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,25 +31,6 @@ $(`five`);
 $(`five`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const foo = `five`;
-const bar = foo;
-const wow = bar;
-$(wow);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const foo = `five`;
-const bar = foo;
-const wow = bar;
-$(bar);
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +39,15 @@ With rename=true
 $( "five" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'five'

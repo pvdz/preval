@@ -12,6 +12,7 @@
 +$spy();
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@
 const tmpUnaryArg /*:unknown*/ = $spy();
 +tmpUnaryArg;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ const tmpUnaryArg = $spy();
 +tmpUnaryArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-+$spy();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpUnaryArg = $spy();
-+tmpUnaryArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +39,15 @@ const a = $spy();
 +a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]

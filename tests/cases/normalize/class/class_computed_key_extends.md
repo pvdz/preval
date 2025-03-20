@@ -32,6 +32,7 @@ $(new x().x());
 $(new x().y());
 `````
 
+
 ## Settled
 
 
@@ -74,6 +75,7 @@ const tmpCalleeParam$5 /*:unknown*/ = tmpCallObj$5.y();
 $(tmpCalleeParam$5);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -104,81 +106,6 @@ $(new x().x());
 $(new x().y());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let s = String;
-const y = `y`;
-let x = class extends $(s) {
-  [$(`f`)]() {
-    debugger;
-    return $(100, `method`);
-  }
-  g() {
-    debugger;
-    return $(200, `method`);
-  }
-  [((s = Number), `x`)]() {
-    debugger;
-    return $(300, `method`);
-  }
-  [y]() {
-    debugger;
-    return $(400, `method`);
-  }
-};
-$(new x().f());
-$(new x().g());
-$(new x().x());
-$(new x().y());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let s = String;
-const y = `y`;
-const tmpClassSuper = $(s);
-const tmpClassComputedKey = $(`f`);
-s = Number;
-const tmpClassComputedKey$1 = `x`;
-let x = class extends tmpClassSuper {
-  [tmpClassComputedKey]() {
-    debugger;
-    const tmpReturnArg = $(100, `method`);
-    return tmpReturnArg;
-  }
-  g() {
-    debugger;
-    const tmpReturnArg$1 = $(200, `method`);
-    return tmpReturnArg$1;
-  }
-  [tmpClassComputedKey$1]() {
-    debugger;
-    const tmpReturnArg$3 = $(300, `method`);
-    return tmpReturnArg$3;
-  }
-  [y]() {
-    debugger;
-    const tmpReturnArg$5 = $(400, `method`);
-    return tmpReturnArg$5;
-  }
-};
-const tmpCallObj = new x();
-const tmpCalleeParam = tmpCallObj.f();
-$(tmpCalleeParam);
-const tmpCallObj$1 = new x();
-const tmpCalleeParam$1 = tmpCallObj$1.g();
-$(tmpCalleeParam$1);
-const tmpCallObj$3 = new x();
-const tmpCalleeParam$3 = tmpCallObj$3.x();
-$(tmpCalleeParam$3);
-const tmpCallObj$5 = new x();
-const tmpCalleeParam$5 = tmpCallObj$5.y();
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -219,11 +146,15 @@ const o = n.y();
 $( o );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

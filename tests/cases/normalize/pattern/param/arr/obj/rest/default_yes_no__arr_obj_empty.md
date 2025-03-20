@@ -15,6 +15,7 @@ function f([{ ...x } = $({ a: 'fail' })]) {
 $(f([{}, 20, 30], 200));
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const x /*:unknown*/ = $objPatternRest(tmpArrElement, tmpCalleeParam$3, undefine
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,48 +35,6 @@ const tmpArrElement = {};
 $($objPatternRest(tmpArrElement, [], undefined));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [{ ...x } = $({ a: `fail` })] = tmpParamBare;
-  return x;
-};
-$(f([{}, 20, 30], 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { a: `fail` };
-    arrPatternStep = $(tmpCalleeParam);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  const tmpCalleeParam$1 = arrPatternStep;
-  const tmpCalleeParam$3 = [];
-  let x = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
-  return x;
-};
-const tmpCallCallee = f;
-const tmpArrElement = {};
-const tmpCalleeParam$7 = [tmpArrElement, 20, 30];
-const tmpCalleeParam$5 = tmpCallCallee(tmpCalleeParam$7, 200);
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +46,22 @@ const c = $objPatternRest( a, b, undefined );
 $( c );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}
@@ -103,7 +74,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

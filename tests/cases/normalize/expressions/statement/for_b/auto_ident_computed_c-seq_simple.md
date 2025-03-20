@@ -16,6 +16,7 @@ for (; (1, 2, $(b))[$("c")]; $(1));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,38 +63,6 @@ if (tmpCompObj[tmpCompProp]) {
 $({ a: 999, b: 1000 }, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-{
-  while ((1, 2, $(b))[$(`c`)]) {
-    $(1);
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`c`);
-  const tmpIfTest = tmpCompObj[tmpCompProp];
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -123,11 +93,21 @@ const h = {
 $( h, a );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '1' }
@@ -165,6 +145,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

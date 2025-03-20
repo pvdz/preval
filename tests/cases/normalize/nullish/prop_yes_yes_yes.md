@@ -13,6 +13,7 @@ const a = {};
 $(a??b??c??d);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const a /*:object*/ = {};
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,38 +30,6 @@ $(a);
 $({});
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = {};
-$(a ?? b ?? c ?? d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = {};
-let tmpCalleeParam = a;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = b;
-} else {
-}
-const tmpIfTest$1 = tmpCalleeParam == null;
-if (tmpIfTest$1) {
-  tmpCalleeParam = c;
-} else {
-}
-const tmpIfTest$3 = tmpCalleeParam == null;
-if (tmpIfTest$3) {
-  tmpCalleeParam = d;
-  $(d);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +39,15 @@ const a = {};
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

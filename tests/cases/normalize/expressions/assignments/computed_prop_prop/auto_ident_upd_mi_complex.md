@@ -17,6 +17,7 @@ obj[(a = --$($(b)).x)];
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ obj[tmpUpdInc];
 $(tmpUpdInc, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,36 +47,6 @@ tmpUpdObj.x = tmpUpdInc;
 $(tmpUpdInc, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = --$($(b)).x)];
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-const tmpCalleeParam = $(b);
-let tmpUpdObj = $(tmpCalleeParam);
-let tmpUpdProp = tmpUpdObj.x;
-let tmpUpdNum = $coerce(tmpUpdProp, `number`);
-let tmpUpdInc = tmpUpdNum - 1;
-tmpUpdObj.x = tmpUpdInc;
-a = tmpUpdInc;
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +64,15 @@ g[ f ];
 $( f, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

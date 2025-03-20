@@ -52,6 +52,7 @@ switch (6) {
 }
 `````
 
+
 ## Settled
 
 
@@ -114,6 +115,7 @@ if (tmpIfTest$9) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -157,109 +159,6 @@ if (tmpSwitchCaseToStart <= 0) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  const tmpSwitchValue = 6;
-  let tmpSwitchCaseToStart = 5;
-  if ($(10) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else if ($(20) === tmpSwitchValue) tmpSwitchCaseToStart = 1;
-  else if ($(30) === tmpSwitchValue) tmpSwitchCaseToStart = 2;
-  else if ($(40) === tmpSwitchValue) tmpSwitchCaseToStart = 3;
-  else if ($(50) === tmpSwitchValue) tmpSwitchCaseToStart = 4;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(1);
-      break tmpSwitchBreak;
-    }
-    if (tmpSwitchCaseToStart <= 1) {
-      $(2);
-    }
-    if (tmpSwitchCaseToStart <= 2) {
-      $(3);
-    }
-    if (tmpSwitchCaseToStart <= 3) {
-      $(4);
-      break tmpSwitchBreak;
-    }
-    if (tmpSwitchCaseToStart <= 4) {
-      $(5);
-      break tmpSwitchBreak;
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpSwitchValue = 6;
-let tmpSwitchCaseToStart = 5;
-const tmpBinLhs = $(10);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-tmpSwitchBreak: {
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpBinLhs$1 = $(20);
-    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    } else {
-      const tmpBinLhs$3 = $(30);
-      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
-      if (tmpIfTest$3) {
-        tmpSwitchCaseToStart = 2;
-      } else {
-        const tmpBinLhs$5 = $(40);
-        const tmpIfTest$5 = tmpBinLhs$5 === tmpSwitchValue;
-        if (tmpIfTest$5) {
-          tmpSwitchCaseToStart = 3;
-        } else {
-          const tmpBinLhs$7 = $(50);
-          const tmpIfTest$7 = tmpBinLhs$7 === tmpSwitchValue;
-          if (tmpIfTest$7) {
-            tmpSwitchCaseToStart = 4;
-          } else {
-          }
-        }
-      }
-    }
-  }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$9) {
-    $(1);
-    break tmpSwitchBreak;
-  } else {
-    const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$11) {
-      $(2);
-    } else {
-    }
-    const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$13) {
-      $(3);
-    } else {
-    }
-    const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
-    if (tmpIfTest$15) {
-      $(4);
-      break tmpSwitchBreak;
-    } else {
-      const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
-      if (tmpIfTest$17) {
-        $(5);
-        break tmpSwitchBreak;
-      } else {
-      }
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -325,11 +224,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

@@ -24,6 +24,7 @@ $(typeof Math.ceil($spy('Math.ceil')));
 $(typeof Math.clz32($spy('Math.clz32')));
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ $coerce(tmpCalleeParam$29, `number`);
 $(`number`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,57 +79,6 @@ $coerce($spy(`Math.clz32`), `number`);
 $(`number`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof Math.asin($spy(`Math.asin`)));
-$(typeof Math.asinh($spy(`Math.asinh`)));
-$(typeof Math.atan($spy(`Math.atan`)));
-$(typeof Math.atan2($spy(`Math.atan2`)));
-$(typeof Math.atanh($spy(`Math.atanh`)));
-$(typeof Math.cbrt($spy(`Math.cbrt`)));
-$(typeof Math.ceil($spy(`Math.ceil`)));
-$(typeof Math.clz32($spy(`Math.clz32`)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = $spy(`Math.asin`);
-const tmpUnaryArg = $Math_asin(tmpCalleeParam$1);
-const tmpCalleeParam = typeof tmpUnaryArg;
-$(tmpCalleeParam);
-const tmpCalleeParam$5 = $spy(`Math.asinh`);
-const tmpUnaryArg$1 = $Math_asinh(tmpCalleeParam$5);
-const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$9 = $spy(`Math.atan`);
-const tmpUnaryArg$3 = $Math_atan(tmpCalleeParam$9);
-const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-$(tmpCalleeParam$7);
-const tmpCalleeParam$13 = $spy(`Math.atan2`);
-const tmpUnaryArg$5 = $Math_atan2(tmpCalleeParam$13);
-const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-$(tmpCalleeParam$11);
-const tmpCalleeParam$17 = $spy(`Math.atanh`);
-const tmpUnaryArg$7 = $Math_atanh(tmpCalleeParam$17);
-const tmpCalleeParam$15 = typeof tmpUnaryArg$7;
-$(tmpCalleeParam$15);
-const tmpCalleeParam$21 = $spy(`Math.cbrt`);
-const tmpUnaryArg$9 = $Math_cbrt(tmpCalleeParam$21);
-const tmpCalleeParam$19 = typeof tmpUnaryArg$9;
-$(tmpCalleeParam$19);
-const tmpCalleeParam$25 = $spy(`Math.ceil`);
-const tmpUnaryArg$11 = $Math_ceil(tmpCalleeParam$25);
-const tmpCalleeParam$23 = typeof tmpUnaryArg$11;
-$(tmpCalleeParam$23);
-const tmpCalleeParam$29 = $spy(`Math.clz32`);
-const tmpUnaryArg$13 = $Math_clz32(tmpCalleeParam$29);
-const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
-$(tmpCalleeParam$27);
-`````
 
 ## PST Settled
 With rename=true
@@ -159,11 +110,28 @@ $coerce( h, "number" );
 $( "number" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asin
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asinh
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan2
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atanh
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cbrt
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_ceil
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_clz32
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Math.asin', 'Math.asin']
@@ -199,13 +167,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asin
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asinh
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan2
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atanh
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cbrt
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_ceil
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_clz32

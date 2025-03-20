@@ -23,12 +23,14 @@ This turned out to be a Tenko bug regarding try-scope tracking.
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,31 +39,6 @@ This turned out to be a Tenko bug regarding try-scope tracking.
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let AAAAAAAAAAAAAAAAAAAA;
-  try {
-    AAAAAAAAAAAAAAAAAAAA = false;
-  } catch (e) {
-    AAAAAAAAAAAAAAAAAAAA = false;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let AAAAAAAAAAAAAAAAAAAA = undefined;
-try {
-  AAAAAAAAAAAAAAAAAAAA = false;
-} catch (e) {
-  AAAAAAAAAAAAAAAAAAAA = false;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +47,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

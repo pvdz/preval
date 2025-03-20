@@ -22,6 +22,7 @@ if ($) {
 $(x);
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -37,7 +38,9 @@ if ($) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

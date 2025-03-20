@@ -13,6 +13,7 @@ const x = 1;
 for (const x = 2;;) $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(2);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,29 +33,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = 1;
-{
-  const x$1 = 2;
-  while (true) {
-    $(x$1);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = 1;
-const x$1 = 2;
-while (true) {
-  $(x$1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +43,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

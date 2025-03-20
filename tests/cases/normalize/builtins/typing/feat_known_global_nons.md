@@ -24,6 +24,7 @@ $(typeof parseInt($spy('parseInt')));
 $(typeof parseFloat($spy('parseFloat')));
 `````
 
+
 ## Settled
 
 
@@ -53,6 +54,7 @@ $coerce(tmpCalleeParam$25, `string`);
 $(`number`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -76,57 +78,6 @@ $coerce($spy(`parseFloat`), `string`);
 $(`number`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof Math.sign($spy(`Math.sign`)));
-$(typeof Math.sin($spy(`Math.sin`)));
-$(typeof Math.hypot($spy(`Math.hypot`)));
-$(typeof String($spy(`String`)));
-$(typeof Number($spy(`Number`)));
-$(typeof Boolean($spy(`Boolean`)));
-$(typeof parseInt($spy(`parseInt`)));
-$(typeof parseFloat($spy(`parseFloat`)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = $spy(`Math.sign`);
-const tmpUnaryArg = $Math_sign(tmpCalleeParam$1);
-const tmpCalleeParam = typeof tmpUnaryArg;
-$(tmpCalleeParam);
-const tmpCalleeParam$5 = $spy(`Math.sin`);
-const tmpUnaryArg$1 = $Math_sin(tmpCalleeParam$5);
-const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$9 = $spy(`Math.hypot`);
-const tmpUnaryArg$3 = $Math_hypot(tmpCalleeParam$9);
-const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-$(tmpCalleeParam$7);
-const tmpStringFirstArg = $spy(`String`);
-const tmpUnaryArg$5 = $coerce(tmpStringFirstArg, `string`);
-const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-$(tmpCalleeParam$11);
-const tmpStringFirstArg$1 = $spy(`Number`);
-const tmpUnaryArg$7 = $coerce(tmpStringFirstArg$1, `number`);
-const tmpCalleeParam$13 = typeof tmpUnaryArg$7;
-$(tmpCalleeParam$13);
-const tmpCalleeParam$17 = $spy(`Boolean`);
-const tmpUnaryArg$9 = Boolean(tmpCalleeParam$17);
-const tmpCalleeParam$15 = typeof tmpUnaryArg$9;
-$(tmpCalleeParam$15);
-const tmpCalleeParam$21 = $spy(`parseInt`);
-const tmpUnaryArg$11 = parseInt(tmpCalleeParam$21);
-const tmpCalleeParam$19 = typeof tmpUnaryArg$11;
-$(tmpCalleeParam$19);
-const tmpCalleeParam$25 = $spy(`parseFloat`);
-const tmpUnaryArg$13 = parseFloat(tmpCalleeParam$25);
-const tmpCalleeParam$23 = typeof tmpUnaryArg$13;
-$(tmpCalleeParam$23);
-`````
 
 ## PST Settled
 With rename=true
@@ -157,11 +108,23 @@ $coerce( g, "string" );
 $( "number" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sign
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_hypot
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Math.sign', 'Math.sign']
@@ -196,8 +159,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sign
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_hypot

@@ -25,6 +25,7 @@ $(f(432));
 $(f); // escapes (important, otherwise different rules would tackle it)
 `````
 
+
 ## Settled
 
 
@@ -53,6 +54,7 @@ $(tmpCalleeParam$3);
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -73,60 +75,6 @@ $(f(432));
 $(f);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  f = function ($$0, $$1) {
-    let c = $$0;
-    let d = $$1;
-    debugger;
-    const tmp = c - 427;
-    const Co$1 = arr[tmp];
-    return Co$1;
-  };
-  const tmpReturnArg$23 = f(a, b);
-  return tmpReturnArg$23;
-};
-$(f(430));
-$(f(431));
-$(f(432));
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [`2175510YjCZON`, `10TAFtVj`, `11526394DNqxUn`, `60YWJuYY`, `794766IkrVMo`, `348105xrUwtS`];
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  f = function ($$0, $$1) {
-    let c = $$0;
-    let d = $$1;
-    debugger;
-    const tmp = c - 427;
-    const Co$1 = arr[tmp];
-    return Co$1;
-  };
-  const tmpReturnArg$23 = f(a, b);
-  return tmpReturnArg$23;
-};
-const tmpCalleeParam = f(430);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(431);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(432);
-$(tmpCalleeParam$3);
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -156,11 +104,21 @@ $( k );
 $( b );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '60YWJuYY'
@@ -176,6 +134,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

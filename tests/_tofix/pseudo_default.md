@@ -23,6 +23,7 @@ if (arg === undefined) {
 $(val);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,33 +49,6 @@ if (arg === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let val = undefined;
-if (arg === undefined) {
-  val = {};
-} else {
-  val = arg;
-}
-$(val);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let val = undefined;
-const tmpIfTest = arg === undefined;
-if (tmpIfTest) {
-  val = {};
-  $(val);
-} else {
-  val = arg;
-  $(arg);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -89,13 +64,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 arg
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

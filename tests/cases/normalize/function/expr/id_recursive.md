@@ -18,6 +18,7 @@ const x = f(a);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ const x /*:number*/ = r(a);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,43 +56,6 @@ const r = function (n) {
 $(r($(10)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function r($$0) {
-  let n = $$0;
-  debugger;
-  if (n > 100) return 10;
-  return r(n + 1);
-};
-const a = $(10);
-const x = f(a);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const r = function ($$0) {
-  let n = $$0;
-  debugger;
-  const tmpIfTest = n > 100;
-  if (tmpIfTest) {
-    return 10;
-  } else {
-    const tmpCallCallee = r;
-    const tmpCalleeParam = n + 1;
-    const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
-    return tmpReturnArg;
-  }
-};
-const f = r;
-const a = $(10);
-const x = f(a);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -114,11 +79,15 @@ const g = a( f );
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

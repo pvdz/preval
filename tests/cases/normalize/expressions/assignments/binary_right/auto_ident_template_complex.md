@@ -13,6 +13,7 @@ let a = `foo${$(1)}`;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpBinLhs /*:string*/ = `foo${tmpBinBothRhs}`;
 $(tmpBinLhs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,25 +32,6 @@ $(tmpBinLhs);
 $(`foo${$(1)}`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = `foo` + $coerce($(1), `string`) + ``;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = `foo`;
-const tmpCalleeParam = $(1);
-const tmpBinBothRhs = $coerce(tmpCalleeParam, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let a = $coerce(tmpBinLhs, `plustr`);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +43,15 @@ const c = `foo${b}`;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

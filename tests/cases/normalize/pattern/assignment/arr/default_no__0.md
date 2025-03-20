@@ -13,6 +13,7 @@
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('bad');
 [...0];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,22 +31,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[] = 0;
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arrAssignPatternRhs = 0;
-const arrPatternSplat = [...arrAssignPatternRhs];
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +40,15 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

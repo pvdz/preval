@@ -20,6 +20,7 @@ const tmpCalleeParam = f($);
 $(tmpCalleeParam);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,43 +44,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  if (c) {
-    $(undefined);
-    const x = [c];
-    return x;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f($);
-$(tmpCalleeParam);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  if (c) {
-    $(undefined);
-    const x = [c];
-    return x;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f($);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -91,11 +56,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

@@ -22,6 +22,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(2);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,38 +42,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  again: {
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const test = $(1);
-      if (test) {
-        break again;
-      } else {
-      }
-    }
-  }
-}
-$(2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  nestedLoop: {
-    const test = $(1);
-    if (test) {
-      break nestedLoop;
-    } else {
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +52,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -124,6 +104,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

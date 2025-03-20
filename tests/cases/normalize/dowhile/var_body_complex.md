@@ -13,6 +13,7 @@ do var a = $($(2));
 while (0);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:unknown*/ = $(2);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,28 +30,6 @@ $(tmpCalleeParam);
 $($(2));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-while (true) {
-  a = $($(2));
-  if (0) {
-  } else {
-    break;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-const tmpCalleeParam = $(2);
-a = $(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +39,15 @@ const a = $( 2 );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

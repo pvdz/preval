@@ -15,6 +15,7 @@ const z = y & 300;
 $(x, y, z);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const z /*:number*/ = y & 8;
 $(x, y, z);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,25 +36,6 @@ const y = x & 200;
 $(x, y, y & 8);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $spy(1234);
-const y = x & 200;
-const z = y & 300;
-$(x, y, z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $spy(1234);
-const y = x & 200;
-const z = y & 300;
-$(x, y, z);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +47,15 @@ const c = b & 8;
 $( a, b, c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [1234, 1234]

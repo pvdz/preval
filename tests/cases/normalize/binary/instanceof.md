@@ -12,6 +12,7 @@
 $(5 instanceof Infinity);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam /*:boolean*/ = 5 instanceof Infinity;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,20 +29,6 @@ $(tmpCalleeParam);
 $(5 instanceof Infinity);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(5 instanceof Infinity);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = 5 instanceof Infinity;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +38,15 @@ const a = 5 instanceof Infinity;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Right-hand side of 'instanceof' is not an object ]>")

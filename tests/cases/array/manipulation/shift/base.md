@@ -14,6 +14,7 @@ const N = ARR.shift();
 $(N);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const N /*:unknown*/ = ARR.shift();
 $(N);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,25 +35,6 @@ const tmpArrSpread = $([`a`, `b`, `c`]);
 $([...tmpArrSpread].shift());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const ARR = [...$([`a`, `b`, `c`])];
-const N = ARR.shift();
-$(N);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [`a`, `b`, `c`];
-const tmpArrSpread = $(tmpCalleeParam);
-const ARR = [...tmpArrSpread];
-const N = ARR.shift();
-$(N);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +47,15 @@ const d = c.shift();
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['a', 'b', 'c']

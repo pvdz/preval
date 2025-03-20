@@ -17,6 +17,7 @@ rule(`I want it my \\way`);
 rule(`You have to listen to me`);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ rule(`You have to listen to me`);
 $(`purpleRule:reset "I want it my \\way"`);
 $(`purpleRule:reset "You have to listen to me"`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,38 +35,6 @@ $(`purpleRule:reset "I want it my \\way"`);
 $(`purpleRule:reset "You have to listen to me"`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const rule = function ($$0) {
-  let desc = $$0;
-  debugger;
-  const e = `purpleRule:reset "` + $coerce(desc, `string`) + `"`;
-  $(e);
-};
-rule(`I want it my \\way`);
-rule(`You have to listen to me`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const rule = function ($$0) {
-  let desc = $$0;
-  debugger;
-  const tmpBinBothLhs = `purpleRule:reset "`;
-  const tmpBinBothRhs = $coerce(desc, `string`);
-  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-  const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-  const e = `${tmpStringConcatR}"`;
-  $(e);
-  return undefined;
-};
-rule(`I want it my \\way`);
-rule(`You have to listen to me`);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +44,15 @@ $( "purpleRule:reset \"I want it my \\way\"" );
 $( "purpleRule:reset \"You have to listen to me\"" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'purpleRule:reset "I want it my \\way"'

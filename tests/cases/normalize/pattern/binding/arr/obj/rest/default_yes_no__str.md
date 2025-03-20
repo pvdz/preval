@@ -13,6 +13,7 @@ const [{ ...x } = $({ a: 'fail' })] = 'abc';
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const x /*:unknown*/ = $objPatternRest(`a`, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,34 +31,6 @@ $(x);
 $($objPatternRest(`a`, [], undefined));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const [{ ...x } = $({ a: `fail` })] = `abc`;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternArrRoot = `abc`;
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: `fail` };
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const tmpCalleeParam$1 = arrPatternStep;
-const tmpCalleeParam$3 = [];
-const x = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +41,22 @@ const b = $objPatternRest( "a", a, undefined );
 $( b );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 0: '"a"' }
@@ -84,7 +69,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

@@ -16,6 +16,7 @@ let a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (varInitAssignLhsComputedRhs) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,40 +63,6 @@ if (varInitAssignLhsComputedRhs) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-($(b).c = $(b)[$(`d`)]) && ($(b).c = $(b)[$(`d`)]);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const varInitAssignLhsComputedObj = $(b);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpIfTest = varInitAssignLhsComputedRhs;
-if (tmpIfTest) {
-  const tmpAssignMemLhsObj = $(b);
-  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-  const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $(`d`);
-  const tmpAssignMemRhs = tmpCompObj$1[tmpCompProp$1];
-  tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
-  $(a, b);
-} else {
-  $(a, b);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -126,11 +94,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

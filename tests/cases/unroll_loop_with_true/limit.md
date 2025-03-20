@@ -23,12 +23,14 @@ while (true) {
 $(str);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,37 +39,6 @@ $(`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`);
 $(`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let str = ``;
-while (true) {
-  str += `x`;
-  if (str.length > 30) {
-    break;
-  }
-}
-$(str);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let str = ``;
-while (true) {
-  const tmpStringConcatR = $coerce(str, `plustr`);
-  str = `${tmpStringConcatR}x`;
-  const tmpBinLhs = str.length;
-  const tmpIfTest = tmpBinLhs > 30;
-  if (tmpIfTest) {
-    break;
-  } else {
-  }
-}
-$(str);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +47,21 @@ With rename=true
 $( "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: TemplateLiteral
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
@@ -93,6 +74,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: TemplateLiteral

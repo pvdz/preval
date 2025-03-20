@@ -20,6 +20,7 @@ switch ($(1)) {
 $(a, b, c, d);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 $(3, b, c, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -52,47 +54,6 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 $(3, b, c, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3;
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (tmpSwitchDisc === (a = $(b)[$(`x`)] = $(c)[$(`y`)] = d)) {
-  } else {
-  }
-}
-$(a, b, c, d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let a = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-const tmpBinBothLhs = tmpSwitchDisc;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = d;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpBinBothRhs = a;
-const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-$(a, b, c, d);
-`````
 
 ## PST Settled
 With rename=true
@@ -110,11 +71,15 @@ b[c] = 3;
 $( 3, a, d, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -22,12 +22,14 @@ f();
 $(100, a);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(100, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,36 +38,6 @@ $(100, 3);
 $(100, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  a = y;
-};
-let a = 1;
-const x = 3;
-const y = x;
-f();
-$(100, a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  a = y;
-  return undefined;
-};
-let a = 1;
-const x = 3;
-const y = x;
-f();
-$(100, a);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +46,15 @@ With rename=true
 $( 100, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100, 3

@@ -16,6 +16,7 @@ throw $(b)?.[$("$")]?.($(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (tmpIfTest) {
 throw tmpThrowArg;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,42 +57,6 @@ if (!(tmpChainElementCall == null)) {
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-throw $(b)?.[$(`\$`)]?.($(1));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-let tmpThrowArg = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = $(`\$`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam = tmpChainElementObject;
-    const tmpCalleeParam$1 = tmpChainElementCall;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
-    tmpThrowArg = tmpChainElementCall$1;
-  } else {
-  }
-} else {
-}
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -119,11 +85,15 @@ else {
 throw a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { $: '"<$>"' }

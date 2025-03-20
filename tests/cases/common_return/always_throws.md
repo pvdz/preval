@@ -23,6 +23,7 @@ try { f(); } catch {}
 try { $(f()); } catch {}
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ try {
   throw `Some error`;
 } catch (e$7) {}
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -65,56 +67,6 @@ try {
 } catch (e$7) {}
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  throw `Some error`;
-};
-try {
-  f();
-} catch (e) {}
-try {
-  f();
-} catch (e$1) {}
-try {
-  f();
-} catch (e$3) {}
-try {
-  f();
-} catch (e$5) {}
-try {
-  $(f());
-} catch (e$7) {}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  throw `Some error`;
-};
-try {
-  f();
-} catch (e) {}
-try {
-  f();
-} catch (e$1) {}
-try {
-  f();
-} catch (e$3) {}
-try {
-  f();
-} catch (e$5) {}
-try {
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
-} catch (e$7) {}
-`````
 
 ## PST Settled
 With rename=true
@@ -152,11 +104,15 @@ catch (e) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

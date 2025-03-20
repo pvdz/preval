@@ -14,12 +14,14 @@ var x = 2;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,25 +30,6 @@ $(2);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-x = 1;
-x = 2;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-x = 1;
-x = 2;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +38,15 @@ With rename=true
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

@@ -21,6 +21,7 @@ const setAssignable = function (a) {
 $(setAssignable($(100 | 16)));
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const c /*:number*/ = b & -17;
 $(c);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,37 +40,6 @@ $(c);
 $(($(116) | 32) & -17);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const setAssignable = function ($$0) {
-  let a = $$0;
-  debugger;
-  const b = a | 48;
-  const c = b ^ 16;
-  return c;
-};
-$(setAssignable($(100 | 16)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const setAssignable = function ($$0) {
-  let a = $$0;
-  debugger;
-  const b = a | 48;
-  const c = b ^ 16;
-  return c;
-};
-const tmpCallCallee = setAssignable;
-const tmpCalleeParam$3 = 116;
-const tmpCalleeParam$1 = $(tmpCalleeParam$3);
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +51,15 @@ const c = b & -17;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 116

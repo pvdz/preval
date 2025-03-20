@@ -13,6 +13,7 @@
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $(x);
 x = $(`pass`);
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,40 +31,6 @@ x = $(`pass`);
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[[x = $(`pass`)] = $([`fail2`])] = [``, 4, 5];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arrAssignPatternRhs = [``, 4, 5];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = [`fail2`];
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  x = $(`pass`);
-  $(x);
-} else {
-  x = arrPatternBeforeDefault$1;
-  $(arrPatternBeforeDefault$1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -72,13 +40,24 @@ x = $( "pass" );
 $( x );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'
@@ -91,7 +70,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

@@ -16,6 +16,7 @@ throw (a = b["c"] = $(b)[$("d")]);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 throw tmpNestedAssignPropRhs;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,31 +42,6 @@ b.c = tmpNestedAssignPropRhs;
 throw tmpNestedAssignPropRhs;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-throw (a = b[`c`] = $(b)[$(`d`)]);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +58,15 @@ a.c = d;
 throw d;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

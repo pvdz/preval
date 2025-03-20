@@ -18,6 +18,7 @@ let {
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const c /*:unknown*/ = x[dynKey];
 $(c);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,29 +40,6 @@ const dynKey = $(`a`) + $(`b`);
 $({ ab: 3 }[dynKey]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(`a`);
-const b = $(`b`);
-const x = { ab: 3 };
-let { [a + b]: c } = x;
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(`a`);
-const b = $(`b`);
-const x = { ab: 3 };
-let bindingPatternObjRoot = x;
-let dynKey = a + b;
-let c = bindingPatternObjRoot[dynKey];
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +53,15 @@ const e = d[ c ];
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

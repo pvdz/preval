@@ -15,6 +15,7 @@ arr[0] = 1;
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(arr);
 arr[0] = 1;
 $(arr);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,25 +37,6 @@ arr[0] = 1;
 $(arr);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [];
-$(arr);
-arr[0] = 1;
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [];
-$(arr);
-arr[0] = 1;
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +48,15 @@ a[0] = 1;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []

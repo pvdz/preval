@@ -23,6 +23,7 @@ for (const x in obj) {
 $('after');
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -44,7 +45,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___19__) {
 $(`after`);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                  | reads      | read by     | overWrites     | overwritten by
 obj:

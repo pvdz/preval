@@ -15,12 +15,14 @@ function f({ x: {} = $({ x: 'fail' }) }) {
 $(f({ x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 }, 10));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`ok`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,54 +31,6 @@ $(`ok`);
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: {} = $({ x: `fail` }) } = tmpParamBare;
-  return `ok`;
-};
-$(f({ x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { x: `fail` };
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  let objPatternCrashTest = objPatternAfterDefault === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = objPatternAfterDefault === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return `ok`;
-  } else {
-    return `ok`;
-  }
-};
-const tmpCallCallee = f;
-const tmpObjLitVal = { x: 1, y: 2, z: 3 };
-const tmpCalleeParam$3 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 10);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +39,15 @@ With rename=true
 $( "ok" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'ok'

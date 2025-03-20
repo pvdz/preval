@@ -20,6 +20,7 @@ a = b.c = d;
 $(a, b, d);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ b.c = 3;
 $(3, b, d);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,47 +57,6 @@ b.c = 3;
 $(3, b, d);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1;
-let b = {
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`b.set`);
-    b = null;
-    d = null;
-    return 7;
-  },
-};
-let d = 3;
-a = b.c = d;
-$(a, b, d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = {
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`b.set`);
-    b = null;
-    d = null;
-    return 7;
-  },
-};
-let d = 3;
-const tmpNestedPropAssignRhs = d;
-b.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-$(tmpNestedPropAssignRhs, b, d);
-`````
 
 ## PST Settled
 With rename=true
@@ -113,11 +74,15 @@ a.c = 3;
 $( 3, a, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'b.set'

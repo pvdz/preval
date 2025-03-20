@@ -13,6 +13,7 @@ const [[x = $('fail')] = $(['pass2'])] = [1, 2, 3, , 4, 5];
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $(x);
 [...1];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,41 +31,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const [[x = $(`fail`)] = $([`pass2`])] = [1, 2, 3, , 4, 5];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternArrRoot = [1, 2, 3, , 4, 5];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = [`pass2`];
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-let x = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  x = $(`fail`);
-  $(x);
-} else {
-  x = arrPatternBeforeDefault$1;
-  $(arrPatternBeforeDefault$1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +40,22 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -89,7 +67,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

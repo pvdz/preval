@@ -26,6 +26,7 @@ $(_THROW())
 $(_THROW())
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ $(`please`);
 const tmpThrowArg /*:object*/ = new Error(`always throws`);
 throw tmpThrowArg;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -50,46 +52,6 @@ const tmpThrowArg = new Error(`always throws`);
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const _THROW = function () {
-  debugger;
-  $(`do`);
-  $(`not`);
-  $(`inline`);
-  $(`please`);
-  throw new Error(`always throws`);
-};
-$(_THROW());
-$(_THROW());
-$(_THROW());
-$(_THROW());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const _THROW = function () {
-  debugger;
-  $(`do`);
-  $(`not`);
-  $(`inline`);
-  $(`please`);
-  const tmpThrowArg = new Error(`always throws`);
-  throw tmpThrowArg;
-};
-const tmpCalleeParam = _THROW();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = _THROW();
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = _THROW();
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = _THROW();
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -103,11 +65,15 @@ const a = new Error( "always throws" );
 throw a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'do'

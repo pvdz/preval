@@ -25,6 +25,7 @@ const g = function($$0, e$763, r$635) {
 $(g);
 `````
 
+
 ## Settled
 
 
@@ -55,6 +56,7 @@ const g /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
 $(g);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -73,68 +75,6 @@ $(function ($$0, $$1, $$2) {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function ($$0, $$1, $$2) {
-  let $dlr_$$0 = $$0;
-  let e$763 = $$1;
-  let r$635 = $$2;
-  debugger;
-  const f = function ($$0, $$1) {
-    const tmpPrevalAliasThis = this;
-    let t$987 = $$0;
-    let e$767 = $$1;
-    debugger;
-    const tmpPrevalAliasThis$241 = tmpPrevalAliasThis;
-    tmpPrevalAliasThis$241._pairs = [];
-    if (t$987) {
-      const tmpCallComplexCallee$25 = Object(i$441.a);
-      tmpCallComplexCallee$25(t$987, tmpPrevalAliasThis$241, e$767);
-    }
-  };
-  const i$441 = $(`e467`);
-  const o$233 = f.prototype;
-  $(o$233);
-};
-$(g);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function ($$0, $$1, $$2) {
-  let $dlr_$$0 = $$0;
-  let e$763 = $$1;
-  let r$635 = $$2;
-  debugger;
-  const f = function ($$0, $$1) {
-    const tmpPrevalAliasThis = this;
-    let t$987 = $$0;
-    let e$767 = $$1;
-    debugger;
-    const tmpPrevalAliasThis$241 = tmpPrevalAliasThis;
-    const tmpAssignMemLhsObj = tmpPrevalAliasThis$241;
-    const tmpAssignMemRhs = [];
-    tmpAssignMemLhsObj._pairs = tmpAssignMemRhs;
-    if (t$987) {
-      const tmpCalleeParam = i$441.a;
-      const tmpCallComplexCallee$25 = Object(tmpCalleeParam);
-      tmpCallComplexCallee$25(t$987, tmpPrevalAliasThis$241, e$767);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  const i$441 = $(`e467`);
-  const o$233 = f.prototype;
-  $(o$233);
-  return undefined;
-};
-$(g);
-`````
 
 ## PST Settled
 With rename=true
@@ -167,11 +107,15 @@ const a = function($$0,$$1,$$2 ) {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

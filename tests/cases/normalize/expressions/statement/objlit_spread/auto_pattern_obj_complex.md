@@ -14,6 +14,7 @@ let { a } = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpObjSpreadArg /*:unknown*/ = $(tmpCalleeParam);
 $(999);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,26 +35,6 @@ const tmpObjSpreadArg = $({ a: 1, b: 2 });
 $(999);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let { a: a } = { a: 999, b: 1000 };
-({ ...$({ a: 1, b: 2 }) });
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-const tmpCalleeParam = { a: 1, b: 2 };
-const tmpObjSpreadArg = $(tmpCalleeParam);
-({ ...tmpObjSpreadArg });
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +49,15 @@ const b = $( a );
 $( 999 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }

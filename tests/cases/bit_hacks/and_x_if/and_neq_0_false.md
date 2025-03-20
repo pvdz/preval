@@ -15,6 +15,7 @@ const z = y !== 0; // false
 $(z);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const z /*:boolean*/ = Boolean(y);
 $(z);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,25 +34,6 @@ $(z);
 $(Boolean($(32768) & 32768));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(32768);
-const y = x & 32768;
-const z = y !== 0;
-$(z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(32768);
-const y = x & 32768;
-const z = y !== 0;
-$(z);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +45,15 @@ const c = Boolean( b );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 32768

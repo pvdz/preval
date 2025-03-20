@@ -38,6 +38,7 @@ back: {
 $(x);                  // x=7 9 (8 is overwritten by 9 but 7 may jump over it) 
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -95,7 +96,9 @@ back___7__: /*8*/ {
 $(x___139__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                      | reads      | read by     | overWrites     | overwritten by
 x:

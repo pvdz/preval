@@ -12,12 +12,14 @@
 $('hello world'.replace(/ /g, ', '));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`hello, world`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,21 +28,6 @@ $(`hello, world`);
 $(`hello, world`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`hello world`.replace(/ /g, `, `));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = / /g;
-const tmpCalleeParam = `hello world`.replace(tmpCalleeParam$1, `, `);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -49,11 +36,15 @@ With rename=true
 $( "hello, world" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'hello, world'

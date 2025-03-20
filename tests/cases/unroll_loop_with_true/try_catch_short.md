@@ -24,6 +24,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -165,6 +166,7 @@ loopStop: {
   }
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -308,43 +310,6 @@ loopStop: {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  try {
-    const test = $(`first`);
-    $(`second`);
-    if (test) {
-      break;
-    } else {
-      $(`third`);
-    }
-  } catch (e) {
-    $(`error`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  try {
-    const test = $(`first`);
-    $(`second`);
-    if (test) {
-      break;
-    } else {
-      $(`third`);
-    }
-  } catch (e) {
-    $(`error`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -512,11 +477,15 @@ loopStop: {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'first'

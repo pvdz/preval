@@ -12,6 +12,7 @@
 ($(), Date)();
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@
 $();
 Date();
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,21 +30,6 @@ $();
 Date();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-($(), Date)();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$();
-const tmpCallComplexCallee = Date;
-Date();
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +39,15 @@ $();
 Date();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

@@ -27,6 +27,7 @@ Counter case. I think it's an invalid report. This has a different outcome.
 }
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ x = t + 1;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,41 +62,6 @@ x =
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let x = $();
-  $(x);
-  const t = $({
-    toString() {
-      debugger;
-      $(x);
-    },
-  });
-  x = t + 1;
-  $(x);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $();
-$(x);
-const tmpCalleeParam = {
-  toString() {
-    debugger;
-    $(x);
-    return undefined;
-  },
-};
-const t = $(tmpCalleeParam);
-x = t + 1;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -112,11 +79,15 @@ a = c + 1;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

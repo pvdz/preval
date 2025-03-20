@@ -16,6 +16,7 @@ $((a = (1, 2, $(b))?.x) + (a = (1, 2, $(b))?.x));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -65,44 +67,6 @@ if (tmpChainRootProp$1 == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-$((a = (1, 2, $(b))?.x) + (a = (1, 2, $(b))?.x));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-} else {
-}
-let tmpBinBothLhs = a;
-a = undefined;
-const tmpChainRootProp$1 = $(b);
-const tmpIfTest$1 = tmpChainRootProp$1 != null;
-if (tmpIfTest$1) {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.x;
-  a = tmpChainElementObject$1;
-} else {
-}
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -134,11 +98,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

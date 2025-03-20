@@ -25,6 +25,7 @@ function $continue() {
 $continue();
 `````
 
+
 ## Settled
 
 
@@ -52,6 +53,7 @@ const $continue /*:()=>undefined*/ = function () {
 $continue();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -71,53 +73,6 @@ const $continue = function () {
 $continue();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let $continue = function () {
-  debugger;
-  if ($()) {
-    if ($()) {
-      $continue();
-      return;
-    }
-  }
-  if ($()) {
-    return;
-  }
-  $continue();
-  return;
-};
-$continue();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let $continue = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $();
-    if (tmpIfTest$1) {
-      $continue();
-      return undefined;
-    } else {
-    }
-  } else {
-  }
-  const tmpIfTest$3 = $();
-  if (tmpIfTest$3) {
-    return undefined;
-  } else {
-    $continue();
-    return undefined;
-  }
-};
-$continue();
-`````
 
 ## PST Settled
 With rename=true
@@ -145,11 +100,15 @@ const a = function() {
 a();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

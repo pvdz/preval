@@ -13,12 +13,14 @@ const x = {a: 1};
 $(x === null); // Must be false
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(false);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,22 +29,6 @@ $(false);
 $(false);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = { a: 1 };
-$(x === null);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = { a: 1 };
-const tmpCalleeParam = x === null;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +37,15 @@ With rename=true
 $( false );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

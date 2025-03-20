@@ -22,6 +22,7 @@ const h = function() {
 g.prop = apparently_this_is_relevant; // Probably to keep the func around at least until the crash.
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ g.prop = apparently_this_is_relevant; // Probably to keep the func around at lea
 $();
 apparently_this_is_relevant;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,48 +40,6 @@ $();
 apparently_this_is_relevant;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  $();
-};
-const g = function () {
-  debugger;
-  h();
-};
-f();
-const h = function () {
-  debugger;
-  $();
-};
-g.prop = apparently_this_is_relevant;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const g = function () {
-  debugger;
-  h();
-  return undefined;
-};
-f();
-const h = function () {
-  debugger;
-  $();
-  return undefined;
-};
-g.prop = apparently_this_is_relevant;
-`````
 
 ## PST Settled
 With rename=true
@@ -89,13 +49,17 @@ $();
 apparently_this_is_relevant;
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 apparently_this_is_relevant
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

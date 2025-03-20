@@ -30,6 +30,7 @@ try {
 $(x);          // x=2 3 4. not 1: a throw in the Catch does not reach here
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -63,7 +64,9 @@ if ($implicitThrow___65__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 x:

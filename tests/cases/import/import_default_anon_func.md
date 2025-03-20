@@ -24,6 +24,7 @@ export default function() {
 };
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
 export { tmpAnonDefaultExport as default };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,41 +61,6 @@ const tmpAnonDefaultExport = function () {
 export { tmpAnonDefaultExport as default };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-import x from 'x';
-$(x());
-$(x.name);
-`````
-
-`````js filename=x
-const tmpAnonDefaultExport = function () {
-  debugger;
-  return 100;
-};
-export { tmpAnonDefaultExport as default };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-import { default as x } from 'x';
-const tmpCalleeParam = x();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = x.name;
-$(tmpCalleeParam$1);
-`````
-
-`````js filename=x
-const tmpAnonDefaultExport = function () {
-  debugger;
-  return 100;
-};
-export { tmpAnonDefaultExport as default };
-`````
 
 ## PST Settled
 With rename=true
@@ -107,20 +74,24 @@ $( b );
 `````
 
 `````js filename=x
-import { default as x } from "x";
-const a = x();
-$( a );
-const b = x.name;
-$( b );
+const a = function() {
+  debugger;
+  return 100;
+};
+export { a as default };
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')

@@ -13,12 +13,14 @@ const x = 1 && 2;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,26 +29,6 @@ $(2);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = 1 && 2;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-if (x) {
-  x = 2;
-  $(x);
-} else {
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +37,15 @@ With rename=true
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

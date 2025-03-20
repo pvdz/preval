@@ -20,6 +20,7 @@ $(f('a', 'x'));
 $(f(true, false));
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(103);
 $(`x1a`);
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,44 +42,6 @@ $(`x1a`);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const x = b + 1;
-  return x + a;
-};
-$(f(1, 2));
-$(f(2, 100));
-$(f(`a`, `x`));
-$(f(true, false));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const x = b + 1;
-  const tmpReturnArg = x + a;
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f(1, 2);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2, 100);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`a`, `x`);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(true, false);
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +53,15 @@ $( "x1a" );
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 4

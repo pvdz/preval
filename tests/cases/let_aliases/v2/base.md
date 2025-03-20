@@ -26,6 +26,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,44 +43,6 @@ $(arr);
 $([`a`, `b`, `c`, `d`, `e`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let counter = 0;
-const arr = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (counter < 5) {
-    const alias = counter;
-    const chr = `abcdef`.charAt(counter);
-    arr[alias] = chr;
-    counter = counter + 1;
-  } else {
-    break;
-  }
-}
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let counter = 0;
-const arr = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest = counter < 5;
-  if (tmpIfTest) {
-    const alias = counter;
-    const chr = `abcdef`.charAt(counter);
-    arr[alias] = chr;
-    counter = counter + 1;
-  } else {
-    break;
-  }
-}
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +52,15 @@ const a = [ "a", "b", "c", "d", "e" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['a', 'b', 'c', 'd', 'e']

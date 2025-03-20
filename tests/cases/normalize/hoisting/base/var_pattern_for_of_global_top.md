@@ -14,6 +14,7 @@ for (var [x] of [[100]]) $(x, 'for');
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,50 +61,6 @@ while (true) {
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-$(x);
-{
-  let tmpForOfGen = $forOf([[100]]);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      [x] = tmpForOfNext.value;
-      $(x, `for`);
-    }
-  }
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-$(undefined);
-const tmpArrElement = [100];
-const tmpCalleeParam = [tmpArrElement];
-let tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const arrAssignPatternRhs = tmpForOfNext.value;
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
-    $(x, `for`);
-  }
-}
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -129,11 +87,23 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined
@@ -148,8 +118,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

@@ -43,6 +43,7 @@ const z = x + y;
 $(z);
 `````
 
+
 ## Settled
 
 
@@ -60,6 +61,7 @@ if (t) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,41 +77,6 @@ if (t) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const s = $(`s`);
-const t = $(`t`);
-const x = s + `abc`;
-let y = undefined;
-if (t) {
-  y = `def` + t;
-} else {
-  y = `ghi`;
-}
-const z = x + y;
-$(z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const s = $(`s`);
-const t = $(`t`);
-const tmpStringConcatR = $coerce(s, `plustr`);
-const x = `${tmpStringConcatR}abc`;
-let y = undefined;
-if (t) {
-  const tmpStringConcatL = $coerce(t, `plustr`);
-  y = `def${tmpStringConcatL}`;
-} else {
-  y = `ghi`;
-}
-const z = x + y;
-$(z);
-`````
 
 ## PST Settled
 With rename=true
@@ -129,11 +96,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 's'

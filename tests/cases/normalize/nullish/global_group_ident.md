@@ -14,6 +14,7 @@ const y = (1, a)??x
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const a /*:object*/ = { x: 1 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,29 +31,6 @@ $(a);
 $({ x: 1 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = { x: 1 };
-const y = (1, a) ?? x;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = { x: 1 };
-let y = a;
-const tmpIfTest = y == null;
-if (tmpIfTest) {
-  y = x;
-  $(x);
-} else {
-  $(y);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +40,15 @@ const a = { x: 1 };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

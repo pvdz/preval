@@ -18,6 +18,7 @@ if (y === 1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,33 +44,6 @@ if ($(1) & 1) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(1) & 1;
-let y = x & 1;
-if (y === 1) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinLhs = $(1);
-const x = tmpBinLhs & 1;
-let y = x & 1;
-const tmpIfTest = y === 1;
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +59,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

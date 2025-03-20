@@ -20,6 +20,7 @@ if (!same) $('c');
 $(same);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if (same) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,43 +53,6 @@ if ($(1) === $(2)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(1);
-const b = $(2);
-const same = a === b;
-if (!same) $(`a`);
-if (!same) $(`b`);
-if (!same) $(`c`);
-$(same);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(1);
-const b = $(2);
-const same = a === b;
-if (same) {
-  $(same);
-} else {
-  $(`a`);
-  if (same) {
-    $(same);
-  } else {
-    $(`b`);
-    if (same) {
-      $(same);
-    } else {
-      $(`c`);
-      $(same);
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -107,11 +72,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

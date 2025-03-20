@@ -16,6 +16,7 @@ b?.["x"] || b?.["x"];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,45 +33,6 @@ $(a);
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-b?.[`x`] || b?.[`x`];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest$1 = tmpChainRootProp != null;
-if (tmpIfTest$1) {
-  const tmpChainRootComputed = `x`;
-  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-  tmpIfTest = tmpChainElementObject;
-} else {
-}
-if (tmpIfTest) {
-  $(a);
-} else {
-  const tmpChainRootProp$1 = b;
-  const tmpIfTest$3 = tmpChainRootProp$1 != null;
-  if (tmpIfTest$3) {
-    const tmpChainRootComputed$1 = `x`;
-    const tmpChainElementObject$1 = tmpChainRootProp$1[tmpChainRootComputed$1];
-    $(a);
-  } else {
-    $(a);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +45,15 @@ const a = {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '999', b: '1000' }

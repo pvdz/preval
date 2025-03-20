@@ -16,6 +16,7 @@ throw (b.c = $(b)[$("d")]);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 throw varInitAssignLhsComputedRhs;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,29 +42,6 @@ b.c = varInitAssignLhsComputedRhs;
 throw varInitAssignLhsComputedRhs;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-throw (b.c = $(b)[$(`d`)]);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-b.c = varInitAssignLhsComputedRhs;
-const tmpThrowArg = varInitAssignLhsComputedRhs;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +58,15 @@ a.c = d;
 throw d;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

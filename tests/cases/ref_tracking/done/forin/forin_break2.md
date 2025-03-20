@@ -17,6 +17,7 @@ for (const x in wat) {
 $();
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,48 +49,6 @@ if (tmpForInNext.done) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const wat = { a: 1, b: 2 };
-{
-  let tmpForInGen = $forIn(wat);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      const x = tmpForInNext.value;
-      {
-        $(x);
-        break;
-      }
-    }
-  }
-}
-$();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const wat = { a: 1, b: 2 };
-let tmpForInGen = $forIn(wat);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const x = tmpForInNext.value;
-    $(x);
-    break;
-  }
-}
-$();
-`````
 
 ## PST Settled
 With rename=true
@@ -111,11 +71,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

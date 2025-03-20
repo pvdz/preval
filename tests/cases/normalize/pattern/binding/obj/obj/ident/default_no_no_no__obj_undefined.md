@@ -13,6 +13,7 @@ const { x: { y } } = { x: undefined, b: 11, c: 12 };
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('bad');
 undefined.y;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,25 +31,6 @@ undefined.y;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: { y: y },
-} = { x: undefined, b: 11, c: 12 };
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = { x: undefined, b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternNoDefault.y;
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +40,15 @@ undefined.y;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

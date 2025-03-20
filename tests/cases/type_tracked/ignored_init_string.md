@@ -23,6 +23,7 @@ if (itooamanumberjack) {
 }
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ if (itooamanumberjack) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,41 +61,6 @@ if (itooamanumberjack) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let itooamanumberjack = false;
-if (imanumberandilovethrees) {
-  itooamanumberjack = String($(1));
-} else {
-  itooamanumberjack = String($(2));
-}
-if (itooamanumberjack) {
-  $(`a`, itooamanumberjack);
-} else {
-  $(`b`, itooamanumberjack);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let itooamanumberjack = false;
-if (imanumberandilovethrees) {
-  const tmpStringFirstArg = $(1);
-  itooamanumberjack = $coerce(tmpStringFirstArg, `string`);
-} else {
-  const tmpStringFirstArg$1 = $(2);
-  itooamanumberjack = $coerce(tmpStringFirstArg$1, `string`);
-}
-if (itooamanumberjack) {
-  $(`a`, itooamanumberjack);
-} else {
-  $(`b`, itooamanumberjack);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -116,13 +83,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 imanumberandilovethrees
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

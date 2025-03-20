@@ -17,6 +17,7 @@ const a = 10,
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,40 +62,6 @@ if (b == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = 10,
-  b = (a, $(2))?.toString,
-  c = (1, b)?.length;
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = 10;
-let b = undefined;
-const tmpChainRootProp = $(2);
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.toString;
-  b = tmpChainElementObject;
-} else {
-}
-let c = undefined;
-const tmpChainRootProp$1 = b;
-const tmpIfTest$1 = tmpChainRootProp$1 != null;
-if (tmpIfTest$1) {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.length;
-  c = tmpChainElementObject$1;
-  $(tmpChainElementObject$1);
-} else {
-  $(c);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -121,11 +89,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

@@ -16,6 +16,7 @@ const spy = {
 $(Number([spy, spy]));
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const tmpCalleeParam /*:number*/ = $coerce(tmpStringFirstArg, `number`);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,43 +54,6 @@ const spy = {
 $($coerce([spy, spy], `number`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = {
-  valueOf() {
-    debugger;
-    $(`x`);
-  },
-  toString() {
-    debugger;
-    $(`y`);
-  },
-};
-$(Number([spy, spy]));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = {
-  valueOf() {
-    debugger;
-    $(`x`);
-    return undefined;
-  },
-  toString() {
-    debugger;
-    $(`y`);
-    return undefined;
-  },
-};
-const tmpStringFirstArg = [spy, spy];
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -111,11 +76,15 @@ const c = $coerce( b, "number" );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'y'

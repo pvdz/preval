@@ -26,6 +26,7 @@ try {
 $(x);          // x=2 3. if the catch throws then that won't reach here.
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -54,7 +55,9 @@ if ($implicitThrow___51__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 x:

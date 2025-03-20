@@ -14,6 +14,7 @@ const tmpCalleeParam = [ ...tmpArrSpread ];
 $(tmpCalleeParam);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:array*/ = [`t`, `r`, `u`, `e`];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,23 +31,6 @@ $(tmpCalleeParam);
 $([`t`, `r`, `u`, `e`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpArrSpread = true.toString();
-const tmpCalleeParam = [...tmpArrSpread];
-$(tmpCalleeParam);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrSpread = true.toString();
-const tmpCalleeParam = [...tmpArrSpread];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +40,15 @@ const a = [ "t", "r", "u", "e" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['t', 'r', 'u', 'e']

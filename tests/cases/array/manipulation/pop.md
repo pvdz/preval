@@ -14,6 +14,7 @@ $(arr.pop());
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const arr /*:array*/ = [1, 2];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,24 +33,6 @@ $(3);
 $([1, 2]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-$(arr.pop());
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-const tmpCalleeParam = arr.pop();
-$(tmpCalleeParam);
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +43,15 @@ const a = [ 1, 2 ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

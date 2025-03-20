@@ -14,6 +14,7 @@ $((a = arguments) && (a = arguments));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ if (a) {
   $(a);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,32 +46,6 @@ if (a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a = arguments) && (a = arguments));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = arguments;
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  a = arguments;
-  tmpCalleeParam = arguments;
-  $(arguments);
-  $(a);
-} else {
-  $(tmpCalleeParam);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -87,13 +63,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 arguments
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<Global Arguments>'

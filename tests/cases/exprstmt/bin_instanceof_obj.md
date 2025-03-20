@@ -13,6 +13,7 @@ const spy = {toString(){ $('fail'); }, valueOf(){ $('fail'); }};
 spy instanceof {};
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpBinBothRhs /*:object*/ = {};
 undefined instanceof tmpBinBothRhs;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,43 +30,6 @@ undefined instanceof tmpBinBothRhs;
 undefined instanceof {};
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`fail`);
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-  },
-};
-spy instanceof {};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-};
-const tmpBinBothLhs = undefined;
-const tmpBinBothRhs = {};
-undefined instanceof tmpBinBothRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +39,15 @@ const a = {};
 undefined instanceof a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Right-hand side of 'instanceof' is not callable ]>")

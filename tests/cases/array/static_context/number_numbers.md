@@ -12,12 +12,14 @@
 $(Number([1, 2, 3]));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(NaN);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,21 +28,6 @@ $(NaN);
 $(NaN);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(Number([1, 2, 3]));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpStringFirstArg = [1, 2, 3];
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -49,11 +36,15 @@ With rename=true
 $( NaN );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: NaN

@@ -15,6 +15,7 @@ const f = Function(`return (function() {}.constructor("return this")( ));`);
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const f /*:()=>unknown*/ = function () {
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,30 +37,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = Function(`return (function() {}.constructor("return this")( ));`);
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const tmpCallObj = function () {
-    debugger;
-    return undefined;
-  };
-  const tmpCallComplexCallee = tmpCallObj.constructor(`return this`);
-  const tmpReturnArg = tmpCallComplexCallee();
-  return tmpReturnArg;
-};
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +49,15 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

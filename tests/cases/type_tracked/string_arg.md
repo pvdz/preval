@@ -22,6 +22,7 @@ const c = f(`g##h##i`);
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ f(`g##h##i`);
 $(undefined, undefined, undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,40 +55,6 @@ f(`g##h##i`);
 $(undefined, undefined, undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let thisisastring = $$0;
-  debugger;
-  const regex = /[^A-Za-z0-9\+\/\=]/g;
-  const str = thisisastring.replace(regex, ``);
-  $(str);
-};
-const a = f(`a!bc`);
-const b = f(`de?f`);
-const c = f(`g##h##i`);
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let thisisastring = $$0;
-  debugger;
-  const regex = /[^A-Za-z0-9\+\/\=]/g;
-  const str = thisisastring.replace(regex, ``);
-  $(str);
-  return undefined;
-};
-const a = f(`a!bc`);
-const b = f(`de?f`);
-const c = f(`g##h##i`);
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -106,11 +74,15 @@ a( "g##h##i" );
 $( undefined, undefined, undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'abc'

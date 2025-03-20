@@ -19,6 +19,7 @@ while ($LOOP_UNROLL_10) {
 }
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,33 +48,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = /foo/;
-x.foo = `object`;
-while ($LOOP_UNROLL_10) {
-  const tmp = x.foo;
-  $(tmp);
-  x = /foo/;
-  x.foo = `object`;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = /foo/;
-x.foo = `object`;
-while ($LOOP_UNROLL_10) {
-  const tmp = x.foo;
-  $(tmp);
-  x = /foo/;
-  x.foo = `object`;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +63,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- regular property access of an ident feels tricky;
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'object'
@@ -130,6 +115,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- regular property access of an ident feels tricky;

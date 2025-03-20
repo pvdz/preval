@@ -14,6 +14,7 @@ export let a = $(b)[$('x')] = c;
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const a /*:number*/ = 3;
 export { a };
 $(3, b, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,31 +42,6 @@ export { a };
 $(3, b, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 2 },
-  c = 3;
-let a = ($(b)[$(`x`)] = c);
-export { a };
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 2 };
-let c = 3;
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedRhs = c;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
-export { a };
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +56,15 @@ export { d as a };
 $( 3, a, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

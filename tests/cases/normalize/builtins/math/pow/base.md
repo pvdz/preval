@@ -12,12 +12,14 @@
 $(Math.pow(3, 8));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(6561);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(6561);
 $(6561);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(Math.pow(3, 8));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = 6561;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( 6561 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 6561

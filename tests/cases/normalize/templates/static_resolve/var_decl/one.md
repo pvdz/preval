@@ -13,12 +13,14 @@ let x = `${1}`;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`1`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,24 +29,6 @@ $(`1`);
 $(`1`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = `` + $coerce(1, `string`) + ``;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $coerce(1, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = $coerce(tmpBinLhs, `plustr`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +37,15 @@ With rename=true
 $( "1" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '1'

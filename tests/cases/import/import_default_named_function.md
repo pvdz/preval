@@ -24,6 +24,7 @@ export default function f() {}
 f = 10;
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ $(x);
 const f /*:number*/ = 10;
 export { f as default };
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -50,38 +52,6 @@ const f = 10;
 export { f as default };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-import x from 'x';
-$(x);
-`````
-
-`````js filename=x
-let f = function () {
-  debugger;
-};
-f = 10;
-export { f as default };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-import { default as x } from 'x';
-$(x);
-`````
-
-`````js filename=x
-let f = function () {
-  debugger;
-  return undefined;
-};
-f = 10;
-export { f as default };
-`````
 
 ## PST Settled
 With rename=true
@@ -92,17 +62,21 @@ $( x );
 `````
 
 `````js filename=x
-import { default as x } from "x";
-$( x );
+const a = 10;
+export { a as default };
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')

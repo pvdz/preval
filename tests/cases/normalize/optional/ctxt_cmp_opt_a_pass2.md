@@ -20,6 +20,7 @@ const tmpObjLitVal /*:object*/ = { c: tmpObjLitVal$1 };
 tmpObjLitVal.c();
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ const tmpObjLitVal /*:object*/ = { c: tmpObjLitVal$1 };
 tmpObjLitVal.c();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,40 +50,6 @@ const tmpObjLitVal$1 = function (...$$0 /*:array*/) {
 ({ c: tmpObjLitVal$1 }.c());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = function (...$$0 /*:array*/) {
-  const tmpPrevalAliasThis$1 = this;
-  let $dlr_$$0 = $$0;
-  debugger;
-  const tmpPrevalAliasThis = tmpPrevalAliasThis$1;
-  const a$1 = $dlr_$$0;
-  const tmpCalleeParam = $(a$1);
-  $(tmpCalleeParam, tmpPrevalAliasThis);
-};
-const tmpObjLitVal = { c: tmpObjLitVal$1 };
-tmpObjLitVal.c();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = function (...$$0 /*:array*/) {
-  const tmpPrevalAliasThis$1 = this;
-  let $dlr_$$0 = $$0;
-  debugger;
-  const tmpPrevalAliasThis = tmpPrevalAliasThis$1;
-  const a$1 = $dlr_$$0;
-  const tmpCalleeParam = $($dlr_$$0);
-  $(tmpCalleeParam, tmpPrevalAliasThis);
-  return undefined;
-};
-const tmpObjLitVal = { c: tmpObjLitVal$1 };
-tmpObjLitVal.c();
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +67,15 @@ const e = { c: a };
 e.c();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []

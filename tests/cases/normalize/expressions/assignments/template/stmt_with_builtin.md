@@ -13,12 +13,14 @@
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,24 +29,6 @@ $(x);
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-`f` + $coerce(String, `string`) + `oo`;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = `f`;
-const tmpBinBothRhs = $coerce(String, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-$coerce(tmpBinLhs, `plustr`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,13 +37,17 @@ With rename=true
 $( x );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

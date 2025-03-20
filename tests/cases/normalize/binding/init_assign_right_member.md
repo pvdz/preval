@@ -14,12 +14,14 @@ let c = 20;
 let a = b.x = c
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 (10).x = 20;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,25 +30,6 @@ let a = b.x = c
 (10).x = 20;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 10;
-let c = 20;
-let a = (b.x = c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 10;
-let c = 20;
-const varInitAssignLhsComputedRhs = c;
-b.x = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +38,15 @@ With rename=true
 10.x = 20;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot create property 'x' on number '10' ]>")

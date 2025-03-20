@@ -19,6 +19,7 @@ var tmpTernaryTest;
 f(tmpArg);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (tmpTernaryTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,41 +45,6 @@ if (a.x === 1) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let tmpArg = undefined;
-let tmpBinaryLeft = undefined;
-let tmpTernaryTest = undefined;
-let g = function () {
-  debugger;
-};
-(tmpTernaryTest = ((tmpBinaryLeft = a.x), tmpBinaryLeft === 1)), (tmpArg = tmpTernaryTest ? 2 : 3);
-f(tmpArg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpArg = undefined;
-let tmpBinaryLeft = undefined;
-let tmpTernaryTest = undefined;
-let g = function () {
-  debugger;
-  return undefined;
-};
-tmpBinaryLeft = a.x;
-tmpTernaryTest = tmpBinaryLeft === 1;
-if (tmpTernaryTest) {
-  tmpArg = 2;
-  f(tmpArg);
-} else {
-  tmpArg = 3;
-  f(tmpArg);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -93,13 +60,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 a, f
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

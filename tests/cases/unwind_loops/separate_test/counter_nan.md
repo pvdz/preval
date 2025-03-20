@@ -18,12 +18,14 @@ while (test) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,35 +34,6 @@ while (test) {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let counter = NaN;
-let test = counter >= 0;
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 10;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let counter = NaN;
-let test = counter >= 0;
-while (true) {
-  if (test) {
-    $(`yolo`);
-    counter = counter + 1;
-    test = counter < 10;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +42,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

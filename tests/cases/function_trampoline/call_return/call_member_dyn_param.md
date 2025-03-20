@@ -18,6 +18,7 @@ const q = f(obj, '$'); // In this test, this is the call we expect to be replace
 $(q);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const q /*:unknown*/ = obj.$(1);
 $(q);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,37 +36,6 @@ $(q);
 $({ $: $ }.$(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0, $$1) {
-  let obj$1 = $$0;
-  let str = $$1;
-  debugger;
-  const r = obj$1[str](1);
-  return r;
-};
-const obj = { $: $ };
-const q = f(obj, `\$`);
-$(q);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0, $$1) {
-  let obj$1 = $$0;
-  let str = $$1;
-  debugger;
-  const r = obj$1[str](1);
-  return r;
-};
-const obj = { $: $ };
-const q = f(obj, `\$`);
-$(q);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +46,15 @@ const b = a.$( 1 );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

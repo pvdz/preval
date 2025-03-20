@@ -16,6 +16,7 @@ if ((a = (1, 2, b).c = $(b)[$("d")]));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,32 +42,6 @@ b.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-if ((a = (1, 2, b).c = $(b)[$(`d`)]));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpNestedAssignObj = b;
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpIfTest = a;
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +58,15 @@ a.c = d;
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

@@ -14,6 +14,7 @@ $({ ...(a = "foo") });
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(tmpCalleeParam);
 $(`foo`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,26 +33,6 @@ $({ [`0`]: `f`, [`1`]: `o`, [`2`]: `o` });
 $(`foo`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$({ ...(a = `foo`) });
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = `foo`;
-let tmpObjSpread = a;
-const tmpCalleeParam = { ...tmpObjSpread };
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +47,15 @@ $( a );
 $( "foo" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 0: '"f"', 1: '"o"', 2: '"o"' }

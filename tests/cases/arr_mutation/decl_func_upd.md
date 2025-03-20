@@ -18,6 +18,7 @@ f();
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ arr[0] = 1;
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,34 +48,6 @@ arr[0] = 1;
 $(arr);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  arr[0] = 1;
-};
-const arr = [];
-$(f);
-f();
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  arr[0] = 1;
-  return undefined;
-};
-const arr = [];
-$(f);
-f();
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +64,21 @@ b[0] = 1;
 $( b );
 `````
 
+
+## Todos triggered
+
+
+- processArrayWriteReadImmutableBinding slow path
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -108,6 +92,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- processArrayWriteReadImmutableBinding slow path

@@ -13,6 +13,7 @@ const x = $(1) === $(1);
 $(Boolean(x)); // Is the same as `x` and dropping the `Boolean` call should not be observable
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const x /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,24 +33,6 @@ const tmpBinBothLhs = $(1);
 $(tmpBinBothLhs === $(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(1) === $(1);
-$(Boolean(x));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs === tmpBinBothRhs;
-const tmpCalleeParam = Boolean(x);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +44,15 @@ const c = a === b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

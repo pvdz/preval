@@ -12,6 +12,7 @@
 ($(1), $(2), ($(3), $(4)), $(5), $(6));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(4);
 $(5);
 $(6);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,24 +38,6 @@ $(5);
 $(6);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(1), $(2), ($(3), $(4)), $(5), $(6);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-$(2);
-$(3);
-$(4);
-$(5);
-$(6);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +51,15 @@ $( 5 );
 $( 6 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

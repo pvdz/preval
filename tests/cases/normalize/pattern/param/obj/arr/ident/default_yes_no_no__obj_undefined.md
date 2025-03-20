@@ -15,6 +15,7 @@ function f({ x: [y = 'fail'] }) {
 $(f({ x: undefined, a: 11, b: 12 }, 10));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f({ x: undefined, a: 11, b: 12 }, 10));
 [...undefined];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,47 +33,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: [y = `fail`],
-  } = tmpParamBare;
-  return `bad`;
-};
-$(f({ x: undefined, a: 11, b: 12 }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let y = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    y = `fail`;
-    return `bad`;
-  } else {
-    y = arrPatternBeforeDefault;
-    return `bad`;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = { x: undefined, a: 11, b: 12 };
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +42,22 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -97,7 +69,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

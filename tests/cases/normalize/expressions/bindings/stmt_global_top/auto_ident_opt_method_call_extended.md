@@ -15,6 +15,7 @@ let a = b?.c.d.e(1);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
 $(tmpChainElementCall);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,35 +33,6 @@ $(tmpChainElementCall);
 $({ e: $ }.e(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: { d: { e: $ } } };
-let a = b?.c.d.e(1);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let b = { c: tmpObjLitVal };
-let a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementCall = tmpChainElementObject$1.e(1);
-  a = tmpChainElementCall;
-  $(tmpChainElementCall);
-} else {
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +43,15 @@ const b = a.e( 1 );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -17,6 +17,7 @@ obj[(a = b = $(2))];
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ obj[tmpNestedComplexRhs];
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,32 +38,6 @@ const tmpNestedComplexRhs = $(2);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = b = $(2))];
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-const tmpNestedComplexRhs = $(2);
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +49,15 @@ b[ a ];
 $( a, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

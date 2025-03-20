@@ -26,6 +26,7 @@ $(f());
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ const tmpCalleeParam$1 /*:boolean*/ = f();
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -67,46 +69,6 @@ $(f());
 $(f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = $(1);
-  if (x) {
-    x = g();
-    $(`a`);
-  } else {
-    $(`b`);
-  }
-  return Boolean(x);
-};
-$(f());
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = $(1);
-  if (x) {
-    x = g();
-    $(`a`);
-  } else {
-    $(`b`);
-  }
-  const tmpReturnArg = Boolean(x);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -131,13 +93,17 @@ const e = a();
 $( e );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 g
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

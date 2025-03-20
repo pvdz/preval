@@ -20,6 +20,7 @@ if (bool) {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpClusterSSA_x /*:object*/ = { a: 1, b: tmpBool };
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,35 +40,6 @@ const tmpBool = Boolean($(true));
 $({ a: 1, b: tmpBool });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const bool = Boolean($(true));
-let x;
-if (bool) {
-  x = { a: 1, b: true };
-} else {
-  x = { a: 1, b: false };
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = $(true);
-const bool = Boolean(tmpCalleeParam);
-let x = undefined;
-if (bool) {
-  x = { a: 1, b: true };
-  $(x);
-} else {
-  x = { a: 1, b: false };
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +54,15 @@ const c = {
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

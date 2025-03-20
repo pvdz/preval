@@ -16,6 +16,7 @@ $(`before  ${(a = typeof arg)}  after`);
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(a, arg);
 $(`before  number  after`);
 $(`number`, 1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,32 +34,6 @@ $(`before  number  after`);
 $(`number`, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce((a = typeof arg), `string`) + `  after`);
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-a = typeof arg;
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +43,15 @@ $( "before  number  after" );
 $( "number", 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before number after'

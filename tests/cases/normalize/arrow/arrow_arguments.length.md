@@ -30,12 +30,14 @@ function f() {
 $(f(1, 2, 3, 4));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(4);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,39 +46,6 @@ $(4);
 $(4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  debugger;
-  const g = () => {
-    debugger;
-    return tmpPrevalAliasArgumentsLen;
-  };
-  return g(5, 6);
-};
-$(f(1, 2, 3, 4));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  debugger;
-  const g = function () {
-    debugger;
-    return tmpPrevalAliasArgumentsLen;
-  };
-  const tmpReturnArg = g(5, 6);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f(1, 2, 3, 4);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +54,15 @@ With rename=true
 $( 4 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 4

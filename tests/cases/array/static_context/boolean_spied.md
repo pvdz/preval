@@ -16,12 +16,14 @@ const spy = {
 $(Boolean([spy, spy]));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,43 +32,6 @@ $(true);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = {
-  valueOf() {
-    debugger;
-    $(`x`);
-  },
-  toString() {
-    debugger;
-    $(`y`);
-  },
-};
-$(Boolean([spy, spy]));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = {
-  valueOf() {
-    debugger;
-    $(`x`);
-    return undefined;
-  },
-  toString() {
-    debugger;
-    $(`y`);
-    return undefined;
-  },
-};
-const tmpCalleeParam$1 = [spy, spy];
-const tmpCalleeParam = Boolean(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +40,15 @@ With rename=true
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

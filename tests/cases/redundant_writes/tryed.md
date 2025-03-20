@@ -22,6 +22,7 @@ try {
 $(n);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ try {
 $(n);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,36 +55,6 @@ try {
 $(n);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let n = 1;
-try {
-  if ($(true)) {
-    n = $(`throws 2`);
-  } else {
-    n = $(`throws 3`);
-  }
-} catch (e) {}
-$(n);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let n = 1;
-try {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    n = $(`throws 2`);
-  } else {
-    n = $(`throws 3`);
-  }
-} catch (e) {}
-$(n);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +76,15 @@ catch (c) {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

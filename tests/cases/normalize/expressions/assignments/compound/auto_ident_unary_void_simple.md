@@ -16,6 +16,7 @@ $((a *= void arg));
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(NaN);
 $(NaN, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,29 +37,6 @@ $(NaN);
 $(NaN, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-$((a *= void arg));
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
-const tmpBinBothRhs = undefined;
-a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
-$(a);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +51,15 @@ $( NaN );
 $( NaN, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: NaN

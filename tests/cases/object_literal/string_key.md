@@ -16,6 +16,7 @@ const x = {
 $(x, x['Hey, me too!']());
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ const tmpCalleeParam$1 /*:unknown*/ = x[`Hey, me too!`]();
 $(x, tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,38 +50,6 @@ const x = {
 $(x, x[`Hey, me too!`]());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = {
-  [`hello, world!`]: $(1),
-  [`hey, me too!`]() {
-    debugger;
-    return $(2);
-  },
-};
-$(x, x[`Hey, me too!`]());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitPropKey = `hello, world!`;
-const tmpObjLitPropVal = $(1);
-const x = {
-  [tmpObjLitPropKey]: tmpObjLitPropVal,
-  [`hey, me too!`]() {
-    debugger;
-    const tmpReturnArg = $(2);
-    return tmpReturnArg;
-  },
-};
-const tmpCalleeParam = x;
-const tmpCalleeParam$1 = x[`Hey, me too!`]();
-$(tmpCalleeParam, tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +68,15 @@ const d = b[ "Hey, me too!" ]();
 $( b, d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

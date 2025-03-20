@@ -14,12 +14,14 @@ throw (a = (10, 20, 30) ? (40, 50, 60) : $($(100)));
 $(a);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw 60;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,30 +30,6 @@ throw 60;
 throw 60;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-throw (a = (10, 20, 30) ? (40, 50, 60) : $($(100)));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpIfTest = 30;
-if (tmpIfTest) {
-  a = 60;
-} else {
-  const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
-}
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +38,15 @@ With rename=true
 throw 60;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ 60 ]>')

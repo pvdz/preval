@@ -12,6 +12,7 @@
 $(false?.());
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $(false?.());
 false();
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`false()\``;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,28 +30,6 @@ false();
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`false()\``;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(false?.());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpChainRootCall = false;
-const tmpIfTest = tmpChainRootCall != null;
-if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootCall();
-  tmpCalleeParam = tmpChainElementCall;
-  $(tmpChainElementCall);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +39,21 @@ false.undefined();
 throw "[Preval]: Call expression with illegal callee must crash before this line ; `false()`";
 `````
 
+
+## Todos triggered
+
+
+- maybe support this call case too
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -75,6 +65,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- maybe support this call case too

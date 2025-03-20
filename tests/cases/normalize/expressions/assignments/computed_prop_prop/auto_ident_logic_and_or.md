@@ -15,6 +15,7 @@ obj[(a = ($($(1)) && $($(1))) || $($(2)))];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ obj[tmpCompProp];
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,39 +60,6 @@ if (a) {
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = ($($(1)) && $($(1))) || $($(2)))];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-const tmpCalleeParam = $(1);
-a = $(tmpCalleeParam);
-if (a) {
-  const tmpCalleeParam$1 = $(1);
-  a = $(tmpCalleeParam$1);
-} else {
-}
-if (a) {
-} else {
-  const tmpCalleeParam$3 = $(2);
-  a = $(tmpCalleeParam$3);
-}
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -116,11 +85,15 @@ f[ d ];
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

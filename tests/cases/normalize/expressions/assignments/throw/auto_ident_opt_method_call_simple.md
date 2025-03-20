@@ -16,6 +16,7 @@ throw (a = b?.c(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const tmpChainElementCall /*:unknown*/ = b.c(1);
 throw tmpChainElementCall;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,33 +35,6 @@ const tmpChainElementCall = { c: $ }.c(1);
 throw tmpChainElementCall;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: $ };
-let a = { a: 999, b: 1000 };
-throw (a = b?.c(1));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: $ };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootProp.c(1);
-  a = tmpChainElementCall;
-} else {
-}
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +45,15 @@ const b = a.c( 1 );
 throw b;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

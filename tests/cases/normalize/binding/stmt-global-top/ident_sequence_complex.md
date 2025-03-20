@@ -14,6 +14,7 @@ let a = ($(b), $(c));
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const a /*:unknown*/ = $(3);
 $(a, 2, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,26 +33,6 @@ $(2);
 $($(3), 2, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 2,
-  c = 3;
-let a = ($(b), $(c));
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 2;
-let c = 3;
-$(b);
-let a = $(c);
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +43,15 @@ const a = $( 3 );
 $( a, 2, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

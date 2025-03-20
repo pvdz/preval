@@ -22,6 +22,7 @@ let x = function (a, b) {
 x(undefined, {x: 1});
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,53 +46,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  if ($(true)) $(a === undefined ? propTDZ : a);
-  return a;
-  let { x: propTDZ } = b;
-};
-x(undefined, { x: 1 });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    let tmpCalleeParam = undefined;
-    const tmpIfTest$1 = a === undefined;
-    if (tmpIfTest$1) {
-      tmpCalleeParam = propTDZ;
-      $(propTDZ);
-      return a;
-    } else {
-      tmpCalleeParam = a;
-      $(a);
-      return a;
-      let bindingPatternObjRoot = b;
-      let propTDZ = bindingPatternObjRoot.x;
-      return undefined;
-    }
-  } else {
-    return a;
-  }
-};
-const tmpCallCallee = x;
-const tmpCalleeParam$1 = { x: 1 };
-tmpCallCallee(undefined, tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -103,13 +58,17 @@ if (a) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 propTDZ
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

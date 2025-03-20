@@ -14,6 +14,7 @@ for (a = $(1) + $(2); ; $(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,32 +38,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  a = $(1) + $(2);
-  while (true) {
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-a = tmpBinBothLhs + tmpBinBothRhs;
-while (true) {
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +51,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

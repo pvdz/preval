@@ -20,12 +20,14 @@ f();
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 s;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,33 +36,6 @@ s;
 s;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    s;
-  }
-  return undefined;
-};
-f();
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  s;
-  return undefined;
-};
-f();
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -69,13 +44,17 @@ With rename=true
 s;
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 s
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -40,6 +40,7 @@ $(-Infinity in x);
 $(-Infinity instanceof x);
 `````
 
+
 ## Settled
 
 
@@ -93,6 +94,7 @@ const tmpCalleeParam$1 /*:boolean*/ = -Infinity instanceof x;
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -143,90 +145,6 @@ $(-Infinity in x);
 $(-Infinity instanceof x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [
-  (-Infinity) ** x,
-  -Infinity * x,
-  -Infinity / x,
-  -Infinity % x,
-  -Infinity + x,
-  -Infinity - x,
-  -Infinity << x,
-  -Infinity >> x,
-  -Infinity >>> x,
-  -Infinity < x,
-  -Infinity > x,
-  -Infinity <= x,
-  -Infinity >= x,
-  -Infinity == x,
-  -Infinity != x,
-  -Infinity === x,
-  -Infinity !== x,
-  -Infinity & x,
-  -Infinity ^ x,
-  -Infinity | x,
-];
-$(arr);
-$(-Infinity in x);
-$(-Infinity instanceof x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement = (-Infinity) ** x;
-const tmpArrElement$1 = -Infinity * x;
-const tmpArrElement$3 = -Infinity / x;
-const tmpArrElement$5 = -Infinity % x;
-const tmpArrElement$7 = -Infinity + x;
-const tmpArrElement$9 = -Infinity - x;
-const tmpArrElement$11 = 0 << x;
-const tmpArrElement$13 = 0 >> x;
-const tmpArrElement$15 = 0 >>> x;
-const tmpArrElement$17 = -Infinity < x;
-const tmpArrElement$19 = -Infinity > x;
-const tmpArrElement$21 = -Infinity <= x;
-const tmpArrElement$23 = -Infinity >= x;
-const tmpArrElement$25 = -Infinity == x;
-const tmpArrElement$27 = -Infinity != x;
-const tmpArrElement$29 = -Infinity === x;
-const tmpArrElement$31 = -Infinity !== x;
-x & 0;
-const tmpArrElement$33 = 0;
-const tmpArrElement$35 = 0 ^ x;
-const tmpArrElement$37 = 0 | x;
-const arr = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpCalleeParam = -Infinity in x;
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = -Infinity instanceof x;
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -260,11 +178,15 @@ const v = -Infinity instanceof x;
 $( v );
 `````
 
+
 ## Globals
+
 
 None (except for the 1 globals expected by the test)
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

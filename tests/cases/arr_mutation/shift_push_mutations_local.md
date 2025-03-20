@@ -27,6 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) { // Unrelated to loop unrolling so let
 $('exit');
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`exit`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -65,44 +67,6 @@ while (true) {
 $(`exit`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const arr = [1, 2, 3, 4];
-  const test = $(`never`);
-  if (test) {
-    $(arr);
-    break;
-  } else {
-    const tmp = arr.shift();
-    arr.push(tmp);
-    $(arr.slice(0));
-  }
-}
-$(`exit`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const arr = [1, 2, 3, 4];
-  const test = $(`never`);
-  if (test) {
-    $(arr);
-    break;
-  } else {
-    const tmp = arr.shift();
-    arr.push(tmp);
-    const tmpCalleeParam = arr.slice(0);
-    $(tmpCalleeParam);
-  }
-}
-$(`exit`);
-`````
 
 ## PST Settled
 With rename=true
@@ -125,11 +89,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( "exit" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'never'
@@ -144,6 +118,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

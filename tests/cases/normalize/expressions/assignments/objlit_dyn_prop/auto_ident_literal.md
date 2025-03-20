@@ -14,6 +14,7 @@ $({ [(a = "foo")]: 10 });
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(tmpCalleeParam);
 $(`foo`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,27 +33,6 @@ $({ foo: 10 });
 $(`foo`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$({ [(a = `foo`)]: 10 });
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = `foo`;
-let tmpObjLitPropKey = a;
-const tmpObjLitPropVal = 10;
-const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +43,15 @@ $( a );
 $( "foo" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { foo: '10' }

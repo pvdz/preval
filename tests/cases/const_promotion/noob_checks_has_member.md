@@ -18,6 +18,7 @@ x = $(20);
 $(x, a, b, 'final');
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ x = $(20);
 $(x, 2, b, `final`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,63 +61,6 @@ x = $(20);
 $(x, 2, b, `final`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let x = $(10);
-a = function () {
-  debugger;
-  return x;
-};
-b = {
-  set x($$0) {
-    let n = $$0;
-    debugger;
-    x = $(30, `from set`);
-  },
-  get x() {
-    debugger;
-    return $(40, `from get`);
-  },
-};
-a = 2;
-b.x = x;
-x = $(20);
-$(x, a, b, `final`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let x = $(10);
-a = function () {
-  debugger;
-  return x;
-};
-b = {
-  set x($$0) {
-    let n = $$0;
-    debugger;
-    x = $(30, `from set`);
-    return undefined;
-  },
-  get x() {
-    debugger;
-    const tmpReturnArg = $(40, `from get`);
-    return tmpReturnArg;
-  },
-};
-a = 2;
-b.x = x;
-x = $(20);
-$(x, a, b, `final`);
-`````
 
 ## PST Settled
 With rename=true
@@ -139,11 +84,15 @@ a = $( 20 );
 $( a, 2, b, "final" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

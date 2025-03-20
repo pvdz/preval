@@ -21,6 +21,7 @@ f(3);
 f(4);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ f(4);
 $(`50`);
 throw `Preval: TDZ triggered for this read: y;`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,40 +39,6 @@ $(`50`);
 throw `Preval: TDZ triggered for this read: y;`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(`50`);
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  const y = $coerce(y, `number`);
-  $(1);
-  $(2);
-  $(y);
-};
-f(3);
-f(4);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(`50`);
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  const y = $coerce(y, `number`);
-  $(1);
-  $(2);
-  $(y);
-  return undefined;
-};
-f(3);
-f(4);
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +48,15 @@ $( "50" );
 throw "Preval: TDZ triggered for this read: y;";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '50'

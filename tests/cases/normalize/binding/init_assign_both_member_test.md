@@ -17,6 +17,7 @@ var a = b.x = c.x;
 $(5, a);
 `````
 
+
 ## Settled
 
 
@@ -52,6 +53,7 @@ b.x = tmpNestedAssignPropRhs;
 $(5, tmpNestedAssignPropRhs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -78,80 +80,6 @@ b.x = tmpNestedAssignPropRhs;
 $(5, tmpNestedAssignPropRhs);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-b = {
-  get x() {
-    debugger;
-    $(1);
-    return 10;
-  },
-  set x($$0) {
-    let n = $$0;
-    debugger;
-    $(2, n);
-  },
-};
-c = {
-  get x() {
-    debugger;
-    $(3);
-    return 20;
-  },
-  set x($$0) {
-    let n$1 = $$0;
-    debugger;
-    $(4, n$1);
-  },
-};
-a = b.x = c.x;
-$(5, a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-b = {
-  get x() {
-    debugger;
-    $(1);
-    return 10;
-  },
-  set x($$0) {
-    let n = $$0;
-    debugger;
-    $(2, n);
-    return undefined;
-  },
-};
-c = {
-  get x() {
-    debugger;
-    $(3);
-    return 20;
-  },
-  set x($$0) {
-    let n$1 = $$0;
-    debugger;
-    $(4, n$1);
-    return undefined;
-  },
-};
-const tmpNestedAssignPropRhs = c.x;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.x = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-$(5, tmpNestedPropAssignRhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -188,11 +116,15 @@ d.x = c;
 $( 5, c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

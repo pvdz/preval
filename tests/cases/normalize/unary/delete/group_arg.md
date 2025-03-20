@@ -12,6 +12,7 @@
 $(delete (null, foo));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $(delete (null, foo));
 foo;
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,21 +30,6 @@ foo;
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(delete (null, foo));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-foo;
-const tmpCalleeParam = true;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,13 +39,17 @@ foo;
 $( true );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 foo
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

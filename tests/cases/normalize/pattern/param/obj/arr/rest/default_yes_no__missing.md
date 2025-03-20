@@ -15,6 +15,7 @@ function f({ x: [...y] = $(['pass']) }) {
 $(f({ a: 11, b: 12 }, 10));
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ const y /*:array*/ = arrPatternSplat.slice(0);
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,45 +49,6 @@ if (objPatternBeforeDefault === undefined) {
 $([...objPatternAfterDefault].slice(0));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: [...y] = $([`pass`]) } = tmpParamBare;
-  return y;
-};
-$(f({ a: 11, b: 12 }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = [`pass`];
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  let arrPatternSplat = [...objPatternAfterDefault];
-  let y = arrPatternSplat.slice(0);
-  return y;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$3 = { a: 11, b: 12 };
-const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 10);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -106,11 +69,21 @@ const f = e.slice( 0 );
 $( f );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['pass']
@@ -124,6 +97,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

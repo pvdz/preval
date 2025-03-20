@@ -13,6 +13,7 @@ const a = {b: {c: {}}};
 $(a?.b.c?.d);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpChainElementObject$3 /*:unknown*/ = $Object_prototype.d;
 $(tmpChainElementObject$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,39 +30,6 @@ $(tmpChainElementObject$3);
 $($Object_prototype.d);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = { b: { c: {} } };
-$(a?.b.c?.d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = {};
-const tmpObjLitVal = { c: tmpObjLitVal$1 };
-const a = { b: tmpObjLitVal };
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = a;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpIfTest$1 = tmpChainElementObject$1 != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject$3 = tmpChainElementObject$1.d;
-    tmpCalleeParam = tmpChainElementObject$3;
-    $(tmpChainElementObject$3);
-  } else {
-    $(tmpCalleeParam);
-  }
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +39,15 @@ const a = $Object_prototype.d;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

@@ -16,6 +16,7 @@ for (a = delete ($(1), $(2), $(arg)).y; ; $(1));
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,35 +45,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-{
-  a = delete ($(1), $(2), $(arg)).y;
-  while (true) {
-    $(1);
-  }
-}
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$(1);
-$(2);
-const tmpDeleteObj = $(arg);
-a = delete tmpDeleteObj.y;
-while (true) {
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +60,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- regular property access of an ident feels tricky;
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -129,6 +112,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- regular property access of an ident feels tricky;

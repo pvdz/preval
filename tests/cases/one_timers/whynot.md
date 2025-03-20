@@ -30,6 +30,7 @@ const parseIdentifierRest = function () {
 $(parseIdentifierRest);
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ const parseIdentifierRest /*:()=>number*/ = function () {
 $(parseIdentifierRest);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -83,62 +85,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const inlineMe = function () {
-  debugger;
-  if ($(1)) {
-    if ($(1)) {
-      return 10;
-    }
-  } else {
-    $(100);
-  }
-  if ($) {
-    return 3;
-  } else {
-    return 4;
-  }
-};
-const parseIdentifierRest = function () {
-  debugger;
-  const s = inlineMe();
-  return s;
-};
-$(parseIdentifierRest);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const inlineMe = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      return 10;
-    } else {
-    }
-  } else {
-    $(100);
-  }
-  if ($) {
-    return 3;
-  } else {
-    return 4;
-  }
-};
-const parseIdentifierRest = function () {
-  debugger;
-  const s = inlineMe();
-  return s;
-};
-$(parseIdentifierRest);
-`````
 
 ## PST Settled
 With rename=true
@@ -170,11 +116,15 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

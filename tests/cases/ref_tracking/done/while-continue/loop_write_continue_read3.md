@@ -28,6 +28,7 @@ loopStop: {
 }
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -49,7 +50,9 @@ loopStop___11__: /*12*/ {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                         | reads      | read by     | overWrites     | overwritten by
 x:

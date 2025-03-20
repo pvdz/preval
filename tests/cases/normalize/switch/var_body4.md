@@ -22,6 +22,7 @@ tmpSwitchBreak: {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (tmpIfTest$3) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,39 +48,6 @@ if ($(0) <= 0) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-let tmpSwitchCaseToStart = $(0);
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    x = 10;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-let tmpSwitchCaseToStart = $(0);
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    x = 10;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -94,11 +63,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

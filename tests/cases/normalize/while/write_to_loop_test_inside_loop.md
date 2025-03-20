@@ -17,6 +17,7 @@ while (x) {
 $(1);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(1);
 $(`inside`);
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,33 +35,6 @@ $(`inside`);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = true;
-while (x) {
-  $(`inside`);
-  x = false;
-}
-$(1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = true;
-while (true) {
-  if (x) {
-    $(`inside`);
-    x = false;
-  } else {
-    break;
-  }
-}
-$(1);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +44,15 @@ $( "inside" );
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'inside'

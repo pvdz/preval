@@ -15,6 +15,7 @@ const z = y !== 32; // Must be true since the y must be either 0 or 32768
 $(z);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ x ** 0;
 $(true);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,25 +34,6 @@ $(32768) ** 0;
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(32768);
-const y = x & 32768;
-const z = y !== 32;
-$(z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(32768);
-const y = x & 32768;
-const z = y !== 32;
-$(z);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +44,15 @@ a ** 0;
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 32768

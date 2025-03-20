@@ -14,6 +14,7 @@ let a = $(b)[$('x')] = c;
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 $(3, b, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,29 +38,6 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 $(3, b, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 2 },
-  c = 3;
-let a = ($(b)[$(`x`)] = c);
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 2 };
-let c = 3;
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedRhs = c;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +50,15 @@ b[c] = 3;
 $( 3, a, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '2' }

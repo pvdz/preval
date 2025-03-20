@@ -20,12 +20,14 @@ const f = function () {
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 unknown();
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,42 +36,6 @@ unknown();
 unknown();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let bool = true;
-const f = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  debugger;
-  const tmpArgs = tmpPrevalAliasArgumentsAny;
-  if (bool) {
-    unknown();
-    bool = false;
-  }
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bool = true;
-const f = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  debugger;
-  const tmpArgs = tmpPrevalAliasArgumentsAny;
-  if (bool) {
-    unknown();
-    bool = false;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -78,13 +44,17 @@ With rename=true
 unknown();
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

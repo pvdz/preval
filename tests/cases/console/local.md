@@ -13,12 +13,14 @@ const console = {log: function(){ }};
 console.log('yooo foo');
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,29 +29,6 @@ console.log('yooo foo');
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const console$1 = {
-  log: function () {
-    debugger;
-  },
-};
-console$1.log(`yooo foo`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function () {
-  debugger;
-  return undefined;
-};
-const console$1 = { log: tmpObjLitVal };
-console$1.log(`yooo foo`);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +37,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

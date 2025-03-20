@@ -13,6 +13,7 @@ const { x: { y = $('fail') } } = 0;
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,33 +42,6 @@ if ((0).x.y === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: { y: y = $(`fail`) },
-} = 0;
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = 0;
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const objPatternBeforeDefault = objPatternNoDefault.y;
-let y = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  y = $(`fail`);
-  $(`bad`);
-} else {
-  y = objPatternBeforeDefault;
-  $(`bad`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +59,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

@@ -11,12 +11,14 @@ const x = $String_prototype.lastIndexOf;
 $( x );
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $($string_lastIndexOf);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -25,21 +27,6 @@ $($string_lastIndexOf);
 $($string_lastIndexOf);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $String_prototype.lastIndexOf;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $String_prototype.lastIndexOf;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +35,15 @@ With rename=true
 $( $string_lastIndexOf );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

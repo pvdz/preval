@@ -19,6 +19,7 @@ let tmpSSA_e = function($$0) {
 $(p);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const tmpSSA_e /*:()=>unknown*/ = function () {
 $(``);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,37 +46,6 @@ const tmpSSA_e = function () {
 $(``);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpCalleeParam$11 = {};
-let p = ``;
-let tmpSSA_e = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  tmpBinBothLhs = tmpSSA_e($(2));
-  return tmpBinBothLhs;
-};
-$(p);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$11 = {};
-let p = ``;
-let tmpSSA_e = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const tmpCallCallee = tmpSSA_e;
-  const tmpCalleeParam = $(2);
-  tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
-  return tmpBinBothLhs;
-};
-$(p);
-`````
 
 ## PST Settled
 With rename=true
@@ -89,13 +60,17 @@ const a = function() {
 $( "" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 tmpBinBothLhs
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ''

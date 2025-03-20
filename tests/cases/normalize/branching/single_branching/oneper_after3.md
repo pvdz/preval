@@ -37,6 +37,7 @@ const C = function () {
 A();
 `````
 
+
 ## Settled
 
 
@@ -50,6 +51,7 @@ if (x$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,71 +63,6 @@ if ($()) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const A = function () {
-  debugger;
-  const x = $();
-  if (x) {
-    const tmp = B();
-    return tmp;
-  } else {
-    const tmp$1 = B();
-    return tmp$1;
-  }
-};
-const B = function () {
-  debugger;
-  $();
-  const tmp$3 = C();
-  return tmp$3;
-};
-const C = function () {
-  debugger;
-  const x$1 = $();
-  if (x$1) {
-    const tmp$5 = $();
-    return tmp$5;
-  }
-};
-A();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const A = function () {
-  debugger;
-  const x = $();
-  if (x) {
-    const tmp = B();
-    return tmp;
-  } else {
-    const tmp$1 = B();
-    return tmp$1;
-  }
-};
-const B = function () {
-  debugger;
-  $();
-  const tmp$3 = C();
-  return tmp$3;
-};
-const C = function () {
-  debugger;
-  const x$1 = $();
-  if (x$1) {
-    const tmp$5 = $();
-    return tmp$5;
-  } else {
-    return undefined;
-  }
-};
-A();
-`````
 
 ## PST Settled
 With rename=true
@@ -139,11 +76,15 @@ if (a) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

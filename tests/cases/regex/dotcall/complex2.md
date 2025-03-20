@@ -16,6 +16,7 @@ const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
 $dotCall(f, regex, 'test', arg, tmpCalleeParam$5);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
 regex.test(arg, tmpCalleeParam$5);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,27 +35,6 @@ regex.test(arg, tmpCalleeParam$5);
 /foo/.test($(`give food`), { some: `stuff` });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arg = $(`give food`);
-const f = $regex_test;
-const regex = /foo/;
-const tmpCalleeParam$5 = { some: `stuff` };
-$dotCall(f, regex, `test`, arg, tmpCalleeParam$5);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arg = $(`give food`);
-const f = $regex_test;
-const regex = /foo/;
-const tmpCalleeParam$5 = { some: `stuff` };
-$dotCall(f, regex, `test`, arg, tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +46,15 @@ const c = { some: "stuff" };
 b.test( a, c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'give food'

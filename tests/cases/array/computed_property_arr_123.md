@@ -13,6 +13,7 @@ const x = [];
 $(x[[1, 2, 3]]);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:unknown*/ = x[`1,2,3`];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,24 +31,6 @@ $(tmpCalleeParam);
 $([][`1,2,3`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = [];
-$(x[[1, 2, 3]]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = [];
-const tmpCompObj = x;
-const tmpCompProp = [1, 2, 3];
-const tmpCalleeParam = tmpCompObj[tmpCompProp];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +41,21 @@ const b = a[ "1,2,3" ];
 $( b );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined
@@ -74,6 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

@@ -13,6 +13,7 @@ const a = {};
 $(a.b??c??d);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (tmpIfTest$1) {
   $(tmpCalleeParam);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -53,33 +55,6 @@ if (tmpIfTest$1) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = {};
-$(a.b ?? c ?? d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = {};
-let tmpCalleeParam = a.b;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = c;
-} else {
-}
-const tmpIfTest$1 = tmpCalleeParam == null;
-if (tmpIfTest$1) {
-  tmpCalleeParam = d;
-  $(d);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -103,13 +78,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 c, d
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

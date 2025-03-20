@@ -14,6 +14,7 @@ switch ($('a')) { case $('a'): let a = $(b)[$('x')] = c; break; }
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,50 +50,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = { x: 2 },
-  c = 3;
-tmpSwitchBreak: {
-  let a$1;
-  const tmpSwitchDisc = $(`a`);
-  if (tmpSwitchDisc === $(`a`)) {
-    a$1 = $(b)[$(`x`)] = c;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-tmpSwitchBreak: {
-  let a$1 = undefined;
-  const tmpSwitchDisc = $(`a`);
-  const tmpBinBothLhs = tmpSwitchDisc;
-  const tmpBinBothRhs = $(`a`);
-  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  if (tmpIfTest) {
-    const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $(`x`);
-    const tmpNestedPropAssignRhs = c;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-    a$1 = tmpNestedPropAssignRhs;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -112,11 +70,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

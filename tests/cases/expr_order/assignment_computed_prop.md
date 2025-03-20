@@ -17,6 +17,7 @@ let b = {
 $(b)[$('c')] = $(3);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ const tmpAssignComputedRhs /*:unknown*/ = $(3);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -56,48 +58,6 @@ const tmpAssignComputedRhs = $(3);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = {
-  get c() {
-    debugger;
-    $(`get`);
-  },
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`set`);
-  },
-};
-$(b)[$(`c`)] = $(3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = {
-  get c() {
-    debugger;
-    $(`get`);
-    return undefined;
-  },
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`set`);
-    return undefined;
-  },
-};
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $(`c`);
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-const tmpAssignComputedRhs = $(3);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -121,11 +81,15 @@ const d = $( 3 );
 b[c] = d;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '<get/set>' }

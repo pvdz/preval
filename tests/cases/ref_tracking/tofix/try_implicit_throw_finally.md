@@ -19,6 +19,7 @@ abc: try {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ try {
 }
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -45,35 +47,6 @@ try {
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-abc: try {
-  fail;
-  break abc;
-} catch (e) {
-  x = 2;
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-abc: {
-  try {
-    fail;
-    break abc;
-  } catch (e) {
-    x = 2;
-  }
-}
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -89,13 +62,17 @@ catch (b) {
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 fail
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

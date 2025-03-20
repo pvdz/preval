@@ -16,6 +16,7 @@ throw delete ($(1), $(2), $(arg)).y;
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const tmpThrowArg /*:boolean*/ = delete tmpDeleteObj.y;
 throw tmpThrowArg;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,28 +41,6 @@ const tmpThrowArg = delete tmpDeleteObj.y;
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-throw delete ($(1), $(2), $(arg)).y;
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$(1);
-$(2);
-const tmpDeleteObj = $(arg);
-const tmpThrowArg = delete tmpDeleteObj.y;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +54,15 @@ const c = delete b.y;
 throw c;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

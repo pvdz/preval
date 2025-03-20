@@ -13,6 +13,7 @@
 $(function(){ $(...arguments); }.apply(({}), (['x']), 1, 2, 3));
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ tmpCallObj(`x`);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,34 +41,6 @@ tmpCallObj(`x`);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(
-  function () {
-    const tmpPrevalAliasArgumentsAny = arguments;
-    debugger;
-    $(...tmpPrevalAliasArgumentsAny);
-  }.apply({}, [`x`], 1, 2, 3),
-);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = {};
-const tmpCalleeParam$3 = [`x`];
-const tmpCallObj = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  debugger;
-  $(...tmpPrevalAliasArgumentsAny);
-  return undefined;
-};
-const tmpCalleeParam = tmpCallObj.apply(tmpCalleeParam$1, tmpCalleeParam$3, 1, 2, 3);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +56,15 @@ a( "x" );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x'

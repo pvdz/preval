@@ -17,6 +17,7 @@ $(f());
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ $(undefined);
 $(tmpUpdInc, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,52 +46,6 @@ $(undefined);
 $(tmpUpdInc, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = tmpParamBare === undefined ? (a = ++$($(b)).x) : tmpParamBare;
-};
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = $(b);
-    let tmpUpdObj = $(tmpCalleeParam);
-    let tmpUpdProp = tmpUpdObj.x;
-    let tmpUpdNum = $coerce(tmpUpdProp, `number`);
-    let tmpUpdInc = tmpUpdNum + 1;
-    tmpUpdObj.x = tmpUpdInc;
-    const tmpNestedComplexRhs = tmpUpdInc;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-    return undefined;
-  } else {
-    p = tmpParamBare;
-    return undefined;
-  }
-};
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -106,11 +62,15 @@ $( undefined );
 $( f, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

@@ -15,12 +15,14 @@ function f(a, b) {
 $(f(10, 20));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(20);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,32 +31,6 @@ $(20);
 $(20);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  return b;
-};
-$(f(10, 20));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  return b;
-};
-const tmpCalleeParam = f(10, 20);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +39,15 @@ With rename=true
 $( 20 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 20

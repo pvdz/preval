@@ -19,6 +19,7 @@ const y = $(x, 'final');
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const y /*:unknown*/ = $(10, `final`);
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,34 +36,6 @@ $(y);
 $($(10, `final`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-let f = function () {
-  debugger;
-  return $(x, `returned`);
-};
-x = 10;
-const y = $(x, `final`);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-let f = function () {
-  debugger;
-  const tmpReturnArg = $(x, `returned`);
-  return tmpReturnArg;
-};
-x = 10;
-const y = $(x, `final`);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +45,15 @@ const a = $( 10, "final" );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10, 'final'

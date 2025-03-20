@@ -23,6 +23,7 @@ if (f) {
 }
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const a /*:array*/ = [1];
 $(a);
 $(a, a, 0, 1, 1, true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,41 +43,6 @@ $(a);
 $(a, a, 0, 1, 1, true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = [0];
-const b = a;
-const c = a[0];
-const d = c + 1;
-b[0] = d;
-$(a);
-const e = a[0];
-const f = e < 10;
-if (f) {
-  $(a, b, c, d, e, f);
-} else {
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = [0];
-const b = a;
-const c = a[0];
-const d = c + 1;
-b[0] = d;
-$(a);
-const e = a[0];
-const f = e < 10;
-if (f) {
-  $(a, b, c, d, e, f);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +53,21 @@ $( a );
 $( a, a, 0, 1, 1, true );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1]
@@ -104,6 +81,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

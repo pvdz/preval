@@ -48,6 +48,7 @@ try {
 }
 `````
 
+
 ## Settled
 
 
@@ -80,6 +81,7 @@ try {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -103,91 +105,6 @@ try {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpFree1 = function $free($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const _0x5249c7 = $dlr_$$0;
-  const tmpBinBothRhs$1 = _0x5249c7 / _0x5249c7;
-  const tmpRet = $coerce(tmpBinBothRhs$1, `string`);
-  return tmpRet;
-};
-const tmpFree2 = function $free($$0) {
-  let $dlr_$$1 = $$0;
-  debugger;
-  const _0x5249c7$1 = $dlr_$$1;
-  const tmpBinBothLhs = typeof _0x5249c7$1;
-  const tmpRet$2 = tmpBinBothLhs === `string`;
-  return tmpRet$2;
-};
-const selfcaller = function ($$0) {
-  let $dlr_$$3 = $$0;
-  debugger;
-  const arg_is_number = $dlr_$$3;
-  $(arg_is_number);
-  const tmpIfTest = $frfr(tmpFree2, arg_is_number);
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const okstring = $frfr(tmpFree1, arg_is_number);
-    const nextnum = arg_is_number + 1;
-    selfcaller(nextnum);
-    return undefined;
-  }
-};
-try {
-  selfcaller(0);
-  $(`pass`);
-} catch (e) {
-  $(`fail`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpFree1 = function $free($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const _0x5249c7 = $dlr_$$0;
-  const tmpBinBothRhs$1 = _0x5249c7 / _0x5249c7;
-  const tmpRet = $coerce(tmpBinBothRhs$1, `string`);
-  return tmpRet;
-};
-const tmpFree2 = function $free($$0) {
-  let $dlr_$$1 = $$0;
-  debugger;
-  const _0x5249c7$1 = $dlr_$$1;
-  const tmpBinBothLhs = typeof _0x5249c7$1;
-  const tmpRet$2 = tmpBinBothLhs === `string`;
-  return tmpRet$2;
-};
-const selfcaller = function ($$0) {
-  let $dlr_$$3 = $$0;
-  debugger;
-  const arg_is_number = $dlr_$$3;
-  $($dlr_$$3);
-  const tmpIfTest = $frfr(tmpFree2, arg_is_number);
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const okstring = $frfr(tmpFree1, arg_is_number);
-    const nextnum = arg_is_number + 1;
-    selfcaller(nextnum);
-    return undefined;
-  }
-};
-try {
-  selfcaller(0);
-  $(`pass`);
-} catch (e) {
-  $(`fail`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -223,11 +140,15 @@ catch (k) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

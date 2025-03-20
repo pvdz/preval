@@ -13,6 +13,7 @@ const { x: { ...y } = $({ a: 'fail' }) } = 1;
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(`bad`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,33 +49,6 @@ $objPatternRest(tmpCalleeParam$1, [], undefined);
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: { ...y } = $({ a: `fail` }) } = 1;
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = 1;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: `fail` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const tmpCalleeParam$1 = objPatternAfterDefault;
-const tmpCalleeParam$3 = [];
-const y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +70,15 @@ $objPatternRest( b, f, undefined );
 $( "bad" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '"fail"' }

@@ -27,6 +27,7 @@ $(a); // x=2 3
       // and 3. The 1 is only visible under a throw.)
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -55,7 +56,9 @@ if ($implicitThrow___53__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 a:

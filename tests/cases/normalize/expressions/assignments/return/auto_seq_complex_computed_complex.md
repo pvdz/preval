@@ -18,6 +18,7 @@ $(f());
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const tmpAssignComputedRhs /*:unknown*/ = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(tmpClusterSSA_a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -48,42 +50,6 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return (a = { b: $(1) });
-};
-let a = { a: 999, b: 1000 };
-$(f());
-($(1), $(a))[$(`b`)] = $(2);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
-  return a;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(1);
-const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $(`b`);
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -100,11 +66,15 @@ c[d] = e;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

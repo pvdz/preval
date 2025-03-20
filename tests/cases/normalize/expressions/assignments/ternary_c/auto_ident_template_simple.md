@@ -13,12 +13,14 @@ let a = `fo${1}o`;
 $(a);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`fo1o`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,25 +29,6 @@ $(`fo1o`);
 $(`fo1o`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = `fo` + $coerce(1, `string`) + `o`;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = `fo`;
-const tmpBinBothRhs = $coerce(1, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-let a = `${tmpStringConcatR}o`;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +37,15 @@ With rename=true
 $( "fo1o" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'fo1o'

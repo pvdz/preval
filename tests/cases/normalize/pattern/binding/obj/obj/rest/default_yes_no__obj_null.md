@@ -13,6 +13,7 @@ const { x: { ...y } = $({ a: 'fail' }) } = { x: null, b: 11, c: 12 };
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $objPatternRest(null, tmpCalleeParam$3, undefined);
 $(`bad`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,33 +32,6 @@ $objPatternRest(null, [], undefined);
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: { ...y } = $({ a: `fail` }) } = { x: null, b: 11, c: 12 };
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: `fail` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const tmpCalleeParam$1 = objPatternAfterDefault;
-const tmpCalleeParam$3 = [];
-const y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +42,15 @@ $objPatternRest( null, a, undefined );
 $( "bad" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

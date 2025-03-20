@@ -16,6 +16,7 @@ $((a = typeof $(arg)) + (a = typeof $(arg)));
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,32 +43,6 @@ $(a + tmpClusterSSA_a);
 $(tmpClusterSSA_a, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-$((a = typeof $(arg)) + (a = typeof $(arg)));
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(arg);
-a = typeof tmpUnaryArg;
-let tmpBinBothLhs = a;
-const tmpUnaryArg$1 = $(arg);
-a = typeof tmpUnaryArg$1;
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +57,15 @@ $( e );
 $( d, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

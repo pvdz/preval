@@ -13,6 +13,7 @@ let a = class x {}
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const a /*:class*/ = class x {};
 $(a, x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ $(a, x);
 $(class x {}, x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = class x {};
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = class x {};
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,13 +41,17 @@ const a = class x  {
 $( a, x );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

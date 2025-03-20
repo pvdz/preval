@@ -15,6 +15,7 @@ function f([...x]) {
 $(f([1, 2, 3], 200));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const x /*:array*/ = [1, 2, 3];
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,36 +32,6 @@ $(x);
 $([1, 2, 3]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [...x] = tmpParamBare;
-  return x;
-};
-$(f([1, 2, 3], 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let x = arrPatternSplat.slice(0);
-  return x;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = [1, 2, 3];
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 200);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +41,21 @@ const a = [ 1, 2, 3 ];
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2, 3]
@@ -86,6 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

@@ -16,6 +16,7 @@ $`before ${(a = b["c"] = $(b)[$("d")])} after`;
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ $(tmpCalleeParam, tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,33 +45,6 @@ $([`before `, ` after`], tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = b[`c`] = $(b)[$(`d`)]));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-b.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +63,15 @@ $( e, d );
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

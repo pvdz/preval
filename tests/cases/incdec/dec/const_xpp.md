@@ -15,6 +15,7 @@ $(y);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $coerce(x, `number`);
 throw `Preval: Cannot write to const binding \`x\``;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,27 +34,6 @@ $coerce($(0), `number`);
 throw `Preval: Cannot write to const binding \`x\``;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(0);
-const y = x--;
-$(y);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(0);
-const tmpPostUpdArgIdent = $coerce(x, `number`);
-x = tmpPostUpdArgIdent - 1;
-const y = tmpPostUpdArgIdent;
-$(tmpPostUpdArgIdent);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +44,15 @@ $coerce( a, "number" );
 throw "Preval: Cannot write to const binding `x`";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

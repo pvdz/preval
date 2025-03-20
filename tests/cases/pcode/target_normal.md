@@ -44,6 +44,7 @@ while (--i > 0) {
 $('end');
 `````
 
+
 ## Settled
 
 
@@ -121,6 +122,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`end`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -170,89 +172,6 @@ while (true) {
 $(`end`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let pcode = function ($$0) {
-  let num_arg = $$0;
-  debugger;
-  let out_str = ``;
-  const tmpIfTest = num_arg < 62;
-  if (tmpIfTest) {
-  } else {
-    const div = num_arg / 62;
-    const pint = parseInt(div);
-    out_str = pcode(pint);
-  }
-  const perc = num_arg % 62;
-  const tmpIfTest$1 = perc > 35;
-  if (tmpIfTest$1) {
-    const plus = perc + 29;
-    const chr = String.fromCharCode(plus);
-    const str = out_str + chr;
-    return str;
-  } else {
-    const alt = perc.toString(36);
-    const altstr = out_str + alt;
-    return altstr;
-  }
-};
-pcode(1);
-pcode(2);
-let i = 477;
-while (--i > 0) {
-  const s = pcode(i);
-  $(s);
-}
-$(`end`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let pcode = function ($$0) {
-  let num_arg = $$0;
-  debugger;
-  let out_str = ``;
-  const tmpIfTest = num_arg < 62;
-  if (tmpIfTest) {
-  } else {
-    const div = num_arg / 62;
-    const pint = parseInt(div);
-    out_str = pcode(pint);
-  }
-  const perc = num_arg % 62;
-  const tmpIfTest$1 = perc > 35;
-  if (tmpIfTest$1) {
-    const plus = perc + 29;
-    const chr = $String_fromCharCode(plus);
-    const str = out_str + chr;
-    return str;
-  } else {
-    const alt = perc.toString(36);
-    const altstr = out_str + alt;
-    return altstr;
-  }
-};
-pcode(1);
-pcode(2);
-let i = 477;
-while (true) {
-  const tmpPostUpdArgIdent = $coerce(i, `number`);
-  i = tmpPostUpdArgIdent - 1;
-  const tmpBinLhs = i;
-  const tmpIfTest$2 = tmpBinLhs > 0;
-  if (tmpIfTest$2) {
-    const s = pcode(i);
-    $(s);
-  } else {
-    break;
-  }
-}
-$(`end`);
-`````
 
 ## PST Settled
 With rename=true
@@ -335,11 +254,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( "end" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '7G'

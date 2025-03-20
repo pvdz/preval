@@ -17,6 +17,7 @@ f('x', {a: 1}, 'y');
 f('w', {a: 3}, 'z');
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ $(`x`, `y`);
 $(`w`, `z`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,42 +46,6 @@ $(`x`, `y`);
 $(`w`, `z`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2) {
-  let x = $$0;
-  let obj = $$1;
-  let y = $$2;
-  debugger;
-  $(x, y);
-};
-$(f);
-f(`x`, { a: 1 }, `y`);
-f(`w`, { a: 3 }, `z`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2) {
-  let x = $$0;
-  let obj = $$1;
-  let y = $$2;
-  debugger;
-  $(x, y);
-  return undefined;
-};
-$(f);
-const tmpCallCallee = f;
-const tmpCalleeParam = { a: 1 };
-tmpCallCallee(`x`, tmpCalleeParam, `y`);
-const tmpCallCallee$1 = f;
-const tmpCalleeParam$1 = { a: 3 };
-tmpCallCallee$1(`w`, tmpCalleeParam$1, `z`);
-`````
 
 ## PST Settled
 With rename=true
@@ -97,11 +63,15 @@ $( "x", "y" );
 $( "w", "z" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

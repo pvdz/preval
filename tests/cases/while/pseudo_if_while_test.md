@@ -40,6 +40,7 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -62,6 +63,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,73 +79,6 @@ if ($($(1))) {
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let chk = true;
-const x = $(1);
-let test = $(x);
-if (test) {
-  $(100);
-  test = true;
-} else {
-  chk = false;
-}
-if (chk) {
-  while ($LOOP_UNROLL_10) {
-    if (test) {
-      const y = $(1);
-      test = $(y);
-      if (test) {
-        $(100);
-        test = true;
-      } else {
-        break;
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a = { a: 999, b: 1000 };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let chk = true;
-const x = $(1);
-let test = $(x);
-if (test) {
-  $(100);
-  test = true;
-} else {
-  chk = false;
-}
-if (chk) {
-  while ($LOOP_UNROLL_10) {
-    if (test) {
-      const y = $(1);
-      test = $(y);
-      if (test) {
-        $(100);
-        test = true;
-      } else {
-        break;
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-const a = { a: 999, b: 1000 };
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -171,11 +106,15 @@ const e = {
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

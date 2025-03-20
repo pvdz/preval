@@ -53,6 +53,7 @@ repeat(0);
 $(repeat);
 `````
 
+
 ## Settled
 
 
@@ -85,6 +86,7 @@ repeat(0);
 $(repeat);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -109,66 +111,6 @@ repeat(0);
 $(repeat);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let closure_cond = false;
-const repeat = function ($$0) {
-  let arg = $$0;
-  debugger;
-  let inline_me = undefined;
-  if (closure_cond) {
-    inline_me = function () {
-      debugger;
-      $(`a`);
-    };
-  } else {
-    inline_me = function () {
-      debugger;
-      $(`b`);
-    };
-  }
-  closure_cond = [];
-  inline_me();
-  repeat(arg + 1);
-};
-repeat(0);
-$(repeat);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let closure_cond = false;
-const repeat = function ($$0) {
-  let arg = $$0;
-  debugger;
-  let inline_me = undefined;
-  if (closure_cond) {
-    inline_me = function () {
-      debugger;
-      $(`a`);
-      return undefined;
-    };
-  } else {
-    inline_me = function () {
-      debugger;
-      $(`b`);
-      return undefined;
-    };
-  }
-  closure_cond = [];
-  inline_me();
-  const tmpCallCallee = repeat;
-  const tmpCalleeParam = arg + 1;
-  tmpCallCallee(tmpCalleeParam);
-  return undefined;
-};
-repeat(0);
-$(repeat);
-`````
 
 ## PST Settled
 With rename=true
@@ -203,11 +145,15 @@ b( 0 );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'b'

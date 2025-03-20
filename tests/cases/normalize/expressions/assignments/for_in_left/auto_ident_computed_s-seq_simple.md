@@ -16,6 +16,7 @@ for ((a = (1, 2, b)[$("c")]).x in $({ x: 1 }));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,52 +62,6 @@ while (true) {
 $(a, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-{
-  let tmpForInGen = $forIn($({ x: 1 }));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      (a = (1, 2, b)[$(`c`)]).x = tmpForInNext.value;
-    }
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-let tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpAssignRhsCompObj = b;
-    const tmpAssignRhsCompProp = $(`c`);
-    a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-    let tmpAssignMemLhsObj = a;
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpForInNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -135,11 +91,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( a, e );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -153,7 +120,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

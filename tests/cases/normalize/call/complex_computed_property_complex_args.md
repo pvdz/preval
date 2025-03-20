@@ -14,6 +14,7 @@ const a = {b: $};
 $(a)[b()]($(1), $(2));
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $(2);
 $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,35 +38,6 @@ const tmpCallCompProp = $(`b`);
 tmpCallCompObj[tmpCallCompProp]($(1), $(2));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = function () {
-  debugger;
-  return $(`b`);
-};
-const a = { b: $ };
-$(a)[b()]($(1), $(2));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = function () {
-  debugger;
-  const tmpReturnArg = $(`b`);
-  return tmpReturnArg;
-};
-const a = { b: $ };
-const tmpCallCompObj = $(a);
-const tmpCallCompProp = b();
-const tmpCallCompVal = tmpCallCompObj[tmpCallCompProp];
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-$dotCall(tmpCallCompVal, tmpCallCompObj, undefined, tmpCalleeParam, tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +52,15 @@ const f = $( 2 );
 $dotCall( d, b, undefined, e, f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { b: '"<$>"' }

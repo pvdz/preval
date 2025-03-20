@@ -20,6 +20,7 @@ function f() {
 $('end', f);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const f /*:()=>unknown*/ = function () {
 $(`end`, f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,32 +42,6 @@ $(`end`, function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  try {
-    return NaN;
-  } catch (e) {
-    $(`unreachable`);
-  }
-  $(`also unreachable`);
-};
-$(`end`, f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return NaN;
-};
-$(`end`, f);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +54,15 @@ const a = function() {
 $( "end", a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'end', '<function>'

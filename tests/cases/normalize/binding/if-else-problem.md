@@ -65,6 +65,7 @@ function f5() {
 if ($) $(f5());
 `````
 
+
 ## Settled
 
 
@@ -91,6 +92,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -112,194 +114,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f1 = function () {
-  debugger;
-  let x = undefined;
-  let g = function () {
-    debugger;
-    x = function () {
-      debugger;
-    };
-    $(x);
-  };
-};
-let f2 = function () {
-  debugger;
-  let x$1 = undefined;
-  let g$1 = function () {
-    debugger;
-    $(x$1);
-    x$1 = function () {
-      debugger;
-    };
-    $(x$1);
-  };
-};
-let f3 = function () {
-  debugger;
-  let x$3 = 0;
-  let g$3 = function ($$0) {
-    let t = $$0;
-    debugger;
-    if (t) {
-      x$3 = x$3 + 1;
-    }
-    $(x$3);
-  };
-};
-let f4 = function () {
-  debugger;
-  let x$5 = undefined;
-  let g$5 = function () {
-    debugger;
-    x$5 = function () {
-      debugger;
-    };
-    return function () {
-      debugger;
-      $(x$5);
-    };
-  };
-};
-let f5 = function () {
-  debugger;
-  let x$7 = undefined;
-  let g$7 = function () {
-    debugger;
-    x$7 = function () {
-      debugger;
-    };
-    let h = function () {
-      debugger;
-      $(x$7);
-    };
-    return h();
-  };
-};
-if ($) $(f1());
-if ($) $(f2());
-if ($) $(f3());
-if ($) $(f4());
-if ($) $(f5());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f1 = function () {
-  debugger;
-  let x = undefined;
-  let g = function () {
-    debugger;
-    x = function () {
-      debugger;
-      return undefined;
-    };
-    $(x);
-    return undefined;
-  };
-  return undefined;
-};
-let f2 = function () {
-  debugger;
-  let x$1 = undefined;
-  let g$1 = function () {
-    debugger;
-    $(x$1);
-    x$1 = function () {
-      debugger;
-      return undefined;
-    };
-    $(x$1);
-    return undefined;
-  };
-  return undefined;
-};
-let f3 = function () {
-  debugger;
-  let x$3 = 0;
-  let g$3 = function ($$0) {
-    let t = $$0;
-    debugger;
-    if (t) {
-      x$3 = x$3 + 1;
-      $(x$3);
-      return undefined;
-    } else {
-      $(x$3);
-      return undefined;
-    }
-  };
-  return undefined;
-};
-let f4 = function () {
-  debugger;
-  let x$5 = undefined;
-  let g$5 = function () {
-    debugger;
-    x$5 = function () {
-      debugger;
-      return undefined;
-    };
-    const tmpReturnArg = function () {
-      debugger;
-      $(x$5);
-      return undefined;
-    };
-    return tmpReturnArg;
-  };
-  return undefined;
-};
-let f5 = function () {
-  debugger;
-  let x$7 = undefined;
-  let g$7 = function () {
-    debugger;
-    x$7 = function () {
-      debugger;
-      return undefined;
-    };
-    let h = function () {
-      debugger;
-      $(x$7);
-      return undefined;
-    };
-    const tmpReturnArg$1 = h();
-    return tmpReturnArg$1;
-  };
-  return undefined;
-};
-if ($) {
-  const tmpCalleeParam = f1();
-  $(tmpCalleeParam);
-  if ($) {
-    const tmpCalleeParam$1 = f2();
-    $(tmpCalleeParam$1);
-    if ($) {
-      const tmpCalleeParam$3 = f3();
-      $(tmpCalleeParam$3);
-      if ($) {
-        const tmpCalleeParam$5 = f4();
-        $(tmpCalleeParam$5);
-        if ($) {
-          const tmpCalleeParam$7 = f5();
-          $(tmpCalleeParam$7);
-        } else {
-        }
-      } else {
-      }
-    } else {
-    }
-  } else {
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -322,11 +136,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

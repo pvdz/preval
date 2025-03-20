@@ -20,6 +20,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,55 +53,6 @@ if (tmpForInNext.done) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  {
-    let tmpForInGen = $forIn({ a: 1, b: 2 });
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForInNext = tmpForInGen.next();
-      if (tmpForInNext.done) {
-        break;
-      } else {
-        let x = tmpForInNext.value;
-        {
-          throw $(1, `throw`);
-          $(`fail`);
-        }
-      }
-    }
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  let tmpForInGen = $forIn(tmpCalleeParam);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    const tmpIfTest = tmpForInNext.done;
-    if (tmpIfTest) {
-      break;
-    } else {
-      let x = tmpForInNext.value;
-      const tmpThrowArg = $(1, `throw`);
-      throw tmpThrowArg;
-    }
-  }
-  return undefined;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -122,11 +75,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 'throw'

@@ -23,6 +23,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -67,45 +69,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    $(arr[0]);
-    arr.reverse();
-    if (arr[0] === $) break;
-    arr = [1, 2, 3];
-  } catch (e) {
-    $(`fail`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arr = [1, 2, 3];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    const tmpCalleeParam = arr[0];
-    $(tmpCalleeParam);
-    arr.reverse();
-    const tmpBinLhs = arr[0];
-    const tmpIfTest = tmpBinLhs === $;
-    if (tmpIfTest) {
-      break;
-    } else {
-      arr = [1, 2, 3];
-    }
-  } catch (e) {
-    $(`fail`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -132,11 +95,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- fix the member expression on array stuff. im going to hate myself for skipping this.
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -174,6 +147,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- fix the member expression on array stuff. im going to hate myself for skipping this.

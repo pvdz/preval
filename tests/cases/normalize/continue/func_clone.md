@@ -20,6 +20,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,50 +57,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  label: while ($) {
-    $continue: {
-      {
-        $(1);
-        if ($) {
-          break $continue;
-        }
-      }
-    }
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    if ($) {
-      $continue: {
-        $(1);
-        if ($) {
-          break $continue;
-        } else {
-        }
-      }
-    } else {
-      break;
-    }
-  }
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -121,11 +79,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support referencing this builtin in isFree: $
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -163,6 +131,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support referencing this builtin in isFree: $

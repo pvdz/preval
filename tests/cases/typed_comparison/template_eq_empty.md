@@ -14,6 +14,7 @@ const y = x === '';
 $('out:', y);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const y /*:boolean*/ = !tmpBinBothRhs;
 $(`out:`, y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,26 +33,6 @@ const tmpBinBothRhs = $coerce($, `string`);
 $(`out:`, !tmpBinBothRhs);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = `` + $coerce($, `string`) + ``;
-const y = x === ``;
-$(`out:`, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $coerce($, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const x = $coerce(tmpBinLhs, `plustr`);
-const y = x === ``;
-$(`out:`, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +43,15 @@ const b = !a;
 $( "out:", b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'out:', false

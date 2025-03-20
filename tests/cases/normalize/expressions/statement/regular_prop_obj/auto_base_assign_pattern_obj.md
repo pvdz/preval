@@ -17,6 +17,7 @@ let obj = {};
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,33 +43,6 @@ tmpNestedAssignObjPatternRhs.a;
 $({ a: 999, b: 1000 }, tmpClusterSSA_b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-let obj = {};
-({ b: b } = $({ b: $(2) })).a;
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-let obj = {};
-let tmpCompObj = undefined;
-const tmpObjLitVal = $(2);
-const tmpCalleeParam = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-b = tmpNestedAssignObjPatternRhs.b;
-tmpCompObj = tmpNestedAssignObjPatternRhs;
-tmpCompObj.a;
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +60,15 @@ const e = {
 $( e, d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

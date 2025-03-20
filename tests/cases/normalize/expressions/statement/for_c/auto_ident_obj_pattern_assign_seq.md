@@ -17,6 +17,7 @@ for (; $(1); { x, y } = ($(x), $(y), { x: $(3), y: $(4) }));
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -50,6 +51,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, x, y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -79,44 +81,6 @@ if ($(1)) {
 $({ a: 999, b: 1000 }, x, y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-{
-  while ($(1)) {
-    ({ x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }));
-  }
-}
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(x);
-    $(y);
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
-    const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    x = tmpAssignObjPatternRhs.x;
-    y = tmpAssignObjPatternRhs.y;
-  } else {
-    break;
-  }
-}
-$(a, x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -154,11 +118,15 @@ const i = {
 $( i, a, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

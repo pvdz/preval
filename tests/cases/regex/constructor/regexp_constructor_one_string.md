@@ -13,6 +13,7 @@ const y = RegExp(`x`);
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const y /*:regex*/ = /x/;
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ $(y);
 $(/x/);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = RegExp(`x`);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const y = /x/;
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +39,15 @@ const a = /x/;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

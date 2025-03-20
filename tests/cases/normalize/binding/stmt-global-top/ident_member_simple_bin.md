@@ -14,6 +14,7 @@ let a = b.x = c + d;
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const b /*:object*/ = { x: 7 };
 $(7, b, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,29 +31,6 @@ $(7, b, 3);
 $(7, { x: 7 }, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 2 },
-  c = 3,
-  d = 4;
-let a = (b.x = c + d);
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 2 };
-let c = 3;
-let d = 4;
-const varInitAssignLhsComputedRhs = c + d;
-b.x = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +40,15 @@ const a = { x: 7 };
 $( 7, a, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 7, { x: '7' }, 3

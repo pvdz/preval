@@ -13,12 +13,14 @@ let x = Infinity;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(Infinity);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ $(Infinity);
 $(Infinity);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = Infinity;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = Infinity;
-$(Infinity);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 $( Infinity );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: Infinity

@@ -13,6 +13,7 @@ const x = "foo";
 $([...x]);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:array*/ = [`f`, `o`, `o`];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,22 +30,6 @@ $(tmpCalleeParam);
 $([`f`, `o`, `o`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = `foo`;
-$([...x]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = `foo`;
-const tmpCalleeParam = [...x];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +39,15 @@ const a = [ "f", "o", "o" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['f', 'o', 'o']

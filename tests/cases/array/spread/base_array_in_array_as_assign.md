@@ -17,6 +17,7 @@ if ($) {
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,31 +43,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = [1, 2, 3];
-let y = [];
-if ($) {
-  y = [`a`, ...x, `b`];
-}
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = [1, 2, 3];
-let y = [];
-if ($) {
-  y = [`a`, ...x, `b`];
-  $(y);
-} else {
-  $(y);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +58,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['a', 1, 2, 3, 'b']

@@ -30,6 +30,7 @@ try {
 $(x); // 1 or 2 or 3 ("any assignment _could_ fail")
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -43,7 +44,9 @@ try /*7*/ {
 $(x___22__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

@@ -12,6 +12,7 @@
 $(global?.foo);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,28 +38,6 @@ if (global == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(global?.foo);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = global;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.foo;
-  tmpCalleeParam = tmpChainElementObject;
-  $(tmpChainElementObject);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +53,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

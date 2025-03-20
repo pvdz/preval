@@ -26,12 +26,14 @@ if ($) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,48 +42,6 @@ if ($) {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const inlineMe = function () {
-  debugger;
-  $ <= 3;
-};
-const g = function () {
-  debugger;
-  if ($) {
-    inlineMe();
-  }
-};
-if ($) {
-  g();
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const inlineMe = function () {
-  debugger;
-  $ <= 0;
-  return undefined;
-};
-const g = function () {
-  debugger;
-  if ($) {
-    inlineMe();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-if ($) {
-  g();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +50,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

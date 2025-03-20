@@ -14,6 +14,7 @@ const y = x === 0;
 $('out:', y);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $coerce(tmpStringFirstArg, `string`);
 $(`out:`, false);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,24 +33,6 @@ $coerce($(1), `string`);
 $(`out:`, false);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = String($(1));
-const y = x === 0;
-$(`out:`, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpStringFirstArg = $(1);
-const x = $coerce(tmpStringFirstArg, `string`);
-const y = x === 0;
-$(`out:`, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +43,15 @@ $coerce( a, "string" );
 $( "out:", false );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

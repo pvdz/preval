@@ -15,6 +15,7 @@ const y = c('x', 'g');
 $(y); // the regex `/x/g`
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const y /*:regex*/ = /x/g;
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,25 +32,6 @@ $(y);
 $(/x/g);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = /foo/;
-const c = x.constructor;
-const y = c(`x`, `g`);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = /foo/;
-const c = x.constructor;
-const y = c(`x`, `g`);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +41,15 @@ const a = /x/g;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

@@ -18,6 +18,7 @@ export default function() {
 }
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ const tmpAnonDefaultExport /*:()=>undefined*/ = function () {
 export { tmpAnonDefaultExport as default };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,60 +47,6 @@ const tmpAnonDefaultExport = function () {
 export { tmpAnonDefaultExport as default };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(1);
-const tmpAnonDefaultExport = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    return $();
-  };
-  let g = function () {
-    debugger;
-    return $();
-  };
-  let h = function () {
-    debugger;
-    return $();
-  };
-  $(f(), g(), h());
-};
-export { tmpAnonDefaultExport as default };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-const tmpAnonDefaultExport = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    const tmpReturnArg = $();
-    return tmpReturnArg;
-  };
-  let g = function () {
-    debugger;
-    const tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
-  };
-  let h = function () {
-    debugger;
-    const tmpReturnArg$3 = $();
-    return tmpReturnArg$3;
-  };
-  const tmpCalleeParam = f();
-  const tmpCalleeParam$1 = g();
-  const tmpCalleeParam$3 = h();
-  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-  return undefined;
-};
-export { tmpAnonDefaultExport as default };
-`````
 
 ## PST Settled
 With rename=true
@@ -116,11 +64,15 @@ const a = function() {
 export { a as default };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

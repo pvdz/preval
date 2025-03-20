@@ -16,6 +16,7 @@ let a = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,26 +39,6 @@ const tmpArrElToSpread = delete arg.y;
 $({ a: 999, b: 1000 }, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-[...delete arg[`y`]];
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpArrElToSpread = delete arg.y;
-[...tmpArrElToSpread];
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +54,15 @@ const c = {
 $( c, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

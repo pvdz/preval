@@ -14,6 +14,7 @@ for (let xyz = ({ a } = $({ a: 1, b: 2 })); ; $(1)) $(xyz);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,37 +41,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let { a: a } = { a: 999, b: 1000 };
-{
-  let xyz = ({ a: a } = $({ a: 1, b: 2 }));
-  while (true) {
-    $(xyz);
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-let xyz = undefined;
-const tmpCalleeParam = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-a = tmpNestedAssignObjPatternRhs.a;
-xyz = tmpNestedAssignObjPatternRhs;
-while (true) {
-  $(xyz);
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +58,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- regular property access of an ident feels tricky;
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }
@@ -129,6 +110,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- regular property access of an ident feels tricky;

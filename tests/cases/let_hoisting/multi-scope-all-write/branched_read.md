@@ -32,6 +32,7 @@ const f = function (s) {
 if ($) $(f);
 `````
 
+
 ## Settled
 
 
@@ -60,6 +61,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -81,68 +83,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let s = $$0;
-  debugger;
-  let promoMe = s === ``;
-  const g = function () {
-    debugger;
-    const r = $(`.`);
-    promoMe = r === `.`;
-    if (promoMe) {
-      const t = $(``);
-      promoMe = t !== `.`;
-      return promoMe;
-    } else {
-      return promoMe;
-    }
-  };
-  if (promoMe) {
-    return promoMe;
-  } else {
-    const v = g();
-    return v;
-  }
-};
-if ($) $(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let s = $$0;
-  debugger;
-  let promoMe = s === ``;
-  const g = function () {
-    debugger;
-    const r = $(`.`);
-    promoMe = r === `.`;
-    if (promoMe) {
-      const t = $(``);
-      promoMe = t !== `.`;
-      return promoMe;
-    } else {
-      return promoMe;
-    }
-  };
-  if (promoMe) {
-    return promoMe;
-  } else {
-    const v = g();
-    return v;
-  }
-};
-if ($) {
-  $(f);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -173,11 +113,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

@@ -16,6 +16,7 @@ $((a = new (1, 2, $(b))[$("$")](1)) ? $(100) : $(200));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ $(tmpClusterSSA_tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,38 +44,6 @@ $($(100));
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-$((a = new (1, 2, $(b))[$(`\$`)](1)) ? $(100) : $(200));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
-const tmpCompObj = $(b);
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj[tmpCompProp];
-a = new tmpNewCallee(1);
-let tmpIfTest = a;
-if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-  $(tmpCalleeParam);
-  $(a);
-} else {
-  tmpCalleeParam = $(200);
-  $(tmpCalleeParam);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +59,15 @@ $( f );
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { $: '"<$>"' }

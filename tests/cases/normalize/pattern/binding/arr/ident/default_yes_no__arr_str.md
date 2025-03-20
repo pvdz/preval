@@ -13,12 +13,14 @@ const [x = $('pass')] = ['abc', 201];
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`abc`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,31 +29,6 @@ $(`abc`);
 $(`abc`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const [x = $(`pass`)] = [`abc`, 201];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternArrRoot = [`abc`, 201];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let x = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $(`pass`);
-  $(x);
-} else {
-  x = arrPatternBeforeDefault;
-  $(arrPatternBeforeDefault);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +37,22 @@ With rename=true
 $( "abc" );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'abc'
@@ -77,7 +65,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

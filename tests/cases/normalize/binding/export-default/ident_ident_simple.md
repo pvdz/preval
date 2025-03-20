@@ -14,6 +14,7 @@ export let a = b = c;
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const a /*:number*/ = 3;
 export { a };
 $(3, 3, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,28 +34,6 @@ export { a };
 $(3, 3, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 2,
-  c = 3;
-let a = (b = c);
-export { a };
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 2;
-let c = 3;
-b = c;
-let a = b;
-export { a };
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +44,15 @@ export { a as a };
 $( 3, 3, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

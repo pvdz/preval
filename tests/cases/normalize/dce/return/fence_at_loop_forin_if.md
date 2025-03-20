@@ -34,6 +34,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -75,6 +76,7 @@ $inlinedFunction: {
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -108,88 +110,6 @@ $inlinedFunction: {
 $(tmpCalleeParam$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while ($(true)) {
-    $(`loop`);
-    {
-      let tmpForInGen = $forIn({ a: 1, b: 2 });
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        let tmpForInNext = tmpForInGen.next();
-        if (tmpForInNext.done) {
-          break;
-        } else {
-          let x = tmpForInNext.value;
-          {
-            $(`loop`, x);
-            if ($(1, `if`)) {
-              $(`pass`);
-              return $(100, `return`);
-              $(`fail`);
-            } else {
-              $(`do not visit`);
-              return $(101, `return`);
-              $(`fail`);
-            }
-            $(`fail -> DCE`);
-          }
-        }
-      }
-    }
-    $(`after (not invoked but should not be eliminated)`);
-  }
-  $(`after (not invoked)`);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      const tmpCalleeParam = { a: 1, b: 2 };
-      let tmpForInGen = $forIn(tmpCalleeParam);
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        let tmpForInNext = tmpForInGen.next();
-        const tmpIfTest$1 = tmpForInNext.done;
-        if (tmpIfTest$1) {
-          break;
-        } else {
-          let x = tmpForInNext.value;
-          $(`loop`, x);
-          const tmpIfTest$3 = $(1, `if`);
-          if (tmpIfTest$3) {
-            $(`pass`);
-            const tmpReturnArg = $(100, `return`);
-            return tmpReturnArg;
-          } else {
-            $(`do not visit`);
-            const tmpReturnArg$1 = $(101, `return`);
-            return tmpReturnArg$1;
-          }
-        }
-      }
-      $(`after (not invoked but should not be eliminated)`);
-    } else {
-      break;
-    }
-  }
-  $(`after (not invoked)`);
-  return undefined;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -238,11 +158,15 @@ $inlinedFunction: {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

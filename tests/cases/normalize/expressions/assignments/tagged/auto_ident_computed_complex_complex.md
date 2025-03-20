@@ -16,6 +16,7 @@ $`before ${(a = $(b)[$("c")])} after`;
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(tmpCalleeParam, tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,30 +43,6 @@ $([`before `, ` after`], tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = $(b)[$(`c`)]));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $(`c`);
-a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +57,15 @@ $( e, d );
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '1' }

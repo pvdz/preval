@@ -15,6 +15,7 @@ let obj = {};
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ a.a;
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,32 +36,6 @@ a.a;
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-(a = 0 || $($(1)))[`a`];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-a = 0;
-if (a) {
-} else {
-  const tmpCalleeParam = $(1);
-  a = $(tmpCalleeParam);
-}
-let tmpCompObj = a;
-tmpCompObj.a;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +47,15 @@ b.a;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

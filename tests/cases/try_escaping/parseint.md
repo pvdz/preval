@@ -20,6 +20,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,36 +52,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  const x = String($(`1`));
-  try {
-    const y = parseInt(x);
-    $(y);
-  } catch (e) {
-    $(`keepme`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpStringFirstArg = $(`1`);
-  const x = $coerce(tmpStringFirstArg, `string`);
-  try {
-    const y = parseInt(x);
-    $(y);
-  } catch (e) {
-    $(`keepme`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +70,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '1'

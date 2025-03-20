@@ -14,6 +14,7 @@ if (y) $('a'); else $('b');
 if (y) $('d'); else $('c');
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ if (tmpUnaryArg) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,34 +43,6 @@ if ($spy(10)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = !$spy(10);
-if (y) $(`a`);
-else $(`b`);
-if (y) $(`d`);
-else $(`c`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpUnaryArg = $spy(10);
-const y = !tmpUnaryArg;
-if (y) {
-  $(`a`);
-} else {
-  $(`b`);
-}
-if (y) {
-  $(`d`);
-} else {
-  $(`c`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +59,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [10, 10]

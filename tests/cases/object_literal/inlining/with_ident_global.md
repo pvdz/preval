@@ -13,12 +13,14 @@ const obj = {f: wat};
 $(obj.f);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(wat);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,22 +29,6 @@ $(wat);
 $(wat);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { f: wat };
-$(obj.f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { f: wat };
-const tmpCalleeParam = obj.f;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,13 +37,17 @@ With rename=true
 $( wat );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 wat
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

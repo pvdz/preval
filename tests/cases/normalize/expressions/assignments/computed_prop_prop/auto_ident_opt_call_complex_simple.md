@@ -15,6 +15,7 @@ obj[(a = $($)?.(1))];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ obj[tmpCompProp];
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,36 +53,6 @@ if (!tmpIfTest) {
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = $($)?.(1))];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, undefined, 1);
-  a = tmpChainElementCall$1;
-} else {
-}
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -103,11 +75,15 @@ f[ d ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

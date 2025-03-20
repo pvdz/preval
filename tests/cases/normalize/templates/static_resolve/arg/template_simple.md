@@ -12,12 +12,14 @@
 $(`${`I am a string`}`);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`I am a string`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,23 +28,6 @@ $(`I am a string`);
 $(`I am a string`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`` + $coerce(`I am a string`, `string`) + ``);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $coerce(`I am a string`, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +36,15 @@ With rename=true
 $( "I am a string" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'I am a string'

@@ -15,12 +15,14 @@ function f(x) {
 f(10);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(10);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,30 +31,6 @@ $(10);
 $(10);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  return $(10);
-};
-f(10);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  const tmpReturnArg = $(10);
-  return tmpReturnArg;
-};
-f(10);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +39,15 @@ With rename=true
 $( 10 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

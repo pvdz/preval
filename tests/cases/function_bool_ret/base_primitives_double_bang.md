@@ -22,6 +22,7 @@ $(!!f(), 'two');
 $(!!f(), 'three');
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ const tmpUnaryArg$9 /*:boolean*/ = Boolean($);
 $(tmpUnaryArg$9, `three`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,48 +45,6 @@ $(Boolean($), `two`);
 $(Boolean($), `three`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    return true;
-  } else {
-    return false;
-  }
-};
-$(!!f(), `one`);
-$(!!f(), `two`);
-$(!!f(), `three`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    return true;
-  } else {
-    return false;
-  }
-};
-const tmpUnaryArg$1 = f();
-const tmpUnaryArg = !tmpUnaryArg$1;
-const tmpCalleeParam = !tmpUnaryArg;
-$(tmpCalleeParam, `one`);
-const tmpUnaryArg$5 = f();
-const tmpUnaryArg$3 = !tmpUnaryArg$5;
-const tmpCalleeParam$1 = !tmpUnaryArg$3;
-$(tmpCalleeParam$1, `two`);
-const tmpUnaryArg$9 = f();
-const tmpUnaryArg$7 = !tmpUnaryArg$9;
-const tmpCalleeParam$3 = !tmpUnaryArg$7;
-$(tmpCalleeParam$3, `three`);
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +58,15 @@ const c = Boolean( $ );
 $( c, "three" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true, 'one'

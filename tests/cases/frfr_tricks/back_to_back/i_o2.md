@@ -28,6 +28,7 @@ $(rs);
 
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const xs /*:string*/ = $coerce(x, `plustr`);
 $(xs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,53 +46,6 @@ $(xs);
 $($coerce($(), `plustr`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let g = function $free($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  let x$1 = $dlr_$$0;
-  const r = $frfr(f, x$1);
-  return r;
-};
-const f = function $free($$0, $$1) {
-  let $dlr_$$1 = $$0;
-  let $dlr_$$3 = $$1;
-  debugger;
-  let y = $dlr_$$1;
-  const r2 = y;
-  return r2;
-};
-const x = $();
-let xs = x + ``;
-let rs = $frfr(g, xs);
-$(rs);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let g = function $free($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  let x$1 = $dlr_$$0;
-  const r = $frfr(f, $dlr_$$0);
-  return r;
-};
-const f = function $free($$0, $$1) {
-  let $dlr_$$1 = $$0;
-  let $dlr_$$3 = $$1;
-  debugger;
-  return $dlr_$$1;
-};
-const x = $();
-let xs = $coerce(x, `plustr`);
-let rs = $frfr(g, xs);
-$(rs);
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +56,21 @@ const b = $coerce( a, "plustr" );
 $( b );
 `````
 
+
+## Todos triggered
+
+
+- frfr and free arg mismatch
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 
@@ -119,6 +84,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- frfr and free arg mismatch

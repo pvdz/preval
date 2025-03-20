@@ -13,6 +13,7 @@ const x = 'foo'.concat(a, b); // `foo${a}${b}`
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:string*/ = `foo${a}${b}`;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ $(x);
 $(`foo${a}${b}`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = `foo`.concat(a, b);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = `foo`.concat(a, b);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,13 +39,17 @@ const c = `foo${a}${b}`;
 $( c );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 a, b
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

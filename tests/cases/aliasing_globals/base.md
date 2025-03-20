@@ -15,12 +15,14 @@ const c = unknown3;
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(unknown1, unknown2, unknown3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,25 +31,6 @@ $(unknown1, unknown2, unknown3);
 $(unknown1, unknown2, unknown3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = unknown1;
-const b = unknown2;
-const c = unknown3;
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = unknown1;
-const b = unknown2;
-const c = unknown3;
-$(a, b, unknown3);
-`````
 
 ## PST Settled
 With rename=true
@@ -56,13 +39,17 @@ With rename=true
 $( unknown1, unknown2, unknown3 );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 3 implicit global bindings:
 
 unknown1, unknown2, unknown3
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

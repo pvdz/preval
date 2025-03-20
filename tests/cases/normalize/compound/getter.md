@@ -16,12 +16,14 @@ obj.x += 5;
 $(obj.x); // 5
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(5);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,27 +32,6 @@ $(5);
 $(5);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { x: 0 };
-obj.x += 5;
-$(obj.x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { x: 0 };
-const tmpCompoundAssignLhs = obj.x;
-const tmpAssignMemLhsObj = obj;
-const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpCalleeParam = obj.x;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +40,15 @@ With rename=true
 $( 5 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 5

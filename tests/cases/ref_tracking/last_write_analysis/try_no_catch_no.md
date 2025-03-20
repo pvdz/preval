@@ -21,6 +21,7 @@ try {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ try {
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,35 +52,6 @@ try {
 $(tmpClusterSSA_x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(`a`);
-$(x);
-x = $(`b`);
-try {
-  $(`123`);
-} catch (e) {
-  $(`fail`);
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(`a`);
-$(x);
-x = $(`b`);
-try {
-  $(`123`);
-} catch (e) {
-  $(`fail`);
-}
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -96,11 +69,15 @@ catch (c) {
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

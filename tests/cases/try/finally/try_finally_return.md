@@ -19,6 +19,7 @@ function f() {
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const f /*:()=>unknown*/ = function () {
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,68 +43,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  {
-    let $implicitThrow = false;
-    let $finalStep = false;
-    let $finalCatchArg = undefined;
-    let $finalArg = undefined;
-    $finally: {
-      try {
-        {
-          $finalStep = true;
-          $finalArg = `exit`;
-          break $finally;
-        }
-      } catch ($finalImplicit) {
-        $(2);
-        throw $finalImplicit;
-      }
-    }
-    {
-      $(2);
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else return $finalArg;
-  }
-};
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let $implicitThrow = false;
-  let $finalStep = false;
-  let $finalCatchArg = undefined;
-  let $finalArg = undefined;
-  $finally: {
-    try {
-      $finalStep = true;
-      $finalArg = `exit`;
-      break $finally;
-    } catch ($finalImplicit) {
-      $(2);
-      throw $finalImplicit;
-    }
-  }
-  $(2);
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    return $finalArg;
-  }
-};
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -116,11 +56,15 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

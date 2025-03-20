@@ -13,6 +13,7 @@ export function f() {};
 f();
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const f /*:()=>unknown*/ = function () {
 export { f };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,28 +34,6 @@ const f = function () {};
 export { f };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-};
-f();
-export { f };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return undefined;
-};
-f();
-export { f };
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +46,15 @@ const a = function() {
 export { a as f };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

@@ -12,6 +12,7 @@
 crash($spy('a'), $spy('b'), $spy('c'));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpCalleeParam$3 /*:unknown*/ = $spy(`c`);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,23 +32,6 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 crash($spy(`a`), $spy(`b`), $spy(`c`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-crash($spy(`a`), $spy(`b`), $spy(`c`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallCallee = crash;
-const tmpCalleeParam = $spy(`a`);
-const tmpCalleeParam$1 = $spy(`b`);
-const tmpCalleeParam$3 = $spy(`c`);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,13 +44,17 @@ const d = $spy( "c" );
 a( b, c, d );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 crash
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -12,12 +12,14 @@
 $(Boolean(['50foo']));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,21 +28,6 @@ $(true);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(Boolean([`50foo`]));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = [`50foo`];
-const tmpCalleeParam = Boolean(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -49,11 +36,15 @@ With rename=true
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

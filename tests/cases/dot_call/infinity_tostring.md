@@ -15,12 +15,14 @@ const x = $dotCall(tmpCallVal, inf, 'toString');
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`Infinity`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,24 +31,6 @@ $(`Infinity`);
 $(`Infinity`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const inf = Infinity;
-const tmpCallVal = inf.toString;
-const x = $dotCall(tmpCallVal, inf, `toString`);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const inf = Infinity;
-const x = inf.toString();
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +39,15 @@ With rename=true
 $( "Infinity" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Infinity'

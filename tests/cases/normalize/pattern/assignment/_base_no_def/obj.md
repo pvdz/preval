@@ -13,12 +13,14 @@ let x = 10;
 ({ x } = 1);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 (1).x;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,22 +29,6 @@ let x = 10;
 (1).x;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 10;
-({ x: x } = 1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 10;
-const tmpAssignObjPatternRhs = 1;
-x = tmpAssignObjPatternRhs.x;
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +37,15 @@ With rename=true
 1.x;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

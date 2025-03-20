@@ -15,6 +15,7 @@ function f({ x: [y = 'fail'] = $(['fail2']) } = $({ x: ['fail3'] })) {
 $(f({ x: null, a: 11, b: 12 }, 10));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f({ x: null, a: 11, b: 12 }, 10));
 [...null];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,61 +33,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: [y = `fail`] = $([`fail2`]) } = tmpParamBare === undefined ? $({ x: [`fail3`] }) : tmpParamBare;
-  return `bad`;
-};
-$(f({ x: null, a: 11, b: 12 }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpObjLitVal = [`fail3`];
-    const tmpCalleeParam = { x: tmpObjLitVal };
-    bindingPatternObjRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternObjRoot = tmpParamBare;
-  }
-  let objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = [`fail2`];
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  let arrPatternSplat = [...objPatternAfterDefault];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let y = undefined;
-  const tmpIfTest$3 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$3) {
-    y = `fail`;
-    return `bad`;
-  } else {
-    y = arrPatternBeforeDefault;
-    return `bad`;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$5 = { x: null, a: 11, b: 12 };
-const tmpCalleeParam$3 = tmpCallCallee(tmpCalleeParam$5, 10);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +42,22 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -111,7 +69,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

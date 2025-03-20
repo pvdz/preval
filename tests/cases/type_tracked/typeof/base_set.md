@@ -13,6 +13,7 @@ const x = new Set;
 $(typeof x);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $(typeof x);
 new Set();
 $(`object`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,22 +31,6 @@ new Set();
 $(`object`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = new Set();
-$(typeof x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = new Set();
-const tmpCalleeParam = typeof x;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +40,15 @@ new Set();
 $( "object" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'object'

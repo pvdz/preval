@@ -26,6 +26,7 @@ y = drop3;
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ $(drop2);
 $();
 $(drop3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -46,32 +48,6 @@ $();
 $(drop3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-drop1;
-drop1;
-drop2;
-const x = drop2;
-$(x);
-let y = $();
-drop3;
-y = drop3;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-drop1;
-const x = drop2;
-$(drop2);
-let y = $();
-y = drop3;
-$(drop3);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,13 +59,17 @@ $();
 $( drop3 );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 3 implicit global bindings:
 
 drop1, drop2, drop3
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

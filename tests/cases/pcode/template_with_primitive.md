@@ -19,12 +19,14 @@
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`abcde`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,37 +35,6 @@ $(`abcde`);
 $(`abcde`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  const f = function () {
-    debugger;
-    const tmpReturnArg$303 = `` + $coerce(`abcd`, `string`) + `e`;
-    return tmpReturnArg$303;
-  };
-  const t = f();
-  $(t);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const tmpBinBothLhs = ``;
-  const tmpBinBothRhs = $coerce(`abcd`, `string`);
-  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-  const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-  const tmpReturnArg$303 = `${tmpStringConcatR}e`;
-  return tmpReturnArg$303;
-};
-const t = f();
-$(t);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +43,15 @@ With rename=true
 $( "abcde" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'abcde'

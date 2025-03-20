@@ -20,6 +20,7 @@ for (let styleName$5 in {x:100}) {
 }
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -66,57 +68,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let tmpForInGen = $forIn({ x: 100 });
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      let styleName$5 = tmpForInNext.value;
-      {
-        let checkme = $(1);
-        if (checkme) {
-          checkme = $(2);
-          if (checkme) {
-            $(3);
-          }
-        }
-      }
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = { x: 100 };
-let tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    let styleName$5 = tmpForInNext.value;
-    let checkme = $(1);
-    if (checkme) {
-      checkme = $(2);
-      if (checkme) {
-        $(3);
-      } else {
-      }
-    } else {
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -143,11 +94,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -162,6 +123,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

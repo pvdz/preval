@@ -13,6 +13,7 @@ var a = true, x = false;
 a.b(x.y);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:unknown*/ = false.y;
 $dotCall(tmpCallVal, true, `b`, tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,29 +31,6 @@ $dotCall(tmpCallVal, true, `b`, tmpCalleeParam);
 $dotCall(true.b, true, `b`, false.y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-(a = true), (x = false);
-a.b(x.y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-a = true;
-x = false;
-const tmpCallObj = a;
-const tmpCallVal = tmpCallObj.b;
-const tmpCalleeParam = x.y;
-$dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +41,15 @@ const b = false.y;
 $dotCall( a, true, "b", b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

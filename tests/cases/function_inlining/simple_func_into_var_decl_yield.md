@@ -20,6 +20,7 @@ const q = f();
 $(p, q);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ const q /*:object*/ = f();
 $(p, q);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,34 +46,6 @@ const f = function* () {
 $(f(), f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function* () {
-  debugger;
-  a = yield 20;
-};
-let a = 10;
-const p = f();
-const q = f();
-$(p, q);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function* () {
-  debugger;
-  a = yield 20;
-  return undefined;
-};
-let a = 10;
-const p = f();
-const q = f();
-$(p, q);
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +61,22 @@ const c = a();
 $( b, c );
 `````
 
+
+## Todos triggered
+
+
+- would this not be the same as await? would we not want to infer the arg here?
+- inline generator functions safely (because yield)
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}, {}
@@ -104,7 +89,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- would this not be the same as await? would we not want to infer the arg here?
-- inline generator functions safely (because yield)

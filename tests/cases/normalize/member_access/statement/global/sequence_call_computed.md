@@ -16,6 +16,7 @@ let c = 1;
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const tmpCompProp /*:unknown*/ = $(`toString`);
 tmpCompObj[tmpCompProp];
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,26 +40,6 @@ tmpCompObj[tmpCompProp];
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let c = 1;
-($(1), $(2))[$(`toString`)];
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let c = 1;
-$(1);
-const tmpCompObj = $(2);
-const tmpCompProp = $(`toString`);
-tmpCompObj[tmpCompProp];
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +52,15 @@ a[ b ];
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

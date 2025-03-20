@@ -16,6 +16,7 @@ while(true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,33 +54,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-while (true) {
-  ++arr[0];
-  $(arr[0]);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-while (true) {
-  let tmpUpdObj = arr;
-  let tmpUpdProp = 0;
-  let tmpUpdVal = tmpUpdObj[tmpUpdProp];
-  let tmpUpdNum = $coerce(tmpUpdVal, `number`);
-  let tmpUpdInc = tmpUpdNum + 1;
-  tmpUpdObj[tmpUpdProp] = tmpUpdInc;
-  const tmpCalleeParam = arr[0];
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -100,11 +75,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

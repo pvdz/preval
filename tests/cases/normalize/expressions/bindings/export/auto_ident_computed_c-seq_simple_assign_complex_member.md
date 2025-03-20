@@ -15,6 +15,7 @@ export let a = ((1, 2, $(b))[$("c")] = $(b)[$("d")]);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const a /*:unknown*/ = varInitAssignLhsComputedRhs;
 export { a };
 $(varInitAssignLhsComputedRhs, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -47,31 +49,6 @@ export { a };
 $(varInitAssignLhsComputedRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = ((1, 2, $(b))[$(`c`)] = $(b)[$(`d`)]);
-export { a };
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`c`);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
-export { a };
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +69,15 @@ export { g as a };
 $( f, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

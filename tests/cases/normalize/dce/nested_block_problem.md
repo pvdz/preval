@@ -23,12 +23,14 @@ x: {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,26 +39,6 @@ x: {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-x: {
-  {
-    {
-      break x;
-    }
-  }
-  $(`eliminate`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +47,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

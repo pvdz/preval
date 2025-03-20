@@ -13,6 +13,7 @@ export let [a] = $([1, 2]);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ export { a };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,26 +37,6 @@ export { a };
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let [a] = $([1, 2]);
-export { a };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [1, 2];
-let bindingPatternArrRoot = $(tmpCalleeParam);
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-export { a };
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +50,22 @@ export { d as a };
 $( d );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -84,7 +77,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

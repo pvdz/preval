@@ -24,6 +24,7 @@ while ($LOOP_UNROLL_2) {      // The unrolled body is not in a loop so it can in
 }
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ if (test) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,37 +62,6 @@ if (!$(`never`)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_2) {
-  const test = $(`never`);
-  if (test) {
-    break;
-  } else {
-    const tmp = arr.shift();
-    arr.push(tmp);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_2) {
-  const test = $(`never`);
-  if (test) {
-    break;
-  } else {
-    const tmp = arr.shift();
-    arr.push(tmp);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -115,11 +86,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'never'

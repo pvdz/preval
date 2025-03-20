@@ -27,6 +27,7 @@ $(x.y);
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -64,6 +65,7 @@ $(tmpCalleeParam$3);
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -91,76 +93,6 @@ $(x.y);
 $(f);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`a`);
-  if (x.y) {
-    $(`yeeting`);
-    delete x.y;
-  }
-  Object.defineProperty(x, `y`, {
-    set($$0) {
-      let z = $$0;
-      debugger;
-    },
-    get() {
-      debugger;
-      return `intercepted`;
-    },
-  });
-  $(`b`);
-};
-const x = { y: 0 };
-f();
-x.y = 10;
-f();
-$(x);
-$(x.y);
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`a`);
-  const tmpIfTest = x.y;
-  if (tmpIfTest) {
-    $(`yeeting`);
-    delete x.y;
-  } else {
-  }
-  const tmpCalleeParam = x;
-  const tmpCalleeParam$1 = {
-    set($$0) {
-      let z = $$0;
-      debugger;
-      return undefined;
-    },
-    get() {
-      debugger;
-      return `intercepted`;
-    },
-  };
-  $Object_defineProperty(tmpCalleeParam, `y`, tmpCalleeParam$1);
-  $(`b`);
-  return undefined;
-};
-const x = { y: 0 };
-f();
-x.y = 10;
-f();
-$(x);
-const tmpCalleeParam$3 = x.y;
-$(tmpCalleeParam$3);
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -198,11 +130,21 @@ $( e );
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_defineProperty
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'
@@ -222,6 +164,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_defineProperty

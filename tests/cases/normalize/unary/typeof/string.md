@@ -12,12 +12,14 @@
 $(typeof "foo");
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`string`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(`string`);
 $(`string`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof `foo`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `string`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( "string" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'string'

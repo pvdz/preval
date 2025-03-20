@@ -26,21 +26,9 @@ $(f('x'));
 $(f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let a = tmpParamBare === undefined ? `foo` : tmpParamBare;
-  return a;
-};
-$(f(`x`));
-$(f());
-`````
 
 ## Pcode output
+
 
 `````fileintro
 f =
@@ -57,6 +45,12 @@ f =
       ]
     ]
 `````
+
+
+
+
+## Pcode result
+
 
 Running function "f":
 

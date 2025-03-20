@@ -14,6 +14,7 @@ let [a, b] = z;
 $(a, b, x, y, z);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const b /*:unknown*/ = arrPatternSplat[1];
 $(a, b, 1, 2, z);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,30 +36,6 @@ const arrPatternSplat = [...z];
 $(arrPatternSplat[0], arrPatternSplat[1], 1, 2, z);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2,
-  z = [10, 20, 30];
-let [a, b] = z;
-$(a, b, x, y, z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-let bindingPatternArrRoot = z;
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-let b = arrPatternSplat[1];
-$(a, b, x, y, z);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +48,22 @@ const d = b[ 1 ];
 $( c, d, 1, 2, a );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10, 20, 1, 2, [10, 20, 30]
@@ -87,7 +76,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

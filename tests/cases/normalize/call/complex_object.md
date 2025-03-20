@@ -13,6 +13,7 @@ const a = {b: $};
 $(a).b(1);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCallObj /*:unknown*/ = $(a);
 tmpCallObj.b(1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,22 +31,6 @@ tmpCallObj.b(1);
 $({ b: $ }).b(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = { b: $ };
-$(a).b(1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = { b: $ };
-const tmpCallObj = $(a);
-tmpCallObj.b(1);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +41,15 @@ const b = $( a );
 b.b( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { b: '"<$>"' }

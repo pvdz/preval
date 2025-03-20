@@ -15,6 +15,7 @@ function f(...arr) {
 f(1,2,3);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const f /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
 f(1, 2, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,30 +40,6 @@ const f = function (...$$0 /*:array*/) {
 f(1, 2, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function (...$$0 /*:array*/) {
-  let arr = $$0;
-  debugger;
-  $(arr);
-};
-f(1, 2, 3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function (...$$0 /*:array*/) {
-  let arr = $$0;
-  debugger;
-  $(arr);
-  return undefined;
-};
-f(1, 2, 3);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +54,15 @@ const a = function($$0 ) {
 a( 1, 2, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2, 3]

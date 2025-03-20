@@ -16,6 +16,7 @@ function f([a]) {
 $(f([1]));
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const a /*:unknown*/ = $(10);
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,38 +33,6 @@ $(a);
 $($(10));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [a] = tmpParamBare;
-  a = $(10);
-  return a;
-};
-$(f([1]));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let a = arrPatternSplat[0];
-  a = $(10);
-  return a;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = [1];
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +42,21 @@ const a = $( 10 );
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10
@@ -90,6 +70,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

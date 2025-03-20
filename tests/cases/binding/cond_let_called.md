@@ -19,6 +19,7 @@ const y = parseExpression(x);
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,33 +45,6 @@ if (a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = ``;
-if (a) {
-  x = `source`;
-} else {
-  x = `arguments`;
-}
-const y = parseExpression(x);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = ``;
-if (a) {
-  x = `source`;
-} else {
-  x = `arguments`;
-}
-const y = parseExpression(x);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,13 +60,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 a, parseExpression
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

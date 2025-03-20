@@ -20,6 +20,7 @@ function f(t, e, r) {
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ const f /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,67 +55,6 @@ $(function ($$0, $$1, $$2) {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasThis = this;
-  let t = $$0;
-  let e = $$1;
-  let r = $$2;
-  debugger;
-  {
-    const tmpSwitchValue = tmpPrevalAliasThis.state;
-    let tmpSwitchCaseToStart = 2;
-    if (Yt.PARSING === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-    else if (Yt.PARSED === tmpSwitchValue) tmpSwitchCaseToStart = 1;
-    else;
-    tmpSwitchBreak: {
-      if (tmpSwitchCaseToStart <= 0) {
-      }
-      if (tmpSwitchCaseToStart <= 1) {
-      }
-      if (tmpSwitchCaseToStart <= 2) {
-        break tmpSwitchBreak;
-      }
-    }
-  }
-};
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasThis = this;
-  let t = $$0;
-  let e = $$1;
-  let r = $$2;
-  debugger;
-  const tmpSwitchValue = tmpPrevalAliasThis.state;
-  let tmpSwitchCaseToStart = 2;
-  const tmpBinLhs = Yt.PARSING;
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpBinLhs$1 = Yt.PARSED;
-    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    } else {
-    }
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-  return undefined;
-};
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -136,13 +77,17 @@ const a = function($$0,$$1,$$2 ) {
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 Yt
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

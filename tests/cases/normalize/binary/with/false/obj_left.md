@@ -41,6 +41,7 @@ $(x in false);
 $(x instanceof false);
 `````
 
+
 ## Settled
 
 
@@ -104,6 +105,7 @@ const tmpCalleeParam$1 /*:boolean*/ = x instanceof false;
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -162,113 +164,6 @@ $(x in false);
 $(x instanceof false);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    return $(`toString`);
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-const arr = [
-  x ** false,
-  x * false,
-  x / false,
-  x % false,
-  x + false,
-  x - false,
-  x << false,
-  x >> false,
-  x >>> false,
-  x < false,
-  x > false,
-  x <= false,
-  x >= false,
-  x == false,
-  x != false,
-  x === false,
-  x !== false,
-  x & false,
-  x ^ false,
-  x | false,
-];
-$(arr);
-$(x in false);
-$(x instanceof false);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    const tmpReturnArg = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-const tmpArrElement = x ** 0;
-const tmpArrElement$1 = x * 0;
-const tmpArrElement$3 = x / 0;
-const tmpArrElement$5 = x % 0;
-const tmpArrElement$7 = x + false;
-const tmpArrElement$9 = x - 0;
-const tmpArrElement$11 = x << 0;
-const tmpArrElement$13 = x >> 0;
-const tmpArrElement$15 = x >>> 0;
-const tmpArrElement$17 = x < 0;
-const tmpArrElement$19 = x > 0;
-const tmpArrElement$21 = x <= 0;
-const tmpArrElement$23 = x >= 0;
-const tmpArrElement$25 = x == false;
-const tmpArrElement$27 = x != false;
-const tmpArrElement$29 = x === false;
-const tmpArrElement$31 = x !== false;
-x & 0;
-const tmpArrElement$33 = 0;
-const tmpArrElement$35 = x ^ 0;
-const tmpArrElement$37 = x | 0;
-const arr = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpCalleeParam = x in false;
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = x instanceof false;
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -312,11 +207,15 @@ const v = a instanceof false;
 $( v );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'valueOf'

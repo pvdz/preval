@@ -16,6 +16,7 @@ for (let xyz = (a = delete $(arg)[$("y")]); ; $(1)) $(xyz);
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,37 +45,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-{
-  let xyz = (a = delete $(arg)[$(`y`)]);
-  while (true) {
-    $(xyz);
-    $(1);
-  }
-}
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let xyz = a;
-while (true) {
-  $(xyz);
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +60,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- computed property access of an ident where the property ident is not recorded;
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }
@@ -131,6 +112,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- computed property access of an ident where the property ident is not recorded;

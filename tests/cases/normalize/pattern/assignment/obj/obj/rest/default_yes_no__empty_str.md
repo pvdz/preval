@@ -13,6 +13,7 @@
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,33 +49,6 @@ y = $objPatternRest(tmpCalleeParam$1, [], undefined);
 $(y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: { ...y } = $({ a: `pass` }) } = ``);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = ``;
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: `pass` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const tmpCalleeParam$1 = objPatternAfterDefault;
-const tmpCalleeParam$3 = [];
-y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,13 +70,17 @@ y = $objPatternRest( b, f, undefined );
 $( y );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 y
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '"pass"' }

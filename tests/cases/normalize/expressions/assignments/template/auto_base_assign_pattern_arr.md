@@ -16,6 +16,7 @@ $(`before  ${(a = [b] = $([$(2)]))}  after`);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ $(tmpCalleeParam);
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,37 +44,6 @@ $(`before  ${tmpNestedAssignArrPatternRhs}  after`);
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce((a = [b] = $([$(2)])), `string`) + `  after`);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-const tmpArrElement = $(2);
-const tmpCalleeParam$3 = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$3);
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-a = tmpNestedAssignArrPatternRhs;
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +60,22 @@ $( g );
 $( c, e );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -109,7 +91,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

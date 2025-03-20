@@ -12,6 +12,7 @@
 $(`${`a ${$(1)} b`}`);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam$1 /*:string*/ = `a ${tmpBinBothRhs$1} b`;
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,29 +31,6 @@ $(tmpCalleeParam$1);
 $(`a ${$(1)} b`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`` + $coerce(`a ` + $coerce($(1), `string`) + ` b`, `string`) + ``);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothLhs$1 = `a `;
-const tmpCalleeParam$3 = $(1);
-const tmpBinBothRhs$1 = $coerce(tmpCalleeParam$3, `string`);
-const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-const tmpCalleeParam$1 = `${tmpStringConcatR} b`;
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +42,15 @@ const c = `a ${b} b`;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

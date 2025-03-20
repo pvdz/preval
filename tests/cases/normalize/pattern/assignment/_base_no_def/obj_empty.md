@@ -12,12 +12,14 @@
 ({ } = 1);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,28 +28,6 @@
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({} = 1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = 1;
-let objPatternCrashTest = tmpAssignObjPatternRhs === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = tmpAssignObjPatternRhs === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +36,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

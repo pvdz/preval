@@ -16,6 +16,7 @@ foo: while(true) {
 $(2);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(2);
 $(1);
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,24 +34,6 @@ $(1);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-foo: while (true) {
-  $(1);
-  break foo;
-}
-$(2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-$(2);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +43,15 @@ $( 1 );
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

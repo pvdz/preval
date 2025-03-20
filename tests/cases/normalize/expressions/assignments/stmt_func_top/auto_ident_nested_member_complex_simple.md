@@ -21,6 +21,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 $(3, b, c, 3);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -53,48 +55,6 @@ $(3, b, c, 3);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let b = { x: 1 },
-    c = { y: 2 },
-    d = 3;
-  let a = { a: 999, b: 1000 };
-  a = $(b)[$(`x`)] = $(c)[$(`y`)] = d;
-  $(a, b, c, d);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let b = { x: 1 };
-  let c = { y: 2 };
-  let d = 3;
-  let a = { a: 999, b: 1000 };
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
-  const varInitAssignLhsComputedRhs = d;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  $(tmpNestedPropAssignRhs, b, c, d);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -112,11 +72,15 @@ $( 3, a, d, 3 );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

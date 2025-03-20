@@ -13,6 +13,7 @@ const max = $(10);
 for (let i=0; i<10; i += max) $(i);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,36 +60,6 @@ if (tmpClusterSSA_i < 10) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const max = $(10);
-{
-  let i = 0;
-  while (i < 10) {
-    $(i);
-    i += max;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const max = $(10);
-let i = 0;
-while (true) {
-  const tmpIfTest = i < 10;
-  if (tmpIfTest) {
-    $(i);
-    i = i + max;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -113,11 +85,15 @@ if (c) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

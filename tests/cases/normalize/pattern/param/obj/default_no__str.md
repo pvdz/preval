@@ -15,12 +15,14 @@ function f({}) {
 $(f('abc', 10));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`ok`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,42 +31,6 @@ $(`ok`);
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {} = tmpParamBare;
-  return `ok`;
-};
-$(f(`abc`, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternCrashTest = bindingPatternObjRoot === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = bindingPatternObjRoot === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
-    return `ok`;
-  } else {
-    return `ok`;
-  }
-};
-const tmpCalleeParam = f(`abc`, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +39,15 @@ With rename=true
 $( "ok" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'ok'

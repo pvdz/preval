@@ -16,6 +16,7 @@ $(!b);
 $(!a);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ $(b);
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,34 +44,6 @@ $(tmpBinBothLhs$1 !== $(2));
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(1) === $(2);
-$(!a);
-const b = $(1) === $(2);
-$(!b);
-$(!a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-const a = tmpBinBothLhs === tmpBinBothRhs;
-const tmpCalleeParam = !a;
-$(tmpCalleeParam);
-const tmpBinBothLhs$1 = $(1);
-const tmpBinBothRhs$1 = $(2);
-const b = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-const tmpCalleeParam$1 = !b;
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = !a;
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +60,15 @@ $( f );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

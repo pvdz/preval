@@ -16,12 +16,14 @@ x = 'foo'.length;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,23 +32,6 @@ $(3);
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 10;
-x = `foo`.length;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 10;
-x = `foo`.length;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +40,15 @@ With rename=true
 $( 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

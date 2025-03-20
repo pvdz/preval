@@ -16,6 +16,7 @@ $($(100) + (a = delete ($(1), $(2), arg).y));
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ $(tmpCalleeParam);
 $(a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,32 +45,6 @@ $(tmpBinBothLhs + a);
 $(a, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$($(100) + (a = delete ($(1), $(2), arg).y));
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(100);
-$(1);
-$(2);
-const tmpDeleteObj = arg;
-a = delete tmpDeleteObj.y;
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +60,15 @@ $( d );
 $( c, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

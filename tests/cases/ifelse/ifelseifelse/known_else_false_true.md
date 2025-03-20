@@ -25,12 +25,14 @@ if (condition) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`a`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,49 +41,6 @@ $(`a`);
 $(`a`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let condition = false;
-const f = function () {
-  debugger;
-  if (condition) {
-    $(`a`);
-  } else {
-    $(`b`);
-  }
-};
-if (condition) {
-  f();
-} else {
-  condition = true;
-  f();
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let condition = false;
-const f = function () {
-  debugger;
-  if (condition) {
-    $(`a`);
-    return undefined;
-  } else {
-    $(`b`);
-    return undefined;
-  }
-};
-if (condition) {
-  f();
-} else {
-  condition = true;
-  f();
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +49,15 @@ With rename=true
 $( "a" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

@@ -14,6 +14,7 @@ for (a = arguments; ; $(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,30 +36,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  a = arguments;
-  while (true) {
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = arguments;
-while (true) {
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,13 +47,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 arguments
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

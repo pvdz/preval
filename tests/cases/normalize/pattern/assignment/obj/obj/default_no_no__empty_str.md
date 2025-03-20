@@ -13,6 +13,7 @@
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if (objPatternCrashTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,34 +50,6 @@ if (objPatternCrashTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({
-  x: {},
-} = ``);
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = ``;
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternNoDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-  $(`bad`);
-} else {
-  $(`bad`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +72,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

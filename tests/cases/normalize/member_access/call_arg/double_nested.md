@@ -13,6 +13,7 @@ const obj = {a: {b: {c: $()}}};
 $(obj.a.b.c);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpObjLitVal$3 /*:unknown*/ = $();
 $(tmpObjLitVal$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,27 +30,6 @@ $(tmpObjLitVal$3);
 $($());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { a: { b: { c: $() } } };
-$(obj.a.b.c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$3 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-const tmpCompObj$1 = obj.a;
-const tmpCompObj = tmpCompObj$1.b;
-const tmpCalleeParam = tmpCompObj.c;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +39,15 @@ const a = $();
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

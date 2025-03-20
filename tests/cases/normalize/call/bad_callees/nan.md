@@ -14,6 +14,7 @@ NaN();
 $('after');
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(`before`);
 NaN();
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`NaN()\``;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,23 +34,6 @@ NaN();
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`NaN()\``;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`before`);
-NaN();
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`before`);
-NaN();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`NaN()\``;
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +44,15 @@ NaN.undefined();
 throw "[Preval]: Call expression with illegal callee must crash before this line ; `NaN()`";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before'

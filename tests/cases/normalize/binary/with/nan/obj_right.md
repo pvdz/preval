@@ -41,6 +41,7 @@ $(NaN in x);
 $(NaN instanceof x);
 `````
 
+
 ## Settled
 
 
@@ -104,6 +105,7 @@ const tmpCalleeParam$1 /*:boolean*/ = NaN instanceof x;
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -162,123 +164,6 @@ $(NaN in x);
 $(NaN instanceof x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    return $(`toString`);
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-const arr = [
-  NaN ** x,
-  NaN * x,
-  NaN / x,
-  NaN % x,
-  NaN + x,
-  NaN - x,
-  NaN << x,
-  NaN >> x,
-  NaN >>> x,
-  NaN < x,
-  NaN > x,
-  NaN <= x,
-  NaN >= x,
-  NaN == x,
-  NaN != x,
-  NaN === x,
-  NaN !== x,
-  NaN & x,
-  NaN ^ x,
-  NaN | x,
-];
-$(arr);
-$(NaN in x);
-$(NaN instanceof x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    const tmpReturnArg = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-const tmpArrElement = NaN ** x;
-x * 0;
-const tmpArrElement$1 = NaN;
-x * 0;
-const tmpArrElement$3 = NaN;
-x * 0;
-const tmpArrElement$5 = NaN;
-const tmpArrElement$7 = NaN + x;
-x * 0;
-const tmpArrElement$9 = NaN;
-const tmpArrElement$11 = 0 << x;
-const tmpArrElement$13 = 0 >> x;
-const tmpArrElement$15 = 0 >>> x;
-x * 0;
-const tmpArrElement$17 = false;
-x * 0;
-const tmpArrElement$19 = false;
-x * 0;
-const tmpArrElement$21 = false;
-x * 0;
-const tmpArrElement$23 = false;
-x * 0;
-const tmpArrElement$25 = false;
-x * 0;
-const tmpArrElement$27 = true;
-const tmpArrElement$29 = false;
-const tmpArrElement$31 = true;
-x & 0;
-const tmpArrElement$33 = 0;
-const tmpArrElement$35 = 0 ^ x;
-const tmpArrElement$37 = 0 | x;
-const arr = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpCalleeParam = NaN in x;
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = NaN instanceof x;
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -322,11 +207,15 @@ const l = NaN instanceof a;
 $( l );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'valueOf'

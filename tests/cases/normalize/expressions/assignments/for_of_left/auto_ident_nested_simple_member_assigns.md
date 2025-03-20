@@ -17,6 +17,7 @@ for ((a = b.x = b.x = b.x = b.x = b.x = b.x = c).x of $({ x: 1 }));
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -72,65 +74,6 @@ while (true) {
 $(a, b, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = 3;
-let a = { a: 999, b: 1000 };
-{
-  let tmpForOfGen = $forOf($({ x: 1 }));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      (a = b.x = b.x = b.x = b.x = b.x = b.x = c).x = tmpForOfNext.value;
-    }
-  }
-}
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = 3;
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-let tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const varInitAssignLhsComputedRhs$7 = c;
-    b.x = varInitAssignLhsComputedRhs$7;
-    const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-    b.x = varInitAssignLhsComputedRhs$5;
-    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$3;
-    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-    b.x = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    b.x = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-    let tmpAssignMemLhsObj = a;
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
-}
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -165,11 +108,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( a, e, 3 );
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -182,7 +136,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

@@ -17,6 +17,7 @@ if (y) {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if (y) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,31 +45,6 @@ if (x | 32) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(3);
-const y = x | 32;
-if (y) {
-  x = x ^ 32;
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(3);
-const y = x | 32;
-if (y) {
-  x = x ^ 32;
-  $(x);
-} else {
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +61,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

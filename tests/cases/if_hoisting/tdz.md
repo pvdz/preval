@@ -19,12 +19,14 @@ $(x);
 let fail = "too late";
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: if (fail) {`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,28 +35,6 @@ throw `Preval: TDZ triggered for this read: if (fail) {`;
 throw `Preval: TDZ triggered for this read: if (fail) {`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 0;
-if ($throwTDZError(`Preval: TDZ triggered for this read: if (fail) {`)) {
-  x = $(`do not reach me`);
-} else {
-  x = $(`do not reach me`);
-}
-$(x);
-let fail = `too late`;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 0;
-throw `Preval: TDZ triggered for this read: if (fail) {`;
-let fail = 0;
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +43,15 @@ With rename=true
 throw "Preval: TDZ triggered for this read: if (fail) {";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")

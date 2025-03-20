@@ -16,6 +16,7 @@ $`before ${($(b)["c"] = $(b)[$("d")])} after`;
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,32 +48,6 @@ $([`before `, ` after`], varInitAssignLhsComputedRhs);
 $({ a: 999, b: 1000 }, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], ($(b)[`c`] = $(b)[$(`d`)]));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-const varInitAssignLhsComputedObj = $(b);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-$(tmpCalleeParam, varInitAssignLhsComputedRhs);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +71,15 @@ const g = {
 $( g, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

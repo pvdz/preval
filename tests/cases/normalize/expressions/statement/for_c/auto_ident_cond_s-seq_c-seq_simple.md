@@ -14,6 +14,7 @@ for (; $(1); (10, 20, 30) ? (40, 50, $(60)) : $($(100)));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,40 +51,6 @@ if ($(1)) {
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  while ($(1)) {
-    (10, 20, 30) ? (40, 50, $(60)) : $($(100));
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = 30;
-    if (tmpIfTest$1) {
-      $(60);
-    } else {
-      const tmpCalleeParam = $(100);
-      $(tmpCalleeParam);
-    }
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -108,11 +76,15 @@ const c = {
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

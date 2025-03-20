@@ -16,6 +16,7 @@ if (atest) $('a');
 else $('b');
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if (atest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,32 +45,6 @@ if ((x & $(1)) === 0) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(1);
-const a = x & $(1);
-const atest = a === 0;
-if (atest) $(`a`);
-else $(`b`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(1);
-const tmpBinBothLhs = x;
-const tmpBinBothRhs = $(1);
-const a = tmpBinBothLhs & tmpBinBothRhs;
-const atest = a === 0;
-if (atest) {
-  $(`a`);
-} else {
-  $(`b`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +62,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

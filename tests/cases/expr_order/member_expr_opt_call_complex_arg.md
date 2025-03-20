@@ -15,6 +15,7 @@ var a, x;
 a.b?.(x.y);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ a.b?.(x.y);
 undefined.b;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,32 +33,6 @@ undefined.b;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-a.b?.(x.y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-const tmpChainRootProp = a;
-const tmpChainElementObject = tmpChainRootProp.b;
-const tmpIfTest = tmpChainElementObject != null;
-if (tmpIfTest) {
-  const tmpCalleeParam = tmpChainElementObject;
-  const tmpCalleeParam$1 = tmpChainRootProp;
-  const tmpCalleeParam$3 = x.y;
-  const tmpChainElementCall = $dotCall(tmpCalleeParam, tmpCalleeParam$1, `b`, tmpCalleeParam$3);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +42,15 @@ undefined.b;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

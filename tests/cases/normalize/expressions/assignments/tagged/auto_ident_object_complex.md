@@ -14,6 +14,7 @@ $`before ${(a = { x: $(1), y: 2, z: $(3) })} after`;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const a /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 $(tmpCalleeParam, a);
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,29 +40,6 @@ $(tmpCalleeParam, a);
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = { x: $(1), y: 2, z: $(3) }));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$1 = 2;
-const tmpObjLitVal$3 = $(3);
-a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +57,15 @@ $( c, d );
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

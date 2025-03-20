@@ -19,6 +19,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ $(tmpClusterSSA_a);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,38 +40,6 @@ $($({ a: 1, b: 2 }).a);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  {
-    let { a: a } = { a: 999, b: 1000 };
-    ({ a: a } = $({ a: 1, b: 2 }));
-    $(a);
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let bindingPatternObjRoot = { a: 999, b: 1000 };
-  let a = bindingPatternObjRoot.a;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-  a = tmpAssignObjPatternRhs.a;
-  $(a);
-  return undefined;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +55,15 @@ $( c );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }

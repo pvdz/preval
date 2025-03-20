@@ -13,6 +13,7 @@ const spy = {toString(){ $('pass'); }, valueOf(){ $('fail'); }};
 spy in Number;
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const spy /*:object*/ = {
 spy in Number;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,41 +48,6 @@ spy in Number;
 } in Number);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`pass`);
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-  },
-};
-spy in Number;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`pass`);
-    return undefined;
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-};
-spy in Number;
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +68,15 @@ const a = {
 a in Number;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

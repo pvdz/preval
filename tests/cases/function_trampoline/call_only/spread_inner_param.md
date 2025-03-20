@@ -16,6 +16,7 @@ const f = function(x) {
 f(y); // In this test, this is the call we expect to be replaced by trampoline inlining...
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ f(y); // In this test, this is the call we expect to be replaced by trampoline i
 const y /*:unknown*/ = $(`pass`);
 $(...y);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,32 +34,6 @@ const y = $(`pass`);
 $(...y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = $(`pass`);
-const f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(...x);
-};
-f(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const y = $(`pass`);
-const f = function ($$0) {
-  let x = $$0;
-  debugger;
-  $(...x);
-  return undefined;
-};
-f(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +43,15 @@ const a = $( "pass" );
 $( ...a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

@@ -24,6 +24,7 @@ $(typeof Math.random($spy('Math.random')));
 $(typeof Math.round($spy('Math.round')));
 `````
 
+
 ## Settled
 
 
@@ -53,6 +54,7 @@ $coerce(tmpCalleeParam$29, `number`);
 $(`number`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -78,57 +80,6 @@ $coerce($spy(`Math.round`), `number`);
 $(`number`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof Math.log10($spy(`Math.log10`)));
-$(typeof Math.log1p($spy(`Math.log1p`)));
-$(typeof Math.log2($spy(`Math.log2`)));
-$(typeof Math.max($spy(`Math.max`)));
-$(typeof Math.min($spy(`Math.min`)));
-$(typeof Math.pow($spy(`Math.pow`)));
-$(typeof Math.random($spy(`Math.random`)));
-$(typeof Math.round($spy(`Math.round`)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = $spy(`Math.log10`);
-const tmpUnaryArg = $Math_log10(tmpCalleeParam$1);
-const tmpCalleeParam = typeof tmpUnaryArg;
-$(tmpCalleeParam);
-const tmpCalleeParam$5 = $spy(`Math.log1p`);
-const tmpUnaryArg$1 = $Math_log1p(tmpCalleeParam$5);
-const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$9 = $spy(`Math.log2`);
-const tmpUnaryArg$3 = $Math_log2(tmpCalleeParam$9);
-const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-$(tmpCalleeParam$7);
-const tmpCalleeParam$13 = $spy(`Math.max`);
-const tmpUnaryArg$5 = $Math_max(tmpCalleeParam$13);
-const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-$(tmpCalleeParam$11);
-const tmpCalleeParam$17 = $spy(`Math.min`);
-const tmpUnaryArg$7 = $Math_min(tmpCalleeParam$17);
-const tmpCalleeParam$15 = typeof tmpUnaryArg$7;
-$(tmpCalleeParam$15);
-const tmpCalleeParam$21 = $spy(`Math.pow`);
-const tmpUnaryArg$9 = $Math_pow(tmpCalleeParam$21);
-const tmpCalleeParam$19 = typeof tmpUnaryArg$9;
-$(tmpCalleeParam$19);
-const tmpCalleeParam$25 = $spy(`Math.random`);
-const tmpUnaryArg$11 = $Math_random(tmpCalleeParam$25);
-const tmpCalleeParam$23 = typeof tmpUnaryArg$11;
-$(tmpCalleeParam$23);
-const tmpCalleeParam$29 = $spy(`Math.round`);
-const tmpUnaryArg$13 = $Math_round(tmpCalleeParam$29);
-const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
-$(tmpCalleeParam$27);
-`````
 
 ## PST Settled
 With rename=true
@@ -159,11 +110,28 @@ $coerce( g, "number" );
 $( "number" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log10
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log1p
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log2
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_round
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Math.log10', 'Math.log10']
@@ -198,13 +166,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log10
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log1p
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log2
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_round

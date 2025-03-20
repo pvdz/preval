@@ -14,6 +14,7 @@ throw $($(1)) && 2;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if (tmpThrowArg) {
 throw tmpThrowArg;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,28 +40,6 @@ if (tmpThrowArg) {
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-throw $($(1)) && 2;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(1);
-let tmpThrowArg = $(tmpCalleeParam);
-if (tmpThrowArg) {
-  tmpThrowArg = 2;
-} else {
-}
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +53,15 @@ if (b) {
 throw b;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

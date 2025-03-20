@@ -24,6 +24,7 @@ const o = {
 $(o.f());
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ $(`pass`);
 $(`poss`);
 $(`You got it!`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,39 +46,6 @@ $(`poss`);
 $(`You got it!`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  $(`piss`);
-  $(`pass`);
-  $(`poss`);
-  return tmpPrevalAliasThis.foo;
-};
-const o = { f: f, foo: `You got it!` };
-$(o.f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  $(`piss`);
-  $(`pass`);
-  $(`poss`);
-  const tmpReturnArg = tmpPrevalAliasThis.foo;
-  return tmpReturnArg;
-};
-const o = { f: f, foo: `You got it!` };
-const tmpCalleeParam = o.f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +57,15 @@ $( "poss" );
 $( "You got it!" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'piss'

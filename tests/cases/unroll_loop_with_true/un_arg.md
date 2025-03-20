@@ -13,12 +13,14 @@ const x = typeof $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`boolean`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ $(`boolean`);
 $(`boolean`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = typeof $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = `boolean`;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 $( "boolean" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'boolean'

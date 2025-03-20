@@ -17,6 +17,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const a /*:unknown*/ = $(1);
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,26 +34,6 @@ $(a);
 $($(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  let a = undefined;
-  a = $(1);
-  $(a);
-  break;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-a = $(1);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +43,15 @@ const a = $( 1 );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -18,6 +18,7 @@ if ($) {
 $(x + $('prevent inlining'));
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,34 +45,6 @@ if (!$) {
 $(tmpBinBothLhs + $(`prevent inlining`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-if ($) {
-  x = 1;
-} else {
-  x = 2;
-}
-$(x + $(`prevent inlining`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-if ($) {
-  x = 1;
-} else {
-  x = 2;
-}
-const tmpBinBothLhs = x;
-const tmpBinBothRhs = $(`prevent inlining`);
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +62,15 @@ const c = a + b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'prevent inlining'

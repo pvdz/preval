@@ -24,6 +24,7 @@ for (let x of (a = { x, y } = ($(x), $(y), { x: $(3), y: $(4) })));
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpNestedAssignObjPatternRhs, 1, tmpObjLitVal$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -69,55 +71,6 @@ while (true) {
 $(tmpNestedAssignObjPatternRhs, 1, tmpObjLitVal$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-{
-  let tmpForOfGen = $forOf((a = { x: x$1, y: y } = ($(x$1), $(y), { x: $(3), y: $(4) })));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      let x$1 = tmpForOfNext.value;
-    }
-  }
-}
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-$(x$1);
-$(y);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x$1 = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
-a = tmpNestedAssignObjPatternRhs;
-let tmpCalleeParam = a;
-let tmpForOfGen = $forOf(a);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    let x$2 = tmpForOfNext.value;
-  }
-}
-$(a, x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -146,11 +99,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( c, 1, b );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None (except for the 1 globals expected by the test)
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')
@@ -162,6 +125,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

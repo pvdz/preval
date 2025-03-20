@@ -27,6 +27,7 @@ $(_THROW())
 $(_THROW())
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ _THROW();
 $(1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -78,51 +80,6 @@ _THROW();
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const _THROW = function () {
-  debugger;
-  $(`do`);
-  $(`not`);
-  $(`inline`);
-  $(`please`);
-  if ($) return 1;
-  throw new Error(`always throws`);
-};
-$(_THROW());
-$(_THROW());
-$(_THROW());
-$(_THROW());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const _THROW = function () {
-  debugger;
-  $(`do`);
-  $(`not`);
-  $(`inline`);
-  $(`please`);
-  if ($) {
-    return 1;
-  } else {
-    const tmpThrowArg = new Error(`always throws`);
-    throw tmpThrowArg;
-  }
-};
-const tmpCalleeParam = _THROW();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = _THROW();
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = _THROW();
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = _THROW();
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -152,11 +109,15 @@ a();
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'do'

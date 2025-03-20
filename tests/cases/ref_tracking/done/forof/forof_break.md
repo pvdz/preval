@@ -23,6 +23,7 @@ for (const x of arr) {
 $('after');
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -44,7 +45,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___15__) {
 $(`after`);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                  | reads      | read by     | overWrites     | overwritten by
 arr:

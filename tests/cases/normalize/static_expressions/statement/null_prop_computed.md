@@ -15,6 +15,7 @@ $(null[$('keep me')]);
 $('fail, DCE me');
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(`keep me`);
 null.eliminatedComputedProp;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,22 +35,6 @@ null.eliminatedComputedProp;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(null[$(`keep me`)]);
-$(`fail, DCE me`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`keep me`);
-const tmpCalleeParam = null.eliminatedComputedProp;
-throw `[Preval]: Can not reach here`;
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +45,15 @@ null.eliminatedComputedProp;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'keep me'

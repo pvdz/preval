@@ -30,6 +30,7 @@ $(typeof Math.SQRT1_2, 'Math.SQRT1_2');
 $(typeof Math.SQRT2, 'Math.SQRT2');
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ $(`number`, `Math.SQRT1_2`);
 $(`number`, `Math.SQRT2`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -86,79 +88,6 @@ $(`number`, `Math.SQRT1_2`);
 $(`number`, `Math.SQRT2`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof Object.is($spy(`Object.is`)));
-$(typeof Object.isFrozen($spy(`Object.isFrozen`)));
-$(typeof Object.isSealed($spy(`Object.isSealed`)));
-$(typeof String.fromCharCode($spy(`String.fromCharCode`)));
-$(typeof String.fromCodePoint($spy(`String.fromCodePoint`)));
-$(typeof String.raw($spy(`String.raw`)));
-$(typeof Math.E, `Math.E`);
-$(typeof Math.LN10, `Math.LN10`);
-$(typeof Math.LN2, `Math.LN2`);
-$(typeof Math.LOG10E, `Math.LOG10E`);
-$(typeof Math.LOG2E, `Math.LOG2E`);
-$(typeof Math.PI, `Math.PI`);
-$(typeof Math.SQRT1_2, `Math.SQRT1_2`);
-$(typeof Math.SQRT2, `Math.SQRT2`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = $spy(`Object.is`);
-const tmpUnaryArg = $Object_is(tmpCalleeParam$1);
-const tmpCalleeParam = typeof tmpUnaryArg;
-$(tmpCalleeParam);
-const tmpCalleeParam$5 = $spy(`Object.isFrozen`);
-const tmpUnaryArg$1 = $Object_isFrozen(tmpCalleeParam$5);
-const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$9 = $spy(`Object.isSealed`);
-const tmpUnaryArg$3 = $Object_isSealed(tmpCalleeParam$9);
-const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-$(tmpCalleeParam$7);
-const tmpCalleeParam$13 = $spy(`String.fromCharCode`);
-const tmpUnaryArg$5 = $String_fromCharCode(tmpCalleeParam$13);
-const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-$(tmpCalleeParam$11);
-const tmpCalleeParam$17 = $spy(`String.fromCodePoint`);
-const tmpUnaryArg$7 = $String_fromCodePoint(tmpCalleeParam$17);
-const tmpCalleeParam$15 = typeof tmpUnaryArg$7;
-$(tmpCalleeParam$15);
-const tmpCalleeParam$21 = $spy(`String.raw`);
-const tmpUnaryArg$9 = $String_raw(tmpCalleeParam$21);
-const tmpCalleeParam$19 = typeof tmpUnaryArg$9;
-$(tmpCalleeParam$19);
-const tmpUnaryArg$11 = $Math_E;
-const tmpCalleeParam$23 = typeof tmpUnaryArg$11;
-$(tmpCalleeParam$23, `Math.E`);
-const tmpUnaryArg$13 = $Math_LN10;
-const tmpCalleeParam$25 = typeof tmpUnaryArg$13;
-$(tmpCalleeParam$25, `Math.LN10`);
-const tmpUnaryArg$15 = $Math_LN2;
-const tmpCalleeParam$27 = typeof tmpUnaryArg$15;
-$(tmpCalleeParam$27, `Math.LN2`);
-const tmpUnaryArg$17 = $Math_LOG10E;
-const tmpCalleeParam$29 = typeof tmpUnaryArg$17;
-$(tmpCalleeParam$29, `Math.LOG10E`);
-const tmpUnaryArg$19 = $Math_LOG2E;
-const tmpCalleeParam$31 = typeof tmpUnaryArg$19;
-$(tmpCalleeParam$31, `Math.LOG2E`);
-const tmpUnaryArg$21 = $Math_PI;
-const tmpCalleeParam$33 = typeof tmpUnaryArg$21;
-$(tmpCalleeParam$33, `Math.PI`);
-const tmpUnaryArg$23 = $Math_SQRT1_2;
-const tmpCalleeParam$35 = typeof tmpUnaryArg$23;
-$(tmpCalleeParam$35, `Math.SQRT1_2`);
-const tmpUnaryArg$25 = $Math_SQRT2;
-const tmpCalleeParam$37 = typeof tmpUnaryArg$25;
-$(tmpCalleeParam$37, `Math.SQRT2`);
-`````
 
 ## PST Settled
 With rename=true
@@ -189,11 +118,25 @@ $( "number", "Math.SQRT1_2" );
 $( "number", "Math.SQRT2" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_is
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isFrozen
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isSealed
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_fromCodePoint
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_raw
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Object.is', 'Object.is']
@@ -216,10 +159,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_is
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isFrozen
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isSealed
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_fromCodePoint
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_raw

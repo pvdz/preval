@@ -13,12 +13,14 @@ let x = `${false}`;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`false`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,24 +29,6 @@ $(`false`);
 $(`false`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = `` + $coerce(false, `string`) + ``;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $coerce(false, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = $coerce(tmpBinLhs, `plustr`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +37,15 @@ With rename=true
 $( "false" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'false'

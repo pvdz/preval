@@ -16,6 +16,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpObjLitVal$3);
 $(tmpClusterSSA_tmpReturnArg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,52 +34,6 @@ $(tmpClusterSSA_tmpReturnArg);
 $($($()));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const obj = { a: { b: { c: $() } } };
-  return $(obj?.a?.b?.c);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpObjLitVal$3 = $();
-  const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
-  const tmpObjLitVal = { b: tmpObjLitVal$1 };
-  const obj = { a: tmpObjLitVal };
-  let tmpCalleeParam = undefined;
-  const tmpChainRootProp = obj;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.a;
-    const tmpIfTest$1 = tmpChainElementObject != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject$1 = tmpChainElementObject.b;
-      const tmpIfTest$3 = tmpChainElementObject$1 != null;
-      if (tmpIfTest$3) {
-        const tmpChainElementObject$3 = tmpChainElementObject$1.c;
-        tmpCalleeParam = tmpChainElementObject$3;
-      } else {
-      }
-    } else {
-    }
-  } else {
-  }
-  const tmpReturnArg = $(tmpCalleeParam);
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +44,15 @@ const b = $( a );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

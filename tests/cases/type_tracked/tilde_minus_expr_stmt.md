@@ -14,12 +14,14 @@ x >> NaN;
 $('finished');
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`finished`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,23 +30,6 @@ $(`finished`);
 $(`finished`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = ~-4;
-x >> NaN;
-$(`finished`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = 3;
-x >> 0;
-$(`finished`);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +38,15 @@ With rename=true
 $( "finished" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'finished'

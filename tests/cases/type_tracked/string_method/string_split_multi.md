@@ -12,6 +12,7 @@
 $('hello world'.split('', $, unknown));
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:array*/ = [`h`, `e`, `l`, `l`, `o`, ` `, `w`, `o`, `r`, 
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,20 +31,6 @@ unknown;
 $([`h`, `e`, `l`, `l`, `o`, ` `, `w`, `o`, `r`, `l`, `d`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`hello world`.split(``, $, unknown));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `hello world`.split(``, $, unknown);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,13 +41,17 @@ const a = [ "h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

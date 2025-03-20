@@ -16,6 +16,7 @@ a = (p.x, $(q)).y === ((b = c.x), $(b)).y;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const tmpClusterSSA_a /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,38 +39,6 @@ const tmpBinBothLhs = $(30).y;
 $(tmpBinBothLhs === $({ y: 10 }).y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 0,
-  b = 1,
-  c = { x: { y: 10 } },
-  p = { x: 20 },
-  q = 30;
-a = (p.x, $(q)).y === ((b = c.x), $(b)).y;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 0;
-let b = 1;
-const tmpObjLitVal = { y: 10 };
-let c = { x: tmpObjLitVal };
-let p = { x: 20 };
-let q = 30;
-p.x;
-const tmpCompObj = $(q);
-const tmpBinBothLhs = tmpCompObj.y;
-b = c.x;
-const tmpCompObj$1 = $(b);
-const tmpBinBothRhs = tmpCompObj$1.y;
-a = tmpBinBothLhs === tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +53,15 @@ const f = b === e;
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 30

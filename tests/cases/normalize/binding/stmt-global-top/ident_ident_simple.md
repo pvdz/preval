@@ -14,12 +14,14 @@ let a = b = c;
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(3, 3, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,26 +30,6 @@ $(3, 3, 3);
 $(3, 3, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 2,
-  c = 3;
-let a = (b = c);
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 2;
-let c = 3;
-b = c;
-let a = b;
-$(b, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +38,15 @@ With rename=true
 $( 3, 3, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3, 3, 3

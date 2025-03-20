@@ -24,6 +24,7 @@ while (true) {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ if (tmpClusterSSA_x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -64,39 +66,6 @@ if (tmpClusterSSA_x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(`a`);
-$(x);
-x = $(`b`);
-while (true) {
-  if (x) {
-    x = $(0);
-  } else {
-    break;
-  }
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(`a`);
-$(x);
-x = $(`b`);
-while (true) {
-  if (x) {
-    x = $(0);
-  } else {
-    break;
-  }
-}
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -122,11 +91,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

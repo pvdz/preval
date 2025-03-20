@@ -13,6 +13,7 @@ const a = {};
 $(a.b.c?.d);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,32 +42,6 @@ if (tmpChainElementObject$1 == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = {};
-$(a.b.c?.d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = {};
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = a;
-const tmpChainElementObject = tmpChainRootProp.b;
-const tmpChainElementObject$1 = tmpChainElementObject.c;
-const tmpIfTest = tmpChainElementObject$1 != null;
-if (tmpIfTest) {
-  const tmpChainElementObject$3 = tmpChainElementObject$1.d;
-  tmpCalleeParam = tmpChainElementObject$3;
-  $(tmpChainElementObject$3);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +59,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

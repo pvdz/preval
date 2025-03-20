@@ -27,6 +27,7 @@ function f() {
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ const f /*:()=>unknown*/ = function () {
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,48 +64,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpBinBothLhs$253 = `Parser error! ` + desc$1;
-  let tmpBinBothRhs$253 = undefined;
-  const tmpIfTest$1787 = lastType === 2097173;
-  if (tmpIfTest$1787) {
-    tmpBinBothRhs$253 = ` (at EOF)`;
-  } else {
-    tmpBinBothRhs$253 = ``;
-  }
-  const fullErrmsg = tmpBinBothLhs$253 + tmpBinBothRhs$253;
-  _THROW(fullErrmsg, tokenStart$5, tokenStop$5, ``);
-  throw `Preval: the previous call always throws`;
-};
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpStringConcatL = $coerce(desc$1, `plustr`);
-  const tmpBinBothLhs$253 = `Parser error! ${tmpStringConcatL}`;
-  let tmpBinBothRhs$253 = undefined;
-  const tmpIfTest$1787 = lastType === 2097173;
-  if (tmpIfTest$1787) {
-    tmpBinBothRhs$253 = ` (at EOF)`;
-  } else {
-    tmpBinBothRhs$253 = ``;
-  }
-  const fullErrmsg = tmpBinBothLhs$253 + tmpBinBothRhs$253;
-  _THROW(fullErrmsg, tokenStart$5, tokenStop$5, ``);
-  throw `Preval: the previous call always throws`;
-};
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -126,13 +86,17 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 5 implicit global bindings:
 
 desc$1, lastType, _THROW, tokenStart$5, tokenStop$5
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

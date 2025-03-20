@@ -14,12 +14,14 @@ const tmpBinLhs = '' + tmpBinBothRhs;
 $(tmpBinLhs);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`1,,3`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,23 +30,6 @@ $(`1,,3`);
 $(`1,,3`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpBinBothRhs = [1, , 3];
-const tmpBinLhs = `` + tmpBinBothRhs;
-$(tmpBinLhs);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothRhs = [1, , 3];
-const tmpBinLhs = $coerce(tmpBinBothRhs, `plustr`);
-$(tmpBinLhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +38,15 @@ With rename=true
 $( "1,,3" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '1,,3'

@@ -18,6 +18,7 @@ function f() {
 $(f(), 'outer');
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const tmpCalleeParam /*:unknown*/ = $(10, `g`);
 $(tmpCalleeParam, `outer`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,40 +35,6 @@ $(tmpCalleeParam, `outer`);
 $($(10, `g`), `outer`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return g(10);
-};
-let g = function ($$0) {
-  let a = $$0;
-  debugger;
-  return $(a, `g`);
-};
-$(f(), `outer`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpReturnArg = g(10);
-  return tmpReturnArg;
-};
-let g = function ($$0) {
-  let a = $$0;
-  debugger;
-  const tmpReturnArg$1 = $(a, `g`);
-  return tmpReturnArg$1;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam, `outer`);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +44,15 @@ const a = $( 10, "g" );
 $( a, "outer" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10, 'g'

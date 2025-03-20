@@ -18,6 +18,7 @@ m = t;
 $(m);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const t /*:array*/ = [tmpClusterSSA_a, b];
 $(t);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,31 +39,6 @@ const b = $(20);
 $([tmpClusterSSA_a, b]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let m = undefined;
-const a = undefined;
-const tmpClusterSSA_a = $(10);
-const b = $(20);
-const t = [tmpClusterSSA_a, b];
-m = t;
-$(m);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let m = undefined;
-const a = undefined;
-const tmpClusterSSA_a = $(10);
-const b = $(20);
-const t = [tmpClusterSSA_a, b];
-m = t;
-$(t);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +50,15 @@ const c = [ a, b ];
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

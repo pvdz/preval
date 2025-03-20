@@ -14,6 +14,7 @@ let a = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -69,47 +71,6 @@ tmpBinBothLhs + tmpBinBothRhs;
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-($($(0)) || $($(1)) || $($(2))) + ($($(0)) || $($(1)) || $($(2)));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(0);
-let tmpBinBothLhs = $(tmpCalleeParam);
-if (tmpBinBothLhs) {
-} else {
-  const tmpCalleeParam$1 = $(1);
-  tmpBinBothLhs = $(tmpCalleeParam$1);
-  if (tmpBinBothLhs) {
-  } else {
-    const tmpCalleeParam$3 = $(2);
-    tmpBinBothLhs = $(tmpCalleeParam$3);
-  }
-}
-const tmpCalleeParam$5 = $(0);
-let tmpBinBothRhs = $(tmpCalleeParam$5);
-if (tmpBinBothRhs) {
-} else {
-  const tmpCalleeParam$7 = $(1);
-  tmpBinBothRhs = $(tmpCalleeParam$7);
-  if (tmpBinBothRhs) {
-  } else {
-    const tmpCalleeParam$9 = $(2);
-    tmpBinBothRhs = $(tmpCalleeParam$9);
-  }
-}
-tmpBinBothLhs + tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -155,11 +116,15 @@ const i = {
 $( i );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

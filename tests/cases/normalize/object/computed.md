@@ -15,6 +15,7 @@ const obj = {
 $(obj);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const obj /*:object*/ = { [tmpObjLitPropKey]: tmpObjLitPropVal };
 $(obj);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,23 +36,6 @@ const tmpObjLitPropVal = $(2);
 $({ [tmpObjLitPropKey]: tmpObjLitPropVal });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { [$(1)]: $(2) };
-$(obj);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitPropKey = $(1);
-const tmpObjLitPropVal = $(2);
-const obj = { [tmpObjLitPropKey]: tmpObjLitPropVal };
-$(obj);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +47,15 @@ const c = { [ a ]: b };
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

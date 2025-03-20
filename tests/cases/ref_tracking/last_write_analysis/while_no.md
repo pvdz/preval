@@ -23,6 +23,7 @@ while (true) {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,39 +65,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(`a`);
-$(x);
-x = $(`b`);
-while (true) {
-  if ($) {
-    $(`123`);
-  } else {
-    break;
-  }
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(`a`);
-$(x);
-x = $(`b`);
-while (true) {
-  if ($) {
-    $(`123`);
-  } else {
-    break;
-  }
-}
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -121,11 +90,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support referencing this builtin in isFree: $
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'
@@ -163,6 +142,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support referencing this builtin in isFree: $

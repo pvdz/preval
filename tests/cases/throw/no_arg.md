@@ -15,12 +15,14 @@ function f(){
 $(f());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `x`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,28 +31,6 @@ throw `x`;
 throw `x`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  throw `x`;
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  throw `x`;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +39,15 @@ With rename=true
 throw "x";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ x ]>')

@@ -17,6 +17,7 @@ if (x & 8) {
 }
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,33 +47,6 @@ if (x & 8) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $spy(8);
-if (x & 8) {
-  if (x & 2) {
-    $(`it is ten`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $spy(8);
-const tmpIfTest = x & 8;
-if (tmpIfTest) {
-  const tmpIfTest$1 = x & 2;
-  if (tmpIfTest$1) {
-    $(`it is ten`);
-  } else {
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +62,15 @@ if (b) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, [8, 8]

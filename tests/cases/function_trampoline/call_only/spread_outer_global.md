@@ -17,6 +17,7 @@ f(...x); // This should NOT be inlined (for now) because we can't safely reason 
          // (In the future we could still translate this case by $(x[0]) but that'll be a very specific rule)
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const f /*:(unknown)=>undefined*/ = function ($$0) {
 f(...x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,32 +44,6 @@ const f = function (y) {
 f(...x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(`pass`);
-const f = function ($$0) {
-  let y = $$0;
-  debugger;
-  $(y);
-};
-f(...x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(`pass`);
-const f = function ($$0) {
-  let y = $$0;
-  debugger;
-  $(y);
-  return undefined;
-};
-f(...x);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +59,15 @@ const b = function($$0 ) {
 b( ...a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

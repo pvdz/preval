@@ -16,6 +16,7 @@ const o = {
 $(o.f("200", 15));
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const tmpCalleeParam /*:unknown*/ = o.f(`200`, 15);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,22 +34,6 @@ $(tmpCalleeParam);
 $({ f: $ }.f(`200`, 15));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const o = { f: $ };
-$(o.f(`200`, 15));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const o = { f: $ };
-const tmpCalleeParam = o.f(`200`, 15);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +44,15 @@ const b = a.f( "200", 15 );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '200', 15

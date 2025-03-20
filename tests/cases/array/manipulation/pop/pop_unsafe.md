@@ -20,6 +20,7 @@ ARR.push(n); // this cant be inlined now because if NOOP gets called we don't kn
 $(ARR);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ ARR.push(`c`);
 $(ARR);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,38 +52,6 @@ ARR.push(`c`);
 $(ARR);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const ARR = [`a`, `b`, `c`];
-const NOOP = function () {
-  debugger;
-  $(ARR);
-};
-const n = ARR.pop();
-$(n);
-$(NOOP);
-ARR.push(n);
-$(ARR);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const ARR = [`a`, `b`, `c`];
-const NOOP = function () {
-  debugger;
-  $(ARR);
-  return undefined;
-};
-const n = ARR.pop();
-$(n);
-$(NOOP);
-ARR.push(n);
-$(ARR);
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +69,15 @@ a.push( "c" );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'c'

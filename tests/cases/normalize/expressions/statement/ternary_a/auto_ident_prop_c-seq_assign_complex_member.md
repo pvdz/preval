@@ -16,6 +16,7 @@ let a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (varInitAssignLhsComputedRhs) {
   $(a, b);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -56,36 +58,6 @@ if (varInitAssignLhsComputedRhs) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-((1, 2, $(b)).c = $(b)[$(`d`)]) ? $(100) : $(200);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const varInitAssignLhsComputedObj = $(b);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpIfTest = varInitAssignLhsComputedRhs;
-if (tmpIfTest) {
-  $(100);
-  $(a, b);
-} else {
-  $(200);
-  $(a, b);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -114,11 +86,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

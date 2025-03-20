@@ -24,6 +24,7 @@ const f = function() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ $(`not`);
 $(`inline`);
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,54 +46,6 @@ $(`inline`);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const g = function ($$0) {
-    let a = $$0;
-    debugger;
-    $(`do`);
-    $(`not`);
-    $(`inline`);
-    $(a);
-  };
-  const h = function () {
-    debugger;
-    g(1);
-  };
-  h();
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const g = function ($$0) {
-    let a = $$0;
-    debugger;
-    $(`do`);
-    $(`not`);
-    $(`inline`);
-    $(a);
-    return undefined;
-  };
-  const h = function () {
-    debugger;
-    g(1);
-    return undefined;
-  };
-  h();
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -103,11 +57,15 @@ $( "inline" );
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'do'

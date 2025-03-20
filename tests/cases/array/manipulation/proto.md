@@ -15,6 +15,7 @@ arr.call(arr, 1);
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const arr /*:array*/ = [];
 arr.call(arr, 1);
 $(arr);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,25 +35,6 @@ arr.call(arr, 1);
 $(arr);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [];
-const push = arr.push;
-arr.call(arr, 1);
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [];
-const push = arr.push;
-arr.call(arr, 1);
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +45,15 @@ a.call( a, 1 );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

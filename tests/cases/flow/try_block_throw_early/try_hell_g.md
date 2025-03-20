@@ -20,6 +20,7 @@ try {
 considerMutated(x) // always true
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ try {
 }
 considerMutated(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,52 +46,6 @@ try {
 considerMutated(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 0;
-{
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  $finally: {
-    try {
-      fail_early;
-    } catch ($finalImplicit) {
-      x = 1;
-      throw $finalImplicit;
-    }
-  }
-  {
-    x = 1;
-  }
-  if ($implicitThrow) throw $finalCatchArg;
-  else {
-  }
-}
-considerMutated(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 0;
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
-try {
-  fail_early;
-} catch ($finalImplicit) {
-  x = 1;
-  throw $finalImplicit;
-}
-x = 1;
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-  considerMutated(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -104,13 +60,17 @@ catch (a) {
 considerMutated( 1 );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 fail_early, considerMutated
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

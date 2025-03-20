@@ -18,6 +18,7 @@ const q = f(y); // In this test, this is the call we expect to be replaced by tr
 $(q);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const q /*:unknown*/ = $(...y);
 $(q);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,35 +37,6 @@ const y = $(`pass`);
 $($(...y));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = $(`pass`);
-const f = function ($$0) {
-  let x = $$0;
-  debugger;
-  const r = $(...x);
-  return r;
-};
-const q = f(y);
-$(q);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const y = $(`pass`);
-const f = function ($$0) {
-  let x = $$0;
-  debugger;
-  const r = $(...x);
-  return r;
-};
-const q = f(y);
-$(q);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +47,15 @@ const b = $( ...a );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

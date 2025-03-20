@@ -16,6 +16,7 @@ $($(100) + (a = b?.x));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(tmpCalleeParam);
 $(1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,36 +36,6 @@ $($(100) + 1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-$($(100) + (a = b?.x));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = $(100);
-a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-} else {
-}
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +47,15 @@ $( b );
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

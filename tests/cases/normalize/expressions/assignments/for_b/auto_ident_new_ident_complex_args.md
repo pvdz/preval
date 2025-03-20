@@ -16,6 +16,7 @@ for (; (a = new $($(1), $(2))); $(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   new $(tmpCalleeParam$2, tmpCalleeParam$4);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -46,40 +48,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-{
-  while ((a = new $($(1), $(2)))) {
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpNewCallee = $;
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -96,11 +64,23 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Support referencing this builtin in isFree: $
+- Support this node type in isFree: NewExpression
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -138,8 +118,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Support referencing this builtin in isFree: $
-- Support this node type in isFree: NewExpression

@@ -28,12 +28,14 @@ $(f());
 
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`ok`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,61 +44,6 @@ $(`ok`);
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  let arrPatternSplat = undefined;
-  let arrPatternBeforeDefault = undefined;
-  let arrPatternStep = undefined;
-  let arrPatternSplat$1 = undefined;
-  if (tmpIfTest) {
-    arrPatternBeforeDefault = [`pass3`][0];
-    arrPatternStep = arrPatternBeforeDefault === undefined ? [`fail2`] : arrPatternBeforeDefault;
-    arrPatternSplat$1 = [...arrPatternStep];
-    return `ok`;
-  } else {
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  let arrPatternSplat = undefined;
-  let arrPatternBeforeDefault = undefined;
-  let arrPatternStep = undefined;
-  let arrPatternSplat$1 = undefined;
-  if (tmpIfTest) {
-    const tmpAssignRhsProp = [`pass3`];
-    arrPatternBeforeDefault = tmpAssignRhsProp[0];
-    const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-    if (tmpIfTest$1) {
-      arrPatternStep = [`fail2`];
-    } else {
-      arrPatternStep = arrPatternBeforeDefault;
-    }
-    arrPatternSplat$1 = [...arrPatternStep];
-    return `ok`;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -105,11 +52,21 @@ With rename=true
 $( "ok" );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'ok'
@@ -122,6 +79,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

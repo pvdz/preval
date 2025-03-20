@@ -28,12 +28,14 @@ for (lhs in rhs) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: [firstElement]`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,41 +44,6 @@ throw `Preval: TDZ triggered for this read: [firstElement]`;
 throw `Preval: TDZ triggered for this read: [firstElement]`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const rhs = [$throwTDZError(`Preval: TDZ triggered for this read: [firstElement]`)];
-let lhs = undefined;
-let firstElement = undefined;
-{
-  let tmpForInGen = $forIn(rhs);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      lhs = tmpForInNext.value;
-      {
-        const pattern = lhs;
-        const patternSplat = [...pattern];
-        let firstElementSSA = patternSplat[0];
-        $(firstElementSSA);
-      }
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-throw `Preval: TDZ triggered for this read: [firstElement]`;
-const rhs = 0;
-let lhs = 0;
-let firstElement = 0;
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +52,15 @@ With rename=true
 throw "Preval: TDZ triggered for this read: [firstElement]";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")

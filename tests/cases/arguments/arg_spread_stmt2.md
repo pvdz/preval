@@ -15,12 +15,14 @@ function f(a) {
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,32 +31,6 @@ f();
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  let a = $$0;
-  debugger;
-  [...tmpPrevalAliasArgumentsAny];
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  let a = $$0;
-  debugger;
-  [...tmpPrevalAliasArgumentsAny];
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +39,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

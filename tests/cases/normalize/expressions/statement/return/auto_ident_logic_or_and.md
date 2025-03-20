@@ -17,6 +17,7 @@ $(f());
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,46 +60,6 @@ if (tmpReturnArg) {
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return $($(0)) || ($($(1)) && $($(2)));
-};
-let a = { a: 999, b: 1000 };
-$(f());
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpCalleeParam = $(0);
-  let tmpReturnArg = $(tmpCalleeParam);
-  if (tmpReturnArg) {
-    return tmpReturnArg;
-  } else {
-    const tmpCalleeParam$1 = $(1);
-    tmpReturnArg = $(tmpCalleeParam$1);
-    if (tmpReturnArg) {
-      const tmpCalleeParam$3 = $(2);
-      tmpReturnArg = $(tmpCalleeParam$3);
-      return tmpReturnArg;
-    } else {
-      return tmpReturnArg;
-    }
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$5 = f();
-$(tmpCalleeParam$5);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -127,11 +89,15 @@ const g = {
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

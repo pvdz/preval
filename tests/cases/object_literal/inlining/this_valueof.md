@@ -16,6 +16,7 @@ obj.value().g = 2;
 $(obj.f());
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ const tmpCalleeParam$1 /*:unknown*/ = obj.f();
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,40 +50,6 @@ tmpAssignMemLhsObj.g = 2;
 $(obj.f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  g: 1,
-  f: function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    $(tmpPrevalAliasThis.g);
-  },
-};
-obj.value().g = 2;
-$(obj.f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = 1;
-const tmpObjLitVal$1 = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const tmpCalleeParam = tmpPrevalAliasThis.g;
-  $(tmpCalleeParam);
-  return undefined;
-};
-const obj = { g: tmpObjLitVal, f: tmpObjLitVal$1 };
-const tmpAssignMemLhsObj = obj.value();
-tmpAssignMemLhsObj.g = 2;
-const tmpCalleeParam$1 = obj.f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +72,15 @@ const f = d.f();
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

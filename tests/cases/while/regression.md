@@ -23,6 +23,7 @@ while (true) {
 $(cTmp);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,39 +52,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let cTmp = $;
-let cTail = c;
-while (true) {
-  if ($) {
-    cTail = $(`keep`);
-    cTmp = $(cTmp);
-  } else {
-    cTmp = cTail;
-  }
-  break;
-}
-$(cTmp);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let cTmp = $;
-let cTail = c;
-if ($) {
-  cTail = $(`keep`);
-  cTmp = $(cTmp);
-  $(cTmp);
-} else {
-  cTmp = cTail;
-  $(cTail);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -99,13 +68,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 c
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

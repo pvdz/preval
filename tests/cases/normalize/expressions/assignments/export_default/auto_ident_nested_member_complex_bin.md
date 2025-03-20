@@ -19,6 +19,7 @@ export default a = $(b)[$("x")] = $(c)[$("y")] = d + e;
 $(a, b, c, d, e);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ const tmpAnonDefaultExport /*:number*/ = 7;
 export { tmpAnonDefaultExport as default };
 $(7, b, c, 3, 4);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -53,43 +55,6 @@ export { tmpAnonDefaultExport as default };
 $(7, b, c, 3, 4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3,
-  e = 4;
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e);
-export { tmpAnonDefaultExport as default };
-$(a, b, c, d, e);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let e = 4;
-let a = { a: 999, b: 1000 };
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = d + e;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
-$(a, b, c, d, e);
-`````
 
 ## PST Settled
 With rename=true
@@ -108,11 +73,21 @@ export { g as default };
 $( 7, a, d, 3, 4 );
 `````
 
+
+## Todos triggered
+
+
+- free with zero args, we can eliminate this?
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -124,6 +99,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- free with zero args, we can eliminate this?

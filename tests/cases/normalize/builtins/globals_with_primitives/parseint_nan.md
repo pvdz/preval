@@ -12,12 +12,14 @@
 $(parseInt(NaN));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(NaN);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(NaN);
 $(NaN);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(parseInt(NaN));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = NaN;
-$(NaN);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( NaN );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: NaN

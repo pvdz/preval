@@ -76,6 +76,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -85,6 +86,7 @@ const arr /*:array*/ = [`b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `a`];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -93,122 +95,6 @@ $(`a`);
 $([`b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `a`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-  $(arr[0]);
-  try {
-    const a = arr[286];
-    const b = parseInt(a);
-    const c = b / 1;
-    const d = arr[181];
-    const e = parseInt(d);
-    const f = -e;
-    const g = f / 2;
-    const h = arr[308];
-    const i = parseInt(h);
-    const j = -i;
-    const k = j / 3;
-    const l = g * k;
-    const m = c + l;
-    const n = arr[32];
-    const o = parseInt(n);
-    const p = -o;
-    const q = p / 4;
-    const r = m + q;
-    const s = arr[86];
-    const t = parseInt(s);
-    const u = t / 5;
-    const v = r + u;
-    const w = arr[87];
-    const x = parseInt(w);
-    const y = x / 6;
-    const z = v + y;
-    const A = arr[30];
-    const B = parseInt(A);
-    const C = -B;
-    const D = C / 7;
-    const E = z + D;
-    const F = arr[356];
-    const G = parseInt(F);
-    const H = -G;
-    const I = H / 8;
-    const K = E + I;
-    const L = K === 644244;
-    if (L) {
-      $(`FAIL`);
-    } else {
-      const M = arr.shift();
-      arr.push(M);
-    }
-  } catch (P) {
-    const N = arr.shift();
-    arr.push(N);
-  }
-  $(arr);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-const tmpCalleeParam = arr[0];
-$(tmpCalleeParam);
-try {
-  const a = arr[286];
-  const b = parseInt(a);
-  const c = b / 1;
-  const d = arr[181];
-  const e = parseInt(d);
-  const f = -e;
-  const g = f / 2;
-  const h = arr[308];
-  const i = parseInt(h);
-  const j = -i;
-  const k = j / 3;
-  const l = g * k;
-  const m = c + l;
-  const n = arr[32];
-  const o = parseInt(n);
-  const p = -o;
-  const q = p / 4;
-  const r = m + q;
-  const s = arr[86];
-  const t = parseInt(s);
-  const u = t / 5;
-  const v = r + u;
-  const w = arr[87];
-  const x = parseInt(w);
-  const y = x / 6;
-  const z = v + y;
-  const A = arr[30];
-  const B = parseInt(A);
-  const C = -B;
-  const D = C / 7;
-  const E = z + D;
-  const F = arr[356];
-  const G = parseInt(F);
-  const H = -G;
-  const I = H / 8;
-  const K = E + I;
-  const L = K === 644244;
-  if (L) {
-    $(`FAIL`);
-  } else {
-    const M = arr.shift();
-    arr.push(M);
-  }
-} catch (P) {
-  const N = arr.shift();
-  arr.push(N);
-}
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -219,11 +105,21 @@ const a = [ "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "a" ];
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'
@@ -237,6 +133,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

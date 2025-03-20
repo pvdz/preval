@@ -121,6 +121,7 @@ if ($) {
 $('end', x);
 `````
 
+
 ## Settled
 
 
@@ -140,6 +141,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -158,52 +160,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-if ($) {
-  while (true) {
-    while (true) {
-      if ($) {
-        $(x);
-      } else {
-        $(x);
-        x = 2;
-        break;
-      }
-    }
-  }
-  $(`after while`, x);
-} else {
-  $(`oh`);
-}
-$(`end`, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-if ($) {
-  while (true) {
-    nestedLoop: {
-      if ($) {
-        $(x);
-      } else {
-        $(x);
-        x = 2;
-        break nestedLoop;
-      }
-    }
-  }
-} else {
-  $(`oh`);
-  $(`end`, x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -227,11 +183,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -269,6 +235,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

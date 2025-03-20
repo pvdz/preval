@@ -23,6 +23,7 @@ if ($) {
 $(x, 'third read (C)');
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,44 +62,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-if ($) {
-  $(x, `first read (A)`);
-  if ($()) {
-    x = 2;
-  } else {
-    x = 3;
-  }
-  $(x, `second read (B)`);
-}
-$(x, `third read (C)`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-if ($) {
-  $(x, `first read (A)`);
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    x = 2;
-    $(x, `second read (B)`);
-    $(x, `third read (C)`);
-  } else {
-    x = 3;
-    $(x, `second read (B)`);
-    $(x, `third read (C)`);
-  }
-} else {
-  $(x, `third read (C)`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +84,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 'first read (A)'

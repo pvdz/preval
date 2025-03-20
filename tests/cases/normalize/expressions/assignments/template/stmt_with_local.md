@@ -14,6 +14,7 @@ const x = $(1);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const x /*:unknown*/ = $(1);
 $coerce(x, `string`);
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,26 +34,6 @@ $coerce(x, `string`);
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(1);
-`f` + $coerce(x, `string`) + `oo`;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(1);
-const tmpBinBothLhs = `f`;
-const tmpBinBothRhs = $coerce(x, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-$coerce(tmpBinLhs, `plustr`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +44,15 @@ $coerce( a, "string" );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

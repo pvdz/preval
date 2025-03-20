@@ -34,6 +34,7 @@ try {
 $(x);       // x=5 6, anything else is a throw that does not reach here
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -60,7 +61,9 @@ try /*7*/ {
 $(x___63__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

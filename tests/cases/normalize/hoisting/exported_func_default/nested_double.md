@@ -17,6 +17,7 @@ export default function g() {
 }
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ $(undefined);
 export { g as default };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,41 +46,6 @@ $(undefined);
 export { g as default };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let g = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    return $(2);
-  };
-  $(f(3));
-};
-$(g());
-export { g as default };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let g = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    const tmpReturnArg = $(2);
-    return tmpReturnArg;
-  };
-  const tmpCalleeParam = f(3);
-  $(tmpCalleeParam);
-  return undefined;
-};
-const tmpCalleeParam$1 = g();
-$(tmpCalleeParam$1);
-export { g as default };
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +62,15 @@ $( undefined );
 export { a as default };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

@@ -14,12 +14,14 @@ const b = [2];
 a.concat(b);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,23 +30,6 @@ a.concat(b);
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = [1];
-const b = [2];
-a.concat(b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = [1];
-const b = [2];
-a.concat(b);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +38,21 @@ With rename=true
 
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_concat
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined
@@ -69,6 +64,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_concat

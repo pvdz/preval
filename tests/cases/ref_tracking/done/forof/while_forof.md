@@ -21,6 +21,7 @@ for (let x of arr) {
 $();
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -41,7 +42,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___15__) {
 $();
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                  | reads      | read by     | overWrites     | overwritten by
 arr:

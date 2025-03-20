@@ -13,6 +13,7 @@ const x = {a(){}, a: $('prop')};
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const x /*:object*/ = { a: tmpObjLitVal };
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,27 +32,6 @@ const tmpObjLitVal = $(`prop`);
 $({ a: tmpObjLitVal });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = {
-  a() {
-    debugger;
-  },
-  a: $(`prop`),
-};
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = $(`prop`);
-const x = { a: tmpObjLitVal };
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +42,15 @@ const b = { a: a };
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'prop'

@@ -19,6 +19,7 @@ x = $(obj)[$('x')];
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ const tmpClusterSSA_x /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,49 +60,6 @@ const tmpAssignRhsCompProp = $(`x`);
 $(tmpAssignRhsCompObj[tmpAssignRhsCompProp]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  get x() {
-    debugger;
-    return $(10);
-  },
-  set x($$0) {
-    let _ = $$0;
-    debugger;
-    $(20);
-  },
-};
-let x = 10;
-x = $(obj)[$(`x`)];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = {
-  get x() {
-    debugger;
-    const tmpReturnArg = $(10);
-    return tmpReturnArg;
-  },
-  set x($$0) {
-    let _ = $$0;
-    debugger;
-    $(20);
-    return undefined;
-  },
-};
-let x = 10;
-const tmpAssignRhsCompObj = $(obj);
-const tmpAssignRhsCompProp = $(`x`);
-x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -124,11 +83,15 @@ const e = c[ d ];
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '<get/set>' }

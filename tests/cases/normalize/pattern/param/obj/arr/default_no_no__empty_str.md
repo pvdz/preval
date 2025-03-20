@@ -15,6 +15,7 @@ function f({ x: [] }) {
 $(f('', 10));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const objPatternNoDefault /*:unknown*/ = ``.x;
 [...objPatternNoDefault];
 $(`bad`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,36 +35,6 @@ const objPatternNoDefault = ``.x;
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: [],
-  } = tmpParamBare;
-  return `bad`;
-};
-$(f(``, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  return `bad`;
-};
-const tmpCalleeParam = f(``, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +45,15 @@ const a = "".x;
 $( "bad" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

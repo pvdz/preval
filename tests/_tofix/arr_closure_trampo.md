@@ -23,6 +23,7 @@ $(_0x5576());
 $(_0x5576());
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const _0x5576 /*:array*/ = [`W4BcO8kAW5RdGa`, `AH7cVXhdHa`];
 $(_0x5576);
 $(_0x5576);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,43 +43,6 @@ $(_0x5576);
 $(_0x5576);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let _0x5576 = function () {
-  debugger;
-  const _0x2f0a53 = [`W4BcO8kAW5RdGa`, `AH7cVXhdHa`];
-  _0x5576 = function () {
-    debugger;
-    return _0x2f0a53;
-  };
-  const tmpReturnArg$65 = _0x5576();
-  return tmpReturnArg$65;
-};
-$(_0x5576());
-$(_0x5576());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let _0x5576 = function () {
-  debugger;
-  const _0x2f0a53 = [`W4BcO8kAW5RdGa`, `AH7cVXhdHa`];
-  _0x5576 = function () {
-    debugger;
-    return _0x2f0a53;
-  };
-  const tmpReturnArg$65 = _0x5576();
-  return tmpReturnArg$65;
-};
-const tmpCalleeParam = _0x5576();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = _0x5576();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +53,15 @@ $( a );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['W4BcO8kAW5RdGa', 'AH7cVXhdHa']

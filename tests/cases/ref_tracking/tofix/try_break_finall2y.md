@@ -23,12 +23,14 @@ foo: {
 $(x); // x can be 1 or 2 but not 3. we can cover this.
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,66 +39,6 @@ $(x);
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-foo: {
-  let x$1 = 1;
-  abc: {
-    let $implicitThrow = false;
-    let $finalStep = false;
-    let $finalCatchArg = undefined;
-    $finally: {
-      try {
-        {
-          $finalStep = true;
-          break $finally;
-        }
-      } catch ($finalImplicit) {
-        x$1 = 2;
-        throw $finalImplicit;
-      }
-    }
-    {
-      x$1 = 2;
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else break foo;
-  }
-  $(x$1);
-  x$1 = 3;
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-foo: {
-  let x$1 = 1;
-  let $implicitThrow = false;
-  let $finalStep = false;
-  let $finalCatchArg = undefined;
-  $finally: {
-    try {
-      $finalStep = true;
-      break $finally;
-    } catch ($finalImplicit) {
-      x$1 = 2;
-      throw $finalImplicit;
-    }
-  }
-  x$1 = 2;
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    break foo;
-  }
-}
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -105,13 +47,17 @@ With rename=true
 $( x );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

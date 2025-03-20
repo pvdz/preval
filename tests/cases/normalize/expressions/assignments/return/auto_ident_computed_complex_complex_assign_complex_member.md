@@ -19,6 +19,7 @@ $(f());
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropR
 $(tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -49,42 +51,6 @@ $(tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return (a = $(b)[$(`c`)] = $(b)[$(`d`)]);
-};
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $(`c`);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  return a;
-};
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +70,15 @@ $( f );
 $( f, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '10', d: '20' }

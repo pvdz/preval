@@ -15,6 +15,7 @@ const obj = {
 $(obj.encode());
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(obj.encode());
 $(`inline me`);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,32 +33,6 @@ $(`inline me`);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  encode: function () {
-    debugger;
-    $(`inline me`);
-  },
-};
-$(obj.encode());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function () {
-  debugger;
-  $(`inline me`);
-  return undefined;
-};
-const obj = { encode: tmpObjLitVal };
-const tmpCalleeParam = obj.encode();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +42,15 @@ $( "inline me" );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'inline me'

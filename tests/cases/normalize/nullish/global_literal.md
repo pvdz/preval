@@ -14,12 +14,14 @@
 $(parseInt??length);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(parseInt);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,26 +30,6 @@ $(parseInt);
 $(parseInt);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(parseInt ?? length);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam = parseInt;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = length;
-  $(length);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +38,15 @@ With rename=true
 $( parseInt );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

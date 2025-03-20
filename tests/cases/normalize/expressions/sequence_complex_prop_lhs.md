@@ -16,6 +16,7 @@ a = ((b = c.x), $(b)).y === 'Identifier';
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpClusterSSA_a /*:boolean*/ = tmpBinLhs === `Identifier`;
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,31 +36,6 @@ $(tmpClusterSSA_a);
 $($({ y: 10 }).y === `Identifier`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 0,
-  b = 1,
-  c = { x: { y: 10 } };
-a = ((b = c.x), $(b)).y === `Identifier`;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 0;
-let b = 1;
-const tmpObjLitVal = { y: 10 };
-let c = { x: tmpObjLitVal };
-b = c.x;
-const tmpCompObj = $(b);
-const tmpBinLhs = tmpCompObj.y;
-a = tmpBinLhs === `Identifier`;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +48,15 @@ const d = c === "Identifier";
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '10' }

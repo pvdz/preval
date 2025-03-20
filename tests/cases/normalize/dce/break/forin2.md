@@ -21,6 +21,7 @@ while ($(true)) {
 $('after');
 `````
 
+
 ## Settled
 
 
@@ -60,6 +61,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -91,57 +93,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($(true)) {
-  {
-    let tmpForOfGen = $forOf([10, 20]);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForOfNext = tmpForOfGen.next();
-      if (tmpForOfNext.done) {
-        break;
-      } else {
-        let x = tmpForOfNext.value;
-        {
-          break;
-          $(`fail`);
-        }
-      }
-    }
-  }
-  $(`keep`);
-}
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpCalleeParam = [10, 20];
-    let tmpForOfGen = $forOf(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForOfNext = tmpForOfGen.next();
-      const tmpIfTest$1 = tmpForOfNext.done;
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        let x = tmpForOfNext.value;
-        break;
-      }
-    }
-    $(`keep`);
-  } else {
-    break;
-  }
-}
-$(`after`);
-`````
 
 ## PST Settled
 With rename=true
@@ -186,11 +137,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

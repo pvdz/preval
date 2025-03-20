@@ -26,6 +26,7 @@ g();
 $(2);
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ g();
 $(2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -72,51 +74,6 @@ g();
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`call me once`);
-};
-const g = function () {
-  debugger;
-  f();
-  if (f) {
-    f = false;
-  }
-};
-g();
-$(1);
-g();
-$(2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`call me once`);
-  return undefined;
-};
-const g = function () {
-  debugger;
-  f();
-  if (f) {
-    f = false;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-g();
-$(1);
-g();
-$(2);
-`````
 
 ## PST Settled
 With rename=true
@@ -145,11 +102,15 @@ b();
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'call me once'

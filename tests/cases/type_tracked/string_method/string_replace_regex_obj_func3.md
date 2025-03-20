@@ -14,6 +14,7 @@ const rex = /\w.*\w/g;
 $('a is not b'.replace(rex, (c) => ($(c, obj[c]), obj[c])));
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const tmpCalleeParam /*:string*/ = `a is not b`.replace(rex, tmpCalleeParam$3);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,40 +47,6 @@ const tmpCalleeParam$3 = function (c) {
 $(`a is not b`.replace(/\w.*\w/g, tmpCalleeParam$3));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { a: 1, b: 2 };
-const rex = /\w.*\w/g;
-$(
-  `a is not b`.replace(rex, ($$0) => {
-    let c = $$0;
-    debugger;
-    return $(c, obj[c]), obj[c];
-  }),
-);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { a: 1, b: 2 };
-const rex = /\w.*\w/g;
-const tmpCalleeParam$1 = rex;
-const tmpCalleeParam$3 = function ($$0) {
-  let c = $$0;
-  debugger;
-  const tmpCalleeParam$5 = c;
-  const tmpCalleeParam$7 = obj[c];
-  $(tmpCalleeParam$5, tmpCalleeParam$7);
-  const tmpReturnArg = obj[c];
-  return tmpReturnArg;
-};
-const tmpCalleeParam = `a is not b`.replace(tmpCalleeParam$1, tmpCalleeParam$3);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +69,15 @@ const g = "a is not b".replace( f, b );
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a is not b', undefined

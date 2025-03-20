@@ -13,6 +13,7 @@ const { x: [] = $(['fail']) } = 0;
 $('ok');
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ if (tmpIfTest) {
 $(`ok`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,31 +47,6 @@ if (objPatternBeforeDefault === undefined) {
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: [] = $([`fail`]) } = 0;
-$(`ok`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = 0;
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = [`fail`];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
-$(`ok`);
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +66,15 @@ else {
 $( "ok" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['fail']

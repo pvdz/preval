@@ -16,6 +16,7 @@ $`before ${(a = delete arg["y"])} after`;
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ $(tmpCalleeParam, a);
 $(a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,28 +39,6 @@ $([`before `, ` after`], a);
 $(a, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = delete arg[`y`]));
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-a = delete arg.y;
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +51,15 @@ $( c, b );
 $( b, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['before ', ' after'], true

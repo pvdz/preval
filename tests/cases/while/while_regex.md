@@ -15,6 +15,7 @@ while (x) {
 }
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,29 +36,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = /foo/;
-while (x) {
-  $(x);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = /foo/;
-while (true) {
-  if (x) {
-    $(x);
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +47,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

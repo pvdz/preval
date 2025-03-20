@@ -12,12 +12,14 @@
 $(typeof [1]);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`object`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,21 +28,6 @@ $(`object`);
 $(`object`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof [1]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpUnaryArg = [1];
-const tmpCalleeParam = typeof tmpUnaryArg;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -49,11 +36,15 @@ With rename=true
 $( "object" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'object'

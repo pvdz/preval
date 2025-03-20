@@ -16,6 +16,7 @@ $(`before  ${delete $(arg)[$("y")]}  after`);
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,33 +54,6 @@ $($frfr(tmpFree, delete tmpDeleteCompObj[tmpDeleteCompProp]));
 $({ a: 999, b: 1000 }, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce(delete $(arg)[$(`y`)], `string`) + `  after`);
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
-const tmpCalleeParam$1 = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpBinBothRhs = $coerce(tmpCalleeParam$1, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +79,15 @@ const l = {
 $( l, f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }

@@ -12,6 +12,7 @@
 $({} != {});
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs != tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,22 +32,6 @@ const tmpBinBothLhs = {};
 $(tmpBinBothLhs != {});
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$({} != {});
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = {};
-const tmpBinBothRhs = {};
-const tmpCalleeParam = tmpBinBothLhs != tmpBinBothRhs;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +43,15 @@ const c = a != b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

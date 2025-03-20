@@ -26,6 +26,7 @@ if (y) { // This should become x, with the branches flipped
 //$(y, 'after');
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ if (a) {
   $(`if1`);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -60,43 +62,6 @@ if (a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(1);
-const b = $(2);
-let y = !a;
-if (y) {
-  $(`if1`);
-} else {
-  y = !b;
-  if (y) {
-    $(`if2`);
-  } else {
-    $(`else1`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(1);
-const b = $(2);
-let y = !a;
-if (y) {
-  $(`if1`);
-} else {
-  y = !b;
-  if (y) {
-    $(`if2`);
-  } else {
-    $(`else1`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -117,11 +82,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

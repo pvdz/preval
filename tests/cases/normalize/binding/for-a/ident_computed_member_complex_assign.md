@@ -13,6 +13,7 @@ let a = 1, b = {x: 2}, c = 3, d = 4;
 for (let a = $(b)[$('x')] = $(c)[$('y')] = $(d);false;) $(a, b, c, d);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,40 +42,6 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = { x: 2 },
-  c = 3,
-  d = 4;
-{
-  let a$1 = ($(b)[$(`x`)] = $(c)[$(`y`)] = $(d));
-  while (false) {
-    $(a$1, b, c, d);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-let d = 4;
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $(`y`);
-const varInitAssignLhsComputedRhs$1 = $(d);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a$1 = varInitAssignLhsComputedRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +57,15 @@ d[e] = f;
 b[c] = f;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '2' }

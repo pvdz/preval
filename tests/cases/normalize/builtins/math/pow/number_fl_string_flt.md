@@ -12,6 +12,7 @@
 $(Math.pow(3.3, '4.3'));
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam /*:number*/ = $Math_pow(3.3, `4.3`);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,20 +29,6 @@ $(tmpCalleeParam);
 $($Math_pow(3.3, `4.3`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(Math.pow(3.3, `4.3`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = $Math_pow(3.3, `4.3`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +38,21 @@ const a = $Math_pow( 3.3, "4.3" );
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 169.67190716541973
@@ -67,6 +65,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow

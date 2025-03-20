@@ -14,6 +14,7 @@ $((a = $($(0)) || $($(1)) || $($(2))) + (a = $($(0)) || $($(1)) || $($(2))));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -69,50 +71,6 @@ $(a + tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a = $($(0)) || $($(1)) || $($(2))) + (a = $($(0)) || $($(1)) || $($(2))));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = $(0);
-a = $(tmpCalleeParam$1);
-if (a) {
-} else {
-  const tmpCalleeParam$3 = $(1);
-  a = $(tmpCalleeParam$3);
-  if (a) {
-  } else {
-    const tmpCalleeParam$5 = $(2);
-    a = $(tmpCalleeParam$5);
-  }
-}
-let tmpBinBothLhs = a;
-const tmpCalleeParam$7 = $(0);
-a = $(tmpCalleeParam$7);
-if (a) {
-} else {
-  const tmpCalleeParam$9 = $(1);
-  a = $(tmpCalleeParam$9);
-  if (a) {
-  } else {
-    const tmpCalleeParam$11 = $(2);
-    a = $(tmpCalleeParam$11);
-  }
-}
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -155,11 +113,15 @@ $( i );
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

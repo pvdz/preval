@@ -16,6 +16,7 @@ const a = {
 $(a)[$('x')]?.(1, 2, 3);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,46 +57,6 @@ if (!(tmpChainElementObject == null)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = {
-  x: function (...$$0 /*:array*/) {
-    const tmpPrevalAliasThis = this;
-    let args = $$0;
-    debugger;
-    $(args, tmpPrevalAliasThis.y);
-  },
-  y: 100,
-};
-$(a)[$(`x`)]?.(1, 2, 3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function (...$$0 /*:array*/) {
-  const tmpPrevalAliasThis = this;
-  let args = $$0;
-  debugger;
-  const tmpCalleeParam = args;
-  const tmpCalleeParam$1 = tmpPrevalAliasThis.y;
-  $(tmpCalleeParam, tmpCalleeParam$1);
-  return undefined;
-};
-const a = { x: tmpObjLitVal, y: 100 };
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(a);
-const tmpChainRootComputed = $(`x`);
-const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-const tmpIfTest = tmpChainElementObject != null;
-if (tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, 1, 2, 3);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -124,11 +86,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '"<function>"', y: '100' }

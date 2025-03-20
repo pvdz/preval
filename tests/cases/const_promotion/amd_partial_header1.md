@@ -39,12 +39,14 @@ if (alwaysFalse) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`b`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -53,49 +55,6 @@ $(`b`);
 $(`b`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let alwaysFalse = false;
-const f = function () {
-  debugger;
-  if (alwaysFalse) {
-    $(`a`);
-  } else {
-    $(`b`);
-  }
-};
-if (alwaysFalse) {
-  alwaysFalse = false;
-  f();
-} else {
-  f();
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let alwaysFalse = false;
-const f = function () {
-  debugger;
-  if (alwaysFalse) {
-    $(`a`);
-    return undefined;
-  } else {
-    $(`b`);
-    return undefined;
-  }
-};
-if (alwaysFalse) {
-  alwaysFalse = false;
-  f();
-} else {
-  f();
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +63,15 @@ With rename=true
 $( "b" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'b'

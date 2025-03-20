@@ -19,6 +19,7 @@ arr[0] = 'x';
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ $(arr);
 (1)[0] = `x`;
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,38 +41,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  a[0] = 2;
-};
-const arr = 1;
-f(arr);
-arr[0] = 1;
-arr[0] = `x`;
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  a[0] = 2;
-  return undefined;
-};
-const arr = 1;
-f(arr);
-arr[0] = 1;
-arr[0] = `x`;
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +52,15 @@ With rename=true
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot create property '0' on number '1' ]>")

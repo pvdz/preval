@@ -16,6 +16,7 @@ const f = obj.Function(a, b, c, d);
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,24 +36,6 @@ const f = { Function: Function }.Function(a, b, c, d);
 $(f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { Function: Function };
-const f = obj.Function(a, b, c, d);
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { Function: Function };
-const f = obj.Function(a, b, c, d);
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,13 +47,17 @@ const g = f();
 $( g );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 4 implicit global bindings:
 
 a, b, c, d
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

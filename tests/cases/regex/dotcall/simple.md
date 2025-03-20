@@ -13,6 +13,7 @@ const arg = $('give food');
 $(/foo/.test(arg));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCallObj.test(arg);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,23 +33,6 @@ const arg = $(`give food`);
 $(/foo/.test(arg));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arg = $(`give food`);
-$(/foo/.test(arg));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arg = $(`give food`);
-const tmpCallObj = /foo/;
-const tmpCalleeParam = tmpCallObj.test(arg);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +44,15 @@ const c = b.test( a );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'give food'

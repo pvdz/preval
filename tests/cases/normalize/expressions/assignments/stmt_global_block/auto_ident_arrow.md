@@ -16,6 +16,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const a /*:()=>unknown*/ = function () {
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,30 +36,6 @@ $(a);
 $(function () {});
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let a = { a: 999, b: 1000 };
-  a = () => {
-    debugger;
-  };
-  $(a);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = function () {
-  debugger;
-  return undefined;
-};
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +48,15 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

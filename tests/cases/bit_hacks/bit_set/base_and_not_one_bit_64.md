@@ -21,6 +21,7 @@ if (set) {
 }
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (set) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,33 +48,6 @@ if (($(64) & 65) === 64) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const v = $(64);
-const and = v & 65;
-const set = and === 64;
-if (set) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const v = $(64);
-const and = v & 65;
-const set = and === 64;
-if (set) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 64

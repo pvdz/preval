@@ -12,6 +12,7 @@
 [...[$(1), 2], $(3), ...$([4, 5])];
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpArrElToSpread /*:unknown*/ = $(tmpCalleeParam);
 [...tmpArrElToSpread];
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,23 +35,6 @@ const tmpArrElToSpread = $([4, 5]);
 [...tmpArrElToSpread];
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[...[$(1), 2], $(3), ...$([4, 5])];
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-$(3);
-const tmpCalleeParam = [4, 5];
-const tmpArrElToSpread = $(tmpCalleeParam);
-[...tmpArrElToSpread];
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +47,15 @@ const b = $( a );
 [ ...b ];
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

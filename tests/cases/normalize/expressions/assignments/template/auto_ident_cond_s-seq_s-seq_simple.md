@@ -14,6 +14,7 @@ $(`before  ${(a = (10, 20, 30) ? (40, 50, 60) : $($(100)))}  after`);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $(a);
 $(`before  60  after`);
 $(60);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,36 +32,6 @@ $(`before  60  after`);
 $(60);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce((a = (10, 20, 30) ? (40, 50, 60) : $($(100))), `string`) + `  after`);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-const tmpIfTest = 30;
-if (tmpIfTest) {
-  a = 60;
-} else {
-  const tmpCalleeParam$3 = $(100);
-  a = $(tmpCalleeParam$3);
-}
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +41,15 @@ $( "before  60  after" );
 $( 60 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before 60 after'

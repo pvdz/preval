@@ -18,6 +18,7 @@ let b
 $(b);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,32 +46,6 @@ if (tmpObjLitVal === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b;
-({ a: b = $(`default`) } = { a: $(`prop`) });
-$(b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = undefined;
-const tmpObjLitVal = $(`prop`);
-const tmpAssignObjPatternRhs = { a: tmpObjLitVal };
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.a;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  b = $(`default`);
-  $(b);
-} else {
-  b = objPatternBeforeDefault;
-  $(objPatternBeforeDefault);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +62,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'prop'

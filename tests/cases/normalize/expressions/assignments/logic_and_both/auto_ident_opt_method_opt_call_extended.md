@@ -16,6 +16,7 @@ $((a = b?.c.d.e?.(1)) && (a = b?.c.d.e?.(1)));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ if (a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -76,65 +78,6 @@ if (a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: { d: { e: $ } } };
-let a = { a: 999, b: 1000 };
-$((a = b?.c.d.e?.(1)) && (a = b?.c.d.e?.(1)));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let b = { c: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootProp = b;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpIfTest$1 = tmpChainElementObject$3 != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, `e`, 1);
-    a = tmpChainElementCall;
-  } else {
-  }
-} else {
-}
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp$1 = b;
-  const tmpIfTest$3 = tmpChainRootProp$1 != null;
-  if (tmpIfTest$3) {
-    const tmpChainElementObject$5 = tmpChainRootProp$1.c;
-    const tmpChainElementObject$7 = tmpChainElementObject$5.d;
-    const tmpChainElementObject$9 = tmpChainElementObject$7.e;
-    const tmpIfTest$5 = tmpChainElementObject$9 != null;
-    if (tmpIfTest$5) {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpChainElementObject$7, `e`, 1);
-      tmpNestedComplexRhs = tmpChainElementCall$1;
-    } else {
-    }
-  } else {
-  }
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(a);
-} else {
-  $(tmpCalleeParam);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -171,11 +114,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

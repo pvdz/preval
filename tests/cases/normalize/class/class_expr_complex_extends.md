@@ -13,6 +13,7 @@ let a = class x extends $(String) {}
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const a /*:class*/ = class x extends tmpClassSuper {};
 $(a, x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,22 +32,6 @@ const tmpClassSuper = $(String);
 $(class x extends tmpClassSuper {}, x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = class x extends $(String) {};
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpClassSuper = $(String);
-let a = class x extends tmpClassSuper {};
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,13 +44,17 @@ const b = class x  {
 $( b, x );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

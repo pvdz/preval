@@ -16,6 +16,7 @@ $(`inline me`);
 f(implicitGlobalShouldCrash, a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ b;
 c;
 $(`inline me`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,29 +40,6 @@ c;
 $(`inline me`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  $(`inline me`);
-  return undefined;
-};
-f(implicitGlobalShouldCrash, a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  $(`inline me`);
-  return undefined;
-};
-f(implicitGlobalShouldCrash, a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,13 +52,17 @@ c;
 $( "inline me" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 4 implicit global bindings:
 
 implicitGlobalShouldCrash, a, b, c
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

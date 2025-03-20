@@ -14,6 +14,7 @@ $('before');
 $('after');
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpCallComplexCallee /*:class*/ = class x {};
 tmpCallComplexCallee();
 $(`after`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,24 +36,6 @@ tmpCallComplexCallee();
 $(`after`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`before`);
-(class x {}());
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`before`);
-const tmpCallComplexCallee = class x {};
-tmpCallComplexCallee();
-$(`after`);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,13 +49,17 @@ a();
 $( "after" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before'

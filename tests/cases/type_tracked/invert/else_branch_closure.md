@@ -31,6 +31,7 @@ f($(''));
 f($('foop'));
 `````
 
+
 ## Settled
 
 
@@ -64,6 +65,7 @@ const tmpCalleeParam$5 /*:unknown*/ = $(`foop`);
 f(tmpCalleeParam$5);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -87,66 +89,6 @@ f($(``));
 f($(`foop`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let y = $$0;
-  debugger;
-  const x = `` + y;
-  if (x) {
-    $(x, `if`);
-  } else {
-    const f$1 = function ($$0) {
-      let z = $$0;
-      debugger;
-      $(`keepme`);
-      $(`keepme`);
-      return [x, z];
-    };
-    $(f$1(10), `pass`);
-    $(f$1(20), `pass`);
-  }
-};
-f($(``));
-f($(`foop`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let y = $$0;
-  debugger;
-  const x = $coerce(y, `plustr`);
-  if (x) {
-    $(x, `if`);
-    return undefined;
-  } else {
-    const f$1 = function ($$0) {
-      let z = $$0;
-      debugger;
-      $(`keepme`);
-      $(`keepme`);
-      const tmpReturnArg = [x, z];
-      return tmpReturnArg;
-    };
-    const tmpCalleeParam = f$1(10);
-    $(tmpCalleeParam, `pass`);
-    const tmpCalleeParam$1 = f$1(20);
-    $(tmpCalleeParam$1, `pass`);
-    return undefined;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$3 = $(``);
-tmpCallCallee(tmpCalleeParam$3);
-const tmpCallCallee$1 = f;
-const tmpCalleeParam$5 = $(`foop`);
-tmpCallCallee$1(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -182,11 +124,15 @@ const j = $( "foop" );
 a( j );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ''

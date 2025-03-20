@@ -14,6 +14,7 @@ a += $(2);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpClusterSSA_a /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,25 +34,6 @@ const a = $(1);
 $(a + $(2));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $(1);
-a += $(2);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = $(1);
-const tmpBinBothLhs = a;
-const tmpBinBothRhs = $(2);
-a = tmpBinBothLhs + tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +45,15 @@ const c = a + b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

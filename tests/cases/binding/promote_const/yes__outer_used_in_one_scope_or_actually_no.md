@@ -29,6 +29,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ const tmpClusterSSA_x /*:unknown*/ = $(`oops`);
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,54 +48,6 @@ $(`something`);
 $($(`oops`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-let f = function () {
-  debugger;
-  $(`something`);
-  x = 100;
-  if (g(1)) {
-    $(x);
-  }
-  $(x);
-  return x;
-};
-let g = function () {
-  debugger;
-  x = $(`oops`);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-let f = function () {
-  debugger;
-  $(`something`);
-  x = 100;
-  const tmpIfTest = g(1);
-  if (tmpIfTest) {
-    $(x);
-    $(x);
-    return x;
-  } else {
-    $(x);
-    return x;
-  }
-};
-let g = function () {
-  debugger;
-  x = $(`oops`);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +58,15 @@ const a = $( "oops" );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'something'

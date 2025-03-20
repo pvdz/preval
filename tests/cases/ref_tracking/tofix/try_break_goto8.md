@@ -37,6 +37,7 @@ A: {
 $(x);         // x=3 (loop can only break after x=3)
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -62,7 +63,9 @@ while (true) {
 $(x___47__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

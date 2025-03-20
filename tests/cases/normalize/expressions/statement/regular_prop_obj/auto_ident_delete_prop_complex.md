@@ -17,6 +17,7 @@ let obj = {};
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,29 +41,6 @@ const tmpDeleteObj = $(arg);
 $({ a: 999, b: 1000 }, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-let obj = {};
-(delete $(arg).y).a;
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpDeleteObj = $(arg);
-const tmpCompObj = delete tmpDeleteObj.y;
-tmpCompObj.a;
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +57,15 @@ const d = {
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }

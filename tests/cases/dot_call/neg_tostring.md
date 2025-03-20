@@ -15,12 +15,14 @@ const x = $dotCall(tmpCallVal, num, 'toString');
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`-500`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,24 +31,6 @@ $(`-500`);
 $(`-500`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const num = -500;
-const tmpCallVal = num.toString;
-const x = $dotCall(tmpCallVal, num, `toString`);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const num = -500;
-const x = num.toString();
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +39,15 @@ With rename=true
 $( "-500" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '-500'

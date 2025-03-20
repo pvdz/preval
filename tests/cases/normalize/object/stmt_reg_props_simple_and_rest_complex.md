@@ -12,6 +12,7 @@
 ({x: 1, y: 2, ...{a: $(10)}});
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpObjLitVal /*:unknown*/ = $(10);
 const tmpObjSpreadArg /*:object*/ = { a: tmpObjLitVal };
 ({ ...tmpObjSpreadArg });
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,21 +32,6 @@ const tmpObjSpreadArg = { a: tmpObjLitVal };
 ({ ...tmpObjSpreadArg });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: 1, y: 2, ...{ a: $(10) } });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = $(10);
-const tmpObjSpreadArg = { a: tmpObjLitVal };
-({ ...tmpObjSpreadArg });
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +42,15 @@ const b = { a: a };
 { ... b };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

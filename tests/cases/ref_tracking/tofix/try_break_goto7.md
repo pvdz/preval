@@ -26,6 +26,7 @@ A: {
 $(x);         // x=2
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -38,7 +39,9 @@ x___17__ = 2;
 $(x___21__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

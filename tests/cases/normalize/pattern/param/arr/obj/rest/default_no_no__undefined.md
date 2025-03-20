@@ -15,6 +15,7 @@ function f([{ ...x }]) {
 $(f(undefined, 200));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f(undefined, 200));
 [...undefined];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,37 +33,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [{ ...x }] = tmpParamBare;
-  return x;
-};
-$(f(undefined, 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternStep = arrPatternSplat[0];
-  const tmpCalleeParam = arrPatternStep;
-  const tmpCalleeParam$1 = [];
-  let x = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
-  return x;
-};
-const tmpCalleeParam$3 = f(undefined, 200);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +42,21 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -87,6 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

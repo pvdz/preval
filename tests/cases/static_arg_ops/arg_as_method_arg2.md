@@ -18,12 +18,14 @@ const t = f(`1`);
 $(t);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`oo`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,36 +34,6 @@ $(`oo`);
 $(`oo`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let aa = $$0;
-  debugger;
-  const a = aa;
-  return `foo`.slice(a);
-};
-f(`0`);
-const t = f(`1`);
-$(t);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let aa = $$0;
-  debugger;
-  const a = aa;
-  const tmpReturnArg = `foo`.slice(a);
-  return tmpReturnArg;
-};
-f(`0`);
-const t = f(`1`);
-$(t);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +42,15 @@ With rename=true
 $( "oo" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'oo'

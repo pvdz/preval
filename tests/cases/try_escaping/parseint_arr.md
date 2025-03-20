@@ -28,6 +28,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr[0]);
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,48 +61,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x = arr[0];
-  $(x);
-  try {
-    const y = parseInt(x);
-    if (y) {
-      const el = arr.shift();
-      arr.push(el);
-    } else {
-    }
-  } catch (e) {
-    $(`keepme`);
-  }
-}
-$(arr[0]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x = arr[0];
-  $(x);
-  try {
-    const y = parseInt(x);
-    if (y) {
-      const el = arr.shift();
-      arr.push(el);
-    } else {
-    }
-  } catch (e) {
-    $(`keepme`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -118,11 +78,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

@@ -16,6 +16,7 @@ b-- && b--;
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, -1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,33 +33,6 @@ $(a, -1);
 $({ a: 999, b: 1000 }, -1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-b-- && b--;
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = $coerce(b, `number`);
-b = tmpPostUpdArgIdent - 1;
-const tmpIfTest = tmpPostUpdArgIdent;
-if (tmpIfTest) {
-  const tmpPostUpdArgIdent$1 = $coerce(b, `number`);
-  b = tmpPostUpdArgIdent$1 - 1;
-  $(a, b);
-} else {
-  $(a, b);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +45,21 @@ const a = {
 $( a, -1 );
 `````
 
+
+## Todos triggered
+
+
+- free with zero args, we can eliminate this?
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '999', b: '1000' }, -1
@@ -87,6 +72,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- free with zero args, we can eliminate this?

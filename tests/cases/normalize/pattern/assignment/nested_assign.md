@@ -14,6 +14,7 @@ y = { x } = { x: 1 };
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpNestedAssignObjPatternRhs /*:object*/ = { x: 1 };
 $(tmpNestedAssignObjPatternRhs);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,25 +33,6 @@ x = 1;
 $({ x: 1 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let y;
-y = { x: x } = { x: 1 };
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = undefined;
-const tmpNestedAssignObjPatternRhs = { x: 1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs;
-$(tmpNestedAssignObjPatternRhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,13 +43,17 @@ const a = { x: 1 };
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

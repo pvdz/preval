@@ -24,6 +24,7 @@ while (true) {
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -102,6 +103,7 @@ const arr /*:array*/ = [
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -179,46 +181,6 @@ $([
 ]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let counter = 0;
-const arr = [];
-while (true) {
-  if (counter < `lrlatnuoMv_yLotebgsaAihuhrL%nmBA%lopFbttitarsecieeLdEcsGgnlodeinmeoyn`.length) {
-    const tmpAssignComputedProp = counter;
-    const tmpAssignComputedRhs = `lrlatnuoMv_yLotebgsaAihuhrL%nmBA%lopFbttitarsecieeLdEcsGgnlodeinmeoyn`.charAt(counter);
-    arr[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    counter = counter + 1;
-  } else {
-    break;
-  }
-}
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let counter = 0;
-const arr = [];
-while (true) {
-  const tmpBinBothLhs = counter;
-  const tmpBinBothRhs = 69;
-  const tmpIfTest = tmpBinBothLhs < tmpBinBothRhs;
-  if (tmpIfTest) {
-    const tmpAssignComputedProp = counter;
-    const tmpAssignComputedRhs = `lrlatnuoMv_yLotebgsaAihuhrL%nmBA%lopFbttitarsecieeLdEcsGgnlodeinmeoyn`.charAt(counter);
-    arr[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    counter = counter + 1;
-  } else {
-    break;
-  }
-}
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -228,11 +190,15 @@ const a = [ "l", "r", "l", "a", "t", "n", "u", "o", "M", "v", "_", "y", "L", "o"
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

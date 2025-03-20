@@ -44,6 +44,7 @@ back: {
 $('end', x);               // x=7 9
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -106,7 +107,9 @@ back___7__: /*8*/ {
 $(`end`, x___175__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                      | reads      | read by     | overWrites     | overwritten by
 x:

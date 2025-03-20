@@ -74,6 +74,7 @@ while ($(true)) {
 $('after, wont eval due to infinite loop');
 `````
 
+
 ## Settled
 
 
@@ -103,6 +104,7 @@ while (true) {
 $(`after, wont eval due to infinite loop`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -128,52 +130,6 @@ while (true) {
 $(`after, wont eval due to infinite loop`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($(true)) {
-  while (true) {
-    {
-      $continue: {
-        {
-          $(`loop`);
-          break $continue;
-        }
-      }
-    }
-    if ($(true)) {
-    } else {
-      break;
-    }
-  }
-  $(`keep, wont eval due to infinite loop`);
-}
-$(`after, wont eval due to infinite loop`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    while (true) {
-      $(`loop`);
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-      } else {
-        break;
-      }
-    }
-    $(`keep, wont eval due to infinite loop`);
-  } else {
-    break;
-  }
-}
-$(`after, wont eval due to infinite loop`);
-`````
 
 ## PST Settled
 With rename=true
@@ -208,11 +164,15 @@ while (true) {
 $( "after, wont eval due to infinite loop" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

@@ -24,6 +24,7 @@ const getMessages = async function($$0) {
 $(getMessages);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ const getMessages /*:(unknown)=>promise*/ = async function ($$0) {
 $(getMessages);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,45 +55,6 @@ $(async function ($dlr_$$0) {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const getMessages = async function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const D$15 = $dlr_$$0;
-  const tmpAwaitArg = fetchFromStore(D$15);
-  const l$11 = await tmpAwaitArg;
-  const tmpCallCompVal = JSON.parse;
-  const tmpCompObj$1 = l$11[0];
-  const tmpCompObj = tmpCompObj$1.dataValues;
-  const tmpCalleeParam = tmpCompObj.bucket;
-  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, `parse`, tmpCalleeParam);
-  return tmpReturnArg$13;
-};
-$(getMessages);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const getMessages = async function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const D$15 = $dlr_$$0;
-  const tmpAwaitArg = fetchFromStore($dlr_$$0);
-  const l$11 = await tmpAwaitArg;
-  const tmpCallCompVal = $JSON_parse;
-  const tmpCompObj$1 = l$11[0];
-  const tmpCompObj = tmpCompObj$1.dataValues;
-  const tmpCalleeParam = tmpCompObj.bucket;
-  const tmpReturnArg$13 = $dotCall(tmpCallCompVal, JSON, `parse`, tmpCalleeParam);
-  return tmpReturnArg$13;
-};
-$(getMessages);
-`````
 
 ## PST Settled
 With rename=true
@@ -111,13 +74,25 @@ const a = async function($$0 ) {
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- maybe fix the type for calling this builtin?
+- inline async functions safely (because await)
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $JSON_parse
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 fetchFromStore
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -130,8 +105,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- maybe fix the type for calling this builtin?
-- inline async functions safely (because await)
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $JSON_parse

@@ -18,6 +18,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(tmpClusterSSA_a, arg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,31 +45,6 @@ const tmpDeleteCompProp = $(`y`);
 $(delete tmpDeleteCompObj[tmpDeleteCompProp], arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let arg = { y: 1 };
-  let a = { a: 999, b: 1000 };
-  a = delete ($(1), $(2), $(arg))[$(`y`)];
-  $(a, arg);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$(1);
-$(2);
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +59,15 @@ const d = delete b[ c ];
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -15,6 +15,7 @@ function f({ x: [] }) {
 $(f({ a: 11, b: 12 }, 10));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const objPatternNoDefault /*:unknown*/ = $Object_prototype.x;
 [...objPatternNoDefault];
 $(`bad`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,38 +35,6 @@ const objPatternNoDefault = $Object_prototype.x;
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: [],
-  } = tmpParamBare;
-  return `bad`;
-};
-$(f({ a: 11, b: 12 }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  return `bad`;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = { a: 11, b: 12 };
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +45,15 @@ const a = $Object_prototype.x;
 $( "bad" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

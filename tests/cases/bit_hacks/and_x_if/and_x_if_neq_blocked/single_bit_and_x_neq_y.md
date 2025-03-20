@@ -19,6 +19,7 @@ if (y !== 32) {
 }
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(y);
 $(`pass`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,34 +39,6 @@ $($(32768) & 32768);
 $(`pass`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(32768);
-const y = x & 32768;
-$(y);
-if (y !== 32) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $(32768);
-const y = x & 32768;
-$(y);
-const tmpIfTest = y !== 32;
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +50,15 @@ $( b );
 $( "pass" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 32768

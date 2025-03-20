@@ -24,6 +24,7 @@ const maxed = $dotCall(max, Math, 'max', -10000, minned);
 $(maxed);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ const maxed /*:number*/ = $frfr(tmpFree$1, ten);
 $(maxed);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,44 +61,6 @@ const tmpFree$1 = function $free(ten$1) {
 $($frfr(tmpFree$1, $(120) / 12));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const max = Math.max;
-const min = Math.min;
-const sin = Math.sin;
-const pow = Math.pow;
-const ten = $(120) / 12;
-const twoten = $dotCall(pow, Math, `pow`, 2, ten);
-const zero = 0 * twoten;
-const divvy = zero / 695;
-const sinned = $dotCall(sin, Math, `sin`, divvy);
-const lottasin = 1000000 * sinned;
-const minned = $dotCall(min, Math, `min`, 10000, lottasin);
-const maxed = $dotCall(max, Math, `max`, -10000, minned);
-$(maxed);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const max = $Math_max;
-const min = $Math_min;
-const sin = $Math_sin;
-const pow = $Math_pow;
-const tmpBinLhs = $(120);
-const ten = tmpBinLhs / 12;
-const twoten = $dotCall(pow, Math, `pow`, 2, ten);
-const zero = 0 * twoten;
-const divvy = zero / 695;
-const sinned = $dotCall(sin, Math, `sin`, divvy);
-const lottasin = 1000000 * sinned;
-const minned = $dotCall(min, Math, `min`, 10000, lottasin);
-const maxed = $dotCall(max, Math, `max`, -10000, minned);
-$(maxed);
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +84,25 @@ const m = n( a, l );
 $( m );
 `````
 
+
+## Todos triggered
+
+
+- maybe fix the type for calling this builtin?
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 120
@@ -138,10 +116,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- maybe fix the type for calling this builtin?
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max

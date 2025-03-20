@@ -18,6 +18,7 @@ if ($('a') === $) tmpSwitchCaseToStart = 0;
 $(a, z);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const z /*:array*/ = [10, 20, 30];
 $(a, z);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,33 +37,6 @@ $(`a`);
 $(a, [10, 20, 30]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let y = 2;
-let z = [10, 20, 30];
-let tmpSwitchCaseToStart = 1;
-if ($(`a`) === $) tmpSwitchCaseToStart = 0;
-$(a, z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = 2;
-let z = [10, 20, 30];
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === $;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-  $(a, z);
-} else {
-  $(a, z);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -72,13 +47,17 @@ const b = [ 10, 20, 30 ];
 $( a, b );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 a
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

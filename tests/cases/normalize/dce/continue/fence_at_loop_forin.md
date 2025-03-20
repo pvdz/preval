@@ -23,6 +23,7 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,64 +77,6 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($(true)) {
-  $(`loop`);
-  {
-    let tmpForInGen = $forIn({ a: 1, b: 2 });
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForInNext = tmpForInGen.next();
-      if (tmpForInNext.done) {
-        break;
-      } else {
-        let x = tmpForInNext.value;
-        {
-          $continue: {
-            {
-              $(`loop`, x);
-              break $continue;
-              $(`fail`);
-            }
-          }
-        }
-      }
-    }
-  }
-  $(`infiloop, do not eliminate`);
-}
-$(`after (not invoked)`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    const tmpCalleeParam = { a: 1, b: 2 };
-    let tmpForInGen = $forIn(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForInNext = tmpForInGen.next();
-      const tmpIfTest$1 = tmpForInNext.done;
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        let x = tmpForInNext.value;
-        $(`loop`, x);
-      }
-    }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
-  }
-}
-$(`after (not invoked)`);
-`````
 
 ## PST Settled
 With rename=true
@@ -167,11 +111,21 @@ while (true) {
 $( "after (not invoked)" );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true
@@ -209,6 +163,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

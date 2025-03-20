@@ -12,6 +12,7 @@
 $(parseInt(NaN, 1, "two", implicitGlobal, 3));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $(parseInt(NaN, 1, "two", implicitGlobal, 3));
 implicitGlobal;
 $(NaN);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,23 +30,6 @@ implicitGlobal;
 $(NaN);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(parseInt(NaN, 1, `two`, implicitGlobal, 3));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArgOverflowOne = NaN;
-const tmpArgOverflowTwo = 1;
-implicitGlobal;
-const tmpCalleeParam = parseInt(tmpArgOverflowOne, tmpArgOverflowTwo);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,13 +39,17 @@ implicitGlobal;
 $( NaN );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 implicitGlobal
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

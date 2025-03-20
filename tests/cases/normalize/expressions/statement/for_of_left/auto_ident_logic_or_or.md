@@ -14,6 +14,7 @@ for (($($(0)) || $($(1)) || $($(2))).x of $({ x: 1 }));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -72,58 +74,6 @@ while (true) {
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  let tmpForOfGen = $forOf($({ x: 1 }));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      ($($(0)) || $($(1)) || $($(2))).x = tmpForOfNext.value;
-    }
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-let tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpCalleeParam$3 = $(0);
-    let tmpAssignMemLhsObj = $(tmpCalleeParam$3);
-    if (tmpAssignMemLhsObj) {
-    } else {
-      const tmpCalleeParam$5 = $(1);
-      tmpAssignMemLhsObj = $(tmpCalleeParam$5);
-      if (tmpAssignMemLhsObj) {
-      } else {
-        const tmpCalleeParam$7 = $(2);
-        tmpAssignMemLhsObj = $(tmpCalleeParam$7);
-      }
-    }
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -167,11 +117,21 @@ const l = {
 $( l );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -184,6 +144,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

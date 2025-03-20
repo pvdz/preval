@@ -16,6 +16,7 @@ for (; (a = { b } = $({ b: $(2) })); $(1));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ if (tmpNestedAssignObjPatternRhs) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -71,41 +73,6 @@ if (tmpNestedAssignObjPatternRhs) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-{
-  while ((a = { b: b } = $({ b: $(2) }))) {
-    $(1);
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  let tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -139,11 +106,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -181,6 +158,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

@@ -20,6 +20,7 @@ if ($) {
 $(bindingPatternObjRoot);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ if ($) {
   $(2);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,32 +44,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let bindingPatternObjRoot = undefined;
-if ($) {
-  bindingPatternObjRoot = 1;
-} else {
-  bindingPatternObjRoot = 2;
-}
-$(bindingPatternObjRoot);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternObjRoot = undefined;
-if ($) {
-  bindingPatternObjRoot = 1;
-  $(bindingPatternObjRoot);
-} else {
-  bindingPatternObjRoot = 2;
-  $(bindingPatternObjRoot);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +57,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -19,6 +19,7 @@ a[0] = d;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const a /*:array*/ = [d];
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,25 +38,6 @@ const d = $();
 $([d]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = [0];
-const d = $();
-a[0] = d;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = [0];
-const d = $();
-a[0] = d;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +48,21 @@ const b = [ a ];
 $( b );
 `````
 
+
+## Todos triggered
+
+
+- arr_mutation: implement array inlining analysis stuff
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 
@@ -83,6 +76,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- arr_mutation: implement array inlining analysis stuff

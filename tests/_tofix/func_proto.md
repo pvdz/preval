@@ -14,12 +14,14 @@
 $(function(){}.prototype);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,28 +30,6 @@ $(undefined);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(
-  function () {
-    debugger;
-  }.prototype,
-);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCompObj = function () {
-  debugger;
-  return undefined;
-};
-const tmpCalleeParam = tmpCompObj.prototype;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +38,15 @@ With rename=true
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

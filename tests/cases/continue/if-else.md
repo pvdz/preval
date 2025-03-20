@@ -38,6 +38,7 @@ while (true) {
 $('woohoo');
 `````
 
+
 ## Settled
 
 
@@ -76,6 +77,7 @@ if (tmpIfTest$3) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -108,69 +110,6 @@ if ($(false)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  $continue: {
-    {
-      if ($(false)) {
-        $(`uhoh`);
-        break $continue;
-      } else {
-        $(`exit`);
-        break;
-      }
-    }
-  }
-}
-$(`woohoo`);
-while (true) {
-  let continued = false;
-  if ($(false)) {
-    $(`uhoh`);
-  } else {
-    continued = true;
-    $(`exit`);
-    break;
-  }
-  if (!continued) {
-  }
-}
-$(`woohoo`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  $continue: {
-    const tmpIfTest = $(false);
-    if (tmpIfTest) {
-      $(`uhoh`);
-      break $continue;
-    } else {
-      $(`exit`);
-      break;
-    }
-  }
-}
-$(`woohoo`);
-while (true) {
-  let continued = false;
-  const tmpIfTest$1 = $(false);
-  if (tmpIfTest$1) {
-    $(`uhoh`);
-  } else {
-    continued = true;
-    $(`exit`);
-    break;
-  }
-}
-$(`woohoo`);
-`````
 
 ## PST Settled
 With rename=true
@@ -216,11 +155,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false
@@ -238,6 +187,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

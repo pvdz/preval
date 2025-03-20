@@ -19,6 +19,7 @@ switch ((a = delete arg[$("y")])) {
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
 $(100);
 $(a, arg);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,35 +43,6 @@ $(100);
 $(a, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = (a = delete arg[$(`y`)]);
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = arg;
-const tmpDeleteCompProp = $(`y`);
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpSwitchDisc = a;
-$(100);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +55,15 @@ $( 100 );
 $( c, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'y'

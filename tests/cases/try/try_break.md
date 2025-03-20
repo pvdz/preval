@@ -20,12 +20,14 @@ A: {
 $('end');
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`end`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,27 +36,6 @@ $(`end`);
 $(`end`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-A: {
-  try {
-    break A;
-  } catch (e) {
-    $(`unreachable`);
-  }
-  $(`also unreachable`);
-}
-$(`end`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`end`);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +44,15 @@ With rename=true
 $( "end" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'end'

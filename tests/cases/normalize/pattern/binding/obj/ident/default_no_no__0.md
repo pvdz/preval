@@ -13,6 +13,7 @@ const { x } = 0;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:unknown*/ = (0).x;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,22 +30,6 @@ $(x);
 $((0).x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: x } = 0;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = 0;
-const x = bindingPatternObjRoot.x;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +39,15 @@ const a = 0.x;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

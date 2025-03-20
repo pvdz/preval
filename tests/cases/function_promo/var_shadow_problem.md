@@ -32,6 +32,7 @@ function f() {
 if ($) f();
 `````
 
+
 ## Settled
 
 
@@ -53,6 +54,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -72,73 +74,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let g = function () {
-    debugger;
-    let h = function () {
-      debugger;
-      const x$1 = $();
-      if ($) $(x$1, `keep me inner local`);
-    };
-    if ($) {
-      $(x, `keep me a closure`);
-      h();
-    }
-  };
-  let x = $(1);
-  if ($) {
-    g();
-    $(x, `keep me outer local`);
-  }
-};
-if ($) f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let g = function () {
-    debugger;
-    let h = function () {
-      debugger;
-      const x$1 = $();
-      if ($) {
-        $(x$1, `keep me inner local`);
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    if ($) {
-      $(x, `keep me a closure`);
-      h();
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  let x = $(1);
-  if ($) {
-    g();
-    $(x, `keep me outer local`);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-if ($) {
-  f();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -160,11 +95,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

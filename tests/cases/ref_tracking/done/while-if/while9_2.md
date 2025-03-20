@@ -29,6 +29,7 @@ while (true) {
 $(x); // 2, not one (always overwritten before break)
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -47,7 +48,9 @@ while (true) {
 $(x___29__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

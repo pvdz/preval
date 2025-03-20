@@ -15,6 +15,7 @@ const method = /foo/; // Nevermind that it's not callable
 $dotCall(method, obj, undefined);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const obj /*:object*/ = { f: g };
 $dotCall(method, obj, undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,32 +41,6 @@ const g = function () {
 $dotCall(/foo/, { f: g }, undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  $();
-};
-const obj = { f: g };
-const method = /foo/;
-$dotCall(method, obj, undefined);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const obj = { f: g };
-const method = /foo/;
-$dotCall(method, obj, undefined);
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +56,15 @@ const c = { f: a };
 $dotCall( b, c, undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

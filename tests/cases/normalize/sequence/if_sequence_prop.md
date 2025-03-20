@@ -12,6 +12,7 @@
 if (($(1), $(2)).foo) $(3);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,25 +37,6 @@ if ($(2).foo) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if (($(1), $(2)).foo) $(3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-const tmpCompObj = $(2);
-const tmpIfTest = tmpCompObj.foo;
-if (tmpIfTest) {
-  $(3);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +50,15 @@ if (b) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

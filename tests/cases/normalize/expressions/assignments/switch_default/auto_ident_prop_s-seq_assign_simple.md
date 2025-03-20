@@ -19,6 +19,7 @@ switch ($(1)) {
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const b /*:object*/ = { c: 2 };
 $(2, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,35 +38,6 @@ $(1);
 $(2, { c: 2 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (true) {
-    a = (1, 2, b).c = 2;
-  } else {
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-const tmpNestedAssignObj = b;
-const tmpNestedPropAssignRhs = 2;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-$(tmpNestedPropAssignRhs, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +48,15 @@ const a = { c: 2 };
 $( 2, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

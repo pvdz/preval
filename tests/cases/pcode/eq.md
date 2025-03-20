@@ -22,24 +22,17 @@ f();
 $(arr);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  arr[0] = 1;
-};
-const arr = [];
-$(f);
-f();
-$(arr);
-`````
 
 ## Pcode output
+
 
 `````fileintro
 
 `````
+
+
+
+
+## Pcode result
 
 

@@ -12,6 +12,7 @@
 $spy(isNaN)($spy('a'), $spy('b'), $spy('c'));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpCalleeParam$3 /*:unknown*/ = $spy(`c`);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,23 +33,6 @@ const tmpCallCallee = $spy(isNaN);
 tmpCallCallee($spy(`a`), $spy(`b`), $spy(`c`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$spy(isNaN)($spy(`a`), $spy(`b`), $spy(`c`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallCallee = $spy(isNaN);
-const tmpCalleeParam = $spy(`a`);
-const tmpCalleeParam$1 = $spy(`b`);
-const tmpCalleeParam$3 = $spy(`c`);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +45,15 @@ const d = $spy( "c" );
 a( b, c, d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['<function>', '<function>']

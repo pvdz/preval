@@ -13,6 +13,7 @@ var a = {x:1}, b = {x:2}, c = {x:3};
 $($(a).x = $(b).x = $(c).x);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
 $(varInitAssignLhsComputedRhs$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,37 +43,6 @@ varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
 $(varInitAssignLhsComputedRhs$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-(a = { x: 1 }), (b = { x: 2 }), (c = { x: 3 });
-$(($(a).x = $(b).x = $(c).x));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-a = { x: 1 };
-b = { x: 2 };
-c = { x: 3 };
-const varInitAssignLhsComputedObj = $(a);
-const varInitAssignLhsComputedObj$1 = $(b);
-const tmpCompObj = $(c);
-const varInitAssignLhsComputedRhs$1 = tmpCompObj.x;
-varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +60,15 @@ b.x = g;
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

@@ -12,6 +12,7 @@
 ({x: {y: {z: a}}} = 1)
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
 a = objPatternNoDefault$1.z;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,26 +30,6 @@ a = objPatternNoDefault$1.z;
 a = (1).x.y.z;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({
-  x: {
-    y: { z: a },
-  },
-} = 1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = 1;
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-a = objPatternNoDefault$1.z;
-`````
 
 ## PST Settled
 With rename=true
@@ -58,13 +40,17 @@ const c = b.y;
 a = c.z;
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 a
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

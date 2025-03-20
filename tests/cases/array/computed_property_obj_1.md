@@ -13,6 +13,7 @@ const x = {1: 'pass'};
 $(x[[1]]);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:unknown*/ = x[`1`];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,24 +31,6 @@ $(tmpCalleeParam);
 $({ [1]: `pass` }[`1`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = { [1]: `pass` };
-$(x[[1]]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = { [1]: `pass` };
-const tmpCompObj = x;
-const tmpCompProp = [1];
-const tmpCalleeParam = tmpCompObj[tmpCompProp];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +41,15 @@ const b = a[ "1" ];
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

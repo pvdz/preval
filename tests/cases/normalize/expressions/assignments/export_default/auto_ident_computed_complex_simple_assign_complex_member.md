@@ -16,6 +16,7 @@ export default a = $(b)["c"] = $(b)[$("d")];
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignPropRhs;
 export { tmpAnonDefaultExport as default };
 $(tmpNestedAssignPropRhs, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -46,34 +48,6 @@ export { tmpAnonDefaultExport as default };
 $(tmpNestedAssignPropRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = $(b)[`c`] = $(b)[$(`d`)]);
-export { tmpAnonDefaultExport as default };
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpNestedAssignObj = $(b);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -93,11 +67,15 @@ export { f as default };
 $( e, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

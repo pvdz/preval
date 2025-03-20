@@ -42,6 +42,7 @@ function f() {
 $(f);
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -66,7 +67,9 @@ let g___36__ = function () /*38*/ {
 $(f___51__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                      | reads      | read by     | overWrites     | overwritten by
 f:

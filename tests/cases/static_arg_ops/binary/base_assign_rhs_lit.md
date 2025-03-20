@@ -22,6 +22,7 @@ $(f(true));
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ $(tmpCalleeParam$5);
 $(2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,46 +50,6 @@ $($(100));
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  y = 1 + a;
-  return $(100);
-};
-let y;
-$(f(1));
-$(f(2));
-$(f(`a`));
-$(f(true));
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  y = 1 + a;
-  const tmpReturnArg = $(100);
-  return tmpReturnArg;
-};
-let y = undefined;
-const tmpCalleeParam = f(1);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`a`);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(true);
-$(tmpCalleeParam$5);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +66,15 @@ $( d );
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

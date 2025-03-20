@@ -25,6 +25,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) { // The refs inside a loop should not 
 $(arr.slice(0));              // Don't let arr escape
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ const tmpCalleeParam /*:array*/ = arr.slice(0);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,40 +60,6 @@ while (true) {
 $(arr.slice(0));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4, 5];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const test = $(`never`);
-  if (test) {
-    break;
-  } else {
-    const tmp = arr.shift();
-    arr.push(tmp);
-  }
-}
-$(arr.slice(0));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4, 5];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const test = $(`never`);
-  if (test) {
-    break;
-  } else {
-    const tmp = arr.shift();
-    arr.push(tmp);
-  }
-}
-const tmpCalleeParam = arr.slice(0);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -112,11 +80,21 @@ const d = a.slice( 0 );
 $( d );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'never'
@@ -130,6 +108,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

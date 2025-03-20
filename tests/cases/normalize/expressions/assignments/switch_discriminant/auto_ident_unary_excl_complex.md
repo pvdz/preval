@@ -17,6 +17,7 @@ switch ((a = !$(100))) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const a /*:boolean*/ = !tmpUnaryArg;
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,32 +38,6 @@ $(100);
 $(!tmpUnaryArg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = (a = !$(100));
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(100);
-a = !tmpUnaryArg;
-let tmpSwitchDisc = a;
-$(100);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +49,15 @@ const b = !a;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

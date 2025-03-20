@@ -13,6 +13,7 @@ const spy = {toString(){ $('pass'); }, valueOf(){ $('fail'); }};
 spy in {};
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ const tmpBinBothRhs /*:object*/ = {};
 spy in tmpBinBothRhs;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,43 +49,6 @@ spy in tmpBinBothRhs;
 } in {});
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`pass`);
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-  },
-};
-spy in {};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = {
-  toString() {
-    debugger;
-    $(`pass`);
-    return undefined;
-  },
-  valueOf() {
-    debugger;
-    $(`fail`);
-    return undefined;
-  },
-};
-const tmpBinBothLhs = spy;
-const tmpBinBothRhs = {};
-tmpBinBothLhs in tmpBinBothRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -105,11 +70,15 @@ const b = {};
 a in b;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

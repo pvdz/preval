@@ -15,12 +15,14 @@ function x({x}) {
 x({x});
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,34 +31,6 @@ x({x});
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { x: x$1 } = tmpParamBare;
-  return x$1;
-};
-x({ x: x });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let x$1 = bindingPatternObjRoot.x;
-  return x$1;
-};
-const tmpCallCallee = x;
-const tmpCalleeParam = { x: x };
-tmpCallCallee(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +39,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

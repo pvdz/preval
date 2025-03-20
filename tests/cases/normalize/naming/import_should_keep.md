@@ -22,6 +22,7 @@ export class c {}
 export const x = $(f());
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ export { f };
 export { g };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -64,50 +66,6 @@ export { f };
 export { g };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x$1 = $(1);
-  return x$1;
-};
-let g = function ($$0) {
-  let x$3 = $$0;
-  debugger;
-  return x$3;
-};
-let c = class {};
-export { c };
-const x = $(f());
-export { x };
-export { f };
-export { g };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x$1 = $(1);
-  return x$1;
-};
-let g = function ($$0) {
-  let x$3 = $$0;
-  debugger;
-  return x$3;
-};
-let c = class {};
-export { c };
-const tmpCalleeParam = f();
-const x = $(tmpCalleeParam);
-export { x };
-export { f };
-export { g };
-`````
 
 ## PST Settled
 With rename=true
@@ -134,11 +92,15 @@ export { a as f };
 export { c as g };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

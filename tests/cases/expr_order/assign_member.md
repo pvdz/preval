@@ -16,6 +16,7 @@ a.foo = a = $();
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpClusterSSA_a /*:unknown*/ = $();
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,26 +33,6 @@ $(tmpClusterSSA_a);
 $($());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = {};
-a.foo = a = $();
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = {};
-const tmpAssignMemLhsObj = a;
-a = $();
-let tmpAssignMemRhs = a;
-tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +42,15 @@ const a = $();
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

@@ -35,6 +35,7 @@ const c = func(5, 6);
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -70,6 +71,7 @@ const c /*:unknown*/ = func(5, 6);
 $(a, b, c);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -99,74 +101,6 @@ alias(7, 8);
 $(a, b, func(5, 6));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-let func = function ($$0, $$1) {
-  let arg1 = $$0;
-  let arg2 = $$1;
-  debugger;
-  func = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny = arguments;
-    let newArg1 = $$0;
-    let unusedNewArg2 = $$1;
-    debugger;
-    const index = newArg1 - 1;
-    const arrval = arr[index];
-    if (!arg1) {
-      arg1 = tmpPrevalAliasArgumentsAny;
-    }
-    $(`always arg1:`, arg1);
-    return arg1;
-  };
-  const r = func(arg1, arg2);
-  return r;
-};
-const alias = func;
-const b = alias(3, 4);
-const a = func(1, 2);
-const d = alias(7, 8);
-const c = func(5, 6);
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-let func = function ($$0, $$1) {
-  let arg1 = $$0;
-  let arg2 = $$1;
-  debugger;
-  func = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny = arguments;
-    let newArg1 = $$0;
-    let unusedNewArg2 = $$1;
-    debugger;
-    const index = newArg1 - 1;
-    const arrval = arr[index];
-    if (arg1) {
-      $(`always arg1:`, arg1);
-      return arg1;
-    } else {
-      arg1 = tmpPrevalAliasArgumentsAny;
-      $(`always arg1:`, tmpPrevalAliasArgumentsAny);
-      return arg1;
-    }
-  };
-  const r = func(arg1, arg2);
-  return r;
-};
-const alias = func;
-const b = func(3, 4);
-const a = func(1, 2);
-const d = alias(7, 8);
-const c = func(5, 6);
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -204,11 +138,21 @@ const m = b( 5, 6 );
 $( l, k, m );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'always arg1:', 3
@@ -225,6 +169,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

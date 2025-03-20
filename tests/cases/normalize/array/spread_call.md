@@ -12,6 +12,7 @@
 $([...$("foo")]);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,21 +31,6 @@ const tmpArrSpread = $(`foo`);
 $([...tmpArrSpread]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$([...$(`foo`)]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrSpread = $(`foo`);
-const tmpCalleeParam = [...tmpArrSpread];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +41,15 @@ const b = [ ...a ];
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'foo'

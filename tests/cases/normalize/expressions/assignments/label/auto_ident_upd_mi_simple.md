@@ -16,12 +16,14 @@ label: a = --b;
 $(a, b);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(0, 0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,27 +32,6 @@ $(0, 0);
 $(0, 0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-label: a = --b;
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = $coerce(b, `number`);
-b = tmpPostUpdArgIdent - 1;
-a = b;
-$(b, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +40,15 @@ With rename=true
 $( 0, 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0, 0

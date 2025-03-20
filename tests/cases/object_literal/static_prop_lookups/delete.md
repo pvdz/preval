@@ -14,6 +14,7 @@ delete obj.x;
 $(obj);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const obj /*:object*/ = { x: 1 };
 delete obj.x;
 $(obj);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,23 +34,6 @@ delete obj.x;
 $(obj);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { x: 1 };
-delete obj.x;
-$(obj);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { x: 1 };
-delete obj.x;
-$(obj);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +44,15 @@ delete a.x;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

@@ -14,6 +14,7 @@ x = ($(1), 2).foo;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const x /*:unknown*/ = (2).foo;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,25 +33,6 @@ $(1);
 $((2).foo);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 10;
-x = ($(1), 2).foo;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 10;
-$(1);
-const tmpAssignRhsProp = 2;
-x = tmpAssignRhsProp.foo;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +43,15 @@ const a = 2.foo;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -13,6 +13,7 @@ var x;
 $(x = $(1) || $(2));
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,27 +40,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-$((x = $(1) || $(2)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-x = $(1);
-if (x) {
-} else {
-  x = $(2);
-}
-let tmpCalleeParam = x;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +55,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

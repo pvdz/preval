@@ -14,6 +14,7 @@ This wouldn't occur in actual code but we will see it as an artifact of other tr
 ($(1), $(2)).x = 1;
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(1);
 const tmpAssignMemLhsObj /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.x = 1;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,21 +34,6 @@ const tmpAssignMemLhsObj = $(2);
 tmpAssignMemLhsObj.x = 1;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-($(1), $(2)).x = 1;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-const tmpAssignMemLhsObj = $(2);
-tmpAssignMemLhsObj.x = 1;
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +44,15 @@ const a = $( 2 );
 a.x = 1;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

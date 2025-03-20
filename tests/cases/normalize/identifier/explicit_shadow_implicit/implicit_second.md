@@ -16,6 +16,7 @@
 $(n);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(n$1);
 $(n);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,25 +35,6 @@ $($(10));
 $(n);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let n$1 = $(10);
-  $(n$1);
-}
-$(n);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let n$1 = $(10);
-$(n$1);
-$(n);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,13 +45,17 @@ $( a );
 $( n );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 n
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

@@ -39,6 +39,7 @@ if (theneedle) {
 $(undefined);
 `````
 
+
 ## Settled
 
 
@@ -63,6 +64,7 @@ if (theneedle) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -83,74 +85,6 @@ if (theneedle) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let theneedle = { a: 999, b: 1000 };
-const tmpCalleeParam = $(1);
-theneedle = $(tmpCalleeParam);
-const tmpBranchingC$1 = function () {
-  debugger;
-  $(theneedle);
-  return undefined;
-};
-const tmpBranchingC = function () {
-  debugger;
-  if (theneedle) {
-    const tmpCalleeParam$7 = $(2);
-    theneedle = $(tmpCalleeParam$7);
-    tmpBranchingC$1();
-    return undefined;
-  } else {
-    tmpBranchingC$1();
-    return undefined;
-  }
-};
-if (theneedle) {
-  const tmpCalleeParam$3 = $(1);
-  theneedle = $(tmpCalleeParam$3);
-  tmpBranchingC();
-} else {
-  tmpBranchingC();
-}
-$(undefined);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let theneedle = { a: 999, b: 1000 };
-const tmpCalleeParam = $(1);
-theneedle = $(tmpCalleeParam);
-const tmpBranchingC$1 = function () {
-  debugger;
-  $(theneedle);
-  return undefined;
-};
-const tmpBranchingC = function () {
-  debugger;
-  if (theneedle) {
-    const tmpCalleeParam$7 = $(2);
-    theneedle = $(tmpCalleeParam$7);
-    tmpBranchingC$1();
-    return undefined;
-  } else {
-    tmpBranchingC$1();
-    return undefined;
-  }
-};
-if (theneedle) {
-  const tmpCalleeParam$3 = $(1);
-  theneedle = $(tmpCalleeParam$3);
-  tmpBranchingC();
-  $(undefined);
-} else {
-  tmpBranchingC();
-  $(undefined);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -178,11 +112,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -16,6 +16,7 @@ $`before ${(a = typeof x)} after`;
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(tmpCalleeParam, `number`);
 $(`number`, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,28 +35,6 @@ $([`before `, ` after`], `number`);
 $(`number`, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = typeof x));
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-a = typeof x;
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +45,15 @@ $( a, "number" );
 $( "number", 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['before ', ' after'], 'number'

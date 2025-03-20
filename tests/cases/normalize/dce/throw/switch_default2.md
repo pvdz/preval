@@ -23,6 +23,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,49 +54,6 @@ if ($(1, `disc`) === $(0)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  tmpSwitchBreak: {
-    const tmpSwitchDisc = $(1, `disc`);
-    if (tmpSwitchDisc === $(0)) {
-      $(`keep, do not eval`);
-      throw `wrong exit`;
-    } else if (true) {
-      throw $(2, `ret`);
-      $(`fail`);
-    } else {
-    }
-  }
-  $(`fail`);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpSwitchDisc = $(1, `disc`);
-  const tmpBinBothLhs = tmpSwitchDisc;
-  const tmpBinBothRhs = $(0);
-  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  if (tmpIfTest) {
-    $(`keep, do not eval`);
-    throw `wrong exit`;
-  } else {
-    const tmpThrowArg = $(2, `ret`);
-    throw tmpThrowArg;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -113,11 +72,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 'disc'

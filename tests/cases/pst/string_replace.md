@@ -14,6 +14,7 @@ const y = $();
 "".replace(x, y);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const y /*:unknown*/ = $();
 ``.replace(x, y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,23 +32,6 @@ const y /*:unknown*/ = $();
 ``.replace($(), $());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $();
-const y = $();
-``.replace(x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $();
-const y = $();
-``.replace(x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +42,15 @@ const b = $();
 "".replace( a, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

@@ -17,12 +17,14 @@ if ($) {
 onlyNumbers ** 0;
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,29 +33,6 @@ onlyNumbers ** 0;
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let onlyNumbers = 0;
-if ($) {
-  onlyNumbers = 1;
-} else {
-}
-onlyNumbers ** 0;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let onlyNumbers = 0;
-if ($) {
-  onlyNumbers = 1;
-} else {
-}
-onlyNumbers ** 0;
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +41,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

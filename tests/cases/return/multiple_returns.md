@@ -37,6 +37,7 @@ $(f());
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -83,6 +84,7 @@ f();
 $(10);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -113,84 +115,6 @@ f();
 $(10);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($(true)) {
-    $(1);
-    if ($(true)) {
-      $(2);
-      return 10;
-    }
-    if ($(true)) {
-      $(3);
-      if ($(true)) {
-        $(4);
-        if ($(true)) {
-          $(5);
-          return 10;
-        }
-        return 10;
-      }
-      return 10;
-    }
-    return 10;
-  }
-  return 10;
-};
-$(f());
-$(f());
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(1);
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(2);
-      return 10;
-    } else {
-      const tmpIfTest$3 = $(true);
-      if (tmpIfTest$3) {
-        $(3);
-        const tmpIfTest$5 = $(true);
-        if (tmpIfTest$5) {
-          $(4);
-          const tmpIfTest$7 = $(true);
-          if (tmpIfTest$7) {
-            $(5);
-            return 10;
-          } else {
-            return 10;
-          }
-        } else {
-          return 10;
-        }
-      } else {
-        return 10;
-      }
-    }
-  } else {
-    return 10;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -243,11 +167,15 @@ a();
 $( 10 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

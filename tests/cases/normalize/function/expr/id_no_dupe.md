@@ -16,6 +16,7 @@ const f = function g() {
 $(g, f());
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(g, f());
 $(`function`);
 $(10, undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,34 +34,6 @@ $(`function`);
 $(10, undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = 10;
-const f = function g$1() {
-  debugger;
-  $(typeof g$1);
-};
-$(g, f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = 10;
-const g$1 = function () {
-  debugger;
-  const tmpCalleeParam = typeof g$1;
-  $(tmpCalleeParam);
-  return undefined;
-};
-const f = g$1;
-const tmpCalleeParam$1 = g;
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$1, tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +43,15 @@ $( "function" );
 $( 10, undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'function'

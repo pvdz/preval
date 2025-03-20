@@ -29,6 +29,7 @@ const tmpLabeledBlockFunc$3 = function (x) {
 $(tmpLabeledBlockFunc$3);
 `````
 
+
 ## Settled
 
 
@@ -56,6 +57,7 @@ const tmpLabeledBlockFunc$3 /*:(unknown)=>undefined*/ = function ($$0) {
 $(tmpLabeledBlockFunc$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,55 +77,6 @@ $(function (x) {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpLabeledBlockFunc$3 = function ($$0) {
-  let x = $$0;
-  debugger;
-  if ($(1)) {
-    if ($) {
-      x = $(1);
-      $(x);
-      return;
-    } else {
-      $(2);
-    }
-  } else {
-    $(3);
-  }
-  $(x);
-};
-$(tmpLabeledBlockFunc$3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpLabeledBlockFunc$3 = function ($$0) {
-  let x = $$0;
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    if ($) {
-      x = $(1);
-      $(x);
-      return undefined;
-    } else {
-      $(2);
-      $(x);
-      return undefined;
-    }
-  } else {
-    $(3);
-    $(x);
-    return undefined;
-  }
-};
-$(tmpLabeledBlockFunc$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -154,11 +107,15 @@ const a = function($$0 ) {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

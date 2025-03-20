@@ -16,12 +16,14 @@ if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`PASS`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,23 +32,6 @@ $(`PASS`);
 $(`PASS`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(`PASS`);
-} else {
-  $(`FAIL`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`PASS`);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +40,15 @@ With rename=true
 $( "PASS" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'PASS'

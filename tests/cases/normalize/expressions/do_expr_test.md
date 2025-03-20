@@ -15,6 +15,7 @@ let a = 1, x = 3, y = 4;
 do $(a); while (x + y);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,38 +35,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  x = 3,
-  y = 4;
-while (true) {
-  $(a);
-  if (x + y) {
-  } else {
-    break;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let x = 3;
-let y = 4;
-while (true) {
-  $(a);
-  const tmpIfTest = x + y;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +45,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

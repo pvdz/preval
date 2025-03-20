@@ -22,12 +22,14 @@ const f = function () {
 // Yes that means this test ends with an empty output. Or should, anyways.
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,35 +38,6 @@ const f = function () {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const repeat = function () {
-    debugger;
-    f();
-  };
-  repeat();
-};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const repeat = function () {
-    debugger;
-    f();
-    return undefined;
-  };
-  repeat();
-  return undefined;
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +46,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

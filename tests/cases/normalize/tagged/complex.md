@@ -12,6 +12,7 @@
 $`abc ${ 10 } def`;
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam /*:array*/ = [`abc `, ` def`];
 $(tmpCalleeParam, 10);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,20 +29,6 @@ $(tmpCalleeParam, 10);
 $([`abc `, ` def`], 10);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$([`abc `, ` def`], 10);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [`abc `, ` def`];
-$(tmpCalleeParam, 10);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +38,15 @@ const a = [ "abc ", " def" ];
 $( a, 10 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['abc ', ' def'], 10

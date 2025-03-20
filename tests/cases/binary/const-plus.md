@@ -16,12 +16,14 @@ const xyz = z;
 $(xyz);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`aba`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,28 +32,6 @@ $(`aba`);
 $(`aba`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = `a`;
-const y = `b` + x;
-const z = x + y;
-const xyz = z;
-$(xyz);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = `a`;
-const tmpStringConcatL = $coerce(x, `plustr`);
-const y = `b${tmpStringConcatL}`;
-const z = x + y;
-const xyz = z;
-$(z);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +40,15 @@ With rename=true
 $( "aba" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'aba'

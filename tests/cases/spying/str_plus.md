@@ -12,6 +12,7 @@
 $('' + $spy());
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,22 +30,6 @@ $(tmpCalleeParam);
 $($coerce($spy(), `plustr`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`` + $spy());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $spy();
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +40,15 @@ const b = $coerce( a, "plustr" );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]

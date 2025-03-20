@@ -16,12 +16,14 @@ switch (0) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(10, 20);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,39 +32,6 @@ $(10, 20);
 $(10, 20);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let a;
-  let b;
-  const tmpSwitchDisc = 0;
-  if (tmpSwitchDisc === 0) {
-    [a, b] = [10, 20];
-    $(a, b);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-const tmpSwitchDisc = 0;
-const tmpIfTest = tmpSwitchDisc === 0;
-if (tmpIfTest) {
-  const arrAssignPatternRhs = [10, 20];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  a = arrPatternSplat[0];
-  b = arrPatternSplat[1];
-  $(a, b);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +40,22 @@ With rename=true
 $( 10, 20 );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10, 20
@@ -88,7 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

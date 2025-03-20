@@ -17,6 +17,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,31 +45,6 @@ b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let b = { c: 10, d: 20 };
-  let a = (b[$(`c`)] = $(b)[$(`d`)]);
-  $(a, b);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-const varInitAssignLhsComputedObj = b;
-const varInitAssignLhsComputedProp = $(`c`);
-const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +62,15 @@ b[a] = e;
 $( e, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'c'

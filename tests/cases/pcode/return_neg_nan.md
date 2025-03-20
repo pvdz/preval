@@ -21,28 +21,21 @@ $(f('a'));
 $(f(true));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  return -NaN;
-};
-$(f(1));
-$(f(2));
-$(f(`a`));
-$(f(true));
-`````
 
 ## Pcode output
+
 
 `````fileintro
 f =
     [ r0 = $$0 - ]
     [ return neg - ]
 `````
+
+
+
+
+## Pcode result
+
 
 Running function "f":
 

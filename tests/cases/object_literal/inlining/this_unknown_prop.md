@@ -13,6 +13,7 @@ const obj = {f: function(){ $(this.g); }};
 $(obj.f());
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const tmpCalleeParam$1 /*:unknown*/ = obj.f();
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,35 +42,6 @@ const tmpObjLitVal = function () {
 $({ f: tmpObjLitVal }.f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  f: function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    $(tmpPrevalAliasThis.g);
-  },
-};
-$(obj.f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const tmpCalleeParam = tmpPrevalAliasThis.g;
-  $(tmpCalleeParam);
-  return undefined;
-};
-const obj = { f: tmpObjLitVal };
-const tmpCalleeParam$1 = obj.f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +59,15 @@ const e = d.f();
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

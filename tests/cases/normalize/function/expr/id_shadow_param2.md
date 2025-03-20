@@ -17,6 +17,7 @@ const x = f(10);
 $(x, typeof f, 'b');
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(x, typeof f, 'b');
 $(`number`, `a`);
 $(10, `function`, `b`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,37 +35,6 @@ $(`number`, `a`);
 $(10, `function`, `b`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function r$1($$0) {
-  let r$1 = $$0;
-  debugger;
-  $(typeof r$1, `a`);
-  return r$1;
-};
-const x = f(10);
-$(x, typeof f, `b`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const r$1 = function ($$0) {
-  let r$2 = $$0;
-  debugger;
-  const tmpCalleeParam = typeof r$2;
-  $(tmpCalleeParam, `a`);
-  return r$2;
-};
-const f = r$1;
-const x = r$1(10);
-const tmpCalleeParam$1 = x;
-const tmpCalleeParam$3 = typeof f;
-$(tmpCalleeParam$1, tmpCalleeParam$3, `b`);
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +44,15 @@ $( "number", "a" );
 $( 10, "function", "b" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'number', 'a'

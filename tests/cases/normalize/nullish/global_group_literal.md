@@ -13,12 +13,14 @@ const y = (1, 2, 3)??foo
 $(y);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,27 +29,6 @@ $(3);
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = (1, 2, 3) ?? foo;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = 3;
-const tmpIfTest = y == null;
-if (tmpIfTest) {
-  y = foo;
-  $(foo);
-} else {
-  $(y);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +37,15 @@ With rename=true
 $( 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

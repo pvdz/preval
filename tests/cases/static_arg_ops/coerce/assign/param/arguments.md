@@ -18,6 +18,7 @@ f(3);
 f(4);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ f();
 f();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,44 +50,6 @@ f();
 f();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(`50`);
-const f = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  let c = $$0;
-  let d = $$1;
-  debugger;
-  $coerce(tmpPrevalAliasArgumentsAny, `number`);
-  $(1);
-  $(2);
-  $(d);
-};
-f(3);
-f(4);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(`50`);
-const f = function ($$0, $$1) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  let c = $$0;
-  let d = $$1;
-  debugger;
-  $coerce(tmpPrevalAliasArgumentsAny, `number`);
-  $(1);
-  $(2);
-  $(d);
-  return undefined;
-};
-f(3);
-f(4);
-`````
 
 ## PST Settled
 With rename=true
@@ -103,11 +67,15 @@ a();
 a();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '50'

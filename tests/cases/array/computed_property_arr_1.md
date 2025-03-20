@@ -13,12 +13,14 @@ const x = ['fail', 'pass'];
 $(x[[1]]);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`pass`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,24 +29,6 @@ $(`pass`);
 $(`pass`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = [`fail`, `pass`];
-$(x[[1]]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = [`fail`, `pass`];
-const tmpCompObj = x;
-const tmpCompProp = [1];
-const tmpCalleeParam = tmpCompObj[tmpCompProp];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +37,21 @@ With rename=true
 $( "pass" );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'
@@ -70,6 +64,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

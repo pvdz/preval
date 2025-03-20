@@ -12,6 +12,7 @@
 for (let {x} of {a: 1, b: 2}) $(x);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,42 +48,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let tmpForOfGen = $forOf({ a: 1, b: 2 });
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      let { x: x } = tmpForOfNext.value;
-      $(x);
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = { a: 1, b: 2 };
-let tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    let bindingPatternObjRoot = tmpForOfNext.value;
-    let x = bindingPatternObjRoot.x;
-    $(x);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -106,11 +72,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -122,6 +98,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

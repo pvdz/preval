@@ -14,6 +14,7 @@ o = {}
 $(o.x);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpCalleeParam /*:unknown*/ = $Object_prototype.x;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,25 +33,6 @@ $(1);
 $($Object_prototype.x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let o = { x: $(1) };
-o = {};
-$(o.x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = $(1);
-let o = { x: tmpObjLitVal };
-o = {};
-const tmpCalleeParam = o.x;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +43,15 @@ const a = $Object_prototype.x;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

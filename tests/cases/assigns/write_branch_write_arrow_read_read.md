@@ -19,6 +19,7 @@ x = $(3, 'after'); // This should get SSA'd
 $(x, 'final');
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ const tmpClusterSSA_x$1 /*:unknown*/ = $(3, `after`);
 $(tmpClusterSSA_x$1, `final`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,43 +48,6 @@ if ($(1)) {
 $($(3, `after`), `final`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(1);
-if ($(1)) {
-  x = $(2, `branch`);
-  const f = () => {
-    debugger;
-    return $(x, `arrow`);
-  };
-  $(f(), `result`);
-}
-x = $(3, `after`);
-$(x, `final`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(1);
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-  x = $(2, `branch`);
-  const f = function () {
-    debugger;
-    const tmpReturnArg = $(x, `arrow`);
-    return tmpReturnArg;
-  };
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam, `result`);
-} else {
-}
-x = $(3, `after`);
-$(x, `final`);
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +64,15 @@ const d = $( 3, "after" );
 $( d, "final" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -25,6 +25,7 @@ for (arr of list) {
 $(x);
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -49,7 +50,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___26__) {
 $(x___65__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                  | reads      | read by     | overWrites     | overwritten by
 x:

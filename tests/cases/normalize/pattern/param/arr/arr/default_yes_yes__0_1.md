@@ -16,6 +16,7 @@ function f(tmp) {
 f(true);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ f(true);
 [...true];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,32 +34,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let tmp = $$0;
-  debugger;
-  [] = tmp;
-  return `bad`;
-};
-f(true);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let tmp = $$0;
-  debugger;
-  const arrAssignPatternRhs = tmp;
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  return `bad`;
-};
-f(true);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +43,15 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

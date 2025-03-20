@@ -20,6 +20,7 @@ const y = t.x++;
 $(b);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ t.x = tmpUpdInc;
 $(b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,30 +45,6 @@ t.x = $coerce(t.x, `number`) + 1;
 $(b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-const t = $(b);
-const y = t.x++;
-$(b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-const t = $(b);
-let tmpUpdObj = t;
-let tmpUpdProp = tmpUpdObj.x;
-let tmpUpdNum = $coerce(tmpUpdProp, `number`);
-let tmpUpdInc = tmpUpdNum + 1;
-tmpUpdObj.x = tmpUpdInc;
-const y = tmpUpdNum;
-$(b);
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +59,15 @@ b.x = e;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

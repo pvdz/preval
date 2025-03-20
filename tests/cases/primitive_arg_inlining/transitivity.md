@@ -22,6 +22,7 @@ $(f($('a'), $('b')), 'second C');
 $(f('a', 'b'), 'second D');
 `````
 
+
 ## Settled
 
 
@@ -52,6 +53,7 @@ const tmpCalleeParam$29 /*:unknown*/ = $(`a`, `b`);
 $(tmpCalleeParam$29, `second D`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,68 +70,6 @@ $($(tmpCalleeParam$25, $(`b`)), `second C`);
 $($(`a`, `b`), `second D`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  return $(a, b);
-};
-$(f(`a`, $(`b`)), `first A`);
-$(f($(`a`), `b`), `first B`);
-$(f($(`a`), $(`b`)), `first C`);
-$(f(`a`, `b`), `first D`);
-$(f(`a`, $(`b`)), `second A`);
-$(f($(`a`), `b`), `second B`);
-$(f($(`a`), $(`b`)), `second C`);
-$(f(`a`, `b`), `second D`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const tmpReturnArg = $(a, b);
-  return tmpReturnArg;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = $(`b`);
-const tmpCalleeParam = tmpCallCallee(`a`, tmpCalleeParam$1);
-$(tmpCalleeParam, `first A`);
-const tmpCallCallee$1 = f;
-const tmpCalleeParam$5 = $(`a`);
-const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5, `b`);
-$(tmpCalleeParam$3, `first B`);
-const tmpCallCallee$3 = f;
-const tmpCalleeParam$9 = $(`a`);
-const tmpCalleeParam$11 = $(`b`);
-const tmpCalleeParam$7 = tmpCallCallee$3(tmpCalleeParam$9, tmpCalleeParam$11);
-$(tmpCalleeParam$7, `first C`);
-const tmpCalleeParam$13 = f(`a`, `b`);
-$(tmpCalleeParam$13, `first D`);
-const tmpCallCallee$5 = f;
-const tmpCalleeParam$17 = $(`b`);
-const tmpCalleeParam$15 = tmpCallCallee$5(`a`, tmpCalleeParam$17);
-$(tmpCalleeParam$15, `second A`);
-const tmpCallCallee$7 = f;
-const tmpCalleeParam$21 = $(`a`);
-const tmpCalleeParam$19 = tmpCallCallee$7(tmpCalleeParam$21, `b`);
-$(tmpCalleeParam$19, `second B`);
-const tmpCallCallee$9 = f;
-const tmpCalleeParam$25 = $(`a`);
-const tmpCalleeParam$27 = $(`b`);
-const tmpCalleeParam$23 = tmpCallCallee$9(tmpCalleeParam$25, tmpCalleeParam$27);
-$(tmpCalleeParam$23, `second C`);
-const tmpCalleeParam$29 = f(`a`, `b`);
-$(tmpCalleeParam$29, `second D`);
-`````
 
 ## PST Settled
 With rename=true
@@ -161,11 +101,15 @@ const p = $( "a", "b" );
 $( p, "second D" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'b'

@@ -29,6 +29,7 @@ $(f(undefined, 'y')); // runtime error
 $(f('x', 'y')); // [x, y]
 `````
 
+
 ## Settled
 
 
@@ -61,6 +62,7 @@ const tmpCalleeParam$5 /*:array*/ = f(`x`, `y`);
 $(tmpCalleeParam$5);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -83,58 +85,6 @@ $(f(undefined, `y`));
 $(f(`x`, `y`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
-  debugger;
-  let a = tmpParamBare === undefined ? b : tmpParamBare;
-  let b = tmpParamBare$1 === undefined ? `bar` : tmpParamBare$1;
-  return [a, b];
-};
-$(f());
-$(f(`x`));
-$(f(undefined, `y`));
-$(f(`x`, `y`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
-  debugger;
-  let a = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
-  } else {
-    a = tmpParamBare;
-    let b = undefined;
-    const tmpIfTest$1 = tmpParamBare$1 === undefined;
-    if (tmpIfTest$1) {
-      b = `bar`;
-    } else {
-      b = tmpParamBare$1;
-    }
-    const tmpReturnArg = [a, b];
-    return tmpReturnArg;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(`x`);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(undefined, `y`);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(`x`, `y`);
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -171,11 +121,15 @@ const k = a( "x", "y" );
 $( k );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')

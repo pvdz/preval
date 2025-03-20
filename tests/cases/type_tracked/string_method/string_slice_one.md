@@ -12,12 +12,14 @@
 $('hello   world'.slice(10));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`rld`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(`rld`);
 $(`rld`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`hello   world`.slice(10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `hello   world`.slice(10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( "rld" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'rld'

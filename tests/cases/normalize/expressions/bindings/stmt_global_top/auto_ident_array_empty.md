@@ -13,6 +13,7 @@ let a = [];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const a /*:array*/ = [];
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ $(a);
 $([]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = [];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = [];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +39,15 @@ const a = [];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []

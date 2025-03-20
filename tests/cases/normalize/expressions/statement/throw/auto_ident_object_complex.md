@@ -14,6 +14,7 @@ throw { x: $(1), y: 2, z: $(3) };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpObjLitVal$3 /*:unknown*/ = $(3);
 const tmpThrowArg /*:object*/ = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 throw tmpThrowArg;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,26 +36,6 @@ const tmpThrowArg = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-throw { x: $(1), y: 2, z: $(3) };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$1 = 2;
-const tmpObjLitVal$3 = $(3);
-const tmpThrowArg = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +51,15 @@ const c = {
 throw c;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

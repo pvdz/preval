@@ -15,6 +15,7 @@ function f([{}]) {
 $(f([]));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f([]));
 undefined.cannotDestructureThis;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,46 +33,6 @@ undefined.cannotDestructureThis;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [{}] = tmpParamBare;
-  return `bad`;
-};
-$(f([]));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternStep = arrPatternSplat[0];
-  let objPatternCrashTest = arrPatternStep === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = arrPatternStep === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-    return `bad`;
-  } else {
-    return `bad`;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = [];
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +42,22 @@ undefined.cannotDestructureThis;
 throw "[Preval]: Can not reach here";
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -96,7 +69,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

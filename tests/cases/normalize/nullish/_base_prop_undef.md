@@ -13,12 +13,14 @@ var f = undefined;
 $(f??x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,30 +29,6 @@ $(x);
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = undefined;
-f = undefined;
-$(f ?? x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = undefined;
-f = undefined;
-let tmpCalleeParam = f;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = x;
-  $(x);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -59,13 +37,17 @@ With rename=true
 $( x );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

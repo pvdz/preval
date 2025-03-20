@@ -15,6 +15,7 @@ let b = { x: 1 };
 for (; b?.["x"]; $(1));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,40 +35,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-{
-  while (b?.[`x`]) {
-    $(1);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-while (true) {
-  let tmpIfTest = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed = `x`;
-    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-    tmpIfTest = tmpChainElementObject;
-  } else {
-  }
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +45,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -119,6 +97,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

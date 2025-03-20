@@ -15,6 +15,7 @@ function f([{ ...x } = $({ a: 'pass' })]) {
 $(f(['abc', 20, 30], 200));
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const x /*:unknown*/ = $objPatternRest(`abc`, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,47 +33,6 @@ $(x);
 $($objPatternRest(`abc`, [], undefined));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [{ ...x } = $({ a: `pass` })] = tmpParamBare;
-  return x;
-};
-$(f([`abc`, 20, 30], 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { a: `pass` };
-    arrPatternStep = $(tmpCalleeParam);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  const tmpCalleeParam$1 = arrPatternStep;
-  const tmpCalleeParam$3 = [];
-  let x = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
-  return x;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$7 = [`abc`, 20, 30];
-const tmpCalleeParam$5 = tmpCallCallee(tmpCalleeParam$7, 200);
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +43,22 @@ const b = $objPatternRest( "abc", a, undefined );
 $( b );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 0: '"a"', 1: '"b"', 2: '"c"' }
@@ -99,7 +71,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

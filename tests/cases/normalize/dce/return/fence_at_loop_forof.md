@@ -26,6 +26,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -58,6 +59,7 @@ $inlinedFunction: {
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -84,72 +86,6 @@ $inlinedFunction: {
 $(tmpCalleeParam$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while ($(true)) {
-    $(`loop`);
-    {
-      let tmpForOfGen = $forOf([1, 2]);
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        let tmpForOfNext = tmpForOfGen.next();
-        if (tmpForOfNext.done) {
-          break;
-        } else {
-          let x = tmpForOfNext.value;
-          {
-            $(`loop`, x);
-            return $(100, `return`);
-            $(`unreachable`);
-          }
-        }
-      }
-    }
-    $(`unreachable2 (but keep because the for body may not be visited...)`);
-  }
-  $(`unreachable3`);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      const tmpCalleeParam = [1, 2];
-      let tmpForOfGen = $forOf(tmpCalleeParam);
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        let tmpForOfNext = tmpForOfGen.next();
-        const tmpIfTest$1 = tmpForOfNext.done;
-        if (tmpIfTest$1) {
-          break;
-        } else {
-          let x = tmpForOfNext.value;
-          $(`loop`, x);
-          const tmpReturnArg = $(100, `return`);
-          return tmpReturnArg;
-        }
-      }
-      $(`unreachable2 (but keep because the for body may not be visited...)`);
-    } else {
-      break;
-    }
-  }
-  $(`unreachable3`);
-  return undefined;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -185,11 +121,15 @@ $inlinedFunction: {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

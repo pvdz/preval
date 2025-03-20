@@ -14,6 +14,7 @@ $([...x]);
 $('fail');
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $('fail');
 [...100];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,24 +32,6 @@ throw `[Preval]: Array spread must crash before this line`;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = 100;
-$([...x]);
-$(`fail`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = 100;
-const tmpCalleeParam = [...x];
-$(tmpCalleeParam);
-$(`fail`);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +41,15 @@ With rename=true
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

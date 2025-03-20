@@ -15,6 +15,7 @@ const f = function(a = arguments) {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const tmpCalleeParam /*:arguments*/ = f();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,41 +41,6 @@ const f = function ($$0) {
 $(f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpParamBare = $$0;
-  debugger;
-  let a = tmpParamBare === undefined ? tmpPrevalAliasArgumentsAny : tmpParamBare;
-  return a;
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpParamBare = $$0;
-  debugger;
-  let a = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    a = tmpPrevalAliasArgumentsAny;
-    return a;
-  } else {
-    a = tmpParamBare;
-    return a;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +55,15 @@ const d = a();
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

@@ -14,6 +14,7 @@ If a group normalization would "hoist" the inits outside of the var decls withou
 $(($(1), $(2)).toString);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCompObj.toString;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,22 +34,6 @@ $(1);
 $($(2).toString);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(($(1), $(2)).toString);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-const tmpCompObj = $(2);
-const tmpCalleeParam = tmpCompObj.toString;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +45,15 @@ const b = a.toString;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

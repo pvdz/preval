@@ -18,6 +18,7 @@ const alias = 123['f f'];
 $(order);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const alias /*:unknown*/ = (123)[`f f`];
 $(order);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,41 +54,6 @@ const alias = (123)[`f f`];
 $(order);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let order = function () {
-  debugger;
-  $($dotCall(alias, obj, undefined));
-};
-const g = function () {
-  debugger;
-  return `win`;
-};
-const obj = { f: g };
-const alias = (123)[`f f`];
-$(order);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let order = function () {
-  debugger;
-  const tmpCalleeParam = $dotCall(alias, obj, undefined);
-  $(tmpCalleeParam);
-  return undefined;
-};
-const g = function () {
-  debugger;
-  return `win`;
-};
-const obj = { f: g };
-const alias = (123)[`f f`];
-$(order);
-`````
 
 ## PST Settled
 With rename=true
@@ -107,11 +74,15 @@ const c = 123[ "f f" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

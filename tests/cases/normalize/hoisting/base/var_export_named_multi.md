@@ -14,6 +14,7 @@ export var x = 10, y = 20;
 $(x, y);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ export { x };
 const y /*:number*/ = 20;
 export { y };
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,32 +40,6 @@ const y = 20;
 export { y };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-let y = undefined;
-$(x, y);
-(x = 10), (y = 20);
-$(x, y);
-export { x };
-export { y };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-let y = undefined;
-$(x, undefined);
-x = 10;
-y = 20;
-$(x, y);
-export { x };
-export { y };
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +53,15 @@ const b = 20;
 export { b as y };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

@@ -14,6 +14,7 @@ $`before ${(10, 20, $(30)) ? (40, 50, $(60)) : $($(100))} after`;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,34 +51,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (10, 20, $(30)) ? (40, 50, $(60)) : $($(100)));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-let tmpCalleeParam$1 = undefined;
-const tmpIfTest = $(30);
-if (tmpIfTest) {
-  tmpCalleeParam$1 = $(60);
-  $(tmpCalleeParam, tmpCalleeParam$1);
-  $(a);
-} else {
-  const tmpCalleeParam$3 = $(100);
-  tmpCalleeParam$1 = $(tmpCalleeParam$3);
-  $(tmpCalleeParam, tmpCalleeParam$1);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -101,11 +75,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 30

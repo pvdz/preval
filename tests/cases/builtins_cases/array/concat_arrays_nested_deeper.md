@@ -19,6 +19,7 @@ const c = a3.concat(b3);
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const c /*:array*/ = [a2, b2];
 $(c);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,33 +44,6 @@ const b2 = [b1];
 $([a2, b2]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a1 = [];
-const a2 = [a1];
-const a3 = [a2];
-const b1 = [];
-const b2 = [b1];
-const b3 = [b2];
-const c = a3.concat(b3);
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a1 = [];
-const a2 = [a1];
-const a3 = [a2];
-const b1 = [];
-const b2 = [b1];
-const b3 = [b2];
-const c = a3.concat(b3);
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +57,21 @@ const e = [ c, d ];
 $( e );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_concat
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [[[]], [[]]]
@@ -99,6 +84,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_concat

@@ -20,6 +20,7 @@ $(f); // Do not inline the func
 $(f("cGF0aA")); // path
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ $(f);
 $(`path`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,37 +48,6 @@ $(function (x) {
 $(`path`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  Buffer;
-  const tmp = Buffer.from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
-  return tmp2;
-};
-$(f);
-$(f(`cGF0aA`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  const tmp = $Buffer_from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
-  return tmp2;
-};
-$(f);
-const tmpCalleeParam = f(`cGF0aA`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -93,11 +64,21 @@ $( a );
 $( "path" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Buffer_from
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -111,6 +92,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Buffer_from

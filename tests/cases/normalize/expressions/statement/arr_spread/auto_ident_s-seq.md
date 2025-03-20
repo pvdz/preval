@@ -16,6 +16,7 @@ let a = { a: 999, b: 1000 };
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(2);
 [...1];
 throw `[Preval]: Array spread must crash before this line`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,28 +38,6 @@ $(2);
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-[...($(1), $(2), x)];
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-$(1);
-$(2);
-const tmpArrElToSpread = x;
-[...tmpArrElToSpread];
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +49,15 @@ $( 2 );
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

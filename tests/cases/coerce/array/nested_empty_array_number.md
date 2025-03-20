@@ -13,12 +13,14 @@ const c = $coerce(b, 'number');
 $(c);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,25 +29,6 @@ $(0);
 $(0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = [];
-const b = [a];
-const c = $coerce(b, `number`);
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = [];
-const b = [a];
-const c = $coerce(b, `number`);
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +37,15 @@ With rename=true
 $( 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

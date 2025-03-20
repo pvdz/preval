@@ -13,6 +13,7 @@ let a = 1, b = 2, z = [10, 20, 30];
 for (let [x, y] = ($(a), $(b), $(z));false;) $(a, b, x, y, z);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ arrPatternSplat[0];
 arrPatternSplat[1];
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,35 +40,6 @@ arrPatternSplat[0];
 arrPatternSplat[1];
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = 2,
-  z = [10, 20, 30];
-{
-  let [x, y] = ($(a), $(b), $(z));
-  while (false) {
-    $(a, b, x, y, z);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = 2;
-let z = [10, 20, 30];
-$(a);
-$(b);
-let bindingPatternArrRoot = $(z);
-let arrPatternSplat = [...bindingPatternArrRoot];
-let x = arrPatternSplat[0];
-let y = arrPatternSplat[1];
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +54,21 @@ c[ 0 ];
 c[ 1 ];
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -100,6 +83,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

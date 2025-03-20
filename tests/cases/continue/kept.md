@@ -69,6 +69,7 @@ $continue();
 
 `````
 
+
 ## Settled
 
 
@@ -147,6 +148,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $continue();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -199,152 +201,6 @@ while (true) {
 $continue();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let $continue = function () {
-  debugger;
-  if ($()) {
-    if ($()) {
-      $continue();
-      return;
-    }
-  }
-  if ($()) {
-    return;
-  }
-  $continue();
-  return;
-};
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue: {
-    {
-      if ($()) {
-        if ($()) {
-          break $continue;
-        }
-      }
-      if ($()) {
-        break;
-      }
-    }
-  }
-}
-exit: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  again: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    if ($()) {
-      if ($()) {
-        break again;
-      }
-    }
-    if ($()) {
-      break exit;
-    }
-  }
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let continued = false;
-  if ($()) {
-    if ($()) {
-    } else {
-      continued = true;
-    }
-  } else {
-    continued = true;
-  }
-  if (!continued) {
-    if ($()) {
-      break;
-    }
-  }
-}
-$continue();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let $continue = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $();
-    if (tmpIfTest$1) {
-      $continue();
-      return undefined;
-    } else {
-    }
-  } else {
-  }
-  const tmpIfTest$3 = $();
-  if (tmpIfTest$3) {
-    return undefined;
-  } else {
-    $continue();
-    return undefined;
-  }
-};
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue: {
-    const tmpIfTest$5 = $();
-    if (tmpIfTest$5) {
-      const tmpIfTest$7 = $();
-      if (tmpIfTest$7) {
-        break $continue;
-      } else {
-      }
-    } else {
-    }
-    const tmpIfTest$9 = $();
-    if (tmpIfTest$9) {
-      break;
-    } else {
-    }
-  }
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  nestedLoop: {
-    const tmpIfTest$11 = $();
-    if (tmpIfTest$11) {
-      const tmpIfTest$13 = $();
-      if (tmpIfTest$13) {
-        break nestedLoop;
-      } else {
-      }
-    } else {
-    }
-    const tmpIfTest$15 = $();
-    if (tmpIfTest$15) {
-      break;
-    } else {
-    }
-  }
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let continued = false;
-  const tmpIfTest$17 = $();
-  if (tmpIfTest$17) {
-    const tmpIfTest$19 = $();
-    if (tmpIfTest$19) {
-    } else {
-      continued = true;
-    }
-  } else {
-    continued = true;
-  }
-  if (continued) {
-  } else {
-    const tmpIfTest$21 = $();
-    if (tmpIfTest$21) {
-      break;
-    } else {
-    }
-  }
-}
-$continue();
-`````
 
 ## PST Settled
 With rename=true
@@ -414,11 +270,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 a();
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 
@@ -456,6 +322,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

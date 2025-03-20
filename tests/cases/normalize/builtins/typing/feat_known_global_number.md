@@ -30,6 +30,7 @@ $(typeof Number.POSITIVE_INFINITY, 'Number.POSITIVE_INFINITY');
 $(typeof Number.NaN, 'Number.NaN');
 `````
 
+
 ## Settled
 
 
@@ -62,6 +63,7 @@ $(`number`, `Number.POSITIVE_INFINITY`);
 $(`number`, `Number.NaN`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -90,81 +92,6 @@ $(`number`, `Number.POSITIVE_INFINITY`);
 $(`number`, `Number.NaN`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof isNaN($spy(`isNaN`)));
-$(typeof isFinite($spy(`isFinite`)));
-$(typeof Number.isFinite($spy(`Number.isFinite`)));
-$(typeof Number.isInteger($spy(`Number.isInteger`)));
-$(typeof Number.isNaN($spy(`Number.isNaN`)));
-$(typeof Number.isSafeInteger($spy(`Number.isSafeInteger`)));
-$(typeof Number.parseFloat($spy(`Number.parseFloat`)));
-$(typeof Number.parseInt($spy(`Number.parseInt`)));
-$(typeof Number.EPSILON, `Number.EPSILON`);
-$(typeof Number.MAX_VALUE, `Number.MAX_VALUE`);
-$(typeof Number.MIN_VALUE, `Number.MIN_VALUE`);
-$(typeof Number.NEGATIVE_INFINITY, `Number.NEGATIVE_INFINITY`);
-$(typeof Number.POSITIVE_INFINITY, `Number.POSITIVE_INFINITY`);
-$(typeof Number.NaN, `Number.NaN`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = $spy(`isNaN`);
-const tmpUnaryArg = isNaN(tmpCalleeParam$1);
-const tmpCalleeParam = typeof tmpUnaryArg;
-$(tmpCalleeParam);
-const tmpCalleeParam$5 = $spy(`isFinite`);
-const tmpUnaryArg$1 = isFinite(tmpCalleeParam$5);
-const tmpCalleeParam$3 = typeof tmpUnaryArg$1;
-$(tmpCalleeParam$3);
-const tmpCalleeParam$9 = $spy(`Number.isFinite`);
-const tmpUnaryArg$3 = $Number_isFinite(tmpCalleeParam$9);
-const tmpCalleeParam$7 = typeof tmpUnaryArg$3;
-$(tmpCalleeParam$7);
-const tmpCalleeParam$13 = $spy(`Number.isInteger`);
-const tmpUnaryArg$5 = $Number_isInteger(tmpCalleeParam$13);
-const tmpCalleeParam$11 = typeof tmpUnaryArg$5;
-$(tmpCalleeParam$11);
-const tmpCalleeParam$17 = $spy(`Number.isNaN`);
-const tmpUnaryArg$7 = $Number_isNaN(tmpCalleeParam$17);
-const tmpCalleeParam$15 = typeof tmpUnaryArg$7;
-$(tmpCalleeParam$15);
-const tmpCalleeParam$21 = $spy(`Number.isSafeInteger`);
-const tmpUnaryArg$9 = $Number_isSafeInteger(tmpCalleeParam$21);
-const tmpCalleeParam$19 = typeof tmpUnaryArg$9;
-$(tmpCalleeParam$19);
-const tmpCalleeParam$25 = $spy(`Number.parseFloat`);
-const tmpUnaryArg$11 = $Number_parseFloat(tmpCalleeParam$25);
-const tmpCalleeParam$23 = typeof tmpUnaryArg$11;
-$(tmpCalleeParam$23);
-const tmpCalleeParam$29 = $spy(`Number.parseInt`);
-const tmpUnaryArg$13 = $Number_parseInt(tmpCalleeParam$29);
-const tmpCalleeParam$27 = typeof tmpUnaryArg$13;
-$(tmpCalleeParam$27);
-const tmpUnaryArg$15 = $Number_EPSILON;
-const tmpCalleeParam$31 = typeof tmpUnaryArg$15;
-$(tmpCalleeParam$31, `Number.EPSILON`);
-const tmpUnaryArg$17 = $Number_MAX_VALUE;
-const tmpCalleeParam$33 = typeof tmpUnaryArg$17;
-$(tmpCalleeParam$33, `Number.MAX_VALUE`);
-const tmpUnaryArg$19 = $Number_MIN_VALUE;
-const tmpCalleeParam$35 = typeof tmpUnaryArg$19;
-$(tmpCalleeParam$35, `Number.MIN_VALUE`);
-const tmpUnaryArg$21 = -Infinity;
-const tmpCalleeParam$37 = typeof tmpUnaryArg$21;
-$(tmpCalleeParam$37, `Number.NEGATIVE_INFINITY`);
-const tmpUnaryArg$23 = Infinity;
-const tmpCalleeParam$39 = typeof tmpUnaryArg$23;
-$(tmpCalleeParam$39, `Number.POSITIVE_INFINITY`);
-const tmpUnaryArg$25 = NaN;
-const tmpCalleeParam$41 = typeof tmpUnaryArg$25;
-$(tmpCalleeParam$41, `Number.NaN`);
-`````
 
 ## PST Settled
 With rename=true
@@ -198,11 +125,26 @@ $( "number", "Number.POSITIVE_INFINITY" );
 $( "number", "Number.NaN" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isFinite
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isInteger
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isNaN
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isSafeInteger
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseFloat
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseInt
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['isNaN', 'isNaN']
@@ -240,11 +182,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isFinite
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isInteger
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isNaN
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isSafeInteger
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseFloat
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseInt

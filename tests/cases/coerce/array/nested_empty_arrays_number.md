@@ -16,12 +16,14 @@ const f = $coerce(e, 'number');
 $(f);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(NaN);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,31 +32,6 @@ $(NaN);
 $(NaN);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = [];
-const b = [a];
-const c = [];
-const d = [c];
-const e = [b, d];
-const f = $coerce(e, `number`);
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = [];
-const b = [a];
-const c = [];
-const d = [c];
-const e = [b, d];
-const f = $coerce(e, `number`);
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +40,15 @@ With rename=true
 $( NaN );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: NaN

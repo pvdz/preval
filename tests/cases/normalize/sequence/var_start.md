@@ -13,12 +13,14 @@ const a = ((3, 4), 5, 6);
 $(a);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(6);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ $(6);
 $(6);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = ((3, 4), 5, 6);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = 6;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 $( 6 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 6

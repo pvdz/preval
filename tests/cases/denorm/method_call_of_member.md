@@ -14,6 +14,7 @@ var spy2 = { get x(){ $('x2') } };
 spy.x(spy2.x);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ const tmpCalleeParam /*:unknown*/ = spy2.x;
 $dotCall(tmpCallVal, spy, `x`, tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -64,61 +66,6 @@ spy.x(
 );
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let spy = undefined;
-let spy2 = undefined;
-spy = {
-  get x() {
-    debugger;
-    $(`x1`);
-    return () => {
-      debugger;
-      $(`call`);
-    };
-  },
-};
-spy2 = {
-  get x() {
-    debugger;
-    $(`x2`);
-  },
-};
-spy.x(spy2.x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let spy = undefined;
-let spy2 = undefined;
-spy = {
-  get x() {
-    debugger;
-    $(`x1`);
-    const tmpReturnArg = function () {
-      debugger;
-      $(`call`);
-      return undefined;
-    };
-    return tmpReturnArg;
-  },
-};
-spy2 = {
-  get x() {
-    debugger;
-    $(`x2`);
-    return undefined;
-  },
-};
-const tmpCallObj = spy;
-const tmpCallVal = tmpCallObj.x;
-const tmpCalleeParam = spy2.x;
-$dotCall(tmpCallVal, tmpCallObj, `x`, tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -144,11 +91,15 @@ const e = d.x;
 $dotCall( c, b, "x", e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x1'

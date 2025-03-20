@@ -30,6 +30,7 @@ $(outer);
 
 `````
 
+
 ## Settled
 
 
@@ -52,6 +53,7 @@ const outer /*:()=>undefined*/ = function () {
 $(outer);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -67,47 +69,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let outer = function () {
-  debugger;
-  let inner = function () {
-    debugger;
-    $(okdezemoetjezoeken);
-  };
-  if ($()) {
-    return;
-  }
-  let okdezemoetjezoeken = 1;
-  $(inner);
-};
-$(outer);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let outer = function () {
-  debugger;
-  let inner = function () {
-    debugger;
-    $(okdezemoetjezoeken);
-    return undefined;
-  };
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-  }
-  let okdezemoetjezoeken = 1;
-  $(inner);
-  return undefined;
-};
-$(outer);
-`````
 
 ## PST Settled
 With rename=true
@@ -132,11 +93,15 @@ const b = function() {
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

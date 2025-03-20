@@ -15,6 +15,7 @@ const {
 };
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,27 +38,6 @@ if ($Object_prototype.a === undefined) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { a: b = $(`default`) } = {};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = {};
-const objPatternBeforeDefault = bindingPatternObjRoot.a;
-let b = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  b = $(`default`);
-} else {
-  b = objPatternBeforeDefault;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +50,15 @@ if (b) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'default'

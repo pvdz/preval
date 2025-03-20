@@ -14,12 +14,14 @@ const ok = Function('return "\\44"'); // 0o44 = $
 $(ok());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`\$`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,25 +30,6 @@ $(`\$`);
 $(`\$`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const ok = Function(`return "\\44"`);
-$(ok());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const ok = function () {
-  debugger;
-  return `\$`;
-};
-const tmpCalleeParam = ok();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +38,15 @@ With rename=true
 $( "$" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '$'

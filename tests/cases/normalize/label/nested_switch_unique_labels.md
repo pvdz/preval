@@ -18,12 +18,14 @@ switch ($) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,43 +34,6 @@ switch ($) {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $;
-  if (tmpSwitchDisc === 3) {
-    tmpSwitchBreak$1: {
-      const tmpSwitchDisc$1 = $;
-      if (tmpSwitchDisc$1 === 3) {
-        break tmpSwitchBreak$1;
-      } else {
-      }
-    }
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpSwitchDisc = $;
-const tmpIfTest = tmpSwitchDisc === 3;
-if (tmpIfTest) {
-  tmpSwitchBreak$1: {
-    const tmpSwitchDisc$1 = $;
-    const tmpIfTest$1 = tmpSwitchDisc$1 === 3;
-    if (tmpIfTest$1) {
-      break tmpSwitchBreak$1;
-    } else {
-    }
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +42,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

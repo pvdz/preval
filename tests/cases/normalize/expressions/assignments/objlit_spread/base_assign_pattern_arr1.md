@@ -16,6 +16,7 @@ $({ ...([b] = b) });
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,31 +38,6 @@ $({ ...b });
 $({ a: 999, b: 1000 }, undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-$({ ...([b] = b) });
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = [];
-let a = { a: 999, b: 1000 };
-let tmpObjSpread = undefined;
-const tmpNestedAssignArrPatternRhs = b;
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-b = arrPatternSplat[0];
-tmpObjSpread = tmpNestedAssignArrPatternRhs;
-const tmpCalleeParam = { ...tmpObjSpread };
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +53,22 @@ const c = {
 $( c, undefined );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}
@@ -94,7 +82,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

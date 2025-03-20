@@ -18,6 +18,7 @@ $(`before  ${($(b)[$("x")] = $(c)[$("y")] = $(d))}  after`);
 $(a, b, c, d);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,43 +57,6 @@ $(`before  ${varInitAssignLhsComputedRhs$1}  after`);
 $({ a: 999, b: 1000 }, b, c, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3;
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce(($(b)[$(`x`)] = $(c)[$(`y`)] = $(d)), `string`) + `  after`);
-$(a, b, c, d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $(`y`);
-const varInitAssignLhsComputedRhs$1 = $(d);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs = $coerce(varInitAssignLhsComputedRhs, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a, b, c, d);
-`````
 
 ## PST Settled
 With rename=true
@@ -116,11 +81,15 @@ const j = {
 $( j, a, d, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

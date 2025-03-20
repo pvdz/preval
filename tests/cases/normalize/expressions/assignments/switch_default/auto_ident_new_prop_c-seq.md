@@ -19,6 +19,7 @@ switch ($(1)) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,34 +42,6 @@ const tmpNewCallee = $({ $: $ }).$;
 $(new tmpNewCallee(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (true) {
-    a = new (1, 2, $(b)).$(1);
-  } else {
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-const tmpCompObj = $(b);
-const tmpNewCallee = tmpCompObj.$;
-a = new tmpNewCallee(1);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +55,15 @@ const d = new c( 1 );
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

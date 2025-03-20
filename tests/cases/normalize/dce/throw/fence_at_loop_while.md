@@ -26,6 +26,7 @@ function f(){
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -65,6 +66,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -100,57 +102,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while ($(true)) {
-    $(`loop`);
-    while ($(true)) {
-      $(`loop`);
-      throw $(7, `throw`);
-      $(`fail`);
-    }
-    $(`do not visit, do not eliminate`);
-  }
-  $(`after (not invoked)`);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      while (true) {
-        const tmpIfTest$1 = $(true);
-        if (tmpIfTest$1) {
-          $(`loop`);
-          const tmpThrowArg = $(7, `throw`);
-          throw tmpThrowArg;
-        } else {
-          break;
-        }
-      }
-      $(`do not visit, do not eliminate`);
-    } else {
-      break;
-    }
-  }
-  $(`after (not invoked)`);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -195,11 +146,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

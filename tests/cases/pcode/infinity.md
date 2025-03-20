@@ -29,32 +29,20 @@ function g() {
 if ($) $(g());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    return -Infinity;
-  } else {
-    return -Infinity;
-  }
-};
-let g = function () {
-  debugger;
-  if ($) return f();
-};
-const foo = $();
-if ($) $(g());
-`````
 
 ## Pcode output
+
 
 `````fileintro
 f =
     [ return neg - ]
 `````
+
+
+
+
+## Pcode result
+
 
 Running function "f":
 

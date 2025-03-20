@@ -14,6 +14,7 @@ export let a = b = $(c).y = $(d);
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const a /*:unknown*/ = tmpNestedAssignPropRhs;
 export { a };
 $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -38,34 +40,6 @@ export { a };
 $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 2,
-  c = 3,
-  d = 4;
-let a = (b = $(c).y = $(d));
-export { a };
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 2;
-let c = 3;
-let d = 4;
-const tmpNestedAssignObj = $(c);
-const tmpNestedAssignPropRhs = $(d);
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
-b = tmpNestedPropAssignRhs;
-let a = b;
-export { a };
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +53,15 @@ export { c as a };
 $( b, b, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

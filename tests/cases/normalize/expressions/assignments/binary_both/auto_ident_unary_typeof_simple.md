@@ -16,6 +16,7 @@ $((a = typeof arg) + (a = typeof arg));
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(a, arg);
 $(`numbernumber`);
 $(`number`, 1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,30 +34,6 @@ $(`numbernumber`);
 $(`number`, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-$((a = typeof arg) + (a = typeof arg));
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-a = typeof arg;
-let tmpBinBothLhs = a;
-a = typeof arg;
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +43,15 @@ $( "numbernumber" );
 $( "number", 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'numbernumber'

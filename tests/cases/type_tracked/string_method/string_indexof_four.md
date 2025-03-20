@@ -12,6 +12,7 @@
 $('hello'.indexOf('l', 1, $, unknown));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $('hello'.indexOf('l', 1, $, unknown));
 unknown;
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ unknown;
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`hello`.indexOf(`l`, 1, $, unknown));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `hello`.indexOf(`l`, 1, $, unknown);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,13 +39,17 @@ unknown;
 $( 2 );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

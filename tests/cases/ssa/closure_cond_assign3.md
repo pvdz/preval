@@ -31,6 +31,7 @@ if ($) {
 }
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,56 +59,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if ($) {
-  let x = $();
-  let g = function ($$0) {
-    let t = $$0;
-    debugger;
-    const tmpBranchingC = function () {
-      debugger;
-      if ($) $(x);
-    };
-    if ($) {
-      tmpBranchingC();
-    }
-  };
-  g();
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if ($) {
-  let x = $();
-  let g = function ($$0) {
-    let t = $$0;
-    debugger;
-    const tmpBranchingC = function () {
-      debugger;
-      if ($) {
-        $(x);
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    if ($) {
-      tmpBranchingC();
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  g();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +72,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

@@ -81,6 +81,7 @@ if (a) {
 }
 `````
 
+
 ## Settled
 
 
@@ -97,6 +98,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -112,29 +114,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if (a && b) c;
-else d;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpIfTest = a;
-if (tmpIfTest) {
-  tmpIfTest = b;
-} else {
-}
-if (tmpIfTest) {
-  c;
-} else {
-  d;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -152,13 +131,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 4 implicit global bindings:
 
 a, b, c, d
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

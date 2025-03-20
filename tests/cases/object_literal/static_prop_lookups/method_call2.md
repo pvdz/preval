@@ -13,6 +13,7 @@ const o = {x: $(1)};
 $(o.x());
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpCalleeParam /*:unknown*/ = o.x();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,23 +33,6 @@ const tmpObjLitVal = $(1);
 $({ x: tmpObjLitVal }.x());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const o = { x: $(1) };
-$(o.x());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = $(1);
-const o = { x: tmpObjLitVal };
-const tmpCalleeParam = o.x();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +44,15 @@ const c = b.x();
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

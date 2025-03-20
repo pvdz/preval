@@ -13,6 +13,7 @@ const tmpCallCompObj$23 = document.body;
 tmpCallCompObj$23.removeChild(s);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCallCompObj$23 /*:unknown*/ = document.body;
 tmpCallCompObj$23.removeChild(s);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ tmpCallCompObj$23.removeChild(s);
 document.body.removeChild(s);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpCallCompObj$23 = document.body;
-tmpCallCompObj$23.removeChild(s);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallCompObj$23 = document.body;
-tmpCallCompObj$23.removeChild(s);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,13 +39,17 @@ const a = document.body;
 a.removeChild( s );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 s
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -23,6 +23,7 @@ f(1);
 f(2);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ f_t(1);
 f_t(2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,46 +53,6 @@ f_t(1);
 f_t(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let x = $$0;
-  debugger;
-  let y = x;
-  const obj = { xyz: x };
-  if (x) {
-    $(x, obj);
-  } else {
-  }
-  $(`end`);
-};
-f(1);
-f(2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let x = $$0;
-  debugger;
-  let y = x;
-  const obj = { xyz: x };
-  if (x) {
-    $(x, obj);
-    $(`end`);
-    return undefined;
-  } else {
-    $(`end`);
-    return undefined;
-  }
-};
-f(1);
-f(2);
-`````
 
 ## PST Settled
 With rename=true
@@ -108,11 +70,15 @@ a( 1 );
 a( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, { xyz: '1' }

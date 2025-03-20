@@ -15,6 +15,7 @@ function f({ ...x } = $({ a: 'fail' })) {
 $(f(null, 10));
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $objPatternRest(null, tmpCalleeParam$3, `x`);
 $(`bad`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,42 +34,6 @@ $objPatternRest(null, [], `x`);
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let { ...x } = tmpParamBare === undefined ? $({ a: `fail` }) : tmpParamBare;
-  return `bad`;
-};
-$(f(null, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { a: `fail` };
-    bindingPatternObjRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternObjRoot = tmpParamBare;
-  }
-  const tmpCalleeParam$1 = bindingPatternObjRoot;
-  const tmpCalleeParam$3 = [];
-  let x = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, `x`);
-  return `bad`;
-};
-const tmpCalleeParam$5 = f(null, 10);
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +44,15 @@ $objPatternRest( null, a, "x" );
 $( "bad" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

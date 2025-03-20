@@ -14,6 +14,7 @@ for (let xyz = $($(1)) && $($(1)) && $($(2)); ; $(1)) $(xyz);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,43 +55,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  let xyz = $($(1)) && $($(1)) && $($(2));
-  while (true) {
-    $(xyz);
-    $(1);
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(1);
-let xyz = $(tmpCalleeParam);
-if (xyz) {
-  const tmpCalleeParam$1 = $(1);
-  xyz = $(tmpCalleeParam$1);
-  if (xyz) {
-    const tmpCalleeParam$3 = $(2);
-    xyz = $(tmpCalleeParam$3);
-  } else {
-  }
-} else {
-}
-while (true) {
-  $(xyz);
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -111,11 +76,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

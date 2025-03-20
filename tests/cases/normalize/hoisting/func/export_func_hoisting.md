@@ -22,6 +22,7 @@ export function a(){}
 $(a,b,d,f,h,x);
 `````
 
+
 ## Settled
 
 
@@ -60,6 +61,7 @@ export { h };
 export { a };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -76,76 +78,6 @@ export { h };
 export { a };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-};
-let b = function () {
-  debugger;
-};
-let d = function () {
-  debugger;
-};
-let f = function () {
-  debugger;
-};
-let h = function () {
-  debugger;
-};
-let l = function () {
-  debugger;
-};
-let x = function () {
-  debugger;
-};
-a();
-$(a, b, d, f, h, x);
-export { l };
-export { h };
-export { a };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-  return undefined;
-};
-let b = function () {
-  debugger;
-  return undefined;
-};
-let d = function () {
-  debugger;
-  return undefined;
-};
-let f = function () {
-  debugger;
-  return undefined;
-};
-let h = function () {
-  debugger;
-  return undefined;
-};
-let l = function () {
-  debugger;
-  return undefined;
-};
-let x = function () {
-  debugger;
-  return undefined;
-};
-a();
-$(a, b, d, f, h, x);
-export { l };
-export { h };
-export { a };
-`````
 
 ## PST Settled
 With rename=true
@@ -185,11 +117,15 @@ export { e as h };
 export { a as a };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

@@ -12,12 +12,14 @@
 $(`${"why"}`);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`why`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,23 +28,6 @@ $(`why`);
 $(`why`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`` + $coerce(`why`, `string`) + ``);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $coerce(`why`, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +36,15 @@ With rename=true
 $( "why" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'why'

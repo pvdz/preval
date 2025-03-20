@@ -12,6 +12,7 @@
 $(parseInt(15)?.foo);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpChainElementObject /*:unknown*/ = (15).foo;
 $(tmpChainElementObject);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,29 +29,6 @@ $(tmpChainElementObject);
 $((15).foo);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(parseInt(15)?.foo);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpChainRootCall = parseInt;
-const tmpChainElementCall = 15;
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainElementCall.foo;
-  tmpCalleeParam = tmpChainElementObject;
-  $(tmpChainElementObject);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +38,15 @@ const a = 15.foo;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

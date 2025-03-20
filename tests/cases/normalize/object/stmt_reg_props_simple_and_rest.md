@@ -12,6 +12,7 @@
 ({x: 1, y: 2, ...{a: 10}});
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@
 const tmpObjSpreadArg /*:object*/ = { a: 10 };
 ({ ...tmpObjSpreadArg });
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ const tmpObjSpreadArg = { a: 10 };
 ({ ...tmpObjSpreadArg });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: 1, y: 2, ...{ a: 10 } });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjSpreadArg = { a: 10 };
-({ ...tmpObjSpreadArg });
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +39,15 @@ const a = { a: 10 };
 { ... a };
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

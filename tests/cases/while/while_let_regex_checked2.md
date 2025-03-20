@@ -27,6 +27,7 @@ while (x) {
 }
 `````
 
+
 ## Settled
 
 
@@ -53,6 +54,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -74,51 +76,6 @@ if (!$(x)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let check = function ($$0) {
-  let r = $$0;
-  debugger;
-  $(r.foo);
-};
-let x = /foo/;
-while (x) {
-  check(x);
-  if ($(x)) break;
-  x = /foo/;
-  x.foo = `object`;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let check = function ($$0) {
-  let r = $$0;
-  debugger;
-  const tmpCalleeParam = r.foo;
-  $(tmpCalleeParam);
-  return undefined;
-};
-let x = /foo/;
-while (true) {
-  if (x) {
-    check(x);
-    const tmpIfTest = $(x);
-    if (tmpIfTest) {
-      break;
-    } else {
-      x = /foo/;
-      x.foo = `object`;
-    }
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -149,11 +106,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- regular property access of an ident feels tricky;
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined
@@ -167,6 +134,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- regular property access of an ident feels tricky;

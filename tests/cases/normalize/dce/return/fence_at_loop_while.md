@@ -26,6 +26,7 @@ function f(){
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ $inlinedFunction: {
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -79,57 +81,6 @@ $inlinedFunction: {
 $(tmpCalleeParam);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while ($(true)) {
-    $(`loop`);
-    while ($(true)) {
-      $(`loop`);
-      return $(100, `return`);
-      $(`fail`);
-    }
-    $(`do not visit, do not eliminate`);
-  }
-  $(`after (not invoked)`);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      while (true) {
-        const tmpIfTest$1 = $(true);
-        if (tmpIfTest$1) {
-          $(`loop`);
-          const tmpReturnArg = $(100, `return`);
-          return tmpReturnArg;
-        } else {
-          break;
-        }
-      }
-      $(`do not visit, do not eliminate`);
-    } else {
-      break;
-    }
-  }
-  $(`after (not invoked)`);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -161,11 +112,15 @@ $inlinedFunction: {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

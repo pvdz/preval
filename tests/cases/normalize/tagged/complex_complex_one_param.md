@@ -27,6 +27,7 @@ function f(x) { return x; }
 f`abc ${ $(10) } ${ $(20) } def`;
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ f`abc ${ $(10) } ${ $(20) } def`;
 $(10);
 $(20);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,33 +45,6 @@ $(10);
 $(20);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  return x;
-};
-f([`abc `, ` `, ` def`], $(10), $(20));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  return x;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam = [`abc `, ` `, ` def`];
-const tmpCalleeParam$1 = $(10);
-const tmpCalleeParam$3 = $(20);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +54,15 @@ $( 10 );
 $( 20 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

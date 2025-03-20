@@ -22,6 +22,7 @@ outer: {
 }
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (b) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,39 +44,6 @@ if (!$(3)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-outer: {
-  inner: {
-    const b = $(3);
-    if (b) {
-      break outer;
-    } else {
-      break inner;
-    }
-  }
-  $(`the_problem`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-outer: {
-  inner: {
-    const b = $(3);
-    if (b) {
-      break outer;
-    } else {
-      break inner;
-    }
-  }
-  $(`the_problem`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +58,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

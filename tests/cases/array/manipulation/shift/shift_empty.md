@@ -20,6 +20,7 @@ $(NOOP);
 $(ARR);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ $(NOOP);
 $(ARR);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,38 +52,6 @@ $(NOOP);
 $(ARR);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const ARR = [];
-const NOOP = function () {
-  debugger;
-  $(ARR);
-};
-const n = ARR.shift();
-$(n);
-ARR.push(n);
-$(NOOP);
-$(ARR);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const ARR = [];
-const NOOP = function () {
-  debugger;
-  $(ARR);
-  return undefined;
-};
-const n = ARR.shift();
-$(n);
-ARR.push(n);
-$(NOOP);
-$(ARR);
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +69,15 @@ $( b );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

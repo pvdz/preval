@@ -21,6 +21,7 @@ $(
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -76,59 +78,6 @@ $(`before  3  after`);
 $({ a: 999, b: 1000 }, b, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = 3;
-let a = { a: 999, b: 1000 };
-$(
-  `before  ` + $coerce(($(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = c), `string`) + `  after`,
-);
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = 3;
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(b);
-const varInitAssignLhsComputedProp$1 = $(`x`);
-const varInitAssignLhsComputedObj$3 = $(b);
-const varInitAssignLhsComputedProp$3 = $(`x`);
-const varInitAssignLhsComputedObj$5 = $(b);
-const varInitAssignLhsComputedProp$5 = $(`x`);
-const varInitAssignLhsComputedObj$7 = $(b);
-const varInitAssignLhsComputedProp$7 = $(`x`);
-const varInitAssignLhsComputedObj$9 = $(b);
-const varInitAssignLhsComputedProp$9 = $(`x`);
-const varInitAssignLhsComputedRhs$9 = c;
-varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = varInitAssignLhsComputedRhs$9;
-const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
-varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$7;
-const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs = $coerce(varInitAssignLhsComputedRhs, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -161,11 +110,15 @@ const n = {
 $( n, a, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

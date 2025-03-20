@@ -23,6 +23,7 @@ while (true) {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $1;
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,38 +45,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-while (true) {
-  x = 2;
-  if ($1) {
-    $(x);
-  } else {
-    $(x);
-    x = 3;
-  }
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-while (true) {
-  x = 2;
-  if ($1) {
-    $(x);
-  } else {
-    $(x);
-    x = 3;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -86,13 +56,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 $1
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

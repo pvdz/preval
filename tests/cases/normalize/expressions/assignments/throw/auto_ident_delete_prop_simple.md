@@ -16,12 +16,14 @@ throw (a = delete arg.y);
 $(a, arg);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw true;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,26 +32,6 @@ throw true;
 throw true;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-throw (a = delete arg.y);
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-a = delete arg.y;
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +40,15 @@ With rename=true
 throw true;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ true ]>')

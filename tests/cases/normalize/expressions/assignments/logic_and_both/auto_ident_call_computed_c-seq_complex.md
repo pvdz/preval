@@ -16,6 +16,7 @@ $((a = (1, 2, $(b))[$("$")](1)) && (a = (1, 2, $(b))[$("$")](1)));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (tmpClusterSSA_a) {
   $(tmpClusterSSA_a);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -56,39 +58,6 @@ if (tmpClusterSSA_a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-$((a = (1, 2, $(b))[$(`\$`)](1)) && (a = (1, 2, $(b))[$(`\$`)](1)));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`\$`);
-a = tmpCallCompObj[tmpCallCompProp](1);
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  const tmpCallCompObj$1 = $(b);
-  const tmpCallCompProp$1 = $(`\$`);
-  const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(a);
-} else {
-  $(tmpCalleeParam);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -111,11 +80,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { $: '"<$>"' }

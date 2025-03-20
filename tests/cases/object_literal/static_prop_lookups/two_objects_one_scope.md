@@ -27,6 +27,7 @@ var f = function () {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ $(tmpClusterSSA_problem2);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,44 +59,6 @@ $({});
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = undefined;
-f = function () {
-  debugger;
-  let problem2 = undefined;
-  let problem1 = x || {};
-  problem1.now, y;
-  problem2 = {};
-  $(problem2);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = undefined;
-f = function () {
-  debugger;
-  let problem2 = undefined;
-  let problem1 = x;
-  if (problem1) {
-  } else {
-    problem1 = {};
-  }
-  problem1.now;
-  y;
-  problem2 = {};
-  $(problem2);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -114,13 +78,17 @@ $( b );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 x, y
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

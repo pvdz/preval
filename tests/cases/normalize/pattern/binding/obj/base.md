@@ -13,12 +13,14 @@ const {} = { a: 1, b: 2, c: 3 };
 $('ok');
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`ok`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,31 +29,6 @@ $(`ok`);
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {} = { a: 1, b: 2, c: 3 };
-$(`ok`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = { a: 1, b: 2, c: 3 };
-let objPatternCrashTest = bindingPatternObjRoot === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
-  $(`ok`);
-} else {
-  $(`ok`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +37,15 @@ With rename=true
 $( "ok" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'ok'

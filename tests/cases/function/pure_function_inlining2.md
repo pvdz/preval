@@ -31,6 +31,7 @@ rule(`I want it my way`);
 rule(`You have to listen to me`);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ rule(`You have to listen to me`);
 $(`purpleRule:reset "I want it my way"`);
 $(`purpleRule:reset "You have to listen to me"`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -47,61 +49,6 @@ $(`purpleRule:reset "I want it my way"`);
 $(`purpleRule:reset "You have to listen to me"`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const rule = function ($$0) {
-  let desc = $$0;
-  debugger;
-  const func = $;
-  null;
-  `purple`;
-  null;
-  `purple`;
-  null;
-  `reset`;
-  const tmpStringConcatL = $coerce(desc, `plustr`);
-  const d = `purpleRule:reset "` + $coerce(tmpStringConcatL, `string`) + ``;
-  const tmpStringConcatR$3 = d;
-  null;
-  const e = `` + $coerce(d, `string`) + `"`;
-  func(e);
-  return undefined;
-};
-const PURPLE = `purple`;
-const RESET = `reset`;
-rule(`I want it my way`);
-rule(`You have to listen to me`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const rule = function ($$0) {
-  let desc = $$0;
-  debugger;
-  const func = $;
-  const tmpStringConcatL = $coerce(desc, `plustr`);
-  const tmpBinBothLhs = `purpleRule:reset "`;
-  const tmpBinBothRhs = $coerce(tmpStringConcatL, `string`);
-  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-  const d = $coerce(tmpBinLhs, `plustr`);
-  const tmpStringConcatR$3 = d;
-  const tmpBinBothLhs$1 = ``;
-  const tmpBinBothRhs$1 = $coerce(d, `string`);
-  const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-  const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-  const e = `${tmpStringConcatR}"`;
-  func(e);
-  return undefined;
-};
-const PURPLE = `purple`;
-const RESET = `reset`;
-rule(`I want it my way`);
-rule(`You have to listen to me`);
-`````
 
 ## PST Settled
 With rename=true
@@ -111,11 +58,15 @@ $( "purpleRule:reset \"I want it my way\"" );
 $( "purpleRule:reset \"You have to listen to me\"" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'purpleRule:reset "I want it my way"'

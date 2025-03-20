@@ -63,6 +63,7 @@
 }
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -114,7 +115,9 @@ A___7__: /*8*/ {
 $(x___123__, `end`);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 x:

@@ -29,6 +29,7 @@ try {
 $(x);         // x=4
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -78,7 +79,9 @@ if ($implicitThrow$1___104__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                      | reads      | read by     | overWrites     | overwritten by
 x:

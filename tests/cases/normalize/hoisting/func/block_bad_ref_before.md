@@ -17,12 +17,14 @@ f(); // This ought to trigger TDZ (or whatever)...
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 f();
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,30 +33,6 @@ f();
 f();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-f();
-{
-  let f$1 = function () {
-    debugger;
-    $(1);
-  };
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-f();
-let f$1 = function () {
-  debugger;
-  $(1);
-  return undefined;
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -63,13 +41,17 @@ With rename=true
 f();
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 f
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

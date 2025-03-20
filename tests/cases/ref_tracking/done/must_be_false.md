@@ -28,6 +28,7 @@ if (tmpIfTest) {
 $(t);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,46 +64,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpIfTest = $(true);
-let t = true;
-if (tmpIfTest) {
-  const tmpIfTest$1 = $(false);
-  if (tmpIfTest$1) {
-    $(`fail too`);
-    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-  } else {
-    t = false;
-  }
-} else {
-  t = false;
-}
-$(t);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpIfTest = $(true);
-let t = true;
-if (tmpIfTest) {
-  const tmpIfTest$1 = $(false);
-  if (tmpIfTest$1) {
-    $(`fail too`);
-    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
-  } else {
-    t = false;
-    $(t);
-  }
-} else {
-  t = false;
-  $(t);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -123,11 +85,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

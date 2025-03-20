@@ -12,6 +12,7 @@
 null.foo
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ null.foo
 null.foo;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ null.foo;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-null.foo;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-null.foo;
-throw `[Preval]: Can not reach here`;
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +39,15 @@ null.foo;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

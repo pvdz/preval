@@ -15,6 +15,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const a /*:unknown*/ = bindingPatternObjRoot.a;
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,25 +34,6 @@ $(a);
 $($({ a: 1, b: 2 }).a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let { a: a } = $({ a: 1, b: 2 });
-  $(a);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = { a: 1, b: 2 };
-let bindingPatternObjRoot = $(tmpCalleeParam);
-let a = bindingPatternObjRoot.a;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +48,15 @@ const c = b.a;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }

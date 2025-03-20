@@ -15,6 +15,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,25 +35,6 @@ const tmpBinBothLhs = $(1);
 $(tmpBinBothLhs + $(2));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let a = $(1) + $(2);
-  $(a);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-let a = tmpBinBothLhs + tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +46,15 @@ const c = a + b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

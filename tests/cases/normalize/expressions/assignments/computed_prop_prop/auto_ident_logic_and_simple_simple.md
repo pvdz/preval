@@ -15,6 +15,7 @@ obj[(a = 1 && 2)];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ obj[2];
 $(2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,32 +34,6 @@ $(2);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = 1 && 2)];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-a = 1;
-if (a) {
-  a = 2;
-} else {
-}
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +44,15 @@ a[ 2 ];
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

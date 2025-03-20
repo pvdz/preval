@@ -14,6 +14,7 @@ $((a = void $(100)) + (a = void $(100)));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(100);
 $(NaN);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,30 +36,6 @@ $(NaN);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a = void $(100)) + (a = void $(100)));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$(100);
-a = undefined;
-let tmpBinBothLhs = a;
-$(100);
-a = undefined;
-let tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +47,15 @@ $( NaN );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

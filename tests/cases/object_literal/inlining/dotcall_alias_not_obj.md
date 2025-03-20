@@ -16,6 +16,7 @@ $();
 $dotCall(alias, obj, 'f', 1);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const obj /*:object*/ = { f: g };
 $dotCall(alias, obj, `f`, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,33 +44,6 @@ $();
 $dotCall(alias, { f: g }, `f`, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  return `win`;
-};
-const obj = { f: g };
-const alias = $.f;
-$();
-$dotCall(alias, obj, `f`, 1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  return `win`;
-};
-const obj = { f: g };
-const alias = $.f;
-$();
-$dotCall(alias, obj, `f`, 1);
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +59,15 @@ const c = { f: a };
 $dotCall( b, c, "f", 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

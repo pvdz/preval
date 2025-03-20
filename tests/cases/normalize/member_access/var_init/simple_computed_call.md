@@ -14,6 +14,7 @@ let x = obj[$('foo')];
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const x /*:unknown*/ = obj[tmpCompProp];
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,25 +34,6 @@ const tmpCompProp = $(`foo`);
 $({ foo: 10 }[tmpCompProp]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { foo: 10 };
-let x = obj[$(`foo`)];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { foo: 10 };
-const tmpCompObj = obj;
-const tmpCompProp = $(`foo`);
-let x = tmpCompObj[tmpCompProp];
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +45,15 @@ const c = b[ a ];
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'foo'

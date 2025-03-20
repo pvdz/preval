@@ -23,6 +23,7 @@ try {
 $(x); // unreachable (code always throws before this point)
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -52,7 +53,9 @@ if ($implicitThrow___56__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 x:

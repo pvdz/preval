@@ -15,6 +15,7 @@ let a = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ if (tmpIfTest) {
   $(a);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,42 +45,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-((10, 20, 30) ? (40, 50, $(60)) : $($(100))) && ((10, 20, 30) ? (40, 50, $(60)) : $($(100)));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
-const tmpIfTest$1 = 30;
-if (tmpIfTest$1) {
-  tmpIfTest = $(60);
-} else {
-  const tmpCalleeParam = $(100);
-  tmpIfTest = $(tmpCalleeParam);
-}
-if (tmpIfTest) {
-  const tmpIfTest$3 = 30;
-  if (tmpIfTest$3) {
-    $(60);
-    $(a);
-  } else {
-    const tmpCalleeParam$1 = $(100);
-    $(tmpCalleeParam$1);
-    $(a);
-  }
-} else {
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 60

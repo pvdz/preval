@@ -19,6 +19,7 @@ switch ((a = b[$("c")])) {
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const a /*:unknown*/ = b[tmpAssignRhsCompProp];
 $(100);
 $(a, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,35 +43,6 @@ $(100);
 $(a, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = (a = b[$(`c`)]);
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpAssignRhsCompObj = b;
-const tmpAssignRhsCompProp = $(`c`);
-a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-let tmpSwitchDisc = a;
-$(100);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +55,15 @@ $( 100 );
 $( c, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'c'

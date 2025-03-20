@@ -23,6 +23,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ try {
 }
 $(`pass`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -49,44 +51,6 @@ try {
 $(`pass`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    x = `pass`;
-    throw `yes`;
-  } catch (e) {
-    throw_early;
-    $(`caught`);
-  }
-  $(x);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    x = `pass`;
-    throw `yes`;
-  } catch (e) {
-    throw_early;
-    $(`caught`);
-  }
-  $(x);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -102,13 +66,17 @@ catch (a) {
 $( "pass" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 throw_early
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

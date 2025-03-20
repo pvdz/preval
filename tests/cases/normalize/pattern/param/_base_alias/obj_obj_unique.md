@@ -23,6 +23,7 @@ function i({x: {y: {z: a}}}) {
 $(i({x: {y: {z: {a: 10}}}}));
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const tmpObjLitVal$3 /*:object*/ = { a: 10 };
 $(tmpObjLitVal$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,50 +40,6 @@ $(tmpObjLitVal$3);
 $({ a: 10 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let i = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: {
-      y: { z: a$1 },
-    },
-  } = tmpParamBare;
-  {
-    let a$3 = 2;
-  }
-  return a$1;
-};
-let a = 1;
-$(i({ x: { y: { z: { a: 10 } } } }));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let a$1 = objPatternNoDefault$1.z;
-  let a$3 = 2;
-  return a$1;
-};
-let a = 1;
-const tmpCallCallee = i;
-const tmpObjLitVal$3 = { a: 10 };
-const tmpObjLitVal$1 = { z: tmpObjLitVal$3 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const tmpCalleeParam$1 = { x: tmpObjLitVal };
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -91,11 +49,15 @@ const a = { a: 10 };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '10' }

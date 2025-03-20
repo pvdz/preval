@@ -19,6 +19,7 @@ while (x) {
 $(s);
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ if (tmpClusterSSA_x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -64,37 +66,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let s = $(10);
-let x = true;
-while (x) {
-  $(1);
-  s = s | 10;
-  x = $(true);
-}
-$(s);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let s = $(10);
-let x = true;
-while (true) {
-  if (x) {
-    $(1);
-    s = s | 10;
-    x = $(true);
-  } else {
-    break;
-  }
-}
-$(s);
-`````
 
 ## PST Settled
 With rename=true
@@ -123,11 +94,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

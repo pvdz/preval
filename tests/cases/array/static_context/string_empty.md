@@ -12,12 +12,14 @@
 String([]);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ String([]);
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-String([]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [];
-$coerce(tmpCalleeParam, `string`);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

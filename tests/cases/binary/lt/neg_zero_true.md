@@ -14,12 +14,14 @@ Note: weak and strict equals can not detect negative zero this way.
 $(-0 < -0);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(false);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ $(false);
 $(false);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(-0 < -0);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = false;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +38,15 @@ With rename=true
 $( false );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

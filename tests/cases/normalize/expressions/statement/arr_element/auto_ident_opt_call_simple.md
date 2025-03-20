@@ -14,6 +14,7 @@ $?.(1) + $?.(1);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,39 +55,6 @@ tmpBinBothLhs + tmpBinBothRhs;
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$?.(1) + $?.(1);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpBinBothLhs = undefined;
-const tmpChainRootCall = $;
-const tmpIfTest = tmpChainRootCall != null;
-if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootCall(1);
-  tmpBinBothLhs = tmpChainElementCall;
-} else {
-}
-let tmpBinBothRhs = undefined;
-const tmpChainRootCall$1 = $;
-const tmpIfTest$1 = tmpChainRootCall$1 != null;
-if (tmpIfTest$1) {
-  const tmpChainElementCall$1 = tmpChainRootCall$1(1);
-  tmpBinBothRhs = tmpChainElementCall$1;
-} else {
-}
-tmpBinBothLhs + tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -117,11 +86,15 @@ const g = {
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

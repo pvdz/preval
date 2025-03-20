@@ -26,6 +26,7 @@ const out = f('abc');
 $(out);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ const x /*:unknown*/ = objPatternRest(`abc`, tmpCalleeParam$2, undefined);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,51 +44,6 @@ $(x);
 $(objPatternRest(`abc`, [], undefined));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let op = $$0;
-  debugger;
-  let ap = undefined;
-  const useDef = op === undefined;
-  if (useDef) {
-    const p = { a: `fail` };
-    ap = $(p);
-  } else {
-    ap = op;
-  }
-  const tmpCalleeParam$2 = [];
-  let x = objPatternRest(ap, tmpCalleeParam$2, undefined);
-  return x;
-};
-const out = f(`abc`);
-$(out);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let op = $$0;
-  debugger;
-  let ap = undefined;
-  const useDef = op === undefined;
-  if (useDef) {
-    const p = { a: `fail` };
-    ap = $(p);
-  } else {
-    ap = op;
-  }
-  const tmpCalleeParam$2 = [];
-  let x = objPatternRest(ap, tmpCalleeParam$2, undefined);
-  return x;
-};
-const out = f(`abc`);
-$(out);
-`````
 
 ## PST Settled
 With rename=true
@@ -97,13 +54,17 @@ const b = objPatternRest( "abc", a, undefined );
 $( b );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 objPatternRest
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

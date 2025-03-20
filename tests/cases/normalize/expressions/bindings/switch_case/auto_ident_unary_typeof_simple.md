@@ -18,12 +18,14 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`number`, 1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,38 +34,6 @@ $(`number`, 1);
 $(`number`, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let arg;
-  let a;
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    arg = 1;
-    a = typeof arg;
-    $(a, arg);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = undefined;
-let a = undefined;
-const tmpSwitchDisc = 1;
-const tmpIfTest = tmpSwitchDisc === 1;
-if (tmpIfTest) {
-  arg = 1;
-  a = typeof arg;
-  $(a, arg);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +42,15 @@ With rename=true
 $( "number", 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'number', 1

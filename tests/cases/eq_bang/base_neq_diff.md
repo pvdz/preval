@@ -18,6 +18,7 @@ let diff = !same;
 $(diff);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const same /*:boolean*/ = a === b;
 $(same);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,27 +38,6 @@ const a = $(1);
 $(a === $(2));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(1);
-const b = $(2);
-const same = a !== b;
-let diff = !same;
-$(diff);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(1);
-const b = $(2);
-const same = a !== b;
-let diff = !same;
-$(diff);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +49,15 @@ const c = a === b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

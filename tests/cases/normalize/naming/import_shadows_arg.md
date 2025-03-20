@@ -15,6 +15,7 @@ export function g(x) {
 export const x = $(f());
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ export { x };
 export { g };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,34 +44,6 @@ export { x };
 export { g };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let g = function ($$0) {
-  let x$1 = $$0;
-  debugger;
-  return x$1;
-};
-const x = $(f());
-export { x };
-export { g };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let g = function ($$0) {
-  let x$1 = $$0;
-  debugger;
-  return x$1;
-};
-const tmpCalleeParam = f();
-const x = $(tmpCalleeParam);
-export { x };
-export { g };
-`````
 
 ## PST Settled
 With rename=true
@@ -86,13 +60,17 @@ export { d as x };
 export { a as g };
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 f
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

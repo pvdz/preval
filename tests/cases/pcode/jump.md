@@ -22,25 +22,9 @@ pcode(5, 20);
 pcode(19, 38);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let pcode = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  A: {
-    if (a) break A;
-    return b;
-  }
-  return a * b;
-};
-pcode(5, 20);
-pcode(19, 38);
-`````
 
 ## Pcode output
+
 
 `````fileintro
 pcode =
@@ -58,6 +42,12 @@ pcode =
     [ r2 * r0 - r1 - ]
     [ return r2 - ]
 `````
+
+
+
+
+## Pcode result
+
 
 Running function "pcode":
 

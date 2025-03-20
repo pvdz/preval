@@ -18,12 +18,14 @@ const tmpObjLitVal = $;
 let b = { x: tmpObjLitVal };
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,32 +34,6 @@ let b = { x: tmpObjLitVal };
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let tmpParamBare = $$0;
-  debugger;
-  const tmpChainRootProp$1 = b;
-};
-const tmpObjLitVal = $;
-let b = { x: tmpObjLitVal };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let tmpParamBare = $$0;
-  debugger;
-  const tmpChainRootProp$1 = b;
-  return undefined;
-};
-const tmpObjLitVal = $;
-let b = { x: tmpObjLitVal };
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +42,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

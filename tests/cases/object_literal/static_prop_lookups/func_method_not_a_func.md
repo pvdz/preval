@@ -17,6 +17,7 @@ const o = {
 $(o.arr());
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpCalleeParam /*:unknown*/ = o.arr();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,24 +37,6 @@ const arr = [1, 2, 3];
 $({ arr: arr }.arr());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-const o = { arr: arr };
-$(o.arr());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-const o = { arr: arr };
-const tmpCalleeParam = o.arr();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +48,15 @@ const c = b.arr();
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

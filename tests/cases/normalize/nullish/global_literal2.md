@@ -14,6 +14,7 @@
 $(unknown??length);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,26 +41,6 @@ if (tmpCalleeParam == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(unknown ?? length);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam = unknown;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = length;
-  $(length);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -74,13 +56,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 unknown, length
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

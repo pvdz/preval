@@ -13,6 +13,7 @@
 $('ok');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('ok');
 undefined.cannotDestructureThis;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,33 +31,6 @@ undefined.cannotDestructureThis;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[{}] = [, , , 1, 20, 30];
-$(`ok`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arrAssignPatternRhs = [, , , 1, 20, 30];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-let objPatternCrashTest = arrPatternStep === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = arrPatternStep === null;
-}
-if (objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-  $(`ok`);
-} else {
-  $(`ok`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +40,22 @@ undefined.cannotDestructureThis;
 throw "[Preval]: Can not reach here";
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -81,7 +67,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

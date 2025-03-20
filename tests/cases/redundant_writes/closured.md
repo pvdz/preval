@@ -25,6 +25,7 @@ try {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -66,47 +68,6 @@ try {
 $(f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f;
-try {
-  let n = 1;
-  f = function () {
-    debugger;
-    return n;
-  };
-  if ($(true)) {
-    n = $(`throws 2`);
-  } else {
-    n = $(`throws 3`);
-  }
-} catch (e) {}
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = undefined;
-try {
-  let n = 1;
-  f = function () {
-    debugger;
-    return n;
-  };
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    n = $(`throws 2`);
-  } else {
-    n = $(`throws 3`);
-  }
-} catch (e) {}
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -134,11 +95,15 @@ const e = a();
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

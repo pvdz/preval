@@ -49,6 +49,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -81,6 +82,7 @@ one();
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -111,114 +113,6 @@ one();
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let one = function ($$0) {
-    let $dlr_$$1 = $$0;
-    debugger;
-    $(x);
-    x = $(2);
-    ignore = true;
-    three(x);
-  };
-  let two = function ($$0, $$1) {
-    let x$1 = $$0;
-    let e = $$1;
-    debugger;
-    $(x$1);
-    x$1 = $(3);
-  };
-  let three = function ($$0) {
-    let x$3 = $$0;
-    debugger;
-    $(x$3);
-  };
-  let $tryCatch = function ($$0, $$1, $$2) {
-    let a = $$0;
-    let b = $$1;
-    let c = $$2;
-    debugger;
-    const [fail, ...args] = a();
-    if (fail) {
-      b(...args);
-    } else {
-      c(...args);
-    }
-  };
-  let ignore = false;
-  let x = $(1);
-  try {
-    x = one(x);
-  } catch (e$1) {
-    if (ignore) throw e$1;
-    x = two(x);
-  }
-  three(x);
-  $tryCatch(one, two, three);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let one = function ($$0) {
-  let $dlr_$$1 = $$0;
-  debugger;
-  $(x);
-  x = $(2);
-  ignore = true;
-  three(x);
-  return undefined;
-};
-let two = function ($$0, $$1) {
-  let x$1 = $$0;
-  let e = $$1;
-  debugger;
-  $(x$1);
-  x$1 = $(3);
-  return undefined;
-};
-let three = function ($$0) {
-  let x$3 = $$0;
-  debugger;
-  $(x$3);
-  return undefined;
-};
-let $tryCatch = function ($$0, $$1, $$2) {
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  debugger;
-  const bindingPatternArrRoot = a();
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  const fail = arrPatternSplat[0];
-  const args = arrPatternSplat.slice(1);
-  if (fail) {
-    b(...args);
-    return undefined;
-  } else {
-    c(...args);
-    return undefined;
-  }
-};
-let ignore = false;
-let x = $(1);
-try {
-  x = one(x);
-} catch (e$1) {
-  if (ignore) {
-    throw e$1;
-  } else {
-    x = two(x);
-  }
-}
-three(x);
-$tryCatch(one, two, three);
-`````
 
 ## PST Settled
 With rename=true
@@ -254,11 +148,23 @@ b();
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -278,8 +184,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

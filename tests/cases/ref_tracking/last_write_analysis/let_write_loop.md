@@ -22,6 +22,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(simplifyMe);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(simplifyMe);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,40 +59,6 @@ while (true) {
 $(simplifyMe);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const useless = new $(1);
-let simplifyMe = useless;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  const tmp = $(1);
-  simplifyMe = tmp;
-  if (simplifyMe) {
-    break;
-  }
-}
-$(simplifyMe);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const useless = new $(1);
-let simplifyMe = useless;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
-  const tmp = $(1);
-  simplifyMe = tmp;
-  if (simplifyMe) {
-    break;
-  } else {
-  }
-}
-$(simplifyMe);
-`````
 
 ## PST Settled
 With rename=true
@@ -109,11 +77,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: NewExpression
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -129,6 +107,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: NewExpression

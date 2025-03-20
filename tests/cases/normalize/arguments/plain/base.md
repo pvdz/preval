@@ -15,6 +15,7 @@ function f(a) {
 f();
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const f /*:(unused)=>undefined*/ = function ($$0) {
 f();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,33 +42,6 @@ const f = function ($$0) {
 f();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  let a = $$0;
-  debugger;
-  $(tmpPrevalAliasArgumentsAny[0]);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  let a = $$0;
-  debugger;
-  const tmpCalleeParam = tmpPrevalAliasArgumentsAny[0];
-  $(tmpCalleeParam);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +57,15 @@ const a = function($$0 ) {
 a();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

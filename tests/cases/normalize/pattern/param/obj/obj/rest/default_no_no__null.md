@@ -15,6 +15,7 @@ function f({ x: { ...y } }) {
 $(f(null, 10));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f(null, 10));
 null.x;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,38 +33,6 @@ null.x;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: { ...y },
-  } = tmpParamBare;
-  return `bad`;
-};
-$(f(null, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  const tmpCalleeParam = objPatternNoDefault;
-  const tmpCalleeParam$1 = [];
-  let y = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
-  return `bad`;
-};
-const tmpCalleeParam$3 = f(null, 10);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +42,15 @@ null.x;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

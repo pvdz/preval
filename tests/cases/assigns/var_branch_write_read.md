@@ -17,6 +17,7 @@ if ($(2, 'if')) {
 $(x, 'final');
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,32 +45,6 @@ if ($(2, `if`)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-x = $(1, `before`);
-if ($(2, `if`)) {
-  x = $(3, `then`);
-}
-$(x, `final`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-x = $(1, `before`);
-const tmpIfTest = $(2, `if`);
-if (tmpIfTest) {
-  x = $(3, `then`);
-  $(x, `final`);
-} else {
-  $(x, `final`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +61,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 'before'

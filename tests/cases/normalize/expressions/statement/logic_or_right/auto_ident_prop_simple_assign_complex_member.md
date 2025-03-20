@@ -16,6 +16,7 @@ $(100) || (b.c = $(b)[$("d")]);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,34 +53,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-$(100) || (b.c = $(b)[$(`d`)]);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(100);
-if (tmpIfTest) {
-  $(a, b);
-} else {
-  const tmpAssignMemLhsObj = b;
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-  $(a, b);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -105,11 +79,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

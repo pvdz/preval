@@ -18,6 +18,7 @@ let a = { a: 999, b: 1000 };
 $(a, b, c, d);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,38 +53,6 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
 $({ a: 999, b: 1000 }, b, c, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3;
-let a = { a: 999, b: 1000 };
-({ x: ($(b)[$(`x`)] = $(c)[$(`y`)] = $(d)) });
-$(a, b, c, d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $(`x`);
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = $(d);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-$(a, b, c, d);
-`````
 
 ## PST Settled
 With rename=true
@@ -104,11 +74,15 @@ const h = {
 $( h, a, d, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

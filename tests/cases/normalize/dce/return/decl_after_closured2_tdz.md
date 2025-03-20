@@ -29,12 +29,14 @@ $inlinedFunction: {
 futureFunc();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,41 +45,6 @@ $(0);
 $(0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let futureFunc = undefined;
-$inlinedFunction: {
-  const f = function () {
-    debugger;
-    $(x);
-    return undefined;
-  };
-  futureFunc = f;
-  break $inlinedFunction;
-  const x = 0;
-}
-futureFunc();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let futureFunc = undefined;
-$inlinedFunction: {
-  const f = function () {
-    debugger;
-    $(x);
-    return undefined;
-  };
-  futureFunc = f;
-  break $inlinedFunction;
-  const x = 0;
-}
-futureFunc();
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +53,15 @@ With rename=true
 $( 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")

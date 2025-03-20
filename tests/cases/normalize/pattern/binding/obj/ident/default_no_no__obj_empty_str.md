@@ -13,12 +13,14 @@ const { x } = { x: '' };
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(``);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,22 +29,6 @@ $(``);
 $(``);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: x } = { x: `` };
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = { x: `` };
-const x = bindingPatternObjRoot.x;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +37,15 @@ With rename=true
 $( "" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ''

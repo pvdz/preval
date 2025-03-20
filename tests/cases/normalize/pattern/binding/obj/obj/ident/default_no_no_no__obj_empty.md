@@ -13,6 +13,7 @@ const { x: { y } } = {};
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ objPatternNoDefault.y;
 $(`bad`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,25 +32,6 @@ $Object_prototype.x.y;
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: { y: y },
-} = {};
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = {};
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternNoDefault.y;
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +42,15 @@ a.y;
 $( "bad" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

@@ -23,12 +23,14 @@ let counter = 0;
 let test = counter < 10;
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: while (test) {`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,44 +39,6 @@ throw `Preval: TDZ triggered for this read: while (test) {`;
 throw `Preval: TDZ triggered for this read: while (test) {`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($throwTDZError(`Preval: TDZ triggered for this read: while (test) {`)) {
-  $(`yolo`);
-  $throwTDZError(`Preval: TDZ triggered for this read: counter + 1`) + 1,
-    $throwTDZError(
-      `Preval: TDZ triggered for this assignment: counter = \$throwTDZError(\`Preval: TDZ triggered for this read: counter + 1\`) + 1`,
-    );
-  $throwTDZError(`Preval: TDZ triggered for this read: counter < 10`) < 10,
-    $throwTDZError(
-      `Preval: TDZ triggered for this assignment: test = \$throwTDZError(\`Preval: TDZ triggered for this read: counter < 10\`) < 10`,
-    );
-}
-while ($throwTDZError(`Preval: TDZ triggered for this read: while (test) {`)) {
-  $(`yolo`);
-  $throwTDZError(`Preval: TDZ triggered for this read: counter + 1`) + 1,
-    $throwTDZError(
-      `Preval: TDZ triggered for this assignment: counter = \$throwTDZError(\`Preval: TDZ triggered for this read: counter + 1\`) + 1`,
-    );
-  $throwTDZError(`Preval: TDZ triggered for this read: counter < 10`) < 10,
-    $throwTDZError(
-      `Preval: TDZ triggered for this assignment: test = \$throwTDZError(\`Preval: TDZ triggered for this read: counter < 10\`) < 10`,
-    );
-}
-let counter = 0;
-let test = counter < 10;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  throw `Preval: TDZ triggered for this read: while (test) {`;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +47,15 @@ With rename=true
 throw "Preval: TDZ triggered for this read: while (test) {";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")

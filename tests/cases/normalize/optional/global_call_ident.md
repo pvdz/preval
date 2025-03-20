@@ -12,6 +12,7 @@
 $?.(15);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,24 +34,6 @@ if (!($ == null)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$?.(15);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpChainRootCall = $;
-const tmpIfTest = tmpChainRootCall != null;
-if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootCall(15);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +48,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 15

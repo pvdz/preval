@@ -17,6 +17,7 @@ if (tmpIfTest$3265) {
 }
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const tmpIfTest$3265 /*:boolean*/ = fromStmtOrExpr$1 !== 1;
 tmpCalleeParam$1359 = tmpIfTest$3265;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,29 +34,6 @@ tmpCalleeParam$1359 = tmpIfTest$3265;
 tmpCalleeParam$1359 = fromStmtOrExpr$1 !== 1;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpIfTest$3265 = fromStmtOrExpr$1 === 1;
-if (tmpIfTest$3265) {
-  tmpCalleeParam$1359 = false;
-} else {
-  tmpCalleeParam$1359 = true;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpIfTest$3265 = fromStmtOrExpr$1 === 1;
-if (tmpIfTest$3265) {
-  tmpCalleeParam$1359 = false;
-} else {
-  tmpCalleeParam$1359 = true;
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -64,13 +43,17 @@ const a = fromStmtOrExpr$1 !== 1;
 tmpCalleeParam$1359 = a;
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 fromStmtOrExpr$1, tmpCalleeParam$1359
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

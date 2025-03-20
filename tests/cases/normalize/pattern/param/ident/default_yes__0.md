@@ -15,12 +15,14 @@ function f(x = 'fail') {
 $(f(0, 200));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,39 +31,6 @@ $(0);
 $(0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let x = tmpParamBare === undefined ? `fail` : tmpParamBare;
-  return x;
-};
-$(f(0, 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let x = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    x = `fail`;
-    return x;
-  } else {
-    x = tmpParamBare;
-    return x;
-  }
-};
-const tmpCalleeParam = f(0, 200);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +39,15 @@ With rename=true
 $( 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

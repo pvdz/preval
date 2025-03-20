@@ -27,6 +27,7 @@ if (x) {
 }
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -66,41 +68,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-x = !tmpUnaryArg;
-if (x) {
-  $(`a`);
-} else {
-  $(`b`);
-  x = true;
-}
-if (x) {
-  $(`d`);
-} else {
-  $(`c`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-x = !tmpUnaryArg;
-if (x) {
-  $(`a`);
-} else {
-  $(`b`);
-  x = true;
-}
-if (x) {
-  $(`d`);
-} else {
-  $(`c`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -124,13 +91,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 tmpUnaryArg, x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

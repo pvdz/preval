@@ -14,6 +14,7 @@ do { [p, q] = $(b); } while (x + y);
 $(p, q);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   arrPatternSplat[1];
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,51 +42,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = [10, 20],
-  x = 3,
-  y = 4,
-  p,
-  q;
-while (true) {
-  {
-    [p, q] = $(b);
-  }
-  if (x + y) {
-  } else {
-    break;
-  }
-}
-$(p, q);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = [10, 20];
-let x = 3;
-let y = 4;
-let p = undefined;
-let q = undefined;
-while (true) {
-  const arrAssignPatternRhs = $(b);
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  p = arrPatternSplat[0];
-  q = arrPatternSplat[1];
-  const tmpIfTest = x + y;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(p, q);
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +56,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [10, 20]
@@ -141,7 +109,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

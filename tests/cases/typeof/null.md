@@ -16,12 +16,14 @@ I believe the idea was to have `null` represent "the empty object" or placeholde
 $(typeof null);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`object`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,20 +32,6 @@ $(`object`);
 $(`object`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof null);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `object`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +40,15 @@ With rename=true
 $( "object" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'object'

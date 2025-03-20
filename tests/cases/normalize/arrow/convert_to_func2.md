@@ -14,12 +14,14 @@ function f(x = false) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,44 +30,6 @@ function f(x = false) {
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let x = tmpParamBare === undefined ? false : tmpParamBare;
-  const y = function ($$0) {
-    let s = $$0;
-    debugger;
-    return x;
-  };
-};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let x = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    x = false;
-  } else {
-    x = tmpParamBare;
-  }
-  const y = function ($$0) {
-    let s = $$0;
-    debugger;
-    return x;
-  };
-  return undefined;
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +38,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

@@ -13,6 +13,7 @@ const x = 100;
 $({...x});
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:object*/ = {};
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,22 +30,6 @@ $(tmpCalleeParam);
 $({});
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = 100;
-$({ ...x });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = 100;
-const tmpCalleeParam = { ...x };
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +39,15 @@ const a = {};
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

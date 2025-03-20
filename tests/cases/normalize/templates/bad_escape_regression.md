@@ -23,12 +23,14 @@ function parseDecimalEscape(c) {
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 f();
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -37,44 +39,6 @@ f();
 f();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let parseDecimalEscape = function ($$0) {
-  let c = $$0;
-  debugger;
-  let reason = `Cannot escape \\8 or \\9 in a regex char class with u-flag`;
-  if (webCompat === true) {
-    updateRegexUflagIsIllegal(0, reason);
-    return c | 16777216;
-  }
-  regexSyntaxError(reason);
-  return 1114112;
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let parseDecimalEscape = function ($$0) {
-  let c = $$0;
-  debugger;
-  let reason = `Cannot escape \\8 or \\9 in a regex char class with u-flag`;
-  const tmpIfTest = webCompat === true;
-  if (tmpIfTest) {
-    updateRegexUflagIsIllegal(0, reason);
-    const tmpReturnArg = c | 16777216;
-    return tmpReturnArg;
-  } else {
-    regexSyntaxError(reason);
-    return 1114112;
-  }
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -83,13 +47,17 @@ With rename=true
 f();
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 f
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -20,6 +20,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ tmpAssignMemLhsObj.x = 30;
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,54 +60,6 @@ tmpAssignMemLhsObj.x = 30;
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const obj = {
-    get x() {
-      debugger;
-      return $(10);
-    },
-    set x($$0) {
-      let _ = $$0;
-      debugger;
-      $(20);
-    },
-  };
-  $(obj).x = 30;
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const obj = {
-    get x() {
-      debugger;
-      const tmpReturnArg = $(10);
-      return tmpReturnArg;
-    },
-    set x($$0) {
-      let _ = $$0;
-      debugger;
-      $(20);
-      return undefined;
-    },
-  };
-  const tmpAssignMemLhsObj = $(obj);
-  tmpAssignMemLhsObj.x = 30;
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -128,11 +82,15 @@ c.x = 30;
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '<get/set>' }

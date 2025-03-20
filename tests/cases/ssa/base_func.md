@@ -21,6 +21,7 @@ function f() {
 if ($) $(f()); // The branching prevents certain flattening
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,44 +48,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    let x = $(5);
-    $(x);
-    x = $(10);
-    $(x);
-  }
-};
-if ($) $(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    let x = $(5);
-    $(x);
-    x = $(10);
-    $(x);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-if ($) {
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +62,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 5

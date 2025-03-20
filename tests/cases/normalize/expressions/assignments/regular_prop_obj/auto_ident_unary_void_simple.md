@@ -17,6 +17,7 @@ let obj = {};
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(a, arg);
 undefined.a;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,29 +35,6 @@ undefined.a;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-(a = void arg).a;
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-a = undefined;
-let tmpCompObj = a;
-tmpCompObj.a;
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +44,15 @@ undefined.a;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

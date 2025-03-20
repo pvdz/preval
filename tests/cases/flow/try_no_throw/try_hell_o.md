@@ -22,12 +22,14 @@ f();
 considerMutated(x) // always true (!)
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 considerMutated(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -36,69 +38,6 @@ considerMutated(1);
 considerMutated(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  stop: {
-    let $implicitThrow = false;
-    let $finalStep = false;
-    let $finalCatchArg = undefined;
-    let $finalArg = undefined;
-    $finally: {
-      try {
-        {
-          $finalStep = true;
-          $finalArg = x;
-          break $finally;
-        }
-      } catch ($finalImplicit) {
-        $implicitThrow = true;
-        $finalCatchArg = $finalImplicit;
-      }
-    }
-    {
-      break stop;
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else throw $finalArg;
-  }
-  x = 1;
-};
-let x = 0;
-f();
-considerMutated(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let $implicitThrow = false;
-  let $finalStep = false;
-  let $finalCatchArg = undefined;
-  let $finalArg = undefined;
-  $finally: {
-    try {
-      $finalStep = true;
-      $finalArg = x;
-      break $finally;
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
-  }
-  x = 1;
-  return undefined;
-};
-let x = 0;
-f();
-considerMutated(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -107,13 +46,17 @@ With rename=true
 considerMutated( 1 );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 considerMutated
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

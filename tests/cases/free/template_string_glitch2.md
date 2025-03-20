@@ -25,6 +25,7 @@ const fxy = func(xs, ys);
 $(fxy);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const slashAslashB /*:string*/ = `/${xs}/${ys}`;
 $(slashAslashB);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,54 +48,6 @@ const ys = $coerce($(`b`), `string`);
 $(`/${xs}/${ys}`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const func = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const slashA = `/` + $coerce(a, `string`) + ``;
-  const slashAslash = `` + $coerce(slashA, `string`) + `/`;
-  const slashAslashB = slashAslash + b;
-  return slashAslashB;
-};
-const x = $(`a`);
-const xs = $coerce(x, `string`);
-const y = $(`b`);
-const ys = $coerce(y, `string`);
-const fxy = func(xs, ys);
-$(fxy);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const func = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const tmpBinBothLhs = `/`;
-  const tmpBinBothRhs = $coerce(a, `string`);
-  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-  const slashA = $coerce(tmpBinLhs, `plustr`);
-  const tmpBinBothLhs$1 = ``;
-  const tmpBinBothRhs$1 = $coerce(slashA, `string`);
-  const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-  const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-  const slashAslash = `${tmpStringConcatR}/`;
-  const slashAslashB = slashAslash + b;
-  return slashAslashB;
-};
-const x = $(`a`);
-const xs = $coerce(x, `string`);
-const y = $(`b`);
-const ys = $coerce(y, `string`);
-const fxy = func(xs, ys);
-$(fxy);
-`````
 
 ## PST Settled
 With rename=true
@@ -107,11 +61,21 @@ const e = `/${b}/${d}`;
 $( e );
 `````
 
+
+## Todos triggered
+
+
+- find test case where template ends up with multiple expressions
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'
@@ -126,6 +90,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- find test case where template ends up with multiple expressions

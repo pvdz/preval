@@ -24,6 +24,7 @@ A: {
 $(6);
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ A: {
 $(6);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -72,49 +74,6 @@ A: {
 $(6);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(0);
-A: {
-  $(1);
-  B: {
-    while (true) {
-      if ($()) break A;
-      if ($()) break B;
-      $(42);
-    }
-  }
-  $(5);
-}
-$(6);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-A: {
-  $(0);
-  $(1);
-  while (true) {
-    const tmpIfTest = $();
-    if (tmpIfTest) {
-      break A;
-    } else {
-      const tmpIfTest$1 = $();
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        $(42);
-      }
-    }
-  }
-  $(5);
-}
-$(6);
-`````
 
 ## PST Settled
 With rename=true
@@ -143,11 +102,15 @@ A: {
 $( 6 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

@@ -16,6 +16,7 @@ throw (1, 2, $(b)).c;
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const tmpThrowArg /*:unknown*/ = tmpCompObj.c;
 throw tmpThrowArg;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,26 +36,6 @@ const tmpThrowArg = $({ c: 1 }).c;
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-throw (1, 2, $(b)).c;
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCompObj = $(b);
-const tmpThrowArg = tmpCompObj.c;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +47,15 @@ const c = b.c;
 throw c;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '1' }

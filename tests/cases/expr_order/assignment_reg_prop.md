@@ -17,6 +17,7 @@ let b = {
 $(b).c = $(2);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,46 +55,6 @@ const tmpAssignMemLhsObj = $({
 tmpAssignMemLhsObj.c = $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = {
-  get c() {
-    debugger;
-    $(`get`);
-  },
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`set`);
-  },
-};
-$(b).c = $(2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = {
-  get c() {
-    debugger;
-    $(`get`);
-    return undefined;
-  },
-  set c($$0) {
-    let x = $$0;
-    debugger;
-    $(`set`);
-    return undefined;
-  },
-};
-const tmpAssignMemLhsObj = $(b);
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-const tmpAssignMemRhs = $(2);
-tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -115,11 +77,15 @@ const c = $( 2 );
 b.c = c;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '<get/set>' }

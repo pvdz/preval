@@ -15,6 +15,7 @@ obj[(a = arguments)];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ obj[a];
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,28 +36,6 @@ const a = arguments;
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = arguments)];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-a = arguments;
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,13 +47,17 @@ b[ a ];
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 arguments
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<Global Arguments>'

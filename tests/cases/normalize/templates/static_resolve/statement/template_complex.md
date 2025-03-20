@@ -12,6 +12,7 @@
 `${`a ${$(1)} b`}`;
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $(1);
 $coerce(tmpCalleeParam$1, `string`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,28 +29,6 @@ $coerce(tmpCalleeParam$1, `string`);
 $coerce($(1), `string`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-`` + $coerce(`a ` + $coerce($(1), `string`) + ` b`, `string`) + ``;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothLhs$1 = `a `;
-const tmpCalleeParam$1 = $(1);
-const tmpBinBothRhs$1 = $coerce(tmpCalleeParam$1, `string`);
-const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR} b`;
-const tmpBinBothRhs = $coerce(tmpCalleeParam, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-$coerce(tmpBinLhs, `plustr`);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +38,15 @@ const a = $( 1 );
 $coerce( a, "string" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

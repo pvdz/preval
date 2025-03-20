@@ -12,6 +12,7 @@
 console.log(['console tet case']);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam /*:array*/ = [`console tet case`];
 console.log(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,22 +29,6 @@ console.log(tmpCalleeParam);
 console.log([`console tet case`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-console.log([`console tet case`]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallObj = console;
-const tmpCallVal = tmpCallObj.log;
-const tmpCalleeParam = [`console tet case`];
-$dotCall(tmpCallVal, tmpCallObj, `log`, tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +38,15 @@ const a = [ "console tet case" ];
 console.log( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

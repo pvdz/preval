@@ -24,6 +24,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if (x) {
   $(xy);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -58,47 +60,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`before`);
-  const xy = x + y;
-  foo: {
-    $(`inside`);
-    if (x) $(`ok?`);
-    break foo;
-  }
-  return xy;
-};
-const x = $(true);
-const y = $(true);
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`before`);
-  const xy = x + y;
-  $(`inside`);
-  if (x) {
-    $(`ok?`);
-    return xy;
-  } else {
-    return xy;
-  }
-};
-const x = $(true);
-const y = $(true);
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -118,11 +79,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

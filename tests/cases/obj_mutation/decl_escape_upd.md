@@ -15,6 +15,7 @@ blob.thing = 'boing';
 $(blob);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(blob);
 blob.thing = `boing`;
 $(blob);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,25 +37,6 @@ blob.thing = `boing`;
 $(blob);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const blob = { thing: `woop` };
-$(blob);
-blob.thing = `boing`;
-$(blob);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const blob = { thing: `woop` };
-$(blob);
-blob.thing = `boing`;
-$(blob);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +48,15 @@ a.thing = "boing";
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { thing: '"woop"' }

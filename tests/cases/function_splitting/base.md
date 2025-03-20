@@ -23,6 +23,7 @@ f(true);
 f(false);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ $(`then`);
 $(`then`);
 $(`else`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,45 +45,6 @@ $(`then`);
 $(`else`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  if (a) {
-    $(`then`);
-  } else {
-    $(`else`);
-  }
-};
-f(0);
-f(`ok`);
-f(true);
-f(false);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  if (a) {
-    $(`then`);
-    return undefined;
-  } else {
-    $(`else`);
-    return undefined;
-  }
-};
-f(0);
-f(`ok`);
-f(true);
-f(false);
-`````
 
 ## PST Settled
 With rename=true
@@ -93,11 +56,15 @@ $( "then" );
 $( "else" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'else'

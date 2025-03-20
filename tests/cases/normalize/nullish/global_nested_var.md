@@ -17,6 +17,7 @@ const a = 10,
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,36 +60,6 @@ if (b == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = 10,
-  b = (a, $(2)) ?? toString,
-  c = (1, b) ?? length;
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = 10;
-let b = $(2);
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  b = toString;
-} else {
-}
-let c = b;
-const tmpIfTest$1 = c == null;
-if (tmpIfTest$1) {
-  c = length;
-  $(length);
-} else {
-  $(c);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -112,13 +84,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 toString, length
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

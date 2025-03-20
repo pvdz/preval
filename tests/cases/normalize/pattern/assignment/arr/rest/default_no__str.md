@@ -13,6 +13,7 @@
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $(x);
 x = [`a`, `b`, `c`];
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,23 +31,6 @@ x = [`a`, `b`, `c`];
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[...x] = `abc`;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arrAssignPatternRhs = `abc`;
-const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat.slice(0);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,13 +40,23 @@ x = [ "a", "b", "c" ];
 $( x );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -73,6 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

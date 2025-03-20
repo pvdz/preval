@@ -17,6 +17,7 @@ switch ($(1)) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(a);
 $(1);
 $(arguments);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,30 +35,6 @@ $(1);
 $(arguments);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (true) {
-    a = arguments;
-  } else {
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
-a = arguments;
-$(arguments);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,13 +44,17 @@ $( 1 );
 $( arguments );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 arguments
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

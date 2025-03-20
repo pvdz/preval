@@ -16,6 +16,7 @@ $((a = delete $(arg)[$("y")]) || (a = delete $(arg)[$("y")]));
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ if (tmpClusterSSA_a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,39 +57,6 @@ if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$((a = delete $(arg)[$(`y`)]) || (a = delete $(arg)[$(`y`)]));
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  $(tmpCalleeParam);
-  $(a, arg);
-} else {
-  const tmpDeleteCompObj$1 = $(arg);
-  const tmpDeleteCompProp$1 = $(`y`);
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(a, arg);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -110,11 +79,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }

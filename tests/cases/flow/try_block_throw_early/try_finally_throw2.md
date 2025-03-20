@@ -23,6 +23,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ $(`still throws`);
 $(`fail`);
 throw `yes`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,77 +43,6 @@ $(`fail`);
 throw `yes`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `pass`;
-  {
-    let $implicitThrow = false;
-    let $finalStep = false;
-    let $finalCatchArg = undefined;
-    let $finalArg = undefined;
-    $finally: {
-      try {
-        x = `fail`;
-        {
-          $finalStep = true;
-          $finalArg = `yes`;
-          break $finally;
-        }
-      } catch ($finalImplicit) {
-        $(`still throws`);
-        $(x);
-        throw $finalImplicit;
-      }
-    }
-    {
-      $(`still throws`);
-      $(x);
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else throw $finalArg;
-  }
-  $(x);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `pass`;
-  let $implicitThrow = false;
-  let $finalStep = false;
-  let $finalCatchArg = undefined;
-  let $finalArg = undefined;
-  $finally: {
-    try {
-      x = `fail`;
-      $finalStep = true;
-      $finalArg = `yes`;
-      break $finally;
-    } catch ($finalImplicit) {
-      $(`still throws`);
-      $(x);
-      throw $finalImplicit;
-    }
-  }
-  $(`still throws`);
-  $(x);
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    throw $finalArg;
-  }
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -122,11 +53,15 @@ $( "fail" );
 throw "yes";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'still throws'

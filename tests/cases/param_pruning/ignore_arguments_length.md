@@ -15,12 +15,14 @@ function f(x, y, z) {
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(0, undefined, undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,36 +31,6 @@ $(0, undefined, undefined);
 $(0, undefined, undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  let x = $$0;
-  let y = $$1;
-  let z = $$2;
-  debugger;
-  return $(tmpPrevalAliasArgumentsLen, x, z);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  let x = $$0;
-  let y = $$1;
-  let z = $$2;
-  debugger;
-  const tmpReturnArg = $(tmpPrevalAliasArgumentsLen, x, z);
-  return tmpReturnArg;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +39,15 @@ With rename=true
 $( 0, undefined, undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0, undefined, undefined

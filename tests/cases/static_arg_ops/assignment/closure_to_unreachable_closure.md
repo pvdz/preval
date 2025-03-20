@@ -23,6 +23,7 @@ f(1);
 f(2);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -67,47 +69,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f;
-if ($) {
-  let a = $();
-  let b = $();
-  f = function () {
-    debugger;
-    b = a;
-    $(a);
-    $(b);
-  };
-}
-f(1);
-f(2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = undefined;
-if ($) {
-  let a = $();
-  let b = $();
-  f = function () {
-    debugger;
-    b = a;
-    $(a);
-    $(b);
-    return undefined;
-  };
-  f(1);
-  f(2);
-} else {
-  f(1);
-  f(2);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -133,11 +94,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

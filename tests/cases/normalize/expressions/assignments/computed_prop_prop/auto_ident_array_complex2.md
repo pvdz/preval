@@ -18,6 +18,7 @@ $(a);
 
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 obj[a];
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,29 +44,6 @@ obj[a];
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {};
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$3];
-obj[a];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = {};
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$3];
-obj[a];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +57,15 @@ c[ d ];
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

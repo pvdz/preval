@@ -17,6 +17,7 @@ switch ((a = function f() {})) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(100);
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,37 +40,6 @@ $(100);
 $(f);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = (a = function f() {
-    debugger;
-  });
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  return undefined;
-};
-a = f;
-let tmpSwitchDisc = a;
-$(100);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +53,15 @@ $( 100 );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

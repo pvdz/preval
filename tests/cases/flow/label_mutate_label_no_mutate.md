@@ -29,6 +29,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if ($) {
   $(`fail`);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -53,52 +55,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  foo: {
-    bar: {
-      if ($) {
-        x = `pass`;
-        break foo;
-      } else {
-        break bar;
-      }
-    }
-    $(x);
-  }
-  $(x);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  foo: {
-    bar: {
-      if ($) {
-        x = `pass`;
-        break foo;
-      } else {
-        break bar;
-      }
-    }
-    $(x);
-  }
-  $(x);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -113,11 +69,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

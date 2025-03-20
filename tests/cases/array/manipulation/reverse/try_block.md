@@ -22,6 +22,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,38 +57,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-const obj = { [`1,2,3`]: `pass` };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    $(obj[arr]);
-    arr.reverse();
-  } catch (e) {
-    $(`fail`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-const obj = { [`1,2,3`]: `pass` };
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  try {
-    const tmpCalleeParam = obj[arr];
-    $(tmpCalleeParam);
-    arr.reverse();
-  } catch (e) {
-    $(`fail`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -106,11 +76,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- computed property access of an ident on a non-number feels tricky;
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'
@@ -148,7 +129,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- computed property access of an ident on a non-number feels tricky;

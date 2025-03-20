@@ -19,6 +19,7 @@ else {
 }
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (tmpIfTest$1917) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,32 +45,6 @@ if ($(`is`) === 67636) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let tmpIfTest$1917 = $(`is`) === 67636;
-if (tmpIfTest$1917) {
-  $(`it was`);
-} else {
-  tmpIfTest$1917 = false;
-  $(`it was not`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinLhs = $(`is`);
-let tmpIfTest$1917 = tmpBinLhs === 67636;
-if (tmpIfTest$1917) {
-  $(`it was`);
-} else {
-  tmpIfTest$1917 = false;
-  $(`it was not`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +60,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'is'

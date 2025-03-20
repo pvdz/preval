@@ -15,6 +15,7 @@ function f([[...x]]) {
 $(f('abc', 4, 5, 200));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const x /*:array*/ = [`a`];
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,36 +32,6 @@ $(x);
 $([`a`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [[...x]] = tmpParamBare;
-  return x;
-};
-$(f(`abc`, 4, 5, 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternStep = arrPatternSplat[0];
-  let arrPatternSplat$1 = [...arrPatternStep];
-  let x = arrPatternSplat$1.slice(0);
-  return x;
-};
-const tmpCalleeParam = f(`abc`, 4, 5, 200);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +41,23 @@ const a = [ "a" ];
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['a']
@@ -86,8 +70,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

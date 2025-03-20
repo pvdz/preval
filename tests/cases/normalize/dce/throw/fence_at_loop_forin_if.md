@@ -34,6 +34,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -97,6 +98,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -148,88 +150,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while ($(true)) {
-    $(`loop`);
-    {
-      let tmpForInGen = $forIn({ a: 1, b: 2 });
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        let tmpForInNext = tmpForInGen.next();
-        if (tmpForInNext.done) {
-          break;
-        } else {
-          let x = tmpForInNext.value;
-          {
-            $(`loop`, x);
-            if ($(1, `if`)) {
-              $(`pass`);
-              throw $(7, `throw`);
-              $(`fail`);
-            } else {
-              $(`do not visit`);
-              throw $(8, `throw`);
-              $(`fail`);
-            }
-            $(`fail -> DCE`);
-          }
-        }
-      }
-    }
-    $(`after (not invoked but should not be eliminated)`);
-  }
-  $(`after (not invoked)`);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      const tmpCalleeParam = { a: 1, b: 2 };
-      let tmpForInGen = $forIn(tmpCalleeParam);
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        let tmpForInNext = tmpForInGen.next();
-        const tmpIfTest$1 = tmpForInNext.done;
-        if (tmpIfTest$1) {
-          break;
-        } else {
-          let x = tmpForInNext.value;
-          $(`loop`, x);
-          const tmpIfTest$3 = $(1, `if`);
-          if (tmpIfTest$3) {
-            $(`pass`);
-            const tmpThrowArg = $(7, `throw`);
-            throw tmpThrowArg;
-          } else {
-            $(`do not visit`);
-            const tmpThrowArg$1 = $(8, `throw`);
-            throw tmpThrowArg$1;
-          }
-        }
-      }
-      $(`after (not invoked but should not be eliminated)`);
-    } else {
-      break;
-    }
-  }
-  $(`after (not invoked)`);
-  return undefined;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -306,11 +226,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

@@ -12,12 +12,14 @@
 $(/foo/ + "xyz");
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`/foo/xyz`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,22 +28,6 @@ $(`/foo/xyz`);
 $(`/foo/xyz`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(/foo/ + `xyz`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinLhs = /foo/;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}xyz`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +36,15 @@ With rename=true
 $( "/foo/xyz" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '/foo/xyz'

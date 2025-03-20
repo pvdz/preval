@@ -13,6 +13,7 @@ const x = {...$({a: 'ignored'}), a: $('prop')};
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const x /*:object*/ = { ...tmpObjSpread, a: tmpObjLitVal };
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,24 +35,6 @@ const tmpObjLitVal = $(`prop`);
 $({ ...tmpObjSpread, a: tmpObjLitVal });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = { ...$({ a: `ignored` }), a: $(`prop`) };
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = { a: `ignored` };
-const tmpObjSpread = $(tmpCalleeParam);
-const tmpObjLitVal = $(`prop`);
-const x = { ...tmpObjSpread, a: tmpObjLitVal };
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +50,15 @@ const d = {
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '"ignored"' }

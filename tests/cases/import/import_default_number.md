@@ -21,6 +21,7 @@ $(x);
 export default 100;
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ $(x);
 const tmpAnonDefaultExport /*:number*/ = 100;
 export { tmpAnonDefaultExport as default };
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -47,31 +49,6 @@ const tmpAnonDefaultExport = 100;
 export { tmpAnonDefaultExport as default };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-import x from 'x';
-$(x);
-`````
-
-`````js filename=x
-const tmpAnonDefaultExport = 100;
-export { tmpAnonDefaultExport as default };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-import { default as x } from 'x';
-$(x);
-`````
-
-`````js filename=x
-const tmpAnonDefaultExport = 100;
-export { tmpAnonDefaultExport as default };
-`````
 
 ## PST Settled
 With rename=true
@@ -82,17 +59,21 @@ $( x );
 `````
 
 `````js filename=x
-import { default as x } from "x";
-$( x );
+const a = 100;
+export { a as default };
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')

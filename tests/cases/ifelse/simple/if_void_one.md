@@ -12,12 +12,14 @@
 if (void 1) $();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,23 +28,6 @@ if (void 1) $();
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if (void 1) $();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpIfTest = undefined;
-if (tmpIfTest) {
-  $();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +36,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

@@ -12,12 +12,14 @@
 (class x extends $(Number) {});
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(Number);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,19 +28,6 @@ $(Number);
 $(Number);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-(class x extends $(Number) {});
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpClassSuper = $(Number);
-`````
 
 ## PST Settled
 With rename=true
@@ -47,11 +36,15 @@ With rename=true
 $( Number );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

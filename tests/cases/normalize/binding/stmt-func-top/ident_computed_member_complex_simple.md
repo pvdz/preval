@@ -17,6 +17,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 $(3, b, 3);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,39 +43,6 @@ $(3, b, 3);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let b = { x: 2 },
-    c = 3;
-  let a = ($(b)[$(`x`)] = c);
-  $(a, b, c);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let b = { x: 2 };
-  let c = 3;
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`x`);
-  const varInitAssignLhsComputedRhs = c;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  let a = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs, b, c);
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +56,15 @@ $( 3, a, 3 );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '2' }

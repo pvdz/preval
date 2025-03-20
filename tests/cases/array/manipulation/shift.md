@@ -14,6 +14,7 @@ $(arr.shift());
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const arr /*:array*/ = [2, 3];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,24 +33,6 @@ $(1);
 $([2, 3]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-$(arr.shift());
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-const tmpCalleeParam = arr.shift();
-$(tmpCalleeParam);
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +43,15 @@ const a = [ 2, 3 ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

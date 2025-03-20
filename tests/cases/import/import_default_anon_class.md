@@ -22,6 +22,7 @@ $(x.name);
 export default class X {};
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const X /*:class*/ = class {};
 export { X };
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,34 +53,6 @@ const X = class {};
 export { X };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-import x from 'x';
-$(x);
-$(x.name);
-`````
-
-`````js filename=x
-let X = class {};
-export { X };
-`````
-
-## Normalized
-
-
-`````js filename=intro
-import { default as x } from 'x';
-$(x);
-const tmpCalleeParam = x.name;
-$(tmpCalleeParam);
-`````
-
-`````js filename=x
-let X = class {};
-export { X };
-`````
 
 ## PST Settled
 With rename=true
@@ -91,19 +65,23 @@ $( a );
 `````
 
 `````js filename=x
-import { default as x } from "x";
-$( x );
-const a = x.name;
-$( a );
+const a = class   {
+
+};
+export { a as X };
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')

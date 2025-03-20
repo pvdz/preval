@@ -28,6 +28,7 @@ if ($) {
 $('!');
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if ($) {
   $(`!`);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -54,53 +56,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if ($) {
-  let x = 1;
-  const f = function ($$0) {
-    let a = $$0;
-    debugger;
-    if (a) {
-      x = a;
-      $(x, a);
-    } else {
-      $(`b`, x, a);
-    }
-  };
-  f(0);
-  f(1);
-}
-$(`!`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if ($) {
-  let x = 1;
-  const f = function ($$0) {
-    let a = $$0;
-    debugger;
-    if (a) {
-      x = a;
-      $(a, a);
-      return undefined;
-    } else {
-      $(`b`, x, a);
-      return undefined;
-    }
-  };
-  f(0);
-  f(1);
-  $(`!`);
-} else {
-  $(`!`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -116,11 +71,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'b', 1, 0

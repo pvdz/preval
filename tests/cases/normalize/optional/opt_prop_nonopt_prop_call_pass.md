@@ -13,6 +13,7 @@ const a = {b: {c: $}};
 a?.b.c(1);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpObjLitVal /*:object*/ = { c: $ };
 tmpObjLitVal.c(1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,28 +30,6 @@ tmpObjLitVal.c(1);
 ({ c: $ }.c(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = { b: { c: $ } };
-a?.b.c(1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { c: $ };
-const a = { b: tmpObjLitVal };
-const tmpChainRootProp = a;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.b;
-  const tmpChainElementCall = tmpChainElementObject.c(1);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +39,15 @@ const a = { c: $ };
 a.c( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

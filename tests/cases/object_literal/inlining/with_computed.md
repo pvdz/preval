@@ -14,6 +14,7 @@ const obj = {[key]: 1};
 $(obj.dakey);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpCalleeParam /*:unknown*/ = obj.dakey;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,24 +34,6 @@ const key = $(`dakey`);
 $({ [key]: 1 }.dakey);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const key = $(`dakey`);
-const obj = { [key]: 1 };
-$(obj.dakey);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const key = $(`dakey`);
-const obj = { [key]: 1 };
-const tmpCalleeParam = obj.dakey;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +45,15 @@ const c = b.dakey;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'dakey'

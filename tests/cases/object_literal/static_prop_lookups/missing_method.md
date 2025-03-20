@@ -15,6 +15,7 @@ const o = {
 $(o.toString());
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const tmpCalleeParam /*:string*/ = o.toString();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,22 +33,6 @@ $(tmpCalleeParam);
 $({}.toString());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const o = {};
-$(o.toString());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const o = {};
-const tmpCalleeParam = o.toString();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +43,21 @@ const b = a.toString();
 $( b );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $object_toString
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '[object Object]'
@@ -74,6 +70,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $object_toString

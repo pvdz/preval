@@ -16,6 +16,7 @@ arr[$(2)] = 10;
 $(arr.length);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpCalleeParam /*:number*/ = arr.length;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,26 +39,6 @@ arr[tmpAssignComMemLhsProp] = 10;
 $(arr.length);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-arr[$(2)] = 10;
-$(arr.length);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-const tmpAssignComMemLhsObj = arr;
-const tmpAssignComMemLhsProp = $(2);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 10;
-const tmpCalleeParam = arr.length;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +51,15 @@ const c = b.length;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

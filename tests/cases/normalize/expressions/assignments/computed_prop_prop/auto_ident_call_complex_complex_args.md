@@ -17,6 +17,7 @@ obj[(a = $($)($(1), $(2)))];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ obj[a];
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,33 +42,6 @@ const a = tmpCallCallee($(1), $(2));
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = $($)($(1), $(2)))];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-const tmpCallCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +56,15 @@ e[ d ];
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

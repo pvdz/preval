@@ -20,6 +20,7 @@ const zz = [];
 $(aa, zz, a, b);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const zz /*:array*/ = [];
 $(aa, zz, a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,27 +38,6 @@ $(aa, zz, a, b);
 $([], [], a, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = [];
-const y = [];
-const aa = [];
-const zz = [];
-$(aa, zz, a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = [];
-const y = [];
-const aa = [];
-const zz = [];
-$(aa, zz, a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,13 +48,17 @@ const d = [];
 $( c, d, a, b );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 a, b
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

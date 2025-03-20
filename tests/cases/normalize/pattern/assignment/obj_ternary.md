@@ -17,12 +17,14 @@ let f = function () {
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,43 +33,6 @@ f();
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let {} = $ ? 1 : 2;
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let bindingPatternObjRoot = undefined;
-  if ($) {
-    bindingPatternObjRoot = 1;
-  } else {
-    bindingPatternObjRoot = 2;
-  }
-  let objPatternCrashTest = bindingPatternObjRoot === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = bindingPatternObjRoot === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +41,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

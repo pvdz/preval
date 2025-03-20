@@ -22,6 +22,7 @@ abc: try {
 $(x); // x=2
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -51,7 +52,9 @@ abc___7__: /*8*/ {
 $(x___56__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 x:

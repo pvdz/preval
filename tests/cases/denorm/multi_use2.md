@@ -19,6 +19,7 @@ if (expires) {
 }
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (expires) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,31 +45,6 @@ if (expires) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if (expires) {
-  const date = new Date();
-  const time = date.getTime();
-  $(time);
-  unknown = date;
-} else {
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if (expires) {
-  const date = new Date();
-  const time = date.getTime();
-  $(time);
-  unknown = date;
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -81,13 +58,23 @@ if (expires) {
 }
 `````
 
+
+## Todos triggered
+
+
+- maybe fix the type for calling this builtin?
+
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 expires, unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -99,6 +86,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- maybe fix the type for calling this builtin?

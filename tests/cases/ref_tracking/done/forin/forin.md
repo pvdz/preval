@@ -17,6 +17,7 @@ for (let x in {a:10, b:20}) {
 $('keep, do not eval');
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`keep, do not eval`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,45 +55,6 @@ while (true) {
 $(`keep, do not eval`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let tmpForInGen = $forIn({ a: 10, b: 20 });
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      let x = tmpForInNext.value;
-      {
-        $(`fail`);
-      }
-    }
-  }
-}
-$(`keep, do not eval`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = { a: 10, b: 20 };
-let tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    let x = tmpForInNext.value;
-    $(`fail`);
-  }
-}
-$(`keep, do not eval`);
-`````
 
 ## PST Settled
 With rename=true
@@ -116,11 +79,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( "keep, do not eval" );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'fail'
@@ -135,6 +108,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

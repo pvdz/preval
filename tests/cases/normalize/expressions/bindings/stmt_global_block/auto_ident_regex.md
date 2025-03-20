@@ -15,6 +15,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const a /*:regex*/ = /foo/;
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,23 +32,6 @@ $(a);
 $(/foo/);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let a = /foo/;
-  $(a);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = /foo/;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +41,15 @@ const a = /foo/;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

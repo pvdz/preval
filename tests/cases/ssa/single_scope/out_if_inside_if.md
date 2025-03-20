@@ -19,6 +19,7 @@ if (dedupeMe) {
 }
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ if (tmpUnaryArg$83) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,33 +45,6 @@ if (tmpUnaryArg$83) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let dedupeMe = !tmpUnaryArg$83;
-if (dedupeMe) {
-  $(true, `abc`);
-} else {
-  const c = props$15.children;
-  dedupeMe = c == null;
-  $(dedupeMe, `xyz`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let dedupeMe = !tmpUnaryArg$83;
-if (dedupeMe) {
-  $(true, `abc`);
-} else {
-  const c = props$15.children;
-  dedupeMe = c == null;
-  $(dedupeMe, `xyz`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -85,13 +60,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 tmpUnaryArg$83, props$15
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

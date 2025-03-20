@@ -14,12 +14,14 @@ const f = x.constructor;
 $(f);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(Function);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,24 +30,6 @@ $(Function);
 $(Function);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = [].flat;
-const f = x.constructor;
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCompObj = [];
-const x = tmpCompObj.flat;
-const f = x.constructor;
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +38,15 @@ With rename=true
 $( Function );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

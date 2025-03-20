@@ -57,6 +57,7 @@ const arr2 = [
 $(arr2);
 `````
 
+
 ## Settled
 
 
@@ -203,6 +204,7 @@ const arr2 /*:array*/ = [tmpArrElement$51, tmpArrElement$53];
 $(arr2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -269,191 +271,6 @@ const tmpArrElement$53 = $Array_from($([])) instanceof x;
 $([tmpArrElement$51, tmpArrElement$53]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [
-  Array.from($([])) ** x,
-  Array.from($([])) * x,
-  Array.from($([])) / x,
-  Array.from($([])) % x,
-  Array.from($([])) + x,
-  Array.from($([])) - x,
-  Array.from($([])) << x,
-  Array.from($([])) >> x,
-  Array.from($([])) >>> x,
-  Array.from($([])) < x,
-  Array.from($([])) > x,
-  Array.from($([])) <= x,
-  Array.from($([])) >= x,
-  Array.from($([])) == x,
-  Array.from($([])) != x,
-  Array.from($([])) === x,
-  Array.from($([])) !== x,
-  Array.from($([])) & x,
-  Array.from($([])) ^ x,
-  Array.from($([])) | x,
-  ~Array.from($([])),
-  !Array.from($([])),
-  -Array.from($([])),
-  +Array.from($([])),
-  typeof Array.from($([])),
-  void Array.from($([])),
-];
-$(arr);
-const arr2 = [Array.from($([])) in x, Array.from($([])) instanceof x];
-$(arr2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = [];
-const tmpCalleeParam = $(tmpCalleeParam$1);
-const tmpBinLhs = $Array_from(tmpCalleeParam);
-const tmpArrElement = tmpBinLhs ** x;
-const tmpCalleeParam$5 = [];
-const tmpCalleeParam$3 = $(tmpCalleeParam$5);
-const tmpBinLhs$1 = $Array_from(tmpCalleeParam$3);
-const tmpArrElement$1 = tmpBinLhs$1 * x;
-const tmpCalleeParam$9 = [];
-const tmpCalleeParam$7 = $(tmpCalleeParam$9);
-const tmpBinLhs$3 = $Array_from(tmpCalleeParam$7);
-const tmpArrElement$3 = tmpBinLhs$3 / x;
-const tmpCalleeParam$13 = [];
-const tmpCalleeParam$11 = $(tmpCalleeParam$13);
-const tmpBinLhs$5 = $Array_from(tmpCalleeParam$11);
-const tmpArrElement$5 = tmpBinLhs$5 % x;
-const tmpCalleeParam$17 = [];
-const tmpCalleeParam$15 = $(tmpCalleeParam$17);
-const tmpBinLhs$7 = $Array_from(tmpCalleeParam$15);
-const tmpArrElement$7 = tmpBinLhs$7 + x;
-const tmpCalleeParam$21 = [];
-const tmpCalleeParam$19 = $(tmpCalleeParam$21);
-const tmpBinLhs$9 = $Array_from(tmpCalleeParam$19);
-const tmpArrElement$9 = tmpBinLhs$9 - x;
-const tmpCalleeParam$25 = [];
-const tmpCalleeParam$23 = $(tmpCalleeParam$25);
-const tmpBinLhs$11 = $Array_from(tmpCalleeParam$23);
-const tmpArrElement$11 = tmpBinLhs$11 << x;
-const tmpCalleeParam$29 = [];
-const tmpCalleeParam$27 = $(tmpCalleeParam$29);
-const tmpBinLhs$13 = $Array_from(tmpCalleeParam$27);
-const tmpArrElement$13 = tmpBinLhs$13 >> x;
-const tmpCalleeParam$33 = [];
-const tmpCalleeParam$31 = $(tmpCalleeParam$33);
-const tmpBinLhs$15 = $Array_from(tmpCalleeParam$31);
-const tmpArrElement$15 = tmpBinLhs$15 >>> x;
-const tmpCalleeParam$37 = [];
-const tmpCalleeParam$35 = $(tmpCalleeParam$37);
-const tmpBinLhs$17 = $Array_from(tmpCalleeParam$35);
-const tmpArrElement$17 = tmpBinLhs$17 < x;
-const tmpCalleeParam$41 = [];
-const tmpCalleeParam$39 = $(tmpCalleeParam$41);
-const tmpBinLhs$19 = $Array_from(tmpCalleeParam$39);
-const tmpArrElement$19 = tmpBinLhs$19 > x;
-const tmpCalleeParam$45 = [];
-const tmpCalleeParam$43 = $(tmpCalleeParam$45);
-const tmpBinLhs$21 = $Array_from(tmpCalleeParam$43);
-const tmpArrElement$21 = tmpBinLhs$21 <= x;
-const tmpCalleeParam$49 = [];
-const tmpCalleeParam$47 = $(tmpCalleeParam$49);
-const tmpBinLhs$23 = $Array_from(tmpCalleeParam$47);
-const tmpArrElement$23 = tmpBinLhs$23 >= x;
-const tmpCalleeParam$53 = [];
-const tmpCalleeParam$51 = $(tmpCalleeParam$53);
-const tmpBinLhs$25 = $Array_from(tmpCalleeParam$51);
-const tmpArrElement$25 = tmpBinLhs$25 == x;
-const tmpCalleeParam$57 = [];
-const tmpCalleeParam$55 = $(tmpCalleeParam$57);
-const tmpBinLhs$27 = $Array_from(tmpCalleeParam$55);
-const tmpArrElement$27 = tmpBinLhs$27 != x;
-const tmpCalleeParam$61 = [];
-const tmpCalleeParam$59 = $(tmpCalleeParam$61);
-const tmpBinLhs$29 = $Array_from(tmpCalleeParam$59);
-const tmpArrElement$29 = tmpBinLhs$29 === x;
-const tmpCalleeParam$65 = [];
-const tmpCalleeParam$63 = $(tmpCalleeParam$65);
-const tmpBinLhs$31 = $Array_from(tmpCalleeParam$63);
-const tmpArrElement$31 = tmpBinLhs$31 !== x;
-const tmpCalleeParam$69 = [];
-const tmpCalleeParam$67 = $(tmpCalleeParam$69);
-const tmpBinLhs$33 = $Array_from(tmpCalleeParam$67);
-const tmpArrElement$33 = tmpBinLhs$33 & x;
-const tmpCalleeParam$73 = [];
-const tmpCalleeParam$71 = $(tmpCalleeParam$73);
-const tmpBinLhs$35 = $Array_from(tmpCalleeParam$71);
-const tmpArrElement$35 = tmpBinLhs$35 ^ x;
-const tmpCalleeParam$77 = [];
-const tmpCalleeParam$75 = $(tmpCalleeParam$77);
-const tmpBinLhs$37 = $Array_from(tmpCalleeParam$75);
-const tmpArrElement$37 = tmpBinLhs$37 | x;
-const tmpCalleeParam$81 = [];
-const tmpCalleeParam$79 = $(tmpCalleeParam$81);
-const tmpUnaryArg = $Array_from(tmpCalleeParam$79);
-const tmpArrElement$39 = ~tmpUnaryArg;
-const tmpCalleeParam$85 = [];
-const tmpCalleeParam$83 = $(tmpCalleeParam$85);
-const tmpUnaryArg$1 = $Array_from(tmpCalleeParam$83);
-const tmpArrElement$41 = !tmpUnaryArg$1;
-const tmpCalleeParam$89 = [];
-const tmpCalleeParam$87 = $(tmpCalleeParam$89);
-const tmpUnaryArg$3 = $Array_from(tmpCalleeParam$87);
-const tmpArrElement$43 = -tmpUnaryArg$3;
-const tmpCalleeParam$93 = [];
-const tmpCalleeParam$91 = $(tmpCalleeParam$93);
-const tmpUnaryArg$5 = $Array_from(tmpCalleeParam$91);
-const tmpArrElement$45 = +tmpUnaryArg$5;
-const tmpCalleeParam$97 = [];
-const tmpCalleeParam$95 = $(tmpCalleeParam$97);
-const tmpUnaryArg$7 = $Array_from(tmpCalleeParam$95);
-const tmpArrElement$47 = typeof tmpUnaryArg$7;
-const tmpCalleeParam$101 = [];
-const tmpCalleeParam$99 = $(tmpCalleeParam$101);
-$Array_from(tmpCalleeParam$99);
-const tmpArrElement$49 = undefined;
-const arr = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-  tmpArrElement$39,
-  tmpArrElement$41,
-  tmpArrElement$43,
-  tmpArrElement$45,
-  tmpArrElement$47,
-  tmpArrElement$49,
-];
-$(arr);
-const tmpCalleeParam$105 = [];
-const tmpCalleeParam$103 = $(tmpCalleeParam$105);
-const tmpBinLhs$39 = $Array_from(tmpCalleeParam$103);
-const tmpArrElement$51 = tmpBinLhs$39 in x;
-const tmpCalleeParam$109 = [];
-const tmpCalleeParam$107 = $(tmpCalleeParam$109);
-const tmpBinLhs$41 = $Array_from(tmpCalleeParam$107);
-const tmpArrElement$53 = tmpBinLhs$41 instanceof x;
-const arr2 = [tmpArrElement$51, tmpArrElement$53];
-$(arr2);
-`````
 
 ## PST Settled
 With rename=true
@@ -574,11 +391,21 @@ const ef = [ ea, ee ];
 $( ef );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
+
+
 ## Globals
+
 
 None (except for the 1 globals expected by the test)
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []
@@ -591,6 +418,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from

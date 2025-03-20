@@ -14,12 +14,14 @@ const y = x === false;
 $('out:', y);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`out:`, false);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,28 +30,6 @@ $(`out:`, false);
 $(`out:`, false);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = function () {
-  debugger;
-};
-const y = x === false;
-$(`out:`, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = function () {
-  debugger;
-  return undefined;
-};
-const y = x === false;
-$(`out:`, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +38,15 @@ With rename=true
 $( "out:", false );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'out:', false

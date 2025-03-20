@@ -16,6 +16,7 @@ if ($(true)) {
 }
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,39 +50,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if ($(true)) {
-  let b = { x: 2 },
-    c = 3,
-    d = 4;
-  let a = ($(b).x = $(c).y = $(d));
-  $(a, b, c, d);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  let b = { x: 2 };
-  let c = 3;
-  let d = 4;
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedRhs$1 = $(d);
-  varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  let a = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs, b, c, d);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +67,15 @@ if (a) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

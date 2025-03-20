@@ -38,6 +38,7 @@ $(x in true);
 $(x instanceof true);
 `````
 
+
 ## Settled
 
 
@@ -91,6 +92,7 @@ const tmpCalleeParam$1 /*:boolean*/ = x instanceof true;
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -141,93 +143,6 @@ $(x in true);
 $(x instanceof true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = 1 * $(1);
-const arr = [
-  x ** true,
-  x * true,
-  x / true,
-  x % true,
-  x + true,
-  x - true,
-  x << true,
-  x >> true,
-  x >>> true,
-  x < true,
-  x > true,
-  x <= true,
-  x >= true,
-  x == true,
-  x != true,
-  x === true,
-  x !== true,
-  x & true,
-  x ^ true,
-  x | true,
-];
-$(arr);
-$(x in true);
-$(x instanceof true);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = 1;
-const tmpBinBothRhs = $(1);
-const x = tmpBinBothLhs * tmpBinBothRhs;
-const tmpArrElement = x ** 1;
-const tmpArrElement$1 = x * 1;
-const tmpArrElement$3 = x / 1;
-const tmpArrElement$5 = x % 1;
-const tmpArrElement$7 = x + true;
-const tmpArrElement$9 = x - 1;
-const tmpArrElement$11 = x << 1;
-const tmpArrElement$13 = x >> 1;
-const tmpArrElement$15 = x >>> 1;
-const tmpArrElement$17 = x < true;
-const tmpArrElement$19 = x > true;
-const tmpArrElement$21 = x <= true;
-const tmpArrElement$23 = x >= true;
-const tmpArrElement$25 = x == true;
-const tmpArrElement$27 = x != true;
-const tmpArrElement$29 = x === true;
-const tmpArrElement$31 = x !== true;
-const tmpArrElement$33 = x & 1;
-const tmpArrElement$35 = x ^ 1;
-const tmpArrElement$37 = x | 1;
-const arr = [
-  tmpArrElement,
-  tmpArrElement$1,
-  tmpArrElement$3,
-  tmpArrElement$5,
-  tmpArrElement$7,
-  tmpArrElement$9,
-  tmpArrElement$11,
-  tmpArrElement$13,
-  tmpArrElement$15,
-  tmpArrElement$17,
-  tmpArrElement$19,
-  tmpArrElement$21,
-  tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
-  tmpArrElement$29,
-  tmpArrElement$31,
-  tmpArrElement$33,
-  tmpArrElement$35,
-  tmpArrElement$37,
-];
-$(arr);
-const tmpCalleeParam = x in true;
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = x instanceof true;
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -261,11 +176,15 @@ const w = b instanceof true;
 $( w );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

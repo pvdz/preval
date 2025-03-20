@@ -16,6 +16,7 @@ switch ($(1)) {
 $();
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(1);
 $spy(0);
 $();
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,41 +36,6 @@ $spy(0);
 $();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 1;
-  if ($spy(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-    }
-    if (tmpSwitchCaseToStart <= 1) {
-    }
-  }
-}
-$();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $spy(0);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-$();
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +46,15 @@ $spy( 0 );
 $();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

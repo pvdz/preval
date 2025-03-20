@@ -17,6 +17,7 @@ $($(a).length = b);
 //$($(a).length);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ varInitAssignLhsComputedObj.length = undefined;
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,28 +39,6 @@ varInitAssignLhsComputedObj.length = undefined;
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $([]),
-  b;
-$(($(a).length = b));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [];
-let a = $(tmpCalleeParam);
-let b = undefined;
-const varInitAssignLhsComputedObj = $(a);
-const varInitAssignLhsComputedRhs = b;
-varInitAssignLhsComputedObj.length = varInitAssignLhsComputedRhs;
-const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +51,15 @@ c.length = undefined;
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []

@@ -32,6 +32,7 @@ if (1 === 1) {
 }
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (1 === 1) {
 $(3);
 $(4);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -48,47 +50,6 @@ $(3);
 $(4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    {
-      if (2) {
-        $(3);
-      }
-      $(4);
-      break tmpSwitchBreak;
-    }
-  } else if (tmpSwitchDisc === `no`) {
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = 1;
-  const tmpIfTest = tmpSwitchDisc === 1;
-  if (tmpIfTest) {
-    $(3);
-    $(4);
-    break tmpSwitchBreak;
-  } else {
-    const tmpIfTest$1 = tmpSwitchDisc === `no`;
-    if (tmpIfTest$1) {
-      break tmpSwitchBreak;
-    } else {
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +59,15 @@ $( 3 );
 $( 4 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3

@@ -15,6 +15,7 @@ export default a = { b: $(1) };
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpAssignComputedRhs /*:unknown*/ = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -47,35 +49,6 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = { b: $(1) });
-export { tmpAnonDefaultExport as default };
-($(1), $(a))[$(`b`)] = $(2);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpObjLitVal = $(1);
-a = { b: tmpObjLitVal };
-let tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
-$(1);
-const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $(`b`);
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-const tmpAssignComputedRhs = $(2);
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -93,11 +66,15 @@ d[e] = f;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

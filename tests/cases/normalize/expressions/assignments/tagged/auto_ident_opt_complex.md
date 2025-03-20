@@ -16,6 +16,7 @@ $`before ${(a = $(b)?.x)} after`;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ $(tmpCalleeParam, a);
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,36 +49,6 @@ $([`before `, ` after`], a);
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-$([`before `, ` after`], (a = $(b)?.x));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = [`before `, ` after`];
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-} else {
-}
-let tmpCalleeParam$1 = a;
-$(tmpCalleeParam, a);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +70,15 @@ $( f, a );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

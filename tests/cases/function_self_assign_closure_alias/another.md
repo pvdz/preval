@@ -22,6 +22,7 @@ x() !== x();        // a2 === a3
 x() === zzzz();     // a4 === a4
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ x();
 zzzz();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -66,52 +68,6 @@ x();
 zzzz();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let zzzz = function () {
-  debugger;
-  const a = [];
-  zzzz = function ($$0, $$1) {
-    let $dlr_$$0 = $$0;
-    let $dlr_$$1 = $$1;
-    debugger;
-    return a;
-  };
-  const tmpReturnArg$23 = zzzz();
-  return tmpReturnArg$23;
-};
-const x = zzzz;
-zzzz() === zzzz();
-x() !== x();
-x() === zzzz();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let zzzz = function () {
-  debugger;
-  const a = [];
-  zzzz = function ($$0, $$1) {
-    let $dlr_$$0 = $$0;
-    let $dlr_$$1 = $$1;
-    debugger;
-    return a;
-  };
-  const tmpReturnArg$23 = zzzz();
-  return tmpReturnArg$23;
-};
-const x = zzzz;
-zzzz();
-zzzz();
-x();
-x();
-x();
-zzzz();
-`````
 
 ## PST Settled
 With rename=true
@@ -136,11 +92,15 @@ d();
 a();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

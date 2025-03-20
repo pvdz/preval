@@ -16,6 +16,7 @@ $(...(a = (1, 2, b).c));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const b /*:object*/ = { c: 1 };
 $(1, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,28 +35,6 @@ $(...1);
 $(1, { c: 1 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-$(...(a = (1, 2, b).c));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpAssignRhsProp = b;
-a = tmpAssignRhsProp.c;
-let tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +45,15 @@ const a = { c: 1 };
 $( 1, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

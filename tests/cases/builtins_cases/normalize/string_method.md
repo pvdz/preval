@@ -33,6 +33,7 @@ const y = $('m#az#e');
 $(f(String(y)));
 `````
 
+
 ## Settled
 
 
@@ -72,6 +73,7 @@ const tmpCalleeParam$3 /*:string*/ = f(tmpCalleeParam$5);
 $(tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -98,75 +100,6 @@ $(f($coerce($(`co_rn`), `string`)));
 $(f($coerce($(`m#az#e`), `string`)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let inputstr = $$0;
-  debugger;
-  let outputstr = ``;
-  const regex = /[^A-Za-z0-9\+\/\=]/g;
-  const repl = inputstr.replace(regex, ``);
-  const len = repl.length;
-  const test = 0 < len;
-  if (test) {
-    const a1 = repl.charAt(0);
-    const a2 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
-    const b1 = repl.charAt(1);
-    const b2 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(b1);
-    const c1 = repl.charAt(2);
-    const c2 = `dropme`.indexOf(c1);
-    const frout = a2 + b2;
-    outputstr = $coerce(frout, `plustr`);
-  }
-  return outputstr;
-};
-const x = $(`co_rn`);
-$(f(String(x)));
-const y = $(`m#az#e`);
-$(f(String(y)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let inputstr = $$0;
-  debugger;
-  let outputstr = ``;
-  const regex = /[^A-Za-z0-9\+\/\=]/g;
-  const repl = inputstr.replace(regex, ``);
-  const len = repl.length;
-  const test = 0 < len;
-  if (test) {
-    const a1 = repl.charAt(0);
-    const a2 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
-    const b1 = repl.charAt(1);
-    const b2 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(b1);
-    const c1 = repl.charAt(2);
-    const c2 = `dropme`.indexOf(c1);
-    const frout = a2 + b2;
-    outputstr = $coerce(frout, `plustr`);
-    return outputstr;
-  } else {
-    return outputstr;
-  }
-};
-const x = $(`co_rn`);
-const tmpCallCallee = f;
-const tmpStringFirstArg = x;
-const tmpCalleeParam$1 = $coerce(x, `string`);
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-const y = $(`m#az#e`);
-const tmpCallCallee$1 = f;
-const tmpStringFirstArg$1 = y;
-const tmpCalleeParam$5 = $coerce(y, `string`);
-const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -208,11 +141,15 @@ const w = j( v );
 $( w );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'co_rn'

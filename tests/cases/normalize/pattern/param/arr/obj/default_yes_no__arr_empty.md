@@ -15,6 +15,7 @@ function f([{} = $('pass')]) {
 $(f([]));
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (objPatternCrashTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,53 +52,6 @@ if (objPatternCrashTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [{} = $(`pass`)] = tmpParamBare;
-  return `ok`;
-};
-$(f([]));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    arrPatternStep = $(`pass`);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  let objPatternCrashTest = arrPatternStep === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = arrPatternStep === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-    return `ok`;
-  } else {
-    return `ok`;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = [];
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -119,11 +74,22 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'
@@ -137,7 +103,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -12,12 +12,14 @@
 $(parseInt(15)??foo);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(15);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,26 +28,6 @@ $(15);
 $(15);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(parseInt(15) ?? foo);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam = 15;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = foo;
-  $(foo);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +36,15 @@ With rename=true
 $( 15 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 15

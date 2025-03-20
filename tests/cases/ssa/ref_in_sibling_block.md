@@ -27,6 +27,7 @@ function f() {
 if ($) f();
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,55 +70,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = $(1);
-  if ($) {
-    if (a) {
-      x = $(2);
-      $(x);
-    }
-    {
-      $(x);
-    }
-  } else {
-    $(x);
-  }
-};
-if ($) f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = $(1);
-  if ($) {
-    if (a) {
-      x = $(2);
-      $(x);
-      $(x);
-      return undefined;
-    } else {
-      $(x);
-      return undefined;
-    }
-  } else {
-    $(x);
-    return undefined;
-  }
-};
-if ($) {
-  f();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -140,13 +93,17 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 a
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -24,6 +24,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,41 +48,6 @@ if (0 < t) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let flag = false;
-const t = $(5);
-const x = 0 < t;
-flag = x;
-while (true) {
-  if (flag) {
-    $(`inner`);
-    flag = false;
-  } else {
-    break;
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let flag = false;
-const t = $(5);
-const x = 0 < t;
-flag = x;
-while (true) {
-  if (flag) {
-    $(`inner`);
-    flag = false;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -93,11 +60,15 @@ if (b) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 5

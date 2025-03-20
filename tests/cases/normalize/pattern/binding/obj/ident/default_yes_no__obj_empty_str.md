@@ -13,12 +13,14 @@ const { x = $('fail') } = { x: '' };
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(``);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,30 +29,6 @@ $(``);
 $(``);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { x: x = $(`fail`) } = { x: `` };
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = { x: `` };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let x = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $(`fail`);
-  $(x);
-} else {
-  x = objPatternBeforeDefault;
-  $(objPatternBeforeDefault);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +37,15 @@ With rename=true
 $( "" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ''

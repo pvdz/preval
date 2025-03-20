@@ -14,12 +14,14 @@ TODO: arrow
 const f = (a = { x } = 1) => { return a };
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,38 +30,6 @@ const f = (a = { x } = 1) => { return a };
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = ($$0) => {
-  const tmpParamBare = $$0;
-  debugger;
-  let a = tmpParamBare === undefined ? ({ x: x } = 1) : tmpParamBare;
-  return a;
-};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let a = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpNestedAssignObjPatternRhs = 1;
-    x = tmpNestedAssignObjPatternRhs.x;
-    a = tmpNestedAssignObjPatternRhs;
-    return a;
-  } else {
-    a = tmpParamBare;
-    return a;
-  }
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +38,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

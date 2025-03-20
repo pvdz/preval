@@ -15,6 +15,7 @@ $(arr[3]);
 $(`${arr[2]}xyz`);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $($);
 $(4);
 $(`3xyz`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,33 +35,6 @@ $(4);
 $(`3xyz`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, $, 3, 4];
-$(arr[1]);
-$(arr[3]);
-$(`` + $coerce(arr[2], `string`) + `xyz`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, $, 3, 4];
-const tmpCalleeParam = arr[1];
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = arr[3];
-$(tmpCalleeParam$1);
-const tmpBinBothLhs = ``;
-const tmpCalleeParam$5 = arr[2];
-const tmpBinBothRhs = $coerce(tmpCalleeParam$5, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam$3 = `${tmpStringConcatR}xyz`;
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +45,22 @@ $( 4 );
 $( "3xyz" );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'
@@ -89,7 +75,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

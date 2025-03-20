@@ -18,6 +18,7 @@ while (true) {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -66,38 +68,6 @@ if (tmpClusterSSA_x > 5) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(3);
-$(x);
-while (true) {
-  $(++x);
-  if (x > 5) break;
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(3);
-$(x);
-while (true) {
-  const tmpPostUpdArgIdent = $coerce(x, `number`);
-  x = tmpPostUpdArgIdent + 1;
-  const tmpCalleeParam = x;
-  $(x);
-  const tmpIfTest = x > 5;
-  if (tmpIfTest) {
-    break;
-  } else {
-  }
-}
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -125,11 +95,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support non-primitive in first arg to $coerce
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3
@@ -147,6 +127,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support non-primitive in first arg to $coerce

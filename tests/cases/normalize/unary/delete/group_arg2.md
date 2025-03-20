@@ -14,6 +14,7 @@ $(delete (null, foo));
 $(typeof foo)
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $(typeof foo)
 $(true);
 $(`number`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,25 +32,6 @@ $(true);
 $(`number`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let foo = 1;
-$(delete (null, foo));
-$(typeof foo);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let foo = 1;
-const tmpCalleeParam = true;
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = typeof foo;
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +41,15 @@ $( true );
 $( "number" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

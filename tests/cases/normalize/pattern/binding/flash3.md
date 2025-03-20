@@ -17,12 +17,14 @@ const f = function (a) {
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 unknown;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,30 +33,6 @@ unknown;
 unknown;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let a = $$0;
-  debugger;
-  a = unknown;
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let a = $$0;
-  debugger;
-  a = unknown;
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -63,13 +41,17 @@ With rename=true
 unknown;
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 unknown
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

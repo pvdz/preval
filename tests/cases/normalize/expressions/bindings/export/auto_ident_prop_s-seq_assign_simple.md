@@ -15,6 +15,7 @@ export let a = ((1, 2, b).c = 2);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const b /*:object*/ = { c: 2 };
 $(2, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,28 +36,6 @@ export { a };
 $(2, { c: 2 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = ((1, 2, b).c = 2);
-export { a };
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-const varInitAssignLhsComputedObj = b;
-const varInitAssignLhsComputedRhs = 2;
-varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
-export { a };
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +47,15 @@ const b = { c: 2 };
 $( 2, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

@@ -19,27 +19,20 @@ rMwHazIJjv = function($$0) {
 };
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-rMwHazIJjv = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  let t = $dlr_$$0;
-  i$1 = function () {
-    debugger;
-  };
-  return undefined;
-};
-`````
 
 ## Pcode output
+
 
 `````fileintro
 i$1 =
     [ return - undefined ]
 `````
+
+
+
+
+## Pcode result
+
 
 Running function "i$1":
 

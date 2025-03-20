@@ -13,6 +13,7 @@ const x = $(5) * $("10");
 $(Number(x)); // Is the same as `x` and dropping the `Number` call should not be observable
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const x /*:number*/ = tmpBinBothLhs * tmpBinBothRhs;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,25 +33,6 @@ const tmpBinBothLhs = $(5);
 $(tmpBinBothLhs * $(`10`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $(5) * $(`10`);
-$(Number(x));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = $(5);
-const tmpBinBothRhs = $(`10`);
-const x = tmpBinBothLhs * tmpBinBothRhs;
-const tmpStringFirstArg = x;
-const tmpCalleeParam = $coerce(x, `number`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +44,15 @@ const c = a * b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 5

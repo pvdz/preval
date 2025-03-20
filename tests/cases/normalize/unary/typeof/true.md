@@ -12,12 +12,14 @@
 $(typeof true);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`boolean`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(`boolean`);
 $(`boolean`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof true);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `boolean`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( "boolean" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'boolean'

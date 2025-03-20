@@ -16,6 +16,7 @@ const spy = {
 String([spy, spy]);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ const tmpCalleeParam /*:array*/ = [spy, spy];
 $coerce(tmpCalleeParam, `string`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -51,42 +53,6 @@ const spy = {
 $coerce([spy, spy], `string`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const spy = {
-  valueOf() {
-    debugger;
-    $(`x`);
-  },
-  toString() {
-    debugger;
-    $(`y`);
-  },
-};
-String([spy, spy]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const spy = {
-  valueOf() {
-    debugger;
-    $(`x`);
-    return undefined;
-  },
-  toString() {
-    debugger;
-    $(`y`);
-    return undefined;
-  },
-};
-const tmpCalleeParam = [spy, spy];
-$coerce(tmpCalleeParam, `string`);
-`````
 
 ## PST Settled
 With rename=true
@@ -108,11 +74,15 @@ const b = [ a, a ];
 $coerce( b, "string" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'y'

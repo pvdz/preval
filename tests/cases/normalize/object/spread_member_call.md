@@ -13,6 +13,7 @@ const obj = {foo() { return $({ x: 1 }); }};
 $({...obj.foo()});
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,35 +45,6 @@ const tmpObjSpread = {
 $({ ...tmpObjSpread });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  foo() {
-    debugger;
-    return $({ x: 1 });
-  },
-};
-$({ ...obj.foo() });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = {
-  foo() {
-    debugger;
-    const tmpCalleeParam = { x: 1 };
-    const tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
-  },
-};
-const tmpObjSpread = obj.foo();
-const tmpCalleeParam$1 = { ...tmpObjSpread };
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +61,15 @@ const e = { ... d };
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

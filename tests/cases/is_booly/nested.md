@@ -32,6 +32,7 @@ if (x) {
 $(x, y);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ $(x, y);
 const tmpBool /*:boolean*/ = !$;
 $(tmpBool, tmpBool);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -48,41 +50,6 @@ const tmpBool = !$;
 $(tmpBool, tmpBool);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let y = true;
-let x = !$;
-if (x) {
-  if ($) {
-    x = false;
-  } else {
-  }
-} else {
-  y = false;
-}
-$(x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = true;
-let x = !$;
-if (x) {
-  if ($) {
-    x = false;
-    $(x, y);
-  } else {
-    $(x, y);
-  }
-} else {
-  y = false;
-  $(x, y);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +59,15 @@ const a = !$;
 $( a, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false, false

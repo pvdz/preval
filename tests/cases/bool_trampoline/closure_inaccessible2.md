@@ -33,6 +33,7 @@ $(obj);
 
 `````
 
+
 ## Settled
 
 
@@ -67,6 +68,7 @@ obj.f();
 $(obj);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -93,68 +95,6 @@ obj.f();
 $(obj);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  f: () => {
-    debugger;
-    let x;
-    const f$1 = function () {
-      debugger;
-      x = $(100);
-      const y = Boolean(x);
-      return y;
-    };
-    $(x);
-    return f$1;
-  },
-  g() {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    if (tmpPrevalAliasThis.f()) $(`pass`);
-    else $(`fail`);
-  },
-};
-const f = obj.f();
-$(obj);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function () {
-  debugger;
-  let x = undefined;
-  const f$1 = function () {
-    debugger;
-    x = $(100);
-    const y = Boolean(x);
-    return y;
-  };
-  $(x);
-  return f$1;
-};
-const obj = {
-  f: tmpObjLitVal,
-  g() {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    const tmpIfTest = tmpPrevalAliasThis.f();
-    if (tmpIfTest) {
-      $(`pass`);
-      return undefined;
-    } else {
-      $(`fail`);
-      return undefined;
-    }
-  },
-};
-const f = obj.f();
-$(obj);
-`````
 
 ## PST Settled
 With rename=true
@@ -191,11 +131,15 @@ e.f();
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

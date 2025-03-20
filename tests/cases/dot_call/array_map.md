@@ -20,6 +20,7 @@ const arr = $dotCall(map, pre, 'map', f); // Turn this back into `pre.map(f);`
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ const arr /*:array*/ = pre.map(f);
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,38 +50,6 @@ const f = function (item) {
 $([1, 2, 3].map(f));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const pre = [1, 2, 3];
-const map = pre.map;
-const f = function ($$0) {
-  let item = $$0;
-  debugger;
-  $(`hello`, item);
-  return item + 1;
-};
-const arr = $dotCall(map, pre, `map`, f);
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const pre = [1, 2, 3];
-const map = pre.map;
-const f = function ($$0) {
-  let item = $$0;
-  debugger;
-  $(`hello`, item);
-  const tmpReturnArg = item + 1;
-  return tmpReturnArg;
-};
-const arr = $dotCall(map, pre, `map`, f);
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -97,11 +67,21 @@ const e = d.map( a );
 $( e );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_map
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'hello', 1
@@ -117,6 +97,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_map

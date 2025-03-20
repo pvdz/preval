@@ -12,6 +12,7 @@
 ({[$('x')]: 1, y: $(2)});
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@
 $(`x`);
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ $(`x`);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ [$(`x`)]: 1, y: $(2) });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`x`);
-$(2);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +39,15 @@ $( "x" );
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x'

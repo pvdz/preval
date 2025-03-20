@@ -41,12 +41,14 @@ const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(6);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -55,77 +57,6 @@ $(6);
 $(6);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 3;
-  const tmpIfTest = 0 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    } else {
-      const tmpIfTest$2 = 2 === tmpSwitchValue;
-      if (tmpIfTest$2) {
-        tmpSwitchCaseToStart = 2;
-      }
-    }
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    return 6;
-  } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-  }
-};
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 3;
-  const tmpIfTest = 0 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    } else {
-      const tmpIfTest$2 = 2 === tmpSwitchValue;
-      if (tmpIfTest$2) {
-        tmpSwitchCaseToStart = 2;
-      } else {
-      }
-    }
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    return 6;
-  } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-    return undefined;
-  }
-};
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -134,11 +65,15 @@ With rename=true
 $( 6 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 6

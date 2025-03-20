@@ -33,12 +33,14 @@ const f = function () {
 $(f());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: \$(xyz)`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -47,49 +49,6 @@ throw `Preval: TDZ triggered for this read: \$(xyz)`;
 throw `Preval: TDZ triggered for this read: \$(xyz)`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const g = function () {
-    debugger;
-    $(xyz);
-  };
-  $(xyz);
-  if ($) {
-    $(1);
-  }
-  const xyz = $();
-  return g();
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  const g = function () {
-    debugger;
-    $(xyz);
-    return undefined;
-  };
-  $(xyz);
-  if ($) {
-    $(1);
-  } else {
-  }
-  const xyz = $();
-  const tmpReturnArg = g();
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -98,11 +57,15 @@ With rename=true
 throw "Preval: TDZ triggered for this read: $(xyz)";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')

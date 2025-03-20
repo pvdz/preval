@@ -15,6 +15,7 @@ const xyz = String[arr]();
 $(xyz);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const xyz /*:unknown*/ = String[arr]();
 $(xyz);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,26 +37,6 @@ $Array_from(arr);
 $(String[arr]());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = $([`toString`]);
-const arr2 = Array.from(arr);
-const xyz = String[arr]();
-$(xyz);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [`toString`];
-const arr = $(tmpCalleeParam);
-const arr2 = $Array_from(arr);
-const xyz = String[arr]();
-$(xyz);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +49,21 @@ const c = String[ b ]();
 $( c );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['toString']
@@ -85,6 +77,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from

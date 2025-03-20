@@ -13,6 +13,7 @@ export default class X {};
 new X();
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const X /*:class*/ = class {};
 export { X };
 new X();
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,23 +33,6 @@ export { X };
 new X();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let X = class {};
-export { X };
-new X();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let X = class {};
-export { X };
-new X();
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +45,15 @@ export { a as X };
 new a();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

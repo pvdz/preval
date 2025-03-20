@@ -48,6 +48,7 @@ switch (x) {
 }
 `````
 
+
 ## Settled
 
 
@@ -88,6 +89,7 @@ if (tmpIfTest$7) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -116,79 +118,6 @@ if (tmpSwitchCaseToStart <= 1) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-{
-  const tmpSwitchValue = x;
-  let tmpSwitchCaseToStart = 3;
-  if ($(1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else if ($(2) === tmpSwitchValue) tmpSwitchCaseToStart = 1;
-  else if ($(3) === tmpSwitchValue) tmpSwitchCaseToStart = 2;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(`A`);
-    }
-    if (tmpSwitchCaseToStart <= 1) {
-      $(`B`);
-      break tmpSwitchBreak;
-    }
-    if (tmpSwitchCaseToStart <= 2) {
-      $(`C`);
-      break tmpSwitchBreak;
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-const tmpSwitchValue = x;
-let tmpSwitchCaseToStart = 3;
-const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-tmpSwitchBreak: {
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpBinLhs$1 = $(2);
-    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    } else {
-      const tmpBinLhs$3 = $(3);
-      const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
-      if (tmpIfTest$3) {
-        tmpSwitchCaseToStart = 2;
-      } else {
-      }
-    }
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$5) {
-    $(`A`);
-  } else {
-  }
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$7) {
-    $(`B`);
-    break tmpSwitchBreak;
-  } else {
-    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$9) {
-      $(`C`);
-      break tmpSwitchBreak;
-    } else {
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -230,11 +159,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

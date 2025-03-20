@@ -26,6 +26,7 @@ function f() {
 if ($) f();
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,55 +56,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    let g = function () {
-      debugger;
-      if ($) $(x);
-    };
-    let x = $(5);
-    ++x;
-    g();
-  }
-};
-if ($) f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    let g = function () {
-      debugger;
-      if ($) {
-        $(x);
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    let x = $(5);
-    const tmpPostUpdArgIdent = $coerce(x, `number`);
-    x = tmpPostUpdArgIdent + 1;
-    g();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-if ($) {
-  f();
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -118,11 +71,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 5

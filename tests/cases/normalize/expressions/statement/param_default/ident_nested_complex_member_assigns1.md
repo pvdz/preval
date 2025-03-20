@@ -18,6 +18,7 @@ f();
 $(100);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ varInitAssignLhsComputedObj.x = 3;
 tmpAssignMemLhsObj.x = 3;
 $(100);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,40 +44,6 @@ tmpAssignMemLhsObj.x = 3;
 $(100);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(b).x = $(b).x = c;
-};
-let b = { x: 1 };
-let c = 3;
-f();
-$(100);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpAssignMemLhsObj = $(b);
-  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedRhs = c;
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
-  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  return undefined;
-};
-let b = { x: 1 };
-let c = 3;
-f();
-$(100);
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +57,15 @@ b.x = 3;
 $( 100 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

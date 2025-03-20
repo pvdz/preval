@@ -24,6 +24,7 @@ exit: for (const key of $(new Set(['a', 'b']))) {
 }
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,72 +79,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(2);
-exit: {
-  let tmpForOfGen = $forOf($(new Set([`a`, `b`])));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      const key = tmpForOfNext.value;
-      {
-        $continue: {
-          {
-            $(`key:`, key);
-            if ($(1)) {
-              x = $(3);
-            }
-            if (x) {
-              break $continue;
-            } else {
-              x = $(4);
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(2);
-const tmpNewCallee = Set;
-const tmpCalleeParam$3 = [`a`, `b`];
-const tmpCalleeParam$1 = new tmpNewCallee(tmpCalleeParam$3);
-const tmpCalleeParam = $(tmpCalleeParam$1);
-let tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const key = tmpForOfNext.value;
-    $continue: {
-      $(`key:`, key);
-      const tmpIfTest$1 = $(1);
-      if (tmpIfTest$1) {
-        x = $(3);
-      } else {
-      }
-      if (x) {
-        break $continue;
-      } else {
-        x = $(4);
-      }
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -176,11 +112,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -200,6 +146,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

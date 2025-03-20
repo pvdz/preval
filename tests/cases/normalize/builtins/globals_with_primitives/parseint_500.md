@@ -12,12 +12,14 @@
 $(parseInt(500));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(500);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(500);
 $(500);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(parseInt(500));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = 500;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( 500 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 500

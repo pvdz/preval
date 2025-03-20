@@ -59,6 +59,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -92,6 +93,7 @@ $(4);
 $(`-------- a.foo = 4`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -122,83 +124,6 @@ $(4);
 $(`-------- a.foo = 4`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`-------- start`);
-  const b = {
-    get foo() {
-      debugger;
-      return $(2);
-    },
-    set foo($$0) {
-      let x = $$0;
-      debugger;
-      return $(3);
-    },
-  };
-  $(`-------- bound`);
-  let a = 1;
-  $(`-------- let 1`);
-  $((a = b.foo = $(6)));
-  $(`-------- test case`);
-  $(a);
-  $(`-------- a`);
-  $(b.foo);
-  $(`-------- a.foo`);
-  $((b.foo = 4));
-  $(`-------- a.foo = 4`);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`-------- start`);
-  const b = {
-    get foo() {
-      debugger;
-      const tmpReturnArg = $(2);
-      return tmpReturnArg;
-    },
-    set foo($$0) {
-      let x = $$0;
-      debugger;
-      const tmpReturnArg$1 = $(3);
-      return tmpReturnArg$1;
-    },
-  };
-  $(`-------- bound`);
-  let a = 1;
-  $(`-------- let 1`);
-  const tmpNestedAssignPropRhs = $(6);
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  b.foo = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  let tmpCalleeParam = a;
-  $(a);
-  $(`-------- test case`);
-  $(a);
-  $(`-------- a`);
-  const tmpCalleeParam$1 = b.foo;
-  $(tmpCalleeParam$1);
-  $(`-------- a.foo`);
-  const varInitAssignLhsComputedRhs = 4;
-  b.foo = varInitAssignLhsComputedRhs;
-  const tmpCalleeParam$3 = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
-  $(`-------- a.foo = 4`);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -233,11 +158,15 @@ $( 4 );
 $( "-------- a.foo = 4" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '-------- start'

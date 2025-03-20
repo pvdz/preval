@@ -33,6 +33,7 @@ if ($(true)) {
 }
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ if (tmpIfTest$3) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -80,70 +82,6 @@ if (tmpIfTest$3) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x;
-if ($(true)) {
-  x = !$(true);
-} else {
-  x = !$(false);
-}
-if (x) $(`a`);
-else $(`b`);
-if (x) $(`d`);
-else $(`c`);
-if ($(true)) {
-  x = !$(true);
-} else {
-  x = !$(false);
-}
-if ($(true)) {
-  $(`true`, x);
-} else {
-  $(`false`, x);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg = $(true);
-  x = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 = $(false);
-  x = !tmpUnaryArg$1;
-}
-if (x) {
-  $(`a`);
-} else {
-  $(`b`);
-}
-if (x) {
-  $(`d`);
-} else {
-  $(`c`);
-}
-const tmpIfTest$1 = $(true);
-if (tmpIfTest$1) {
-  const tmpUnaryArg$3 = $(true);
-  x = !tmpUnaryArg$3;
-} else {
-  const tmpUnaryArg$5 = $(false);
-  x = !tmpUnaryArg$5;
-}
-const tmpIfTest$3 = $(true);
-if (tmpIfTest$3) {
-  $(`true`, x);
-} else {
-  $(`false`, x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -173,11 +111,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

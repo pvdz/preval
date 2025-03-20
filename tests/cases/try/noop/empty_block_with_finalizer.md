@@ -18,12 +18,14 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`pass`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,50 +34,6 @@ $(`pass`);
 $(`pass`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  {
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    $finally: {
-      try {
-      } catch ($finalImplicit) {
-        $(`pass`);
-        throw $finalImplicit;
-      }
-    }
-    {
-      $(`pass`);
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else {
-    }
-  }
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  $(`pass`);
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    return undefined;
-  }
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +42,15 @@ With rename=true
 $( "pass" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

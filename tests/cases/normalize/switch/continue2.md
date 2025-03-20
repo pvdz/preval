@@ -43,12 +43,14 @@ This was (at some point) an intermediate state after one cycle.
   }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -57,91 +59,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let run = true;
-while (run) {
-  $continue: {
-    {
-      $(1);
-      let tmpSwitchCaseToStart = 1;
-      const tmpIfTest = 1 === 1;
-      if (tmpIfTest) {
-        tmpSwitchCaseToStart = 0;
-      } else {
-        const tmpIfTest$1 = 2 === 1;
-        if (tmpIfTest$1) {
-          tmpSwitchCaseToStart = 2;
-        }
-      }
-      tmpSwitchBreak: {
-        const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-        if (tmpIfTest$2) {
-          run = false;
-          break tmpSwitchBreak;
-        }
-        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-        if (tmpIfTest$3) {
-          break $continue;
-        }
-        const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-        if (tmpIfTest$4) {
-          let SSA_run = false;
-          break tmpSwitchBreak;
-        }
-      }
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let run = true;
-while (true) {
-  if (run) {
-    $continue: {
-      $(1);
-      let tmpSwitchCaseToStart = 1;
-      const tmpIfTest = true;
-      tmpSwitchBreak: {
-        if (tmpIfTest) {
-          tmpSwitchCaseToStart = 0;
-        } else {
-          const tmpIfTest$1 = false;
-          if (tmpIfTest$1) {
-            tmpSwitchCaseToStart = 2;
-          } else {
-          }
-        }
-        const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-        if (tmpIfTest$2) {
-          run = false;
-          break tmpSwitchBreak;
-        } else {
-          const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-          if (tmpIfTest$3) {
-            break $continue;
-          } else {
-            const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-            if (tmpIfTest$4) {
-              let SSA_run = false;
-              break tmpSwitchBreak;
-            } else {
-            }
-          }
-        }
-      }
-    }
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -150,11 +67,15 @@ With rename=true
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

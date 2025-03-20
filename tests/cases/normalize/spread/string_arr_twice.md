@@ -13,6 +13,7 @@ const x = [..."hello", ..."world"];
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:array*/ = [`h`, `e`, `l`, `l`, `o`, `w`, `o`, `r`, `l`, `d`];
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ $(x);
 $([`h`, `e`, `l`, `l`, `o`, `w`, `o`, `r`, `l`, `d`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = [...`hello`, ...`world`];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = [`h`, `e`, `l`, `l`, `o`, `w`, `o`, `r`, `l`, `d`];
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -52,11 +39,15 @@ const a = [ "h", "e", "l", "l", "o", "w", "o", "r", "l", "d" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']

@@ -14,6 +14,7 @@ $((a *= ($($(1)) && $($(1))) || $($(2))));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (tmpBinBothRhs) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,38 +61,6 @@ if (tmpBinBothRhs) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a *= ($($(1)) && $($(1))) || $($(2))));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = a;
-const tmpCalleeParam$1 = $(1);
-let tmpBinBothRhs = $(tmpCalleeParam$1);
-if (tmpBinBothRhs) {
-  const tmpCalleeParam$3 = $(1);
-  tmpBinBothRhs = $(tmpCalleeParam$3);
-} else {
-}
-if (tmpBinBothRhs) {
-} else {
-  const tmpCalleeParam$5 = $(2);
-  tmpBinBothRhs = $(tmpCalleeParam$5);
-}
-a = tmpBinBothLhs * tmpBinBothRhs;
-let tmpCalleeParam = a;
-$(a);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +90,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

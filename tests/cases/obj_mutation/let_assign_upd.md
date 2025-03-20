@@ -18,6 +18,7 @@ do {
 $(blob);
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,46 +65,6 @@ if (blob.xyz < 10) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let blob;
-while (true) {
-  {
-    blob = { thing: `woop`, xyz: 0 };
-    blob.xyz = blob.xyz + 1;
-    $(blob);
-  }
-  if (blob.xyz < 10) {
-  } else {
-    break;
-  }
-}
-$(blob);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let blob = undefined;
-while (true) {
-  blob = { thing: `woop`, xyz: 0 };
-  const tmpAssignMemLhsObj = blob;
-  const tmpBinLhs = blob.xyz;
-  const tmpAssignMemRhs = tmpBinLhs + 1;
-  tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
-  $(blob);
-  const tmpBinLhs$1 = blob.xyz;
-  const tmpIfTest = tmpBinLhs$1 < 10;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(blob);
-`````
 
 ## PST Settled
 With rename=true
@@ -138,11 +100,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { thing: '"woop"', xyz: '1' }
@@ -180,6 +152,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

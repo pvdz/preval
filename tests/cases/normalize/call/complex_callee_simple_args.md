@@ -12,6 +12,7 @@
 $($)(1, 2);
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $($)(1, 2);
 const tmpCallComplexCallee /*:unknown*/ = $($);
 tmpCallComplexCallee(1, 2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,20 +30,6 @@ const tmpCallComplexCallee = $($);
 tmpCallComplexCallee(1, 2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$($)(1, 2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallComplexCallee = $($);
-tmpCallComplexCallee(1, 2);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +39,15 @@ const a = $( $ );
 a( 1, 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

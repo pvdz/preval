@@ -14,6 +14,7 @@ const y = x === true;
 $('out:', y);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const x /*:boolean*/ = Boolean(tmpCalleeParam);
 $(`out:`, x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,24 +32,6 @@ $(`out:`, x);
 $(`out:`, Boolean($(true)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = Boolean($(true));
-const y = x === true;
-$(`out:`, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = $(true);
-const x = Boolean(tmpCalleeParam);
-const y = x === true;
-$(`out:`, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +42,15 @@ const b = Boolean( a );
 $( "out:", b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

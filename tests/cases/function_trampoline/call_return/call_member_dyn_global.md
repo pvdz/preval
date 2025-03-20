@@ -19,6 +19,7 @@ const q = f(); // In this test, this is the call we expect to be replaced by tra
 $(q);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const q /*:unknown*/ = obj.$(1);
 $(q);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,35 +37,6 @@ $(q);
 $({ $: $ }.$(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { $: $ };
-const str = `\$`;
-const f = function () {
-  debugger;
-  const r = obj[str](1);
-  return r;
-};
-const q = f();
-$(q);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { $: $ };
-const str = `\$`;
-const f = function () {
-  debugger;
-  const r = obj[str](1);
-  return r;
-};
-const q = f();
-$(q);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +47,15 @@ const b = a.$( 1 );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

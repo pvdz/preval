@@ -13,12 +13,14 @@ const f = (31).toString();
 $(f);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`31`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,21 +29,6 @@ $(`31`);
 $(`31`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = (31).toString();
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = `31`;
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +37,15 @@ With rename=true
 $( "31" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '31'

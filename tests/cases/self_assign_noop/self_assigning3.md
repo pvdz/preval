@@ -35,6 +35,7 @@ const c = func(5, 6);
 $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -63,6 +64,7 @@ func(5, 6);
 $(a, b, arg1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -86,70 +88,6 @@ func(5, 6);
 $(a, b, arg1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-const unknownarr = $(arr);
-let func = function ($$0, $$1) {
-  let arg1 = $$0;
-  let arg2 = $$1;
-  debugger;
-  func = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny = arguments;
-    let newArg1 = $$0;
-    let unusedNewArg2 = $$1;
-    debugger;
-    const index = newArg1 - 1;
-    const arrval = unknownarr[index];
-    if (!arg1) {
-      arg1 = tmpPrevalAliasArgumentsAny;
-    }
-    $(`inside arg1:`, arg1);
-    return arg1;
-  };
-  const r = func(arg1, arg2);
-  return r;
-};
-const a = func(1, 2);
-const c = func(5, 6);
-$(a, b, c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-const unknownarr = $(arr);
-let func = function ($$0, $$1) {
-  let arg1 = $$0;
-  let arg2 = $$1;
-  debugger;
-  func = function ($$0, $$1) {
-    const tmpPrevalAliasArgumentsAny = arguments;
-    let newArg1 = $$0;
-    let unusedNewArg2 = $$1;
-    debugger;
-    const index = newArg1 - 1;
-    const arrval = unknownarr[index];
-    if (arg1) {
-      $(`inside arg1:`, arg1);
-      return arg1;
-    } else {
-      arg1 = tmpPrevalAliasArgumentsAny;
-      $(`inside arg1:`, tmpPrevalAliasArgumentsAny);
-      return arg1;
-    }
-  };
-  const r = func(arg1, arg2);
-  return r;
-};
-const a = func(1, 2);
-const c = func(5, 6);
-$(a, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -180,11 +118,15 @@ e( 5, 6 );
 $( j, b, d );
 `````
 
+
 ## Globals
+
 
 None (except for the 1 globals expected by the test)
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]

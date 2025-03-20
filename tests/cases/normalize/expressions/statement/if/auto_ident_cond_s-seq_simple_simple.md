@@ -14,6 +14,7 @@ if ((10, 20, 30) ? $(2) : $($(100)));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,31 +33,6 @@ $(2);
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-if ((10, 20, 30) ? $(2) : $($(100)));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
-const tmpIfTest$1 = 30;
-if (tmpIfTest$1) {
-  tmpIfTest = $(2);
-  $(a);
-} else {
-  const tmpCalleeParam = $(100);
-  tmpIfTest = $(tmpCalleeParam);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +46,15 @@ const a = {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

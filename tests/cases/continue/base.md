@@ -54,6 +54,7 @@ $continue();
 
 `````
 
+
 ## Settled
 
 
@@ -91,6 +92,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -121,77 +123,6 @@ if ($(false)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let $break = function () {
-  debugger;
-  $(`woohoo`);
-};
-let $continue = function () {
-  debugger;
-  if ($(false)) {
-    $(`uhoh`);
-    $continue();
-    return;
-  }
-  $(`exit`);
-  $break();
-};
-while (true) {
-  $continue: {
-    {
-      if ($(false)) {
-        $(`uhoh`);
-        break $continue;
-      }
-      $(`exit`);
-      break;
-    }
-  }
-}
-$(`woohoo`);
-$continue();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let $break = function () {
-  debugger;
-  $(`woohoo`);
-  return undefined;
-};
-let $continue = function () {
-  debugger;
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-    $(`uhoh`);
-    $continue();
-    return undefined;
-  } else {
-    $(`exit`);
-    $break();
-    return undefined;
-  }
-};
-while (true) {
-  $continue: {
-    const tmpIfTest$1 = $(false);
-    if (tmpIfTest$1) {
-      $(`uhoh`);
-      break $continue;
-    } else {
-      $(`exit`);
-      break;
-    }
-  }
-}
-$(`woohoo`);
-$continue();
-`````
 
 ## PST Settled
 With rename=true
@@ -234,11 +165,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false
@@ -256,6 +197,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

@@ -20,6 +20,7 @@ while (x) {
 $(x, y);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ $(2);
 $(1);
 $(0, 0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,39 +46,6 @@ $(1);
 $(0, 0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let y = 5;
-let x = true;
-while (x) {
-  $(x);
-  const tmpNestedComplexRhs = y - 1;
-  y = tmpNestedComplexRhs;
-  x = tmpNestedComplexRhs;
-}
-$(x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = 5;
-let x = true;
-while (true) {
-  if (x) {
-    $(x);
-    const tmpNestedComplexRhs = y - 1;
-    y = tmpNestedComplexRhs;
-    x = tmpNestedComplexRhs;
-  } else {
-    break;
-  }
-}
-$(x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +59,15 @@ $( 1 );
 $( 0, 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

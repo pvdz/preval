@@ -18,12 +18,14 @@ switch (1) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(100);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,50 +34,6 @@ $(100);
 $(100);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  let b;
-  let a;
-  const tmpSwitchDisc = 1;
-  if (tmpSwitchDisc === 1) {
-    b = { x: { y: { z: 100 } } };
-    a = b?.x.y.z;
-    $(a);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = undefined;
-let a = undefined;
-const tmpSwitchDisc = 1;
-const tmpIfTest = tmpSwitchDisc === 1;
-if (tmpIfTest) {
-  const tmpObjLitVal$1 = { z: 100 };
-  const tmpObjLitVal = { y: tmpObjLitVal$1 };
-  b = { x: tmpObjLitVal };
-  a = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-    a = tmpChainElementObject$3;
-    $(tmpChainElementObject$3);
-  } else {
-    $(a);
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -84,11 +42,15 @@ With rename=true
 $( 100 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

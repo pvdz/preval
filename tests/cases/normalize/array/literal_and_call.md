@@ -12,6 +12,7 @@
 $([100, $()]);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:array*/ = [100, tmpArrElement$1];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,22 +31,6 @@ const tmpArrElement$1 = $();
 $([100, tmpArrElement$1]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$([100, $()]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement = 100;
-const tmpArrElement$1 = $();
-const tmpCalleeParam = [tmpArrElement, tmpArrElement$1];
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +41,15 @@ const b = [ 100, a ];
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

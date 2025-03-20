@@ -15,6 +15,7 @@ function f({ x: { y } }) {
 $(f({ x: { x: 1, z: 3 }, b: 11, c: 12 }, 10));
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const y /*:unknown*/ = $Object_prototype.y;
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,39 +32,6 @@ $(y);
 $($Object_prototype.y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: { y: y },
-  } = tmpParamBare;
-  return y;
-};
-$(f({ x: { x: 1, z: 3 }, b: 11, c: 12 }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let y = objPatternNoDefault.y;
-  return y;
-};
-const tmpCallCallee = f;
-const tmpObjLitVal = { x: 1, z: 3 };
-const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +41,15 @@ const a = $Object_prototype.y;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

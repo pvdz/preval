@@ -56,6 +56,7 @@ if (set) {
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -68,6 +69,7 @@ if (bit) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -79,36 +81,6 @@ if (objDestructible & 1) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let y = undefined;
-const bit = objDestructible & 1;
-const set = bit === 1;
-if (set) {
-  y = 16;
-} else {
-  y = 32;
-}
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = undefined;
-const bit = objDestructible & 1;
-const set = bit === 1;
-if (set) {
-  y = 16;
-  $(y);
-} else {
-  y = 32;
-  $(y);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -123,13 +95,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 objDestructible
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

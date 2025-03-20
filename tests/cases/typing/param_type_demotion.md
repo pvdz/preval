@@ -28,6 +28,7 @@ $(calling_this_func(0));
 
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ calling_this_func(0);
 $(undefined);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,42 +64,6 @@ calling_this_func(0);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const calling_this_func = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const theparam = $dlr_$$0;
-  const tmpCalleeParam = theparam + 1;
-  if ($(1)) return;
-  calling_this_func(tmpCalleeParam);
-  return undefined;
-};
-$(calling_this_func(0));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const calling_this_func = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const theparam = $dlr_$$0;
-  const tmpCalleeParam = theparam + 1;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    calling_this_func(tmpCalleeParam);
-    return undefined;
-  }
-};
-const tmpCalleeParam$1 = calling_this_func(0);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +86,15 @@ a( 0 );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<skipped by option>')

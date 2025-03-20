@@ -21,6 +21,7 @@ $(x);
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ $(x);
 $(tmpClusterSSA_y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,46 +62,6 @@ $(x);
 $(tmpClusterSSA_y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(`50`);
-let y = undefined;
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  y = $coerce(x, `number`);
-  $(1);
-  $(2);
-  $(c);
-};
-f(3);
-f(4);
-$(x);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(`50`);
-let y = undefined;
-const f = function ($$0) {
-  let c = $$0;
-  debugger;
-  y = $coerce(x, `number`);
-  $(1);
-  $(2);
-  $(c);
-  return undefined;
-};
-f(3);
-f(4);
-$(x);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -122,11 +84,15 @@ $( a );
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '50'

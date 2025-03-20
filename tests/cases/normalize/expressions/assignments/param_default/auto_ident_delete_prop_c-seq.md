@@ -17,6 +17,7 @@ $(f());
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj.y;
 $(undefined);
 $(tmpNestedComplexRhs, arg);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,49 +45,6 @@ $(undefined);
 $(tmpNestedComplexRhs, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = tmpParamBare === undefined ? (a = delete ($(1), $(2), $(arg)).y) : tmpParamBare;
-};
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    $(1);
-    $(2);
-    const tmpDeleteObj = $(arg);
-    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-    return undefined;
-  } else {
-    p = tmpParamBare;
-    return undefined;
-  }
-};
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -100,11 +59,15 @@ $( undefined );
 $( c, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

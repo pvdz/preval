@@ -16,6 +16,7 @@ x = ($(1), $(2)).toString;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const x /*:unknown*/ = tmpAssignRhsProp.toString;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,25 +36,6 @@ $(1);
 $($(2).toString);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 10;
-x = ($(1), $(2)).toString;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 10;
-$(1);
-const tmpAssignRhsProp = $(2);
-x = tmpAssignRhsProp.toString;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +47,15 @@ const b = a.toString;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

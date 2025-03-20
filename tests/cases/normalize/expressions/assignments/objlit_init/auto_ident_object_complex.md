@@ -14,6 +14,7 @@ $({ x: (a = { x: $(1), y: 2, z: $(3) }) });
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,29 +39,6 @@ $({ x: a });
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$({ x: (a = { x: $(1), y: 2, z: $(3) }) });
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpObjLitVal$1 = $(1);
-const tmpObjLitVal$3 = 2;
-const tmpObjLitVal$5 = $(3);
-a = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, z: tmpObjLitVal$5 };
-let tmpObjLitVal = a;
-const tmpCalleeParam = { x: tmpObjLitVal };
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +56,15 @@ $( d );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

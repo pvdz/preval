@@ -14,12 +14,14 @@ Note: in strict mode this in global is gonna be bad.
 $(this);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,19 +30,6 @@ $(undefined);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(undefined);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(undefined);
-`````
 
 ## PST Settled
 With rename=true
@@ -49,11 +38,15 @@ With rename=true
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

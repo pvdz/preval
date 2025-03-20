@@ -31,6 +31,7 @@ if (THIS_IS_BOOL) {
 }
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ if (tmpUnaryArg) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,57 +62,6 @@ if ($(Boolean($(true)))) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let THIS_IS_BOOL = 0;
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg = $(true);
-  THIS_IS_BOOL = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 = $(false);
-  THIS_IS_BOOL = !tmpUnaryArg$1;
-}
-if (THIS_IS_BOOL) {
-  $(`a`);
-} else {
-  $(`b`);
-  THIS_IS_BOOL = false;
-}
-if (THIS_IS_BOOL) {
-  $(`d`);
-} else {
-  $(`c`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let THIS_IS_BOOL = 0;
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg = $(true);
-  THIS_IS_BOOL = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 = $(false);
-  THIS_IS_BOOL = !tmpUnaryArg$1;
-}
-if (THIS_IS_BOOL) {
-  $(`a`);
-} else {
-  $(`b`);
-  THIS_IS_BOOL = false;
-}
-if (THIS_IS_BOOL) {
-  $(`d`);
-} else {
-  $(`c`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -129,11 +80,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

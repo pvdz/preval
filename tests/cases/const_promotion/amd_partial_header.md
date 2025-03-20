@@ -62,6 +62,7 @@ if (test2) {
 }
 `````
 
+
 ## Settled
 
 
@@ -70,6 +71,7 @@ const result /*:unknown*/ = mainCall();
 global.React = result;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,101 +79,6 @@ global.React = result;
 global.React = mainCall();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  let test1 = false;
-  const h = function () {
-    debugger;
-    if (test1) {
-      const p1 = [];
-      define(p1, $);
-      return undefined;
-    } else {
-      const result = mainCall();
-      global.React = result;
-      return undefined;
-    }
-  };
-  if (test1) {
-    test1 = define.amd;
-    h();
-    return undefined;
-  } else {
-    h();
-    return undefined;
-  }
-};
-let test2 = false;
-const f = function () {
-  debugger;
-  if (test2) {
-    const result$1 = mainCall();
-    module.exports = result$1;
-    return undefined;
-  } else {
-    g();
-    return undefined;
-  }
-};
-if (test2) {
-  test2 = false;
-  f();
-} else {
-  f();
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  let test1 = false;
-  const h = function () {
-    debugger;
-    if (test1) {
-      const p1 = [];
-      define(p1, $);
-      return undefined;
-    } else {
-      const result = mainCall();
-      global.React = result;
-      return undefined;
-    }
-  };
-  if (test1) {
-    test1 = define.amd;
-    h();
-    return undefined;
-  } else {
-    h();
-    return undefined;
-  }
-};
-let test2 = false;
-const f = function () {
-  debugger;
-  if (test2) {
-    const result$1 = mainCall();
-    module.exports = result$1;
-    return undefined;
-  } else {
-    g();
-    return undefined;
-  }
-};
-if (test2) {
-  test2 = false;
-  f();
-} else {
-  f();
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -181,13 +88,17 @@ const a = mainCall();
 global.React = a;
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 mainCall
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

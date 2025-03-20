@@ -13,6 +13,7 @@ class x extends y {}
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:class*/ = class extends y {};
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ $(x);
 $(class extends y {});
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = class extends y {};
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = class extends y {};
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,13 +41,17 @@ const a = class   {
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 y
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

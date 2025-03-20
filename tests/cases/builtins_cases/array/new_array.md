@@ -23,6 +23,7 @@ function error(format) {
 $(error());
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const tmpClusterSSA_args /*:array*/ = [];
 $(tmpClusterSSA_args);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,77 +40,6 @@ $(tmpClusterSSA_args);
 $([]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let error = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  let format = $$0;
-  debugger;
-  let args = undefined;
-  let key = undefined;
-  let len = undefined;
-  len = tmpPrevalAliasArgumentsLen;
-  args = new Array(len > 1 ? len - 1 : 0);
-  key = 1;
-  {
-    while (key < len) {
-      {
-        args[key - 1] = tmpPrevalAliasArgumentsAny[key];
-      }
-      key++;
-    }
-  }
-  return args;
-};
-$(error());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let error = function ($$0) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  let format = $$0;
-  debugger;
-  let args = undefined;
-  let key = undefined;
-  let len = undefined;
-  len = tmpPrevalAliasArgumentsLen;
-  const tmpNewCallee = Array;
-  let tmpCalleeParam = undefined;
-  const tmpIfTest = len > 1;
-  if (tmpIfTest) {
-    tmpCalleeParam = len - 1;
-  } else {
-    tmpCalleeParam = 0;
-  }
-  args = new tmpNewCallee(tmpCalleeParam);
-  key = 1;
-  while (true) {
-    const tmpIfTest$1 = key < len;
-    if (tmpIfTest$1) {
-      const tmpAssignComMemLhsObj = args;
-      const tmpAssignComMemLhsProp = key - 1;
-      const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-      const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-      const tmpAssignComputedRhs = tmpPrevalAliasArgumentsAny[key];
-      tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-      const tmpPostUpdArgIdent = $coerce(key, `number`);
-      key = tmpPostUpdArgIdent + 1;
-    } else {
-      break;
-    }
-  }
-  return args;
-};
-const tmpCalleeParam$1 = error();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -118,11 +49,15 @@ const a = [];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []

@@ -20,6 +20,7 @@ let obj = {};
 $(a, b, c, d, e);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 (7).a;
 $(7, b, c, 3, 4);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -52,44 +54,6 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(7, b, c, 3, 4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3,
-  e = 4;
-let a = { a: 999, b: 1000 };
-let obj = {};
-(a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e).a;
-$(a, b, c, d, e);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let e = 4;
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = d + e;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpCompObj = a;
-tmpCompObj.a;
-$(a, b, c, d, e);
-`````
 
 ## PST Settled
 With rename=true
@@ -107,11 +71,15 @@ b[c] = 7;
 $( 7, a, d, 3, 4 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

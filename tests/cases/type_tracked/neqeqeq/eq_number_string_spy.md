@@ -14,6 +14,7 @@ const y = '' + $spy(); // Must be string
 $(x !== y); // Must be false (number !== bool)
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $coerce(tmpBinBothRhs$1, `plustr`);
 $(true);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,28 +36,6 @@ $coerce($spy(), `plustr`);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = 1 * $spy();
-const y = `` + $spy();
-$(x !== y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = 1;
-const tmpBinBothRhs = $spy();
-const x = tmpBinBothLhs * tmpBinBothRhs;
-const tmpBinBothLhs$1 = ``;
-const tmpBinBothRhs$1 = $spy();
-const y = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpCalleeParam = x !== y;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +48,15 @@ $coerce( b, "plustr" );
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 0, ['spy', 12345]

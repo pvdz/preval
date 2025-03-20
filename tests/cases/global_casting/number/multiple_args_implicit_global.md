@@ -15,6 +15,7 @@ const y = Number(x, $, 1, fail_hard, "twee");
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const x /*:number*/ = +a;
 fail_hard;
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,28 +37,6 @@ fail_hard;
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(`a`);
-const x = +a;
-const y = Number(x, $, 1, fail_hard, `twee`);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(`a`);
-const x = +a;
-const tmpArgOverflow = x;
-fail_hard;
-const tmpStringFirstArg = tmpArgOverflow;
-const y = $coerce(tmpArgOverflow, `number`);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,13 +48,17 @@ fail_hard;
 $( b );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 fail_hard
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

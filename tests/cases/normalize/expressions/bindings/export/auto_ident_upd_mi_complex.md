@@ -15,6 +15,7 @@ export let a = --$($(b)).x;
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ export { a };
 $(tmpUpdInc, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -44,31 +46,6 @@ export { a };
 $(tmpUpdInc, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 };
-let a = --$($(b)).x;
-export { a };
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-const tmpCalleeParam = $(b);
-let tmpUpdObj = $(tmpCalleeParam);
-let tmpUpdProp = tmpUpdObj.x;
-let tmpUpdNum = $coerce(tmpUpdProp, `number`);
-let tmpUpdInc = tmpUpdNum - 1;
-tmpUpdObj.x = tmpUpdInc;
-let a = tmpUpdInc;
-export { a };
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +63,15 @@ export { g as a };
 $( f, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

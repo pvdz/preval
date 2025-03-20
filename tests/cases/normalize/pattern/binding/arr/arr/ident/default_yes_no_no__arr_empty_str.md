@@ -13,6 +13,7 @@ const [[x = $('pass')]] = ['', 4, 5];
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,33 +30,6 @@ $(tmpClusterSSA_x);
 $($(`pass`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const [[x = $(`pass`)]] = [``, 4, 5];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternArrRoot = [``, 4, 5];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat$1[0];
-let x = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $(`pass`);
-  $(x);
-} else {
-  x = arrPatternBeforeDefault;
-  $(arrPatternBeforeDefault);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +39,22 @@ const a = $( "pass" );
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'
@@ -82,7 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

@@ -34,6 +34,7 @@ const z = g();
 $(z);
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ const z /*:array*/ = g();
 $(z);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -70,63 +72,6 @@ $(x === g());
 $(g());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  const a = [1, 2, 3];
-  const b = [1, 2, 3];
-  const ab = a === b;
-  $(ab);
-  const c = [1, 2, 3];
-  const d = [1, 2, 3];
-  const cd = c !== d;
-  $(cd);
-  const e = [1, 2, 3];
-  const f = [1, 2, 3];
-  const ef = e === f;
-  $(ef);
-  const g$1 = [1, 2, 3];
-  return g$1;
-};
-const x = g();
-const y = g();
-const xy = x === y;
-$(xy);
-const z = g();
-$(z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  const a = [1, 2, 3];
-  const b = [1, 2, 3];
-  const ab = a === b;
-  $(ab);
-  const c = [1, 2, 3];
-  const d = [1, 2, 3];
-  const cd = c !== d;
-  $(cd);
-  const e = [1, 2, 3];
-  const f = [1, 2, 3];
-  const ef = e === f;
-  $(ef);
-  const g$1 = [1, 2, 3];
-  return g$1;
-};
-const x = g();
-const y = g();
-const xy = x === y;
-$(xy);
-const z = g();
-$(z);
-`````
 
 ## PST Settled
 With rename=true
@@ -148,11 +93,15 @@ const f = a();
 $( f );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

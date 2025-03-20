@@ -23,6 +23,7 @@ const arr = [
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ const arr /*:array*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrE
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,48 +70,6 @@ const tmpArrElement$5 = 0 > x;
 $([tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    return $(`toString`);
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-const arr = [x < null, x > null, null < x, null > x];
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    const tmpReturnArg = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
-const tmpArrElement = x < 0;
-const tmpArrElement$1 = x > 0;
-const tmpArrElement$3 = 0 < x;
-const tmpArrElement$5 = 0 > x;
-const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5];
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -135,11 +95,15 @@ const g = [ c, d, e, f ];
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'valueOf'

@@ -16,6 +16,7 @@ $((a = $(b)?.[$("$")]?.($(1))) && (a = $(b)?.[$("$")]?.($(1))));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -63,6 +64,7 @@ if (a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -101,69 +103,6 @@ if (a) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-$((a = $(b)?.[$(`\$`)]?.($(1))) && (a = $(b)?.[$(`\$`)]?.($(1))));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { $: $ };
-let a = { a: 999, b: 1000 };
-a = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = $(`\$`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = tmpChainElementObject;
-    const tmpCalleeParam$3 = tmpChainElementCall;
-    const tmpCalleeParam$5 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpCalleeParam$1, tmpCalleeParam$3, undefined, tmpCalleeParam$5);
-    a = tmpChainElementCall$1;
-  } else {
-  }
-} else {
-}
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$3 = $(b);
-  const tmpIfTest$3 = tmpChainElementCall$3 != null;
-  if (tmpIfTest$3) {
-    const tmpChainRootComputed$1 = $(`\$`);
-    const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
-    const tmpIfTest$5 = tmpChainElementObject$1 != null;
-    if (tmpIfTest$5) {
-      const tmpCalleeParam$7 = tmpChainElementObject$1;
-      const tmpCalleeParam$9 = tmpChainElementCall$3;
-      const tmpCalleeParam$11 = $(1);
-      const tmpChainElementCall$5 = $dotCall(tmpCalleeParam$7, tmpCalleeParam$9, undefined, tmpCalleeParam$11);
-      tmpNestedComplexRhs = tmpChainElementCall$5;
-    } else {
-    }
-  } else {
-  }
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(a);
-} else {
-  $(tmpCalleeParam);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -219,11 +158,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { $: '"<$>"' }

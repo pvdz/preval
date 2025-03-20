@@ -26,6 +26,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -69,6 +70,7 @@ if ($finalStep) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -110,77 +112,6 @@ if (!$finalStep) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  {
-    let $implicitThrow = false;
-    let $finalStep = false;
-    let $finalCatchArg = undefined;
-    $finally: {
-      try {
-        const test = $(`first`);
-        $(`second`);
-        if (test) {
-          {
-            $finalStep = true;
-            break $finally;
-          }
-        } else {
-          $(`third`);
-        }
-      } catch ($finalImplicit) {
-        $(`finally`);
-        throw $finalImplicit;
-      }
-    }
-    {
-      $(`finally`);
-    }
-    if ($implicitThrow) throw $finalCatchArg;
-    else if ($finalStep) break;
-    else {
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  let $implicitThrow = false;
-  let $finalStep = false;
-  let $finalCatchArg = undefined;
-  $finally: {
-    try {
-      const test = $(`first`);
-      $(`second`);
-      if (test) {
-        $finalStep = true;
-        break $finally;
-      } else {
-        $(`third`);
-      }
-    } catch ($finalImplicit) {
-      $(`finally`);
-      throw $finalImplicit;
-    }
-  }
-  $(`finally`);
-  if ($implicitThrow) {
-    throw $finalCatchArg;
-  } else {
-    if ($finalStep) {
-      break;
-    } else {
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -230,11 +161,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'first'
@@ -249,6 +190,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

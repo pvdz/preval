@@ -25,6 +25,7 @@ if (itooamanumberjack) {
 }
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ if (itooamanumberjack) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,55 +79,6 @@ if (itooamanumberjack) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let itooamanumberjack = false;
-if (imanumberandilovethrees) {
-  itooamanumberjack = $(1)?.x;
-} else {
-  itooamanumberjack = $(2)?.x;
-}
-if (itooamanumberjack) {
-  $(`a`, itooamanumberjack);
-} else {
-  $(`b`, itooamanumberjack);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let itooamanumberjack = false;
-if (imanumberandilovethrees) {
-  itooamanumberjack = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = $(1);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainElementCall.x;
-    itooamanumberjack = tmpChainElementObject;
-  } else {
-  }
-} else {
-  itooamanumberjack = undefined;
-  const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$1 = $(2);
-  const tmpIfTest$1 = tmpChainElementCall$1 != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject$1 = tmpChainElementCall$1.x;
-    itooamanumberjack = tmpChainElementObject$1;
-  } else {
-  }
-}
-if (itooamanumberjack) {
-  $(`a`, itooamanumberjack);
-} else {
-  $(`b`, itooamanumberjack);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -162,13 +115,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 imanumberandilovethrees
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

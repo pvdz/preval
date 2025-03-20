@@ -25,6 +25,7 @@ try {
 $(a); // x=4. anything else is an uncaught throw.
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -50,7 +51,9 @@ if ($implicitThrow___46__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 a:

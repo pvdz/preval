@@ -14,12 +14,14 @@ a <<= b;
 $(a);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(4);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,25 +30,6 @@ $(4);
 $(4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = 2;
-a <<= b;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = 2;
-a = a << b;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +38,15 @@ With rename=true
 $( 4 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 4

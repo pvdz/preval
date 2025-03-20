@@ -14,6 +14,7 @@ throw (a = function () {});
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const a /*:()=>unknown*/ = function () {
 throw a;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,29 +35,6 @@ const a = function () {};
 throw a;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-throw (a = function () {
-  debugger;
-});
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = function () {
-  debugger;
-  return undefined;
-};
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +47,15 @@ const a = function() {
 throw a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ function() {return undefined;} ]>')

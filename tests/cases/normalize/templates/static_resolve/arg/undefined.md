@@ -12,12 +12,14 @@
 $(`${undefined}`);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`undefined`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,23 +28,6 @@ $(`undefined`);
 $(`undefined`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`` + $coerce(undefined, `string`) + ``);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $coerce(undefined, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +36,15 @@ With rename=true
 $( "undefined" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'undefined'

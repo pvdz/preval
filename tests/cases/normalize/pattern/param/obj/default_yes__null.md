@@ -15,6 +15,7 @@ function f({} = $('fail')) {
 $(f(null, 10));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f(null, 10));
 null.cannotDestructureThis;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,48 +33,6 @@ null.cannotDestructureThis;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {} = tmpParamBare === undefined ? $(`fail`) : tmpParamBare;
-  return `bad`;
-};
-$(f(null, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    bindingPatternObjRoot = $(`fail`);
-  } else {
-    bindingPatternObjRoot = tmpParamBare;
-  }
-  let objPatternCrashTest = bindingPatternObjRoot === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = bindingPatternObjRoot === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
-    return `bad`;
-  } else {
-    return `bad`;
-  }
-};
-const tmpCalleeParam = f(null, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +42,15 @@ null.cannotDestructureThis;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

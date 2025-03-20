@@ -13,12 +13,14 @@ let [a, b] = [1, 2];
 $(a, b);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(1, 2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,24 +29,6 @@ $(1, 2);
 $(1, 2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let [a, b] = [1, 2];
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternArrRoot = [1, 2];
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-let b = arrPatternSplat[1];
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +37,22 @@ With rename=true
 $( 1, 2 );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 2
@@ -70,7 +65,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -13,6 +13,7 @@ const { ...x } = undefined;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const x /*:unknown*/ = $objPatternRest(undefined, tmpCalleeParam$1, `x`);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,24 +31,6 @@ $(x);
 $($objPatternRest(undefined, [], `x`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const { ...x } = undefined;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = undefined;
-const tmpCalleeParam = bindingPatternObjRoot;
-const tmpCalleeParam$1 = [];
-const x = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, `x`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +41,15 @@ const b = $objPatternRest( undefined, a, "x" );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

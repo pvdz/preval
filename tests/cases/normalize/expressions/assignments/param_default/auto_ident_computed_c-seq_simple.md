@@ -17,6 +17,7 @@ $(f());
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
 $(undefined);
 $(tmpNestedComplexRhs, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -41,48 +43,6 @@ $(undefined);
 $(tmpNestedComplexRhs, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = tmpParamBare === undefined ? (a = (1, 2, $(b))[$(`c`)]) : tmpParamBare;
-};
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-$(f());
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let p = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`c`);
-    const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
-    return undefined;
-  } else {
-    p = tmpParamBare;
-    return undefined;
-  }
-};
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -96,11 +56,15 @@ $( undefined );
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '1' }

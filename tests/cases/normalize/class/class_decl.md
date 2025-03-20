@@ -13,6 +13,7 @@ class x {}
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:class*/ = class {};
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,21 +30,6 @@ $(x);
 $(class {});
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = class {};
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = class {};
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +41,15 @@ const a = class   {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

@@ -15,6 +15,7 @@ delete $(x);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(x);
 $(x);
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,25 +37,6 @@ $(x);
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = { y: 1 };
-$(x);
-delete $(x);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = { y: 1 };
-$(x);
-$(x);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +48,15 @@ $( a );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { y: '1' }

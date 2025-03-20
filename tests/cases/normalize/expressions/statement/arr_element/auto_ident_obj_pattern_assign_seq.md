@@ -18,6 +18,7 @@ let a = { a: 999, b: 1000 };
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal$3, tmpObjLitVal$5);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -53,45 +55,6 @@ const tmpObjLitVal$5 = $(4);
 $({ a: 999, b: 1000 }, tmpObjLitVal$3, tmpObjLitVal$5);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-({ x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) })) + ({ x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }));
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-let tmpBinBothLhs = undefined;
-$(x);
-$(y);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
-tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
-let tmpBinBothRhs = undefined;
-$(x);
-$(y);
-const tmpObjLitVal$3 = $(3);
-const tmpObjLitVal$5 = $(4);
-const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-x = tmpNestedAssignObjPatternRhs$1.x;
-y = tmpNestedAssignObjPatternRhs$1.y;
-tmpBinBothRhs = tmpNestedAssignObjPatternRhs$1;
-tmpBinBothLhs + tmpBinBothRhs;
-$(a, x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -121,11 +84,15 @@ const g = {
 $( g, c, d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

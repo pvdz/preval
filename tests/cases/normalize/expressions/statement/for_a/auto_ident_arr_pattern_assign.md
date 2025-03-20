@@ -17,6 +17,7 @@ for ([x, y] = [$(3), $(4)]; $(0); );
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpArrElement, tmpArrElement$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,42 +56,6 @@ if ($(0)) {
 $({ a: 999, b: 1000 }, tmpArrElement, tmpArrElement$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-{
-  [x, y] = [$(3), $(4)];
-  while ($(0)) {}
-}
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
-const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-y = arrPatternSplat[1];
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(a, x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -116,11 +82,22 @@ const e = {
 $( e, a, b );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 3
@@ -136,7 +113,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

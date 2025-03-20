@@ -15,6 +15,7 @@ let x = ($(1), $(2)).toString;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const x /*:unknown*/ = tmpCompObj.toString;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,23 +35,6 @@ $(1);
 $($(2).toString);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = ($(1), $(2)).toString;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-const tmpCompObj = $(2);
-let x = tmpCompObj.toString;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +46,15 @@ const b = a.toString;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

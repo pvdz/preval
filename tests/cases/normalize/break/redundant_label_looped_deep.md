@@ -26,6 +26,7 @@ exit: while (x) {
 }
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ exit: {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -80,53 +82,6 @@ exit: {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(2);
-exit: while (x) {
-  while (true) {
-    $(1);
-    if ($(1)) {
-      x = $(3);
-    }
-    if (x) {
-      break exit;
-    } else {
-      x = $(4);
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(2);
-exit: {
-  while (true) {
-    if (x) {
-      while (true) {
-        $(1);
-        const tmpIfTest = $(1);
-        if (tmpIfTest) {
-          x = $(3);
-        } else {
-        }
-        if (x) {
-          break exit;
-        } else {
-          x = $(4);
-        }
-      }
-    } else {
-      break;
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -157,11 +112,15 @@ exit: {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

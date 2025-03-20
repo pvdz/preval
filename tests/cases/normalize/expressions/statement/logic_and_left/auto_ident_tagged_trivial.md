@@ -13,6 +13,7 @@ let a = $`foo`;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const a /*:unknown*/ = $(tmpCalleeParam);
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,22 +31,6 @@ $(a);
 $($([`foo`]));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $([`foo`]);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = [`foo`];
-let a = $(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +41,15 @@ const b = $( a );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['foo']

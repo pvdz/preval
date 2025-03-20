@@ -34,6 +34,7 @@ const tmpCalleeParam$1 = x;
 $(tmpCalleeParam$1);
 `````
 
+
 ## Settled
 
 
@@ -62,6 +63,7 @@ $(tmpClusterSSA_x);
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -83,67 +85,6 @@ $(tmpClusterSSA_x);
 $(tmpClusterSSA_x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(100);
-const tmpCalleeParam = x;
-$(tmpCalleeParam);
-const g = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(`a`);
-    g();
-  } else {
-    $(`b`);
-  }
-};
-const tmpIfTest$1 = $(1);
-if (tmpIfTest$1) {
-  $(`c`);
-  x = undefined;
-} else {
-  x = undefined;
-}
-x = f();
-$(x);
-const tmpCalleeParam$1 = x;
-$(tmpCalleeParam$1);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(100);
-const tmpCalleeParam = x;
-$(x);
-const g = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(`a`);
-    g();
-    return undefined;
-  } else {
-    $(`b`);
-    return undefined;
-  }
-};
-const tmpIfTest$1 = $(1);
-if (tmpIfTest$1) {
-  $(`c`);
-  x = undefined;
-} else {
-  x = undefined;
-}
-x = f();
-$(x);
-const tmpCalleeParam$1 = x;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -173,13 +114,17 @@ $( e );
 $( e );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 f
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

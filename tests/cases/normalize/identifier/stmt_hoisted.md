@@ -13,12 +13,14 @@ x;
 var x = 10;
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,22 +29,6 @@ var x = 10;
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-null;
-x = 10;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-x = 10;
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +37,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

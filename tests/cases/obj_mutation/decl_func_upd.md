@@ -18,6 +18,7 @@ f();
 $(blob);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ blob.thing = `boing`;
 $(blob);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,34 +48,6 @@ blob.thing = `boing`;
 $(blob);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  blob.thing = `boing`;
-};
-const blob = { thing: `woop` };
-$(f);
-f();
-$(blob);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  blob.thing = `boing`;
-  return undefined;
-};
-const blob = { thing: `woop` };
-$(f);
-f();
-$(blob);
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +64,15 @@ b.thing = "boing";
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

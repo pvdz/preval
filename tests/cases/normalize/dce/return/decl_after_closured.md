@@ -25,12 +25,14 @@ function g() {
 g()();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(0);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,40 +41,6 @@ $(0);
 $(0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let g = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    $(x);
-  };
-  return f;
-  let x = $(1);
-};
-g()();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let g = function () {
-  debugger;
-  let f = function () {
-    debugger;
-    $(x);
-    return undefined;
-  };
-  return f;
-  let x = $(1);
-  return undefined;
-};
-const tmpCallComplexCallee = g();
-tmpCallComplexCallee();
-`````
 
 ## PST Settled
 With rename=true
@@ -81,11 +49,15 @@ With rename=true
 $( 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")

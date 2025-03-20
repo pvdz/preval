@@ -34,6 +34,7 @@ const func /*:(unknown)=>undefined*/ = function($$0) {
 $(func(0));
 `````
 
+
 ## Settled
 
 
@@ -63,6 +64,7 @@ const tmpCalleeParam /*:string*/ = func(0);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -83,52 +85,6 @@ const func = function ($dlr_$$1) {
 $(func(0));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const func = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const arg = $dlr_$$0;
-  const onesie = arg / arg;
-  const onestrie = $coerce(onesie, `string`);
-  const onetoo = onestrie.length;
-  const test = 1 === onetoo;
-  if (test) {
-    return `end`;
-  } else {
-    const next = arg + 1;
-    func(next);
-    return `pass`;
-  }
-};
-$(func(0));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const func = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const arg = $dlr_$$0;
-  const onesie = arg / arg;
-  const onestrie = $coerce(onesie, `string`);
-  const onetoo = onestrie.length;
-  const test = 1 === onetoo;
-  if (test) {
-    return `end`;
-  } else {
-    const next = arg + 1;
-    func(next);
-    return `pass`;
-  }
-};
-const tmpCalleeParam = func(0);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -160,11 +116,15 @@ const m = f( 0 );
 $( m );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

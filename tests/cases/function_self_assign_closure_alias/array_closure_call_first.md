@@ -38,6 +38,7 @@ $(a() === b());
 $(a() === a());
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ $(arr);
 $(true);
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -60,58 +62,6 @@ $(true);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-a = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  a = function () {
-    debugger;
-    return arr;
-  };
-  return a();
-};
-$(a());
-b = a;
-$(b());
-$(a() === b());
-$(a() === a());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let b = undefined;
-a = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  a = function () {
-    debugger;
-    return arr;
-  };
-  const tmpReturnArg = a();
-  return tmpReturnArg;
-};
-const tmpCalleeParam = a();
-$(tmpCalleeParam);
-b = a;
-const tmpCalleeParam$1 = a();
-$(tmpCalleeParam$1);
-const tmpBinBothLhs = a();
-const tmpBinBothRhs = b();
-const tmpCalleeParam$3 = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpCalleeParam$3);
-const tmpBinBothLhs$1 = a();
-const tmpBinBothRhs$1 = a();
-const tmpCalleeParam$5 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -124,11 +74,15 @@ $( true );
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2, 3]

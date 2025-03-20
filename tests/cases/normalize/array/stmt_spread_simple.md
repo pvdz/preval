@@ -12,12 +12,14 @@
 [...[10, 20], 2, ...[30, 40]];
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,19 +28,6 @@
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[...[10, 20], 2, ...[30, 40]];
-`````
-
-## Normalized
-
-
-`````js filename=intro
-
-`````
 
 ## PST Settled
 With rename=true
@@ -47,11 +36,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

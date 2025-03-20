@@ -14,6 +14,7 @@ false();
 $('after');
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(`before`);
 false();
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`false()\``;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,23 +34,6 @@ false();
 throw `[Preval]: Call expression with illegal callee must crash before this line ; \`false()\``;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`before`);
-false();
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(`before`);
-false();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`false()\``;
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +44,15 @@ false.undefined();
 throw "[Preval]: Call expression with illegal callee must crash before this line ; `false()`";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before'

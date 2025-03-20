@@ -15,12 +15,14 @@ function f({ x: [y = 'fail'] }) {
 $(f({ x: ['abc'], a: 11, b: 12 }, 10));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`abc`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,48 +31,6 @@ $(`abc`);
 $(`abc`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: [y = `fail`],
-  } = tmpParamBare;
-  return y;
-};
-$(f({ x: [`abc`], a: 11, b: 12 }, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let y = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    y = `fail`;
-    return y;
-  } else {
-    y = arrPatternBeforeDefault;
-    return y;
-  }
-};
-const tmpCallCallee = f;
-const tmpObjLitVal = [`abc`];
-const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +39,22 @@ With rename=true
 $( "abc" );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'abc'
@@ -96,7 +67,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

@@ -13,6 +13,7 @@
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $(x);
 x = [1, 2, 3];
 $(x);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,29 +31,6 @@ x = [1, 2, 3];
 $(x);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[[[...x]]] = [[[1, 2, 3], 20, 30], 40, 50];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement$1 = [1, 2, 3];
-const tmpArrElement = [tmpArrElement$1, 20, 30];
-const arrAssignPatternRhs = [tmpArrElement, 40, 50];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternStep$1 = arrPatternSplat$1[0];
-const arrPatternSplat$3 = [...arrPatternStep$1];
-x = arrPatternSplat$3.slice(0);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,13 +40,25 @@ x = [ 1, 2, 3 ];
 $( x );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -79,8 +70,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

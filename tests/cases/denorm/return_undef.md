@@ -13,6 +13,7 @@ $(() => {})
 $(() => x ? void $(1) : void $(2));
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ const tmpCalleeParam$1 /*:()=>unknown*/ = function () {
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -49,43 +51,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(() => {
-  debugger;
-});
-$(() => {
-  debugger;
-  return x ? void $(1) : void $(2);
-});
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = function () {
-  debugger;
-  return undefined;
-};
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = function () {
-  debugger;
-  let tmpReturnArg = undefined;
-  if (x) {
-    $(1);
-    tmpReturnArg = undefined;
-    return tmpReturnArg;
-  } else {
-    $(2);
-    tmpReturnArg = undefined;
-    return tmpReturnArg;
-  }
-};
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -110,13 +75,17 @@ const b = function() {
 $( b );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

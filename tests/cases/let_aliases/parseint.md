@@ -30,6 +30,7 @@ $(f);
 $(mm);
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ const mm /*:number*/ = m / 33;
 $(mm);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,54 +77,6 @@ $(f);
 $(m / 33);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  the_let_binding = 2;
-  f = function () {
-    debugger;
-    return the_let_binding;
-  };
-  return f();
-};
-const n = $(`1`);
-let the_let_binding = $(1);
-const a = the_let_binding;
-const m = parseInt(n);
-const mm = m / 33;
-const the_let_alias_to_eliminate = a;
-$(a, the_let_alias_to_eliminate);
-$(f);
-$(mm);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  the_let_binding = 2;
-  f = function () {
-    debugger;
-    return the_let_binding;
-  };
-  const tmpReturnArg = f();
-  return tmpReturnArg;
-};
-const n = $(`1`);
-let the_let_binding = $(1);
-const a = the_let_binding;
-const m = parseInt(n);
-const mm = m / 33;
-const the_let_alias_to_eliminate = a;
-$(a, a);
-$(f);
-$(mm);
-`````
 
 ## PST Settled
 With rename=true
@@ -148,11 +102,15 @@ const g = f / 33;
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '1'

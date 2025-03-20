@@ -30,6 +30,7 @@
 }
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -54,7 +55,9 @@ if (tmpIfTest___13__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                 | reads      | read by     | overWrites     | overwritten by
 x:

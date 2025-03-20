@@ -16,6 +16,7 @@ if ($(true)) {
 $(n);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,33 +41,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let n = 1;
-if ($(true)) {
-  n = 2;
-} else {
-  n = 3;
-}
-$(n);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let n = 1;
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  n = 2;
-  $(n);
-} else {
-  n = 3;
-  $(n);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +55,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

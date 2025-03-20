@@ -26,6 +26,7 @@ const x /*:unknown*/ = RECUR_FUNC(a);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ const x /*:number*/ = RECUR_FUNC(a);
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,49 +64,6 @@ const RECUR_FUNC = function ($dlr_$$0) {
 $(RECUR_FUNC($(10)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const RECUR_FUNC = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const THE_ARG = $dlr_$$0;
-  const test = THE_ARG > 100;
-  if (test) {
-    return 10;
-  } else {
-    const ARGPLUS = THE_ARG + 1;
-    const RECURRESULT = RECUR_FUNC(ARGPLUS);
-    return RECURRESULT;
-  }
-};
-const a = $(10);
-const x = RECUR_FUNC(a);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const RECUR_FUNC = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const THE_ARG = $dlr_$$0;
-  const test = THE_ARG > 100;
-  if (test) {
-    return 10;
-  } else {
-    const ARGPLUS = THE_ARG + 1;
-    const RECURRESULT = RECUR_FUNC(ARGPLUS);
-    return RECURRESULT;
-  }
-};
-const a = $(10);
-const x = RECUR_FUNC(a);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -128,11 +87,15 @@ const g = a( f );
 $( g );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 10

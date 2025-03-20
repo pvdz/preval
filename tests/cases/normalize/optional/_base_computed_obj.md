@@ -14,6 +14,7 @@ var x = 10;
 $(f?.[x]);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpChainElementObject /*:unknown*/ = tmpClusterSSA_f[10];
 $(tmpChainElementObject);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,37 +32,6 @@ $(tmpChainElementObject);
 $({ [10]: 20 }[10]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = undefined;
-let x = undefined;
-f = { [10]: 20 };
-x = 10;
-$(f?.[x]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = undefined;
-let x = undefined;
-f = { [10]: 20 };
-x = 10;
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = f;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = x;
-  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-  tmpCalleeParam = tmpChainElementObject;
-  $(tmpChainElementObject);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +42,15 @@ const b = a[ 10 ];
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 20

@@ -16,6 +16,7 @@ typeof $(arg) ? $(100) : $(200);
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,32 +37,6 @@ $(100);
 $({ a: 999, b: 1000 }, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-typeof $(arg) ? $(100) : $(200);
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(arg);
-const tmpIfTest = typeof tmpUnaryArg;
-if (tmpIfTest) {
-  $(100);
-  $(a, arg);
-} else {
-  $(200);
-  $(a, arg);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +51,15 @@ const a = {
 $( a, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

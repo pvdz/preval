@@ -14,6 +14,7 @@ $({ x: (a = 1 ? 2 : $($(100))) });
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(tmpCalleeParam);
 $(2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,26 +33,6 @@ $({ x: 2 });
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$({ x: (a = 1 ? 2 : $($(100))) });
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-a = 2;
-let tmpObjLitVal = a;
-const tmpCalleeParam = { x: tmpObjLitVal };
-$(tmpCalleeParam);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +43,15 @@ $( a );
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '2' }

@@ -12,6 +12,7 @@
 $('hello world'.split(/o/g));
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam /*:array*/ = [`hell`, ` w`, `rld`];
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,21 +29,6 @@ $(tmpCalleeParam);
 $([`hell`, ` w`, `rld`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`hello world`.split(/o/g));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = /o/g;
-const tmpCalleeParam = `hello world`.split(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +38,15 @@ const a = [ "hell", " w", "rld" ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['hell', ' w', 'rld']

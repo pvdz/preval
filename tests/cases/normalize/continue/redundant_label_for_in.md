@@ -24,6 +24,7 @@ exit: for (const key in $({a: 1, b: 2})) {
 }
 `````
 
+
 ## Settled
 
 
@@ -53,6 +54,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,70 +77,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(2);
-exit: {
-  let tmpForInGen = $forIn($({ a: 1, b: 2 }));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      const key = tmpForInNext.value;
-      {
-        $continue: {
-          {
-            $(`key:`, key);
-            if ($(1)) {
-              x = $(3);
-            }
-            if (x) {
-              break $continue;
-            } else {
-              x = $(4);
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(2);
-const tmpCalleeParam$1 = { a: 1, b: 2 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-let tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const key = tmpForInNext.value;
-    $continue: {
-      $(`key:`, key);
-      const tmpIfTest$1 = $(1);
-      if (tmpIfTest$1) {
-        x = $(3);
-      } else {
-      }
-      if (x) {
-        break $continue;
-      } else {
-        x = $(4);
-      }
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -174,11 +112,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -198,6 +146,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

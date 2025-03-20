@@ -33,6 +33,7 @@ f();
 f();
 `````
 
+
 ## Settled
 
 
@@ -66,6 +67,7 @@ if (tmpUnaryArg) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -94,70 +96,6 @@ if (tmpUnaryArg) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`block inlinine`);
-  $(`block inlinine`);
-  $(`block inlinine`);
-  return $(x);
-};
-let x;
-if ($(true)) {
-  x = !$(true);
-} else {
-  x = !$(false);
-}
-if (x) $(`a`);
-else $(`b`);
-if (x) $(`d`);
-else $(`c`);
-f();
-f();
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`block inlinine`);
-  $(`block inlinine`);
-  $(`block inlinine`);
-  const tmpReturnArg = $(x);
-  return tmpReturnArg;
-};
-let x = undefined;
-const tmpIfTest = $(true);
-if (tmpIfTest) {
-  const tmpUnaryArg = $(true);
-  x = !tmpUnaryArg;
-} else {
-  const tmpUnaryArg$1 = $(false);
-  x = !tmpUnaryArg$1;
-}
-if (x) {
-  $(`a`);
-} else {
-  $(`b`);
-}
-if (x) {
-  $(`d`);
-  f();
-  f();
-  f();
-} else {
-  $(`c`);
-  f();
-  f();
-  f();
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -193,11 +131,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

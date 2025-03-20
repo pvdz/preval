@@ -16,6 +16,7 @@ export default a = delete ($(1), $(2), $(arg))[$("y")];
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
 export { tmpAnonDefaultExport as default };
 $(tmpClusterSSA_a, arg);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -46,32 +48,6 @@ export { tmpAnonDefaultExport as default };
 $(tmpClusterSSA_a, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = delete ($(1), $(2), $(arg))[$(`y`)]);
-export { tmpAnonDefaultExport as default };
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-$(1);
-$(2);
-const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $(`y`);
-a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpAnonDefaultExport = a;
-export { tmpAnonDefaultExport as default };
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +64,15 @@ export { e as default };
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

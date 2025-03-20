@@ -17,6 +17,7 @@ x = $('unknown 3'); // This has to be made a constant in the first cycle. The un
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const tmpClusterSSA_x /*:unknown*/ = $(`unknown 3`);
 $(tmpClusterSSA_x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,29 +42,6 @@ x + z;
 $($(`unknown 3`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(`unknown 1`);
-let z = $(`unknown 2`);
-$(x);
-let unused = x + z;
-x = $(`unknown 3`);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(`unknown 1`);
-let z = $(`unknown 2`);
-$(x);
-let unused = x + z;
-x = $(`unknown 3`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +55,15 @@ const c = $( "unknown 3" );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'unknown 1'

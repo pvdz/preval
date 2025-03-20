@@ -22,6 +22,7 @@ let { a, b: { c, ...rest } } = obj;
 $(a, c, rest);
 `````
 
+
 ## Settled
 
 
@@ -62,6 +63,7 @@ const rest /*:unknown*/ = $objPatternRest(objPatternNoDefault, tmpCalleeParam$1,
 $(a, c, rest);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -94,81 +96,6 @@ const objPatternNoDefault = obj.b;
 $(a, objPatternNoDefault.c, $objPatternRest(objPatternNoDefault, [`c`], undefined));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let obj = {
-  get a() {
-    debugger;
-    return $(`a`);
-  },
-  get b() {
-    debugger;
-    return {
-      get c() {
-        debugger;
-        return $(`b`);
-      },
-      get d() {
-        debugger;
-        return $(`c`);
-      },
-      get e() {
-        debugger;
-        return $(`d`);
-      },
-    };
-  },
-};
-let {
-  a: a,
-  b: { c: c, ...rest },
-} = obj;
-$(a, c, rest);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let obj = {
-  get a() {
-    debugger;
-    const tmpReturnArg = $(`a`);
-    return tmpReturnArg;
-  },
-  get b() {
-    debugger;
-    const tmpReturnArg$1 = {
-      get c() {
-        debugger;
-        const tmpReturnArg$3 = $(`b`);
-        return tmpReturnArg$3;
-      },
-      get d() {
-        debugger;
-        const tmpReturnArg$5 = $(`c`);
-        return tmpReturnArg$5;
-      },
-      get e() {
-        debugger;
-        const tmpReturnArg$7 = $(`d`);
-        return tmpReturnArg$7;
-      },
-    };
-    return tmpReturnArg$1;
-  },
-};
-let bindingPatternObjRoot = obj;
-let a = bindingPatternObjRoot.a;
-let objPatternNoDefault = bindingPatternObjRoot.b;
-let c = objPatternNoDefault.c;
-const tmpCalleeParam = objPatternNoDefault;
-const tmpCalleeParam$1 = [`c`];
-let rest = $objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
-$(a, c, rest);
-`````
 
 ## PST Settled
 With rename=true
@@ -210,11 +137,15 @@ const k = $objPatternRest( h, j, undefined );
 $( g, i, k );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

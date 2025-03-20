@@ -18,6 +18,7 @@ if ($) {
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,33 +43,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = [1];
-const b = [2];
-let c;
-if ($) {
-  c = a.concat(b);
-}
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = [1];
-const b = [2];
-let c = undefined;
-if ($) {
-  c = a.concat(b);
-  $(c);
-} else {
-  $(c);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +57,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_concat
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2]
@@ -99,6 +84,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_concat

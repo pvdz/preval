@@ -37,6 +37,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,45 +79,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(1);
-while (true) {
-  if (x % 2) {
-    $(++x, `write`);
-  } else {
-    $(x, `read`);
-  }
-  if (x % 3) {
-    x = $(10, `ten`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(1);
-while (true) {
-  const tmpIfTest = x % 2;
-  if (tmpIfTest) {
-    const tmpPostUpdArgIdent = $coerce(x, `number`);
-    x = tmpPostUpdArgIdent + 1;
-    const tmpCalleeParam = x;
-    $(x, `write`);
-  } else {
-    $(x, `read`);
-  }
-  const tmpIfTest$1 = x % 3;
-  if (tmpIfTest$1) {
-    x = $(10, `ten`);
-  } else {
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -139,11 +102,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

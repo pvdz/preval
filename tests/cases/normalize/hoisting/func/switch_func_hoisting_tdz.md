@@ -19,6 +19,7 @@ switch ($(1)) {
 }
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,51 +48,6 @@ if ($(1) === $(1)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-f();
-tmpSwitchBreak: {
-  let f$1 = function () {
-    debugger;
-    $(`pass`);
-  };
-  const tmpSwitchDisc = $(1);
-  if (tmpSwitchDisc === $(1)) {
-    f$1();
-    break tmpSwitchBreak;
-  } else if (tmpSwitchDisc === $(2)) {
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  f();
-  let f$1 = function () {
-    debugger;
-    $(`pass`);
-    return undefined;
-  };
-  const tmpSwitchDisc = $(1);
-  const tmpBinBothLhs = tmpSwitchDisc;
-  const tmpBinBothRhs = $(1);
-  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  if (tmpIfTest) {
-    f$1();
-    break tmpSwitchBreak;
-  } else {
-    const tmpBinBothLhs$1 = tmpSwitchDisc;
-    const tmpBinBothRhs$1 = $(2);
-    const tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -108,13 +65,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 f
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -18,6 +18,7 @@ foo: if (x) {
 $(2);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if (x) {
   $(2);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -46,34 +48,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(100);
-$(0);
-foo: if (x) {
-  $(1);
-  break foo;
-}
-$(2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(100);
-foo: {
-  $(0);
-  if (x) {
-    $(1);
-    break foo;
-  } else {
-  }
-}
-$(2);
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

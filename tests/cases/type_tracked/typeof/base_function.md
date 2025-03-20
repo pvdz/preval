@@ -13,12 +13,14 @@ const x = function (){};
 $(typeof x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`function`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,27 +29,6 @@ $(`function`);
 $(`function`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = function () {
-  debugger;
-};
-$(typeof x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = function () {
-  debugger;
-  return undefined;
-};
-const tmpCalleeParam = typeof x;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +37,15 @@ With rename=true
 $( "function" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'function'

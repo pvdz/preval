@@ -17,6 +17,7 @@ class x {
 $(new x().b());
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCallObj.b();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,39 +49,6 @@ const x = class {
 $(new x().b());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = class {
-  a() {
-    debugger;
-  }
-  b() {
-    debugger;
-  }
-};
-$(new x().b());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = class {
-  a() {
-    debugger;
-    return undefined;
-  }
-  b() {
-    debugger;
-    return undefined;
-  }
-};
-const tmpCallObj = new x();
-const tmpCalleeParam = tmpCallObj.b();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +68,15 @@ const c = b.b();
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

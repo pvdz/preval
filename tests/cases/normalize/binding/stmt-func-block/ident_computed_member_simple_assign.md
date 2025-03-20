@@ -19,6 +19,7 @@ let b = {x: 2}, c = 3, d = 4;
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,52 +60,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($(true)) {
-    let b = { x: 2 },
-      c = 3,
-      d = 4;
-    let a = (b[$(`x`)] = $(c)[$(`y`)] = $(d));
-    $(a, b, c);
-  }
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    let b = { x: 2 };
-    let c = 3;
-    let d = 4;
-    const varInitAssignLhsComputedObj = b;
-    const varInitAssignLhsComputedProp = $(`x`);
-    const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $(`y`);
-    const varInitAssignLhsComputedRhs$1 = $(d);
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    let a = varInitAssignLhsComputedRhs;
-    $(varInitAssignLhsComputedRhs, b, c);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -126,11 +82,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

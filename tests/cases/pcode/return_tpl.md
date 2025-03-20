@@ -21,22 +21,9 @@ $(f('a'));
 $(f(true));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  return `haha ` + $coerce(a, `string`) + ``;
-};
-$(f(1));
-$(f(2));
-$(f(`a`));
-$(f(true));
-`````
 
 ## Pcode output
+
 
 `````fileintro
 f =
@@ -47,6 +34,12 @@ f =
     [ r4 call $coerce - - "" plustr - ]
     [ return r4 - ]
 `````
+
+
+
+
+## Pcode result
+
 
 Running function "f":
 

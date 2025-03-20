@@ -13,6 +13,7 @@ $(undefined.foo);
 $('fail, DCE me');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('fail, DCE me');
 undefined.foo;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,21 +31,6 @@ undefined.foo;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(undefined.foo);
-$(`fail, DCE me`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = undefined.foo;
-throw `[Preval]: Can not reach here`;
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +40,15 @@ undefined.foo;
 throw "[Preval]: Can not reach here";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

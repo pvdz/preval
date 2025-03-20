@@ -23,6 +23,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const arr /*:array*/ = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,41 +40,6 @@ $(arr);
 $([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let counter = 0;
-const arr = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  arr.push(counter);
-  counter = counter + 1;
-  const test = counter > 20;
-  if (test) {
-    break;
-  } else {
-  }
-}
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let counter = 0;
-const arr = [];
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  arr.push(counter);
-  counter = counter + 1;
-  const test = counter > 20;
-  if (test) {
-    break;
-  } else {
-  }
-}
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +49,15 @@ const a = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]

@@ -22,6 +22,7 @@ $(x() !== x());
 $(x() === zzzz());
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ const tmpCalleeParam$3 /*:boolean*/ = tmpBinBothLhs$3 === tmpBinBothRhs$3;
 $(tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -72,58 +74,6 @@ const tmpBinBothLhs$3 = x();
 $(tmpBinBothLhs$3 === zzzz());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let zzzz = function () {
-  debugger;
-  const a = [];
-  zzzz = function ($$0, $$1) {
-    let $dlr_$$0 = $$0;
-    let $dlr_$$1 = $$1;
-    debugger;
-    return a;
-  };
-  const tmpReturnArg$23 = zzzz();
-  return tmpReturnArg$23;
-};
-const x = zzzz;
-$(zzzz() === zzzz());
-$(x() !== x());
-$(x() === zzzz());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let zzzz = function () {
-  debugger;
-  const a = [];
-  zzzz = function ($$0, $$1) {
-    let $dlr_$$0 = $$0;
-    let $dlr_$$1 = $$1;
-    debugger;
-    return a;
-  };
-  const tmpReturnArg$23 = zzzz();
-  return tmpReturnArg$23;
-};
-const x = zzzz;
-const tmpBinBothLhs = zzzz();
-const tmpBinBothRhs = zzzz();
-const tmpCalleeParam = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpCalleeParam);
-const tmpBinBothLhs$1 = x();
-const tmpBinBothRhs$1 = x();
-const tmpCalleeParam$1 = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
-$(tmpCalleeParam$1);
-const tmpBinBothLhs$3 = x();
-const tmpBinBothRhs$3 = zzzz();
-const tmpCalleeParam$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -154,11 +104,15 @@ const m = k === l;
 $( m );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

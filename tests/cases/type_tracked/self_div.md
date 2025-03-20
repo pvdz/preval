@@ -38,6 +38,7 @@ f('thing');
 f($spy());
 `````
 
+
 ## Settled
 
 
@@ -67,6 +68,7 @@ if (tmpSaooB$2) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -84,65 +86,6 @@ if (!(typeof tmpCalleeParam === `string`)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let arg = $$0;
-  debugger;
-  const tmpCalleeParam$141 = typeof arg;
-  const tmpReturnArg$107 = tmpCalleeParam$141 === `string`;
-  if (tmpReturnArg$107) {
-  } else {
-    const one = arg / arg;
-    const onestr = $coerce(one, `string`);
-    const len = onestr.length;
-    const isone = len === 1;
-    if (isone) {
-      arg % 0;
-    } else {
-    }
-    const argup = arg + 1;
-    $(argup);
-  }
-};
-f(500);
-f(`thing`);
-f($spy());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let arg = $$0;
-  debugger;
-  const tmpCalleeParam$141 = typeof arg;
-  const tmpReturnArg$107 = tmpCalleeParam$141 === `string`;
-  if (tmpReturnArg$107) {
-    return undefined;
-  } else {
-    const one = arg / arg;
-    const onestr = $coerce(one, `string`);
-    const len = onestr.length;
-    const isone = len === 1;
-    if (isone) {
-      arg % 0;
-    } else {
-    }
-    const argup = arg + 1;
-    $(argup);
-    return undefined;
-  }
-};
-f(500);
-f(`thing`);
-const tmpCallCallee = f;
-const tmpCalleeParam = $spy();
-tmpCallCallee(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -174,11 +117,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 501

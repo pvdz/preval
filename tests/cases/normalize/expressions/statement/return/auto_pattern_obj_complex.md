@@ -17,6 +17,7 @@ $(f());
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ $(tmpReturnArg);
 $(999);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,35 +37,6 @@ $($({ a: 1, b: 2 }));
 $(999);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  return $({ a: 1, b: 2 });
-};
-let { a: a } = { a: 999, b: 1000 };
-$(f());
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpReturnArg = $(tmpCalleeParam);
-  return tmpReturnArg;
-};
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +51,15 @@ $( b );
 $( 999 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }

@@ -14,6 +14,7 @@ $`before ${({ a } = $({ a: 1, b: 2 }))} after`;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,30 +38,6 @@ $([`before `, ` after`], tmpNestedAssignObjPatternRhs);
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let { a: a } = { a: 999, b: 1000 };
-$([`before `, ` after`], ({ a: a } = $({ a: 1, b: 2 })));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-const tmpCalleeParam = [`before `, ` after`];
-let tmpCalleeParam$1 = undefined;
-const tmpCalleeParam$3 = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
-a = tmpNestedAssignObjPatternRhs.a;
-tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
-$(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +54,15 @@ $( d, b );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }

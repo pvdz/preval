@@ -17,6 +17,7 @@ const out = $dotCall(method, str, 'replace', regex, `u`);
 $(out);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const out /*:unknown*/ = str.replace(regex, `u`);
 $(out);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,27 +37,6 @@ const str = $(`hello`);
 $(str.replace(/e/g, `u`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const str = $(`hello`);
-const method = str.replace;
-const regex = /e/g;
-const out = $dotCall(method, str, `replace`, regex, `u`);
-$(out);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const str = $(`hello`);
-const method = str.replace;
-const regex = /e/g;
-const out = $dotCall(method, str, `replace`, regex, `u`);
-$(out);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +48,15 @@ const c = a.replace( b, "u" );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'hello'

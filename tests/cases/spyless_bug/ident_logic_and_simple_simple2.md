@@ -21,6 +21,7 @@ a = a * tmpBinBothRhs;
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpClusterSSA_a /*:number*/ = a * 2;
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,33 +39,6 @@ $(tmpClusterSSA_a);
 $({ a: 999, b: 1000 } * 2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpBinBothRhs = 1;
-if (tmpBinBothRhs) {
-  tmpBinBothRhs = 2;
-} else {
-}
-a = a * tmpBinBothRhs;
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpBinBothRhs = 1;
-if (tmpBinBothRhs) {
-  tmpBinBothRhs = 2;
-} else {
-}
-a = a * tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +52,15 @@ const b = a * 2;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: NaN

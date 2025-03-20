@@ -17,6 +17,7 @@ obj[(a = typeof x)];
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(a, x);
 $Object_prototype.number;
 $(`number`, 1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,30 +35,6 @@ $Object_prototype.number;
 $(`number`, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = typeof x)];
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-a = typeof x;
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +44,15 @@ $Object_prototype.number;
 $( "number", 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'number', 1

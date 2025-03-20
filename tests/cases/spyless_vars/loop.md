@@ -36,6 +36,7 @@ while (true) {
 $(arr.slice(0, 3));
 `````
 
+
 ## Settled
 
 
@@ -86,6 +87,7 @@ const tmpCalleeParam$1 /*:array*/ = arr.slice(0, 3);
 $(tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -125,56 +127,6 @@ if (!(arr[2] === 820304)) {
 $(arr.slice(0, 3));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [`one`, `two`, `three`, `four`, `five`];
-while (true) {
-  $(1);
-  try {
-    const test = arr[2] === 820304;
-    if (test) {
-      break;
-    } else {
-      const next = arr.shift();
-      arr.push(next);
-      $(arr.slice(0));
-    }
-  } catch (e) {
-    const v = arr.shift();
-    arr.push(v);
-  }
-}
-$(arr.slice(0, 3));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [`one`, `two`, `three`, `four`, `five`];
-while (true) {
-  $(1);
-  try {
-    const tmpBinLhs = arr[2];
-    const test = tmpBinLhs === 820304;
-    if (test) {
-      break;
-    } else {
-      const next = arr.shift();
-      arr.push(next);
-      const tmpCalleeParam = arr.slice(0);
-      $(tmpCalleeParam);
-    }
-  } catch (e) {
-    const v = arr.shift();
-    arr.push(v);
-  }
-}
-const tmpCalleeParam$1 = arr.slice(0, 3);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -232,11 +184,22 @@ const q = b.slice( 0, 3 );
 $( q );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -274,7 +237,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
-- inline computed array property read

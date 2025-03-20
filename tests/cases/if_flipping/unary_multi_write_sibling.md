@@ -28,6 +28,7 @@ if (y) {
 //$(y, 'after');
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ if (b) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,43 +63,6 @@ if (b) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(1);
-const b = $(2);
-let y = !a;
-if (y) {
-  $(`if1`);
-} else {
-}
-y = !b;
-if (y) {
-  $(`if2`);
-} else {
-  $(`else1`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(1);
-const b = $(2);
-let y = !a;
-if (y) {
-  $(`if1`);
-} else {
-}
-y = !b;
-if (y) {
-  $(`if2`);
-} else {
-  $(`else1`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -119,11 +84,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

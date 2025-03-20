@@ -16,12 +16,14 @@ a?.b(x.y);
 $(a, x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(undefined, undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,35 +32,6 @@ $(undefined, undefined);
 $(undefined, undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-a?.b(x.y);
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-let x = undefined;
-const tmpChainRootProp = a;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.b;
-  const tmpCalleeParam = tmpChainElementObject;
-  const tmpCalleeParam$1 = tmpChainRootProp;
-  const tmpCalleeParam$3 = x.y;
-  const tmpChainElementCall = $dotCall(tmpCalleeParam, tmpCalleeParam$1, `b`, tmpCalleeParam$3);
-  $(a, x);
-} else {
-  $(a, x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +40,15 @@ With rename=true
 $( undefined, undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined, undefined

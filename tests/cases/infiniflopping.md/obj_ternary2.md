@@ -34,12 +34,14 @@ let f = function () {
 f();
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -48,70 +50,6 @@ f();
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let objPatternCrashTest = undefined;
-  let bindingPatternObjRoot = undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    bindingPatternObjRoot = 2;
-    const tmpBranchingB$1 = function () {
-      debugger;
-      if (objPatternCrashTest) {
-        objPatternCrashTest = bindingPatternObjRoot;
-      }
-    };
-    if (objPatternCrashTest) {
-      tmpBranchingB$1();
-    }
-  };
-  if ($) {
-    tmpBranchingC();
-  }
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let objPatternCrashTest = undefined;
-  let bindingPatternObjRoot = undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    bindingPatternObjRoot = 2;
-    const tmpBranchingB$1 = function () {
-      debugger;
-      if (objPatternCrashTest) {
-        objPatternCrashTest = bindingPatternObjRoot;
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    if (objPatternCrashTest) {
-      tmpBranchingB$1();
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  if ($) {
-    tmpBranchingC();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +58,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

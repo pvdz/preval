@@ -15,6 +15,7 @@ function f([{ x = $('pass') } = $({ x: 'fail2' })]) {
 $(f([null, 20, 30], 200));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ $(f([null, 20, 30], 200));
 null.x;
 throw `[Preval]: Can not reach here`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,53 +33,6 @@ null.x;
 throw `[Preval]: Can not reach here`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [{ x: x = $(`pass`) } = $({ x: `fail2` })] = tmpParamBare;
-  return `bad`;
-};
-$(f([null, 20, 30], 200));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { x: `fail2` };
-    arrPatternStep = $(tmpCalleeParam);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  let objPatternBeforeDefault = arrPatternStep.x;
-  let x = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    x = $(`pass`);
-    return `bad`;
-  } else {
-    x = objPatternBeforeDefault;
-    return `bad`;
-  }
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$3 = [null, 20, 30];
-const tmpCalleeParam$1 = tmpCallCallee(tmpCalleeParam$3, 200);
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +42,22 @@ null.x;
 throw "[Preval]: Can not reach here";
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -103,7 +69,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

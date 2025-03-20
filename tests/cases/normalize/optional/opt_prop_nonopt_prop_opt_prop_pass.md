@@ -13,12 +13,14 @@ const a = {b: {c: {d: 100}}};
 $(a?.b.c?.d);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(100);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,39 +29,6 @@ $(100);
 $(100);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = { b: { c: { d: 100 } } };
-$(a?.b.c?.d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal$1 = { d: 100 };
-const tmpObjLitVal = { c: tmpObjLitVal$1 };
-const a = { b: tmpObjLitVal };
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = a;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpIfTest$1 = tmpChainElementObject$1 != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject$3 = tmpChainElementObject$1.d;
-    tmpCalleeParam = tmpChainElementObject$3;
-    $(tmpChainElementObject$3);
-  } else {
-    $(tmpCalleeParam);
-  }
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +37,15 @@ With rename=true
 $( 100 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

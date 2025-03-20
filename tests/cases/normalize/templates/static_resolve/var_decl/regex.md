@@ -13,12 +13,14 @@ let x = `${/foo/g}`;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`/foo/g`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,25 +29,6 @@ $(`/foo/g`);
 $(`/foo/g`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = `` + $coerce(/foo/g, `string`) + ``;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpCalleeParam = /foo/g;
-const tmpBinBothRhs = $coerce(tmpCalleeParam, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = $coerce(tmpBinLhs, `plustr`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +37,15 @@ With rename=true
 $( "/foo/g" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '/foo/g'

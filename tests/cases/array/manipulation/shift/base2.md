@@ -17,6 +17,7 @@ $(NOT_AN_ARRAY);
 
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const NOT_AN_ARRAY /*:unknown*/ = ARR.shift();
 $(NOT_AN_ARRAY);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,27 +38,6 @@ const secretArr = $([`a`, `b`, `c`]);
 $([...secretArr].shift());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr1 = [`a`, `b`, `c`];
-const secretArr = $(arr1);
-const ARR = [...secretArr];
-const NOT_AN_ARRAY = ARR.shift();
-$(NOT_AN_ARRAY);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr1 = [`a`, `b`, `c`];
-const secretArr = $(arr1);
-const ARR = [...secretArr];
-const NOT_AN_ARRAY = ARR.shift();
-$(NOT_AN_ARRAY);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +50,15 @@ const d = c.shift();
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: ['a', 'b', 'c']

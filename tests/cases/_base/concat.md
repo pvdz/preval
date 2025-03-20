@@ -12,12 +12,14 @@
 $('a' + 'b')
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`ab`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(`ab`);
 $(`ab`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(`a` + `b`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `ab`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( "ab" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'ab'

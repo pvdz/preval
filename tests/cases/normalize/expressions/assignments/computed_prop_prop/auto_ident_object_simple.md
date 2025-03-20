@@ -15,6 +15,7 @@ obj[(a = { x: 1, y: 2, z: 3 })];
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const a /*:object*/ = { x: 1, y: 2, z: 3 };
 obj[a];
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,28 +37,6 @@ obj[a];
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = { x: 1, y: 2, z: 3 })];
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-a = { x: 1, y: 2, z: 3 };
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +52,15 @@ a[ b ];
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1', y: '2', z: '3' }

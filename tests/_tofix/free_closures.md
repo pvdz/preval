@@ -27,6 +27,7 @@ const y = $('m#az#e');
 $(f(String(y)));
 `````
 
+
 ## Settled
 
 
@@ -64,6 +65,7 @@ const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
 $(tmpCalleeParam$3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -84,53 +86,6 @@ $(f($frfr(tmpFree, $coerce($(`co_rn`), `string`))));
 $(f($frfr(tmpFree$1, $coerce($(`m#az#e`), `string`))));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let repl = $$0;
-  debugger;
-  const a1 = repl.charAt(0);
-  const a2 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
-  const b1 = repl.charAt(1);
-  const frout = a2 + b2;
-  outputstr = $coerce(frout, `plustr`);
-  return outputstr;
-};
-const x = $(`co_rn`);
-$(f(String(x)));
-const y = $(`m#az#e`);
-$(f(String(y)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let repl = $$0;
-  debugger;
-  const a1 = repl.charAt(0);
-  const a2 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
-  const b1 = repl.charAt(1);
-  const frout = a2 + b2;
-  outputstr = $coerce(frout, `plustr`);
-  return outputstr;
-};
-const x = $(`co_rn`);
-const tmpCallCallee = f;
-const tmpStringFirstArg = x;
-const tmpCalleeParam$1 = $coerce(x, `string`);
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-const y = $(`m#az#e`);
-const tmpCallCallee$1 = f;
-const tmpStringFirstArg$1 = y;
-const tmpCalleeParam$5 = $coerce(y, `string`);
-const tmpCalleeParam$3 = tmpCallCallee$1(tmpCalleeParam$5);
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -169,13 +124,17 @@ const u = j( t );
 $( u );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 b2, outputstr
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'co_rn'

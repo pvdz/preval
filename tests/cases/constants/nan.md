@@ -14,12 +14,14 @@ const bar = foo;
 $(bar)
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(NaN);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,23 +30,6 @@ $(NaN);
 $(NaN);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const foo = NaN;
-const bar = foo;
-$(bar);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const foo = NaN;
-const bar = foo;
-$(foo);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +38,15 @@ With rename=true
 $( NaN );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: NaN

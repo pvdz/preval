@@ -25,6 +25,7 @@ $(a);   // can only observe 3
         // then a will always be 3)
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -50,7 +51,9 @@ if ($implicitThrow___46__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 a:

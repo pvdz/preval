@@ -66,6 +66,7 @@ const tmpObjLitVal$159/*:(unknown, unknown, unknown)=>undefined*/ = function() {
 $(tmpObjLitVal$159);
 `````
 
+
 ## Settled
 
 
@@ -126,6 +127,7 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
 $(tmpObjLitVal$159);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -172,128 +174,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpFree$1 = function $free($$0, $$1) {
-  let $dlr_$$0 = $$0;
-  let $dlr_$$1 = $$1;
-  debugger;
-  const cs$1 = $dlr_$$0;
-  const g$147 = $dlr_$$1;
-  const tmpBinBothLhs$3633 = cs$1 + 71046;
-  const tmpBinBothRhs$3633 = `xyz`.charCodeAt(g$147);
-  const tmpCalleeParam$9457 = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
-  const tmpRet$1 = String.fromCharCode(tmpCalleeParam$9457);
-  return tmpRet$1;
-};
-const tmpObjLitVal$159 = function () {
-  debugger;
-  let t$3391 = tmpSSA_Tu();
-  if (t$3391) {
-    tmpSSA_wu(t$3391);
-  } else {
-    t$3391 = tmpSSA_Su();
-    tmpSSA_wu(t$3391);
-  }
-  if (t$3391) {
-    tmpSSA__u_t(t$3391);
-  } else {
-  }
-  const tmpClusterSSA_e$2725 = tmpCallObj$3807.toString(36);
-  const tmpCalleeParam$11085 = /^0./;
-  const tmpClusterSSA_r$2027 = tmpCallObj$3811.replace(tmpCalleeParam$11085, ``);
-  const tmpBinLhs$33 = `` + $coerce(tmpBinBothRhs$32, `string`) + `_` + $coerce(tmpClusterSSA_r$2027, `string`) + ``;
-  const tmpClusterSSA_t$9 = tmpSSA_Tu();
-  if (tmpClusterSSA_t$9) {
-    tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$9;
-  } else {
-    const tmpClusterSSA_t$11 = tmpSSA_Su();
-    if (tmpClusterSSA_t$11) {
-      tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$11;
-    } else {
-    }
-  }
-  let p$171 = ``;
-  let g$1 = 0;
-  while (true) {
-    if (tmpIfTest$5467) {
-      const tmpBinBothRhs$3631 = $frfr(tmpFree$1, $, $);
-      p$171 = p$171 + tmpBinBothRhs$3631;
-    } else {
-      break;
-    }
-  }
-  return undefined;
-};
-$(tmpObjLitVal$159);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpFree$1 = function $free($$0, $$1) {
-  let $dlr_$$0 = $$0;
-  let $dlr_$$1 = $$1;
-  debugger;
-  const cs$1 = $dlr_$$0;
-  const g$147 = $dlr_$$1;
-  const tmpBinBothLhs$3633 = cs$1 + 71046;
-  const tmpBinBothRhs$3633 = `xyz`.charCodeAt(g$147);
-  const tmpCalleeParam$9457 = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
-  const tmpRet$1 = $String_fromCharCode(tmpCalleeParam$9457);
-  return tmpRet$1;
-};
-const tmpObjLitVal$159 = function () {
-  debugger;
-  let t$3391 = tmpSSA_Tu();
-  if (t$3391) {
-    tmpSSA_wu(t$3391);
-  } else {
-    t$3391 = tmpSSA_Su();
-    tmpSSA_wu(t$3391);
-  }
-  if (t$3391) {
-    tmpSSA__u_t(t$3391);
-  } else {
-  }
-  const tmpClusterSSA_e$2725 = tmpCallObj$3807.toString(36);
-  const tmpCalleeParam$11085 = /^0./;
-  const tmpClusterSSA_r$2027 = tmpCallObj$3811.replace(tmpCalleeParam$11085, ``);
-  const tmpBinBothLhs$1 = ``;
-  const tmpBinBothRhs$1 = $coerce(tmpBinBothRhs$32, `string`);
-  const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-  const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-  const tmpBinBothLhs = `${tmpStringConcatR}_`;
-  const tmpBinBothRhs = $coerce(tmpClusterSSA_r$2027, `string`);
-  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-  const tmpBinLhs$33 = $coerce(tmpBinLhs, `plustr`);
-  const tmpClusterSSA_t$9 = tmpSSA_Tu();
-  if (tmpClusterSSA_t$9) {
-    tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$9;
-  } else {
-    const tmpClusterSSA_t$11 = tmpSSA_Su();
-    if (tmpClusterSSA_t$11) {
-      tmpClusterSSA_tmpssa3_c$245 = tmpClusterSSA_t$11;
-    } else {
-    }
-  }
-  let p$171 = ``;
-  let g$1 = 0;
-  while (true) {
-    if (tmpIfTest$5467) {
-      const tmpBinBothRhs$3631 = $frfr(tmpFree$1, $, $);
-      p$171 = p$171 + tmpBinBothRhs$3631;
-    } else {
-      break;
-    }
-  }
-  return undefined;
-};
-$(tmpObjLitVal$159);
-`````
 
 ## PST Settled
 With rename=true
@@ -357,13 +237,26 @@ const i = function() {
 $( i );
 `````
 
+
+## Todos triggered
+
+
+- Support string.charCodeAt when the arg is not a string literal
+- free with zero args, we can eliminate this?
+- Support referencing this builtin in isFree: $
+- - at least one of the frfr args was not isFree, bailing
+
+
 ## Globals
+
 
 BAD@! Found 9 implicit global bindings:
 
 tmpSSA_Tu, tmpSSA_wu, tmpSSA_Su, tmpSSA__u_t, tmpCallObj$3807, tmpCallObj$3811, tmpBinBothRhs$32, tmpClusterSSA_tmpssa3_c$245, tmpIfTest$5467
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -376,9 +269,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support string.charCodeAt when the arg is not a string literal
-- free with zero args, we can eliminate this?
-- Support referencing this builtin in isFree: $
-- - at least one of the frfr args was not isFree, bailing

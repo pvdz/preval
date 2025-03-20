@@ -17,6 +17,7 @@ while (a < 10) {
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,34 +63,6 @@ if (a < 10) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $(1);
-while (a < 10) {
-  a += 1;
-  $(a);
-}
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = $(1);
-while (true) {
-  const tmpIfTest = a < 10;
-  if (tmpIfTest) {
-    a = a + 1;
-    $(a);
-  } else {
-    break;
-  }
-}
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -115,11 +89,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

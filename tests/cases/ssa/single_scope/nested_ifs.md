@@ -24,6 +24,7 @@ const f = function (y) {
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -50,6 +51,7 @@ const f /*:(unknown)=>undefined*/ = function ($$0) {
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -67,51 +69,6 @@ $(function (y) {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let y = $$0;
-  debugger;
-  let n = undefined;
-  if (y) {
-    n = 0;
-    while (true) {
-      if ($) {
-        n = n + 1;
-        break;
-      }
-    }
-  }
-};
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let y = $$0;
-  debugger;
-  let n = undefined;
-  if (y) {
-    n = 0;
-    while (true) {
-      if ($) {
-        n = n + 1;
-        break;
-      } else {
-      }
-    }
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -140,11 +97,21 @@ const a = function($$0 ) {
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- Support referencing this builtin in isFree: $
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -157,6 +124,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support referencing this builtin in isFree: $

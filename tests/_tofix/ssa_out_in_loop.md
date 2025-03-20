@@ -51,6 +51,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -85,6 +86,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -109,86 +111,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  if ($) {
-    let A = `jhayon.vercel.app`;
-    let B = `jhayon.vercel.app`;
-    let one = 1;
-    const ex = $(`x`);
-    while ($LOOP_UNROLL_5) {
-      const test = one < 1;
-      A = ex.length;
-      const first = A[0];
-      const isdot = first === `.`;
-      if (isdot) {
-        B = A.slice(1);
-      } else {
-        B = A;
-      }
-      const tmpClusterSSA__0x26b289 = $(`abc`);
-      const len = tmpClusterSSA__0x26b289.length;
-      const len2 = B.length;
-      const tmpClusterSSA__0x30c47e = len - len2;
-      const tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-      const tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
-      if (tmpClusterSSA__0x5dc746) {
-        const tmpClusterSSA__0x5dc746$1 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-        if (tmpClusterSSA__0x5dc746$1) {
-          const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
-          const tmpBinBothRhs$34 = A.length;
-        } else {
-        }
-      } else {
-      }
-      one = one + 1;
-      break;
-    }
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if ($) {
-  let A = `jhayon.vercel.app`;
-  let B = `jhayon.vercel.app`;
-  let one = 1;
-  const ex = $(`x`);
-  const test = one < 1;
-  A = ex.length;
-  const first = A[0];
-  const isdot = first === `.`;
-  if (isdot) {
-    B = A.slice(1);
-  } else {
-    B = A;
-  }
-  const tmpClusterSSA__0x26b289 = $(`abc`);
-  const len = tmpClusterSSA__0x26b289.length;
-  const len2 = B.length;
-  const tmpClusterSSA__0x30c47e = len - len2;
-  const tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
-  const tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
-  if (tmpClusterSSA__0x5dc746) {
-    const tmpClusterSSA__0x5dc746$1 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
-    if (tmpClusterSSA__0x5dc746$1) {
-      const tmpBinBothLhs$34 = tmpClusterSSA__0x26b289.length;
-      const tmpBinBothRhs$34 = A.length;
-    } else {
-    }
-  } else {
-  }
-  one = one + 1;
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -225,11 +147,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x'

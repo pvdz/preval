@@ -15,6 +15,7 @@ const z = y === 0; // true
 $(z);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const z /*:boolean*/ = $frfr(tmpFree, x);
 $(z);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,26 +47,6 @@ const tmpUnaryArg = $(1);
 $($frfr(tmpFree, +tmpUnaryArg));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = +$(1);
-const y = x & 32768;
-const z = y === 0;
-$(z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpUnaryArg = $(1);
-const x = +tmpUnaryArg;
-const y = x & 32768;
-const z = y === 0;
-$(z);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +65,15 @@ const h = i( a, g );
 $( h );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

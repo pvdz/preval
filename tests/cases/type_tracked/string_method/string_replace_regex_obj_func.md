@@ -15,12 +15,14 @@ const rex = /\b.\b/g;
 $('a is not b'.replace(rex, (c) => obj[c]));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`1->is->not->2`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,37 +31,6 @@ $(`1->is->not->2`);
 $(`1->is->not->2`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { a: 1, b: 2, [` `]: `->` };
-const rex = /\b.\b/g;
-$(
-  `a is not b`.replace(rex, ($$0) => {
-    let c = $$0;
-    debugger;
-    return obj[c];
-  }),
-);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { a: 1, b: 2, [` `]: `->` };
-const rex = /\b.\b/g;
-const tmpCalleeParam$1 = rex;
-const tmpCalleeParam$3 = function ($$0) {
-  let c = $$0;
-  debugger;
-  const tmpReturnArg = obj[c];
-  return tmpReturnArg;
-};
-const tmpCalleeParam = `a is not b`.replace(tmpCalleeParam$1, tmpCalleeParam$3);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +39,15 @@ With rename=true
 $( "1->is->not->2" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '1->is->not->2'

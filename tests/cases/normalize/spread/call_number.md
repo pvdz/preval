@@ -12,12 +12,14 @@
 $(...100);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(...100);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,19 +28,6 @@ $(...100);
 $(...100);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(...100);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(...100);
-`````
 
 ## PST Settled
 With rename=true
@@ -47,11 +36,15 @@ With rename=true
 $( ...100 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

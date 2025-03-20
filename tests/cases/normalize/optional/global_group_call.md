@@ -13,6 +13,7 @@ const y = (1, 2, $())?.foo
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,29 +41,6 @@ if (tmpChainRootProp == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = (1, 2, $())?.foo;
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let y = undefined;
-const tmpChainRootProp = $();
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.foo;
-  y = tmpChainElementObject;
-  $(tmpChainElementObject);
-} else {
-  $(y);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +57,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

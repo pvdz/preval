@@ -15,6 +15,7 @@ $(arr[false]);
 $(`${arr[2]}xyz`);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(tmpCalleeParam$1);
 $(`3xyz`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,33 +37,6 @@ $([1, 2, 3, 4].false);
 $(`3xyz`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4];
-$(arr[`length`]);
-$(arr[false]);
-$(`` + $coerce(arr[2], `string`) + `xyz`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4];
-const tmpCalleeParam = arr.length;
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = arr.false;
-$(tmpCalleeParam$1);
-const tmpBinBothLhs = ``;
-const tmpCalleeParam$5 = arr[2];
-const tmpBinBothRhs = $coerce(tmpCalleeParam$5, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam$3 = `${tmpStringConcatR}xyz`;
-$(tmpCalleeParam$3);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +49,15 @@ $( b );
 $( "3xyz" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 4

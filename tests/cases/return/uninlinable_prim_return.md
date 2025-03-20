@@ -31,6 +31,7 @@ g();
 $(g());
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ const tmpCalleeParam /*:primitive*/ = g();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -82,68 +84,6 @@ g();
 $(g());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`abc`);
-  if ($(1)) {
-    $(`def`);
-  }
-  return 15;
-};
-let g = function () {
-  debugger;
-  if ($(1)) {
-    return f();
-  } else {
-    const x = f();
-    $(x, `foooopsie`);
-  }
-};
-g();
-g();
-g();
-g();
-$(g());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`abc`);
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(`def`);
-    return 15;
-  } else {
-    return 15;
-  }
-};
-let g = function () {
-  debugger;
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    const tmpReturnArg = f();
-    return tmpReturnArg;
-  } else {
-    const x = f();
-    $(x, `foooopsie`);
-    return undefined;
-  }
-};
-g();
-g();
-g();
-g();
-const tmpCalleeParam = g();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -173,11 +113,15 @@ const d = a();
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

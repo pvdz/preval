@@ -18,6 +18,7 @@ arr[0] = 1;
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const arr /*:array*/ = [1];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -33,36 +35,6 @@ $(arr);
 $([1]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  a[0] = 2;
-};
-const arr = [];
-f(arr);
-arr[0] = 1;
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  a[0] = 2;
-  return undefined;
-};
-const arr = [];
-f(arr);
-arr[0] = 1;
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -72,11 +44,15 @@ const a = [ 1 ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1]

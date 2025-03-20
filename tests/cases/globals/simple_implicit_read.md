@@ -12,12 +12,14 @@
 $(a);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(a);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,19 +28,6 @@ $(a);
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -47,13 +36,17 @@ With rename=true
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 a
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -23,6 +23,7 @@
 }
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -32,7 +33,9 @@ let c___4__ = 1;
 c___11__ = c___9__ + 1;
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 c:

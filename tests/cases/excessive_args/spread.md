@@ -18,6 +18,7 @@ const f = function () {
 f(...xyz);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ $(`a`);
 $(`a`);
 $(`a`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -40,34 +42,6 @@ $(`a`);
 $(`a`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  $(`a`);
-  $(`a`);
-  $(`a`);
-  $(`a`);
-};
-f(...xyz);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  $(`a`);
-  $(`a`);
-  $(`a`);
-  $(`a`);
-  return undefined;
-};
-f(...xyz);
-`````
 
 ## PST Settled
 With rename=true
@@ -80,13 +54,17 @@ $( "a" );
 $( "a" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 xyz
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

@@ -23,6 +23,7 @@ try {
 }
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ try {
 $(5);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,70 +65,6 @@ try {
 $(5);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  $finally: {
-    try {
-      $(1);
-      while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-        $continue: {
-          {
-            $(2);
-            if ($(3)) {
-              break $continue;
-            }
-            $(4);
-          }
-        }
-      }
-    } catch ($finalImplicit) {
-      $(5);
-      throw $finalImplicit;
-    }
-  }
-  {
-    $(5);
-  }
-  if ($implicitThrow) throw $finalCatchArg;
-  else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let $implicitThrow = false;
-let $finalCatchArg = undefined;
-try {
-  $(1);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $continue: {
-      $(2);
-      const tmpIfTest = $(3);
-      if (tmpIfTest) {
-        break $continue;
-      } else {
-        $(4);
-      }
-    }
-  }
-} catch ($finalImplicit) {
-  $(5);
-  throw $finalImplicit;
-}
-$(5);
-if ($implicitThrow) {
-  throw $finalCatchArg;
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -152,11 +90,21 @@ catch (b) {
 $( 5 );
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -194,6 +142,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

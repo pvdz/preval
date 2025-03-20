@@ -20,6 +20,7 @@ if ($) {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,34 +50,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = $(`a`);
-$(x);
-x = $(`b`);
-if ($) {
-} else {
-  x = $(`c`);
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = $(`a`);
-$(x);
-x = $(`b`);
-if ($) {
-  $(x);
-} else {
-  x = $(`c`);
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -93,11 +67,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

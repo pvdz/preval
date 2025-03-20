@@ -20,6 +20,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,25 +41,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  const rnd = Math.random();
-  $(rnd);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const rnd = $Math_random();
-  $(rnd);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +52,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
+- Support this ident in isFree CallExpression: $Math_random
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0.12556649118791485
@@ -111,7 +105,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
-- Support this ident in isFree CallExpression: $Math_random

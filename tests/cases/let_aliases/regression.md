@@ -18,6 +18,7 @@ a = $(`u`);
 const aa = [A, B, C];
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const aa = [A, B, C];
 $();
 $(`u`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,29 +36,6 @@ $();
 $(`u`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = $();
-const A = a;
-const B = a;
-const C = a;
-a = $(`u`);
-const aa = [A, B, C];
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = $();
-const A = a;
-const B = a;
-const C = a;
-a = $(`u`);
-const aa = [A, B, C];
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +45,15 @@ $();
 $( "u" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

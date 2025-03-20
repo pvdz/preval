@@ -22,6 +22,7 @@ function a() {
 $(a().b?.().c?.().d);
 `````
 
+
 ## Settled
 
 
@@ -62,6 +63,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -94,82 +96,6 @@ if (tmpChainElementObject == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-  const a$1 = {
-    a() {
-      debugger;
-      return a$1;
-    },
-    b() {
-      debugger;
-      return a$1;
-    },
-    c() {
-      debugger;
-      return a$1;
-    },
-    d() {
-      debugger;
-      return a$1;
-    },
-  };
-  return a$1;
-};
-$(a().b?.().c?.().d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = function () {
-  debugger;
-  const a$1 = {
-    a() {
-      debugger;
-      return a$1;
-    },
-    b() {
-      debugger;
-      return a$1;
-    },
-    c() {
-      debugger;
-      return a$1;
-    },
-    d() {
-      debugger;
-      return a$1;
-    },
-  };
-  return a$1;
-};
-let tmpCalleeParam = undefined;
-const tmpChainRootCall = a;
-const tmpChainElementCall = a();
-const tmpChainElementObject = tmpChainElementCall.b;
-const tmpIfTest = tmpChainElementObject != null;
-if (tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, `b`);
-  const tmpChainElementObject$1 = tmpChainElementCall$1.c;
-  const tmpIfTest$1 = tmpChainElementObject$1 != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementCall$3 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, `c`);
-    const tmpChainElementObject$3 = tmpChainElementCall$3.d;
-    tmpCalleeParam = tmpChainElementObject$3;
-    $(tmpChainElementObject$3);
-  } else {
-    $(tmpCalleeParam);
-  }
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -213,11 +139,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

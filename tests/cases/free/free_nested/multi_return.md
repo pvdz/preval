@@ -31,6 +31,7 @@ const tmp = $frfr(g, x, y);
 $(tmp);
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ const tmp /*:number*/ = $frfr(g, x, y);
 $(tmp);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,70 +79,6 @@ const x = $(100) * 1;
 $($frfr(g, x, $(200) * 1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function $free($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const c = a + b;
-  const d = c * 10;
-  if (d > 40) {
-    return d * 10;
-  }
-  return d;
-};
-const g = function $free($$0, $$1) {
-  let n = $$0;
-  let o = $$1;
-  debugger;
-  const p = n * 20;
-  const q = o * 40;
-  const r = $frfr(f, p, q);
-  return r;
-};
-const x = $(100) * 1;
-const y = $(200) * 1;
-const tmp = $frfr(g, x, y);
-$(tmp);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function $free($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  const c = a + b;
-  const d = c * 10;
-  const tmpIfTest = d > 40;
-  if (tmpIfTest) {
-    const tmpReturnArg = d * 10;
-    return tmpReturnArg;
-  } else {
-    return d;
-  }
-};
-const g = function $free($$0, $$1) {
-  let n = $$0;
-  let o = $$1;
-  debugger;
-  const p = n * 20;
-  const q = o * 40;
-  const r = $frfr(f, p, q);
-  return r;
-};
-const tmpBinLhs = $(100);
-const x = tmpBinLhs * 1;
-const tmpBinLhs$1 = $(200);
-const y = tmpBinLhs$1 * 1;
-const tmp = $frfr(g, x, y);
-$(tmp);
-`````
 
 ## PST Settled
 With rename=true
@@ -171,11 +109,15 @@ const o = p( a, l, n );
 $( o );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

@@ -28,6 +28,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ $inlinedFunction: {
   $(x);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -70,53 +72,6 @@ $inlinedFunction: {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    fail_early;
-    if ($) {
-      return;
-    } else {
-      x = `pass`;
-      throw `too`;
-    }
-    x = `fail2`;
-  } catch (e) {
-    $(`caught`);
-  }
-  $(x);
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let x = `fail`;
-  try {
-    fail_early;
-    if ($) {
-      return undefined;
-    } else {
-      x = `pass`;
-      throw `too`;
-    }
-  } catch (e) {
-    $(`caught`);
-  }
-  $(x);
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -141,13 +96,17 @@ $inlinedFunction: {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 fail_early
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'caught'

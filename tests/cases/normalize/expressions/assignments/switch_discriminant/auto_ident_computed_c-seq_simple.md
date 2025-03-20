@@ -19,6 +19,7 @@ switch ((a = (1, 2, $(b))[$("c")])) {
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(100);
 $(tmpClusterSSA_a, b);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -43,35 +45,6 @@ $(100);
 $(tmpClusterSSA_a, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = (a = (1, 2, $(b))[$(`c`)]);
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $(`c`);
-a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-let tmpSwitchDisc = a;
-$(100);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +58,15 @@ $( 100 );
 $( d, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { c: '1' }

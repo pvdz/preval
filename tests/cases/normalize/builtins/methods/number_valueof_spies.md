@@ -14,6 +14,7 @@ const y = $spy('b');
 200..valueOf(x, y);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const y = $spy('b');
 $spy(`a`);
 $spy(`b`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,22 +32,6 @@ $spy(`a`);
 $spy(`b`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $spy(`a`);
-const y = $spy(`b`);
-(200).valueOf(x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $spy(`a`);
-const y = $spy(`b`);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +41,15 @@ $spy( "a" );
 $spy( "b" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']

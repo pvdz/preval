@@ -27,6 +27,7 @@ obj.x += 5; // This line should become `obj.x = obj.x + 5`
 $(a, s); // 5, 'read;write[5]'
 `````
 
+
 ## Settled
 
 
@@ -57,6 +58,7 @@ obj.x = tmpAssignMemRhs;
 $(a, s);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -81,62 +83,6 @@ obj.x = obj.x + 5;
 $(a, s);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let s = ``;
-let a = 0;
-const obj = {
-  get x() {
-    debugger;
-    s += `read;`;
-    return a;
-  },
-  set x($$0) {
-    let v = $$0;
-    debugger;
-    s += `write[` + v + `];`;
-    a += v;
-    return a;
-  },
-};
-obj.x += 5;
-$(a, s);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let s = ``;
-let a = 0;
-const obj = {
-  get x() {
-    debugger;
-    const tmpStringConcatR = $coerce(s, `plustr`);
-    s = `${tmpStringConcatR}read;`;
-    return a;
-  },
-  set x($$0) {
-    let v = $$0;
-    debugger;
-    const tmpBinBothLhs = s;
-    const tmpStringConcatL = $coerce(v, `plustr`);
-    const tmpBinLhs = `write[${tmpStringConcatL}`;
-    const tmpStringConcatR$1 = $coerce(tmpBinLhs, `plustr`);
-    const tmpBinBothRhs = `${tmpStringConcatR$1}];`;
-    s = tmpBinBothLhs + tmpBinBothRhs;
-    a = a + v;
-    return a;
-  },
-};
-const tmpCompoundAssignLhs = obj.x;
-const tmpAssignMemLhsObj = obj;
-const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-$(a, s);
-`````
 
 ## PST Settled
 With rename=true
@@ -168,11 +114,15 @@ c.x = j;
 $( b, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 5, 'read;write[5];'

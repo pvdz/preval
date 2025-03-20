@@ -12,6 +12,7 @@
 $(new RegExp("foo\\(x\\)"));
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam /*:regex*/ = /foo\(x\)/;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,20 +29,6 @@ $(tmpCalleeParam);
 $(/foo\(x\)/);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(new RegExp(`foo\\(x\\)`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = /foo\(x\)/;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +38,15 @@ const a = /foo\(x\)/;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

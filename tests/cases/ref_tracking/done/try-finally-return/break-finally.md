@@ -31,6 +31,7 @@
 }
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -64,7 +65,9 @@ here___7__: /*8*/ {
 $(x___71__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 x:

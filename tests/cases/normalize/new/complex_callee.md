@@ -12,6 +12,7 @@
 $(new ($()));
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:object*/ = new tmpNewCallee();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -29,21 +31,6 @@ const tmpNewCallee = $();
 $(new tmpNewCallee());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(new ($())());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpNewCallee = $();
-const tmpCalleeParam = new tmpNewCallee();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,11 +41,15 @@ const b = new a();
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

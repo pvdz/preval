@@ -17,6 +17,7 @@ $(xyz);
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 0);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,29 +36,6 @@ $(0);
 $({ a: 999, b: 1000 }, 0);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let xyz = --b;
-$(xyz);
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpPostUpdArgIdent = $coerce(b, `number`);
-b = tmpPostUpdArgIdent - 1;
-let xyz = b;
-$(b);
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -70,11 +49,15 @@ const a = {
 $( a, 0 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

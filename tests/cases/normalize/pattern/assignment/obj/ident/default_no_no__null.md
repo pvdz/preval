@@ -13,6 +13,7 @@
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $('bad');
 x = null.x;
 $(`bad`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,22 +31,6 @@ x = null.x;
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-({ x: x } = null);
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpAssignObjPatternRhs = null;
-x = tmpAssignObjPatternRhs.x;
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -54,13 +40,17 @@ x = null.x;
 $( "bad" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

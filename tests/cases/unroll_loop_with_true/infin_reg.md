@@ -24,6 +24,7 @@ while (tst) {
 }
 `````
 
+
 ## Settled
 
 
@@ -55,6 +56,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -84,43 +86,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(-1);
-$(0);
-$(1);
-$(2);
-let i = 3;
-let tst = true;
-while (tst) {
-  $(i);
-  i = i + 1;
-  tst = i > -5;
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(-1);
-$(0);
-$(1);
-$(2);
-let i = 3;
-let tst = true;
-while (true) {
-  if (tst) {
-    $(i);
-    i = i + 1;
-    tst = i > -5;
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -155,11 +120,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: -1

@@ -17,6 +17,7 @@ $(2);
 $dotCall(method, obj, 'f', 10);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ $(1);
 $(2);
 $(10);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,38 +37,6 @@ $(2);
 $(10);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function ($$0) {
-  let a = $$0;
-  debugger;
-  $(a);
-};
-const obj = { f: g };
-const method = obj.f;
-$(1);
-$(2);
-$dotCall(method, obj, `f`, 10);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function ($$0) {
-  let a = $$0;
-  debugger;
-  $(a);
-  return undefined;
-};
-const obj = { f: g };
-const method = obj.f;
-$(1);
-$(2);
-$dotCall(method, obj, `f`, 10);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +47,15 @@ $( 2 );
 $( 10 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

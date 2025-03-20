@@ -17,6 +17,7 @@ class x {
 x().y;
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const tmpCompObj /*:unknown*/ = x();
 tmpCompObj.y;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,33 +43,6 @@ const x = class {
 x().y;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = `y`;
-let x = class {
-  x() {
-    debugger;
-  }
-};
-x().y;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const y = `y`;
-let x = class {
-  x() {
-    debugger;
-    return undefined;
-  }
-};
-const tmpCompObj = x();
-tmpCompObj.y;
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +58,15 @@ const b = a();
 b.y;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Class constructor x cannot be invoked without 'new' ]>")

@@ -14,6 +14,7 @@ x + $;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const x /*:number*/ = 0 * $;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,23 +33,6 @@ $ + 0;
 $(0 * $);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = `` * $;
-x + $;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = 0 * $;
-x + $;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +43,15 @@ const a = 0 * $;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: NaN

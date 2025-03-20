@@ -16,6 +16,7 @@ async function f() {
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const f /*:()=>promise*/ = async function () {
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,30 +40,6 @@ $(async function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = async function () {
-  debugger;
-  const x = await $LOOP_DONE_UNROLLING_ALWAYS_TRUE;
-  $(x);
-};
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = async function () {
-  debugger;
-  const x = await true;
-  $(x);
-  return undefined;
-};
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +54,21 @@ const a = async function() {
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- inline async functions safely (because await)
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -93,6 +81,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline async functions safely (because await)

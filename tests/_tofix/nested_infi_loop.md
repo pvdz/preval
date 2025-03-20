@@ -21,6 +21,7 @@ if ($) {
 }
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -52,37 +54,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if ($) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let x = $(1);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      $(x);
-      x = $(2);
-    }
-  }
-} else {
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if ($) {
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let x = $(1);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      $(x);
-      x = $(2);
-    }
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +70,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

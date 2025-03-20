@@ -23,6 +23,7 @@
 }
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -45,7 +46,9 @@ if ($implicitThrow___34__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 x:

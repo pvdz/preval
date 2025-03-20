@@ -20,6 +20,7 @@ A: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(3);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(2);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,54 +46,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-A: while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $continue: {
-    {
-      {
-        let $implicitThrow = false;
-        let $finalCatchArg = undefined;
-        $finally: {
-          try {
-            $(1);
-          } catch ($finalImplicit) {
-            $implicitThrow = true;
-            $finalCatchArg = $finalImplicit;
-          }
-        }
-        {
-          $(2);
-          break $continue;
-        }
-        if ($implicitThrow) throw $finalCatchArg;
-        else {
-        }
-      }
-    }
-  }
-}
-$(3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let $implicitThrow = false;
-  let $finalCatchArg = undefined;
-  try {
-    $(1);
-  } catch ($finalImplicit) {
-    $implicitThrow = true;
-    $finalCatchArg = $finalImplicit;
-  }
-  $(2);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -108,11 +62,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

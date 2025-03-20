@@ -15,6 +15,7 @@ function f({ x: [y] }) {
 $(f({}, 10));
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ arrPatternSplat[0];
 $(`bad`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,39 +36,6 @@ const objPatternNoDefault = $Object_prototype.x;
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {
-    x: [y],
-  } = tmpParamBare;
-  return `bad`;
-};
-$(f({}, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = tmpParamBare;
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let arrPatternSplat = [...objPatternNoDefault];
-  let y = arrPatternSplat[0];
-  return `bad`;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = {};
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +47,21 @@ b[ 0 ];
 $( "bad" );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -94,6 +73,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

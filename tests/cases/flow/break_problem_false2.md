@@ -25,6 +25,7 @@ const tmpLabeledBlockFunc = function () {
 tmpLabeledBlockFunc();
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ if (tmpIfTest$3) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,43 +50,6 @@ if ($(false)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpLabeledBlockFunc = function () {
-  debugger;
-  const tmpIfTest$3 = $(false);
-  if (tmpIfTest$3) {
-    $(`fail`);
-    return undefined;
-  } else {
-    $(`pass`);
-    return undefined;
-  }
-  $(`pass`);
-  return undefined;
-};
-tmpLabeledBlockFunc();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpLabeledBlockFunc = function () {
-  debugger;
-  const tmpIfTest$3 = $(false);
-  if (tmpIfTest$3) {
-    $(`fail`);
-    return undefined;
-  } else {
-    $(`pass`);
-    return undefined;
-  }
-};
-tmpLabeledBlockFunc();
-`````
 
 ## PST Settled
 With rename=true
@@ -99,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

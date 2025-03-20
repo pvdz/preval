@@ -22,6 +22,7 @@ while (test) {
 }
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ while (true) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -84,45 +86,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let counter = 0;
-  let test = counter < 10;
-  while (test) {
-    while (test) {
-      $(`yolo`);
-      counter = counter + 1;
-      test = counter < 10;
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let counter = 0;
-let test = counter < 10;
-while (true) {
-  if (test) {
-    while (true) {
-      if (test) {
-        $(`yolo`);
-        counter = counter + 1;
-        test = counter < 10;
-      } else {
-        break;
-      }
-    }
-  } else {
-    break;
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -160,11 +123,21 @@ while (true) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'yolo'
@@ -186,6 +159,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

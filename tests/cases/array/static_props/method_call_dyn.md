@@ -16,6 +16,7 @@ arr[$('splice')](1, 2, 20);
 $(arr.length);
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpCalleeParam /*:number*/ = arr.length;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,26 +39,6 @@ arr[tmpCallCompProp](1, 2, 20);
 $(arr.length);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-arr[$(`splice`)](1, 2, 20);
-$(arr.length);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3];
-const tmpCallCompObj = arr;
-const tmpCallCompProp = $(`splice`);
-tmpCallCompObj[tmpCallCompProp](1, 2, 20);
-const tmpCalleeParam = arr.length;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +51,21 @@ const c = b.length;
 $( c );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'splice'
@@ -87,6 +79,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

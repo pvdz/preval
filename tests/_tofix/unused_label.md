@@ -20,6 +20,7 @@ const s = f();
 $(s);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const t /*:unknown*/ = $(1, `return`);
 $(t);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,37 +37,6 @@ $(t);
 $($(1, `return`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const t = $(1, `return`);
-    return t;
-  }
-  return undefined;
-};
-const s = f();
-$(s);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const t = $(1, `return`);
-    return t;
-  }
-  return undefined;
-};
-const s = f();
-$(s);
-`````
 
 ## PST Settled
 With rename=true
@@ -75,11 +46,15 @@ const a = $( 1, "return" );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 'return'

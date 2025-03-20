@@ -15,12 +15,14 @@ const alias = obj.f;
 $($dotCall(alias, obj, 'f'));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`win`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,31 +31,6 @@ $(`win`);
 $(`win`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  return `win`;
-};
-const obj = { f: g };
-const alias = obj.f;
-$($dotCall(alias, obj, `f`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const g = function () {
-  debugger;
-  return `win`;
-};
-const obj = { f: g };
-const tmpCalleeParam = obj.f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -62,11 +39,15 @@ With rename=true
 $( "win" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'win'

@@ -19,6 +19,7 @@ do {
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -44,6 +45,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -64,47 +66,6 @@ if (arr[0] < 10) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arr;
-while (true) {
-  {
-    arr = [0];
-    arr[0] = arr[0] + 1;
-    $(arr);
-  }
-  if (arr[0] < 10) {
-  } else {
-    break;
-  }
-}
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arr = undefined;
-while (true) {
-  arr = [0];
-  const tmpAssignComputedObj = arr;
-  const tmpAssignComputedProp = 0;
-  const tmpBinLhs = arr[0];
-  const tmpAssignComputedRhs = tmpBinLhs + 1;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-  $(arr);
-  const tmpBinLhs$1 = arr[0];
-  const tmpIfTest = tmpBinLhs$1 < 10;
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
-}
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -134,11 +95,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1]

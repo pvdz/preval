@@ -13,6 +13,7 @@ let a = 1, b = 2, c = 3;
 for (let a = ($(b), $(c)).x = $(c);false;) $(a, b, c);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,34 +34,6 @@ const varInitAssignLhsComputedObj = $(3);
 varInitAssignLhsComputedObj.x = $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = 2,
-  c = 3;
-{
-  let a$1 = (($(b), $(c)).x = $(c));
-  while (false) {
-    $(a$1, b, c);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
-$(b);
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedRhs = $(c);
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-let a$1 = varInitAssignLhsComputedRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +45,15 @@ const b = $( 3 );
 a.x = b;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

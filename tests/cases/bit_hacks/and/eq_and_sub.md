@@ -17,6 +17,7 @@ if (a === 32) {
 }
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,33 +40,6 @@ if ($(33) === 32) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(33);
-if (a === 32) {
-  if (a & 32) {
-    $(`pass`);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(33);
-const tmpIfTest = a === 32;
-if (tmpIfTest) {
-  const tmpIfTest$1 = a & 32;
-  if (tmpIfTest$1) {
-    $(`pass`);
-  } else {
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +52,15 @@ if (b) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 33

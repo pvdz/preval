@@ -15,6 +15,7 @@ arr.push('a', 'b');
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ arr.splice(1, 2);
 arr.push(`a`, `b`);
 $(arr);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,25 +37,6 @@ arr.push(`a`, `b`);
 $(arr);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4];
-arr.splice(1, 2);
-arr.push(`a`, `b`);
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4];
-arr.splice(1, 2);
-arr.push(`a`, `b`);
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +48,21 @@ a.push( "a", "b" );
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_splice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 4, 'a', 'b']
@@ -82,6 +75,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_splice

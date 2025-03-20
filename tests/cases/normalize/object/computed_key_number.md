@@ -12,6 +12,7 @@
 $({[100]: 10});
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpCalleeParam /*:object*/ = { [100]: 10 };
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -27,20 +29,6 @@ $(tmpCalleeParam);
 $({ [100]: 10 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$({ [100]: 10 });
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = { [100]: 10 };
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -50,11 +38,15 @@ const a = { [ 100 ]: 10 };
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { 100: '10' }

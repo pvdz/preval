@@ -18,6 +18,7 @@ obj[(a = { x, y } = ($(x), $(y), { x: $(3), y: $(4) }))];
 $(a, x, y);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLit
 obj[tmpNestedAssignObjPatternRhs];
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -46,39 +48,6 @@ obj[tmpNestedAssignObjPatternRhs];
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1,
-  y = 2;
-let a = { a: 999, b: 1000 };
-let obj = {};
-obj[(a = { x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }))];
-$(a, x, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-let obj = {};
-const tmpCompObj = obj;
-$(x);
-$(y);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x = tmpNestedAssignObjPatternRhs.x;
-y = tmpNestedAssignObjPatternRhs.y;
-a = tmpNestedAssignObjPatternRhs;
-let tmpCompProp = a;
-tmpCompObj[tmpCompProp];
-$(a, x, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -97,11 +66,15 @@ c[ d ];
 $( d, a, b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

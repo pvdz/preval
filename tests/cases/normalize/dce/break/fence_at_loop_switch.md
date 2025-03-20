@@ -32,6 +32,7 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+
 ## Settled
 
 
@@ -73,6 +74,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -106,58 +108,6 @@ if ($(true)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($(true)) {
-  $(`loop`);
-  tmpSwitchBreak: {
-    const tmpSwitchDisc = $(true, `dis`);
-    if (tmpSwitchDisc === $(true, `case`)) {
-      $(`case`);
-      break tmpSwitchBreak;
-      $(`fail`);
-    } else if (true) {
-      $(`do not visit, default`);
-      break tmpSwitchBreak;
-      $(`fail`);
-    } else {
-    }
-  }
-  $(`infiloop, do not eliminate`);
-}
-$(`after (not invoked)`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    tmpSwitchBreak: {
-      $(`loop`);
-      const tmpSwitchDisc = $(true, `dis`);
-      const tmpBinBothLhs = tmpSwitchDisc;
-      const tmpBinBothRhs = $(true, `case`);
-      const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
-      if (tmpIfTest$1) {
-        $(`case`);
-        break tmpSwitchBreak;
-      } else {
-        $(`do not visit, default`);
-        break tmpSwitchBreak;
-      }
-    }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
-  }
-}
-$(`after (not invoked)`);
-`````
 
 ## PST Settled
 With rename=true
@@ -204,11 +154,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

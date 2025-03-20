@@ -19,12 +19,14 @@
 $('ok');
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`ok`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,36 +35,6 @@ $(`ok`);
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-[
-  [
-    {
-      x: [],
-    },
-  ],
-] = [[{ x: [1, 2, 3] }, 20, 30], 40, 50];
-$(`ok`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = [1, 2, 3];
-const tmpArrElement$1 = { x: tmpObjLitVal };
-const tmpArrElement = [tmpArrElement$1, 20, 30];
-const arrAssignPatternRhs = [tmpArrElement, 40, 50];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternStep$1 = arrPatternSplat$1[0];
-const objPatternNoDefault = arrPatternStep$1.x;
-const arrPatternSplat$3 = [...objPatternNoDefault];
-$(`ok`);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +43,22 @@ With rename=true
 $( "ok" );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'ok'
@@ -88,7 +71,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

@@ -12,12 +12,14 @@
 $(typeof setTimeout)
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`function`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,20 +28,6 @@ $(`function`);
 $(`function`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(typeof setTimeout);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = `function`;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -48,11 +36,15 @@ With rename=true
 $( "function" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'function'

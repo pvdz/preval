@@ -29,6 +29,7 @@ function f(x) {
 f($(1));
 `````
 
+
 ## Settled
 
 
@@ -52,6 +53,7 @@ if (b) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -70,62 +72,6 @@ if ($(1) === 10) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  const b = x === 10;
-  if (b) {
-    $(`a`, b);
-    return g(b);
-  } else {
-    $(`b`, b);
-    return g(b);
-  }
-};
-let g = function ($$0) {
-  let arg = $$0;
-  debugger;
-  $(arg);
-  $(arg);
-  $(arg);
-};
-f($(1));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  const b = x === 10;
-  if (b) {
-    $(`a`, b);
-    const tmpReturnArg = g(b);
-    return tmpReturnArg;
-  } else {
-    $(`b`, b);
-    const tmpReturnArg$1 = g(b);
-    return tmpReturnArg$1;
-  }
-};
-let g = function ($$0) {
-  let arg = $$0;
-  debugger;
-  $(arg);
-  $(arg);
-  $(arg);
-  return undefined;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam = $(1);
-tmpCallCallee(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -151,11 +97,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

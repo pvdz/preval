@@ -25,6 +25,7 @@ while (flag) {
 $('after');
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -56,47 +58,6 @@ if (0 < tmpBinBothRhs) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let n = 0;
-let flag = true;
-$(`before`);
-const x = n < $(5);
-if (x) {
-} else {
-  flag = false;
-}
-while (flag) {
-  $(`again`);
-}
-$(`after`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let n = 0;
-let flag = true;
-$(`before`);
-const tmpBinBothLhs = n;
-const tmpBinBothRhs = $(5);
-const x = tmpBinBothLhs < tmpBinBothRhs;
-if (x) {
-} else {
-  flag = false;
-}
-while (true) {
-  if (flag) {
-    $(`again`);
-  } else {
-    break;
-  }
-}
-$(`after`);
-`````
 
 ## PST Settled
 With rename=true
@@ -115,11 +76,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'before'

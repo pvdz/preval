@@ -12,6 +12,7 @@
 $(!!!!!$(1));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg$3;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,25 +32,6 @@ const tmpUnaryArg$3 = Boolean($(1));
 $(!tmpUnaryArg$3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(!!!!!$(1));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpUnaryArg$7 = $(1);
-const tmpUnaryArg$5 = !tmpUnaryArg$7;
-const tmpUnaryArg$3 = !tmpUnaryArg$5;
-const tmpUnaryArg$1 = !tmpUnaryArg$3;
-const tmpUnaryArg = !tmpUnaryArg$1;
-const tmpCalleeParam = !tmpUnaryArg;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +43,15 @@ const c = !b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -12,6 +12,7 @@
 $(!void $(100));
 `````
 
+
 ## Settled
 
 
@@ -19,6 +20,7 @@ $(!void $(100));
 $(100);
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,22 +30,6 @@ $(100);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(!void $(100));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(100);
-const tmpUnaryArg = undefined;
-const tmpCalleeParam = !tmpUnaryArg;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +39,15 @@ $( 100 );
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

@@ -134,6 +134,7 @@ $(x, y, z);
 
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -168,7 +169,9 @@ while (true) {
 $(x___70__, y___71__, z___72__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                 | reads      | read by     | overWrites     | overwritten by
 x:

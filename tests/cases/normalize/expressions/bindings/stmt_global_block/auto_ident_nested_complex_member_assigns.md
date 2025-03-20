@@ -20,6 +20,7 @@
 }
 `````
 
+
 ## Settled
 
 
@@ -45,6 +46,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 $(3, b, 3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -72,51 +74,6 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 $(3, b, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let b = { x: 1 },
-    c = 3;
-  let a = ($(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = c);
-  $(a, b, c);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = 3;
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(b);
-const varInitAssignLhsComputedProp$1 = $(`x`);
-const varInitAssignLhsComputedObj$3 = $(b);
-const varInitAssignLhsComputedProp$3 = $(`x`);
-const varInitAssignLhsComputedObj$5 = $(b);
-const varInitAssignLhsComputedProp$5 = $(`x`);
-const varInitAssignLhsComputedObj$7 = $(b);
-const varInitAssignLhsComputedProp$7 = $(`x`);
-const varInitAssignLhsComputedObj$9 = $(b);
-const varInitAssignLhsComputedProp$9 = $(`x`);
-const varInitAssignLhsComputedRhs$9 = c;
-varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = varInitAssignLhsComputedRhs$9;
-const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
-varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$7;
-const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let a = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs, b, c);
-`````
 
 ## PST Settled
 With rename=true
@@ -144,11 +101,15 @@ b[c] = 3;
 $( 3, a, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

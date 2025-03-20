@@ -18,6 +18,7 @@ const res /*:array*/ = str.split(args);
 $(res);
 `````
 
+
 ## Settled
 
 
@@ -30,6 +31,7 @@ const res /*:array*/ = str.split(s);
 $(res);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,31 +40,6 @@ const str = $coerce($(`xyz`), `plustr`);
 $(str.split($coerce($(`y`), `plustr`)));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const wat = $(`xyz`);
-const str = $coerce(wat, `plustr`);
-const wat2 = $(`y`);
-const s = $coerce(wat2, `plustr`);
-const args = [s];
-const res = str.split(args);
-$(res);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const wat = $(`xyz`);
-const str = $coerce(wat, `plustr`);
-const wat2 = $(`y`);
-const s = $coerce(wat2, `plustr`);
-const args = [s];
-const res = str.split(args);
-$(res);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +53,15 @@ const e = b.split( d );
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'xyz'

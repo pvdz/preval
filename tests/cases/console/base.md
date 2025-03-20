@@ -12,12 +12,14 @@
 console.log('console test case');
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 console.log(`console test case`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,19 +28,6 @@ console.log(`console test case`);
 console.log(`console test case`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-console.log(`console test case`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-console.log(`console test case`);
-`````
 
 ## PST Settled
 With rename=true
@@ -47,11 +36,15 @@ With rename=true
 console.log( "console test case" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

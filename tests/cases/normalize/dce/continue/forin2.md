@@ -21,6 +21,7 @@ while ($(true)) {
 $('after, wont eval due to infinite loop');
 `````
 
+
 ## Settled
 
 
@@ -47,6 +48,7 @@ while (true) {
 $(`after, wont eval due to infinite loop`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -70,60 +72,6 @@ while (true) {
 $(`after, wont eval due to infinite loop`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($(true)) {
-  {
-    let tmpForOfGen = $forOf([10, 20]);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForOfNext = tmpForOfGen.next();
-      if (tmpForOfNext.done) {
-        break;
-      } else {
-        let x = tmpForOfNext.value;
-        {
-          $continue: {
-            {
-              break $continue;
-              $(`fail`);
-            }
-          }
-        }
-      }
-    }
-  }
-  $(`keep`);
-}
-$(`after, wont eval due to infinite loop`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpCalleeParam = [10, 20];
-    let tmpForOfGen = $forOf(tmpCalleeParam);
-    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      let tmpForOfNext = tmpForOfGen.next();
-      const tmpIfTest$1 = tmpForOfNext.done;
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        let x = tmpForOfNext.value;
-      }
-    }
-    $(`keep`);
-  } else {
-    break;
-  }
-}
-$(`after, wont eval due to infinite loop`);
-`````
 
 ## PST Settled
 With rename=true
@@ -153,11 +101,21 @@ while (true) {
 $( "after, wont eval due to infinite loop" );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true
@@ -195,6 +153,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

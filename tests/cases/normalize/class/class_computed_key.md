@@ -17,6 +17,7 @@ class x {
 $(new x().f());
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCallObj.f();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,35 +50,6 @@ const x = class {
 $(new x().f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = class {
-  [$(`f`)]() {
-    debugger;
-    return $(100);
-  }
-};
-$(new x().f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpClassComputedKey = $(`f`);
-let x = class {
-  [tmpClassComputedKey]() {
-    debugger;
-    const tmpReturnArg = $(100);
-    return tmpReturnArg;
-  }
-};
-const tmpCallObj = new x();
-const tmpCalleeParam = tmpCallObj.f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +68,15 @@ const e = d.f();
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'f'

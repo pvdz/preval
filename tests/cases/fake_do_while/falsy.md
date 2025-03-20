@@ -22,6 +22,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $('end');
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`end`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,39 +57,6 @@ while (true) {
 $(`end`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let test = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (test) {
-    $(`breaking`);
-    break;
-  } else {
-    $(`loop`);
-    test = test + 1;
-  }
-}
-$(`end`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let test = 0;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (test) {
-    $(`breaking`);
-    break;
-  } else {
-    $(`loop`);
-    test = test + 1;
-  }
-}
-$(`end`);
-`````
 
 ## PST Settled
 With rename=true
@@ -105,11 +74,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( "end" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'loop'

@@ -15,6 +15,7 @@ delete o?.x;
 $(o);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(o);
 delete o.x;
 $(o);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,31 +37,6 @@ delete o.x;
 $(o);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let o = {};
-$(o);
-delete o?.x;
-$(o);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let o = {};
-$(o);
-const tmpDeleteOpt = o;
-const tmpIfTest = tmpDeleteOpt != null;
-if (tmpIfTest) {
-  delete tmpDeleteOpt.x;
-  $(o);
-} else {
-  $(o);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +48,15 @@ delete a.x;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

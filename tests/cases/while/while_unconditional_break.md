@@ -33,6 +33,7 @@ A: {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ try {
 $(x);
 $(3);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -61,48 +63,6 @@ $(x);
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-$(x);
-A: {
-  while (true) {
-    $finally: {
-      try {
-        $(x);
-        x = 2;
-        break $finally;
-      } catch (_) {}
-    }
-    $(x);
-    x = 3;
-    break A;
-  }
-  $(x);
-  x = 4;
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-$finally: {
-  $(x);
-  try {
-    $(x);
-    x = 2;
-    break $finally;
-  } catch (_) {}
-}
-$(x);
-x = 3;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -121,11 +81,15 @@ $( a );
 $( 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

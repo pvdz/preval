@@ -13,6 +13,7 @@ const a = {};
 $(a['true']);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const tmpCalleeParam /*:unknown*/ = $Object_prototype.true;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,22 +30,6 @@ $(tmpCalleeParam);
 $($Object_prototype.true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = {};
-$(a[`true`]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = {};
-const tmpCalleeParam = a.true;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +39,15 @@ const a = $Object_prototype.true;
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

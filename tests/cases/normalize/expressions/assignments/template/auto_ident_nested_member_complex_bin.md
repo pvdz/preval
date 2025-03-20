@@ -19,6 +19,7 @@ $(`before  ${(a = $(b)[$("x")] = $(c)[$("y")] = d + e)}  after`);
 $(a, b, c, d, e);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(`before  7  after`);
 $(7, b, c, 3, 4);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -51,47 +53,6 @@ $(`before  7  after`);
 $(7, b, c, 3, 4);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3,
-  e = 4;
-let a = { a: 999, b: 1000 };
-$(`before  ` + $coerce((a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e), `string`) + `  after`);
-$(a, b, c, d, e);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let e = 4;
-let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = `before  `;
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = d + e;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
-const tmpCalleeParam = `${tmpStringConcatR}  after`;
-$(tmpCalleeParam);
-$(a, b, c, d, e);
-`````
 
 ## PST Settled
 With rename=true
@@ -109,11 +70,21 @@ $( "before  7  after" );
 $( 7, a, d, 3, 4 );
 `````
 
+
+## Todos triggered
+
+
+- free with zero args, we can eliminate this?
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -131,6 +102,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- free with zero args, we can eliminate this?

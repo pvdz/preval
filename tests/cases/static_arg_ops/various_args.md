@@ -28,6 +28,7 @@ $(d);
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ $(d);
 $(-2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,53 +56,6 @@ $($(100));
 $(-2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const a$1 = $dlr_$$0;
-  y = ~a$1;
-  const r = $(100);
-  return r;
-};
-let y = undefined;
-const a = f(1);
-$(a);
-const b = f(2);
-$(b);
-const c = f(`a`);
-$(c);
-const d = f(true);
-$(d);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let $dlr_$$0 = $$0;
-  debugger;
-  const a$1 = $dlr_$$0;
-  y = ~a$1;
-  const r = $(100);
-  return r;
-};
-let y = undefined;
-const a = f(1);
-$(a);
-const b = f(2);
-$(b);
-const c = f(`a`);
-$(c);
-const d = f(true);
-$(d);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -117,11 +72,15 @@ $( d );
 $( -2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

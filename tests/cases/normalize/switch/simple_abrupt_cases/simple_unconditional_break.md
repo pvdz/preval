@@ -30,6 +30,7 @@ switch ($(1)) {
 }
 `````
 
+
 ## Settled
 
 
@@ -59,6 +60,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -84,71 +86,6 @@ if (tmpSwitchDisc === 0) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  if (tmpSwitchDisc === 0) {
-    $(`one`);
-    if (x) {
-      break tmpSwitchBreak;
-    }
-    break tmpSwitchBreak;
-  } else if (tmpSwitchDisc === 1) {
-    $(`two`);
-    break tmpSwitchBreak;
-  } else if (tmpSwitchDisc === 2) {
-    $(`three`);
-    break tmpSwitchBreak;
-  } else if (tmpSwitchDisc === 3) {
-    $(`four`);
-    break tmpSwitchBreak;
-  } else if (true) {
-    $(`def`);
-  } else {
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-tmpSwitchBreak: {
-  const tmpSwitchDisc = $(1);
-  const tmpIfTest = tmpSwitchDisc === 0;
-  if (tmpIfTest) {
-    $(`one`);
-    if (x) {
-      break tmpSwitchBreak;
-    } else {
-      break tmpSwitchBreak;
-    }
-  } else {
-    const tmpIfTest$1 = tmpSwitchDisc === 1;
-    if (tmpIfTest$1) {
-      $(`two`);
-      break tmpSwitchBreak;
-    } else {
-      const tmpIfTest$3 = tmpSwitchDisc === 2;
-      if (tmpIfTest$3) {
-        $(`three`);
-        break tmpSwitchBreak;
-      } else {
-        const tmpIfTest$5 = tmpSwitchDisc === 3;
-        if (tmpIfTest$5) {
-          $(`four`);
-          break tmpSwitchBreak;
-        } else {
-          $(`def`);
-        }
-      }
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -183,13 +120,17 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

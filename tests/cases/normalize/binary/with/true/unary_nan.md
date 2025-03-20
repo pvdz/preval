@@ -20,6 +20,7 @@ const arr = [
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const arr /*:array*/ = [-2, false, -1, 1, `boolean`, undefined];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,27 +37,6 @@ $(arr);
 $([-2, false, -1, 1, `boolean`, undefined]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [~true, !true, -true, +true, typeof true, void true];
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement = -2;
-const tmpArrElement$1 = false;
-const tmpArrElement$3 = -1;
-const tmpArrElement$5 = 1;
-const tmpArrElement$7 = `boolean`;
-const tmpArrElement$9 = undefined;
-const arr = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +46,15 @@ const a = [ -2, false, -1, 1, "boolean", undefined ];
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [-2, false, -1, 1, 'boolean', undefined]

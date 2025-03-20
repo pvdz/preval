@@ -25,6 +25,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -53,6 +54,7 @@ if (test$2) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -78,52 +80,6 @@ if (!test$2) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let i = 10;
-while (true) {
-  $continue: {
-    {
-      if (i-- > 0) break $continue;
-      const test = $(`first`);
-      $(`second`);
-      if (test) {
-        break;
-      } else {
-        $(`third`);
-      }
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let i = 10;
-while (true) {
-  $continue: {
-    const tmpPostUpdArgIdent = $coerce(i, `number`);
-    i = tmpPostUpdArgIdent - 1;
-    const tmpBinLhs = tmpPostUpdArgIdent;
-    const tmpIfTest = tmpBinLhs > 0;
-    if (tmpIfTest) {
-      break $continue;
-    } else {
-      const test = $(`first`);
-      $(`second`);
-      if (test) {
-        break;
-      } else {
-        $(`third`);
-      }
-    }
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -158,11 +114,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support this node type in isFree: LabeledStatement
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'first'
@@ -176,6 +142,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support this node type in isFree: LabeledStatement

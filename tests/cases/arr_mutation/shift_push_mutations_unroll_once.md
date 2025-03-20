@@ -25,6 +25,7 @@ while ($LOOP_UNROLL_1) {      // The unrolled body is not in a loop so it can in
 $(arr.slice(0));              // Don't let arr escape
 `````
 
+
 ## Settled
 
 
@@ -49,6 +50,7 @@ const tmpCalleeParam /*:array*/ = arr.slice(0);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,40 +70,6 @@ if (!test) {
 $(arr.slice(0));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_1) {
-  const test = $(`never`);
-  if (test) {
-    break;
-  } else {
-    const tmp = arr.shift();
-    arr.push(tmp);
-  }
-}
-$(arr.slice(0));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [1, 2, 3, 4, 5];
-while ($LOOP_UNROLL_1) {
-  const test = $(`never`);
-  if (test) {
-    break;
-  } else {
-    const tmp = arr.shift();
-    arr.push(tmp);
-  }
-}
-const tmpCalleeParam = arr.slice(0);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -130,11 +98,22 @@ const f = b.slice( 0 );
 $( f );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+- Calling a static method on an ident that is not global and not recorded: $arr_push
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'never'
@@ -148,7 +127,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
-- Calling a static method on an ident that is not global and not recorded: $arr_push

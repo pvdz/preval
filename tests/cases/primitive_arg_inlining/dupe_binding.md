@@ -35,6 +35,7 @@ $(f($(1), $(2)), 'outer1');
 $(f(100, $(200)), 'outer2');
 `````
 
+
 ## Settled
 
 
@@ -48,6 +49,7 @@ $(100, tmpCalleeParam$7);
 $(100, `outer2`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,42 +61,6 @@ $(100, $(200));
 $(100, `outer2`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  $(a, b);
-  return a;
-};
-$(f($(1), $(2)), `outer1`);
-$(f(100, $(200)), `outer2`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1) {
-  let a = $$0;
-  let b = $$1;
-  debugger;
-  $(a, b);
-  return a;
-};
-const tmpCallCallee = f;
-const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$3 = $(2);
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-$(tmpCalleeParam, `outer1`);
-const tmpCallCallee$1 = f;
-const tmpCalleeParam$7 = $(200);
-const tmpCalleeParam$5 = tmpCallCallee$1(100, tmpCalleeParam$7);
-$(tmpCalleeParam$5, `outer2`);
-`````
 
 ## PST Settled
 With rename=true
@@ -109,11 +75,15 @@ $( 100, c );
 $( 100, "outer2" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

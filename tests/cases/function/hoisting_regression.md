@@ -25,6 +25,7 @@ function f() {
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ const f /*:()=>unknown*/ = function () {
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,47 +64,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let incorrectlyhoisted = function () {
-    debugger;
-    $(thisrefgetslost);
-    return undefined;
-  };
-  if ($) {
-    return undefined;
-  } else {
-  }
-  let thisrefgetslost = $();
-  return incorrectlyhoisted;
-};
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let incorrectlyhoisted = function () {
-    debugger;
-    $(thisrefgetslost);
-    return undefined;
-  };
-  if ($) {
-    return undefined;
-  } else {
-  }
-  let thisrefgetslost = $();
-  return incorrectlyhoisted;
-};
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -124,11 +85,15 @@ const a = function() {
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

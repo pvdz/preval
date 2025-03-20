@@ -12,12 +12,14 @@
 $(delete null?.x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,27 +28,6 @@ $(true);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(delete null?.x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpDeleteOpt = null;
-let tmpCalleeParam = true;
-const tmpIfTest = tmpDeleteOpt != null;
-if (tmpIfTest) {
-  tmpCalleeParam = delete tmpDeleteOpt.x;
-  $(tmpCalleeParam);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +36,15 @@ With rename=true
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

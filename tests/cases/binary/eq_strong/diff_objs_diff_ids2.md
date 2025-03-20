@@ -14,6 +14,7 @@ let y = !tmpBinBothRhs$1;
 $(`out:`, y);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const y /*:boolean*/ = !tmpBinBothRhs$1;
 $(`out:`, y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,23 +33,6 @@ $coerce($, `string`);
 $(`out:`, !tmpBinBothRhs$1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpBinBothRhs = $coerce($, `string`);
-let y = !tmpBinBothRhs$1;
-$(`out:`, y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothRhs = $coerce($, `string`);
-let y = !tmpBinBothRhs$1;
-$(`out:`, y);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,13 +43,17 @@ const a = !tmpBinBothRhs$1;
 $( "out:", a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 tmpBinBothRhs$1
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

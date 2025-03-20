@@ -19,6 +19,7 @@ x = $(10);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,30 +47,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if ($) $($throwTDZError(`Preval: TDZ triggered for this read: \$(x)`));
-let x = $(5);
-$(x);
-x = $(10);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if ($) {
-  throw `Preval: TDZ triggered for this read: \$(x)`;
-} else {
-  let x = $(5);
-  $(x);
-  x = $(10);
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -85,11 +63,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")

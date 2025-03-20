@@ -17,6 +17,7 @@ const arr = [
 $(arr);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const arr /*:array*/ = [tmpArrElement];
 $(arr);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,26 +39,6 @@ const tmpArrElement = undefined ** (1 * tmpBinBothRhs);
 $([tmpArrElement]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = 1 * $(0);
-const arr = [undefined ** x];
-$(arr);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = 1;
-const tmpBinBothRhs = $(0);
-const x = tmpBinBothLhs * tmpBinBothRhs;
-const tmpArrElement = undefined ** x;
-const arr = [tmpArrElement];
-$(arr);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +51,15 @@ const d = [ c ];
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

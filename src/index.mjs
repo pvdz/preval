@@ -99,7 +99,9 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     // Compiled function data per file, Record<fname, Map<pid, {name:string, pcode}>
     pcodeData: {},
     // This is the PST converted from the AST as it was after Preval settled (but before denorm)
-    settledPst: {todo: 'updateMe'},
+    settledPst: {},
+    // This is for ref test tests
+    lastPhase1Ast: {},
   };
 
   const normalizeQueue = [entryPoint]; // Order is not relevant in this phase
@@ -279,7 +281,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing);
           // In a pcode test we have to run the pcode plugin here because we don't want ot run all of phase2
           if (options.pcodeTest) freeFuncs(fdata, prng, !!options.prngSeed);
-          contents.lastPhase1Ast = fdata.tenkoOutput.ast;
+          contents.lastPhase1Ast[fname] = fdata.tenkoOutput.ast;
 
           options?.onAfterPhase?.(1, passes, phaseLoop, fdata, false, options);
 
@@ -378,10 +380,10 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
       try {
         // Create PST before denormalizing it because PST only works (safely) on normalized code
-        contents.settledPst = astToPst(mod.fdata.tenkoOutput.ast);
+        contents.settledPst[fname] = astToPst(mod.fdata.tenkoOutput.ast);
       } catch (e) {
         console.error('AST to PST conversion failed:', e);
-        contents.settledPst = {failure: true, e};
+        contents.settledPst[fname] = {failure: true, e};
       }
 
       if (!options.refTest && !options.pcodeTest) {

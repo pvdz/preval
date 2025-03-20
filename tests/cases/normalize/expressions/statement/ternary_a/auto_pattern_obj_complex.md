@@ -14,6 +14,7 @@ $({ a: 1, b: 2 }) ? $(100) : $(200);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -42,31 +44,6 @@ if ($({ a: 1, b: 2 })) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let { a: a } = { a: 999, b: 1000 };
-$({ a: 1, b: 2 }) ? $(100) : $(200);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-const tmpCalleeParam = { a: 1, b: 2 };
-const tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
-  $(100);
-  $(a);
-} else {
-  $(200);
-  $(a);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -87,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { a: '1', b: '2' }

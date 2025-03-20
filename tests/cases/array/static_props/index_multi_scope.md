@@ -26,6 +26,7 @@ f();
 f();
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ f();
 f();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,47 +64,6 @@ f();
 f();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    $(arr[1]);
-  } else {
-    return;
-  }
-  $(`end`);
-};
-const arr = [1, $, 3];
-f();
-f();
-f();
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  if ($) {
-    const tmpCalleeParam = arr[1];
-    $(tmpCalleeParam);
-    $(`end`);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const arr = [1, $, 3];
-f();
-f();
-f();
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -125,11 +86,21 @@ a();
 a();
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'
@@ -149,6 +120,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope

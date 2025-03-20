@@ -15,6 +15,7 @@ if (x) $('then');
 else $('else');
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ if (y) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,28 +40,6 @@ if ($(0)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const y = $(0);
-const x = !y;
-if (x) $(`then`);
-else $(`else`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const y = $(0);
-const x = !y;
-if (x) {
-  $(`then`);
-} else {
-  $(`else`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +54,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

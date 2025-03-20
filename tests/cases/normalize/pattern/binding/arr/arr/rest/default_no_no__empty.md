@@ -13,6 +13,7 @@ const [[...x]] = [[]];
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const x /*:array*/ = [];
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -28,26 +30,6 @@ $(x);
 $([]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const [[...x]] = [[]];
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement = [];
-const bindingPatternArrRoot = [tmpArrElement];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const x = arrPatternSplat$1.slice(0);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +39,23 @@ const a = [];
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: []
@@ -74,8 +68,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice

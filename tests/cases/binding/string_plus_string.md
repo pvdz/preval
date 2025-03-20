@@ -24,6 +24,7 @@ $(f);
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ $(`A`, `B`, `AB`, `C`, `ABC`);
 $(`ABC`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -50,44 +52,6 @@ $(`A`, `B`, `AB`, `C`, `ABC`);
 $(`ABC`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const arr = [`A`, `B`];
-const f = function () {
-  debugger;
-  const a = arr[0];
-  const b = arr[1];
-  const ab = a + b;
-  const c = `C`;
-  const abc = ab + c;
-  $(a, b, ab, c, abc);
-  return abc;
-};
-$(f);
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const arr = [`A`, `B`];
-const f = function () {
-  debugger;
-  const a = arr[0];
-  const b = arr[1];
-  const ab = a + b;
-  const c = `C`;
-  const abc = ab + c;
-  $(a, b, ab, c, abc);
-  return abc;
-};
-$(f);
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -103,11 +67,21 @@ $( "A", "B", "AB", "C", "ABC" );
 $( "ABC" );
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -122,6 +96,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

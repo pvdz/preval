@@ -28,6 +28,7 @@ const tmpObjLitVal$159 = function() {
 $(tmpObjLitVal$159);
 `````
 
+
 ## Settled
 
 
@@ -55,6 +56,7 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
 $(tmpObjLitVal$159);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -73,64 +75,6 @@ $(function () {
 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpFree$1 = function $free($$0, $$1) {
-  let cs$1 = $$0;
-  let g$147 = $$1;
-  debugger;
-  const tmpBinBothLhs$3633 = cs$1 + 71046;
-  const tmpBinBothRhs$3633 = `\uf051`.charCodeAt(g$147);
-  const tmpCalleeParam$9457 = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
-  return tmpCalleeParam$9457;
-};
-$(tmpFree$1);
-const tmpObjLitVal$159 = function () {
-  debugger;
-  `` + $coerce(tmpBinBothRhs$32, `string`) + `_` + $coerce(tmpClusterSSA_r$2027, `string`) + ``;
-  while (true) {
-    const tmpBinBothRhs$3631 = $frfr(tmpFree$1, $, $);
-    p$171 = p$171 + tmpBinBothRhs$3631;
-  }
-  return undefined;
-};
-$(tmpObjLitVal$159);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpFree$1 = function $free($$0, $$1) {
-  let cs$1 = $$0;
-  let g$147 = $$1;
-  debugger;
-  const tmpBinBothLhs$3633 = cs$1 + 71046;
-  const tmpBinBothRhs$3633 = `\uf051`.charCodeAt(g$147);
-  const tmpCalleeParam$9457 = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
-  return tmpCalleeParam$9457;
-};
-$(tmpFree$1);
-const tmpObjLitVal$159 = function () {
-  debugger;
-  const tmpBinBothLhs$1 = ``;
-  const tmpBinBothRhs$1 = $coerce(tmpBinBothRhs$32, `string`);
-  const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-  const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-  const tmpBinBothLhs = `${tmpStringConcatR}_`;
-  const tmpBinBothRhs = $coerce(tmpClusterSSA_r$2027, `string`);
-  const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-  $coerce(tmpBinLhs, `plustr`);
-  while (true) {
-    const tmpBinBothRhs$3631 = $frfr(tmpFree$1, $, $);
-    p$171 = p$171 + tmpBinBothRhs$3631;
-  }
-  return undefined;
-};
-$(tmpObjLitVal$159);
-`````
 
 ## PST Settled
 With rename=true
@@ -159,13 +103,27 @@ const h = function() {
 $( h );
 `````
 
+
+## Todos triggered
+
+
+- Support string.charCodeAt when the arg is not a string literal
+- Support this node type in isFree: TemplateLiteral
+- Support referencing this builtin in isFree: $
+- - at least one of the frfr args was not isFree, bailing
+- Support non-primitive in first arg to $coerce
+
+
 ## Globals
+
 
 BAD@! Found 3 implicit global bindings:
 
 tmpBinBothRhs$32, tmpClusterSSA_r$2027, p$171
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'
@@ -179,10 +137,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support string.charCodeAt when the arg is not a string literal
-- Support this node type in isFree: TemplateLiteral
-- Support referencing this builtin in isFree: $
-- - at least one of the frfr args was not isFree, bailing
-- Support non-primitive in first arg to $coerce

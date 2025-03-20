@@ -12,6 +12,7 @@
 if (new ($($))) $(2);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ const tmpNewCallee /*:unknown*/ = $($);
 new tmpNewCallee();
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,24 +32,6 @@ new tmpNewCallee();
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if (new ($($))()) $(2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpNewCallee = $($);
-const tmpIfTest = new tmpNewCallee();
-if (tmpIfTest) {
-  $(2);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +42,15 @@ new a();
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

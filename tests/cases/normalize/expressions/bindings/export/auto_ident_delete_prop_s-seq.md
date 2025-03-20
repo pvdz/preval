@@ -15,6 +15,7 @@ export let a = delete ($(1), $(2), arg).y;
 $(a, arg);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const a /*:boolean*/ = delete arg.y;
 export { a };
 $(a, arg);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -39,28 +41,6 @@ export { a };
 $(a, arg);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let arg = { y: 1 };
-let a = delete ($(1), $(2), arg).y;
-export { a };
-$(a, arg);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let arg = { y: 1 };
-$(1);
-$(2);
-const tmpDeleteObj = arg;
-let a = delete tmpDeleteObj.y;
-export { a };
-$(a, arg);
-`````
 
 ## PST Settled
 With rename=true
@@ -74,11 +54,15 @@ export { b as a };
 $( b, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

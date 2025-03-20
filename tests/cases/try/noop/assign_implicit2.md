@@ -19,6 +19,7 @@ function f(x) {
 $(f(x));
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(f(x));
 x;
 $($);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,38 +37,6 @@ x;
 $($);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x$1 = $$0;
-  debugger;
-  let y = 100;
-  try {
-    y = $;
-  } catch (e) {}
-  return y;
-};
-$(f(x));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x$1 = $$0;
-  debugger;
-  let y = 100;
-  try {
-    y = $;
-  } catch (e) {}
-  return y;
-};
-const tmpCalleeParam = f(x);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,13 +46,17 @@ x;
 $( $ );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

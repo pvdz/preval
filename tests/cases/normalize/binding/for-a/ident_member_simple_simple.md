@@ -13,12 +13,14 @@ let a = 1, b = {x: 2}, c = 3;
 for (let a = b.x = c;false;) $(a, b, c);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,32 +29,6 @@ for (let a = b.x = c;false;) $(a, b, c);
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = { x: 2 },
-  c = 3;
-{
-  let a$1 = (b.x = c);
-  while (false) {
-    $(a$1, b, c);
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = { x: 2 };
-let c = 3;
-const varInitAssignLhsComputedRhs = c;
-b.x = varInitAssignLhsComputedRhs;
-let a$1 = varInitAssignLhsComputedRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +37,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

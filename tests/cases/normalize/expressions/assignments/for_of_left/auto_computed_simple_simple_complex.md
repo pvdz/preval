@@ -15,6 +15,7 @@ a["b"] = $(2);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ a.b = tmpAssignMemRhs$1;
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -60,53 +62,6 @@ a.b = $(2);
 $(a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-{
-  let tmpForOfGen = $forOf($({ x: 1 }));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForOfNext = tmpForOfGen.next();
-    if (tmpForOfNext.done) {
-      break;
-    } else {
-      (a = { b: $(1) }).x = tmpForOfNext.value;
-    }
-  }
-}
-a[`b`] = $(2);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = { x: 1 };
-const tmpCalleeParam = $(tmpCalleeParam$1);
-let tmpForOfGen = $forOf(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForOfNext = tmpForOfGen.next();
-  const tmpIfTest = tmpForOfNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpObjLitVal = $(1);
-    a = { b: tmpObjLitVal };
-    let tmpAssignMemLhsObj = a;
-    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-    const tmpAssignMemRhs = tmpForOfNext.value;
-    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  }
-}
-const tmpAssignMemLhsObj$3 = a;
-const tmpAssignMemRhs$1 = $(2);
-tmpAssignMemLhsObj$3.b = tmpAssignMemRhs$1;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -137,11 +92,21 @@ a.b = i;
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }
@@ -154,6 +119,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next

@@ -13,6 +13,7 @@ const a = {};
 $(a.b.c.d);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCompObj.d;
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,24 +32,6 @@ $(tmpCalleeParam);
 $($Object_prototype.b.c.d);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = {};
-$(a.b.c.d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = {};
-const tmpCompObj$1 = a.b;
-const tmpCompObj = tmpCompObj$1.c;
-const tmpCalleeParam = tmpCompObj.d;
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +43,15 @@ const c = b.d;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

@@ -16,6 +16,7 @@ f();
 f();
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ f();
 $(`inline me`);
 $(`inline me`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,30 +34,6 @@ $(`inline me`);
 $(`inline me`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`inline me`);
-};
-f();
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`inline me`);
-  return undefined;
-};
-f();
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +43,15 @@ $( "inline me" );
 $( "inline me" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'inline me'

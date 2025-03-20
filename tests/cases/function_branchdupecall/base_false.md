@@ -30,6 +30,7 @@ const r = $(5);
 $(f(v, p, q, r));
 `````
 
+
 ## Settled
 
 
@@ -43,6 +44,7 @@ const tmpReturnArg /*:primitive*/ = tmpBinLhs + r;
 $(tmpReturnArg);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,72 +56,6 @@ const r = $(5);
 $(p + q + r);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2, $$3) {
-  let a$1 = $$0;
-  let x = $$1;
-  let y = $$2;
-  let z = $$3;
-  debugger;
-  if (a$1) {
-    const t1 = g(x, y, z);
-    return t1;
-  } else {
-    const t2 = g(x, y, z);
-    return t2;
-  }
-};
-let g = function ($$0, $$1, $$2) {
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  debugger;
-  return a + b + c;
-};
-const v = $(false);
-const p = $(1);
-const q = $(3);
-const r = $(5);
-$(f(v, p, q, r));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2, $$3) {
-  let a$1 = $$0;
-  let x = $$1;
-  let y = $$2;
-  let z = $$3;
-  debugger;
-  if (a$1) {
-    const t1 = g(x, y, z);
-    return t1;
-  } else {
-    const t2 = g(x, y, z);
-    return t2;
-  }
-};
-let g = function ($$0, $$1, $$2) {
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  debugger;
-  const tmpBinLhs = a + b;
-  const tmpReturnArg = tmpBinLhs + c;
-  return tmpReturnArg;
-};
-const v = $(false);
-const p = $(1);
-const q = $(3);
-const r = $(5);
-const tmpCalleeParam = f(v, p, q, r);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -134,11 +70,15 @@ const e = d + c;
 $( e );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: false

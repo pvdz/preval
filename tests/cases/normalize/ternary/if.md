@@ -14,12 +14,14 @@ if ( a ? b : c) $(100);
 else $(200);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(100);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,36 +30,6 @@ $(100);
 $(100);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = 2,
-  c = 3;
-if (a ? b : c) $(100);
-else $(200);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = 2;
-let c = 3;
-let tmpIfTest = undefined;
-if (a) {
-  tmpIfTest = b;
-} else {
-  tmpIfTest = c;
-}
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(200);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +38,15 @@ With rename=true
 $( 100 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

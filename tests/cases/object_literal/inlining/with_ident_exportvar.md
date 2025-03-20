@@ -18,6 +18,7 @@ $(obj.f);
 $('nope');
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ $(e);
 `````js filename=xyz
 $(`nope`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -42,32 +44,6 @@ $(e);
 $(`nope`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-import e from 'xyz';
-const obj = { f: e };
-$(obj.f);
-`````
-
-`````js filename=xyz
-$(`nope`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-import { default as e } from 'xyz';
-const obj = { f: e };
-const tmpCalleeParam = obj.f;
-$(tmpCalleeParam);
-`````
-
-`````js filename=xyz
-$(`nope`);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,17 +54,20 @@ $( e );
 `````
 
 `````js filename=xyz
-import { default as e } from "xyz";
-$( e );
+$( "nope" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 e
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ Cannot use import statement outside a module ]>')

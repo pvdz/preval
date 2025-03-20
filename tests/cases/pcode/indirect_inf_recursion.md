@@ -24,27 +24,17 @@ function g(n) {
 $(f(0));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let n = $$0;
-  debugger;
-  return g(n);
-};
-let g = function ($$0) {
-  let n$1 = $$0;
-  debugger;
-  return f(n$1 + 1);
-};
-$(f(0));
-`````
 
 ## Pcode output
+
 
 `````fileintro
 
 `````
+
+
+
+
+## Pcode result
 
 

@@ -22,6 +22,7 @@ f(6, 2, 7);
 f(8, 2, 9);
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ f(6, 2, 7);
 f(8, 2, 9);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,50 +64,6 @@ f(6, 2, 7);
 f(8, 2, 9);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2, $$3) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  debugger;
-  if ($) {
-    $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
-  }
-};
-f(1, 2, 3, `oops`);
-f(4, 2, 5);
-f(6, 2, 7);
-f(8, 2, 9);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1, $$2, $$3) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  debugger;
-  if ($) {
-    $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-f(1, 2, 3, `oops`);
-f(4, 2, 5);
-f(6, 2, 7);
-f(8, 2, 9);
-`````
 
 ## PST Settled
 With rename=true
@@ -132,11 +90,15 @@ a( 6, 2, 7 );
 a( 8, 2, 9 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 2, 3, 'oops', 4, 'hopefully b is a literal afterwards'

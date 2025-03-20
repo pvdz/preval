@@ -18,6 +18,7 @@ function superExpensiveFunction() {
 superExpensiveFunction().x += 5;
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const tmpAssignMemRhs /*:primitive*/ = tmpCompoundAssignLhs + 5;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,32 +38,6 @@ const tmpAssignMemLhsObj = $();
 tmpAssignMemLhsObj.x = tmpAssignMemLhsObj.x + 5;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let superExpensiveFunction = function () {
-  debugger;
-  return $();
-};
-superExpensiveFunction().x += 5;
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let superExpensiveFunction = function () {
-  debugger;
-  const tmpReturnArg = $();
-  return tmpReturnArg;
-};
-const tmpAssignMemLhsObj = superExpensiveFunction();
-const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-`````
 
 ## PST Settled
 With rename=true
@@ -73,11 +49,15 @@ const c = b + 5;
 a.x = c;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

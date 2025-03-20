@@ -15,12 +15,14 @@ function f({} = $('pass')) {
 $(f('', 10));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`ok`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,48 +31,6 @@ $(`ok`);
 $(`ok`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let {} = tmpParamBare === undefined ? $(`pass`) : tmpParamBare;
-  return `ok`;
-};
-$(f(``, 10));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    bindingPatternObjRoot = $(`pass`);
-  } else {
-    bindingPatternObjRoot = tmpParamBare;
-  }
-  let objPatternCrashTest = bindingPatternObjRoot === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = bindingPatternObjRoot === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
-    return `ok`;
-  } else {
-    return `ok`;
-  }
-};
-const tmpCalleeParam = f(``, 10);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -79,11 +39,15 @@ With rename=true
 $( "ok" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'ok'

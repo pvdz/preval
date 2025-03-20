@@ -27,6 +27,7 @@ if (a) {
 $(x, 'end');
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ const a /*:boolean*/ = b === c;
 $(false, `middle`);
 $(a, `end`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -45,45 +47,6 @@ $(false, `middle`);
 $(a, `end`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = false;
-const a = b === c;
-if (a) {
-} else {
-  x = a;
-}
-$(x, `middle`);
-if (a) {
-  x = true;
-} else {
-  x = false;
-}
-$(x, `end`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = false;
-const a = b === c;
-if (a) {
-  $(x, `middle`);
-} else {
-  x = a;
-  $(a, `middle`);
-}
-if (a) {
-  x = true;
-  $(x, `end`);
-} else {
-  x = false;
-  $(x, `end`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -94,13 +57,17 @@ $( false, "middle" );
 $( a, "end" );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 b, c
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

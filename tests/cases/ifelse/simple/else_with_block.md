@@ -16,12 +16,14 @@ if (true) {
 }
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,23 +32,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if (true) {
-  $(1);
-} else {
-  $(2);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +40,15 @@ With rename=true
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

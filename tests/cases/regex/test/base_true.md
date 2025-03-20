@@ -12,12 +12,14 @@
 $(/foo/.test("brafoody"));
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(true);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,21 +28,6 @@ $(true);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(/foo/.test(`brafoody`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallObj = /foo/;
-const tmpCalleeParam = tmpCallObj.test(`brafoody`);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -49,11 +36,15 @@ With rename=true
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

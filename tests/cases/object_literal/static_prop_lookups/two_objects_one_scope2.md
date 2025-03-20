@@ -26,6 +26,7 @@ problem2 = {};
 $(problem2);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ const tmpClusterSSA_problem2 /*:object*/ = {};
 $(tmpClusterSSA_problem2);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -43,35 +45,6 @@ $Object_prototype.now;
 $({});
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let problem2 = undefined;
-let problem1 = undefined;
-if (problem1) {
-} else {
-  problem1 = {};
-}
-problem1.now;
-problem2 = {};
-$(problem2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let problem2 = undefined;
-let problem1 = undefined;
-if (problem1) {
-} else {
-  problem1 = {};
-}
-problem1.now;
-problem2 = {};
-$(problem2);
-`````
 
 ## PST Settled
 With rename=true
@@ -82,11 +55,15 @@ const a = {};
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

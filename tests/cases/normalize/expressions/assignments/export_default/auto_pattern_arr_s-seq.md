@@ -14,6 +14,7 @@ export default [a] = ($(10), $(20), [1, 2]);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ export { tmpAnonDefaultExport as default };
 $(tmpClusterSSA_a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,33 +50,6 @@ export { tmpAnonDefaultExport as default };
 $(tmpClusterSSA_a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let [a] = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = ([a] = ($(10), $(20), [1, 2]));
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-let tmpAnonDefaultExport = undefined;
-$(10);
-$(20);
-const tmpNestedAssignArrPatternRhs = [1, 2];
-const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-a = arrPatternSplat$1[0];
-tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { tmpAnonDefaultExport as default };
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -97,11 +72,22 @@ export { c as default };
 $( f );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")
@@ -113,7 +99,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

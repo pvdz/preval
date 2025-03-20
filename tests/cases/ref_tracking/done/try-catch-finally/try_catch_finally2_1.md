@@ -24,6 +24,7 @@ try {
 $(a);
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -41,7 +42,9 @@ try /*7*/ {
 $(a___26__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 a:

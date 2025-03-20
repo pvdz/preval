@@ -18,12 +18,14 @@ const x = decodebase64(`aGVsbG8sIHdvcmxk=`);
 $(x); // hello, world
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`hello, world`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,35 +34,6 @@ $(`hello, world`);
 $(`hello, world`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const decodebase64 = function ($$0) {
-  let arg = $$0;
-  debugger;
-  const buf = Buffer.from(arg, `base64`);
-  const str = buf.toString(`ascii`);
-  return str;
-};
-const x = decodebase64(`aGVsbG8sIHdvcmxk=`);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const decodebase64 = function ($$0) {
-  let arg = $$0;
-  debugger;
-  const buf = $Buffer_from(arg, `base64`);
-  const str = buf.toString(`ascii`);
-  return str;
-};
-const x = decodebase64(`aGVsbG8sIHdvcmxk=`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -69,11 +42,21 @@ With rename=true
 $( "hello, world" );
 `````
 
+
+## Todos triggered
+
+
+- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Buffer_from
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'hello, world'
@@ -86,6 +69,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Buffer_from

@@ -15,6 +15,7 @@ export let a = $(b)["c"];
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ export { a };
 $(a, b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,26 +38,6 @@ export { a };
 $(a, b);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = $(b)[`c`];
-export { a };
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-const tmpCompObj = $(b);
-let a = tmpCompObj.c;
-export { a };
-$(a, b);
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +50,15 @@ export { c as a };
 $( c, a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Unexpected token 'export' ]>")

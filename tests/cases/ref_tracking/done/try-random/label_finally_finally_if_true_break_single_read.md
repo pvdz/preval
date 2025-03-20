@@ -38,6 +38,7 @@ back: {
 $(x); // x=7 9 (the break still jumps over 9 once)
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -92,7 +93,9 @@ back___7__: /*8*/ {
 $(x___125__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                      | reads      | read by     | overWrites     | overwritten by
 x:

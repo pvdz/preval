@@ -40,6 +40,7 @@ for (a of $([]));
 $(a);
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -61,7 +62,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___23__) {
 $(a___52__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                      | reads      | read by     | overWrites     | overwritten by
 a:

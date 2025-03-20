@@ -21,6 +21,7 @@ const setAssignable = function (a) {
 $(setAssignable($(1)));
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const c /*:number*/ = tmpOrXor ^ 32;
 $(c);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -41,36 +43,6 @@ tmpCalleeParam$1 ** 0;
 $((tmpCalleeParam$1 & -17) ^ 32);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const setAssignable = function ($$0) {
-  let a = $$0;
-  debugger;
-  const b = a | 16;
-  const c = b ^ 48;
-  return c;
-};
-$(setAssignable($(1)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const setAssignable = function ($$0) {
-  let a = $$0;
-  debugger;
-  const b = a | 16;
-  const c = b ^ 48;
-  return c;
-};
-const tmpCallCallee = setAssignable;
-const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam = tmpCallCallee(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -83,11 +55,15 @@ const c = b ^ 32;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

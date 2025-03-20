@@ -34,6 +34,7 @@ A: {
 $(x);          // x=1 2
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -76,7 +77,9 @@ A___7__: /*8*/ {
 $(x___90__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                      | reads      | read by     | overWrites     | overwritten by
 x:

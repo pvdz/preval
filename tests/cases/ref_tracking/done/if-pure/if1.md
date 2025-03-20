@@ -23,6 +23,7 @@ x = 4; // overwrites 1
 $(x);
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -38,7 +39,9 @@ x___23__ = 4;
 $(x___27__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

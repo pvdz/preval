@@ -12,12 +12,14 @@
 $(false?.toString());
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`false`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,28 +28,6 @@ $(`false`);
 $(`false`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(false?.toString());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = false;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootProp.toString();
-  tmpCalleeParam = tmpChainElementCall;
-  $(tmpChainElementCall);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +36,15 @@ With rename=true
 $( "false" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'false'

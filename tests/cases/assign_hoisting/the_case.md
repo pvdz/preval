@@ -37,6 +37,7 @@ function f(func) {
 if ($) $(f($));
 `````
 
+
 ## Settled
 
 
@@ -64,6 +65,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -87,97 +89,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let func = $$0;
-  debugger;
-  let a = undefined;
-  let b = undefined;
-  let c = undefined;
-  const f$1 = function () {
-    debugger;
-    if ($) $(a);
-  };
-  const g = function () {
-    debugger;
-    if ($) $(b);
-  };
-  const h = function () {
-    debugger;
-    if ($) $(c);
-  };
-  a = func(1);
-  b = func(2);
-  c = func(3);
-  if ($) {
-    f$1();
-    g();
-    h();
-    return [a, b, c];
-  }
-};
-if ($) $(f($));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let func = $$0;
-  debugger;
-  let a = undefined;
-  let b = undefined;
-  let c = undefined;
-  const f$1 = function () {
-    debugger;
-    if ($) {
-      $(a);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  const g = function () {
-    debugger;
-    if ($) {
-      $(b);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  const h = function () {
-    debugger;
-    if ($) {
-      $(c);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  a = func(1);
-  b = func(2);
-  c = func(3);
-  if ($) {
-    f$1();
-    g();
-    h();
-    const tmpReturnArg = [a, b, c];
-    return tmpReturnArg;
-  } else {
-    return undefined;
-  }
-};
-if ($) {
-  const tmpCalleeParam = f($);
-  $(tmpCalleeParam);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -204,11 +115,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

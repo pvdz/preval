@@ -16,6 +16,7 @@ class x {
 $(new x()['very stringy']());
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCallObj[`very stringy`]();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,34 +47,6 @@ const x = class {
 $(new x()[`very stringy`]());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = class {
-  [`very stringy`]() {
-    debugger;
-    return $(1);
-  }
-};
-$(new x()[`very stringy`]());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = class {
-  [`very stringy`]() {
-    debugger;
-    const tmpReturnArg = $(1);
-    return tmpReturnArg;
-  }
-};
-const tmpCallObj = new x();
-const tmpCalleeParam = tmpCallObj[`very stringy`]();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -90,11 +64,15 @@ const d = c[ "very stringy" ]();
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -16,12 +16,14 @@ $('attempt to distract'); // throws off a simple dotcall simplfication heuristic
 $dotCall(x, objlit, undefined)
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`attempt to distract`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,32 +32,6 @@ $(`attempt to distract`);
 $(`attempt to distract`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-};
-const objlit = { f: f };
-const x = objlit.f;
-$(`attempt to distract`);
-$dotCall(x, objlit, undefined);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function () {
-  debugger;
-  return undefined;
-};
-const objlit = { f: f };
-const x = objlit.f;
-$(`attempt to distract`);
-$dotCall(x, objlit, undefined);
-`````
 
 ## PST Settled
 With rename=true
@@ -64,11 +40,15 @@ With rename=true
 $( "attempt to distract" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'attempt to distract'

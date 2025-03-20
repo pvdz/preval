@@ -39,6 +39,7 @@
 }
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -81,7 +82,9 @@ if (x___9__) {
 }
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                    | reads      | read by     | overWrites     | overwritten by
 x:

@@ -12,6 +12,7 @@
 Boolean($spy('a'), $spy('b'), $spy('c'));
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $spy(`a`);
 $spy(`b`);
 $spy(`c`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,21 +32,6 @@ $spy(`b`);
 $spy(`c`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-Boolean($spy(`a`), $spy(`b`), $spy(`c`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArgOverflow = $spy(`a`);
-$spy(`b`);
-$spy(`c`);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +42,15 @@ $spy( "b" );
 $spy( "c" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']

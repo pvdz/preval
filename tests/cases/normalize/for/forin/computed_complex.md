@@ -14,6 +14,7 @@ let b = {x: 1, y: 2};
 for ($(a)[$('foo')] in $(b)) $(a);
 `````
 
+
 ## Settled
 
 
@@ -37,6 +38,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -57,50 +59,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = {};
-let b = { x: 1, y: 2 };
-{
-  let tmpForInGen = $forIn($(b));
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      $(a)[$(`foo`)] = tmpForInNext.value;
-      $(a);
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = {};
-let b = { x: 1, y: 2 };
-const tmpCalleeParam = $(b);
-let tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const tmpAssignComMemLhsObj = $(a);
-    const tmpAssignComMemLhsProp = $(`foo`);
-    const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-    const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-    const tmpAssignComputedRhs = tmpForInNext.value;
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-    $(a);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -129,11 +87,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1', y: '2' }
@@ -152,7 +121,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

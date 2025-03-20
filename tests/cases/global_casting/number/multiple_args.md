@@ -15,6 +15,7 @@ const y = Number(x, 1, "twee");
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const x /*:number*/ = +a;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,27 +34,6 @@ const a = $(`a`);
 $(+a);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(`a`);
-const x = +a;
-const y = Number(x, 1, `twee`);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(`a`);
-const x = +a;
-const tmpArgOverflow = x;
-const tmpStringFirstArg = tmpArgOverflow;
-const y = $coerce(tmpArgOverflow, `number`);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +44,15 @@ const b = +a;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

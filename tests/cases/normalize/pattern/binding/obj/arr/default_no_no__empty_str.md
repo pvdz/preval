@@ -13,6 +13,7 @@ const { x: [] } = '';
 $('bad');
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ const objPatternNoDefault /*:unknown*/ = ``.x;
 [...objPatternNoDefault];
 $(`bad`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -31,25 +33,6 @@ const objPatternNoDefault = ``.x;
 $(`bad`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: [],
-} = ``;
-$(`bad`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const bindingPatternObjRoot = ``;
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const arrPatternSplat = [...objPatternNoDefault];
-$(`bad`);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +43,15 @@ const a = "".x;
 $( "bad" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')

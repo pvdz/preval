@@ -14,6 +14,7 @@ let x = a?.b.c?.(1);
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ if (tmpIfTest$1) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,39 +41,6 @@ if ($ == null) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = { b: { c: $ } };
-let x = a?.b.c?.(1);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = { c: $ };
-const a = { b: tmpObjLitVal };
-let x = undefined;
-const tmpChainRootProp = a;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpIfTest$1 = tmpChainElementObject$1 != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$1, tmpChainElementObject, `c`, 1);
-    x = tmpChainElementCall;
-    $(tmpChainElementCall);
-  } else {
-    $(x);
-  }
-} else {
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -88,11 +57,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

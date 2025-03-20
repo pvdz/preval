@@ -28,6 +28,7 @@ while ($) {
 $(x); // unreachable. if it was, then x=1 or 2.
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -54,7 +55,9 @@ while (true) {
 $(x___38__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

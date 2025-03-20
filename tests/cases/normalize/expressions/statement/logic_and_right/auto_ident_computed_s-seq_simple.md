@@ -16,6 +16,7 @@ $(100) && (1, 2, b)[$("c")];
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ if (tmpIfTest) {
   $(a, b);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -48,32 +50,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-$(100) && (1, 2, b)[$(`c`)];
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpIfTest = $(100);
-if (tmpIfTest) {
-  const tmpCompObj = b;
-  const tmpCompProp = $(`c`);
-  tmpCompObj[tmpCompProp];
-  $(a, b);
-} else {
-  $(a, b);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +71,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

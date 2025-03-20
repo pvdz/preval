@@ -27,6 +27,7 @@ while (true) {
 $(x);         // x=2 (it has to go through x=2 if it is to reach the break)
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -52,7 +53,9 @@ while (true) {
 $(x___43__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 x:

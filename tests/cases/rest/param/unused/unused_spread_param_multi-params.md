@@ -17,6 +17,7 @@ f('a', 'b');
 f($spy(), $spy());
 `````
 
+
 ## Settled
 
 
@@ -36,6 +37,7 @@ const tmpCalleeParam$1 /*:unknown*/ = $spy();
 f(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,41 +50,6 @@ f(`a`, `b`);
 f($spy(), $spy());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0, $$1, ...$$2 /*:array*/) {
-  let a = $$0;
-  let b = $$1;
-  let rest = $$2;
-  debugger;
-  $(a, b, rest);
-};
-f(1, 2);
-f(`a`, `b`);
-f($spy(), $spy());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0, $$1, ...$$2 /*:array*/) {
-  let a = $$0;
-  let b = $$1;
-  let rest = $$2;
-  debugger;
-  $(a, b, rest);
-  return undefined;
-};
-f(1, 2);
-f(`a`, `b`);
-const tmpCallCallee = f;
-const tmpCalleeParam = $spy();
-const tmpCalleeParam$1 = $spy();
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -103,11 +70,21 @@ const f = $spy();
 a( e, f );
 `````
 
+
+## Todos triggered
+
+
+- drop unused rest param?
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1, 2, []
@@ -124,6 +101,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- drop unused rest param?

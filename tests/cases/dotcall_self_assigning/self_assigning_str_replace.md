@@ -40,6 +40,7 @@ while (true) {
 $(str);
 `````
 
+
 ## Settled
 
 
@@ -65,6 +66,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(str);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -86,57 +88,6 @@ while (true) {
 $(str);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let count = 77;
-let str = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
-const arr = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
-while (true) {
-  const tmpPostUpdArgIdent$1 = count;
-  count = count - 1;
-  if (tmpPostUpdArgIdent$1) {
-    const chr = arr[count];
-    if (chr) {
-      const str_replace = str.replace;
-      const regex = new RegExp(`xyz`, `g`);
-      const chr2 = arr[count];
-      str = $dotCall(str_replace, str, `replace`, regex, chr2);
-    } else {
-    }
-  } else {
-    break;
-  }
-}
-$(str);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let count = 77;
-let str = `var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9`;
-const arr = [``, ``, ``, ``, ``, ``, ``, `x5C`, `x35`, `x36`, ``, `x31`];
-while (true) {
-  const tmpPostUpdArgIdent$1 = count;
-  count = count - 1;
-  if (tmpPostUpdArgIdent$1) {
-    const chr = arr[count];
-    if (chr) {
-      const str_replace = str.replace;
-      const regex = /xyz/g;
-      const chr2 = arr[count];
-      str = $dotCall(str_replace, str, `replace`, regex, chr2);
-    } else {
-    }
-  } else {
-    break;
-  }
-}
-$(str);
-`````
 
 ## PST Settled
 With rename=true
@@ -163,11 +114,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( a );
 `````
 
+
+## Todos triggered
+
+
+- Support referencing this builtin in isFree: $string_replace
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'var 44=["\\13\\17\\31\\8\\12\\29\\21\\22\\7\\16\\8\\7\\9'
@@ -180,7 +142,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support referencing this builtin in isFree: $string_replace
-- inline computed array property read

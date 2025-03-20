@@ -22,6 +22,7 @@ $(a());
 $(a() === a());
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ $(a);
 $(true);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -39,46 +41,6 @@ $([1, 2, 3]);
 $(true);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = undefined;
-a = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  a = function () {
-    debugger;
-    return arr;
-  };
-  return a();
-};
-$(a());
-$(a() === a());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = undefined;
-a = function () {
-  debugger;
-  const arr = [1, 2, 3];
-  a = function () {
-    debugger;
-    return arr;
-  };
-  const tmpReturnArg = a();
-  return tmpReturnArg;
-};
-const tmpCalleeParam = a();
-$(tmpCalleeParam);
-const tmpBinBothLhs = a();
-const tmpBinBothRhs = a();
-const tmpCalleeParam$1 = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -89,11 +51,15 @@ $( a );
 $( true );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [1, 2, 3]

@@ -16,6 +16,7 @@ throw (a = b = $(2));
 $(a, b);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(a, b);
 const tmpNestedComplexRhs /*:unknown*/ = $(2);
 throw tmpNestedComplexRhs;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,28 +34,6 @@ const tmpNestedComplexRhs = $(2);
 throw tmpNestedComplexRhs;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-throw (a = b = $(2));
-$(a, b);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpNestedComplexRhs = $(2);
-b = tmpNestedComplexRhs;
-a = tmpNestedComplexRhs;
-let tmpThrowArg = a;
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -63,11 +43,15 @@ const a = $( 2 );
 throw a;
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2

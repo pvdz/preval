@@ -14,6 +14,7 @@ throw ($(10), $(20), $([1, 2]));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -28,6 +29,7 @@ const tmpThrowArg /*:unknown*/ = $(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,28 +42,6 @@ const tmpThrowArg = $([1, 2]);
 throw tmpThrowArg;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let [a] = { a: 999, b: 1000 };
-throw ($(10), $(20), $([1, 2]));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-$(10);
-$(20);
-const tmpCalleeParam = [1, 2];
-const tmpThrowArg = $(tmpCalleeParam);
-throw tmpThrowArg;
-`````
 
 ## PST Settled
 With rename=true
@@ -80,11 +60,21 @@ const d = $( c );
 throw d;
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -96,6 +86,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

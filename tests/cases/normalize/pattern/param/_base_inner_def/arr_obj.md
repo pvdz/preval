@@ -12,12 +12,14 @@
 function h([{ x = a }]) { return x}
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -26,40 +28,6 @@ function h([{ x = a }]) { return x}
 
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let h = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let [{ x: x = a }] = tmpParamBare;
-  return x;
-};
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let h = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = tmpParamBare;
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let arrPatternStep = arrPatternSplat[0];
-  let objPatternBeforeDefault = arrPatternStep.x;
-  let x = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    x = a;
-    return x;
-  } else {
-    x = objPatternBeforeDefault;
-    return x;
-  }
-};
-`````
 
 ## PST Settled
 With rename=true
@@ -68,11 +36,15 @@ With rename=true
 
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined

@@ -19,6 +19,7 @@ while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -39,6 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -55,43 +57,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while (true) {
-  const x = $({
-    toString() {
-      debugger;
-      $(`PASS`);
-    },
-  });
-  try {
-    const y = parseInt(x);
-    $(y);
-  } catch (e) {}
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpCalleeParam = {
-    toString() {
-      debugger;
-      $(`PASS`);
-      return undefined;
-    },
-  };
-  const x = $(tmpCalleeParam);
-  try {
-    const y = parseInt(x);
-    $(y);
-  } catch (e) {}
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -114,11 +79,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
+## Todos triggered
+
+
+- objects in isFree check
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { toString: '"<function>"' }
@@ -156,6 +131,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- objects in isFree check

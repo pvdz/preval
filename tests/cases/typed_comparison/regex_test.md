@@ -12,6 +12,7 @@
 $(/x/g.test($('x')));
 `````
 
+
 ## Settled
 
 
@@ -22,6 +23,7 @@ const tmpCalleeParam /*:unknown*/ = tmpCallObj.test(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -30,22 +32,6 @@ const tmpCalleeParam$1 = $(`x`);
 $(/x/g.test(tmpCalleeParam$1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(/x/g.test($(`x`)));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam$1 = $(`x`);
-const tmpCallObj = /x/g;
-const tmpCalleeParam = tmpCallObj.test(tmpCalleeParam$1);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +43,15 @@ const c = b.test( a );
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'x'

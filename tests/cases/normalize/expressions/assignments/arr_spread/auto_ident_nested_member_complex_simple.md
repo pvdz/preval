@@ -18,6 +18,7 @@ $([...(a = $(b)[$("x")] = $(c)[$("y")] = d)]);
 $(a, b, c, d);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,41 +50,6 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let b = { x: 1 },
-  c = { y: 2 },
-  d = 3;
-let a = { a: 999, b: 1000 };
-$([...(a = $(b)[$(`x`)] = $(c)[$(`y`)] = d)]);
-$(a, b, c, d);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let b = { x: 1 };
-let c = { y: 2 };
-let d = 3;
-let a = { a: 999, b: 1000 };
-const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = d;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-a = tmpNestedPropAssignRhs;
-let tmpArrSpread = a;
-const tmpCalleeParam = [...tmpArrSpread];
-$(tmpCalleeParam);
-$(a, b, c, d);
-`````
 
 ## PST Settled
 With rename=true
@@ -100,11 +67,15 @@ b[c] = 3;
 throw "[Preval]: Array spread must crash before this line";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: { x: '1' }

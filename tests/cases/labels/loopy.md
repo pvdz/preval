@@ -16,6 +16,7 @@ woop: while (true) {
 }
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -34,29 +36,6 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-woop: while (true) {
-  $continue: {
-    {
-      $(1);
-      break $continue;
-      $(2);
-    }
-  }
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  $(1);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +46,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

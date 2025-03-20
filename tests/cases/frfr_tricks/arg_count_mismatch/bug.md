@@ -26,6 +26,7 @@ const r = $frfr(f, xs, ys);
 $(r);
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ const r /*:string*/ = xs.slice(1);
 $(r);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -47,43 +49,6 @@ $coerce($spy(`y`), `plustr`);
 $(xs.slice(1));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function $free($$0) {
-  let a = $$0;
-  debugger;
-  const one = a + 5;
-  const two = a.slice(1);
-  return two;
-};
-const x = $spy(`x`);
-const xs = x + ``;
-const y = $spy(`y`);
-const ys = y + ``;
-const r = $frfr(f, xs, ys);
-$(r);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function $free($$0) {
-  let a = $$0;
-  debugger;
-  const one = a + 5;
-  const two = a.slice(1);
-  return two;
-};
-const x = $spy(`x`);
-const xs = $coerce(x, `plustr`);
-const y = $spy(`y`);
-const ys = $coerce(y, `plustr`);
-const r = $frfr(f, xs, ys);
-$(r);
-`````
 
 ## PST Settled
 With rename=true
@@ -97,11 +62,21 @@ const d = b.slice( 1 );
 $( d );
 `````
 
+
+## Todos triggered
+
+
+- frfr and free arg mismatch
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['x', 'x']
@@ -118,6 +93,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- frfr and free arg mismatch

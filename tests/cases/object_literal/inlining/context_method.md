@@ -16,6 +16,7 @@ const obj = {
 $(obj.encode());
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ $(obj.encode());
 $(`abc`);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,36 +34,6 @@ $(`abc`);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = {
-  encode: function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    $(tmpPrevalAliasThis.str);
-  },
-  str: `abc`,
-};
-$(obj.encode());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpObjLitVal = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const tmpCalleeParam = tmpPrevalAliasThis.str;
-  $(tmpCalleeParam);
-  return undefined;
-};
-const obj = { encode: tmpObjLitVal, str: `abc` };
-const tmpCalleeParam$1 = obj.encode();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -71,11 +43,15 @@ $( "abc" );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'abc'

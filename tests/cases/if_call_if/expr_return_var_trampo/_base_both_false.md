@@ -31,6 +31,7 @@ function outer() {
 if ($) $(outer(), 'outer');
 `````
 
+
 ## Settled
 
 
@@ -54,6 +55,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -75,67 +77,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let outer = function () {
-  debugger;
-  let x = $(0);
-  const f = function () {
-    debugger;
-    if (x) {
-      return $(`inner if`, x);
-    } else {
-      return $(`inner else`, x);
-    }
-  };
-  if (x) {
-    x = $(2);
-    f();
-    return;
-  } else {
-    x = false;
-    f();
-    return;
-  }
-};
-if ($) $(outer(), `outer`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let outer = function () {
-  debugger;
-  let x = $(0);
-  const f = function () {
-    debugger;
-    if (x) {
-      const tmpReturnArg = $(`inner if`, x);
-      return tmpReturnArg;
-    } else {
-      const tmpReturnArg$1 = $(`inner else`, x);
-      return tmpReturnArg$1;
-    }
-  };
-  if (x) {
-    x = $(2);
-    f();
-    return undefined;
-  } else {
-    x = false;
-    f();
-    return undefined;
-  }
-};
-if ($) {
-  const tmpCalleeParam = outer();
-  $(tmpCalleeParam, `outer`);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -161,11 +102,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

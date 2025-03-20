@@ -20,6 +20,7 @@ for (const x in {a: 1}) {
 $(3);
 `````
 
+
 ## Settled
 
 
@@ -42,6 +43,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -62,75 +64,6 @@ while (true) {
 $(3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-{
-  let tmpForInGen = $forIn({ a: 1 });
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    let tmpForInNext = tmpForInGen.next();
-    if (tmpForInNext.done) {
-      break;
-    } else {
-      const x = tmpForInNext.value;
-      {
-        $continue: {
-          {
-            {
-              let $implicitThrow = false;
-              let $finalCatchArg = undefined;
-              $finally: {
-                try {
-                  $(x, 1);
-                } catch ($finalImplicit) {
-                  $implicitThrow = true;
-                  $finalCatchArg = $finalImplicit;
-                }
-              }
-              {
-                $(2);
-                break $continue;
-              }
-              if ($implicitThrow) throw $finalCatchArg;
-              else {
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-$(3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCalleeParam = { a: 1 };
-let tmpForInGen = $forIn(tmpCalleeParam);
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  let tmpForInNext = tmpForInGen.next();
-  const tmpIfTest = tmpForInNext.done;
-  if (tmpIfTest) {
-    break;
-  } else {
-    const x = tmpForInNext.value;
-    let $implicitThrow = false;
-    let $finalCatchArg = undefined;
-    try {
-      $(x, 1);
-    } catch ($finalImplicit) {
-      $implicitThrow = true;
-      $finalCatchArg = $finalImplicit;
-    }
-    $(2);
-  }
-}
-$(3);
-`````
 
 ## PST Settled
 With rename=true
@@ -158,11 +91,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $( 3 );
 `````
 
+
+## Todos triggered
+
+
+- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a', 1
@@ -177,6 +120,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next

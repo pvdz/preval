@@ -13,6 +13,7 @@ const obj = {foo: 10};
 $(obj?.[$()]);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const tmpChainElementObject /*:unknown*/ = obj[tmpChainRootComputed];
 $(tmpChainElementObject);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,31 +33,6 @@ const tmpChainRootComputed = $();
 $({ foo: 10 }[tmpChainRootComputed]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const obj = { foo: 10 };
-$(obj?.[$()]);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const obj = { foo: 10 };
-let tmpCalleeParam = undefined;
-const tmpChainRootProp = obj;
-const tmpIfTest = tmpChainRootProp != null;
-if (tmpIfTest) {
-  const tmpChainRootComputed = $();
-  const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-  tmpCalleeParam = tmpChainElementObject;
-  $(tmpChainElementObject);
-} else {
-  $(tmpCalleeParam);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +44,15 @@ const c = b[ a ];
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

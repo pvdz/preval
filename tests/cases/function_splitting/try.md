@@ -27,6 +27,7 @@ f(true);
 f(false);
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ tmpSplitTruthy();
 tmpSplitFalsy();
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -71,48 +73,6 @@ tmpSplitTruthy();
 tmpSplitFalsy();
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  try {
-    if (a) {
-      $(`then`);
-    } else {
-      $(`else`);
-    }
-  } catch (e) {}
-};
-f(0);
-f(`ok`);
-f(true);
-f(false);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let a = $$0;
-  debugger;
-  try {
-    if (a) {
-      $(`then`);
-    } else {
-      $(`else`);
-    }
-  } catch (e) {}
-  return undefined;
-};
-f(0);
-f(`ok`);
-f(true);
-f(false);
-`````
 
 ## PST Settled
 With rename=true
@@ -144,11 +104,15 @@ a();
 c();
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'else'

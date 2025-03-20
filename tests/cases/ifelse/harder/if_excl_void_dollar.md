@@ -14,6 +14,7 @@ This should decompose into calling $(1) and $(2)
 if (!void $(1)) $(2);
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ if (!void $(1)) $(2);
 $(1);
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -30,24 +32,6 @@ $(1);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if (!void $(1)) $(2);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(1);
-const tmpIfTest = undefined;
-if (tmpIfTest) {
-} else {
-  $(2);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -57,11 +41,15 @@ $( 1 );
 $( 2 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

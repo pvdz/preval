@@ -42,6 +42,7 @@ while (loopTest) {
 $(a, b, c, 3);
 `````
 
+
 ## Settled
 
 
@@ -88,6 +89,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -130,83 +132,6 @@ if (three) {
 $({ a: 999, b: 1000 }, b, c, 3);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
-const a = { a: 999, b: 1000 };
-let loopTest = $LOOP_UNROLL_10;
-$(100);
-const B = $(b);
-const X = $(`x`);
-const calt = $(c);
-const Y = $(`y`);
-const three = $(3);
-calt[Y] = three;
-B[X] = three;
-if (three) {
-} else {
-  loopTest = false;
-}
-while (loopTest) {
-  $(100);
-  const B$1 = $(b);
-  const X$1 = $(`x`);
-  const C = $(c);
-  const Y$1 = $(`y`);
-  const T = $(3);
-  C[Y$1] = T;
-  B$1[X$1] = T;
-  if (T) {
-  } else {
-    break;
-  }
-}
-$(a, b, c, 3);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
-const a = { a: 999, b: 1000 };
-let loopTest = true;
-$(100);
-const B = $(b);
-const X = $(`x`);
-const calt = $(c);
-const Y = $(`y`);
-const three = $(3);
-calt[Y] = three;
-B[X] = three;
-if (three) {
-} else {
-  loopTest = false;
-}
-while (true) {
-  if (loopTest) {
-    $(100);
-    const B$1 = $(b);
-    const X$1 = $(`x`);
-    const C = $(c);
-    const Y$1 = $(`y`);
-    const T = $(3);
-    C[Y$1] = T;
-    B$1[X$1] = T;
-    if (T) {
-    } else {
-      break;
-    }
-  } else {
-    break;
-  }
-}
-$(a, b, c, 3);
-`````
 
 ## PST Settled
 With rename=true
@@ -257,11 +182,15 @@ const r = {
 $( r, a, d, 3 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 100

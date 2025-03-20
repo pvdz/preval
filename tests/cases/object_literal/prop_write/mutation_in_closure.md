@@ -22,6 +22,7 @@ $(x);
 $(f);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ $(x);
 $(f);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -58,42 +60,6 @@ $(x);
 $(f);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`a`);
-  x.y = 5;
-  $(`b`);
-};
-const x = { y: 0 };
-f();
-x.y = 10;
-f();
-$(x);
-$(f);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  $(`a`);
-  x.y = 5;
-  $(`b`);
-  return undefined;
-};
-const x = { y: 0 };
-f();
-x.y = 10;
-f();
-$(x);
-$(f);
-`````
 
 ## PST Settled
 With rename=true
@@ -114,11 +80,15 @@ $( b );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

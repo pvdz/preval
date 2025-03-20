@@ -27,6 +27,7 @@ const h = function (z) {
 h();
 `````
 
+
 ## Settled
 
 
@@ -38,6 +39,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -48,64 +50,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0, $$1) {
-  let x = $$0;
-  let y = $$1;
-  debugger;
-  $();
-  const tmpReturnArg = g(x, y);
-  return tmpReturnArg;
-};
-const g = function () {
-  debugger;
-  if ($) {
-    const tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
-  }
-};
-const h = function ($$0) {
-  let z = $$0;
-  debugger;
-  const t = z | 4096;
-  f(t);
-};
-h();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0, $$1) {
-  let x = $$0;
-  let y = $$1;
-  debugger;
-  $();
-  const tmpReturnArg = g(x, y);
-  return tmpReturnArg;
-};
-const g = function () {
-  debugger;
-  if ($) {
-    const tmpReturnArg$1 = $();
-    return tmpReturnArg$1;
-  } else {
-    return undefined;
-  }
-};
-const h = function ($$0) {
-  let z = $$0;
-  debugger;
-  const t = z | 4096;
-  f(t);
-  return undefined;
-};
-h();
-`````
 
 ## PST Settled
 With rename=true
@@ -117,11 +61,15 @@ if ($) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

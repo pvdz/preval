@@ -13,12 +13,14 @@ let x = `${Infinity}`;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`Infinity`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,24 +29,6 @@ $(`Infinity`);
 $(`Infinity`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = `` + $coerce(Infinity, `string`) + ``;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $coerce(Infinity, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = $coerce(tmpBinLhs, `plustr`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -53,11 +37,15 @@ With rename=true
 $( "Infinity" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Infinity'

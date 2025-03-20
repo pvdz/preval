@@ -20,6 +20,7 @@ if (x) {
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -34,6 +35,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -46,36 +48,6 @@ if ($(67636) === 67636) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(67636);
-let x = a !== 67636;
-if (x) {
-  a = 10;
-  x = a !== 67636;
-} else {
-  $(`Preval: Cannot write to const binding \`a\``);
-}
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(67636);
-let x = a !== 67636;
-if (x) {
-  a = 10;
-  x = a !== 67636;
-  $(x);
-} else {
-  $(`Preval: Cannot write to const binding \`a\``);
-  $(x);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -92,11 +64,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 67636

@@ -12,6 +12,7 @@
 isNaN($spy('a'), $spy('b'), $spy('c'));
 `````
 
+
 ## Settled
 
 
@@ -21,6 +22,7 @@ $spy(`b`);
 $spy(`c`);
 $coerce(tmpArgOverflow, `number`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -32,22 +34,6 @@ $spy(`c`);
 $coerce(tmpArgOverflow, `number`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-isNaN($spy(`a`), $spy(`b`), $spy(`c`));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArgOverflow = $spy(`a`);
-$spy(`b`);
-$spy(`c`);
-$coerce(tmpArgOverflow, `number`);
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +45,15 @@ $spy( "c" );
 $coerce( a, "number" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['a', 'a']

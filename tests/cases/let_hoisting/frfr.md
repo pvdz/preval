@@ -23,6 +23,7 @@ let x = $(2);
 f();
 `````
 
+
 ## Settled
 
 
@@ -32,6 +33,7 @@ const x /*:unknown*/ = $(2);
 $(x, `f`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -40,50 +42,6 @@ $(1);
 $($(2), `f`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const freeFunc1 = function $free($$0, $$1) {
-  let x$1 = $$0;
-  let y = $$1;
-  debugger;
-  return y * (x$1 + 287);
-};
-let f = function () {
-  debugger;
-  $(x, `f`);
-  return undefined;
-};
-$(1);
-$frfr(freeFunc1, 1, 2);
-let x = $(2);
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const freeFunc1 = function $free($$0, $$1) {
-  let x$1 = $$0;
-  let y = $$1;
-  debugger;
-  const tmpBinBothLhs = y;
-  const tmpBinBothRhs = x$1 + 287;
-  const tmpReturnArg = tmpBinBothLhs * tmpBinBothRhs;
-  return tmpReturnArg;
-};
-let f = function () {
-  debugger;
-  $(x, `f`);
-  return undefined;
-};
-$(1);
-$frfr(freeFunc1, 1, 2);
-let x = $(2);
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -94,11 +52,21 @@ const a = $( 2 );
 $( a, "f" );
 `````
 
+
+## Todos triggered
+
+
+- free with zero args, we can eliminate this?
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1
@@ -113,6 +81,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- free with zero args, we can eliminate this?

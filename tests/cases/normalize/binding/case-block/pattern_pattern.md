@@ -14,6 +14,7 @@ switch ($('a')) { case $('a'): let [a, b] = [, x, y] = z; break; }
 $(a, b, x, y, z);
 `````
 
+
 ## Settled
 
 
@@ -35,6 +36,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,60 +56,6 @@ if (tmpIfTest) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = 1,
-  b = 2,
-  x = 1,
-  y = 2,
-  z = [10, 20, 30];
-tmpSwitchBreak: {
-  let a$1;
-  let b$1;
-  const tmpSwitchDisc = $(`a`);
-  if (tmpSwitchDisc === $(`a`)) {
-    [a$1, b$1] = [, x, y] = z;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, b, x, y, z);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = 1;
-let b = 2;
-let x = 1;
-let y = 2;
-let z = [10, 20, 30];
-tmpSwitchBreak: {
-  let a$1 = undefined;
-  let b$1 = undefined;
-  const tmpSwitchDisc = $(`a`);
-  const tmpBinBothLhs = tmpSwitchDisc;
-  const tmpBinBothRhs = $(`a`);
-  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
-  if (tmpIfTest) {
-    let arrAssignPatternRhs = undefined;
-    const tmpNestedAssignArrPatternRhs = z;
-    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat$1[1];
-    y = arrPatternSplat$1[2];
-    arrAssignPatternRhs = tmpNestedAssignArrPatternRhs;
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    a$1 = arrPatternSplat[0];
-    b$1 = arrPatternSplat[1];
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(a, b, x, y, z);
-`````
 
 ## PST Settled
 With rename=true
@@ -131,11 +79,22 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'
@@ -150,7 +109,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

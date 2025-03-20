@@ -19,12 +19,14 @@ x = $(10);
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 throw `Preval: TDZ triggered for this read: \$(x)`;
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -33,24 +35,6 @@ throw `Preval: TDZ triggered for this read: \$(x)`;
 throw `Preval: TDZ triggered for this read: \$(x)`;
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$($throwTDZError(`Preval: TDZ triggered for this read: \$(x)`));
-let x = $(5);
-$(x);
-x = $(10);
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-throw `Preval: TDZ triggered for this read: \$(x)`;
-let x = 0;
-`````
 
 ## PST Settled
 With rename=true
@@ -59,11 +43,15 @@ With rename=true
 throw "Preval: TDZ triggered for this read: $(x)";
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")

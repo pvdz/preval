@@ -24,6 +24,7 @@ f();
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -40,6 +41,7 @@ const tmpCalleeParam /*:boolean*/ = f();
 $(tmpCalleeParam);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -54,49 +56,6 @@ f();
 $(f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let y = undefined;
-  if (x) {
-    y = true;
-  } else {
-    y = false;
-  }
-  $(`block`);
-  $(`block`);
-  return y;
-};
-f();
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  let y = undefined;
-  if (x) {
-    y = true;
-    $(`block`);
-    $(`block`);
-    return y;
-  } else {
-    y = false;
-    $(`block`);
-    $(`block`);
-    return y;
-  }
-};
-f();
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -114,13 +73,17 @@ const c = a();
 $( c );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

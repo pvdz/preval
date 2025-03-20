@@ -15,6 +15,7 @@ const c = b | 32;
 $(c);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ const b /*:number*/ = a | 48;
 $(b);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,25 +33,6 @@ $(b);
 $($(0) | 48);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(0);
-const b = a | 16;
-const c = b | 32;
-$(c);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(0);
-const b = a | 16;
-const c = b | 32;
-$(c);
-`````
 
 ## PST Settled
 With rename=true
@@ -60,11 +43,15 @@ const b = a | 48;
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 0

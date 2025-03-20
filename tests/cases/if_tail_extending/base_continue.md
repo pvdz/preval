@@ -21,6 +21,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ if (x) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -68,51 +70,6 @@ if (x) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (x) {
-    $continue: {
-      {
-        $(1);
-        if ($) {
-          break $continue;
-        }
-        $(2);
-      }
-    }
-  }
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  while (true) {
-    if (x) {
-      $continue: {
-        $(1);
-        if ($) {
-          break $continue;
-        } else {
-          $(2);
-        }
-      }
-    } else {
-      break;
-    }
-  }
-  return undefined;
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -143,13 +100,23 @@ if (x) {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support referencing this builtin in isFree: $
+
+
 ## Globals
+
 
 BAD@! Found 1 implicit global bindings:
 
 x
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')
@@ -161,6 +128,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support referencing this builtin in isFree: $

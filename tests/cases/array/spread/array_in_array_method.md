@@ -15,6 +15,7 @@ const y = ['a', ...x, 'b'];
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const y /*:array*/ = [`a`, ...x, `b`];
 $(y);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -35,26 +37,6 @@ $(x.join(``));
 $([`a`, ...x, `b`]);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = [1, 2, 3];
-$(x.join(``));
-const y = [`a`, ...x, `b`];
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = [1, 2, 3];
-const tmpCalleeParam = x.join(``);
-$(tmpCalleeParam);
-const y = [`a`, ...x, `b`];
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -67,11 +49,21 @@ const c = [ "a", ...a, "b" ];
 $( c );
 `````
 
+
+## Todos triggered
+
+
+- calling $array_join on an array that has other reads, must verify they dont mutate the array first
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '123'
@@ -85,6 +77,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- calling $array_join on an array that has other reads, must verify they dont mutate the array first

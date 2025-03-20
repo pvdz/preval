@@ -13,12 +13,14 @@ let x = "foo".length.toString;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $($number_toString);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,22 +29,6 @@ $($number_toString);
 $($number_toString);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = `foo`.length.toString;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCompObj = 3;
-let x = tmpCompObj.toString;
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -51,11 +37,15 @@ With rename=true
 $( $number_toString );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<function>'

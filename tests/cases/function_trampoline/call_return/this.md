@@ -17,6 +17,7 @@ const q = f(1, 2, 3, 4, 5); // The use of `this` should prevent inlining this ca
 $(q);
 `````
 
+
 ## Settled
 
 
@@ -25,6 +26,7 @@ const q /*:unknown*/ = $(undefined);
 $(q);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -32,43 +34,6 @@ $(q);
 $($(undefined));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpPrevalAliasThis = this;
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  const r = $(tmpPrevalAliasThis);
-  return r;
-};
-const q = f(1, 2, 3, 4, 5);
-$(q);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpPrevalAliasThis = this;
-  let a = $$0;
-  let b = $$1;
-  let c = $$2;
-  let d = $$3;
-  let e = $$4;
-  debugger;
-  const r = $(tmpPrevalAliasThis);
-  return r;
-};
-const q = f(1, 2, 3, 4, 5);
-$(q);
-`````
 
 ## PST Settled
 With rename=true
@@ -78,11 +43,15 @@ const a = $( undefined );
 $( a );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: undefined

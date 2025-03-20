@@ -26,6 +26,7 @@ while (true) {
 $(x); // x=0 1 (ref tracking does not track values so it should consider if(x) reachable)
 `````
 
+
 ## Output
 
 (Annotated with pids)
@@ -43,7 +44,9 @@ while (true) {
 $(x___29__);
 `````
 
-Ref tracking result:
+
+## Ref tracking result
+
 
                | reads      | read by     | overWrites     | overwritten by
 y:

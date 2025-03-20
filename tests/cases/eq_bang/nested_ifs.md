@@ -35,6 +35,7 @@ if (!a) {
 }
 `````
 
+
 ## Settled
 
 
@@ -69,6 +70,7 @@ if (a) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -94,69 +96,6 @@ if ($(1) === $(2)) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(1) === $(2);
-if (!a) {
-  $(`then a1`);
-  const b = $(1) === $(2);
-  if (!b) {
-    $(`then b1`);
-  } else {
-    $(`else b1`);
-  }
-} else {
-  $(`else a1`);
-  const c = $(1) === $(2);
-  if (!c) {
-    $(`then c1`);
-  } else {
-    $(`else c1`);
-  }
-}
-if (!a) {
-  $(`then a2`);
-} else {
-  $(`else a2`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpBinBothLhs = $(1);
-const tmpBinBothRhs = $(2);
-const a = tmpBinBothLhs === tmpBinBothRhs;
-if (a) {
-  $(`else a1`);
-  const tmpBinBothLhs$1 = $(1);
-  const tmpBinBothRhs$1 = $(2);
-  const c = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-  if (c) {
-    $(`else c1`);
-  } else {
-    $(`then c1`);
-  }
-} else {
-  $(`then a1`);
-  const tmpBinBothLhs$3 = $(1);
-  const tmpBinBothRhs$3 = $(2);
-  const b = tmpBinBothLhs$3 === tmpBinBothRhs$3;
-  if (b) {
-    $(`else b1`);
-  } else {
-    $(`then b1`);
-  }
-}
-if (a) {
-  $(`else a2`);
-} else {
-  $(`then a2`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -195,11 +134,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

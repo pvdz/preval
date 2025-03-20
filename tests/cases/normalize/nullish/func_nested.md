@@ -16,6 +16,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -27,6 +28,7 @@ const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(obj);
 $(tmpClusterSSA_tmpReturnArg$1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -36,44 +38,6 @@ const tmpObjLitVal = { b: tmpObjLitVal$1 };
 $($({ a: tmpObjLitVal }));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const obj = { a: { b: $() } };
-  return $(obj ?? a ?? b);
-};
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpObjLitVal$1 = $();
-  const tmpObjLitVal = { b: tmpObjLitVal$1 };
-  const obj = { a: tmpObjLitVal };
-  let tmpCalleeParam = obj;
-  const tmpIfTest = tmpCalleeParam == null;
-  if (tmpIfTest) {
-    tmpCalleeParam = a;
-  } else {
-  }
-  const tmpIfTest$1 = tmpCalleeParam == null;
-  if (tmpIfTest$1) {
-    tmpCalleeParam = b;
-  } else {
-  }
-  const tmpReturnArg = $(tmpCalleeParam);
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-`````
 
 ## PST Settled
 With rename=true
@@ -86,11 +50,15 @@ const d = $( c );
 $( d );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

@@ -48,6 +48,7 @@ if (tmpIfTest$45) {
 }
 `````
 
+
 ## Settled
 
 
@@ -65,6 +66,7 @@ if (tmpIfTest$45) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -80,92 +82,6 @@ if (tmpIfTest$45) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-if (tmpIfTest$45) {
-  const f = function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    const that = tmpPrevalAliasThis;
-    let g = tmpCalleeParam$127;
-    let locked = undefined;
-    if (tmpSSA__0x2d5594) {
-      locked = function () {
-        debugger;
-        return undefined;
-      };
-    } else {
-      locked = function () {
-        const tmpPrevalAliasArgumentsAny = arguments;
-        debugger;
-        const tmpPrevalAliasArgumentsAny$1 = tmpPrevalAliasArgumentsAny;
-        if (g) {
-          const result = g.apply(that, tmpPrevalAliasArgumentsAny$1);
-          g = null;
-          return result;
-        } else {
-          return undefined;
-        }
-      };
-    }
-    return tmpReturnArg$39;
-  };
-  const h = f();
-  const ignored = h(e, d);
-  const nothing = getParameterByName();
-  const stuff = unknown(297);
-  const morestuff = alsoUnknown(310);
-  const c = $dotCall(a, document, undefined, b);
-  $(c);
-} else {
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-if (tmpIfTest$45) {
-  const f = function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    const that = tmpPrevalAliasThis;
-    let g = tmpCalleeParam$127;
-    let locked = undefined;
-    if (tmpSSA__0x2d5594) {
-      locked = function () {
-        debugger;
-        return undefined;
-      };
-      return tmpReturnArg$39;
-    } else {
-      locked = function () {
-        const tmpPrevalAliasArgumentsAny = arguments;
-        debugger;
-        const tmpPrevalAliasArgumentsAny$1 = tmpPrevalAliasArgumentsAny;
-        if (g) {
-          const result = g.apply(that, tmpPrevalAliasArgumentsAny$1);
-          g = null;
-          return result;
-        } else {
-          return undefined;
-        }
-      };
-      return tmpReturnArg$39;
-    }
-  };
-  const h = f();
-  const ignored = h(e, d);
-  const nothing = getParameterByName();
-  const stuff = unknown(297);
-  const morestuff = alsoUnknown(310);
-  const c = $dotCall(a, document, undefined, b);
-  $(c);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -183,13 +99,17 @@ if (tmpIfTest$45) {
 }
 `````
 
+
 ## Globals
+
 
 BAD@! Found 11 implicit global bindings:
 
 tmpIfTest$45, tmpCalleeParam$127, tmpSSA__0x2d5594, tmpReturnArg$39, e, d, getParameterByName, unknown, alsoUnknown, a, b
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

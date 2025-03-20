@@ -14,6 +14,7 @@ const newLineRegex = new RegExp(x); // -> same as regex literal
 $(newLineRegex);
 `````
 
+
 ## Settled
 
 
@@ -23,6 +24,7 @@ const newLineRegex /*:object*/ = new RegExp(x);
 $(newLineRegex);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -31,23 +33,6 @@ const x = /abc/g;
 $(new RegExp(x));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = /abc/g;
-const newLineRegex = new RegExp(x);
-$(newLineRegex);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = /abc/g;
-const newLineRegex = new RegExp(x);
-$(newLineRegex);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +43,15 @@ const b = new RegExp( a );
 $( b );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: {}

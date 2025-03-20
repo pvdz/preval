@@ -15,6 +15,7 @@ $(0xfffffffffffffffff);
 $(0xffffffffffffffffff);
 `````
 
+
 ## Settled
 
 
@@ -24,6 +25,7 @@ $(327698);
 $(295147905179352830000);
 $(4.722366482869645e21);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -35,25 +37,6 @@ $(295147905179352830000);
 $(4.722366482869645e21);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-$(327698);
-$(327698);
-$(295147905179352830000);
-$(4.722366482869645e21);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-$(327698);
-$(327698);
-$(295147905179352830000);
-$(4.722366482869645e21);
-`````
 
 ## PST Settled
 With rename=true
@@ -65,11 +48,15 @@ $( 295147905179352830000 );
 $( 4.722366482869645e+21 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 327698

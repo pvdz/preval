@@ -20,6 +20,7 @@ function f() {
 f();
 `````
 
+
 ## Settled
 
 
@@ -33,6 +34,7 @@ if (b) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -45,41 +47,6 @@ if (b) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const b = `` + $(`pass`);
-  if (b) {
-    $(b);
-  } else {
-    $(b);
-  }
-};
-f();
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpBinBothLhs = ``;
-  const tmpBinBothRhs = $(`pass`);
-  const b = tmpBinBothLhs + tmpBinBothRhs;
-  if (b) {
-    $(b);
-    return undefined;
-  } else {
-    $(b);
-    return undefined;
-  }
-};
-f();
-`````
 
 ## PST Settled
 With rename=true
@@ -95,11 +62,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'pass'

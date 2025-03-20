@@ -20,6 +20,7 @@ function f(x) {
 $(f(KEEP_ME));
 `````
 
+
 ## Settled
 
 
@@ -31,6 +32,7 @@ try {
 } catch (e) {}
 $(y);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -44,38 +46,6 @@ try {
 $(y);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  let y = 100;
-  try {
-    y = FAIL;
-  } catch (e) {}
-  return y;
-};
-$(f(KEEP_ME));
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function ($$0) {
-  let x = $$0;
-  debugger;
-  let y = 100;
-  try {
-    y = FAIL;
-  } catch (e) {}
-  return y;
-};
-const tmpCalleeParam = f(KEEP_ME);
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -92,13 +62,17 @@ catch (b) {
 $( a );
 `````
 
+
 ## Globals
+
 
 BAD@! Found 2 implicit global bindings:
 
 KEEP_ME, FAIL
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not defined ]>')

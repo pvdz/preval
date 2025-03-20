@@ -27,6 +27,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -63,43 +65,6 @@ if (tmpSwitchDisc === tmpBinBothRhs) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const tmpSwitchDisc = $(`a`);
-const tmpBinBothRhs = $(`a`);
-$(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-if (tmpIfTest) {
-  $(2);
-  const z = [10, 20, 30];
-  const arrPatternSplat = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
-  $(1, 2, z);
-} else {
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpSwitchDisc = $(`a`);
-const tmpBinBothRhs = $(`a`);
-$(1);
-const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
-if (tmpIfTest) {
-  $(2);
-  const z = [10, 20, 30];
-  const arrPatternSplat = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
-  $(1, 2, z);
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -119,11 +84,21 @@ if (c) {
 }
 `````
 
+
+## Todos triggered
+
+
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'
@@ -140,6 +115,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- inline computed array property read

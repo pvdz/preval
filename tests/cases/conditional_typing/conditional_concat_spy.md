@@ -27,6 +27,7 @@ function f() {
 $(f());
 `````
 
+
 ## Settled
 
 
@@ -46,6 +47,7 @@ if (tmpIfTest$1787) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -61,51 +63,6 @@ if (lastType === 2097173) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpBinBothLhs$253 = `Parser error! ` + $spy();
-  let tmpBinBothRhs$253 = undefined;
-  const tmpIfTest$1787 = lastType === 2097173;
-  if (tmpIfTest$1787) {
-    tmpBinBothRhs$253 = ` (at EOF)`;
-  } else {
-    tmpBinBothRhs$253 = ``;
-  }
-  const fullErrmsg = tmpBinBothLhs$253 + tmpBinBothRhs$253;
-  $(`-->`, fullErrmsg);
-};
-const lastType = $(2097173);
-$(f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let f = function () {
-  debugger;
-  const tmpBinBothLhs = `Parser error! `;
-  const tmpBinBothRhs = $spy();
-  const tmpBinBothLhs$253 = tmpBinBothLhs + tmpBinBothRhs;
-  let tmpBinBothRhs$253 = undefined;
-  const tmpIfTest$1787 = lastType === 2097173;
-  if (tmpIfTest$1787) {
-    tmpBinBothRhs$253 = ` (at EOF)`;
-  } else {
-    tmpBinBothRhs$253 = ``;
-  }
-  const fullErrmsg = tmpBinBothLhs$253 + tmpBinBothRhs$253;
-  $(`-->`, fullErrmsg);
-  return undefined;
-};
-const lastType = $(2097173);
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -127,11 +84,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2097173

@@ -18,6 +18,7 @@ It is packed three times (output becomes input)
 eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!\'\'.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t\'\\\\w+\'};c=1};x(c--)u(k[c])p=p.v(A B(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);t p}(\'f(5(p,a,c,k,e,r){e=7;8(!\\\'\\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\\'\\\\\\\\h+\\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);6 p}(\\\'0.1(\\\\\\\'2\\\\\\\\`\\\\\\\\\\\\\\\'\\\\\\\\"\\\\\\\\3\\\\\\\')\\\',4,4,\\\'l|m|n|o\\\'.q(\\\'|\\\'),0,{}))\',C,C,\'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|\'.D(\'|\'),0,{}))',45,45,'||||||||||||||||||||||||||||function|return|if|replace||while|eval|String|new|RegExp|28|split|toString|console|log|bo|x20o'.split('|'),0,{}))
 `````
 
+
 ## Settled
 
 
@@ -156,6 +157,7 @@ const tmpClusterSSA_p /*:string*/ = `y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/
 eval(tmpClusterSSA_p);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -278,167 +280,6 @@ eval(
 );
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-eval(
-  (function ($$0, $$1, $$2, $$3, $$4, $$5) {
-    let p = $$0;
-    let a = $$1;
-    let c = $$2;
-    let k = $$3;
-    let e = $$4;
-    let r = $$5;
-    debugger;
-    e = function ($$0) {
-      let c$1 = $$0;
-      debugger;
-      return (c$1 < a ? `` : e(parseInt(c$1 / a))) + ((c$1 = c$1 % a) > 35 ? String.fromCharCode(c$1 + 29) : c$1.toString(36));
-    };
-    if (!``.replace(/^/, String)) {
-      while (c--) r[e(c)] = k[c] || e(c);
-      k = [
-        function ($$0) {
-          let e$1 = $$0;
-          debugger;
-          return r[e$1];
-        },
-      ];
-      e = function () {
-        debugger;
-        return `\\w+`;
-      };
-      c = 1;
-    }
-    while (c--) if (k[c]) p = p.replace(new RegExp(`\\b` + e(c) + `\\b`, `g`), k[c]);
-    return p;
-  })(
-    `y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t'\\\\w+'};c=1};x(c--)u(k[c])p=p.v(A B('\\\\b'+e(c)+'\\\\b','g'),k[c]);t p}('f(5(p,a,c,k,e,r){e=7;8(!\\'\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\'\\\\\\\\h+\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);6 p}(\\'0.1(\\\\\\'2\\\\\\\\\`\\\\\\\\\\\\\\'\\\\\\\\"\\\\\\\\3\\\\\\')\\',4,4,\\'l|m|n|o\\'.q(\\'|\\'),0,{}))',C,C,'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|'.D('|'),0,{}))`,
-    45,
-    45,
-    `||||||||||||||||||||||||||||function|return|if|replace||while|eval|String|new|RegExp|28|split|toString|console|log|bo|x20o`.split(`|`),
-    0,
-    {},
-  ),
-);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpCallCallee = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-  let p = $$0;
-  let a = $$1;
-  let c = $$2;
-  let k = $$3;
-  let e = $$4;
-  let r = $$5;
-  debugger;
-  e = function ($$0) {
-    let c$1 = $$0;
-    debugger;
-    let tmpBinBothLhs = undefined;
-    const tmpIfTest = c$1 < a;
-    if (tmpIfTest) {
-      tmpBinBothLhs = ``;
-    } else {
-      const tmpCallCallee$1 = e;
-      const tmpCalleeParam$7 = c$1 / a;
-      const tmpCalleeParam$5 = parseInt(tmpCalleeParam$7);
-      tmpBinBothLhs = tmpCallCallee$1(tmpCalleeParam$5);
-    }
-    let tmpBinBothRhs = undefined;
-    c$1 = c$1 % a;
-    let tmpBinLhs = c$1;
-    const tmpIfTest$1 = tmpBinLhs > 35;
-    if (tmpIfTest$1) {
-      const tmpCalleeParam$9 = c$1 + 29;
-      tmpBinBothRhs = $String_fromCharCode(tmpCalleeParam$9);
-    } else {
-      tmpBinBothRhs = c$1.toString(36);
-    }
-    const tmpReturnArg = tmpBinBothLhs + tmpBinBothRhs;
-    return tmpReturnArg;
-  };
-  const tmpCalleeParam$11 = /^/;
-  const tmpCalleeParam$13 = String;
-  const tmpIfTest$3 = ``.replace(tmpCalleeParam$11, tmpCalleeParam$13);
-  if (tmpIfTest$3) {
-  } else {
-    while (true) {
-      const tmpPostUpdArgIdent = $coerce(c, `number`);
-      c = tmpPostUpdArgIdent - 1;
-      const tmpIfTest$5 = tmpPostUpdArgIdent;
-      if (tmpIfTest$5) {
-        const tmpAssignComMemLhsObj = r;
-        const tmpAssignComMemLhsProp = e(c);
-        const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-        const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-        let tmpAssignComputedRhs = k[c];
-        if (tmpAssignComputedRhs) {
-        } else {
-          tmpAssignComputedRhs = e(c);
-        }
-        tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-      } else {
-        break;
-      }
-    }
-    const tmpArrElement = function ($$0) {
-      let e$1 = $$0;
-      debugger;
-      const tmpReturnArg$1 = r[e$1];
-      return tmpReturnArg$1;
-    };
-    k = [tmpArrElement];
-    e = function () {
-      debugger;
-      return `\\w+`;
-    };
-    c = 1;
-  }
-  while (true) {
-    const tmpPostUpdArgIdent$1 = $coerce(c, `number`);
-    c = tmpPostUpdArgIdent$1 - 1;
-    const tmpIfTest$7 = tmpPostUpdArgIdent$1;
-    if (tmpIfTest$7) {
-      const tmpIfTest$9 = k[c];
-      if (tmpIfTest$9) {
-        const tmpCallObj = p;
-        const tmpCallVal = tmpCallObj.replace;
-        const tmpNewCallee = RegExp;
-        const tmpBinBothLhs$1 = `\\b`;
-        const tmpBinBothRhs$1 = e(c);
-        const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-        const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
-        const tmpCalleeParam$19 = `${tmpStringConcatR}\\b`;
-        const tmpCalleeParam$15 = new tmpNewCallee(tmpCalleeParam$19, `g`);
-        const tmpCalleeParam$17 = k[c];
-        p = $dotCall(tmpCallVal, tmpCallObj, `replace`, tmpCalleeParam$15, tmpCalleeParam$17);
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-  return p;
-};
-const tmpCalleeParam$1 = `||||||||||||||||||||||||||||function|return|if|replace||while|eval|String|new|RegExp|28|split|toString|console|log|bo|x20o`.split(
-  `|`,
-);
-const tmpCalleeParam$3 = {};
-const tmpCalleeParam = tmpCallCallee(
-  `y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]||e(c);k=[s(e){t r[e]}];e=s(){t'\\\\w+'};c=1};x(c--)u(k[c])p=p.v(A B('\\\\b'+e(c)+'\\\\b','g'),k[c]);t p}('f(5(p,a,c,k,e,r){e=7;8(!\\'\\'.9(/^/,7)){d(c--)r[c]=k[c]||c;k=[5(e){6 r[e]}];e=5(){6\\'\\\\\\\\h+\\'};c=1};d(c--)8(k[c])p=p.9(i j(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);6 p}(\\'0.1(\\\\\\'2\\\\\\\\\`\\\\\\\\\\\\\\'\\\\\\\\"\\\\\\\\3\\\\\\')\\',4,4,\\'l|m|n|o\\'.q(\\'|\\'),0,{}))',C,C,'|||||s|t|z|u|v||||x||y||w|A|B||F|G|H|I||D|'.D('|'),0,{}))`,
-  45,
-  45,
-  tmpCalleeParam$1,
-  0,
-  tmpCalleeParam$3,
-);
-eval(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -535,11 +376,23 @@ const bn = "y(s(p,a,c,k,e,r){e=s(c){t c.E(a)};u(!''.v(/^/,z)){x(c--)r[e(c)]=k[c]
 eval( bn );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- objects in isFree check
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined
@@ -551,8 +404,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- objects in isFree check
-- inline computed array property read

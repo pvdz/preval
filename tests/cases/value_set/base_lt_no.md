@@ -75,6 +75,7 @@ if (n <= 10) {
 }
 `````
 
+
 ## Settled
 
 
@@ -145,6 +146,7 @@ if (tmpIfTest) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -203,144 +205,6 @@ if (n <= 10) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const x = $();
-let n = 11;
-let t = 0 === x;
-if (t) {
-  n = 0;
-} else {
-  t = 1 === x;
-  if (t) {
-    n = 1;
-  } else {
-    t = 2 === x;
-    if (t) {
-      n = 2;
-    } else {
-      t = 3 === x;
-      if (t) {
-        n = 3;
-      } else {
-        t = 4 === x;
-        if (t) {
-          n = 4;
-        } else {
-          t = 5 === x;
-          if (t) {
-            n = 5;
-          } else {
-            t = 6 === x;
-            if (t) {
-              n = 6;
-            } else {
-              t = 7 === x;
-              if (t) {
-                n = 7;
-              } else {
-                t = 8 === x;
-                if (t) {
-                  n = 8;
-                } else {
-                  t = 10 === x;
-                  if (t) {
-                    n = 9;
-                  } else {
-                    t = 9 === x;
-                    if (t) {
-                      n = 10;
-                    } else {
-                      $(`must be 11`);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-if (n <= 10) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const x = $();
-let n = 11;
-let t = 0 === x;
-if (t) {
-  n = 0;
-} else {
-  t = 1 === x;
-  if (t) {
-    n = 1;
-  } else {
-    t = 2 === x;
-    if (t) {
-      n = 2;
-    } else {
-      t = 3 === x;
-      if (t) {
-        n = 3;
-      } else {
-        t = 4 === x;
-        if (t) {
-          n = 4;
-        } else {
-          t = 5 === x;
-          if (t) {
-            n = 5;
-          } else {
-            t = 6 === x;
-            if (t) {
-              n = 6;
-            } else {
-              t = 7 === x;
-              if (t) {
-                n = 7;
-              } else {
-                t = 8 === x;
-                if (t) {
-                  n = 8;
-                } else {
-                  t = 10 === x;
-                  if (t) {
-                    n = 9;
-                  } else {
-                    t = 9 === x;
-                    if (t) {
-                      n = 10;
-                    } else {
-                      $(`must be 11`);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-const tmpIfTest = n <= 10;
-if (tmpIfTest) {
-  $(`pass`);
-} else {
-  $(`fail`);
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -424,11 +288,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 

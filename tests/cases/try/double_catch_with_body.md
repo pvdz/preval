@@ -23,6 +23,7 @@ try {
 }
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ try {
   }
 }
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -61,42 +63,6 @@ try {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-try {
-  try {
-    if ($) {
-      throw `pass`;
-    }
-    $(`fail`);
-  } catch (e) {
-    $(`inner`);
-  }
-} catch (e$1) {
-  $(`outer`);
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-try {
-  if ($) {
-    throw `pass`;
-  } else {
-    $(`fail`);
-  }
-} catch (e) {
-  try {
-    $(`inner`);
-  } catch (e$1) {
-    $(`outer`);
-  }
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -120,11 +86,15 @@ catch (a) {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'inner'

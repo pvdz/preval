@@ -23,6 +23,7 @@ while ($(true)) {
 $('after (not invoked)');
 `````
 
+
 ## Settled
 
 
@@ -52,6 +53,7 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,48 +79,6 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-while ($(true)) {
-  $(`loop`);
-  while ($(true)) {
-    $continue: {
-      {
-        $(`loop`);
-        break $continue;
-        $(`fail`);
-      }
-    }
-  }
-  $(`infiloop, do not eliminate`);
-}
-$(`after (not invoked)`);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    while (true) {
-      $(`loop`);
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-      } else {
-        break;
-      }
-    }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
-  }
-}
-$(`after (not invoked)`);
-`````
 
 ## PST Settled
 With rename=true
@@ -153,11 +113,15 @@ while (true) {
 $( "after (not invoked)" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

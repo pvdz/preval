@@ -16,6 +16,7 @@ const y = Boolean(x);
 $(y);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ const x /*:boolean*/ = a === b;
 $(x);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -34,27 +36,6 @@ const a = $(`a`);
 $(a === $(`b`));
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const a = $(`a`);
-const b = $(`b`);
-const x = a === b;
-const y = Boolean(x);
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const a = $(`a`);
-const b = $(`b`);
-const x = a === b;
-const y = Boolean(x);
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -66,11 +47,15 @@ const c = a === b;
 $( c );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'a'

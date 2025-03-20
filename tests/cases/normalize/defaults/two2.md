@@ -36,6 +36,7 @@ const tmpCalleeParam = main();
 $(tmpCalleeParam);
 `````
 
+
 ## Settled
 
 
@@ -65,6 +66,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -87,70 +89,6 @@ if ($) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const outer = function ($$0) {
-  let x = $$0;
-  debugger;
-  const r = [x];
-  $(r);
-};
-let main = function () {
-  debugger;
-  const inner = function ($$0) {
-    let x$1 = $$0;
-    debugger;
-    outer();
-    if ($) {
-      outer(x$1);
-    }
-  };
-  inner();
-  if ($) {
-    inner();
-  }
-};
-const tmpCalleeParam = main();
-$(tmpCalleeParam);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const outer = function ($$0) {
-  let x = $$0;
-  debugger;
-  const r = [x];
-  $(r);
-  return undefined;
-};
-let main = function () {
-  debugger;
-  const inner = function ($$0) {
-    let x$1 = $$0;
-    debugger;
-    outer();
-    if ($) {
-      outer(x$1);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  inner();
-  if ($) {
-    inner();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = main();
-$(tmpCalleeParam);
-`````
 
 ## PST Settled
 With rename=true
@@ -183,11 +121,15 @@ else {
 }
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: [undefined]

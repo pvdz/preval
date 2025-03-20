@@ -13,6 +13,7 @@ if ($(true)) var x;
 $(x);
 `````
 
+
 ## Settled
 
 
@@ -20,6 +21,7 @@ $(x);
 $(true);
 $(undefined);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,23 +31,6 @@ $(true);
 $(undefined);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-if ($(true));
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-const tmpIfTest = $(true);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -55,11 +40,15 @@ $( true );
 $( undefined );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: true

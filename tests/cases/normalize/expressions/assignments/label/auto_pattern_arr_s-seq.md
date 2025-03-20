@@ -14,6 +14,7 @@ label: [a] = ($(10), $(20), [1, 2]);
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -26,6 +27,7 @@ $(20);
 $(1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -37,29 +39,6 @@ $(20);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let [a] = { a: 999, b: 1000 };
-label: [a] = ($(10), $(20), [1, 2]);
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let bindingPatternArrRoot = { a: 999, b: 1000 };
-let arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-$(10);
-$(20);
-const arrAssignPatternRhs = [1, 2];
-const arrPatternSplat$1 = [...arrAssignPatternRhs];
-a = arrPatternSplat$1[0];
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -76,11 +55,22 @@ $( 20 );
 $( 1 );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
@@ -92,7 +82,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

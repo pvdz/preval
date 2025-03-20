@@ -14,12 +14,14 @@ x = `${NaN}`;
 $(x);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(`NaN`);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -28,26 +30,6 @@ $(`NaN`);
 $(`NaN`);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = undefined;
-x = `` + $coerce(NaN, `string`) + ``;
-$(x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = undefined;
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $coerce(NaN, `string`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-x = $coerce(tmpBinLhs, `plustr`);
-$(x);
-`````
 
 ## PST Settled
 With rename=true
@@ -56,11 +38,15 @@ With rename=true
 $( "NaN" );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'NaN'

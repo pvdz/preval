@@ -13,12 +13,14 @@ const { x: [{ y }] } = { x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 };
 $(y);
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(2);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -27,29 +29,6 @@ $(2);
 $(2);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const {
-  x: [{ y: y }],
-} = { x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 };
-$(y);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const tmpArrElement = { x: 1, y: 2, c: 3 };
-const tmpObjLitVal = [tmpArrElement, 13, 14];
-const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const arrPatternSplat = [...objPatternNoDefault];
-const arrPatternStep = arrPatternSplat[0];
-const y = arrPatternStep.y;
-$(y);
-`````
 
 ## PST Settled
 With rename=true
@@ -58,11 +37,22 @@ With rename=true
 $( 2 );
 `````
 
+
+## Todos triggered
+
+
+- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- inline computed array property read
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 2
@@ -75,7 +65,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read

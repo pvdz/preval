@@ -14,6 +14,7 @@ $($)?.($(1)) + $($)?.($(1));
 $(a);
 `````
 
+
 ## Settled
 
 
@@ -41,6 +42,7 @@ const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -59,47 +61,6 @@ tmpBinBothLhs + tmpBinBothRhs;
 $({ a: 999, b: 1000 });
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-$($)?.($(1)) + $($)?.($(1));
-$(a);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpBinBothLhs = undefined;
-const tmpChainRootCall = $;
-const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpCalleeParam = tmpChainElementCall;
-  const tmpCalleeParam$1 = tmpChainRootCall;
-  const tmpCalleeParam$3 = $(1);
-  const tmpChainElementCall$1 = $dotCall(tmpCalleeParam, tmpCalleeParam$1, undefined, tmpCalleeParam$3);
-  tmpBinBothLhs = tmpChainElementCall$1;
-} else {
-}
-let tmpBinBothRhs = undefined;
-const tmpChainRootCall$1 = $;
-const tmpChainElementCall$3 = $($);
-const tmpIfTest$1 = tmpChainElementCall$3 != null;
-if (tmpIfTest$1) {
-  const tmpCalleeParam$5 = tmpChainElementCall$3;
-  const tmpCalleeParam$7 = tmpChainRootCall$1;
-  const tmpCalleeParam$9 = $(1);
-  const tmpChainElementCall$5 = $dotCall(tmpCalleeParam$5, tmpCalleeParam$7, undefined, tmpCalleeParam$9);
-  tmpBinBothRhs = tmpChainElementCall$5;
-} else {
-}
-tmpBinBothLhs + tmpBinBothRhs;
-$(a);
-`````
 
 ## PST Settled
 With rename=true
@@ -135,11 +96,15 @@ const k = {
 $( k );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: '<$>'

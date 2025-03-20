@@ -19,6 +19,7 @@ switch ((a = typeof $(x))) {
 $(a, x);
 `````
 
+
 ## Settled
 
 
@@ -29,6 +30,7 @@ const a /*:string*/ = typeof tmpUnaryArg;
 $(a, 1);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -38,34 +40,6 @@ $(100);
 $(typeof tmpUnaryArg, 1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-tmpSwitchBreak: {
-  const tmpSwitchDisc = (a = typeof $(x));
-  if (true) {
-    $(100);
-  } else {
-  }
-}
-$(a, x);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let x = 1;
-let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
-a = typeof tmpUnaryArg;
-let tmpSwitchDisc = a;
-$(100);
-$(a, x);
-`````
 
 ## PST Settled
 With rename=true
@@ -77,11 +51,15 @@ const b = typeof a;
 $( b, 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

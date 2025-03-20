@@ -15,12 +15,14 @@ const f = function(g) {
 f($); // In this test, this is the call we expect to be replaced by trampoline inlining...
 `````
 
+
 ## Settled
 
 
 `````js filename=intro
 $(1);
 `````
+
 
 ## Denormalized
 (This ought to be the final result)
@@ -29,30 +31,6 @@ $(1);
 $(1);
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let g = $$0;
-  debugger;
-  g(1);
-};
-f($);
-`````
-
-## Normalized
-
-
-`````js filename=intro
-const f = function ($$0) {
-  let g = $$0;
-  debugger;
-  g(1);
-  return undefined;
-};
-f($);
-`````
 
 ## PST Settled
 With rename=true
@@ -61,11 +39,15 @@ With rename=true
 $( 1 );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 1

@@ -24,6 +24,7 @@ const obj = {
 $(obj.f());
 `````
 
+
 ## Settled
 
 
@@ -51,6 +52,7 @@ const tmpCalleeParam$5 /*:unknown*/ = obj.f();
 $(tmpCalleeParam$5);
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -71,66 +73,6 @@ const tmpObjLitVal$1 = function () {
 $({ x: `pass`, f: tmpObjLitVal$1 }.f());
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let evil = function ($$0) {
-  let func = $$0;
-  debugger;
-  $(`once`);
-  func.call({ f: 1, x: `burn` });
-};
-const obj = {
-  x: `pass`,
-  f: function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    if (tmpPrevalAliasThis.x === `burn`) return $(`burned`);
-    evil(tmpPrevalAliasThis.f);
-    $(tmpPrevalAliasThis.x);
-    return `win`;
-  },
-};
-$(obj.f());
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let evil = function ($$0) {
-  let func = $$0;
-  debugger;
-  $(`once`);
-  const tmpCallObj = func;
-  const tmpCallVal = tmpCallObj.call;
-  const tmpCalleeParam = { f: 1, x: `burn` };
-  $dotCall(tmpCallVal, tmpCallObj, `call`, tmpCalleeParam);
-  return undefined;
-};
-const tmpObjLitVal = `pass`;
-const tmpObjLitVal$1 = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const tmpBinLhs = tmpPrevalAliasThis.x;
-  const tmpIfTest = tmpBinLhs === `burn`;
-  if (tmpIfTest) {
-    const tmpReturnArg = $(`burned`);
-    return tmpReturnArg;
-  } else {
-    const tmpCallCallee = evil;
-    const tmpCalleeParam$1 = tmpPrevalAliasThis.f;
-    tmpCallCallee(tmpCalleeParam$1);
-    const tmpCalleeParam$3 = tmpPrevalAliasThis.x;
-    $(tmpCalleeParam$3);
-    return `win`;
-  }
-};
-const obj = { x: tmpObjLitVal, f: tmpObjLitVal$1 };
-const tmpCalleeParam$5 = obj.f();
-$(tmpCalleeParam$5);
-`````
 
 ## PST Settled
 With rename=true
@@ -166,11 +108,15 @@ const j = i.f();
 $( j );
 `````
 
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - 1: 'once'

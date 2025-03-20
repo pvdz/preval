@@ -32,6 +32,7 @@ if ($tmpLoopUnrollCheck) {
 }
 `````
 
+
 ## Settled
 
 
@@ -56,6 +57,7 @@ if ($) {
 }
 `````
 
+
 ## Denormalized
 (This ought to be the final result)
 
@@ -77,63 +79,6 @@ if (!$) {
 }
 `````
 
-## Pre Normal
-
-
-`````js filename=intro
-let $tmpLoopUnrollCheck = true;
-let tmpLoopRetCode = !$;
-if (tmpLoopRetCode) {
-  if ($) {
-    tmpLoopRetCode = false;
-  } else {
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_9) {
-    if (tmpLoopRetCode) {
-      if ($) {
-        tmpLoopRetCode = false;
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-`````
-
-## Normalized
-
-
-`````js filename=intro
-let $tmpLoopUnrollCheck = true;
-let tmpLoopRetCode = !$;
-if (tmpLoopRetCode) {
-  if ($) {
-    tmpLoopRetCode = false;
-  } else {
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_9) {
-    if (tmpLoopRetCode) {
-      if ($) {
-        tmpLoopRetCode = false;
-      } else {
-      }
-    } else {
-      break;
-    }
-  }
-} else {
-}
-`````
 
 ## PST Settled
 With rename=true
@@ -160,11 +105,21 @@ else {
 }
 `````
 
+
+## Todos triggered
+
+
+- Support referencing this builtin in isFree: $
+
+
 ## Globals
+
 
 None
 
+
 ## Runtime Outcome
+
 
 Should call `$` with:
  - eval returned: undefined
@@ -176,6 +131,3 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: Same
-
-Todos triggered:
-- Support referencing this builtin in isFree: $

@@ -97,7 +97,7 @@ $( f, a );
 ## Todos triggered
 
 
-- computed property access of an ident where the property ident is not recorded;
+- (todo) computed property access of an ident where the property ident is not recorded;
 
 
 ## Globals

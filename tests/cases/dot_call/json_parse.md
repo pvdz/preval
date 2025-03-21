@@ -78,9 +78,9 @@ $( a );
 ## Todos triggered
 
 
-- maybe fix the type for calling this builtin?
-- inline async functions safely (because await)
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $JSON_parse
+- (todo) maybe fix the type for calling builtin $JSON_parse
+- (todo) inline async functions safely (because await)
+- (todo) type trackeed tricks can possibly support static $JSON_parse
 
 
 ## Globals

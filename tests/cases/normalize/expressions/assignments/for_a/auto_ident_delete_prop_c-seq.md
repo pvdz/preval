@@ -64,7 +64,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- regular property access of an ident feels tricky;
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

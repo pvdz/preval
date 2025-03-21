@@ -46,7 +46,7 @@ throw "[Preval]: Can not reach here";
 ## Todos triggered
 
 
-- replace with $array_slice
+- (todo) replace with $array_slice
 
 
 ## Globals

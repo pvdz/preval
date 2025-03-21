@@ -114,14 +114,14 @@ $( "number" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log10
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log1p
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log2
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_round
+- (todo) type trackeed tricks can possibly support static $Math_log10
+- (todo) type trackeed tricks can possibly support static $Math_log1p
+- (todo) type trackeed tricks can possibly support static $Math_log2
+- (todo) type trackeed tricks can possibly support static $Math_max
+- (todo) type trackeed tricks can possibly support static $Math_min
+- (todo) type trackeed tricks can possibly support static $Math_pow
+- (todo) type trackeed tricks can possibly support static $Math_random
+- (todo) type trackeed tricks can possibly support static $Math_round
 
 
 ## Globals

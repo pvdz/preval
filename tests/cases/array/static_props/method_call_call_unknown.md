@@ -52,7 +52,7 @@ $( 3 );
 ## Todos triggered
 
 
-- replace with $array_splice
+- (todo) replace with $array_splice
 
 
 ## Globals

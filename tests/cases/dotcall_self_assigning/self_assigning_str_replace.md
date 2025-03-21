@@ -118,8 +118,8 @@ $( a );
 ## Todos triggered
 
 
-- Support referencing this builtin in isFree: $string_replace
-- inline computed array property read
+- (todo) Support referencing this builtin in isFree: $string_replace
+- (todo) inline computed array property read
 
 
 ## Globals

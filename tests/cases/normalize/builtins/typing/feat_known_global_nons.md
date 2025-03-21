@@ -112,9 +112,9 @@ $( "number" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sign
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_hypot
+- (todo) type trackeed tricks can possibly support static $Math_sign
+- (todo) type trackeed tricks can possibly support static $Math_sin
+- (todo) type trackeed tricks can possibly support static $Math_hypot
 
 
 ## Globals

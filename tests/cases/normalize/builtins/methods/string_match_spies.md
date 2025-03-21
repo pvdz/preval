@@ -46,7 +46,7 @@ const b = $spy( "b" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $string_match
+- (todo) type trackeed tricks can possibly support method $string_match
 
 
 ## Globals

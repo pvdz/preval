@@ -43,9 +43,9 @@ $( 2 );
 ## Todos triggered
 
 
-- inline computed array property read
-- free with zero args, we can eliminate this?
-- arr_mutation: implement array inlining analysis stuff
+- (todo) inline computed array property read
+- (todo) free with zero args, we can eliminate this?
+- (todo) arr_mutation: implement array inlining analysis stuff
 
 
 ## Globals

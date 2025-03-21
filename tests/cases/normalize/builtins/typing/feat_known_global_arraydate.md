@@ -127,16 +127,16 @@ $( "number" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_isArray
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_of
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_now
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_UTC
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_parse
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $JSON_stringify
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_abs
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acos
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acosh
+- (todo) type trackeed tricks can possibly support static $Array_from
+- (todo) type trackeed tricks can possibly support static $Array_isArray
+- (todo) type trackeed tricks can possibly support static $Array_of
+- (todo) type trackeed tricks can possibly support static $Date_now
+- (todo) type trackeed tricks can possibly support static $Date_UTC
+- (todo) type trackeed tricks can possibly support static $Date_parse
+- (todo) type trackeed tricks can possibly support static $JSON_stringify
+- (todo) type trackeed tricks can possibly support static $Math_abs
+- (todo) type trackeed tricks can possibly support static $Math_acos
+- (todo) type trackeed tricks can possibly support static $Math_acosh
 
 
 ## Globals

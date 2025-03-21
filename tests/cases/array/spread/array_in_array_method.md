@@ -53,7 +53,7 @@ $( c );
 ## Todos triggered
 
 
-- calling $array_join on an array that has other reads, must verify they dont mutate the array first
+- (todo) calling $array_join on an array that has other reads, must verify they dont mutate the array first
 
 
 ## Globals

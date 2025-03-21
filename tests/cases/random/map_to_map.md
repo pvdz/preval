@@ -107,7 +107,7 @@ $( p );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_map
+- (todo) type trackeed tricks can possibly support method $array_map
 
 
 ## Globals

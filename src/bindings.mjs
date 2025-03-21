@@ -1572,7 +1572,7 @@ function _inferNodeTyping(fdata, valueNode) {
             // into $number_toString even when it's not a number.
             // We shouldn't need to do this anymore when we convert all global static methods into builtin symbols, though.
             if (BUILTIN_SYMBOLS.has(symbo(valueNode.callee.object.name, valueNode.callee.property.name))) {
-              todo('maybe fix the type for calling this builtin?', symbo(valueNode.callee.object.name, valueNode.callee.property.name))
+              todo(`maybe fix the type for calling builtin ${symbo(valueNode.callee.object.name, valueNode.callee.property.name)}`)
             }
             //const symb = BUILTIN_SYMBOLS.get(symbo(valueNode.callee.object.name, valueNode.callee.property.name));
             //if (symb?.typings.returns) {

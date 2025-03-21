@@ -362,8 +362,8 @@ $( c );
 ## Todos triggered
 
 
-- Support this node type in isFree: DebuggerStatement
-- Support this node type in isFree: LabeledStatement
+- (todo) Support this node type in isFree: DebuggerStatement
+- (todo) Support this node type in isFree: LabeledStatement
 
 
 ## Globals

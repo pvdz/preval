@@ -79,8 +79,8 @@ $( "pass" );
 ## Todos triggered
 
 
-- would this not be the same as await? would we not want to infer the arg here?
-- inline generator functions safely (because yield)
+- (todo) would this not be the same as await? would we not want to infer the arg here?
+- (todo) inline generator functions safely (because yield)
 
 
 ## Globals

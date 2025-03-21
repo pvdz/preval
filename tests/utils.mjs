@@ -217,7 +217,7 @@ export function fmat(code) {
 function toTodosSection(todos) {
   return (
     '## Todos triggered\n\n\n' +
-    Array.from(todos).map(desc => '- ' + desc).join('\n')
+    (Array.from(todos).map(desc => '- (todo) ' + desc).join('\n') || 'None')
   )
 }
 
@@ -456,14 +456,14 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
   else if (wasPcodeTest) {
     mdBody = '\n\n\n' + [
       toSpecialPcodeSection(pcodeData),
-      (todos.size ? toTodosSection(todos) : ''),
+      toTodosSection(todos),
       '## Pcode result\n\n\n' + evalled.$pcode,
     ].filter(Boolean).join('\n\n\n');
   }
   else if (wasRefTest) {
     mdBody = '\n\n\n' + [
       toSpecialRefTestSection(output.lastPhase1Ast),
-      (todos.size ? toTodosSection(todos) : ''),
+      toTodosSection(todos),
       '## Ref tracking result\n\n\n' + createOpenRefsState(output.globallyUniqueNamingRegistry),
     ].filter(Boolean).join('\n\n\n');
   }
@@ -472,7 +472,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
       toSettledSection(output.files),
       toDenormalizedSection(output.denormed),
       toPstSettledSection(output.settledPst, output.implicitGlobals, output.explicitGlobals),
-      (todos.size ? toTodosSection(todos) : ''),
+      toTodosSection(todos),
       toEvaluationResult(evalled, output.implicitGlobals, false, mdOptions.globals),
       //(wasRefTest || CONFIG.onlyOutput ? '' : toPreNormalSection(output.pre)),
       //(wasRefTest || wasPcodeTest || CONFIG.onlyOutput ? '' : toNormalizedSection(output.normalized)),

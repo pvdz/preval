@@ -40,7 +40,7 @@ $( undefined );
 ## Todos triggered
 
 
-- maybe support this call case too
+- (todo) maybe support this call case too
 
 
 ## Globals

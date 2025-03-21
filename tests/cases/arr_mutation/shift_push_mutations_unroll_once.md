@@ -102,8 +102,8 @@ $( f );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
-- Calling a static method on an ident that is not global and not recorded: $arr_push
+- (todo) type trackeed tricks can possibly support method $array_slice
+- (todo) Calling a static method on an ident that is not global and not recorded: $arr_push
 
 
 ## Globals

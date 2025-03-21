@@ -159,7 +159,7 @@ else {
 ## Todos triggered
 
 
-- Support this node type in isFree: LabeledStatement
+- (todo) Support this node type in isFree: LabeledStatement
 
 
 ## Globals

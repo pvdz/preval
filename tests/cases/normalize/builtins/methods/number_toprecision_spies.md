@@ -46,7 +46,7 @@ const b = $spy( "b" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $number_toPrecision
+- (todo) type trackeed tricks can possibly support method $number_toPrecision
 
 
 ## Globals

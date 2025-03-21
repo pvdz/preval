@@ -61,7 +61,7 @@ else {
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_concat
+- (todo) type trackeed tricks can possibly support method $array_concat
 
 
 ## Globals

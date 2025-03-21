@@ -114,14 +114,14 @@ $( "number" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asin
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asinh
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan2
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atanh
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cbrt
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_ceil
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_clz32
+- (todo) type trackeed tricks can possibly support static $Math_asin
+- (todo) type trackeed tricks can possibly support static $Math_asinh
+- (todo) type trackeed tricks can possibly support static $Math_atan
+- (todo) type trackeed tricks can possibly support static $Math_atan2
+- (todo) type trackeed tricks can possibly support static $Math_atanh
+- (todo) type trackeed tricks can possibly support static $Math_cbrt
+- (todo) type trackeed tricks can possibly support static $Math_ceil
+- (todo) type trackeed tricks can possibly support static $Math_clz32
 
 
 ## Globals

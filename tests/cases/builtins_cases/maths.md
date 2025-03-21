@@ -88,11 +88,14 @@ $( m );
 ## Todos triggered
 
 
-- maybe fix the type for calling this builtin?
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max
+- (todo) maybe fix the type for calling builtin $Math_pow
+- (todo) maybe fix the type for calling builtin $Math_sin
+- (todo) maybe fix the type for calling builtin $Math_min
+- (todo) maybe fix the type for calling builtin $Math_max
+- (todo) type trackeed tricks can possibly support static $Math_sin
+- (todo) type trackeed tricks can possibly support static $Math_pow
+- (todo) type trackeed tricks can possibly support static $Math_min
+- (todo) type trackeed tricks can possibly support static $Math_max
 
 
 ## Globals

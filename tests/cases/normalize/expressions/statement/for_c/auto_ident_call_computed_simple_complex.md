@@ -94,8 +94,8 @@ $( f );
 ## Todos triggered
 
 
-- objects in isFree check
-- Computed method call but we dont know whats being called
+- (todo) objects in isFree check
+- (todo) Computed method call but we dont know whats being called
 
 
 ## Globals

@@ -56,9 +56,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- objects in isFree check
-- Support referencing this builtin in isFree: $
-- Support this node type in isFree: NewExpression
+- (todo) objects in isFree check
+- (todo) Support referencing this builtin in isFree: $
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

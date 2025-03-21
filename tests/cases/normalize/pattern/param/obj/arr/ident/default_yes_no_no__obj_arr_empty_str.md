@@ -43,8 +43,8 @@ $( "" );
 ## Todos triggered
 
 
-- inline computed array property read
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) inline computed array property read
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

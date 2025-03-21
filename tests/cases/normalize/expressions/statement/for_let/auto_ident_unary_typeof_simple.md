@@ -53,8 +53,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- objects in isFree check
-- Support this node type as init in isFree:
+- (todo) objects in isFree check
+- (todo) Support this node type as init in isFree:
 
 
 ## Globals

@@ -58,7 +58,7 @@ $( a, a, 0, 1, 1, true );
 ## Todos triggered
 
 
-- inline computed array property read
+- (todo) inline computed array property read
 
 
 ## Globals

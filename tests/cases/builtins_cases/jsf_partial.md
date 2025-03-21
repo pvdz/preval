@@ -50,8 +50,8 @@ $( "$(1, 2)" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_concat
-- free with zero args, we can eliminate this?
+- (todo) type trackeed tricks can possibly support method $array_concat
+- (todo) free with zero args, we can eliminate this?
 
 
 ## Globals

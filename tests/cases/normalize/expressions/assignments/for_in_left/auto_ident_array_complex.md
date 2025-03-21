@@ -93,8 +93,8 @@ $( a );
 ## Todos triggered
 
 
-- Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
-- arr_mutation: implement array inlining analysis stuff
+- (todo) Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+- (todo) arr_mutation: implement array inlining analysis stuff
 
 
 ## Globals

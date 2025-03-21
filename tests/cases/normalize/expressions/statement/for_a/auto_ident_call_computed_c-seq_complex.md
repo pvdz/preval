@@ -90,7 +90,7 @@ $( f );
 ## Todos triggered
 
 
-- Computed method call but we dont know whats being called
+- (todo) Computed method call but we dont know whats being called
 
 
 ## Globals

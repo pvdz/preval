@@ -47,7 +47,7 @@ $( b );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $object_toString
+- (todo) type trackeed tricks can possibly support method $object_toString
 
 
 ## Globals

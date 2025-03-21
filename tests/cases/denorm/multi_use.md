@@ -74,8 +74,8 @@ if (expires) {
 ## Todos triggered
 
 
-- maybe fix the type for calling this builtin?
-- Missed opportunity to inline a type tracked trick for
+- (todo) maybe fix the type for calling builtin $date_getTime
+- (todo) Missed opportunity to inline a type tracked trick for $date_setTime
 
 
 ## Globals

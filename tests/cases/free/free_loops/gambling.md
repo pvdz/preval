@@ -145,8 +145,8 @@ $( "4747192131040313372212183947471921310403133713" );
 ## Todos triggered
 
 
-- in this arr[x], x is not known to be a number so we must bail
-- fix the member expression on array stuff. im going to hate myself for skipping this.
+- (todo) in this arr[x], x is not known to be a number so we must bail
+- (todo) fix the member expression on array stuff. im going to hate myself for skipping this.
 
 
 ## Globals

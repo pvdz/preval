@@ -122,11 +122,11 @@ $( "number", "Math.SQRT2" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_is
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isFrozen
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isSealed
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_fromCodePoint
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_raw
+- (todo) type trackeed tricks can possibly support static $Object_is
+- (todo) type trackeed tricks can possibly support static $Object_isFrozen
+- (todo) type trackeed tricks can possibly support static $Object_isSealed
+- (todo) type trackeed tricks can possibly support static $String_fromCodePoint
+- (todo) type trackeed tricks can possibly support static $String_raw
 
 
 ## Globals

@@ -73,7 +73,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- inline computed array property read
+- (todo) inline computed array property read
 
 
 ## Globals

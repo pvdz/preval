@@ -44,8 +44,8 @@ throw "[Preval]: Array spread must crash before this line";
 ## Todos triggered
 
 
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- inline computed array property read
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) inline computed array property read
 
 
 ## Globals

@@ -113,8 +113,8 @@ $( a, e );
 ## Todos triggered
 
 
-- objects in isFree check
-- Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+- (todo) objects in isFree check
+- (todo) Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
 
 
 ## Globals

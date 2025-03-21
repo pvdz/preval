@@ -104,8 +104,8 @@ if ($) {
 ## Todos triggered
 
 
-- Support this node type in isFree: LabeledStatement
-- Support referencing this builtin in isFree: $
+- (todo) Support this node type in isFree: LabeledStatement
+- (todo) Support referencing this builtin in isFree: $
 
 
 ## Globals

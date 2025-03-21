@@ -77,7 +77,7 @@ $( a );
 ## Todos triggered
 
 
-- drop unused rest param?
+- (todo) drop unused rest param?
 
 
 ## Globals

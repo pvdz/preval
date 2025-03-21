@@ -66,7 +66,7 @@ $( "path" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Buffer_from
+- (todo) type trackeed tricks can possibly support static $Buffer_from
 
 
 ## Globals

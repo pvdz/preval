@@ -62,7 +62,7 @@ if (expires) {
 ## Todos triggered
 
 
-- maybe fix the type for calling this builtin?
+- (todo) maybe fix the type for calling builtin $date_getTime
 
 
 ## Globals

@@ -53,8 +53,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- regular property access of an ident feels tricky;
-- objects in isFree check
+- (todo) regular property access of an ident feels tricky;
+- (todo) objects in isFree check
 
 
 ## Globals

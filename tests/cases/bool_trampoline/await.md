@@ -79,7 +79,7 @@ $( "pass" );
 ## Todos triggered
 
 
-- inline async functions safely (because await)
+- (todo) inline async functions safely (because await)
 
 
 ## Globals

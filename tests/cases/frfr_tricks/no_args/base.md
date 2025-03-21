@@ -50,8 +50,8 @@ $( a );
 ## Todos triggered
 
 
-- free with zero args, we can eliminate this?
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $string_repeat
+- (todo) free with zero args, we can eliminate this?
+- (todo) type trackeed tricks can possibly support method $string_repeat
 
 
 ## Globals

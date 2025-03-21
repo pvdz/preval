@@ -51,7 +51,7 @@ $( "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
 ## Todos triggered
 
 
-- Support this node type in isFree: TemplateLiteral
+- (todo) Support this node type in isFree: TemplateLiteral
 
 
 ## Globals

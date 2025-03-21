@@ -129,12 +129,12 @@ $( "number", "Number.NaN" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isFinite
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isInteger
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isNaN
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isSafeInteger
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseFloat
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseInt
+- (todo) type trackeed tricks can possibly support static $Number_isFinite
+- (todo) type trackeed tricks can possibly support static $Number_isInteger
+- (todo) type trackeed tricks can possibly support static $Number_isNaN
+- (todo) type trackeed tricks can possibly support static $Number_isSafeInteger
+- (todo) type trackeed tricks can possibly support static $Number_parseFloat
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

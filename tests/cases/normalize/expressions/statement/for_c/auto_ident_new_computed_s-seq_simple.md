@@ -85,8 +85,8 @@ $( c );
 ## Todos triggered
 
 
-- objects in isFree check
-- Support this node type in isFree: NewExpression
+- (todo) objects in isFree check
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

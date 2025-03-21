@@ -56,7 +56,7 @@ $( b );
 ## Todos triggered
 
 
-- arr_mutation: implement array inlining analysis stuff
+- (todo) arr_mutation: implement array inlining analysis stuff
 
 
 ## Globals

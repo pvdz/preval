@@ -172,8 +172,8 @@ $( s );
 ## Todos triggered
 
 
-- objects in isFree check
-- Support referencing this builtin in isFree: $
+- (todo) objects in isFree check
+- (todo) Support referencing this builtin in isFree: $
 
 
 ## Globals

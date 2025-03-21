@@ -113,8 +113,8 @@ if (b) {
 ## Todos triggered
 
 
-- regular property access of an ident feels tricky;
-- regular property of a primitive;
+- (todo) regular property access of an ident feels tricky;
+- (todo) regular property of a primitive;
 
 
 ## Globals

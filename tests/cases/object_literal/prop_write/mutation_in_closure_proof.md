@@ -134,7 +134,7 @@ $( a );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_defineProperty
+- (todo) type trackeed tricks can possibly support static $Object_defineProperty
 
 
 ## Globals

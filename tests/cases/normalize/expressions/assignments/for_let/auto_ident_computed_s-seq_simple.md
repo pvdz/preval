@@ -61,8 +61,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- objects in isFree check
-- computed property access of an ident where the property ident is not recorded;
+- (todo) objects in isFree check
+- (todo) computed property access of an ident where the property ident is not recorded;
 
 
 ## Globals

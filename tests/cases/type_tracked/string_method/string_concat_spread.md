@@ -41,7 +41,7 @@ $( c );
 ## Todos triggered
 
 
-- Maybe support type tracked trick of string.concat with spread
+- (todo) Maybe support type tracked trick of string.concat with spread
 
 
 ## Globals

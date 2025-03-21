@@ -42,6 +42,12 @@ $objPatternRest( null, a, "x" );
 `````
 
 
+## Todos triggered
+
+
+None
+
+
 ## Globals
 
 

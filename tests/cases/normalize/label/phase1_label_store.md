@@ -54,7 +54,7 @@ s;
 ## Todos triggered
 
 
-- Support this node type in isFree: DebuggerStatement
+- (todo) Support this node type in isFree: DebuggerStatement
 
 
 ## Globals

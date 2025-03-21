@@ -107,11 +107,11 @@ $( h );
 ## Todos triggered
 
 
-- Support string.charCodeAt when the arg is not a string literal
-- Support this node type in isFree: TemplateLiteral
-- Support referencing this builtin in isFree: $
-- - at least one of the frfr args was not isFree, bailing
-- Support non-primitive in first arg to $coerce
+- (todo) Support string.charCodeAt when the arg is not a string literal
+- (todo) Support this node type in isFree: TemplateLiteral
+- (todo) Support referencing this builtin in isFree: $
+- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) Support non-primitive in first arg to $coerce
 
 
 ## Globals

@@ -69,7 +69,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- Support this node type in isFree: ThrowStatement
+- (todo) Support this node type in isFree: ThrowStatement
 
 
 ## Globals

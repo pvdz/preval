@@ -46,8 +46,8 @@ throw "[Preval]: Can not reach here";
 ## Todos triggered
 
 
-- replace with $array_slice
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+- (todo) replace with $array_slice
+- (todo) type trackeed tricks can possibly support method $array_slice
 
 
 ## Globals

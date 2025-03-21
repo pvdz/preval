@@ -196,8 +196,8 @@ $( q );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
-- inline computed array property read
+- (todo) type trackeed tricks can possibly support method $array_slice
+- (todo) inline computed array property read
 
 
 ## Globals

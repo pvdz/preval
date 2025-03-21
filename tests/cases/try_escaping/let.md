@@ -99,7 +99,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- fix the member expression on array stuff. im going to hate myself for skipping this.
+- (todo) fix the member expression on array stuff. im going to hate myself for skipping this.
 
 
 ## Globals

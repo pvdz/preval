@@ -88,7 +88,7 @@ $( e );
 ## Todos triggered
 
 
-- Support this node type in isFree: NewExpression
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

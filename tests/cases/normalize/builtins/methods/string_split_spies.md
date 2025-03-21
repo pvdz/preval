@@ -43,6 +43,12 @@ const b = $spy( "b" );
 `````
 
 
+## Todos triggered
+
+
+None
+
+
 ## Globals
 
 

@@ -113,8 +113,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- Support referencing this builtin in isFree: $
-- Support this node type in isFree: LabeledStatement
+- (todo) Support referencing this builtin in isFree: $
+- (todo) Support this node type in isFree: LabeledStatement
 
 
 ## Globals

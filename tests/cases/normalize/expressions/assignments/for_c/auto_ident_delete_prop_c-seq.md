@@ -113,8 +113,8 @@ else {
 ## Todos triggered
 
 
-- objects in isFree check
-- regular property access of an ident feels tricky;
+- (todo) objects in isFree check
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

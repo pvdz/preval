@@ -83,7 +83,7 @@ else {
 ## Todos triggered
 
 
-- Support referencing this builtin in isFree: $
+- (todo) Support referencing this builtin in isFree: $
 
 
 ## Globals

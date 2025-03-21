@@ -83,8 +83,8 @@ $( k );
 ## Todos triggered
 
 
-- frfr and free arg mismatch
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $string_repeat
+- (todo) frfr and free arg mismatch
+- (todo) type trackeed tricks can possibly support method $string_repeat
 
 
 ## Globals

@@ -93,7 +93,7 @@ $( g );
 ## Todos triggered
 
 
-- objects in isFree check
+- (todo) objects in isFree check
 
 
 ## Globals

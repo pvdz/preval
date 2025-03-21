@@ -115,7 +115,7 @@ if ($) {
 ## Todos triggered
 
 
-- Support non-primitive in first arg to $coerce
+- (todo) Support non-primitive in first arg to $coerce
 
 
 ## Globals

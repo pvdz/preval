@@ -50,10 +50,10 @@ $( c );
 ## Todos triggered
 
 
-- inline computed array property read
-- replace with $array_slice
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
+- (todo) inline computed array property read
+- (todo) replace with $array_slice
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) type trackeed tricks can possibly support method $array_slice
 
 
 ## Globals

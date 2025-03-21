@@ -400,9 +400,9 @@ $( bo );
 ## Todos triggered
 
 
-- we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- objects in isFree check
-- inline computed array property read
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) objects in isFree check
+- (todo) inline computed array property read
 
 
 ## Globals

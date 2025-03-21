@@ -108,6 +108,7 @@ import { ifWeaving } from '../reduce_static/if_weaving.mjs';
 import { ifTestNested } from '../reduce_static/if_test_nested.mjs';
 import { frfrTricks } from '../reduce_static/frfr_tricks.mjs';
 import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
+import { VERBOSE_TRACING } from '../constants.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
@@ -130,7 +131,7 @@ import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
 export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  if (verboseTracing) {
+  if (VERBOSE_TRACING) {
     try {
       setPrintVarTyping(true, fdata); // Handy typing details
       const code = fmat(tmat(ast, true), true);

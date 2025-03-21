@@ -74,12 +74,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````
 
 
-## Todos triggered
-
-
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_splice
-
-
 ## Globals
 
 

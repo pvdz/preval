@@ -25,13 +25,14 @@ import {
   SYMBOL_DOTCALL,
   BUILTIN_REST_HANDLER_NAME,
   SYMBOL_LOOP_UNROLL,
-  SYMBOL_MAX_LOOP_UNROLL,
+  SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE,
 } from '../symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode } from '../ast.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
+import { createFreshVar } from '../bindings.mjs';
 
 export function typeTrackedTricks(fdata) {
   group('\n\n\nFinding type tracking based tricks\n');
@@ -1292,6 +1293,37 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
+              case symbo('array', 'includes'): {
+                if (parentNode.type === 'ExpressionStatement' && node.arguments.every(anode => anode.type !== 'SpreadElement')) {
+                  // The first arg is not coerced. The second arg is coerced to number. Rest is ignored.
+                  // It's doing the same as strict eq so the comparison itself is not observable
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rule('Calling .includes on an array as statement is moot1');
+                      example('arr.includes(x, y, z);', 'arr; x; $coerce(y, "string"); z;');
+                      before(blockBody[blockIndex]);
+
+                      blockBody.splice(blockIndex, 1,
+                        AST.expressionStatement(node.callee.object), // Note: arr elements are evaluated before the call args
+                        ...node.arguments.map((anode,i) => {
+                          if (i === 1) {
+                            return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
+                          } else {
+                            return AST.expressionStatement(anode)
+                          }
+                        }),
+                      );
+
+                      after(blockBody.slice(blockIndex, blockIndex+node.arguments.length));
+                    },
+                  });
+                  changes += 1;
+                } else {
+                  todo(`type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: ${symbo(mustBe, node.callee.property.name)}`);
+                }
+                break;
+              }
               case symbo('array', 'join'): {
                 // We can do this provided we can determine the concrete value of all elements of the array
                 // See the 'join' case in arr_mutation
@@ -1338,6 +1370,11 @@ function _typeTrackedTricks(fdata) {
               case symbo('array', 'shift'): {
                 // We can do this provided we can determine the concrete value of all elements of the array
                 // See the 'shift' case in arr_mutation
+                break;
+              }
+              case symbo('array', 'splice'): {
+                // We can do this provided we can determine the concrete value of all elements of the array
+                // See the 'splice' case in arr_mutation
                 break;
               }
               case symbo('array', 'toString'): {
@@ -1722,6 +1759,200 @@ function _typeTrackedTricks(fdata) {
                   after(parentNode);
                   ++changes;
                   break;
+                }
+                break;
+              }
+              case symbo('string', 'includes'): {
+                if (parentNode.type === 'ExpressionStatement') {
+                  if (node.arguments.every(anode => anode.type !== 'SpreadElement')) {
+                    // The first arg is coerced to string. The second arg is coerced to number. Rest is ignored.
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rule('Calling .includes on an array as statement is moot2');
+                        example('str.includes(x, y, z);', 'str; x; $coerce(y, "string"); z;');
+                        before(blockBody[blockIndex]);
+
+                        blockBody.splice(blockIndex, 1,
+                          AST.expressionStatement(node.callee.object),
+                          ...node.arguments.map((anode,i) => {
+                            if (i === 0) {
+                              return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('string')]));
+                            } else if (i === 1) {
+                              return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
+                            } else {
+                              return AST.expressionStatement(anode)
+                            }
+                          })
+                        );
+
+                        after(blockBody.slice(blockIndex, blockIndex+node.arguments.length));
+                      },
+                    });
+                    changes += 1;
+                  }
+                  else {
+                    // Ignore the case where the arg contains a spread. We can but.
+                  }
+                } else {
+                  // Okay now we have three cases:
+                  // - No args: change the first arg to the string "undefined", no second arg
+                  // - One arg: if it's a string lit, resolve it. If it's a string ident, ignore it. Otherwise coerce it to string.
+                  // - Two args: Same as with one arg except also; resolve it when num lit, coerce index to number when not a number.
+                  if (node.arguments.length === 0) {
+                    rule('Calling string.includes() without args should call it with the string "undefined"');
+                    example('str.includes()', 'str.includes("undefined")');
+                    before(node);
+
+                    node.arguments[0] = AST.primitive("undefined");
+
+                    after(node);
+                    changes += 1;
+                  }
+                  else if (node.arguments.length === 1) {
+                    // The object is either a string literal, or it is not.
+                    // The arg is either a string literal, an ident mustbe string, and otherwise we coerce it to a string
+                    const arg = node.arguments[0];
+                    if (AST.isStringLiteral(arg)) {
+                      // We can resolve this if the object is a string. Otherwise we can't and ignore it.
+                      if (AST.isStringLiteral(node.callee.object)) {
+                        queue.push({
+                          index: blockIndex,
+                          func: () => {
+                            rule('Calling string.includes() with a string primitive should resolve');
+                            example('"foobar".includes("1")', 'false');
+                            example('"foo1bar".includes("1")', 'true');
+                            before(node);
+
+                            const objstr = AST.getPrimitiveValue(node.callee.object);
+                            const argstr = AST.getPrimitiveValue(arg);
+                            const bool = objstr.includes(argstr);
+
+                            const newNode = AST.primitive(bool);
+                            if (parentIndex < 0) parentNode[parentProp] = newNode;
+                            else parentNode[parentProp][parentIndex] = newNode;
+
+                            after(newNode);
+                            after(node);
+                          }
+                        });
+                        changes += 1;
+                      }
+                    }
+                    else if (
+                      AST.isPrimitive(arg) ||
+                      (arg.type === 'Identifier' && shouldCoerceIdentToString(fdata.globallyUniqueNamingRegistry.get(arg.name)))
+                    ) {
+                      // Just coerce to string. Take the lazy route.
+                      queue.push({
+                        index: blockIndex,
+                        func: () => {
+                          rule('Calling string.includes(x) with a non-string primitive should have its arg coerced to string');
+                          example('"foobar".includes(1)', 'const tmp = $coerce(1, "string"); "foobar".includes(tmp)');
+                          before(node);
+
+                          const tmp = createFreshVar('tmpttr', fdata);
+                          const newNode = AST.variableDeclaration(tmp, AST.callExpression(SYMBOL_COERCE, [arg, AST.primitive('string')]), 'const');
+                          blockBody.splice(blockIndex, 0, newNode);
+
+                          node.arguments[0] = AST.identifier(tmp);
+
+                          after(newNode);
+                          after(node);
+                        }
+                      });
+                      changes += 1;
+                    }
+                    else {
+                      if (arg.type !== 'Identifier') {
+                        todo('What arg type can .includes be?', arg.type)
+                      }
+                    }
+                  } else {
+                    // Call has at least two args
+                    // - If object is string, first arg is string, and second arg is number, resolve it
+                    // - If first arg is not a string, coerce it to a string if const/builtin
+                    // - If second arg is not a number, coerce it to a number if const/builtin
+                    // Ignore the other cases. It is what it is.
+                    const arg1 = node.arguments[0];
+                    const arg2 = node.arguments[1];
+                    const isStr1 = AST.isStringLiteral(arg1);
+                    const isNum2 = AST.isNumberLiteral(arg2);
+                    if (isStr1 && isNum2) {
+                      if (AST.isStringLiteral(node.callee.object)) {
+                        queue.push({
+                          index: blockIndex,
+                          func: () => {
+                            rule('Calling string.includes() with a string and number primitive should resolve');
+                            example('"foo1bar".includes("1", 4)', 'false');
+                            example('"foobar1".includes("1", 4)', 'true');
+                            before(node);
+
+                            const objstr = AST.getPrimitiveValue(node.callee.object);
+                            const argstr = AST.getPrimitiveValue(arg1);
+                            const argnum = AST.getPrimitiveValue(arg2);
+                            const bool = objstr.includes(argstr, argnum);
+
+                            const newNode = AST.primitive(bool);
+                            if (parentIndex < 0) parentNode[parentProp] = newNode;
+                            else parentNode[parentProp][parentIndex] = newNode;
+
+                            after(newNode);
+                            after(node);
+                          }
+                        });
+                        changes += 1;
+                      }
+                    }
+                    else {
+                      // Coerce arg1 to string if it's a primitive or a safe ident
+                      const do1 = !isStr1 && (AST.isPrimitive(arg1) || (arg1.type === 'Identifier' && shouldCoerceIdentToString(fdata.globallyUniqueNamingRegistry.get(arg1.name))));
+                      // Coerce arg2 to number if it's a primitive or a safe ident
+                      const do2 = !isNum2 && (AST.isPrimitive(arg2) || (arg2.type === 'Identifier' && shouldCoerceIdentToNumber(fdata.globallyUniqueNamingRegistry.get(arg2.name))));
+
+                      // Prevent race conditions; arg1 must be coerced before arg2, so do them in one callback
+                      if (do1 || do2) {
+                        queue.push({
+                          index: blockIndex,
+                          func: () => {
+                            rule('Calling string.includes() should coerce the first two args if possible');
+                            example('x.includes(a, b, c)', 'const tmp = $coerce(a, "string"); const tmp2 = $coerce(b, "number"); c; x.includes(tmp, tmp2)');
+                            before(blockBody[blockIndex]);
+
+                            // Do them back to front because the splice will basically unshift them
+
+                            let n = 0;
+
+                            if (node.arguments.length > 2) {
+                              // While we're here, make sure the arg count is 2
+                              blockBody.splice(blockIndex, 0, ...node.arguments.slice(2).map(anode => AST.expressionStatement(anode)));
+                              n += node.arguments.length-2;
+                              node.arguments.length = 2;
+                            }
+
+                            if (do2) {
+                              const tmp = createFreshVar('tmpttr', fdata);
+                              const newNode = AST.variableDeclaration(tmp, AST.callExpression(SYMBOL_COERCE, [arg2, AST.primitive('number')]), 'const');
+                              blockBody.splice(blockIndex, 0, newNode);
+                              node.arguments[1] = AST.identifier(tmp);
+                              n += 1;
+                            }
+
+                            if (do1) {
+                              const tmp = createFreshVar('tmpttr', fdata);
+                              const newNode = AST.variableDeclaration(tmp, AST.callExpression(SYMBOL_COERCE, [arg1, AST.primitive('string')]), 'const');
+                              blockBody.splice(blockIndex, 0, newNode);
+                              node.arguments[0] = AST.identifier(tmp);
+                              n += 1;
+                            }
+
+                            after(blockBody.slice(blockIndex, n + 1));
+                          }
+                        });
+                        changes += 1;
+                      }
+                    }
+                  }
                 }
                 break;
               }
@@ -2217,4 +2448,26 @@ function taint(node, fdata) {
     const meta = fdata.globallyUniqueNamingRegistry.get(node.name);
     meta.tainted = true;
   }
+}
+
+function shouldCoerceIdentToString(meta) {
+  // We should coerce the ident to string when it's either
+  // - a builtin that is not mustBe a string, or
+  // - a const that is not mustBe a string
+  return Boolean(
+    meta &&
+    meta.typing.mustBeType !== 'string' &&
+    ((meta.isConstant && meta.writes.length === 1) || meta.isBuiltin)
+  );
+}
+
+function shouldCoerceIdentToNumber(meta) {
+  // We should coerce the ident to string when it's either
+  // - a builtin that is not mustBe a string, or
+  // - a const that is not mustBe a string
+  return Boolean(
+    meta &&
+    meta.typing.mustBeType !== 'number' &&
+    ((meta.isConstant && meta.writes.length === 1) || meta.isBuiltin)
+  );
 }

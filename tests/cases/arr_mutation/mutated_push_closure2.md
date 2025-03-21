@@ -86,7 +86,6 @@ $( c );
 
 
 - processArrayWriteReadImmutableBinding slow path
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_splice
 
 
 ## Globals

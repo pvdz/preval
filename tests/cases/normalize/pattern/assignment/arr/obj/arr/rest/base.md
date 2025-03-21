@@ -50,6 +50,7 @@ $( y );
 
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - inline computed array property read
+- replace with $array_slice
 - type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
 
 

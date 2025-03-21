@@ -539,7 +539,7 @@ function _arr_mutation(fdata) {
         }
         else {
           vlog('- bail: Read .pop but did not call it');
-          // TODO: replace it with $array_pop
+          todo('replace with $array_pop');
           return;
         }
       }
@@ -620,7 +620,7 @@ function _arr_mutation(fdata) {
           }
         } else {
           vlog('- bail: Read .shift but did not call it');
-          // TODO: replace it with $array_shift
+          todo('replace with $array_shift');
           return;
         }
         break;
@@ -740,7 +740,7 @@ function _arr_mutation(fdata) {
           }
         } else {
           vlog('- bail: Read .push but did not call it');
-          // TODO: replace it with $array_push
+          todo('replace with $array_push');
           return;
         }
 
@@ -861,67 +861,72 @@ function _arr_mutation(fdata) {
           }
         } else {
           vlog('- bail: Read .unshift but did not call it');
-          // TODO: replace it with $array_unshift
+          todo('replace with $array_unshift');
           return;
         }
         break;
       }
       case 'slice': {
         if (
-          nextRead.grandNode.type === 'CallExpression' &&
-          // we only need up to the first two arguments. The rest is not relevant to the call
-          (nextRead.grandNode.arguments.length === 0 || AST.isPrimitive(nextRead.grandNode.arguments[0])) &&
-          (nextRead.grandNode.arguments.length === 1 || AST.isPrimitive(nextRead.grandNode.arguments[1])) &&
-          // Idents are tricky because their refs may have changed between the original array literal and this slice
-          arrayLiteralNode.elements.every(enode => !enode || AST.isPrimitive(enode))
+          nextRead.grandNode.type === 'CallExpression'
         ) {
-          // Doing an array.slice on an array literal is predictable
-
-          rule('Array slice on a binding known to be an array literal containing primitives can be copied');
-          example('const arr = [1, 2, undefined, "foo"]; f(); $(arr.slice(0));', 'const arr = [1, 2, undefined, "foo"]; f(); $([1, 2, undefined, "foo"]);');
-          example('const arr = [1, 2, undefined, "foo"]; f(); x = $([1, 2, undefined, "foo"]);');
-          example('const arr = [1, 2, undefined, "foo"]; f(); const x = $([1, 2, undefined, "foo"]);');
-          before(nextRead.blockBody[nextRead.blockIndex]);
-
-          const clone = AST.arrayExpression(
-            arrayLiteralNode.elements
-            .slice(
-              nextRead.grandNode.arguments[0] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[0]) : undefined,
-              nextRead.grandNode.arguments[1] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[1]) : undefined
-            )
-            .map(e => e && AST.cloneSimple(e)));
-
           if (
-            nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
-            nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
+            // we only need up to the first two arguments. The rest is not relevant to the call
+            (nextRead.grandNode.arguments.length === 0 || AST.isPrimitive(nextRead.grandNode.arguments[0])) &&
+            (nextRead.grandNode.arguments.length === 1 || AST.isPrimitive(nextRead.grandNode.arguments[1])) &&
+            // Idents are tricky because their refs may have changed between the original array literal and this slice
+            arrayLiteralNode.elements.every(enode => !enode || AST.isPrimitive(enode))
           ) {
-            // ex: tests/cases/arr_mutation/slice_const.md
-            nextRead.blockBody[nextRead.blockIndex].declarations[0].init = clone;
-          }
-          else if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+            // Doing an array.slice on an array literal is predictable
+
+            rule('Array slice on a binding known to be an array literal containing primitives can be copied');
+            example('const arr = [1, 2, undefined, "foo"]; f(); $(arr.slice(0));', 'const arr = [1, 2, undefined, "foo"]; f(); $([1, 2, undefined, "foo"]);');
+            example('const arr = [1, 2, undefined, "foo"]; f(); x = $([1, 2, undefined, "foo"]);');
+            example('const arr = [1, 2, undefined, "foo"]; f(); const x = $([1, 2, undefined, "foo"]);');
+            before(nextRead.blockBody[nextRead.blockIndex]);
+
+            const clone = AST.arrayExpression(
+              arrayLiteralNode.elements
+              .slice(
+                nextRead.grandNode.arguments[0] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[0]) : undefined,
+                nextRead.grandNode.arguments[1] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[1]) : undefined
+              )
+              .map(e => e && AST.cloneSimple(e)));
+
             if (
-              nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' &&
-              nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
+              nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
+              nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
             ) {
-              // ex: tests/cases/arr_mutation/slice_assign.md
-              nextRead.blockBody[nextRead.blockIndex].expression.right = clone;
+              // ex: tests/cases/arr_mutation/slice_const.md
+              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = clone;
             }
-            else if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-              // ex: tests/cases/arr_mutation/slice_stmt.md
-              nextRead.blockBody[nextRead.blockIndex].expression = clone;
+            else if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+              if (
+                nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' &&
+                nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
+              ) {
+                // ex: tests/cases/arr_mutation/slice_assign.md
+                nextRead.blockBody[nextRead.blockIndex].expression.right = clone;
+              }
+              else if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                // ex: tests/cases/arr_mutation/slice_stmt.md
+                nextRead.blockBody[nextRead.blockIndex].expression = clone;
+              }
+              else {
+                ASSERT(false, 'What expr case is this?', nextRead)
+              }
+            } else {
+              ASSERT(false, 'What case is this?', nextRead)
             }
-            else {
-              ASSERT(false, 'What expr case is this?', nextRead)
-            }
+
+            after(nextRead.blockBody[nextRead.blockIndex]);
+            ++updated;
+            return true;
           } else {
-            ASSERT(false, 'What case is this?', nextRead)
+            vlog('- bail: Read .slice but did not call it');
+            todo('replace with $array_slice');
+            return;
           }
-
-          after(nextRead.blockBody[nextRead.blockIndex]);
-          ++updated;
-          return true;
-
-          // Should be one of three cases
         }
 
         break;
@@ -933,7 +938,7 @@ function _arr_mutation(fdata) {
         // - the concrete values of all elements of the array can be resolved
 
         if (nextRead.grandNode.type !== 'CallExpression') {
-          todo('$array_join but it is not called?');
+          todo('replace with $array_join');
         }
         else if (nextRead.grandNode.arguments[0] && !AST.isPrimitive(nextRead.grandNode.arguments[0])) {
           todo('calling $array_join when the first arg is not a primitive');
@@ -1059,8 +1064,68 @@ function _arr_mutation(fdata) {
           }
         }
         else {
+          vlog('- bail: Read .reverse but did not call it');
+          todo('replace with $array_reverse');
+          return;
+        }
+      }
+      case 'splice': {
+        if (
+          nextRead.grandNode.type === 'CallExpression' &&
+          nextRead.grandProp === 'callee' &&
+          (!nextRead.grandNode.arguments[0] || AST.isNumberLiteral(nextRead.grandNode.arguments[0])) &&
+          (!nextRead.grandNode.arguments[1] || AST.isNumberLiteral(nextRead.grandNode.arguments[1]))
+        ) {
+          // These are a bit annoying because we need to reach to the grand-grand parent
+          // node to replace the call and we don't store that by default.
+          // Instead, for now, we'll check some cases on the statement level.
+
+          rule('Calling .splice on an array literal we can fully track can be resolved');
+          example('const arr = [1, 2, 3]; arr.splice(1, 1, a, b);', 'const arr = [1, 3, a, b]; [2];');
+          before(write.blockBody[write.blockIndex]);
+          before(nextRead.blockBody[nextRead.blockIndex]);
+
+          const args = nextRead.grandNode.arguments;
+          const splicedNodes = arrayLiteralNode.elements.splice(
+            args[0] ? AST.getPrimitiveValue(args[0]) : 0,
+            args[1] ? AST.getPrimitiveValue(args[1]) : 0,
+            ...args.slice(2)
+          );
+
+          const newNode = AST.arrayExpression(...splicedNodes);
+          if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+            if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+              // Call was a statement
+              nextRead.blockBody[nextRead.blockIndex].expression = newNode;
+            }
+            else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+              // Call was assigned
+              nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
+            }
+            else {
+              // what normalized cases are left?
+              TODO
+            }
+          }
+          else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+            // Call was init of a binding decl
+            vlog(nextRead.blockBody[nextRead.blockIndex].declarations[0].init )
+            ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+            nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+          }
+          else {
+            TODO
+          }
+
+          after(write.blockBody[write.blockIndex]);
+          after(nextRead.blockBody[nextRead.blockIndex]);
+          updated += 1;
+          if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
+          return;
+        }
+        else {
           vlog('- bail: Read .pop but did not call it');
-          // TODO: replace it with $array_pop
+          todo('replace with $array_splice');
           return;
         }
       }
@@ -1072,14 +1137,18 @@ function _arr_mutation(fdata) {
         // Note: array.toString is just an alias for array.join(',') (in the spec!)
 
         if (nextRead.grandNode.type !== 'CallExpression') {
-          todo('array.toString that isnt called?');
-        } else if (!arrayLiteralNode.elements.every(e => !e || AST.isPrimitive(e))) {
+          todo('replace with $array_tostring');
+        }
+        else if (!arrayLiteralNode.elements.every(e => !e || AST.isPrimitive(e))) {
           todo('array.tostring on an array init where not all elements are primitives');
-        } else if (arrayMeta.writes.length !== 1) {
+        }
+        else if (arrayMeta.writes.length !== 1) {
           todo('array.toString on an init is mutated?');
-        } else if (arrayMeta.reads.length !== 1) {
+        }
+        else if (arrayMeta.reads.length !== 1) {
           todo('array.toString on an init that is read more than once, need to verify none of them mutate the array');
-        } else {
+        }
+        else {
           // - `const arr = [1, 2, 3]; $(arr.toString());`
           rule('Calling .toString on an array with only primitives can be resolved');
           example('const arr = [1, 2, 3]; $(arr.toString());', 'const arr = [1, 2, 3]; $("1,2,3");');

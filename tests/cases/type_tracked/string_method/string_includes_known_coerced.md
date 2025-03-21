@@ -1,0 +1,59 @@
+# Preval test case
+
+# string_includes_known_coerced.md
+
+> Type tracked > String method > String includes known coerced
+
+## Input
+
+`````js filename=intro
+const bool1 = '123'.includes(1); // coerced to string
+const bool2 = '321'.includes(1); // coerced to string
+$(bool1, bool2);
+`````
+
+
+## Settled
+
+
+`````js filename=intro
+$(true, true);
+`````
+
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+$(true, true);
+`````
+
+
+## PST Settled
+With rename=true
+
+`````js filename=intro
+$( true, true );
+`````
+
+
+## Globals
+
+
+None
+
+
+## Runtime Outcome
+
+
+Should call `$` with:
+ - 1: true, true
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Post settled calls: Same
+
+Denormalized calls: Same

@@ -20,9 +20,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3, 4];
-arr.splice(1, 2);
-arr.push(`a`, `b`);
+const arr /*:array*/ = [1, 4, `a`, `b`];
 $(arr);
 `````
 
@@ -31,10 +29,7 @@ $(arr);
 (This ought to be the final result)
 
 `````js filename=intro
-const arr = [1, 2, 3, 4];
-arr.splice(1, 2);
-arr.push(`a`, `b`);
-$(arr);
+$([1, 4, `a`, `b`]);
 `````
 
 
@@ -42,17 +37,9 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3, 4 ];
-a.splice( 1, 2 );
-a.push( "a", "b" );
+const a = [ 1, 4, "a", "b" ];
 $( a );
 `````
-
-
-## Todos triggered
-
-
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_splice
 
 
 ## Globals

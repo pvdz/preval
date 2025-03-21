@@ -21,7 +21,8 @@ const y = $spy('b');
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
 const y /*:unknown*/ = $spy(`b`);
-``.includes(x, y);
+$coerce(x, `string`);
+$coerce(y, `number`);
 `````
 
 
@@ -29,7 +30,10 @@ const y /*:unknown*/ = $spy(`b`);
 (This ought to be the final result)
 
 `````js filename=intro
-``.includes($spy(`a`), $spy(`b`));
+const x = $spy(`a`);
+const y = $spy(`b`);
+$coerce(x, `string`);
+$coerce(y, `number`);
 `````
 
 
@@ -39,14 +43,9 @@ With rename=true
 `````js filename=intro
 const a = $spy( "a" );
 const b = $spy( "b" );
-"".includes( a, b );
+$coerce( a, "string" );
+$coerce( b, "number" );
 `````
-
-
-## Todos triggered
-
-
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $string_includes
 
 
 ## Globals

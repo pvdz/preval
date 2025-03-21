@@ -47,6 +47,7 @@ throw "[Preval]: Array spread must crash before this line";
 
 
 - inline computed array property read
+- replace with $array_slice
 - we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_slice
 

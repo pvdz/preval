@@ -21,10 +21,7 @@ $(arr.length);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-arr.splice(1, 2, 20);
-const tmpCalleeParam /*:number*/ = arr.length;
-$(tmpCalleeParam);
+$(2);
 `````
 
 
@@ -32,9 +29,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const arr = [1, 2, 3];
-arr.splice(1, 2, 20);
-$(arr.length);
+$(2);
 `````
 
 
@@ -42,17 +37,8 @@ $(arr.length);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-a.splice( 1, 2, 20 );
-const b = a.length;
-$( b );
+$( 2 );
 `````
-
-
-## Todos triggered
-
-
-- type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: $array_splice
 
 
 ## Globals

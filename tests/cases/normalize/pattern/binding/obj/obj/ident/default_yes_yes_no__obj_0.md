@@ -46,7 +46,7 @@ if (objPatternBeforeDefault$1 === undefined) {
 With rename=true
 
 `````js filename=intro
-const a = 0.y;
+const a = (0).y;
 const b = a === undefined;
 if (b) {
   const c = $( "pass" );

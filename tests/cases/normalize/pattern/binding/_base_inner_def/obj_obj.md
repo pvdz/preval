@@ -42,7 +42,7 @@ if ((1).x.y.z === undefined) {
 With rename=true
 
 `````js filename=intro
-const b = 1.x;
+const b = (1).x;
 const c = b.y;
 const d = c.z;
 const e = d === undefined;

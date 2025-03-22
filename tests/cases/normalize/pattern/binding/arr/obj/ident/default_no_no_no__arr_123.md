@@ -35,7 +35,7 @@ $((1).x);
 With rename=true
 
 `````js filename=intro
-const a = 1.x;
+const a = (1).x;
 $( a );
 `````
 

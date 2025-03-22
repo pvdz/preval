@@ -33,7 +33,7 @@ const { x } = 1;
 With rename=true
 
 `````js filename=intro
-1.x;
+(1).x;
 `````
 
 

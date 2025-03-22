@@ -70,7 +70,7 @@ const e = function() {
   return "win";
 };
 const d = { f: e };
-const c = 123.f;
+const c = (123).f;
 $( a );
 `````
 

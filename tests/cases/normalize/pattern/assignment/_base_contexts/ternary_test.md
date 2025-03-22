@@ -34,7 +34,7 @@ let x = 1, b = 2, c = 3;
 With rename=true
 
 `````js filename=intro
-1.x;
+(1).x;
 `````
 
 

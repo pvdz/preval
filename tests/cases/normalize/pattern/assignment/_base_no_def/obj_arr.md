@@ -37,7 +37,7 @@ const objPatternNoDefault = (1).x;
 With rename=true
 
 `````js filename=intro
-const a = 1.x;
+const a = (1).x;
 const b = [ ...a ];
 b[ 0 ];
 `````

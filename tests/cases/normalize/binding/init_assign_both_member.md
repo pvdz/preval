@@ -37,7 +37,7 @@ const varInitAssignLhsComputedRhs = (20).x;
 With rename=true
 
 `````js filename=intro
-const a = 20.x;
+const a = (20).x;
 10.x = a;
 `````
 

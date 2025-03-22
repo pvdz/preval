@@ -35,7 +35,7 @@ $((10).length);
 With rename=true
 
 `````js filename=intro
-const a = 10.length;
+const a = (10).length;
 $( a );
 `````
 

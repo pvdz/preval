@@ -43,7 +43,7 @@ if ([...objPatternNoDefault][0] === undefined) {
 With rename=true
 
 `````js filename=intro
-const b = 1.x;
+const b = (1).x;
 const c = [ ...b ];
 const d = c[ 0 ];
 const e = d === undefined;

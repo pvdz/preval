@@ -262,16 +262,17 @@ function printExpression(indent, config, node) {
       return `${printSimple(indent, config, node.left)} ${node.op} ${printSimple(indent, config, node.right)}`;
     }
     case 'CallComputedMethodExpression': {
-      return `${printSimple(indent, config, node.callee)}[ ${printSimple(indent, config, node.method)} ]${callArgs(indent, config, node)}`
+      return `${printSimple(indent, config, node.callee)}[ ${printSimple(indent, config, node.method)} ]${callArgs(indent, config, node)}`;
     }
     case 'CallRefExpression': {
-      return `${printSimple(indent, config, node.callee)}${callArgs(indent, config, node)}`
+      return `${printSimple(indent, config, node.callee)}${callArgs(indent, config, node)}`;
     }
     case 'CallMethodExpression': {
-      return `${printSimple(indent, config, node.callee)}.${node.method}${callArgs(indent, config, node)}`
+      if (node.callee.kind === 'number') return `(${printSimple(indent, config, node.callee)}).${node.method}${callArgs(indent, config, node)}`;
+      return `${printSimple(indent, config, node.callee)}.${node.method}${callArgs(indent, config, node)}`;
     }
     case 'CallSimpleExpression': {
-      return `${printSimple(indent, config, node.callee)}.${node.method}${callArgs(indent, config, node)}`
+      return `${printSimple(indent, config, node.callee)}.${node.method}${callArgs(indent, config, node)}`;
     }
     case 'ClassExpression': {
       return `class ${node.name ? printRef(indent, config, node.name) : ''} ${node.extends ? printSimple(indent, config, node.extends) : ''} {\n${node.body.map(s => printClassElement(indent, config, s))}\n${indent}}`;
@@ -283,6 +284,7 @@ function printExpression(indent, config, node) {
       return `${printSimple(indent, config, node.object)}[ ${printSimple(indent, config, node.prop)} ]`;
     }
     case 'MemberRefExpression': {
+      if (node.object.type === 'Primitive' && node.object.kind === 'number') return `(${printSimple(indent, config, node.object)}).${node.prop}`;
       return `${printSimple(indent, config, node.object)}.${node.prop}`;
     }
     case 'NewExpression': {

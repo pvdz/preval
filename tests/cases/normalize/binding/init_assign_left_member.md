@@ -35,7 +35,7 @@ let a = b = c.x
 With rename=true
 
 `````js filename=intro
-20.x;
+(20).x;
 `````
 
 

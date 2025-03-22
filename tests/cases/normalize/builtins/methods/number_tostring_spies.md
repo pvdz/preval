@@ -39,7 +39,7 @@ With rename=true
 `````js filename=intro
 const a = $spy( "a" );
 const b = $spy( "b" );
-200.toString( a, b );
+(200).toString( a, b );
 `````
 
 

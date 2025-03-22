@@ -12,6 +12,7 @@
 const x = $spy('a');
 const y = $spy('b');
 200..toPrecision(x, y);
+$(200..foo)
 `````
 
 
@@ -22,6 +23,8 @@ const y = $spy('b');
 const x /*:unknown*/ = $spy(`a`);
 const y /*:unknown*/ = $spy(`b`);
 (200).toPrecision(x, y);
+const tmpCalleeParam /*:unknown*/ = (200).foo;
+$(tmpCalleeParam);
 `````
 
 
@@ -30,6 +33,7 @@ const y /*:unknown*/ = $spy(`b`);
 
 `````js filename=intro
 (200).toPrecision($spy(`a`), $spy(`b`));
+$((200).foo);
 `````
 
 
@@ -39,7 +43,9 @@ With rename=true
 `````js filename=intro
 const a = $spy( "a" );
 const b = $spy( "b" );
-200.toPrecision( a, b );
+(200).toPrecision( a, b );
+const c = (200).foo;
+$( c );
 `````
 
 

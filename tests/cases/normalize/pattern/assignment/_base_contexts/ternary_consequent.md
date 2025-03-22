@@ -42,7 +42,7 @@ With rename=true
 
 `````js filename=intro
 if (a) {
-  x = 1.x;
+  x = (1).x;
 }
 else {
   c;

@@ -47,7 +47,7 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  const b = 3.foo;
+  const b = (3).foo;
   const c = { x: 2 };
   $( b, c, 3 );
 }

@@ -47,7 +47,7 @@ if ((0).x.y === undefined) {
 With rename=true
 
 `````js filename=intro
-const a = 0.x;
+const a = (0).x;
 const b = a.y;
 const c = b === undefined;
 if (c) {

@@ -42,7 +42,7 @@ $({ a: 999, b: 1000 }, { c: 1 });
 With rename=true
 
 `````js filename=intro
-1.a;
+(1).a;
 const a = {
   a: 999,
   b: 1000,

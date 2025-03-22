@@ -66,7 +66,7 @@ if (arrPatternBeforeDefault === undefined) {
 With rename=true
 
 `````js filename=intro
-const a = 0.x;
+const a = (0).x;
 let b = undefined;
 const c = a === undefined;
 if (c) {

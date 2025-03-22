@@ -36,8 +36,8 @@ x = (1).x;
 With rename=true
 
 `````js filename=intro
-x = 1.x;
-1.foo;
+x = (1).x;
+(1).foo;
 `````
 
 

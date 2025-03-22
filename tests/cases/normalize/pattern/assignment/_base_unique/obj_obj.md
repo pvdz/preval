@@ -37,7 +37,7 @@ z = (1).x.y.z;
 With rename=true
 
 `````js filename=intro
-const a = 1.x;
+const a = (1).x;
 const b = a.y;
 z = b.z;
 `````

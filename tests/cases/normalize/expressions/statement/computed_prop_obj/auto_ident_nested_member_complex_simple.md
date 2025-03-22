@@ -67,7 +67,7 @@ const e = $( d );
 const f = $( "y" );
 e[f] = 3;
 b[c] = 3;
-3.a;
+(3).a;
 const g = {
   a: 999,
   b: 1000,

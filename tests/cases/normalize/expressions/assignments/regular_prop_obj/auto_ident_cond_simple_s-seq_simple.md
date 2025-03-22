@@ -38,7 +38,7 @@ $(60);
 With rename=true
 
 `````js filename=intro
-60.a;
+(60).a;
 $( 60 );
 `````
 

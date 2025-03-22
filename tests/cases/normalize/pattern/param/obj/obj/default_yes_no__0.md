@@ -73,7 +73,7 @@ if (objPatternCrashTest) {
 With rename=true
 
 `````js filename=intro
-const a = 0.x;
+const a = (0).x;
 let b = undefined;
 let c = false;
 const d = a === undefined;

@@ -38,7 +38,7 @@ $($((15).foo));
 With rename=true
 
 `````js filename=intro
-const a = 15.foo;
+const a = (15).foo;
 const b = $( a );
 $( b );
 `````

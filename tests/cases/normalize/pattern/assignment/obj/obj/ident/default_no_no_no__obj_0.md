@@ -36,7 +36,7 @@ $(y);
 With rename=true
 
 `````js filename=intro
-y = 0.y;
+y = (0).y;
 $( y );
 `````
 

@@ -40,7 +40,7 @@ $(0, 0);
 With rename=true
 
 `````js filename=intro
-0.a;
+(0).a;
 $( 0, 0 );
 `````
 

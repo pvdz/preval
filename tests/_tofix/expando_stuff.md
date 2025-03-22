@@ -149,7 +149,7 @@ $( p, q );
 ## Todos triggered
 
 
-- inline computed array property read
+- (todo) inline computed array property read
 
 
 ## Globals

@@ -588,54 +588,54 @@ $( "number", "Number.NaN" );
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_from
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_isArray
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Array_of
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_now
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_UTC
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Date_parse
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $JSON_stringify
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_abs
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acos
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_acosh
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asin
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_asinh
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atan2
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_atanh
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cbrt
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_ceil
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_clz32
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cos
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_cosh
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_exp
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_expm1
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_floor
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_fround
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_hypot
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_imul
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log10
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log1p
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_log2
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_max
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_min
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_pow
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_round
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sign
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_sin
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isFinite
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isInteger
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isNaN
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_isSafeInteger
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseFloat
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Number_parseInt
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_is
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isFrozen
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Object_isSealed
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_fromCodePoint
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $String_raw
+- (todo) type trackeed tricks can possibly support static $Array_from
+- (todo) type trackeed tricks can possibly support static $Array_isArray
+- (todo) type trackeed tricks can possibly support static $Array_of
+- (todo) type trackeed tricks can possibly support static $Date_now
+- (todo) type trackeed tricks can possibly support static $Date_UTC
+- (todo) type trackeed tricks can possibly support static $Date_parse
+- (todo) type trackeed tricks can possibly support static $JSON_stringify
+- (todo) type trackeed tricks can possibly support static $Math_abs
+- (todo) type trackeed tricks can possibly support static $Math_acos
+- (todo) type trackeed tricks can possibly support static $Math_acosh
+- (todo) type trackeed tricks can possibly support static $Math_asin
+- (todo) type trackeed tricks can possibly support static $Math_asinh
+- (todo) type trackeed tricks can possibly support static $Math_atan
+- (todo) type trackeed tricks can possibly support static $Math_atan2
+- (todo) type trackeed tricks can possibly support static $Math_atanh
+- (todo) type trackeed tricks can possibly support static $Math_cbrt
+- (todo) type trackeed tricks can possibly support static $Math_ceil
+- (todo) type trackeed tricks can possibly support static $Math_clz32
+- (todo) type trackeed tricks can possibly support static $Math_cos
+- (todo) type trackeed tricks can possibly support static $Math_cosh
+- (todo) type trackeed tricks can possibly support static $Math_exp
+- (todo) type trackeed tricks can possibly support static $Math_expm1
+- (todo) type trackeed tricks can possibly support static $Math_floor
+- (todo) type trackeed tricks can possibly support static $Math_fround
+- (todo) type trackeed tricks can possibly support static $Math_hypot
+- (todo) type trackeed tricks can possibly support static $Math_imul
+- (todo) type trackeed tricks can possibly support static $Math_log
+- (todo) type trackeed tricks can possibly support static $Math_log10
+- (todo) type trackeed tricks can possibly support static $Math_log1p
+- (todo) type trackeed tricks can possibly support static $Math_log2
+- (todo) type trackeed tricks can possibly support static $Math_max
+- (todo) type trackeed tricks can possibly support static $Math_min
+- (todo) type trackeed tricks can possibly support static $Math_pow
+- (todo) type trackeed tricks can possibly support static $Math_random
+- (todo) type trackeed tricks can possibly support static $Math_round
+- (todo) type trackeed tricks can possibly support static $Math_sign
+- (todo) type trackeed tricks can possibly support static $Math_sin
+- (todo) type trackeed tricks can possibly support static $Number_isFinite
+- (todo) type trackeed tricks can possibly support static $Number_isInteger
+- (todo) type trackeed tricks can possibly support static $Number_isNaN
+- (todo) type trackeed tricks can possibly support static $Number_isSafeInteger
+- (todo) type trackeed tricks can possibly support static $Number_parseFloat
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
+- (todo) type trackeed tricks can possibly support static $Object_is
+- (todo) type trackeed tricks can possibly support static $Object_isFrozen
+- (todo) type trackeed tricks can possibly support static $Object_isSealed
+- (todo) type trackeed tricks can possibly support static $String_fromCodePoint
+- (todo) type trackeed tricks can possibly support static $String_raw
 
 
 ## Globals

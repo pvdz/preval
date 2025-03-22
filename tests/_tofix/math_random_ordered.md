@@ -56,8 +56,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- type trackeed tricks can possibly support resolving the type for calling this builtin static symbol: $Math_random
-- Support this ident in isFree CallExpression: $Math_random
+- (todo) type trackeed tricks can possibly support static $Math_random
+- (todo) Support this ident in isFree CallExpression: $Math_random
 
 
 ## Globals

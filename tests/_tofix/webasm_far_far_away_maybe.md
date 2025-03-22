@@ -201,7 +201,7 @@ const g = function() {
 ## Todos triggered
 
 
-- support $array_flatmap with arguments?
+- (todo) support $array_flatmap with arguments?
 
 
 ## Globals

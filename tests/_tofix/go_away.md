@@ -207,7 +207,7 @@ $( undefined );
 ## Todos triggered
 
 
-- Support string.charCodeAt when the arg is not a string literal
+- (todo) Support string.charCodeAt when the arg is not a string literal
 
 
 ## Globals

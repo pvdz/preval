@@ -668,6 +668,22 @@ function _typeTrackedTricks(fdata) {
             // Comparing anything to null or undefined is not observable
             // Comparing object types to each other is not observable
             // In all other cases at least one side is a primitive and the other side is coerced to one if it isn't too
+
+            // - `x == x`
+            if (left.type === 'Identifier' && right.type === 'Identifier' && left.name === right.name) {
+              // Trivial case but maybe an artifact of sorts?
+              rule('Weak comparison when left and right are same ident must result in equality');
+              example('x == x', 'true');
+              before(blockBody[blockIndex]);
+
+              ASSERT(parentIndex < 0);
+              parentNode[parentProp] = AST.primitive(node.operator === '==');
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              break;
+            }
+
             const lp = AST.isPrimitive(left);
             const rp = AST.isPrimitive(right);
             const lt = lp ? AST.getPrimitiveType(left) : undefined;
@@ -678,11 +694,11 @@ function _typeTrackedTricks(fdata) {
             if (lp && rp && lt === rt) {
               rule('Weak comparison when left and right are same primitive type is strict comparison');
               example('+x == +y', '+x === +y');
-              before(node);
+              before(blockBody[blockIndex]);
 
               node.operator = node.operator === '==' ? '===' : '!==';
 
-              after(node);
+              after(blockBody[blockIndex]);
               ++changes;
               break;
             }
@@ -704,12 +720,12 @@ function _typeTrackedTricks(fdata) {
                 // So as long as that's not the values it can't match.
                 rule('Weak comparison of nullables to non-nullable never works out; left');
                 example('null == 0', 'false');
-                before(node);
+                before(blockBody[blockIndex]);
 
                 if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator !== '==');
                 else parentNode[parentProp][parentIndex] = AST.primitive(node.operator !== '==');
 
-                after(AST.fals(), grandNode);
+                after(blockBody[blockIndex]);
                 ++changes;
                 break;
               }
@@ -719,14 +735,15 @@ function _typeTrackedTricks(fdata) {
               ) {
                 rule('Comparing a null with an object type always results in false');
                 example('null == []', 'false', () => node.operator === '==');
-                before(node);
+                before(blockBody[blockIndex]);
 
                 // This is comparing object-types which is the same as using strict comparison so we should change to that
                 // (A binary expression must always be an rhs, expression, or init, so no index)
                 parentNode[parentProp] = AST.primitive(node.operator !== '==');
 
-                after(node);
+                after(blockBody[blockIndex]);
                 ++changes;
+                break;
               }
             }
             else if (!lp && rp && node.left.type === 'Identifier') {
@@ -749,12 +766,12 @@ function _typeTrackedTricks(fdata) {
                 // So as long as that's not the values it can't match.
                 rule('Weak comparison of nullables to non-nullable never works out; right');
                 example('null == 0', 'false');
-                before(node);
+                before(blockBody[blockIndex]);
 
                 if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator !== '==');
                 else parentNode[parentProp][parentIndex] = AST.primitive(node.operator !== '==');
 
-                after(AST.fals(), grandNode);
+                after(blockBody[blockIndex]);
                 ++changes;
                 break;
               }
@@ -764,13 +781,13 @@ function _typeTrackedTricks(fdata) {
               ) {
                 rule('Comparing a null with an object type always results in false');
                 example('null == []', 'false', () => node.operator === '==');
-                before(node);
+                before(blockBody[blockIndex]);
 
                 // This is comparing object-types which is the same as using strict comparison so we should change to that
                 // (A binary expression must always be an rhs, expression, or init, so no index)
                 parentNode[parentProp] = AST.primitive(node.operator !== '==');
 
-                after(node);
+                after(blockBody[blockIndex]);
                 ++changes;
                 break;
               }
@@ -790,16 +807,17 @@ function _typeTrackedTricks(fdata) {
                 // But we may as well consolidate that logic inside the strict comparison handlers. So we just delegate here.
                 rule('When we know each side of a weak comparison must be the same certain primitive, use strong comparisons instead');
                 example('+x == +y', '+x === +y');
-                before(node);
+                before(blockBody[blockIndex]);
 
                 // This is comparing object-types which is the same as using strict comparison so we should change to that
                 node.operator = node.operator === '==' ? '===' : '!==';
 
-                after(node);
+                after(blockBody[blockIndex]);
                 ++changes;
                 break;
               }
-              else if (
+
+              if (
                 lmeta.typing.mustBeType === rmeta.typing.mustBeType &&
                 ['array', 'set', 'map', 'regex', 'function'].includes(lmeta.typing.mustBeType)
               ) {
@@ -808,16 +826,17 @@ function _typeTrackedTricks(fdata) {
                 rule('When we know each side of a weak comparison must be an object of sorts, use strong comparisons instead');
                 example('[] == []', '[] === []', () => node.operator === '==');
                 example('[] != []', '[] !== []', () => node.operator === '!=');
-                before(node);
+                before(blockBody[blockIndex]);
 
                 // This is comparing object-types which is the same as using strict comparison so we should change to that
                 node.operator = node.operator === '==' ? '===' : '!==';
 
-                after(AST.fals(), grandNode);
+                after(blockBody[blockIndex]);
                 ++changes;
                 break;
               }
-              else if (
+
+              if (
                 lmeta.typing.mustBeType !== rmeta.typing.mustBeType &&
                 ['array', 'set', 'map', 'regex', 'function'].includes(lmeta.typing.mustBeType) &&
                 ['array', 'set', 'map', 'regex', 'function'].includes(rmeta.typing.mustBeType)
@@ -826,14 +845,64 @@ function _typeTrackedTricks(fdata) {
                 // But we may as well consolidate that logic inside the strict comparison handlers. So we just delegate here.
                 rule('When we know each side of a weak comparison must be an object of sorts but not the same type, the result is always false');
                 example('[] == {}', 'false');
-                before(node);
+                before(blockBody[blockIndex]);
 
                 // This is comparing object-types which is the same as using strict comparison so we should change to that
                 // (A binary expression must always be an rhs, expression, or init, so no index)
                 parentNode[parentProp] = AST.primitive(node.operator !== '==');
 
-                after(node);
+                after(blockBody[blockIndex]);
                 ++changes;
+                break;
+              }
+
+              // Silly case but when the lhs or rhs is assigned a fresh obj instance of any sort
+              // and the other side is too and we can prove that they are or cannot be the same
+              // instance then we also know without a doubt what the result is going to be.
+              // We will check a few superficial cases; there's many to cover.
+              if (lmeta.constValueRef && rmeta.constValueRef && lmeta.writes.length === 1 && rmeta.writes.length === 1) {
+                // When the init is an obj/arr/map/set/regex instance and this is the only
+                // other read, then the comparison must fail.
+
+                const linit = lmeta.constValueRef.node;
+                const rinit = rmeta.constValueRef.node;
+
+                const lIsInstance =
+                  linit.type === 'ObjectExpression' ||
+                  linit.type === 'ArrayExpression' ||
+                  AST.isRegexLiteral(linit) ||
+                  (
+                    linit.type === 'NewExpression' &&
+                    linit.callee.type === 'Identifier' &&
+                    ['RegExp', 'Set', 'Map', 'Array', 'String', 'Number', 'Boolean', 'Function', 'Object'].includes(linit.callee.name)
+                  ) ||
+                  linit.type === 'FunctionExpression';
+                const rIsInstance =
+                  rinit.type === 'ObjectExpression' ||
+                  rinit.type === 'ArrayExpression' ||
+                  AST.isRegexLiteral(rinit) ||
+                  (
+                    rinit.type === 'NewExpression' &&
+                    rinit.callee.type === 'Identifier' &&
+                    ['RegExp', 'Set', 'Map', 'Array', 'String', 'Number', 'Boolean', 'Function', 'Object'].includes(rinit.callee.name)
+                  ) ||
+                  rinit.type === 'FunctionExpression';
+                vlog('Is left an obj instance?', lIsInstance, ', and is right?', rIsInstance);
+                if (lIsInstance && rIsInstance) {
+                  // Both sides are an object reference of sorts and both have one write; they cannot be equal
+                  rule('When comparing two references that must be obj instances inits that are constants, they can not be equal');
+                  example('const x = []; const y = []; x == y', 'false');
+                  before(blockBody[blockIndex]);
+
+                  // Weak comparison will always be false when both sides are not primitives and not the same instance.
+                  // We've asserted both sides must be objects and cannot be the same instance, so we can resolve the comparison.
+
+                  parentNode[parentProp] = AST.primitive(node.operator !== '==');
+
+                  after(blockBody[blockIndex]);
+                  ++changes;
+                  break;
+                }
               }
             }
 

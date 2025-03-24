@@ -75,10 +75,6 @@ const tmpArrElement$17 /*:boolean*/ = x < ``;
 const tmpArrElement$19 /*:boolean*/ = x > ``;
 const tmpArrElement$21 /*:boolean*/ = x <= ``;
 const tmpArrElement$23 /*:boolean*/ = x >= ``;
-const tmpBinBothRhs$25 /*:array*/ = [];
-const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$25;
-const tmpBinBothRhs$27 /*:array*/ = [];
-const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$27;
 x ** 0;
 const tmpArrElement$35 /*:number*/ = x ^ 0;
 const tmpArrElement$37 /*:number*/ = x | 0;
@@ -96,8 +92,8 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
+  false,
+  true,
   false,
   true,
   0,
@@ -141,8 +137,6 @@ const tmpArrElement$17 = x < ``;
 const tmpArrElement$19 = x > ``;
 const tmpArrElement$21 = x <= ``;
 const tmpArrElement$23 = x >= ``;
-const tmpArrElement$25 = x == [];
-const tmpArrElement$27 = x != [];
 x ** 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
@@ -160,8 +154,8 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
+  false,
+  true,
   false,
   true,
   0,
@@ -205,21 +199,17 @@ const l = a < "";
 const m = a > "";
 const n = a <= "";
 const o = a >= "";
-const p = [];
-const q = a == p;
-const r = [];
-const s = a != r;
 a ** 0;
-const t = a ^ 0;
-const u = a | 0;
-const v = [ c, d, e, f, g, h, i, j, k, l, m, n, o, q, s, false, true, 0, t, u ];
-$( v );
-const w = [];
-const x = [];
-const y = a in w;
-const z = a instanceof x;
-const ba = [ y, z ];
-$( ba );
+const p = a ^ 0;
+const q = a | 0;
+const r = [ c, d, e, f, g, h, i, j, k, l, m, n, o, false, true, false, true, 0, p, q ];
+$( r );
+const s = [];
+const t = [];
+const u = a in s;
+const v = a instanceof t;
+const w = [ u, v ];
+$( w );
 `````
 
 

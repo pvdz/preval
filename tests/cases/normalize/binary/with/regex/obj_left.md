@@ -84,10 +84,6 @@ const tmpBinBothRhs$21 /*:regex*/ = /foo/g;
 const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$21;
 const tmpBinBothRhs$23 /*:regex*/ = /foo/g;
 const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$23;
-const tmpBinBothRhs$25 /*:regex*/ = /foo/g;
-const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$25;
-const tmpBinBothRhs$27 /*:regex*/ = /foo/g;
-const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$27;
 const tmpBinBothRhs$33 /*:regex*/ = /foo/g;
 const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$33;
 const tmpBinBothRhs$35 /*:regex*/ = /foo/g;
@@ -108,8 +104,8 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
+  false,
+  true,
   false,
   true,
   tmpArrElement$33,
@@ -153,8 +149,6 @@ const tmpArrElement$17 = x < /foo/g;
 const tmpArrElement$19 = x > /foo/g;
 const tmpArrElement$21 = x <= /foo/g;
 const tmpArrElement$23 = x >= /foo/g;
-const tmpArrElement$25 = x == /foo/g;
-const tmpArrElement$27 = x != /foo/g;
 const tmpArrElement$33 = x & /foo/g;
 const tmpArrElement$35 = x ^ /foo/g;
 const tmpArrElement$37 = x | /foo/g;
@@ -172,8 +166,8 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
+  false,
+  true,
   false,
   true,
   tmpArrElement$33,
@@ -228,23 +222,19 @@ const z = a <= y;
 const ba = /foo/g;
 const bb = a >= ba;
 const bc = /foo/g;
-const bd = a == bc;
+const bd = a & bc;
 const be = /foo/g;
-const bf = a != be;
+const bf = a ^ be;
 const bg = /foo/g;
-const bh = a & bg;
-const bi = /foo/g;
-const bj = a ^ bi;
-const bk = /foo/g;
-const bl = a | bk;
-const bm = [ d, f, h, j, l, n, p, r, t, v, x, z, bb, bd, bf, false, true, bh, bj, bl ];
+const bh = a | bg;
+const bi = [ d, f, h, j, l, n, p, r, t, v, x, z, bb, false, true, false, true, bd, bf, bh ];
+$( bi );
+const bj = /foo/g;
+const bk = a in bj;
+$( bk );
+const bl = /foo/g;
+const bm = a instanceof bl;
 $( bm );
-const bn = /foo/g;
-const bo = a in bn;
-$( bo );
-const bp = /foo/g;
-const bq = a instanceof bp;
-$( bq );
 `````
 
 

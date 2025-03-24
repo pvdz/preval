@@ -84,10 +84,6 @@ const tmpBinBothRhs$21 /*:object*/ = {};
 const tmpArrElement$21 /*:boolean*/ = x <= tmpBinBothRhs$21;
 const tmpBinBothRhs$23 /*:object*/ = {};
 const tmpArrElement$23 /*:boolean*/ = x >= tmpBinBothRhs$23;
-const tmpBinBothRhs$25 /*:object*/ = {};
-const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$25;
-const tmpBinBothRhs$27 /*:object*/ = {};
-const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$27;
 const tmpBinBothRhs$33 /*:object*/ = {};
 const tmpArrElement$33 /*:number*/ = x & tmpBinBothRhs$33;
 const tmpBinBothRhs$35 /*:object*/ = {};
@@ -112,8 +108,8 @@ const arr /*:array*/ = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
+  false,
+  true,
   tmpArrElement$29,
   tmpArrElement$31,
   tmpArrElement$33,
@@ -157,8 +153,6 @@ const tmpArrElement$17 = x < {};
 const tmpArrElement$19 = x > {};
 const tmpArrElement$21 = x <= {};
 const tmpArrElement$23 = x >= {};
-const tmpArrElement$25 = x == {};
-const tmpArrElement$27 = x != {};
 const tmpArrElement$33 = x & {};
 const tmpArrElement$35 = x ^ {};
 const tmpArrElement$37 = x | {};
@@ -180,8 +174,8 @@ $([
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
+  false,
+  true,
   tmpArrElement$29,
   tmpArrElement$31,
   tmpArrElement$33,
@@ -236,27 +230,23 @@ const z = a <= y;
 const ba = {};
 const bb = a >= ba;
 const bc = {};
-const bd = a == bc;
+const bd = a & bc;
 const be = {};
-const bf = a != be;
+const bf = a ^ be;
 const bg = {};
-const bh = a & bg;
+const bh = a | bg;
 const bi = {};
-const bj = a ^ bi;
-const bk = {};
-const bl = a | bk;
-const bm = {};
+const bj = {};
+const bk = a === bi;
+const bl = a !== bj;
+const bm = [ d, f, h, j, l, n, p, r, t, v, x, z, bb, false, true, bk, bl, bd, bf, bh ];
+$( bm );
 const bn = {};
-const bo = a === bm;
-const bp = a !== bn;
-const bq = [ d, f, h, j, l, n, p, r, t, v, x, z, bb, bd, bf, bo, bp, bh, bj, bl ];
+const bo = a in bn;
+$( bo );
+const bp = {};
+const bq = a instanceof bp;
 $( bq );
-const br = {};
-const bs = a in br;
-$( bs );
-const bt = {};
-const bu = a instanceof bt;
-$( bu );
 `````
 
 

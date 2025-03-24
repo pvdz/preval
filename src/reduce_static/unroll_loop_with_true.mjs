@@ -138,7 +138,7 @@ function processAttempt(fdata, unrollLimit) {
       }
 
       // TODO: improve this. For now skip some of the gnarly bits for cloning. Our target does not contain these.
-      if (['FunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
+      if (node.type === 'FunctionExpression') {
         ok = false;
         vlog('  - bail: body contained function');
         return true; // Do not enter

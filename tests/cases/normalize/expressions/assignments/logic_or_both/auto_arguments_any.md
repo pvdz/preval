@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const a /*:unknown*/ = arguments;
-if (a) {
+if (arguments) {
   $(a);
   $(a);
 } else {
@@ -36,7 +36,7 @@ if (a) {
 
 `````js filename=intro
 const a = arguments;
-if (a) {
+if (arguments) {
   $(a);
   $(a);
 } else {
@@ -52,7 +52,7 @@ With rename=true
 
 `````js filename=intro
 const a = arguments;
-if (a) {
+if (arguments) {
   $( a );
   $( a );
 }

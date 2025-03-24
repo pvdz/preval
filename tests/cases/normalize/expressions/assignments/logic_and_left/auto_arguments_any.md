@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const a /*:unknown*/ = arguments;
-if (a) {
+if (arguments) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
   $(a);
@@ -36,7 +36,7 @@ if (a) {
 
 `````js filename=intro
 const a = arguments;
-if (a) {
+if (arguments) {
   $($(100));
   $(a);
 } else {
@@ -51,7 +51,7 @@ With rename=true
 
 `````js filename=intro
 const a = arguments;
-if (a) {
+if (arguments) {
   const b = $( 100 );
   $( b );
   $( a );

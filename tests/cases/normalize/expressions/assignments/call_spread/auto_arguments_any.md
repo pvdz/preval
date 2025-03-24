@@ -66,6 +66,7 @@ Should call `$` with:
  - 1: 
   '<$>',
   '<$spy>',
+  '<$throw>',
   '<function>',
   '<function>',
   '<function>',

@@ -1,10 +1,14 @@
 # Preval test case
 
-# try_catch_ssa2.md
+# try_catch_ssa3.md
 
-> Try > Try catch ssa2
+> Try > Try catch ssa3
 >
 > Try base cases
+
+This exposed a problem when the $throw() throws an error
+and the catch is triggered with ignore=true. At some point
+the whole `ignore` variable was eliminated, which is wrong.
 
 ## Input
 
@@ -22,7 +26,7 @@
     x = $(3);
   }
   function three(x) {
-    $(x);
+    $throw(x);
   }
 
   let x = $(1);
@@ -58,7 +62,7 @@ const one /*:()=>undefined*/ = function () {
   $(x);
   x = $(2);
   ignore = true;
-  $(x);
+  $throw(x);
   return undefined;
 };
 let x /*:unknown*/ = $(1);
@@ -74,7 +78,7 @@ try {
     x = undefined;
   }
 }
-$(x);
+$throw(x);
 one();
 [...undefined];
 throw `[Preval]: Array spread must crash before this line`;
@@ -90,7 +94,7 @@ const one = function () {
   $(x);
   x = $(2);
   ignore = true;
-  $(x);
+  $throw(x);
 };
 let x = $(1);
 try {
@@ -105,7 +109,7 @@ try {
     x = undefined;
   }
 }
-$(x);
+$throw(x);
 one();
 [...undefined];
 throw `[Preval]: Array spread must crash before this line`;
@@ -122,7 +126,7 @@ const b = function() {
   $( c );
   c = $( 2 );
   a = true;
-  $( c );
+  d( c );
   return undefined;
 };
 let c = $( 1 );
@@ -130,9 +134,9 @@ try {
   b();
   c = undefined;
 }
-catch (d) {
+catch (e) {
   if (a) {
-    throw d;
+    throw e;
   }
   else {
     $( c );
@@ -140,7 +144,7 @@ catch (d) {
     c = undefined;
   }
 }
-$( c );
+d( c );
 b();
 [ ...undefined ];
 throw "[Preval]: Array spread must crash before this line";
@@ -168,12 +172,8 @@ Should call `$` with:
  - 1: 1
  - 2: 1
  - 3: 2
- - 4: 2
- - 5: undefined
- - 6: undefined
- - 7: 2
- - 8: 2
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+ - 4: '$Throwing', 2
+ - eval returned: ('<crash[ 2 ]>')
 
 Pre normalization calls: Same
 

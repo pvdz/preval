@@ -21,6 +21,7 @@ function f() {
   // The idea is that if `g` above is SSA'd then the name would change. But if the name changes then
   // the reference is no longer accessible.
   g = g(T);
+  $(g);
 }
 if ($) f();
 `````
@@ -44,6 +45,7 @@ const f /*:()=>undefined*/ = function () {
     }
   };
   g = g(T);
+  $(g);
   return undefined;
 };
 const T /*:unknown*/ = $(true);
@@ -68,6 +70,7 @@ const f = function () {
     }
   };
   g = g(T);
+  $(g);
 };
 const T = $(true);
 const F = $(false);
@@ -96,6 +99,7 @@ const a = function() {
     }
   };
   b = b( f );
+  $( b );
   return undefined;
 };
 const f = $( true );
@@ -125,6 +129,7 @@ Should call `$` with:
  - 1: true
  - 2: false
  - 3: 100
+ - 4: 100
  - eval returned: undefined
 
 Pre normalization calls: Same

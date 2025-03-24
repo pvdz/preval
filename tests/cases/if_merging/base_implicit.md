@@ -61,7 +61,7 @@ else {
 ## Todos triggered
 
 
-None
+- (todo) when is a constant an implicit global too?
 
 
 ## Globals

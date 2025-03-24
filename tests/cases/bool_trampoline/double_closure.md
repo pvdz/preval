@@ -43,8 +43,7 @@ let y /*:primitive*/ = undefined;
 $(f);
 $(f);
 f();
-const tmpIfTest /*:unknown*/ = y;
-if (tmpIfTest) {
+if (y) {
   $(`pass`);
   $(x);
   $(y);
@@ -97,8 +96,7 @@ let c = undefined;
 $( a );
 $( a );
 a();
-const d = c;
-if (d) {
+if (c) {
   $( "pass" );
   $( b );
   $( c );

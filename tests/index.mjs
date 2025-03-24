@@ -407,7 +407,7 @@ function runTestCase(
     }
   }
 
-  function createGlobalPrevalSymbols(stack, $, $spy) {
+  function createGlobalPrevalSymbols(stack, $, $spy, $throw) {
 
     function $objPatternRest(obj, withoutTheseProps, propName) {
       // Ugly hack that will work. Rest is a shallow clone.
@@ -492,6 +492,7 @@ function runTestCase(
     const frameworkInjectedGlobals = {
       '$': $,
       '$spy': $spy,
+      '$throw': $throw,
       [BUILTIN_REST_HANDLER_NAME]: $objPatternRest,
       [SYMBOL_DOTCALL]: $dotCall,
       [SYMBOL_COERCE]: $coerce,
@@ -524,7 +525,7 @@ function runTestCase(
     for (const key of Object.keys(frameworkInjectedGlobals)) {
       ASSERT(
         [
-          '$', '$spy',
+          '$', '$spy', '$throw',
           'Function',
           SYMBOL_DOTCALL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_MAX_LOOP_UNROLL, BUILTIN_REST_HANDLER_NAME,
           SYMBOL_COERCE, SYMBOL_PRNG, SYMBOL_FRFR, SYMBOL_FORIN, SYMBOL_FOROF,
@@ -592,6 +593,8 @@ function runTestCase(
           return '"<$>"';
         } else if (a === $spy) {
           return '"<$spy>"';
+        } else if (a === $throw) {
+          return '"<$throw>"';
         }
 
         if (Array.isArray(a)) {
@@ -693,27 +696,39 @@ function runTestCase(
         spies.add(spy);
         return spy;
       }
+      function $throw(desc) {
+        $('$Throwing', desc);
+        throw new Error(desc);
+      }
 
-      const frameworkInjectedGlobals = createGlobalPrevalSymbols(stack, $, $spy);
+      const frameworkInjectedGlobals = createGlobalPrevalSymbols(stack, $, $spy, $throw);
 
-      // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
-      //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
-      const returns = new Function( // window. eval()
-        // Globals to inject
-        ...Object.keys(frameworkInjectedGlobals),
-        // Test code to execute/eval
-        // Patch "global" arguments so we can detect it (it's the arguments of the Function we generate here) because they blow up test case results.
-        '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = '+SYMBOL_PRNG+';' : '') + ' ' + inputCodePerFile.intro,
-      )(
-        // The values of the injected globals
-        ...Object.values(frameworkInjectedGlobals),
-      );
-      before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
-      stack.push(
-        safeCloneString(returns)
-          // We normalize to return undefined so empty functions should get that too
-          .replace(/\(\) \{\}/g, '() {return undefined;}'),
-      );
+      const logbak = console.log;
+      console.log = () => {}; // dont show logs
+
+      try {
+        // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
+        //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
+        const returns = new Function( // window. eval()
+          // Globals to inject
+          ...Object.keys(frameworkInjectedGlobals),
+          // Test code to execute/eval
+          // Patch "global" arguments so we can detect it (it's the arguments of the Function we generate here) because they blow up test case results.
+          '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = '+SYMBOL_PRNG+';' : '') + ' ' + inputCodePerFile.intro,
+        )(
+          // The values of the injected globals
+          ...Object.values(frameworkInjectedGlobals),
+        );
+        before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
+        stack.push(
+          safeCloneString(returns)
+            // We normalize to return undefined so empty functions should get that too
+            .replace(/\(\) \{\}/g, '() {return undefined;}'),
+        );
+      } finally {
+        console.log = logbak;
+      }
+
 
       if (withOutput) {
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack);
@@ -888,22 +903,22 @@ function runTestCase(
   }
 
   if (!isExpectingAnError && lastError) {
-    if (!withOutput && !CONFIG.onlyNormalized) {
-      console.log(WHITE_BLACK + 'Test ' + caseIndex + ' (' + fname + ') crashed, re-running it with output' + RESET);
-      return runTestCase(
-        {
-          md,
-          mdHead,
-          mdOptions,
-          mdChunks,
-          fname,
-          sname,
-          fin,
-          withOutput: true,
-        },
-        caseIndex,
-      );
-    }
+    //if (!withOutput && !CONFIG.onlyNormalized) {
+    //  console.log(WHITE_BLACK + 'Test ' + caseIndex + ' (' + fname + ') crashed, re-running it with output' + RESET);
+    //  return runTestCase(
+    //    {
+    //      md,
+    //      mdHead,
+    //      mdOptions,
+    //      mdChunks,
+    //      fname,
+    //      sname,
+    //      fin,
+    //      withOutput: true,
+    //    },
+    //    caseIndex,
+    //  );
+    //}
 
     console.error('Error: ' + lastError.message);
 

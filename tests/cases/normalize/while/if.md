@@ -26,23 +26,23 @@ if ($) f();
 
 `````js filename=intro
 if ($) {
-  let i$1 /*:number*/ = 1;
+  let i /*:number*/ = 1;
   $(1, `sub`);
   while ($LOOP_UNROLL_10) {
-    i$1 = i$1 + 1;
-    const tmpIfTest$2 /*:boolean*/ = i$1 < 10;
+    i = i + 1;
+    const tmpIfTest$2 /*:boolean*/ = i < 10;
     if (tmpIfTest$2) {
-      const tmpIfTest$4 /*:boolean*/ = i$1 < 5;
+      const tmpIfTest$4 /*:boolean*/ = i < 5;
       if (tmpIfTest$4) {
-        $(i$1, `sub`);
+        $(i, `sub`);
       } else {
-        $(i$1, `sup`);
+        $(i, `sup`);
       }
     } else {
       break;
     }
   }
-  $(i$1);
+  $(i);
 } else {
 }
 `````
@@ -53,21 +53,21 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let i$1 = 1;
+  let i = 1;
   $(1, `sub`);
   while (true) {
-    i$1 = i$1 + 1;
-    if (i$1 < 10) {
-      if (i$1 < 5) {
-        $(i$1, `sub`);
+    i = i + 1;
+    if (i < 10) {
+      if (i < 5) {
+        $(i, `sub`);
       } else {
-        $(i$1, `sup`);
+        $(i, `sup`);
       }
     } else {
       break;
     }
   }
-  $(i$1);
+  $(i);
 }
 `````
 
@@ -103,7 +103,7 @@ if ($) {
 ## Todos triggered
 
 
-- (todo) Support this node type in isFree: DebuggerStatement
+None
 
 
 ## Globals

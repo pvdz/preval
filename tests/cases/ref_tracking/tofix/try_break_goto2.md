@@ -51,8 +51,8 @@ let x___4__ = 1;
 A___7__: /*8*/ {
   $(x___12__);
   while (true) {
-    /*15*/ let $implicitThrow___18__ = false;
-    let $finalStep___22__ = false;
+    /*15*/ let $implicitThrow___20__ = false;
+    let $finalStep___23__ = false;
     let $finalCatchArg___26__ = undefined___27__;
     $finally___29__: /*30*/ {
       try /*32*/ {
@@ -106,13 +106,13 @@ x:
   - r @90      | 68,86
 
 $implicitThrow:
-  - w @18          | ########## | 73          | none           | 53
-  - w @53          | ########## | 73          | 18             | none
-  - r @73          | 18,53
+  - w @20          | ########## | 73          | none           | 53
+  - w @53          | ########## | 73          | 20             | none
+  - r @73          | 20,53
 
 $finalStep:
-  - w @22          | ########## | not read    | none           | 44
-  - w @44          | ########## | not read    | 22             | none
+  - w @23          | ########## | not read    | none           | 44
+  - w @44          | ########## | not read    | 23             | none
 
 $finalCatchArg:
   - w @26          | ########## | 76          | none           | 57

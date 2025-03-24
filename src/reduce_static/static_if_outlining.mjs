@@ -200,8 +200,8 @@ function _staticIfOutlining(fdata) {
           before(fbody[findex]);
 
           fbody.splice(findex, 1,
-            AST.variableDeclaration(funcName1, f1, 'const'),
-            AST.variableDeclaration(funcName2, f2, 'const'),
+            AST.varStatement('const', funcName1, f1),
+            AST.varStatement('const', funcName2, f2),
           );
 
           after(fbody[findex]);
@@ -266,10 +266,10 @@ function _staticIfOutlining(fdata) {
                 block1, block2
               )
             }
-            else if (cblock[cindex].type === 'VariableDeclaration') {
+            else if (cblock[cindex].type === 'VarStatement') {
               // Meh.
               // We replace the decl with the if and prepend a let decl instead. Let other rules clean that up.
-              const declName = cblock[cindex].declarations[0].id.name;
+              const declName = cblock[cindex].id.name;
               block1.body.push(
                 AST.expressionStatement(
                   AST.assignmentExpression(
@@ -288,7 +288,7 @@ function _staticIfOutlining(fdata) {
               );
 
               cblock.splice(cindex, 1,
-                AST.variableDeclaration(declName, AST.identifier('undefined'), 'let'),
+                AST.varStatement('let', declName, AST.undef()),
                 AST.ifStatement(
                   AST.cloneSimple(read.parentNode.arguments[paramIndex] ?? AST.isUndefined()),
                   block1, block2

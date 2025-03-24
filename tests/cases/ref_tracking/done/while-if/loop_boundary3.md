@@ -28,7 +28,7 @@ $(x); // 5 or 6
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 5;
+let x___5__ = 5;
 const tmpIfTest___8__ = $(false);
 if (tmpIfTest___13__) {
   /*14*/ x___18__ = 6;
@@ -52,12 +52,12 @@ None
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 31,35       | none           | 18
-  - w @18      | ########## | 22,26       | 4              | none
+  - w @5       | ########## | 31,35       | none           | 18
+  - w @18      | ########## | 22,26       | 5              | none
   - r @22      | 18
   - r @26      | 18
-  - r @31      | 4
-  - r @35      | 4
+  - r @31      | 5
+  - r @35      | 5
 
 tmpIfTest:
   - w @8       | ########## | 13          | none           | none

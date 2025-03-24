@@ -34,32 +34,32 @@ $(f());
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () /*6*/ {
+let f___5__ = function () /*7*/ {
   debugger;
-  let x___10__ = 1;
-  let $implicitThrow___14__ = false;
-  let $finalStep___18__ = false;
-  let $finalCatchArg___22__ = undefined___23__;
-  let $finalArg___26__ = undefined___27__;
-  $finally___29__: /*30*/ {
-    try /*32*/ {
-      x___40__ = $(2, `prevent optim`);
-      $finalStep___44__ = true;
-      $finalArg___48__ = x___47__;
-      break $finally___50__;
-    } catch ($finalImplicit___52__) /*53*/ {
-      $implicitThrow___57__ = true;
-      $finalCatchArg___61__ = $finalImplicit___60__;
+  let x___15__ = 1;
+  let $implicitThrow___18__ = false;
+  let $finalStep___21__ = false;
+  let $finalCatchArg___24__ = undefined___25__;
+  let $finalArg___27__ = undefined___28__;
+  $finally___30__: /*31*/ {
+    try /*33*/ {
+      x___41__ = $(2, `prevent optim`);
+      $finalStep___45__ = true;
+      $finalArg___49__ = x___48__;
+      break $finally___51__;
+    } catch ($finalImplicit___53__) /*54*/ {
+      $implicitThrow___58__ = true;
+      $finalCatchArg___62__ = $finalImplicit___61__;
     }
   }
-  x___69__ = $(3, `prevent optim`);
-  if ($implicitThrow___71__) {
-    /*72*/ throw $finalCatchArg___74__;
-  } /*75*/ else {
-    return $finalArg___78__;
+  x___70__ = $(3, `prevent optim`);
+  if ($implicitThrow___72__) {
+    /*73*/ throw $finalCatchArg___75__;
+  } /*76*/ else {
+    return $finalArg___79__;
   }
 };
-const tmpCalleeParam___81__ = f___83__();
+let tmpCalleeParam___81__ = f___83__();
 $(tmpCalleeParam___87__);
 `````
 
@@ -75,33 +75,33 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 f:
-  - w @4       | ########## | 83          | none           | none
-  - r @83      | 4
+  - w @5       | ########## | 83          | none           | none
+  - r @83      | 5
 
 x:
-  - w @10      | ########## | not read    | none           | 40,69
-  - w @40      | ########## | 47          | 10             | 69
-  - r @47      | 40
-  - w @69      | ########## | not read    | 10,40          | none
+  - w @15      | ########## | not read    | none           | 41,70
+  - w @41      | ########## | 48          | 15             | 70
+  - r @48      | 41
+  - w @70      | ########## | not read    | 15,41          | none
 
 $implicitThrow:
-  - w @14          | ########## | 71          | none           | 57
-  - w @57          | ########## | 71          | 14             | none
-  - r @71          | 14,57
+  - w @18          | ########## | 72          | none           | 58
+  - w @58          | ########## | 72          | 18             | none
+  - r @72          | 18,58
 
 $finalStep:
-  - w @18          | ########## | not read    | none           | 44
-  - w @44          | ########## | not read    | 18             | none
+  - w @21          | ########## | not read    | none           | 45
+  - w @45          | ########## | not read    | 21             | none
 
 $finalCatchArg:
-  - w @22          | ########## | 74          | none           | 61
-  - w @61          | ########## | 74          | 22             | none
-  - r @74          | 22,61
+  - w @24          | ########## | 75          | none           | 62
+  - w @62          | ########## | 75          | 24             | none
+  - r @75          | 24,62
 
 $finalArg:
-  - w @26          | ########## | 78          | none           | 48
-  - w @48          | ########## | 78          | 26             | none
-  - r @78          | 26,48
+  - w @27          | ########## | 79          | none           | 49
+  - w @49          | ########## | 79          | 27             | none
+  - r @79          | 27,49
 
 tmpCalleeParam:
   - w @81          | ########## | 87          | none           | none

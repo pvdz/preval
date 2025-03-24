@@ -9,12 +9,13 @@ export function removeUnusedConstants(fdata) {
   let queue = [];
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const changes = _inlineConstants(fdata, queue);
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   groupEnd();
 
   if (changes) {
+    vgroup('Running callbacks in the loop now...');
     queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
     queue.forEach(({ index, func }) => func());
+    vgroupEnd();
 
     log('Unused constants eliminated:', changes, '. Restarting from phase1 to fix up read/write registry');
     return {what: 'removeUnusedConstants', changes: changes, next: 'phase1'};
@@ -32,6 +33,7 @@ function _inlineConstants(fdata, queue) {
     if (meta.reads.length > 0 || meta.writes.length > 1) return;
     if (meta.writes[0].kind !== 'var') return;
 
+    vlog('- name:', name, ', reads:', meta.reads.length, ', writes:', meta.writes.length, '; queued for elimination');
     queue.push({
       index: meta.writes[0].blockIndex,
       func: () => {
@@ -39,7 +41,7 @@ function _inlineConstants(fdata, queue) {
         example('const x = f();', 'f();');
         before(meta.writes[0].blockBody[meta.writes[0].blockIndex]);
 
-        const init = meta.writes[0].blockBody[meta.writes[0].blockIndex].declarations[0].init;
+        const init = meta.writes[0].blockBody[meta.writes[0].blockIndex].init;
         if (
           AST.isPrimitive(init) || // Don't leave primitives as statements
           init.type === 'TemplateLiteral' || // Any expressions should be explicitly coerced to string, so this should be safe to drop

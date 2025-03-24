@@ -246,12 +246,12 @@ function pcanCompileBody(locals, calls, body, fdata) {
         }
         break;
       }
-      case 'VariableDeclaration': {
-        if (!pcanCompileExpr(locals, calls, stmt.declarations[0].init, fdata, stmt)) {
+      case 'VarStatement': {
+        if (!pcanCompileExpr(locals, calls, stmt.init, fdata, stmt)) {
           vlog('- bail: var init is bad');
           return false;
         }
-        locals.set(stmt.declarations[0].id.name, 'r' + locals.size);
+        locals.set(stmt.id.name, 'r' + locals.size);
         break;
       }
       case 'ThrowStatement': {
@@ -508,15 +508,15 @@ function compileStatement(stmt, regs, fdata) {
       vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
       return r;
     }
-    case 'VariableDeclaration': {
-      const init = stmt.declarations[0].init;
+    case 'VarStatement': {
+      const init = stmt.init;
       if (init.type === 'Identifier' || AST.isPrimitive(init)) {
-        const r = [compileReglit(stmt.declarations[0].id, regs)[0], '=', ...compileExpression(stmt.declarations[0].init, regs, fdata, stmt)];
+        const r = [compileReglit(stmt.id, regs)[0], '=', ...compileExpression(stmt.init, regs, fdata, stmt)];
         vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
         vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
         return r;
       }
-      const r = [compileReglit(stmt.declarations[0].id, regs)[0], ...compileExpression(stmt.declarations[0].init, regs, fdata, stmt)];
+      const r = [compileReglit(stmt.id, regs)[0], ...compileExpression(stmt.init, regs, fdata, stmt)];
       vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
       vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
       return r;
@@ -657,7 +657,7 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
             return opcode;
           }
 
-          ASSERT(false, 'should have checked method before compiling it', exprNode.callee, stmt, stmt.declarations?.[0].id.name, stmt.declarations?.[0].init.type, stmt.declarations?.[0].init.callee.type, stmt.declarations?.[0].init.callee.object.name);
+          ASSERT(false, 'should have checked method before compiling it', exprNode.callee, stmt, stmt.id?.name, stmt.init?.type, stmt.init?.callee.type, stmt.init?.callee.object.name);
         }
       }
       ASSERT(false, 'should have checked that it only calls an ident or member', exprNode.callee.object, stmt);

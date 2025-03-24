@@ -35,16 +35,16 @@ if ($) {
 (Annotated with pids)
 
 `````filename=intro
-let a___4__ = `abc`;
+let a___5__ = `abc`;
 let b___9__ = `def`;
 if ($) {
-  /*14*/ let c___17__ = 1;
-  const d___21__ = $(`x`);
-  const tmpIfTest___28__ = d___30__.length___31__;
-  if (tmpIfTest___33__) {
-    /*34*/ b___42__ = a___39__.slice___40__(1);
-  } /*43*/ else {
-    b___47__ = a___46__;
+  /*14*/ let c___20__ = 1;
+  const d___23__ = $(`x`);
+  const tmpIfTest___29__ = d___31__.length___32__;
+  if (tmpIfTest___34__) {
+    /*35*/ b___43__ = a___40__.slice___41__(1);
+  } /*44*/ else {
+    b___48__ = a___47__;
   }
   const h___50__ = b___52__.length___53__;
   $(h___57__);
@@ -64,26 +64,26 @@ None
 
                | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 39,46       | none           | none
-  - r @39      | 4
-  - r @46      | 4
+  - w @5       | ########## | 40,47       | none           | none
+  - r @40      | 5
+  - r @47      | 5
 
 b:
-  - w @9       | ########## | not read    | none           | 42,47
-  - w @42      | ########## | 52          | 9              | none
-  - w @47      | ########## | 52          | 9              | none
-  - r @52      | 42,47
+  - w @9       | ########## | not read    | none           | 43,48
+  - w @43      | ########## | 52          | 9              | none
+  - w @48      | ########## | 52          | 9              | none
+  - r @52      | 43,48
 
 c:
-  - w @17      | ########## | not read    | none           | none
+  - w @20      | ########## | not read    | none           | none
 
 d:
-  - w @21      | ########## | 30          | none           | none
-  - r @30      | 21
+  - w @23      | ########## | 31          | none           | none
+  - r @31      | 23
 
 tmpIfTest:
-  - w @28      | ########## | 33          | none           | none
-  - r @33      | 28
+  - w @29      | ########## | 34          | none           | none
+  - r @34      | 29
 
 h:
   - w @50      | ########## | 57          | none           | none

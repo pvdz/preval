@@ -95,7 +95,7 @@ function _expandoSplitting(fdata) {
     expandos.forEach((reads, name) => {
       const tmpName = createFreshVar('tmpExpando', fdata);
 
-      const varNode = AST.variableDeclaration(tmpName, 'undefined', 'let');
+      const varNode = AST.varStatement('let', tmpName, AST.undef());
       vars.push(varNode);
 
       reads.forEach((read) => {

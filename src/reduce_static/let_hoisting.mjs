@@ -25,7 +25,7 @@ import {
   after,
   fmat,
   tmat,
-  findBodyOffset,
+  findBodyOffset, todo,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
@@ -45,12 +45,14 @@ function _letHoisting(fdata) {
   let updated = processAttempt1MoveVarDeclAboveClosure(fdata);
 
   if (!updated) {
-    updated = processAttempt2multiScopeWriteReadOnly(fdata);
-  }
-
-  if (!updated) {
     updated = processAttempt3OnlyUsedInOtherScope(fdata);
   }
+
+  //if (!updated) {
+  //  // TODO: this breaks tests/cases/self_assign_closure/self_assign_closure1.md
+  //  //       but it is required for something like tests/cases/ssa/back2back_x_x_plus_1_assign3.md to get around the `x=y; if($) x` case
+  //  //updated = processAttempt2multiScopeWriteReadOnly(fdata);
+  //}
 
   log('');
   if (updated) {
@@ -71,6 +73,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
     if (meta.isBuiltin) return; // We can probably do it for some of these cases? But let's do that in another step
     if (meta.isImplicitGlobal) return;
     if (meta.isConstant) return;
+    //if (!meta.constValueRef) return; // catch
 
     vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
 
@@ -90,7 +93,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
     if (!declWrite) {
       // Catch? (Right now that's global but in the future maybe). I dunno.
       vlog('- Binding was not a var decl, bailing');
-      ASSERT(false, 'what kind of other bindings do we declare?', meta);
+      //todo(`what kind of other bindings do we declare?`, meta);
       vgroupEnd();
       return;
     }
@@ -134,14 +137,14 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
     // based on their init, they must still be sorted based on their name, which may lead to
     // otherwise unnecessary checks. The stability prevents infinite loops across cycles.
 
-    if (curr.type !== 'VariableDeclaration') {
+    if (curr.type !== 'VarStatement') {
       vlog('- curr is not a var. Do not move up.');
       return false;
     }
 
-    if (prev.type !== 'VariableDeclaration') {
+    if (prev.type !== 'VarStatement') {
       vlog('- prev is not a var. testing other cases');
-      // We're now basically doing AST.nodeHasNoObservableSideEffectNorStatements checks or whatever it is
+      // We're now basically doing AST.nodeHasNoObservableSideEffectIncStatements checks or whatever it is
       if (prev.type === 'ExpressionStatement') {
         if (
           prev.expression.type === 'CallExpression' &&
@@ -170,8 +173,8 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
       return false;
     }
 
-    const nameCurr = curr.declarations[0].id.name;
-    const namePrev = prev.declarations[0].id.name;
+    const nameCurr = curr.id.name;
+    const namePrev = prev.id.name;
     vlog('- `' + nameCurr + '`, and `' + namePrev + '`');
 
     const basedOnName = nameCurr < namePrev; // All other things equal, if we order by name, should it move up? A common default.
@@ -186,8 +189,8 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
       return true;
     }
 
-    const initCurr = curr.declarations[0].init;
-    const initPrev = prev.declarations[0].init;
+    const initCurr = curr.init;
+    const initPrev = prev.init;
 
     if (!AST.expressionHasNoObservableSideEffect(initCurr)) {
       vlog('- Curr init had observable side effect so not moving up');
@@ -426,7 +429,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
     vlog('Now injecting the new tmp vars into', toInject.size, 'different funcs');
     toInject.forEach((arrNewNames, funcNode) => {
       arrNewNames.forEach((tmpName) => {
-        funcNode.body.body.splice(funcNode.$p.bodyOffset, 0, AST.variableDeclaration(tmpName, 'undefined', 'let'));
+        funcNode.body.body.splice(funcNode.$p.bodyOffset, 0, AST.varStatement('let', tmpName, AST.undef()));
       });
     });
   }
@@ -545,7 +548,7 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
       vlog('SSA all other refs into `' + tmpName + '`');
       const value = AST.getPrimitiveValue(vardeclRef.parentNode.init);
       vlog('Injecting it at the top, using the original init (ought to be primitive) as init:', value);
-      otherFunc.body.body.splice(otherFunc.$p.bodyOffset, 0, AST.variableDeclaration(tmpName, AST.primitive(value), 'let'));
+      otherFunc.body.body.splice(otherFunc.$p.bodyOffset, 0, AST.varStatement('let', tmpName, AST.primitive(value)));
       vlog('Renaming to `' + tmpName + '`');
       rwOrder.forEach((ref) => {
         if (ref.pfuncNode === otherFunc) {

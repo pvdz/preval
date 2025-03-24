@@ -79,7 +79,7 @@ function _redundantWrites(fdata) {
 
           varWrite.blockBody[varWrite.blockIndex] = AST.blockStatement(
             AST.expressionStatement(varWrite.parentNode.init),
-            varWrite.grandNode
+            varWrite.parentNode
           );
           varWrite.parentNode.init = AST.primitive(AST.getPrimitiveValue(shadowWrite.parentNode.right));
           shadowWrite.blockBody[shadowWrite.blockIndex] = AST.emptyStatement();

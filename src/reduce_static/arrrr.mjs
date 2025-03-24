@@ -82,7 +82,7 @@ function processAttempt(fdata, queue) {
         read.parentNode.type === 'MemberExpression' &&
         read.parentProp === 'object' &&
         (
-          read.grandNode.type === 'VariableDeclarator' ||
+          read.grandNode.type === 'VarStatement' ||
           (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'right') ||
           read.grandNode.type === 'ExpressionStatement'
         ) &&

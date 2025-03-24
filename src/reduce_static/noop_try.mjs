@@ -98,10 +98,10 @@ function _noopTry(fdata) {
       case 'ExpressionStatement': {
         return isSafeExpression(node.expression);
       }
-      case 'VariableDeclaration': {
+      case 'VarStatement': {
         // Creating the same binding twice is caught by the parser so only the init may blow this up. Moving the decl
         // outside and before the `try` should not be able to cause problems either.
-        return isSafeExpression(node.declarations[0].init);
+        return isSafeExpression(node.init);
       }
       case 'ReturnStatement': {
         // This is safe because there is no finally in normalized code

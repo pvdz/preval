@@ -17,7 +17,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function arr_mutation(fdata) {
   group('\n\n\nChecking for array mutations to inline');
-  vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _arr_mutation(fdata);
   groupEnd();
   return r;
@@ -486,10 +486,10 @@ function _arr_mutation(fdata) {
                 TODO
               }
             }
-            else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+            else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
               // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
+              nextRead.blockBody[nextRead.blockIndex].init = newNode;
             }
             else {
               TODO
@@ -521,11 +521,11 @@ function _arr_mutation(fdata) {
                 // what normalized cases are left?
                 TODO
               }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
               // Call was init of a binding decl
-              vlog(nextRead.blockBody[nextRead.blockIndex].declarations[0].init )
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+              vlog(nextRead.blockBody[nextRead.blockIndex].init )
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
+              nextRead.blockBody[nextRead.blockIndex].init = newNode;
             } else {
               TODO
             }
@@ -568,10 +568,10 @@ function _arr_mutation(fdata) {
                 // what normalized cases are left?
                 TODO
               }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
               // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
+              nextRead.blockBody[nextRead.blockIndex].init = newNode;
             } else {
               TODO
             }
@@ -604,10 +604,10 @@ function _arr_mutation(fdata) {
                 console.log(nextRead.grandNode)
                 TODO
               }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
               // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init', nextRead.blockBody[nextRead.blockIndex]);
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init', nextRead.blockBody[nextRead.blockIndex]);
+              nextRead.blockBody[nextRead.blockIndex].init = newNode;
             } else {
               TODO
             }
@@ -671,10 +671,10 @@ function _arr_mutation(fdata) {
                 // what normalized cases are left?
                 TODO
               }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
               // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.literal(arrayLiteralNode.elements.length);
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
+              nextRead.blockBody[nextRead.blockIndex].init = AST.literal(arrayLiteralNode.elements.length);
             } else {
               TODO
             }
@@ -713,19 +713,19 @@ function _arr_mutation(fdata) {
                 // already transformed sequence? ignore
               }
             } else if (
-              nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
+              nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement' &&
+              nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode
             ) {
               // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
 
               rule('Array push with arguments can be replaced with the (initial) arg count');
               example('const arr = [1, 2, 3]; const count = arr.push(5, $);', 'const arr = [1, 2, 3, 5]; const count = (arr.push($), 5);');
               before(arrayLiteralNode);
               before(nextRead.blockBody[nextRead.blockIndex]);
 
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.sequenceExpression([
-                nextRead.blockBody[nextRead.blockIndex].declarations[0].init,
+              nextRead.blockBody[nextRead.blockIndex].init = AST.sequenceExpression([
+                nextRead.blockBody[nextRead.blockIndex].init,
                 AST.literal(arrayLiteralNode.elements.length + argList.length),
               ]);
 
@@ -794,10 +794,10 @@ function _arr_mutation(fdata) {
                 // what normalized cases are left?
                 TODO
               }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
               // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.literal(arrayLiteralNode.elements.length);
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
+              nextRead.blockBody[nextRead.blockIndex].init = AST.literal(arrayLiteralNode.elements.length);
             } else {
               TODO
             }
@@ -835,19 +835,19 @@ function _arr_mutation(fdata) {
                 // already transformed sequence? ignore
               }
             } else if (
-              nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
+              nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement' &&
+              nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode
             ) {
               // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
 
               rule('Array unshift with arguments can be replaced with the (final) arg count');
               example('const arr = [1, 2, 3]; const count = arr.unshift($, 5);', 'const arr = [5, 1, 2, 3]; const count = (arr.unshift($), 5);');
               before(arrayLiteralNode);
               before(nextRead.blockBody[nextRead.blockIndex]);
 
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.sequenceExpression([
-                nextRead.blockBody[nextRead.blockIndex].declarations[0].init,
+              nextRead.blockBody[nextRead.blockIndex].init = AST.sequenceExpression([
+                nextRead.blockBody[nextRead.blockIndex].init,
                 AST.literal(arrayLiteralNode.elements.length + argList.length),
               ]);
 
@@ -894,11 +894,11 @@ function _arr_mutation(fdata) {
               .map(e => e && AST.cloneSimple(e)));
 
             if (
-              nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
+              nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement' &&
+              nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode
             ) {
               // ex: tests/cases/arr_mutation/slice_const.md
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = clone;
+              nextRead.blockBody[nextRead.blockIndex].init = clone;
             }
             else if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
               if (
@@ -968,9 +968,9 @@ function _arr_mutation(fdata) {
           // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
           // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
 
-          if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-            ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
-            nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+          if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
+            ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
+            nextRead.blockBody[nextRead.blockIndex].init = newNode;
           } else {
             ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
             if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
@@ -1011,9 +1011,9 @@ function _arr_mutation(fdata) {
             // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
             // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
 
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = nextRead.parentNode.object;
+            if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
+              nextRead.blockBody[nextRead.blockIndex].init = nextRead.parentNode.object;
             } else {
               ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
               if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
@@ -1041,9 +1041,9 @@ function _arr_mutation(fdata) {
             // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
             // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
 
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
-              nextRead.blockBody[nextRead.blockIndex].declarations[0].init = nextRead.parentNode.object;
+            if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
+              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
+              nextRead.blockBody[nextRead.blockIndex].init = nextRead.parentNode.object;
             } else {
               ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
               if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
@@ -1107,11 +1107,11 @@ function _arr_mutation(fdata) {
               TODO
             }
           }
-          else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+          else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
             // Call was init of a binding decl
-            vlog(nextRead.blockBody[nextRead.blockIndex].declarations[0].init )
-            ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-            nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+            vlog(nextRead.blockBody[nextRead.blockIndex].init )
+            ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
+            nextRead.blockBody[nextRead.blockIndex].init = newNode;
           }
           else {
             TODO
@@ -1161,9 +1161,9 @@ function _arr_mutation(fdata) {
 
           const newNode = AST.primitive(str);
 
-          if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-            ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
-            nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+          if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
+            ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
+            nextRead.blockBody[nextRead.blockIndex].init = newNode;
           } else {
             ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
             if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {

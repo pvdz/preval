@@ -32,7 +32,7 @@ $(x); // x=0 1 (ref tracking does not track values so it should consider if(x) r
 (Annotated with pids)
 
 `````filename=intro
-let y___4__ = $(1);
+let y___5__ = $(1);
 let x___10__ = 0;
 while (true) {
   /*14*/ if (x___16__) {
@@ -56,7 +56,7 @@ None
 
                | reads      | read by     | overWrites     | overwritten by
 y:
-  - w @4       | ########## | not read    | none           | none
+  - w @5       | ########## | not read    | none           | none
 
 x:
   - w @10      | ########## | 16,29       | none           | 23

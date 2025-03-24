@@ -37,8 +37,8 @@ const x /*:unknown*/ = $(`a`);
 const y /*:boolean*/ = x === `a`;
 if (y) {
   const tmpAssignRhsProp$105 /*:unknown*/ = tmpthis$63.getInitialState;
-  const tmpssa2_y /*:unknown*/ = tmpAssignRhsProp$105._isMockFunction;
-  if (tmpssa2_y) {
+  const tmpClusterSSA_y /*:unknown*/ = tmpAssignRhsProp$105._isMockFunction;
+  if (tmpClusterSSA_y) {
     $(1);
   } else {
     $(2);

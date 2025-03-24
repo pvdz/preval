@@ -29,10 +29,10 @@ $('after');
 (Annotated with pids)
 
 `````filename=intro
-const arr___4__ = [10, 20];
-let tmpForOfGen___10__ = $forOf___12__(arr___13__);
+const arr___5__ = [10, 20];
+const tmpForOfGen___10__ = $forOf___12__(arr___13__);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___15__) {
-  /*16*/ let tmpForOfNext___19__ = tmpForOfGen___22__.next___23__();
+  /*16*/ const tmpForOfNext___20__ = tmpForOfGen___23__.next___24__();
   const tmpIfTest___26__ = tmpForOfNext___28__.done___29__;
   if (tmpIfTest___31__) {
     /*32*/ break;
@@ -57,17 +57,17 @@ None
 
                  | reads      | read by     | overWrites     | overwritten by
 arr:
-  - w @4       | ########## | 13          | none           | none
-  - r @13      | 4
+  - w @5       | ########## | 13          | none           | none
+  - r @13      | 5
 
 tmpForOfGen:
-  - w @10       | ########## | 22          | none           | none
-  - r @22       | 10
+  - w @10       | ########## | 23          | none           | none
+  - r @23       | 10
 
 tmpForOfNext:
-  - w @19        | ########## | 28,39       | none           | none
-  - r @28        | 19
-  - r @39        | 19
+  - w @20        | ########## | 28,39       | none           | none
+  - r @28        | 20
+  - r @39        | 20
 
 tmpIfTest:
   - w @26        | ########## | 31          | none           | none

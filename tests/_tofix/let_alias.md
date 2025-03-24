@@ -1,17 +1,47 @@
 # Preval test case
 
-# auto_ident_logic_or_or.md
+# let_alias.md
 
-> Normalize > Expressions > Assignments > Logic and both > Auto ident logic or or
+> Tofix > let alias
 >
-> Normalization of assignments should work the same everywhere they are
+> When the let is not a closure, and the let cannot change, then it's an alias anyways
 
 ## Input
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-$((a = $($(0)) || $($(1)) || $($(2))) && (a = $($(0)) || $($(1)) || $($(2))));
-$(a);
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+let a /*:unknown*/ = $(tmpCalleeParam$1);
+if (a) {
+} else {
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  a = $(tmpCalleeParam$3);
+  if (a) {
+  } else {
+    const tmpCalleeParam$5 /*:unknown*/ = $(2);
+    a = $(tmpCalleeParam$5);
+  }
+}
+const tmpCalleeParam /*:unknown*/ = a;
+if (a) {
+  const tmpCalleeParam$7 /*:unknown*/ = $(0);
+  let tmp /*:unknown*/ = $(tmpCalleeParam$7);
+  if (tmp) {
+  } else {
+    const tmpCalleeParam$9 /*:unknown*/ = $(1);
+    tmp = $(tmpCalleeParam$9);
+    if (tmp) {
+    } else {
+      const tmpCalleeParam$11 /*:unknown*/ = $(2);
+      tmp = $(tmpCalleeParam$11);
+    }
+  }
+  const alias /*:unknown*/ = tmp;  // <-- this is an alias because tmp cannot change before using alias 
+  $(tmp);
+  $(alias);
+} else {
+  $(tmpCalleeParam);
+  $(a);
+}
 `````
 
 

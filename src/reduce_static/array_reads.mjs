@@ -59,7 +59,7 @@ function _arrayReads(fdata) {
     if (arrNode.elements.some(enode => enode?.type === 'SpreadElement')) return vlog('- Array has a spread, bailing');
 
     let lhs;
-    if (parentNode.type === 'VariableDeclarator') {
+    if (parentNode.type === 'VarStatement') {
       ASSERT(parentNode.init === arrNode);
       lhs = parentNode.id;
     }
@@ -74,11 +74,11 @@ function _arrayReads(fdata) {
       ASSERT(false, 'FIXME where do arrays appear in normalized code?', parentNode);
     }
 
-    // Note: this only works because the parent block is 3 removed from an assignment statement rhs as well as var decl init
+    // Note: the parent block is 4 removed from an assignment statement rhs and 3 from a var decl init
     // - block[i].expression.right
-    // - block[i].decls[0].init
-    const blockBody = path.nodes[path.nodes.length - 4].body;
-    const blockIndex = path.indexes[path.indexes.length - 3];
+    // - block[i].init
+    const blockBody = parentNode.type === 'VarStatement' ? path.nodes[path.nodes.length - 3].body : path.nodes[path.nodes.length - 4].body;
+    const blockIndex = parentNode.type === 'VarStatement' ? path.indexes[path.indexes.length - 2] : path.indexes[path.indexes.length - 3];
 
     ASSERT(blockBody && blockIndex >= 0, 'blockbody and blockindex should be available now, in normalized code they should be easy to get', blockBody, blockIndex);
     ASSERT(lhs?.type === 'Identifier', 'in normalized code we only assign to idents', lhs, parentNode);
@@ -105,8 +105,8 @@ function _arrayReads(fdata) {
       const next = block[index];
       vlog('- Statement', index, ';', next?.type);
       if (
-        next.type === 'VariableDeclaration' &&
-        (next.declarations[0].init.type === 'Identifier' || AST.isPrimitive(next.declarations[0].init))
+        next.type === 'VarStatement' &&
+        (next.init.type === 'Identifier' || AST.isPrimitive(next.init))
       ) {
         // This can't cause array changes, skip it
         vlog('  - Var decl with ident or primitive as init, skipping');
@@ -121,16 +121,16 @@ function _arrayReads(fdata) {
         vlog('  - Assignment to ident with ident or primitive as init, skipping');
       }
       else if (
-        next.type === 'VariableDeclaration' &&
-        next.declarations[0].init.type === 'MemberExpression' &&
-        next.declarations[0].init.object.type === 'Identifier' &&
-        next.declarations[0].init.object.name === arrName
+        next.type === 'VarStatement' &&
+        next.init.type === 'MemberExpression' &&
+        next.init.object.type === 'Identifier' &&
+        next.init.object.name === arrName
       ) {
         vlog('  - Var decl with prop read on arr as init...');
         // Even if we can't inline this, a regular (or computed) property read on a built-in array can not change it.
-        const prop = next.declarations[0].init.property;
+        const prop = next.init.property;
         if (
-          next.declarations[0].init.computed &&
+          next.init.computed &&
           AST.isNumberLiteral(prop)
         ) {
           const arrIndex = AST.getPrimitiveValue(prop);
@@ -141,7 +141,7 @@ function _arrayReads(fdata) {
             example('const arr = [1, 2, 3]; f(arr[1])', 'const arr = [1, 2, 3]; f(2);');
             before(next);
 
-            next.declarations[0].init = enode ? AST.primitive(AST.getPrimitiveValue(enode)) : AST.identifier('undefined');
+            next.init = enode ? AST.primitive(AST.getPrimitiveValue(enode)) : AST.identifier('undefined');
 
             after(next);
             ++changes;

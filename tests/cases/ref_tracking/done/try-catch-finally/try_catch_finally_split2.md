@@ -32,8 +32,8 @@ $(x);          // x=2 3. if the catch throws then that won't reach here.
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-let $implicitThrow___8__ = false;
+let x___6__ = 1;
+let $implicitThrow___9__ = false;
 let $finalCatchArg___12__ = undefined___13__;
 try /*15*/ {
   $(x___19__);
@@ -67,18 +67,18 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 19,32,43    | none           | 23,36
-  - r @19      | 4
-  - w @23      | ########## | 32,43,49,59 | 4              | 36
-  - r @32      | 4,23
-  - w @36      | ########## | 43,49,59    | 4,23           | none
-  - r @43      | 4,23,36
+  - w @6       | ########## | 19,32,43    | none           | 23,36
+  - r @19      | 6
+  - w @23      | ########## | 32,43,49,59 | 6              | 36
+  - r @32      | 6,23
+  - w @36      | ########## | 43,49,59    | 6,23           | none
+  - r @43      | 6,23,36
   - r @49      | 23,36
   - r @59      | 23,36
 
 $implicitThrow:
-  - w @8           | ########## | 51          | none           | none
-  - r @51          | 8
+  - w @9           | ########## | 51          | none           | none
+  - r @51          | 9
 
 $finalCatchArg:
   - w @12          | ########## | 54          | none           | none

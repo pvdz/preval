@@ -46,13 +46,13 @@ if ($) {
 if ($) {
   $(1);
   let tmpLoopRetCode /*:boolean*/ = true;
-  const tmpssa2_x /*:unknown*/ = $(2);
-  $(tmpssa2_x);
+  const tmpClusterSSA_x /*:unknown*/ = $(2);
+  $(tmpClusterSSA_x);
   if ($) {
   } else {
     while ($LOOP_UNROLL_10) {
-      const tmpssa2_x$1 /*:unknown*/ = $(2);
-      $(tmpssa2_x$1);
+      const tmpClusterSSA_x$1 /*:unknown*/ = $(2);
+      $(tmpClusterSSA_x$1);
       if ($) {
         tmpLoopRetCode = false;
       } else {

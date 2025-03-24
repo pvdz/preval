@@ -32,11 +32,11 @@ $(x); // x=5, always
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-const tmpIfTest___8__ = $();
-if (tmpIfTest___12__) {
-  /*13*/ x___17__ = 2;
-} /*18*/ else {
+let x___6__ = 1;
+const tmpIfTest___9__ = $();
+if (tmpIfTest___13__) {
+  /*14*/ x___18__ = 2;
+} /*19*/ else {
 }
 const tmpIfTest$1___21__ = $();
 if (tmpIfTest$1___25__) {
@@ -59,15 +59,15 @@ None
 
                 | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 17,30,35
-  - w @17      | ########## | not read    | 4              | 30,35
-  - w @30      | ########## | not read    | 4,17           | 35
-  - w @35      | ########## | 39          | 4,17,30        | none
+  - w @6       | ########## | not read    | none           | 18,30,35
+  - w @18      | ########## | not read    | 6              | 30,35
+  - w @30      | ########## | not read    | 6,18           | 35
+  - w @35      | ########## | 39          | 6,18,30        | none
   - r @39      | 35
 
 tmpIfTest:
-  - w @8       | ########## | 12          | none           | none
-  - r @12      | 8
+  - w @9       | ########## | 13          | none           | none
+  - r @13      | 9
 
 tmpIfTest$1:
   - w @21       | ########## | 25          | none           | none

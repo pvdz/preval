@@ -53,9 +53,9 @@ function _constAliasing(fdata) {
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (!meta.isConstant) return;
     if (meta.writes[0].kind !== 'var') return; // catch or smth
-    if (meta.constValueRef.containerNode.declarations[0].init.type !== 'Identifier') return;
+    if (meta.constValueRef.containerNode.init.type !== 'Identifier') return;
 
-    const rhsName = meta.constValueRef.containerNode.declarations[0].init.name;
+    const rhsName = meta.constValueRef.containerNode.init.name;
     vlog('- Testing:', [lhsName], 'with', [rhsName]);
     if (rhsName === lhsName) return; // TDZ but not my problem
     if (rhsName === 'arguments') return;
@@ -96,7 +96,7 @@ function _constAliasing(fdata) {
 
     if (meta2.isConstant) {
       // Main case we target here. `const x = 1; const y = x;`
-      if (meta2.constValueRef?.containerNode.type !== 'VariableDeclaration') return; // catch, ???
+      if (meta2.constValueRef?.containerNode.type !== 'VarStatement') return; // catch, ???
 
       vlog('Replacing all cases of "', rhsName, '" with "', lhsName, '"');
 
@@ -236,8 +236,8 @@ function _constAliasing(fdata) {
     while (index < body.length) {
       const stmt = body[index];
 
-      if (stmt.type === 'VariableDeclaration') {
-        const init = stmt.declarations[0].init;
+      if (stmt.type === 'VarStatement') {
+        const init = stmt.init;
 
         const usage = exprUsesName(init, lhsName, rhsName, fdata);
         if (usage === FOUND) break;

@@ -33,17 +33,17 @@ $(a); // x=2 3
 (Annotated with pids)
 
 `````filename=intro
-let a___4__ = 1;
-let $implicitThrow___8__ = false;
-let $finalCatchArg___12__ = undefined___13__;
-try /*15*/ {
-  $(a___19__);
-  a___23__ = 2;
-} catch ($finalImplicit___25__) /*26*/ {
-  $implicitThrow___30__ = true;
-  $finalCatchArg___34__ = $finalImplicit___33__;
+let a___7__ = 1;
+let $implicitThrow___10__ = false;
+let $finalCatchArg___13__ = undefined___14__;
+try /*16*/ {
+  $(a___20__);
+  a___24__ = 2;
+} catch ($finalImplicit___26__) /*27*/ {
+  $implicitThrow___31__ = true;
+  $finalCatchArg___35__ = $finalImplicit___34__;
 }
-$(a___38__);
+$(a___39__);
 const tmpIfTest___41__ = $();
 if (tmpIfTest___45__) {
   /*46*/ a___50__ = 3;
@@ -68,22 +68,22 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 19,38,61    | none           | 23,50
-  - r @19      | 4
-  - w @23      | ########## | 38,61       | 4              | 50
-  - r @38      | 4,23
-  - w @50      | ########## | 61          | 4,23           | none
-  - r @61      | 4,23,50
+  - w @7       | ########## | 20,39,61    | none           | 24,50
+  - r @20      | 7
+  - w @24      | ########## | 39,61       | 7              | 50
+  - r @39      | 7,24
+  - w @50      | ########## | 61          | 7,24           | none
+  - r @61      | 7,24,50
 
 $implicitThrow:
-  - w @8           | ########## | 53          | none           | 30
-  - w @30          | ########## | 53          | 8              | none
-  - r @53          | 8,30
+  - w @10          | ########## | 53          | none           | 31
+  - w @31          | ########## | 53          | 10             | none
+  - r @53          | 10,31
 
 $finalCatchArg:
-  - w @12          | ########## | 56          | none           | 34
-  - w @34          | ########## | 56          | 12             | none
-  - r @56          | 12,34
+  - w @13          | ########## | 56          | none           | 35
+  - w @35          | ########## | 56          | 13             | none
+  - r @56          | 13,35
 
 tmpIfTest:
   - w @41          | ########## | 45          | none           | none

@@ -36,7 +36,7 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
+let x___5__ = 1;
 const tmpIfTest___8__ = $(1);
 if (tmpIfTest___13__) {
   /*14*/ const tmpIfTest$1___17__ = $(1);
@@ -67,15 +67,15 @@ None
 
                 | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 27,41,59    | none           | 32,46
-  - r @27      | 4
-  - w @32      | ########## | 36          | 4              | 46
+  - w @5       | ########## | 27,41,59    | none           | 32,46
+  - r @27      | 5
+  - w @32      | ########## | 36          | 5              | 46
   - r @36      | 32
-  - r @41      | 4
-  - w @46      | ########## | 50,54       | 4,32           | none
+  - r @41      | 5
+  - w @46      | ########## | 50,54       | 5,32           | none
   - r @50      | 46
   - r @54      | 46
-  - r @59      | 4
+  - r @59      | 5
 
 tmpIfTest:
   - w @8       | ########## | 13          | none           | none

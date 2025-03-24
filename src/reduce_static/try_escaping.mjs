@@ -76,12 +76,11 @@ function _tryEscaping(fdata) {
         return vlog('  Cannot deal with arr litearls that are statements (feh)');
       }
       else {
-        ASSERT(parentNode.type === 'VariableDeclarator', 'in normalized code an expression must have one of three parents', parentNode.type);
+        ASSERT(parentNode.type === 'VarStatement', 'in normalized code an expression must have one of three parents', parentNode.type);
+        if (parentNode.kind !== 'const') return vlog('  Cannot deal with let decls, must be const');
       }
 
       // Now validate the decl and walk through each reference. We are targeting only a subset of cases here.
-
-      if (grandNode.kind !== 'const') return vlog('  Cannot deal with let decls, must be const');
 
       // Validate that the array consists of primitives
       const types = new Set(['undefined']);
@@ -109,7 +108,7 @@ function _tryEscaping(fdata) {
       if (arrMeta.reads.some((read,i) => {
         if (read.parentNode.type !== 'MemberExpression') return vlog('  Not MemberExpression (', read.parentNode.type, ')'),true; // We can only support it if there are only member expressions
         if (read.parentProp !== 'object') return vlog('  Used as computed prop value'),true; // This is `obj[arr]` somehow, eew. But can't change the type of an array so whatever.
-        if (read.grandNode.type === 'VariableDeclarator') return false; // This is ok. `const x = arr[123]` or `const x = arr.foo`
+        if (read.grandNode.type === 'VarStatement') return false; // This is ok. `const x = arr[123]` or `const x = arr.foo`
         if (read.grandNode.type === 'AssignmentExpression') return read.grandProp === 'left'; // This is ok. `x = arr[123]` or `x = arr.foo`, but arr[123]=x is not
         if (read.grandNode.type === 'ExpressionStatement') return vlog('  Read was a statement?'),false; // This is weird but ok. A statement that is `arr[123];` or `arr.foo;`. Not sure if it can reach this place (arr + primitive = dead code)
 
@@ -153,13 +152,13 @@ function _tryEscaping(fdata) {
       // Update the lhs accordingly.
 
       arrMeta.reads.forEach(read => {
-        if (read.blockBody[read.blockIndex].type === 'VariableDeclaration' && read.blockBody[read.blockIndex].kind === 'const') {
+        if (read.blockBody[read.blockIndex].type === 'VarStatement' && read.blockBody[read.blockIndex].kind === 'const') {
           // We can assert the value of the member expression is a primitive when it's computed number access or .length but not much else
           if (
             read.parentNode.type === 'MemberExpression' &&
             (read.parentNode.computed ? AST.isNumberLiteral(read.parentNode.property) : read.parentNode.property.name === 'length')
           ) {
-            const id = read.blockBody[read.blockIndex].declarations[0].id;
+            const id = read.blockBody[read.blockIndex].id;
             const varMeta = fdata.globallyUniqueNamingRegistry.get(id.name);
             varMeta.typing.mustBePrimitive = true;
             if (!varMeta.typing.worstCaseValueSet) {
@@ -275,15 +274,15 @@ function _tryEscaping(fdata) {
  * @returns {'no' | 'lift' | 'lift-restart' | 'ifyes' | 'ifno' | 'ifyes-restart' | 'ifno-restart'}
  */
 function isLiftableStatement(node, nodeType, fdata, fromIf = false) {
-  const isVarDecl = node.type === 'VariableDeclaration';
+  const isVarDecl = node.type === 'VarStatement';
 
   if (isVarDecl || node.type === 'ExpressionStatement') {
     const isAssign = !isVarDecl && node.expression.type === 'AssignmentExpression';
 
     // Verify the init or the expression
     let rhs;
-    if (node.type === 'VariableDeclaration') {
-      rhs = node.declarations[0].init;
+    if (node.type === 'VarStatement') {
+      rhs = node.init;
     }
     else if (isAssign) {
       // TODO: Verify that the left write is okay to write to

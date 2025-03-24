@@ -45,10 +45,10 @@
 `````filename=intro
 let x___4__ = 1;
 here___7__: /*8*/ {
-  $(x___12__);
-  x___16__ = 2;
-  let $implicitThrow___19__ = false;
-  let $finalStep___23__ = false;
+  $(x___15__);
+  x___19__ = 2;
+  let $implicitThrow___21__ = false;
+  let $finalStep___24__ = false;
   let $finalCatchArg___27__ = undefined___28__;
   $finally___30__: /*31*/ {
     try /*33*/ {
@@ -85,24 +85,24 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12          | none           | 16
-  - r @12      | 4
-  - w @16      | ########## | 37,54,64    | 4              | 41,58,68
-  - r @37      | 16
-  - w @41      | ########## | 54,64       | 16             | 58,68
-  - r @54      | 16,41
-  - w @58      | ########## | not read    | 16,41          | none
-  - r @64      | 16,41
-  - w @68      | ########## | 80          | 16,41          | none
+  - w @4       | ########## | 15          | none           | 19
+  - r @15      | 4
+  - w @19      | ########## | 37,54,64    | 4              | 41,58,68
+  - r @37      | 19
+  - w @41      | ########## | 54,64       | 19             | 58,68
+  - r @54      | 19,41
+  - w @58      | ########## | not read    | 19,41          | none
+  - r @64      | 19,41
+  - w @68      | ########## | 80          | 19,41          | none
   - r @80      | 68
 
 $implicitThrow:
-  - w @19          | ########## | 70          | none           | none
-  - r @70          | 19
+  - w @21          | ########## | 70          | none           | none
+  - r @70          | 21
 
 $finalStep:
-  - w @23          | ########## | not read    | none           | 45
-  - w @45          | ########## | not read    | 23             | none
+  - w @24          | ########## | not read    | none           | 45
+  - w @45          | ########## | not read    | 24             | none
 
 $finalCatchArg:
   - w @27          | ########## | 73          | none           | none

@@ -31,8 +31,8 @@ $(a);   // can only observe 3
 (Annotated with pids)
 
 `````filename=intro
-let a___4__ = 1;
-let $implicitThrow___8__ = false;
+let a___6__ = 1;
+let $implicitThrow___9__ = false;
 let $finalCatchArg___12__ = undefined___13__;
 try /*15*/ {
   $(a___19__);
@@ -63,18 +63,18 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 19,30       | none           | 23,34
-  - r @19      | 4
-  - w @23      | ########## | 30,40       | 4              | 34,44
-  - r @30      | 4,23
-  - w @34      | ########## | not read    | 4,23           | none
+  - w @6       | ########## | 19,30       | none           | 23,34
+  - r @19      | 6
+  - w @23      | ########## | 30,40       | 6              | 34,44
+  - r @30      | 6,23
+  - w @34      | ########## | not read    | 6,23           | none
   - r @40      | 23
   - w @44      | ########## | 54          | 23             | none
   - r @54      | 44
 
 $implicitThrow:
-  - w @8           | ########## | 46          | none           | none
-  - r @46          | 8
+  - w @9           | ########## | 46          | none           | none
+  - r @46          | 9
 
 $finalCatchArg:
   - w @12          | ########## | 49          | none           | none

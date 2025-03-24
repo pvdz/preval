@@ -26,8 +26,7 @@ if ($) f();
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
+if ($) {
   let g /*:(unknown)=>unknown*/ = function ($$0) {
     const x /*:unknown*/ = $$0;
     debugger;
@@ -42,10 +41,6 @@ const f /*:()=>undefined*/ = function () {
   };
   const tmpCalleeParam$1 /*:unknown*/ = $(true);
   g = g(tmpCalleeParam$1);
-  return undefined;
-};
-if ($) {
-  f();
 } else {
 }
 `````
@@ -55,7 +50,7 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {
+if ($) {
   let g = function (x) {
     if (x) {
       g($(false));
@@ -64,9 +59,6 @@ const f = function () {
     }
   };
   g = g($(true));
-};
-if ($) {
-  f();
 }
 `````
 
@@ -75,27 +67,22 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  let b = function($$0 ) {
-    const c = $$0;
+if ($) {
+  let a = function($$0 ) {
+    const b = $$0;
     debugger;
-    if (c) {
-      const d = $( false );
-      b( d );
-      const e = $( 100 );
-      return e;
+    if (b) {
+      const c = $( false );
+      a( c );
+      const d = $( 100 );
+      return d;
     }
     else {
       return undefined;
     }
   };
-  const f = $( true );
-  b = b( f );
-  return undefined;
-};
-if ($) {
-  a();
+  const e = $( true );
+  a = a( e );
 }
 `````
 

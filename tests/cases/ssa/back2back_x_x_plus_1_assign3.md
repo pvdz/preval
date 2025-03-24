@@ -59,19 +59,20 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x /*:unknown*/ = $(5);
+  let x /*:unknown*/ = $(5);
   $(x);
   const tmpCalleeParam /*:object*/ = {
     toString() {
       debugger;
       $(`tostring`);
+      x = 20;
       return `hi`;
     },
   };
   const ssax /*:unknown*/ = $(tmpCalleeParam);
-  const tmpClusterSSA_x /*:primitive*/ = ssax + 1;
+  x = ssax + 1;
   if ($) {
-    $(tmpClusterSSA_x);
+    $(x);
   } else {
   }
 } else {
@@ -84,16 +85,18 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $($(5));
-  const tmpClusterSSA_x =
+  let x = $(5);
+  $(x);
+  x =
     $({
       toString() {
         $(`tostring`);
+        x = 20;
         return `hi`;
       },
     }) + 1;
   if ($) {
-    $(tmpClusterSSA_x);
+    $(x);
   }
 }
 `````
@@ -104,17 +107,18 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = $( 5 );
+  let a = $( 5 );
   $( a );
   const b = { toString(  ) {
     debugger;
     $( "tostring" );
+    a = 20;
     return "hi";
   } };
   const c = $( b );
-  const d = c + 1;
+  a = c + 1;
   if ($) {
-    $( d );
+    $( a );
   }
 }
 `````

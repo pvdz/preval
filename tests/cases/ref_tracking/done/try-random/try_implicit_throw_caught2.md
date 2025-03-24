@@ -42,12 +42,12 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-$(x___9__);
-let $implicitThrow$1___12__ = false;
+let x___6__ = 1;
+$(x___11__);
+let $implicitThrow$1___13__ = false;
 let $finalCatchArg$1___16__ = undefined___17__;
 try /*19*/ {
-  let $implicitThrow___22__ = false;
+  let $implicitThrow___23__ = false;
   let $finalCatchArg___26__ = undefined___27__;
   try /*29*/ {
     $(x___33__);
@@ -90,29 +90,29 @@ None
 
                      | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,33,44,69,76,82,92 | none           | 37
-  - r @9       | 4
-  - r @33      | 4
-  - w @37      | ########## | 44,50,60,69,76,82,92 | 4              | none
-  - r @44      | 4,37
+  - w @6       | ########## | 11,33,44,69,76,82,92 | none           | 37
+  - r @11      | 6
+  - r @33      | 6
+  - w @37      | ########## | 44,50,60,69,76,82,92 | 6              | none
+  - r @44      | 6,37
   - r @50      | 37
   - r @60      | 37
-  - r @69      | 4,37
-  - r @76      | 4,37
-  - r @82      | 4,37
-  - r @92      | 4,37
+  - r @69      | 6,37
+  - r @76      | 6,37
+  - r @82      | 6,37
+  - r @92      | 6,37
 
 $implicitThrow$1:
-  - w @12            | ########## | 84          | none           | none
-  - r @84            | 12
+  - w @13            | ########## | 84          | none           | none
+  - r @84            | 13
 
 $finalCatchArg$1:
   - w @16            | ########## | 87          | none           | none
   - r @87            | 16
 
 $implicitThrow:
-  - w @22            | ########## | 52          | none           | none
-  - r @52            | 22
+  - w @23            | ########## | 52          | none           | none
+  - r @52            | 23
 
 $finalCatchArg:
   - w @26            | ########## | 55          | none           | none

@@ -132,10 +132,10 @@ function processAttempt(fdata) {
         if (node.$p.reffedNamesCache === undefined) {
           node.$p.reffedNamesCache = [...AST.ssaFindIdentRefs(node.expression.right)];
         }
-      } else if (node.type === 'VariableDeclaration') {
+      } else if (node.type === 'VarStatement') {
         // The lhs is allowed to be a local reference
         if (node.$p.reffedNamesCache === undefined) {
-          node.$p.reffedNamesCache = [...AST.ssaFindIdentRefs(node.declarations[0].init)];
+          node.$p.reffedNamesCache = [...AST.ssaFindIdentRefs(node.init)];
         }
       } else if (node.type === 'ExpressionStatement') {
         if (node.$p.reffedNamesCache === undefined) {
@@ -167,8 +167,8 @@ function processAttempt(fdata) {
     before(block[start]);
     before(block[stop]);
 
-    block[start] = AST.expressionStatement(block[start].declarations[0].init);
-    block[stop] = AST.variableDeclaration(block[stop].expression.left, block[stop].expression.right);
+    block[start] = AST.expressionStatement(block[start].init);
+    block[stop] = AST.varStatement('let', block[stop].expression.left, block[stop].expression.right);
 
     after(block[start]);
     after(block[stop]);

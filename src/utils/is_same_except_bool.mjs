@@ -33,8 +33,8 @@ export function isSameFlatStatementExceptBool(nodeA, nodeB, collect) {
       return r;
     }
 
-    case 'VariableDeclaration': {
-      if (!isSameExpressionExceptBool(nodeA.declarations[0].init, nodeB.declarations[0].init, collect, nodeA.declarations[0], nodeB.declarations[0], 'init')) {
+    case 'VarStatement': {
+      if (!isSameExpressionExceptBool(nodeA.init, nodeB.init, collect, nodeA, nodeB, 'init')) {
         return false;
       }
 

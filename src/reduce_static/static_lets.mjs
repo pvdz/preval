@@ -73,8 +73,10 @@ function _staticLets(fdata) {
         ref.kind !== 'export' &&
         // Must be in same scope
         ref.pfuncNode === last.pfuncNode &&
-        // Must not be in a loop, and otherwise in the same loop
+        // Must be in the same loop or not at all
         ref.innerLoop === last.innerLoop &&
+        // Must be in the same try-block or not at all
+        ref.innerTry === last.innerTry &&
         // The read must be able to reach the write
         ref.blockChain.startsWith(last.blockChain)
       ) {
@@ -97,7 +99,7 @@ function _staticLets(fdata) {
         if (failed) {
           vlog('May have changed between the previous ref and this so bailing');
         } else {
-          const valueNode = last.parentNode.type === 'VariableDeclarator' ? last.parentNode.init : last.parentNode.right;
+          const valueNode = last.parentNode.type === 'VarStatement' ? last.parentNode.init : last.parentNode.right;
           vlog('Is the value node (init/rhs) a primitive?', valueNode?.type, valueNode?.name, valueNode?.value);
           ASSERT(valueNode, 'since the write should be a decl or assign', last.blockBody[last.blockIndex]);
           if (AST.isPrimitive(valueNode)) {

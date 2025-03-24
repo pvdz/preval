@@ -323,9 +323,15 @@ export function getIdentUsageKind(parentNode, parentProp) {
     case 'UpdateExpression':
       ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'readwrite';
+    case 'VarStatement': {
+      ASSERT(parentProp === 'id' || parentProp === 'init', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      if (parentProp === 'id') return 'write';
+      return 'read';
+    }
     case 'VariableDeclaration':
       throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'VariableDeclarator':
+      // Apparently this is called before normalization, as well, so gotta keep this
       ASSERT(parentProp === 'id' || parentProp === 'init', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       if (parentProp === 'id') return 'write';
       return 'read';
@@ -919,23 +925,16 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
 }
 
 export function findBoundNamesInVarDeclaration(node, names = []) {
-  ASSERT(node.type === 'VariableDeclaration');
-  ASSERT(node.declarations.length === 1, 'var decls define one binding?', node);
-  const decl = node.declarations[0];
-  return findBoundNamesInVarDeclarator(decl, names);
+  ASSERT(node.type === 'VariableDeclaration', 'should be pre-normalized code so regular var decls', node.type, node);
+  node.declarations.forEach(dnode => findBoundNamesInVarDeclaratorOrVarStatement(dnode, names));
 }
-
-export function findBoundNamesInUnnormalizedVarDeclaration(node, names = []) {
-  node.declarations.forEach((decr) => findBoundNamesInVarDeclarator(decr, names));
-  return names;
-}
-export function findBoundNamesInVarDeclarator(decl, names = []) {
-  if (decl.id.type === 'Identifier') {
-    names.push(decl.id.name);
+export function findBoundNamesInVarDeclaratorOrVarStatement(node, names = []) {
+  if (node.id.type === 'Identifier') {
+    names.push(node.id.name);
     return names;
   }
 
-  ASSERT(decl.id.type === 'ObjectPattern' || decl.id.type === 'ArrayPattern', 'theres no other kind of decl..?');
+  ASSERT(node.id.type === 'ObjectPattern' || node.id.type === 'ArrayPattern', 'theres no other kind of decl..?');
 
   function r(node, names) {
     if (node.type === 'ObjectPattern') {
@@ -975,7 +974,7 @@ export function findBoundNamesInVarDeclarator(decl, names = []) {
     }
   }
 
-  r(decl.id, names);
+  r(node.id, names);
 
   return names;
 }
@@ -1701,7 +1700,7 @@ function _inferNodeTyping(fdata, valueNode) {
       if (valueNode.object.type === 'Identifier' && valueNode.computed) {
         // The object needs to be an array literal const
         const ometa = fdata.globallyUniqueNamingRegistry.get(valueNode.object.name);
-        const isArray = ometa.isConstant && ometa.writes.length === 1 && ometa.writes[0].grandNode.kind === 'const' && ometa.writes[0].parentNode.init.type === 'ArrayExpression';
+        const isArray = ometa.isConstant && ometa.writes.length === 1 && ometa.writes[0].parentNode.kind === 'const' && ometa.writes[0].parentNode.init.type === 'ArrayExpression';
         if (isArray) {
           vlog('Object is an "array"');
           // Prop is a number if it is a literal number, or if its a reference that was identified to be a number

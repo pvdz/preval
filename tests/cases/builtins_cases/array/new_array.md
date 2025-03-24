@@ -53,7 +53,8 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) Support this node type in isFree: NewExpression
+- (todo) Support this node type in isFree: DebuggerStatement
 
 
 ## Globals

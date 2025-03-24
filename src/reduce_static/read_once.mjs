@@ -25,6 +25,7 @@ function _readOnce(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
     if (meta.isConstant) return;
+    if (!meta.constValueRef) return; // catch
 
     vlog('- `' + name + '`:', meta.constValueRef.node.type);
 

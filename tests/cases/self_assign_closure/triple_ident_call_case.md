@@ -104,7 +104,7 @@ $(a());
 
 
 `````js filename=intro
-const a /*:array*/ = [
+const arr /*:array*/ = [
   `o+qs5DkTS`,
   `displayNam`,
   `VQ5vY4Jbig`,
@@ -144,23 +144,48 @@ const a /*:array*/ = [
   `asyncItera`,
   `t provide `,
 ];
+let b /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
+  const _0x27b75f /*:unknown*/ = $$0;
+  const _0x20302b /*:unknown*/ = $$1;
+  debugger;
+  b = function ($$0, $$1) {
+    const _0x51d865 /*:unknown*/ = $$0;
+    debugger;
+    const tmpClusterSSA__0x51d865 /*:number*/ = _0x51d865 - 345;
+    const _0x5e349d /*:primitive*/ = arr[tmpClusterSSA__0x51d865];
+    return _0x5e349d;
+  };
+  const tmpReturnArg$14 /*:unknown*/ = b(_0x27b75f, _0x20302b);
+  return tmpReturnArg$14;
+};
+const alias2 /*:unknown*/ = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`loop`);
-  a[369];
-  a[89];
-  a[504];
-  a[334];
-  a[254];
-  const _0x5e349d$1 /*:primitive*/ = a[112];
-  const tmpBinLhs$166 /*:number*/ = parseInt(_0x5e349d$1);
-  if (tmpBinLhs$166) {
-    break;
-  } else {
-    const tmpCalleeParam$11 /*:unknown*/ = a.shift();
-    a.push(tmpCalleeParam$11);
+  try {
+    const tmpCalleeParam /*:unknown*/ = alias2(714);
+    $coerce(tmpCalleeParam, `string`);
+    const tmpCalleeParam$1 /*:unknown*/ = alias2(434);
+    $coerce(tmpCalleeParam$1, `string`);
+    const tmpCalleeParam$3 /*:unknown*/ = alias2(849);
+    $coerce(tmpCalleeParam$3, `string`);
+    const tmpCalleeParam$5 /*:unknown*/ = alias2(679);
+    $coerce(tmpCalleeParam$5, `string`);
+    const tmpCalleeParam$7 /*:unknown*/ = alias2(599);
+    $coerce(tmpCalleeParam$7, `string`);
+    const tmpCalleeParam$9 /*:unknown*/ = alias2(457);
+    const tmpBinLhs$166 /*:number*/ = parseInt(tmpCalleeParam$9);
+    if (tmpBinLhs$166) {
+      break;
+    } else {
+      const tmpCalleeParam$11 /*:unknown*/ = arr.shift();
+      arr.push(tmpCalleeParam$11);
+    }
+  } catch (_0x4f54af$22) {
+    const tmpCalleeParam$13 /*:unknown*/ = arr.shift();
+    arr.push(tmpCalleeParam$13);
   }
 }
-$(a);
+$(arr);
 `````
 
 
@@ -168,7 +193,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = [
+const arr = [
   `o+qs5DkTS`,
   `displayNam`,
   `VQ5vY4Jbig`,
@@ -208,20 +233,34 @@ const a = [
   `asyncItera`,
   `t provide `,
 ];
+let b = function (_0x27b75f, _0x20302b) {
+  b = function (_0x51d865, $$1) {
+    const tmpClusterSSA__0x51d865 = _0x51d865 - 345;
+    const _0x5e349d = arr[tmpClusterSSA__0x51d865];
+    return _0x5e349d;
+  };
+  const tmpReturnArg$14 = b(_0x27b75f, _0x20302b);
+  return tmpReturnArg$14;
+};
+const alias2 = b;
 while (true) {
   $(`loop`);
-  a[369];
-  a[89];
-  a[504];
-  a[334];
-  a[254];
-  if (parseInt(a[112])) {
-    break;
-  } else {
-    a.push(a.shift());
+  try {
+    $coerce(alias2(714), `string`);
+    $coerce(alias2(434), `string`);
+    $coerce(alias2(849), `string`);
+    $coerce(alias2(679), `string`);
+    $coerce(alias2(599), `string`);
+    if (parseInt(alias2(457))) {
+      break;
+    } else {
+      arr.push(arr.shift());
+    }
+  } catch (_0x4f54af$22) {
+    arr.push(arr.shift());
   }
 }
-$(a);
+$(arr);
 `````
 
 
@@ -230,21 +269,47 @@ With rename=true
 
 `````js filename=intro
 const a = [ "o+qs5DkTS", "displayNam", "VQ5vY4Jbig", "previous", "nk\">", "TqTwnd5/c+", "FaGG+cRqIi", "getPrototy", "ch2p7teUW5", "binary", "1549114mYdRSK", "qfVUyPGyG", "nV7NqmuKE", "MVWzWKgjww", "mark", "//BaPJuXX", "loaded", "call", "he WebCryp", "RSASSA-PKC", "E31n2Gh9QE", "N8h3TKFzuv", "Stb3euiWtm", "return", "ILhA", "G9w0BAQEFA", "7340072VkQjzG", "c-link\" ta", "63rBGDGDE", "b6cIzo9YK", "RuH/AHrSL6", "replace", "encode", "Vk2ghqMihj", "setPrototy", "ker.", "asyncItera", "t provide " ];
+let b = function($$0,$$1 ) {
+  const c = $$0;
+  const d = $$1;
+  debugger;
+  b = function($$0,$$1 ) {
+    const e = $$0;
+    debugger;
+    const f = e - 345;
+    const g = a[ f ];
+    return g;
+  };
+  const h = b( c, d );
+  return h;
+};
+const i = b;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "loop" );
-  a[ 369 ];
-  a[ 89 ];
-  a[ 504 ];
-  a[ 334 ];
-  a[ 254 ];
-  const b = a[ 112 ];
-  const c = parseInt( b );
-  if (c) {
-    break;
+  try {
+    const j = i( 714 );
+    $coerce( j, "string" );
+    const k = i( 434 );
+    $coerce( k, "string" );
+    const l = i( 849 );
+    $coerce( l, "string" );
+    const m = i( 679 );
+    $coerce( m, "string" );
+    const n = i( 599 );
+    $coerce( n, "string" );
+    const o = i( 457 );
+    const p = parseInt( o );
+    if (p) {
+      break;
+    }
+    else {
+      const q = a.shift();
+      a.push( q );
+    }
   }
-  else {
-    const d = a.shift();
-    a.push( d );
+  catch (r) {
+    const s = a.shift();
+    a.push( s );
   }
 }
 $( a );

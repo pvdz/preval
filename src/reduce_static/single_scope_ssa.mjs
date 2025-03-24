@@ -17,11 +17,13 @@ function _singleScopeSSA(fdata) {
 
   // Shallow clone to prevent mutations to the registry from breaking because their read/write refs did not go through phase1
   new Map(fdata.globallyUniqueNamingRegistry).forEach((meta, name) => {
+    if (!meta.singleScoped) return;
     if (meta.isBuiltin) return;
     if (meta.isConstant) return; // No need to SSA a constant
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
-    if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, ???
+    if (!meta.constValueRef) return; // catch, ???
+    if (meta.constValueRef.containerNode.type !== 'VarStatement') return; // catch, ???
 
     vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
@@ -74,15 +76,6 @@ function _singleScopeSSA(fdata) {
 
     const varDeclWrite = meta.writes.find((write) => write.kind === 'var');
     ASSERT(varDeclWrite);
-
-    let allInSameScope = meta.singleScoped;
-    vlog('allInSameScope:', allInSameScope);
-
-    if (!allInSameScope) {
-      // Analysis is a little easier when we don't have to worry about closures
-      vlog('This binding was used in multiple scopes, bailing');
-      return;
-    }
 
     const declFirst = rwOrder[0] === varDeclWrite;
     vlog('declFirst:', declFirst);
@@ -239,7 +232,7 @@ function _singleScopeSSA(fdata) {
         refsArr.forEach((ref) => {
           ref.node.name = tmpName;
         });
-        firstWrite.blockBody[firstWrite.blockIndex] = AST.variableDeclaration(tmpName, firstWrite.parentNode.right, 'let');
+        firstWrite.blockBody[firstWrite.blockIndex] = AST.varStatement('let', tmpName, firstWrite.parentNode.right);
 
         after(firstWrite.blockBody);
         ++changed;

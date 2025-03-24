@@ -38,7 +38,7 @@ function _ifFlipping(fdata) {
       ASSERT(meta.writes.length === 1, 'fixme if this becomes legit');
 
       const write = meta.writes[0];
-      ASSERT(write.blockBody[write.blockIndex].type === 'VariableDeclaration');
+      ASSERT(write.blockBody[write.blockIndex].type === 'VarStatement');
 
       if (write.parentNode.init.type === 'UnaryExpression' && write.parentNode.init.operator === '!') {
 
@@ -95,7 +95,7 @@ function _ifFlipping(fdata) {
         example('const x = Boolean(y); if (x) f(); else g();', 'const x = Boolean(y); if (y) f(); else g();');
         before(node);
 
-        node.test = AST.cloneSimple(write.parentNode.init.arguments[0] ?? AST.identifier('undefined'));
+        node.test = AST.cloneSimple(write.parentNode.init.arguments[0] ?? AST.undef());
         // Note: for Boolean the consequent and alternate do not swap.
 
         after(node);
@@ -168,9 +168,9 @@ function _ifFlipping(fdata) {
     // - `let x = y; if (x)`
     if (
       prevNode &&
-      prevNode.type === 'VariableDeclaration' &&
-      prevNode.declarations[0].id.name === testName &&
-      !AST.isComplexNode(prevNode.declarations[0].init)
+      prevNode.type === 'VarStatement' &&
+      prevNode.id.name === testName &&
+      !AST.isComplexNode(prevNode.init)
     ) {
       // The statement before this `if` statement was the var decl on which is being tested and the name is just an alias.
       // While the binding may still change later on, it can not have between the var decl and the `if`, so we can use that name.
@@ -180,7 +180,7 @@ function _ifFlipping(fdata) {
       before(prevNode);
       before(node);
 
-      node.test = AST.cloneSimple(prevNode.declarations[0].init);
+      node.test = AST.cloneSimple(prevNode.init);
 
       after(node);
       ++changed;
@@ -191,10 +191,10 @@ function _ifFlipping(fdata) {
     if (
       // - `let x = !y; if (x)`
       prevNode &&
-      prevNode.type === 'VariableDeclaration' &&
-      prevNode.declarations[0].id.name === testName &&
-      prevNode.declarations[0].init.type === 'UnaryExpression' &&
-      prevNode.declarations[0].init.operator === '!'
+      prevNode.type === 'VarStatement' &&
+      prevNode.id.name === testName &&
+      prevNode.init.type === 'UnaryExpression' &&
+      prevNode.init.operator === '!'
     ) {
       // The statement before this `if` statement was the var decl on which is being tested and the name is just an inverted alias.
       // While the binding may still change later on, it can not have between the var decl and the `if`, and `!` is also not observable
@@ -209,9 +209,9 @@ function _ifFlipping(fdata) {
       node.consequent.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.tru())));
       node.alternate.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.fals())));
 
-      node.test = AST.cloneSimple(prevNode.declarations[0].init.argument);
+      node.test = AST.cloneSimple(prevNode.init.argument);
       prevNode.kind = 'let';
-      prevNode.declarations[0].init = AST.fals(); // or true; shouldn't matter?
+      prevNode.init = AST.fals(); // or true; shouldn't matter?
       const bak = node.consequent;
       node.consequent = node.alternate;
       node.alternate = bak;
@@ -226,11 +226,11 @@ function _ifFlipping(fdata) {
     // - `let x = Boolean(y); if (x)`
     if (
       prevNode &&
-      prevNode.type === 'VariableDeclaration' &&
-      prevNode.declarations[0].id.name === testName &&
-      prevNode.declarations[0].init.type === 'CallExpression' &&
-      prevNode.declarations[0].init.callee.type === 'Identifier' &&
-      prevNode.declarations[0].init.callee.name === 'Boolean'
+      prevNode.type === 'VarStatement' &&
+      prevNode.id.name === testName &&
+      prevNode.init.type === 'CallExpression' &&
+      prevNode.init.callee.type === 'Identifier' &&
+      prevNode.init.callee.name === 'Boolean'
     ) {
       // The statement before this `if` statement was the var decl on which is being tested and the name is just a boolean alias.
       // While the binding may still change later on, it can not have between the var decl and the `if`, and `Boolean()` is also not observable
@@ -245,9 +245,9 @@ function _ifFlipping(fdata) {
       node.consequent.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.tru())));
       node.alternate.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.fals())));
 
-      node.test = AST.cloneSimple(prevNode.declarations[0].init.arguments[0] ?? AST.identifier('undefined'));
+      node.test = AST.cloneSimple(prevNode.init.arguments[0] ?? AST.undef());
       prevNode.kind = 'let';
-      prevNode.declarations[0].init = AST.fals(); // or true; shouldn't matter?
+      prevNode.init = AST.fals(); // or true; shouldn't matter?
 
       after(node);
       ++changed;
@@ -261,7 +261,6 @@ function _ifFlipping(fdata) {
       // Confirm all reads are if-tests
       meta.reads.every((read) => read.parentNode.type === 'IfStatement' && read.parentProp === 'test')
     ) {
-
       // All reads are if-tests; Confirm all writes are inverting something
       if (
         meta.writes.every(
@@ -304,7 +303,7 @@ function _ifFlipping(fdata) {
         vlog('done!');
         ++changed;
         meta.tainted = true;
-        return
+        return;
       }
 
       // All reads are if-tests; Confirm all writes are using not equals != null, != undefined, or !==

@@ -24,6 +24,7 @@ import { parseCode } from '../normalize/parse.mjs';
 import { prepareNormalization } from '../normalize/prepare.mjs';
 import { phaseNormalOnce } from '../normalize/normal_once.mjs';
 import {VERBOSE_TRACING} from "../constants.mjs"
+import { phaseNormalize } from '../normalize/normalize.mjs';
 
 // - Receive a function declaration AST node
 // - Serialize it to a string
@@ -78,18 +79,19 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
     for (let i = 0, l = bodyOffset - 1; i < l; ++i) {
       const n = funcBody[i];
       ASSERT(
-        n.type === 'VariableDeclaration' || n.type === 'EmptyStatement',
+        n.type === 'VarStatement' || n.type === 'EmptyStatement',
         'rn the header only contains var decls. not very relevant, just assuming this when doing checks. if this changes, update the logic here accordingly',
         n,
       );
 
-      if (n.type === 'VariableDeclaration' && n.declarations[0].init.type === 'Param' && n.declarations[0].init.name === targetParamName) {
+      if (n.type === 'VarStatement' && n.init.type === 'Param' && n.init.name === targetParamName) {
         funcBody[i] = AST.emptyStatement();
 
         funcBody.splice(
           bodyOffset,
           0,
-          AST.variableDeclaration(
+          AST.varStatement(
+            'let',
             paramDecl.$p.paramVarDeclRef.name,
             type === 'I'
               ? AST.identifier(paramValue)
@@ -98,7 +100,6 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
               : type === 'S'
               ? AST.templateLiteral(paramValue)
               : AST.literal(paramValue),
-            'let',
           ),
         );
 
@@ -163,6 +164,7 @@ export function createNormalizedFunctionFromString(funcString, bodyString, clone
   source(preFdata.tenkoOutput.ast);
   preFdata.globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
   phaseNormalOnce(preFdata);
+  phaseNormalize(preFdata, '<createNormalizedFunctionFromString>', null, { allowEval: false });
 
   vlog('Now processing...');
 
@@ -172,7 +174,7 @@ export function createNormalizedFunctionFromString(funcString, bodyString, clone
   const ast = preFdata.tenkoOutput.ast;
   source(ast);
 
-  const clonedFunc = ast.body[0].declarations[0].init;
+  const clonedFunc = ast.body[0].init;
   ASSERT(
     clonedFunc.type === 'FunctionExpression' || clonedFunc.type === 'ArrowFunctionExpression',
     'expecting to be cloning a func expr or arrow',
@@ -195,7 +197,7 @@ export function createNormalizedFunctionFromString(funcString, bodyString, clone
   groupEnd();
   log('## End of function cloning', clonedName, '\n\n');
 
-  return ast.body[0].declarations[0].init;
+  return ast.body[0].init;
 }
 
 // TODO: fix labels

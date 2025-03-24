@@ -137,10 +137,10 @@ function _pruneExcessiveParams(fdata) {
               let index = 0;
               while (funcNode.body.body[index].type !== 'DebuggerStatement') {
                 const node = funcNode.body.body[index];
-                vlog('  - Found:', node.declarations?.[0].init.name, ', looking for', was)
-                if (node.type === 'VariableDeclaration' && node.declarations[0].init.name === was) {
-                  vlog('    - Renaming', node.declarations[0].init.name, 'to', '$$' + i);
-                  node.declarations[0].init.name = '$$' + i;
+                vlog('  - Found:', node.init?.name, ', looking for', was)
+                if (node.type === 'VarStatement' && node.init.name === was) {
+                  vlog('    - Renaming', node.init.name, 'to', '$$' + i);
+                  node.init.name = '$$' + i;
                   break;
                 }
                 ++index;

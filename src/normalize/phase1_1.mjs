@@ -31,9 +31,9 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     ) {
       const code = fmat(tmat(ast, true), true);
       console.log('\nCurrent state (start of phase1.1)\n--------------\n' + code + '\n--------------\n');
+      vlog('\n\n\n#################################################################### phase1.1 [',passes,'::', phase1s, ']\n\n\n');
     }
   }
-  vlog('\n\n\n#################################################################### phase1.1 [',passes,'::', phase1s, ']\n\n\n');
 
   const tracingValueBefore = VERBOSE_TRACING;
   if (!verboseTracing /*&& (passes > 1 || phase1s > 1)*/) {
@@ -44,7 +44,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   // Collect for type analysis later
   const funcNodesForSomething = new Set; // Set<FunctionExpression>
   const calledMetas = new Map; // Map<Meta, Array<CallExpression>>
-  const untypedConstDecls = new Set; // Set<VariableDeclaration> Collect all const decls that have no typing yet.
+  const untypedConstDecls = new Set; // Set<VarStatement> Collect all const decls that have no typing yet.
   const funcNodesForParams = new Set;
 
   // Discover param types. If an ident always gets invoked in the same way then that's information
@@ -57,7 +57,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     if (nodeType === 'CallExpression') return handleCallExpression(node);
     if (nodeType === 'ObjectExpression') return handleObjectExpression(node, path); // Simple shape validation
     if (nodeType === 'FunctionExpression') return handleFunctionExpression(node, path);
-    if (nodeType === 'VariableDeclaration') return handleVariableDeclaration(node);
+    if (nodeType === 'VarStatement') return handleVarStatement(node);
   }
 
   function handleCallExpression(callNode) {
@@ -97,7 +97,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     const parentProp = pathProps[pathProps.length - 1];
     const parentIndex = pathIndexes[pathIndexes.length - 1];
 
-    if (parentNode.type !== 'VariableDeclarator') return;
+    if (parentNode.type !== 'VarStatement') return;
 
     const meta = fdata.globallyUniqueNamingRegistry.get(parentNode.id.name);
     if (!meta.isConstant) return;
@@ -161,7 +161,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     }
 
     const parentNode = path.nodes[path.nodes.length - 2];
-    if (parentNode.type === 'VariableDeclarator') {
+    if (parentNode.type === 'VarStatement') {
       const funcMeta = getMeta(parentNode.id.name, fdata);
       if (funcMeta.typing.returns) return; // Skip if already set. This must have been a built-in. Return type won't change.
 
@@ -178,7 +178,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
       const funcName = parentNode.id.name;
 
-      if (path.nodes[path.nodes.length - 3].kind === 'const') {
+      if (parentNode.kind === 'const') {
         funcNodesForSomething.add({funcName, funcNode, funcMeta, parentNode});
       }
 
@@ -199,8 +199,8 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     }
   }
 
-  function handleVariableDeclaration(declNode) {
-    const declName = declNode.declarations[0].id.name;
+  function handleVarStatement(declNode) {
+    const declName = declNode.id.name;
     if (declNode.kind === 'const' || declNode.kind === 'let') {
       const meta = getMeta(declName, fdata);
       if (!meta.typing.mustBeType || meta.typing.mustBeType === 'primitive') {
@@ -288,7 +288,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       // If we can verify the alias then we merge the alias callerArgs with this one and move on.
 
       const isAssign = read.parentNode.type === 'AssignmentExpression' && read.parentProp === 'right' && read.parentNode.left.type === 'Identifier';
-      const isVar = !isAssign && read.parentNode.type === 'VariableDeclarator' && read.parentProp === 'init';
+      const isVar = !isAssign && read.parentNode.type === 'VarStatement' && read.parentProp === 'init';
 
       vlog('  - Is it aliased?:', isAssign, isVar);
 
@@ -333,11 +333,11 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     let cdi = 0;
     untypedConstDecls.forEach((obj) => {
       const {node, meta} = obj;
-      const name = node.declarations[0].id.name;
+      const name = node.id.name;
       vgroup('-- decl', cdi++, '::', [name], ', mustBeType:', meta.typing?.mustBeType);
       if (!meta.typing?.mustBeType || meta.typing?.mustBeType === 'primitive') {
         // Note: deal with lets properly. That's not just this init.
-        const init = node.declarations[0].init;
+        const init = node.init;
         vlog('Resolving .typing with the details of the init, type=', init.type);
         const newTyping = inferNodeTyping(fdata, init);
         vlog('++ Results in', newTyping?.mustBeType, '(mustbeprimitive:', newTyping?.mustBePrimitive, ') which we will inject');
@@ -397,7 +397,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
                   // Should be fine to assign, that's just a read
                   return false;
                 }
-                if (read.grandNode.type === 'VariableDeclarator') {
+                if (read.grandNode.type === 'VarStatement') {
                   // init of var decl is ok
                   return false;
                 }

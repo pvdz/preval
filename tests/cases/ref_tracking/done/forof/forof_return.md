@@ -31,25 +31,25 @@ $(f());
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () /*6*/ {
+let f___5__ = function () /*7*/ {
   debugger;
-  const tmpCalleeParam___10__ = [10, 20];
-  let tmpForOfGen___16__ = $forOf___18__(tmpCalleeParam___19__);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___21__) {
-    /*22*/ let tmpForOfNext___25__ = tmpForOfGen___28__.next___29__();
-    const tmpIfTest___32__ = tmpForOfNext___34__.done___35__;
-    if (tmpIfTest___37__) {
-      /*38*/ break;
-    } /*40*/ else {
-      let x___43__ = tmpForOfNext___45__.value___46__;
-      const tmpReturnArg___49__ = $(1, `return`);
-      return tmpReturnArg___57__;
+  let tmpCalleeParam___12__ = [10, 20];
+  const tmpForOfGen___17__ = $forOf___19__(tmpCalleeParam___20__);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___22__) {
+    /*23*/ const tmpForOfNext___27__ = tmpForOfGen___30__.next___31__();
+    const tmpIfTest___33__ = tmpForOfNext___35__.done___36__;
+    if (tmpIfTest___38__) {
+      /*39*/ break;
+    } /*41*/ else {
+      let x___45__ = tmpForOfNext___47__.value___48__;
+      const tmpReturnArg___50__ = $(1, `return`);
+      return tmpReturnArg___58__;
     }
   }
   $(`keep, do not eval`);
-  return undefined___64__;
+  return undefined___65__;
 };
-const tmpCalleeParam$1___67__ = f___69__();
+let tmpCalleeParam$1___67__ = f___69__();
 $(tmpCalleeParam$1___73__);
 `````
 
@@ -65,32 +65,32 @@ None
 
                      | reads      | read by     | overWrites     | overwritten by
 f:
-  - w @4       | ########## | 69          | none           | none
-  - r @69      | 4
+  - w @5       | ########## | 69          | none           | none
+  - r @69      | 5
 
 tmpCalleeParam:
-  - w @10          | ########## | 19          | none           | none
-  - r @19          | 10
+  - w @12          | ########## | 20          | none           | none
+  - r @20          | 12
 
 tmpForOfGen:
-  - w @16          | ########## | 28          | none           | none
-  - r @28          | 16
+  - w @17          | ########## | 30          | none           | none
+  - r @30          | 17
 
 tmpForOfNext:
-  - w @25          | ########## | 34,45       | none           | none
-  - r @34          | 25
-  - r @45          | 25
+  - w @27          | ########## | 35,47       | none           | none
+  - r @35          | 27
+  - r @47          | 27
 
 tmpIfTest:
-  - w @32          | ########## | 37          | none           | none
-  - r @37          | 32
+  - w @33          | ########## | 38          | none           | none
+  - r @38          | 33
 
 x:
-  - w @43          | ########## | not read    | none           | none
+  - w @45          | ########## | not read    | none           | none
 
 tmpReturnArg:
-  - w @49          | ########## | 57          | none           | none
-  - r @57          | 49
+  - w @50          | ########## | 58          | none           | none
+  - r @58          | 50
 
 tmpCalleeParam$1:
   - w @67            | ########## | 73          | none           | none

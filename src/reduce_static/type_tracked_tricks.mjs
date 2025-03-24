@@ -92,14 +92,14 @@ function _typeTrackedTricks(fdata) {
           // This is some form of `ident[n] = simple`
           const targetName = node.expression.left.object.name; // This would need to be na array
           if (
-            next.type === 'VariableDeclaration' &&
-            next.declarations[0].init.type === 'MemberExpression' &&
-            next.declarations[0].init.object.type === 'Identifier' &&
-            next.declarations[0].init.computed &&
-            AST.isNumberLiteral(next.declarations[0].init.property) &&
+            next.type === 'VarStatement' &&
+            next.init.type === 'MemberExpression' &&
+            next.init.object.type === 'Identifier' &&
+            next.init.computed &&
+            AST.isNumberLiteral(next.init.property) &&
             // Now check if previous ident[n] is equal to this ident[n]
-            next.declarations[0].init.object.name === targetName &&
-            AST.getPrimitiveValue(node.expression.left.property) === AST.getPrimitiveValue(next.declarations[0].init.property)
+            next.init.object.name === targetName &&
+            AST.getPrimitiveValue(node.expression.left.property) === AST.getPrimitiveValue(next.init.property)
           ) {
             // This is `ident[n] = simple; const x = ident[n]`. Now verify whether ident is an array
             const arrMeta = fdata.globallyUniqueNamingRegistry.get(targetName);
@@ -110,7 +110,7 @@ function _typeTrackedTricks(fdata) {
               before(node);
               before(next);
 
-              next.declarations[0].init = AST.cloneSimple(node.expression.right);
+              next.init = AST.cloneSimple(node.expression.right);
 
               after(node);
               after(next);
@@ -141,7 +141,7 @@ function _typeTrackedTricks(fdata) {
               (
                 testMeta.writes.length &&
                 testMeta.writes[0].kind === 'var' &&
-                testMeta.writes[0].grandNode.kind === 'const' &&
+                testMeta.writes[0].parentNode.kind === 'const' &&
                 AST.isFalsy(testMeta.writes[0].parentNode.init) &&
                 testMeta.writes[0].blockBody[testMeta.writes[0].blockIndex + 1] === node
               );
@@ -395,11 +395,11 @@ function _typeTrackedTricks(fdata) {
                 const varDeclWrite = argMeta.writes.find((write) => write.kind === 'var');
                 ASSERT(varDeclWrite);
                 const varNode = varDeclWrite.blockBody[varDeclWrite.blockIndex];
-                ASSERT(varNode?.type === 'VariableDeclaration', 'var decl yes?', varDeclWrite);
+                ASSERT(varNode?.type === 'VarStatement', 'var decl yes?', varDeclWrite);
                 vlog('Var decl for `' + argMeta.uniqueName + '`:');
                 source(varNode);
 
-                if (varNode.declarations[0].init.type !== 'UnaryExpression' || varNode.declarations[0].init.operator !== '!') {
+                if (varNode.init.type !== 'UnaryExpression' || varNode.init.operator !== '!') {
                   vlog('This binding is no longer banging');
                   argMeta.typing.bang = false;
                 } else {
@@ -411,11 +411,11 @@ function _typeTrackedTricks(fdata) {
                   before(node, parentNode);
 
                   ASSERT(
-                    varNode.declarations[0].init.type === 'UnaryExpression' && varNode.declarations[0].init.operator === '!',
+                    varNode.init.type === 'UnaryExpression' && varNode.init.operator === '!',
                     'the init should have been a unary bang as well',
-                    varNode.declarations[0].init,
+                    varNode.init,
                   );
-                  const originalArg = varNode.declarations[0].init.argument;
+                  const originalArg = varNode.init.argument;
 
                   // Note: this is normalized code so the arg should be simple at this point
                   // Note: the current node is the bang, not the arg, so we just want to replace in the parent
@@ -1423,7 +1423,7 @@ function _typeTrackedTricks(fdata) {
                 // Start by confirming that the buffer was created with a literal string.
                 if (!isPrim && node.callee.object.type === 'Identifier') {
                   const bufMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-                  if (bufMeta.isConstant && bufMeta.writes[0]?.kind === 'var' && bufMeta.writes[0].grandNode.kind === 'const') {
+                  if (bufMeta.isConstant && bufMeta.writes[0]?.kind === 'var' && bufMeta.writes[0].parentNode.kind === 'const') {
                     const write = bufMeta.writes[0];
                     const init = write.parentNode.init;
                     if (
@@ -1459,8 +1459,8 @@ function _typeTrackedTricks(fdata) {
 
                       const result = Buffer.from(...initArgValues).toString(...tosArgValues);
                       // Now eliminate that call expression. We have to go the hard way because it goes one level beyond the grandNode
-                      if (blockBody[blockIndex].type === 'VariableDeclaration') {
-                        blockBody[blockIndex].declarations[0].init = AST.primitive(result);
+                      if (blockBody[blockIndex].type === 'VarStatement') {
+                        blockBody[blockIndex].init = AST.primitive(result);
                       } else if (blockBody[blockIndex].type === 'ExpressionStatement') {
                         if (blockBody[blockIndex].expression.type === 'AssignmentExpression') {
                           blockBody[blockIndex].expression.right = AST.primitive(result);
@@ -1852,7 +1852,7 @@ function _typeTrackedTricks(fdata) {
                           before(node);
 
                           const tmp = createFreshVar('tmpttr', fdata);
-                          const newNode = AST.variableDeclaration(tmp, AST.callExpression(SYMBOL_COERCE, [arg, AST.primitive('string')]), 'const');
+                          const newNode = AST.varStatement('const', tmp, AST.callExpression(SYMBOL_COERCE, [arg, AST.primitive('string')]));
                           blockBody.splice(blockIndex, 0, newNode);
 
                           node.arguments[0] = AST.identifier(tmp);
@@ -1932,7 +1932,7 @@ function _typeTrackedTricks(fdata) {
 
                             if (do2) {
                               const tmp = createFreshVar('tmpttr', fdata);
-                              const newNode = AST.variableDeclaration(tmp, AST.callExpression(SYMBOL_COERCE, [arg2, AST.primitive('number')]), 'const');
+                              const newNode = AST.varStatement('const', tmp, AST.callExpression(SYMBOL_COERCE, [arg2, AST.primitive('number')]));
                               blockBody.splice(blockIndex, 0, newNode);
                               node.arguments[1] = AST.identifier(tmp);
                               n += 1;
@@ -1940,7 +1940,7 @@ function _typeTrackedTricks(fdata) {
 
                             if (do1) {
                               const tmp = createFreshVar('tmpttr', fdata);
-                              const newNode = AST.variableDeclaration(tmp, AST.callExpression(SYMBOL_COERCE, [arg1, AST.primitive('string')]), 'const');
+                              const newNode = AST.varStatement('const', tmp, AST.callExpression(SYMBOL_COERCE, [arg1, AST.primitive('string')]));
                               blockBody.splice(blockIndex, 0, newNode);
                               node.arguments[0] = AST.identifier(tmp);
                               n += 1;
@@ -2088,27 +2088,27 @@ function _typeTrackedTricks(fdata) {
                       //   - var decl that reads property from an object based on first arg. object must be known entirely
                       //   - return statement of that value
                       if (
-                        funcBody[bodyOffset].type === 'VariableDeclaration' &&
-                        funcBody[bodyOffset].declarations[0].init.type === 'MemberExpression' &&
-                        funcBody[bodyOffset].declarations[0].init.object.type === 'Identifier' &&
-                        funcBody[bodyOffset].declarations[0].init.computed &&
-                        funcBody[bodyOffset].declarations[0].init.property.type === 'Identifier' &&
+                        funcBody[bodyOffset].type === 'VarStatement' &&
+                        funcBody[bodyOffset].init.type === 'MemberExpression' &&
+                        funcBody[bodyOffset].init.object.type === 'Identifier' &&
+                        funcBody[bodyOffset].init.computed &&
+                        funcBody[bodyOffset].init.property.type === 'Identifier' &&
                         // Confirm that the function starts with assigning param 0
-                        funcBody[0].type === 'VariableDeclaration' &&
-                        funcBody[0].declarations[0].init.type === 'Param' &&
-                        funcBody[0].declarations[0].init.name === '$$0' &&
+                        funcBody[0].type === 'VarStatement' &&
+                        funcBody[0].init.type === 'Param' &&
+                        funcBody[0].init.name === '$$0' &&
                         // Is the property being accessed coming from the first param?
-                        funcBody[0].declarations[0].id.name === funcBody[bodyOffset].declarations[0].init.property.name &&
+                        funcBody[0].id.name === funcBody[bodyOffset].init.property.name &&
                         // And the tail, must only be a return for that ident
                         funcBody[bodyOffset+1]?.type === 'ReturnStatement' &&
                         funcBody[bodyOffset+1].argument.type === 'Identifier' &&
-                        funcBody[bodyOffset+1].argument.name === funcBody[bodyOffset].declarations[0].id.name &&
+                        funcBody[bodyOffset+1].argument.name === funcBody[bodyOffset].id.name &&
                         !funcBody[bodyOffset+2] // No more
                       ) {
                         // - We've verified this function; function f($$0) { const s = $$0; debugger; const r = obj[s]; return r; }`
                         // We now have to confirm that the `obj` here is fully known and only used
                         // as property access that is not the child of delete or call or assignment-lhs.
-                        const objMeta = fdata.globallyUniqueNamingRegistry.get(funcBody[bodyOffset].declarations[0].init.object.name);
+                        const objMeta = fdata.globallyUniqueNamingRegistry.get(funcBody[bodyOffset].init.object.name);
                         const objNode = objMeta.isConstant && objMeta.constValueRef.node;
                         if (
                           objNode?.type === 'ObjectExpression' &&
@@ -2358,9 +2358,9 @@ function _typeTrackedTricks(fdata) {
                       before(node);
                       before(metaArg1.constValueRef.containerNode);
 
-                      ASSERT(metaArg1.constValueRef.containerNode.type === 'VariableDeclaration', 'not assign or anything because write.len===1, right?', metaArg1.constValueRef);
+                      ASSERT(metaArg1.constValueRef.containerNode.type === 'VarStatement', 'not assign or anything because write.len===1, right?', metaArg1.constValueRef);
 
-                      metaArg1.constValueRef.containerNode.declarations[0].init = metaArg1.constValueRef.node.elements[0];
+                      metaArg1.constValueRef.containerNode.init = metaArg1.constValueRef.node.elements[0];
 
                       after(metaArg1.constValueRef.containerNode);
                       after(node);
@@ -2401,7 +2401,7 @@ function _typeTrackedTricks(fdata) {
           node.object.name !== 'arguments' &&
           (
             (parentNode.type === 'AssignmentExpression' && parentProp === 'right') ||
-            (parentNode.type === 'VariableDeclarator' && parentProp === 'init') // The init check is redundant
+            (parentNode.type === 'VarStatement' && parentProp === 'init') // The init check is redundant
           )
         ) {
           const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);

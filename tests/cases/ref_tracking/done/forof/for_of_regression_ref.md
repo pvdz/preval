@@ -31,13 +31,13 @@ $(x);
 (Annotated with pids)
 
 `````filename=intro
-$(undefined___5__);
-let x___8__ = undefined___9__;
-const list___12__ = [100];
-let arr___17__ = undefined___18__;
-let tmpForOfGen___21__ = $forOf___23__(list___24__);
+$(undefined___9__);
+let x___11__ = undefined___12__;
+const list___14__ = [100];
+let arr___18__ = undefined___19__;
+const tmpForOfGen___21__ = $forOf___23__(list___24__);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___26__) {
-  /*27*/ let tmpForOfNext___30__ = tmpForOfGen___33__.next___34__();
+  /*27*/ const tmpForOfNext___31__ = tmpForOfGen___34__.next___35__();
   const tmpIfTest___37__ = tmpForOfNext___39__.done___40__;
   if (tmpIfTest___42__) {
     /*43*/ break;
@@ -62,28 +62,28 @@ None
 
                  | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @8       | ########## | 65          | none           | 55
-  - w @55      | ########## | 65          | 8,55           | 55
-  - r @65      | 8,55
+  - w @11      | ########## | 65          | none           | 55
+  - w @55      | ########## | 65          | 11,55          | 55
+  - r @65      | 11,55
 
 list:
-  - w @12      | ########## | 24          | none           | none
-  - r @24      | 12
+  - w @14      | ########## | 24          | none           | none
+  - r @24      | 14
 
 arr:
-  - w @17      | ########## | not read    | none           | 51
-  - w @51      | ########## | 54,59       | 17,51          | 51
+  - w @18      | ########## | not read    | none           | 51
+  - w @51      | ########## | 54,59       | 18,51          | 51
   - r @54      | 51
   - r @59      | 51
 
 tmpForOfGen:
-  - w @21       | ########## | 33          | none           | none
-  - r @33       | 21
+  - w @21       | ########## | 34          | none           | none
+  - r @34       | 21
 
 tmpForOfNext:
-  - w @30        | ########## | 39,49       | none           | none
-  - r @39        | 30
-  - r @49        | 30
+  - w @31        | ########## | 39,49       | none           | none
+  - r @39        | 31
+  - r @49        | 31
 
 tmpIfTest:
   - w @37        | ########## | 42          | none           | none

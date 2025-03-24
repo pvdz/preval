@@ -85,14 +85,14 @@ export function denorm(fdata, resolve, req, options) {
             break;
           }
 
-          if (next.type !== 'VariableDeclaration') break;
+          if (next.type !== 'VarStatement') break;
 
-          const init = next.declarations[0].init;
+          const init = next.init;
           if (init.type === 'Param') {
             // RestElement causes trouble so leave it
             if (!node.params[init.index].rest) {
-              vlog('Dropping alias for', next.declarations[0].id.name, '=', next.declarations[0].init);
-              node.params[init.index] = next.declarations[0].id;
+              vlog('Dropping alias for', next.id.name, '=', next.init);
+              node.params[init.index] = next.id;
               node.body.body[pointer - 1] = AST.emptyStatement(); // keep meta pointers alive
             }
           } else if (init.type === 'ThisExpression') {
@@ -124,18 +124,18 @@ export function denorm(fdata, resolve, req, options) {
         changed = pruneIfBranches(node) || changed;
         break;
       }
-      case 'VariableDeclaration:before': {
+      case 'VarStatement:before': {
         if (node.kind === 'const') {
-          const varname = node.declarations[0].id.name;
-          const init = node.declarations[0].init;
+          const varname = node.id.name;
+          const init = node.init;
 
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentIndex = path.indexes[path.indexes.length - 1];
           const next = parentNode.body[parentIndex + 1];
 
           const nextExpr =
-            next?.type === 'VariableDeclaration'
-            ? next.declarations[0].init
+            next?.type === 'VarStatement'
+            ? next.init
             : next?.type === 'ExpressionStatement'
             ? (next.expression.type === 'AssignmentExpression' ? next.expression.right : next.expression)
             : next?.type === 'IfStatement'
@@ -356,9 +356,8 @@ export function denorm(fdata, resolve, req, options) {
             const meta = fdata.globallyUniqueNamingRegistry.get(varname);
             const next = parentNode.body[parentIndex + 1];
             if (meta?.reads.length === 1 && next) {
-              if (next.type === 'VariableDeclaration') {
-                const decr = next.declarations[0];
-                const nextInit = decr.init;
+              if (next.type === 'VarStatement') {
+                const nextInit = next.init;
                 // As the lhs of a `+` binary expression
                 if (nextInit.type === 'BinaryExpression' && nextInit.operator === '+' && nextInit.left.type === 'Identifier') {
                   if (nextInit.left.name === varname) {

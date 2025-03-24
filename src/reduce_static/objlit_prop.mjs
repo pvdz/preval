@@ -381,7 +381,7 @@ function processAttempt(fdata, queue) {
             ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
             const tmpNameMethod = createFreshVar('tmpObjectMethod', fdata);
             const methodNode = AST.memberExpression(symbo('Object', 'prototype'), readRef.parentNode.property.name, false);
-            const methodVarNode = AST.variableDeclaration(tmpNameMethod, methodNode, 'const');
+            const methodVarNode = AST.varStatement('const', tmpNameMethod, methodNode);
 
             ASSERT(!readRef.parentNode.computed, 'right?', readRef.parentNode);
 
@@ -401,13 +401,13 @@ function processAttempt(fdata, queue) {
               (blockNodeAtIndex.type === 'ExpressionStatement' &&
                 blockNodeAtIndex.expression.type === 'AssignmentExpression' &&
                 blockNodeAtIndex.expression.right === readRef.grandNode) ||
-              (blockNodeAtIndex.type === 'VariableDeclaration' && blockNodeAtIndex.declarations[0].init === readRef.grandNode),
+              (blockNodeAtIndex.type === 'VarStatement' && blockNodeAtIndex.init === readRef.grandNode),
               'this ought to be a normalized node so the call must either be child of expr stmt, right of assignment, or init of var',
               blockNodeAtIndex,
             );
 
-            if (blockNodeAtIndex.type === 'VariableDeclaration') {
-              blockNodeAtIndex.declarations[0].init = callNode;
+            if (blockNodeAtIndex.type === 'VarStatement') {
+              blockNodeAtIndex.init = callNode;
             } else if (blockNodeAtIndex.expression === readRef.grandNode) {
               blockNodeAtIndex.expression = callNode;
             } else {

@@ -80,9 +80,9 @@ function _fakeDoWhile(fdata) {
         // Next level: check if var decl is before while and all other refs inside the while
         // Next next level: trace values per ref
         const prev = parentNode[parentProp][parentIndex - 1];
-        if (prev.type !== 'VariableDeclaration' || prev.declarations[0].id.name !== testName) return; // Prev statement not a let of the test
+        if (prev.type !== 'VarStatement' || prev.id.name !== testName) return; // Prev statement not a let of the test
 
-        if (AST.isTruthy(prev.declarations[0].init)) {
+        if (AST.isTruthy(prev.init)) {
           if (!ifStmt.alternate.$p.alwaysCompletes?.size) {
             vlog('- The pattern matches but alternate branch does not always complete, bailing', ifStmt.$p.alwaysCompletes, ifStmt.consequent.$p.alwaysCompletes, ifStmt.alternate.$p.alwaysCompletes, ifStmt.consequent.$p, ifStmt.alternate.$p);
             break;
@@ -104,7 +104,7 @@ function _fakeDoWhile(fdata) {
           after(parentNode[parentProp][parentIndex-1]);
           after(parentNode[parentProp][parentIndex]);
           ++changed;
-        } else if (AST.isFalsy(prev.declarations[0].init)) {
+        } else if (AST.isFalsy(prev.init)) {
           if (!ifStmt.consequent.$p.alwaysCompletes?.size) {
             vlog('- The pattern matches but consequent branch does not always complete, bailing', ifStmt.$p.alwaysCompletes, ifStmt.consequent.$p.alwaysCompletes, ifStmt.alternate.$p.alwaysCompletes, ifStmt.consequent.$p, ifStmt.alternate.$p);
             break;

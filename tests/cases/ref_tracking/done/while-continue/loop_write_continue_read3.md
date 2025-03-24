@@ -34,11 +34,11 @@ loopStop: {
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 0;
+let x___5__ = 0;
 let $tmpLoopUnrollCheck___8__ = true;
 loopStop___11__: /*12*/ {
-  x___18__ = x___16__ + 1;
-  $(x___22__, 1);
+  x___19__ = x___17__ + 1;
+  $(x___23__, 1);
   const tmpIfTest___26__ = x___28__ < 4;
   if (tmpIfTest___31__) {
     /*32*/
@@ -62,12 +62,12 @@ None
 
                         | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 16          | none           | 18
-  - r @16      | 4
-  - w @18      | ########## | 22,28,37    | 4              | none
-  - r @22      | 18
-  - r @28      | 18
-  - r @37      | 18
+  - w @5       | ########## | 17          | none           | 19
+  - r @17      | 5
+  - w @19      | ########## | 23,28,37    | 5              | none
+  - r @23      | 19
+  - r @28      | 19
+  - r @37      | 19
 
 $tmpLoopUnrollCheck:
   - w @8                | ########## | not read    | none           | 42

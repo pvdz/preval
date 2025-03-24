@@ -52,7 +52,7 @@ function _ifTestBool(fdata) {
     const ifTestMeta = fdata.globallyUniqueNamingRegistry.get(node.test.name);
     if (ifTestMeta.isBuiltin) return;
     if (ifTestMeta.isImplicitGlobal) return;
-    if (ifTestMeta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
+    if (ifTestMeta.constValueRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
     if (!ifTestMeta.isConstant) return;
     //if (meta.writes.length > 1) return; // TODO: fixme if broken
 

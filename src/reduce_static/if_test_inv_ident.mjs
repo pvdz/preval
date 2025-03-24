@@ -64,10 +64,10 @@ function _ifTestInvIdent(fdata) {
 
     const prev = parentNode[parentProp][parentIndex-1];
 
-    if (prev.type === 'VariableDeclaration') {
-      if (prev.declarations[0].id.name === node.test.name) {
+    if (prev.type === 'VarStatement') {
+      if (prev.id.name === node.test.name) {
         // This is a var decl of the test
-        const init = prev.declarations[0].init;
+        const init = prev.init;
         if (init.type === 'UnaryExpression' && init.operator === '!' && init.argument.type === 'Identifier') {
           // It should be safe to make the transform
           rule('An `if` that tests the result of inverting an ident can test for that ident instead');
@@ -80,7 +80,7 @@ function _ifTestInvIdent(fdata) {
           node.consequent.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.tru())));
           node.alternate.body.unshift(AST.expressionStatement(AST.assignmentExpression(node.test.name, AST.fals())));
 
-          prev.declarations[0].init = AST.tru(); // Or false, shouldn't matter..?
+          prev.init = AST.tru(); // Or false, shouldn't matter..?
           node.test = AST.identifier(init.argument.name);
           const tmp = node.alternate;
           node.alternate = node.consequent;

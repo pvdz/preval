@@ -36,8 +36,8 @@ $(x);          // x=2 3 4. not 1: a throw in the Catch does not reach here
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-let $implicitThrow___8__ = false;
+let x___6__ = 1;
+let $implicitThrow___9__ = false;
 let $finalCatchArg___12__ = undefined___13__;
 try /*15*/ {
   try /*17*/ {
@@ -76,20 +76,20 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 21,32,55,73 | none           | 25,36,62
-  - r @21      | 4
-  - w @25      | ########## | 32,40,55,73 | 4              | 36,62
-  - r @32      | 4,25
-  - w @36      | ########## | 40,55,73    | 4,25           | 62
+  - w @6       | ########## | 21,32,55,73 | none           | 25,36,62
+  - r @21      | 6
+  - w @25      | ########## | 32,40,55,73 | 6              | 36,62
+  - r @32      | 6,25
+  - w @36      | ########## | 40,55,73    | 6,25           | 62
   - r @40      | 25,36
-  - r @55      | 4,25,36
-  - w @62      | ########## | 73          | 4,25,36        | none
-  - r @73      | 4,25,36,62
+  - r @55      | 6,25,36
+  - w @62      | ########## | 73          | 6,25,36        | none
+  - r @73      | 6,25,36,62
 
 $implicitThrow:
-  - w @8           | ########## | 65          | none           | 47
-  - w @47          | ########## | 65          | 8              | none
-  - r @65          | 8,47
+  - w @9           | ########## | 65          | none           | 47
+  - w @47          | ########## | 65          | 9              | none
+  - r @65          | 9,47
 
 $finalCatchArg:
   - w @12          | ########## | 68          | none           | 51

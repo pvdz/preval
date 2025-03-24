@@ -35,14 +35,14 @@ try {
 (Annotated with pids)
 
 `````filename=intro
-let $implicitThrow$1___4__ = false;
-let $finalCatchArg$1___8__ = undefined___9__;
+let $implicitThrow$1___6__ = false;
+let $finalCatchArg$1___9__ = undefined___10__;
 let f___12__ = function () /*14*/ {
   debugger;
-  let x___18__ = 1;
-  let $implicitThrow___22__ = false;
-  let $finalStep___26__ = false;
-  let $finalCatchArg___30__ = undefined___31__;
+  let x___22__ = 1;
+  let $implicitThrow___25__ = false;
+  let $finalStep___28__ = false;
+  let $finalCatchArg___31__ = undefined___32__;
   let $finalArg___34__ = undefined___35__;
   $finally___37__: /*38*/ {
     try /*40*/ {
@@ -89,35 +89,35 @@ None
 
                      | reads      | read by     | overWrites     | overwritten by
 $implicitThrow$1:
-  - w @4             | ########## | 97          | none           | none
-  - r @97            | 4
+  - w @6             | ########## | 97          | none           | none
+  - r @97            | 6
 
 $finalCatchArg$1:
-  - w @8             | ########## | 100         | none           | none
-  - r @100           | 8
+  - w @9             | ########## | 100         | none           | none
+  - r @100           | 9
 
 f:
   - w @12            | ########## | 95          | none           | none
   - r @95            | 12
 
 x:
-  - w @18            | ########## | 70,76       | none           | 52
-  - w @52            | ########## | 70,76       | 18             | none
-  - r @70            | 18,52
-  - r @76            | 18,52
+  - w @22            | ########## | 70,76       | none           | 52
+  - w @52            | ########## | 70,76       | 22             | none
+  - r @70            | 22,52
+  - r @76            | 22,52
 
 $implicitThrow:
-  - w @22            | ########## | 78          | none           | none
-  - r @78            | 22
+  - w @25            | ########## | 78          | none           | none
+  - r @78            | 25
 
 $finalStep:
-  - w @26            | ########## | 84          | none           | 56
-  - w @56            | ########## | 84          | 26             | none
-  - r @84            | 26,56
+  - w @28            | ########## | 84          | none           | 56
+  - w @56            | ########## | 84          | 28             | none
+  - r @84            | 28,56
 
 $finalCatchArg:
-  - w @30            | ########## | 81          | none           | none
-  - r @81            | 30
+  - w @31            | ########## | 81          | none           | none
+  - r @81            | 31
 
 $finalArg:
   - w @34            | ########## | 88          | none           | 60

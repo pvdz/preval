@@ -35,6 +35,7 @@ function _ifLetInit(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isConstant) return;
     if (!meta.singleScoped) return; // The assignment analysis is only reliable for single scoped variables
+    if (!meta.constValueRef) return; // catch
 
     const initNode = meta.constValueRef.node;
     if (!AST.isPrimitive(initNode)) return;

@@ -41,10 +41,10 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-$(x___9__);
-let $implicitThrow___12__ = false;
-let $finalStep___16__ = false;
+let x___7__ = 1;
+$(x___12__);
+let $implicitThrow___14__ = false;
+let $finalStep___17__ = false;
 let $finalCatchArg___20__ = undefined___21__;
 $finally___23__: /*24*/ {
   try /*26*/ {
@@ -74,21 +74,21 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9,30,55     | none           | 34,59
-  - r @9       | 4
-  - r @30      | 4
-  - w @34      | ########## | 55          | 4              | 59
-  - r @55      | 4,34
-  - w @59      | ########## | 63          | 4,34           | none
+  - w @7       | ########## | 12,30,55    | none           | 34,59
+  - r @12      | 7
+  - r @30      | 7
+  - w @34      | ########## | 55          | 7              | 59
+  - r @55      | 7,34
+  - w @59      | ########## | 63          | 7,34           | none
   - r @63      | 59
 
 $implicitThrow:
-  - w @12          | ########## | not read    | none           | 47
-  - w @47          | ########## | not read    | 12             | none
+  - w @14          | ########## | not read    | none           | 47
+  - w @47          | ########## | not read    | 14             | none
 
 $finalStep:
-  - w @16          | ########## | not read    | none           | 38
-  - w @38          | ########## | not read    | 16             | none
+  - w @17          | ########## | not read    | none           | 38
+  - w @38          | ########## | not read    | 17             | none
 
 $finalCatchArg:
   - w @20          | ########## | not read    | none           | 51

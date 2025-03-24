@@ -29,8 +29,8 @@
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-let $implicitThrow___8__ = false;
+let x___6__ = 1;
+let $implicitThrow___9__ = false;
 let $finalCatchArg___12__ = undefined___13__;
 try /*15*/ {
   x___19__ = 2;
@@ -58,15 +58,15 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 26          | none           | 19
-  - w @19      | ########## | 26,32,42    | 4              | none
-  - r @26      | 4,19
+  - w @6       | ########## | 26          | none           | 19
+  - w @19      | ########## | 26,32,42    | 6              | none
+  - r @26      | 6,19
   - r @32      | 19
   - r @42      | 19
 
 $implicitThrow:
-  - w @8           | ########## | 34          | none           | none
-  - r @34          | 8
+  - w @9           | ########## | 34          | none           | none
+  - r @34          | 9
 
 $finalCatchArg:
   - w @12          | ########## | 37          | none           | none

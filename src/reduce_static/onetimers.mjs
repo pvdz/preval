@@ -175,7 +175,7 @@ function _inlineOneTimeFunctions(fdata) {
     // `; ... let r; F: { r = 1; break F; };`
 
     let kind =
-      read.blockBody[read.blockIndex].type === 'VariableDeclaration'
+      read.blockBody[read.blockIndex].type === 'VarStatement'
       ? 'decl'
       : read.blockBody[read.blockIndex].type !== 'ExpressionStatement'
       ? ASSERT(false, 'what can this be in normalized code', read.blockBody[read.blockIndex].type, read.blockBody[read.blockIndex].name) // ???
@@ -199,7 +199,7 @@ function _inlineOneTimeFunctions(fdata) {
     results.push(newLabelWrapper);
     const wrapperLabelName = newLabelWrapper.label.name;
     const lhsNode = kind === 'decl'
-      ? read.blockBody[read.blockIndex].declarations[0].id
+      ? read.blockBody[read.blockIndex].id
       : kind === 'assign'
       ? read.blockBody[read.blockIndex].expression.left // May be member expression
       : undefined;
@@ -291,12 +291,13 @@ function _inlineOneTimeFunctions(fdata) {
 
             rule('Inlining function: param init nodes get replaced with call arg nodes at same index');
             example('const f = function($$1) { const a = $$1; ... }; f(xyz);', 'const f = A { const a = xyz; ... };');
+            before(pnode.$p.paramVarDeclRef.blockBody);
             before(pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex]);
 
             if (args[i]) {
-              pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex].declarations[0].init = args[i];
+              pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex].init = args[i];
             } else {
-              pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex].declarations[0].init = AST.identifier('undefined');
+              pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex].init = AST.identifier('undefined');
             }
             after(pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex]);
           } else {
@@ -326,7 +327,7 @@ function _inlineOneTimeFunctions(fdata) {
 
         read.blockBody.splice(
           read.blockIndex, 1,
-          ...kind === 'decl' ? [AST.variableDeclaration(lhsNode, 'undefined', 'let')] : [],
+          ...kind === 'decl' ? [AST.varStatement('let', lhsNode, AST.undef())] : [],
           newLabelWrapper
         );
 

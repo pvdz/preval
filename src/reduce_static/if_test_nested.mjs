@@ -20,7 +20,7 @@ function _ifTestNested(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (!meta.isConstant) return;
     if (meta.writes.length !== 1) return;
-    if (meta.writes[0].grandNode.kind !== 'const') return;
+    if (meta.writes[0].parentNode.kind !== 'const') return;
 
     let targets = meta.reads.filter(read => read.parentNode.type === 'IfStatement');
     if (targets.length <= 1) {

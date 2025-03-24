@@ -36,11 +36,11 @@ function _labelScoping(fdata) {
     while (pointer > 0) {
       const curr = pointer - 1;
       const stmt = body[curr];
-      if (stmt.type === 'VariableDeclaration') {
+      if (stmt.type === 'VarStatement') {
         // Ok. We have a label preceded by a var decl, now verify that the decl is not used after the label.
         // We can simply check the blockChain property of the last source-order ref for this.
 
-        const varName = stmt.declarations[0].id.name;
+        const varName = stmt.id.name;
         const meta = fdata.globallyUniqueNamingRegistry.get(varName);
         // TODO: If not single scoped then the closure must happen inside the label too. If it happens before then all bets are off.
         if (!meta.singleScoped) return;

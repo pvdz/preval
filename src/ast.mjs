@@ -428,7 +428,7 @@ export function functionExpressionNormalized(paramNames, body, { id, generator, 
     paramNames.map((name, pi) => param('$$' + pi, pi < paramNames.length - 1 ? false : !!rest)),
     [
       // Note: I don't think these functions need/want the this/arguments alias? Sorry, future self.
-      ...paramNames.map((name, pi) => variableDeclaration(name, '$$' + pi, 'let')),
+      ...paramNames.map((name, pi) => varStatement('let', name, identifier('$$' + pi))),
       debuggerStatement(),
       ...body,
     ],
@@ -991,7 +991,8 @@ export function updateExpression(operator, argument, prefix, yesNotTransforming)
   };
 }
 
-export function variableDeclaration(names, inits = null, kind = 'let') {
+export function variableDeclaration(names, inits = null, kind = 'let', areYouSureYouWantToCreateThisNode) {
+  ASSERT(areYouSureYouWantToCreateThisNode === true, 'just say yes if you mean to. otherwise look at the VarStatement');
   if (typeof names === 'string') names = identifier(names);
   if (!Array.isArray(names)) names = [names];
   if (inits) {
@@ -1001,12 +1002,37 @@ export function variableDeclaration(names, inits = null, kind = 'let') {
   ASSERT(!inits || names.length === inits.length, 'if inits are given then an init should be given for each name to be declared');
 
   return variableDeclarationFromDeclaration(
-    names.map((name, i) => variableDeclarator(name, inits ? inits[i] : null)),
+    names.map((name, i) => variableDeclarator(name, inits ? inits[i] : null, true)),
     kind,
   );
 }
 
-export function variableDeclarator(id, init = null) {
+// Special var decl node which only supports one declaration per node
+// Note: calling it VarStatement because that's easier to grep for, distinct from "VarDecl" which I tend to use a lot for this node.
+export function varStatement(kind, id, init) {
+  ASSERT(arguments.length === varStatement.length, 'vardecl arg count, not more');
+  ASSERT(kind === 'let' || kind === 'const', 'var decl should be let or const', kind);
+  ASSERT(typeof id === 'string' || (id && typeof id === 'object' && !Array.isArray(id)));
+  if (typeof id === 'string') id = identifier(id);
+  ASSERT(init && typeof init === 'object', 'init must be node'); // prevent issues with string as primitive vs string as ident
+
+  const node = {
+    type: 'VarStatement',
+    kind,
+    id,
+    init,
+    $p: $p(),
+    // This is an escape hatch for Prettier
+    get declarations(){ return [node] }
+  };
+
+  return node;
+}
+
+export function variableDeclarator(id, init, areYouSureYouWantToCreateThisNode) {
+  ASSERT(arguments.length === 3, 'for safety reasons, require three args when creating var decl nodes');
+  ASSERT(areYouSureYouWantToCreateThisNode === true, 'just say yes if you mean to. otherwise look at the VarStatement');
+
   if (typeof id === 'string') id = identifier(id);
   if (typeof init === 'string') init = identifier(init);
   ASSERT(typeof init === 'object' || init === null, 'dont supply primitives, use primitive() on it first',  init);
@@ -1286,7 +1312,11 @@ export function isNoob(node, verbose) {
 function _isNoob(node, verbose) {
   // Does this node possibly have any side effect (aside from its main effect, like assignment or call)
   if (node.type === 'VariableDeclaration') {
+    // This is called from normalized so we allow it
     return !node.declarations[0].init || isNoob(node.declarations[0].init, verbose);
+  }
+  if (node.type === 'VarStatement') {
+    return !node.init || isNoob(node.init, verbose);
   }
 
   if (node.type === 'ExpressionStatement') {
@@ -1405,37 +1435,6 @@ function _isIdent(str) {
   }
 }
 
-export function nodeHasNoObservableSideEffectNorStatements(node, noDelete) {
-  // This function assumes normalized code (!)
-
-  // Given node represents an expression (including an ExpressionStatement), return true if the
-  // node contained an expression with an observable side effect, and false if it doesn't.
-  // This function will not visit bodies of functions, merely expressions.
-  // It returns false for any statement that is not a variable declaration or expression statement.
-  // TODO: potentially we can support walking loops and ifs but there's probably no real point to it
-
-  const r = expressionHasNoObservableSideEffect(node, noDelete);
-  if (r !== undefined) return r;
-
-  if (node.type === 'EmptyStatement') {
-    return true;
-  }
-
-  if (node.type === 'VariableDeclaration') {
-    // This one is tricky. The binding itself is observable insofar that it may trigger TDZ errors if moved later.
-    // But I think for the intention of this function, the question is whether the init is observable.
-    // Probably need to revise this a bit later on.
-    return expressionHasNoObservableSideEffect(node.declarations[0].init, noDelete);
-  }
-
-  if (node.type === 'ExpressionStatement') {
-    // Shouldn't reach here but whatever
-    return expressionHasNoObservableSideEffect(node.expression, noDelete);
-  }
-
-  // If this is not what you wanted you were maybe looking for nodeHasNoObservableSideEffectIncStatements
-  return false; // Do not pass other statements
-}
 export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
   ASSERT(node, 'should receive a node');
   // This function assumes normalized code (!)
@@ -1452,6 +1451,13 @@ export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
 
   if (node.type === 'EmptyStatement') {
     return true;
+  }
+
+  if (node.type === 'VarStatement') {
+    // This one is tricky. The binding itself is observable insofar that it may trigger TDZ errors if moved later.
+    // But I think for the intention of this function, the question is whether the init is observable.
+    // Probably need to revise this a bit later on.
+    return expressionHasNoObservableSideEffect(node.init, noDelete);
   }
 
   if (node.type === 'VariableDeclaration') {
@@ -1580,12 +1586,17 @@ export function expressionHasNoObservableSideEffect(node, noDelete) {
   if (['FunctionExpression', 'ThisExpression', 'Param'].includes(node.type)) {
     return true;
   }
+  if (node.type === 'VarStatement') {
+    return expressionHasNoObservableSideEffect(node.init, noDelete);
+  }
   if (node.type === 'VariableDeclaration') {
+    REJECT
     ASSERT(node.declarations.length === 1, 'in normalized code all binding decls have on decl');
     ASSERT(node.declarations[0].init, 'in normalized code all binding decls have inits', node)
     return expressionHasNoObservableSideEffect(node.declarations[0].init, noDelete);
   }
   if (node.type === 'VariableDeclarator') {
+    REJECT
     return expressionHasNoObservableSideEffect(node.init, noDelete);
   }
   if (node.type === 'ExpressionStatement') {
@@ -1732,13 +1743,20 @@ export function ssaCheckMightContainIdentName(node, name) {
   if (['FunctionExpression', 'ThisExpression', 'Param'].includes(node.type)) {
     return false;
   }
+  if (node.type === 'VarStatement') {
+    const r = ssaCheckMightContainIdentName(node.id, name);
+    if (r === undefined || r === true) return r;
+    return ssaCheckMightContainIdentName(node.init, name);
+  }
   if (node.type === 'VariableDeclaration') {
+    REJECT
     const dec = node.declarations[0];
     const r = ssaCheckMightContainIdentName(dec.id, name);
     if (r === undefined || r === true) return r;
     return ssaCheckMightContainIdentName(dec.init, name);
   }
   if (node.type === 'VariableDeclarator') {
+    REJECT
     const r = ssaCheckMightContainIdentName(node.id, name);
     if (r === undefined || r === true) return r;
     return ssaCheckMightContainIdentName(node.init, name);
@@ -1841,7 +1859,13 @@ export function ssaReplaceIdentName(node, oldName, newName) {
   if (['FunctionExpression', 'ThisExpression', 'Param'].includes(node.type)) {
     return;
   }
+  if (node.type === 'VarStatement') {
+    ssaReplaceIdentName(node.id, oldName, newName);
+    ssaReplaceIdentName(node.init, oldName, newName);
+    return;
+  }
   if (node.type === 'VariableDeclaration') {
+    REJECT
     const dec = node.declarations[0];
 
     ssaReplaceIdentName(dec.id, oldName, newName);
@@ -1849,6 +1873,7 @@ export function ssaReplaceIdentName(node, oldName, newName) {
     return;
   }
   if (node.type === 'VariableDeclarator') {
+    REJECT
     ssaReplaceIdentName(node.id, oldName, newName);
     ssaReplaceIdentName(node.init, oldName, newName);
     return;
@@ -1956,11 +1981,16 @@ export function _ssaFindIdentRefs(node, set = new Set()) {
   if (['FunctionExpression', 'ThisExpression', 'Param'].includes(node.type)) {
     return set;
   }
+  if (node.type === 'VarStatement') {
+    return ssaFindIdentRefs(node.id, set) && ssaFindIdentRefs(node.init, set);
+  }
   if (node.type === 'VariableDeclaration') {
+    REJECT
     const dec = node.declarations[0];
     return ssaFindIdentRefs(dec.id, set) && ssaFindIdentRefs(dec.init, set);
   }
   if (node.type === 'VariableDeclarator') {
+    REJECT
     return ssaFindIdentRefs(node.id, set) && ssaFindIdentRefs(node.init, set);
   }
   if (node.type === 'ExpressionStatement') {
@@ -2036,8 +2066,11 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail, safeToAwait
     case 'BlockStatement': {
       return blockStatement(node.body.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail, safeToAwaitYield)));
     }
+    case 'VarStatement': {
+      return varStatement(node.kind, node.id.name, node.init);
+    }
     case 'VariableDeclaration': {
-      return variableDeclaration(node.declarations[0].id.name, node.declarations[0].init, node.kind);
+      REJECT
     }
     case 'BreakStatement': {
       if (node.label) throw TODO;
@@ -2520,7 +2553,7 @@ export function normalizeFunction(targetFuncNode, fromFuncNode, fdata) {
     const tmpName = createFreshVar(THIS_ALIAS_BASE_NAME, fdata);
     const thisNode = thisExpression();
     thisNode.$p.forAlias = true;
-    const newNode = variableDeclaration(tmpName, thisNode, 'const');
+    const newNode = variableDeclaration(tmpName, thisNode, 'const', true);
     aliases.push(newNode);
     targetFuncNode.$p.thisAccess = true;
     targetFuncNode.$p.thisAliasName = tmpName;
@@ -2529,7 +2562,7 @@ export function normalizeFunction(targetFuncNode, fromFuncNode, fdata) {
     const tmpName = createFreshVar(ARGUMENTS_ALIAS_BASE_NAME, fdata);
     const argNode = identifier('arguments');
     argNode.$p.forAlias = true;
-    const newNode = variableDeclaration(tmpName, argNode, 'const');
+    const newNode = variableDeclaration(tmpName, argNode, 'const', true);
     aliases.push(newNode);
     targetFuncNode.$p.readsArgumentsAny = true;
     targetFuncNode.$p.argumentsAliasName = tmpName;
@@ -2539,7 +2572,7 @@ export function normalizeFunction(targetFuncNode, fromFuncNode, fdata) {
     const argNode = memberExpression('arguments', 'length');
     argNode.$p.forAlias = true;
     argNode.object.$p.forAlias = true;
-    const newNode = variableDeclaration(tmpName, argNode, 'const');
+    const newNode = variableDeclaration(tmpName, argNode, 'const', true);
     aliases.push(newNode);
     targetFuncNode.$p.readsArgumentsLen = true;
     targetFuncNode.$p.argumentsLenAliasName = tmpName;
@@ -2573,20 +2606,20 @@ export function transformFunctionParams(node, fdata) {
       if (n.argument.type === 'Identifier') {
         // ... rest with plain ident
         // `let name = $$1`
-        return variableDeclaration(n.argument.name, param(paramIdent), 'let');
+        return variableDeclaration(n.argument.name, param(paramIdent), 'let', true);
       } else {
         // ... rest with pattern
         // `const tmpName = $$1; let pattern = tmpName;`
         ASSERT(n.argument);
         const tmpName = createFreshVar('tmpParamBare', fdata);
-        const pattern = variableDeclaration(n.argument, tmpName, 'let');
+        const pattern = variableDeclaration(n.argument, tmpName, 'let', true);
         bodyLogic.push(pattern);
-        return variableDeclaration(tmpName, param(paramIdent), 'const');
+        return variableDeclaration(tmpName, param(paramIdent), 'const', true);
       }
     } else if (n.type === 'Identifier') {
       // plain ident
       // `let name = $$1`
-      return variableDeclaration(n.name, param(paramIdent), 'let');
+      return variableDeclaration(n.name, param(paramIdent), 'let', true);
     } else if (n.type === 'AssignmentPattern') {
       // Cannot be rest
       const tmpName = createFreshVar('tmpParamBare', fdata);
@@ -2598,6 +2631,7 @@ export function transformFunctionParams(node, fdata) {
         const defaultHandler = variableDeclaration(
           n.left.name,
           conditionalExpression(binaryExpression('===', tmpName, 'undefined'), n.right, tmpName),
+          'const', true
         );
         bodyLogic.push(defaultHandler);
       } else {
@@ -2608,19 +2642,20 @@ export function transformFunctionParams(node, fdata) {
           n.left,
           conditionalExpression(binaryExpression('===', tmpName, 'undefined'), n.right, tmpName),
           'let',
+          true
         );
         bodyLogic.push(defaultHandler);
       }
 
-      return variableDeclaration(tmpName, param(paramIdent), 'const');
+      return variableDeclaration(tmpName, param(paramIdent), 'const', true);
     } else {
       ASSERT(n.type === 'ObjectPattern' || n.type === 'ArrayPattern', 'transformFunctionParams it should be a pattern if nothing else', n);
       // pattern without default
       // `const tmpName = $$1; [pattern] = tmpName;`
       const tmpName = createFreshVar('tmpParamBare', fdata);
-      const patternHandler = variableDeclaration(n, tmpName, 'let');
+      const patternHandler = variableDeclaration(n, tmpName, 'let', true);
       bodyLogic.push(patternHandler);
-      return variableDeclaration(tmpName, param(paramIdent), 'const');
+      return variableDeclaration(tmpName, param(paramIdent), 'const', true);
     }
   })
   .filter((e) => !!e);
@@ -2665,7 +2700,7 @@ export function isImmutableArray(arrayMeta, knownParent = null, sush = false) {
     if (
       (read.grandNode.type === 'ExpressionStatement' && read.grandNode.expression === read.node) ||
       (read.grandNode.type === 'AssignmentExpression' && read.grandNode.right === read.node) ||
-      (read.grandNode.type === 'VariableDeclaration' && read.grandNode.declarations[0].init !== read.node)
+      (read.grandNode.type === 'VarStatement' && read.grandNode.init !== read.node)
     ) {
       // Member expression that was the init to a var, the rhs of an assign, or just a statement
       return true; // ok
@@ -2726,11 +2761,11 @@ export function isStatementCalling(stmtNode) {
   // Abstraction over normalized code expressions appearing as var decls, assigns, or statements
 
   if (
-    stmtNode.type === 'VariableDeclaration' &&
-    stmtNode.declarations[0].init.type === 'CallExpression' &&
-    stmtNode.declarations[0].init.callee.type === 'Identifier'
+    stmtNode.type === 'VarStatement' &&
+    stmtNode.init.type === 'CallExpression' &&
+    stmtNode.init.callee.type === 'Identifier'
   ) {
-    return stmtNode.declarations[0].init;
+    return stmtNode.init;
   }
 
   if (
@@ -2763,7 +2798,7 @@ export function isStatementCallingFunc(stmtNode, funcName) {
 }
 
 export function getExpressionFromNormalizedStatement(stmtNode) {
-  if (stmtNode.type === 'VariableDeclaration') return stmtNode.declarations[0].init;
+  if (stmtNode.type === 'VarStatement') return stmtNode.init;
   ASSERT(stmtNode.type === 'ExpressionStatement', 'in normalized code arbitrary expressions in statements must be var init, assign rhs, or just an expr statement', stmtNode.type);
   if (stmtNode.expression.type === 'AssignmentExpression') return stmtNode.expression.right;
   return stmtNode.expression;

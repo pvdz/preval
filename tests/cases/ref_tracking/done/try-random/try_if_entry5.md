@@ -40,8 +40,8 @@
 let x___4__ = 1;
 $(x___9__);
 while (true) {
-  /*12*/ x___16__ = 2;
-  let $implicitThrow___19__ = false;
+  /*12*/ x___18__ = 2;
+  let $implicitThrow___20__ = false;
   let $finalCatchArg___23__ = undefined___24__;
   if ($) {
     /*27*/ $(x___31__);
@@ -67,15 +67,15 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 9           | none           | 16
+  - w @4       | ########## | 9           | none           | 18
   - r @9       | 4
-  - w @16      | ########## | 31          | 4,16,35        | 16,35
-  - r @31      | 16
-  - w @35      | ########## | not read    | 16             | 16
+  - w @18      | ########## | 31          | 4,18,35        | 18,35
+  - r @31      | 18
+  - w @35      | ########## | not read    | 18             | 18
 
 $implicitThrow:
-  - w @19          | ########## | 38          | none           | none
-  - r @38          | 19
+  - w @20          | ########## | 38          | none           | none
+  - r @38          | 20
 
 $finalCatchArg:
   - w @23          | ########## | 41          | none           | none

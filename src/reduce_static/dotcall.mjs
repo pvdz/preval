@@ -319,22 +319,22 @@ function _dotCall(fdata) {
     // The simple pattern is most common but this can be generalized
     if (
       read.blockIndex > 1 &&
-      read.blockBody[read.blockIndex - 2].type === 'VariableDeclaration' &&
-      read.blockBody[read.blockIndex - 1].type === 'VariableDeclaration' &&
+      read.blockBody[read.blockIndex - 2].type === 'VarStatement' &&
+      read.blockBody[read.blockIndex - 1].type === 'VarStatement' &&
       read.parentNode.arguments.length > 0 &&
       read.parentNode.arguments[0].type === 'Identifier' &&
       // dotcall first arg is the method. Was that "cached" two steps ago?
-      read.parentNode.arguments[0].name === read.blockBody[read.blockIndex - 2].declarations[0].id.name &&
+      read.parentNode.arguments[0].name === read.blockBody[read.blockIndex - 2].id.name &&
       // Was the rhs a member expr?
-      read.blockBody[read.blockIndex - 2].declarations[0].init.type === 'MemberExpression'
+      read.blockBody[read.blockIndex - 2].init.type === 'MemberExpression'
     ) {
       // Can the init of the between decl spy?
-      if (!AST.complexExpressionNodeMightSpy(read.blockBody[read.blockIndex - 1].declarations[0].init, fdata)) {
+      if (!AST.complexExpressionNodeMightSpy(read.blockBody[read.blockIndex - 1].init, fdata)) {
         rule('A dotCall expression where can be collapsed back safely in some cases');
         example('const method = a.b; const arg = x; $dotCall(method, a, "b", x);', 'a.b(x);');
         before(read.blockBody[read.blockIndex]);
 
-        read.parentNode.callee = read.blockBody[read.blockIndex - 2].declarations[0].init;
+        read.parentNode.callee = read.blockBody[read.blockIndex - 2].init;
         read.parentNode.arguments.shift(); // method
         read.parentNode.arguments.shift(); // context
         read.parentNode.arguments.shift(); // property

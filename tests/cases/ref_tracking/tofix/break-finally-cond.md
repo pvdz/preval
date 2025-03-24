@@ -43,8 +43,8 @@
 `````filename=intro
 let x___4__ = 1;
 here___7__: /*8*/ {
-  let $implicitThrow___11__ = false;
-  let $finalStep___15__ = false;
+  let $implicitThrow___13__ = false;
+  let $finalStep___16__ = false;
   let $finalCatchArg___19__ = undefined___20__;
   $finally___22__: /*23*/ {
     try /*25*/ {
@@ -97,13 +97,13 @@ x:
   - r @80      | 32,43,76
 
 $implicitThrow:
-  - w @11          | ########## | 58          | none           | none
-  - r @58          | 11
+  - w @13          | ########## | 58          | none           | none
+  - r @58          | 13
 
 $finalStep:
-  - w @15          | ########## | 64          | none           | 36
-  - w @36          | ########## | 64          | 15             | none
-  - r @64          | 15,36
+  - w @16          | ########## | 64          | none           | 36
+  - w @36          | ########## | 64          | 16             | none
+  - r @64          | 16,36
 
 $finalCatchArg:
   - w @19          | ########## | 61          | none           | none

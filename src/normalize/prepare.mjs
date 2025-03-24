@@ -1,29 +1,11 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import {
-  VERBOSE_TRACING,
-  RED,
-  BLUE,
-  RESET,
-  DIM,
-  setVerboseTracing,
-} from '../constants.mjs';
-import {
-  THIS_ALIAS_BASE_NAME,
-  ARGUMENTS_ALIAS_BASE_NAME,
-  ARGLENGTH_ALIAS_BASE_NAME,
-  IMPLICIT_GLOBAL_PREFIX, SYMBOL_THROW_TDZ_ERROR,
-} from '../symbols_preval.mjs';
+import { VERBOSE_TRACING, RED, BLUE, RESET, DIM, setVerboseTracing, } from '../constants.mjs';
+import { THIS_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, ARGLENGTH_ALIAS_BASE_NAME, IMPLICIT_GLOBAL_PREFIX, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after, source, assertNoDupeNodes } from '../utils.mjs';
 import {$p, resetUid} from '../$p.mjs';
 import globals from '../globals.mjs';
-import {
-  getIdentUsageKind,
-  registerGlobalIdent,
-  findUniqueNameForBindingIdent,
-  preprocessScopeNode,
-  createFreshVar,
-} from '../bindings.mjs';
+import { getIdentUsageKind, registerGlobalIdent, findUniqueNameForBindingIdent, preprocessScopeNode, createFreshVar, } from '../bindings.mjs';
 import { addLabelReference, createUniqueGlobalLabel, registerGlobalLabel } from '../labels.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes (though labels are renamed).
@@ -76,6 +58,10 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
   group(
     '\n\n\n##################################\n## prepare normalization  ::  ' + fdata.fname + '\n##################################\n\n\n',
   );
+  if (VERBOSE_TRACING && oncePass) {
+    const code = fmat(tmat(ast, true), true);
+    vlog('\nCurrent state (start of prepare)\n--------------\n' + code + '\n--------------\n');
+  }
 
   if (!options.skipUidReset) {
     resetUid();
@@ -303,43 +289,42 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
                 ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(grandparent.type)
               ? grandparent
               : parentNode;
-          vlog('The hoist root is a:', hoistRoot.type, hoistRoot.id?.name);
-          const hoistedVars = hoistRoot.$p.hoistedVars;
+          vlog('The hoist root/owner is a:', hoistRoot.type, hoistRoot.id?.name);
 
-          vlog('It _is_ a function decl. How should it be hoisted?');
+          vlog([node.id.name], '_is_ a function decl. How should it be hoisted?');
 
           // Note: special case for Switch body will be picked up explicitly by the switch transform
           if (parentNode.type === 'Program') {
-            vlog('- Hoisting toplevel global function');
-            vlog('- Scheduling func decl `' + node?.id.name + '` to be hoisted in global');
+            vlog('- Hoisting toplevel global function @', +hoistRoot.$p.pid);
+            vlog('- Scheduling func decl', [node.id.name], 'to be hoisted in global');
             ASSERT(parentIndex >= 0, 'node should be in a body');
             ASSERT(parentProp === 'body', 'children of Program are in body', parentProp);
             ASSERT(parentNode.body[parentIndex] === node, 'path should be correct');
-            hoistedVars.push(['program', node, parentNode, parentProp, parentIndex]);
+            hoistRoot.$p.hoistedVars.push(['program', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'ExportNamedDeclaration' || (parentNode.type === 'ExportDefaultDeclaration' && node.id)) {
-            vlog('- Hoisting entire export');
-            vlog('- Scheduling func decl `' + node.id.name + '` to be hoisted in global');
+            vlog('- Hoisting entire export @', +hoistRoot.$p.pid);
+            vlog('- Scheduling func decl', [node.id.name], 'to be hoisted in global');
             ASSERT(parentProp === 'declaration');
             ASSERT(parentIndex === -1, 'parent is not an array');
             ASSERT(parentNode.declaration === node, 'path should be correct');
             ASSERT(grandparent.type === 'Program', 'exports are only children of the root');
             const exportIndex = path.indexes[path.indexes.length - 2]; // index of parentNode in body (=ast.body)
             ASSERT(exportIndex >= 0);
-            hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
+            hoistRoot.$p.hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
           } else if (['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(grandparent.type)) {
             // Func decl nested in the toplevel of another function
-            vlog('- Hoisting function nested directly in another function');
-            vlog('- Scheduling func decl `' + node?.id.name + '` to be hoisted in parent function');
+            vlog('- Hoisting function nested directly in another function @', +hoistRoot.$p.pid);
+            vlog('- Scheduling func decl', [node.id.name], 'to be hoisted in parent function');
             ASSERT(parentProp === 'body', 'Func param defaults would not yield func declarations', parentProp);
             ASSERT(parentIndex >= 0);
             ASSERT(parentNode.body[parentIndex] === node, 'path should be correct', parentProp);
             // Track it so the normalization can drain this arr and immediately fix the hoisting, once.
-            hoistedVars.push(['func', node, parentNode, parentProp, parentIndex]);
+            hoistRoot.$p.hoistedVars.push(['func', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'BlockStatement') {
             // Treat this as a function declaration and explicitly hoist it to the top of the func/global
             // There's at least this test: tests/cases/_tofix/dropping_the_d.md
-            vlog('This is a function decl nested in a non-func-body block');
-            vlog('- Scheduling func decl `' + node.id.name + '` to be hoisted in func');
+            vlog('This is a function decl nested in a non-func-body block @', +hoistRoot.$p.pid);
+            vlog('- Scheduling func decl', [node.id.name], 'to be hoisted in func');
             node.$p.isBlockFuncDecl = true;
             parentNode.$p.hasFuncDecl = true; // Prevents elimination of this block
           }
@@ -484,7 +469,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
           vlog('parent =', parentNode.type, 'prop=', parentProp, 'index=', parentIndex);
 
           if (parentNode.type === 'ExportNamedDeclaration') {
-            vlog('- is an export-child');
+            vlog('- var decl is an export-child of @', +func.$p.pid);
             // `export var x`, which we transform into `var x; export {x}`
             ASSERT(parentNode[parentProp] === node);
             ASSERT(func.type === 'Program', 'exports can only appear in one place');
@@ -495,7 +480,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
             ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
             func.$p.hoistedVars.push(['export', node, parentNode, parentProp, parentIndex, exportIndex]);
           } else if (parentNode.type === 'ForStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement') {
-            vlog('- is a for-child');
+            vlog('- var decl is a for-child @', +func.$p.pid);
             // for (var x;;);
             // for (var x in y);
             // for (var x of y);
@@ -506,14 +491,14 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
             //ASSERT(node && exportIndex >= 0 && parentNode && parentProp);
             func.$p.hoistedVars.push(['for', node, parentNode, parentProp, parentIndex]);
           } else if (parentNode.type === 'BlockStatement') {
-            vlog('- is a block-var');
+            vlog('- var decl is a block-var @', +func.$p.pid);
             // { var x; }
             ASSERT(parentNode[parentProp][parentIndex] === node);
             ASSERT(node && parentIndex >= 0);
             func.$p.hoistedVars.push(['block', node, parentNode, parentProp, parentIndex]);
           } else {
             // var x;
-            vlog('- Regular hoistable var');
+            vlog('- var decl is a regular hoistable var @', +func.$p.pid);
             ASSERT(node);
             ASSERT((parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]) === node, 'should find parent', node);
             func.$p.hoistedVars.push(['other', node, parentNode, parentProp, parentIndex]);

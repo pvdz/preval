@@ -333,10 +333,14 @@ function convert(node) {
       REJECT
       break;
     }
-    case 'VariableDeclaration': {
-      if (node.kind === 'let') return PST.letStatement(PST.ref(node.declarations[0].id.name), convert(node.declarations[0].init));
-      if (node.kind === 'const') return PST.constStatement(PST.ref(node.declarations[0].id.name), convert(node.declarations[0].init));
+    case 'VarStatement': {
+      if (node.kind === 'let') return PST.letStatement(PST.ref(node.id.name), convert(node.init));
+      if (node.kind === 'const') return PST.constStatement(PST.ref(node.id.name), convert(node.init));
       TODO
+      break;
+    }
+    case 'VariableDeclaration': {
+      REJECT
       break;
     }
     case 'VariableDeclarator': {

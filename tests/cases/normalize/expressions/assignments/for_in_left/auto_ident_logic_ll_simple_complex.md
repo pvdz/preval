@@ -29,10 +29,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
+    a = 0;
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    a = $(tmpCalleeParam$3);
+    const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    a.x = tmpAssignMemRhs;
+    tmpClusterSSA_a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -50,8 +51,9 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    a = $($(1));
-    a.x = tmpForInNext.value;
+    a = 0;
+    const tmpClusterSSA_a = $($(1));
+    tmpClusterSSA_a.x = tmpForInNext.value;
   }
 }
 $(a);
@@ -76,10 +78,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
+    a = 0;
     const g = $( 1 );
-    a = $( g );
-    const h = e.value;
-    a.x = h;
+    const h = $( g );
+    const i = e.value;
+    h.x = i;
   }
 }
 $( a );

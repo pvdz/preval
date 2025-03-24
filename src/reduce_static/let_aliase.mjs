@@ -61,13 +61,13 @@ function _letAliasing(fdata) {
       }
       vlog('   - Found two reads');
 
-      if (prevRead.parentNode.type !== 'VariableDeclarator') {
+      if (prevRead.parentNode.type !== 'VarStatement') {
         vlog('     - bail: prev is not const decl:', prevRead.parentNode.type);
         prevRead = rw;
         return;
       }
 
-      if (rw.parentNode.type !== 'VariableDeclarator') {
+      if (rw.parentNode.type !== 'VarStatement') {
         vlog('     - bail: next is not const decl:', rw.parentNode.type);
         prevRead = undefined;
         return;

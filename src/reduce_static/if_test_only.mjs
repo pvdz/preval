@@ -17,6 +17,7 @@ function _ifTestOnly(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
+    if (!meta.constValueRef) return; // catch
 
     vgroup('- `' + name + '`:', meta.constValueRef.node.type);
 

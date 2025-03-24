@@ -34,7 +34,7 @@ $(x);         // x: Can only reach the last write, but preval should detect at l
 (Annotated with pids)
 
 `````filename=intro
-let y___4__ = $();
+let y___5__ = $();
 let x___9__ = 1;
 while (true) {
   /*13*/ if (x___15__) {
@@ -58,7 +58,7 @@ None
 
                | reads      | read by     | overWrites     | overwritten by
 y:
-  - w @4       | ########## | not read    | none           | none
+  - w @5       | ########## | not read    | none           | none
 
 x:
   - w @9       | ########## | 15,28       | none           | 22

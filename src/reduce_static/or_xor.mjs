@@ -110,7 +110,8 @@ function _orXor(fdata) {
                     before(read.blockBody[read.blockIndex]);
 
                     const tmp = createFreshVar('tmpOrXor', fdata);
-                    const varNode = AST.variableDeclaration(
+                    const varNode = AST.varStatement(
+                      'const',
                       tmp,
                       AST.binaryExpression('&', AST.cloneSimple(sourceNode), AST.primitive(-1 ^ overlap)),
                     );

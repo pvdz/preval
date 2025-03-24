@@ -1,17 +1,20 @@
 # Preval test case
 
-# auto_seq_simple_computed_complex.md
+# auto_ident_opt_simple_opt_simple2.md
 
-> Normalize > Expressions > Assignments > For of left > Auto seq simple computed complex
+> Normalize > Expressions > Assignments > For of left > Auto ident opt simple opt simple2
 >
 > Normalization of assignments should work the same everywhere they are
+
+In this case the `for` loop does not iterate over any properties
 
 ## Input
 
 `````js filename=intro
+let b = { x: { y: 1 } };
+
 let a = { a: 999, b: 1000 };
-for ((a = { b: $(1) }).x of $({ x: 1 }));
-($(1), a)[$("b")] = $(2);
+for ((a = b?.x?.y).x of $({ }));
 $(a);
 `````
 
@@ -20,8 +23,8 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ = { a: 999, b: 1000 };
-const tmpCalleeParam$1 /*:object*/ = { x: 1 };
+let a /*:unknown*/ = { a: 999, b: 1000 };
+const tmpCalleeParam$1 /*:object*/ = {};
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -30,16 +33,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpObjLitVal /*:unknown*/ = $(1);
-    a = { b: tmpObjLitVal };
+    a = undefined;
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    a.x = tmpAssignMemRhs;
+    (1).x = tmpAssignMemRhs;
   }
 }
-$(1);
-const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
-const tmpAssignComputedRhs /*:unknown*/ = $(2);
-a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
@@ -49,21 +47,17 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpForOfGen = $forOf($({ x: 1 }));
+const tmpForOfGen = $forOf($({}));
 while (true) {
   const tmpForOfNext = tmpForOfGen.next();
   if (tmpForOfNext.done) {
     break;
   } else {
-    const tmpObjLitVal = $(1);
-    a = { b: tmpObjLitVal };
-    a.x = tmpForOfNext.value;
+    a = undefined;
+    const tmpAssignMemRhs = tmpForOfNext.value;
+    (1).x = tmpAssignMemRhs;
   }
 }
-$(1);
-const tmpAssignComMemLhsProp = $(`b`);
-const tmpAssignComputedRhs = $(2);
-a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
@@ -76,7 +70,7 @@ let a = {
   a: 999,
   b: 1000,
 };
-const b = { x: 1 };
+const b = {};
 const c = $( b );
 const d = $forOf( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -86,16 +80,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const g = $( 1 );
-    a = { b: g };
-    const h = e.value;
-    a.x = h;
+    a = undefined;
+    const g = e.value;
+    1.x = g;
   }
 }
-$( 1 );
-const i = $( "b" );
-const j = $( 2 );
-a[i] = j;
 $( a );
 `````
 
@@ -103,6 +92,7 @@ $( a );
 ## Todos triggered
 
 
+- (todo) objects in isFree check
 - (todo) Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
 
 
@@ -116,7 +106,7 @@ None
 
 
 Should call `$` with:
- - 1: { x: '1' }
+ - 1: {}
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same

@@ -70,9 +70,9 @@ export function _freeFuncs(fdata, prng, usePrng) {
       // Objlit (and class) methods
       return;
     }
-    ASSERT(parentNode.type === 'VariableDeclarator' || (parentNode.type === 'AssignmentExpression' && parentProp === 'right'), 'I dont think a function statement should reach here. It should be normalized away.', parentNode.type);
+    ASSERT(parentNode.type === 'VarStatement' || (parentNode.type === 'AssignmentExpression' && parentProp === 'right'), 'I dont think a function statement should reach here. It should be normalized away.', parentNode.type);
 
-    const funcName = parentNode.type === 'VariableDeclarator' ? parentNode.id.name : parentNode.left.name;
+    const funcName = parentNode.type === 'VarStatement' ? parentNode.id.name : parentNode.left.name;
     vgroup('- Can @', +node.$p.pid, '("', funcName, '") be compiled to pcode?');
     const conditionalNames = pcanCompile(node, fdata, funcName);
     if (conditionalNames) vlog('~~> Yes ', [funcName], 'can be pcode compiled, but only if the funcs it calls can too;', conditionalNames);

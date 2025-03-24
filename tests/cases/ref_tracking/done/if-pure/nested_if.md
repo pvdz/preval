@@ -29,7 +29,7 @@ $(a); // can observe  1 2 3
 (Annotated with pids)
 
 `````filename=intro
-let a___4__ = 1;
+let a___5__ = 1;
 const tmpIfTest___8__ = $();
 if (tmpIfTest___12__) {
   /*13*/ $(a___17__);
@@ -58,15 +58,15 @@ None
 
                | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 17,46       | none           | 21
-  - r @17      | 4
-  - w @21      | ########## | 23,28,41    | 4              | 32
+  - w @5       | ########## | 17,46       | none           | 21
+  - r @17      | 5
+  - w @21      | ########## | 23,28,41    | 5              | 32
   - r @23      | 21
   - r @28      | 21
   - w @32      | ########## | 36          | 21             | none
   - r @36      | 32
   - r @41      | 21
-  - r @46      | 4
+  - r @46      | 5
 
 tmpIfTest:
   - w @8       | ########## | 12          | none           | none

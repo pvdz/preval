@@ -80,11 +80,11 @@ function processAttempt(fdata) {
     const blockBody = path.blockBodies[path.blockBodies.length - 1];
     const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
 
-    if (!(parentNode.type === 'VariableDeclarator' && parentProp === 'init')) {
+    if (!(parentNode.type === 'VarStatement' && parentProp === 'init')) {
       vlog('- bail: can only handle array literals that are init to a const decl');
       return;
     }
-    if (grandNode.kind !== 'const') {
+    if (parentNode.kind !== 'const') {
       vlog('- bail: was not a const', parentNode.kind);
       return;
     }
@@ -122,7 +122,7 @@ function processAttempt(fdata) {
       if (
         (read.grandNode.type === 'ExpressionStatement') ||
         (read.grandNode.type === 'AssignmentExpression' && read.grandNode.right === read.node) ||
-        (read.grandNode.type === 'VariableDeclaration' && read.grandNode.declarations[0].init !== read.node)
+        (read.grandNode.type === 'VarStatement' && read.grandNode.init !== read.node)
       ) {
         vlog('Found an unsupported ref used in a:', read.grandNode, '.', read.grandProp, '>', read.parentNode, '.', read.parentProp, '. Bailing for now.');
         return true; // Continue searching.
@@ -295,7 +295,7 @@ function processAttempt(fdata) {
             if (
               (read.grandNode.type === 'ExpressionStatement') ||
               (read.grandNode.type === 'AssignmentExpression' && read.grandNode.right === read.node) ||
-              (read.grandNode.type === 'VariableDeclaration' && read.grandNode.declarations[0].init !== read.node)
+              (read.grandNode.type === 'VarStatement' && read.grandNode.init !== read.node)
             ) {
               vlog('- bail: at least one .concat arg was used in an unsupported way:', concatArg.name, read.grandNode, '.', read.grandProp, '>', read.parentNode, '.', read.parentProp);
               return true; // Continue searching.
@@ -345,8 +345,8 @@ function processAttempt(fdata) {
 
         // This is normalized code and a function call. There are three possible ways to use a func call: var, assign, statement
         const stmt = read.blockBody[read.blockIndex];
-        if (stmt.type === 'VariableDeclaration' && stmt.declarations[0].init === concatCallNode) {
-          stmt.declarations[0].init = finalNode;
+        if (stmt.type === 'VarStatement' && stmt.init === concatCallNode) {
+          stmt.init = finalNode;
         }
         else if (stmt.type === 'ExpressionStatement' && stmt.expression.type === 'AssignmentExpression' && stmt.expression.right === concatCallNode) {
           stmt.expression.right = finalNode;

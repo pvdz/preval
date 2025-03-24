@@ -80,10 +80,10 @@ function _boolTrampolines(fdata) {
     // The first statement must be a var
     let lhs1;
     let rhs1;
-    if (tramNode.type === 'VariableDeclaration') {
+    if (tramNode.type === 'VarStatement') {
       // Some form of `const x = $(); const y = Boolean(x); return y;` or `const x = $(); y = Boolean(x); return y;`
-      lhs1 = tramNode.declarations[0].id;
-      rhs1 = tramNode.declarations[0].init;
+      lhs1 = tramNode.id;
+      rhs1 = tramNode.init;
     } else if (
       tramNode.type === 'ExpressionStatement' &&
       tramNode.expression.type === 'AssignmentExpression' &&
@@ -102,10 +102,10 @@ function _boolTrampolines(fdata) {
     // The bool node must either be a var or assignment and the rhs must be a call to Boolean or an exclamation mark, with lhs1 as first arg.
     let lhs2;
     let rhs2;
-    if (boolNode.type === 'VariableDeclaration') {
+    if (boolNode.type === 'VarStatement') {
       // Some form of `const x = $(); const y = Boolean(x); return y;` or `x = $(); const y = Boolean(x); return y;`
-      lhs2 = boolNode.declarations[0].id;
-      rhs2 = boolNode.declarations[0].init;
+      lhs2 = boolNode.id;
+      rhs2 = boolNode.init;
     } else if (
       // Some form of `x = $(); y = Boolean(x); return y;` or `x = $(); y = Boolean(x); return y;`
       // Must confirm whether this second assignment is to a closure that is accessible by the caller
@@ -181,7 +181,7 @@ function _boolTrampolines(fdata) {
       if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'right' && read.grandNode.left.type === 'Identifier') {
         // Some form of `x = f()`
         lhs = read.grandNode.left;
-      } else if (read.grandNode.type === 'VariableDeclarator') {
+      } else if (read.grandNode.type === 'VarStatement') {
         // Some form of `const x = f()`
         lhs = read.grandNode.id;
       } else {
@@ -264,14 +264,14 @@ function _boolTrampolines(fdata) {
           const firstName = firstClosure ? lhs1.name : createFreshVar('tmpBoolTrampoline', fdata);
           const newLine1 = firstClosure
             ? AST.expressionStatement(AST.assignmentExpression(AST.identifier(firstName), exprClone))
-            : AST.variableDeclaration(firstName, exprClone, 'const');
+            : AST.varStatement('const', firstName, exprClone);
           const secondNAme = secondClosure ? lhs2.name : createFreshVar('tmpBoolTrampolineB', fdata);
           const newRhs = wasInvert
             ? AST.unaryExpression('!', firstName)
             : AST.callExpression('Boolean', [AST.identifier(firstName)]);
           const newLine2 = secondClosure
             ? AST.expressionStatement(AST.assignmentExpression(AST.identifier(secondNAme), newRhs))
-            : AST.variableDeclaration(secondNAme, newRhs, 'const');
+            : AST.varStatement('const', secondNAme, newRhs);
 
           read.blockBody.splice(read.blockIndex, 0, newLine1, newLine2);
           // Replace the whole func call with the second alias

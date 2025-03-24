@@ -46,22 +46,22 @@ $(x);                  // x=7 9 (8 is overwritten by 9 but 7 may jump over it)
 `````filename=intro
 let x___4__ = 1;
 back___7__: /*8*/ {
-  let $implicitThrow$1___11__ = false;
-  let $finalCatchArg$1___15__ = undefined___16__;
-  try /*18*/ {
-    x___22__ = 2;
-  } catch ($finalImplicit$1___24__) /*25*/ {
-    $implicitThrow$1___29__ = true;
-    $finalCatchArg$1___33__ = $finalImplicit$1___32__;
+  let $implicitThrow$1___15__ = false;
+  let $finalCatchArg$1___18__ = undefined___19__;
+  try /*21*/ {
+    x___25__ = 2;
+  } catch ($finalImplicit$1___27__) /*28*/ {
+    $implicitThrow$1___32__ = true;
+    $finalCatchArg$1___36__ = $finalImplicit$1___35__;
   }
   $();
-  x___40__ = 3;
-  let $implicitThrow___43__ = false;
-  let $finalStep___47__ = false;
+  x___43__ = 3;
+  let $implicitThrow___45__ = false;
+  let $finalStep___48__ = false;
   let $finalCatchArg___51__ = undefined___52__;
   $finally___54__: /*55*/ {
     try /*57*/ {
-      x___61__ = 4;
+      x___62__ = 4;
       const tmpIfTest___64__ = $();
       if (tmpIfTest___68__) {
         /*69*/ x___73__ = 5;
@@ -108,14 +108,14 @@ None
 
                      | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 22,40
-  - w @22      | ########## | not read    | 4              | 40
-  - w @40      | ########## | 93          | 4,22           | 61,97
-  - w @61      | ########## | 93          | 40             | 73,84,97
-  - w @73      | ########## | 93,105      | 61             | 97,109
-  - w @84      | ########## | 93,105      | 61             | 97,109
-  - r @93      | 40,61,73,84
-  - w @97      | ########## | not read    | 40,61,73,84    | none
+  - w @4       | ########## | not read    | none           | 25,43
+  - w @25      | ########## | not read    | 4              | 43
+  - w @43      | ########## | 93          | 4,25           | 62,97
+  - w @62      | ########## | 93          | 43             | 73,84,97
+  - w @73      | ########## | 93,105      | 62             | 97,109
+  - w @84      | ########## | 93,105      | 62             | 97,109
+  - r @93      | 43,62,73,84
+  - w @97      | ########## | not read    | 43,62,73,84    | none
   - r @105     | 73,84
   - w @109     | ########## | 139         | 73,84          | 125
   - w @125     | ########## | not read    | 109            | 135
@@ -123,23 +123,23 @@ x:
   - r @139     | 109,135
 
 $implicitThrow$1:
-  - w @11            | ########## | 127         | none           | 29
-  - w @29            | ########## | 127         | 11             | none
-  - r @127           | 11,29
+  - w @15            | ########## | 127         | none           | 32
+  - w @32            | ########## | 127         | 15             | none
+  - r @127           | 15,32
 
 $finalCatchArg$1:
-  - w @15            | ########## | 130         | none           | 33
-  - w @33            | ########## | 130         | 15             | none
-  - r @130           | 15,33
+  - w @18            | ########## | 130         | none           | 36
+  - w @36            | ########## | 130         | 18             | none
+  - r @130           | 18,36
 
 $implicitThrow:
-  - w @43            | ########## | 111         | none           | none
-  - r @111           | 43
+  - w @45            | ########## | 111         | none           | none
+  - r @111           | 45
 
 $finalStep:
-  - w @47            | ########## | 117         | none           | 77
-  - w @77            | ########## | 117         | 47             | none
-  - r @117           | 47,77
+  - w @48            | ########## | 117         | none           | 77
+  - w @77            | ########## | 117         | 48             | none
+  - r @117           | 48,77
 
 $finalCatchArg:
   - w @51            | ########## | 114         | none           | none

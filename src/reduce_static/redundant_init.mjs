@@ -34,7 +34,7 @@ function _redundantInit(fdata) {
 
     if (meta.typing.mustBeType === 'undefined' && meta.writes[0]?.kind === 'var') {
       const write = meta.writes[0];
-      const init = write.blockBody[write.blockIndex].declarations[0].init;
+      const init = write.blockBody[write.blockIndex].init;
       if (init.type !== 'Identifier' || init.name !== 'undefined') {
         queue.push({
           index: write.blockIndex,
@@ -43,7 +43,7 @@ function _redundantInit(fdata) {
             example('const x /*: undefined */ = a;', 'a; const x = undefined');
             before(write.blockBody[write.blockIndex]);
 
-            write.blockBody[write.blockIndex].declarations[0].init = AST.identifier('undefined');
+            write.blockBody[write.blockIndex].init = AST.identifier('undefined');
             if (init.type !== 'Param' && !AST.isPrimitive(init)) {
               write.blockBody.splice(write.blockIndex, 0, AST.expressionStatement(init));
             }

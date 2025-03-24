@@ -33,10 +33,10 @@ $(f);
 `````filename=intro
 let f___4__ = function () /*6*/ {
   debugger;
-  let x___10__ = 1;
-  let $implicitThrow___14__ = false;
-  let $finalStep___18__ = false;
-  let $finalCatchArg___22__ = undefined___23__;
+  let x___14__ = 1;
+  let $implicitThrow___17__ = false;
+  let $finalStep___20__ = false;
+  let $finalCatchArg___23__ = undefined___24__;
   let $finalArg___26__ = undefined___27__;
   $finally___29__: /*30*/ {
     try /*32*/ {
@@ -83,23 +83,23 @@ f:
   - r @87      | 4
 
 x:
-  - w @10      | ########## | 62,68       | none           | 55
-  - w @55      | ########## | 62,68       | 10             | none
-  - r @62      | 10,55
-  - r @68      | 10,55
+  - w @14      | ########## | 62,68       | none           | 55
+  - w @55      | ########## | 62,68       | 14             | none
+  - r @62      | 14,55
+  - r @68      | 14,55
 
 $implicitThrow:
-  - w @14          | ########## | 70          | none           | none
-  - r @70          | 14
+  - w @17          | ########## | 70          | none           | none
+  - r @70          | 17
 
 $finalStep:
-  - w @18          | ########## | 76          | none           | 44
-  - w @44          | ########## | 76          | 18             | none
-  - r @76          | 18,44
+  - w @20          | ########## | 76          | none           | 44
+  - w @44          | ########## | 76          | 20             | none
+  - r @76          | 20,44
 
 $finalCatchArg:
-  - w @22          | ########## | 73          | none           | none
-  - r @73          | 22
+  - w @23          | ########## | 73          | none           | none
+  - r @73          | 23
 
 $finalArg:
   - w @26          | ########## | 80          | none           | 48

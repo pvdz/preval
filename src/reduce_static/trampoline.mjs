@@ -209,13 +209,13 @@ function _pruneTrampolineFunctions(fdata) {
       vlog('    - 1st node;', varNode.type);
       vlog('    - 2nd node;', returnNode.type);
       if (
-        varNode.type === 'VariableDeclaration' &&
-        varNode.declarations[0].init.type === 'CallExpression' &&
+        varNode.type === 'VarStatement' &&
+        varNode.init.type === 'CallExpression' &&
         // Don't be recursive. That ends in an infinite transform loop
-        (varNode.declarations[0].init.callee.type !== 'Identifier' || varNode.declarations[0].init.callee.name !== funcName) &&
+        (varNode.init.callee.type !== 'Identifier' || varNode.init.callee.name !== funcName) &&
         returnNode.type === 'ReturnStatement' && // While `throw` is very similar, the transform is different because the call site may require injecting a new statement
         returnNode.argument.type === 'Identifier' &&
-        returnNode.argument.name === varNode.declarations[0].id.name
+        returnNode.argument.name === varNode.id.name
       ) {
         // We should probably protect against recursive functions? Although if this is one then it's an infinite loop anyways.
         vlog('        - all the function does is call a function and return its result');
@@ -224,7 +224,7 @@ function _pruneTrampolineFunctions(fdata) {
         // Make sure to properly map the callee and params to the call.
         // Some params may be used multiple times. Some args may not be params.
 
-        const innerCallNode = varNode.declarations[0].init;
+        const innerCallNode = varNode.init;
         const innerCallee = innerCallNode.callee;
 
         // If the callee is a param, or as a member expression, uses a param, then bail for now.
@@ -346,8 +346,8 @@ function _pruneTrampolineFunctions(fdata) {
       if (!isBufferConvertPattern(stmt1, stmt2, funcNode.params[0]?.$p.paramVarDeclRef?.name)) return;
       if (!isDeclaredVarReturned(stmt2, ret)) return;
 
-      const init1 = stmt1.declarations[0].init;
-      const init2 = stmt2.declarations[0].init;
+      const init1 = stmt1.init;
+      const init2 = stmt2.init;
 
       // Should have found our Buffer.from(x,"y").toString("z") trampoline. Find calls to inline.
 
@@ -376,7 +376,8 @@ function _pruneTrampolineFunctions(fdata) {
 
               read.blockBody.splice(
                 read.blockIndex, 0,
-                AST.variableDeclaration(
+                AST.varStatement(
+                  'const',
                   tmpName,
                   AST.callExpression(
                     AST.memberExpression('Buffer', 'from'),
@@ -385,7 +386,6 @@ function _pruneTrampolineFunctions(fdata) {
                       ...init1.arguments.slice(1).map(anode => AST.primitive(AST.getPrimitiveValue(anode)))
                     ]
                   ),
-                  'const'
                 )
               );
                // replace the call, whereever it is, with a call to the tmp.toString with the same args
@@ -427,8 +427,8 @@ function _pruneTrampolineFunctions(fdata) {
       if (!isBufferConvertPattern(stmt1, stmt2, firstParamName)) return;
       if (!isDeclaredVarReturned(stmt2, ret)) return;
 
-      const init1 = stmt1.declarations[0].init;
-      const init2 = stmt2.declarations[0].init;
+      const init1 = stmt1.init;
+      const init2 = stmt2.init;
 
       // Should have found our Buffer.from(x,"y").toString("z") trampoline. Find calls to inline.
 
@@ -464,7 +464,8 @@ function _pruneTrampolineFunctions(fdata) {
                     AST.primitive(argValue),
                   )
                 ),
-                AST.variableDeclaration(
+                AST.varStatement(
+                  'const',
                   tmpName,
                   AST.callExpression(
                     AST.memberExpression('Buffer', 'from'),
@@ -473,7 +474,6 @@ function _pruneTrampolineFunctions(fdata) {
                       ...init1.arguments.slice(1).map(anode => AST.primitive(AST.getPrimitiveValue(anode)))
                     ]
                   ),
-                  'const'
                 )
               );
               // replace the call, whereever it is, with a call to the tmp.toString with the same args
@@ -665,8 +665,8 @@ function _pruneTrampolineFunctions(fdata) {
  */
 function isBufferConvertPattern(stmt1, stmt2, paramName) {
   // Verify that the first statement is like `const x = Buffer.from(x, "base64")`, where x is a param
-  if (stmt1.type !== 'VariableDeclaration') return false;
-  const init1 = stmt1.declarations[0].init;
+  if (stmt1.type !== 'VarStatement') return false;
+  const init1 = stmt1.init;
   if (init1.type !== 'CallExpression') return false;
   if (init1.arguments.length === 0) return false;
   if (init1.callee.type !== 'MemberExpression') return false;
@@ -676,7 +676,7 @@ function isBufferConvertPattern(stmt1, stmt2, paramName) {
   // All args beyond the first must be primitives we can predict
   if (!init1.arguments.every((anode,i) => i === 0 || AST.isPrimitive(anode))) return false;
   // Verify that the second statement is something like `id1.toString("ascii")`
-  const init2 = stmt2.declarations[0].init;
+  const init2 = stmt2.init;
   if (init2.type !== 'CallExpression') return false;
   if (init2.callee.type !== 'MemberExpression') return false;
   if (init2.callee.object.type !== 'Identifier') return false;
@@ -686,7 +686,7 @@ function isBufferConvertPattern(stmt1, stmt2, paramName) {
   if (init1.arguments[0].type !== 'Identifier') return false;
   if (init1.arguments[0].name !== paramName) return false;
   // Calling .toString() on the result of stmt1
-  if (init2.callee.object.name !== stmt1.declarations[0].id.name) return false;
+  if (init2.callee.object.name !== stmt1.id.name) return false;
   // Verify that the args of init1 after the first arg primitives
   if (!init1.arguments.every((anode,i) => i === 0 || AST.isPrimitive(anode))) return false;
   // Verify that all the args to .toString() are primitives
@@ -698,7 +698,7 @@ function isDeclaredVarReturned(stmt2, ret) {
   // Verify that it returns the stmt2 var
   if (ret.type !== 'ReturnStatement') return false;
   if (ret.argument.type !== 'Identifier') return false;
-  if (ret.argument.name !== stmt2.declarations[0].id.name) return false;
+  if (ret.argument.name !== stmt2.id.name) return false;
 
   return true;
 }

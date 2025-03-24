@@ -243,7 +243,7 @@ function core(fdata) {
           // There are some curious edge cases with arrays with numbers here ([]+1 = 1)
           const value = Number(shadow);
           const finalNode = AST.primitive(value);
-          if (read.grandNode.type === 'VariableDeclarator') read.grandNode.init = finalNode;
+          if (read.grandNode.type === 'VarStatement') read.grandNode.init = finalNode;
           else if (read.grandNode.type === 'ExpressionStatement' && read.parentNode.type === 'AssignmentExpression') read.parentNode.right = finalNode;
           else if (read.grandNode.type === 'ExpressionStatement' && read.grandNode.expression === read.parentNode) read.grandNode.expression = finalNode;
           else ASSERT(false, 'normalized code, one of these', read.grandNode.type, read.parentNode.type);
@@ -261,7 +261,7 @@ function core(fdata) {
           // This should call .join() on the array
           const value = String(shadow);
           const finalNode = AST.primitive(value);
-          if (read.grandNode.type === 'VariableDeclarator') read.grandNode.init = finalNode;
+          if (read.grandNode.type === 'VarStatement') read.grandNode.init = finalNode;
           else if (read.grandNode.type === 'ExpressionStatement' && read.parentNode.type === 'AssignmentExpression') read.parentNode.right = finalNode;
           else if (read.grandNode.type === 'ExpressionStatement' && read.grandNode.expression === read.parentNode) read.grandNode.expression = finalNode;
           else ASSERT(false, 'normalized code, one of these', read.grandNode.type, read.parentNode.type);

@@ -43,21 +43,21 @@
 `````filename=intro
 let x___4__ = 1;
 here___7__: /*8*/ {
-  let $implicitThrow___11__ = false;
-  let $finalStep___15__ = false;
-  let $finalCatchArg___19__ = undefined___20__;
-  $finally___22__: /*23*/ {
-    try /*25*/ {
+  let $implicitThrow___14__ = false;
+  let $finalStep___17__ = false;
+  let $finalCatchArg___20__ = undefined___21__;
+  $finally___23__: /*24*/ {
+    try /*26*/ {
       $();
-      x___32__ = 2;
-      $finalStep___36__ = true;
-      break $finally___38__;
-    } catch ($finalImplicit___40__) /*41*/ {
-      $implicitThrow___45__ = true;
-      $finalCatchArg___49__ = $finalImplicit___48__;
+      x___33__ = 2;
+      $finalStep___37__ = true;
+      break $finally___39__;
+    } catch ($finalImplicit___41__) /*42*/ {
+      $implicitThrow___46__ = true;
+      $finalCatchArg___50__ = $finalImplicit___49__;
     }
   }
-  $(x___53__);
+  $(x___54__);
   const tmpIfTest___56__ = $();
   if (tmpIfTest___60__) {
     /*61*/ x___65__ = 3;
@@ -84,25 +84,25 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 53,78       | none           | 32,65
-  - w @32      | ########## | 53,78       | 4              | 65
-  - r @53      | 4,32
-  - w @65      | ########## | 78          | 4,32           | none
-  - r @78      | 4,32,65
+  - w @4       | ########## | 54,78       | none           | 33,65
+  - w @33      | ########## | 54,78       | 4              | 65
+  - r @54      | 4,33
+  - w @65      | ########## | 78          | 4,33           | none
+  - r @78      | 4,33,65
 
 $implicitThrow:
-  - w @11          | ########## | 68          | none           | 45
-  - w @45          | ########## | 68          | 11             | none
-  - r @68          | 11,45
+  - w @14          | ########## | 68          | none           | 46
+  - w @46          | ########## | 68          | 14             | none
+  - r @68          | 14,46
 
 $finalStep:
-  - w @15          | ########## | not read    | none           | 36
-  - w @36          | ########## | not read    | 15             | none
+  - w @17          | ########## | not read    | none           | 37
+  - w @37          | ########## | not read    | 17             | none
 
 $finalCatchArg:
-  - w @19          | ########## | 71          | none           | 49
-  - w @49          | ########## | 71          | 19             | none
-  - r @71          | 19,49
+  - w @20          | ########## | 71          | none           | 50
+  - w @50          | ########## | 71          | 20             | none
+  - r @71          | 20,50
 
 tmpIfTest:
   - w @56          | ########## | 60          | none           | none

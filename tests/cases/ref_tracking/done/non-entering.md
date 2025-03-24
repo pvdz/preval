@@ -46,12 +46,12 @@ $(a);
 (Annotated with pids)
 
 `````filename=intro
-let a___4__ = {};
-const tmpCalleeParam$1___8__ = [];
-const tmpCalleeParam___12__ = $(tmpCalleeParam$1___15__);
-let tmpForOfGen___18__ = $forOf___20__(tmpCalleeParam___21__);
+let a___7__ = {};
+let tmpCalleeParam$1___10__ = [];
+let tmpCalleeParam___13__ = $(tmpCalleeParam$1___16__);
+const tmpForOfGen___18__ = $forOf___20__(tmpCalleeParam___21__);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___23__) {
-  /*24*/ let tmpForOfNext___27__ = tmpForOfGen___30__.next___31__();
+  /*24*/ const tmpForOfNext___28__ = tmpForOfGen___31__.next___32__();
   const tmpIfTest___34__ = tmpForOfNext___36__.done___37__;
   if (tmpIfTest___39__) {
     /*40*/ break;
@@ -74,26 +74,26 @@ None
 
                      | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 52          | none           | 48
-  - w @48      | ########## | 52          | 4,48           | 48
-  - r @52      | 4,48
+  - w @7       | ########## | 52          | none           | 48
+  - w @48      | ########## | 52          | 7,48           | 48
+  - r @52      | 7,48
 
 tmpCalleeParam$1:
-  - w @8             | ########## | 15          | none           | none
-  - r @15            | 8
+  - w @10            | ########## | 16          | none           | none
+  - r @16            | 10
 
 tmpCalleeParam:
-  - w @12            | ########## | 21          | none           | none
-  - r @21            | 12
+  - w @13            | ########## | 21          | none           | none
+  - r @21            | 13
 
 tmpForOfGen:
-  - w @18            | ########## | 30          | none           | none
-  - r @30            | 18
+  - w @18            | ########## | 31          | none           | none
+  - r @31            | 18
 
 tmpForOfNext:
-  - w @27            | ########## | 36,46       | none           | none
-  - r @36            | 27
-  - r @46            | 27
+  - w @28            | ########## | 36,46       | none           | none
+  - r @36            | 28
+  - r @46            | 28
 
 tmpIfTest:
   - w @34            | ########## | 39          | none           | none

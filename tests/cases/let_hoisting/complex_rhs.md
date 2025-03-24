@@ -33,13 +33,13 @@ $(x);
 `````js filename=intro
 if ($) {
   $(1);
-  if ($) {
-    const tmpClusterSSA_x /*:unknown*/ = $(`do not inline me`);
-    $(tmpClusterSSA_x);
-  } else {
-  }
 } else {
   $(undefined);
+}
+if ($) {
+  const tmpClusterSSA_x /*:unknown*/ = $(`do not inline me`);
+  $(tmpClusterSSA_x);
+} else {
 }
 `````
 
@@ -50,11 +50,11 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(1);
-  if ($) {
-    $($(`do not inline me`));
-  }
 } else {
   $(undefined);
+}
+if ($) {
+  $($(`do not inline me`));
 }
 `````
 
@@ -65,13 +65,13 @@ With rename=true
 `````js filename=intro
 if ($) {
   $( 1 );
-  if ($) {
-    const a = $( "do not inline me" );
-    $( a );
-  }
 }
 else {
   $( undefined );
+}
+if ($) {
+  const a = $( "do not inline me" );
+  $( a );
 }
 `````
 

@@ -31,7 +31,7 @@ while (true) {
 let x___4__ = 0;
 while (true) {
   /*8*/ $continue___10__: /*11*/ {
-    x___17__ = x___15__ + 1;
+    x___18__ = x___16__ + 1;
     const tmpIfTest___20__ = x___22__ < 400;
     if (tmpIfTest___25__) {
       /*26*/ break $continue___28__;
@@ -55,11 +55,11 @@ None
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 15          | none           | 17
-  - r @15      | 4,17
-  - w @17      | ########## | 15,22,33    | 4,17           | 17
-  - r @22      | 17
-  - r @33      | 17
+  - w @4       | ########## | 16          | none           | 18
+  - r @16      | 4,18
+  - w @18      | ########## | 16,22,33    | 4,18           | 18
+  - r @22      | 18
+  - r @33      | 18
 
 tmpIfTest:
   - w @20      | ########## | 25          | none           | none

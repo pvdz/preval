@@ -210,14 +210,14 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                     for (let i = 0, l = bodyOffset - 1; i < l; ++i) {
                       const n = funcBody[i];
                       ASSERT(
-                        n.type === 'VariableDeclaration' || n.type === 'EmptyStatement',
+                        n.type === 'VarStatement' || n.type === 'EmptyStatement',
                         'rn the header only contains var decls. not very relevant, just assuming this when doing checks. if this changes, update the logic here accordingly',
                         n,
                       );
                       if (
-                        n.type === 'VariableDeclaration' &&
-                        n.declarations[0].init.type === 'Param' &&
-                        n.declarations[0].init.name === targetParamName
+                        n.type === 'VarStatement' &&
+                        n.init.type === 'Param' &&
+                        n.init.name === targetParamName
                       ) {
                         funcBody[i] = AST.emptyStatement();
                         found = true;
@@ -232,7 +232,8 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                       funcBody.splice(
                         bodyOffset,
                         0,
-                        AST.variableDeclaration(
+                        AST.varStatement(
+                          'let',
                           funcNode.params[paramIndex].$p.paramVarDeclRef.name,
                           type === 'I'
                             ? AST.identifier(paramValue)
@@ -241,7 +242,6 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                             : type === 'S'
                             ? AST.templateLiteral(paramValue)
                             : AST.literal(paramValue),
-                          'let',
                         ),
                       );
                     } else {
@@ -267,7 +267,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                   cloneMap.set(cloneCacheKey, newName);
                   cloneCounts.set(cloneDetails.name, count);
                   const newFunc = cloneFunctionNode(funcNode, newName, staticArgs, fdata);
-                  newFuncs.push([meta, AST.variableDeclaration(newName, newFunc, 'const')]);
+                  newFuncs.push([meta, AST.varStatement('const', newName, newFunc)]);
                   staticArgs.forEach(({ index }) => {
                     if (read.parentNode['arguments'][index]) read.parentNode['arguments'][index] = AST.nul();
                   });

@@ -74,8 +74,8 @@ function _unusedAssigns(fdata) {
           if (exprNodeSpyOnBinding(currStmt.expression, fdata, lhsName)) return vlog('- bail: expression statement spies');
           break;
         }
-        case 'VariableDeclaration': {
-          if (exprNodeSpyOnBinding(currStmt.declarations[0].init, fdata, lhsName)) return vlog('- bail: var init spies');
+        case 'VarStatement': {
+          if (exprNodeSpyOnBinding(currStmt.init, fdata, lhsName)) return vlog('- bail: var init spies');
           break;
         }
         default:
@@ -216,9 +216,9 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
               if (arg2meta.isConstant && arg2meta.constValueRef?.node.type === 'FunctionExpression') {
                 vlog('- scanning func arg');
                 if (arg2meta.constValueRef.node.body.body.some(stmt => {
-                  if (stmt.type === 'VariableDeclaration') {
-                    const spies = AST.complexExpressionNodeMightSpy(stmt.declarations[0].init, fdata);
-                    vlog('  -', stmt.type, 'may spy?', spies, stmt.declarations[0]?.init.type);
+                  if (stmt.type === 'VarStatement') {
+                    const spies = AST.complexExpressionNodeMightSpy(stmt.init, fdata);
+                    vlog('  -', stmt.type, 'may spy?', spies, stmt.init?.type);
                     return spies;
                   } else if (stmt.type === 'ExpressionStatement') {
                     const spies = AST.complexExpressionNodeMightSpy(stmt.expression, fdata);

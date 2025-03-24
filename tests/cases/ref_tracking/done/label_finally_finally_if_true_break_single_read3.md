@@ -37,9 +37,9 @@ $(x);           // x=5
 `````filename=intro
 let x___4__ = 1;
 back___7__: /*8*/ {
-  x___12__ = 3;
-  let $implicitThrow___15__ = false;
-  let $finalStep___19__ = false;
+  x___15__ = 3;
+  let $implicitThrow___17__ = false;
+  let $finalStep___20__ = false;
   let $finalCatchArg___23__ = undefined___24__;
   $finally___26__: /*27*/ {
     try /*29*/ {
@@ -73,20 +73,20 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 12
-  - w @12      | ########## | not read    | 4              | 33,46,52
-  - w @33      | ########## | not read    | 12             | 46,52
-  - w @46      | ########## | not read    | 12,33          | none
-  - w @52      | ########## | 64          | 12,33          | none
+  - w @4       | ########## | not read    | none           | 15
+  - w @15      | ########## | not read    | 4              | 33,46,52
+  - w @33      | ########## | not read    | 15             | 46,52
+  - w @46      | ########## | not read    | 15,33          | none
+  - w @52      | ########## | 64          | 15,33          | none
   - r @64      | 52
 
 $implicitThrow:
-  - w @15          | ########## | 54          | none           | none
-  - r @54          | 15
+  - w @17          | ########## | 54          | none           | none
+  - r @54          | 17
 
 $finalStep:
-  - w @19          | ########## | not read    | none           | 37
-  - w @37          | ########## | not read    | 19             | none
+  - w @20          | ########## | not read    | none           | 37
+  - w @37          | ########## | not read    | 20             | none
 
 $finalCatchArg:
   - w @23          | ########## | 57          | none           | none

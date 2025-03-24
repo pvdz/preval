@@ -18,6 +18,7 @@ function _aliasIfIf(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
+    if (!meta.constValueRef) return; // catch
 
     vlog('- `' + name + '`:', meta.constValueRef.node.type);
 
@@ -79,7 +80,7 @@ function _aliasIfIf(fdata) {
       let rhsName = '';
       if (ref.parentNode.type === 'AssignmentExpression' && ref.parentNode.right.type === 'Identifier') {
         rhsName = ref.parentNode.right.name;
-      } else if (ref.parentNode.type === 'VariableDeclarator' && ref.parentNode.init.type === 'Identifier') {
+      } else if (ref.parentNode.type === 'VarStatement' && ref.parentNode.init.type === 'Identifier') {
         rhsName = ref.parentNode.init.name;
       } else {
         vlog('    - was not assigned an ident');

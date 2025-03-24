@@ -589,7 +589,7 @@ export function openRefsOnBeforeWrite(write, blockNode) {
   const treblo = blockNode.$p.treblo;
   ASSERT(treblo, 'the treblo should be set on this block...');
 
-  if (write.parentNode.type === 'VariableDeclarator') {
+  if (write.parentNode.type === 'VarStatement') {
     if (REF_TRACK_TRACING) console.log('Adding binding to owner block @', +write.parentBlockNode.$p.pid, '(', write.parentBlockNode.type, ')');
     treblo.defined.add(name);
   }

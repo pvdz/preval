@@ -32,8 +32,8 @@ if ($) $(f());
 if ($) {
   const g /*:()=>undefined*/ = function () {
     debugger;
-    const tmpssa2_x /*:unknown*/ = $(`first`);
-    $(tmpssa2_x);
+    const tmpssa3_x /*:unknown*/ = $(`first`);
+    $(tmpssa3_x);
     return undefined;
   };
   g();

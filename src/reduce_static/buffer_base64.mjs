@@ -124,8 +124,8 @@ function _buffer_base64(fdata) {
     // Find the `var x = Buffer.from(param, 'base64')` part
     // Note: we will invariably convert Buffer.from into a symbo ($Buffer_from)
     // So that's the pattern we'll be looking for, even if technically both can appear
-    if (funcBody[index].type !== 'VariableDeclaration') return vlog('- bail: d');
-    const init1 = funcBody[index].declarations[0].init;
+    if (funcBody[index].type !== 'VarStatement') return vlog('- bail: d');
+    const init1 = funcBody[index].init;
     if (init1.type !== 'CallExpression') return vlog('- bail: e');
     if (init1.callee.type !== 'Identifier') return vlog('- bail: f');
     if (init1.callee.name !== symbo('Buffer', 'from')) return vlog('- bail: f');
@@ -134,10 +134,10 @@ function _buffer_base64(fdata) {
     if (init1.arguments[0].name !== paramName) return vlog('- bail: m');
     if (!AST.isStringLiteral(init1.arguments[1])) return vlog('- bail: n');
     if (AST.getPrimitiveValue(init1.arguments[1]) !== 'base64') return vlog('- bail: o');
-    const tmpName = funcBody[index].declarations[0].id.name;
+    const tmpName = funcBody[index].id.name;
 
     // Find the `var y = y.toString('utf8')` part
-    const init2 = funcBody[index+1].declarations[0].init;
+    const init2 = funcBody[index+1].init;
     if (init2.type !== 'CallExpression') return vlog('- bail: p');
     if (init2.callee.type !== 'MemberExpression') return vlog('- bail: q');
     if (init2.callee.computed) return vlog('- bail: r');
@@ -151,7 +151,7 @@ function _buffer_base64(fdata) {
     // And finally the `return y` part
     if (funcBody[index+2].type !== 'ReturnStatement') return vlog('- bail: aa');
     if (funcBody[index+2].argument?.type !== 'Identifier') return vlog('- bail: bb');
-    if (funcBody[index+2].argument.name !== funcBody[index+1].declarations[0].id.name) return vlog('- bail: cc');
+    if (funcBody[index+2].argument.name !== funcBody[index+1].id.name) return vlog('- bail: cc');
 
     vlog(`Found the base64decode Buffer pattern in function \`${funcName}\`, now reducing call sites`);
 

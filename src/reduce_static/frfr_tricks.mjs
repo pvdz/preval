@@ -89,7 +89,7 @@ function _frfr_tricks(fdata) {
               vlog('The decl to move:', decl);
               block[index] = AST.emptyStatement(); // placeholder to keep the boundary at the same place
               block.splice(findBodyOffsetExpensiveMaybe(block), 0, decl);
-              decl.declarations[0].init = arg;
+              decl.init = arg;
             }
 
             // Have to update the name of the parameters that follow.

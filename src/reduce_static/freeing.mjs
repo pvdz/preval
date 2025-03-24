@@ -53,6 +53,7 @@ import { GLOBAL_PREVAL_SYMBOLS, SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function freeing(fdata, $prng, usePrng = true) {
   group('\n\n\nSearching for free statements to collect\n');
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _freeing(fdata, $prng, usePrng);
   groupEnd();
   return r;
@@ -93,7 +94,7 @@ function _freeing(fdata, $prng, usePrng) {
     let lastStart = 0;
     let index = 0;
     while (index < blockNode.body.length) {
-      vlog('- stmt[' + index + '] =', blockNode.body[index].type, blockNode.body[index].declarations?.[0].init.type || blockNode.body[index].expression?.type || '');
+      vlog('- stmt[' + index + '] =', blockNode.body[index].type, blockNode.body[index].init?.type || blockNode.body[index].expression?.type || '');
 
       const call = AST.isStatementCallingFunc(blockNode.body[index], '$frfr');
       if (call) {
@@ -148,7 +149,7 @@ function _freeing(fdata, $prng, usePrng) {
       return true;
     }
 
-    ASSERT(block[index].type === 'VariableDeclaration' || block[index].expression?.type === 'AssignmentExpression', 'one of three', block[index].type, block[index].expression?.type);
+    ASSERT(block[index].type === 'VarStatement' || block[index].expression?.type === 'AssignmentExpression', 'one of three', block[index].type, block[index].expression?.type);
 
     // Inline a $frfr call when all the args are primitives (first is the target $free func)
     if (frfrCallNode.arguments.every((anode, i) => i === 0 || AST.isPrimitive(anode))) {
@@ -204,7 +205,7 @@ function _freeing(fdata, $prng, usePrng) {
           example('const x = $frfr(f, 1, 2, 3);', 'const a = 1; const x = a + 2;');
           before(block[index]);
 
-          if (block[index].type === 'VariableDeclaration') block[index].declarations[0].init = outNode;
+          if (block[index].type === 'VarStatement') block[index].init = outNode;
           else if (block[index].type === 'ExpressionStatement' && block[index].expression.type === 'AssignmentExpression') block[index].expression.right = outNode;
           else if (block[index].type === 'ExpressionStatement' && block[index].expression.type === 'CallExpression') block[index].expression = outNode;
           else ASSERT(false, 'fiiiixme');
@@ -224,13 +225,13 @@ function _freeing(fdata, $prng, usePrng) {
     const prev = index > 0 && block[index-1];
     if (
       prev &&
-      prev.type === 'VariableDeclaration' &&
+      prev.type === 'VarStatement' &&
       prev.kind === 'const' &&
-      frfrCallNode.arguments.some(anode => anode.type === 'Identifier' && anode.name === prev.declarations[0].id.name) &&
+      frfrCallNode.arguments.some(anode => anode.type === 'Identifier' && anode.name === prev.id.name) &&
       isFreeStatement(prev, fdata)
     ) {
       // Why are we letting unsafe vars through now
-      const prevName = prev.declarations[0].id.name;
+      const prevName = prev.id.name;
       // Prev was a const and it's being passed into the $frfr call. Check if it's used anywhere else.
       const meta = fdata.globallyUniqueNamingRegistry.get(prevName);
       if (meta.reads.some(read => +read.node.$p.pid > +prev.$p.pid || +read.node.$p.pid < +(block[index+1]?.$p.pid ?? Infinity))) {
@@ -269,8 +270,8 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
 
   for (let stmtIndex=firstIndex; stmtIndex<=lastIndex; ++stmtIndex) {
     const stmt = body[stmtIndex];
-    if (stmt.type === 'VariableDeclaration') {
-      const name = stmt.declarations[0].id.name;
+    if (stmt.type === 'VarStatement') {
+      const name = stmt.id.name;
       vlog('  - Checking if', [name], 'is used out of range');
       const meta = fdata.globallyUniqueNamingRegistry.get(name);
       for (let refIndex=0; refIndex<meta.rwOrder.length; ++refIndex) {
@@ -298,7 +299,7 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
   //source(AST.blockStatement(body.slice(firstIndex, lastIndex)), true);
 
 
-  if (body[lastIndex].type !== 'VariableDeclaration' && !(body[lastIndex].type === 'ExpressionStatement' && body[lastIndex].expression.type === 'AssignmentExpression')) {
+  if (body[lastIndex].type !== 'VarStatement' && !(body[lastIndex].type === 'ExpressionStatement' && body[lastIndex].expression.type === 'AssignmentExpression')) {
     vlog('Last statement was neither a var decl nor an assignment and these statements are not observable so we can drop them?');
     //source(body.slice(firstIndex, lastIndex+1), true);
     return;
@@ -372,14 +373,14 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
 
   const last = body[lastIndex];
   const lastRhs =
-    last.type === 'VariableDeclaration'
-      ? last.declarations[0].init
+    last.type === 'VarStatement'
+      ? last.init
       : last.type === 'ExpressionStatement' && last.expression.type === 'AssignmentExpression'
         ? last.expression.right
         : ASSERT(false, 'last should be var or assign, was neither;', last.type, last.expression?.type);
   const lastName =
-    last.type === 'VariableDeclaration'
-      ? last.declarations[0].id.name
+    last.type === 'VarStatement'
+      ? last.id.name
       : last.type === 'ExpressionStatement' && last.expression.type === 'AssignmentExpression' && last.left.type === 'Identifier'
         ? last.expression.left.name
         : ASSERT(false, 'assigns should be to idents?', last.left.type);
@@ -387,10 +388,10 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
   const func = AST.functionExpression(
     Array.from(outer).map((name,i) => AST.param('$$' + i)),
     [
-      ...Array.from(outer).map((name,i) => AST.variableDeclaration(name, '$$' + i, 'let')), // or const?
+      ...Array.from(outer).map((name,i) => AST.varStatement('let', name, AST.identifier('$$' + i))), // or const?
       AST.debuggerStatement(),
       ...body.slice(firstIndex, lastIndex), // Note: the last one is picked apart above (lastRhs/lastName) so don't add it in this slice
-      AST.variableDeclaration(tmpReturn, lastRhs, 'const'),
+      AST.varStatement('const', tmpReturn, lastRhs),
       AST.returnStatement(AST.identifier(tmpReturn)),
     ],
     {
@@ -412,8 +413,8 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
         firstIndex,
         lastIndex-firstIndex, // Not +1, we keep the last one
       );
-      if (last.type === 'VariableDeclaration') {
-        last.declarations[0].init = outNode;
+      if (last.type === 'VarStatement') {
+        last.init = outNode;
       } else if (last.type === 'ExpressionStatement' && last.expression.type === 'AssignmentExpression') {
         last.expression.right = outNode;
       } else if (last.type === 'ExpressionStatement') {
@@ -437,10 +438,10 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
     before(AST.blockStatement(body.slice(firstIndex, lastIndex+1)));
 
     // Queue the function (whole decl) to inject at the top of global scope in the end
-    const varDecl = AST.variableDeclaration(tmpFuncName, func);
+    const varDecl = AST.varStatement('const', tmpFuncName, func);
     funcQueue.push(varDecl);
 
-    const finalNode = AST.variableDeclaration(lastName, AST.callExpression(
+    const finalNode = AST.varStatement('let', lastName, AST.callExpression(
       '$frfr',
       [AST.identifier(tmpFuncName)].concat(Array.from(outer).map(name => AST.identifier(name))),
     ));
@@ -464,9 +465,9 @@ function collectFromStatement(node, declared, reffed) {
 }
 function _collectFromStatement(node, declared, reffed) {
   switch (node.type) {
-    case 'VariableDeclaration': {
-      declared.push(node.declarations[0].id);
-      const init = node.declarations[0].init;
+    case 'VarStatement': {
+      declared.push(node.id);
+      const init = node.init;
       if (init.type === 'Identifier') {
         collectFromSimpleOrFail(init, reffed);
       } else if (init.type === 'MemberExpression') {
@@ -587,7 +588,7 @@ function isFreeStatement(stmtNode, fdata) {
   }
 
   switch (stmtNode.type) {
-    case 'VariableDeclaration': {
+    case 'VarStatement': {
       // Special case: this is only okay to capture if the variable is not
       //               used before/after the $free function. The exception
       //               is when that variable is the last statement being
@@ -596,7 +597,7 @@ function isFreeStatement(stmtNode, fdata) {
       //               check the outer block of targeted statements and it
       //               depends on the statements being gathered whether we
       //               can abstract it into a $free or not due to this.
-      if (isFreeExpression(stmtNode.declarations[0].init, fdata)) {
+      if (isFreeExpression(stmtNode.init, fdata)) {
         stmtNode.$p.predictable = true;
         return true;
       } else {

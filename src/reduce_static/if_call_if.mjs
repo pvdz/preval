@@ -302,8 +302,8 @@ function _tryToInline(queue, read, innerFirstStatement, innerSecondStatementMayb
   ASSERT(innerTopStatement, 'should have a first as well');
 
   switch (innerTopStatement.type) {
-    case 'VariableDeclaration':
-      const declName = innerTopStatement.declarations[0].id.name;
+    case 'VarStatement':
+      const declName = innerTopStatement.id.name;
       log('The first inner statement is a var, to `' + declName + '`');
       // Confirm that this is the name being returned. It almost has to be, especially in normalized code, but who knows.
       // Then clone the rhs in a param aware way
@@ -373,7 +373,7 @@ function processQueue(fdata, queue) {
       vlog('- Next node in queue:', read.node.$p.pid);
 
       if (what === 'var') {
-        const newInit = paramAwareClone(innerFirstStatement.declarations[0].init, read.parentNode, innerFuncNode);
+        const newInit = paramAwareClone(innerFirstStatement.init, read.parentNode, innerFuncNode);
         if (!newInit) {
           // Something should have been printed.
           vlog('Could not param clone the init. Bailing');

@@ -31,9 +31,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    a = 1;
+    a = undefined;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    (1).x = tmpAssignMemRhs;
+    (1).x = tmpAssignMemRhs;                                      // <-- this fails
   }
 }
 $(a);
@@ -51,7 +51,7 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    a = 1;
+    a = undefined;
     const tmpAssignMemRhs = tmpForInNext.value;
     (1).x = tmpAssignMemRhs;
   }
@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    a = 1;
+    a = undefined;
     const g = e.value;
     1.x = g;
   }

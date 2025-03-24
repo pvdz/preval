@@ -42,7 +42,7 @@ $(x);          // x=1 2
 `````filename=intro
 let x___4__ = 1;
 A___7__: /*8*/ {
-  let $implicitThrow$1___11__ = false;
+  let $implicitThrow$1___12__ = false;
   let $finalCatchArg$1___15__ = undefined___16__;
   try /*18*/ {
     $(x___22__);
@@ -55,7 +55,7 @@ A___7__: /*8*/ {
     /*40*/ x___44__ = 2;
     break A___46__;
   } /*47*/ else {
-    let $implicitThrow___50__ = false;
+    let $implicitThrow___51__ = false;
     let $finalCatchArg___54__ = undefined___55__;
     try /*57*/ {
       $(x___61__);
@@ -99,9 +99,9 @@ x:
   - r @90      | 4,44
 
 $implicitThrow$1:
-  - w @11            | ########## | 82          | none           | 29
-  - w @29            | ########## | 82          | 11             | none
-  - r @82            | 11,29
+  - w @12            | ########## | 82          | none           | 29
+  - w @29            | ########## | 82          | 12             | none
+  - r @82            | 12,29
 
 $finalCatchArg$1:
   - w @15            | ########## | 85          | none           | 33
@@ -109,8 +109,8 @@ $finalCatchArg$1:
   - r @85            | 15,33
 
 $implicitThrow:
-  - w @50            | ########## | 76          | none           | none
-  - r @76            | 50
+  - w @51            | ########## | 76          | none           | none
+  - r @76            | 51
 
 $finalCatchArg:
   - w @54            | ########## | 79          | none           | none

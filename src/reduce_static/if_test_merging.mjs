@@ -89,7 +89,9 @@ function _ifTestMerging(fdata) {
     if (collect.length) {
       const needInverse = collect.some(({a}) => a.value === false);
       const tmpName = createFreshVar('tmpBool', fdata);
-      const tmpNode = AST.variableDeclaration(tmpName,
+      const tmpNode = AST.varStatement(
+        'const',
+        tmpName,
         needInverse
           ? AST.unaryExpression('!', AST.identifier(node.test.name))
           : AST.callExpression('Boolean', [AST.identifier(node.test.name)])
@@ -100,9 +102,9 @@ function _ifTestMerging(fdata) {
       });
     }
 
-    if (firstThen.type === 'VariableDeclaration') {
-      const nameA = firstThen.declarations[0].id.name;
-      const nameB = firstElse.declarations[0].id.name;
+    if (firstThen.type === 'VarStatement') {
+      const nameA = firstThen.id.name;
+      const nameB = firstElse.id.name;
       const meta = fdata.globallyUniqueNamingRegistry.get(nameB);
       vgroup('Updating the refs of the second var binding to refer to the name of the first', [nameA], [nameB]);
       meta.rwOrder.forEach(ref => {

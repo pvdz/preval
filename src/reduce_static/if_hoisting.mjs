@@ -41,7 +41,7 @@ function _ifHoisting(fdata) {
 
     if (a.type !== b.type) return false;
 
-    if (a.type === 'VariableDeclaration') return almostIdentical(a.declarations[0].init, b.declarations[0].init);
+    if (a.type === 'VarStatement') return almostIdentical(a.init, b.init);
 
     // Laaaaazy. But why not.
     return tmat(a, true) === tmat(b, true);
@@ -67,7 +67,7 @@ function _ifHoisting(fdata) {
     // The if-test is noramlized and so it cannot spy
     // The edge case is a var statement, since we have to rename all occurrences of the variable
 
-    if (firstThen.type === 'VariableDeclaration') {
+    if (firstThen.type === 'VarStatement') {
       // Find the meta for one of them. Replace the name of all refs with the name of the other binding. Drop the var decl.
       queue.push({
         pid: +node.$p.pid,
@@ -76,8 +76,8 @@ function _ifHoisting(fdata) {
           example('if (x) { let a = 1; f(a); } else { let b = 1; g(b); }', 'let a = 1; if (x) f(a); else g(a);');
           before(node);
 
-          const name = firstThen.declarations[0].id.name;
-          const meta = fdata.globallyUniqueNamingRegistry.get(firstElse.declarations[0].id.name);
+          const name = firstThen.id.name;
+          const meta = fdata.globallyUniqueNamingRegistry.get(firstElse.id.name);
           meta.rwOrder.forEach((ref) => {
             if (ref.action === 'write' && ref.kind === 'var') {
               // Ignore the var. We'll drop it next.

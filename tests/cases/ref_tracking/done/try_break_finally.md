@@ -30,8 +30,8 @@ $(x); // x=2
 `````filename=intro
 let x___4__ = 1;
 abc___7__: /*8*/ {
-  let $implicitThrow___11__ = false;
-  let $finalStep___15__ = false;
+  let $implicitThrow___13__ = false;
+  let $finalStep___16__ = false;
   let $finalCatchArg___19__ = undefined___20__;
   $finally___22__: /*23*/ {
     try /*25*/ {
@@ -70,12 +70,12 @@ x:
   - r @56      | 44
 
 $implicitThrow:
-  - w @11          | ########## | 46          | none           | none
-  - r @46          | 11
+  - w @13          | ########## | 46          | none           | none
+  - r @46          | 13
 
 $finalStep:
-  - w @15          | ########## | not read    | none           | 29
-  - w @29          | ########## | not read    | 15             | none
+  - w @16          | ########## | not read    | none           | 29
+  - w @29          | ########## | not read    | 16             | none
 
 $finalCatchArg:
   - w @19          | ########## | 49          | none           | none

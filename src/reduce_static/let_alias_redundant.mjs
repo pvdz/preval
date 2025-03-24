@@ -73,7 +73,7 @@ function _letAliasRedundant(fdata) {
 
     // TDZ be danged, the let decl should be the first write.
 
-    if (letMeta.writes[0].blockBody[letMeta.writes[0].blockIndex]?.type !== 'VariableDeclaration') {
+    if (letMeta.writes[0].blockBody[letMeta.writes[0].blockIndex]?.type !== 'VarStatement') {
       return vlog('  - Bail: first write of let was not a var decl');
     }
 

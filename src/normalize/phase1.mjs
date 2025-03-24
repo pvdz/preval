@@ -119,12 +119,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   );
   if (
     //VERBOSE_TRACING ||
+    (VERBOSE_TRACING && firstAfterParse && passes === 0) ||
     REF_TRACK_TRACING
   ) {
     const code = fmat(tmat(ast, true), true);
     console.log('\nCurrent state (start of phase1)\n--------------\n' + code + '\n--------------\n');
+    vlog('\n\n\n#################################################################### phase1 [',passes,'::', phase1s, ']\n\n\n');
   }
-  vlog('\n\n\n#################################################################### phase1 [',passes,'::', phase1s, ']\n\n\n');
 
   resetUid();
 
@@ -231,6 +232,20 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.paramNames = []; // Ends up as a `meta.bfuncNode` in some cases, where this is expected to exist, so leave it.
         loopStack.push(null);
 
+
+        // Must do this before visiting or the walker gets confused
+        // Reminder: code gets parsed between normalization and phase1 so we must convert here, too
+        if (firstAfterParse) {
+          node.body.forEach((bnode, i) => {
+            if (bnode.type === 'VariableDeclaration') {
+              vlog('Converting VariableDeclarator nodes to special VarStatement');
+              const newNode = AST.varStatement(bnode.kind, bnode.declarations[0].id, bnode.declarations[0].init);
+              node.body[i] = newNode;
+              return true;
+            }
+          });
+        }
+
         break;
       }
       case 'Program:after': {
@@ -297,6 +312,19 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             ifIds.push(-parentNode.$p.pid);
             elseStack.push(+parentNode.$p.pid);
           }
+        }
+
+        // Must do this before visiting or the walker gets confused
+        // Reminder: code gets parsed between normalization and phase1 so we must convert here, too
+        if (firstAfterParse) {
+          node.body.forEach((bnode, i) => {
+            if (bnode.type === 'VariableDeclaration') {
+              vlog('Converting VariableDeclarator nodes to special VarStatement');
+              const newNode = AST.varStatement(bnode.kind, bnode.declarations[0].id, bnode.declarations[0].init);
+              node.body[i] = newNode;
+              return true;
+            }
+          });
         }
 
         break;
@@ -448,12 +476,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
         ASSERT(
-          ['VariableDeclarator', 'AssignmentExpression', 'Property', 'MethodDefinition', 'ExpressionStatement'].includes(parentNode.type),
+          ['VarStatement', 'AssignmentExpression', 'Property', 'MethodDefinition', 'ExpressionStatement'].includes(parentNode.type),
           'normalized code should not other cases, right?',
           parentNode,
         );
 
-        if (parentNode.type === 'VariableDeclarator' && pathNodes[pathNodes.length - 3].kind === 'const') {
+        if (parentNode.type === 'VarStatement' && parentNode.kind === 'const') {
           vlog('Bound as a constant as: `' + parentNode.id.name + '`');
           node.$p.uniqueName = parentNode.id.name;
         }
@@ -537,24 +565,23 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
             const grandNode = pathNodes[pathNodes.length - 3];
             const grandProp = pathProps[pathProps.length - 2];
-            const greatGrandIndex = pathIndexes[pathIndexes.length - 3]; // Note: this is the index of the var decl, not the grandNode
+            const bodyIndex = pathIndexes[pathIndexes.length - 3]; // This is where grandNode is stored at in the body
 
             ASSERT(
-              grandNode.type === 'VariableDeclarator' && grandProp === 'init' && greatGrandIndex >= 0,
+              grandNode.type === 'VarStatement' && grandProp === 'init',
               '`arguments.length` should only appear for the custom alias in normalized code',
-              grandNode.type,
-              grandProp,
-              greatGrandIndex,
+              grandNode.type, grandProp
             );
-            thisStack[thisStack.length - 1].$p.readsArgumentsLenAt = greatGrandIndex;
+            thisStack[thisStack.length - 1].$p.readsArgumentsLenAt = bodyIndex;
             thisStack[thisStack.length - 1].$p.readsArgumentsLenAs = grandNode.id.name; // Name of the alias
             thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
+            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
           } else if (parentNode.type === 'ExpressionStatement') {
             // A statement that is just `arguments`. :shrug:
             vlog('Ignoring `arguments` as an expression statement');
             //} else if (
-            //  parentNode.type === 'VariableDeclaration' &&
-            //  parentNode.declarations[0].id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
+            //  parentNode.type === 'VarStatement' &&
+            //  parentNode.id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
             //) {
             //  vlog('Ignoring our own arguments alias');
           } else {
@@ -666,7 +693,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
             const write = createWriteRef({
               name,
-              kind: parentNode.type === 'VariableDeclarator' ? 'var' : parentNode.type === 'AssignmentExpression' ? 'assign' : 'other',
+              kind: parentNode.type === 'VarStatement' ? 'var' : parentNode.type === 'AssignmentExpression' ? 'assign' : 'other',
               parentNode,
               parentProp,
               parentIndex,
@@ -699,7 +726,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             openRefsOnBeforeWrite(write, blockNode, meta);
 
             // Inject var decls at the top, append other writes at the end
-            if (parentNode.type === 'VariableDeclarator') {
+            if (parentNode.type === 'VarStatement') {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
               vlog('- Added decl write to meta.writes');
 
@@ -880,7 +907,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           vlog('This is the param var decl. The param maps to `' + parentNode.id.name + '`');
 
           // This blockNode is the actual var decl `var p = $$0`
-          const blockIndex = pathIndexes[pathIndexes.length - 3]; // (node is init of var decl, so two up, not one)
+          const blockIndex = pathIndexes[pathIndexes.length - 2];
           vlog('The var decl of this param is at body[' + blockIndex + ']');
 
           const funcNode = funcStack[funcStack.length - 1];
@@ -998,7 +1025,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
       case 'TemplateLiteral': {
         ASSERT(
-          node.expressions.length === 0 || ['ExpressionStatement', 'VariableDeclarator', 'AssignmentExpression'].includes(parentNode.type),
+          node.expressions.length === 0 || ['ExpressionStatement', 'VarStatement', 'AssignmentExpression'].includes(parentNode.type),
           'complex templates should have the same limitations as other complex expression nodes',
           parentNode,
         );
@@ -1074,18 +1101,22 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'VariableDeclaration:before': {
-        vlog(node.kind, node.declarations[0]?.id?.name, '=', node.declarations[0]?.init?.type);
+        ASSERT(false, 'var decls should be replaced by var stmts in normalization and never return so this is concerning', node);
+        return;
+      }
+
+      case 'VarStatement:before': {
+        vlog(node.kind, node.id.name, '=', node.init.type);
         break;
       }
-      case 'VariableDeclaration:after': {
-        ASSERT(node.declarations[0].id.type === 'Identifier', 'var ids are idents?', node.declarations[0]);
-        vlog('- Id: `' + node.declarations[0].id.name + '`');
-        ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');
-        ASSERT(node.declarations[0].id.type === 'Identifier', 'all patterns should be normalized away');
-        ASSERT(node.declarations[0].init, 'normalized var decls must have an init', node);
+      case 'VarStatement:after': {
+        ASSERT(node.id.type === 'Identifier', 'var ids are idents?', node);
+        vlog('- Id: `' + node.id.name + '`');
+        ASSERT(node.id.type === 'Identifier', 'all patterns should be normalized away');
+        ASSERT(node.init, 'normalized var decls must have an init', node);
         node.$p.promoParent = blockStack[blockStack.length - 1];
-        const name = node.declarations[0].id.name;
-        const init = node.declarations[0].init;
+        const name = node.id.name;
+        const init = node.init;
         const meta = globallyUniqueNamingRegistry.get(name);
         //const declWriteRef = meta.writes[meta.writes.length - 1]; // Last write should be this binding
         if (node.kind === 'const') {
@@ -1112,12 +1143,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           containerIndex: parentIndex,
         };
 
-        if (node.declarations[0].init.type !== 'Param') {
+        if (node.init.type !== 'Param') {
           // If this write is not read (ie `let x=1;if(a)x=2;else x=3`) then the typing is irrelevant.
           // But we won't know that until after this entire phase so that's not helpful. We have to
           // incude all writes for now.
           vlog('Resolving .typing details of the non-param init');
-          const newTyping = inferNodeTyping(fdata, node.declarations[0].init);
+          const newTyping = inferNodeTyping(fdata, node.init);
           vlog('Results in', newTyping, 'which we will inject into', meta.typing);
           mergeTyping(newTyping, meta.typing);
           vlog('  - Typing data:', meta.typing);
@@ -1217,7 +1248,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   }
 
   log('\n\nEnd of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
-
 
   fdata.globallyUniqueNamingRegistry.forEach(meta => {
     ASSERT(meta.typing.mustBeType === false || !PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) === !meta.typing.mustBePrimitive, 'if it must be a primitive then mustbeprimitive', meta, meta.typing.mustBeType === false, meta.typing.mustBeType, !!PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType), !!meta.typing.mustBePrimitive);

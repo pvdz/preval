@@ -227,7 +227,7 @@ function _refTracked(fdata) {
               vlog('RHS is not a primitive:', rhs.type);
             }
           }
-          else if (write.parentNode.type === 'VariableDeclarator') {
+          else if (write.parentNode.type === 'VarStatement') {
             // TODO: same if it's a builtin or other "predictable" value. But maybe another rule would already do this anyways?
             const init = write.parentNode.init;
             if (AST.isPrimitive(init)) {

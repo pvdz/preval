@@ -33,10 +33,10 @@ if ($) f();
 
 `````js filename=intro
 if ($) {
-  const tmpssa2_x /*:unknown*/ = $(1, `a`);
-  $(tmpssa2_x, `b`);
-  const tmpClusterSSA_tmpssa2_x /*:unknown*/ = $(2, `c`);
-  $(tmpClusterSSA_tmpssa2_x, `d`);
+  const tmpssa3_x /*:unknown*/ = $(1, `a`);
+  $(tmpssa3_x, `b`);
+  const tmpClusterSSA_tmpssa3_x /*:unknown*/ = $(2, `c`);
+  $(tmpClusterSSA_tmpssa3_x, `d`);
 } else {
 }
 `````

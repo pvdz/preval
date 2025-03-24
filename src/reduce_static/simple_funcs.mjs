@@ -156,7 +156,7 @@ function process(meta, funcName, funcNode, fdata, queue) {
     vgroupEnd();
   } else if (bodyNodes.length === 2) {
     const stmt = bodyNodes[0];
-    if (!['ExpressionStatement', 'VariableDeclaration'].includes(stmt.type)) {
+    if (!['ExpressionStatement', 'VarStatement'].includes(stmt.type)) {
       vlog('Function contained something other than expression or var statement', stmt.type, ', bailing');
       return;
     }
@@ -173,8 +173,8 @@ function process(meta, funcName, funcNode, fdata, queue) {
       if (stmt.expression.type === 'AssignmentExpression' && stmt.expression.right.type === 'FunctionExpression') {
         return; // Too complex with the potential of closures over params
       }
-    } else if (stmt.type === 'VariableDeclaration') {
-      if (stmt.declarations[0].init.type === 'FunctionExpression') {
+    } else if (stmt.type === 'VarStatement') {
+      if (stmt.init.type === 'FunctionExpression') {
         return; // Too complex with the potential of closures over params
       }
     }
@@ -211,7 +211,7 @@ function process(meta, funcName, funcNode, fdata, queue) {
         paramArgMapper.set(funcNode.$p.readsArgumentsLenAs, AST.literal(callNode['arguments'].length));
       }
 
-      if (stmt.type === 'VariableDeclaration') {
+      if (stmt.type === 'VarStatement') {
         vgroup('-', ri, ': a var');
         processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue);
         vgroupEnd();
@@ -227,20 +227,20 @@ function process(meta, funcName, funcNode, fdata, queue) {
   }
 }
 function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue) {
-  const oldName = stmt.declarations[0].id.name;
+  const oldName = stmt.id.name;
   // Special case because we need to create a unique name for the binding
   const fail = { de: false };
-  if (stmt.declarations[0].init.type === 'AwaitExpression') {
+  if (stmt.init.type === 'AwaitExpression') {
     // We can totally do this when the new parent function is async. But we gotta check that first.
     vlog('  - Init is `await`, bailing. TODO: confirm if new parent function is async and then do it anyways');
     return false;
   }
-  if (stmt.declarations[0].init.type === 'YieldExpression') {
+  if (stmt.init.type === 'YieldExpression') {
     // We can totally do this when the new parent function is generator. But we gotta check that first.
     vlog('  - Init is `yield`, bailing. TODO: confirm if new parent function is generator and then do it anyways');
     return false;
   }
-  const newInit = AST.deepCloneForFuncInlining(stmt.declarations[0].init, paramArgMapper, fail);
+  const newInit = AST.deepCloneForFuncInlining(stmt.init, paramArgMapper, fail);
   if (fail.ed) {
     vlog('  - Node contained a write to a param. Bailing');
     return false;
@@ -253,8 +253,8 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
       example('function f(){ const x = g(); return x; } f(); f();', 'g(); g();');
       before(read.blockBody[read.blockIndex], funcNode);
 
-      const tmpName = createFreshVar(stmt.declarations[0].id.name, fdata);
-      const newNode = AST.variableDeclaration(tmpName, newInit, 'const');
+      const tmpName = createFreshVar(stmt.id.name, fdata);
+      const newNode = AST.varStatement('const', tmpName, newInit);
 
       let paramIndex = -1;
       let argslen = false;

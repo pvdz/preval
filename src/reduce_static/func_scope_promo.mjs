@@ -63,7 +63,7 @@ function _funcScopePromo(fdata) {
     vlog('Now promoting the functions by removing them from their old parent and injecting them into their new parent');
     queue.forEach(
       ({
-        varDecl, // A VariableDeclaration node (by reference, as it appears in the AST right now)
+        varDecl, // A VarStatement node (by reference, as it appears in the AST right now)
         from, // A BlockStatement.body array
         to, // A BlockStatement.body array
         toPid,
@@ -188,7 +188,7 @@ export function findClosureRefs(funcNode) {
         blockReferences.pop();
         break;
       }
-      case 'VariableDeclarator:before': {
+      case 'VarStatement:before': {
         const name = node.id.name;
         vlog('Marking `' + name + '` as a local binding');
         blockReferences[blockReferences.length - 1].add(name);
@@ -240,7 +240,7 @@ function findLocalBindings(currentParentNode, funcName) {
       case 'FunctionExpression:before': {
         return true; // Do not traverse
       }
-      case 'VariableDeclarator:before': {
+      case 'VarStatement:before': {
         const name = node.id.name;
         vlog('Found `' + name + '` in parent lex scope');
         if (name === funcName) {

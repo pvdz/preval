@@ -60,11 +60,14 @@ function processAttempt(fdata, queue) {
         }
         return false;
       }
-      if (write.parentNode.type === 'VariableDeclarator') {
+      if (write.parentNode.type === 'VarStatement') {
         if (write.parentNode.init.type === 'FunctionExpression') {
           funcs.push(write.parentNode.init);
           return true;
         }
+        return false;
+      }
+      if (write.parentNode.type === 'CatchClause') {
         return false;
       }
       ASSERT(false, 'what else mutates a binding?', write.parentNode.type);

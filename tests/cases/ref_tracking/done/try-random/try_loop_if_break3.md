@@ -42,7 +42,7 @@
 let x___4__ = 1;
 $(x___9__);
 while (true) {
-  /*12*/ let $implicitThrow___15__ = false;
+  /*12*/ let $implicitThrow___16__ = false;
   let $finalCatchArg___19__ = undefined___20__;
   try /*22*/ {
     $(x___26__);
@@ -83,8 +83,8 @@ x:
   - r @59      | 4,48
 
 $implicitThrow:
-  - w @15          | ########## | not read    | none           | 33
-  - w @33          | ########## | not read    | 15             | none
+  - w @16          | ########## | not read    | none           | 33
+  - w @33          | ########## | not read    | 16             | none
 
 $finalCatchArg:
   - w @19          | ########## | not read    | none           | 37

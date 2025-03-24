@@ -62,7 +62,7 @@ function _arrSpreads(fdata) {
           if (meta.isImplicitGlobal) continue;
           if (!meta.isConstant) continue; // We can improve on this
           if (meta.isExport) continue; // Exports are "live" bindings so any update to it might be observable in strange ways
-          if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') continue; // catch, for-x, ???
+          if (meta.constValueRef.containerNode.type !== 'VarStatement') continue; // catch, for-x, ???
           if (meta.constValueRef.node.type !== 'ArrayExpression') return; // Map / Set?
           if (meta.writes.length > 1) return; // TODO: fixme if broken
 
@@ -130,7 +130,7 @@ function _arrSpreads(fdata) {
                 if (enode.type === 'Identifier') {
                   // Cache this
                   const tmpName = createFreshVar('arrEl', fdata);
-                  const varNode = AST.variableDeclaration(tmpName, AST.cloneSimple(enode), 'const');
+                  const varNode = AST.varStatement('const', tmpName, AST.cloneSimple(enode));
                   tmpVarNodes.push(varNode);
                   const finalNode = AST.identifier(tmpName);
 

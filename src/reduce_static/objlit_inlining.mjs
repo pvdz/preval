@@ -331,11 +331,11 @@ function process(fdata, queue) {
                   funcNode.$p.thisAccess = false;
                   return;
                 }
-                if (stmt.type !== 'VariableDeclaration') {
+                if (stmt.type !== 'VarStatement') {
                   continue;
                 }
-                if (stmt.declarations[0].init.type === 'ThisExpression') {
-                  thisAliasName = stmt.declarations[0].id.name;
+                if (stmt.init.type === 'ThisExpression') {
+                  thisAliasName = stmt.id.name;
                   foundThis = true;
                   break;
                 }

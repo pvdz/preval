@@ -42,7 +42,7 @@
 let x___4__ = 1;
 $(x___9__);
 try /*11*/ {
-  let $implicitThrow___14__ = false;
+  let $implicitThrow___15__ = false;
   let $finalCatchArg___18__ = undefined___19__;
   try /*21*/ {
     $(x___25__);
@@ -88,8 +88,8 @@ x:
   - r @67      | 29,63
 
 $implicitThrow:
-  - w @14          | ########## | 44          | none           | none
-  - r @44          | 14
+  - w @15          | ########## | 44          | none           | none
+  - r @44          | 15
 
 $finalCatchArg:
   - w @18          | ########## | 47          | none           | none

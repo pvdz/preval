@@ -113,7 +113,7 @@ function _processTemplate(fdata, path, parentNode, parentProp, parentIndex) {
       const meta = fdata.globallyUniqueNamingRegistry.get(expr.name, fdata);
       if (meta.isConstant && meta.constValueRef) {
         const stmt = meta.constValueRef.containerNode;
-        const init = stmt.declarations[0].init;
+        const init = stmt.init;
         vlog('- const:', !!meta.isConstant, ', init type:', init.type);
         if (meta.isConstant && init.type === 'TemplateLiteral') {
           source(init, true);
@@ -164,7 +164,7 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
     const meta = fdata.globallyUniqueNamingRegistry.get(left.name, fdata);
     if (meta.isConstant && meta.constValueRef) {
       const stmt = meta.constValueRef.containerNode;
-      const init = stmt.declarations[0].init;
+      const init = stmt.init;
 
       if (init.type === 'TemplateLiteral') {
         left = init;
@@ -183,7 +183,7 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
     const meta = fdata.globallyUniqueNamingRegistry.get(right.name, fdata);
     if (meta.isConstant && meta.constValueRef) {
       const stmt = meta.constValueRef.containerNode;
-      const init = stmt.declarations[0].init;
+      const init = stmt.init;
       if (init.type === 'TemplateLiteral') {
         right = init;
       } else if (['boolean', 'number', 'string'].includes(meta.typing.mustBeType)) {

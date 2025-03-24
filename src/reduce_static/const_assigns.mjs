@@ -21,7 +21,7 @@ function _constAssigns(fdata) {
     if (!meta.isConstant) return;
     if (meta.writes.length === 1) return;
     if (found) return;
-    if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
+    if (meta.constValueRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
 
     vgroup('- `' + name + '`: is a const var with', meta.writes.length, 'writes');
     process(meta, name);
@@ -32,7 +32,7 @@ function _constAssigns(fdata) {
     // Flat-out compile a throw after each write to this binding. There's nothing else to it.
 
     meta.writes.forEach((write) => {
-      if (write.parentNode.type === 'VariableDeclarator' && write.parentProp === 'id') return; // This is the var decl. Skip that one.
+      if (write.parentNode.type === 'VarStatement' && write.parentProp === 'id') return; // This is the var decl. Skip that one.
 
       rule('Writes to a const binding must throw');
       example('const x = 5; x = 10; f();', 'const x = 5; x = 10; throw error; f();');

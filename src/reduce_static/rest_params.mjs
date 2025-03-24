@@ -95,7 +95,7 @@ function _restParams(fdata) {
     // Move the var decl past the function boundary. Set its init to an empty array expression.
     const varNode = pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex];
     funcNode.body.body.splice(funcNode.$p.bodyOffset, 0, varNode);
-    varNode.declarations[0].init = AST.arrayExpression([]);
+    varNode.init = AST.arrayExpression([]);
     funcNode.body.body[pnode.$p.paramVarDeclRef.blockIndex] = AST.emptyStatement();
 
     after(funcNode);

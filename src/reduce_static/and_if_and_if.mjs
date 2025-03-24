@@ -88,6 +88,7 @@ function _andIfAndIf(fdata) {
       if (outerIfNode.consequent.body.length !== 2) return vlog('  - `then` not two statements'); // Must be a `var` and an `if` and otherwise it's not the target pattern
 
       const innerVarNode = outerIfNode.consequent.body[0];
+      ASSERT(innerVarNode?.type === 'VarStatement', 'apparently we asserted this?');
       const innerIfNode = outerIfNode.consequent.body[1];
 
       // Now confirm that
@@ -95,10 +96,10 @@ function _andIfAndIf(fdata) {
       // - this binding has an AND init on the same binding as `identNode`
 
       if (innerIfNode.test.type !== 'Identifier') return vlog('  - inner if test not ident');
-      const id = innerVarNode.declarations[0].id;
+      const id = innerVarNode.id;
       if (id.name !== innerIfNode.test.name) return vlog('  - inner if not testing same ident'); // Not testing on that ident (why is it even there ugh)
 
-      const init2 = innerVarNode.declarations[0].init;
+      const init2 = innerVarNode.init;
       if (init2.type !== 'BinaryExpression') return vlog('  - inner var init not binary');
       if (init2.operator !== '&') return vlog('  - inner var init not AND');
 
@@ -153,8 +154,8 @@ function _andIfAndIf(fdata) {
             innerVarNode,
             AST.expressionStatement(AST.binaryExpression('&', AST.identifier(identNode.name), AST.primitive(0))),
           );
-          innerVarNode.declarations[0].init = AST.binaryExpression('===', name, AST.primitive(meta.typing.oneBitAnded | innerAnded));
-          outerIfNode.test = AST.identifier(innerVarNode.declarations[0].id.name);
+          innerVarNode.init = AST.binaryExpression('===', name, AST.primitive(meta.typing.oneBitAnded | innerAnded));
+          outerIfNode.test = AST.identifier(innerVarNode.id.name);
 
           after(varWrite.blockBody[varWrite.blockIndex]);
           after(varWrite.blockBody[varWrite.blockIndex + 1]);

@@ -34,8 +34,8 @@ $(x); // x=1
 `````filename=intro
 let x___4__ = 1;
 back___7__: /*8*/ {
-  let $implicitThrow___11__ = false;
-  let $finalStep___15__ = false;
+  let $implicitThrow___13__ = false;
+  let $finalStep___16__ = false;
   let $finalCatchArg___19__ = undefined___20__;
   $finally___22__: /*23*/ {
     try /*25*/ {
@@ -71,13 +71,13 @@ x:
   - r @54      | 4
 
 $implicitThrow:
-  - w @11          | ########## | 44          | none           | 38
-  - w @38          | ########## | 44          | 11             | none
-  - r @44          | 11,38
+  - w @13          | ########## | 44          | none           | 38
+  - w @38          | ########## | 44          | 13             | none
+  - r @44          | 13,38
 
 $finalStep:
-  - w @15          | ########## | not read    | none           | 29
-  - w @29          | ########## | not read    | 15             | none
+  - w @16          | ########## | not read    | none           | 29
+  - w @29          | ########## | not read    | 16             | none
 
 $finalCatchArg:
   - w @19          | ########## | 47          | none           | 42

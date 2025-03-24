@@ -211,7 +211,7 @@ function _funcionSplitting(fdata) {
             ],
             { normalized: true },
           );
-          const varTruthy = AST.variableDeclaration(tmpNameTruthy, funcTruthy, 'const');
+          const varTruthy = AST.varStatement('const', tmpNameTruthy, funcTruthy);
 
           const tmpNameFalsy = createFreshVar('tmpSplitFalsy', fdata);
           const funcFalsy = AST.functionExpression(
@@ -228,7 +228,7 @@ function _funcionSplitting(fdata) {
             ],
             { normalized: true },
           );
-          const varFalsy = AST.variableDeclaration(tmpNameFalsy, funcFalsy, 'const');
+          const varFalsy = AST.varStatement('const', tmpNameFalsy, funcFalsy);
 
           varWrite.blockBody.splice(varWrite.blockIndex, 1, varTruthy, varFalsy);
           toReplace.forEach(([read, value]) => {
@@ -251,11 +251,11 @@ function _funcionSplitting(fdata) {
 
           const tmpNameTruthy = createFreshVar('tmpSplitTruthy', fdata);
           const funcTruthy = AST.functionExpression([], [AST.debuggerStatement(), ...ifNode.consequent.body], { normalized: true });
-          const varTruthy = AST.variableDeclaration(tmpNameTruthy, funcTruthy, 'const');
+          const varTruthy = AST.varStatement('const', tmpNameTruthy, funcTruthy);
 
           const tmpNameFalsy = createFreshVar('tmpSplitTruthy', fdata);
           const funcFalsy = AST.functionExpression([], [AST.debuggerStatement(), ...ifNode.alternate.body], { normalized: true });
-          const varFalsy = AST.variableDeclaration(tmpNameFalsy, funcFalsy, 'const');
+          const varFalsy = AST.varStatement('const', tmpNameFalsy, funcFalsy);
 
           varWrite.blockBody.splice(varWrite.blockIndex, 1, varTruthy, varFalsy);
           toReplace.forEach(([read, value]) => {

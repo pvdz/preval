@@ -217,13 +217,13 @@ function tryInliningPrimitives(meta, funcNode, params) {
 
       if (paramNode.$p.paramVarDeclRef) {
         const varDecl = paramNode.$p.paramVarDeclRef.blockBody[paramNode.$p.paramVarDeclRef.blockIndex];
-        ASSERT(varDecl?.type === 'VariableDeclaration', 'var decl ye?', paramNode.$p.paramVarDeclRef.blockIndex, varDecl, i, paramNode);
+        ASSERT(varDecl?.type === 'VarStatement', 'var decl ye?', paramNode.$p.paramVarDeclRef.blockIndex, varDecl, i, paramNode);
 
         params.splice(i, 1);
         paramNode.$p.paramVarDeclRef.blockBody[paramNode.$p.paramVarDeclRef.blockIndex] = AST.emptyStatement();
-        const freshVarNode = AST.variableDeclaration(varDecl.declarations[0].id.name, AST.primitive(knownValues[i]), varDecl.kind);
+        const freshVarNode = AST.varStatement(varDecl.kind, varDecl.id.name, AST.primitive(knownValues[i]));
         funcNode.body.body.splice(funcNode.$p.bodyOffset, 0, freshVarNode);
-        //vlog('Added', varDecl.declarations[0].id.name, freshVarNode, knownValues[i], '->', AST.primitive(knownValues[i]))
+        //vlog('Added', varDecl.id.name, freshVarNode, knownValues[i], '->', AST.primitive(knownValues[i]))
       }
 
       meta.reads.forEach((read) => {
@@ -295,9 +295,9 @@ function tryInliningObjectLiteral(meta, funcNode, params, fdata) {
       }
 
       if (!(
-        callRead.blockBody[callRead.blockIndex-1]?.type === 'VariableDeclaration' &&
-        callRead.blockBody[callRead.blockIndex-1].declarations[0].id.name === anode.name &&
-        callRead.blockBody[callRead.blockIndex-1].declarations[0].init.type === 'ObjectExpression'
+        callRead.blockBody[callRead.blockIndex-1]?.type === 'VarStatement' &&
+        callRead.blockBody[callRead.blockIndex-1].id.name === anode.name &&
+        callRead.blockBody[callRead.blockIndex-1].init.type === 'ObjectExpression'
       )) {
         // We can improve this but for now we bail
         vlog('- bail: param', pi, ': Statement before the call was not a var being passed on');
@@ -306,7 +306,7 @@ function tryInliningObjectLiteral(meta, funcNode, params, fdata) {
       }
 
       // This call passed on an object that was just created.
-      const objNode = callRead.blockBody[callRead.blockIndex-1].declarations[0].init;
+      const objNode = callRead.blockBody[callRead.blockIndex-1].init;
       ASSERT(objNode.type === 'ObjectExpression');
 
       if (objNode.properties.some(pnode => pnode.computed)) {
@@ -407,12 +407,16 @@ function tryInliningObjectLiteral(meta, funcNode, params, fdata) {
     if (propsNamesArr.length > 0) {
       // Construct the object as the (new) first step of the function
       funcNode.body.body.splice(funcNode.$p.bodyOffset, 0,
-        AST.variableDeclaration(paramConstRef.name, AST.objectExpression(
-          propsNamesArr.map((name,i) => AST.property(name, propsNameLocalBindings[i]))
-        ))
+        AST.varStatement(
+          'const',
+          paramConstRef.name,
+          AST.objectExpression(
+            propsNamesArr.map((name,i) => AST.property(name, propsNameLocalBindings[i]))
+          )
+        )
       );
       // Replace the original param
-      funcNode.body.body[paramConstRef.blockIndex].declarations[0].id.name = propsNameLocalBindings[0];
+      funcNode.body.body[paramConstRef.blockIndex].id.name = propsNameLocalBindings[0];
 
       for (let i=1; i<propsNamesArr.length; ++i) {
         // Add the $$345 params into the function params (this wont assign them locally yet)
@@ -421,13 +425,13 @@ function tryInliningObjectLiteral(meta, funcNode, params, fdata) {
         funcNode.body.body.unshift(
           // We need a better way of doing this...
           // Inject assignments of params to local vars with the actual name
-          AST.expressionStatement(AST.variableDeclaration(propsNameLocalBindings[i], `$$${funcNode.params.length-1}`))
+          AST.expressionStatement(AST.varStatement('const', propsNameLocalBindings[i], AST.identifier(`$$${funcNode.params.length-1}`)))
         );
       }
     } else {
       // Create the empty obj
       funcNode.body.body.splice(funcNode.$p.bodyOffset, 0,
-        AST.variableDeclaration(paramConstRef.name, AST.objectExpression())
+        AST.varStatement('const', paramConstRef.name, AST.objectExpression())
       );
       // Replace the param assignment with an empty string
       funcNode.body.body[paramConstRef.blockIndex] = AST.emptyStatement();
@@ -445,7 +449,7 @@ function tryInliningObjectLiteral(meta, funcNode, params, fdata) {
       before(read.blockBody[read.blockIndex]);
 
       // This works as long as we only check one index back...
-      const objNode = read.blockBody[read.blockIndex-1].declarations[0].init;
+      const objNode = read.blockBody[read.blockIndex-1].init;
       ASSERT(objNode.type === 'ObjectExpression');
 
       // First have to create a map of properties. Then we can just copy those nodes.

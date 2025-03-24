@@ -442,7 +442,7 @@ export function allReadsAreCallsOrAliasingOrRecursive(fdata, meta, recursionBloc
       return false;
     }
 
-    if (rw.parentNode.type === 'VariableDeclarator' && rw.parentProp === 'init') {
+    if (rw.parentNode.type === 'VarStatement' && rw.parentProp === 'init') {
       ASSERT(rw.parentProp === 'init', 'if not right then it would not be a read');
 
       // Verify that left is only assigned to once and only called otherwise

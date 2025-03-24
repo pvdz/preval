@@ -157,10 +157,10 @@ function _ifTestFolding(fdata) {
           } else {
             const tmpName = createFreshVar('tmpIfTestFold', fdata);
             finalNodes = [
-              AST.variableDeclaration(
+              AST.varStatement(
+                'const',
                 tmpName,
                 flip ? AST.unaryExpression('!', AST.cloneSimple(node.test)) : AST.callExpression('Boolean', [AST.cloneSimple(node.test)]),
-                'const',
               ),
               AST.returnStatement(AST.identifier(tmpName)),
             ];

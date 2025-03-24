@@ -70,7 +70,7 @@ function _dedupeBranchedReturns(fdata) {
     const ifVar = lastNode.consequent.body[0];
     const elseVar = lastNode.alternate.body[0];
 
-    if (ifVar.type !== 'VariableDeclaration' || elseVar.type !== 'VariableDeclaration') {
+    if (ifVar.type !== 'VarStatement' || elseVar.type !== 'VarStatement') {
       vlog('  - At least oen branch did not start with a var decl');
       return;
     }
@@ -83,8 +83,8 @@ function _dedupeBranchedReturns(fdata) {
       return;
     }
 
-    const ifCall = ifVar.declarations[0].init;
-    const elseCall = elseVar.declarations[0].init;
+    const ifCall = ifVar.init;
+    const elseCall = elseVar.init;
 
     if (ifCall.type !== 'CallExpression' || elseCall.type !== 'CallExpression') {
       vlog('  - At least one branch was not "just" returning a call');
@@ -108,7 +108,7 @@ function _dedupeBranchedReturns(fdata) {
       return;
     }
 
-    if (ifRet.argument.name !== ifVar.declarations[0].id.name || elseRet.argument.name !== elseVar.declarations[0].id.name) {
+    if (ifRet.argument.name !== ifVar.id.name || elseRet.argument.name !== elseVar.id.name) {
       vlog('  - At least one branch did not actually return the result of the call');
       return;
     }

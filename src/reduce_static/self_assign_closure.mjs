@@ -121,8 +121,8 @@ function _findInit(body, fdata) {
   let i = 0;
   for (; i<body.length; ++i) {
     const stmt = body[i];
-    if (stmt.type === 'VariableDeclaration') {
-      const init = stmt.declarations[0].init;
+    if (stmt.type === 'VarStatement') {
+      const init = stmt.init;
       if (init.type === 'FunctionExpression') continue; // noop
       if (AST.isPrimitive(init)) continue; // noop
       if (init.type === 'ArrayExpression') {
@@ -142,24 +142,24 @@ function _findInit(body, fdata) {
   // Now looking for a specific pattern of `const x = f; const y = g; const z = x()`
 
   // const x = f;
-  if (body[i]?.type !== 'VariableDeclaration') return;
-  if (body[i].declarations[0].init.type !== 'Identifier') return;
+  if (body[i]?.type !== 'VarStatement') return;
+  if (body[i].init.type !== 'Identifier') return;
   // const y = g;    (it doesn't matter if that is f, actually)
-  if (body[i+1]?.type !== 'VariableDeclaration') return;
-  if (body[i+1].declarations[0].init.type !== 'Identifier') return; // TODO: it's also fine if this is another kind of noop like func, prim, obj, or arr
+  if (body[i+1]?.type !== 'VarStatement') return;
+  if (body[i+1].init.type !== 'Identifier') return; // TODO: it's also fine if this is another kind of noop like func, prim, obj, or arr
   // const z = x;
-  if (body[i+2]?.type !== 'VariableDeclaration') return;
-  if (body[i+2].declarations[0].init.type !== 'CallExpression') return;
-  if (body[i+2].declarations[0].init.callee.type !== 'Identifier') return;
-  if (body[i+2].declarations[0].init.callee.name !== body[i].declarations[0].id.name) return;
+  if (body[i+2]?.type !== 'VarStatement') return;
+  if (body[i+2].init.type !== 'CallExpression') return;
+  if (body[i+2].init.callee.type !== 'Identifier') return;
+  if (body[i+2].init.callee.name !== body[i].id.name) return;
 
-  const x = body[i].declarations[0];
+  const x = body[i];
   //const xname = x.id.name;
   const xinit = x.init;
-  //const y = body[i].declarations[0];
+  //const y = body[i];
   //const yname = y.id.name;
   //const yinit = y.init;
-  //const z = body[i].declarations[0];
+  //const z = body[i];
   //const zname = z.id.name;
   //const zinit = z.init;
 
@@ -184,9 +184,9 @@ function _findInit(body, fdata) {
   // Note: param count doesn't really matter, we assert that the first statament is Debugger so any param is unused.
   if (funcBody.length !== 5) return; // Looking for: `debugger; const x = []; self = func; const x = self(); return x`
   if (funcBody[0].type !== 'DebuggerStatement') return;
-  if (funcBody[1].type !== 'VariableDeclaration') return; // arr
-  if (funcBody[1].declarations[0].init.type !== 'ArrayExpression') return;
-  if (!funcBody[1].declarations[0].init.elements.every(e => !e || AST.isPrimitive(e))) return; // we can support _some_ idents too, but...
+  if (funcBody[1].type !== 'VarStatement') return; // arr
+  if (funcBody[1].init.type !== 'ArrayExpression') return;
+  if (!funcBody[1].init.elements.every(e => !e || AST.isPrimitive(e))) return; // we can support _some_ idents too, but...
   if (funcBody[2].type !== 'ExpressionStatement') return;
   if (funcBody[2].expression.type !== 'AssignmentExpression') return;
   if (funcBody[2].expression.left.type !== 'Identifier') return;
@@ -195,15 +195,15 @@ function _findInit(body, fdata) {
   if (funcBody[2].expression.right.body.body.length !== 2) return; // nested func has debugger and then returns the arr
   if (funcBody[2].expression.right.body.body[0].type !== 'DebuggerStatement') return;
   if (funcBody[2].expression.right.body.body[1].type !== 'ReturnStatement') return;
-  if (funcBody[2].expression.right.body.body[1].argument.name !== funcBody[1].declarations[0].id.name) return; // return arr
-  if (funcBody[3].type !== 'VariableDeclaration') return;
-  if (funcBody[3].declarations[0].init.type !== 'CallExpression') return;
-  if (funcBody[3].declarations[0].init.callee.type !== 'Identifier') return;
-  if (funcBody[3].declarations[0].init.callee.name !== xinit.name) return;
-  if (funcBody[3].declarations[0].init.arguments.length > 0) return; // There shouldn't be any args. It shouldn't matter. So we're going to ignore it. Most likely another transform will eliminate them anyways and then this rule will pass...
+  if (funcBody[2].expression.right.body.body[1].argument.name !== funcBody[1].id.name) return; // return arr
+  if (funcBody[3].type !== 'VarStatement') return;
+  if (funcBody[3].init.type !== 'CallExpression') return;
+  if (funcBody[3].init.callee.type !== 'Identifier') return;
+  if (funcBody[3].init.callee.name !== xinit.name) return;
+  if (funcBody[3].init.arguments.length > 0) return; // There shouldn't be any args. It shouldn't matter. So we're going to ignore it. Most likely another transform will eliminate them anyways and then this rule will pass...
   if (funcBody[4].type !== 'ReturnStatement') return;
   if (funcBody[4].argument.type !== 'Identifier') return;
-  if (funcBody[4].argument.name !== funcBody[3].declarations[0].id.name) return;
+  if (funcBody[4].argument.name !== funcBody[3].id.name) return;
 
   // xinit is the self-sealing pattern.
   // In that case y is truly noop since the rhs can not have been referenced in this pattern
@@ -249,9 +249,9 @@ function _findInit(body, fdata) {
   before(body[i+2]);
 
   // Replace the func with one that just returns the arr
-  decl.blockBody[decl.blockIndex].declarations[0].init = AST.functionExpression([], [
+  decl.blockBody[decl.blockIndex].init = AST.functionExpression([], [
     AST.debuggerStatement(),
-    AST.returnStatement(funcBody[1].declarations[0].id.name) // return arr
+    AST.returnStatement(funcBody[1].id.name) // return arr
   ]);
   // We should have eliminated the only other write so it's now a const. We also could omit this step and let other rules deal with it.
   decl.blockBody[decl.blockIndex].kind = 'const';
@@ -277,7 +277,7 @@ function process(fdata, meta, targetName) {
   const firstWrite = meta.writes[0];
   const secondWrite = meta.writes[1];
 
-  if (firstWrite.parentNode.type !== 'VariableDeclarator' && firstWrite.parentProp !== 'id') {
+  if (firstWrite.parentNode.type !== 'VarStatement' && firstWrite.parentProp !== 'id') {
     return;
   }
   if (firstWrite.parentNode.init.type !== 'FunctionExpression') {
@@ -325,16 +325,16 @@ function process(fdata, meta, targetName) {
 
   // `var tmp = targetName()`
   if (
-    tmpCall.type !== 'VariableDeclaration' ||
-    tmpCall.declarations[0].init.type !== 'CallExpression' ||
-    tmpCall.declarations[0].init.callee.type !== 'Identifier' ||
-    tmpCall.declarations[0].init.callee.name !== targetName
+    tmpCall.type !== 'VarStatement' ||
+    tmpCall.init.type !== 'CallExpression' ||
+    tmpCall.init.callee.type !== 'Identifier' ||
+    tmpCall.init.callee.name !== targetName
   ) {
     vlog('- bail; second-last statement was not a call to the inner function');
     return;
   }
   // Check if `const tmp = targetName(...x)` has a spread
-  if (tmpCall.declarations[0].init.arguments.some(a => a.type === 'SpreadElement')) {
+  if (tmpCall.init.arguments.some(a => a.type === 'SpreadElement')) {
     vlog('- bail; at least one arg to the inner call is spreading'); // We can probably support some cases here tho
     return;
   }
@@ -343,7 +343,7 @@ function process(fdata, meta, targetName) {
   if (
     tmpRet.type !== 'ReturnStatement' ||
     tmpRet.argument.type !== 'Identifier' ||
-    tmpRet.argument.name !== tmpCall.declarations[0].id.name
+    tmpRet.argument.name !== tmpCall.id.name
   ) {
     vlog('- bail; final return is not returning the tmp call');
     return;
@@ -444,7 +444,7 @@ function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite) {
   // Verify a pattern of `let f = function(){ debugger; f = function(){ ... }; const tmp = f(); return tmp; }`
   // The above already verified that the inside does not contain a closure.
 
-  const call = innerBlock[offset+1].declarations[0].init;
+  const call = innerBlock[offset+1].init;
 
   rule('Simple self closing function with no side effects can be collapsed');
   example(
@@ -456,11 +456,11 @@ function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite) {
   innerBlock.splice(offset, 1,
     ...secondWrite.parentNode.right.params.map((pnode,i) => {
       return pnode.$p.paramVarDeclRef ?
-        AST.variableDeclaration(
-          pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex].declarations[0].id.name,
+        AST.varStatement(
+          'let',
+          pnode.$p.paramVarDeclRef.blockBody[pnode.$p.paramVarDeclRef.blockIndex].id.name,
           // Either use the call arg node or use undefined
           call.arguments[i] || AST.identifier('undefined'),
-          'let'
         ) : AST.emptyStatement();
     }),
     ...secondWrite.parentNode.right.body.body.slice(secondWrite.parentNode.right.$p.bodyOffset)
@@ -498,7 +498,7 @@ function verifyClosureCase(fdata, meta, targetName, first, second) {
     vlog('  - bail: outer func is not exactly four statements (expecting var, assign, var, return)');
     return false;
   }
-  if (firstBody[bodyOffset1].type !== 'VariableDeclaration') {
+  if (firstBody[bodyOffset1].type !== 'VarStatement') {
     vlog('  - bail: first statement of outer function is not a binding that we can close');
     return false;
   }
@@ -519,7 +519,7 @@ function verifyClosureCase(fdata, meta, targetName, first, second) {
     vlog('  - bail: inner function does not return an ident');
     return false;
   }
-  if (secondBody[bodyOffset2].argument.name !== firstBody[bodyOffset1].declarations[0].id.name) {
+  if (secondBody[bodyOffset2].argument.name !== firstBody[bodyOffset1].id.name) {
     vlog('  - bail: inner function is not returning outer closure');
     return false;
   }
@@ -530,7 +530,7 @@ function verifyClosureCase(fdata, meta, targetName, first, second) {
   //
   // With an unknown closureValueNode and potentially some params/args (but no spreads) which would not actually be used
 
-  const closureValueNode = firstBody[bodyOffset1].declarations[0].init;
+  const closureValueNode = firstBody[bodyOffset1].init;
 
   // Confirm X; the value being closed.
   if (
@@ -667,12 +667,12 @@ function closureCaseEscaping(first, second, meta, targetName) {
       break;
     }
 
-    if (stmt.type !== 'VariableDeclaration') {
+    if (stmt.type !== 'VarStatement') {
       vlog('   - bail, encountered non-var-decl before seeing call;', stmt.type, stmt);
       break;
     }
 
-    const init = stmt.declarations[0].init;
+    const init = stmt.init;
 
     if (
       init.type === 'CallExpression' &&
@@ -717,8 +717,8 @@ function closureCaseEscaping(first, second, meta, targetName) {
   const secondBody = second.parentNode.right.body.body;
   const bodyOffset2 = second.parentNode.right.$p.bodyOffset;
 
-  const returned = firstBody[firstBody.length - 2].declarations[0].init.callee;
-  const closureName = firstBody[bodyOffset1].declarations[0].id.name;
+  const returned = firstBody[firstBody.length - 2].init.callee;
+  const closureName = firstBody[bodyOffset1].id.name;
 
   // Mutate calls first. They don't change indexs.
   // Change any call to simply refer straight to the value instead
@@ -822,8 +822,8 @@ function verifyImmediatelyCalledCase(fdata, meta, targetName, first, second) {
       // Unknown expression; we skip.
       break;
     }
-    if (stmt.type === 'VariableDeclaration') {
-      const init = stmt.declarations[0].init;
+    if (stmt.type === 'VarStatement') {
+      const init = stmt.init;
 
       if (
         init.type === 'CallExpression' &&
@@ -837,7 +837,7 @@ function verifyImmediatelyCalledCase(fdata, meta, targetName, first, second) {
 
       if (init.type === 'Identifier' && aliases.has(init.name)) {
         // Add alias to the list
-        aliases.add(stmt.declarations[0].id.name);
+        aliases.add(stmt.id.name);
         continue;
       }
 

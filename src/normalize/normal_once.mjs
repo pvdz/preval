@@ -39,7 +39,7 @@ import * as AST from '../ast.mjs';
 import {
   createFreshVar,
   findBoundNamesInVarDeclaration,
-  findBoundNamesInVarDeclarator,
+  findBoundNamesInVarDeclaratorOrVarStatement,
   getIdentUsageKind,
 } from '../bindings.mjs';
 import { addLabelReference, createFreshLabelStatement, updateGlobalLabelStatementRef } from '../labels.mjs';
@@ -55,6 +55,10 @@ export function phaseNormalOnce(fdata) {
   const loopStack = [];
 
   group('\n\n\n##################################\n## phaseNormalOnce  ::  ' + fdata.fname + '\n##################################\n\n\n');
+  if (VERBOSE_TRACING) {
+    const code = fmat(tmat(ast, true), true);
+    vlog('\nCurrent state (start of once)\n--------------\n' + code + '\n--------------\n');
+  }
 
   fdata.globallyUniqueLabelRegistry = new Map();
 
@@ -81,7 +85,7 @@ export function phaseNormalOnce(fdata) {
             names.push(decl.id.name);
           } else {
             // Note: this var decl is not yet normalized so we must iterate the declarators individually
-            node.declaration.declarations.forEach((decr) => findBoundNamesInVarDeclarator(decr, names));
+            node.declaration.declarations.forEach((decr) => findBoundNamesInVarDeclaratorOrVarStatement(decr, names));
           }
           ast.body.splice(i, 1, node.declaration, AST._exportNamedDeclarationFromNames(names.map((s) => AST.identifier(s))));
 
@@ -107,7 +111,7 @@ export function phaseNormalOnce(fdata) {
             ast.body.splice(
               i,
               1,
-              AST.variableDeclaration(node.declaration.id, node.declaration, 'let'),
+              AST.variableDeclaration(node.declaration.id, node.declaration, 'let', true),
               AST._exportNamedDeclarationFromNames(node.declaration.id.name),
             );
             if (node.declaration.type === 'FunctionDeclaration') {
@@ -129,7 +133,7 @@ export function phaseNormalOnce(fdata) {
             ast.body.splice(
               i,
               1,
-              AST.variableDeclaration(tmpName, node.declaration, 'const'),
+              AST.variableDeclaration(tmpName, node.declaration, 'const', true),
               AST._exportNamedDeclarationFromNames(tmpName, 'default'),
             );
             if (node.declaration.type === 'FunctionDeclaration') node.declaration.type = 'FunctionExpression';
@@ -150,7 +154,7 @@ export function phaseNormalOnce(fdata) {
           ast.body.splice(
             i,
             1,
-            AST.variableDeclaration(tmpName, node.declaration, 'const'),
+            AST.variableDeclaration(tmpName, node.declaration, 'const', true),
             AST._exportNamedDeclarationFromNames(tmpName, 'default'),
           );
 
@@ -248,7 +252,7 @@ export function phaseNormalOnce(fdata) {
               group();
               before(enode);
 
-              const decl = AST.variableDeclaration(enode.id, enode, 'let'); // If we did not have strict mode then this would be var. But import code is strict so this is let, probably even const.
+              const decl = AST.variableDeclaration(enode.id, enode, 'let', true); // If we did not have strict mode then this would be var. But import code is strict so this is let, probably even const.
               enode.type = 'FunctionExpression';
               enode.id = null;
               enode.$p.isBlockFuncDecl = false;
@@ -308,7 +312,7 @@ export function phaseNormalOnce(fdata) {
               example('{ f(); function f(){} }', 'let f = function(){}; { f(); }');
               before(enode, scopeNode);
 
-              const decl = AST.variableDeclaration(enode.id, enode, 'let'); // If we did not have strict mode then this would be var. But import code is strict so this is let, probably even const.
+              const decl = AST.variableDeclaration(enode.id, enode, 'let', true); // If we did not have strict mode then this would be var. But import code is strict so this is let, probably even const.
               enode.type = 'FunctionExpression';
               enode.id = null;
               enode.$p.isBlockFuncDecl = false;
@@ -349,7 +353,7 @@ export function phaseNormalOnce(fdata) {
         before(node);
 
         // It's probably const. We could even make this a config option although it shouldn't matter much for us.
-        const newNode = AST.variableDeclaration(node.id, AST.classExpression(null, node.superClass, node.body), 'let');
+        const newNode = AST.variableDeclaration(node.id, AST.classExpression(null, node.superClass, node.body), 'let', true);
         if (parentIndex < 0) parentNode[parentProp] = newNode;
         else parentNode[parentProp][parentIndex] = newNode;
 
@@ -527,12 +531,12 @@ export function phaseNormalOnce(fdata) {
 
           const newNode = AST.blockStatement(
             // const forInGen = $forIn(x)
-            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FORIN), [node.right])),
+            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FORIN), [node.right]), 'const', true),
             // while (true) {}
             // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
             AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
               // const next = forInGen.next();
-              AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
+              AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), []), 'const', true),
               // if (x.done)
               AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
                 AST.blockStatement(
@@ -582,12 +586,12 @@ export function phaseNormalOnce(fdata) {
         // should be able to simply do something like `x[f()] = g().value` and maintain code execution order
         const newNode = AST.blockStatement(
           // const forInGen = $forIn(x)
-          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FORIN), [node.right])),
+          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FORIN), [node.right]), 'const', true),
           // while (true) {}
           // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
           AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
             // const next = forInGen.next();
-            AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
+            AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), []), 'const', true),
             // if (x.done)
             AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
               AST.blockStatement(
@@ -655,12 +659,12 @@ export function phaseNormalOnce(fdata) {
 
           const newNode = AST.blockStatement(
             // const forOfGen = $forOf(x)
-            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FOROF), [node.right])),
+            AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FOROF), [node.right]), 'const', true),
             // while (true) {}
             // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
             AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
               // const next = forOfGen.next();
-              AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
+              AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), []), 'const', true),
               // if (x.done)
               AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
                 AST.blockStatement(
@@ -709,12 +713,12 @@ export function phaseNormalOnce(fdata) {
         // should be able to simply do something like `x[f()] = g().value` and maintain code execution order
         const newNode = AST.blockStatement(
           // const forOfGen = $forOf(x)
-          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FOROF), [node.right])),
+          AST.variableDeclaration(genName, AST.callExpression(AST.identifier(SYMBOL_FOROF), [node.right]), 'const', true),
           // while (true) {}
           // (It probably doesn't make sense for for-of/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
           AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
             // const next = forOfGen.next();
-            AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), [])),
+            AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), []), 'const', true),
             // if (x.done)
             AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
               AST.blockStatement(
@@ -933,7 +937,7 @@ export function phaseNormalOnce(fdata) {
             cnode.consequent.some((snode, j) => {
               if (snode.type === 'VariableDeclaration') {
                 const names = [];
-                snode.declarations.forEach((n) => findBoundNamesInVarDeclarator(n, names));
+                snode.declarations.forEach((n) => findBoundNamesInVarDeclaratorOrVarStatement(n, names));
                 vlog('- Var decl binds these names:', names);
                 // Declare these names before the switch and "drop" the `var/let/const` keyword to have it be an assignment
 
@@ -966,7 +970,7 @@ export function phaseNormalOnce(fdata) {
                 before(snode, parentNode);
 
                 ASSERT(snode.id, 'since this cannot be an export, the id must be present');
-                const newNode = AST.variableDeclaration(snode.id, snode, 'let');
+                const newNode = AST.variableDeclaration(snode.id, snode, 'let', true);
                 // TODO: create a fresh var that clones snode props instead...
                 snode.type = 'FunctionExpression';
                 snode.id = null;
@@ -985,8 +989,8 @@ export function phaseNormalOnce(fdata) {
           example('switch (x) { case y: let a = 10, b = 20; }', '{ let a; let b; switch (x) { case y: a = 10, b = 10; } }');
 
           wrapper.body.push(
-            ...vars.map((name) => AST.variableDeclaration(name, undefined, 'var')),
-            ...lets.map((name) => AST.variableDeclaration(name)),
+            ...vars.map((name) => AST.variableDeclaration(name, undefined, 'var', true)),
+            ...lets.map((name) => AST.variableDeclaration(name, undefined, 'let', true)),
             ...funcdecls,
           );
 
@@ -1034,7 +1038,7 @@ export function phaseNormalOnce(fdata) {
           before(node);
 
           const tmpName = createFreshVar('tmpSwitchDisc', fdata);
-          const varNode = AST.variableDeclaration(tmpName, node.discriminant, 'const');
+          const varNode = AST.variableDeclaration(tmpName, node.discriminant, 'const', true);
           node.$p.regularBreaks.forEach(({ parentNode, parentProp, parentIndex }) => {
             // Explicitly point all breaks to the label that replaces the root switch node
             // This preserves the abrupt completion semantics in cases where it matters since
@@ -1115,8 +1119,8 @@ export function phaseNormalOnce(fdata) {
         updateGlobalLabelStatementRef(fdata, labelStmt);
 
         const newNodes = [
-          AST.variableDeclaration(tmpNameValue, node.discriminant, 'const'),
-          AST.variableDeclaration(tmpNameCase, AST.literal(defaultIndex >= 0 ? defaultIndex : node.cases.length)),
+          AST.variableDeclaration(tmpNameValue, node.discriminant, 'let', true),
+          AST.variableDeclaration(tmpNameCase, AST.literal(defaultIndex >= 0 ? defaultIndex : node.cases.length), 'let', true),
           node.cases
             .slice(0)
             .reverse()
@@ -1531,8 +1535,8 @@ export function phaseNormalOnce(fdata) {
           const finalLabelStatementNode = AST.labeledStatement(AST.identifier(labelStatementNode.label.name), labelBody);
           updateGlobalLabelStatementRef(fdata, finalLabelStatementNode);
           const wrapper = AST.blockStatement(
-            ...keywords.map(({actionName}) => AST.variableDeclaration(actionName, AST.primitive(false), 'let')),
-            ...keywords.map(({argName}) => argName && AST.variableDeclaration(argName, AST.primitive(undefined), 'let')).filter(Boolean),
+            ...keywords.map(({actionName}) => AST.variableDeclaration(actionName, AST.primitive(false), 'let', true)),
+            ...keywords.map(({argName}) => argName && AST.variableDeclaration(argName, AST.primitive(undefined), 'let', true)).filter(Boolean),
             finalLabelStatementNode,
             node.finalizer, // We won't be using this anymore anyways since we'll replace it
             AST.ifElseChain(conditions, undefined, true)
@@ -1577,7 +1581,7 @@ function hoistingOnce(hoistingRoot, from) {
   );
 
   ASSERT(hoistingRoot.$p.hoistedVars, 'the hoistedVars should exist on anything that can hoist', hoistingRoot);
-  vlog('Hoisting', hoistingRoot.$p.hoistedVars.length, 'elements');
+  vlog('hoistingOnce; Hoisting', hoistingRoot.$p.hoistedVars.length, 'elements from hoistingroot @', +hoistingRoot.$p.pid);
 
   // There are two things in three contexts that we hoist
   // - functions and variables
@@ -1611,24 +1615,25 @@ function hoistingOnce(hoistingRoot, from) {
 
   const rootBody = hoistingRoot.type === 'Program' ? hoistingRoot.body : hoistingRoot.body.body;
 
-  const hoistedVars = hoistingRoot.$p.hoistedVars;
-  if (hoistedVars.length) {
+  if (hoistingRoot.$p.hoistedVars.length) {
     // Note: the parent can be a scope root (global/func), or export (named/default)
     // hoistedVars -> Array<[node, parentNode, parentProp, parentIndex]>
     group();
+    vlog('Step 1: process bindings');
     rule('Bindings with `var` and function declarations should be pre-hoisted in AST, even if exported');
     example('f(x); var x = 10; f(x);', 'let x; f(x); x = 10; f(x);');
     example('f(x); export var x = 10; f(x);', 'let x; f(x); x = 10; f(x); export {x};');
     example('f(x); export default function f() {}; f(x);', 'let f = function(){} f(x); f(x); export {f as default};');
+    before(hoistingRoot);
 
-    const funcs = [];
-    const names = [];
+    const funcsToMove = [];
+    const varNames = [];
     const exportedNames = new Set();
     let exportDefault = ''; // There's at most one of these.
-    hoistedVars.forEach(([what, hoistNode, parentNode, parentProp, parentIndex, exportIndex]) => {
+    hoistingRoot.$p.hoistedVars.forEach(([what, hoistNode, parentNode, parentProp, parentIndex, exportIndex]) => {
       group();
-      rule(
-        '- Hoisting step. From ' +
+      vlog(
+        '  - Hoisting step. From ' +
           from +
           '; what = ' +
           what +
@@ -1657,24 +1662,27 @@ function hoistingOnce(hoistingRoot, from) {
         case 'FunctionDeclaration':
         case 'BlockStatement': {
           if (hoistNode.type === 'FunctionDeclaration') {
-            vlog('Queueing function node to be moved');
-            funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
+            vlog('Queueing Function to be moved from program/func/block, removing it from its current parent');
+            funcsToMove.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
             // We will inject this node at the top
             if (parentIndex < 0) parentNode[parentProp] = AST.emptyStatement();
             else parentNode[parentProp][parentIndex] = AST.emptyStatement();
           } else {
-            vlog('Queueing bindings to be moved');
+            vlog('Queueing bindings to be moved from program/func/block');
             before(hoistNode);
             const newNodes = [];
 
             // Decl is not normalized. Can have any number of declarators, can still be pattern
-            hoistNode.declarations.forEach((decl) => {
-              findBoundNamesInVarDeclarator(decl, names);
+            vlog('Searching through', hoistNode.declarations.length, 'decrs');
+            hoistNode.declarations.forEach((decr) => {
+              vlog('Searching', decr)
+              findBoundNamesInVarDeclaratorOrVarStatement(decr, varNames);
+              vlog('- Decr defined these names:', varNames);
               // Now we have the names, remove the var keyword from the declaration
               // If there was no init, ignore this step
               // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
-              if (decl.init) {
-                newNodes.push(AST.assignmentExpression(decl.id, decl.init));
+              if (decr.init) {
+                newNodes.push(AST.assignmentExpression(decr.id, decr.init));
               }
             });
             // Must replace one node with one new node to preserve indexes of other var statements that appear later
@@ -1698,7 +1706,7 @@ function hoistingOnce(hoistingRoot, from) {
             example('if (x) var y = z;', 'var y; if (x) y = z;');
             before(hoistNode, parentNode);
 
-            findBoundNamesInVarDeclaration(hoistNode, names);
+            findBoundNamesInVarDeclaration(hoistNode, varNames);
             parentNode.body = AST.expressionStatement(
               AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
             );
@@ -1711,7 +1719,7 @@ function hoistingOnce(hoistingRoot, from) {
 
             // Decl is not normalized. Can have any number of declarators, can still be pattern
             hoistNode.declarations.forEach((decl) => {
-              findBoundNamesInVarDeclarator(decl, names);
+              findBoundNamesInVarDeclaratorOrVarStatement(decl, varNames);
               // Now we have the names, remove the var keyword from the declaration
               // If there was no init, ignore this step
               // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
@@ -1738,7 +1746,7 @@ function hoistingOnce(hoistingRoot, from) {
             example('if (x) var y = z;', 'var y; if (x) y = z;');
             before(hoistNode, parentNode);
 
-            findBoundNamesInVarDeclaration(hoistNode, names);
+            findBoundNamesInVarDeclaration(hoistNode, varNames);
             parentNode.body = AST.expressionStatement(
               AST.assignmentExpression(hoistNode.declarations[0].id, hoistNode.declarations[0].init || AST.identifier('undefined')),
             );
@@ -1758,7 +1766,7 @@ function hoistingOnce(hoistingRoot, from) {
             const newNodes = [];
 
             // Decl is not normalized but somewhat limited due to for-syntax
-            findBoundNamesInVarDeclaration(hoistNode, names);
+            findBoundNamesInVarDeclaration(hoistNode, varNames);
             ASSERT(parentIndex === -1, 'var decls in for-header are not in an array', parentIndex);
             parentNode[parentProp] = hoistNode.declarations[0].id;
 
@@ -1770,7 +1778,7 @@ function hoistingOnce(hoistingRoot, from) {
           // Must be the `var` or `function` form to reach here.
           // Same as global except we must also eliminate the original export and track the exported names
           if (hoistNode.type === 'FunctionDeclaration') {
-            funcs.push([hoistNode, parentNode, parentProp, parentIndex]);
+            funcsToMove.push([hoistNode, parentNode, parentProp, parentIndex]);
             hoistingRoot.body[exportIndex] = AST.emptyStatement();
             exportedNames.add(hoistNode.id.name);
           } else {
@@ -1779,9 +1787,9 @@ function hoistingOnce(hoistingRoot, from) {
 
             // Decl is not normalized. Can have any number of declarators, can still be pattern
             hoistNode.declarations.forEach((decl) => {
-              const boundNames = findBoundNamesInVarDeclarator(decl);
+              const boundNames = findBoundNamesInVarDeclaratorOrVarStatement(decl);
               boundNames.forEach((name) => {
-                names.push(name);
+                varNames.push(name);
                 exportedNames.add(name);
               });
 
@@ -1807,7 +1815,7 @@ function hoistingOnce(hoistingRoot, from) {
 
         case 'ExportDefaultDeclaration': {
           ASSERT(hoistNode.type === 'FunctionDeclaration');
-          funcs.push([hoistNode, parentNode, parentProp, parentIndex]);
+          funcsToMove.push([hoistNode, parentNode, parentProp, parentIndex]);
           hoistingRoot.body[exportIndex] = AST.emptyStatement();
           exportedNames.add(hoistNode.id.name);
           exportDefault = hoistNode.id.name; // max one of these ever
@@ -1821,14 +1829,14 @@ function hoistingOnce(hoistingRoot, from) {
           const newNodes = [];
 
           if (hoistNode.type === 'FunctionDeclaration') {
-            funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
+            funcsToMove.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
             // We will inject this node at the top
             if (parentIndex < 0) parentNode[parentProp] = AST.emptyStatement();
             else parentNode[parentProp][parentIndex] = AST.emptyStatement();
           } else {
             // Decl is not normalized. Can have any number of declarators, can still be pattern
             hoistNode.declarations.forEach((decl) => {
-              findBoundNamesInVarDeclarator(decl, names);
+              findBoundNamesInVarDeclaratorOrVarStatement(decl, varNames);
               // Now we have the names, remove the var keyword from the declaration
               // If there was no init, ignore this step
               // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
@@ -1871,7 +1879,7 @@ function hoistingOnce(hoistingRoot, from) {
           // Note: this var may introduce multiple bindings (!)
           const newNodes = [];
           hoistNode.declarations.forEach((decl) => {
-            findBoundNamesInVarDeclarator(decl, names);
+            findBoundNamesInVarDeclaratorOrVarStatement(decl, varNames);
             // Now we have the names, remove the var keyword from the declaration
             // If there was no init, ignore this step
             // Patterns must have an init (strict syntax) except as lhs of for-in/for-of
@@ -1901,41 +1909,46 @@ function hoistingOnce(hoistingRoot, from) {
       groupEnd();
     });
 
-    const set = new Set(names);
-    vlog('Removing any func decl names and param names from the hoisted var decl set (' + set.size + ' names before)');
+    // All the `var` names in this hoistingRoot
+    const declarVarNamesSet = new Set(varNames);
+    vgroup('Step 2: Removing func.id and prune param names from the hoisted var decl set (', declarVarNamesSet.size, ' names before)');
     // Drop func names from the list of hoisted var names (anon func decl export should not end up in this list)
     const dupeFunc = new Map();
-    funcs.forEach(([hoistNode, rootIndex, rootChild, exportProp]) => {
-      set.delete(hoistNode.id.name);
+    funcsToMove.forEach(([hoistNode, rootIndex, rootChild, exportProp]) => {
+      declarVarNamesSet.delete(hoistNode.id.name);
       // Note: if there are two func decls with the same name in the same scope then we only keep the last one.
       dupeFunc.set(hoistNode.id.name, hoistNode);
     });
-    const uniqueFuncs = [...dupeFunc.values()];
+    vgroupEnd();
+    const uniqueFuncs = Array.from(dupeFunc.values());
 
     // Try to find a param on function.params
+    vgroup('Step 3: drop names that are also params (set now has', declarVarNamesSet.size, 'names)');
     if (hoistingRoot.type !== 'Program') {
-      set.forEach((name) => {
+      declarVarNamesSet.forEach((name) => {
         if (hoistingRoot.params.some((pnode) => pnode.type === 'Identifier' && pnode.name === name)) {
-          set.delete(name);
-          vlog('- The binding name `' + name + '` was also a parameter so not adding the var decl for it (' + set.size + ' names left)');
+          declarVarNamesSet.delete(name);
+          vlog('- The binding name `' + name + '` was also a parameter so not adding the var decl for it (', declarVarNamesSet.size, ' names left)');
         }
       });
     }
+    vgroupEnd()
 
     vlog(
       'Queued',
-      funcs.length,
+      funcsToMove.length,
       'functions and',
-      names.length,
+      varNames.length,
       'var names and',
       exportedNames.size,
       'exports for hoisting (actually adding',
-      set.size,
+      declarVarNamesSet.size,
       'var names after filtering)',
     );
 
     // This will invalidate all cached indexes moving forward!
 
+    vgroup('Step 4: sort func list and generate new let decls for them (' + uniqueFuncs.size + ' funcs to do)');
     // Sort them and then inject them at the top.
     uniqueFuncs.sort((a, b) => (a.id.name < b.id.name ? -1 : a.id.name > b.id.name ? 1 : 0));
     const newFuncs = uniqueFuncs.map((hoistNode) => {
@@ -1943,26 +1956,31 @@ function hoistingOnce(hoistingRoot, from) {
       const name = hoistNode.id.name;
       hoistNode.id = null;
       hoistNode.type = 'FunctionExpression';
-      return AST.variableDeclaration(name, hoistNode, 'let'); // probably const eventually
+      return AST.variableDeclaration(name, hoistNode, 'let', true); // probably const eventually
     });
     rootBody.unshift(...newFuncs);
+    vgroupEnd();
 
-    const sorted = [...set].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+    vgroup('Step 5: Create new vars for the var decls to be hoisted (' + declarVarNamesSet.size + ' names)');
+    const sorted = Array.from(declarVarNamesSet).sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
     rootBody.unshift(
       ...sorted.map((name) => {
         // Exports are already replaced
         // Create lets with explicit init to `undefined`. Eliminates all vars this way.
-        return AST.variableDeclaration(name, AST.identifier('undefined'), 'let');
+        return AST.variableDeclaration(name, AST.identifier('undefined'), 'let', true);
       }),
     );
+    vgroupEnd();
 
     // Push the named exports at the end of the body (doesn't really matter where they appear; they will be live bindings)
     // Special case the default export. Note that default function exports are live bindings as well, unlike default expressions.
     rootBody.push(
-      ...[...exportedNames].map((name) => AST._exportNamedDeclarationFromNames(name, name === exportDefault ? 'default' : name)),
+      ...Array.from(exportedNames).map((name) => AST._exportNamedDeclarationFromNames(name, name === exportDefault ? 'default' : name)),
     );
 
-    hoistedVars.length = 0; // Clear it. We don't need it anymore.
+    hoistingRoot.$p.hoistedVars.length = 0; // Clear it. We don't need it anymore.
+
+    after(hoistingRoot);
 
     groupEnd();
     vlog('/Hoisting true');

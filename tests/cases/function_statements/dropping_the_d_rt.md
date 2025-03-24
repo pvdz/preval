@@ -36,12 +36,12 @@ top of their func owner scope before further treatment. spec be damned
 (Annotated with pids)
 
 `````filename=intro
-let THIS_IS_DA____$1___4__ = function () /*6*/ {
+let THIS_IS_DA____$1___5__ = function () /*7*/ {
   debugger;
   $(`hello`);
-  return undefined___15__;
+  return undefined___16__;
 };
-const tmpCalleeParam___18__ = THIS_IS_DA_______20__();
+let tmpCalleeParam___18__ = THIS_IS_DA_______20__();
 $(tmpCalleeParam___24__);
 `````
 
@@ -57,7 +57,7 @@ None
 
                      | reads      | read by     | overWrites     | overwritten by
 THIS_IS_DA____$1:
-  - w @4             | ########## | not read    | none           | none
+  - w @5             | ########## | not read    | none           | none
 
 tmpCalleeParam:
   - w @18            | ########## | 24          | none           | none

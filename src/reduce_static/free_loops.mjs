@@ -82,15 +82,15 @@ export function _freeLoops(fdata, prng, usePrng) {
     let fromIndex = whileIndex;
     while (fromIndex > 0) {
       fromIndex = fromIndex - 1;
-      vgroup('Statement', fromIndex, '(', blockBody[fromIndex].type, blockBody[fromIndex].declarations?.[0].init.type, ')');
+      vgroup('Statement', fromIndex, '(', blockBody[fromIndex].type, blockBody[fromIndex].init?.type, ')');
       const r = isFree(blockBody[fromIndex], fdata, callNodeToSymbol, declaredNameTypes, false);
       if (!r || r === FAILURE_SYMBOL) {
-        vlog('Statement at index', fromIndex, 'is NOT free, ends the scan of pre-while-statements (', blockBody[fromIndex].type, blockBody[fromIndex].declarations?.[0].init.type, ')');
+        vlog('Statement at index', fromIndex, 'is NOT free, ends the scan of pre-while-statements (', blockBody[fromIndex].type, blockBody[fromIndex].init?.type, ')');
         fromIndex += 1; // Compensate.
         vgroupEnd();
         break;
       } else {
-        vlog('^ Statement at index', fromIndex, 'is free (', blockBody[fromIndex].type, blockBody[fromIndex].declarations?.[0].init.type, ')');
+        vlog('^ Statement at index', fromIndex, 'is free (', blockBody[fromIndex].type, blockBody[fromIndex].init?.type, ')');
       }
       vgroupEnd();
     }
@@ -135,8 +135,8 @@ export function _freeLoops(fdata, prng, usePrng) {
 
     vlog('Storing final values of pre-loop variables');
     for (let i=fromIndex; i<whileIndex; ++i) {
-      if (blockBody[i].type === 'VariableDeclaration') {
-        blockBody[i].declarations[0].init = register.get(blockBody[i].declarations[0].id.name);
+      if (blockBody[i].type === 'VarStatement') {
+        blockBody[i].init = register.get(blockBody[i].id.name);
       }
     }
 
@@ -364,7 +364,8 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
           todo(`Support this ident in isFree CallExpression: ${node.callee.name}`);
         }
         return false;
-      } else if (node.callee.type === 'MemberExpression') {
+      }
+      else if (node.callee.type === 'MemberExpression') {
         if (node.callee.computed) {
           // `a[b]()` ... if we don't know b then we don't know what's being called
           todo('Computed method call but we dont know whats being called')
@@ -387,7 +388,7 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
           // change during resolution and each method must be gated explicitly so we can't have that.
           const objName = node.callee.object.name;
           const symbol = symbo(objName, node.callee.property.name);
-          vlog('Calling', [symbol]);
+          vlog('Static method call for symbol?', [symbol]);
           const meta = fdata.globallyUniqueNamingRegistry.get(objName);
           // Is the ident a builtin or part of declaredNameTypes?
           if (meta.isBuiltin) {
@@ -402,6 +403,8 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
             }
           }
           else {
+            const qualified = objName + '.' + node.callee.property.name;
+            vlog('No, calling:', [qualified]);
             const init = declaredNameTypes.get(objName);
             if (init) {
               // Get the type of the init of the object. That will tell us what method is being invoked.
@@ -426,7 +429,8 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
                 return false;
               }
             } else {
-              todo(`Calling a static method on an ident that is not global and not recorded: ${symbol}`, objName);
+              //todo(`Calling a static method on an ident that is not global and not recorded in free loop: ${qualified}`);
+              todo(`Calling a static method on an ident that is not global and not recorded: ${symbol}`);
               return false;
             }
           }
@@ -555,17 +559,18 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
       return true;
     }
     case 'UnaryExpression': return isFree(node.argument, fdata, callNodeToSymbol, declaredNameTypes, insideWhile);
-    case 'VariableDeclaration': {
-      const id = node.declarations[0].id;
-      vlog('- Var decl; Recording free variable:', [id.name]);
+    case 'VarStatement': {
+      const id = node.id;
+      vlog('- Var decl; Recording free variable (probably):', [id.name]);
 
-      const init = node.declarations[0].init;
+      const init = node.init;
       if (init.type === 'FunctionExpression') {
         vlog('  - Ignoring function expression as init. Also not recording var (', id.name,')');
         // Ignore..? But don't record this var as accessible.
         return true;
       }
       if (!isFree(init, fdata, callNodeToSymbol, declaredNameTypes, insideWhile)) {
+        vlog('  - The init was not free so not recording the name...');
         return false;
       }
       vlog('  - init isFree...', [id.name], '; determining type');
@@ -889,25 +894,25 @@ function _runStatement(fdata, node, register, callNodeToSymbol, prng, usePrng) {
         return runStatement(fdata, node.handler.body, register, callNodeToSymbol, prng, usePrng);
       }
     }
-    case 'VariableDeclaration': {
+    case 'VarStatement': {
       // We'll only see let and const and I don't think it matters as we don't need to validate mutability.
-      const init = node.declarations[0].init;
-      //console.log('var decl for: ' + node.declarations[0].id.name, 'total', Array.from(register.keys()).join(' '))
+      const init = node.init;
+      //console.log('var decl for: ' + node.id.name, 'total', Array.from(register.keys()).join(' '))
       if (init.type === 'ArrayExpression') {
         register.set(
-          node.declarations[0].id.name,
+          node.id.name,
           init // Use verbatim. The init.elements will be referenced and mutated, most of the time.
         );
       } else if (init.type === 'ObjectExpression') {
         todo('support var decls with objects?');
         return FAILURE_SYMBOL;
       } else {
-        const value = runExpression(fdata, node.declarations[0].init, register, callNodeToSymbol, prng, usePrng);
+        const value = runExpression(fdata, node.init, register, callNodeToSymbol, prng, usePrng);
         if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
-        ASSERT(PRIMITIVE_TYPE_NAMES_TYPEOF.has(value === null ? 'null' : typeof value), 'var decl init runexpr should yield a primitive?', node.declarations[0].init, value);
+        ASSERT(PRIMITIVE_TYPE_NAMES_TYPEOF.has(value === null ? 'null' : typeof value), 'var decl init runexpr should yield a primitive?', node.init, value);
 
         register.set(
-          node.declarations[0].id.name,
+          node.id.name,
           AST.primitive(value)
         );
       }

@@ -91,7 +91,7 @@ function _freeNested(fdata, $prng, usePrng) {
 
       // Get the function alias for this $free func
       const funcAlias =
-        parentNode.type === 'VariableDeclarator'
+        parentNode.type === 'VarStatement'
         ? parentNode.id.name
         : parentNode.type === 'AssignmentExpression' && parentNode.left.type === 'Identifier'
         ? parentNode.left.name
@@ -128,21 +128,21 @@ function _freeNested(fdata, $prng, usePrng) {
       // "real" body should have exactly two statements
       body.length - funcNode.$p.bodyOffset === 2 &&
       // It should start with a var decl of sorts
-      stmt.type === 'VariableDeclaration' &&
+      stmt.type === 'VarStatement' &&
       // And then return this value
       last.type === 'ReturnStatement' &&
       // If not then bail. Most likely another trick will fix it for us.
-      last.argument.type === 'Identifier' && last.argument.name === stmt.declarations[0].id.name
+      last.argument.type === 'Identifier' && last.argument.name === stmt.id.name
     ) {
       // Get the function alias for this $free func
       const funcAlias =
-        parentNode.type === 'VariableDeclarator'
+        parentNode.type === 'VarStatement'
         ? parentNode.id.name
         : parentNode.type === 'AssignmentExpression' && parentNode.left.type === 'Identifier'
         ? parentNode.left.name
         : ASSERT(false, 'what', parentNode);
 
-      const init = stmt.declarations[0].init;
+      const init = stmt.init;
       const initIsPrimitive = AST.isPrimitive(init);
 
       ASSERT(funcAlias);
@@ -262,7 +262,7 @@ function _freeNested(fdata, $prng, usePrng) {
         changed += 1;
       }
 
-      if (body[index].type === 'VariableDeclaration' || body[index].type === 'ExpressionStatement') {
+      if (body[index].type === 'VarStatement' || body[index].type === 'ExpressionStatement') {
         const expr = getExpressionFromNormalizedStatement(body[index]);
         const isFrfr = expr.type === 'CallExpression' && expr.callee.type === 'Identifier' && expr.callee.name === '$frfr';
 
@@ -292,7 +292,7 @@ function _freeNested(fdata, $prng, usePrng) {
           const calledFreeFuncNode = calledFreeMeta.constValueRef.node;
           ASSERT(calledFreeMeta);
           // This one tripped before when making globals args, which included nested frfr calls, which then trips this
-          ASSERT(calledFreeFuncNode?.type === 'FunctionExpression', 'expecting the first argument to $frfr to be a var decl whose init is a function', frfrCallArgs[0], ' init:', calledFreeMeta.constValueRef.node, stmt.declarations?.[0]);
+          ASSERT(calledFreeFuncNode?.type === 'FunctionExpression', 'expecting the first argument to $frfr to be a var decl whose init is a function', frfrCallArgs[0], ' init:', calledFreeMeta.constValueRef.node, stmt);
           ASSERT(calledFreeFuncNode.id?.name === '$free', '$frfr should be calling $free functions');
 
           // Note: calledFreeFuncNode.params should have a .$p.paramVarDeclRef at this point if they have a local const. They may not.
@@ -368,9 +368,9 @@ function _freeNested(fdata, $prng, usePrng) {
                 calledFreeFuncNode.body.body[i] = AST.emptyStatement(); // Drop the debugger statement. We won't need it anymore.
                 break;
               }
-              ASSERT(bnode.type === 'VariableDeclaration', 'should not find this/arguments or anything else in the func header', calledFreeFuncNode.body.body, i, bnode.type);
+              ASSERT(bnode.type === 'VarStatement', 'should not find this/arguments or anything else in the func header', calledFreeFuncNode.body.body, i, bnode.type);
 
-              const init = bnode.declarations[0].init;
+              const init = bnode.init;
               ASSERT(init.type === 'Param', '$free funcs shouldnt get this or arguments aliases and we would stop before finding Debugger so what is this?', bnode);
 
               // Find the parameter index, then get the argument at that index and move it here.
@@ -379,7 +379,7 @@ function _freeNested(fdata, $prng, usePrng) {
               ASSERT(calledFreeFuncNode.params[init.index]?.index === init.index, 'index should refer to proper func param', init.index, calledFreeFuncNode.params);
 
               // Updating the init. Note that the frfr first arg is the function, so map the 1-offset.
-              bnode.declarations[0].init = frfrCallArgs[init.index + 1];
+              bnode.init = frfrCallArgs[init.index + 1];
             }
             after(calledFreeFuncNode);
             vgroupEnd();
@@ -389,10 +389,10 @@ function _freeNested(fdata, $prng, usePrng) {
             vgroup('- replace original call statement with an empty var decl or empty statement');
             before(funcNode);
             let lhs;
-            if (body[index].type === 'VariableDeclaration') {
+            if (body[index].type === 'VarStatement') {
               // Keep the decl but make it a let and init to undefined
-              lhs = body[index].declarations[0].id;
-              body[index].declarations[0].init = AST.identifier('undefined'); // TODO: Should be init value type matching return type
+              lhs = body[index].id;
+              body[index].init = AST.identifier('undefined'); // TODO: Should be init value type matching return type
               body[index].kind = 'let';
             } else {
               ASSERT(body[index].type === 'ExpressionStatement' && body[index].expression.type === 'AssignmentExpression');

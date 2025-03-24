@@ -109,18 +109,18 @@ function process(meta, name) {
   // So we should be able to move the alias out of the header and assign the constant, without worrying
   // about other functions where we need to do the same.
 
-  ASSERT(funcNode.$p.readsArgumentsLenAt >= 0, 'should be set if it contains it');
+  ASSERT(funcNode.$p.readsArgumentsLenAt >= 0, 'should be set if it contains it', funcNode.$p);
 
   vlog('Arglen alias at', funcNode.$p.readsArgumentsLenAt);
   const aliasVarNode = funcNode.body.body[funcNode.$p.readsArgumentsLenAt];
-  ASSERT(aliasVarNode?.type === 'VariableDeclaration' && aliasVarNode.kind === 'const', 'arg.len alias should be a constant', 'func name: "', funcNode?.$p?.uniqueName, '", alias node:', aliasVarNode);
+  ASSERT(aliasVarNode?.type === 'VarStatement' && aliasVarNode.kind === 'const', 'arg.len alias should be a constant', 'func name: "', funcNode?.$p?.uniqueName, '", alias node:', aliasVarNode);
 
   funcNode.body.body[funcNode.$p.readsArgumentsLenAt] = AST.emptyStatement();
   funcNode.body.body.splice(
     funcNode.$p.bodyOffset,
     0,
     // Note: this should be our own alias so we should be able to keep it a constant...
-    AST.variableDeclaration(aliasVarNode.declarations[0].id, AST.literal(paramCount), 'const'),
+    AST.varStatement('const', aliasVarNode.id, AST.literal(paramCount)),
   );
 
   after(funcNode, varWrite.blockBody);

@@ -48,16 +48,16 @@ $(f);
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () /*6*/ {
+let f___5__ = function () /*7*/ {
   debugger;
-  let THIS_IS_DA____$1___10__ = function () /*12*/ {
+  let THIS_IS_DA____$1___12__ = function () /*14*/ {
     debugger;
     $(`hello`);
-    return undefined___21__;
+    return undefined___23__;
   };
-  const tmpCalleeParam___24__ = THIS_IS_DA_______26__();
-  $(tmpCalleeParam___30__);
-  return undefined___33__;
+  let tmpCalleeParam___25__ = THIS_IS_DA_______27__();
+  $(tmpCalleeParam___31__);
+  return undefined___34__;
 };
 let g___36__ = function () /*38*/ {
   debugger;
@@ -79,15 +79,15 @@ None
 
                      | reads      | read by     | overWrites     | overwritten by
 f:
-  - w @4       | ########## | 51          | none           | none
-  - r @51      | 4
+  - w @5       | ########## | 51          | none           | none
+  - r @51      | 5
 
 THIS_IS_DA____$1:
-  - w @10            | ########## | not read    | none           | none
+  - w @12            | ########## | not read    | none           | none
 
 tmpCalleeParam:
-  - w @24            | ########## | 30          | none           | none
-  - r @30            | 24
+  - w @25            | ########## | 31          | none           | none
+  - r @31            | 25
 
 g:
   - w @36            | ########## | not read    | none           | none

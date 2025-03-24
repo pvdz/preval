@@ -34,11 +34,11 @@ if ($) f();
 
 `````js filename=intro
 if ($) {
-  const tmpssa2_x /*:unknown*/ = $(1, `shared`);
+  const tmpssa3_x /*:unknown*/ = $(1, `shared`);
   if ($) {
-    $(tmpssa2_x, `a`);
+    $(tmpssa3_x, `a`);
   } else {
-    $(tmpssa2_x, `b`);
+    $(tmpssa3_x, `b`);
   }
 } else {
 }
@@ -50,11 +50,11 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpssa2_x = $(1, `shared`);
+  const tmpssa3_x = $(1, `shared`);
   if ($) {
-    $(tmpssa2_x, `a`);
+    $(tmpssa3_x, `a`);
   } else {
-    $(tmpssa2_x, `b`);
+    $(tmpssa3_x, `b`);
   }
 }
 `````

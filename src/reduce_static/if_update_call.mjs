@@ -115,8 +115,8 @@ function _ifUpdateCall(fdata) {
               index: parentIndex,
             });
           }
-        } else if (next?.type === 'VariableDeclaration') {
-          const { id: id2, init: init2 } = next.declarations[0];
+        } else if (next?.type === 'VarStatement') {
+          const { id: id2, init: init2 } = next;
           vlog('Followed by var decl on `' + id2.name + '`');
           if (init2.type === 'Identifier' && (init2.name === targetNameThen || init2.name === targetNameElse)) {
             // Should be okay to go here.
@@ -320,7 +320,7 @@ function _ifUpdateCall(fdata) {
         }
 
         body[index + 1] = AST.emptyStatement();
-        body.splice(index, 0, AST.variableDeclaration(id2, AST.identifier('undefined'), 'let'));
+        body.splice(index, 0, AST.varStatement('let', id2, AST.undef()));
         ifNode.consequent.body.push(AST.expressionStatement(AST.assignmentExpression(id2, finalNode1, '=')));
         ifNode.alternate.body.push(AST.expressionStatement(AST.assignmentExpression(id2, finalNode2, '=')));
 

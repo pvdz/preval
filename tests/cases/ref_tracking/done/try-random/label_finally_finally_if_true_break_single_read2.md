@@ -41,13 +41,13 @@ $(x); // x=7 8
 `````filename=intro
 let x___4__ = 1;
 back___7__: /*8*/ {
-  x___12__ = 3;
-  let $implicitThrow___15__ = false;
-  let $finalStep___19__ = false;
+  x___15__ = 3;
+  let $implicitThrow___17__ = false;
+  let $finalStep___20__ = false;
   let $finalCatchArg___23__ = undefined___24__;
   $finally___26__: /*27*/ {
     try /*29*/ {
-      x___33__ = 4;
+      x___34__ = 4;
       const tmpIfTest___36__ = $(true);
       if (tmpIfTest___41__) {
         /*42*/ x___46__ = 5;
@@ -87,24 +87,24 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 12
-  - w @12      | ########## | not read    | 4              | 33,64
-  - w @33      | ########## | not read    | 12             | 46,57,64
-  - w @46      | ########## | not read    | 33             | 64,70
-  - w @57      | ########## | not read    | 33             | 64,70
-  - w @64      | ########## | not read    | 12,33,46,57    | none
+  - w @4       | ########## | not read    | none           | 15
+  - w @15      | ########## | not read    | 4              | 34,64
+  - w @34      | ########## | not read    | 15             | 46,57,64
+  - w @46      | ########## | not read    | 34             | 64,70
+  - w @57      | ########## | not read    | 34             | 64,70
+  - w @64      | ########## | not read    | 15,34,46,57    | none
   - w @70      | ########## | 90          | 46,57          | 86
   - w @86      | ########## | 90          | 70             | none
   - r @90      | 70,86
 
 $implicitThrow:
-  - w @15          | ########## | 72          | none           | none
-  - r @72          | 15
+  - w @17          | ########## | 72          | none           | none
+  - r @72          | 17
 
 $finalStep:
-  - w @19          | ########## | 78          | none           | 50
-  - w @50          | ########## | 78          | 19             | none
-  - r @78          | 19,50
+  - w @20          | ########## | 78          | none           | 50
+  - w @50          | ########## | 78          | 20             | none
+  - r @78          | 20,50
 
 $finalCatchArg:
   - w @23          | ########## | 75          | none           | none

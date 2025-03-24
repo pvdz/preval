@@ -208,8 +208,8 @@ function _staticArgOpOutlining(fdata) {
     // Returns the param index, or FAIL or SKIP (which are negative)
 
     switch (node.type) {
-      case 'VariableDeclaration': {
-        return actionableValue(node.declarations[0].init, names);
+      case 'VarStatement': {
+        return actionableValue(node.init, names);
       }
       case 'ExpressionStatement': {
         const r = actionableValue(node.expression, names);
@@ -322,7 +322,7 @@ function _staticArgOpOutlining(fdata) {
     while (paramIndex === SKIP && stmtIndex < max) {
       stmt = funcNode.body.body[stmtIndex];
       ASSERT(stmt, 'pointer should not be beyond the last statement yet...', stmtIndex, max);
-      vlog('-', stmt.type, stmt.type === 'VariableDeclaration' ? stmt.declarations[0].init.type : stmt.expression?.type ?? stmt.type);
+      vlog('-', stmt.type, stmt.type === 'VarStatement' ? stmt.init.type : stmt.expression?.type ?? stmt.type);
       paramIndex = actionable(stmt, names);
       vlog('  -', paramIndex === FAIL ? 'FAIL' : paramIndex === SKIP ? 'SKIP' : paramIndex);
       if (paramIndex === FAIL) {
@@ -366,7 +366,7 @@ function _staticArgOpOutlining(fdata) {
 
       const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
 
-      if (leftMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+      if (leftMeta.constValueRef?.containerNode.type !== 'VarStatement') {
         // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
         vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
         return; // catch, for-x, ???
@@ -433,7 +433,7 @@ function _staticArgOpOutlining(fdata) {
         // `let a = 1; function f(b) { a = b; }`
         const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
 
-        if (leftMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+        if (leftMeta.constValueRef?.containerNode.type !== 'VarStatement') {
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
           vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
           return; // catch, for-x, ???
@@ -483,13 +483,13 @@ function _staticArgOpOutlining(fdata) {
         const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
         const rightMeta = fdata.globallyUniqueNamingRegistry.get(right.name);
 
-        if (leftMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+        if (leftMeta.constValueRef?.containerNode.type !== 'VarStatement') {
           // `try {} catch (e) { let b = $(); function f() { e = b; } }`
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
           vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
           return; // catch, for-x, ???
         }
-        if (rightMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+        if (rightMeta.constValueRef?.containerNode.type !== 'VarStatement') {
           // `try {} catch (e) { let b = $(); function f() { b = e; } }`
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
           vlog('- The rhs is a closure or this/arguments but it was not a variable declaration, so bailing');
@@ -617,7 +617,7 @@ function _staticArgOpOutlining(fdata) {
         // `let b = $; function f() { $coerce( b, "plustr" ); } f()`
         vgroup('  - Arg is a closure or arguments or this.');
 
-        if (argMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+        if (argMeta.constValueRef?.containerNode.type !== 'VarStatement') {
           // `try {} catch (b) { function f() { $coerce( b, "plustr" ); } f() }`
           // Maybe we can support catch etc but not today.
           vlog('  - Closure is not a var binding, bailing');
@@ -709,7 +709,7 @@ function _staticArgOpOutlining(fdata) {
           vlog('  - LHS is a closure. Assigning param to closure.'); // or the arguments/this alias
           // In this case we move the entire assignment out while replacing the rhs with the arg value.
 
-          if (argMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+          if (argMeta.constValueRef?.containerNode.type !== 'VarStatement') {
             // `try {} catch (b) { function f() { $coerce( b, "plustr" ); } f() }`
             // Maybe we can support catch etc but not today.
             vlog('  - Closure is not a var binding, bailing');
@@ -776,14 +776,14 @@ function _staticArgOpOutlining(fdata) {
 
           const lhsMeta = fdata.globallyUniqueNamingRegistry.get(lhs.name);
 
-          if (lhsMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+          if (lhsMeta.constValueRef?.containerNode.type !== 'VarStatement') {
             // `let a = $(); try {} catch (b) { function f() { b = $coerce( a, "plustr" ); } f() }`
             // Maybe we can support catch etc but not today.
             vlog('  - Closure is not a var binding, bailing');
             return;
           }
 
-          if (argMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+          if (argMeta.constValueRef?.containerNode.type !== 'VarStatement') {
             // `let a = undefined; try {} catch (b) { function f() { a = $coerce( b, "plustr" ); } f() }`
             // Maybe we can support catch etc but not today.
             vlog('  - Closure is not a var binding, bailing');
@@ -848,17 +848,17 @@ function _staticArgOpOutlining(fdata) {
     }
 
     if (
-      firstStmt.type === 'VariableDeclaration' &&
-      firstStmt.declarations[0].init.type === 'CallExpression' &&
-      firstStmt.declarations[0].init.callee.type === 'Identifier' &&
-      firstStmt.declarations[0].init.callee.name === SYMBOL_COERCE
+      firstStmt.type === 'VarStatement' &&
+      firstStmt.init.type === 'CallExpression' &&
+      firstStmt.init.callee.type === 'Identifier' &&
+      firstStmt.init.callee.name === SYMBOL_COERCE
     ) {
       // `function f() { y = $(coerce, x, 'string') }`
       // Coerce as a statement
 
       vlog('- First statement is var decl with a $coerce');
 
-      const callExpr = firstStmt.declarations[0].init;
+      const callExpr = firstStmt.init;
 
       // Check whether arg `x` is a closure. It doesn't have to be. Note that it can't be a Param because
       // they can only appear in the func header, where $coerce should not be possible. But it can be the
@@ -881,7 +881,7 @@ function _staticArgOpOutlining(fdata) {
 
         before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
 
-        funcNode.body.body[funcNode.$p.bodyOffset].declarations[0].init = arg; // Replaces `const b = $coerce(a)` with `const b = a;`
+        funcNode.body.body[funcNode.$p.bodyOffset].init = arg; // Replaces `const b = $coerce(a)` with `const b = a;`
 
         after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
 
@@ -894,7 +894,7 @@ function _staticArgOpOutlining(fdata) {
           clonedCall.arguments[0] = read.parentNode.arguments[rhsParamIndex];
           read.parentNode.arguments[rhsParamIndex] = AST.identifier(tmpName);
           read.blockBody[read.blockIndex] = AST.blockStatement(
-            AST.variableDeclaration(tmpName, clonedCall),
+            AST.varStatement('const', tmpName, clonedCall),
             read.blockBody[read.blockIndex],
           );
 
@@ -922,7 +922,7 @@ function _staticArgOpOutlining(fdata) {
         vlog('  - LHS is a closure. Assigning param to closure.'); // or the arguments/this alias
         // In this case we move the entire assignment out while replacing the rhs with the arg value.
 
-        if (argMeta.constValueRef?.containerNode.type !== 'VariableDeclaration') {
+        if (argMeta.constValueRef?.containerNode.type !== 'VarStatement') {
           // `let a = undefined; try {} catch (b) { function f() { a = $coerce( b, "plustr" ); } f() }`
           // Maybe we can support catch etc but not today.
           vlog('  - Closure is not a var binding, bailing');
@@ -974,7 +974,7 @@ function _staticArgOpOutlining(fdata) {
     const newParamNode = AST.param('$$' + paramCount, false);
     funcNode.params.push(newParamNode);
     const newLocalParamName = createFreshVar('tmpOutlinedParam', fdata);
-    const newLocalParamNode = AST.variableDeclaration(newLocalParamName, newParamName, 'const');
+    const newLocalParamNode = AST.varStatement('const', newLocalParamName, AST.identifier(newParamName));
     // Need to queue the inject because injecting the arg in the body pushes all other statements down
     queue.push({
       index: funcNode.$p.bodyOffset - 1,
@@ -986,9 +986,9 @@ function _staticArgOpOutlining(fdata) {
     // Replace the expression that we're outlining... The target can only be one of three;
     // `var x = <y>`, `x = <y>`, or `<y>`. We replace the expression y with the new var because we'll outline it.
     let expr;
-    if (stmt.type === 'VariableDeclaration') {
-      expr = stmt.declarations[0].init;
-      stmt.declarations[0].init = AST.identifier(newLocalParamName);
+    if (stmt.type === 'VarStatement') {
+      expr = stmt.init;
+      stmt.init = AST.identifier(newLocalParamName);
     } else if (stmt.expression.type === 'AssignmentExpression') {
       expr = stmt.expression.right;
       stmt.expression.right = AST.identifier(newLocalParamName);
@@ -1081,8 +1081,8 @@ function _staticArgOpOutlining(fdata) {
           read.blockBody.splice(
             read.blockIndex,
             0,
-            AST.variableDeclaration(AST.identifier(tmpNameA), AST.cloneSimple(read.parentNode.arguments[paramIndex]), 'const'),
-            AST.variableDeclaration(AST.identifier(tmpNameB), clone, 'const'),
+            AST.varStatement('const', AST.identifier(tmpNameA), AST.cloneSimple(read.parentNode.arguments[paramIndex])),
+            AST.varStatement('const', AST.identifier(tmpNameB), clone),
           );
           read.parentNode.arguments.push(AST.identifier(tmpNameB));
 

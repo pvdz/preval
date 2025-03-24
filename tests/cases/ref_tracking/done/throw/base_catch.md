@@ -29,10 +29,10 @@ $(x); // unreachable (code always throws before this point)
 (Annotated with pids)
 
 `````filename=intro
-let x___4__ = 1;
-let $implicitThrow___8__ = false;
-let $finalStep___12__ = false;
-let $finalCatchArg___16__ = undefined___17__;
+let x___8__ = 1;
+let $implicitThrow___11__ = false;
+let $finalStep___14__ = false;
+let $finalCatchArg___17__ = undefined___18__;
 let $finalArg___20__ = undefined___21__;
 $finally___23__: /*24*/ {
   try /*26*/ {
@@ -65,22 +65,22 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | not read    | none           | 30,48,54
-  - w @30      | ########## | not read    | 4              | 48,54
-  - w @48      | ########## | not read    | 4,30           | none
-  - w @54      | ########## | not read    | 4,30           | none
+  - w @8       | ########## | not read    | none           | 30,48,54
+  - w @30      | ########## | not read    | 8              | 48,54
+  - w @48      | ########## | not read    | 8,30           | none
+  - w @54      | ########## | not read    | 8,30           | none
 
 $implicitThrow:
-  - w @8           | ########## | 56          | none           | none
-  - r @56          | 8
+  - w @11          | ########## | 56          | none           | none
+  - r @56          | 11
 
 $finalStep:
-  - w @12          | ########## | not read    | none           | 34
-  - w @34          | ########## | not read    | 12             | none
+  - w @14          | ########## | not read    | none           | 34
+  - w @34          | ########## | not read    | 14             | none
 
 $finalCatchArg:
-  - w @16          | ########## | 59          | none           | none
-  - r @59          | 16
+  - w @17          | ########## | 59          | none           | none
+  - r @59          | 17
 
 $finalArg:
   - w @20          | ########## | 62          | none           | 39

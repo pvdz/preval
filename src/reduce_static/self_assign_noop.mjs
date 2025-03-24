@@ -162,11 +162,11 @@ function processAttempt(fdata) {
     }
 
     if (
-      outerBody[outerOffset + 1]?.type !== 'VariableDeclaration' ||
-      outerBody[outerOffset + 1].declarations[0].id.type !== 'Identifier' ||
-      outerBody[outerOffset + 1].declarations[0].init.type !== 'CallExpression' ||
-      outerBody[outerOffset + 1].declarations[0].init.callee.type !== 'Identifier' ||
-      outerBody[outerOffset + 1].declarations[0].init.callee.name !== targetFuncName
+      outerBody[outerOffset + 1]?.type !== 'VarStatement' ||
+      outerBody[outerOffset + 1].id.type !== 'Identifier' ||
+      outerBody[outerOffset + 1].init.type !== 'CallExpression' ||
+      outerBody[outerOffset + 1].init.callee.type !== 'Identifier' ||
+      outerBody[outerOffset + 1].init.callee.name !== targetFuncName
     ) {
       vlog('   - bail: third statement was not var decl of calling the func again');
       return;
@@ -174,8 +174,8 @@ function processAttempt(fdata) {
     if (
       outerBody[outerOffset + 2]?.type !== 'ReturnStatement' ||
       outerBody[outerOffset + 2].argument.type !== 'Identifier' ||
-      outerBody[outerOffset + 1].declarations[0].init.callee.type !== 'Identifier' ||
-      outerBody[outerOffset + 1].declarations[0].id.name !== outerBody[outerOffset + 2].argument.name
+      outerBody[outerOffset + 1].init.callee.type !== 'Identifier' ||
+      outerBody[outerOffset + 1].id.name !== outerBody[outerOffset + 2].argument.name
     ) {
       vlog('   - bail: fourth statement was not returning the binding of the third statement');
       return;
@@ -229,7 +229,7 @@ function processAttempt(fdata) {
       // The reads, other than the recursive call, should be in same block, back to back, etc
       // We have to support an alias case as well, yay.
 
-      const rest = meta.reads.filter(read => read.node !== outerBody[outerOffset + 1].declarations[0].init.callee);
+      const rest = meta.reads.filter(read => read.node !== outerBody[outerOffset + 1].init.callee);
       ASSERT(rest.length === meta.reads.length - 1, 'should find the one read that was the recursive call...');
 
       // If there weren't any other reads then this is dead code and we should eliminate it...
@@ -254,7 +254,7 @@ function processAttempt(fdata) {
         // Bail for now. We can support a subset of cases but it gets very specific.
         vlog('  - bail: alias through assignment case. too hot to handle rn.');
         return;
-      } else if (rest[0].parentNode.type === 'VariableDeclarator') {
+      } else if (rest[0].parentNode.type === 'VarStatement') {
         // This is potentially the alias case, with local var decl
         const aliasName = rest[0].parentNode.id.name;
         // Now the next statement must be a call to this function. And the only read of this alias.
@@ -300,10 +300,10 @@ function processAttempt(fdata) {
     const newNodes = outerFunc.params.map((pnode, i) => {
       if (pnode.$p.paramVarDeclRef) {
         ASSERT(firstSpyExpr?.type === 'CallExpression', 'if noParamsUsage then this is `true` but it would not reach this point in the first place because .params would be empty', outerFunc, firstSpyExpr);
-        return AST.variableDeclaration(
+        return AST.varStatement(
+          'let',
           pnode.$p.paramVarDeclRef.name,
           firstSpyExpr['arguments'][i] ? AST.cloneSimpleOrTemplate(firstSpyExpr['arguments'][i]) : AST.undef(),
-          'let'
         );
       }
     }).filter(Boolean);
@@ -320,7 +320,7 @@ function processAttempt(fdata) {
 function findFirstCallToFunc(fdata, targetFuncName) {
   vgroup('Searching for first spying statement..');
   const firstSpyStatement = findFirstSpy(fdata.tenkoOutput.ast);
-  vlog('First spying statement: @', +firstSpyStatement?.$p.pid, firstSpyStatement?.type, firstSpyStatement?.expression?.type ?? firstSpyStatement?.declarations?.[0].init.type);
+  vlog('First spying statement: @', +firstSpyStatement?.$p.pid, firstSpyStatement?.type, firstSpyStatement?.expression?.type ?? firstSpyStatement?.init?.type);
   vgroupEnd();
 
   if (!firstSpyStatement) {
@@ -330,8 +330,8 @@ function findFirstCallToFunc(fdata, targetFuncName) {
   }
 
   let firstSpyExpr;
-  if (firstSpyStatement.type === 'VariableDeclaration') {
-    firstSpyExpr = firstSpyStatement.declarations[0].init;
+  if (firstSpyStatement.type === 'VarStatement') {
+    firstSpyExpr = firstSpyStatement.init;
   } else if (firstSpyStatement.type === 'ExpressionStatement') {
     firstSpyExpr = firstSpyStatement.expression;
     if (firstSpyExpr.type === 'AssignmentExpression') {
@@ -420,9 +420,9 @@ function findFirstCallStatement(stmt) {
       // would be equally useless and we should eliminate it.
       return stmt; // TODO: support the minimal case here? The first statement, probably
     }
-    case 'VariableDeclaration': {
+    case 'VarStatement': {
       // Skip past non-spies and structure assignments like funcs and arrays
-      if (findFirstCallExpression(stmt.declarations[0].init) !== undefined) return stmt;
+      if (findFirstCallExpression(stmt.init) !== undefined) return stmt;
       return undefined;
     }
     case 'WhileStatement': {

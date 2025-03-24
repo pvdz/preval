@@ -183,7 +183,7 @@ function _ifelseifelse(fdata) {
 
     const ifStatement = topRead.parentNode;
     const tmpName = createFreshVar('tmpIfelseifelse', fdata);
-    topRead.blockBody.splice(topRead.blockIndex, 0, AST.variableDeclaration(tmpName, 'undefined', 'let'));
+    topRead.blockBody.splice(topRead.blockIndex, 0, AST.varStatement('let', tmpName, AST.undef()));
     if (write.blockIds[write.blockIds.length - 1] === +ifStatement.consequent.$p.pid) {
       // This means the condition was overwritten in the truthy branch. So inject `false` in the falsy
       // branch. Since we know the value is only used in an if-test, the actual old value is irrelevant.

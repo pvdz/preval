@@ -17,7 +17,8 @@ function _multiScopeSSA(fdata) {
     if (meta.isConstant) return; // No need to SSA a constant
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
-    if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
+    if (!meta.constValueRef) return; // catch, for-x, ???
+    if (meta.constValueRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
 
     vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
@@ -239,7 +240,7 @@ function _multiScopeSSA(fdata) {
           // with that name. This also fixes the case where a closure was created before the binding.
           // The old binding will ultimately be dropped since nothing references it
 
-          write2.blockBody[write2.blockIndex] = AST.variableDeclaration(tmpName, rhs, 'let');
+          write2.blockBody[write2.blockIndex] = AST.varStatement('let', tmpName, rhs);
           ASSERT(nextWriteIndex >= i);
           rwOrder.forEach((r, n) => {
             if (!(r.action === 'write' && r.kind === 'var') && (n < i || n > nextWriteIndex)) {
@@ -265,7 +266,7 @@ function _multiScopeSSA(fdata) {
           // with that name. This also fixes the case where a closure was created before the binding.
           // The old binding will ultimately be dropped since nothing references it
 
-          last.blockBody[last.blockIndex] = AST.variableDeclaration(tmpName, last.parentNode.right, 'const');
+          last.blockBody[last.blockIndex] = AST.varStatement('const', tmpName, last.parentNode.right);
           ASSERT(nextWriteIndex >= i);
           rwOrder.forEach((r, n) => {
             // Find all refs in the rhs. Those are the ones we rename.

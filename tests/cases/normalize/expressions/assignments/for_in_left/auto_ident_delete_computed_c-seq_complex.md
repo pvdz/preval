@@ -37,9 +37,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpDeleteCompObj /*:unknown*/ = $(arg);
     const tmpDeleteCompProp /*:unknown*/ = $(`y`);
     a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-    const tmpAssignMemLhsObj /*:unknown*/ = a;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a, arg);
@@ -63,8 +62,7 @@ while (true) {
     const tmpDeleteCompObj = $(arg);
     const tmpDeleteCompProp = $(`y`);
     a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-    const tmpAssignMemLhsObj = a;
-    tmpAssignMemLhsObj.x = tmpForInNext.value;
+    a.x = tmpForInNext.value;
   }
 }
 $(a, arg);
@@ -95,9 +93,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const h = $( e );
     const i = $( "y" );
     a = delete h[ i ];
-    const j = a;
-    const k = f.value;
-    j.x = k;
+    const j = f.value;
+    a.x = j;
   }
 }
 $( a, e );

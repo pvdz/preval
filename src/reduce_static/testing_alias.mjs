@@ -19,6 +19,7 @@ function _testingAlias(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
+    if (!meta.constValueRef) return; // catch
 
     vlog('- `' + name + '`:', meta.constValueRef.node.type);
 
@@ -83,8 +84,8 @@ function _testingAlias(fdata) {
       if (
         ref.action === 'write' &&
         nextRef?.action === 'write' &&
-        ((ref.parentNode.type === 'VariableDeclarator' && AST.isTrue(ref.parentNode.init)) || (ref.parentNode.type === 'AssignmentExpression' && AST.isFalse(ref.parentNode.right))) &&
-        ((nextRef.parentNode.type === 'VariableDeclarator' && AST.isFalse(nextRef.parentNode.init)) || (nextRef.parentNode.type === 'AssignmentExpression' && AST.isFalse(nextRef.parentNode.right))) &&
+        ((ref.parentNode.type === 'VarStatement' && AST.isTrue(ref.parentNode.init)) || (ref.parentNode.type === 'AssignmentExpression' && AST.isFalse(ref.parentNode.right))) &&
+        ((nextRef.parentNode.type === 'VarStatement' && AST.isFalse(nextRef.parentNode.init)) || (nextRef.parentNode.type === 'AssignmentExpression' && AST.isFalse(nextRef.parentNode.right))) &&
         nextNode?.type === 'IfStatement' &&
         nextNode.alternate.body.length > 0 &&
         nextNode.alternate.body[0].type === 'ExpressionStatement' &&
@@ -100,7 +101,7 @@ function _testingAlias(fdata) {
             before(ref.blockBody[ref.blockIndex]);
             before(nextNode);
 
-            if (ref.parentNode.type === 'VariableDeclarator') {
+            if (ref.parentNode.type === 'VarStatement') {
               ref.parentNode.init = cloneSimple(nextNode.test);
             } else if (ref.parentNode.type === 'AssignmentExpression') {
               ref.parentNode.right = cloneSimple(nextNode.test);

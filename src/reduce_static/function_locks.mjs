@@ -34,6 +34,7 @@ function _functionLocks(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
     if (meta.isConstant) return;
+    if (!meta.constValueRef) return; // catch
 
     const funcNode = meta.constValueRef.node; // Note: this is a misnomer; it is the var decl init ref, also populated for lets.
     if (funcNode.type !== 'FunctionExpression') return;
@@ -122,7 +123,7 @@ function _functionLocks(fdata) {
         example('let f = function(){}; if (f) { f(); f = false; }', 'let open = true; const f = function(){}; if (open) { f(); open = false; }');
         before(varWrite.blockBody[varWrite.blockIndex]);
 
-        const finalNode = AST.variableDeclaration(tmpName, AST.tru(), 'let');
+        const finalNode = AST.varStatement('let', tmpName, AST.tru());
         varWrite.blockBody.splice(varWrite.blockIndex, 0, finalNode);
 
         after(varWrite.blockBody[varWrite.blockIndex]);
@@ -188,12 +189,12 @@ function _functionLocks(fdata) {
             before(read.blockBody[read.blockIndex]);
 
             read.blockBody.splice(read.blockIndex, 1,
-              AST.variableDeclaration(read.blockBody[read.blockIndex].declarations[0].id, AST.identifier('undefined'), 'let'),
+              AST.varStatement('let', read.blockBody[read.blockIndex].id, AST.undef()),
               AST.ifStatement(
                 tmpName,
                 AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(
-                  AST.identifier(read.blockBody[read.blockIndex].declarations[0].id.name),
-                  read.blockBody[read.blockIndex].declarations[0].init
+                  AST.identifier(read.blockBody[read.blockIndex].id.name),
+                  read.blockBody[read.blockIndex].init
                 ))),
                 AST.blockStatement(throwNode)
               )
@@ -235,12 +236,12 @@ function _functionLocks(fdata) {
             before(read.blockBody[read.blockIndex]);
 
             read.blockBody.splice(read.blockIndex, 1,
-              AST.variableDeclaration(read.blockBody[read.blockIndex].declarations[0].id, AST.identifier('undefined'), 'let'),
+              AST.varStatement('let', read.blockBody[read.blockIndex].id, AST.identifier('undefined')),
               AST.ifStatement(
                 tmpName,
                 AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(
-                  AST.identifier(read.blockBody[read.blockIndex].declarations[0].id.name),
-                  read.blockBody[read.blockIndex].declarations[0].init
+                  AST.identifier(read.blockBody[read.blockIndex].id.name),
+                  read.blockBody[read.blockIndex].init
                 ))),
                 AST.blockStatement(throwNode)
               )

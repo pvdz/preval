@@ -313,7 +313,7 @@ $( ca );
 
 - (todo) inline computed array property read
 - (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
-- (todo) Calling a static method on an ident that is not global and not recorded: $arr_push
+- (todo) Calling a static method on an ident that is not global and not recorded in free loop: arr.push
 
 
 ## Globals

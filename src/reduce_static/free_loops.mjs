@@ -429,8 +429,7 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
                 return false;
               }
             } else {
-              //todo(`Calling a static method on an ident that is not global and not recorded in free loop: ${qualified}`);
-              todo(`Calling a static method on an ident that is not global and not recorded: ${symbol}`);
+              todo(`Calling a static method on an ident that is not global and not recorded in free loop: ${qualified}`);
               return false;
             }
           }

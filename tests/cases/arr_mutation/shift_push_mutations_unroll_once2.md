@@ -108,7 +108,7 @@ else {
 
 
 - (todo) type trackeed tricks can possibly support method $array_slice
-- (todo) Calling a static method on an ident that is not global and not recorded: $arr_push
+- (todo) Calling a static method on an ident that is not global and not recorded in free loop: arr.push
 
 
 ## Globals

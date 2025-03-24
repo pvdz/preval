@@ -86,7 +86,7 @@ $( e );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded: $tmpCallObj_$
+- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpCallObj.$
 
 
 ## Globals

@@ -84,7 +84,7 @@ $( f, 1 );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
 
 
 ## Globals

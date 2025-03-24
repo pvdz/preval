@@ -31,7 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     a = 0;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    (2).x = tmpAssignMemRhs;                                      // <-- this fails
+    (2).x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -88,7 +88,7 @@ $( a );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded: $tmpForInGen_next
+- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
 
 
 ## Globals

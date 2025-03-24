@@ -81,7 +81,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded: $arr_reverse
+- (todo) Calling a static method on an ident that is not global and not recorded in free loop: arr.reverse
 
 
 ## Globals

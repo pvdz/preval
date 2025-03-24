@@ -126,7 +126,7 @@ $( "c" );
 
 
 - (todo) regular property access of an ident feels tricky;
-- (todo) Calling a static method on an ident that is not global and not recorded: $tmpForOfGen_next
+- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
 
 
 ## Globals

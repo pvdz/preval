@@ -56,8 +56,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) regular property access of an ident feels tricky;
-- (todo) Calling a static method on an ident that is not global and not recorded: $tmpChainElementObject$1_e
-- (todo) Calling a static method on an ident that is not global and not recorded: $tmpObjLitVal$1_e
+- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpChainElementObject$1.e
+- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpObjLitVal$1.e
 
 
 ## Globals

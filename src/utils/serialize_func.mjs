@@ -164,7 +164,7 @@ export function createNormalizedFunctionFromString(funcString, bodyString, clone
   source(preFdata.tenkoOutput.ast);
   preFdata.globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
   phaseNormalOnce(preFdata);
-  phaseNormalize(preFdata, '<createNormalizedFunctionFromString>', null, { allowEval: false });
+  phaseNormalize(preFdata, '<createNormalizedFunctionFromString>', false, null, { allowEval: false });
 
   vlog('Now processing...');
 

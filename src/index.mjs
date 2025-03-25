@@ -131,7 +131,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
     const fdata = parseCode(preCode, nextFname);
     prepareNormalization(fdata, resolve, req, false, {unrollLimit: options.unrollLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-    phaseNormalize(fdata, nextFname, prng, { allowEval: options.allowEval, prngSeed: options.prngSeed });
+    phaseNormalize(fdata, nextFname, true, prng, { allowEval: options.allowEval, prngSeed: options.prngSeed });
 
     mod.children = new Set(fdata.imports.values());
     mod.fdata = fdata;
@@ -297,7 +297,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           options?.onAfterPhase?.(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
             // Force a normalize pass before moving to phase3. Loop if it changed anything anyways.
-            changed = phaseNormalize(fdata, fname, prng,  { allowEval: options.allowEval, prngSeed: options.prngSeed });
+            changed = phaseNormalize(fdata, fname, false, prng,  { allowEval: options.allowEval, prngSeed: options.prngSeed });
             options.onAfterPhase?.(2.1, passes, phaseLoop, fdata, false, options, fi);
             if (changed) vlog('The pre-phase3 normal did change something! starting from phase0');
           }
@@ -335,7 +335,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           const fdata = parseCode(inputCode, fname);
           prepareNormalization(fdata, resolve, req, false, {unrollLimit: options.unrollLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-          phaseNormalize(fdata, fname, prng, { allowEval: options.allowEval, prngSeed: options.prngSeed });
+          phaseNormalize(fdata, fname, false, prng, { allowEval: options.allowEval, prngSeed: options.prngSeed });
 
           options.onAfterNormalize?.(fdata, passes + 1, fi, options, contents);
 

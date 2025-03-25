@@ -204,7 +204,7 @@ const BUILTIN_COERCE_FIRST_TO_NUMBER_MEMBER = new Set([
   symbo('Math', 'trunc'),
 ]);
 
-export function phaseNormalize(fdata, fname, prng, options) {
+export function phaseNormalize(fdata, fname, firstTime, prng, options) {
   {
     const {prngSeed, allowEval, ...rest} = options;
     const keys = Object.keys(rest);
@@ -227,14 +227,14 @@ export function phaseNormalize(fdata, fname, prng, options) {
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');
   assertNoDupeNodes(ast, 'body');
 
-  if (VERBOSE_TRACING) vlog('\nCurrent state (start of normalize)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  if (VERBOSE_TRACING && firstTime) vlog('\nCurrent state (start of normalize)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   let passes = 0;
   do {
     changed = false;
     transformProgram(ast);
     //stmt(null, 'ast', -1, ast, false, false);
-    if (VERBOSE_TRACING && passes === 0) vlog('\nCurrent state (normalize)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+    if (VERBOSE_TRACING && firstTime && passes === 0) vlog('\nCurrent state (post normalize)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
     if (changed) {
       somethingChanged = true;
       log('Something changed. Running another normalization pass (' + ++passes + ')\n');

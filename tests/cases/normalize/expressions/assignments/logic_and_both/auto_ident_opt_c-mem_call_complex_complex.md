@@ -37,7 +37,6 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpChainElementCall$3 /*:unknown*/ = $(b);
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$3 == null;
@@ -59,7 +58,7 @@ if (a) {
     }
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -79,7 +78,6 @@ if (!(tmpChainElementCall == null)) {
     a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
   }
 }
-const tmpCalleeParam = a;
 if (a) {
   const tmpChainElementCall$3 = $(b);
   if (tmpChainElementCall$3 == null) {
@@ -98,7 +96,7 @@ if (a) {
     }
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -128,32 +126,31 @@ else {
     a = i;
   }
 }
-const j = a;
 if (a) {
-  const k = $( b );
-  const l = k == null;
-  if (l) {
+  const j = $( b );
+  const k = j == null;
+  if (k) {
     $( undefined );
     $( undefined );
   }
   else {
-    const m = $( "$" );
-    const n = k[ m ];
-    const o = n == null;
-    if (o) {
+    const l = $( "$" );
+    const m = j[ l ];
+    const n = m == null;
+    if (n) {
       $( undefined );
       $( undefined );
     }
     else {
-      const p = $( 1 );
-      const q = $dotCall( n, k, undefined, p );
-      $( q );
-      $( q );
+      const o = $( 1 );
+      const p = $dotCall( m, j, undefined, o );
+      $( p );
+      $( p );
     }
   }
 }
 else {
-  $( j );
+  $( a );
   $( a );
 }
 `````

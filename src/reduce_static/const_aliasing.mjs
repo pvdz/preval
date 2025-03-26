@@ -20,28 +20,13 @@
 // ->     const x = unknown; y = unknown; z = unknown; $(x, y)
 //
 
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  fmat,
-  tmat,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  findBodyOffset, riskyRule,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { ASSUME_BUILTINS } from '../constants.mjs';
 
 export function constAliasing(fdata) {
   group('\n\n\nSearching for two const values that get assigned to each other\n');
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _constAliasing(fdata);
   groupEnd();
   return r;
@@ -138,6 +123,10 @@ function _constAliasing(fdata) {
     const SPIES = 2;
     const INVIS = 3;
     function exprUsesName(expr, targetName, origName, fdata) {
+      // Check if the target name is used. If so, replace it with origName.
+      // If not, check if the expression can spy. If it does, that's the end of the search.
+      // Otherwise, this expression is spy free and we can continue searching.
+
       if (expr.type === 'BinaryExpression') {
 
         if (!AST.complexExpressionNodeMightSpy(expr.right, fdata) && expr.left.type === 'Identifier' && expr.left.name === targetName) {
@@ -161,17 +150,25 @@ function _constAliasing(fdata) {
           ++dropped;
           return FOUND;
         }
+
+        // Cannot risk coercion issues
+        return SPIES;
       }
 
-      if (expr.type === 'UnaryExpression' && expr.argument.type === 'Identifier' && expr.argument.name === targetName) {
-        rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; unary usage');
-        example('let x = 1; const y = x; const z = !y;', 'let x = 1; const y = x; const z = !x;');
-        before(expr);
-        expr.argument.name = origName;
-        after(expr);
+      if (expr.type === 'UnaryExpression') {
+        if (expr.argument.type === 'Identifier' && expr.argument.name === targetName) {
+          rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; unary usage');
+          example('let x = 1; const y = x; const z = !y;', 'let x = 1; const y = x; const z = !x;');
+          before(expr);
+          expr.argument.name = origName;
+          after(expr);
 
-        ++dropped;
-        return FOUND;
+          ++dropped;
+          return FOUND;
+        }
+
+        // Cannot risk coercion issues
+        return SPIES;
       }
 
       if (expr.type === 'CallExpression') {
@@ -206,6 +203,9 @@ function _constAliasing(fdata) {
         })) {
           return und;
         }
+
+        // Cannot risk side effects
+        return SPIES;
       }
 
       if (expr.type === 'AssignmentExpression') {
@@ -229,7 +229,8 @@ function _constAliasing(fdata) {
 
       // We might skip places where the ident is used ... :// oh well!
 
-      // Check if the function could have side effects
+      // Check if the init could have side effects
+      // A function/class/array/object literal most of the time can't spy (but in some edge cases it could)
       if (!AST.complexExpressionNodeMightSpy(expr, fdata)) {
         // A call with args and it can't spy. Like doing Boolean() or coercing a primitive with Number()
         index += 1;
@@ -239,37 +240,97 @@ function _constAliasing(fdata) {
       return SPIES
     }
 
+    function scanBlock(index, body) {
+      // meta2 is assigned to meta1 (a constant). If we can prove that meta2 cannot change before meta1's
+      // usage then the usage must be able to refer to meta2 directly, regardless.
+      while (index < body.length) {
+        const stmt = body[index];
+
+        if (stmt.type === 'VarStatement') {
+          const init = stmt.init;
+
+          const usage = exprUsesName(init, lhsName, rhsName, fdata);
+          if (usage === FOUND) return usage;
+          if (usage === SPIES) return usage;
+
+          index += 1;
+          continue;
+        }
+
+        if (stmt.type === 'ExpressionStatement') {
+          const expr = stmt.expression;
+
+          const usage = exprUsesName(expr, lhsName, rhsName, fdata);
+          if (usage === FOUND) return usage;
+          if (usage === SPIES) return usage;
+
+          index += 1;
+          continue;
+        }
+
+        if (stmt.type === 'EmptyStatement') {
+          index += 1;
+          continue;
+        }
+
+        if (stmt.type === 'DebuggerStatement') {
+          index += 1;
+          continue;
+        }
+
+        if (stmt.type === 'ReturnStatement') {
+          const usage = exprUsesName(stmt.argument, lhsName, rhsName, fdata);
+          if (usage === FOUND) return usage;
+          if (usage === SPIES) return usage;
+          break;
+        }
+
+        if (stmt.type === 'ThrowStatement') {
+          const usage = exprUsesName(stmt.argument, lhsName, rhsName, fdata);
+          if (usage === FOUND) return usage;
+          if (usage === SPIES) return usage;
+          break;
+        }
+
+        if (stmt.type === 'BreakStatement') {
+          // I think this is fine. It should end the current block but if
+          // this happens in like an `if` then that's fine. Either meta2
+          // might have changed and then we bail regardless, or it would
+          // not have and we safely allow it to continue after the label.
+          // Or the other branch continues and worst case we're over-defensive.
+          break;
+        }
+
+        if (stmt.type === 'IfStatement') {
+          const a = scanBlock(0, stmt.consequent.body);
+          const b = scanBlock(0, stmt.alternate.body);
+          if (a === SPIES) return a;
+          if (b === SPIES) return b;
+          if (a === FOUND) return a;
+          if (b === FOUND) return b;
+          // Do we need to break if we haven't already?
+          break;
+        }
+
+        if (stmt.type === 'LabeledStatement') {
+          const usage = scanBlock(0, stmt.body.body);
+          if (usage === FOUND) return usage;
+          if (usage === SPIES) return usage;
+          // Do we need to break if we haven't already?
+          break;
+        }
+
+        // Unsupported statement. Maybe we canshould support it? :)
+        todo(`can we support this const aliasing blocking statement? ${stmt.type}`);
+        break;
+      }
+    }
+
+    // meta2 is assigned to meta1 (a constant). If we can prove that meta2 cannot change before meta1's
+    // usage then the usage must be able to refer to meta2 directly, regardless.
     let index = meta.constValueRef.containerIndex + 1;
     const body = meta.constValueRef.containerParent;
-
-    while (index < body.length) {
-      const stmt = body[index];
-
-      if (stmt.type === 'VarStatement') {
-        const init = stmt.init;
-
-        const usage = exprUsesName(init, lhsName, rhsName, fdata);
-        if (usage === FOUND) break;
-        if (usage === SPIES) break;
-
-        index += 1;
-        continue;
-      }
-
-      if (stmt.type === 'ExpressionStatement') {
-        const expr = stmt.expression;
-
-        const usage = exprUsesName(expr, lhsName, rhsName, fdata);
-        if (usage === FOUND) break;
-        if (usage === SPIES) break;
-
-        index += 1;
-        continue;
-      }
-
-      // Unsupported statement. Maybe we canshould support it? :)
-      break;
-    }
+    scanBlock(index, body);
   });
 
   if (dropped) {

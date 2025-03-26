@@ -6,6 +6,10 @@
 >
 > By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
 
+## Options
+
+- globals: y
+
 ## Input
 
 `````js filename=intro
@@ -19,17 +23,16 @@ $(y);
 
 `````js filename=intro
 const objPatternBeforeDefault /*:unknown*/ = (0).x;
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: `pass` };
-  const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
-  tmpCalleeParam$1 = tmpClusterSSA_objPatternAfterDefault;
+  objPatternAfterDefault = $(tmpCalleeParam);
 } else {
-  tmpCalleeParam$1 = objPatternBeforeDefault;
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
 const tmpCalleeParam$3 /*:array*/ = [];
-y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+y = $objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -39,13 +42,13 @@ $(y);
 
 `````js filename=intro
 const objPatternBeforeDefault = (0).x;
-let tmpCalleeParam$1 = undefined;
+let objPatternAfterDefault = undefined;
 if (objPatternBeforeDefault === undefined) {
-  tmpCalleeParam$1 = $({ a: `pass` });
+  objPatternAfterDefault = $({ a: `pass` });
 } else {
-  tmpCalleeParam$1 = objPatternBeforeDefault;
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
-y = $objPatternRest(tmpCalleeParam$1, [], undefined);
+y = $objPatternRest(objPatternAfterDefault, [], undefined);
 $(y);
 `````
 
@@ -59,14 +62,13 @@ let b = undefined;
 const c = a === undefined;
 if (c) {
   const d = { a: "pass" };
-  const e = $( d );
-  b = e;
+  b = $( d );
 }
 else {
   b = a;
 }
-const f = [];
-y = $objPatternRest( b, f, undefined );
+const e = [];
+y = $objPatternRest( b, e, undefined );
 $( y );
 `````
 
@@ -80,9 +82,7 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-y
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

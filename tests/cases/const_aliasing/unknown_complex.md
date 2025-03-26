@@ -1,18 +1,16 @@
 # Preval test case
 
-# default_no_no__obj_empty.md
+# unknown_complex.md
 
-> Normalize > Pattern > Param > Obj > Ident > Default no no  obj empty
->
-> By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
+> Const aliasing > Unknown complex
 
 ## Input
 
 `````js filename=intro
-function f({ x }) {
-  return x;
-}
-$(f({}, 10));
+const tmp = $(1);
+const x = tmp;
+const y = tmp;
+$(x, y);
 `````
 
 
@@ -20,8 +18,8 @@ $(f({}, 10));
 
 
 `````js filename=intro
-const x /*:unknown*/ = $Object_prototype.x;
-$(x);
+const tmp /*:unknown*/ = $(1);
+$(tmp, tmp);
 `````
 
 
@@ -29,7 +27,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-$($Object_prototype.x);
+const tmp = $(1);
+$(tmp, tmp);
 `````
 
 
@@ -37,8 +36,8 @@ $($Object_prototype.x);
 With rename=true
 
 `````js filename=intro
-const a = $Object_prototype.x;
-$( a );
+const a = $( 1 );
+$( a, a );
 `````
 
 
@@ -58,7 +57,8 @@ None
 
 
 Should call `$` with:
- - 1: undefined
+ - 1: 1
+ - 2: 1, 1
  - eval returned: undefined
 
 Pre normalization calls: Same

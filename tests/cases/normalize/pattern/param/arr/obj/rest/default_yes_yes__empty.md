@@ -25,17 +25,16 @@ const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-let tmpCalleeParam$3 /*:unknown*/ = undefined;
+let arrPatternStep /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { a: `fail` };
-  const tmpClusterSSA_arrPatternStep /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpCalleeParam$3 = tmpClusterSSA_arrPatternStep;
+  arrPatternStep = $(tmpCalleeParam$1);
 } else {
-  tmpCalleeParam$3 = arrPatternBeforeDefault;
+  arrPatternStep = arrPatternBeforeDefault;
 }
 const tmpCalleeParam$5 /*:array*/ = [];
-const x /*:unknown*/ = $objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+const x /*:unknown*/ = $objPatternRest(arrPatternStep, tmpCalleeParam$5, undefined);
 $(x);
 `````
 
@@ -47,13 +46,13 @@ $(x);
 const tmpArrElement = { a: `pass2` };
 const bindingPatternArrRoot = $([tmpArrElement]);
 const arrPatternBeforeDefault = [...bindingPatternArrRoot][0];
-let tmpCalleeParam$3 = undefined;
+let arrPatternStep = undefined;
 if (arrPatternBeforeDefault === undefined) {
-  tmpCalleeParam$3 = $({ a: `fail` });
+  arrPatternStep = $({ a: `fail` });
 } else {
-  tmpCalleeParam$3 = arrPatternBeforeDefault;
+  arrPatternStep = arrPatternBeforeDefault;
 }
-$($objPatternRest(tmpCalleeParam$3, [], undefined));
+$($objPatternRest(arrPatternStep, [], undefined));
 `````
 
 
@@ -70,15 +69,14 @@ let f = undefined;
 const g = e === undefined;
 if (g) {
   const h = { a: "fail" };
-  const i = $( h );
-  f = i;
+  f = $( h );
 }
 else {
   f = e;
 }
-const j = [];
-const k = $objPatternRest( f, j, undefined );
-$( k );
+const i = [];
+const j = $objPatternRest( f, i, undefined );
+$( j );
 `````
 
 

@@ -25,12 +25,10 @@ let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpCalleeParam /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
   a = tmpChainElementObject;
-  tmpCalleeParam = tmpChainElementObject;
 }
 if (a) {
   const tmpChainElementCall$1 /*:unknown*/ = $(b);
@@ -44,7 +42,7 @@ if (a) {
     $(tmpChainElementObject$1);
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -57,12 +55,8 @@ if (a) {
 let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
-let tmpCalleeParam = undefined;
-if (!tmpIfTest) {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-  tmpCalleeParam = tmpChainElementObject;
+if (!(tmpChainElementCall == null)) {
+  a = tmpChainElementCall.x;
 }
 if (a) {
   const tmpChainElementCall$1 = $(b);
@@ -75,7 +69,7 @@ if (a) {
     $(tmpChainElementObject$1);
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -89,30 +83,28 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
+  const e = c.x;
+  a = e;
 }
 if (a) {
-  const g = $( b );
-  const h = g == null;
-  if (h) {
+  const f = $( b );
+  const g = f == null;
+  if (g) {
     $( undefined );
     $( undefined );
   }
   else {
-    const i = g.x;
-    $( i );
-    $( i );
+    const h = f.x;
+    $( h );
+    $( h );
   }
 }
 else {
-  $( e );
+  $( a );
   $( a );
 }
 `````

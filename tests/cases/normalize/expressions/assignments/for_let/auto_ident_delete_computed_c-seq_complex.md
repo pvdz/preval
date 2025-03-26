@@ -70,6 +70,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) can we support this const aliasing blocking statement? WhileStatement
 - (todo) computed property access of an ident where the property ident is not recorded;
 
 

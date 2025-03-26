@@ -38,7 +38,6 @@ if (tmpIfTest) {
     a = tmpChainElementObject$1;
   }
 }
-const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpChainElementCall$1 /*:unknown*/ = $(b);
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementCall$1 == null;
@@ -60,7 +59,7 @@ if (a) {
     }
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -82,7 +81,6 @@ if (!(tmpChainElementCall == null)) {
     a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-const tmpCalleeParam = a;
 if (a) {
   const tmpChainElementCall$1 = $(b);
   if (tmpChainElementCall$1 == null) {
@@ -102,7 +100,7 @@ if (a) {
     }
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -133,32 +131,31 @@ else {
     a = j;
   }
 }
-const k = a;
 if (a) {
-  const l = $( c );
-  const m = l == null;
-  if (m) {
+  const k = $( c );
+  const l = k == null;
+  if (l) {
     $( undefined );
     $( undefined );
   }
   else {
-    const n = $( "x" );
-    const o = l[ n ];
-    const p = o == null;
-    if (p) {
+    const m = $( "x" );
+    const n = k[ m ];
+    const o = n == null;
+    if (o) {
       $( undefined );
       $( undefined );
     }
     else {
-      const q = $( "y" );
-      const r = o[ q ];
-      $( r );
-      $( r );
+      const p = $( "y" );
+      const q = n[ p ];
+      $( q );
+      $( q );
     }
   }
 }
 else {
-  $( k );
+  $( a );
   $( a );
 }
 `````

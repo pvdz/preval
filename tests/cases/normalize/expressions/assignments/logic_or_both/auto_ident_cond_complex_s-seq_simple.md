@@ -23,15 +23,13 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = 60;
 const tmpIfTest /*:unknown*/ = $(1);
-let tmpCalleeParam /*:unknown*/ = 60;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
-  tmpCalleeParam = a;
 }
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 } else {
   const tmpIfTest$1 /*:unknown*/ = $(1);
@@ -53,14 +51,11 @@ if (a) {
 
 `````js filename=intro
 let a = 60;
-const tmpIfTest = $(1);
-let tmpCalleeParam = 60;
-if (!tmpIfTest) {
+if (!$(1)) {
   a = $($(100));
-  tmpCalleeParam = a;
 }
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 } else {
   if ($(1)) {
@@ -81,30 +76,28 @@ With rename=true
 `````js filename=intro
 let a = 60;
 const b = $( 1 );
-let c = 60;
 if (b) {
 
 }
 else {
-  const d = $( 100 );
-  a = $( d );
-  c = a;
+  const c = $( 100 );
+  a = $( c );
 }
 if (a) {
-  $( c );
+  $( a );
   $( a );
 }
 else {
-  const e = $( 1 );
-  if (e) {
+  const d = $( 1 );
+  if (d) {
     $( 60 );
     $( 60 );
   }
   else {
-    const f = $( 100 );
-    const g = $( f );
-    $( g );
-    $( g );
+    const e = $( 100 );
+    const f = $( e );
+    $( f );
+    $( f );
   }
 }
 `````

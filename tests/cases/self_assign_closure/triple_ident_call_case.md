@@ -320,6 +320,7 @@ $( a );
 
 
 - (todo) processArrayWriteReadImmutableBinding slow path
+- (todo) can we support this const aliasing blocking statement? WhileStatement
 
 
 ## Globals

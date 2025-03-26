@@ -31,25 +31,27 @@ if (a) {
   }
 } else {
 }
-const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpCalleeParam$7 /*:unknown*/ = $(1);
-  let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
+  const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
   if (tmpNestedComplexRhs) {
     const tmpCalleeParam$9 /*:unknown*/ = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$9);
-    if (tmpNestedComplexRhs) {
+    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$9);
+    if (tmpClusterSSA_tmpNestedComplexRhs) {
       const tmpCalleeParam$11 /*:unknown*/ = $(2);
-      tmpNestedComplexRhs = $(tmpCalleeParam$11);
+      const tmpClusterSSA_tmpNestedComplexRhs$1 /*:unknown*/ = $(tmpCalleeParam$11);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
     } else {
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
     }
   } else {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
-  const tmpClusterSSA_a /*:unknown*/ = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(tmpClusterSSA_a);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -66,20 +68,24 @@ if (a) {
     a = $($(2));
   }
 }
-const tmpCalleeParam = a;
 if (a) {
-  let tmpNestedComplexRhs = $($(1));
+  const tmpNestedComplexRhs = $($(1));
   if (tmpNestedComplexRhs) {
-    tmpNestedComplexRhs = $($(1));
-    if (tmpNestedComplexRhs) {
-      tmpNestedComplexRhs = $($(2));
+    const tmpClusterSSA_tmpNestedComplexRhs = $($(1));
+    if (tmpClusterSSA_tmpNestedComplexRhs) {
+      const tmpClusterSSA_tmpNestedComplexRhs$1 = $($(2));
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+    } else {
+      $(tmpClusterSSA_tmpNestedComplexRhs);
+      $(tmpClusterSSA_tmpNestedComplexRhs);
     }
+  } else {
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
-  const tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(tmpClusterSSA_a);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -99,24 +105,30 @@ if (b) {
     b = $( d );
   }
 }
-const e = b;
 if (b) {
-  const f = $( 1 );
-  let g = $( f );
-  if (g) {
-    const h = $( 1 );
-    g = $( h );
-    if (g) {
+  const e = $( 1 );
+  const f = $( e );
+  if (f) {
+    const g = $( 1 );
+    const h = $( g );
+    if (h) {
       const i = $( 2 );
-      g = $( i );
+      const j = $( i );
+      $( j );
+      $( j );
+    }
+    else {
+      $( h );
+      $( h );
     }
   }
-  const j = g;
-  $( g );
-  $( j );
+  else {
+    $( f );
+    $( f );
+  }
 }
 else {
-  $( e );
+  $( b );
   $( b );
 }
 `````

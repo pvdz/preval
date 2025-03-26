@@ -25,20 +25,18 @@ let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpCalleeParam /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-  tmpCalleeParam = tmpChainElementObject;
 }
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
   $(a);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -50,19 +48,15 @@ if (a) {
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $({ x: 1 });
-const tmpIfTest = tmpChainElementCall == null;
-let tmpCalleeParam = undefined;
-if (!tmpIfTest) {
+if (!(tmpChainElementCall == null)) {
   const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpCalleeParam = tmpChainElementObject;
+  a = tmpChainElementCall[tmpChainRootComputed];
 }
 if (a) {
   $($(100));
   $(a);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -76,23 +70,21 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
-  const f = $( "x" );
-  const g = c[ f ];
-  a = g;
-  e = g;
+  const e = $( "x" );
+  const f = c[ e ];
+  a = f;
 }
 if (a) {
-  const h = $( 100 );
-  $( h );
+  const g = $( 100 );
+  $( g );
   $( a );
 }
 else {
-  $( e );
+  $( a );
   $( a );
 }
 `````

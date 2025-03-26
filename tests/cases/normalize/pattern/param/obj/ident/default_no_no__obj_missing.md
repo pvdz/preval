@@ -20,8 +20,8 @@ $(f({ b: 2, c: 3 }, 10));
 
 
 `````js filename=intro
-const x$1 /*:unknown*/ = $Object_prototype.x;
-$(x$1);
+const x /*:unknown*/ = $Object_prototype.x;
+$(x);
 `````
 
 

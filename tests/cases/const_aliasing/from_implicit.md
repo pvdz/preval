@@ -1,23 +1,20 @@
 # Preval test case
 
-# cond_completion.md
+# from_implicit.md
 
-> Try > Finally > Cond completion
->
->
+> Const aliasing > From implicit
+
+## Options
+
+- globals: unknown
 
 ## Input
 
 `````js filename=intro
-function f(){
-  try {
-    if (a) return 1;
-    if (b) throw 2;
-  } finally {
-    return 3;
-  }
-}
-log(f());
+const tmp = unknown;
+const x = tmp;
+const y = tmp;
+$(x, y);
 `````
 
 
@@ -25,13 +22,7 @@ log(f());
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = log;
-if (a) {
-  log(3);
-} else {
-  b;
-  tmpCallCallee(3);
-}
+$(unknown, unknown);
 `````
 
 
@@ -39,13 +30,7 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = log;
-if (a) {
-  log(3);
-} else {
-  b;
-  tmpCallCallee(3);
-}
+$(unknown, unknown);
 `````
 
 
@@ -53,14 +38,7 @@ if (a) {
 With rename=true
 
 `````js filename=intro
-const c = log;
-if (a) {
-  log( 3 );
-}
-else {
-  b;
-  c( 3 );
-}
+$( unknown, unknown );
 `````
 
 
@@ -73,9 +51,7 @@ None
 ## Globals
 
 
-BAD@! Found 3 implicit global bindings:
-
-log, a, b
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

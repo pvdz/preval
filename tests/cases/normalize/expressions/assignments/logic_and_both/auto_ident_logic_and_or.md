@@ -28,13 +28,10 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpCalleeParam /*:unknown*/ = undefined;
 if (a) {
-  tmpCalleeParam = a;
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$5);
-  tmpCalleeParam = a;
 }
 if (a) {
   const tmpCalleeParam$7 /*:unknown*/ = $(1);
@@ -54,7 +51,7 @@ if (a) {
     $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -68,12 +65,8 @@ let a = $($(1));
 if (a) {
   a = $($(1));
 }
-let tmpCalleeParam = undefined;
-if (a) {
-  tmpCalleeParam = a;
-} else {
+if (!a) {
   a = $($(2));
-  tmpCalleeParam = a;
 }
 if (a) {
   let tmpNestedComplexRhs = $($(1));
@@ -89,7 +82,7 @@ if (a) {
     $(tmpClusterSSA_tmpNestedComplexRhs);
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -105,35 +98,33 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-let d = undefined;
 if (b) {
-  d = b;
+
 }
 else {
-  const e = $( 2 );
-  b = $( e );
-  d = b;
+  const d = $( 2 );
+  b = $( d );
 }
 if (b) {
-  const f = $( 1 );
-  let g = $( f );
-  if (g) {
-    const h = $( 1 );
-    g = $( h );
+  const e = $( 1 );
+  let f = $( e );
+  if (f) {
+    const g = $( 1 );
+    f = $( g );
   }
-  if (g) {
-    $( g );
-    $( g );
+  if (f) {
+    $( f );
+    $( f );
   }
   else {
-    const i = $( 2 );
-    const j = $( i );
-    $( j );
-    $( j );
+    const h = $( 2 );
+    const i = $( h );
+    $( i );
+    $( i );
   }
 }
 else {
-  $( d );
+  $( b );
   $( b );
 }
 `````

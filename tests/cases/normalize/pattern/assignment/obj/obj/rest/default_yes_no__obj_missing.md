@@ -19,17 +19,16 @@ $(y);
 
 `````js filename=intro
 const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
-let tmpCalleeParam$1 /*:unknown*/ = undefined;
+let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: `pass` };
-  const tmpClusterSSA_objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
-  tmpCalleeParam$1 = tmpClusterSSA_objPatternAfterDefault;
+  objPatternAfterDefault = $(tmpCalleeParam);
 } else {
-  tmpCalleeParam$1 = objPatternBeforeDefault;
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
 const tmpCalleeParam$3 /*:array*/ = [];
-y = $objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+y = $objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -39,13 +38,13 @@ $(y);
 
 `````js filename=intro
 const objPatternBeforeDefault = $Object_prototype.x;
-let tmpCalleeParam$1 = undefined;
+let objPatternAfterDefault = undefined;
 if (objPatternBeforeDefault === undefined) {
-  tmpCalleeParam$1 = $({ a: `pass` });
+  objPatternAfterDefault = $({ a: `pass` });
 } else {
-  tmpCalleeParam$1 = objPatternBeforeDefault;
+  objPatternAfterDefault = objPatternBeforeDefault;
 }
-y = $objPatternRest(tmpCalleeParam$1, [], undefined);
+y = $objPatternRest(objPatternAfterDefault, [], undefined);
 $(y);
 `````
 
@@ -59,14 +58,13 @@ let b = undefined;
 const c = a === undefined;
 if (c) {
   const d = { a: "pass" };
-  const e = $( d );
-  b = e;
+  b = $( d );
 }
 else {
   b = a;
 }
-const f = [];
-y = $objPatternRest( b, f, undefined );
+const e = [];
+y = $objPatternRest( b, e, undefined );
 $( y );
 `````
 

@@ -21,17 +21,14 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(30);
-let tmpCalleeParam /*:unknown*/ = undefined;
 if (tmpIfTest) {
   a = $(60);
-  tmpCalleeParam = a;
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
-  tmpCalleeParam = a;
 }
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
@@ -46,17 +43,13 @@ if (a) {
 
 `````js filename=intro
 let a = undefined;
-const tmpIfTest = $(30);
-let tmpCalleeParam = undefined;
-if (tmpIfTest) {
+if ($(30)) {
   a = $(60);
-  tmpCalleeParam = a;
 } else {
   a = $($(100));
-  tmpCalleeParam = a;
 }
 if (a) {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 } else {
   $($(100));
@@ -71,23 +64,20 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = $( 30 );
-let c = undefined;
 if (b) {
   a = $( 60 );
-  c = a;
 }
 else {
-  const d = $( 100 );
-  a = $( d );
-  c = a;
+  const c = $( 100 );
+  a = $( c );
 }
 if (a) {
-  $( c );
+  $( a );
   $( a );
 }
 else {
-  const e = $( 100 );
-  $( e );
+  const d = $( 100 );
+  $( d );
   $( a );
 }
 `````

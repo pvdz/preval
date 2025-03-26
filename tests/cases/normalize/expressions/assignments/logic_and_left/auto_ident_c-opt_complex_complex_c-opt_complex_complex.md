@@ -38,13 +38,12 @@ if (tmpIfTest) {
     a = tmpChainElementObject$1;
   }
 }
-const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
   $(a);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -65,12 +64,11 @@ if (!(tmpChainElementCall == null)) {
     a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-const tmpCalleeParam = a;
 if (a) {
   $($(100));
   $(a);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -101,14 +99,13 @@ else {
     a = j;
   }
 }
-const k = a;
 if (a) {
-  const l = $( 100 );
-  $( l );
+  const k = $( 100 );
+  $( k );
   $( a );
 }
 else {
-  $( k );
+  $( a );
   $( a );
 }
 `````

@@ -6,6 +6,12 @@
 >
 > Special case return this
 
+## Options
+
+As long as the result is $(window), this test passes
+
+- skipEval
+
 ## Input
 
 `````js filename=intro

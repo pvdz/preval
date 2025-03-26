@@ -25,13 +25,11 @@ let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpCalleeParam /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-  tmpCalleeParam = tmpChainElementObject;
 }
 if (a) {
   const tmpChainElementCall$1 /*:unknown*/ = $(b);
@@ -46,7 +44,7 @@ if (a) {
     $(tmpChainElementObject$1);
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -59,13 +57,9 @@ if (a) {
 let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall == null;
-let tmpCalleeParam = undefined;
-if (!tmpIfTest) {
+if (!(tmpChainElementCall == null)) {
   const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpCalleeParam = tmpChainElementObject;
+  a = tmpChainElementCall[tmpChainRootComputed];
 }
 if (a) {
   const tmpChainElementCall$1 = $(b);
@@ -79,7 +73,7 @@ if (a) {
     $(tmpChainElementObject$1);
   }
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(a);
 }
 `````
@@ -93,32 +87,30 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
-let e = undefined;
 if (d) {
 
 }
 else {
-  const f = $( "x" );
-  const g = c[ f ];
-  a = g;
-  e = g;
+  const e = $( "x" );
+  const f = c[ e ];
+  a = f;
 }
 if (a) {
-  const h = $( b );
-  const i = h == null;
-  if (i) {
+  const g = $( b );
+  const h = g == null;
+  if (h) {
     $( undefined );
     $( undefined );
   }
   else {
-    const j = $( "x" );
-    const k = h[ j ];
-    $( k );
-    $( k );
+    const i = $( "x" );
+    const j = g[ i ];
+    $( j );
+    $( j );
   }
 }
 else {
-  $( e );
+  $( a );
   $( a );
 }
 `````

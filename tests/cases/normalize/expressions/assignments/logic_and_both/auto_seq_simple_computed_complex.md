@@ -22,7 +22,6 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 let a /*:unknown*/ = { b: tmpObjLitVal };
-const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpObjLitVal$1 /*:unknown*/ = $(1);
   const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal$1 };
@@ -30,7 +29,7 @@ if (a) {
   $(tmpNestedComplexRhs);
   $(1);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(1);
 }
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
@@ -46,7 +45,6 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 let a = { b: tmpObjLitVal };
-const tmpCalleeParam = a;
 if (a) {
   const tmpObjLitVal$1 = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal$1 };
@@ -54,7 +52,7 @@ if (a) {
   $(tmpNestedComplexRhs);
   $(1);
 } else {
-  $(tmpCalleeParam);
+  $(a);
   $(1);
 }
 const tmpAssignComMemLhsProp = $(`b`);
@@ -70,21 +68,20 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = { b: a };
-const c = b;
 if (b) {
-  const d = $( 1 );
-  const e = { b: d };
-  b = e;
-  $( e );
+  const c = $( 1 );
+  const d = { b: c };
+  b = d;
+  $( d );
   $( 1 );
 }
 else {
-  $( c );
+  $( b );
   $( 1 );
 }
-const f = $( "b" );
-const g = $( 2 );
-b[f] = g;
+const e = $( "b" );
+const f = $( 2 );
+b[e] = f;
 $( b );
 `````
 

@@ -32,11 +32,6 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   $(3, b, 3);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
@@ -52,11 +47,6 @@ if (tmpIfTest) {
 const tmpIfTest = $(1) === $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $(3, b, 3);
 } else {
@@ -74,11 +64,6 @@ const b = $( 1 );
 const c = a === b;
 const d = { x: 1 };
 if (c) {
-  d.x = 3;
-  d.x = 3;
-  d.x = 3;
-  d.x = 3;
-  d.x = 3;
   d.x = 3;
   $( 3, d, 3 );
 }

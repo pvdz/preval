@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_ident_opt_call_simple.md
+# mirror_alias.md
 
-> Normalize > Expressions > Assignments > Ternary a > Auto ident opt call simple
+> Tofix > mirror alias
 >
 > Normalization of assignments should work the same everywhere they are
 
@@ -43,23 +43,23 @@ if (alias_for_x_to_test) {
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
-let tmpIfTest /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = $ == null;
-if (tmpIfTest$1) {
+let x /*:unknown*/ = undefined;
+let alias_for_x_to_test /*:unknown*/ = undefined;
+const test /*:boolean*/ = $ == null;
+if (test) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
-  tmpIfTest = tmpChainElementCall;
+  const next /*:unknown*/ = $(1);
+  x = next;
+  alias_for_x_to_test = next;
 }
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
-  $(a);
+if (alias_for_x_to_test) {
+  const t /*:unknown*/ = $(100);
+  $(t);
+  $(x);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
-  $(a);
+  const r /*:unknown*/ = $(200);
+  $(r);
+  $(x);
 }
 `````
 
@@ -68,19 +68,19 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
-let tmpIfTest = undefined;
+let x = undefined;
+let alias_for_x_to_test = undefined;
 if (!($ == null)) {
-  const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
-  tmpIfTest = tmpChainElementCall;
+  const next = $(1);
+  x = next;
+  alias_for_x_to_test = next;
 }
-if (tmpIfTest) {
+if (alias_for_x_to_test) {
   $($(100));
-  $(a);
+  $(x);
 } else {
   $($(200));
-  $(a);
+  $(x);
 }
 `````
 

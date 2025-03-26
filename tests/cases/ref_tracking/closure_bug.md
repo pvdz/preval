@@ -29,7 +29,7 @@ $(f);
 
 `````js filename=intro
 const tmpSSA_x /*:unknown*/ = $(1);
-const tmpCalleeParam /*:unknown*/ = tmpSSA_x.headers;
+const tmpCalleeParam /*:unknown*/ = $Object_prototype.headers;
 $(tmpCalleeParam);
 const f /*:()=>undefined*/ = function () {
   debugger;
@@ -45,7 +45,7 @@ $(f);
 
 `````js filename=intro
 const tmpSSA_x = $(1);
-$(tmpSSA_x.headers);
+$($Object_prototype.headers);
 $(function () {
   $(tmpSSA_x);
 });
@@ -57,7 +57,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = a.headers;
+const b = $Object_prototype.headers;
 $( b );
 const c = function() {
   debugger;

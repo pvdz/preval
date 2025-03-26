@@ -20,24 +20,24 @@ $(a);
 
 
 `````js filename=intro
-let a /*:object*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(1);
-  a = { b: tmpObjLitVal };
+  let tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal };
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$1 /*:unknown*/ = $(1);
-      a = { b: tmpObjLitVal$1 };
+      tmpClusterSSA_a = { b: tmpObjLitVal$1 };
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
 } else {
+  const a /*:object*/ = { a: 999, b: 2 };
+  $(a);
 }
-a.b = 2;
-$(a);
 `````
 
 
@@ -45,21 +45,21 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 if ($(1)) {
   const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
+  let tmpClusterSSA_a = { b: tmpObjLitVal };
   while (true) {
     if ($(1)) {
       const tmpObjLitVal$1 = $(1);
-      a = { b: tmpObjLitVal$1 };
+      tmpClusterSSA_a = { b: tmpObjLitVal$1 };
     } else {
       break;
     }
   }
+  $(tmpClusterSSA_a);
+} else {
+  $({ a: 999, b: 2 });
 }
-a.b = 2;
-$(a);
 `````
 
 
@@ -67,27 +67,29 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = {
-  a: 999,
-  b: 1000,
-};
-const b = $( 1 );
-if (b) {
-  const c = $( 1 );
-  a = { b: c };
+const a = $( 1 );
+if (a) {
+  const b = $( 1 );
+  let c = { b: b };
   while ($LOOP_UNROLL_10) {
     const d = $( 1 );
     if (d) {
       const e = $( 1 );
-      a = { b: e };
+      c = { b: e };
     }
     else {
       break;
     }
   }
+  $( c );
 }
-a.b = 2;
-$( a );
+else {
+  const f = {
+    a: 999,
+    b: 2,
+  };
+  $( f );
+}
 `````
 
 

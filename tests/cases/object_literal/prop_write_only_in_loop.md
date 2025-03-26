@@ -1,19 +1,21 @@
 # Preval test case
 
-# auto_ident_prop_s-seq_assign_simple.md
+# prop_write_only_in_loop.md
 
-> Normalize > Expressions > Statement > For b > Auto ident prop s-seq assign simple
+> Object literal > Prop write only in loop
 >
-> Normalization of all kinds of expressions should work the same no matter where they are
+> Object b can just be dropped
 
 ## Input
 
 `````js filename=intro
-let b = { c: 1 };
-
-let a = { a: 999, b: 1000 };
-for (; ((1, 2, b).c = 2); $(1));
-$(a, b);
+const x = $(true);
+const b /*:object*/ = { x: 1 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  b.x = 3;
+  b.x = 3;
+  $(1);
+}
 `````
 
 
@@ -21,9 +23,10 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 2 };
+$(true);
+const b /*:object*/ = { x: 3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  b.c = 2;
+  b.x = 3;
   $(1);
 }
 `````
@@ -33,9 +36,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const b = { c: 2 };
+$(true);
+const b = { x: 3 };
 while (true) {
-  b.c = 2;
+  b.x = 3;
   $(1);
 }
 `````
@@ -45,9 +49,10 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = { c: 2 };
+$( true );
+const a = { x: 3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a.c = 2;
+  a.x = 3;
   $( 1 );
 }
 `````
@@ -69,7 +74,7 @@ None
 
 
 Should call `$` with:
- - 1: 1
+ - 1: true
  - 2: 1
  - 3: 1
  - 4: 1

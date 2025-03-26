@@ -1,23 +1,19 @@
 # Preval test case
 
-# multi_scope_const_blocking.md
+# arr_init.md
 
-> Object literal > Static prop lookups > Multi scope const blocking
+> Array > Arr init
 >
-> If we can statically resolve a property lookup, we should
+>
 
 ## Input
 
 `````js filename=intro
-const o = {x: $(1)};
-const f = function() {
-  $(o.x);
-};
-$(o.x);
-o.x = 10;
-f();
-f();
-f();
+const arr = [];
+arr[0] = 0;
+arr[1] = 1;
+arr[2] = 2;
+$(arr);
 `````
 
 
@@ -25,11 +21,8 @@ f();
 
 
 `````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-$(tmpObjLitVal);
-$(10);
-$(10);
-$(10);
+const arr /*:array*/ = [0, 1, 2];
+$(arr);
 `````
 
 
@@ -37,10 +30,7 @@ $(10);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(1));
-$(10);
-$(10);
-$(10);
+$([0, 1, 2]);
 `````
 
 
@@ -48,11 +38,8 @@ $(10);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+const a = [ 0, 1, 2 ];
 $( a );
-$( 10 );
-$( 10 );
-$( 10 );
 `````
 
 
@@ -72,11 +59,7 @@ None
 
 
 Should call `$` with:
- - 1: 1
- - 2: 1
- - 3: 10
- - 4: 10
- - 5: 10
+ - 1: [0, 1, 2]
  - eval returned: undefined
 
 Pre normalization calls: Same

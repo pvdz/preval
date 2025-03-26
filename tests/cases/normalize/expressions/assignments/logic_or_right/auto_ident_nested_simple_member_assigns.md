@@ -30,11 +30,6 @@ if (tmpCalleeParam) {
   $(a, b, 3);
 } else {
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   $(3);
   $(3, b, 3);
 }
@@ -51,11 +46,6 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 }, b, 3);
 } else {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $(3);
   $(3, b, 3);
@@ -78,11 +68,6 @@ if (a) {
   $( c, b, 3 );
 }
 else {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $( 3 );
   $( 3, b, 3 );

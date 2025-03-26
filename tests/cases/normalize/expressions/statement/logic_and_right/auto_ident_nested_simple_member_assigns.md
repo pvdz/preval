@@ -27,11 +27,6 @@ const b /*:object*/ = { x: 1 };
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   $(a, b, 3);
 } else {
   $(a, b, 3);
@@ -47,11 +42,6 @@ const tmpIfTest = $(100);
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $(a, b, 3);
 } else {
@@ -71,11 +61,6 @@ const c = {
   b: 1000,
 };
 if (a) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $( c, b, 3 );
 }

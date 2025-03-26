@@ -22,13 +22,8 @@ $(a, b, c);
 
 
 `````js filename=intro
-const b /*:object*/ = { x: 1 };
+const b /*:object*/ = { x: 3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $(100);
 }
@@ -39,13 +34,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const b = { x: 1 };
+const b = { x: 3 };
 while (true) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $(100);
 }
@@ -56,13 +46,8 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
+const a = { x: 3 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
   a.x = 3;
   $( 100 );
 }

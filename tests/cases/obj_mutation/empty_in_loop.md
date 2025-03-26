@@ -23,7 +23,7 @@ $(blob);
 
 
 `````js filename=intro
-const blob /*:object*/ = { thing: `woop` };
+const blob /*:object*/ = { thing: `boing` };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   blob.thing = `boing`;
   $(1);
@@ -35,7 +35,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const blob = { thing: `woop` };
+const blob = { thing: `boing` };
 while (true) {
   blob.thing = `boing`;
   $(1);
@@ -47,7 +47,7 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = { thing: "woop" };
+const a = { thing: "boing" };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a.thing = "boing";
   $( 1 );

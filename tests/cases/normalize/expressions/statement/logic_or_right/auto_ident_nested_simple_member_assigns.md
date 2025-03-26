@@ -29,11 +29,6 @@ if (tmpIfTest) {
   $(a, b, 3);
 } else {
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   $(a, b, 3);
 }
 `````
@@ -49,11 +44,6 @@ const b = { x: 1 };
 if (tmpIfTest) {
   $(a, b, 3);
 } else {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $(a, b, 3);
 }
@@ -74,11 +64,6 @@ if (a) {
   $( b, c, 3 );
 }
 else {
-  c.x = 3;
-  c.x = 3;
-  c.x = 3;
-  c.x = 3;
-  c.x = 3;
   c.x = 3;
   $( b, c, 3 );
 }

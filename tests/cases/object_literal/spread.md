@@ -1,19 +1,21 @@
 # Preval test case
 
-# auto_ident_prop_s-seq_assign_simple.md
+# spread.md
 
-> Normalize > Expressions > Statement > For b > Auto ident prop s-seq assign simple
+> Object literal > Spread
 >
-> Normalization of all kinds of expressions should work the same no matter where they are
+>
 
 ## Input
 
 `````js filename=intro
-let b = { c: 1 };
-
-let a = { a: 999, b: 1000 };
-for (; ((1, 2, b).c = 2); $(1));
-$(a, b);
+const x = $({ a: 1, b: 2 });
+const b /*:object*/ = { x: 1, ...x };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  b.x = 3;
+  b.x = 3;
+  $(1);
+}
 `````
 
 
@@ -21,9 +23,12 @@ $(a, b);
 
 
 `````js filename=intro
-const b /*:object*/ = { c: 2 };
+const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
+const x /*:unknown*/ = $(tmpCalleeParam);
+const b /*:object*/ = { x: 1, ...x };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  b.c = 2;
+  b.x = 3;
+  b.x = 3;
   $(1);
 }
 `````
@@ -33,9 +38,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const b = { c: 2 };
+const x = $({ a: 1, b: 2 });
+const b = { x: 1, ...x };
 while (true) {
-  b.c = 2;
+  b.x = 3;
+  b.x = 3;
   $(1);
 }
 `````
@@ -45,9 +52,18 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = { c: 2 };
+const a = {
+  a: 1,
+  b: 2,
+};
+const b = $( a );
+const c = {
+  x: 1,
+  ... b,
+};
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a.c = 2;
+  c.x = 3;
+  c.x = 3;
   $( 1 );
 }
 `````
@@ -69,7 +85,7 @@ None
 
 
 Should call `$` with:
- - 1: 1
+ - 1: { a: '1', b: '2' }
  - 2: 1
  - 3: 1
  - 4: 1

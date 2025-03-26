@@ -33,11 +33,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     (3).x = tmpAssignMemRhs;
   }
@@ -58,11 +53,6 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
     b.x = 3;
     const tmpAssignMemRhs = tmpForOfNext.value;
     (3).x = tmpAssignMemRhs;
@@ -87,11 +77,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    d.x = 3;
-    d.x = 3;
-    d.x = 3;
-    d.x = 3;
-    d.x = 3;
     d.x = 3;
     const g = e.value;
     3.x = g;

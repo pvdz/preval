@@ -28,11 +28,6 @@ const b /*:object*/ = { x: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
 }
 `````
 
@@ -45,11 +40,6 @@ const b = { x: 1 };
 while (true) {
   $(100);
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
 }
 `````
 
@@ -61,11 +51,6 @@ With rename=true
 const a = { x: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
-  a.x = 3;
   a.x = 3;
 }
 `````

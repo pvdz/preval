@@ -49,11 +49,6 @@ const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest$3) {
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
 } else {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$5) {
@@ -84,11 +79,6 @@ if ($(1) === tmpSwitchValue) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 const b = { x: 1 };
 if (tmpIfTest$3) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
 } else {
   if (tmpSwitchCaseToStart <= 1) {
@@ -122,11 +112,6 @@ else {
 const f = b <= 0;
 const g = { x: 1 };
 if (f) {
-  g.x = 3;
-  g.x = 3;
-  g.x = 3;
-  g.x = 3;
-  g.x = 3;
   g.x = 3;
 }
 else {

@@ -24,7 +24,6 @@ $(b);
 const b /*:object*/ = { x: 1 };
 $(b);
 b.x = 3;
-b.x = 3;
 $(b);
 `````
 
@@ -36,7 +35,6 @@ $(b);
 const b = { x: 1 };
 $(b);
 b.x = 3;
-b.x = 3;
 $(b);
 `````
 
@@ -47,7 +45,6 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 $( a );
-a.x = 3;
 a.x = 3;
 $( a );
 `````

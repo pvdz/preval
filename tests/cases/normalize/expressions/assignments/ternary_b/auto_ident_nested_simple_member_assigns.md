@@ -26,11 +26,6 @@ const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { x: 1 };
 if (tmpIfTest) {
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   $(3);
   $(3, b, 3);
 } else {
@@ -50,11 +45,6 @@ const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   $(3);
   $(3, b, 3);
 } else {
@@ -71,11 +61,6 @@ With rename=true
 const a = $( 1 );
 const b = { x: 1 };
 if (a) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $( 3 );
   $( 3, b, 3 );

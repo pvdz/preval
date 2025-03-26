@@ -64,20 +64,20 @@ if (a) {
 const tmpCalleeParam /*:unknown*/ = a;
 if (a) {
   const tmpCalleeParam$7 /*:unknown*/ = $(0);
-  let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
-  if (tmpNestedComplexRhs) {
+  let tmp /*:unknown*/ = $(tmpCalleeParam$7);
+  if (tmp) {
   } else {
     const tmpCalleeParam$9 /*:unknown*/ = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$9);
-    if (tmpNestedComplexRhs) {
+    tmp = $(tmpCalleeParam$9);
+    if (tmp) {
     } else {
       const tmpCalleeParam$11 /*:unknown*/ = $(2);
-      tmpNestedComplexRhs = $(tmpCalleeParam$11);
+      tmp = $(tmpCalleeParam$11);
     }
   }
-  const tmpClusterSSA_a /*:unknown*/ = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(tmpClusterSSA_a);
+  const alias /*:unknown*/ = tmp;
+  $(tmp);
+  $(alias);
 } else {
   $(tmpCalleeParam);
   $(a);
@@ -98,16 +98,16 @@ if (!a) {
 }
 const tmpCalleeParam = a;
 if (a) {
-  let tmpNestedComplexRhs = $($(0));
-  if (!tmpNestedComplexRhs) {
-    tmpNestedComplexRhs = $($(1));
-    if (!tmpNestedComplexRhs) {
-      tmpNestedComplexRhs = $($(2));
+  let tmp = $($(0));
+  if (!tmp) {
+    tmp = $($(1));
+    if (!tmp) {
+      tmp = $($(2));
     }
   }
-  const tmpClusterSSA_a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-  $(tmpClusterSSA_a);
+  const alias = tmp;
+  $(tmp);
+  $(alias);
 } else {
   $(tmpCalleeParam);
   $(a);

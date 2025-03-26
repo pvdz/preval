@@ -26,11 +26,6 @@ const tmpCalleeParam /*:unknown*/ = $(100);
 const b /*:object*/ = { x: 1 };
 if (tmpCalleeParam) {
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   $(3);
   $(3, b, 3);
 } else {
@@ -49,11 +44,6 @@ const tmpCalleeParam = $(100);
 const b = { x: 1 };
 if (tmpCalleeParam) {
   b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   $(3);
   $(3, b, 3);
 } else {
@@ -70,11 +60,6 @@ With rename=true
 const a = $( 100 );
 const b = { x: 1 };
 if (a) {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
   b.x = 3;
   $( 3 );
   $( 3, b, 3 );

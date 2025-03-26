@@ -35,9 +35,9 @@ const tmpCalleeParam$3 /*:object*/ = {
   s: `eval`,
   r: `r`,
   q: `10`,
+  p: `p`,
 };
 let tmpClusterSSA_c$1 /*:number*/ = 25;
-tmpCalleeParam$3.p = `p`;
 const tmpCalleeParam$1 /*:array*/ = [
   ``,
   ``,
@@ -111,9 +111,20 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$3 = { z: `split`, y: `not_expr`, x: `u0020g`, w: `w`, v: `x20f`, u: `RegExp`, t: `new`, s: `eval`, r: `r`, q: `10` };
+const tmpCalleeParam$3 = {
+  z: `split`,
+  y: `not_expr`,
+  x: `u0020g`,
+  w: `w`,
+  v: `x20f`,
+  u: `RegExp`,
+  t: `new`,
+  s: `eval`,
+  r: `r`,
+  q: `10`,
+  p: `p`,
+};
 let tmpClusterSSA_c$1 = 25;
-tmpCalleeParam$3.p = `p`;
 const tmpCalleeParam$1 = [
   ``,
   ``,
@@ -196,9 +207,9 @@ const a = {
   s: "eval",
   r: "r",
   q: "10",
+  p: "p",
 };
 let b = 25;
-a.p = "p";
 const c = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "function", "", "", "", "return", "", "String", "if", "replace", "while", "", "10", "", "eval", "new", "RegExp", "x20f", "", "u0020g", "not_expr", "split" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = b;

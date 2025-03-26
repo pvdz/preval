@@ -30,9 +30,8 @@ const tmpIfTest /*:boolean*/ = b == null;
 let c /*:unknown*/ = undefined;
 let tmpIfTest$1 /*:boolean*/ = false;
 if (tmpIfTest) {
-  const tmpClusterSSA_b /*:unknown*/ = implicitA;
-  c = tmpClusterSSA_b;
-  tmpIfTest$1 = tmpClusterSSA_b == null;
+  c = implicitA;
+  tmpIfTest$1 = c == null;
 } else {
   c = b;
   tmpIfTest$1 = b == null;
@@ -56,9 +55,8 @@ const tmpIfTest = b == null;
 let c = undefined;
 let tmpIfTest$1 = false;
 if (tmpIfTest) {
-  const tmpClusterSSA_b = implicitA;
-  c = tmpClusterSSA_b;
-  tmpIfTest$1 = tmpClusterSSA_b == null;
+  c = implicitA;
+  tmpIfTest$1 = c == null;
 } else {
   c = b;
   tmpIfTest$1 = b == null;
@@ -80,21 +78,20 @@ const b = a == null;
 let c = undefined;
 let d = false;
 if (b) {
-  const e = implicitA;
-  c = e;
-  d = e == null;
+  c = implicitA;
+  d = c == null;
 }
 else {
   c = a;
   d = a == null;
 }
 if (d) {
-  const f = $( implicitB );
-  $( f );
+  const e = $( implicitB );
+  $( e );
 }
 else {
-  const g = $( c );
-  $( g );
+  const f = $( c );
+  $( f );
 }
 `````
 

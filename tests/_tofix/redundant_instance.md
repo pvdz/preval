@@ -31,24 +31,24 @@ $(obj);
 
 
 `````js filename=intro
-const tmpObjLitVal /*:unknown*/ = $(1);
-const tmpIfTest$1 /*:unknown*/ = $(1);
-if (tmpIfTest$1) {
-  const tmpObjLitVal$1 /*:unknown*/ = $(1);
-  let tmpClusterSSA_a$1 /*:object*/ = { b: tmpObjLitVal$1 };
+const anything /*:unknown*/ = $(1);
+const test /*:unknown*/ = $(1);
+if (test) {
+  const newvalue /*:unknown*/ = $(1);
+  let tmpClusterSSA_obj /*:object*/ = { b: newvalue };
   while ($LOOP_UNROLL_9) {
-    const tmpIfTest$2 /*:unknown*/ = $(1);
-    if (tmpIfTest$2) {
-      const tmpObjLitVal$2 /*:unknown*/ = $(1);
-      tmpClusterSSA_a$1 = { b: tmpObjLitVal$2 };
+    const test$1 /*:unknown*/ = $(1);
+    if (test$1) {
+      const newvalue$1 /*:unknown*/ = $(1);
+      tmpClusterSSA_obj = { b: newvalue$1 };
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_obj);
 } else {
-  const tmpClusterSSA_a /*:object*/ = { b: tmpObjLitVal };
-  $(tmpClusterSSA_a);
+  const obj /*:object*/ = { b: anything };
+  $(obj);
 }
 `````
 
@@ -57,21 +57,21 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const anything = $(1);
 if ($(1)) {
-  const tmpObjLitVal$1 = $(1);
-  let tmpClusterSSA_a$1 = { b: tmpObjLitVal$1 };
+  const newvalue = $(1);
+  let tmpClusterSSA_obj = { b: newvalue };
   while (true) {
     if ($(1)) {
-      const tmpObjLitVal$2 = $(1);
-      tmpClusterSSA_a$1 = { b: tmpObjLitVal$2 };
+      const newvalue$1 = $(1);
+      tmpClusterSSA_obj = { b: newvalue$1 };
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a$1);
+  $(tmpClusterSSA_obj);
 } else {
-  $({ b: tmpObjLitVal });
+  $({ b: anything });
 }
 `````
 

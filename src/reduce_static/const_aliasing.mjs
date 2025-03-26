@@ -11,10 +11,14 @@
 //        const x = this; const y = x; $(x, y);
 // ->     const x = this; const y = x; $(x, x);
 //
-//        const x = $array_toString; $(x);
-// ->     $($array_toString);
+//        const x = unknown; $(x);
+// ->     $(unknown);
 //
-
+// Or even assignments
+//
+//        const x = unknown; y = x; z = x; $(x, y);
+// ->     const x = unknown; y = unknown; z = unknown; $(x, y)
+//
 
 import {
   ASSERT,
@@ -52,13 +56,15 @@ function _constAliasing(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (!meta.isConstant) return;
+    if (meta.writes.length !== 1) return;
     if (meta.writes[0].kind !== 'var') return; // catch or smth
     if (meta.constValueRef.containerNode.init.type !== 'Identifier') return;
 
     const rhsName = meta.constValueRef.containerNode.init.name;
     vlog('- Testing:', [lhsName], 'with', [rhsName]);
-    if (rhsName === lhsName) return; // TDZ but not my problem
-    if (rhsName === 'arguments') return;
+    if (rhsName === lhsName) return vlog('- bail: this is tdz'); // TDZ but not my problem, should be caught elsewhere
+    if (rhsName === 'arguments') return vlog('- bail: this is a special symbol');
+
     const meta2 = fdata.globallyUniqueNamingRegistry.get(rhsName);
     if (meta2.isBuiltin) {
       // special case aliasing a known builtin global. `const f = Array;`
@@ -91,12 +97,11 @@ function _constAliasing(fdata) {
       return
     }
 
-    if (meta2.isImplicitGlobal) return;
-    if (meta2.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
+    //if (meta2.isImplicitGlobal) return;
+    //if (meta2.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
 
     if (meta2.isConstant) {
       // Main case we target here. `const x = 1; const y = x;`
-      if (meta2.constValueRef?.containerNode.type !== 'VarStatement') return; // catch, ???
 
       vlog('Replacing all cases of "', rhsName, '" with "', lhsName, '"');
 
@@ -123,9 +128,11 @@ function _constAliasing(fdata) {
       return;
     }
 
-    // Try to figure out if the assigned (let) binding may have changed before first usage of the constant.
-    // If that's not the case then we can change that usage to the rhs instead.
-    // So we want to know if `let rhs = x; const lhs = rhs; $(lhs);` and want to change $(lhs) to $(rhs)
+    // This is alt-path. The rhs is not a constant, maybe even an implicit global.
+
+    // Case 1: all usages of the const happen before the rhs has an opportunity to change
+    // Example: `let rhs = x; const lhs = rhs; $(lhs);` in that case we want to change $(lhs) to $(rhs)
+    // Example: `let rhs = x; const lhs = rhs; $(lhs); x = 10; $(lhs);` in that case we can only change the first usage, not both
 
     const FOUND = 1;
     const SPIES = 2;
@@ -143,6 +150,7 @@ function _constAliasing(fdata) {
           ++dropped;
           return FOUND;
         }
+
         if (!AST.complexExpressionNodeMightSpy(expr.left, fdata) && expr.right.type === 'Identifier' && expr.right.name === targetName) {
           rule('A let alias where the let value can not be changed before the first usage can have its usage replaced; bin usage right');
           example('let x = 1; const y = x; const z = 5 + y;', 'let x = 1; const y = x; const z = 5 + x;');
@@ -177,6 +185,7 @@ function _constAliasing(fdata) {
           ++dropped;
           return FOUND;
         }
+
         let und;
         if (expr.arguments.some(anode => {
           if (anode.type === 'Identifier' && anode.name === targetName) {

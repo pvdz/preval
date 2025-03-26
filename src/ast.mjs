@@ -2236,13 +2236,19 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail, safeToAwait
 export function complexExpressionNodeMightSpy(node, fdata) {
   ASSERT(node, 'expecting node', node);
   ASSERT(fdata, 'expecting fdata', fdata);
+
+  vlog('complexExpressionNodeMightSpy(', node.type, ')', node.name);
+  const r = _complexExpressionNodeMightSpy(node, fdata);
+  vlog('  -', r);
+
+  return r;
+}
+export function _complexExpressionNodeMightSpy(node, fdata) {
   // aka, "a node is user observable when"
   // Will also cover the simple cases
 
   // Assume `node` is in a normalized state.
   // Can inspect meta.typing.mustBeType for info
-
-  vlog('complexExpressionNodeMightSpy(', node.type, ')');
 
   // A given node may represent an observable action if, aside from the thing the node explicitly
   // does, it may also trigger function calls as a side effect. In any way. Like getters and setters.

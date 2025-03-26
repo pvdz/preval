@@ -1,4 +1,4 @@
-// Search for const alising of a let where the alias is unnecessary
+// Search for const aliasing of a let where the alias is unnecessary
 //
 // `let x = $; const y = x; $(); $(y); x += 1; $(x);`
 // -> `let x = $; $(); $(x); x += 1; $(x);`

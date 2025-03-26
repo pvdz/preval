@@ -67,15 +67,12 @@ None
 
 
 Should call `$` with:
- - eval returned: ('<crash[ Maximum call stack size exceeded ]>')
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD!?
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Normalized calls: Same
 
-Post settled calls: BAD!!
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Denormalized calls: Same

@@ -10,6 +10,10 @@ Weak comparison dictates that when both sides are eq type
 that it must be a strong comparison instead. At which point
 the object literal obviously will not match the global `String`.
 
+## Options
+
+- loopProtectLimit=1000
+
 ## Input
 
 `````js filename=intro

@@ -11,6 +11,10 @@ same for `arguments`?
 
 existing test
 
+## Options
+
+- loopProtectLimit=1000
+
 ## Input
 
 `````js filename=intro
@@ -674,7 +678,131 @@ Should call `$` with:
  - 24: 'boolean'
  - 25: 'Creating spy', 10, 1, ['Array.of', 'Array.of']
  - 26: 'object'
- - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+ - 27: 'Creating spy', 11, 1, ['Date.now', 'Date.now']
+ - 28: 'number'
+ - 29: 'Creating spy', 12, 1, ['Date.UTC', 'Date.UTC']
+ - 30: '$spy[12].valueOf()', 'Date.UTC'
+ - 31: 'number'
+ - 32: 'Creating spy', 13, 1, ['Date.parse', 'Date.parse']
+ - 33: '$spy[13].toString()', 'Date.parse'
+ - 34: 'number'
+ - 35: 'Creating spy', 14, 1, ['JSON.stringify', 'JSON.stringify']
+ - 36: 'string'
+ - 37: 'Creating spy', 15, 1, ['Math.abs', 'Math.abs']
+ - 38: '$spy[15].valueOf()', 'Math.abs'
+ - 39: 'number'
+ - 40: 'Creating spy', 16, 1, ['Math.acos', 'Math.acos']
+ - 41: '$spy[16].valueOf()', 'Math.acos'
+ - 42: 'number'
+ - 43: 'Creating spy', 17, 1, ['Math.acosh', 'Math.acosh']
+ - 44: '$spy[17].valueOf()', 'Math.acosh'
+ - 45: 'number'
+ - 46: 'Creating spy', 18, 1, ['Math.asin', 'Math.asin']
+ - 47: '$spy[18].valueOf()', 'Math.asin'
+ - 48: 'number'
+ - 49: 'Creating spy', 19, 1, ['Math.asinh', 'Math.asinh']
+ - 50: '$spy[19].valueOf()', 'Math.asinh'
+ - 51: 'number'
+ - 52: 'Creating spy', 20, 1, ['Math.atan', 'Math.atan']
+ - 53: '$spy[20].valueOf()', 'Math.atan'
+ - 54: 'number'
+ - 55: 'Creating spy', 21, 1, ['Math.atan2', 'Math.atan2']
+ - 56: '$spy[21].valueOf()', 'Math.atan2'
+ - 57: 'number'
+ - 58: 'Creating spy', 22, 1, ['Math.atanh', 'Math.atanh']
+ - 59: '$spy[22].valueOf()', 'Math.atanh'
+ - 60: 'number'
+ - 61: 'Creating spy', 23, 1, ['Math.cbrt', 'Math.cbrt']
+ - 62: '$spy[23].valueOf()', 'Math.cbrt'
+ - 63: 'number'
+ - 64: 'Creating spy', 24, 1, ['Math.ceil', 'Math.ceil']
+ - 65: '$spy[24].valueOf()', 'Math.ceil'
+ - 66: 'number'
+ - 67: 'Creating spy', 25, 1, ['Math.clz32', 'Math.clz32']
+ - 68: '$spy[25].valueOf()', 'Math.clz32'
+ - 69: 'number'
+ - 70: 'Creating spy', 26, 1, ['Math.cos', 'Math.cos']
+ - 71: '$spy[26].valueOf()', 'Math.cos'
+ - 72: 'number'
+ - 73: 'Creating spy', 27, 1, ['Math.cosh', 'Math.cosh']
+ - 74: '$spy[27].valueOf()', 'Math.cosh'
+ - 75: 'number'
+ - 76: 'Creating spy', 28, 1, ['Math.exp', 'Math.exp']
+ - 77: '$spy[28].valueOf()', 'Math.exp'
+ - 78: 'number'
+ - 79: 'Creating spy', 29, 1, ['Math.expm1', 'Math.expm1']
+ - 80: '$spy[29].valueOf()', 'Math.expm1'
+ - 81: 'number'
+ - 82: 'Creating spy', 30, 1, ['Math.floor', 'Math.floor']
+ - 83: '$spy[30].valueOf()', 'Math.floor'
+ - 84: 'number'
+ - 85: 'Creating spy', 31, 1, ['Math.fround', 'Math.fround']
+ - 86: '$spy[31].valueOf()', 'Math.fround'
+ - 87: 'number'
+ - 88: 'Creating spy', 32, 1, ['Math.hypot', 'Math.hypot']
+ - 89: '$spy[32].valueOf()', 'Math.hypot'
+ - 90: 'number'
+ - 91: 'Creating spy', 33, 1, ['Math.imul', 'Math.imul']
+ - 92: '$spy[33].valueOf()', 'Math.imul'
+ - 93: 'number'
+ - 94: 'Creating spy', 34, 1, ['Math.log', 'Math.log']
+ - 95: '$spy[34].valueOf()', 'Math.log'
+ - 96: 'number'
+ - 97: 'Creating spy', 35, 1, ['Math.log10', 'Math.log10']
+ - 98: '$spy[35].valueOf()', 'Math.log10'
+ - 99: 'number'
+ - 100: 'Creating spy', 36, 1, ['Math.log1p', 'Math.log1p']
+ - 101: '$spy[36].valueOf()', 'Math.log1p'
+ - 102: 'number'
+ - 103: 'Creating spy', 37, 1, ['Math.log2', 'Math.log2']
+ - 104: '$spy[37].valueOf()', 'Math.log2'
+ - 105: 'number'
+ - 106: 'Creating spy', 38, 1, ['Math.max', 'Math.max']
+ - 107: '$spy[38].valueOf()', 'Math.max'
+ - 108: 'number'
+ - 109: 'Creating spy', 39, 1, ['Math.min', 'Math.min']
+ - 110: '$spy[39].valueOf()', 'Math.min'
+ - 111: 'number'
+ - 112: 'Creating spy', 40, 1, ['Math.pow', 'Math.pow']
+ - 113: '$spy[40].valueOf()', 'Math.pow'
+ - 114: 'number'
+ - 115: 'Creating spy', 41, 1, ['Math.random', 'Math.random']
+ - 116: 'number'
+ - 117: 'Creating spy', 42, 1, ['Math.round', 'Math.round']
+ - 118: '$spy[42].valueOf()', 'Math.round'
+ - 119: 'number'
+ - 120: 'Creating spy', 43, 1, ['Math.sign', 'Math.sign']
+ - 121: '$spy[43].valueOf()', 'Math.sign'
+ - 122: 'number'
+ - 123: 'Creating spy', 44, 1, ['Math.sin', 'Math.sin']
+ - 124: '$spy[44].valueOf()', 'Math.sin'
+ - 125: 'number'
+ - 126: 'Creating spy', 45, 1, ['Number.isFinite', 'Number.isFinite']
+ - 127: 'boolean'
+ - 128: 'Creating spy', 46, 1, ['Number.isInteger', 'Number.isInteger']
+ - 129: 'boolean'
+ - 130: 'Creating spy', 47, 1, ['Number.isNaN', 'Number.isNaN']
+ - 131: 'boolean'
+ - 132: 'Creating spy', 48, 1, ['Number.isSafeInteger', 'Number.isSafeInteger']
+ - 133: 'boolean'
+ - 134: 'Creating spy', 49, 1, ['Number.parseFloat', 'Number.parseFloat']
+ - 135: '$spy[49].toString()', 'Number.parseFloat'
+ - 136: 'number'
+ - 137: 'Creating spy', 50, 1, ['Number.parseInt', 'Number.parseInt']
+ - 138: '$spy[50].toString()', 'Number.parseInt'
+ - 139: 'number'
+ - 140: 'Creating spy', 51, 1, ['Object.is', 'Object.is']
+ - 141: 'boolean'
+ - 142: 'Creating spy', 52, 1, ['Object.isFrozen', 'Object.isFrozen']
+ - 143: 'boolean'
+ - 144: 'Creating spy', 53, 1, ['Object.isSealed', 'Object.isSealed']
+ - 145: 'boolean'
+ - 146: 'Creating spy', 54, 1, ['String.fromCharCode', 'String.fromCharCode']
+ - 147: '$spy[54].valueOf()', 'String.fromCharCode'
+ - 148: 'string'
+ - 149: 'Creating spy', 55, 1, ['String.fromCodePoint', 'String.fromCodePoint']
+ - 150: '$spy[55].valueOf()', 'String.fromCodePoint'
+ - eval returned: ('<crash[ Invalid code point NaN ]>')
 
 Pre normalization calls: Same
 

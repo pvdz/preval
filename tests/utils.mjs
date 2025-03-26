@@ -99,6 +99,7 @@ export function fromMarkdownCase(md, fname, config) {
             break;
           }
           case 'cloneLimit':
+          case 'loopProtectLimit':
           case 'maxPass':
             value = parseInt(value.trim());
             if (isNaN(value)) throw new Error('Test case contained invalid value for `' + name + '` (' + value + ')');

@@ -11,6 +11,10 @@ same for `arguments`?
 
 existing test
 
+## Options
+
+- loopProtectLimit=1000
+
 ## Input
 
 `````js filename=intro

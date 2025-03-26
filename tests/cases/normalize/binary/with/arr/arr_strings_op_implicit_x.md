@@ -16,6 +16,7 @@ Also a variation where the array contents is some strings or numbers.
 ## Options
 
 - globals: x
+- loopProtectLimit=1000
 
 ## Input
 

@@ -15,6 +15,7 @@ resolved, and at some point hopefully it will.
 ## Options
 
 - globals: x
+- loopProtectLimit=1000
 
 ## Input
 

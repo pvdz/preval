@@ -10,6 +10,10 @@
 - array.isArray returns a bool
 - etc
 
+## Options
+
+- loopProtectLimit=1000
+
 ## Input
 
 `````js filename=intro

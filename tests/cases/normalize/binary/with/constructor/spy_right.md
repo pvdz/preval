@@ -6,6 +6,10 @@
 >
 > Deal with certain primitive with binary ops
 
+## Options
+
+- loopProtectLimit=1000
+
 ## Input
 
 `````js filename=intro

@@ -211,6 +211,7 @@ function runTestCase(
     console.log('mdOptions:', mdOptions);
   }
 
+  const customLoopProtectLimit = mdOptions?.loopProtectLimit;
   const isRefTest = CONFIG.refTest ?? mdOptions?.refTest;
   const isPcodeTest = CONFIG.pcodeTest ?? mdOptions?.pcodeTest;
   const initialPrngSeed = CONFIG.prngSeed ?? mdOptions?.seed ?? 1;
@@ -648,7 +649,7 @@ function runTestCase(
         //.replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
       }
       function $(...dollarArgs) {
-        if (stack.length > (before ? 25 : 10000)) throw new Error('Loop aborted by Preval test runner (this simply curbs infinite loops in tests)');
+        if (stack.length > (before ? customLoopProtectLimit ?? 25 : 10000)) throw new Error('Loop aborted by Preval test runner (this simply curbs infinite loops in tests)');
 
         let tmp = dollarArgs[0];
         if (inverse) {

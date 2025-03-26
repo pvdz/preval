@@ -9,6 +9,7 @@
 ## Options
 
 - globals: x
+- loopProtectLimit=1000
 
 ## Input
 

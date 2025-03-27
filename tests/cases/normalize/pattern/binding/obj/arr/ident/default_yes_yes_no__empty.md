@@ -27,8 +27,7 @@ if (tmpIfTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-arrPatternSplat[0];
+[...objPatternAfterDefault];
 $(`bad`);
 `````
 
@@ -44,7 +43,7 @@ if (objPatternBeforeDefault === undefined) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-[...objPatternAfterDefault][0];
+[...objPatternAfterDefault];
 $(`bad`);
 `````
 
@@ -63,8 +62,7 @@ if (c) {
 else {
   b = a;
 }
-const e = [ ...b ];
-e[ 0 ];
+[ ...b ];
 $( "bad" );
 `````
 

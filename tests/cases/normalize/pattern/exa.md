@@ -35,13 +35,10 @@ val_2_rest = $objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 tmpAssignObjPatternRhs.val_1_2;
 const objPatternNoDefault$1 /*:unknown*/ = tmpAssignObjPatternRhs.val_1_3;
 const arrPatternSplat /*:array*/ = [...objPatternNoDefault$1];
-arrPatternSplat[0];
-arrPatternSplat[1];
 const arrPatternStep /*:unknown*/ = arrPatternSplat[2];
 arrPatternStep.val_3_1;
 const tmpCalleeParam$5 /*:array*/ = [`val_3_1`];
 val_3_rest = $objPatternRest(arrPatternStep, tmpCalleeParam$5, undefined);
-arrPatternSplat[3];
 tmpAssignObjPatternRhs.val_1_4;
 `````
 
@@ -56,13 +53,9 @@ objPatternNoDefault.val_2_1;
 val_2_rest = $objPatternRest(objPatternNoDefault, [`val_2_1`], undefined);
 tmpAssignObjPatternRhs.val_1_2;
 const objPatternNoDefault$1 = tmpAssignObjPatternRhs.val_1_3;
-const arrPatternSplat = [...objPatternNoDefault$1];
-arrPatternSplat[0];
-arrPatternSplat[1];
-const arrPatternStep = arrPatternSplat[2];
+const arrPatternStep = [...objPatternNoDefault$1][2];
 arrPatternStep.val_3_1;
 val_3_rest = $objPatternRest(arrPatternStep, [`val_3_1`], undefined);
-arrPatternSplat[3];
 tmpAssignObjPatternRhs.val_1_4;
 `````
 
@@ -79,13 +72,10 @@ val_2_rest = $objPatternRest( b, c, undefined );
 a.val_1_2;
 const d = a.val_1_3;
 const e = [ ...d ];
-e[ 0 ];
-e[ 1 ];
 const f = e[ 2 ];
 f.val_3_1;
 const g = [ "val_3_1" ];
 val_3_rest = $objPatternRest( f, g, undefined );
-e[ 3 ];
 a.val_1_4;
 `````
 

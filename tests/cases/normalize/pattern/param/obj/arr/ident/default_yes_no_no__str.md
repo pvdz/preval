@@ -21,8 +21,7 @@ $(f('abc', 10));
 
 `````js filename=intro
 const objPatternNoDefault /*:unknown*/ = `abc`.x;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-arrPatternSplat[0];
+[...objPatternNoDefault];
 $(`bad`);
 `````
 
@@ -32,7 +31,7 @@ $(`bad`);
 
 `````js filename=intro
 const objPatternNoDefault = `abc`.x;
-[...objPatternNoDefault][0];
+[...objPatternNoDefault];
 $(`bad`);
 `````
 
@@ -42,8 +41,7 @@ With rename=true
 
 `````js filename=intro
 const a = "abc".x;
-const b = [ ...a ];
-b[ 0 ];
+[ ...a ];
 $( "bad" );
 `````
 

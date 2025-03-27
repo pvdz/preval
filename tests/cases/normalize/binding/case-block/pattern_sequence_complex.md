@@ -27,9 +27,7 @@ if (tmpIfTest) {
   $(1);
   $(2);
   const arrAssignPatternRhs /*:unknown*/ = $(z);
-  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...arrAssignPatternRhs];
   $(1, 2, z);
 } else {
   $(1, 2, z);
@@ -47,9 +45,7 @@ if (tmpIfTest) {
   $(1);
   $(2);
   const arrAssignPatternRhs = $(z);
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...arrAssignPatternRhs];
   $(1, 2, z);
 } else {
   $(1, 2, z);
@@ -69,9 +65,7 @@ if (c) {
   $( 1 );
   $( 2 );
   const e = $( d );
-  const f = [ ...e ];
-  f[ 0 ];
-  f[ 1 ];
+  [ ...e ];
   $( 1, 2, d );
 }
 else {

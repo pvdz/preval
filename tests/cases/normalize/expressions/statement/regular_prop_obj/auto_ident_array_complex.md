@@ -20,10 +20,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElement /*:unknown*/ = $(1);
-const tmpArrElement$3 /*:unknown*/ = $(3);
-const tmpCompObj /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-tmpCompObj.a;
+$(1);
+$(3);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -33,9 +31,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
-[tmpArrElement, 2, tmpArrElement$3].a;
+$(1);
+$(3);
 $({ a: 999, b: 1000 });
 `````
 
@@ -44,15 +41,13 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $( 3 );
-const c = [ a, 2, b ];
-c.a;
-const d = {
+$( 1 );
+$( 3 );
+const a = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( a );
 `````
 
 

@@ -26,8 +26,7 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+[...bindingPatternArrRoot];
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpCalleeParam /*:array*/ = [1, 2];
@@ -61,7 +60,7 @@ if (tmpIfTest$5) {
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot][0];
+[...bindingPatternArrRoot];
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
@@ -92,33 +91,32 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ...a ];
-b[ 0 ];
-const c = $( 1 );
-let d = 1;
-const e = [ 1, 2 ];
-const f = $( e );
-const g = [ ...f ];
-const h = g[ 0 ];
-const i = f === c;
-if (i) {
-  d = 0;
+[ ...a ];
+const b = $( 1 );
+let c = 1;
+const d = [ 1, 2 ];
+const e = $( d );
+const f = [ ...e ];
+const g = f[ 0 ];
+const h = e === b;
+if (h) {
+  c = 0;
 }
 else {
-  const j = 2 === c;
-  if (j) {
-    d = 2;
+  const i = 2 === b;
+  if (i) {
+    c = 2;
   }
 }
-const k = d <= 1;
-if (k) {
+const j = c <= 1;
+if (j) {
   $( "fail1" );
   $( "fail2" );
-  $( h );
+  $( g );
 }
 else {
   $( "fail2" );
-  $( h );
+  $( g );
 }
 `````
 

@@ -18,8 +18,7 @@ const {x: [ y ]} = 1
 
 `````js filename=intro
 const objPatternNoDefault /*:unknown*/ = (1).x;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-arrPatternSplat[0];
+[...objPatternNoDefault];
 `````
 
 
@@ -28,7 +27,7 @@ arrPatternSplat[0];
 
 `````js filename=intro
 const objPatternNoDefault = (1).x;
-[...objPatternNoDefault][0];
+[...objPatternNoDefault];
 `````
 
 
@@ -37,8 +36,7 @@ With rename=true
 
 `````js filename=intro
 const a = (1).x;
-const b = [ ...a ];
-b[ 0 ];
+[ ...a ];
 `````
 
 

@@ -24,8 +24,7 @@ $(a, b);
 const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
+[...tmpNestedAssignArrPatternRhs];
 const tmpArrElement$1 /*:unknown*/ = $(2);
 const tmpCalleeParam$3 /*:array*/ = [tmpArrElement$1];
 const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
@@ -43,7 +42,7 @@ $(tmpNestedAssignArrPatternRhs$1, tmpClusterSSA_b);
 `````js filename=intro
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-[...tmpNestedAssignArrPatternRhs][0];
+[...tmpNestedAssignArrPatternRhs];
 const tmpArrElement$1 = $(2);
 const tmpNestedAssignArrPatternRhs$1 = $([tmpArrElement$1]);
 const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs$1][0];
@@ -59,16 +58,15 @@ With rename=true
 const a = $( 2 );
 const b = [ a ];
 const c = $( b );
-const d = [ ...c ];
-d[ 0 ];
-const e = $( 2 );
-const f = [ e ];
-const g = $( f );
-const h = [ ...g ];
-const i = h[ 0 ];
-const j = c + g;
-$( j );
-$( g, i );
+[ ...c ];
+const d = $( 2 );
+const e = [ d ];
+const f = $( e );
+const g = [ ...f ];
+const h = g[ 0 ];
+const i = c + f;
+$( i );
+$( f, h );
 `````
 
 

@@ -21,8 +21,7 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat$1 /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat$1[0];
+[...bindingPatternArrRoot];
 $(10);
 $(20);
 $(undefined);
@@ -35,7 +34,7 @@ $(1);
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot][0];
+[...bindingPatternArrRoot];
 $(10);
 $(20);
 $(undefined);
@@ -51,8 +50,7 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ...a ];
-b[ 0 ];
+[ ...a ];
 $( 10 );
 $( 20 );
 $( undefined );

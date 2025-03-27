@@ -20,8 +20,7 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+[...bindingPatternArrRoot];
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpCalleeParam$1 /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
@@ -38,7 +37,7 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot][0];
+[...bindingPatternArrRoot];
 const tmpBinBothLhs = $(100);
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
 const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
@@ -55,16 +54,15 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ...a ];
-b[ 0 ];
-const c = $( 100 );
-const d = [ 1, 2 ];
-const e = $( d );
-const f = [ ...e ];
-const g = f[ 0 ];
-const h = c + e;
-$( h );
+[ ...a ];
+const b = $( 100 );
+const c = [ 1, 2 ];
+const d = $( c );
+const e = [ ...d ];
+const f = e[ 0 ];
+const g = b + d;
 $( g );
+$( f );
 `````
 
 

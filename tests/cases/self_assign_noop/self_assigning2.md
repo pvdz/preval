@@ -39,14 +39,10 @@ $(a, b, c);
 
 
 `````js filename=intro
-const arr /*:array*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 /*:unknown*/ = 3;
-const func /*:(number, unused)=>undefined*/ = function ($$0, $$1) {
+const func /*:(unused, unused)=>undefined*/ = function ($$0, $$1) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
-  const newArg1 /*:number*/ = $$0;
   debugger;
-  const index /*:number*/ = newArg1 - 1;
-  arr[index];
   if (arg1) {
     $(`always arg1:`, arg1);
     return undefined;
@@ -69,12 +65,9 @@ $(a, b, arg1);
 (This ought to be the final result)
 
 `````js filename=intro
-const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 = 3;
-const func = function (newArg1, $$1) {
+const func = function ($$0, $$1) {
   const tmpPrevalAliasArgumentsAny = arguments;
-  const index = newArg1 - 1;
-  arr[index];
   if (arg1) {
     $(`always arg1:`, arg1);
   } else {
@@ -95,30 +88,26 @@ $(a, b, arg1);
 With rename=true
 
 `````js filename=intro
-const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
-let b = 3;
-const c = function($$0,$$1 ) {
-  const d = e;
-  const f = $$0;
+let a = 3;
+const b = function($$0,$$1 ) {
+  const c = d;
   debugger;
-  const g = f - 1;
-  a[ g ];
-  if (b) {
-    $( "always arg1:", b );
+  if (a) {
+    $( "always arg1:", a );
     return undefined;
   }
   else {
-    b = d;
-    $( "always arg1:", d );
+    a = c;
+    $( "always arg1:", c );
     return undefined;
   }
 };
-c( 3, 4 );
-const h = b;
-c( 1, 2 );
-const i = b;
-c( 5, 6 );
-$( i, h, b );
+b( 3, 4 );
+const e = a;
+b( 1, 2 );
+const f = a;
+b( 5, 6 );
+$( f, e, a );
 `````
 
 

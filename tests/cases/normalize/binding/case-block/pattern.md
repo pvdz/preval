@@ -24,9 +24,7 @@ const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
-  const arrPatternSplat /*:array*/ = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...z];
   $(1, 2, z);
 } else {
   $(1, 2, z);
@@ -41,9 +39,7 @@ if (tmpIfTest) {
 const tmpIfTest = $(`a`) === $(`a`);
 const z = [10, 20, 30];
 if (tmpIfTest) {
-  const arrPatternSplat = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...z];
   $(1, 2, z);
 } else {
   $(1, 2, z);
@@ -60,9 +56,7 @@ const b = $( "a" );
 const c = a === b;
 const d = [ 10, 20, 30 ];
 if (c) {
-  const e = [ ...d ];
-  e[ 0 ];
-  e[ 1 ];
+  [ ...d ];
   $( 1, 2, d );
 }
 else {

@@ -24,8 +24,7 @@ $(a, b);
 const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
+[...tmpNestedAssignArrPatternRhs];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
@@ -39,7 +38,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-[...tmpNestedAssignArrPatternRhs][0];
+[...tmpNestedAssignArrPatternRhs];
 while (true) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
@@ -54,8 +53,7 @@ With rename=true
 const a = $( 2 );
 const b = [ a ];
 const c = $( b );
-const d = [ ...c ];
-d[ 0 ];
+[ ...c ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

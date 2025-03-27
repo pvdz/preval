@@ -20,14 +20,12 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+[...bindingPatternArrRoot];
 $(10);
 $(20);
 const tmpCalleeParam /*:array*/ = [1, 2];
 const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
-arrPatternSplat$1[0];
+[...arrAssignPatternRhs];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -39,11 +37,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot][0];
+[...bindingPatternArrRoot];
 $(10);
 $(20);
 const arrAssignPatternRhs = $([1, 2]);
-[...arrAssignPatternRhs][0];
+[...arrAssignPatternRhs];
 while (true) {
   $(1);
 }
@@ -58,14 +56,12 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ...a ];
-b[ 0 ];
+[ ...a ];
 $( 10 );
 $( 20 );
-const c = [ 1, 2 ];
-const d = $( c );
-const e = [ ...d ];
-e[ 0 ];
+const b = [ 1, 2 ];
+const c = $( b );
+[ ...c ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }

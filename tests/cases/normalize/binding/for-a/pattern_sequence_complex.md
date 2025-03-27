@@ -22,9 +22,7 @@ $(1);
 $(2);
 const z /*:array*/ = [10, 20, 30];
 const bindingPatternArrRoot /*:unknown*/ = $(z);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
-arrPatternSplat[1];
+[...bindingPatternArrRoot];
 `````
 
 
@@ -35,9 +33,7 @@ arrPatternSplat[1];
 $(1);
 $(2);
 const bindingPatternArrRoot = $([10, 20, 30]);
-const arrPatternSplat = [...bindingPatternArrRoot];
-arrPatternSplat[0];
-arrPatternSplat[1];
+[...bindingPatternArrRoot];
 `````
 
 
@@ -49,9 +45,7 @@ $( 1 );
 $( 2 );
 const a = [ 10, 20, 30 ];
 const b = $( a );
-const c = [ ...b ];
-c[ 0 ];
-c[ 1 ];
+[ ...b ];
 `````
 
 

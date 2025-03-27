@@ -23,7 +23,6 @@ $(a);
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
 const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-a.a;
 $(a);
 `````
 
@@ -34,9 +33,7 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$3];
-a.a;
-$(a);
+$([tmpArrElement, 2, tmpArrElement$3]);
 `````
 
 
@@ -47,7 +44,6 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 const c = [ a, 2, b ];
-c.a;
 $( c );
 `````
 

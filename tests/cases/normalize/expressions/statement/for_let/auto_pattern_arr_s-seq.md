@@ -20,8 +20,7 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+[...bindingPatternArrRoot];
 $(10);
 $(20);
 const xyz /*:array*/ = [1, 2];
@@ -37,7 +36,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot][0];
+[...bindingPatternArrRoot];
 $(10);
 $(20);
 const xyz = [1, 2];
@@ -56,13 +55,12 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ...a ];
-b[ 0 ];
+[ ...a ];
 $( 10 );
 $( 20 );
-const c = [ 1, 2 ];
+const b = [ 1, 2 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( c );
+  $( b );
   $( 1 );
 }
 `````

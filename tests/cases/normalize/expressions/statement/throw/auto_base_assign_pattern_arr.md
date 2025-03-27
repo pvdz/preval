@@ -24,8 +24,7 @@ $(a, b);
 const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
+[...tmpNestedAssignArrPatternRhs];
 throw tmpNestedAssignArrPatternRhs;
 `````
 
@@ -36,7 +35,7 @@ throw tmpNestedAssignArrPatternRhs;
 `````js filename=intro
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-[...tmpNestedAssignArrPatternRhs][0];
+[...tmpNestedAssignArrPatternRhs];
 throw tmpNestedAssignArrPatternRhs;
 `````
 
@@ -48,8 +47,7 @@ With rename=true
 const a = $( 2 );
 const b = [ a ];
 const c = $( b );
-const d = [ ...c ];
-d[ 0 ];
+[ ...c ];
 throw c;
 `````
 

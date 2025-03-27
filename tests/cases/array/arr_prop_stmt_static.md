@@ -1,18 +1,26 @@
 # Preval test case
 
-# auto_pattern_arr_c-seq.md
+# arr_prop_stmt_static.md
 
-> Normalize > Expressions > Assignments > Computed prop prop > Auto pattern arr c-seq
+> Array > Arr prop stmt static
 >
 > Normalization of assignments should work the same everywhere they are
 
 ## Input
 
 `````js filename=intro
-let [a] = { a: 999, b: 1000 };
-let obj = {};
-obj[([a] = ($(10), $(20), $([1, 2])))];
-$(a);
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+arrPatternSplat.x;    // <-- this one should be dropped. The rest is noise.
+$(10);
+$(20);
+const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+const obj /*:object*/ = {};
+obj[tmpNestedAssignArrPatternRhs];
+$(tmpClusterSSA_a);
 `````
 
 
@@ -21,8 +29,7 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+[...bindingPatternArrRoot];
 $(10);
 $(20);
 const tmpCalleeParam /*:array*/ = [1, 2];
@@ -40,7 +47,7 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot][0];
+[...bindingPatternArrRoot];
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
@@ -58,17 +65,16 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ...a ];
-b[ 0 ];
+[ ...a ];
 $( 10 );
 $( 20 );
-const c = [ 1, 2 ];
-const d = $( c );
-const e = [ ...d ];
-const f = e[ 0 ];
-const g = {};
-g[ d ];
-$( f );
+const b = [ 1, 2 ];
+const c = $( b );
+const d = [ ...c ];
+const e = d[ 0 ];
+const f = {};
+f[ c ];
+$( e );
 `````
 
 

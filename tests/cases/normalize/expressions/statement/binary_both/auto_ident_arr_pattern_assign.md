@@ -25,9 +25,7 @@ $(a, x, y);
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
-arrPatternSplat[1];
+[...tmpNestedAssignArrPatternRhs];
 const tmpArrElement$3 /*:unknown*/ = $(3);
 const tmpArrElement$5 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
@@ -47,9 +45,7 @@ $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
-arrPatternSplat[1];
+[...tmpNestedAssignArrPatternRhs];
 const tmpArrElement$3 = $(3);
 const tmpArrElement$5 = $(4);
 const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
@@ -68,21 +64,19 @@ With rename=true
 const a = $( 3 );
 const b = $( 4 );
 const c = [ a, b ];
-const d = [ ...c ];
-d[ 0 ];
-d[ 1 ];
-const e = $( 3 );
-const f = $( 4 );
-const g = [ e, f ];
-const h = [ ...g ];
-const i = h[ 0 ];
-const j = h[ 1 ];
-c + g;
-const k = {
+[ ...c ];
+const d = $( 3 );
+const e = $( 4 );
+const f = [ d, e ];
+const g = [ ...f ];
+const h = g[ 0 ];
+const i = g[ 1 ];
+c + f;
+const j = {
   a: 999,
   b: 1000,
 };
-$( k, i, j );
+$( j, h, i );
 `````
 
 

@@ -40,7 +40,6 @@ $(a, b, c);
 
 
 `````js filename=intro
-const arr /*:array*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   let arg1 /*:unknown*/ = $$0;
   const arg2 /*:unknown*/ = $$1;
@@ -49,8 +48,7 @@ let func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
     const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
     const newArg1 /*:unknown*/ = $$0;
     debugger;
-    const index /*:number*/ = newArg1 - 1;
-    arr[index];
+    newArg1 ** 0;
     if (arg1) {
       $(`always arg1:`, arg1);
       return arg1;
@@ -76,12 +74,10 @@ $(a, b, c);
 (This ought to be the final result)
 
 `````js filename=intro
-const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let func = function (arg1, arg2) {
   func = function (newArg1, $$1) {
     const tmpPrevalAliasArgumentsAny = arguments;
-    const index = newArg1 - 1;
-    arr[index];
+    newArg1 ** 0;
     if (arg1) {
       $(`always arg1:`, arg1);
       return arg1;
@@ -106,36 +102,34 @@ $(a, b, func(5, 6));
 With rename=true
 
 `````js filename=intro
-const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
-let b = function($$0,$$1 ) {
-  let c = $$0;
-  const d = $$1;
+let a = function($$0,$$1 ) {
+  let b = $$0;
+  const c = $$1;
   debugger;
-  b = function($$0,$$1 ) {
-    const e = f;
-    const g = $$0;
+  a = function($$0,$$1 ) {
+    const d = e;
+    const f = $$0;
     debugger;
-    const h = g - 1;
-    a[ h ];
-    if (c) {
-      $( "always arg1:", c );
-      return c;
+    f ** 0;
+    if (b) {
+      $( "always arg1:", b );
+      return b;
     }
     else {
-      c = e;
-      $( "always arg1:", e );
-      return c;
+      b = d;
+      $( "always arg1:", d );
+      return b;
     }
   };
-  const i = b( c, d );
-  return i;
+  const g = a( b, c );
+  return g;
 };
-const j = b;
-const k = b( 3, 4 );
-const l = b( 1, 2 );
-j( 7, 8 );
-const m = b( 5, 6 );
-$( l, k, m );
+const h = a;
+const i = a( 3, 4 );
+const j = a( 1, 2 );
+h( 7, 8 );
+const k = a( 5, 6 );
+$( j, i, k );
 `````
 
 

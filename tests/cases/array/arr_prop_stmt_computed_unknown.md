@@ -1,18 +1,26 @@
 # Preval test case
 
-# auto_pattern_arr_complex.md
+# arr_prop_stmt_computed_unknown.md
 
-> Normalize > Expressions > Assignments > Regular prop obj > Auto pattern arr complex
+> Array > Arr prop stmt computed unknown
 >
 > Normalization of assignments should work the same everywhere they are
 
 ## Input
 
 `````js filename=intro
-let [a] = { a: 999, b: 1000 };
-let obj = {};
-([a] = $([1, 2])).a;
-$(a);
+const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
+arrPatternSplat[unknown];    // <-- this one should be coerced. The rest is noise.
+$(10);
+$(20);
+const tmpCalleeParam /*:array*/ = [1, 2];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+const obj /*:object*/ = {};
+obj[tmpNestedAssignArrPatternRhs];
+$(tmpClusterSSA_a);
 `````
 
 
@@ -22,11 +30,15 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 [...bindingPatternArrRoot];
+$coerce(unknown, `string`);
+$(10);
+$(20);
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
-tmpNestedAssignArrPatternRhs.a;
+const obj /*:object*/ = {};
+obj[tmpNestedAssignArrPatternRhs];
 $(tmpClusterSSA_a);
 `````
 
@@ -37,9 +49,12 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 [...bindingPatternArrRoot];
+$coerce(unknown, `string`);
+$(10);
+$(20);
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
 const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
-tmpNestedAssignArrPatternRhs.a;
+({}[tmpNestedAssignArrPatternRhs]);
 $(tmpClusterSSA_a);
 `````
 
@@ -53,11 +68,15 @@ const a = {
   b: 1000,
 };
 [ ...a ];
+$coerce( unknown, "string" );
+$( 10 );
+$( 20 );
 const b = [ 1, 2 ];
 const c = $( b );
 const d = [ ...c ];
 const e = d[ 0 ];
-c.a;
+const f = {};
+f[ c ];
 $( e );
 `````
 
@@ -72,7 +91,9 @@ $( e );
 ## Globals
 
 
-None
+BAD@! Found 1 implicit global bindings:
+
+unknown
 
 
 ## Runtime Outcome

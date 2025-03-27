@@ -28,9 +28,7 @@ const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
   $(1);
   $(2);
-  const arrPatternSplat /*:array*/ = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...z];
   $(1, 2, z);
 } else {
   $(1, 2, z);
@@ -47,9 +45,7 @@ const z = [10, 20, 30];
 if (tmpIfTest) {
   $(1);
   $(2);
-  const arrPatternSplat = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...z];
   $(1, 2, z);
 } else {
   $(1, 2, z);
@@ -68,9 +64,7 @@ const d = [ 10, 20, 30 ];
 if (c) {
   $( 1 );
   $( 2 );
-  const e = [ ...d ];
-  e[ 0 ];
-  e[ 1 ];
+  [ ...d ];
   $( 1, 2, d );
 }
 else {

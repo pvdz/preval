@@ -27,8 +27,6 @@ $(1);
 $(2);
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
-const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-tmpNestedAssignArrPatternRhs.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpArrElement, tmpArrElement$1);
 `````
@@ -42,7 +40,6 @@ $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-[tmpArrElement, tmpArrElement$1].a;
 $({ a: 999, b: 1000 }, tmpArrElement, tmpArrElement$1);
 `````
 
@@ -55,13 +52,11 @@ $( 1 );
 $( 2 );
 const a = $( 3 );
 const b = $( 4 );
-const c = [ a, b ];
-c.a;
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( d, a, b );
+$( c, a, b );
 `````
 
 

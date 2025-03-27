@@ -27,9 +27,7 @@ if (tmpIfTest) {
   const arrPatternSplat$1 /*:array*/ = [...z];
   const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat$1[1];
   const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat$1[2];
-  const arrPatternSplat /*:array*/ = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...z];
   $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
   $(1, 2, 1, 2, z);
@@ -47,9 +45,7 @@ if (tmpIfTest) {
   const arrPatternSplat$1 = [...z];
   const tmpClusterSSA_x = arrPatternSplat$1[1];
   const tmpClusterSSA_y = arrPatternSplat$1[2];
-  const arrPatternSplat = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...z];
   $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
   $(1, 2, 1, 2, z);
@@ -69,9 +65,7 @@ if (c) {
   const e = [ ...d ];
   const f = e[ 1 ];
   const g = e[ 2 ];
-  const h = [ ...d ];
-  h[ 0 ];
-  h[ 1 ];
+  [ ...d ];
   $( 1, 2, f, g, d );
 }
 else {

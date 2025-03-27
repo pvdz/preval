@@ -27,9 +27,7 @@ $(2);
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
-arrPatternSplat[1];
+[...tmpNestedAssignArrPatternRhs];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
@@ -46,9 +44,7 @@ $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat[0];
-arrPatternSplat[1];
+[...tmpNestedAssignArrPatternRhs];
 while (true) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
@@ -65,9 +61,7 @@ $( 2 );
 const a = $( 3 );
 const b = $( 4 );
 const c = [ a, b ];
-const d = [ ...c ];
-d[ 0 ];
-d[ 1 ];
+[ ...c ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );
   $( 1 );

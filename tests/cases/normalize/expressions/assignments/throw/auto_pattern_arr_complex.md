@@ -20,12 +20,10 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+[...bindingPatternArrRoot];
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-arrPatternSplat$1[0];
+[...tmpNestedAssignArrPatternRhs];
 throw tmpNestedAssignArrPatternRhs;
 `````
 
@@ -35,9 +33,9 @@ throw tmpNestedAssignArrPatternRhs;
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot][0];
+[...bindingPatternArrRoot];
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
-[...tmpNestedAssignArrPatternRhs][0];
+[...tmpNestedAssignArrPatternRhs];
 throw tmpNestedAssignArrPatternRhs;
 `````
 
@@ -50,13 +48,11 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ...a ];
-b[ 0 ];
-const c = [ 1, 2 ];
-const d = $( c );
-const e = [ ...d ];
-e[ 0 ];
-throw d;
+[ ...a ];
+const b = [ 1, 2 ];
+const c = $( b );
+[ ...c ];
+throw c;
 `````
 
 

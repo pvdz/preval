@@ -22,8 +22,7 @@ $(a);
 
 `````js filename=intro
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-arrPatternSplat[0];
+[...bindingPatternArrRoot];
 let a /*:unknown*/ = undefined;
 $(100);
 const tmpCalleeParam /*:array*/ = [1, 2];
@@ -54,7 +53,7 @@ if (tmpNestedAssignArrPatternRhs) {
 
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot][0];
+[...bindingPatternArrRoot];
 let a = undefined;
 $(100);
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
@@ -83,32 +82,31 @@ const a = {
   a: 999,
   b: 1000,
 };
-const b = [ ...a ];
-b[ 0 ];
-let c = undefined;
+[ ...a ];
+let b = undefined;
 $( 100 );
-const d = [ 1, 2 ];
-const e = $( d );
-const f = [ ...e ];
-const g = f[ 0 ];
-if (e) {
+const c = [ 1, 2 ];
+const d = $( c );
+const e = [ ...d ];
+const f = e[ 0 ];
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const h = [ 1, 2 ];
-    const i = $( h );
-    const j = [ ...i ];
-    c = j[ 0 ];
-    if (i) {
+    const g = [ 1, 2 ];
+    const h = $( g );
+    const i = [ ...h ];
+    b = i[ 0 ];
+    if (h) {
 
     }
     else {
       break;
     }
   }
-  $( c );
+  $( b );
 }
 else {
-  $( g );
+  $( f );
 }
 `````
 

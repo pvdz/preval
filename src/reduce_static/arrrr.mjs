@@ -55,6 +55,34 @@ function processAttempt(fdata, queue) {
 
     vgroup('- `' + name + '` is a constant array literal');
     process(meta, name, queue);
+
+    // These reads should not be accessed again so we can safely drop statements of prop access.
+    meta.reads.forEach(read => {
+      if (read.parentNode.type === 'MemberExpression' && read.parentProp === 'object' && read.grandNode.type === 'ExpressionStatement') {
+        // Statement that is a property access on this array. Whatever it is is, it's irrelevant.
+        if (!read.parentNode.computed || AST.isPrimitive(read.parentNode.property)) {
+          rule('Statement that is plain/primitive property access on plain array can be removed');
+          example('const arr = []; arr[0];', ';');
+          example('const arr = []; arr.x;', ';');
+          before(read.blockBody[read.blockIndex]);
+
+          read.blockBody[read.blockIndex] = AST.emptyStatement();
+
+          after(read.blockBody[read.blockIndex]);
+          updated += 1;
+        } else {
+          rule('Statement that is computed property access on plain array can be replaced by coercion of property to string');
+          example('const arr = []; arr[x];', '$coerce(x, "string");');
+          before(read.blockBody[read.blockIndex]);
+
+          read.blockBody[read.blockIndex] = AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [read.parentNode.property, AST.primitive('string')]));
+
+          after(read.blockBody[read.blockIndex]);
+          updated += 1;
+        }
+      }
+    });
+
     vgroupEnd();
   });
 

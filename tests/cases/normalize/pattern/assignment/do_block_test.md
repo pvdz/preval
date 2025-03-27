@@ -22,9 +22,7 @@ $(p, q);
 const b /*:array*/ = [10, 20];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const arrAssignPatternRhs /*:unknown*/ = $(b);
-  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...arrAssignPatternRhs];
 }
 `````
 
@@ -36,9 +34,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const b = [10, 20];
 while (true) {
   const arrAssignPatternRhs = $(b);
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...arrAssignPatternRhs];
 }
 `````
 
@@ -50,9 +46,7 @@ With rename=true
 const a = [ 10, 20 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = $( a );
-  const c = [ ...b ];
-  c[ 0 ];
-  c[ 1 ];
+  [ ...b ];
 }
 `````
 

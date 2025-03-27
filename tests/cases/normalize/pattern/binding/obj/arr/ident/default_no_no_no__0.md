@@ -19,8 +19,7 @@ $('bad');
 
 `````js filename=intro
 const objPatternNoDefault /*:unknown*/ = (0).x;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-arrPatternSplat[0];
+[...objPatternNoDefault];
 $(`bad`);
 `````
 
@@ -30,7 +29,7 @@ $(`bad`);
 
 `````js filename=intro
 const objPatternNoDefault = (0).x;
-[...objPatternNoDefault][0];
+[...objPatternNoDefault];
 $(`bad`);
 `````
 
@@ -40,8 +39,7 @@ With rename=true
 
 `````js filename=intro
 const a = (0).x;
-const b = [ ...a ];
-b[ 0 ];
+[ ...a ];
 $( "bad" );
 `````
 

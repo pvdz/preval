@@ -181,7 +181,7 @@ function _buffer_base64(fdata) {
         'const f = function(s) { const x = Buffer.from(s, "base64"); const y = x.toString("utf8"); return y; } $(f("cGF0aA"))',
       'const f = function(s) { const x = Buffer.from(s, "base64"); const y = x.toString("utf8"); return y; } $("path")'
       );
-      before(meta.varDeclRef.containerNode);
+      before(meta.varDeclRef.varDeclNode);
       before(read.blockBody[read.blockIndex]);
 
       const value = AST.getPrimitiveValue(param);

@@ -108,7 +108,7 @@ function _letAliasRedundant(fdata) {
     rule('Given a const let alias, when there is no mutation of the let between the const decl and its first read, then the read is really to the let');
     example('let x = 1; const y = x; $(); $(y);', 'let x = 1; $(); $(x);');
     before(letMeta.writes[0].grandNode);
-    before(constMeta.varDeclRef.containerNode);
+    before(constMeta.varDeclRef.varDeclNode);
     before(constRead.blockBody[constRead.blockIndex]);
 
     if (constRead.parentIndex < 0) constRead.parentNode[constRead.parentProp] = AST.identifier(letName);
@@ -116,7 +116,7 @@ function _letAliasRedundant(fdata) {
 
 
     after(letMeta.writes[0].grandNode);
-    after(constMeta.varDeclRef.containerNode);
+    after(constMeta.varDeclRef.varDeclNode);
     after(constRead.blockBody[constRead.blockIndex]);
 
     changed += 1;

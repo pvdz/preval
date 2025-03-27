@@ -412,7 +412,7 @@ export function registerGlobalIdent(
     isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
     isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`. Currently also `catch` clause bindings.
     //isConstant, // Set from phase1 in the var decl case when it is actually a const
-    //varDeclRef, // {node:init,containerNode,containerParent,containerIndex}. Set from phase1 in the var delc case, regardless of const/let. containerParent[containerIndex] === containerNode
+    //varDeclRef, // {node:init,varDeclNode,varDeclBody,varDeclIndex}. Set from phase1 in the var delc case, regardless of const/let. varDeclBody[varDeclIndex] === varDeclNode
     isCatchVar: false, // Set by phase1 TryStatement:after on catch vars
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
     bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits/Program. Should be set for anything else (which is only var decls after normalization).

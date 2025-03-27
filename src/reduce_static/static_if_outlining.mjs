@@ -189,8 +189,8 @@ function _staticIfOutlining(fdata) {
       const funcName1 = createFreshVar(`${funcName}_t`, fdata);
       const funcName2 = createFreshVar(`${funcName}_f`, fdata);
 
-      const fbody = funcRef.containerParent;
-      const findex = funcRef.containerIndex;
+      const fbody = funcRef.varDeclBody;
+      const findex = funcRef.varDeclIndex;
 
       queue.push({
         index: findex,

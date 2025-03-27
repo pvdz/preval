@@ -422,7 +422,7 @@ function _freeNested(fdata, $prng, usePrng) {
             body.splice(index+1, 0, ...labelStatementNode.body);
 
             vlog('- Remove the eliminated function');
-            calledFreeMeta.varDeclRef.containerParent[calledFreeMeta.varDeclRef.containerIndex] = AST.emptyStatement();
+            calledFreeMeta.varDeclRef.varDeclBody[calledFreeMeta.varDeclRef.varDeclIndex] = AST.emptyStatement();
 
             vlog('- should be finished!');
 

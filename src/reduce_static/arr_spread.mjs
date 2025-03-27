@@ -62,7 +62,7 @@ function _arrSpreads(fdata) {
           if (meta.isImplicitGlobal) continue;
           if (!meta.isConstant) continue; // We can improve on this
           if (meta.isExport) continue; // Exports are "live" bindings so any update to it might be observable in strange ways
-          if (meta.varDeclRef.containerNode.type !== 'VarStatement') continue; // catch, for-x, ???
+          if (meta.varDeclRef.varDeclNode.type !== 'VarStatement') continue; // catch, for-x, ???
           if (meta.varDeclRef.node.type !== 'ArrayExpression') return; // Map / Set?
           if (meta.writes.length > 1) return; // TODO: fixme if broken
 

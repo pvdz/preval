@@ -1137,10 +1137,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           // If the var decl is not a constant, this value has little meaning. But it is what it is.
           node: init,
           // This refers to the block where the var decl lives that declares the binding
-          containerNode: node, // The var decl itself
-          // containerParent[containerIndex] === containerNode
-          containerParent: parentNode.body,
-          containerIndex: parentIndex,
+          varDeclNode: node, // The var decl itself
+          // varDeclBody[varDeclIndex] === varDeclNode
+          varDeclBody: parentNode.body,
+          varDeclIndex: parentIndex,
         };
 
         if (node.init.type !== 'Param') {

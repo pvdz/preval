@@ -366,7 +366,7 @@ function _staticArgOpOutlining(fdata) {
 
       const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
 
-      if (leftMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
+      if (leftMeta.varDeclRef?.varDeclNode.type !== 'VarStatement') {
         // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
         vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
         return; // catch, for-x, ???
@@ -433,7 +433,7 @@ function _staticArgOpOutlining(fdata) {
         // `let a = 1; function f(b) { a = b; }`
         const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
 
-        if (leftMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
+        if (leftMeta.varDeclRef?.varDeclNode.type !== 'VarStatement') {
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
           vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
           return; // catch, for-x, ???
@@ -483,13 +483,13 @@ function _staticArgOpOutlining(fdata) {
         const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
         const rightMeta = fdata.globallyUniqueNamingRegistry.get(right.name);
 
-        if (leftMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
+        if (leftMeta.varDeclRef?.varDeclNode.type !== 'VarStatement') {
           // `try {} catch (e) { let b = $(); function f() { e = b; } }`
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
           vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
           return; // catch, for-x, ???
         }
-        if (rightMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
+        if (rightMeta.varDeclRef?.varDeclNode.type !== 'VarStatement') {
           // `try {} catch (e) { let b = $(); function f() { b = e; } }`
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
           vlog('- The rhs is a closure or this/arguments but it was not a variable declaration, so bailing');
@@ -578,11 +578,11 @@ function _staticArgOpOutlining(fdata) {
         rule('Special $coerce with param as first statement of function can be outlined');
         example('let b = $; function f(a) { $coerce( a, "plustr" ); g(); } f(b)', 'let b = $; function f(b) { g(); } $coerce( b, "plustr" ); f(b)');
 
-        before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+        before(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
         funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
 
-        after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+        after(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
@@ -617,7 +617,7 @@ function _staticArgOpOutlining(fdata) {
         // `let b = $; function f() { $coerce( b, "plustr" ); } f()`
         vgroup('  - Arg is a closure or arguments or this.');
 
-        if (argMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
+        if (argMeta.varDeclRef?.varDeclNode.type !== 'VarStatement') {
           // `try {} catch (b) { function f() { $coerce( b, "plustr" ); } f() }`
           // Maybe we can support catch etc but not today.
           vlog('  - Closure is not a var binding, bailing');
@@ -633,11 +633,11 @@ function _staticArgOpOutlining(fdata) {
         rule('Special $coerce with closure as first statement of function can be outlined');
         example('let b = $; function f() { $coerce( b, "plustr" ); g(); } f()', 'let b = $; function f() { g(); } $coerce( b, "plustr" ); f()');
 
-        before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+        before(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
         funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
 
-        after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+        after(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
@@ -709,7 +709,7 @@ function _staticArgOpOutlining(fdata) {
           vlog('  - LHS is a closure. Assigning param to closure.'); // or the arguments/this alias
           // In this case we move the entire assignment out while replacing the rhs with the arg value.
 
-          if (argMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
+          if (argMeta.varDeclRef?.varDeclNode.type !== 'VarStatement') {
             // `try {} catch (b) { function f() { $coerce( b, "plustr" ); } f() }`
             // Maybe we can support catch etc but not today.
             vlog('  - Closure is not a var binding, bailing');
@@ -728,11 +728,11 @@ function _staticArgOpOutlining(fdata) {
             'let a = undefined; let b = $; function f(c) { g(); } a = $coerce( b, "plustr" ); f(b)'
           );
 
-          before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+          before(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
           funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
 
-          after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+          after(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
           funcMeta.reads.forEach(read => {
             before(read.blockBody[read.blockIndex]);
@@ -776,14 +776,14 @@ function _staticArgOpOutlining(fdata) {
 
           const lhsMeta = fdata.globallyUniqueNamingRegistry.get(lhs.name);
 
-          if (lhsMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
+          if (lhsMeta.varDeclRef?.varDeclNode.type !== 'VarStatement') {
             // `let a = $(); try {} catch (b) { function f() { b = $coerce( a, "plustr" ); } f() }`
             // Maybe we can support catch etc but not today.
             vlog('  - Closure is not a var binding, bailing');
             return;
           }
 
-          if (argMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
+          if (argMeta.varDeclRef?.varDeclNode.type !== 'VarStatement') {
             // `let a = undefined; try {} catch (b) { function f() { a = $coerce( b, "plustr" ); } f() }`
             // Maybe we can support catch etc but not today.
             vlog('  - Closure is not a var binding, bailing');
@@ -807,11 +807,11 @@ function _staticArgOpOutlining(fdata) {
             'let a = undefined; let b = $; function f(c) { g(); } a = $coerce( b, "plustr" ); f(b)'
           );
 
-          before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+          before(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
           funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
 
-          after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+          after(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
           funcMeta.reads.forEach(read => {
             before(read.blockBody[read.blockIndex]);
@@ -879,11 +879,11 @@ function _staticArgOpOutlining(fdata) {
           'let a = $; function f(b) { const c = b; g(); } const tmp = $coerce( a, "plustr" ); f(tmp)'
         );
 
-        before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+        before(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
         funcNode.body.body[funcNode.$p.bodyOffset].init = arg; // Replaces `const b = $coerce(a)` with `const b = a;`
 
-        after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
+        after(funcMeta.varDeclRef.varDeclBody[funcMeta.varDeclRef.varDeclIndex]);
 
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
@@ -922,7 +922,7 @@ function _staticArgOpOutlining(fdata) {
         vlog('  - LHS is a closure. Assigning param to closure.'); // or the arguments/this alias
         // In this case we move the entire assignment out while replacing the rhs with the arg value.
 
-        if (argMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
+        if (argMeta.varDeclRef?.varDeclNode.type !== 'VarStatement') {
           // `let a = undefined; try {} catch (b) { function f() { a = $coerce( b, "plustr" ); } f() }`
           // Maybe we can support catch etc but not today.
           vlog('  - Closure is not a var binding, bailing');
@@ -958,7 +958,7 @@ function _staticArgOpOutlining(fdata) {
       'function f(a) { const x = a + 1; g(a); return x; } f(1); f("a");',
       'function f(a, b) { const x = b; g(a); return x; } f(1, 1 + 1); f("a" + 1);',
     );
-    before(funcMeta.varDeclRef.containerNode);
+    before(funcMeta.varDeclRef.varDeclNode);
     funcMeta.reads.forEach((read) => before(read.blockBody[read.blockIndex]));
 
     // We create a fresh param name and add it to the end
@@ -1093,7 +1093,7 @@ function _staticArgOpOutlining(fdata) {
       });
     });
 
-    after(funcMeta.varDeclRef.containerNode);
+    after(funcMeta.varDeclRef.varDeclNode);
     funcMeta.reads.forEach((read) => after(read.blockBody[read.blockIndex]));
     ++changes;
   }

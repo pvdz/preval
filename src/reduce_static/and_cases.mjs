@@ -24,7 +24,7 @@ function _andCases(fdata) {
     if (meta.typing.anded === false || meta.typing.anded === undefined) return; // phase1 will have done the necessary checks for the init. we should not need to check the rest?
     if (!meta.isConstant) return;
     //if (meta.writes.length !== 1) return; // :shrug:
-    //if (meta.varDeclRef.containerNode.type !== 'VarStatement') return;
+    //if (meta.varDeclRef.varDeclNode.type !== 'VarStatement') return;
 
     vgroup('- `' + name + '`: is a const var whose value was ANDed to:', '0b' + meta.typing.anded.toString(2));
     process(meta, name);

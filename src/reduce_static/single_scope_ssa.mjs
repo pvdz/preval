@@ -23,7 +23,7 @@ function _singleScopeSSA(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (!meta.varDeclRef) return; // catch, ???
-    if (meta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, ???
+    if (meta.varDeclRef.varDeclNode.type !== 'VarStatement') return; // catch, ???
 
     vgroup('- `' + name + '`:', meta.varDeclRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 

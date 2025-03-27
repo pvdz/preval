@@ -2425,13 +2425,13 @@ function _typeTrackedTricks(fdata) {
                       example('const arr = ["x"]; "axbxc".split(arr)', 'const arr = "x"; "axbxc".split(arr)');
                       example('const arr = [x]; "axbxc".split(arr)', 'const arr = x; "axbxc".split(arr)'); // with x mustbe string
                       before(node);
-                      before(metaArg1.varDeclRef.containerNode);
+                      before(metaArg1.varDeclRef.varDeclNode);
 
-                      ASSERT(metaArg1.varDeclRef.containerNode.type === 'VarStatement', 'not assign or anything because write.len===1, right?', metaArg1.varDeclRef);
+                      ASSERT(metaArg1.varDeclRef.varDeclNode.type === 'VarStatement', 'not assign or anything because write.len===1, right?', metaArg1.varDeclRef);
 
-                      metaArg1.varDeclRef.containerNode.init = metaArg1.varDeclRef.node.elements[0];
+                      metaArg1.varDeclRef.varDeclNode.init = metaArg1.varDeclRef.node.elements[0];
 
-                      after(metaArg1.varDeclRef.containerNode);
+                      after(metaArg1.varDeclRef.varDeclNode);
                       after(node);
 
                       ++changes;

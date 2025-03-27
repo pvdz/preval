@@ -18,7 +18,7 @@ function _multiScopeSSA(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (!meta.varDeclRef) return; // catch, for-x, ???
-    if (meta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
+    if (meta.varDeclRef.varDeclNode.type !== 'VarStatement') return; // catch, for-x, ???
 
     vgroup('- `' + name + '`:', meta.varDeclRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 

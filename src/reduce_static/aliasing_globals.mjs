@@ -25,9 +25,9 @@ function _aliasedGlobals(fdata) {
     if (meta.isImplicitGlobal) return; // We're looking for bindings, implicit globals aren't bindings
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (!meta.isConstant) return; // Let's deal with lets later... if necessary/feasible
-    if (meta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
+    if (meta.varDeclRef.varDeclNode.type !== 'VarStatement') return; // catch, for-x, ???
 
-    const init = meta.varDeclRef.containerNode.init;
+    const init = meta.varDeclRef.varDeclNode.init;
     if (init.type !== 'Identifier') return;
     if (init.name === '$') return; // Special test token that we don't want to de-alias here. Treat as unknown implicit global.
     if (!globalNames.has(init.name)) return; // Not a known global

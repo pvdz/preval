@@ -112,7 +112,7 @@ function _processTemplate(fdata, path, parentNode, parentProp, parentIndex) {
       vlog('Expr', ei, 'of the template is the identifier `' + expr.name + '`. Is it a constant string type?');
       const meta = fdata.globallyUniqueNamingRegistry.get(expr.name, fdata);
       if (meta.isConstant && meta.varDeclRef) {
-        const stmt = meta.varDeclRef.containerNode;
+        const stmt = meta.varDeclRef.varDeclNode;
         const init = stmt.init;
         vlog('- const:', !!meta.isConstant, ', init type:', init.type);
         if (meta.isConstant && init.type === 'TemplateLiteral') {
@@ -124,7 +124,7 @@ function _processTemplate(fdata, path, parentNode, parentProp, parentIndex) {
 
           rule('Adding a template to a primitive ident should be resolved statically');
           example('`a${b}c` + 15', '`a${b}c${15}`');
-          before(meta.varDeclRef.containerParent[meta.varDeclRef.containerIndex]);
+          before(meta.varDeclRef.varDeclBody[meta.varDeclRef.varDeclIndex]);
           before(stmt);
 
           node.expressions[ei] = AST.cloneSimpleOrTemplate(init);
@@ -163,7 +163,7 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
   if (left.type === 'Identifier') {
     const meta = fdata.globallyUniqueNamingRegistry.get(left.name, fdata);
     if (meta.isConstant && meta.varDeclRef) {
-      const stmt = meta.varDeclRef.containerNode;
+      const stmt = meta.varDeclRef.varDeclNode;
       const init = stmt.init;
 
       if (init.type === 'TemplateLiteral') {
@@ -182,7 +182,7 @@ function _processBinary(fdata, path, parentNode, parentProp, parentIndex) {
   if (right.type === 'Identifier') {
     const meta = fdata.globallyUniqueNamingRegistry.get(right.name, fdata);
     if (meta.isConstant && meta.varDeclRef) {
-      const stmt = meta.varDeclRef.containerNode;
+      const stmt = meta.varDeclRef.varDeclNode;
       const init = stmt.init;
       if (init.type === 'TemplateLiteral') {
         right = init;

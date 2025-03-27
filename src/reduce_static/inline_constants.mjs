@@ -75,7 +75,7 @@ function _inlineConstants(fdata) {
     if (meta.writes.length === 1 && meta.writes[0].kind === 'var' && !meta.isConstant) {
       vlog(`Binding \`${name}\` has one write so should be considered a constant, even if it wasnt one`);
       meta.isConstant = true;
-      const varDecl = meta.varDeclRef.containerNode;
+      const varDecl = meta.varDeclRef.varDeclNode;
 
       rule('A binding decl where the binding has one write must be a const');
       example('let x = 10; f(x);', 'const x = 10; f(x);');

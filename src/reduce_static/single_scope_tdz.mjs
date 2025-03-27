@@ -29,7 +29,7 @@ function _singleScopeTdz(fdata) {
     if (!meta.varDeclRef) return; // catch, for-x, ???
 
     //if (meta.isExport) return; // Just do skip the actual export refs as they sorta hoist
-    if (meta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
+    if (meta.varDeclRef.varDeclNode.type !== 'VarStatement') return; // catch, for-x, ???
     if (foundTdz) return;
 
     vgroup('- `' + name + '`:', meta.varDeclRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);

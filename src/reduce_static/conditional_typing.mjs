@@ -60,7 +60,7 @@ function _conditionalTyping(fdata) {
     const ifTestMeta = fdata.globallyUniqueNamingRegistry.get(node.test.name);
     if (ifTestMeta.isBuiltin) return;
     if (ifTestMeta.isImplicitGlobal) return;
-    if (ifTestMeta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
+    if (ifTestMeta.varDeclRef.varDeclNode.type !== 'VarStatement') return; // catch, for-x, ???
     //if (meta.writes.length > 1) return; // TODO: fixme if broken
 
     const varDeclRef = ifTestMeta.writes.find((write) => write.kind === 'var');
@@ -178,7 +178,7 @@ function _conditionalTyping(fdata) {
         () => whichBranch === 'else',
       );
       before(varDeclRef.blockBody[read.blockIndex]);
-      before(ifTestMeta.varDeclRef.containerNode);
+      before(ifTestMeta.varDeclRef.varDeclNode);
       before(read.blockBody[read.blockIndex], node);
 
       ++changed;
@@ -243,7 +243,7 @@ function _conditionalTyping(fdata) {
                       () => whichBranch === 'else',
                     );
                     before(varDeclRef.blockBody[read.blockIndex]);
-                    before(ifTestMeta.varDeclRef.containerNode);
+                    before(ifTestMeta.varDeclRef.varDeclNode);
                     before(read.blockBody[read.blockIndex], node);
 
                     if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(false);
@@ -264,7 +264,7 @@ function _conditionalTyping(fdata) {
                       () => whichBranch === 'else',
                     );
                     before(varDeclRef.blockBody[read.blockIndex]);
-                    before(ifTestMeta.varDeclRef.containerNode);
+                    before(ifTestMeta.varDeclRef.varDeclNode);
                     before(read.blockBody[read.blockIndex], node);
 
                     if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(whichBranch === 'else');
@@ -293,7 +293,7 @@ function _conditionalTyping(fdata) {
                       () => whichBranch === 'else',
                     );
                     before(varDeclRef.blockBody[read.blockIndex]);
-                    before(ifTestMeta.varDeclRef.containerNode);
+                    before(ifTestMeta.varDeclRef.varDeclNode);
                     before(read.blockBody[read.blockIndex], node);
 
                     if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(whichBranch === 'else');
@@ -310,7 +310,7 @@ function _conditionalTyping(fdata) {
                       () => whichBranch === 'if',
                     );
                     before(varDeclRef.blockBody[read.blockIndex]);
-                    before(ifTestMeta.varDeclRef.containerNode);
+                    before(ifTestMeta.varDeclRef.varDeclNode);
                     before(read.blockBody[read.blockIndex], node);
 
                     if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(true);

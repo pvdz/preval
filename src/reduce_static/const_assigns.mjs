@@ -21,7 +21,7 @@ function _constAssigns(fdata) {
     if (!meta.isConstant) return;
     if (meta.writes.length === 1) return;
     if (found) return;
-    if (meta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
+    if (meta.varDeclRef.varDeclNode.type !== 'VarStatement') return; // catch, for-x, ???
 
     vgroup('- `' + name + '`: is a const var with', meta.writes.length, 'writes');
     process(meta, name);

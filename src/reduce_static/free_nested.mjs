@@ -289,10 +289,10 @@ function _freeNested(fdata, $prng, usePrng) {
           ASSERT(frfrCallArgs[0]?.type === 'Identifier', 'we control $frfr and the first arg must be the free func to call');
           const calledFreeFuncName = frfrCallArgs[0].name;
           const calledFreeMeta = fdata.globallyUniqueNamingRegistry.get(calledFreeFuncName);
-          const calledFreeFuncNode = calledFreeMeta.constValueRef.node;
+          const calledFreeFuncNode = calledFreeMeta.varDeclRef.node;
           ASSERT(calledFreeMeta);
           // This one tripped before when making globals args, which included nested frfr calls, which then trips this
-          ASSERT(calledFreeFuncNode?.type === 'FunctionExpression', 'expecting the first argument to $frfr to be a var decl whose init is a function', frfrCallArgs[0], ' init:', calledFreeMeta.constValueRef.node, stmt);
+          ASSERT(calledFreeFuncNode?.type === 'FunctionExpression', 'expecting the first argument to $frfr to be a var decl whose init is a function', frfrCallArgs[0], ' init:', calledFreeMeta.varDeclRef.node, stmt);
           ASSERT(calledFreeFuncNode.id?.name === '$free', '$frfr should be calling $free functions');
 
           // Note: calledFreeFuncNode.params should have a .$p.paramVarDeclRef at this point if they have a local const. They may not.
@@ -422,7 +422,7 @@ function _freeNested(fdata, $prng, usePrng) {
             body.splice(index+1, 0, ...labelStatementNode.body);
 
             vlog('- Remove the eliminated function');
-            calledFreeMeta.constValueRef.containerParent[calledFreeMeta.constValueRef.containerIndex] = AST.emptyStatement();
+            calledFreeMeta.varDeclRef.containerParent[calledFreeMeta.varDeclRef.containerIndex] = AST.emptyStatement();
 
             vlog('- should be finished!');
 
@@ -453,7 +453,7 @@ function _freeNested(fdata, $prng, usePrng) {
         return callNode.arguments[n+1] ? AST.cloneSimple(callNode.arguments[n+1]) : AST.identifier('undefined');
       } else {
         // Then this ought to be a global (builtin or explicit), which would not be passed in as an arg.
-        ASSERT(targetName === '$' || targetName === SYMBOL_FRFR || BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) || fdata.globallyUniqueNamingRegistry.get(targetName)?.constValueRef?.node?.$p.blockChain === '1,', 'if there is no arg then the var must refer to a global of sorts', targetName);
+        ASSERT(targetName === '$' || targetName === SYMBOL_FRFR || BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) || fdata.globallyUniqueNamingRegistry.get(targetName)?.varDeclRef?.node?.$p.blockChain === '1,', 'if there is no arg then the var must refer to a global of sorts', targetName);
         return AST.identifier(targetName);
       }
     } else {

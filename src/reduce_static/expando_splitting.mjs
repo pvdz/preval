@@ -33,10 +33,10 @@ function _expandoSplitting(fdata) {
     if (meta.isBuiltin) return;
     if (!meta.isConstant) return;
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
 
-    vlog('- `' + name + '`:', meta.constValueRef.node.type);
+    vlog('- `' + name + '`:', meta.varDeclRef.node.type);
 
     if (meta.bfuncNode.type !== 'Program') {
       vlog('- Currently only considering global functions, bailing');

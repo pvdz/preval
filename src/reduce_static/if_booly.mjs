@@ -29,7 +29,7 @@ function _ifBooly(fdata) {
 
     if (meta.isImplicitGlobal || meta.isBuiltin) return;
     if (meta.typings.mustBeType !== 'boolean') return;
-    if (meta.constValueRef?.containerParent?.kind !== 'let') return; // I guess easiest way to tell if it's a let decl?
+    if (meta.varDeclRef?.containerParent?.kind !== 'let') return; // I guess easiest way to tell if it's a let decl?
 
     // We should have a bool let decl.
     // Check if there's a literal write inside an if-branch

@@ -26,10 +26,10 @@ function _boolTrampolines(fdata) {
     if (meta.isBuiltin) return;
     if (!meta.isConstant) return;
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
 
-    vlog('- `' + name + '`:', meta.constValueRef.node.type);
+    vlog('- `' + name + '`:', meta.varDeclRef.node.type);
 
     if (funcNode.$p.readsArgumentsAny || funcNode.$p.readsArgumentsLen) {
       // Note: Inlining the arg count should be trivial so we can do that easily

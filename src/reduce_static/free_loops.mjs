@@ -515,7 +515,7 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
         // The array must be a local var though.
         if (node.property.name === 'length' && declaredNameTypes.get(node.object.name)) {
           const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);
-          if (meta.isConstant && meta.constValueRef.node.type === 'ArrayExpression') {
+          if (meta.isConstant && meta.varDeclRef.node.type === 'ArrayExpression') {
             // Doing .length on an array ought to be safe?
             return true;
           }
@@ -724,8 +724,8 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
                 const meta = fdata.globallyUniqueNamingRegistry.get(init.object.name);
                 if (meta.isConstant) {
                   vlog('- checking elements of const arr...');
-                  ASSERT(meta.constValueRef.node.type === 'ArrayExpression', 'this init should be an array at this point...? or can it be the result of slice or something? in that case this logic needs to check more explicit', meta.constValueRef.node);
-                  if (meta.constValueRef.node.elements.every((e,i) => {
+                  ASSERT(meta.varDeclRef.node.type === 'ArrayExpression', 'this init should be an array at this point...? or can it be the result of slice or something? in that case this logic needs to check more explicit', meta.varDeclRef.node);
+                  if (meta.varDeclRef.node.elements.every((e,i) => {
                     if (!e) return true; // returns undefined so that's ok
                     else if (AST.isPrimitive(e)) return true;
                     else if (e.type === 'Identifier' && declaredNameTypes.has(e.name)) return PRIMITIVE_TYPE_NAMES_PREVAL.has(declaredNameTypes.get(e.name));
@@ -747,7 +747,7 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
                 if (pmeta.typing.mustBeType === 'number') {
                   vlog('- this is indexed access on the array. need to verify the arr');
                   const ometa = fdata.globallyUniqueNamingRegistry.get(init.object.name);
-                  if (ometa.constValueRef.node.elements.every((e,i) => {
+                  if (ometa.varDeclRef.node.elements.every((e,i) => {
                     if (!e) return true; // returns undefined so that's ok
                     else if (AST.isPrimitive(e)) return true;
                     else if (e.type === 'Identifier' && declaredNameTypes.has(e.name)) return PRIMITIVE_TYPE_NAMES_PREVAL.has(declaredNameTypes.get(e.name));
@@ -1038,7 +1038,7 @@ function runExpression(fdata, node, register, callNodeToSymbol, prng, usePrng) {
         // The func decl node for this $free func should be stored in the callNodeToSymbol for this argument node ref (see isFree)
         const freeFuncName = node.arguments[0].name;
         const meta = fdata.globallyUniqueNamingRegistry.get(freeFuncName);
-        const freeFuncNode = meta.constValueRef.node;
+        const freeFuncNode = meta.varDeclRef.node;
         ASSERT(meta.writes.length === 1 && freeFuncNode && freeFuncNode.id?.name === '$free', 'we created the free func and it should be a constant...', freeFuncNode.id?.name, meta.writes.length);
 
         let fail = false;

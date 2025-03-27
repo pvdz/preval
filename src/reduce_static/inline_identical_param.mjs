@@ -48,9 +48,9 @@ function _inlineIdenticalParam(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
-    if (meta.constValueRef.node.type !== 'FunctionExpression') return;
-    if (meta.constValueRef.node.$p.readsArgumentsAny) return;
-    if (meta.constValueRef.node.$p.readsArgumentsLen) return;
+    if (meta.varDeclRef.node.type !== 'FunctionExpression') return;
+    if (meta.varDeclRef.node.$p.readsArgumentsAny) return;
+    if (meta.varDeclRef.node.$p.readsArgumentsLen) return;
 
     vgroup('- `' + name + '` is a constant function');
     const what = process(meta, name, fdata);
@@ -73,7 +73,7 @@ function _inlineIdenticalParam(fdata) {
 }
 
 function process(meta, funcName, fdata) {
-  const funcNode = meta.constValueRef.node;
+  const funcNode = meta.varDeclRef.node;
   if (!meta.reads.length) {
     vlog('- bail: There were no reads to this function');
     return false;

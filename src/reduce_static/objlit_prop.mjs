@@ -686,13 +686,13 @@ function _objlitPropAccess(fdata) {
           } else if (pnode.value.type === 'Identifier') {
             const calleeMeta = fdata.globallyUniqueNamingRegistry.get(pnode.value.name);
             if (calleeMeta.isConstant) {
-              if (calleeMeta.constValueRef.node.type !== 'FunctionExpression') {
+              if (calleeMeta.varDeclRef.node.type !== 'FunctionExpression') {
                 vlog(
                   'The callee is actually constant `' + pnode.value.name + '` which is not a function (',
-                  calleeMeta.constValueRef.node.type,
+                  calleeMeta.varDeclRef.node.type,
                   '), probably a runtime error, but bailing nonetheless',
                 );
-              } else if (!calleeMeta.constValueRef.node.$p.thisAccess) {
+              } else if (!calleeMeta.varDeclRef.node.$p.thisAccess) {
                 vlog('The callee is actually constant `' + pnode.value.name + '` which is a function that does not access `this`');
                 fail = false;
                 newCallee = AST.identifier(pnode.value.name);

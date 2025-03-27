@@ -62,8 +62,8 @@ function _arrSpreads(fdata) {
           if (meta.isImplicitGlobal) continue;
           if (!meta.isConstant) continue; // We can improve on this
           if (meta.isExport) continue; // Exports are "live" bindings so any update to it might be observable in strange ways
-          if (meta.constValueRef.containerNode.type !== 'VarStatement') continue; // catch, for-x, ???
-          if (meta.constValueRef.node.type !== 'ArrayExpression') return; // Map / Set?
+          if (meta.varDeclRef.containerNode.type !== 'VarStatement') continue; // catch, for-x, ???
+          if (meta.varDeclRef.node.type !== 'ArrayExpression') return; // Map / Set?
           if (meta.writes.length > 1) return; // TODO: fixme if broken
 
           const write = meta.writes[0];
@@ -72,7 +72,7 @@ function _arrSpreads(fdata) {
           vlog('Found an array being spread into another array...');
 
           const arrNodeSpreadedInto = node;
-          const arrNodeBeingSpreaded = meta.constValueRef.node;
+          const arrNodeBeingSpreaded = meta.varDeclRef.node;
 
           if (arrNodeBeingSpreaded.elements.some((enode) => enode?.type === 'SpreadElement')) {
             vlog('Can not spread an array contains another spread');
@@ -147,7 +147,7 @@ function _arrSpreads(fdata) {
               // The parent array of  is either a statement, assignment, or var init
               // Inject the var decls before this node
               queueInjects.push({
-                pid: meta.constValueRef.node.$p.pid,
+                pid: meta.varDeclRef.node.$p.pid,
                 func: (pid) => {
                   vlog('- Next pid:', pid);
                   write.blockBody.splice(write.blockIndex, 0, ...tmpVarNodes);

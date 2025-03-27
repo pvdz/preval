@@ -23,10 +23,10 @@ function _funcionSplitting(fdata) {
     if (meta.isBuiltin) return;
     if (!meta.isConstant) return;
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
 
-    vlog('- `' + name + '`:', meta.constValueRef.node.type);
+    vlog('- `' + name + '`:', meta.varDeclRef.node.type);
 
     if (meta.writes.length !== 1) {
       vlog('This constant has multiple writes. Need to eliminate those runtime errors first.');

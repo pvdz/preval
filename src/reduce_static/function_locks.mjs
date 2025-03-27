@@ -34,13 +34,13 @@ function _functionLocks(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
     if (meta.isConstant) return;
-    if (!meta.constValueRef) return; // catch
+    if (!meta.varDeclRef) return; // catch
 
-    const funcNode = meta.constValueRef.node; // Note: this is a misnomer; it is the var decl init ref, also populated for lets.
+    const funcNode = meta.varDeclRef.node; // Note: this is a misnomer; it is the var decl init ref, also populated for lets.
     if (funcNode.type !== 'FunctionExpression') return;
 
     // Check if other func is conditionally calling a func. If so, that func is our target.
-    vlog('- `' + funcName + '`:', meta.constValueRef.node.type);
+    vlog('- `' + funcName + '`:', meta.varDeclRef.node.type);
 
     const identCallReads = [];
     const memberCallReads = []; // func.apply func.call func.bind

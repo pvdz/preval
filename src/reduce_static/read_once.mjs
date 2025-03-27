@@ -25,11 +25,11 @@ function _readOnce(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
     if (meta.isConstant) return;
-    if (!meta.constValueRef) return; // catch
+    if (!meta.varDeclRef) return; // catch
 
-    vlog('- `' + name + '`:', meta.constValueRef.node.type);
+    vlog('- `' + name + '`:', meta.varDeclRef.node.type);
 
-    const init = meta.constValueRef.node;
+    const init = meta.varDeclRef.node;
     if (AST.isTruthy(init)) {
       // In this case it must be some kind of static value so we're okay
     } else if (init.type === 'Identifier' && !AST.isPrimitive(init)) {

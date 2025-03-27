@@ -243,7 +243,7 @@ function processAttempt(fdata) {
             // This would be necessary to replace the .concat() with a fresh array here.
             const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
             // This can reach x if the decl of x (whatever it is) has a blockChain that is a prefix of this node's blockChain
-            if (!concatCallNode.$p.blockChain.startsWith(meta.constValueRef.node.$p.blockChain)) {
+            if (!concatCallNode.$p.blockChain.startsWith(meta.varDeclRef.node.$p.blockChain)) {
               return true; // Can not reach that array so we must bail
             }
             // Okay
@@ -272,8 +272,8 @@ function processAttempt(fdata) {
             vlog('- bail: at least one .concat arg was not a constant;', concatArg.name);
             return true;
           }
-          if (concatArgMeta.constValueRef.node.type !== 'ArrayExpression') {
-            vlog('- bail: at least one .concat arg was not an array literal;', concatArg.name, concatArgMeta.constValueRef.node.type);
+          if (concatArgMeta.varDeclRef.node.type !== 'ArrayExpression') {
+            vlog('- bail: at least one .concat arg was not an array literal;', concatArg.name, concatArgMeta.varDeclRef.node.type);
             return true;
           }
 
@@ -309,12 +309,12 @@ function processAttempt(fdata) {
           }
 
           // Confirm the elements of the concatenated array. Must be all idents or primitives. All idents must be reachable from here.
-          if (hasBadConcatElement(concatArgMeta.constValueRef.node)) {
+          if (hasBadConcatElement(concatArgMeta.varDeclRef.node)) {
             vlog('- bail: an arg array has elements for which we dont support concat right now;', concatArg.name);
             return true;
           }
 
-          argArrays.push(concatArgMeta.constValueRef.node);
+          argArrays.push(concatArgMeta.varDeclRef.node);
 
           // - arg is a constant array literal
           // - arg does not escape, only used as plain member expression reads (not for delete/call/assign)

@@ -49,7 +49,7 @@ function processAttempt(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
-    if (meta.constValueRef.node.type !== 'FunctionExpression') return;
+    if (meta.varDeclRef.node.type !== 'FunctionExpression') return;
 
     vgroup('- `' + name + '` is a constant function');
     if (process(meta, name)) ++changed;
@@ -60,7 +60,7 @@ function processAttempt(fdata) {
 }
 
 function process(meta, name) {
-  const funcNode = meta.constValueRef.node;
+  const funcNode = meta.varDeclRef.node;
 
   if (!funcNode.$p.readsArgumentsLen) {
     vlog('This function does not access `arguments.length`. Bailing');

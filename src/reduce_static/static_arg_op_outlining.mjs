@@ -32,7 +32,7 @@ function _staticArgOpOutlining(fdata) {
     if (meta.isCatchVar) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return; // I don't think this really matters. But perhaps in that case we should just skip the lets...
-    if (meta.constValueRef.node.type !== 'FunctionExpression') return;
+    if (meta.varDeclRef.node.type !== 'FunctionExpression') return;
 
     vgroup(`- processing function "${name}"`);
     processFunctionName(meta, name);
@@ -236,8 +236,8 @@ function _staticArgOpOutlining(fdata) {
     // - None of the calls use a spread (and later we can still proceed if the param is before the spread in all calls)
     // - The function is not direct recursive (tests/cases/primitive_arg_inlining/recursion/_base.md). Probably also not indirectly recursive (?)
 
-    const funcRef = funcMeta.constValueRef;
-    const funcNode = funcMeta.constValueRef.node;
+    const funcRef = funcMeta.varDeclRef;
+    const funcNode = funcMeta.varDeclRef.node;
     const paramCount = funcNode.params.length;
     //if (paramCount === 0) {
     //  vlog('- Function has no params, bailing');
@@ -366,12 +366,12 @@ function _staticArgOpOutlining(fdata) {
 
       const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
 
-      if (leftMeta.constValueRef?.containerNode.type !== 'VarStatement') {
+      if (leftMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
         // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
         vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
         return; // catch, for-x, ???
       }
-      if (funcMeta.reads.some(read => !read.blockChain.startsWith(leftMeta.constValueRef.node.$p.blockChain))) {
+      if (funcMeta.reads.some(read => !read.blockChain.startsWith(leftMeta.varDeclRef.node.$p.blockChain))) {
         vlog('- Not all call sites can reach the closure, bailing');
         return;
       }
@@ -433,12 +433,12 @@ function _staticArgOpOutlining(fdata) {
         // `let a = 1; function f(b) { a = b; }`
         const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
 
-        if (leftMeta.constValueRef?.containerNode.type !== 'VarStatement') {
+        if (leftMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
           vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
           return; // catch, for-x, ???
         }
-        if (funcMeta.reads.some(read => !read.blockChain.startsWith(leftMeta.constValueRef.node.$p.blockChain))) {
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(leftMeta.varDeclRef.node.$p.blockChain))) {
           vlog('- Not all call sites can reach the closure, bailing');
           return;
         }
@@ -483,25 +483,25 @@ function _staticArgOpOutlining(fdata) {
         const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
         const rightMeta = fdata.globallyUniqueNamingRegistry.get(right.name);
 
-        if (leftMeta.constValueRef?.containerNode.type !== 'VarStatement') {
+        if (leftMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
           // `try {} catch (e) { let b = $(); function f() { e = b; } }`
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
           vlog('- The lhs is a closure but it was not a variable declaration, so bailing');
           return; // catch, for-x, ???
         }
-        if (rightMeta.constValueRef?.containerNode.type !== 'VarStatement') {
+        if (rightMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
           // `try {} catch (e) { let b = $(); function f() { b = e; } }`
           // TODO: we can probably still support this case...? As long as we have a scope to check, who cares what you assign to
           vlog('- The rhs is a closure or this/arguments but it was not a variable declaration, so bailing');
           return; // catch, for-x, ???
         }
-        if (funcMeta.reads.some(read => !read.blockChain.startsWith(leftMeta.constValueRef.node.$p.blockChain))) {
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(leftMeta.varDeclRef.node.$p.blockChain))) {
           // `let f; { let b = $(); f = function(a) { b = a; } } f(1); f(2);`
           // Currently this doesn't hit but it might in the future.
           vlog('- Not all call sites can reach the lhs closure, bailing');
           return;
         }
-        if (funcMeta.reads.some(read => !read.blockChain.startsWith(rightMeta.constValueRef.node.$p.blockChain))) {
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(rightMeta.varDeclRef.node.$p.blockChain))) {
           // `let a = 1; function f() { a = this; }`
           vlog('- Not all call sites can reach the rhs binding, bailing');
           return;
@@ -578,11 +578,11 @@ function _staticArgOpOutlining(fdata) {
         rule('Special $coerce with param as first statement of function can be outlined');
         example('let b = $; function f(a) { $coerce( a, "plustr" ); g(); } f(b)', 'let b = $; function f(b) { g(); } $coerce( b, "plustr" ); f(b)');
 
-        before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+        before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
         funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
 
-        after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+        after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
@@ -617,14 +617,14 @@ function _staticArgOpOutlining(fdata) {
         // `let b = $; function f() { $coerce( b, "plustr" ); } f()`
         vgroup('  - Arg is a closure or arguments or this.');
 
-        if (argMeta.constValueRef?.containerNode.type !== 'VarStatement') {
+        if (argMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
           // `try {} catch (b) { function f() { $coerce( b, "plustr" ); } f() }`
           // Maybe we can support catch etc but not today.
           vlog('  - Closure is not a var binding, bailing');
           return;
         }
 
-        if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.constValueRef.node.$p.blockChain))) {
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.varDeclRef.node.$p.blockChain))) {
           // `let f; { let b = $; f = function() { $coerce( b, "plustr" ); } } f()`
           vlog('  - Not all call sites can reach the closure, bailing');
           return;
@@ -633,11 +633,11 @@ function _staticArgOpOutlining(fdata) {
         rule('Special $coerce with closure as first statement of function can be outlined');
         example('let b = $; function f() { $coerce( b, "plustr" ); g(); } f()', 'let b = $; function f() { g(); } $coerce( b, "plustr" ); f()');
 
-        before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+        before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
         funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
 
-        after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+        after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
@@ -709,14 +709,14 @@ function _staticArgOpOutlining(fdata) {
           vlog('  - LHS is a closure. Assigning param to closure.'); // or the arguments/this alias
           // In this case we move the entire assignment out while replacing the rhs with the arg value.
 
-          if (argMeta.constValueRef?.containerNode.type !== 'VarStatement') {
+          if (argMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
             // `try {} catch (b) { function f() { $coerce( b, "plustr" ); } f() }`
             // Maybe we can support catch etc but not today.
             vlog('  - Closure is not a var binding, bailing');
             return;
           }
 
-          if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.constValueRef.node.$p.blockChain))) {
+          if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.varDeclRef.node.$p.blockChain))) {
             // `let f; { let b = $; f = function() { $coerce( b, "plustr" ); } } f()`
             vlog('  - Not all call sites can reach the closure, bailing');
             return;
@@ -728,11 +728,11 @@ function _staticArgOpOutlining(fdata) {
             'let a = undefined; let b = $; function f(c) { g(); } a = $coerce( b, "plustr" ); f(b)'
           );
 
-          before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+          before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
           funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
 
-          after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+          after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
           funcMeta.reads.forEach(read => {
             before(read.blockBody[read.blockIndex]);
@@ -776,27 +776,27 @@ function _staticArgOpOutlining(fdata) {
 
           const lhsMeta = fdata.globallyUniqueNamingRegistry.get(lhs.name);
 
-          if (lhsMeta.constValueRef?.containerNode.type !== 'VarStatement') {
+          if (lhsMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
             // `let a = $(); try {} catch (b) { function f() { b = $coerce( a, "plustr" ); } f() }`
             // Maybe we can support catch etc but not today.
             vlog('  - Closure is not a var binding, bailing');
             return;
           }
 
-          if (argMeta.constValueRef?.containerNode.type !== 'VarStatement') {
+          if (argMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
             // `let a = undefined; try {} catch (b) { function f() { a = $coerce( b, "plustr" ); } f() }`
             // Maybe we can support catch etc but not today.
             vlog('  - Closure is not a var binding, bailing');
             return;
           }
 
-          if (funcMeta.reads.some(read => !read.blockChain.startsWith(lhsMeta.constValueRef.node.$p.blockChain))) {
+          if (funcMeta.reads.some(read => !read.blockChain.startsWith(lhsMeta.varDeclRef.node.$p.blockChain))) {
             // `let a = $(); let f; { let b = $; f = function() { b = $coerce( a, "plustr" ); } } f()`
             vlog('  - Not all call sites can reach the closure, bailing');
             return;
           }
 
-          if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.constValueRef.node.$p.blockChain))) {
+          if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.varDeclRef.node.$p.blockChain))) {
             // `let a; let f; { let b = $; f = function() { b = $coerce( a, "plustr" ); } } f()`
             vlog('  - Not all call sites can reach the closure, bailing');
             return;
@@ -807,11 +807,11 @@ function _staticArgOpOutlining(fdata) {
             'let a = undefined; let b = $; function f(c) { g(); } a = $coerce( b, "plustr" ); f(b)'
           );
 
-          before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+          before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
           funcNode.body.body[funcNode.$p.bodyOffset] = AST.emptyStatement();
 
-          after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+          after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
           funcMeta.reads.forEach(read => {
             before(read.blockBody[read.blockIndex]);
@@ -879,11 +879,11 @@ function _staticArgOpOutlining(fdata) {
           'let a = $; function f(b) { const c = b; g(); } const tmp = $coerce( a, "plustr" ); f(tmp)'
         );
 
-        before(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+        before(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
         funcNode.body.body[funcNode.$p.bodyOffset].init = arg; // Replaces `const b = $coerce(a)` with `const b = a;`
 
-        after(funcMeta.constValueRef.containerParent[funcMeta.constValueRef.containerIndex]);
+        after(funcMeta.varDeclRef.containerParent[funcMeta.varDeclRef.containerIndex]);
 
         funcMeta.reads.forEach(read => {
           before(read.blockBody[read.blockIndex]);
@@ -922,14 +922,14 @@ function _staticArgOpOutlining(fdata) {
         vlog('  - LHS is a closure. Assigning param to closure.'); // or the arguments/this alias
         // In this case we move the entire assignment out while replacing the rhs with the arg value.
 
-        if (argMeta.constValueRef?.containerNode.type !== 'VarStatement') {
+        if (argMeta.varDeclRef?.containerNode.type !== 'VarStatement') {
           // `let a = undefined; try {} catch (b) { function f() { a = $coerce( b, "plustr" ); } f() }`
           // Maybe we can support catch etc but not today.
           vlog('  - Closure is not a var binding, bailing');
           return;
         }
 
-        if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.constValueRef.node.$p.blockChain))) {
+        if (funcMeta.reads.some(read => !read.blockChain.startsWith(argMeta.varDeclRef.node.$p.blockChain))) {
           // `let a; let f; { let b = $; f = function() { b = $coerce( a, "plustr" ); } } f()`
           vlog('  - Not all call sites can reach the closure, bailing');
           return;
@@ -958,7 +958,7 @@ function _staticArgOpOutlining(fdata) {
       'function f(a) { const x = a + 1; g(a); return x; } f(1); f("a");',
       'function f(a, b) { const x = b; g(a); return x; } f(1, 1 + 1); f("a" + 1);',
     );
-    before(funcMeta.constValueRef.containerNode);
+    before(funcMeta.varDeclRef.containerNode);
     funcMeta.reads.forEach((read) => before(read.blockBody[read.blockIndex]));
 
     // We create a fresh param name and add it to the end
@@ -1093,7 +1093,7 @@ function _staticArgOpOutlining(fdata) {
       });
     });
 
-    after(funcMeta.constValueRef.containerNode);
+    after(funcMeta.varDeclRef.containerNode);
     funcMeta.reads.forEach((read) => after(read.blockBody[read.blockIndex]));
     ++changes;
   }

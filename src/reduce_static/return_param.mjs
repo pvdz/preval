@@ -39,7 +39,7 @@ function _returnsParam(fdata) {
     if (funcMeta.isImplicitGlobal) return;
     if (!funcMeta.isConstant) return;
 
-    const funcNode = funcMeta.constValueRef.node;
+    const funcNode = funcMeta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
 
     vgroup('- `' + funcMeta.uniqueName + '`, writes:', funcMeta.writes.length, ', reads:', funcMeta.reads.length);

@@ -194,7 +194,7 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
 
             if (arg1.type === 'Identifier') {
               const arg1meta = fdata.globallyUniqueNamingRegistry.get(arg1.name);
-              if (arg1meta.isConstant && AST.isRegexLiteral(arg1meta.constValueRef?.node)) {
+              if (arg1meta.isConstant && AST.isRegexLiteral(arg1meta.varDeclRef?.node)) {
                 vlog('- first arg is a regex const');
               } else {
                 vlog('- bail: string replace and the first arg spies;', arg1.type, arg1.name);
@@ -213,9 +213,9 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
 
             if (arg2.type === 'Identifier') {
               const arg2meta = fdata.globallyUniqueNamingRegistry.get(arg2.name);
-              if (arg2meta.isConstant && arg2meta.constValueRef?.node.type === 'FunctionExpression') {
+              if (arg2meta.isConstant && arg2meta.varDeclRef?.node.type === 'FunctionExpression') {
                 vlog('- scanning func arg');
-                if (arg2meta.constValueRef.node.body.body.some(stmt => {
+                if (arg2meta.varDeclRef.node.body.body.some(stmt => {
                   if (stmt.type === 'VarStatement') {
                     const spies = AST.complexExpressionNodeMightSpy(stmt.init, fdata);
                     vlog('  -', stmt.type, 'may spy?', spies, stmt.init?.type);

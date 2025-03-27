@@ -17,9 +17,9 @@ function _ifTestOnly(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
-    if (!meta.constValueRef) return; // catch
+    if (!meta.varDeclRef) return; // catch
 
-    vgroup('- `' + name + '`:', meta.constValueRef.node.type);
+    vgroup('- `' + name + '`:', meta.varDeclRef.node.type);
 
     const usedElsewhere = meta.reads.some((read) => {
       if (read.parentNode.type === 'IfStatement') return;

@@ -22,10 +22,10 @@ function _singleScopeSSA(fdata) {
     if (meta.isConstant) return; // No need to SSA a constant
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
-    if (!meta.constValueRef) return; // catch, ???
-    if (meta.constValueRef.containerNode.type !== 'VarStatement') return; // catch, ???
+    if (!meta.varDeclRef) return; // catch, ???
+    if (meta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, ???
 
-    vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
+    vgroup('- `' + name + '`:', meta.varDeclRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
     process(meta, name);
 

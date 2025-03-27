@@ -227,7 +227,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       calledMetas.delete(calleeMeta);
       return;
     }
-    if (!calleeMeta.constValueRef) {
+    if (!calleeMeta.varDeclRef) {
       // If we have no value ref here then it's not a function we can control
       calledMetas.delete(calleeMeta);
       return;
@@ -370,8 +370,8 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
             if (!meta.isConstant) vlog('- is not a var decl');
             else if (meta.isImplicitGlobal) vlog('- is an implicit global');
             else if (meta.isBuiltin) vlog('- is builtin');
-            else if (meta.constValueRef.node.type !== 'ArrayExpression') vlog('- init of obj ident is not an array expression');
-            else if (!meta.constValueRef.node.elements.every(e => !e || AST.isPrimitive(e))) vlog('- array does not only contain primitives');
+            else if (meta.varDeclRef.node.type !== 'ArrayExpression') vlog('- init of obj ident is not an array expression');
+            else if (!meta.varDeclRef.node.elements.every(e => !e || AST.isPrimitive(e))) vlog('- array does not only contain primitives');
             else if (meta.writes.length !== 1) vlog('- array ref has multiple writes');
             else {
               vgroup('Checking all reads of this array ref for escape analysis');
@@ -539,10 +539,10 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       // If an element is `undefined` then there was a collision or unknown type and we give up
       // Otherwise, each element is a mustBeType string
 
-      let newCallerArgTypes = new Array(calleeMeta.constValueRef?.node.params?.length ?? arrArrCallArgNodes?.[0].length ?? 0).fill(false);
+      let newCallerArgTypes = new Array(calleeMeta.varDeclRef?.node.params?.length ?? arrArrCallArgNodes?.[0].length ?? 0).fill(false);
       calleeMeta.tmpi = loopi; // TODO: remove this? or keep?
 
-      //source(calleeMeta.constValueRef.containerNode, true)
+      //source(calleeMeta.varDeclRef.containerNode, true)
       vgroup('-- func', cmi++, '. Processing all', arrArrCallArgNodes.length, 'CallExpressions for', [calleeMeta.uniqueName], ', previous callerArgs:', oldi, oldCallerArgTypes, ', starting with', newCallerArgTypes.length, 'param types');
       arrArrCallArgNodes.every((args, ci) => {
         vgroup('- Call', ci+1, '/', arrArrCallArgNodes.length, ', args:', args.map(n => n.type).join(', '), 'len now:', args.length, ', len known:', newCallerArgTypes.length);

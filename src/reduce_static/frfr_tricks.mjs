@@ -62,8 +62,8 @@ function _frfr_tricks(fdata) {
     const freeFuncName = args[0].name;
     const freeFuncMeta = fdata.globallyUniqueNamingRegistry.get(freeFuncName);
     source(read.blockBody[read.blockIndex], true)
-    ASSERT(freeFuncMeta?.constValueRef?.node.id?.name === '$free', 'this is our DSL and the func it calls should be a $free func or what is going on?', freeFuncMeta?.constValueRef, freeFuncName);
-    const freeFuncNode = freeFuncMeta.constValueRef.node;
+    ASSERT(freeFuncMeta?.varDeclRef?.node.id?.name === '$free', 'this is our DSL and the func it calls should be a $free func or what is going on?', freeFuncMeta?.varDeclRef, freeFuncName);
+    const freeFuncNode = freeFuncMeta.varDeclRef.node;
 
 
     if (freeFuncNode.params.length === 0) {

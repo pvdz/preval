@@ -18,7 +18,7 @@ function _inlineSimpleFuncCalls(fdata) {
     if (!meta.isConstant) return;
     if (meta.reads.length === 0) return; // :shrug:
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
     if (funcNode.async) {
       todo('inline async functions safely (because await)');
@@ -29,7 +29,7 @@ function _inlineSimpleFuncCalls(fdata) {
       return;
     }
 
-    vgroup('- `' + meta.uniqueName + ':', meta.constValueRef.node.type);
+    vgroup('- `' + meta.uniqueName + ':', meta.varDeclRef.node.type);
     process(meta, funcName, funcNode, fdata, queue);
     vgroupEnd();
   });

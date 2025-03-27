@@ -51,7 +51,7 @@ function _staticIfOutlining(fdata) {
     if (meta.isCatchVar) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return; // I don't think this really matters. But perhaps in that case we should just skip the lets...
-    if (meta.constValueRef.node.type !== 'FunctionExpression') return;
+    if (meta.varDeclRef.node.type !== 'FunctionExpression') return;
 
     vgroup(`- processing function "${name}"`);
     processFunctionName(meta, name);
@@ -66,8 +66,8 @@ function _staticIfOutlining(fdata) {
     // - None of the calls use a spread (and later we can still proceed if the param is before the spread in all calls)
     // - The function is not direct recursive (tests/cases/primitive_arg_inlining/recursion/_base.md). Probably also not indirectly recursive (?)
 
-    const funcRef = funcMeta.constValueRef;
-    const funcNode = funcMeta.constValueRef.node;
+    const funcRef = funcMeta.varDeclRef;
+    const funcNode = funcMeta.varDeclRef.node;
 
     if (funcNode.$p.readsArgumentsLen || funcNode.$p.readsArgumentsAny) {
       // TODO: We can support this just don't remove the args after outlining them. Replace caller values with `undefined`.

@@ -179,8 +179,8 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     );
     meta.rwOrder = rwOrder;
 
-    if (meta.isConstant && meta.constValueRef.node.type === 'Identifier') {
-      const name2 = meta.constValueRef.node.name;
+    if (meta.isConstant && meta.varDeclRef.node.type === 'Identifier') {
+      const name2 = meta.varDeclRef.node.name;
       if (name2 !== 'arguments') {
         const meta2 = fdata.globallyUniqueNamingRegistry.get(name2);
         if (meta2.isConstant) {

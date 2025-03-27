@@ -87,14 +87,14 @@ function _funcScopePromo(fdata) {
 }
 
 function oneFunc(meta, funcName, queue) {
-  vgroup('- `' + meta.uniqueName + '`:', meta.constValueRef.node.type);
+  vgroup('- `' + meta.uniqueName + '`:', meta.varDeclRef.node.type);
   const r = _oneFunc(meta, funcName, queue);
   vgroupEnd();
   return r;
 }
 
 function _oneFunc(meta, funcName, queue) {
-  const funcNode = meta.constValueRef.node;
+  const funcNode = meta.varDeclRef.node;
   if (funcNode?.type !== 'FunctionExpression') {
     vlog('Not a function');
     return;

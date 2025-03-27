@@ -156,7 +156,7 @@ function _freeing(fdata, $prng, usePrng) {
       ASSERT(frfrCallNode.arguments?.[0]?.type === 'Identifier', '$frfr is controlled by us and first arg should be the free func ref');
       const freeFuncName = frfrCallNode.arguments[0].name;
       const meta = fdata.globallyUniqueNamingRegistry.get(freeFuncName);
-      const freeFuncNode = meta.constValueRef?.node;
+      const freeFuncNode = meta.varDeclRef?.node;
       ASSERT(meta.writes.length === 1 && freeFuncNode && freeFuncNode.id?.name === '$free', 'we created the free func and it should be a constant...', freeFuncNode.id?.name, meta.writes.length);
 
       // Check if it is using user globals. Those wouldn't become parameters but would block the following rule.
@@ -184,7 +184,7 @@ function _freeing(fdata, $prng, usePrng) {
         //  vlog('-', [name], 'is `arguments` and added to the arg list');
         } else {
           const meta = fdata.globallyUniqueNamingRegistry.get(name);
-          if (meta.isConstant && meta.constValueRef.node.$p.blockChain === '1,') {
+          if (meta.isConstant && meta.varDeclRef.node.$p.blockChain === '1,') {
             // This is a global var. No need to pass this in. We can reach it from anywhere.
             vlog('-', [name], 'is an explicit user global');
             return true;
@@ -758,15 +758,15 @@ function isFreeExpression(exprNode, fdata) {
       }
       if (
         meta.isConstant &&
-        meta.constValueRef?.node.type === 'FunctionExpression' &&
-        meta.constValueRef.node.name === '$free'
+        meta.varDeclRef?.node.type === 'FunctionExpression' &&
+        meta.varDeclRef.node.name === '$free'
       ) {
         return true;
       }
       if (
         meta.isConstant &&
-        meta.constValueRef &&
-        AST.isPrimitive(meta.constValueRef)
+        meta.varDeclRef &&
+        AST.isPrimitive(meta.varDeclRef)
       ) {
         return true;
       }

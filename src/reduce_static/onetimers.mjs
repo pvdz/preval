@@ -65,7 +65,7 @@ function _inlineOneTimeFunctions(fdata) {
 
     vgroup(
       '- `' + funcMeta.uniqueName + '`:',
-      funcMeta.constValueRef.node.type,
+      funcMeta.varDeclRef.node.type,
       ', writes:',
       funcMeta.writes.length,
       ', reads:',
@@ -80,7 +80,7 @@ function _inlineOneTimeFunctions(fdata) {
       return;
     }
 
-    const funcNode = funcMeta.constValueRef.node;
+    const funcNode = funcMeta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') {
       vlog('Constant is not a function, bailing');
       vgroupEnd();

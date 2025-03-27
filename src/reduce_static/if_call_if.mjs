@@ -89,7 +89,7 @@ function process(meta, name, fdata, queue) {
     return;
   }
 
-  const innerFuncNode = meta.constValueRef.node;
+  const innerFuncNode = meta.varDeclRef.node;
   if (innerFuncNode.type !== 'FunctionExpression') {
     vlog('Var decl init was not a function, bailing');
     return;

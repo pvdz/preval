@@ -51,7 +51,7 @@ function processAttempt(fdata, queue) {
     if (arrMeta.isBuiltin) return;
     if (arrMeta.isImplicitGlobal) return;
     if (!arrMeta.isConstant) return;
-    const arrNode = arrMeta.constValueRef.node;
+    const arrNode = arrMeta.varDeclRef.node;
     if (arrNode.type !== 'ArrayExpression') return;
     if (arrMeta.writes.length !== 1) return;
 

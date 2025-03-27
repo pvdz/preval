@@ -2729,12 +2729,12 @@ export function isArraySerializable(arrayMeta, fdata, knownParent = null, sush =
   // In this context, serializable means as much as "known value", because otherwise we can't turn it into a string can we
   // TODO: Note: this function has penty of room for improvement
 
-  if (!arrayMeta.constValueRef?.node?.elements) return false; // It may not be an array literal, just a func return value type
+  if (!arrayMeta.varDeclRef?.node?.elements) return false; // It may not be an array literal, just a func return value type
   if (!isImmutableArray(arrayMeta, knownParent, sush)) {
     return false;
   }
-  ASSERT(arrayMeta.constValueRef.node.elements, 'its an array and it must have an elements', arrayMeta.constValueRef.node);
-  return arrayMeta.constValueRef.node.elements.every(enode => {
+  ASSERT(arrayMeta.varDeclRef.node.elements, 'its an array and it must have an elements', arrayMeta.varDeclRef.node);
+  return arrayMeta.varDeclRef.node.elements.every(enode => {
     if (!enode) return true;
     if (isPrimitive(enode)) return true;
     if (enode.type === 'SpreadElement') {
@@ -2747,23 +2747,23 @@ export function isArraySerializable(arrayMeta, fdata, knownParent = null, sush =
     const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
     if (
       !meta.isConstant ||
-      meta.constValueRef?.node.type !== 'ArrayExpression'
+      meta.varDeclRef?.node.type !== 'ArrayExpression'
     ) {
       if (!sush) vlog('- bail: sub-element ident is not referring to an array, name:', arrayMeta.originalName);
       return false;
     }
-    return isArraySerializable(meta, fdata, arrayMeta.constValueRef.node, sush);
+    return isArraySerializable(meta, fdata, arrayMeta.varDeclRef.node, sush);
   });
 }
 
 export function getSerializableArrayParts(arrayMeta, fdata) {
   // Should have been checked by isArraySerializable before calling this func
-  return arrayMeta.constValueRef.node.elements.map(enode => {
+  return arrayMeta.varDeclRef.node.elements.map(enode => {
     if (!enode) return undefined;
     if (isPrimitive(enode)) return getPrimitiveValue(enode);
     ASSERT(enode.type === 'Identifier');
     const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
-    ASSERT(meta.isConstant && meta.constValueRef);
+    ASSERT(meta.isConstant && meta.varDeclRef);
     return getSerializableArrayParts(meta, fdata);
   });
 }

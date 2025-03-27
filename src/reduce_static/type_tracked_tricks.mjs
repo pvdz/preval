@@ -860,12 +860,12 @@ function _typeTrackedTricks(fdata) {
               // and the other side is too and we can prove that they are or cannot be the same
               // instance then we also know without a doubt what the result is going to be.
               // We will check a few superficial cases; there's many to cover.
-              if (lmeta.constValueRef && rmeta.constValueRef && lmeta.writes.length === 1 && rmeta.writes.length === 1) {
+              if (lmeta.varDeclRef && rmeta.varDeclRef && lmeta.writes.length === 1 && rmeta.writes.length === 1) {
                 // When the init is an obj/arr/map/set/regex instance and this is the only
                 // other read, then the comparison must fail.
 
-                const linit = lmeta.constValueRef.node;
-                const rinit = rmeta.constValueRef.node;
+                const linit = lmeta.varDeclRef.node;
+                const rinit = rmeta.varDeclRef.node;
 
                 const lIsInstance =
                   linit.type === 'ObjectExpression' ||
@@ -950,12 +950,12 @@ function _typeTrackedTricks(fdata) {
                 const meta = fdata.globallyUniqueNamingRegistry.get(pl ? node.right.name : node.left.name);
 
                 if (meta.typing.mustBeType === 'regex') {
-                  if (meta.typing.mustBeValue || meta.constValueRef?.node?.raw) {
+                  if (meta.typing.mustBeValue || meta.varDeclRef?.node?.raw) {
                     rule('A regex that is used with `+` becomes a string');
                     example('/foo/ + 1', '"/foo/1"');
                     before(node, parentNode);
 
-                    const finalNode = AST.primitive(String(meta.typing.mustBeValue || meta.constValueRef.node.raw));
+                    const finalNode = AST.primitive(String(meta.typing.mustBeValue || meta.varDeclRef.node.raw));
                     if (pl) node.right = finalNode;
                     else node.left = finalNode;
 
@@ -1330,7 +1330,7 @@ function _typeTrackedTricks(fdata) {
           // (Parent node is CallExpression)
           const isPrim = AST.isPrimitive(node.callee.object);
           const objMetaRegex = !isPrim && node.callee.object.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-          const isRegex = objMetaRegex?.typing?.mustBeType === 'regex' && objMetaRegex.isConstant && AST.isRegexLiteral(objMetaRegex.constValueRef);
+          const isRegex = objMetaRegex?.typing?.mustBeType === 'regex' && objMetaRegex.isConstant && AST.isRegexLiteral(objMetaRegex.varDeclRef);
           if ((isPrim || isRegex || node.callee.object.type === 'Identifier') && !node.callee.computed) {
             let mustBe = isRegex ? 'regex' : isPrim ? AST.getPrimitiveType(node.callee.object) : fdata.globallyUniqueNamingRegistry.get(node.callee.object.name).typing.mustBeType;
 
@@ -1552,7 +1552,7 @@ function _typeTrackedTricks(fdata) {
               }
               case symbo('function', 'apply'): {
                 const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-                if (objMeta.isConstant && !objMeta.constValueRef.node.$p.thisAccess) {
+                if (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) {
                   vlog('Queued transform to eliminate .apply');
                   ++changes;
                   // The transform is a little more subtle since excessive args should also be placed as statements
@@ -1588,7 +1588,7 @@ function _typeTrackedTricks(fdata) {
               }
               case symbo('function', 'call'): {
                 const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-                if (objMeta.isConstant && !objMeta.constValueRef.node.$p.thisAccess) {
+                if (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) {
                   vlog('Queued transform to eliminate .call');
                   ++changes;
                   queue.push({
@@ -1703,7 +1703,7 @@ function _typeTrackedTricks(fdata) {
                   example('/foo/.test("brafoody")', 'true');
                   before(parentNode);
 
-                  const regex = new RegExp(objMeta.constValueRef.node.regex.pattern, objMeta.constValueRef.node.regex.flags);
+                  const regex = new RegExp(objMeta.varDeclRef.node.regex.pattern, objMeta.varDeclRef.node.regex.flags);
                   const v = node.arguments.length ? regex.test(AST.getPrimitiveValue(node.arguments[0])) : regex.test();
 
                   if (parentIndex < 0) parentNode[parentProp] = AST.primitive(v);
@@ -2106,7 +2106,7 @@ function _typeTrackedTricks(fdata) {
 
                   if (
                     metaArg1 &&
-                    metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.constValueRef.node)
+                    metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.varDeclRef.node)
                   ) {
                     if (!node.arguments[1] || AST.isPrimitive(node.arguments[1])) {
                       // - `'foo'.replace(/bar/)`
@@ -2117,7 +2117,7 @@ function _typeTrackedTricks(fdata) {
                       before(parentNode);
 
                       const ctxString = node.arguments[1] ? AST.getPrimitiveValue(node.callee.object) : undefined;
-                      const regex = getRegexFromLiteralNode(metaArg1.constValueRef.node);
+                      const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
                       const rplString = AST.getPrimitiveValue(node.arguments[1]);
                       const rest = node.arguments.slice(2);
                       const result = ctxString.replace(regex, rplString);
@@ -2144,9 +2144,9 @@ function _typeTrackedTricks(fdata) {
 
                     ASSERT(node.arguments[1].type === 'Identifier', 'either an arg is a primitive or an ident when normalized', node.arguments[1].type);
                     const metaArg2 = fdata.globallyUniqueNamingRegistry.get(node.arguments[1].name);
-                    if (metaArg2.isConstant && metaArg2.constValueRef.node.type === 'FunctionExpression') {
+                    if (metaArg2.isConstant && metaArg2.varDeclRef.node.type === 'FunctionExpression') {
                       // There is a (small) subclass of functions that we can support here
-                      const funcNode = metaArg2.constValueRef.node;
+                      const funcNode = metaArg2.varDeclRef.node;
                       const funcBody = funcNode.body.body;
                       const bodyOffset = funcNode.$p.bodyOffset;
 
@@ -2178,7 +2178,7 @@ function _typeTrackedTricks(fdata) {
                         // We now have to confirm that the `obj` here is fully known and only used
                         // as property access that is not the child of delete or call or assignment-lhs.
                         const objMeta = fdata.globallyUniqueNamingRegistry.get(funcBody[bodyOffset].init.object.name);
-                        const objNode = objMeta.isConstant && objMeta.constValueRef.node;
+                        const objNode = objMeta.isConstant && objMeta.varDeclRef.node;
                         if (
                           objNode?.type === 'ObjectExpression' &&
                           objNode.properties.every(pnode => {
@@ -2206,7 +2206,7 @@ function _typeTrackedTricks(fdata) {
                           vlog('Now resolving string replacement with function callback. If this is a very evil regex things will get stuck now.');
 
                           const str = AST.getPrimitiveValue(node.callee.object);
-                          const regex = getRegexFromLiteralNode(metaArg1.constValueRef.node);
+                          const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
                           const out = str.replace(regex, s => {
                             const pnode = objNode.properties.find(pnode => {
                               if (pnode.computed) {
@@ -2362,7 +2362,7 @@ function _typeTrackedTricks(fdata) {
                     metaArg1 &&
                     metaArg1.typing.mustBeType === 'regex' &&
                     metaArg1.isConstant &&
-                    AST.isRegexLiteral(metaArg1.constValueRef.node)
+                    AST.isRegexLiteral(metaArg1.varDeclRef.node)
                   ) {
                     // 'foo'.split(/o/)
 
@@ -2371,7 +2371,7 @@ function _typeTrackedTricks(fdata) {
                     before(parentNode);
 
                     const ctxString = AST.getPrimitiveValue(node.callee.object);
-                    const regex = getRegexFromLiteralNode(metaArg1.constValueRef.node);
+                    const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
                     const rest = node.arguments.slice(1);
                     const result = ctxString.split(regex);
 
@@ -2402,15 +2402,15 @@ function _typeTrackedTricks(fdata) {
                       metaArg1.isConstant &&
                       metaArg1.writes.length === 1 &&
                       metaArg1.reads.length === 1 && // Technically we can do more than this but this is low hanging fruit
-                      metaArg1.constValueRef.node.type === 'ArrayExpression' &&
-                      metaArg1.constValueRef.node.elements.length &&
-                      metaArg1.constValueRef.node.elements[0] &&
+                      metaArg1.varDeclRef.node.type === 'ArrayExpression' &&
+                      metaArg1.varDeclRef.node.elements.length &&
+                      metaArg1.varDeclRef.node.elements[0] &&
                       (
                         // If it _is_ a string, that's cool
-                        AST.isStringLiteral(metaArg1.constValueRef.node.elements[0]) ||
+                        AST.isStringLiteral(metaArg1.varDeclRef.node.elements[0]) ||
                         ( // If we know the arg mustbea string, that's fine too
-                          metaArg1.constValueRef.node.elements[0].type === 'Identifier' &&
-                          fdata.globallyUniqueNamingRegistry.get(metaArg1.constValueRef.node.elements[0].name)?.typing?.mustBeType === 'string'
+                          metaArg1.varDeclRef.node.elements[0].type === 'Identifier' &&
+                          fdata.globallyUniqueNamingRegistry.get(metaArg1.varDeclRef.node.elements[0].name)?.typing?.mustBeType === 'string'
                         )
                       )
                     ) {
@@ -2425,13 +2425,13 @@ function _typeTrackedTricks(fdata) {
                       example('const arr = ["x"]; "axbxc".split(arr)', 'const arr = "x"; "axbxc".split(arr)');
                       example('const arr = [x]; "axbxc".split(arr)', 'const arr = x; "axbxc".split(arr)'); // with x mustbe string
                       before(node);
-                      before(metaArg1.constValueRef.containerNode);
+                      before(metaArg1.varDeclRef.containerNode);
 
-                      ASSERT(metaArg1.constValueRef.containerNode.type === 'VarStatement', 'not assign or anything because write.len===1, right?', metaArg1.constValueRef);
+                      ASSERT(metaArg1.varDeclRef.containerNode.type === 'VarStatement', 'not assign or anything because write.len===1, right?', metaArg1.varDeclRef);
 
-                      metaArg1.constValueRef.containerNode.init = metaArg1.constValueRef.node.elements[0];
+                      metaArg1.varDeclRef.containerNode.init = metaArg1.varDeclRef.node.elements[0];
 
-                      after(metaArg1.constValueRef.containerNode);
+                      after(metaArg1.varDeclRef.containerNode);
                       after(node);
 
                       ++changes;

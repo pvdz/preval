@@ -30,13 +30,13 @@ function _pruneTrampolineFunctions(fdata) {
 
     vlog(
       '- `' + funcName + '`:',
-      meta.constValueRef.node.type,
+      meta.varDeclRef.node.type,
       'reads `arguments` len/any?',
-      meta.constValueRef.node.$p.readsArgumentsLen,
-      meta.constValueRef.node.$p.readsArgumentsAny,
+      meta.varDeclRef.node.$p.readsArgumentsLen,
+      meta.varDeclRef.node.$p.readsArgumentsAny,
     );
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') {
       vlog('  - Not a function');
       return;

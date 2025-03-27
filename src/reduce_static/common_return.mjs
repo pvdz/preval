@@ -36,7 +36,7 @@ function _inlineCommonReturns(fdata) {
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
 
     vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
@@ -103,7 +103,7 @@ function _inlineCommonReturns(fdata) {
       // Move the call to its own statement
       read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(read.parentNode));
       // Then replace the original place where the call happened with the commonReturn value
-      const clone = AST.cloneSimple(meta.constValueRef.node.$p.commonReturn);
+      const clone = AST.cloneSimple(meta.varDeclRef.node.$p.commonReturn);
       if (read.grandIndex < 0) read.grandNode[read.grandProp] = clone;
       else read.grandNode[read.grandProp][read.grandIndex] = clone;
 

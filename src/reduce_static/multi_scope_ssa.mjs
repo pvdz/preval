@@ -17,10 +17,10 @@ function _multiScopeSSA(fdata) {
     if (meta.isConstant) return; // No need to SSA a constant
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
-    if (!meta.constValueRef) return; // catch, for-x, ???
-    if (meta.constValueRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
+    if (!meta.varDeclRef) return; // catch, for-x, ???
+    if (meta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
 
-    vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
+    vgroup('- `' + name + '`:', meta.varDeclRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
     const rwOrder = meta.rwOrder;
     vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.pid + ':' + o.blockIndex).join(', ')]);

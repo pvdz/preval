@@ -34,10 +34,10 @@ function _pruneEmptyFunctions(fdata) {
 
     vlog(
       '- `' + name + '`:',
-      meta.constValueRef.node.type,
+      meta.varDeclRef.node.type,
       'reads args?',
-      meta.constValueRef.node.$p.readsArgumentsLen,
-      meta.constValueRef.node.$p.readsArgumentsAny,
+      meta.varDeclRef.node.$p.readsArgumentsLen,
+      meta.varDeclRef.node.$p.readsArgumentsAny,
     );
 
     if (meta.writes.length !== 1) {
@@ -45,7 +45,7 @@ function _pruneEmptyFunctions(fdata) {
       return;
     }
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') {
       vlog('  - not a function');
       return;

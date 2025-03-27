@@ -19,9 +19,9 @@ function _testingAlias(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
-    if (!meta.constValueRef) return; // catch
+    if (!meta.varDeclRef) return; // catch
 
-    vlog('- `' + name + '`:', meta.constValueRef.node.type);
+    vlog('- `' + name + '`:', meta.varDeclRef.node.type);
 
     if (
       meta.reads.some((read) => {

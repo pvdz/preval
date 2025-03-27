@@ -52,7 +52,7 @@ function _ifTestBool(fdata) {
     const ifTestMeta = fdata.globallyUniqueNamingRegistry.get(node.test.name);
     if (ifTestMeta.isBuiltin) return;
     if (ifTestMeta.isImplicitGlobal) return;
-    if (ifTestMeta.constValueRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
+    if (ifTestMeta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
     if (!ifTestMeta.isConstant) return;
     //if (meta.writes.length > 1) return; // TODO: fixme if broken
 
@@ -62,7 +62,7 @@ function _ifTestBool(fdata) {
       return;
     }
 
-    const beforeValueNode = ifTestMeta.constValueRef.node;
+    const beforeValueNode = ifTestMeta.varDeclRef.node;
     vlog('If on constant or if is immediately after var:', beforeValueNode.type);
 
     // Find all reads to the ident and see if we can predict something with the truthy/falsy state of the var

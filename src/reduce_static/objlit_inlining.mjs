@@ -52,8 +52,8 @@ function process(fdata, queue) {
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
     if (meta.writes.length !== 1) return;
-    if (!meta.constValueRef) return;
-    if (meta.constValueRef.node.type !== 'ObjectExpression') return;
+    if (!meta.varDeclRef) return;
+    if (meta.varDeclRef.node.type !== 'ObjectExpression') return;
 
     vgroup('- `' + objName + '` is a constant that is an object literal!');
     tryMeta(meta, objName, meta.writes[0]);
@@ -69,7 +69,7 @@ function process(fdata, queue) {
     // - Confirm that the functions do not use `this`
     //   - TODO: handle the `this` case too
     
-    const objNode = objMeta.constValueRef.node;
+    const objNode = objMeta.varDeclRef.node;
 
     let dotcalling = false;
 
@@ -97,7 +97,7 @@ function process(fdata, queue) {
         ASSERT(read.parentNode.arguments[0]?.type === 'Identifier', 'dotcall calls idents');
         const aliasName = read.parentNode.arguments[0].name;
         const aliasMeta = fdata.globallyUniqueNamingRegistry.get(aliasName);
-        if (!aliasMeta.isConstant || aliasMeta.isBuiltin || aliasMeta.isImplicitGlobal || !aliasMeta.constValueRef) {
+        if (!aliasMeta.isConstant || aliasMeta.isBuiltin || aliasMeta.isImplicitGlobal || !aliasMeta.varDeclRef) {
           // tests/cases/normalize/optional/opt_prop_nonopt_prop_opt_call_pass_var.md
           vlog('- bail: At least one usage of the objlit was a dotcall where the first arg was not referring to a const');
           return true;
@@ -105,7 +105,7 @@ function process(fdata, queue) {
 
         // Confirm that the const init was a property of our objlit ...
 
-        if (aliasMeta.constValueRef.node.type === 'FunctionExpression') {
+        if (aliasMeta.varDeclRef.node.type === 'FunctionExpression') {
           // This may be something like `const f = function(){}; const obj = {a: f}; $dotCall(f, a, "b");`
           // We have to confirm that the called function is the value of one of the properties of the objlit
 
@@ -124,27 +124,27 @@ function process(fdata, queue) {
           // `const f = function(){}; const obj = {a: f}; $dotCall(f, obj, "a");`
           // Where the function being dot called is verified to be a value in the objlit
         }
-        else if (aliasMeta.constValueRef.node.type === 'MemberExpression') {
+        else if (aliasMeta.varDeclRef.node.type === 'MemberExpression') {
           // This can be something like `const obj = {f: f}; const alias = obj.f; $dotCall(alias, obj, "f");`
           // We have to trace the alias back to a constant and confirm that is a property of the objlit
 
           if (
-            aliasMeta.constValueRef.node.computed ||
-            aliasMeta.constValueRef.node.object.type !== 'Identifier' ||
-            aliasMeta.constValueRef.node.object.name !== objName ||
+            aliasMeta.varDeclRef.node.computed ||
+            aliasMeta.varDeclRef.node.object.type !== 'Identifier' ||
+            aliasMeta.varDeclRef.node.object.name !== objName ||
             // Follow the trail and assert that the property is a method ...?
             // Orrrrrr just assert that it's a property and :shrug: ?
             // So arg in $dotCall(arg, ...) has a decl. The init of that decl, is that a obj.foo property?
-            objNode.properties.every(prop => prop.key.name !== aliasMeta.constValueRef.node.property.name)
+            objNode.properties.every(prop => prop.key.name !== aliasMeta.varDeclRef.node.property.name)
           ) {
             // computed: tests/cases/object_literal/inlining/dotcall_alias_computed.md
             // not same obj: tests/cases/object_literal/inlining/dotcall_alias_not_same_obj.md
             // not sure how to proc the other cases here
             vlog('- bail: At least one usage of the objlit was a dotcall where the first arg was not an alias of a property of the object');
             vlog('-',
-              aliasMeta.constValueRef.node.computed,
-              aliasMeta.constValueRef.node.property?.type,
-              aliasMeta.constValueRef.node.property?.name,
+              aliasMeta.varDeclRef.node.computed,
+              aliasMeta.varDeclRef.node.property?.type,
+              aliasMeta.varDeclRef.node.property?.name,
               objName,
               read.parentProp.arguments?.[0].name,
               objNode.properties.map(prop => [prop.key.name, prop.value?.name])
@@ -257,14 +257,14 @@ function process(fdata, queue) {
           vlog('- bail: prop value "', propValueName, '" for "',  propNode.key.name, '" has more than one write');
           return true;
         }
-        if (!propMeta.constValueRef) {
+        if (!propMeta.varDeclRef) {
           // tests/cases/object_literal/inlining/with_ident_exportvar.md
           // tests/cases/object_literal/inlining/with_ident_catchvar.md
           TODO // catch? import? (both considered implicit globals at the time of writing)
-          vlog('- bail: prop value "', propValueName, '" for "',  propNode.key.name, '" has no constValueRef');
+          vlog('- bail: prop value "', propValueName, '" for "',  propNode.key.name, '" has no varDeclRef');
           return true;
         }
-        const funcNode = propMeta.constValueRef.node;
+        const funcNode = propMeta.varDeclRef.node;
         vlog('  - The ident refers to a', funcNode.type);
         if (funcNode.type !== 'FunctionExpression') {
           // tests/cases/object_literal/inlining/with_ident_non_func2.md
@@ -273,7 +273,7 @@ function process(fdata, queue) {
           return true;
         }
         // blockChain is the path of block scopes. If one is subset/eq of another then one can access the scope of the other.
-        if (!(propMeta.constValueRef.node.$p.blockChain <= objNode.$p.blockChain)) {
+        if (!(propMeta.varDeclRef.node.$p.blockChain <= objNode.$p.blockChain)) {
           TODO // Not sure if this is even possible or how to proc this case
           vlog('- bail: prop value "', propValueName, '" for "',  propNode.key.name, '" is a function node but it can not reach object to which it is a method');
           return true;
@@ -318,8 +318,8 @@ function process(fdata, queue) {
           // Confirm whether the ident maps to a constant function
           const propValueName = propNode.value.name;
           const propMeta = fdata.globallyUniqueNamingRegistry.get(propValueName);
-          if (propMeta.constValueRef.node.type === 'FunctionExpression') {
-            const funcNode = propMeta.constValueRef.node;
+          if (propMeta.varDeclRef.node.type === 'FunctionExpression') {
+            const funcNode = propMeta.varDeclRef.node;
             if (funcNode.$p.thisAccess) {
               let thisAliasName;
               for (let i=0; i<funcNode.body.body.length; ++i) {
@@ -376,7 +376,7 @@ function process(fdata, queue) {
 
                 if (
                   propObjLitValueNode.value.type === 'Identifier' &&
-                  fdata.globallyUniqueNamingRegistry.get(propObjLitValueNode.value.name)?.constValueRef?.node.type === 'FunctionExpression'
+                  fdata.globallyUniqueNamingRegistry.get(propObjLitValueNode.value.name)?.varDeclRef?.node.type === 'FunctionExpression'
                 ) {
                   // Confirm the function doesn't escape. Start with just allowing calls.
                   if (thisRead.grandNode.type !== 'CallExpression') {
@@ -545,7 +545,7 @@ function process(fdata, queue) {
         if (propNode.value.type === 'Identifier') {
           const propMeta = fdata.globallyUniqueNamingRegistry.get(propNode.value.name);
           // This must be a function, right...
-          ASSERT(propMeta.constValueRef?.node.type === 'FunctionExpression', 'should currently only pass objlit prop ident values that refer to constant functions. update logic ifwhen that changes');
+          ASSERT(propMeta.varDeclRef?.node.type === 'FunctionExpression', 'should currently only pass objlit prop ident values that refer to constant functions. update logic ifwhen that changes');
 
           // If one of these methods referred to `this` then we will have eliminated that in the previous step.
           // So we should be able to safely replace the method call with a direct (contextless) call.
@@ -582,7 +582,7 @@ function process(fdata, queue) {
 
           // Either the ref is an actual function expression or a member expression
 
-          if (funcRefMeta.constValueRef.node.type === 'FunctionExpression') {
+          if (funcRefMeta.varDeclRef.node.type === 'FunctionExpression') {
             // tests/cases/object_literal/inlining/dotcall_final_func.md
 
             // Simple inline. Note: if the function was referencing `this`, it should not be doing that anymore at this point. (This transform is all or nothing)
@@ -601,7 +601,7 @@ function process(fdata, queue) {
             ++updated;
             return;
           }
-          else if (funcRefMeta.constValueRef.node.type === 'MemberExpression') {
+          else if (funcRefMeta.varDeclRef.node.type === 'MemberExpression') {
             // tests/cases/object_literal/inlining/dotcall_final_mem.md
 
             // The func ref should be a const with init of `objlit.f`. We have already verified
@@ -609,8 +609,8 @@ function process(fdata, queue) {
             // the func node that is the value of that property.
 
             // First step to the alias decl, then to the prop node, then to the func decl.
-            ASSERT(funcRefMeta.constValueRef.node.object?.name === objName, 'should have been verified', funcRefMeta.constValueRef.node.object?.name, objName);
-            const reffedPropName = funcRefMeta.constValueRef.node.property.name;
+            ASSERT(funcRefMeta.varDeclRef.node.object?.name === objName, 'should have been verified', funcRefMeta.varDeclRef.node.object?.name, objName);
+            const reffedPropName = funcRefMeta.varDeclRef.node.property.name;
             const propNode = map.get(reffedPropName);
             ASSERT(propNode, 'prop name should have been verified to exist', reffedPropName);
             ASSERT(propNode.value.type === 'Identifier', 'I think we verified this too?'); // Did we? Can't the prop be a primitive? But then we'd have to abort the whole thing...
@@ -638,7 +638,7 @@ function process(fdata, queue) {
             return;
           }
           else {
-            ASSERT(false, 'Unexpected dotcall case fixme?', funcRefName, funcRefMeta.constValueRef.node.type);
+            ASSERT(false, 'Unexpected dotcall case fixme?', funcRefName, funcRefMeta.varDeclRef.node.type);
           }
           ASSERT(false, 'unreachable');
         }

@@ -73,7 +73,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
     if (meta.isBuiltin) return; // We can probably do it for some of these cases? But let's do that in another step
     if (meta.isImplicitGlobal) return;
     if (meta.isConstant) return;
-    //if (!meta.constValueRef) return; // catch
+    //if (!meta.varDeclRef) return; // catch
 
     vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
 

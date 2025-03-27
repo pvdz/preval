@@ -36,7 +36,7 @@ function _restParams(fdata) {
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
 
     // Note: only the last param may be a rest

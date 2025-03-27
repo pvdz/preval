@@ -58,10 +58,10 @@ function _buffer_base64(fdata) {
     if (meta.isBuiltin) return;
     if (!meta.isConstant) return;
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
 
-    vlog('- `' + funcName + '`:', meta.constValueRef.node.type);
+    vlog('- `' + funcName + '`:', meta.varDeclRef.node.type);
 
     const funcParams = funcNode.params;
 
@@ -181,7 +181,7 @@ function _buffer_base64(fdata) {
         'const f = function(s) { const x = Buffer.from(s, "base64"); const y = x.toString("utf8"); return y; } $(f("cGF0aA"))',
       'const f = function(s) { const x = Buffer.from(s, "base64"); const y = x.toString("utf8"); return y; } $("path")'
       );
-      before(meta.constValueRef.containerNode);
+      before(meta.varDeclRef.containerNode);
       before(read.blockBody[read.blockIndex]);
 
       const value = AST.getPrimitiveValue(param);

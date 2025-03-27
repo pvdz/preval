@@ -26,13 +26,13 @@ function _singleScopeTdz(fdata) {
     if (meta.isBuiltin) return;
     //if (meta.isConstant) return; // let or const is irrelevant
     if (meta.isImplicitGlobal) return;
-    if (!meta.constValueRef) return; // catch, for-x, ???
+    if (!meta.varDeclRef) return; // catch, for-x, ???
 
     //if (meta.isExport) return; // Just do skip the actual export refs as they sorta hoist
-    if (meta.constValueRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
+    if (meta.varDeclRef.containerNode.type !== 'VarStatement') return; // catch, for-x, ???
     if (foundTdz) return;
 
-    vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
+    vgroup('- `' + name + '`:', meta.varDeclRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
     process(meta, name);
     vgroupEnd();
   });

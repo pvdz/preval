@@ -51,7 +51,7 @@ function processAttempt(fdata, queue) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
-    if (meta.constValueRef.node.type !== 'ArrayExpression') return;
+    if (meta.varDeclRef.node.type !== 'ArrayExpression') return;
 
     vgroup('- `' + name + '` is a constant array literal');
     process(meta, name, queue);
@@ -87,7 +87,7 @@ function processAttempt(fdata, queue) {
   });
 
   function process(meta, name, queue) {
-    const arrNode = meta.constValueRef.node;
+    const arrNode = meta.varDeclRef.node;
 
     if (arrNode.elements.some((enode) => enode?.type === 'SpreadElement')) {
       vlog('The array literal had a spread element. Bailing for now.');

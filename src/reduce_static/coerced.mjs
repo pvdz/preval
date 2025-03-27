@@ -179,14 +179,14 @@ function core(fdata) {
     }
 
     if (at === 'regex') {
-      if (argMeta.typing.mustBeValue || argMeta.constValueRef?.node?.raw) {
+      if (argMeta.typing.mustBeValue || argMeta.varDeclRef?.node?.raw) {
         rule('A regex as arg to $coerce can be resolved');
         example('$coerce(/foo/, "number")', 'NaN');
         example('$coerce(/foo/, "string")', '"/foo/"');
         example('$coerce(/foo/, "plustr")', '"/foo/"');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.primitive(coerce(argMeta.typing.mustBeValue || argMeta.constValueRef.node.raw, kind));
+        const finalNode = AST.primitive(coerce(argMeta.typing.mustBeValue || argMeta.varDeclRef.node.raw, kind));
         read.parentNode['arguments'][0] = finalNode;
 
         after(read.blockBody[read.blockIndex]);

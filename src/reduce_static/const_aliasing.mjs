@@ -44,9 +44,9 @@ function _constAliasing(fdata) {
     if (!meta.isConstant) return;
     if (meta.writes.length !== 1) return;
     if (meta.writes[0].kind !== 'var') return; // catch or smth
-    if (meta.constValueRef.containerNode.init.type !== 'Identifier') return;
+    if (meta.varDeclRef.containerNode.init.type !== 'Identifier') return;
 
-    const rhsName = meta.constValueRef.containerNode.init.name;
+    const rhsName = meta.varDeclRef.containerNode.init.name;
     vlog('- Testing:', [lhsName], 'with', [rhsName]);
     if (rhsName === lhsName) return vlog('- bail: this is tdz'); // TDZ but not my problem, should be caught elsewhere
     if (rhsName === 'arguments') return vlog('- bail: this is a special symbol');
@@ -62,7 +62,7 @@ function _constAliasing(fdata) {
 
         riskyRule('An alias to a built-in global should be renamed to that global');
         example('const x = Array; f(x);', 'f(Array);');
-        before(meta.constValueRef.containerNode);
+        before(meta.varDeclRef.containerNode);
 
         vgroup();
         meta.reads.forEach(read => {
@@ -75,7 +75,7 @@ function _constAliasing(fdata) {
         });
         vgroupEnd();
 
-        after(meta.constValueRef.containerNode);
+        after(meta.varDeclRef.containerNode);
         dropped += 1;
         return;
       }
@@ -93,8 +93,8 @@ function _constAliasing(fdata) {
 
       rule('A constant that aliases another constant should have all refs to the second one replaced by the name of the first');
       example('const x = foo; const y = x; f(y);', 'const x = foo; const y = x; f(x);');
-      before(meta.constValueRef.containerNode);
-      before(meta2.constValueRef.containerNode);
+      before(meta.varDeclRef.containerNode);
+      before(meta2.varDeclRef.containerNode);
 
       vgroup();
       meta.reads.forEach(read => {
@@ -107,8 +107,8 @@ function _constAliasing(fdata) {
       });
       vgroupEnd();
 
-      after(meta.constValueRef.containerNode);
-      after(meta2.constValueRef.containerNode);
+      after(meta.varDeclRef.containerNode);
+      after(meta2.varDeclRef.containerNode);
       dropped += 1;
 
       return;
@@ -334,8 +334,8 @@ function _constAliasing(fdata) {
 
     // meta2 is assigned to meta1 (a constant). If we can prove that meta2 cannot change before meta1's
     // usage then the usage must be able to refer to meta2 directly, regardless.
-    let index = meta.constValueRef.containerIndex + 1;
-    const body = meta.constValueRef.containerParent;
+    let index = meta.varDeclRef.containerIndex + 1;
+    const body = meta.varDeclRef.containerParent;
     scanBlock(index, body);
   });
 

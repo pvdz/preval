@@ -33,7 +33,7 @@ function _returnArg(fdata) {
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
 
-    const funcNode = meta.constValueRef.node;
+    const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') return;
 
     vgroup('- `' + meta.uniqueName + '`');

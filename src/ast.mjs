@@ -2340,7 +2340,14 @@ export function _complexExpressionNodeMightSpy(node, fdata) {
     }
     case 'ObjectExpression': {
       // Creating an object is not observable unless there's a spread and a spread arg that is observable
-      return node.properties.some((pnode) => pnode.type === 'SpreadElement' && complexExpressionNodeMightSpy(pnode.argument, fdata));
+      return node.properties.some((pnode) => {
+        // Spread elements call the iterator which may spy
+        if (pnode.type === 'SpreadElement') return complexExpressionNodeMightSpy(pnode.argument, fdata);
+        // Computed keys are coerced to string
+        if (pnode.computed) return complexExpressionNodeMightSpy(pnode.key, fdata);
+        // In normalized code, the value should be simple and cannot spy when the object is defined
+        return false;
+      });
     }
     case 'UnaryExpression': {
       // The `!` and `typeof` operators can not be observed in normalized code.

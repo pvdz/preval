@@ -39,9 +39,7 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(2);
   const z /*:array*/ = [10, 20, 30];
-  const arrPatternSplat /*:array*/ = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...z];
   $(1, 2, z);
 } else {
 }
@@ -58,9 +56,7 @@ $(1);
 if (tmpSwitchDisc === tmpBinBothRhs) {
   $(2);
   const z = [10, 20, 30];
-  const arrPatternSplat = [...z];
-  arrPatternSplat[0];
-  arrPatternSplat[1];
+  [...z];
   $(1, 2, z);
 }
 `````
@@ -77,9 +73,7 @@ const c = a === b;
 if (c) {
   $( 2 );
   const d = [ 10, 20, 30 ];
-  const e = [ ...d ];
-  e[ 0 ];
-  e[ 1 ];
+  [ ...d ];
   $( 1, 2, d );
 }
 `````

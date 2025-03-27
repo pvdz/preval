@@ -6,7 +6,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
-import { SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
 import { symbo } from '../symbols_builtins.mjs';
 
 export function objlitPropAccess(fdata) {
@@ -99,7 +99,7 @@ function _objlitPropAccess(fdata) {
         //}
 
         // Ok this was a write that assigned an object literal. Hurray!
-        vlog('Found object expression at ref', ri, ' assigned to `' + name + '`. Tracing nearest property lookups.');
+        vlog('Found "simple" object expression at ref', ri, ' assigned to `' + name + '`. Tracing nearest property lookups.');
         verifyAfterObjectAssign(meta, rwOrder, ref, ri, rhs);
 
         // This is a bit of a hack or whatever but it's going try and eliminate consecutive prop writes to the same
@@ -224,6 +224,35 @@ function _objlitPropAccess(fdata) {
 
         // All reads should be safe to resolve now
         meta.reads.forEach(read => {
+          // If the first prop-read after the write was a statement and it's not mutated in between then we can drop the statement.
+          if (read.parentNode.type === 'MemberExpression' && read.parentProp === 'object' && read.grandNode.type === 'ExpressionStatement') {
+            vlog('Prop access was a statement');
+            // This should be a property access on a "simple" object, verified to be free of getters/setters.
+            // As such, the prop access should not be able to trigger any spies and should be free to drop.
+            if (!read.parentNode.computed || AST.isPrimitive(read.parentNode.property)) {
+              rule('Statement that is plain/primitive obj property access on plain array can be removed');
+              example('const obj = {}; obj[0];', ';');
+              example('const obj = {}; obj.x;', ';');
+              before(read.blockBody[read.blockIndex]);
+
+              read.blockBody[read.blockIndex] = AST.emptyStatement();
+
+              after(read.blockBody[read.blockIndex]);
+              updated += 1;
+              return true; // prop was mutated
+            } else {
+              rule('Statement that is computed property access on plain object can be replaced by coercion of property to string');
+              example('const obj = {}; obj[x];', '$coerce(x, "string");');
+              before(read.blockBody[read.blockIndex]);
+
+              read.blockBody[read.blockIndex] = AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [read.parentNode.property, AST.primitive('string')]));
+
+              after(read.blockBody[read.blockIndex]);
+              updated += 1;
+              return true; // prop was mutated
+            }
+          }
+
           return haveRef(objExprNode, writeRef, read);
         });
       } else {
@@ -241,6 +270,8 @@ function _objlitPropAccess(fdata) {
     }
 
     function processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri, lastMap) {
+      // ref should be the next ref in rwOrder, after the writeRef. It may be differently scoped.
+
       let lastRefArr = lastMap.get(ref.pfuncNode.$p.pid);
       if (!lastRefArr) {
         lastRefArr = [];
@@ -257,6 +288,7 @@ function _objlitPropAccess(fdata) {
 
       ASSERT(readRef.action === 'read');
 
+      // We want to get the write that sits in the same scope as this read. That's not necessarily writeRef
       let prevWrite = undefined;
       for (let i = lastRefArr.length - 1; i >= 0; --i) {
         const r = lastRefArr[i];
@@ -267,7 +299,10 @@ function _objlitPropAccess(fdata) {
       }
 
       if (!prevWrite) {
-        vlog('This read has no previous write in the same scope');
+        // This is a potential bug though. What if the previous write was not a "simple object" but the write before was?
+        // Then that would show up here and incorrectly be considered "the previous write" even though it wasn't...
+        // TODO ^^^^
+        vlog('This read has no previous write in the same scope (could mean that the previous write in this scope was not a "simple object")');
         return;
       }
 
@@ -305,11 +340,9 @@ function _objlitPropAccess(fdata) {
         return true;
       }
 
-      if (readRef.parentNode.computed) {
-        // Computed props are hard to predict.
-        // TODO: we could do for literals `x[20]` or `x["a b"]`... but how often does that happen? aside from arrays... which this is not
-        vlog('A computed member expression; type:', readRef.parentNode.type, ', computed:', readRef.parentNode.computed, ', parent prop:', readRef.parentProp, ', prop type:', readRef.parentNode.property.type);
-        return true;
+      if (mayBindingMutateBetweenRefs(meta, prevWrite, readRef, true)) {
+        vlog('There was at least one observable side effect that could have mutated the property on the object, so bailing');
+        return;
       }
 
       if (readRef.innerLoop !== prevWrite.innerLoop) {
@@ -368,6 +401,47 @@ function _objlitPropAccess(fdata) {
         return vlog('- read/write not in same loop', readRef.innerLoop, prevWrite.innerLoop);
       }
 
+      if (prevWrite.innerLoop !== readRef.innerLoop) {
+        // TODO: if the loop contained no further writes this would still be okay...
+        vlog('The read happened inside a different loop from the write. Bailing just in case.');
+        return;
+      }
+
+      // If the first prop-read after the write was a statement and it's not mutated in between then we can drop the statement.
+      if (readRef.parentNode.type === 'MemberExpression' && readRef.parentProp === 'object' && readRef.grandNode.type === 'ExpressionStatement') {
+        vlog('Prop access was a statement');
+        // This should be a property access on a "simple" object, verified to be free of getters/setters.
+        // As such, the prop access should not be able to trigger any spies and should be free to drop.
+        if (!readRef.parentNode.computed || AST.isPrimitive(readRef.parentNode.property)) {
+          rule('Statement that is plain/primitive obj property access on plain array can be removed');
+          example('const obj = {}; obj[0];', ';');
+          example('const obj = {}; obj.x;', ';');
+          before(readRef.blockBody[readRef.blockIndex]);
+
+          readRef.blockBody[readRef.blockIndex] = AST.emptyStatement();
+
+          after(readRef.blockBody[readRef.blockIndex]);
+          updated += 1;
+          return true; // prop was mutated
+        } else {
+          rule('Statement that is computed property access on plain object can be replaced by coercion of property to string');
+          example('const obj = {}; obj[x];', '$coerce(x, "string");');
+          before(readRef.blockBody[readRef.blockIndex]);
+
+          readRef.blockBody[readRef.blockIndex] = AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [readRef.parentNode.property, AST.primitive('string')]));
+
+          after(readRef.blockBody[readRef.blockIndex]);
+          updated += 1;
+          return true; // prop was mutated
+        }
+      }
+
+      if (readRef.parentNode.computed) {
+        // Computed props are hard to predict.
+        // TODO: we could do for literals `x[20]` or `x["a b"]`... but how often does that happen? aside from arrays... which this is not
+        vlog('A computed member expression; type:', readRef.parentNode.type, ', computed:', readRef.parentNode.computed, ', parent prop:', readRef.parentProp, ', prop type:', readRef.parentNode.property.type);
+        return true;
+      }
 
       if (readRef.grandNode.type === 'AssignmentExpression' && readRef.grandProp === 'left') {
         // This is property assignment in same/no loop, We can work with some cases.
@@ -427,14 +501,14 @@ function _objlitPropAccess(fdata) {
             log('There exists a prop node with that name. Updating it');
             rule('Writing to a property after the object literal can be inlined');
             example('const x = {a: 1}; x.a = 2;', 'const x = {a: 2}; ;');
-            before(writeRef.blockBody[writeRef.blockIndex]);
+            before(prevWrite.blockBody[prevWrite.blockIndex]);
             before(readRef.blockBody[readRef.blockIndex]);
 
             propNode.value = readRef.grandNode.right;
             propNode.method = false; // Even when assigning a function, it's no longer a method (-> has special bond)
             readRef.blockBody[readRef.blockIndex] = AST.emptyStatement();
 
-            after(writeRef.blockBody[writeRef.blockIndex]);
+            after(prevWrite.blockBody[prevWrite.blockIndex]);
             after(readRef.blockBody[readRef.blockIndex]);
 
             updated += 1;
@@ -445,13 +519,13 @@ function _objlitPropAccess(fdata) {
             log('Object expression currently does not have this property. Adding it');
             rule('Writing to a new property after the object literal can be inlined');
             example('const x = {}; x.a = 2;', 'const x = {a: 2}; ;');
-            before(writeRef.blockBody[writeRef.blockIndex]);
+            before(prevWrite.blockBody[prevWrite.blockIndex]);
             before(readRef.blockBody[readRef.blockIndex]);
 
             objExprNode.properties.push(AST.property(propName, readRef.grandNode.right));
             readRef.blockBody[readRef.blockIndex] = AST.emptyStatement();
 
-            after(writeRef.blockBody[writeRef.blockIndex]);
+            after(prevWrite.blockBody[prevWrite.blockIndex]);
             after(readRef.blockBody[readRef.blockIndex]);
 
             updated += 1;
@@ -469,29 +543,10 @@ function _objlitPropAccess(fdata) {
         return;
       }
 
-      vlog(
-        'May be okay. Checking for observable side effects between the write (',
-        writeRef.blockIndex,
-        ') and this read (',
-        readRef.blockIndex,
-        ').',
-      );
-      if (writeRef.innerLoop !== readRef.innerLoop) {
-        // TODO: if the loop contained no further writes this would still be okay...
-        vlog('The read happened inside a different loop from the write. Bailing just in case.');
-        return;
-      }
-
-      if (mayBindingMutateBetweenRefs(meta, writeRef, readRef, true)) {
-        vlog('There was at least one observable side effect that could have mutated the property on the object, so bailing');
-        return;
-      }
-
-      return haveRef(objExprNode, writeRef, readRef);
+      return haveRef(objExprNode, prevWrite, readRef);
     }
 
     function haveRef(objExprNode, writeRef, readRef) {
-
       vlog('Found a read to an object literal while the object literal could not have been mutated!');
 
       // We have a write ref and a read ref and they are in the same block and there are no observable side effects in between

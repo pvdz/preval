@@ -25,8 +25,6 @@ $(a, arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-const obj /*:object*/ = {};
-obj[a];
 $(a, arg);
 `````
 
@@ -37,9 +35,7 @@ $(a, arg);
 `````js filename=intro
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
-const a = delete arg[tmpDeleteCompProp];
-({}[a]);
-$(a, arg);
+$(delete arg[tmpDeleteCompProp], arg);
 `````
 
 
@@ -50,8 +46,6 @@ With rename=true
 const a = $( "y" );
 const b = { y: 1 };
 const c = delete b[ a ];
-const d = {};
-d[ c ];
 $( c, b );
 `````
 

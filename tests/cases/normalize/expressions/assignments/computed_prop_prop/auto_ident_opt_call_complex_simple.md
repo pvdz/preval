@@ -20,19 +20,15 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpCompProp /*:unknown*/ = undefined;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  a = tmpChainElementCall$1;
-  tmpCompProp = tmpChainElementCall$1;
+  $coerce(tmpChainElementCall$1, `string`);
+  $(tmpChainElementCall$1);
 }
-const obj /*:object*/ = {};
-obj[tmpCompProp];
-$(a);
 `````
 
 
@@ -40,17 +36,14 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall == null;
-let tmpCompProp = undefined;
-if (!tmpIfTest) {
+if (tmpChainElementCall == null) {
+  $(undefined);
+} else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, 1);
-  a = tmpChainElementCall$1;
-  tmpCompProp = tmpChainElementCall$1;
+  $coerce(tmpChainElementCall$1, `string`);
+  $(tmpChainElementCall$1);
 }
-({}[tmpCompProp]);
-$(a);
 `````
 
 
@@ -58,21 +51,16 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( $ );
-const c = b == null;
-let d = undefined;
-if (c) {
-
+const a = $( $ );
+const b = a == null;
+if (b) {
+  $( undefined );
 }
 else {
-  const e = $dotCall( b, $, undefined, 1 );
-  a = e;
-  d = e;
+  const c = $dotCall( a, $, undefined, 1 );
+  $coerce( c, "string" );
+  $( c );
 }
-const f = {};
-f[ d ];
-$( a );
 `````
 
 

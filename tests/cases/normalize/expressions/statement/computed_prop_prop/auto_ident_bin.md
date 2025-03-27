@@ -22,9 +22,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
-const tmpCompProp /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -34,8 +32,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(1) + $(2);
-({}[tmpCompProp]);
+$(1) + $(2);
 $({ a: 999, b: 1000 });
 `````
 
@@ -46,14 +43,12 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 2 );
-const c = a + b;
-const d = {};
-d[ c ];
-const e = {
+a + b;
+const c = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( c );
 `````
 
 

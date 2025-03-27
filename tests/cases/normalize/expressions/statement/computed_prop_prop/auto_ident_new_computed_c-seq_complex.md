@@ -27,8 +27,7 @@ const tmpCompObj$1 /*:unknown*/ = $(b);
 const tmpCompProp$1 /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
 const tmpCompProp /*:object*/ = new tmpNewCallee(1);
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+$coerce(tmpCompProp, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -41,8 +40,7 @@ $(a);
 const tmpCompObj$1 = $({ $: $ });
 const tmpCompProp$1 = $(`\$`);
 const tmpNewCallee = tmpCompObj$1[tmpCompProp$1];
-const tmpCompProp = new tmpNewCallee(1);
-({}[tmpCompProp]);
+$coerce(new tmpNewCallee(1), `string`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -56,13 +54,12 @@ const b = $( a );
 const c = $( "$" );
 const d = b[ c ];
 const e = new d( 1 );
-const f = {};
-f[ e ];
-const g = {
+$coerce( e, "string" );
+const f = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( f );
 `````
 
 

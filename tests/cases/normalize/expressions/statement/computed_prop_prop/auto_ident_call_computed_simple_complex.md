@@ -25,8 +25,7 @@ $(a);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpCompProp /*:unknown*/ = b[tmpCallCompProp](1);
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+$coerce(tmpCompProp, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -37,8 +36,7 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const tmpCompProp = { $: $ }[tmpCallCompProp](1);
-({}[tmpCompProp]);
+$coerce({ $: $ }[tmpCallCompProp](1), `string`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -50,13 +48,12 @@ With rename=true
 const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ]( 1 );
-const d = {};
-d[ c ];
-const e = {
+$coerce( c, "string" );
+const d = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( d );
 `````
 
 

@@ -22,8 +22,7 @@ $(a);
 `````js filename=intro
 const tmpCallComplexCallee /*:unknown*/ = $($);
 const a /*:unknown*/ = tmpCallComplexCallee(1);
-const obj /*:object*/ = {};
-obj[a];
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -34,7 +33,7 @@ $(a);
 `````js filename=intro
 const tmpCallComplexCallee = $($);
 const a = tmpCallComplexCallee(1);
-({}[a]);
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -45,8 +44,7 @@ With rename=true
 `````js filename=intro
 const a = $( $ );
 const b = a( 1 );
-const c = {};
-c[ b ];
+$coerce( b, "string" );
 $( b );
 `````
 

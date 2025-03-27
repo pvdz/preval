@@ -20,9 +20,7 @@ $(a);
 
 
 `````js filename=intro
-const obj /*:object*/ = {};
 const a /*:regex*/ = /foo/;
-obj[a];
 $(a);
 `````
 
@@ -31,10 +29,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const obj = {};
-const a = /foo/;
-obj[a];
-$(a);
+$(/foo/);
 `````
 
 
@@ -42,10 +37,8 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = /foo/;
-a[ b ];
-$( b );
+const a = /foo/;
+$( a );
 `````
 
 

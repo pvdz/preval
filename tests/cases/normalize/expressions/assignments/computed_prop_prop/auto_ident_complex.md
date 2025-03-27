@@ -23,8 +23,7 @@ $(a, b);
 
 `````js filename=intro
 const a /*:unknown*/ = $(1);
-const obj /*:object*/ = {};
-obj[a];
+$coerce(a, `string`);
 $(a, 1);
 `````
 
@@ -34,7 +33,7 @@ $(a, 1);
 
 `````js filename=intro
 const a = $(1);
-({}[a]);
+$coerce(a, `string`);
 $(a, 1);
 `````
 
@@ -44,8 +43,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = {};
-b[ a ];
+$coerce( a, "string" );
 $( a, 1 );
 `````
 

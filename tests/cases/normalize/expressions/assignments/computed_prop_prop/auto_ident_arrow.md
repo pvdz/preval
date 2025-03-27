@@ -24,8 +24,6 @@ const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const obj /*:object*/ = {};
-obj[a];
 $(a);
 `````
 
@@ -34,9 +32,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = function () {};
-({}[a]);
-$(a);
+$(function () {});
 `````
 
 
@@ -48,8 +44,6 @@ const a = function() {
   debugger;
   return undefined;
 };
-const b = {};
-b[ a ];
 $( a );
 `````
 

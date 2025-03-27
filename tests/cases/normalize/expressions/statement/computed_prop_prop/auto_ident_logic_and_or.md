@@ -28,12 +28,12 @@ if (tmpCompProp) {
 } else {
 }
 if (tmpCompProp) {
+  $coerce(tmpCompProp, `string`);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  tmpCompProp = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCompProp /*:unknown*/ = $(tmpCalleeParam$3);
+  $coerce(tmpClusterSSA_tmpCompProp, `string`);
 }
-const obj /*:object*/ = {};
-obj[tmpCompProp];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -47,10 +47,11 @@ let tmpCompProp = $($(1));
 if (tmpCompProp) {
   tmpCompProp = $($(1));
 }
-if (!tmpCompProp) {
-  tmpCompProp = $($(2));
+if (tmpCompProp) {
+  $coerce(tmpCompProp, `string`);
+} else {
+  $coerce($($(2)), `string`);
 }
-({}[tmpCompProp]);
 $({ a: 999, b: 1000 });
 `````
 
@@ -66,14 +67,13 @@ if (b) {
   b = $( c );
 }
 if (b) {
-
+  $coerce( b, "string" );
 }
 else {
   const d = $( 2 );
-  b = $( d );
+  const e = $( d );
+  $coerce( e, "string" );
 }
-const e = {};
-e[ b ];
 const f = {
   a: 999,
   b: 1000,

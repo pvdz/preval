@@ -25,9 +25,7 @@ $(a, arg);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpCompProp /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+delete tmpDeleteCompObj[tmpDeleteCompProp];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
@@ -40,8 +38,7 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpCompProp = delete tmpDeleteCompObj[tmpDeleteCompProp];
-({}[tmpCompProp]);
+delete tmpDeleteCompObj[tmpDeleteCompProp];
 $({ a: 999, b: 1000 }, arg);
 `````
 
@@ -53,14 +50,12 @@ With rename=true
 const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
-const d = delete b[ c ];
-const e = {};
-e[ d ];
-const f = {
+delete b[ c ];
+const d = {
   a: 999,
   b: 1000,
 };
-$( f, a );
+$( d, a );
 `````
 
 

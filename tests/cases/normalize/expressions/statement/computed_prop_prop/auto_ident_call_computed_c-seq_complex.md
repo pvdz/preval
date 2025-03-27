@@ -26,8 +26,7 @@ const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const tmpCompProp /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+$coerce(tmpCompProp, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -39,8 +38,7 @@ $(a);
 `````js filename=intro
 const tmpCallCompObj = $({ $: $ });
 const tmpCallCompProp = $(`\$`);
-const tmpCompProp = tmpCallCompObj[tmpCallCompProp](1);
-({}[tmpCompProp]);
+$coerce(tmpCallCompObj[tmpCallCompProp](1), `string`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -53,13 +51,12 @@ const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
 const d = b[ c ]( 1 );
-const e = {};
-e[ d ];
-const f = {
+$coerce( d, "string" );
+const e = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( e );
 `````
 
 

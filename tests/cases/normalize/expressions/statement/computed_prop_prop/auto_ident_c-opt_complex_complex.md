@@ -22,7 +22,6 @@ $(a);
 
 
 `````js filename=intro
-let tmpCompProp /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
@@ -30,10 +29,8 @@ if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  tmpCompProp = tmpChainElementObject;
+  $coerce(tmpChainElementObject, `string`);
 }
-const obj /*:object*/ = {};
-obj[tmpCompProp];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -43,13 +40,11 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCompProp = undefined;
 const tmpChainElementCall = $({ x: 1 });
 if (!(tmpChainElementCall == null)) {
   const tmpChainRootComputed = $(`x`);
-  tmpCompProp = tmpChainElementCall[tmpChainRootComputed];
+  $coerce(tmpChainElementCall[tmpChainRootComputed], `string`);
 }
-({}[tmpCompProp]);
 $({ a: 999, b: 1000 });
 `````
 
@@ -58,25 +53,22 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = c == null;
-if (d) {
+const a = { x: 1 };
+const b = $( a );
+const c = b == null;
+if (c) {
 
 }
 else {
-  const e = $( "x" );
-  const f = c[ e ];
-  a = f;
+  const d = $( "x" );
+  const e = b[ d ];
+  $coerce( e, "string" );
 }
-const g = {};
-g[ a ];
-const h = {
+const f = {
   a: 999,
   b: 1000,
 };
-$( h );
+$( f );
 `````
 
 

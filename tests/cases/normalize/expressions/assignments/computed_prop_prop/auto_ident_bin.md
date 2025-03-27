@@ -23,8 +23,6 @@ $(a);
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
 const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-const obj /*:object*/ = {};
-obj[a];
 $(a);
 `````
 
@@ -33,9 +31,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(1) + $(2);
-({}[a]);
-$(a);
+const tmpBinBothLhs = $(1);
+$(tmpBinBothLhs + $(2));
 `````
 
 
@@ -46,8 +43,6 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
-const d = {};
-d[ c ];
 $( c );
 `````
 

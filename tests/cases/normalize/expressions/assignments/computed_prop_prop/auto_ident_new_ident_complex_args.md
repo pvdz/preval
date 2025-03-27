@@ -25,8 +25,7 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const a /*:object*/ = new $(tmpCalleeParam, tmpCalleeParam$1);
-const obj /*:object*/ = {};
-obj[a];
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -38,7 +37,7 @@ $(a);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const a = new $(tmpCalleeParam, tmpCalleeParam$1);
-({}[a]);
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -50,8 +49,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = new $( a, b );
-const d = {};
-d[ c ];
+$coerce( c, "string" );
 $( c );
 `````
 

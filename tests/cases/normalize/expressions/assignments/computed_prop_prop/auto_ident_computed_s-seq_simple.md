@@ -25,8 +25,7 @@ $(a, b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
 const a /*:unknown*/ = b[tmpAssignRhsCompProp];
-const obj /*:object*/ = {};
-obj[a];
+$coerce(a, `string`);
 $(a, b);
 `````
 
@@ -38,7 +37,7 @@ $(a, b);
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
-({}[a]);
+$coerce(a, `string`);
 $(a, b);
 `````
 
@@ -50,8 +49,7 @@ With rename=true
 const a = $( "c" );
 const b = { c: 1 };
 const c = b[ a ];
-const d = {};
-d[ c ];
+$coerce( c, "string" );
 $( c, b );
 `````
 

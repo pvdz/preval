@@ -22,7 +22,6 @@ $(a, arg);
 
 
 `````js filename=intro
-$Object_prototype.false;
 $(false, 1);
 `````
 
@@ -31,7 +30,6 @@ $(false, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-$Object_prototype.false;
 $(false, 1);
 `````
 
@@ -40,7 +38,6 @@ $(false, 1);
 With rename=true
 
 `````js filename=intro
-$Object_prototype.false;
 $( false, 1 );
 `````
 

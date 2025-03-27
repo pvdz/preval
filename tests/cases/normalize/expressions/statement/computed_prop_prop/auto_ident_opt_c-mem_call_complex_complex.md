@@ -22,7 +22,6 @@ $(a);
 
 
 `````js filename=intro
-let tmpCompProp /*:unknown*/ = undefined;
 const b /*:object*/ = { $: $ };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
@@ -35,11 +34,9 @@ if (tmpIfTest) {
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
     const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
-    tmpCompProp = tmpChainElementCall$1;
+    $coerce(tmpChainElementCall$1, `string`);
   }
 }
-const obj /*:object*/ = {};
-obj[tmpCompProp];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -49,16 +46,14 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCompProp = undefined;
 const tmpChainElementCall = $({ $: $ });
 if (!(tmpChainElementCall == null)) {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   if (!(tmpChainElementObject == null)) {
-    tmpCompProp = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+    $coerce($dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1)), `string`);
   }
 }
-({}[tmpCompProp]);
 $({ a: 999, b: 1000 });
 `````
 
@@ -67,33 +62,30 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { $: $ };
-const c = $( b );
-const d = c == null;
-if (d) {
+const a = { $: $ };
+const b = $( a );
+const c = b == null;
+if (c) {
 
 }
 else {
-  const e = $( "$" );
-  const f = c[ e ];
-  const g = f == null;
-  if (g) {
+  const d = $( "$" );
+  const e = b[ d ];
+  const f = e == null;
+  if (f) {
 
   }
   else {
-    const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    const g = $( 1 );
+    const h = $dotCall( e, b, undefined, g );
+    $coerce( h, "string" );
   }
 }
-const j = {};
-j[ a ];
-const k = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( k );
+$( i );
 `````
 
 

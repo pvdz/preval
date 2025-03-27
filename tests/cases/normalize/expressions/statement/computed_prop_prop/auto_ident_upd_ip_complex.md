@@ -29,8 +29,6 @@ const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
-const obj /*:object*/ = {};
-obj[tmpUpdNum];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -42,9 +40,7 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
-const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
-tmpUpdObj.x = tmpUpdNum + 1;
-({}[tmpUpdNum]);
+tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) + 1;
 $({ a: 999, b: 1000 }, b);
 `````
 
@@ -60,13 +56,11 @@ const d = c.x;
 const e = $coerce( d, "number" );
 const f = e + 1;
 c.x = f;
-const g = {};
-g[ e ];
-const h = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( h, a );
+$( g, a );
 `````
 
 

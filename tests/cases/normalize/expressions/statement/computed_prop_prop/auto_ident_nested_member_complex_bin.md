@@ -33,8 +33,6 @@ const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
 const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-const obj /*:object*/ = {};
-obj[7];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3, 4);
 `````
@@ -52,7 +50,6 @@ const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-({}[7]);
 $({ a: 999, b: 1000 }, b, c, 3, 4);
 `````
 
@@ -69,13 +66,11 @@ const e = $( d );
 const f = $( "y" );
 e[f] = 7;
 b[c] = 7;
-const g = {};
-g[ 7 ];
-const h = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( h, a, d, 3, 4 );
+$( g, a, d, 3, 4 );
 `````
 
 

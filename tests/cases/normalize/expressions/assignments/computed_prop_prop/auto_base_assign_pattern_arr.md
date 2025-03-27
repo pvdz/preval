@@ -27,8 +27,7 @@ const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
-const obj /*:object*/ = {};
-obj[tmpNestedAssignArrPatternRhs];
+$coerce(tmpNestedAssignArrPatternRhs, `string`);
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````
 
@@ -40,7 +39,7 @@ $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
 const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
-({}[tmpNestedAssignArrPatternRhs]);
+$coerce(tmpNestedAssignArrPatternRhs, `string`);
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````
 
@@ -54,8 +53,7 @@ const b = [ a ];
 const c = $( b );
 const d = [ ...c ];
 const e = d[ 0 ];
-const f = {};
-f[ c ];
+$coerce( c, "string" );
 $( c, e );
 `````
 

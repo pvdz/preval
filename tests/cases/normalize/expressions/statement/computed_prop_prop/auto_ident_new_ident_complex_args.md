@@ -25,8 +25,7 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const tmpCompProp /*:object*/ = new $(tmpCalleeParam, tmpCalleeParam$1);
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+$coerce(tmpCompProp, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -38,8 +37,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpCompProp = new $(tmpCalleeParam, tmpCalleeParam$1);
-({}[tmpCompProp]);
+$coerce(new $(tmpCalleeParam, tmpCalleeParam$1), `string`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -51,13 +49,12 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = new $( a, b );
-const d = {};
-d[ c ];
-const e = {
+$coerce( c, "string" );
+const d = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( d );
 `````
 
 

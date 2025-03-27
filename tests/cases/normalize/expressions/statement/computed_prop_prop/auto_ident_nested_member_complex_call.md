@@ -33,8 +33,7 @@ const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
 const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-const obj /*:object*/ = {};
-obj[varInitAssignLhsComputedRhs$1];
+$coerce(varInitAssignLhsComputedRhs$1, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, c, 3);
 `````
@@ -53,7 +52,7 @@ const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-({}[varInitAssignLhsComputedRhs$1]);
+$coerce(varInitAssignLhsComputedRhs$1, `string`);
 $({ a: 999, b: 1000 }, b, c, 3);
 `````
 
@@ -71,13 +70,12 @@ const f = $( "y" );
 const g = $( 3 );
 e[f] = g;
 b[c] = g;
-const h = {};
-h[ g ];
-const i = {
+$coerce( g, "string" );
+const h = {
   a: 999,
   b: 1000,
 };
-$( i, a, d, 3 );
+$( h, a, d, 3 );
 `````
 
 

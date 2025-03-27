@@ -27,17 +27,15 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-let tmpCompProp /*:unknown*/ = undefined;
 if (a) {
-  tmpCompProp = a;
+  $coerce(a, `string`);
+  $(a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  a = $(tmpCalleeParam$3);
-  tmpCompProp = a;
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
+  $coerce(tmpClusterSSA_a, `string`);
+  $(tmpClusterSSA_a);
 }
-const obj /*:object*/ = {};
-obj[tmpCompProp];
-$(a);
 `````
 
 
@@ -49,15 +47,14 @@ let a = $($(1));
 if (a) {
   a = $($(1));
 }
-let tmpCompProp = undefined;
 if (a) {
-  tmpCompProp = a;
+  $coerce(a, `string`);
+  $(a);
 } else {
-  a = $($(2));
-  tmpCompProp = a;
+  const tmpClusterSSA_a = $($(2));
+  $coerce(tmpClusterSSA_a, `string`);
+  $(tmpClusterSSA_a);
 }
-({}[tmpCompProp]);
-$(a);
 `````
 
 
@@ -71,18 +68,16 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
-let d = undefined;
 if (b) {
-  d = b;
+  $coerce( b, "string" );
+  $( b );
 }
 else {
-  const e = $( 2 );
-  b = $( e );
-  d = b;
+  const d = $( 2 );
+  const e = $( d );
+  $coerce( e, "string" );
+  $( e );
 }
-const f = {};
-f[ d ];
-$( b );
 `````
 
 

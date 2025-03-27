@@ -46,8 +46,6 @@ varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-const obj /*:object*/ = {};
-obj[3];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
@@ -76,7 +74,6 @@ varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-({}[3]);
 $({ a: 999, b: 1000 }, b, 3);
 `````
 
@@ -104,13 +101,11 @@ h[i] = 3;
 f[g] = 3;
 d[e] = 3;
 b[c] = 3;
-const n = {};
-n[ 3 ];
-const o = {
+const n = {
   a: 999,
   b: 1000,
 };
-$( o, a, 3 );
+$( n, a, 3 );
 `````
 
 

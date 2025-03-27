@@ -22,9 +22,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-const obj /*:object*/ = {};
 const a /*:object*/ = { b: tmpObjLitVal };
-obj[a];
+$coerce(a, `string`);
 a.b = 2;
 $(a);
 `````
@@ -35,9 +34,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const obj = {};
 const a = { b: tmpObjLitVal };
-obj[a];
+$coerce(a, `string`);
 a.b = 2;
 $(a);
 `````
@@ -48,11 +46,10 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = {};
-const c = { b: a };
-b[ c ];
-c.b = 2;
-$( c );
+const b = { b: a };
+$coerce( b, "string" );
+b.b = 2;
+$( b );
 `````
 
 

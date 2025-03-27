@@ -98,6 +98,7 @@ $( a );
 
 
 - (todo) objects in isFree check
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 
 
 ## Globals

@@ -27,8 +27,7 @@ $(10);
 $(20);
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+$coerce(tmpCompProp, `string`);
 $(a);
 `````
 
@@ -41,8 +40,7 @@ const bindingPatternArrRoot = { a: 999, b: 1000 };
 const a = [...bindingPatternArrRoot][0];
 $(10);
 $(20);
-const tmpCompProp = $([1, 2]);
-({}[tmpCompProp]);
+$coerce($([1, 2]), `string`);
 $(a);
 `````
 
@@ -61,8 +59,7 @@ $( 10 );
 $( 20 );
 const d = [ 1, 2 ];
 const e = $( d );
-const f = {};
-f[ e ];
+$coerce( e, "string" );
 $( c );
 `````
 

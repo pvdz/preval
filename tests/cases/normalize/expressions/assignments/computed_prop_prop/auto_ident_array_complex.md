@@ -22,9 +22,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
-const obj /*:object*/ = {};
 const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-obj[a];
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -35,9 +34,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const obj = {};
 const a = [tmpArrElement, 2, tmpArrElement$3];
-obj[a];
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -48,10 +46,9 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 3 );
-const c = {};
-const d = [ a, 2, b ];
-c[ d ];
-$( d );
+const c = [ a, 2, b ];
+$coerce( c, "string" );
+$( c );
 `````
 
 

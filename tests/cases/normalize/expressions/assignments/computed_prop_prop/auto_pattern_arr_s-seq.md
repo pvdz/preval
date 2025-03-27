@@ -27,8 +27,7 @@ $(20);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [1, 2];
 const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
-const obj /*:object*/ = {};
-obj[tmpNestedAssignArrPatternRhs];
+$coerce(tmpNestedAssignArrPatternRhs, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -43,7 +42,7 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
-({}[tmpNestedAssignArrPatternRhs]);
+$coerce(tmpNestedAssignArrPatternRhs, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -62,8 +61,7 @@ $( 20 );
 const b = [ 1, 2 ];
 const c = [ ...b ];
 const d = c[ 0 ];
-const e = {};
-e[ b ];
+$coerce( b, "string" );
 $( d );
 `````
 

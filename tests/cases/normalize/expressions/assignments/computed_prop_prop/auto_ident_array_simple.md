@@ -20,8 +20,6 @@ $(a);
 
 
 `````js filename=intro
-const obj /*:object*/ = {};
-obj[`1,2,3`];
 const a /*:array*/ = [1, 2, 3];
 $(a);
 `````
@@ -31,7 +29,6 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-({}[`1,2,3`]);
 $([1, 2, 3]);
 `````
 
@@ -40,10 +37,8 @@ $([1, 2, 3]);
 With rename=true
 
 `````js filename=intro
-const a = {};
-a[ "1,2,3" ];
-const b = [ 1, 2, 3 ];
-$( b );
+const a = [ 1, 2, 3 ];
+$( a );
 `````
 
 

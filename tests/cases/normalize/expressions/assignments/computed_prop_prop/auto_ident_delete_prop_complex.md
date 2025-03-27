@@ -25,8 +25,6 @@ $(a, arg);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-const obj /*:object*/ = {};
-obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a, arg);
 `````
 
@@ -37,9 +35,7 @@ $(tmpClusterSSA_a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-({}[tmpClusterSSA_a]);
-$(tmpClusterSSA_a, arg);
+$(delete tmpDeleteObj.y, arg);
 `````
 
 
@@ -50,8 +46,6 @@ With rename=true
 const a = { y: 1 };
 const b = $( a );
 const c = delete b.y;
-const d = {};
-d[ c ];
 $( c, a );
 `````
 

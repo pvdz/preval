@@ -31,7 +31,6 @@ $(problem2);
 
 
 `````js filename=intro
-$Object_prototype.now;
 const tmpClusterSSA_problem2 /*:object*/ = {};
 $(tmpClusterSSA_problem2);
 `````
@@ -41,7 +40,6 @@ $(tmpClusterSSA_problem2);
 (This ought to be the final result)
 
 `````js filename=intro
-$Object_prototype.now;
 $({});
 `````
 
@@ -50,7 +48,6 @@ $({});
 With rename=true
 
 `````js filename=intro
-$Object_prototype.now;
 const a = {};
 $( a );
 `````

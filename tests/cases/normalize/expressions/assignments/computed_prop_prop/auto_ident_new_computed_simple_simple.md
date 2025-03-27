@@ -23,8 +23,7 @@ $(a);
 
 `````js filename=intro
 const tmpClusterSSA_a /*:object*/ = new $(1);
-const obj /*:object*/ = {};
-obj[tmpClusterSSA_a];
+$coerce(tmpClusterSSA_a, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -34,7 +33,7 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpClusterSSA_a = new $(1);
-({}[tmpClusterSSA_a]);
+$coerce(tmpClusterSSA_a, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -44,8 +43,7 @@ With rename=true
 
 `````js filename=intro
 const a = new $( 1 );
-const b = {};
-b[ a ];
+$coerce( a, "string" );
 $( a );
 `````
 

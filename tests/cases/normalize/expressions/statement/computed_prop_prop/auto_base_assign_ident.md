@@ -23,8 +23,7 @@ $(a, b);
 
 `````js filename=intro
 const b /*:unknown*/ = $(2);
-const obj /*:object*/ = {};
-obj[b];
+$coerce(b, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -35,7 +34,7 @@ $(a, b);
 
 `````js filename=intro
 const b = $(2);
-({}[b]);
+$coerce(b, `string`);
 $({ a: 999, b: 1000 }, b);
 `````
 
@@ -45,13 +44,12 @@ With rename=true
 
 `````js filename=intro
 const a = $( 2 );
-const b = {};
-b[ a ];
-const c = {
+$coerce( a, "string" );
+const b = {
   a: 999,
   b: 1000,
 };
-$( c, a );
+$( b, a );
 `````
 
 

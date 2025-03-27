@@ -25,8 +25,7 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
 const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
-const obj /*:object*/ = {};
-obj[tmpClusterSSA_a];
+$coerce(tmpClusterSSA_a, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -36,7 +35,7 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpClusterSSA_a = $({ $: $ }).$(1);
-({}[tmpClusterSSA_a]);
+$coerce(tmpClusterSSA_a, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -48,8 +47,7 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = b.$( 1 );
-const d = {};
-d[ c ];
+$coerce( c, "string" );
 $( c );
 `````
 

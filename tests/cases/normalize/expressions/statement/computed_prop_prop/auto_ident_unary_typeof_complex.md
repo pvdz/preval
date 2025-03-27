@@ -22,10 +22,7 @@ $(a, arg);
 
 
 `````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(1);
-const obj /*:object*/ = {};
-const tmpCompProp /*:string*/ = typeof tmpUnaryArg;
-obj[tmpCompProp];
+$(1);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````
@@ -35,10 +32,7 @@ $(a, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
-const obj = {};
-const tmpCompProp = typeof tmpUnaryArg;
-obj[tmpCompProp];
+$(1);
 $({ a: 999, b: 1000 }, 1);
 `````
 
@@ -47,15 +41,12 @@ $({ a: 999, b: 1000 }, 1);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = {};
-const c = typeof a;
-b[ c ];
-const d = {
+$( 1 );
+const a = {
   a: 999,
   b: 1000,
 };
-$( d, 1 );
+$( a, 1 );
 `````
 
 

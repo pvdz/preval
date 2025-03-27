@@ -25,8 +25,7 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
 const tmpCompProp /*:unknown*/ = tmpCallObj.$(1);
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+$coerce(tmpCompProp, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -36,8 +35,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $({ $: $ }).$(1);
-({}[tmpCompProp]);
+$coerce($({ $: $ }).$(1), `string`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -49,13 +47,12 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = b.$( 1 );
-const d = {};
-d[ c ];
-const e = {
+$coerce( c, "string" );
+const d = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( d );
 `````
 
 

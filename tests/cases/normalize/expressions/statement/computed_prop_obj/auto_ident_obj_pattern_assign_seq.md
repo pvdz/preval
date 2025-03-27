@@ -27,7 +27,6 @@ $(1);
 $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
-$Object_prototype.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
@@ -41,7 +40,6 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-$Object_prototype.a;
 $({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -54,7 +52,6 @@ $( 1 );
 $( 2 );
 const a = $( 3 );
 const b = $( 4 );
-$Object_prototype.a;
 const c = {
   a: 999,
   b: 1000,

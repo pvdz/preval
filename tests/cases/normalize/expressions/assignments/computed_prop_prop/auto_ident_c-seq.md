@@ -25,8 +25,7 @@ $(a, x);
 $(1);
 $(2);
 const a /*:unknown*/ = $(1);
-const obj /*:object*/ = {};
-obj[a];
+$coerce(a, `string`);
 $(a, 1);
 `````
 
@@ -38,7 +37,7 @@ $(a, 1);
 $(1);
 $(2);
 const a = $(1);
-({}[a]);
+$coerce(a, `string`);
 $(a, 1);
 `````
 
@@ -50,8 +49,7 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = $( 1 );
-const b = {};
-b[ a ];
+$coerce( a, "string" );
 $( a, 1 );
 `````
 

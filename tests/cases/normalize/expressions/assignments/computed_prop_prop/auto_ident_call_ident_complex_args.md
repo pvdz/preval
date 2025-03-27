@@ -25,8 +25,7 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const a /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
-const obj /*:object*/ = {};
-obj[a];
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -36,7 +35,7 @@ $(a);
 
 `````js filename=intro
 const a = $($(1), $(2));
-({}[a]);
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -48,8 +47,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = $( a, b );
-const d = {};
-d[ c ];
+$coerce( c, "string" );
 $( c );
 `````
 

@@ -24,8 +24,6 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const obj /*:object*/ = {};
-obj[1];
 $(1, 1);
 `````
 
@@ -36,7 +34,6 @@ $(1, 1);
 `````js filename=intro
 $(1);
 $(2);
-({}[1]);
 $(1, 1);
 `````
 
@@ -47,8 +44,6 @@ With rename=true
 `````js filename=intro
 $( 1 );
 $( 2 );
-const a = {};
-a[ 1 ];
 $( 1, 1 );
 `````
 

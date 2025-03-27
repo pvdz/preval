@@ -29,8 +29,7 @@ const tmpCompObj$1 /*:unknown*/ = $(b);
 const tmpCompProp$1 /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-const obj /*:object*/ = {};
-obj[tmpNestedAssignPropRhs];
+$coerce(tmpNestedAssignPropRhs, `string`);
 $(tmpNestedAssignPropRhs, b);
 `````
 
@@ -46,7 +45,7 @@ const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp$1];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-({}[tmpNestedAssignPropRhs]);
+$coerce(tmpNestedAssignPropRhs, `string`);
 $(tmpNestedAssignPropRhs, b);
 `````
 
@@ -65,8 +64,7 @@ const d = $( a );
 const e = $( "d" );
 const f = d[ e ];
 b[c] = f;
-const g = {};
-g[ f ];
+$coerce( f, "string" );
 $( f, a );
 `````
 

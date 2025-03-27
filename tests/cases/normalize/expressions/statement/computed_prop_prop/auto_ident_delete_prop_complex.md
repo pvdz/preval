@@ -24,9 +24,7 @@ $(a, arg);
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpCompProp /*:boolean*/ = delete tmpDeleteObj.y;
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+delete tmpDeleteObj.y;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
@@ -38,8 +36,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpCompProp = delete tmpDeleteObj.y;
-({}[tmpCompProp]);
+delete tmpDeleteObj.y;
 $({ a: 999, b: 1000 }, arg);
 `````
 
@@ -50,14 +47,12 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = $( a );
-const c = delete b.y;
-const d = {};
-d[ c ];
-const e = {
+delete b.y;
+const c = {
   a: 999,
   b: 1000,
 };
-$( e, a );
+$( c, a );
 `````
 
 

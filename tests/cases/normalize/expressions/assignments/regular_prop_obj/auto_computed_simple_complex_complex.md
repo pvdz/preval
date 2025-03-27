@@ -22,7 +22,6 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
-$Object_prototype.a;
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);
 const a /*:object*/ = { b: tmpObjLitVal };
@@ -36,7 +35,6 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-$Object_prototype.a;
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 const a = { b: tmpObjLitVal };
@@ -50,7 +48,6 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-$Object_prototype.a;
 const b = $( "b" );
 const c = $( 2 );
 const d = { b: a };

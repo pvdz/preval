@@ -26,8 +26,7 @@ const tmpNewCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
 const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-const obj /*:object*/ = {};
-obj[a];
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -40,7 +39,7 @@ const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-({}[a]);
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -53,8 +52,7 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 const d = new a( b, c );
-const e = {};
-e[ d ];
+$coerce( d, "string" );
 $( d );
 `````
 

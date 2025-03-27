@@ -31,10 +31,18 @@ f();
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
+const o /*:object*/ = { x: tmpObjLitVal };
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  const tmpCalleeParam /*:unknown*/ = o.x;
+  $(tmpCalleeParam);
+  return undefined;
+};
 $(tmpObjLitVal);
-$(10);
-$(10);
-$(10);
+o.x = 10;
+f();
+f();
+f();
 `````
 
 
@@ -42,10 +50,16 @@ $(10);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(1));
-$(10);
-$(10);
-$(10);
+const tmpObjLitVal = $(1);
+const o = { x: tmpObjLitVal };
+const f = function () {
+  $(o.x);
+};
+$(tmpObjLitVal);
+o.x = 10;
+f();
+f();
+f();
 `````
 
 
@@ -54,10 +68,18 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
+const b = { x: a };
+const c = function() {
+  debugger;
+  const d = b.x;
+  $( d );
+  return undefined;
+};
 $( a );
-$( 10 );
-$( 10 );
-$( 10 );
+b.x = 10;
+c();
+c();
+c();
 `````
 
 

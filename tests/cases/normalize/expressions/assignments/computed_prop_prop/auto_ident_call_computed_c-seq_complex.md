@@ -26,8 +26,7 @@ const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
-const obj /*:object*/ = {};
-obj[tmpClusterSSA_a];
+$coerce(tmpClusterSSA_a, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -39,7 +38,7 @@ $(tmpClusterSSA_a);
 const tmpCallCompObj = $({ $: $ });
 const tmpCallCompProp = $(`\$`);
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-({}[tmpClusterSSA_a]);
+$coerce(tmpClusterSSA_a, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -52,8 +51,7 @@ const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
 const d = b[ c ]( 1 );
-const e = {};
-e[ d ];
+$coerce( d, "string" );
 $( d );
 `````
 

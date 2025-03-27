@@ -23,8 +23,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs /*:unknown*/ = $(2);
-const obj /*:object*/ = {};
-obj[tmpNestedComplexRhs];
+$coerce(tmpNestedComplexRhs, `string`);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
@@ -34,7 +33,7 @@ $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-({}[tmpNestedComplexRhs]);
+$coerce(tmpNestedComplexRhs, `string`);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
@@ -44,8 +43,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 2 );
-const b = {};
-b[ a ];
+$coerce( a, "string" );
 $( a, a );
 `````
 

@@ -25,9 +25,7 @@ $(a, arg);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
-const tmpCompProp /*:boolean*/ = delete arg.y;
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+delete arg.y;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, arg);
 `````
@@ -40,8 +38,7 @@ $(a, arg);
 $(1);
 $(2);
 const arg = { y: 1 };
-const tmpCompProp = delete arg.y;
-({}[tmpCompProp]);
+delete arg.y;
 $({ a: 999, b: 1000 }, arg);
 `````
 
@@ -53,14 +50,12 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = { y: 1 };
-const b = delete a.y;
-const c = {};
-c[ b ];
-const d = {
+delete a.y;
+const b = {
   a: 999,
   b: 1000,
 };
-$( d, a );
+$( b, a );
 `````
 
 

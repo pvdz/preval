@@ -27,8 +27,6 @@ $(2);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
-const obj /*:object*/ = {};
-obj[a];
 $(a, arg);
 `````
 
@@ -41,9 +39,7 @@ $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
-const a = delete arg[tmpDeleteCompProp];
-({}[a]);
-$(a, arg);
+$(delete arg[tmpDeleteCompProp], arg);
 `````
 
 
@@ -56,8 +52,6 @@ $( 2 );
 const a = $( "y" );
 const b = { y: 1 };
 const c = delete b[ a ];
-const d = {};
-d[ c ];
 $( c, b );
 `````
 

@@ -24,8 +24,7 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { c: $ };
 const tmpChainElementCall /*:unknown*/ = b.c(1);
-const obj /*:object*/ = {};
-obj[tmpChainElementCall];
+$coerce(tmpChainElementCall, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -35,8 +34,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = { c: $ }.c(1);
-({}[tmpChainElementCall]);
+$coerce({ c: $ }.c(1), `string`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -47,13 +45,12 @@ With rename=true
 `````js filename=intro
 const a = { c: $ };
 const b = a.c( 1 );
-const c = {};
-c[ b ];
-const d = {
+$coerce( b, "string" );
+const c = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( c );
 `````
 
 

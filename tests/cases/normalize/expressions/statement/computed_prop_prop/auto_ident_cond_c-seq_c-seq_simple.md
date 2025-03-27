@@ -20,16 +20,15 @@ $(a);
 
 
 `````js filename=intro
-let tmpCompProp /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
-  tmpCompProp = $(60);
+  const tmpClusterSSA_tmpCompProp /*:unknown*/ = $(60);
+  $coerce(tmpClusterSSA_tmpCompProp, `string`);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  tmpCompProp = $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCompProp$1 /*:unknown*/ = $(tmpCalleeParam);
+  $coerce(tmpClusterSSA_tmpCompProp$1, `string`);
 }
-const obj /*:object*/ = {};
-obj[tmpCompProp];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -39,13 +38,11 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCompProp = undefined;
 if ($(30)) {
-  tmpCompProp = $(60);
+  $coerce($(60), `string`);
 } else {
-  tmpCompProp = $($(100));
+  $coerce($($(100)), `string`);
 }
-({}[tmpCompProp]);
 $({ a: 999, b: 1000 });
 `````
 
@@ -54,17 +51,16 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 30 );
-if (b) {
-  a = $( 60 );
+const a = $( 30 );
+if (a) {
+  const b = $( 60 );
+  $coerce( b, "string" );
 }
 else {
   const c = $( 100 );
-  a = $( c );
+  const d = $( c );
+  $coerce( d, "string" );
 }
-const d = {};
-d[ a ];
 const e = {
   a: 999,
   b: 1000,

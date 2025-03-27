@@ -20,9 +20,6 @@ $(a);
 
 
 `````js filename=intro
-const obj /*:object*/ = {};
-const tmpCompProp /*:regex*/ = /foo/;
-obj[tmpCompProp];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -32,9 +29,6 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const obj = {};
-const tmpCompProp = /foo/;
-obj[tmpCompProp];
 $({ a: 999, b: 1000 });
 `````
 
@@ -43,14 +37,11 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = /foo/;
-a[ b ];
-const c = {
+const a = {
   a: 999,
   b: 1000,
 };
-$( c );
+$( a );
 `````
 
 

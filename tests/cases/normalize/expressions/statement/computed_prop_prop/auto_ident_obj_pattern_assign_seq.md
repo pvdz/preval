@@ -27,9 +27,8 @@ $(1);
 $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const obj /*:object*/ = {};
 const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-obj[tmpNestedAssignObjPatternRhs];
+$coerce(tmpNestedAssignObjPatternRhs, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
@@ -43,9 +42,7 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const obj = {};
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-obj[tmpNestedAssignObjPatternRhs];
+$coerce({ x: tmpObjLitVal, y: tmpObjLitVal$1 }, `string`);
 $({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
@@ -58,17 +55,16 @@ $( 1 );
 $( 2 );
 const a = $( 3 );
 const b = $( 4 );
-const c = {};
-const d = {
+const c = {
   x: a,
   y: b,
 };
-c[ d ];
-const e = {
+$coerce( c, "string" );
+const d = {
   a: 999,
   b: 1000,
 };
-$( e, a, b );
+$( d, a, b );
 `````
 
 

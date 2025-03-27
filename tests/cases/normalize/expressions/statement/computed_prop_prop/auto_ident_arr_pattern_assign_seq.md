@@ -31,8 +31,7 @@ const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1]
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
 const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
-const obj /*:object*/ = {};
-obj[tmpNestedAssignArrPatternRhs];
+$coerce(tmpNestedAssignArrPatternRhs, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
@@ -50,7 +49,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_x = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
-({}[tmpNestedAssignArrPatternRhs]);
+$coerce(tmpNestedAssignArrPatternRhs, `string`);
 $({ a: 999, b: 1000 }, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
@@ -67,13 +66,12 @@ const c = [ a, b ];
 const d = [ ...c ];
 const e = d[ 0 ];
 const f = d[ 1 ];
-const g = {};
-g[ c ];
-const h = {
+$coerce( c, "string" );
+const g = {
   a: 999,
   b: 1000,
 };
-$( h, e, f );
+$( g, e, f );
 `````
 
 

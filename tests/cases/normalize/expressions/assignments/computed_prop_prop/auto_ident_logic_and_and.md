@@ -21,20 +21,23 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
+const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  a = $(tmpCalleeParam$1);
-  if (a) {
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_a) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    a = $(tmpCalleeParam$3);
+    const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$3);
+    $coerce(tmpClusterSSA_a$1, `string`);
+    $(tmpClusterSSA_a$1);
   } else {
+    $coerce(tmpClusterSSA_a, `string`);
+    $(tmpClusterSSA_a);
   }
 } else {
+  $coerce(a, `string`);
+  $(a);
 }
-const obj /*:object*/ = {};
-obj[a];
-$(a);
 `````
 
 
@@ -42,15 +45,21 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(1));
+const a = $($(1));
 if (a) {
-  a = $($(1));
-  if (a) {
-    a = $($(2));
+  const tmpClusterSSA_a = $($(1));
+  if (tmpClusterSSA_a) {
+    const tmpClusterSSA_a$1 = $($(2));
+    $coerce(tmpClusterSSA_a$1, `string`);
+    $(tmpClusterSSA_a$1);
+  } else {
+    $coerce(tmpClusterSSA_a, `string`);
+    $(tmpClusterSSA_a);
   }
+} else {
+  $coerce(a, `string`);
+  $(a);
 }
-({}[a]);
-$(a);
 `````
 
 
@@ -59,18 +68,25 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
+const b = $( a );
 if (b) {
   const c = $( 1 );
-  b = $( c );
-  if (b) {
-    const d = $( 2 );
-    b = $( d );
+  const d = $( c );
+  if (d) {
+    const e = $( 2 );
+    const f = $( e );
+    $coerce( f, "string" );
+    $( f );
+  }
+  else {
+    $coerce( d, "string" );
+    $( d );
   }
 }
-const e = {};
-e[ b ];
-$( b );
+else {
+  $coerce( b, "string" );
+  $( b );
+}
 `````
 
 

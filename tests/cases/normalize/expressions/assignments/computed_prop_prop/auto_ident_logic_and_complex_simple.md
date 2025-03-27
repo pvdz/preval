@@ -21,16 +21,13 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let a /*:unknown*/ = $(tmpCalleeParam);
-let tmpCompProp /*:unknown*/ = 2;
+const a /*:unknown*/ = $(tmpCalleeParam);
 if (a) {
-  a = 2;
+  $(2);
 } else {
-  tmpCompProp = a;
+  $coerce(a, `string`);
+  $(a);
 }
-const obj /*:object*/ = {};
-obj[tmpCompProp];
-$(a);
 `````
 
 
@@ -38,15 +35,13 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = $($(1));
-let tmpCompProp = 2;
+const a = $($(1));
 if (a) {
-  a = 2;
+  $(2);
 } else {
-  tmpCompProp = a;
+  $coerce(a, `string`);
+  $(a);
 }
-({}[tmpCompProp]);
-$(a);
 `````
 
 
@@ -55,17 +50,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = $( a );
-let c = 2;
+const b = $( a );
 if (b) {
-  b = 2;
+  $( 2 );
 }
 else {
-  c = b;
+  $coerce( b, "string" );
+  $( b );
 }
-const d = {};
-d[ c ];
-$( b );
 `````
 
 

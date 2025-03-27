@@ -20,8 +20,6 @@ $(a);
 
 
 `````js filename=intro
-const obj /*:object*/ = {};
-obj[60];
 $(60);
 `````
 
@@ -30,7 +28,6 @@ $(60);
 (This ought to be the final result)
 
 `````js filename=intro
-({}[60]);
 $(60);
 `````
 
@@ -39,8 +36,6 @@ $(60);
 With rename=true
 
 `````js filename=intro
-const a = {};
-a[ 60 ];
 $( 60 );
 `````
 

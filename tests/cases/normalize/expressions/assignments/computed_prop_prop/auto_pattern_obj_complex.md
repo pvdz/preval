@@ -23,8 +23,7 @@ $(a);
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
-const obj /*:object*/ = {};
-obj[tmpNestedAssignObjPatternRhs];
+$coerce(tmpNestedAssignObjPatternRhs, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -35,7 +34,7 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
-({}[tmpNestedAssignObjPatternRhs]);
+$coerce(tmpNestedAssignObjPatternRhs, `string`);
 $(tmpClusterSSA_a);
 `````
 
@@ -50,8 +49,7 @@ const a = {
 };
 const b = $( a );
 const c = b.a;
-const d = {};
-d[ b ];
+$coerce( b, "string" );
 $( c );
 `````
 

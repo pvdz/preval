@@ -33,8 +33,7 @@ const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-const obj /*:object*/ = {};
-obj[varInitAssignLhsComputedRhs];
+$coerce(varInitAssignLhsComputedRhs, `string`);
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
 
@@ -52,7 +51,7 @@ const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-({}[varInitAssignLhsComputedRhs]);
+$coerce(varInitAssignLhsComputedRhs, `string`);
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
 
@@ -70,8 +69,7 @@ const f = $( "y" );
 const g = $( 3 );
 e[f] = g;
 b[c] = g;
-const h = {};
-h[ g ];
+$coerce( g, "string" );
 $( g, a, d, 3 );
 `````
 

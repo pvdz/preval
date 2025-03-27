@@ -22,8 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpCompProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
-b[tmpCompProp];
+$coerce(tmpCompProp, `string`);
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -36,6 +35,7 @@ if (tmpIfTest) {
 } else {
 }
 const a /*:object*/ = { a: 999, b: 1000 };
+const b /*:object*/ = { c: 1 };
 $(a, b);
 `````
 
@@ -44,9 +44,7 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`c`);
-const b = { c: 1 };
-b[tmpCompProp];
+$coerce($(`c`), `string`);
 if ($(0)) {
   while (true) {
     if (!$(0)) {
@@ -54,7 +52,7 @@ if ($(0)) {
     }
   }
 }
-$({ a: 999, b: 1000 }, b);
+$({ a: 999, b: 1000 }, { c: 1 });
 `````
 
 
@@ -63,13 +61,12 @@ With rename=true
 
 `````js filename=intro
 const a = $( "c" );
-const b = { c: 1 };
-b[ a ];
-const c = $( 0 );
-if (c) {
+$coerce( a, "string" );
+const b = $( 0 );
+if (b) {
   while ($LOOP_UNROLL_10) {
-    const d = $( 0 );
-    if (d) {
+    const c = $( 0 );
+    if (c) {
 
     }
     else {
@@ -77,11 +74,12 @@ if (c) {
     }
   }
 }
-const e = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( e, b );
+const e = { c: 1 };
+$( d, e );
 `````
 
 
@@ -89,6 +87,7 @@ $( e, b );
 
 
 - (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) Support non-primitive in first arg to $coerce
 
 
 ## Globals

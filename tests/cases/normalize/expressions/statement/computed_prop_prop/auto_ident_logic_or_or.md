@@ -21,19 +21,20 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
-let tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
+const tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
 if (tmpCompProp) {
+  $coerce(tmpCompProp, `string`);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  tmpCompProp = $(tmpCalleeParam$1);
-  if (tmpCompProp) {
+  const tmpClusterSSA_tmpCompProp /*:unknown*/ = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_tmpCompProp) {
+    $coerce(tmpClusterSSA_tmpCompProp, `string`);
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    tmpCompProp = $(tmpCalleeParam$3);
+    const tmpClusterSSA_tmpCompProp$1 /*:unknown*/ = $(tmpCalleeParam$3);
+    $coerce(tmpClusterSSA_tmpCompProp$1, `string`);
   }
 }
-const obj /*:object*/ = {};
-obj[tmpCompProp];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -43,14 +44,17 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCompProp = $($(0));
-if (!tmpCompProp) {
-  tmpCompProp = $($(1));
-  if (!tmpCompProp) {
-    tmpCompProp = $($(2));
+const tmpCompProp = $($(0));
+if (tmpCompProp) {
+  $coerce(tmpCompProp, `string`);
+} else {
+  const tmpClusterSSA_tmpCompProp = $($(1));
+  if (tmpClusterSSA_tmpCompProp) {
+    $coerce(tmpClusterSSA_tmpCompProp, `string`);
+  } else {
+    $coerce($($(2)), `string`);
   }
 }
-({}[tmpCompProp]);
 $({ a: 999, b: 1000 });
 `````
 
@@ -60,28 +64,27 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-let b = $( a );
+const b = $( a );
 if (b) {
-
+  $coerce( b, "string" );
 }
 else {
   const c = $( 1 );
-  b = $( c );
-  if (b) {
-
+  const d = $( c );
+  if (d) {
+    $coerce( d, "string" );
   }
   else {
-    const d = $( 2 );
-    b = $( d );
+    const e = $( 2 );
+    const f = $( e );
+    $coerce( f, "string" );
   }
 }
-const e = {};
-e[ b ];
-const f = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( g );
 `````
 
 

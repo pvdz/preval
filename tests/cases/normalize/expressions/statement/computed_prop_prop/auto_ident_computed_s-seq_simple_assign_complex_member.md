@@ -28,8 +28,7 @@ const tmpCompObj$1 /*:unknown*/ = $(b);
 const tmpCompProp$1 /*:unknown*/ = $(`d`);
 const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const obj /*:object*/ = {};
-obj[varInitAssignLhsComputedRhs];
+$coerce(varInitAssignLhsComputedRhs, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -45,7 +44,7 @@ const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-({}[varInitAssignLhsComputedRhs]);
+$coerce(varInitAssignLhsComputedRhs, `string`);
 $({ a: 999, b: 1000 }, b);
 `````
 
@@ -63,13 +62,12 @@ const c = $( b );
 const d = $( "d" );
 const e = c[ d ];
 b[a] = e;
-const f = {};
-f[ e ];
-const g = {
+$coerce( e, "string" );
+const f = {
   a: 999,
   b: 1000,
 };
-$( g, b );
+$( f, b );
 `````
 
 

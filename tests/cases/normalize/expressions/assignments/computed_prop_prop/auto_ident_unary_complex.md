@@ -23,9 +23,7 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
-const obj /*:object*/ = {};
 const a /*:string*/ = typeof tmpUnaryArg;
-obj[a];
 $(a, 1);
 `````
 
@@ -35,10 +33,7 @@ $(a, 1);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const obj = {};
-const a = typeof tmpUnaryArg;
-obj[a];
-$(a, 1);
+$(typeof tmpUnaryArg, 1);
 `````
 
 
@@ -47,10 +42,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = {};
-const c = typeof a;
-b[ c ];
-$( c, 1 );
+const b = typeof a;
+$( b, 1 );
 `````
 
 

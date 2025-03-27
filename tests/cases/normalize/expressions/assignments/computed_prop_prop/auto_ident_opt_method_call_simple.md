@@ -24,8 +24,7 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { c: $ };
 const tmpChainElementCall /*:unknown*/ = b.c(1);
-const obj /*:object*/ = {};
-obj[tmpChainElementCall];
+$coerce(tmpChainElementCall, `string`);
 $(tmpChainElementCall);
 `````
 
@@ -35,7 +34,7 @@ $(tmpChainElementCall);
 
 `````js filename=intro
 const tmpChainElementCall = { c: $ }.c(1);
-({}[tmpChainElementCall]);
+$coerce(tmpChainElementCall, `string`);
 $(tmpChainElementCall);
 `````
 
@@ -46,8 +45,7 @@ With rename=true
 `````js filename=intro
 const a = { c: $ };
 const b = a.c( 1 );
-const c = {};
-c[ b ];
+$coerce( b, "string" );
 $( b );
 `````
 

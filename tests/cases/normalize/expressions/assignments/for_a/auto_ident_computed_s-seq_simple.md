@@ -22,8 +22,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const b /*:object*/ = { c: 1 };
-b[tmpAssignRhsCompProp];
+$coerce(tmpAssignRhsCompProp, `string`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -34,8 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $(`c`);
-({ c: 1 }[tmpAssignRhsCompProp]);
+$coerce($(`c`), `string`);
 while (true) {
   $(1);
 }
@@ -47,8 +45,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "c" );
-const b = { c: 1 };
-b[ a ];
+$coerce( a, "string" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
@@ -59,6 +56,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) Support non-primitive in first arg to $coerce
 
 
 ## Globals

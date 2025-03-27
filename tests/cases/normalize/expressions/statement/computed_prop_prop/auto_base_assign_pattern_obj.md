@@ -26,8 +26,7 @@ const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-const obj /*:object*/ = {};
-obj[tmpNestedAssignObjPatternRhs];
+$coerce(tmpNestedAssignObjPatternRhs, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
@@ -40,7 +39,7 @@ $(a, tmpClusterSSA_b);
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-({}[tmpNestedAssignObjPatternRhs]);
+$coerce(tmpNestedAssignObjPatternRhs, `string`);
 $({ a: 999, b: 1000 }, tmpClusterSSA_b);
 `````
 
@@ -53,13 +52,12 @@ const a = $( 2 );
 const b = { b: a };
 const c = $( b );
 const d = c.b;
-const e = {};
-e[ c ];
-const f = {
+$coerce( c, "string" );
+const e = {
   a: 999,
   b: 1000,
 };
-$( f, d );
+$( e, d );
 `````
 
 

@@ -24,8 +24,6 @@ $(a, arg);
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg.y;
-const obj /*:object*/ = {};
-obj[a];
 $(a, arg);
 `````
 
@@ -35,9 +33,7 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const a = delete arg.y;
-({}[a]);
-$(a, arg);
+$(delete arg.y, arg);
 `````
 
 
@@ -47,8 +43,6 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = delete a.y;
-const c = {};
-c[ b ];
 $( b, a );
 `````
 

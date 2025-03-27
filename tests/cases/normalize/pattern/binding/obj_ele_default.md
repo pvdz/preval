@@ -24,7 +24,6 @@ $(f());
 
 
 `````js filename=intro
-$Object_prototype.x;
 $(undefined);
 `````
 
@@ -33,7 +32,6 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-$Object_prototype.x;
 $(undefined);
 `````
 
@@ -42,7 +40,6 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-$Object_prototype.x;
 $( undefined );
 `````
 

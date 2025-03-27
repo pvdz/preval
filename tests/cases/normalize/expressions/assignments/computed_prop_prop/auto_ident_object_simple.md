@@ -20,9 +20,8 @@ $(a);
 
 
 `````js filename=intro
-const obj /*:object*/ = {};
 const a /*:object*/ = { x: 1, y: 2, z: 3 };
-obj[a];
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -31,9 +30,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const obj = {};
 const a = { x: 1, y: 2, z: 3 };
-obj[a];
+$coerce(a, `string`);
 $(a);
 `````
 
@@ -42,14 +40,13 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = {};
-const b = {
+const a = {
   x: 1,
   y: 2,
   z: 3,
 };
-a[ b ];
-$( b );
+$coerce( a, "string" );
+$( a );
 `````
 
 

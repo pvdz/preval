@@ -22,20 +22,16 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
-let tmpCompProp /*:unknown*/ = undefined;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpCompProp = tmpChainElementObject;
+  $coerce(tmpChainElementObject, `string`);
+  $(tmpChainElementObject);
 }
-const obj /*:object*/ = {};
-obj[tmpCompProp];
-$(a);
 `````
 
 
@@ -43,17 +39,14 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpChainRootProp = $({ x: 1 });
-const tmpIfTest = tmpChainRootProp == null;
-let tmpCompProp = undefined;
-if (!tmpIfTest) {
+if (tmpChainRootProp == null) {
+  $(undefined);
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpCompProp = tmpChainElementObject;
+  $coerce(tmpChainElementObject, `string`);
+  $(tmpChainElementObject);
 }
-({}[tmpCompProp]);
-$(a);
 `````
 
 
@@ -61,22 +54,17 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = c == null;
-let e = undefined;
-if (d) {
-
+const a = { x: 1 };
+const b = $( a );
+const c = b == null;
+if (c) {
+  $( undefined );
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
+  const d = b.x;
+  $coerce( d, "string" );
+  $( d );
 }
-const g = {};
-g[ e ];
-$( a );
 `````
 
 

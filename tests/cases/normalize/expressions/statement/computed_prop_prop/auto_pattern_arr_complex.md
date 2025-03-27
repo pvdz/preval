@@ -25,8 +25,7 @@ const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a /*:unknown*/ = arrPatternSplat[0];
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
-const obj /*:object*/ = {};
-obj[tmpCompProp];
+$coerce(tmpCompProp, `string`);
 $(a);
 `````
 
@@ -37,8 +36,7 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const a = [...bindingPatternArrRoot][0];
-const tmpCompProp = $([1, 2]);
-({}[tmpCompProp]);
+$coerce($([1, 2]), `string`);
 $(a);
 `````
 
@@ -55,8 +53,7 @@ const b = [ ...a ];
 const c = b[ 0 ];
 const d = [ 1, 2 ];
 const e = $( d );
-const f = {};
-f[ e ];
+$coerce( e, "string" );
 $( c );
 `````
 

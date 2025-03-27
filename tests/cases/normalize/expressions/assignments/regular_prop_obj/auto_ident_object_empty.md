@@ -20,7 +20,6 @@ $(a);
 
 
 `````js filename=intro
-$Object_prototype.a;
 const a /*:object*/ = {};
 $(a);
 `````
@@ -30,7 +29,6 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$Object_prototype.a;
 $({});
 `````
 
@@ -39,7 +37,6 @@ $({});
 With rename=true
 
 `````js filename=intro
-$Object_prototype.a;
 const a = {};
 $( a );
 `````

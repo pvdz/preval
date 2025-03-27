@@ -135,13 +135,11 @@ function process(fdata, meta, name, queue, attempted) {
   // Single scoped vars should have their decl first, or they are TDZ
   const write = meta.rwOrder[0];
   if (write.action !== 'write' || write.kind !== 'var') {
-    vlog('- First write is not the var decl', write.action, write.kind);
-    return;
+    return vlog('- First write is not the var decl', write.action, write.kind);
   }
 
   if (write.blockBody === write.pfuncNode.body.body && write.blockIndex < write.pfuncNode.$p.bodyOffset) {
-    vlog('Not changing anything in the function header');
-    return;
+    return vlog('Not changing anything in the function header');
   }
 
   // Check whether the over statement has a bigger pid than the next ref
@@ -154,13 +152,12 @@ function process(fdata, meta, name, queue, attempted) {
 
   if (init.type === 'FunctionExpression') {
     // This ends up in an infinite loop... like with tests/cases/type_tracked/invert/else_branch_closure2.md
-    vlog('Not moving function expressions because there is another rule that wants to move them further out');
-    return;
+    return vlog('Not moving function expressions because there is another rule that wants to move them further out');
   }
 
   // TODO: what about let bindings that may change like array elements or call args? We don't check for that case I think.
 
-  source(write.grandNode);
+  //source(write.grandNode);
 
   const isSpy = AST.complexExpressionNodeMightSpy(init, fdata);
   if (isSpy) {
@@ -326,15 +323,16 @@ function process(fdata, meta, name, queue, attempted) {
     func: () => {
       rule('A var decl whose init is not a spy can be moved closer to its first ref; removal step');
       example('const x = +y; const z = x * 2; if ($) $(); $(z);', 'const x = +y; if ($) $(); const z = x * 2; $(z);');
-      before(varNode, write.blockBody);
+      before(write.blockBody);
 
-      vlog('Deleting', DIM, tmat(varNode), RESET, 'at', write.blockIndex);
+      vlog('Removing:');
+      source(write.blockBody[write.blockIndex], true);
 
       ASSERT(write.blockBody[write.blockIndex].deleting, 'we should only be deleting nodes marked for deletion... if this fails then queue order is incorrect and its removing the wrong nodes, very bad');
       write.blockBody[write.blockIndex].deleting = false; // each only once
       write.blockBody.splice(write.blockIndex, 1);
 
-      after(write.blockBody[write.blockIndex] || AST.emptyStatement(), targetBody);
+      after(write.blockBody);
       return true;
     }
   });
@@ -349,13 +347,14 @@ function process(fdata, meta, name, queue, attempted) {
     func: () => {
       rule('A var decl whose init is not a spy can be moved closer to its first ref; insert step');
       example('const x = +y; const z = x * 2; if ($) $(); $(z);', 'const x = +y; if ($) $(); const z = x * 2; $(z);');
-      before(varNode, write.blockBody);
+      before(targetBody);
 
-      vlog('Injecting', DIM, tmat(varNode), RESET, 'at', currentIndex);
+      vlog('Adding:');
+      source(varNode, true);
 
       targetBody.splice(currentIndex, 0, varNode);
 
-      after(targetBody[currentIndex], targetBody);
+      after(targetBody);
       return true;
     }
   });

@@ -1,5 +1,6 @@
 import {ASSERT} from "../utils.mjs"
 import {memberRefExpression} from "./pst.mjs"
+import { symbo } from '../symbols_builtins.mjs';
 
 export function verifyPst(node) {
   //console.dir(node, {depth: null})
@@ -247,7 +248,16 @@ function verifyPrimitive(node) {
       break;
     }
     case 'Ref': {
-      expect(['NaN', 'Infinity'].includes(node.name), true, node);
+      expect([
+        'undefined',
+        'NaN',
+        'Infinity',
+        symbo('Number', 'NaN'),
+        symbo('Number', 'NEGATIVE_INFINITY'),
+        symbo('Number', 'POSITIVE_INFINITY'),
+        symbo('Number', 'MAX_SAFE_INTEGER'),
+        symbo('Number', 'MIN_SAFE_INTEGER'),
+      ].includes(node.name), true, node);
       break;
     }
 

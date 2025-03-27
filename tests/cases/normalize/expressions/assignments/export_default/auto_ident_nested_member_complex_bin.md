@@ -77,6 +77,7 @@ $( 7, a, d, 3, 4 );
 ## Todos triggered
 
 
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
 - (todo) free with zero args, we can eliminate this?
 
 

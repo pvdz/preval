@@ -37,7 +37,8 @@ $(a()[1]);
 `````js filename=intro
 const a /*:array*/ = [1, 2, 3];
 $(a);
-$(2);
+const tmpCalleeParam$1 /*:primitive*/ = a[1];
+$(tmpCalleeParam$1);
 `````
 
 
@@ -45,8 +46,9 @@ $(2);
 (This ought to be the final result)
 
 `````js filename=intro
-$([1, 2, 3]);
-$(2);
+const a = [1, 2, 3];
+$(a);
+$(a[1]);
 `````
 
 
@@ -56,7 +58,8 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3 ];
 $( a );
-$( 2 );
+const b = a[ 1 ];
+$( b );
 `````
 
 

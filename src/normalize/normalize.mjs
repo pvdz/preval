@@ -6734,7 +6734,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               ++hasSpread;
               if (AST.isComplexNode(pnode.argument)) spreadComplex = true;
             }
-          } else {
+          }
+          else {
             hasNonSpread = true;
 
             if (pnode.computed && AST.isProperIdent(pnode.key, true)) {
@@ -6894,15 +6895,18 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               if (AST.isComplexNode(pnode.argument)) last = i;
             }
             else if (pnode.kind !== 'init' || pnode.method) {
-              // Ignore. Declaring a function has no observable side effects.
+              // Declaring a method-function has no observable side effects. Unless it's a computed key.
+              if (pnode.computed && AST.isComplexNode(pnode.key)) {
+                last = i;
+              }
             }
             else if ((pnode.computed && AST.isComplexNode(pnode.key)) || AST.isComplexNode(pnode.value)) {
               last = i;
             }
-            else if (pnode.computed && AST.isNumberLiteral(pnode.key)) {
-              // Ignore this. We normalize numbers/strings to computed keys.
-              // (String literals become idents when they would be valid as such)
-            }
+            //else if (pnode.computed && AST.isNumberLiteral(pnode.key)) {
+            //  // Ignore this. We normalize numbers/strings to computed keys.
+            //  // (String literals become idents when they would be valid as such)
+            //}
           });
 
           if (last >= 0) {
@@ -6919,17 +6923,27 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 const tmpName = createFreshVar('tmpObjSpread', fdata);
                 newNodes.push(AST.varStatement('const', tmpName, pnode.argument));
                 newProps.push(AST.spreadElement(tmpName));
-              } else if (pnode.kind !== 'init' || pnode.method) {
-                // Copy getters/setters and methods as is. There's no alternative for them. Maybe methods.
-                newProps.push(pnode);
-              } else if (pnode.computed) {
+              }
+              else if (pnode.kind !== 'init' || pnode.method) {
+                if (pnode.computed && AST.isComplexNode(pnode.key)) {
+                  // Must cache the property key but not the value because methods have a bit of magic
+                  const tmpNameKey = createFreshVar('tmpObjLitPropKey', fdata);
+                  newNodes.push(AST.varStatement('const', tmpNameKey, pnode.key));
+                  newProps.push(AST.property(tmpNameKey, pnode.value, false, true, pnode.kind, pnode.method));
+                } else {
+                  // Copy getters/setters and methods as is. There's no alternative for them. Maybe methods.
+                  newProps.push(pnode);
+                }
+              }
+              else if (pnode.computed) {
                 // Must also cache the computed property keys
                 const tmpNameKey = createFreshVar('tmpObjLitPropKey', fdata);
                 const tmpNameVal = createFreshVar('tmpObjLitPropVal', fdata);
                 newNodes.push(AST.varStatement('const', tmpNameKey, pnode.key));
                 newNodes.push(AST.varStatement('const', tmpNameVal, pnode.value));
                 newProps.push(AST.property(tmpNameKey, tmpNameVal, false, true));
-              } else {
+              }
+              else {
                 const tmpName = createFreshVar('tmpObjLitVal', fdata);
                 newNodes.push(AST.varStatement('const', tmpName, pnode.value));
                 newProps.push(AST.property(pnode.key, tmpName, false, false));

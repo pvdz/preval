@@ -24,7 +24,8 @@ $(arr.length);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const arr /*:array*/ = [1, 2, 3];
 $array_splice.call(arr, tmpCalleeParam$1, 2, 10, 20);
-$(3);
+const tmpCalleeParam$3 /*:number*/ = arr.length;
+$(tmpCalleeParam$3);
 `````
 
 
@@ -33,8 +34,9 @@ $(3);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-$array_splice.call([1, 2, 3], tmpCalleeParam$1, 2, 10, 20);
-$(3);
+const arr = [1, 2, 3];
+$array_splice.call(arr, tmpCalleeParam$1, 2, 10, 20);
+$(arr.length);
 `````
 
 
@@ -45,7 +47,8 @@ With rename=true
 const a = $( 1 );
 const b = [ 1, 2, 3 ];
 $array_splice.call( b, a, 2, 10, 20 );
-$( 3 );
+const c = b.length;
+$( c );
 `````
 
 

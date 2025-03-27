@@ -6,7 +6,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
-import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
+import { SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
 import { symbo } from '../symbols_builtins.mjs';
 
 export function objlitPropAccess(fdata) {
@@ -74,7 +74,7 @@ function _objlitPropAccess(fdata) {
         } else if (ref.kind === 'assign') {
           rhs = ref.parentNode.right;
         } else {
-          vlog('Not a var or assign');
+          vlog('Not a var or assign;', ref.parentNode.type);
           return;
         }
 
@@ -697,26 +697,72 @@ function _objlitPropAccess(fdata) {
 function onlyFreeVarDeclsBetween(a, b, body) {
   // The goal of this function is to determine if any statement between
   // two given indices could potentially trigger a spy or not.
+  // More specifically; we want to know if anything might mutate an object.
+  //
   // If we expand this later we must ensure that abrupt completions,
   // loops, or try/catch blocks don't mess up certain assumptions.
 
   // Starting _after_ index a, check if up-to-but-not-including index b there are only
   // var decls with inits we know can't trigger spies for the sake of declaring them.
 
-  ASSERT(a<b && b<body.length, 'caller should ensure this', a, b, body.length);
+  ASSERT(a>=0 && a<b && b<body.length, 'caller should ensure bounds 0<=a<b<body.len', a, b, body.length);
   for (let i=a+1; i<b-1; ++i) {
-    if (body[i]?.type !== 'VarStatement') return false;
-    switch (body[i].init.type) {
-      case 'FunctionExpression':
-      case 'Literal':
-      case 'ObjectExpression': // Note: in a normalized world, objlits cannot have side effects, right?
-      case 'ArrayExpression': // Note: likewise, arrays can only have simple elements, right?
-      {
-        // ok
+    switch (body[i].type) {
+      case 'VarStatement': {
+        switch (body[i].init.type) {
+          case 'FunctionExpression': {
+            // ok
+            break;
+          }
+
+          case 'Literal': {
+            // ok
+            break;
+          }
+
+          case 'ObjectExpression': {
+            // Most of the time this is fine. Potential issue:
+            // - computed keys, coerced to string, triggering a spy
+            // - spread may trigger spy
+            const objNode = body[i].init;
+            if (!objNode.properties.every(pnode => {
+              // Computed keys get coerced to string, this can spy
+              // Spread values can spy, trigger getters/iterators
+              return !(pnode.type === 'SpreadElement' || pnode.computed);
+            })) {
+              return false;
+            }
+            break;
+          }
+
+          case 'ArrayExpression': {
+            // Most of the time this is fine. Potential issue:
+            // - spread may trigger spy
+            const arrNode = body[i].init;
+            if (!arrNode.elements.every(enode => !enode || enode.type !== 'SpreadElement')) {
+              // A spread can trigger a spy with a custom iterator
+              return false;
+            }
+
+            break;
+          }
+
+          case 'CallExpression': {
+            if (body[i].init.callee.type === 'Identifier' && body[i].init.callee.name === SYMBOL_FRFR) {
+              // ok
+              break;
+            }
+            return false;
+          }
+          default: {
+            // unknown init. maybe it spies?
+            return false;
+          }
+        }
         break;
       }
       default: {
-        // not ok.
+        // unknown statement. maybe it spies?
         return false;
       }
     }

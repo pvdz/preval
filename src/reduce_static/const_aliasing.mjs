@@ -23,6 +23,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { ASSUME_BUILTINS } from '../constants.mjs';
+import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function constAliasing(fdata) {
   group('\n\n\nSearching for two const values that get assigned to each other\n');
@@ -202,6 +203,11 @@ function _constAliasing(fdata) {
           }
         })) {
           return und;
+        }
+
+        if (expr.callee.type === 'Identifier' && expr.callee.name === SYMBOL_FRFR) {
+          // We know $frf can't spy and it should not change global vars so this call should be safe to ignore.
+          return INVIS;
         }
 
         // Cannot risk side effects

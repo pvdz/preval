@@ -1,19 +1,14 @@
 # Preval test case
 
-# escape.md
-
-> Array > Static props > Escape
->
-> Getting the length of an array can be tricky, and sometimes be done
-
-Since anything can happen to an array when it escapes into a black hole, we must consider the array dirty.
+# array_closure_access.md
 
 ## Input
 
 `````js filename=intro
-const arr = [1, 2, 3];
-$(arr); // "escaped"
-$(arr.length);
+const a /*:array*/ = [1, 2, 3];
+$(a);                                           // <-- this may change the array!
+const tmpCalleeParam$1 /*:primitive*/ = a[1];   // <-- so this cannot be safely inlined
+$(tmpCalleeParam$1);
 `````
 
 
@@ -21,10 +16,10 @@ $(arr.length);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-$(arr);
-const tmpCalleeParam /*:number*/ = arr.length;
-$(tmpCalleeParam);
+const a /*:array*/ = [1, 2, 3];
+$(a);
+const tmpCalleeParam$1 /*:primitive*/ = a[1];
+$(tmpCalleeParam$1);
 `````
 
 
@@ -32,9 +27,9 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const arr = [1, 2, 3];
-$(arr);
-$(arr.length);
+const a = [1, 2, 3];
+$(a);
+$(a[1]);
 `````
 
 
@@ -44,7 +39,7 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3 ];
 $( a );
-const b = a.length;
+const b = a[ 1 ];
 $( b );
 `````
 
@@ -66,7 +61,7 @@ None
 
 Should call `$` with:
  - 1: [1, 2, 3]
- - 2: 3
+ - 2: 2
  - eval returned: undefined
 
 Pre normalization calls: Same

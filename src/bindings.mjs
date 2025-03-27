@@ -2150,10 +2150,8 @@ export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties 
   ASSERT(meta, 'should receive a meta...');
   vgroup(
     'mayBindingMutateBetweenRefs(checking if  `' + (typeof meta === 'string' ? meta : meta.uniqueName) + '` , was mutated between',
-    ref1.action + ':' + ref1.kind,
-    ', and ',
-    ref2.action + ':' + ref2.kind,
-    ', including props?',
+    ref1.action + ':' + ref1.kind, '(', ref1.parentIndex, '), and ',
+    ref2.action + ':' + ref2.kind, '(', ref2.parentIndex, '), including props?',
     includeProperties,
     ')',
   );
@@ -2171,7 +2169,8 @@ export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties 
     return r;
   }
 
-  if (meta.isConstant || meta.isBuiltin) {
+  // Even if constant, we have to check it when we also check for property mutation. I don't think that's true for builtins...?
+  if ((meta.isConstant && !includeProperties) || meta.isBuiltin) {
     // This binding can not be mutated at all.
     vlog('Result: Constants and builtins wont be mutated');
     vgroupEnd();
@@ -2256,7 +2255,6 @@ function _mayBindingMutateBetweenRefs(metaName, prev, curr, includeProperties, s
 
       if (nodeMightMutateNameUntrapped([next], metaName, includeProperties, singleScope).state === MUTATES) {
         vlog('Has observable side effects. bailing');
-        source(next);
         vgroupEnd(); // inner loop
         vgroupEnd(); // outer loop
         return true;
@@ -2343,7 +2341,8 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
           return;
         }
       }
-    } else if (node.type === 'VariableDeclaration') {
+    }
+    else if (node.type === 'VariableDeclaration') {
       ASSERT(node.declarations[0].id.name !== metaName, 'right?');
       const init = node.declarations[0].init;
 
@@ -2351,7 +2350,17 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
         mutates = true;
         return;
       }
-    } else if (node.type === 'IfStatement') {
+    }
+    else if (node.type === 'VarStatement') {
+      ASSERT(node.id.name !== metaName, 'right?');
+      const init = node.init;
+
+      if (exprNodeMightMutateNameUntrapped(init, singleScope, includeProperties)) {
+        mutates = true;
+        return;
+      }
+    }
+    else if (node.type === 'IfStatement') {
       // This branch is untrapped so;
       // - If at least one branch mutates without completing, the whole `if` mutates. Return immediately.
       // - Else, each branch that continues/breaks has its label set added to this one, state set to LABELS
@@ -2397,7 +2406,8 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
           }
         }
       }
-    } else if (['ForInStatement', 'ForOfStatement'].includes(node.type)) {
+    }
+    else if (['ForInStatement', 'ForOfStatement'].includes(node.type)) {
       if (node.left.type === 'Identifier' && node.left.name === metaName) {
         mutates = true;
         vlog('The `for` mutates because it has the name to the lhs');
@@ -2424,7 +2434,8 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
           vlog('The `for` ends with NONE...');
         }
       }
-    } else if (node.type === 'WhileStatement') {
+    }
+    else if (node.type === 'WhileStatement') {
       const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName, includeProperties, singleScope);
       if (a === MUTATES) {
         mutates = true;
@@ -2445,7 +2456,8 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
       } else {
         vlog('The `while` ends with NONE...');
       }
-    } else if (node.type === 'LabeledStatement') {
+    }
+    else if (node.type === 'LabeledStatement') {
       const { state: a, labels: labels } = nodeMightMutateNameUntrapped([node.body], metaName, includeProperties, singleScope);
       if (a === MUTATES) {
         mutates = true;
@@ -2467,11 +2479,13 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
       } else {
         vlog('The label ends with NONE...');
       }
-    } else if (node.type === 'ReturnStatement') {
+    }
+    else if (node.type === 'ReturnStatement') {
       state = COMPLETES;
       vlog('Return statement overrides any other state');
       return true;
-    } else if (['ContinueStatement', 'BreakStatement'].includes(node.type)) {
+    }
+    else if (['ContinueStatement', 'BreakStatement'].includes(node.type)) {
       vlog('A continue or break will LABELS if the previous nodes mutates');
       if (mutates) {
         vlog('- previous nodes mutated so adding', node.label?.name || '', 'to the label set');
@@ -2480,11 +2494,13 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
       }
       state = LABELS;
       return true;
-    } else if (node.type === 'ThrowStatement') {
+    }
+    else if (node.type === 'ThrowStatement') {
       vlog('A throw overrides any other state');
       state = COMPLETES;
       return true;
-    } else if (node.type === 'TryStatement') {
+    }
+    else if (node.type === 'TryStatement') {
       vlog('Try statement. Just checking whether it writes to the binding at all anywhere');
 
       // Doing puristic mutation analysis with the try statement is a nightmare of surprisingly high complexity. So we won't.
@@ -2500,8 +2516,16 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
         vlog('- it does. The try mutates');
         mutates = true;
       }
-    } else {
-      vlog('Ehhh. Considering NONE');
+    }
+    else if (node.type === 'EmptyStatement') {
+
+    }
+    else if (node.type === 'DebuggerStatement') {
+
+    }
+    else {
+      vlog('Ehhh. Considering NONE;', node.type);
+      todo(`nodeMightMutateNameUntrapped; Which statement are we missing here? ${node.type}`)
     }
   });
   vgroupEnd();
@@ -2513,7 +2537,9 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
   ASSERT(false);
 }
 function exprNodeMightMutateNameUntrapped(expr, singleScope, includeProperties) {
-  if (singleScope) {
+  vlog('exprNodeMightMutateNameUntrapped', expr.type);
+  if (singleScope && !includeProperties // TODO: make sure includedproperties should or should not be checked
+  ) {
     vlog(
       'A normalized non-assignment expression should not be able to mutate a binding directly so this should not mutate a single scope binding',
     );
@@ -2524,9 +2550,11 @@ function exprNodeMightMutateNameUntrapped(expr, singleScope, includeProperties) 
   if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
     // Can not cause mutation of metaName unless lhs is it, and it wasn't
     vlog('Rhs has no observable side effect');
-  } else if (expr.type === 'TemplateLiteral') {
+  }
+  else if (expr.type === 'TemplateLiteral') {
     vlog('Templates can not have observable side effects inside Preval');
-  } else if (expr.type === 'UnaryExpression') {
+  }
+  else if (expr.type === 'UnaryExpression') {
     if (includeProperties && expr.operator === 'delete') {
       // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
       vlog('Found a `delete` and explicitly requested no `delete`');
@@ -2538,30 +2566,33 @@ function exprNodeMightMutateNameUntrapped(expr, singleScope, includeProperties) 
       vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
       return true;
     }
-  } else if (expr.type === 'BinaryExpression') {
+  }
+  else if (expr.type === 'BinaryExpression') {
     if (!['===', '!==', 'in', 'instanceof'].includes(expr.operator)) {
       vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
       return true;
     } else {
       vlog('Binary expression without side effects');
     }
-  } else if (expr.type === 'ArrayExpression') {
+  }
+  else if (expr.type === 'ArrayExpression') {
     // Note: elements may be elided (=> null)
-    if (expr.elements.every((enode) => enode && enode.type !== 'SpreadElement')) {
+    if (expr.elements.some((enode) => enode && enode.type !== 'SpreadElement')) {
       vlog('Array literal with spread elements might mutate something as a side effect');
     } else {
       vlog('Array literal without spread elements cannot mutate anything');
     }
-  } else if (expr.type === 'ObjectLiteral') {
-    if (expr.properties.every((pnode) => pnode.type !== 'SpreadElement')) {
-      vlog('Object literal with spread elements might mutate something as a side effect');
+  }
+  else if (expr.type === 'ObjectExpression') {
+    if (expr.properties.some((pnode) => pnode.type === 'SpreadElement' || pnode.computed)) {
+      vlog('Object literal with spread elements or computed props might mutate something as a side effect');
     } else {
-      vlog('Object literal without spread elements cannot mutate anything');
+      vlog('Object literal without spread elements or computed props cannot mutate anything');
     }
-  } else {
+  }
+  else {
     // TemplateLiteral
-    // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
-    vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
+    vlog('The rhs of an assignment may have side effects that is able to cause a mutation;', expr.type);
     return true;
   }
   return false;

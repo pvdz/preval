@@ -30,7 +30,12 @@ if (f) {
 `````js filename=intro
 const a /*:array*/ = [1];
 $(a);
-$(a, a, 0, 1, 1, true);
+const e /*:primitive*/ = a[0];
+const f /*:boolean*/ = e < 10;
+if (f) {
+  $(a, a, 0, 1, e, true);
+} else {
+}
 `````
 
 
@@ -40,7 +45,10 @@ $(a, a, 0, 1, 1, true);
 `````js filename=intro
 const a = [1];
 $(a);
-$(a, a, 0, 1, 1, true);
+const e = a[0];
+if (e < 10) {
+  $(a, a, 0, 1, e, true);
+}
 `````
 
 
@@ -50,7 +58,11 @@ With rename=true
 `````js filename=intro
 const a = [ 1 ];
 $( a );
-$( a, a, 0, 1, 1, true );
+const b = a[ 0 ];
+const c = b < 10;
+if (c) {
+  $( a, a, 0, 1, b, true );
+}
 `````
 
 

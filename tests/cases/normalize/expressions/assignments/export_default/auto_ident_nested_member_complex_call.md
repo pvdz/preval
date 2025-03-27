@@ -79,7 +79,7 @@ $( g, a, d, 3 );
 ## Todos triggered
 
 
-None
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
 
 
 ## Globals

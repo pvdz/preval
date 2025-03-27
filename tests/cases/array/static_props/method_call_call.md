@@ -25,7 +25,8 @@ $(arr.length);
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 $array_splice.call(arr, 1, 2, 10, 20);
-$(3);
+const tmpCalleeParam /*:number*/ = arr.length;
+$(tmpCalleeParam);
 `````
 
 
@@ -33,8 +34,9 @@ $(3);
 (This ought to be the final result)
 
 `````js filename=intro
-$array_splice.call([1, 2, 3], 1, 2, 10, 20);
-$(3);
+const arr = [1, 2, 3];
+$array_splice.call(arr, 1, 2, 10, 20);
+$(arr.length);
 `````
 
 
@@ -44,7 +46,8 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3 ];
 $array_splice.call( a, 1, 2, 10, 20 );
-$( 3 );
+const b = a.length;
+$( b );
 `````
 
 

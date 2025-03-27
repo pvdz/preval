@@ -21,6 +21,8 @@ Error.stackTraceLimit = Infinity;
 
 console.time('Total ./p time');
 
+let lastStartedFile; // Filename for crash report
+
 const CONFIG = parseTestArgs();
 if (isMainThread) {
   console.log(CONFIG);
@@ -140,7 +142,7 @@ let badFinal = 0; // evaluation of final output does not match input
 try {
   testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
 } catch (e) {
-  console.log(RED + 'At least one test crashed hard.' + RESET);
+  console.log(RED + `At least one test crashed hard (${lastStartedFile})`  + RESET);
   // If you're not seeing a stack trace then it's probably happening in preval. Enable next line:
   console.log(e);
 }
@@ -164,11 +166,11 @@ if (isMainThread) {
   }
   console.timeEnd('Total ./p time');
 }
-
 function runTestCase(
   { md, mdHead, mdOptions, mdChunks, fname, sname = fname.slice(PROJECT_ROOT_DIR.length + 1), fin, withOutput = false, ...other },
   relativeCaseIndex,
 ) {
+  lastStartedFile = fname;
   const caseIndex = workerOffset + relativeCaseIndex;
   if (JSON.stringify(other) !== '{}') {
     console.log('received these unexpected args:', other);

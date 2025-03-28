@@ -42,7 +42,7 @@ const f /*:()=>unknown*/ = function () {
   return tmpReturnArg;
 };
 const tmpCalleeParam$1 /*:object*/ = { x: 100 };
-const tmpCalleeParam /*:unknown*/ = f.call(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = $dotCall($function_call, f, `call`, tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
@@ -55,7 +55,7 @@ const f = function () {
   const tmpReturnArg = this.x;
   return tmpReturnArg;
 };
-$(f.call({ x: 100 }));
+$($dotCall($function_call, f, `call`, { x: 100 }));
 `````
 
 
@@ -70,7 +70,7 @@ const a = function() {
   return c;
 };
 const d = { x: 100 };
-const e = a.call( d );
+const e = $dotCall( $function_call, a, "call", d );
 $( e );
 `````
 
@@ -78,7 +78,7 @@ $( e );
 ## Todos triggered
 
 
-None
+- (todo) Missed opportunity to inline a type tracked trick for $function_call
 
 
 ## Globals

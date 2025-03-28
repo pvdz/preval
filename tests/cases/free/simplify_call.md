@@ -51,11 +51,11 @@ try {
   if (tmpIfTest) {
   } else {
     const tmpCalleeParam$5 /*:unknown*/ = _0xb34c4b.shift();
-    _0xb34c4b.push(tmpCalleeParam$5);
+    $dotCall($array_push, _0xb34c4b, `push`, tmpCalleeParam$5);
   }
 } catch (_0xa7aced$11) {
   const tmpCalleeParam$7 /*:unknown*/ = _0xb34c4b.shift();
-  _0xb34c4b.push(tmpCalleeParam$7);
+  $dotCall($array_push, _0xb34c4b, `push`, tmpCalleeParam$7);
 }
 $(`thend`);
 `````
@@ -73,10 +73,10 @@ const tmpFree$21 = function $free(tmpUnaryArg$489) {
 const _0xb34c4b = [`a`, `b`];
 try {
   if (!$frfr(tmpFree$21, parseInt($(824)))) {
-    _0xb34c4b.push(_0xb34c4b.shift());
+    $dotCall($array_push, _0xb34c4b, `push`, _0xb34c4b.shift());
   }
 } catch (_0xa7aced$11) {
-  _0xb34c4b.push(_0xb34c4b.shift());
+  $dotCall($array_push, _0xb34c4b, `push`, _0xb34c4b.shift());
 }
 $(`thend`);
 `````
@@ -103,12 +103,12 @@ try {
   }
   else {
     const k = f.shift();
-    f.push( k );
+    $dotCall( $array_push, f, "push", k );
   }
 }
 catch (l) {
   const m = f.shift();
-  f.push( m );
+  $dotCall( $array_push, f, "push", m );
 }
 $( "thend" );
 `````
@@ -117,7 +117,7 @@ $( "thend" );
 ## Todos triggered
 
 
-None
+- (todo) Missed opportunity to inline a type tracked trick for $array_push
 
 
 ## Globals

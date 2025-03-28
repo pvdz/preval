@@ -33,7 +33,7 @@ const f /*:(unknown)=>primitive*/ = function ($$0) {
   return tmpReturnArg;
 };
 const pre /*:array*/ = [1, 2, 3];
-const arr /*:array*/ = pre.map(f);
+const arr /*:unknown*/ = $dotCall($array_map, pre, `map`, f);
 $(arr);
 `````
 
@@ -47,7 +47,7 @@ const f = function (item) {
   const tmpReturnArg = item + 1;
   return tmpReturnArg;
 };
-$([1, 2, 3].map(f));
+$($dotCall($array_map, [1, 2, 3], `map`, f));
 `````
 
 
@@ -63,7 +63,7 @@ const a = function($$0 ) {
   return c;
 };
 const d = [ 1, 2, 3 ];
-const e = d.map( a );
+const e = $dotCall( $array_map, d, "map", a );
 $( e );
 `````
 
@@ -71,7 +71,7 @@ $( e );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $array_map
+- (todo) Missed opportunity to inline a type tracked trick for $array_map
 
 
 ## Globals

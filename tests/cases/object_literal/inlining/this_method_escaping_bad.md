@@ -40,8 +40,9 @@ const tmpObjLitVal$1 /*:()=>unknown*/ = function () {
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.f;
     $(`once`);
+    const tmpCallVal /*:unknown*/ = tmpCalleeParam$1.call;
     const tmpCalleeParam /*:object*/ = { f: 1, x: `burn` };
-    tmpCalleeParam$1.call(tmpCalleeParam);
+    $dotCall(tmpCallVal, tmpCalleeParam$1, `call`, tmpCalleeParam);
     const tmpCalleeParam$3 /*:unknown*/ = tmpPrevalAliasThis.x;
     $(tmpCalleeParam$3);
     return `win`;
@@ -90,22 +91,23 @@ const a = function() {
   else {
     const f = b.f;
     $( "once" );
-    const g = {
+    const g = f.call;
+    const h = {
       f: 1,
       x: "burn",
     };
-    f.call( g );
-    const h = b.x;
-    $( h );
+    $dotCall( g, f, "call", h );
+    const i = b.x;
+    $( i );
     return "win";
   }
 };
-const i = {
+const j = {
   x: "pass",
   f: a,
 };
-const j = i.f();
-$( j );
+const k = j.f();
+$( k );
 `````
 
 

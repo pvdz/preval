@@ -148,11 +148,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       break;
     } else {
       const tmpCalleeParam$11 /*:unknown*/ = arr.shift();
-      arr.push(tmpCalleeParam$11);
+      $dotCall($array_push, arr, `push`, tmpCalleeParam$11);
     }
   } catch (_0x4f54af$22) {
     const tmpCalleeParam$13 /*:unknown*/ = arr.shift();
-    arr.push(tmpCalleeParam$13);
+    $dotCall($array_push, arr, `push`, tmpCalleeParam$13);
   }
 }
 $(arr);
@@ -224,10 +224,10 @@ while (true) {
     if (parseInt(alias2(457))) {
       break;
     } else {
-      arr.push(arr.shift());
+      $dotCall($array_push, arr, `push`, arr.shift());
     }
   } catch (_0x4f54af$22) {
-    arr.push(arr.shift());
+    $dotCall($array_push, arr, `push`, arr.shift());
   }
 }
 $(arr);
@@ -274,12 +274,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
     else {
       const q = a.shift();
-      a.push( q );
+      $dotCall( $array_push, a, "push", q );
     }
   }
   catch (r) {
     const s = a.shift();
-    a.push( s );
+    $dotCall( $array_push, a, "push", s );
   }
 }
 $( a );
@@ -289,6 +289,7 @@ $( a );
 ## Todos triggered
 
 
+- (todo) Missed opportunity to inline a type tracked trick for $array_push
 - (todo) processArrayWriteReadImmutableBinding slow path
 - (todo) can we support this const aliasing blocking statement? WhileStatement
 

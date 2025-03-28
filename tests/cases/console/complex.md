@@ -18,7 +18,7 @@ console.log(['console tet case']);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`console tet case`];
-console.log(tmpCalleeParam);
+$dotCall($console_log, console, `log`, tmpCalleeParam);
 `````
 
 
@@ -26,7 +26,7 @@ console.log(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-console.log([`console tet case`]);
+$dotCall($console_log, console, `log`, [`console tet case`]);
 `````
 
 
@@ -35,7 +35,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "console tet case" ];
-console.log( a );
+$dotCall( $console_log, console, "log", a );
 `````
 
 
@@ -61,6 +61,10 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: Same
+Post settled calls: BAD!!
+ - 1: 'called $console_log:', ['console tet case']
+ - eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!!
+ - 1: 'called $console_log:', ['console tet case']
+ - eval returned: undefined

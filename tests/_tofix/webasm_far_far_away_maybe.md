@@ -44,10 +44,11 @@ const c /*:()=>unknown*/ = function () {
   const tmpCallObj$1 /*:unknown*/ = WebAssembly;
   const tmpCallVal /*:unknown*/ = tmpCallObj$1.instantiate;
   const tmpNewCallee /*:unknown*/ = Int8Array;
-  const tmpCallObj$3 /*:array*/ = [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`];
-  const tmpClusterSSA_b /*:array*/ = tmpCallObj$3.flatMap(tmpCalleeParam$5);
-  const tmpBinLhs /*:number*/ = tmpClusterSSA_b.length;
-  const tmpClusterSSA_l /*:number*/ = tmpBinLhs + 4;
+  const tmpCalleeParam$7 /*:array*/ = [` `];
+  const tmpCallObj$3 /*:unknown*/ = $dotCall($string_split, `11 11 1 - + 4 * 2 /`, `split`, tmpCalleeParam$7);
+  const tmpClusterSSA_b /*:unknown*/ = tmpCallObj$3.flatMap(tmpCalleeParam$5);
+  const tmpBinLhs /*:unknown*/ = tmpClusterSSA_b.length;
+  const tmpClusterSSA_l /*:primitive*/ = tmpBinLhs + 4;
   const tmpArrElement$37 /*:number*/ = tmpClusterSSA_l - 2;
   const tmpCalleeParam$3 /*:array*/ = [
     ,
@@ -113,7 +114,7 @@ const c = function () {
   const tmpCallObj$1 = WebAssembly;
   const tmpCallVal = tmpCallObj$1.instantiate;
   const tmpNewCallee = Int8Array;
-  const tmpClusterSSA_b = [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`].flatMap(tmpCalleeParam$5);
+  const tmpClusterSSA_b = $dotCall($string_split, `11 11 1 - + 4 * 2 /`, `split`, [` `]).flatMap(tmpCalleeParam$5);
   const tmpClusterSSA_l = tmpClusterSSA_b.length + 4;
   const tmpArrElement$37 = tmpClusterSSA_l - 2;
   const tmpCalleeParam$3 = [
@@ -180,20 +181,21 @@ const g = function() {
   const h = WebAssembly;
   const i = h.instantiate;
   const j = Int8Array;
-  const k = [ "11", "11", "1", "-", "+", "4", "*", "2", "/" ];
-  const l = k.flatMap( a );
-  const m = l.length;
-  const n = m + 4;
-  const o = n - 2;
-  const p = [ ,, 97, 115, 109, 1, ,, ,, ,, 1, 5, 1, 96, ,, 1, 127, 3, 2, 1, ,, 7, 4, 1, ,, ,, ,, 10, n, 1, o, ,, ...l, 11 ];
-  const q = new j( p );
-  const r = $dotCall( i, h, "instantiate", q );
-  const s = g();
-  const t = r( s );
-  const u = t.instance;
-  const v = u.exports;
-  const w = v[ "" ]();
-  return w;
+  const k = [ " " ];
+  const l = $dotCall( $string_split, "11 11 1 - + 4 * 2 /", "split", k );
+  const m = l.flatMap( a );
+  const n = m.length;
+  const o = n + 4;
+  const p = o - 2;
+  const q = [ ,, 97, 115, 109, 1, ,, ,, ,, 1, 5, 1, 96, ,, 1, 127, 3, 2, 1, ,, 7, 4, 1, ,, ,, ,, 10, o, 1, p, ,, ...m, 11 ];
+  const r = new j( q );
+  const s = $dotCall( i, h, "instantiate", r );
+  const t = g();
+  const u = s( t );
+  const v = u.instance;
+  const w = v.exports;
+  const x = w[ "" ]();
+  return x;
 };
 `````
 
@@ -201,7 +203,7 @@ const g = function() {
 ## Todos triggered
 
 
-- (todo) support $array_flatmap with arguments?
+- (todo) Missed opportunity to inline a type tracked trick for $string_split
 
 
 ## Globals

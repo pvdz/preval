@@ -24,8 +24,7 @@ $(bool);
 const tmpStringFirstArg /*:unknown*/ = $spy();
 const str /*:string*/ = $coerce(tmpStringFirstArg, `string`);
 const tmpCalleeParam /*:unknown*/ = $spy();
-const tmpttr /*:string*/ = $coerce(tmpCalleeParam, `string`);
-const bool /*:boolean*/ = str.includes(tmpttr);
+const bool /*:unknown*/ = $dotCall($string_includes, str, `includes`, tmpCalleeParam);
 $(bool);
 `````
 
@@ -35,7 +34,7 @@ $(bool);
 
 `````js filename=intro
 const str = $coerce($spy(), `string`);
-$(str.includes($coerce($spy(), `string`)));
+$($dotCall($string_includes, str, `includes`, $spy()));
 `````
 
 
@@ -46,16 +45,15 @@ With rename=true
 const a = $spy();
 const b = $coerce( a, "string" );
 const c = $spy();
-const d = $coerce( c, "string" );
-const e = b.includes( d );
-$( e );
+const d = $dotCall( $string_includes, b, "includes", c );
+$( d );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) Missed opportunity to inline a type tracked trick for $string_includes
 
 
 ## Globals

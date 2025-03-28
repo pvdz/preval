@@ -19,7 +19,8 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [2, 1];
+const arr /*:array*/ = [2];
+$dotCall($array_push, arr, `push`, 1);
 $(arr);
 `````
 
@@ -28,7 +29,9 @@ $(arr);
 (This ought to be the final result)
 
 `````js filename=intro
-$([2, 1]);
+const arr = [2];
+$dotCall($array_push, arr, `push`, 1);
+$(arr);
 `````
 
 
@@ -36,7 +39,8 @@ $([2, 1]);
 With rename=true
 
 `````js filename=intro
-const a = [ 2, 1 ];
+const a = [ 2 ];
+$dotCall( $array_push, a, "push", 1 );
 $( a );
 `````
 
@@ -44,7 +48,7 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) Missed opportunity to inline a type tracked trick for $array_push
 
 
 ## Globals

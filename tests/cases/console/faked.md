@@ -28,15 +28,15 @@ $dotCall($console_groupEnd, console, 'groupEnd', 'a', 'b', ...c);
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2, 3, `consle test case`];
 $(tmpCalleeParam);
-console.log(`a`, `b`, ...c);
-console.warn(`a`, `b`, ...c);
-console.error(`a`, `b`, ...c);
-console.dir(`a`, `b`, ...c);
-console.debug(`a`, `b`, ...c);
-console.time(`a`, `b`, ...c);
-console.timeEnd(`a`, `b`, ...c);
-console.group(`a`, `b`, ...c);
-console.groupEnd(`a`, `b`, ...c);
+$dotCall($console_log, console, `log`, `a`, `b`, ...c);
+$dotCall($console_warn, console, `warn`, `a`, `b`, ...c);
+$dotCall($console_error, console, `error`, `a`, `b`, ...c);
+$dotCall($console_dir, console, `dir`, `a`, `b`, ...c);
+$dotCall($console_debug, console, `debug`, `a`, `b`, ...c);
+$dotCall($console_time, console, `time`, `a`, `b`, ...c);
+$dotCall($console_timeEnd, console, `timeEnd`, `a`, `b`, ...c);
+$dotCall($console_group, console, `group`, `a`, `b`, ...c);
+$dotCall($console_groupEnd, console, `groupEnd`, `a`, `b`, ...c);
 `````
 
 
@@ -45,15 +45,15 @@ console.groupEnd(`a`, `b`, ...c);
 
 `````js filename=intro
 $([1, 2, 3, `consle test case`]);
-console.log(`a`, `b`, ...c);
-console.warn(`a`, `b`, ...c);
-console.error(`a`, `b`, ...c);
-console.dir(`a`, `b`, ...c);
-console.debug(`a`, `b`, ...c);
-console.time(`a`, `b`, ...c);
-console.timeEnd(`a`, `b`, ...c);
-console.group(`a`, `b`, ...c);
-console.groupEnd(`a`, `b`, ...c);
+$dotCall($console_log, console, `log`, `a`, `b`, ...c);
+$dotCall($console_warn, console, `warn`, `a`, `b`, ...c);
+$dotCall($console_error, console, `error`, `a`, `b`, ...c);
+$dotCall($console_dir, console, `dir`, `a`, `b`, ...c);
+$dotCall($console_debug, console, `debug`, `a`, `b`, ...c);
+$dotCall($console_time, console, `time`, `a`, `b`, ...c);
+$dotCall($console_timeEnd, console, `timeEnd`, `a`, `b`, ...c);
+$dotCall($console_group, console, `group`, `a`, `b`, ...c);
+$dotCall($console_groupEnd, console, `groupEnd`, `a`, `b`, ...c);
 `````
 
 
@@ -63,15 +63,15 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3, "consle test case" ];
 $( a );
-console.log( "a", "b", ...c );
-console.warn( "a", "b", ...c );
-console.error( "a", "b", ...c );
-console.dir( "a", "b", ...c );
-console.debug( "a", "b", ...c );
-console.time( "a", "b", ...c );
-console.timeEnd( "a", "b", ...c );
-console.group( "a", "b", ...c );
-console.groupEnd( "a", "b", ...c );
+$dotCall( $console_log, console, "log", "a", "b", ...c );
+$dotCall( $console_warn, console, "warn", "a", "b", ...c );
+$dotCall( $console_error, console, "error", "a", "b", ...c );
+$dotCall( $console_dir, console, "dir", "a", "b", ...c );
+$dotCall( $console_debug, console, "debug", "a", "b", ...c );
+$dotCall( $console_time, console, "time", "a", "b", ...c );
+$dotCall( $console_timeEnd, console, "timeEnd", "a", "b", ...c );
+$dotCall( $console_group, console, "group", "a", "b", ...c );
+$dotCall( $console_groupEnd, console, "groupEnd", "a", "b", ...c );
 `````
 
 

@@ -23,8 +23,9 @@ if (stuff) {
 
 `````js filename=intro
 const cook /*:unknown*/ = document.cookie;
+const tmpCallVal /*:unknown*/ = cook.match;
 const tmpCalleeParam /*:regex*/ = /x/;
-const stuff /*:unknown*/ = cook.match(tmpCalleeParam);
+const stuff /*:unknown*/ = $dotCall(tmpCallVal, cook, `match`, tmpCalleeParam);
 if (stuff) {
   const tmpCalleeParam$1 /*:unknown*/ = stuff[1];
   const deco /*:string*/ = decodeURIComponent(tmpCalleeParam$1);
@@ -38,7 +39,8 @@ if (stuff) {
 (This ought to be the final result)
 
 `````js filename=intro
-const stuff = document.cookie.match(/x/);
+const cook = document.cookie;
+const stuff = cook.match(/x/);
 if (stuff) {
   unknown = decodeURIComponent(stuff[1]);
 }
@@ -50,12 +52,13 @@ With rename=true
 
 `````js filename=intro
 const a = document.cookie;
-const b = /x/;
-const c = a.match( b );
-if (c) {
-  const d = c[ 1 ];
-  const e = decodeURIComponent( d );
-  unknown = e;
+const b = a.match;
+const c = /x/;
+const d = $dotCall( b, a, "match", c );
+if (d) {
+  const e = d[ 1 ];
+  const f = decodeURIComponent( e );
+  unknown = f;
 }
 `````
 

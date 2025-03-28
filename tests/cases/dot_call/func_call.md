@@ -28,7 +28,7 @@ const f /*:()=>unknown*/ = function () {
   return undefined;
 };
 const tmpCalleeParam /*:object*/ = { pass: 1 };
-f.call(tmpCalleeParam, 1, 2, 3, `yep`, $);
+$dotCall($function_call, f, `call`, tmpCalleeParam, 1, 2, 3, `yep`, $);
 `````
 
 
@@ -36,9 +36,19 @@ f.call(tmpCalleeParam, 1, 2, 3, `yep`, $);
 (This ought to be the final result)
 
 `````js filename=intro
-(function () {
-  $(this);
-}.call({ pass: 1 }, 1, 2, 3, `yep`, $));
+$dotCall(
+  $function_call,
+  function () {
+    $(this);
+  },
+  `call`,
+  { pass: 1 },
+  1,
+  2,
+  3,
+  `yep`,
+  $,
+);
 `````
 
 
@@ -53,14 +63,14 @@ const a = function() {
   return undefined;
 };
 const c = { pass: 1 };
-a.call( c, 1, 2, 3, "yep", $ );
+$dotCall( $function_call, a, "call", c, 1, 2, 3, "yep", $ );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) Missed opportunity to inline a type tracked trick for $function_call
 
 
 ## Globals

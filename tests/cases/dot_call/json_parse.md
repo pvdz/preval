@@ -37,7 +37,7 @@ const getMessages /*:(unknown)=>promise*/ = async function ($$0) {
   const tmpCompObj$1 /*:unknown*/ = l$11[0];
   const tmpCompObj /*:unknown*/ = tmpCompObj$1.dataValues;
   const tmpCalleeParam /*:unknown*/ = tmpCompObj.bucket;
-  const tmpReturnArg$13 /*:unknown*/ = $JSON_parse(tmpCalleeParam);
+  const tmpReturnArg$13 /*:unknown*/ = $dotCall($JSON_parse, JSON, `parse`, tmpCalleeParam);
   return tmpReturnArg$13;
 };
 $(getMessages);
@@ -50,7 +50,7 @@ $(getMessages);
 `````js filename=intro
 $(async function ($dlr_$$0) {
   const tmpAwaitArg = fetchFromStore($dlr_$$0);
-  const tmpReturnArg$13 = $JSON_parse(await tmpAwaitArg[0].dataValues.bucket);
+  const tmpReturnArg$13 = $dotCall($JSON_parse, JSON, `parse`, await tmpAwaitArg[0].dataValues.bucket);
   return tmpReturnArg$13;
 });
 `````
@@ -68,7 +68,7 @@ const a = async function($$0 ) {
   const e = d[ 0 ];
   const f = e.dataValues;
   const g = f.bucket;
-  const h = $JSON_parse( g );
+  const h = $dotCall( $JSON_parse, JSON, "parse", g );
   return h;
 };
 $( a );
@@ -78,9 +78,8 @@ $( a );
 ## Todos triggered
 
 
-- (todo) maybe fix the type for calling builtin $JSON_parse
 - (todo) inline async functions safely (because await)
-- (todo) type trackeed tricks can possibly support static $JSON_parse
+- (todo) Missed opportunity to inline a type tracked trick for $JSON_parse
 
 
 ## Globals

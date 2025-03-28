@@ -23,7 +23,7 @@ $(arr.length);
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const arr /*:array*/ = [1, 2, 3];
-$array_splice.call(arr, tmpCalleeParam$1, 2, 10, 20);
+$dotCall($function_call, $array_splice, `call`, arr, tmpCalleeParam$1, 2, 10, 20);
 const tmpCalleeParam$3 /*:number*/ = arr.length;
 $(tmpCalleeParam$3);
 `````
@@ -35,7 +35,7 @@ $(tmpCalleeParam$3);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const arr = [1, 2, 3];
-$array_splice.call(arr, tmpCalleeParam$1, 2, 10, 20);
+$dotCall($function_call, $array_splice, `call`, arr, tmpCalleeParam$1, 2, 10, 20);
 $(arr.length);
 `````
 
@@ -46,7 +46,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = [ 1, 2, 3 ];
-$array_splice.call( b, a, 2, 10, 20 );
+$dotCall( $function_call, $array_splice, "call", b, a, 2, 10, 20 );
 const c = b.length;
 $( c );
 `````
@@ -56,6 +56,7 @@ $( c );
 
 
 - (todo) replace with $array_splice
+- (todo) Missed opportunity to inline a type tracked trick for $function_call
 
 
 ## Globals

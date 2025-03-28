@@ -39,7 +39,7 @@ const f /*:(string, number, string, number, primitive, unknown)=>undefined*/ = f
   $(x, y, d);
   return undefined;
 };
-f(`first1`, 1, `last1`, 2, `hi`, parseInt);
+f(`first1`, 1, `last1`, 2, `hi`, $Number_parseInt);
 f(`first2`, 3, `last2`, 4, true, null);
 `````
 
@@ -54,7 +54,7 @@ const f = function (x, a, y, b, c, d) {
   $(x, y, c);
   $(x, y, d);
 };
-f(`first1`, 1, `last1`, 2, `hi`, parseInt);
+f(`first1`, 1, `last1`, 2, `hi`, $Number_parseInt);
 f(`first2`, 3, `last2`, 4, true, null);
 `````
 
@@ -77,7 +77,7 @@ const a = function($$0,$$1,$$2,$$3,$$4,$$5 ) {
   $( e, g, b );
   return undefined;
 };
-a( "first1", 1, "last1", 2, "hi", parseInt );
+a( "first1", 1, "last1", 2, "hi", $Number_parseInt );
 a( "first2", 3, "last2", 4, true, null );
 `````
 

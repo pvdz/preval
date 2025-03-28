@@ -32,7 +32,7 @@ if ($) $(g());
 `````js filename=intro
 $();
 if ($) {
-  $(-Infinity);
+  $($Number_NEGATIVE_INFINITY);
 } else {
 }
 `````
@@ -44,7 +44,7 @@ if ($) {
 `````js filename=intro
 $();
 if ($) {
-  $(-Infinity);
+  $($Number_NEGATIVE_INFINITY);
 }
 `````
 
@@ -55,7 +55,7 @@ With rename=true
 `````js filename=intro
 $();
 if ($) {
-  $( -Infinity );
+  $( $Number_NEGATIVE_INFINITY );
 }
 `````
 

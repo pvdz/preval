@@ -17,7 +17,7 @@ $(parseFloat(Infinity));
 
 
 `````js filename=intro
-$(Infinity);
+$($Number_POSITIVE_INFINITY);
 `````
 
 
@@ -25,7 +25,7 @@ $(Infinity);
 (This ought to be the final result)
 
 `````js filename=intro
-$(Infinity);
+$($Number_POSITIVE_INFINITY);
 `````
 
 
@@ -33,7 +33,7 @@ $(Infinity);
 With rename=true
 
 `````js filename=intro
-$( Infinity );
+$( $Number_POSITIVE_INFINITY );
 `````
 
 

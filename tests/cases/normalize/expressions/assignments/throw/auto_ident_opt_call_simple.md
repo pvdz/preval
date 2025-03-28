@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-let tmpThrowArg /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
+let tmpThrowArg /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
@@ -34,8 +34,9 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpIfTest = $ == null;
 let tmpThrowArg = undefined;
-if (!($ == null)) {
+if (!tmpIfTest) {
   tmpThrowArg = $(1);
 }
 throw tmpThrowArg;
@@ -46,16 +47,16 @@ throw tmpThrowArg;
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
-if (b) {
+const a = $ == null;
+let b = undefined;
+if (a) {
 
 }
 else {
   const c = $( 1 );
-  a = c;
+  b = c;
 }
-throw a;
+throw b;
 `````
 
 

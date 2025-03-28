@@ -36,13 +36,13 @@ const f /*:()=>unknown*/ = function () {
   return undefined;
 };
 f();
-$(`pass1`, 1, `two`, null, NaN, undefined);
+$(`pass1`, 1, `two`, null, $Number_NaN, undefined);
 $(undefined);
 f();
-$(`pass2`, 1, `two`, null, NaN, undefined);
+$(`pass2`, 1, `two`, null, $Number_NaN, undefined);
 $(undefined);
 f();
-$(`pass3`, 1, `two`, null, NaN, undefined);
+$(`pass3`, 1, `two`, null, $Number_NaN, undefined);
 $(undefined);
 `````
 
@@ -57,13 +57,13 @@ const f = function () {
   $(`please`);
 };
 f();
-$(`pass1`, 1, `two`, null, NaN, undefined);
+$(`pass1`, 1, `two`, null, $Number_NaN, undefined);
 $(undefined);
 f();
-$(`pass2`, 1, `two`, null, NaN, undefined);
+$(`pass2`, 1, `two`, null, $Number_NaN, undefined);
 $(undefined);
 f();
-$(`pass3`, 1, `two`, null, NaN, undefined);
+$(`pass3`, 1, `two`, null, $Number_NaN, undefined);
 $(undefined);
 `````
 
@@ -80,13 +80,13 @@ const a = function() {
   return undefined;
 };
 a();
-$( "pass1", 1, "two", null, NaN, undefined );
+$( "pass1", 1, "two", null, $Number_NaN, undefined );
 $( undefined );
 a();
-$( "pass2", 1, "two", null, NaN, undefined );
+$( "pass2", 1, "two", null, $Number_NaN, undefined );
 $( undefined );
 a();
-$( "pass3", 1, "two", null, NaN, undefined );
+$( "pass3", 1, "two", null, $Number_NaN, undefined );
 $( undefined );
 `````
 

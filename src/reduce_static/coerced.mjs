@@ -1,6 +1,6 @@
 // Find all cases of $coerce and use type information to check whether their arg is already a known primitive of any kind.
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import { getSerializableArrayParts } from '../ast.mjs';
@@ -98,20 +98,24 @@ function core(fdata) {
     }
 
     if (BUILTIN_SYMBOLS.has(argName)) {
-      // TODO: what about arrays? any other special cases?
-      rule('$coerce on a namespaced preval built-in symbol should become a string'); // kind of regardless. even if NaN later.
-      example(`$coerce(${symbo('array', 'flat')}, "plustr")`, '"function flat() { [native code] }"');
-      before(read.blockBody[read.blockIndex]);
+      const symb = BUILTIN_SYMBOLS.get(argName);
+      if (symb.typings.mustBeType === 'function') {
+        rule('$coerce on a namespaced preval built-in symbol should become a string'); // kind of regardless. even if NaN later.
+        example(`$coerce(${symbo('array', 'flat')}, "plustr")`, '"function flat() { [native code] }"');
+        before(read.blockBody[read.blockIndex]);
 
-      // Let's hope this approach works universally...
-      const prop = BUILTIN_SYMBOLS.get(argName).prop;
-      const finalNode = AST.primitive('function ' + prop + '() { [native code] }');
-      if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
-      else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+        // Let's hope this approach works universally...
+        // Kind should not matter when the input is a function
+        const finalNode = AST.primitive('function ' + symb.prop + '() { [native code] }');
+        if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+        else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
-      after(read.blockBody[read.blockIndex]);
-      ++changes;
-      return;
+        after(read.blockBody[read.blockIndex]);
+        ++changes;
+        return;
+      } else {
+        todo(`Support coercing "${argName}" to a "${kind}"`);
+      }
     }
 
     const argMeta = fdata.globallyUniqueNamingRegistry.get(argName);

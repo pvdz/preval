@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ = undefined;
-let tmpForInGen /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
+let tmpForInGen /*:unknown*/ = undefined;
 if (tmpIfTest$1) {
   tmpForInGen = $forIn(undefined);
 } else {
@@ -50,8 +50,9 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+const tmpIfTest$1 = $ == null;
 let tmpForInGen = undefined;
-if ($ == null) {
+if (tmpIfTest$1) {
   tmpForInGen = $forIn(undefined);
 } else {
   const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
@@ -75,19 +76,19 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = $ == null;
-if (c) {
-  b = $forIn( undefined );
+const b = $ == null;
+let c = undefined;
+if (b) {
+  c = $forIn( undefined );
 }
 else {
   const d = { e: $ };
   const e = $dotCall( $, d, "e", 1 );
   a = e;
-  b = $forIn( e );
+  c = $forIn( e );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = b.next();
+  const f = c.next();
   const g = f.done;
   if (g) {
     break;

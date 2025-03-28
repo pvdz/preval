@@ -30,8 +30,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     a = undefined;
-    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
     const tmpIfTest$1 /*:boolean*/ = $ == null;
+    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
     if (tmpIfTest$1) {
     } else {
       const tmpChainElementCall /*:unknown*/ = $(1);
@@ -57,8 +57,9 @@ while (true) {
     break;
   } else {
     a = undefined;
+    const tmpIfTest$1 = $ == null;
     let tmpAssignMemLhsObj = undefined;
-    if (!($ == null)) {
+    if (!tmpIfTest$1) {
       tmpAssignMemLhsObj = $(1);
     }
     tmpAssignMemLhsObj.x = tmpForInNext.value;
@@ -87,17 +88,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
   else {
     a = undefined;
-    let g = undefined;
-    const h = $ == null;
-    if (h) {
+    const g = $ == null;
+    let h = undefined;
+    if (g) {
 
     }
     else {
       const i = $( 1 );
-      g = i;
+      h = i;
     }
     const j = e.value;
-    g.x = j;
+    h.x = j;
   }
 }
 $( a );

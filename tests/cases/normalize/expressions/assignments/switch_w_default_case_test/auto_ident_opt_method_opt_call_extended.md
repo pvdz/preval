@@ -30,8 +30,8 @@ $(a);
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 let a /*:unknown*/ = undefined;
-let tmpIfTest /*:boolean*/ = false;
 const tmpIfTest$3 /*:boolean*/ = $ == null;
+let tmpIfTest /*:boolean*/ = false;
 if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
@@ -68,8 +68,9 @@ if (tmpIfTest$9) {
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let a = undefined;
+const tmpIfTest$3 = $ == null;
 let tmpIfTest = false;
-if ($ == null) {
+if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
@@ -101,18 +102,18 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 let c = undefined;
-let d = false;
-const e = $ == null;
-if (e) {
-  d = undefined === a;
+const d = $ == null;
+let e = false;
+if (d) {
+  e = undefined === a;
 }
 else {
   const f = { e: $ };
   const g = $dotCall( $, f, "e", 1 );
   c = g;
-  d = g === a;
+  e = g === a;
 }
-if (d) {
+if (e) {
   b = 0;
 }
 else {

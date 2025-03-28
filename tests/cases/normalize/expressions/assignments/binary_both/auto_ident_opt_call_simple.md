@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
@@ -44,8 +44,9 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpIfTest = $ == null;
 let tmpBinBothLhs = undefined;
-if (!($ == null)) {
+if (!tmpIfTest) {
   tmpBinBothLhs = $(1);
 }
 if ($ == null) {
@@ -63,24 +64,24 @@ if ($ == null) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
-if (b) {
+const a = $ == null;
+let b = undefined;
+if (a) {
 
 }
 else {
   const c = $( 1 );
-  a = c;
+  b = c;
 }
 const d = $ == null;
 if (d) {
-  const e = a + undefined;
+  const e = b + undefined;
   $( e );
   $( undefined );
 }
 else {
   const f = $( 1 );
-  const g = a + f;
+  const g = b + f;
   $( g );
   $( f );
 }

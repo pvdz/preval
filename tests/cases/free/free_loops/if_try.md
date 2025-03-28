@@ -129,6 +129,7 @@ $( "Qdcyq" );
 ## Todos triggered
 
 
+- (todo) should parseInts not be transformed to symbols?
 - (todo) inline computed array property read
 
 

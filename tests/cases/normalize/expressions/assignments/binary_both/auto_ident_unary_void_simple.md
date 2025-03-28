@@ -21,7 +21,7 @@ $(a, arg);
 
 
 `````js filename=intro
-$(NaN);
+$($Number_NaN);
 $(undefined, 1);
 `````
 
@@ -30,7 +30,7 @@ $(undefined, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-$(NaN);
+$($Number_NaN);
 $(undefined, 1);
 `````
 
@@ -39,7 +39,7 @@ $(undefined, 1);
 With rename=true
 
 `````js filename=intro
-$( NaN );
+$( $Number_NaN );
 $( undefined, 1 );
 `````
 

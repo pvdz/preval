@@ -19,7 +19,7 @@ $(1e1000);
 
 `````js filename=intro
 $(10000000000);
-$(Infinity);
+$($Number_POSITIVE_INFINITY);
 `````
 
 
@@ -28,7 +28,7 @@ $(Infinity);
 
 `````js filename=intro
 $(10000000000);
-$(Infinity);
+$($Number_POSITIVE_INFINITY);
 `````
 
 
@@ -37,7 +37,7 @@ With rename=true
 
 `````js filename=intro
 $( 10000000000 );
-$( Infinity );
+$( $Number_POSITIVE_INFINITY );
 `````
 
 

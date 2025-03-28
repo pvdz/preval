@@ -20,8 +20,8 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ = undefined;
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
+let tmpAnonDefaultExport /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
@@ -38,8 +38,9 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+const tmpIfTest = $ == null;
 let tmpAnonDefaultExport = undefined;
-if (!($ == null)) {
+if (!tmpIfTest) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
   tmpAnonDefaultExport = tmpChainElementCall;
@@ -54,17 +55,17 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = $ == null;
-if (c) {
+const b = $ == null;
+let c = undefined;
+if (b) {
 
 }
 else {
   const d = $( 1 );
   a = d;
-  b = d;
+  c = d;
 }
-export { b as default };
+export { c as default };
 $( a );
 `````
 

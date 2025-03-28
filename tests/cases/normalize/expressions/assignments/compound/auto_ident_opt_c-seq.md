@@ -27,8 +27,8 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
-  $(NaN);
-  $(NaN);
+  $($Number_NaN);
+  $($Number_NaN);
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
   const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementObject;
@@ -47,8 +47,8 @@ const tmpIfTest = tmpChainRootProp == null;
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
-  $(NaN);
-  $(NaN);
+  $($Number_NaN);
+  $($Number_NaN);
 } else {
   const tmpClusterSSA_a$1 = a * tmpChainRootProp.x;
   $(tmpClusterSSA_a$1);
@@ -70,8 +70,8 @@ const d = {
 };
 if (c) {
   d ** 0;
-  $( NaN );
-  $( NaN );
+  $( $Number_NaN );
+  $( $Number_NaN );
 }
 else {
   const e = b.x;

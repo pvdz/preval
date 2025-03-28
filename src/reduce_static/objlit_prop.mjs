@@ -703,7 +703,15 @@ function _objlitPropAccess(fdata) {
               switch (pnode.value.name) {
                 case 'Function':
                 case 'parseInt':
+                case symbo('Number', 'parseInt'):
                 case 'parseFloat':
+                case symbo('Number', 'parseFloat'):
+                case 'isNaN':
+                case symbo('Number', 'isNaN'):
+                case 'isFinite':
+                case symbo('Number', 'isFinite'):
+                case symbo('Number', 'isInteger'):
+                case symbo('Number', 'isSafeInteger'):
                 case 'RegExp':
                   vlog('The callee is actually builtin `' + pnode.value.name + '` and it does not use `this`');
                   fail = false;

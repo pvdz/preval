@@ -1,15 +1,18 @@
 # Preval test case
 
-# infinity.md
+# other_undef.md
 
-> Normalize > Templates > Static resolve > Arg > Infinity
+> Normalize > Call > Primitive args > Other undef
 >
-> Templates should be able to resolve literals
+> Primitive args that may need to be simplified
 
 ## Input
 
 `````js filename=intro
-$(`${Infinity}`);
+$(+undefined);
+$(~undefined);
+$(typeof undefined);
+$(void undefined);
 `````
 
 
@@ -17,7 +20,10 @@ $(`${Infinity}`);
 
 
 `````js filename=intro
-$(`Infinity`);
+$($Number_NaN);
+$(-1);
+$(`undefined`);
+$(undefined);
 `````
 
 
@@ -25,7 +31,10 @@ $(`Infinity`);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`Infinity`);
+$($Number_NaN);
+$(-1);
+$(`undefined`);
+$(undefined);
 `````
 
 
@@ -33,14 +42,17 @@ $(`Infinity`);
 With rename=true
 
 `````js filename=intro
-$( "Infinity" );
+$( $Number_NaN );
+$( -1 );
+$( "undefined" );
+$( undefined );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) Support coercing "$Number_POSITIVE_INFINITY" to a "string"
+None
 
 
 ## Globals
@@ -53,7 +65,10 @@ None
 
 
 Should call `$` with:
- - 1: 'Infinity'
+ - 1: NaN
+ - 2: -1
+ - 3: 'undefined'
+ - 4: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

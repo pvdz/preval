@@ -11,6 +11,7 @@ import {
   THIS_ALIAS_BASE_NAME,
 } from './symbols_preval.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL } from './constants.mjs';
+import { symbo } from './symbols_builtins.mjs';
 
 export function cloneSimple(node) {
   if (node.type === 'Identifier') {
@@ -35,7 +36,16 @@ export function cloneSimple(node) {
       return unaryExpression(node.operator, cloneSimple(node.argument));
     }
 
-    if (node.argument.type === 'Identifier' && ['Infinity', 'NaN', 'undefined'].includes(node.argument.name)) {
+    if (node.argument.type === 'Identifier' && [
+      'undefined',
+      'Infinity',
+      'NaN',
+      symbo('Number', 'NaN'),
+      symbo('Number', 'NEGATIVE_INFINITY'),
+      symbo('Number', 'POSITIVE_INFINITY'),
+      symbo('Number', 'MAX_SAFE_INTEGER'),
+      symbo('Number', 'MIN_SAFE_INTEGER'),
+    ].includes(node.argument.name)) {
       // -Infinity, +undefined
       return unaryExpression(node.operator, cloneSimple(node.argument));
     }
@@ -1096,8 +1106,21 @@ export function isNumberLiteral(node) {
   return node.type === 'Literal' && typeof node.value === 'number';
 }
 export function isNumberValueNode(node) {
+  // We could include PI and all those constants but honestly it's just going to be
+  // a footgun (precision loss) so let's not. Pretty rare, anyways.
   return isNumberLiteral(node) || (
-    node.type === 'Identifier' && (node.name === 'NaN' || node.name === 'Infinity')
+    node.type === 'Identifier' &&
+    [
+    'NaN',
+    'Infinity',
+    // I think we can include our preval symbols for Number properties as well...
+    symbo('Number', 'NaN'),
+    symbo('Number', 'NEGATIVE_INFINITY'),
+    symbo('Number', 'POSITIVE_INFINITY'),
+    symbo('Number', 'MAX_SAFE_INTEGER'),
+    symbo('Number', 'MIN_SAFE_INTEGER'),
+    // I don't want to include epsilon and unsafe numbers... risk of precision loss is too great. Same for the Math constants.
+  ].includes(node.name)
   );
 }
 export function isStringLiteral(node, allowLiteral = false) {
@@ -1157,7 +1180,18 @@ export function isPrimitive(node) {
   }
 
   if (node.type === 'Identifier') {
-    return ['undefined', 'NaN', 'Infinity'].includes(node.name);
+    return [
+      'undefined',
+      'NaN',
+      'Infinity',
+      // I think we can include our preval symbols for Number properties as well...
+      symbo('Number', 'NaN'),
+      symbo('Number', 'NEGATIVE_INFINITY'),
+      symbo('Number', 'POSITIVE_INFINITY'),
+      symbo('Number', 'MAX_SAFE_INTEGER'),
+      symbo('Number', 'MIN_SAFE_INTEGER'),
+      // I don't want to include epsilon and unsafe numbers... risk of precision loss is too great. Same for the Math constants.
+    ].includes(node.name);
   }
 
   if (node.type === 'UnaryExpression' && node.operator === '-' && node.argument.type !== 'UnaryExpression') {
@@ -1184,7 +1218,11 @@ export function isFalsy(node) {
   if (node.type === 'TemplateLiteral') return node.expressions.length === 0 && node.quasis[0].value.cooked === '';
 
   if (node.type === 'Identifier') {
-    return node.name === 'undefined' || node.name === 'NaN';
+    [
+      'undefined',
+      'NaN',
+      symbo('Number', 'NaN'),
+    ].includes(node.name);
   }
 
   return false;
@@ -1203,7 +1241,13 @@ export function isTruthy(node) {
   if (node.type === 'TemplateLiteral') return node.quasis.some((te) => te.value.cooked !== '');
 
   if (node.type === 'Identifier') {
-    return node.name === 'Infinity';
+    return [
+      'Infinity',
+      symbo('Number', 'NEGATIVE_INFINITY'),
+      symbo('Number', 'POSITIVE_INFINITY'),
+      symbo('Number', 'MAX_SAFE_INTEGER'),
+      symbo('Number', 'MIN_SAFE_INTEGER'),
+    ].includes(node.name);
   }
 
   return ['ThisExpression', 'ArrayExpression', 'ObjectExpression', 'FunctionExpression', 'ClassExpression'].includes(node.type);
@@ -1231,8 +1275,17 @@ export function getPrimitiveType(node) {
 
   if (node.type === 'Identifier') {
     if (node.name === 'undefined') return 'undefined';
-    if (node.name === 'NaN') return 'number';
-    if (node.name === 'Infinity') return 'number';
+    if ([
+      'NaN',
+      'Infinity',
+      // I think we can include our preval symbols for Number properties as well...
+      symbo('Number', 'NaN'),
+      symbo('Number', 'NEGATIVE_INFINITY'),
+      symbo('Number', 'POSITIVE_INFINITY'),
+      symbo('Number', 'MAX_SAFE_INTEGER'),
+      symbo('Number', 'MIN_SAFE_INTEGER'),
+      // I don't want to include epsilon and unsafe numbers... risk of precision loss is too great. Same for the Math constants.
+    ].includes(node.name)) return 'number';
   }
 
   if (node.type === 'UnaryExpression' && (node.operator === '-' || node.operator === '+') && node.argument.type !== 'UnaryExpression') {
@@ -1266,6 +1319,13 @@ export function getPrimitiveValue(node) {
     if (node.name === 'undefined') return undefined;
     if (node.name === 'NaN') return NaN;
     if (node.name === 'Infinity') return Infinity;
+    // I think we can include our preval symbols for Number properties as well...
+    if (node.name === symbo('Number', 'NaN')) return NaN;
+    if (node.name === symbo('Number', 'NEGATIVE_INFINITY')) return -Infinity;
+    if (node.name === symbo('Number', 'POSITIVE_INFINITY')) return Infinity;
+    if (node.name === symbo('Number', 'MAX_SAFE_INTEGER')) return Number.MAX_SAFE_INTEGER;
+    if (node.name === symbo('Number', 'MIN_SAFE_INTEGER')) return Number.MIN_SAFE_INTEGER;
+    // I don't want to include epsilon and unsafe numbers... risk of precision loss is too great. Same for the Math constants.
   }
 
   if (node.type === 'UnaryExpression' && node.operator === '-' && node.argument.type !== 'UnaryExpression') {
@@ -1283,8 +1343,8 @@ export function primitive(value) {
       return unaryExpression('-', literal(0));
     }
     if (isNaN(value)) return identifier('NaN');
-    if (value === Infinity) return identifier('Infinity');
-    if (value === -Infinity) return unaryExpression('-', identifier('Infinity'));
+    if (value === Infinity) return identifier(symbo('Number', 'POSITIVE_INFINITY'));
+    if (value === -Infinity) return identifier(symbo('Number', 'NEGATIVE_INFINITY'));
     return literal(value);
   }
   if (typeof value === 'string') {
@@ -1404,7 +1464,19 @@ export function isComplexNode(node, incNested = true, preNormalization = false) 
     if (node.argument.type === 'Literal' && typeof node.argument.value === 'number') return false;
     // A little unlikely but you know
     // -NaN, +NaN, -Infinity, +Infinity
-    if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
+    if (node.argument.type === 'Identifier' && (
+      // TODO: wouldn't all built-ins be simple nodes?
+      [
+        'undefined',
+        'NaN',
+        'Infinity',
+        symbo('Number', 'NaN'),
+        symbo('Number', 'NEGATIVE_INFINITY'),
+        symbo('Number', 'POSITIVE_INFINITY'),
+        symbo('Number', 'MAX_SAFE_INTEGER'),
+        symbo('Number', 'MIN_SAFE_INTEGER'),
+      ].includes(node.argument.name)
+    )) return false;
   }
   if (node.type === 'TemplateLiteral') return node.expressions.length > 0; // After the pre-normalization, all templates must be string concats only, no matter how many expressions it has
   if (node.type === 'ThisExpression') return true;
@@ -2287,14 +2359,21 @@ export function _complexExpressionNodeMightSpy(node, fdata) {
           'Int8Array', 'Uint8Array', 'Uint8ClampedArray', 'Int16Array', 'Uint16Array', 'Int32Array', 'Uint32Array', 'BigInt64Array', 'BigUint64Array', 'Float16Array', 'Float32Array', 'Float64Array', // And these
           'ArrayBuffer', 'SharedArrayBuffer', 'DataView', 'WeakRef', 'FinalizationRegistry',
           'URL',
-          'isNaN', 'isFinite', 'parseFloat',
+          'isNaN',
+          symbo('Number', 'isNaN'),
+          'isFinite',
+          symbo('Number', 'isFinite'),
+          'parseFloat',
+          symbo('Number', 'parseFloat'),
+          symbo('Number', 'isInteger'),
+          symbo('Number', 'isSafeInteger'),
           'decodeURI', 'decodeURIComponent', 'encodeURI', 'encodeURIComponent', 'escape', 'unescape', 'btoa', 'atob',
         ].includes(node.callee.name)) {
           return !node.arguments[0] || complexExpressionNodeMightSpy(node.arguments[0], fdata);
         }
 
         // Funcs that may coerce (up to) two args
-        if (node.callee.name === 'parseInt') {
+        if (node.callee.name === 'parseInt' || node.callee.name === symbo('Number', 'parseInt')) {
           if (!node.arguments[0]) return true;
           if (node.arguments[0] && complexExpressionNodeMightSpy(node.arguments[0], fdata)) return true;
           if (node.arguments[1] && complexExpressionNodeMightSpy(node.arguments[1], fdata)) return true;
@@ -2440,7 +2519,19 @@ function simpleNodeMightSpy(node, fdata, onlyReference = false) {
   const meta = fdata.globallyUniqueNamingRegistry.get(name);
   if (meta.isImplicitGlobal) return true; // implicit globals can be anything
   if (onlyReference) return false; // Something like Boolean(x) can not trigger spies on x, only TDZ/ref errors.
-  if (meta.isBuiltin) return name === 'undefined' || name === 'NaN' || name === 'Infinity'; // TODO: perhaps this is `true` in all cases?
+  if (meta.isBuiltin) return (
+    // TODO: perhaps this is `false` in all cases? When would a builtin spy?
+    ![
+      'undefined',
+      'NaN',
+      'Infinity',
+      symbo('Number', 'NaN'),
+      symbo('Number', 'NEGATIVE_INFINITY'),
+      symbo('Number', 'POSITIVE_INFINITY'),
+      symbo('Number', 'MAX_SAFE_INTEGER'),
+      symbo('Number', 'MIN_SAFE_INTEGER'),
+    ].includes(name)
+  );
   if (!meta.isConstant) return true;
   if (!meta.typing.mustBeType) return true; // if we don't know the type we don't know anything
 

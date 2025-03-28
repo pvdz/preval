@@ -62,8 +62,7 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1) {
   let tmpssa3_arg1 /*:unknown*/ = 3;
   const index$1 /*:number*/ = newArg1 - 1;
   const arrval /*:primitive*/ = arr[index$1];
-  const tmpBinLhs /*:unknown*/ = tmpExpando;
-  const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
+  const tmpIfTest /*:boolean*/ = tmpExpando === undefined;
   if (tmpIfTest) {
     tmpssa3_tmpExpando$1 = $spy;
     tmpssa3_arg1 = tmpPrevalAliasArgumentsAny;
@@ -131,27 +130,26 @@ const c = function($$0,$$1 ) {
   let h = 3;
   const i = f - 1;
   const j = b[ i ];
-  const k = a;
-  const l = k === undefined;
-  if (l) {
+  const k = a === undefined;
+  if (k) {
     g = $spy;
     h = d;
     a = true;
   }
-  const m = i + 100;
-  const n = h[ m ];
-  if (n) {
-    return n;
+  const l = i + 100;
+  const m = h[ l ];
+  if (m) {
+    return m;
   }
   else {
-    const o = g.call( c, j );
-    h[m] = o;
-    return o;
+    const n = g.call( c, j );
+    h[l] = n;
+    return n;
   }
 };
-const p = c( 3, 4 );
-const q = c( 1, 2 );
-$( p, q );
+const o = c( 3, 4 );
+const p = c( 1, 2 );
+$( o, p );
 `````
 
 

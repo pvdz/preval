@@ -28,6 +28,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function tryEscaping(fdata) {
   group('\n\n\nFind Try statements which start with statements that cannot throw and elevate them\n');
@@ -423,7 +424,18 @@ function isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
     node.type === 'CallExpression') {
     if (
       node.callee.type === 'Identifier' &&
-      ['parseInt', 'parseFloat', 'isNaN', 'isFinite'].includes(node.callee.name) && // There are more like this, like on Math or url stuff.
+      [
+        'parseInt',
+        symbo('Number', 'parseInt'),
+        'parseFloat',
+        symbo('Number', 'parseFloat'),
+        'isNaN',
+        symbo('Number', 'isNaN'),
+        'isFinite',
+        symbo('Number', 'isFinite'),
+        symbo('Number', 'isInteger'),
+        symbo('Number', 'isSafeInteger'),
+      ].includes(node.callee.name) && // There are more like this, like on Math or url stuff.
       node.arguments.length === 1
     ) {
       // const x = parseInt(y) with an unknown but simple y.

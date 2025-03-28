@@ -19,8 +19,8 @@ $(x);
 
 
 `````js filename=intro
-$ + 0;
 const x /*:number*/ = 0 * $;
+$ + 0;
 $(x);
 `````
 
@@ -29,8 +29,9 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
+const x = 0 * $;
 $ + 0;
-$(0 * $);
+$(x);
 `````
 
 
@@ -38,8 +39,8 @@ $(0 * $);
 With rename=true
 
 `````js filename=intro
-$ + 0;
 const a = 0 * $;
+$ + 0;
 $( a );
 `````
 

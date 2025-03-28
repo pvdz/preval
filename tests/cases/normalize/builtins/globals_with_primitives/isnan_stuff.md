@@ -1,15 +1,19 @@
 # Preval test case
 
-# isnan_nan.md
+# isnan_stuff.md
 
-> Normalize > Builtins > Globals with primitives > Isnan nan
+> Normalize > Builtins > Globals with primitives > Isnan stuff
 >
 > Calling isNaN on a value that is a NaN should invariantly return true
 
 ## Input
 
 `````js filename=intro
-$(parseInt(NaN));
+$(isNaN(Number.NaN));
+$(isNaN(Number.POSITIVE_INFINITY));
+$(isNaN(Number.NEGATIVE_INFINITY));
+$(isNaN(Number.MAX_SAFE_INTEGER));
+$(isNaN(Number.MIN_SAFE_INTEGER));
 `````
 
 
@@ -17,7 +21,11 @@ $(parseInt(NaN));
 
 
 `````js filename=intro
-$($Number_NaN);
+$(true);
+$(false);
+$(false);
+$(false);
+$(false);
 `````
 
 
@@ -25,7 +33,11 @@ $($Number_NaN);
 (This ought to be the final result)
 
 `````js filename=intro
-$($Number_NaN);
+$(true);
+$(false);
+$(false);
+$(false);
+$(false);
 `````
 
 
@@ -33,7 +45,11 @@ $($Number_NaN);
 With rename=true
 
 `````js filename=intro
-$( $Number_NaN );
+$( true );
+$( false );
+$( false );
+$( false );
+$( false );
 `````
 
 
@@ -53,7 +69,11 @@ None
 
 
 Should call `$` with:
- - 1: NaN
+ - 1: true
+ - 2: false
+ - 3: false
+ - 4: false
+ - 5: false
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-let tmpForOfGen /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
+let tmpForOfGen /*:unknown*/ = undefined;
 if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);
 } else {
@@ -45,8 +45,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpIfTest = $ == null;
 let tmpForOfGen = undefined;
-if ($ == null) {
+if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);
 } else {
   tmpForOfGen = $forOf($(1));
@@ -67,17 +68,17 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
-if (b) {
-  a = $forOf( undefined );
+const a = $ == null;
+let b = undefined;
+if (a) {
+  b = $forOf( undefined );
 }
 else {
   const c = $( 1 );
-  a = $forOf( c );
+  b = $forOf( c );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const d = a.next();
+  const d = b.next();
   const e = d.done;
   if (e) {
     break;

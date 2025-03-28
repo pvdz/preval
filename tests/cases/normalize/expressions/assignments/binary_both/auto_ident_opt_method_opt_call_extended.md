@@ -21,8 +21,8 @@ $(a);
 
 
 `````js filename=intro
-let tmpBinBothLhs /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
+let tmpBinBothLhs /*:unknown*/ = undefined;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {
@@ -48,8 +48,8 @@ if (tmpIfTest$5) {
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
 const tmpIfTest$1 = $ == null;
+let tmpBinBothLhs = undefined;
 const tmpObjLitVal$1 = { e: $ };
 if (!tmpIfTest$1) {
   tmpBinBothLhs = $dotCall($, tmpObjLitVal$1, `e`, 1);
@@ -70,26 +70,26 @@ if (tmpChainElementObject$9 == null) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
+const a = $ == null;
+let b = undefined;
 const c = { e: $ };
-if (b) {
+if (a) {
 
 }
 else {
   const d = $dotCall( $, c, "e", 1 );
-  a = d;
+  b = d;
 }
 const e = c.e;
 const f = e == null;
 if (f) {
-  const g = a + undefined;
+  const g = b + undefined;
   $( g );
   $( undefined );
 }
 else {
   const h = $dotCall( e, c, "e", 1 );
-  const i = a + h;
+  const i = b + h;
   $( i );
   $( h );
 }

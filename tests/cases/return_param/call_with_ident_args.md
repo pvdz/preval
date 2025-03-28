@@ -36,7 +36,7 @@ const f /*:(function)=>unknown*/ = function ($$0) {
   $(`no`);
   $(`inlining`);
   const foo /*:unknown*/ = $(`please`);
-  const y /*:unknown*/ = x(1, `two`, foo, NaN);
+  const y /*:unknown*/ = x(1, `two`, foo, $Number_NaN);
   return y;
 };
 const tmpCalleeParam$1 /*:(unknown, unknown, unknown, unknown, unknown)=>undefined*/ = function ($$0, $$1, $$2, $$3, $$4) {
@@ -85,7 +85,7 @@ $(tmpCalleeParam$7);
 const f = function (x) {
   $(`no`);
   $(`inlining`);
-  const y = x(1, `two`, $(`please`), NaN);
+  const y = x(1, `two`, $(`please`), $Number_NaN);
   return y;
 };
 $(
@@ -116,7 +116,7 @@ const a = function($$0 ) {
   $( "no" );
   $( "inlining" );
   const c = $( "please" );
-  const d = b( 1, "two", c, NaN );
+  const d = b( 1, "two", c, $Number_NaN );
   return d;
 };
 const e = function($$0,$$1,$$2,$$3,$$4 ) {

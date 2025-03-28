@@ -23,8 +23,8 @@ f(400, `def`, 500, 600);
 
 
 `````js filename=intro
-$(`abc`, 100, NaN, 230);
-$(`def`, 400, NaN, 530);
+$(`abc`, 100, $Number_NaN, 230);
+$(`def`, 400, $Number_NaN, 530);
 `````
 
 
@@ -32,8 +32,8 @@ $(`def`, 400, NaN, 530);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`abc`, 100, NaN, 230);
-$(`def`, 400, NaN, 530);
+$(`abc`, 100, $Number_NaN, 230);
+$(`def`, 400, $Number_NaN, 530);
 `````
 
 
@@ -41,8 +41,8 @@ $(`def`, 400, NaN, 530);
 With rename=true
 
 `````js filename=intro
-$( "abc", 100, NaN, 230 );
-$( "def", 400, NaN, 530 );
+$( "abc", 100, $Number_NaN, 230 );
+$( "def", 400, $Number_NaN, 530 );
 `````
 
 

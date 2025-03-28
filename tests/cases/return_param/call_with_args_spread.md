@@ -42,7 +42,7 @@ const tmpCalleeParam$1 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   return undefined;
 };
 f();
-tmpCalleeParam$1(1, `two`, null, NaN);
+tmpCalleeParam$1(1, `two`, null, $Number_NaN);
 $(undefined);
 const tmpCalleeParam$5 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const args$1 /*:array*/ = $$0;
@@ -51,7 +51,7 @@ const tmpCalleeParam$5 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   return undefined;
 };
 f();
-tmpCalleeParam$5(1, `two`, null, NaN);
+tmpCalleeParam$5(1, `two`, null, $Number_NaN);
 $(undefined);
 const tmpCalleeParam$9 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   const args$3 /*:array*/ = $$0;
@@ -60,7 +60,7 @@ const tmpCalleeParam$9 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   return undefined;
 };
 f();
-tmpCalleeParam$9(1, `two`, null, NaN);
+tmpCalleeParam$9(1, `two`, null, $Number_NaN);
 $(undefined);
 `````
 
@@ -78,19 +78,19 @@ const tmpCalleeParam$1 = function (...$$0 /*:array*/) {
   $(`pass1`, $$0);
 };
 f();
-tmpCalleeParam$1(1, `two`, null, NaN);
+tmpCalleeParam$1(1, `two`, null, $Number_NaN);
 $(undefined);
 const tmpCalleeParam$5 = function (...$$0 /*:array*/) {
   $(`pass2`, $$0);
 };
 f();
-tmpCalleeParam$5(1, `two`, null, NaN);
+tmpCalleeParam$5(1, `two`, null, $Number_NaN);
 $(undefined);
 const tmpCalleeParam$9 = function (...$$0 /*:array*/) {
   $(`pass3`, $$0);
 };
 f();
-tmpCalleeParam$9(1, `two`, null, NaN);
+tmpCalleeParam$9(1, `two`, null, $Number_NaN);
 $(undefined);
 `````
 
@@ -113,7 +113,7 @@ const b = function($$0 ) {
   return undefined;
 };
 a();
-b( 1, "two", null, NaN );
+b( 1, "two", null, $Number_NaN );
 $( undefined );
 const d = function($$0 ) {
   const e = $$0;
@@ -122,7 +122,7 @@ const d = function($$0 ) {
   return undefined;
 };
 a();
-d( 1, "two", null, NaN );
+d( 1, "two", null, $Number_NaN );
 $( undefined );
 const f = function($$0 ) {
   const g = $$0;
@@ -131,7 +131,7 @@ const f = function($$0 ) {
   return undefined;
 };
 a();
-f( 1, "two", null, NaN );
+f( 1, "two", null, $Number_NaN );
 $( undefined );
 `````
 

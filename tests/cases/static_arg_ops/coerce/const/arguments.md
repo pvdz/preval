@@ -28,7 +28,7 @@ const f /*:()=>unknown*/ = function () {
   debugger;
   $(1);
   $(2);
-  $(NaN);
+  $($Number_NaN);
   return undefined;
 };
 f();
@@ -44,7 +44,7 @@ $(`50`);
 const f = function () {
   $(1);
   $(2);
-  $(NaN);
+  $($Number_NaN);
 };
 f();
 f();
@@ -60,7 +60,7 @@ const a = function() {
   debugger;
   $( 1 );
   $( 2 );
-  $( NaN );
+  $( $Number_NaN );
   return undefined;
 };
 a();

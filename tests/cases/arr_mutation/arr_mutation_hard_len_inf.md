@@ -26,7 +26,7 @@ $(a);
 `````js filename=intro
 $();
 const a /*:array*/ = [1, 2, 3, 4, 5];
-a.length = Infinity;
+a.length = $Number_POSITIVE_INFINITY;
 $(a);
 `````
 
@@ -37,7 +37,7 @@ $(a);
 `````js filename=intro
 $();
 const a = [1, 2, 3, 4, 5];
-a.length = Infinity;
+a.length = $Number_POSITIVE_INFINITY;
 $(a);
 `````
 
@@ -48,7 +48,7 @@ With rename=true
 `````js filename=intro
 $();
 const a = [ 1, 2, 3, 4, 5 ];
-a.length = Infinity;
+a.length = $Number_POSITIVE_INFINITY;
 $( a );
 `````
 

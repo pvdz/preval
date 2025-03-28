@@ -58,7 +58,7 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) should isNaNs not be transformed to symbols?
 
 
 ## Globals

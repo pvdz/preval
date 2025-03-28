@@ -22,7 +22,7 @@ if (x) {
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(NaN);
+const x /*:unknown*/ = $($Number_NaN);
 if (x) {
   $(`truthy`, ...x);
 } else {
@@ -40,7 +40,7 @@ if (x) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(NaN);
+const x = $($Number_NaN);
 if (x) {
   $(`truthy`, ...x);
 } else {
@@ -57,7 +57,7 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = $( NaN );
+const a = $( $Number_NaN );
 if (a) {
   $( "truthy", ...a );
 }

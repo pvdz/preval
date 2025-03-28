@@ -23,8 +23,8 @@ const tmpIfTest /*:boolean*/ = $ == null;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
-  $(NaN);
-  $(NaN);
+  $($Number_NaN);
+  $($Number_NaN);
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
   const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementCall;
@@ -42,8 +42,8 @@ const tmpIfTest = $ == null;
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
-  $(NaN);
-  $(NaN);
+  $($Number_NaN);
+  $($Number_NaN);
 } else {
   const tmpClusterSSA_a$1 = a * $(1);
   $(tmpClusterSSA_a$1);
@@ -63,8 +63,8 @@ const b = {
 };
 if (a) {
   b ** 0;
-  $( NaN );
-  $( NaN );
+  $( $Number_NaN );
+  $( $Number_NaN );
 }
 else {
   const c = $( 1 );

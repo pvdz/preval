@@ -35,7 +35,7 @@ const f /*:(number)=>undefined*/ = function ($$0) {
 };
 f(3);
 f(4);
-$(NaN);
+$($Number_NaN);
 `````
 
 
@@ -51,7 +51,7 @@ const f = function (c) {
 };
 f(3);
 f(4);
-$(NaN);
+$($Number_NaN);
 `````
 
 
@@ -70,7 +70,7 @@ const a = function($$0 ) {
 };
 a( 3 );
 a( 4 );
-$( NaN );
+$( $Number_NaN );
 `````
 
 

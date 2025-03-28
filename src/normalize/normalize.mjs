@@ -3128,19 +3128,89 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 return simplifyStaticPrimitive(node, parentNode, parentProp);
               }
               if (arg.type === 'Identifier') {
-                if (arg.name === 'NaN') {
-                  rule('+NaN and -NaN are just NaN');
-                  example('+NaN', 'NaN', () => node.operator === '+');
-                  example('-NaN', 'NaN', () => node.operator !== '+');
+                if (arg.name === 'undefined' && (node.operator === '-' || node.operator === '+')) {
+                  rule('+undefined and -undefined are just NaN');
+                  example('+undefined', symbo('Number', 'NaN'), () => node.operator === '+');
+                  example('-undefined', symbo('Number', 'NaN'), () => node.operator !== '+');
                   before(node);
 
-                  if (parentIndex < 0) parentNode[parentProp] = arg;
-                  else parentNode[parentProp][parentIndex] = arg;
+                  if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Number', 'NaN'));
+                  else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Number', 'NaN'));
+
+                  after(arg, parentNode);
+                  return true;
+                }
+
+                if (arg.name === 'NaN' || arg === symbo('Number', 'NaN')) {
+                  rule('+NaN and -NaN are just NaN');
+                  example('+NaN', symbo('Number', 'NaN'), () => node.operator === '+');
+                  example('-NaN', symbo('Number', 'NaN'), () => node.operator !== '+');
+                  before(node);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Number', 'NaN'));
+                  else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Number', 'NaN'));
 
                   after(arg, parentNode);
                   return true;
                 }
               }
+            }
+          }
+          if (node.type === 'Identifier') {
+            if (node.name === 'NaN') {
+              rule('NaN should be a symbol');
+              example('NaN', symbo('Number', 'NaN'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Number', 'NaN'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Number', 'NaN'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'Infinity') {
+              rule('Infinity should be a symbol');
+              example('Infinity', symbo('Number', 'POSITIVE_INFINITY'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Number', 'POSITIVE_INFINITY'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Number', 'POSITIVE_INFINITY'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'parseInt') {
+              rule('parseInt should be a symbol');
+              example('parseInt', symbo('Number', 'parseInt'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Number', 'parseInt'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Number', 'parseInt'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'parseFloat') {
+              rule('parseFloat should be a symbol');
+              example('parseFloat', symbo('Number', 'parseFloat'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Number', 'parseFloat'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Number', 'parseFloat'));
+
+              after(parentNode, parentNode);
+              return true;
+            }
+            if (node.name === 'isInteger') {
+              rule('isInteger should be a symbol');
+              example('isInteger', symbo('Number', 'isInteger'), () => node.operator === '+');
+              before(parentNode);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbo('Number', 'isInteger'));
+              else parentNode[parentProp][parentIndex] = AST.identifier(symbo('Number', 'isInteger'));
+
+              after(parentNode, parentNode);
+              return true;
             }
           }
         }
@@ -3154,9 +3224,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               } else if (simplifyStaticPrimitive(anode.argument, anode, 'argument', -i)) {
                 return true;
               }
-            } else if (AST.isComplexNode(anode)) {
+            }
+            else if (AST.isComplexNode(anode)) {
               hasComplexArg = true;
-            } else if (simplifyStaticPrimitive(anode, node, 'arguments', i)) {
+            }
+            else if (simplifyStaticPrimitive(anode, node, 'arguments', i)) {
               return true;
             }
           })
@@ -3169,9 +3241,14 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           // First eliminate excessive args, or first args that are spreads
           switch (callee.name) {
             case 'isNaN':
+            case symbo('Number', 'isNaN'):
             case 'isFinite':
+            case symbo('Number', 'isFinite'):
+            case symbo('Number', 'isInteger'):
+            case symbo('Number', 'isSafeInteger'):
             case 'Boolean':
             case 'parseFloat':
+            case symbo('Number', 'parseFloat'):
             case 'Number':
             case 'String': {
               if (args.length === 0 || (args.length === 1 && AST.isPrimitive(args[0]))) {
@@ -3184,15 +3261,24 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 const pv = args.length === 0 ? undefined : AST.getPrimitiveValue(args[0]);
                 let v;
                 switch (callee.name) {
+                  case symbo('Number', 'isNaN'):
                   case 'isNaN':
                     v = isNaN(pv);
                     break;
+                  case symbo('Number', 'isFinite'):
                   case 'isFinite':
                     v = isFinite(pv);
+                    break;
+                  case symbo('Number', 'isInteger'):
+                    v = Number.isInteger(pv);
+                    break;
+                  case symbo('Number', 'isSafeInteger'):
+                    v = Number.isSafeInteger(pv);
                     break;
                   case 'Boolean':
                     v = Boolean(pv);
                     break;
+                  case symbo('Number', 'parseFloat'):
                   case 'parseFloat':
                     v = parseFloat(pv);
                     break;
@@ -3247,6 +3333,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               break;
             }
+            case symbo('Number', 'parseInt'):
             case 'parseInt': {
               if (
                 args.length === 0 ||
@@ -3444,22 +3531,25 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               case 'parseFloat': {
                 // This is not "just" calling Number or String... We can probably do this anyways.
 
-                // Coerce the first arg to string
-                rule('`parseFloat` with one arg can be reduced');
-                example('parseFloat(a);', '$coerce(a, "string");');
-                before(node, parentNodeOrWhatever);
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                  // Coerce the first arg to string
+                  rule('`parseFloat` with one arg can be reduced');
+                  example('parseFloat(a);', '$coerce(a, "string");');
+                  before(node, parentNodeOrWhatever);
 
-                // The cases with args.length!=1 and where they can be spread are handled above
-                body.splice(i, 1,
-                  ...args.map((arg, i) => {
-                    if (i === 0) return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [arg, AST.primitive('string')]));
-                    return AST.expressionStatement(arg);
-                  })
-                );
+                  // The cases with args.length!=1 and where they can be spread are handled above
+                  body.splice(i, 1,
+                    ...args.map((arg, i) => {
+                      if (i === 0) return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [arg, AST.primitive('string')]));
+                      return AST.expressionStatement(arg);
+                    })
+                  );
 
-                after(parentNodeOrWhatever);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
-                return true;
+                  after(parentNodeOrWhatever);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                break;
               }
               case 'Number': {
                 // Note: `Number(x)` is not the same as `1 * x`
@@ -3498,7 +3588,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 break;
               }
               case 'parseInt': {
-                if (!(firstSpread || (args.length > 1 && args[1].type === 'SpreadElement'))) {
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
                   // Coerce the first arg to string, the second to number
 
                   rule('A statement that is parseInt can be eliminated');
@@ -3744,7 +3834,9 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case 'isNaN': {
+              case 'isNaN':
+              case symbo('Number', 'isNaN'):
+              {
                 if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isNaN` on a primitive should resolve');
                   example('isNaN("hello")', 'true'); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
@@ -3759,7 +3851,9 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case 'isFinite': {
+              case 'isFinite':
+              case symbo('Number', 'isFinite'):
+              {
                 if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isFinite` on a primitive should resolve');
                   example('isFinite("hello")', 'false'); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
@@ -3789,7 +3883,9 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case 'parseInt': {
+              case 'parseInt':
+              case symbo('Number', 'parseInt'):
+              {
                 if (firstArgNode && AST.isPrimitive(firstArgNode) && args.length <= 2) {
                   if (args.length === 1 || AST.isPrimitive(args[1])) {
                     const pv1 = AST.getPrimitiveValue(firstArgNode);
@@ -3823,7 +3919,9 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case 'parseFloat': {
+              case 'parseFloat':
+              case symbo('Number', 'parseFloat'):
+              {
                 // This is not "just" calling Number or String... We can probably do this anyways.
 
                 if (args.length === 0) {
@@ -4037,6 +4135,36 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 after(finalParent, body[i + newNodes.length]);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
+              }
+              case symbo('Number', 'isInteger'): {
+                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `isInteger` on a primitive should resolve');
+                  example('Number.isInteger("hello")', 'false');
+                  before(node, parentNodeOrWhatever);
+
+                  const finalNode = Number.isInteger(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
+              case symbo('Number', 'isSafeInteger'): {
+                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `isSafeInteger` on a primitive should resolve');
+                  example('Number.isSafeInteger("hello")', 'false');
+                  before(node, parentNodeOrWhatever);
+
+                  const finalNode = Number.isSafeInteger(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
               }
             }
 
@@ -5739,6 +5867,90 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           // This should be the alias definition. Ignore it.
         }
 
+        if (node.name === 'Infinity') {
+          rule('The identifier Infinity should become the preval symbol for it');
+          example('Infinity', symbo('Number', 'POSITIVE_INFINITY'));
+          before(node, parentNodeOrWhatever);
+
+          const newNode = AST.identifier(symbo('Number', 'POSITIVE_INFINITY'));
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
+          body.splice(i, 1, finalParent);
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (node.name === 'NaN') {
+          rule('The identifier NaN should become the preval symbol for it');
+          example('NaN', symbo('Number', 'NaN'));
+          before(node, parentNodeOrWhatever);
+
+          const newNode = AST.identifier(symbo('Number', 'NaN'));
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
+          body.splice(i, 1, finalParent);
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (node.name === 'parseInt') {
+          rule('The identifier parseInt should become the preval symbol for it');
+          example('parseInt', symbo('Number', 'parseInt'));
+          before(node, parentNodeOrWhatever);
+
+          const newNode = AST.identifier(symbo('Number', 'parseInt'));
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
+          body.splice(i, 1, finalParent);
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (node.name === 'parseFloat') {
+          rule('The identifier parseFloat should become the preval symbol for it');
+          example('parseFloat', symbo('Number', 'parseFloat'));
+          before(node, parentNodeOrWhatever);
+
+          const newNode = AST.identifier(symbo('Number', 'parseFloat'));
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
+          body.splice(i, 1, finalParent);
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (node.name === 'isNaN') {
+          rule('The identifier isNaN should become the preval symbol for it');
+          example('isNaN', symbo('Number', 'isNaN'));
+          before(node, parentNodeOrWhatever);
+
+          const newNode = AST.identifier(symbo('Number', 'NaNisNaN'));
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
+          body.splice(i, 1, finalParent);
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (node.name === 'isFinite') {
+          rule('The identifier isFinite should become the preval symbol for it');
+          example('isFinite', symbo('Number', 'isFinite'));
+          before(node, parentNodeOrWhatever);
+
+          const newNode = AST.identifier(symbo('Number', 'isFinite'));
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
+          body.splice(i, 1, finalParent);
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         if (
           parentNodeOrWhatever.type !== 'WhileStatement' &&
           (node.name === SYMBOL_MAX_LOOP_UNROLL || node.name.startsWith(SYMBOL_LOOP_UNROLL))
@@ -6325,64 +6537,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             after(body[i]);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
-          }
-
-          if (node.object.type === 'Identifier' && node.object.name === 'Number' && !node.computed) {
-            if (node.property.name === 'isNaN') {
-              riskyRule('Number.isNaN is equal to the global isNaN');
-              example(`Number.isNaN(x)`, `isNaN(x)`);
-              before(body[i]);
-
-              const finalNode = AST.identifier('isNaN')
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body.splice(i, 1, finalParent);
-
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.property.name === 'isFinite') {
-              riskyRule('Number.isFinite is equal to the global isFinite');
-              example(`Number.isFinite(x)`, `isFinite(x)`);
-              before(body[i]);
-
-              const finalNode = AST.identifier('isFinite')
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body.splice(i, 1, finalParent);
-
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.property.name === 'parseInt') {
-              riskyRule('Number.parseInt is equal to the global parseInt');
-              example(`Number.parseInt(x)`, `parseInt(x)`);
-              before(body[i]);
-
-              const finalNode = AST.identifier('isFinite')
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body.splice(i, 1, finalParent);
-
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.property.name === 'parseFloat') {
-              riskyRule('Number.parseFloat is equal to the global parseFloat');
-              example(`Number.parseFloat(x)`, `parseFloat(x)`);
-              before(body[i]);
-
-              const finalNode = AST.identifier('parseFloat')
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body.splice(i, 1, finalParent);
-
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
           }
 
           if (
@@ -7364,7 +7518,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             // The minus sticks around in the AST for negative numbers and other values so
             // we have to confirm that the arg changed before replacing the whole thing.
-            if (-pvn !== pv) {
+
+            if (!Object.is(-pvn, pv)) {
               rule('The `-` operator applied to a primitive should be inlined unless was already a negative number');
               example('-"15"', '-15');
               before(node, body[i]);
@@ -10663,7 +10818,20 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               // Only allow known functions here to be called and only with local or primitive arguments
               // TODO: expand list of known function names to allow
               const b = (
-                expr.callee.type === 'Identifier' && ['$', 'parseInt', 'parseFloat'].includes(expr.callee.name) &&
+                expr.callee.type === 'Identifier' &&
+                [
+                  '$',
+                  'parseInt',
+                  symbo('Number', 'parseInt'),
+                  'parseFloat',
+                  symbo('Number', 'parseFloat'),
+                  'isNaN',
+                  symbo('Number', 'isNaN'),
+                  'isFinite',
+                  symbo('Number', 'isFinite'),
+                  symbo('Number', 'isInteger'),
+                  symbo('Number', 'isSafeInteger'),
+                ].includes(expr.callee.name) &&
                 expr.arguments.every(arg => (arg.type === 'Identifier' && localNames.has(arg.name)) || AST.isPrimitive(arg))
               );
               if (!b) vlog('bail; Found bad call expression');
@@ -10782,11 +10950,23 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
               }
               else if (step.action === 'call') {
-                if (step.func === 'parseInt') {
+                if (step.func === 'parseInt' || step.func === symbo('Number', 'parseInt')) {
                   localNames.set(step.lhs, parseInt(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
-                else if (step.func === 'parseFloat') {
+                else if (step.func === 'parseFloat' || step.func === symbo('Number', 'parseFloat')) {
                   localNames.set(step.lhs, parseFloat(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                }
+                else if (step.func === 'isNaN' || step.func === symbo('Number', 'isNaN')) {
+                  localNames.set(step.lhs, isNaN(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                }
+                else if (step.func === 'isFinite' || step.func === symbo('Number', 'isFinite')) {
+                  localNames.set(step.lhs, isFinite(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                }
+                else if (step.func === symbo('Number', 'isNumber')) {
+                  localNames.set(step.lhs, Number.isNumber(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                }
+                else if (step.func === symbo('Number', 'isSafeNumber')) {
+                  localNames.set(step.lhs, Number.isSafeNumber(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
                 else if (step.func === '$') { // My test hack. Or jquery :shrug:
                   localNames.set(step.lhs, vlog('$ loop', n, ':', ...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));

@@ -21,8 +21,8 @@ $(a);
 `````js filename=intro
 const a /*:object*/ = { a: 999, b: 1000 };
 a ** 0;
-$(NaN);
-$(NaN);
+$($Number_NaN);
+$($Number_NaN);
 `````
 
 
@@ -31,8 +31,8 @@ $(NaN);
 
 `````js filename=intro
 ({ a: 999, b: 1000 } ** 0);
-$(NaN);
-$(NaN);
+$($Number_NaN);
+$($Number_NaN);
 `````
 
 
@@ -45,8 +45,8 @@ const a = {
   b: 1000,
 };
 a ** 0;
-$( NaN );
-$( NaN );
+$( $Number_NaN );
+$( $Number_NaN );
 `````
 
 

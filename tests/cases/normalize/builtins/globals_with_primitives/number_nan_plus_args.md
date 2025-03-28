@@ -18,7 +18,7 @@ $(Number(NaN, 1, "two", implicitGlobal, 3));
 
 `````js filename=intro
 implicitGlobal;
-$(NaN);
+$($Number_NaN);
 `````
 
 
@@ -27,7 +27,7 @@ $(NaN);
 
 `````js filename=intro
 implicitGlobal;
-$(NaN);
+$($Number_NaN);
 `````
 
 
@@ -36,7 +36,7 @@ With rename=true
 
 `````js filename=intro
 implicitGlobal;
-$( NaN );
+$( $Number_NaN );
 `````
 
 

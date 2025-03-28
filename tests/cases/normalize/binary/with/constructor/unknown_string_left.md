@@ -49,6 +49,8 @@ $(x instanceof String);
 `````js filename=intro
 const tmpBinBothRhs /*:unknown*/ = $(`ok`);
 const x /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
+const tmpArrElement$25 /*:boolean*/ = x == String;
+const tmpArrElement$27 /*:boolean*/ = x != String;
 const tmpArrElement$7 /*:string*/ = `${x}function String() { [native code] }`;
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;
@@ -57,8 +59,6 @@ const tmpArrElement$17 /*:boolean*/ = x < `function String() { [native code] }`;
 const tmpArrElement$19 /*:boolean*/ = x > `function String() { [native code] }`;
 const tmpArrElement$21 /*:boolean*/ = x <= `function String() { [native code] }`;
 const tmpArrElement$23 /*:boolean*/ = x >= `function String() { [native code] }`;
-const tmpArrElement$25 /*:boolean*/ = x == String;
-const tmpArrElement$27 /*:boolean*/ = x != String;
 const tmpArrElement$35 /*:number*/ = x ^ 0;
 const tmpArrElement$37 /*:number*/ = x | 0;
 const arr /*:array*/ = [
@@ -96,6 +96,8 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const x = $coerce($(`ok`), `plustr`);
+const tmpArrElement$25 = x == String;
+const tmpArrElement$27 = x != String;
 const tmpArrElement$7 = `${x}function String() { [native code] }`;
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
@@ -104,8 +106,6 @@ const tmpArrElement$17 = x < `function String() { [native code] }`;
 const tmpArrElement$19 = x > `function String() { [native code] }`;
 const tmpArrElement$21 = x <= `function String() { [native code] }`;
 const tmpArrElement$23 = x >= `function String() { [native code] }`;
-const tmpArrElement$25 = x == String;
-const tmpArrElement$27 = x != String;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
 $([
@@ -141,19 +141,19 @@ With rename=true
 `````js filename=intro
 const a = $( "ok" );
 const b = $coerce( a, "plustr" );
-const c = `${b}function String() { [native code] }`;
-const d = b << 0;
-const e = b >> 0;
-const f = b >>> 0;
-const g = b < "function String() { [native code] }";
-const h = b > "function String() { [native code] }";
-const i = b <= "function String() { [native code] }";
-const j = b >= "function String() { [native code] }";
-const k = b == String;
-const l = b != String;
+const c = b == String;
+const d = b != String;
+const e = `${b}function String() { [native code] }`;
+const f = b << 0;
+const g = b >> 0;
+const h = b >>> 0;
+const i = b < "function String() { [native code] }";
+const j = b > "function String() { [native code] }";
+const k = b <= "function String() { [native code] }";
+const l = b >= "function String() { [native code] }";
 const m = b ^ 0;
 const n = b | 0;
-const o = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, g, h, i, j, k, l, false, true, 0, m, n ];
+const o = [ NaN, NaN, NaN, NaN, e, NaN, f, g, h, i, j, k, l, c, d, false, true, 0, m, n ];
 $( o );
 const p = b in String;
 $( p );

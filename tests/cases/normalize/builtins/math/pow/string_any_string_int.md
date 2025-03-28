@@ -17,7 +17,7 @@ $(Math.pow('nope', '3'));
 
 
 `````js filename=intro
-$(NaN);
+$($Number_NaN);
 `````
 
 
@@ -25,7 +25,7 @@ $(NaN);
 (This ought to be the final result)
 
 `````js filename=intro
-$(NaN);
+$($Number_NaN);
 `````
 
 
@@ -33,7 +33,7 @@ $(NaN);
 With rename=true
 
 `````js filename=intro
-$( NaN );
+$( $Number_NaN );
 `````
 
 

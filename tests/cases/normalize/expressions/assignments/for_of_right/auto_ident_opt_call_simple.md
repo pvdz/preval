@@ -20,8 +20,8 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ = undefined;
-let tmpForOfGen /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
+let tmpForOfGen /*:unknown*/ = undefined;
 if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);
 } else {
@@ -47,8 +47,9 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+const tmpIfTest = $ == null;
 let tmpForOfGen = undefined;
-if ($ == null) {
+if (tmpIfTest) {
   tmpForOfGen = $forOf(undefined);
 } else {
   const tmpChainElementCall = $(1);
@@ -72,18 +73,18 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-let b = undefined;
-const c = $ == null;
-if (c) {
-  b = $forOf( undefined );
+const b = $ == null;
+let c = undefined;
+if (b) {
+  c = $forOf( undefined );
 }
 else {
   const d = $( 1 );
   a = d;
-  b = $forOf( d );
+  c = $forOf( d );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = b.next();
+  const e = c.next();
   const f = e.done;
   if (f) {
     break;

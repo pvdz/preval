@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-let xyz /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
+let xyz /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
@@ -37,8 +37,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpIfTest = $ == null;
 let xyz = undefined;
-if (!($ == null)) {
+if (!tmpIfTest) {
   xyz = $(1);
 }
 while (true) {
@@ -52,17 +53,17 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $ == null;
-if (b) {
+const a = $ == null;
+let b = undefined;
+if (a) {
 
 }
 else {
   const c = $( 1 );
-  a = c;
+  b = c;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( a );
+  $( b );
   $( 1 );
 }
 `````

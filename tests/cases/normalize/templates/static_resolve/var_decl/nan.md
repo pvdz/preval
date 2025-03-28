@@ -41,7 +41,7 @@ $( "NaN" );
 ## Todos triggered
 
 
-None
+- (todo) Support coercing "$Number_NaN" to a "string"
 
 
 ## Globals

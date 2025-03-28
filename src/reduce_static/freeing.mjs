@@ -665,7 +665,18 @@ function isFreeExpression(exprNode, fdata) {
 
       if (exprNode.callee.type === 'Identifier') {
         vlog('  - ident call;', exprNode.callee.name);
-        if (['parseInt', 'parseFloat', 'isNaN', 'isFinite', ].includes(exprNode.callee.name)) {
+        if ([
+          'parseInt',
+          symbo('Number', 'parseInt'),
+          'parseFloat',
+          symbo('Number', 'parseFloat'),
+          'isNaN',
+          symbo('Number', 'isNaN'),
+          'isFinite',
+          symbo('Number', 'isFinite'),
+          symbo('Number', 'isInteger'),
+          symbo('Number', 'isSafeInteger'),
+        ].includes(exprNode.callee.name)) {
           vlog('  - ok! its a global builtin call:', exprNode.callee.name);
           return true; // Ok as long as args are ok
         }

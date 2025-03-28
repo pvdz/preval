@@ -24,8 +24,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
-  $(NaN);
-  $(NaN);
+  $($Number_NaN);
+  $($Number_NaN);
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
   const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementCall$1;
@@ -44,8 +44,8 @@ const tmpIfTest = tmpChainElementCall == null;
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   a ** 0;
-  $(NaN);
-  $(NaN);
+  $($Number_NaN);
+  $($Number_NaN);
 } else {
   const tmpClusterSSA_a$1 = a * $dotCall(tmpChainElementCall, $, undefined, 1);
   $(tmpClusterSSA_a$1);
@@ -66,8 +66,8 @@ const c = {
 };
 if (b) {
   c ** 0;
-  $( NaN );
-  $( NaN );
+  $( $Number_NaN );
+  $( $Number_NaN );
 }
 else {
   const d = $dotCall( a, $, undefined, 1 );

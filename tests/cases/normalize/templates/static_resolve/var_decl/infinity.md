@@ -41,7 +41,7 @@ $( "Infinity" );
 ## Todos triggered
 
 
-None
+- (todo) Support coercing "$Number_POSITIVE_INFINITY" to a "string"
 
 
 ## Globals

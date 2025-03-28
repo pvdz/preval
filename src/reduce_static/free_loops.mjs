@@ -30,7 +30,21 @@ import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 const FAILURE_SYMBOL = {};
 const BREAK_SYMBOL = {};
 
-const SUPPORTED_GLOBAL_FUNCS = [SYMBOL_FRFR, SYMBOL_COERCE, '$frfr', 'parseInt', 'parseFloat', 'isNaN', 'isFinite'];
+const SUPPORTED_GLOBAL_FUNCS = [
+  SYMBOL_FRFR,
+  SYMBOL_COERCE,
+  '$frfr',
+  'parseInt',
+  symbo('Number', 'parseInt'),
+  'parseFloat',
+  symbo('Number', 'parseFloat'),
+  'isNaN',
+  symbo('Number', 'isNaN'),
+  'isFinite',
+  symbo('Number', 'isFinite'),
+  symbo('Number', 'isInteger'),
+  symbo('Number', 'isSafeInteger'),
+];
 const SUPPORTED_METHODS = [
   symbo('array', 'push'),
   symbo('array', 'shift'),
@@ -251,8 +265,9 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
             todo('Support non-primitive in first arg to $coerce', node.arguments[0]);
             return false;
           }
-          if (node.callee.name === 'isNaN') {
-            callNodeToSymbol.set(node, 'isNaN');
+          if (node.callee.name === 'isNaN' || node.callee.name === symbo('Number', 'isNaN')) {
+            if (node.callee.name) todo('should isNaNs not be transformed to symbols?');
+            callNodeToSymbol.set(node, symbo('Number', 'isNaN'));
 
             if (!node.arguments[0]) return true;
             if (AST.isPrimitive(node.arguments[0])) return true;
@@ -268,8 +283,9 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
             todo('Support non-primitive in first arg to isNan', node.arguments[0]);
             return false;
           }
-          if (node.callee.name === 'isFinite') {
-            callNodeToSymbol.set(node, 'isFinite');
+          if (node.callee.name === 'isFinite' || node.callee.name === symbo('Number', 'isFinite')) {
+            if (node.callee.name) todo('should isFinites not be transformed to symbols?');
+            callNodeToSymbol.set(node, symbo('Number', 'isFinite'));
 
             if (!node.arguments[0]) return true;
             if (AST.isPrimitive(node.arguments[0])) return true;
@@ -285,8 +301,43 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
             todo('Support non-primitive in first arg to isFinite', node.arguments[0]);
             return false;
           }
-          if (node.callee.name === 'parseInt') {
-            callNodeToSymbol.set(node, 'parseInt');
+          if (node.callee.name === symbo('Number', 'isInteger')) {
+            callNodeToSymbol.set(node, symbo('Number', 'isInteger'));
+
+            if (!node.arguments[0]) return true;
+            if (AST.isPrimitive(node.arguments[0])) return true;
+            if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
+              const t = declaredNameTypes.get(node.arguments[0].name);
+              return PRIMITIVE_TYPE_NAMES_PREVAL.has(t);
+            }
+            // Technically it is possible for this to be an array or whatever. And even that could be supported.
+            const t = declaredNameTypes.get(node.arguments[0].name);
+            if (PRIMITIVE_TYPE_NAMES_PREVAL.has(t)) {
+              return true;
+            }
+            todo('Support non-primitive in first arg to isInteger', node.arguments[0]);
+            return false;
+          }
+          if (node.callee.name === symbo('Number', 'isSafeInteger')) {
+            callNodeToSymbol.set(node, symbo('Number', 'isSafeInteger'));
+
+            if (!node.arguments[0]) return true;
+            if (AST.isPrimitive(node.arguments[0])) return true;
+            if (node.arguments[0].type === 'Identifier' && declaredNameTypes.has(node.arguments[0].name)) {
+              const t = declaredNameTypes.get(node.arguments[0].name);
+              return PRIMITIVE_TYPE_NAMES_PREVAL.has(t);
+            }
+            // Technically it is possible for this to be an array or whatever. And even that could be supported.
+            const t = declaredNameTypes.get(node.arguments[0].name);
+            if (PRIMITIVE_TYPE_NAMES_PREVAL.has(t)) {
+              return true;
+            }
+            todo('Support non-primitive in first arg to isSafeInteger', node.arguments[0]);
+            return false;
+          }
+          if (node.callee.name === 'parseInt' || node.callee.name === symbo('Number', 'parseInt')) {
+            if (node.callee.name) todo('should parseInts not be transformed to symbols?');
+            callNodeToSymbol.set(node, symbo('Number', 'parseInt'));
 
             if (!node.arguments[0]) {}
             else if (AST.isPrimitive(node.arguments[0])) {}
@@ -325,8 +376,9 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
             // kayy
             return true;
           }
-          if (node.callee.name === 'parseFloat') {
-            callNodeToSymbol.set(node, 'parseFloat');
+          if (node.callee.name === 'parseFloat' || node.callee.name === symbo('Number', 'parseFloat')) {
+            if (node.callee.name) todo('should parseFloats not be transformed to symbols?');
+            callNodeToSymbol.set(node, symbo('Number', 'parseFloat'));
 
             if (!node.arguments[0]) return true;
             if (AST.isPrimitive(node.arguments[0])) return true;
@@ -353,7 +405,7 @@ function _isFree(node, fdata, callNodeToSymbol, declaredNameTypes, insideWhile) 
                 return PRIMITIVE_TYPE_NAMES_PREVAL.has(t);
               }
               // Technically it is possible for this to be an array or whatever. And even that could be supported.
-              todo('Support non-primitive ident-ref in first arg to parseFloat', anode, '~>', declaredNameTypes.get(anode.name));
+              todo('Support non-primitive ident-ref in first arg to fromCharCode', anode, '~>', declaredNameTypes.get(anode.name));
               return false;
             });
           }
@@ -1085,16 +1137,19 @@ function runExpression(fdata, node, register, callNodeToSymbol, prng, usePrng) {
             if (targetType === 'number') return value + 0;
             return ASSERT(false, '$coerce should not have anything else');
           }
+          case symbo('Number', 'isNaN'):
           case 'isNaN': {
             const value = runExpression(fdata, node.arguments[0], register, callNodeToSymbol, prng, usePrng);
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             return isNaN(value);
           }
+          case symbo('Number', 'isFinite'):
           case 'isFinite': {
             const value = runExpression(fdata, node.arguments[0], register, callNodeToSymbol, prng, usePrng);
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             return isFinite(value);
           }
+          case symbo('Number', 'parseInt'):
           case 'parseInt': {
             const value = node.arguments[0] ? runExpression(fdata, node.arguments[0], register, callNodeToSymbol, prng, usePrng) : undefined;
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
@@ -1102,10 +1157,21 @@ function runExpression(fdata, node, register, callNodeToSymbol, prng, usePrng) {
             if (base === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             return parseInt(value, base);
           }
+          case symbo('Number', 'parseFloat'):
           case 'parseFloat': {
             const value = node.arguments[0] ? runExpression(fdata, node.arguments[0], register, callNodeToSymbol, prng, usePrng) : undefined;
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             return parseFloat(value);
+          }
+          case symbo('Number', 'isInteger'): {
+            const value = node.arguments[0] ? runExpression(fdata, node.arguments[0], register, callNodeToSymbol, prng, usePrng) : undefined;
+            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+            return Number.isInteger(value);
+          }
+          case symbo('Number', 'isSafeInteger'): {
+            const value = node.arguments[0] ? runExpression(fdata, node.arguments[0], register, callNodeToSymbol, prng, usePrng) : undefined;
+            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+            return Number.isSafeInteger(value);
           }
         }
 

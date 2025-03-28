@@ -47,16 +47,12 @@ $(x instanceof String);
 
 
 `````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const x$1 /*:number*/ = $$0;
-  debugger;
-  const tmpStringConcatR /*:string*/ = $coerce(x$1, `string`);
-  const tmpRet /*:string*/ = `${tmpStringConcatR}function String() { [native code] }`;
-  return tmpRet;
-};
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const x /*:number*/ = 1 * tmpBinBothRhs;
-const tmpArrElement$7 /*:string*/ = $frfr(tmpFree, x);
+const tmpStringConcatR /*:string*/ = $coerce(x, `string`);
+const tmpArrElement$25 /*:boolean*/ = x == String;
+const tmpArrElement$27 /*:boolean*/ = x != String;
+const tmpArrElement$7 /*:string*/ = `${tmpStringConcatR}function String() { [native code] }`;
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;
 const tmpArrElement$15 /*:number*/ = x >>> 0;
@@ -64,8 +60,6 @@ const tmpArrElement$17 /*:boolean*/ = x < `function String() { [native code] }`;
 const tmpArrElement$19 /*:boolean*/ = x > `function String() { [native code] }`;
 const tmpArrElement$21 /*:boolean*/ = x <= `function String() { [native code] }`;
 const tmpArrElement$23 /*:boolean*/ = x >= `function String() { [native code] }`;
-const tmpArrElement$25 /*:boolean*/ = x == String;
-const tmpArrElement$27 /*:boolean*/ = x != String;
 const tmpArrElement$35 /*:number*/ = x ^ 0;
 const tmpArrElement$37 /*:number*/ = x | 0;
 const arr /*:array*/ = [
@@ -102,13 +96,12 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(x$1) {
-  const tmpRet = `${x$1}function String() { [native code] }`;
-  return tmpRet;
-};
 const tmpBinBothRhs = $(1);
 const x = 1 * tmpBinBothRhs;
-const tmpArrElement$7 = $frfr(tmpFree, x);
+const tmpStringConcatR = $coerce(x, `string`);
+const tmpArrElement$25 = x == String;
+const tmpArrElement$27 = x != String;
+const tmpArrElement$7 = `${tmpStringConcatR}function String() { [native code] }`;
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
 const tmpArrElement$15 = x >>> 0;
@@ -116,8 +109,6 @@ const tmpArrElement$17 = x < `function String() { [native code] }`;
 const tmpArrElement$19 = x > `function String() { [native code] }`;
 const tmpArrElement$21 = x <= `function String() { [native code] }`;
 const tmpArrElement$23 = x >= `function String() { [native code] }`;
-const tmpArrElement$25 = x == String;
-const tmpArrElement$27 = x != String;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
 $([
@@ -151,33 +142,27 @@ $(x instanceof String);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = $coerce( c, "string" );
-  const e = `${d}function String() { [native code] }`;
-  return e;
-};
-const f = $( 1 );
-const g = 1 * f;
-const h = i( a, g );
-const j = g << 0;
-const k = g >> 0;
-const l = g >>> 0;
-const m = g < "function String() { [native code] }";
-const n = g > "function String() { [native code] }";
-const o = g <= "function String() { [native code] }";
-const p = g >= "function String() { [native code] }";
-const q = g == String;
-const r = g != String;
-const s = g ^ 0;
-const t = g | 0;
-const u = [ NaN, NaN, NaN, NaN, h, NaN, j, k, l, m, n, o, p, q, r, false, true, 0, s, t ];
-$( u );
-const v = g in String;
-$( v );
-const w = g instanceof String;
-$( w );
+const a = $( 1 );
+const b = 1 * a;
+const c = $coerce( b, "string" );
+const d = b == String;
+const e = b != String;
+const f = `${c}function String() { [native code] }`;
+const g = b << 0;
+const h = b >> 0;
+const i = b >>> 0;
+const j = b < "function String() { [native code] }";
+const k = b > "function String() { [native code] }";
+const l = b <= "function String() { [native code] }";
+const m = b >= "function String() { [native code] }";
+const n = b ^ 0;
+const o = b | 0;
+const p = [ NaN, NaN, NaN, NaN, f, NaN, g, h, i, j, k, l, m, d, e, false, true, 0, n, o ];
+$( p );
+const q = b in String;
+$( q );
+const r = b instanceof String;
+$( r );
 `````
 
 

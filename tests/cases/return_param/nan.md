@@ -51,11 +51,11 @@ const f /*:()=>undefined*/ = function () {
   }
 };
 f();
-$(NaN);
+$($Number_NaN);
 f();
-$(NaN);
+$($Number_NaN);
 f();
-$(NaN);
+$($Number_NaN);
 `````
 
 
@@ -74,11 +74,11 @@ const f = function () {
   }
 };
 f();
-$(NaN);
+$($Number_NaN);
 f();
-$(NaN);
+$($Number_NaN);
 f();
-$(NaN);
+$($Number_NaN);
 `````
 
 
@@ -102,11 +102,11 @@ const a = function() {
   }
 };
 a();
-$( NaN );
+$( $Number_NaN );
 a();
-$( NaN );
+$( $Number_NaN );
 a();
-$( NaN );
+$( $Number_NaN );
 `````
 
 

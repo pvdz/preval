@@ -536,7 +536,7 @@ export function phaseNormalOnce(fdata) {
             // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
             AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
               // const next = forInGen.next();
-              AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), []), 'const', true),
+              AST.variableDeclaration(valName, AST.callExpression(AST.identifier(genName), []), 'const', true),
               // if (x.done)
               AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
                 AST.blockStatement(
@@ -591,7 +591,7 @@ export function phaseNormalOnce(fdata) {
           // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
           AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
             // const next = forInGen.next();
-            AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), []), 'const', true),
+            AST.variableDeclaration(valName, AST.callExpression(AST.identifier(genName), []), 'const', true),
             // if (x.done)
             AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
               AST.blockStatement(
@@ -664,7 +664,7 @@ export function phaseNormalOnce(fdata) {
             // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
             AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
               // const next = forOfGen.next();
-              AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), []), 'const', true),
+              AST.variableDeclaration(valName, AST.callExpression(AST.identifier(genName), []), 'const', true),
               // if (x.done)
               AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
                 AST.blockStatement(
@@ -718,7 +718,7 @@ export function phaseNormalOnce(fdata) {
           // (It probably doesn't make sense for for-of/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
           AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
             // const next = forOfGen.next();
-            AST.variableDeclaration(valName, AST.callExpression(AST.memberExpression(AST.identifier(genName), AST.identifier('next'), false), []), 'const', true),
+            AST.variableDeclaration(valName, AST.callExpression(AST.identifier(genName), []), 'const', true),
             // if (x.done)
             AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
               AST.blockStatement(

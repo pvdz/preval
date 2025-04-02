@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpForInGen /*:unknown*/ = $forIn(60);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
     break;
@@ -40,7 +40,7 @@ $(a);
 `````js filename=intro
 const tmpForInGen = $forIn(60);
 while (true) {
-  const tmpForInNext = tmpForInGen.next();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {
@@ -57,7 +57,7 @@ With rename=true
 `````js filename=intro
 const a = $forIn( 60 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = a.next();
+  const b = a();
   const c = b.done;
   if (c) {
     break;
@@ -77,7 +77,7 @@ $( d );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
+None
 
 
 ## Globals

@@ -459,16 +459,26 @@ function runTestCase(
       return coerce(x, to);
     }
 
-    function * $forIn(obj) {
-      for (const key in obj) {
-        yield key;
+    function $forIn(obj) {
+      function * gen(obj) {
+        for (const key in obj) {
+          yield key;
+        }
       }
+
+      const iter = gen(obj);
+      return () => iter.next();
     }
 
-    function * $forOf(obj) {
-      for (const item of obj) {
-        yield item;
+    function $forOf(obj) {
+      function * gen(obj) {
+        for (const item of obj) {
+          yield item;
+        }
       }
+
+      const iter = gen(obj);
+      return () => iter.next();
     }
 
     function $throwTDZError(desc) {

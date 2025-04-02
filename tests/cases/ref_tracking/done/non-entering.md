@@ -51,15 +51,15 @@ let tmpCalleeParam$1___10__ = [];
 let tmpCalleeParam___13__ = $(tmpCalleeParam$1___16__);
 const tmpForOfGen___18__ = $forOf___20__(tmpCalleeParam___21__);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___23__) {
-  /*24*/ const tmpForOfNext___28__ = tmpForOfGen___31__.next___32__();
-  const tmpIfTest___34__ = tmpForOfNext___36__.done___37__;
-  if (tmpIfTest___39__) {
-    /*40*/ break;
-  } /*42*/ else {
-    a___48__ = tmpForOfNext___46__.value___47__;
+  /*24*/ const tmpForOfNext___28__ = tmpForOfGen___30__();
+  const tmpIfTest___32__ = tmpForOfNext___34__.done___35__;
+  if (tmpIfTest___37__) {
+    /*38*/ break;
+  } /*40*/ else {
+    a___46__ = tmpForOfNext___44__.value___45__;
   }
 }
-$(a___52__);
+$(a___50__);
 `````
 
 
@@ -74,9 +74,9 @@ None
 
                      | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @7       | ########## | 52          | none           | 48
-  - w @48      | ########## | 52          | 7,48           | 48
-  - r @52      | 7,48
+  - w @7       | ########## | 50          | none           | 46
+  - w @46      | ########## | 50          | 7,46           | 46
+  - r @50      | 7,46
 
 tmpCalleeParam$1:
   - w @10            | ########## | 16          | none           | none
@@ -87,14 +87,14 @@ tmpCalleeParam:
   - r @21            | 13
 
 tmpForOfGen:
-  - w @18            | ########## | 31          | none           | none
-  - r @31            | 18
+  - w @18            | ########## | 30          | none           | none
+  - r @30            | 18
 
 tmpForOfNext:
-  - w @28            | ########## | 36,46       | none           | none
-  - r @36            | 28
-  - r @46            | 28
+  - w @28            | ########## | 34,44       | none           | none
+  - r @34            | 28
+  - r @44            | 28
 
 tmpIfTest:
-  - w @34            | ########## | 39          | none           | none
-  - r @39            | 34
+  - w @32            | ########## | 37          | none           | none
+  - r @37            | 32

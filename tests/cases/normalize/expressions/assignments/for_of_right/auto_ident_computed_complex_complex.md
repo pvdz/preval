@@ -27,7 +27,7 @@ const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 const tmpForOfGen /*:unknown*/ = $forOf(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -49,7 +49,7 @@ const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 const tmpForOfGen = $forOf(tmpClusterSSA_a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -70,7 +70,7 @@ const c = $( "c" );
 const d = b[ c ];
 const e = $forOf( d );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = e.next();
+  const f = e();
   const g = f.done;
   if (g) {
     break;
@@ -86,7 +86,7 @@ $( d, a );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

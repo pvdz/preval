@@ -37,21 +37,21 @@ let f___5__ = function () /*7*/ {
   const obj___12__ = { a___15__: 10, b___18__: 20 };
   const tmpForInGen___21__ = $forIn___23__(obj___24__);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___26__) {
-    /*27*/ const tmpForInNext___31__ = tmpForInGen___34__.next___35__();
-    const tmpIfTest___37__ = tmpForInNext___39__.done___40__;
-    if (tmpIfTest___42__) {
-      /*43*/ break;
-    } /*45*/ else {
-      const x___49__ = tmpForInNext___51__.value___52__;
-      const tmpReturnArg___54__ = $(1, `return`);
-      return tmpReturnArg___62__;
+    /*27*/ const tmpForInNext___31__ = tmpForInGen___33__();
+    const tmpIfTest___35__ = tmpForInNext___37__.done___38__;
+    if (tmpIfTest___40__) {
+      /*41*/ break;
+    } /*43*/ else {
+      const x___47__ = tmpForInNext___49__.value___50__;
+      const tmpReturnArg___52__ = $(1, `return`);
+      return tmpReturnArg___60__;
     }
   }
   $(`keep, do not eval`);
-  return undefined___69__;
+  return undefined___67__;
 };
-let tmpCalleeParam___71__ = f___73__();
-$(tmpCalleeParam___77__);
+let tmpCalleeParam___69__ = f___71__();
+$(tmpCalleeParam___75__);
 `````
 
 
@@ -66,33 +66,33 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 f:
-  - w @5       | ########## | 73          | none           | none
-  - r @73      | 5
+  - w @5       | ########## | 71          | none           | none
+  - r @71      | 5
 
 obj:
   - w @12      | ########## | 24          | none           | none
   - r @24      | 12
 
 tmpForInGen:
-  - w @21       | ########## | 34          | none           | none
-  - r @34       | 21
+  - w @21       | ########## | 33          | none           | none
+  - r @33       | 21
 
 tmpForInNext:
-  - w @31        | ########## | 39,51       | none           | none
-  - r @39        | 31
-  - r @51        | 31
+  - w @31        | ########## | 37,49       | none           | none
+  - r @37        | 31
+  - r @49        | 31
 
 tmpIfTest:
-  - w @37        | ########## | 42          | none           | none
-  - r @42        | 37
+  - w @35        | ########## | 40          | none           | none
+  - r @40        | 35
 
 x:
-  - w @49        | ########## | not read    | none           | none
+  - w @47        | ########## | not read    | none           | none
 
 tmpReturnArg:
-  - w @54        | ########## | 62          | none           | none
-  - r @62        | 54
+  - w @52        | ########## | 60          | none           | none
+  - r @60        | 52
 
 tmpCalleeParam:
-  - w @71          | ########## | 77          | none           | none
-  - r @77          | 71
+  - w @69          | ########## | 75          | none           | none
+  - r @75          | 69

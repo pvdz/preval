@@ -26,7 +26,7 @@ const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -50,7 +50,7 @@ const bindingPatternArrRoot = { a: 999, b: 1000 };
 const a = [...bindingPatternArrRoot][0];
 const tmpForOfGen = $forOf($({ x: 1 }));
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -79,7 +79,7 @@ const d = { x: 1 };
 const e = $( d );
 const f = $forOf( e );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f.next();
+  const g = f();
   const h = g.done;
   if (h) {
     break;
@@ -101,7 +101,6 @@ $( c );
 
 - (todo) inline computed array property read
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
 - (todo) arr_mutation: implement array inlining analysis stuff
 
 

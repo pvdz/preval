@@ -47,7 +47,7 @@ $inlinedFunction: {
       $(`loop`);
       const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
       const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-      const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+      const tmpForInNext /*:unknown*/ = tmpForInGen();
       const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
       if (tmpIfTest$1) {
         $(`after (not invoked but should not be eliminated)`);
@@ -86,7 +86,8 @@ $inlinedFunction: {
   while (true) {
     if ($(true)) {
       $(`loop`);
-      const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+      const tmpForInGen = $forIn({ a: 1, b: 2 });
+      const tmpForInNext = tmpForInGen();
       if (tmpForInNext.done) {
         $(`after (not invoked but should not be eliminated)`);
       } else {
@@ -126,7 +127,7 @@ $inlinedFunction: {
         b: 2,
       };
       const d = $forIn( c );
-      const e = d.next();
+      const e = d();
       const f = e.done;
       if (f) {
         $( "after (not invoked but should not be eliminated)" );

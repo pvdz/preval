@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const tmpClusterSSA_tmpForOfGen /*:unknown*/ = $forOf(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
@@ -41,7 +41,7 @@ $(1);
 `````js filename=intro
 const tmpClusterSSA_tmpForOfGen = $forOf(1);
 while (true) {
-  const tmpForOfNext = tmpClusterSSA_tmpForOfGen.next();
+  const tmpForOfNext = tmpClusterSSA_tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -58,7 +58,7 @@ With rename=true
 `````js filename=intro
 const a = $forOf( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = a.next();
+  const b = a();
   const c = b.done;
   if (c) {
     break;
@@ -74,8 +74,7 @@ $( 1 );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpClusterSSA_tmpForOfGen.next
+None
 
 
 ## Globals

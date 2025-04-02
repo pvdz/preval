@@ -32,7 +32,7 @@ while (true) {
     const tmpCalleeParam /*:array*/ = [10, 20];
     const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+      const tmpForOfNext /*:unknown*/ = tmpForOfGen();
       const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
       if (tmpIfTest$1) {
         break;
@@ -57,7 +57,7 @@ while (true) {
   if ($(true)) {
     const tmpForOfGen = $forOf([10, 20]);
     while (true) {
-      const tmpForOfNext = tmpForOfGen.next();
+      const tmpForOfNext = tmpForOfGen();
       if (tmpForOfNext.done) {
         break;
       } else {
@@ -83,7 +83,7 @@ while (true) {
     const b = [ 10, 20 ];
     const c = $forOf( b );
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const d = c.next();
+      const d = c();
       const e = d.done;
       if (e) {
         break;
@@ -105,7 +105,7 @@ $( "after, wont eval due to infinite loop" );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

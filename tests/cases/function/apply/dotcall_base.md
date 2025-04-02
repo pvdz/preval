@@ -1,0 +1,91 @@
+# Preval test case
+
+# dotcall_base.md
+
+> Function > Apply > Dotcall base
+>
+> Function apply blabla
+
+## Input
+
+`````js filename=intro
+const f = function(){ $(...arguments); };
+const apply = Function.prototype.apply;
+$($dotCall(apply, f, 'prop-unused', undefined, ['x'])); // should print x
+`````
+
+
+## Settled
+
+
+`````js filename=intro
+const f /*:()=>undefined*/ = function () {
+  const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
+  debugger;
+  $(...tmpPrevalAliasArgumentsAny);
+  return undefined;
+};
+const apply /*:unknown*/ = $Function_prototype.apply;
+const tmpCalleeParam$5 /*:array*/ = [`x`];
+const tmpCalleeParam /*:unknown*/ = $dotCall(apply, f, `prop-unused`, undefined, tmpCalleeParam$5);
+$(tmpCalleeParam);
+`````
+
+
+## Denormalized
+(This ought to be the final result)
+
+`````js filename=intro
+const f = function () {
+  const tmpPrevalAliasArgumentsAny = arguments;
+  $(...tmpPrevalAliasArgumentsAny);
+};
+const apply = $Function_prototype.apply;
+$($dotCall(apply, f, `prop-unused`, undefined, [`x`]));
+`````
+
+
+## PST Settled
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  const b = c;
+  debugger;
+  $( ...b );
+  return undefined;
+};
+const d = $Function_prototype.apply;
+const e = [ "x" ];
+const f = $dotCall( d, a, "prop-unused", undefined, e );
+$( f );
+`````
+
+
+## Todos triggered
+
+
+None
+
+
+## Globals
+
+
+None
+
+
+## Runtime Outcome
+
+
+Should call `$` with:
+ - 1: 'x'
+ - 2: undefined
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Post settled calls: Same
+
+Denormalized calls: Same

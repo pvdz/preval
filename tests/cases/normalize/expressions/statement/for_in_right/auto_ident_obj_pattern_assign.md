@@ -35,7 +35,7 @@ x$1 = tmpObjLitVal;
 const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignObjPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -57,7 +57,7 @@ const tmpObjLitVal$1 = $(4);
 x$1 = tmpObjLitVal;
 const tmpForInGen = $forIn({ x: tmpObjLitVal, y: tmpObjLitVal$1 });
 while (true) {
-  const tmpForInNext = tmpForInGen.next();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {
@@ -81,7 +81,7 @@ const c = {
 };
 const d = $forIn( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
+  const e = d();
   const f = e.done;
   if (f) {
     break;
@@ -101,7 +101,7 @@ $( g, 1, b );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
+None
 
 
 ## Globals

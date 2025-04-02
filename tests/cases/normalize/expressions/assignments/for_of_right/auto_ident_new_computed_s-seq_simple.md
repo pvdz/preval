@@ -24,7 +24,7 @@ $(a);
 const tmpClusterSSA_a /*:object*/ = new $(1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -43,7 +43,7 @@ $(tmpClusterSSA_a);
 const tmpClusterSSA_a = new $(1);
 const tmpForOfGen = $forOf(tmpClusterSSA_a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -61,7 +61,7 @@ With rename=true
 const a = new $( 1 );
 const b = $forOf( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = b.next();
+  const c = b();
   const d = c.done;
   if (d) {
     break;
@@ -77,7 +77,7 @@ $( a );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

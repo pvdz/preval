@@ -30,7 +30,7 @@ const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -58,7 +58,7 @@ const tmpForOfGen = $forOf($({ x: 1 }));
 const b = { x: 1 };
 const c = { y: 2 };
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -86,7 +86,7 @@ const c = $forOf( b );
 const d = { x: 1 };
 const e = { y: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = c.next();
+  const f = c();
   const g = f.done;
   if (g) {
     break;
@@ -114,7 +114,6 @@ $( m, d, e, 3, 4 );
 
 
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
 
 
 ## Globals

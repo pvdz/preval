@@ -37,7 +37,7 @@ x$1 = arrPatternSplat[0];
 const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
 const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignArrPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -62,7 +62,7 @@ x$1 = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
 const tmpForInGen = $forIn(tmpNestedAssignArrPatternRhs);
 while (true) {
-  const tmpForInNext = tmpForInGen.next();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {
@@ -85,7 +85,7 @@ x$1 = d[ 0 ];
 const e = d[ 1 ];
 const f = $forIn( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f.next();
+  const g = f();
   const h = g.done;
   if (h) {
     break;
@@ -107,7 +107,6 @@ $( i, 1, e );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) inline computed array property read
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
 
 
 ## Globals

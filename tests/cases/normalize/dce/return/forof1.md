@@ -27,7 +27,7 @@ $(f());
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+const tmpForInNext /*:unknown*/ = tmpForInGen();
 const tmpIfTest /*:unknown*/ = tmpForInNext.done;
 if (tmpIfTest) {
   $(`keep, do not eval`);
@@ -44,7 +44,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+const tmpForInGen = $forIn({ a: 1, b: 2 });
+const tmpForInNext = tmpForInGen();
 if (tmpForInNext.done) {
   $(`keep, do not eval`);
   $(undefined);
@@ -64,7 +65,7 @@ const a = {
   b: 2,
 };
 const b = $forIn( a );
-const c = b.next();
+const c = b();
 const d = c.done;
 if (d) {
   $( "keep, do not eval" );

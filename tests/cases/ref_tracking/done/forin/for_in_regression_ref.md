@@ -37,17 +37,17 @@ const list___14__ = [100];
 let arr___18__ = undefined___19__;
 const tmpForInGen___21__ = $forIn___23__(list___24__);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___26__) {
-  /*27*/ const tmpForInNext___31__ = tmpForInGen___34__.next___35__();
-  const tmpIfTest___37__ = tmpForInNext___39__.done___40__;
-  if (tmpIfTest___42__) {
-    /*43*/ break;
-  } /*45*/ else {
-    arr___51__ = tmpForInNext___49__.value___50__;
-    x___55__ = arr___54__;
-    $(arr___59__, `for`);
+  /*27*/ const tmpForInNext___31__ = tmpForInGen___33__();
+  const tmpIfTest___35__ = tmpForInNext___37__.done___38__;
+  if (tmpIfTest___40__) {
+    /*41*/ break;
+  } /*43*/ else {
+    arr___49__ = tmpForInNext___47__.value___48__;
+    x___53__ = arr___52__;
+    $(arr___57__, `for`);
   }
 }
-$(x___65__);
+$(x___63__);
 `````
 
 
@@ -62,29 +62,29 @@ None
 
                  | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @11      | ########## | 65          | none           | 55
-  - w @55      | ########## | 65          | 11,55          | 55
-  - r @65      | 11,55
+  - w @11      | ########## | 63          | none           | 53
+  - w @53      | ########## | 63          | 11,53          | 53
+  - r @63      | 11,53
 
 list:
   - w @14      | ########## | 24          | none           | none
   - r @24      | 14
 
 arr:
-  - w @18      | ########## | not read    | none           | 51
-  - w @51      | ########## | 54,59       | 18,51          | 51
-  - r @54      | 51
-  - r @59      | 51
+  - w @18      | ########## | not read    | none           | 49
+  - w @49      | ########## | 52,57       | 18,49          | 49
+  - r @52      | 49
+  - r @57      | 49
 
 tmpForInGen:
-  - w @21       | ########## | 34          | none           | none
-  - r @34       | 21
+  - w @21       | ########## | 33          | none           | none
+  - r @33       | 21
 
 tmpForInNext:
-  - w @31        | ########## | 39,49       | none           | none
-  - r @39        | 31
-  - r @49        | 31
+  - w @31        | ########## | 37,47       | none           | none
+  - r @37        | 31
+  - r @47        | 31
 
 tmpIfTest:
-  - w @37        | ########## | 42          | none           | none
-  - r @42        | 37
+  - w @35        | ########## | 40          | none           | none
+  - r @40        | 35

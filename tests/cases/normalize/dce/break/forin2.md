@@ -30,7 +30,7 @@ const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [10, 20];
   const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     $(`keep`);
@@ -43,7 +43,7 @@ if (tmpIfTest) {
     if (tmpIfTest$2) {
       const tmpCalleeParam$1 /*:array*/ = [10, 20];
       const tmpForOfGen$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
-      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
+      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1();
       const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
       if (tmpIfTest$4) {
         $(`keep`);
@@ -67,7 +67,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(true)) {
-  const tmpForOfNext = $forOf([10, 20]).next();
+  const tmpForOfGen = $forOf([10, 20]);
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     $(`keep`);
   } else {
@@ -76,7 +77,8 @@ if ($(true)) {
   }
   while (true) {
     if ($(true)) {
-      const tmpForOfNext$1 = $forOf([10, 20]).next();
+      const tmpForOfGen$1 = $forOf([10, 20]);
+      const tmpForOfNext$1 = tmpForOfGen$1();
       if (tmpForOfNext$1.done) {
         $(`keep`);
       } else {
@@ -102,7 +104,7 @@ const a = $( true );
 if (a) {
   const b = [ 10, 20 ];
   const c = $forOf( b );
-  const d = c.next();
+  const d = c();
   const e = d.done;
   if (e) {
     $( "keep" );
@@ -116,7 +118,7 @@ if (a) {
     if (f) {
       const g = [ 10, 20 ];
       const h = $forOf( g );
-      const i = h.next();
+      const i = h();
       const j = i.done;
       if (j) {
         $( "keep" );

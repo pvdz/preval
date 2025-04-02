@@ -30,7 +30,7 @@ const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
 const tmpForInGen /*:unknown*/ = $forIn(tmpUpdInc);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -52,7 +52,7 @@ const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
 tmpUpdObj.x = tmpUpdInc;
 const tmpForInGen = $forIn(tmpUpdInc);
 while (true) {
-  const tmpForInNext = tmpForInGen.next();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {
@@ -76,7 +76,7 @@ const f = e + 1;
 c.x = f;
 const g = $forIn( f );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const h = g.next();
+  const h = g();
   const i = h.done;
   if (i) {
     break;
@@ -92,7 +92,7 @@ $( f, a );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
+None
 
 
 ## Globals

@@ -24,7 +24,7 @@ const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignObjPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -44,7 +44,7 @@ const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -67,7 +67,7 @@ const b = $( a );
 const c = b.a;
 const d = $forOf( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
+  const e = d();
   const f = e.done;
   if (f) {
     break;
@@ -83,7 +83,7 @@ $( c );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

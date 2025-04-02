@@ -28,7 +28,7 @@ const arg /*:object*/ = { y: 1 };
 const tmpCalleeParam /*:boolean*/ = delete arg[tmpDeleteCompProp];
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -51,7 +51,7 @@ const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 const tmpForInGen = $forIn(delete arg[tmpDeleteCompProp]);
 while (true) {
-  const tmpForInNext = tmpForInGen.next();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {
@@ -73,7 +73,7 @@ const b = { y: 1 };
 const c = delete b[ a ];
 const d = $forIn( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
+  const e = d();
   const f = e.done;
   if (f) {
     break;
@@ -93,7 +93,7 @@ $( g, b );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
+None
 
 
 ## Globals

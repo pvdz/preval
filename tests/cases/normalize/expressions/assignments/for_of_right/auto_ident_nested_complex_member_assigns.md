@@ -45,7 +45,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 const tmpForOfGen /*:unknown*/ = $forOf(3);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -82,7 +82,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 const tmpForOfGen = $forOf(3);
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -118,7 +118,7 @@ d[e] = 3;
 b[c] = 3;
 const n = $forOf( 3 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const o = n.next();
+  const o = n();
   const p = o.done;
   if (p) {
     break;
@@ -134,7 +134,7 @@ $( 3, a, 3 );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

@@ -23,7 +23,7 @@ const tmpUnaryArg /*:unknown*/ = $(100);
 const tmpCalleeParam /*:number*/ = +tmpUnaryArg;
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -43,7 +43,7 @@ $(a);
 const tmpUnaryArg = $(100);
 const tmpForInGen = $forIn(+tmpUnaryArg);
 while (true) {
-  const tmpForInNext = tmpForInGen.next();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {
@@ -62,7 +62,7 @@ const a = $( 100 );
 const b = +a;
 const c = $forIn( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const d = c.next();
+  const d = c();
   const e = d.done;
   if (e) {
     break;
@@ -82,7 +82,7 @@ $( f );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
+None
 
 
 ## Globals

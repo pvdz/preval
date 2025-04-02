@@ -36,7 +36,7 @@ if (tmpIfTest) {
   $(`loop`);
   const tmpCalleeParam /*:array*/ = [1, 2];
   const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     $(`do not visit, do not eliminate`);
@@ -46,7 +46,7 @@ if (tmpIfTest) {
         $(`loop`);
         const tmpCalleeParam$1 /*:array*/ = [1, 2];
         const tmpForOfGen$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
-        const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
+        const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1();
         const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
         if (tmpIfTest$4) {
           $(`do not visit, do not eliminate`);
@@ -81,13 +81,15 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   $(`loop`);
-  const tmpForOfNext = $forOf([1, 2]).next();
+  const tmpForOfGen = $forOf([1, 2]);
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     $(`do not visit, do not eliminate`);
     while (true) {
       if ($(true)) {
         $(`loop`);
-        const tmpForOfNext$1 = $forOf([1, 2]).next();
+        const tmpForOfGen$1 = $forOf([1, 2]);
+        const tmpForOfNext$1 = tmpForOfGen$1();
         if (tmpForOfNext$1.done) {
           $(`do not visit, do not eliminate`);
         } else {
@@ -122,7 +124,7 @@ if (a) {
   $( "loop" );
   const b = [ 1, 2 ];
   const c = $forOf( b );
-  const d = c.next();
+  const d = c();
   const e = d.done;
   if (e) {
     $( "do not visit, do not eliminate" );
@@ -132,7 +134,7 @@ if (a) {
         $( "loop" );
         const g = [ 1, 2 ];
         const h = $forOf( g );
-        const i = h.next();
+        const i = h();
         const j = i.done;
         if (j) {
           $( "do not visit, do not eliminate" );

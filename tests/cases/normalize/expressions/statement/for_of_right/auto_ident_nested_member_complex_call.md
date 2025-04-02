@@ -34,7 +34,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
 const tmpForOfGen /*:unknown*/ = $forOf(varInitAssignLhsComputedRhs$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -62,7 +62,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
 const tmpForOfGen = $forOf(varInitAssignLhsComputedRhs$1);
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -88,7 +88,7 @@ e[f] = g;
 b[c] = g;
 const h = $forOf( g );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const i = h.next();
+  const i = h();
   const j = i.done;
   if (j) {
     break;
@@ -108,7 +108,7 @@ $( k, a, d, 3 );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

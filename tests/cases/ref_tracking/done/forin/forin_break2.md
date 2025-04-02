@@ -24,7 +24,7 @@ $();
 `````js filename=intro
 const wat /*:object*/ = { a: 1, b: 2 };
 const tmpForInGen /*:unknown*/ = $forIn(wat);
-const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+const tmpForInNext /*:unknown*/ = tmpForInGen();
 const tmpIfTest /*:unknown*/ = tmpForInNext.done;
 if (tmpIfTest) {
   $();
@@ -40,7 +40,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+const tmpForInGen = $forIn({ a: 1, b: 2 });
+const tmpForInNext = tmpForInGen();
 if (tmpForInNext.done) {
   $();
 } else {
@@ -59,7 +60,7 @@ const a = {
   b: 2,
 };
 const b = $forIn( a );
-const c = b.next();
+const c = b();
 const d = c.done;
 if (d) {
   $();

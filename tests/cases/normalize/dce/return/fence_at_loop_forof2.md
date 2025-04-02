@@ -28,7 +28,7 @@ $(f());
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+const tmpForOfNext /*:unknown*/ = tmpForOfGen();
 const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
 if (tmpIfTest) {
   $(`unreachable (but keep because the for body may not be visited...)`);
@@ -45,7 +45,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfNext = $forOf([1, 2]).next();
+const tmpForOfGen = $forOf([1, 2]);
+const tmpForOfNext = tmpForOfGen();
 if (tmpForOfNext.done) {
   $(`unreachable (but keep because the for body may not be visited...)`);
   $(undefined);
@@ -62,7 +63,7 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2 ];
 const b = $forOf( a );
-const c = b.next();
+const c = b();
 const d = c.done;
 if (d) {
   $( "unreachable (but keep because the for body may not be visited...)" );

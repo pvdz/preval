@@ -24,7 +24,7 @@ const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -41,9 +41,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       } else {
       }
     }
-    const tmpAssignMemLhsObj /*:unknown*/ = a;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -57,7 +56,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpForInGen = $forIn($({ x: 1 }));
 while (true) {
-  const tmpForInNext = tmpForInGen.next();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {
@@ -68,8 +67,7 @@ while (true) {
         a = $($(2));
       }
     }
-    const tmpAssignMemLhsObj = a;
-    tmpAssignMemLhsObj.x = tmpForInNext.value;
+    a.x = tmpForInNext.value;
   }
 }
 $(a);
@@ -88,7 +86,7 @@ const b = { x: 1 };
 const c = $( b );
 const d = $forIn( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
+  const e = d();
   const f = e.done;
   if (f) {
     break;
@@ -107,9 +105,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
         a = $( i );
       }
     }
-    const j = a;
-    const k = e.value;
-    j.x = k;
+    const j = e.value;
+    a.x = j;
   }
 }
 $( a );
@@ -119,7 +116,7 @@ $( a );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
+None
 
 
 ## Globals

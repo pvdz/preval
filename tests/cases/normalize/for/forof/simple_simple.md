@@ -22,7 +22,7 @@ for (a of b) $(a);
 const b /*:object*/ = { x: 1, y: 2 };
 const tmpForOfGen /*:unknown*/ = $forOf(b);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -40,7 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const tmpForOfGen = $forOf({ x: 1, y: 2 });
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -60,7 +60,7 @@ const a = {
 };
 const b = $forOf( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = b.next();
+  const c = b();
   const d = c.done;
   if (d) {
     break;
@@ -76,7 +76,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

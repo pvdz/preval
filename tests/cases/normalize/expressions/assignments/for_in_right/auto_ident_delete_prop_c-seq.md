@@ -28,7 +28,7 @@ const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
 const tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -51,7 +51,7 @@ const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
 const tmpForInGen = $forIn(tmpClusterSSA_a);
 while (true) {
-  const tmpForInNext = tmpForInGen.next();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {
@@ -73,7 +73,7 @@ const b = $( a );
 const c = delete b.y;
 const d = $forIn( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
+  const e = d();
   const f = e.done;
   if (f) {
     break;
@@ -89,7 +89,7 @@ $( c, a );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
+None
 
 
 ## Globals

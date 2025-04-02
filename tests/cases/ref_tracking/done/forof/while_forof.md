@@ -30,13 +30,13 @@ $();
 const arr___5__ = [1, 2];
 const tmpForOfGen___10__ = $forOf___12__(arr___13__);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___15__) {
-  /*16*/ const tmpForOfNext___20__ = tmpForOfGen___23__.next___24__();
-  const tmpIfTest___26__ = tmpForOfNext___28__.done___29__;
-  if (tmpIfTest___31__) {
-    /*32*/ break;
-  } /*34*/ else {
-    let x___37__ = tmpForOfNext___39__.value___40__;
-    $(x___44__);
+  /*16*/ const tmpForOfNext___20__ = tmpForOfGen___22__();
+  const tmpIfTest___24__ = tmpForOfNext___26__.done___27__;
+  if (tmpIfTest___29__) {
+    /*30*/ break;
+  } /*32*/ else {
+    let x___35__ = tmpForOfNext___37__.value___38__;
+    $(x___42__);
   }
 }
 $();
@@ -58,18 +58,18 @@ arr:
   - r @13      | 5
 
 tmpForOfGen:
-  - w @10       | ########## | 23          | none           | none
-  - r @23       | 10
+  - w @10       | ########## | 22          | none           | none
+  - r @22       | 10
 
 tmpForOfNext:
-  - w @20        | ########## | 28,39       | none           | none
-  - r @28        | 20
-  - r @39        | 20
+  - w @20        | ########## | 26,37       | none           | none
+  - r @26        | 20
+  - r @37        | 20
 
 tmpIfTest:
-  - w @26        | ########## | 31          | none           | none
-  - r @31        | 26
+  - w @24        | ########## | 29          | none           | none
+  - r @29        | 24
 
 x:
-  - w @37        | ########## | 44          | none           | none
-  - r @44        | 37
+  - w @35        | ########## | 42          | none           | none
+  - r @42        | 35

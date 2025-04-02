@@ -25,7 +25,7 @@ $('keep, do not eval');
 const tmpCalleeParam /*:array*/ = [10, 20];
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -44,7 +44,7 @@ $(`keep, do not eval`);
 `````js filename=intro
 const tmpForOfGen = $forOf([10, 20]);
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -63,7 +63,7 @@ With rename=true
 const a = [ 10, 20 ];
 const b = $forOf( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const c = b.next();
+  const c = b();
   const d = c.done;
   if (d) {
     break;
@@ -80,7 +80,7 @@ $( "keep, do not eval" );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

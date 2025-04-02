@@ -28,7 +28,7 @@ const tmpArrElement /*:array*/ = [100];
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -52,7 +52,7 @@ $(undefined);
 const tmpArrElement = [100];
 const tmpForOfGen = $forOf([tmpArrElement]);
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -75,7 +75,7 @@ const b = [ 100 ];
 const c = [ b ];
 const d = $forOf( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
+  const e = d();
   const f = e.done;
   if (f) {
     break;
@@ -96,7 +96,6 @@ $( a );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) inline computed array property read
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
 
 
 ## Globals

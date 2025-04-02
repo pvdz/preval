@@ -36,7 +36,7 @@ if (tmpIfTest) {
   $(`loop`);
   const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
   const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
     $(`unreachable`);
@@ -46,7 +46,7 @@ if (tmpIfTest) {
         $(`loop`);
         const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
         const tmpForInGen$1 /*:unknown*/ = $forIn(tmpCalleeParam$1);
-        const tmpForInNext$1 /*:unknown*/ = tmpForInGen$1.next();
+        const tmpForInNext$1 /*:unknown*/ = tmpForInGen$1();
         const tmpIfTest$4 /*:unknown*/ = tmpForInNext$1.done;
         if (tmpIfTest$4) {
           $(`unreachable`);
@@ -81,13 +81,15 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   $(`loop`);
-  const tmpForInNext = $forIn({ a: 1, b: 2 }).next();
+  const tmpForInGen = $forIn({ a: 1, b: 2 });
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     $(`unreachable`);
     while (true) {
       if ($(true)) {
         $(`loop`);
-        const tmpForInNext$1 = $forIn({ a: 1, b: 2 }).next();
+        const tmpForInGen$1 = $forIn({ a: 1, b: 2 });
+        const tmpForInNext$1 = tmpForInGen$1();
         if (tmpForInNext$1.done) {
           $(`unreachable`);
         } else {
@@ -125,7 +127,7 @@ if (a) {
     b: 2,
   };
   const c = $forIn( b );
-  const d = c.next();
+  const d = c();
   const e = d.done;
   if (e) {
     $( "unreachable" );
@@ -138,7 +140,7 @@ if (a) {
           b: 2,
         };
         const h = $forIn( g );
-        const i = h.next();
+        const i = h();
         const j = i.done;
         if (j) {
           $( "unreachable" );

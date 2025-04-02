@@ -31,7 +31,7 @@ if (tmpIfTest$1) {
   tmpForOfGen = $forOf(tmpChainElementCall);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest$3 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$3) {
     break;
@@ -56,7 +56,7 @@ if (tmpIfTest$1) {
   tmpForOfGen = $forOf($dotCall($, { e: $ }, `e`, 1));
 }
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -82,7 +82,7 @@ else {
   b = $forOf( d );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = b.next();
+  const e = b();
   const f = e.done;
   if (f) {
     break;
@@ -102,7 +102,7 @@ $( g );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

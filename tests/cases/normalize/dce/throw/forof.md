@@ -27,7 +27,7 @@ $(f());
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [10, 20];
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+const tmpForOfNext /*:unknown*/ = tmpForOfGen();
 const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
 if (tmpIfTest) {
   $(undefined);
@@ -43,7 +43,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfNext = $forOf([10, 20]).next();
+const tmpForOfGen = $forOf([10, 20]);
+const tmpForOfNext = tmpForOfGen();
 if (tmpForOfNext.done) {
   $(undefined);
 } else {
@@ -60,7 +61,7 @@ With rename=true
 `````js filename=intro
 const a = [ 10, 20 ];
 const b = $forOf( a );
-const c = b.next();
+const c = b();
 const d = c.done;
 if (d) {
   $( undefined );

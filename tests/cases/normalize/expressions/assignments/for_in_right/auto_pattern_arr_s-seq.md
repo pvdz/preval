@@ -28,7 +28,7 @@ const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
 const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignArrPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen.next();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -52,7 +52,7 @@ const tmpNestedAssignArrPatternRhs = [1, 2];
 const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
 const tmpForInGen = $forIn(tmpNestedAssignArrPatternRhs);
 while (true) {
-  const tmpForInNext = tmpForInGen.next();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {
@@ -79,7 +79,7 @@ const c = [ ...b ];
 const d = c[ 0 ];
 const e = $forIn( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = e.next();
+  const f = e();
   const g = f.done;
   if (g) {
     break;
@@ -97,7 +97,6 @@ $( d );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) inline computed array property read
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForInGen.next
 
 
 ## Globals

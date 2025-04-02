@@ -25,7 +25,7 @@ const tmpObjLitVal$1 /*:object*/ = { e: $ };
 const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
 const tmpClusterSSA_tmpForOfGen /*:unknown*/ = $forOf(tmpChainElementCall);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
@@ -44,7 +44,7 @@ $(tmpChainElementCall);
 const tmpChainElementCall = { e: $ }.e(1);
 const tmpClusterSSA_tmpForOfGen = $forOf(tmpChainElementCall);
 while (true) {
-  const tmpForOfNext = tmpClusterSSA_tmpForOfGen.next();
+  const tmpForOfNext = tmpClusterSSA_tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -63,7 +63,7 @@ const a = { e: $ };
 const b = a.e( 1 );
 const c = $forOf( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const d = c.next();
+  const d = c();
   const e = d.done;
   if (e) {
     break;
@@ -79,8 +79,7 @@ $( b );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpClusterSSA_tmpForOfGen.next
+None
 
 
 ## Globals

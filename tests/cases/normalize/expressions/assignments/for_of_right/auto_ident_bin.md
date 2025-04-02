@@ -24,7 +24,7 @@ const tmpBinBothRhs /*:unknown*/ = $(2);
 const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 const tmpForOfGen /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -43,7 +43,7 @@ $(a);
 const a = $(1) + $(2);
 const tmpForOfGen = $forOf(a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen.next();
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     break;
   } else {
@@ -63,7 +63,7 @@ const b = $( 2 );
 const c = a + b;
 const d = $forOf( c );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d.next();
+  const e = d();
   const f = e.done;
   if (f) {
     break;
@@ -79,7 +79,7 @@ $( c );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpForOfGen.next
+None
 
 
 ## Globals

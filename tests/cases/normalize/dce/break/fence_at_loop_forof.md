@@ -33,7 +33,7 @@ if (tmpIfTest) {
   $(`loop`);
   const tmpCalleeParam /*:array*/ = [1, 2];
   const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen.next();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     $(`infiloop, do not eliminate`);
@@ -48,7 +48,7 @@ if (tmpIfTest) {
       $(`loop`);
       const tmpCalleeParam$1 /*:array*/ = [1, 2];
       const tmpForOfGen$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
-      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1.next();
+      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1();
       const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
       if (tmpIfTest$4) {
         $(`infiloop, do not eliminate`);
@@ -74,7 +74,8 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   $(`loop`);
-  const tmpForOfNext = $forOf([1, 2]).next();
+  const tmpForOfGen = $forOf([1, 2]);
+  const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
     $(`infiloop, do not eliminate`);
   } else {
@@ -84,7 +85,8 @@ if ($(true)) {
   while (true) {
     if ($(true)) {
       $(`loop`);
-      const tmpForOfNext$1 = $forOf([1, 2]).next();
+      const tmpForOfGen$1 = $forOf([1, 2]);
+      const tmpForOfNext$1 = tmpForOfGen$1();
       if (tmpForOfNext$1.done) {
         $(`infiloop, do not eliminate`);
       } else {
@@ -111,7 +113,7 @@ if (a) {
   $( "loop" );
   const b = [ 1, 2 ];
   const c = $forOf( b );
-  const d = c.next();
+  const d = c();
   const e = d.done;
   if (e) {
     $( "infiloop, do not eliminate" );
@@ -127,7 +129,7 @@ if (a) {
       $( "loop" );
       const h = [ 1, 2 ];
       const i = $forOf( h );
-      const j = i.next();
+      const j = i();
       const k = j.done;
       if (k) {
         $( "infiloop, do not eliminate" );

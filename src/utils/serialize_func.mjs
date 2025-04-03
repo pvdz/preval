@@ -18,7 +18,6 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { phase0 } from '../normalize/phase0.mjs';
 import { uniqify_idents } from './uniqify_idents.mjs';
 import { parseCode } from '../normalize/parse.mjs';
 import { prepareNormalization } from '../normalize/prepare.mjs';
@@ -119,7 +118,7 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
   log('Serialized size of function:', str.length);
 
   funcNode.body.body = bodyBak; // Restore the original body
-  const newFdata = phase0('(' + str + ')', '<function duplicator>', true);
+  const newFdata = parseCode('(' + str + ')', '<function duplicator>', true);
 
   log('Now processing...');
 

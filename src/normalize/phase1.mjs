@@ -823,8 +823,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         // - anonymous default import
         // TODO: and star import but we haven't bothered with that one yet...
 
-        ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
-        const source = node.source.value;
+        // The parser would always make import source a string, but normalization
+        // would special case this and turn it into a template. support both.
+        const source = node.source?.quasis?.[0]?.value?.cooked ?? node.source.value;
+        ASSERT(typeof source === 'string', 'fixme if else', node);
         vlog('Importing symbols from "' + source + '"');
         ASSERT(typeof resolve === 'function', 'resolve must be a function here', resolve);
         const resolvedSource = resolve(source, fdata.fname);
@@ -856,8 +858,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
       case 'ImportDefaultSpecifier:after': {
         // This must be an anonymous function
-        ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
-        const source = node.source.value;
+
+        // The parser would always make import source a string, but normalization
+        // would special case this and turn it into a template. support both.
+        const source = node.source?.quasis?.[0]?.value?.cooked ?? node.source.value;
+        ASSERT(typeof source === 'string', 'fixme if else', node);
+
         const resolvedSource = resolve(source, fdata.fname);
 
         ASSERT(node.specifiers, 'fixme if different', node);

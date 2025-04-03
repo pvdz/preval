@@ -376,6 +376,8 @@ export function _exportSpecifier(local, exported) {
 }
 
 export function expressionStatement(expression) {
+  ASSERT(expression, 'expression statements should receive a child expression');
+  ASSERT(!expression.type.includes('Statement'), 'expression statements should not have statements as child...', expression);
   return {
     type: 'ExpressionStatement',
     expression,

@@ -425,7 +425,7 @@ function tryInliningObjectLiteral(meta, funcNode, params, fdata) {
         funcNode.body.body.unshift(
           // We need a better way of doing this...
           // Inject assignments of params to local vars with the actual name
-          AST.expressionStatement(AST.varStatement('const', propsNameLocalBindings[i], AST.identifier(`$$${funcNode.params.length-1}`)))
+          AST.varStatement('const', propsNameLocalBindings[i], AST.identifier(`$$${funcNode.params.length-1}`))
         );
       }
     } else {
@@ -459,10 +459,10 @@ function tryInliningObjectLiteral(meta, funcNode, params, fdata) {
       const callNode = read.parentNode;
       ASSERT(callNode.type === 'CallExpression', 'call?', read.parentNode);
 
-      callNode.arguments[pi] = propsNamesArr[0] ? map.get(propsNamesArr[0]) : AST.identifier('undefined');
+      callNode.arguments[pi] = propsNamesArr[0] ? AST.cloneSimple(map.get(propsNamesArr[0])) : AST.identifier('undefined');
       // Now append the remaining ones
       for (let i=1; i<propsNamesArr.length; ++i) {
-        callNode.arguments.push(map.get(propsNamesArr[i]));
+        callNode.arguments.push(AST.cloneSimple(map.get(propsNamesArr[i])));
       }
 
       after(read.blockBody[read.blockIndex]);

@@ -303,7 +303,7 @@ function _arr_mutation(fdata) {
               queue.push({
                 index: read.blockIndex,
                 func: () => {
-                  read.blockBody.splice(read.blockIndex, 1, ...arrNode.elements.slice(value));
+                  read.blockBody.splice(read.blockIndex, 1, ...arrNode.elements.slice(value).map(node => AST.expressionStatement(node)));
                   arrNode.elements.length = value;
                 }
               })

@@ -3,22 +3,20 @@ import { log, group, groupEnd, vlog, vgroup, vgroupEnd } from '../utils.mjs';
 
 if (typeof window !== 'undefined') window.Tenko = Tenko; // Expose symbols for UI
 
-export function parseCode(code, fname) {
-  group('\n\n\n##################################\n## parse source  ::  ' + fname + '\n##################################\n\n\n');
+export function parseCode(code, fname, subCall) {
+  if (subCall) group('\nParsing with Tenko (subcall)  ::  ' + fname);
+  else group('\n\n\n##################################\n## parse source  ::  ' + fname + '\n##################################\n\n\n');
 
   log('- Parsing code with Tenko...');
 
   const start = Date.now();
-
   const tenkoOutput = Tenko.Tenko(code, {
     exposeScopes: true,
     collectTokens: Tenko.COLLECT_TOKENS_NONE,
     goalMode: Tenko.GOAL_MODULE,
     locationTracking: false,
     toplevelAwait: true,
-
     alwaysAllowOctalEscapes: true, // It's possible for eval/Function to drop these into the code while transforming so we need this option
-
     astUids: true, // debugging
   });
 

@@ -1,6 +1,6 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, rule, example, before, after, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, assertNoDupeNodes, rule, example, before, after, todo } from '../utils.mjs';
 import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE } from '../pcode.mjs';
 
 // This phase walks the AST to verify and compile eligible functions into pcode
@@ -11,15 +11,15 @@ import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE
 // We can't guarantee that a function actually completes ("halting problem")
 // so this will have to happen at runtime through a counter of sorts.
 
-export function freeFuncs(fdata, prng, usePrng) {
+export function freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
   group('\n\n\nChecking for free function calls to simulate and resolve\n');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _freeFuncs(fdata, prng, usePrng);
+  if (pcodeTestMode) vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  const r = _freeFuncs(fdata, prng, usePrng, pcodeTestMode);
   groupEnd();
   return r;
 }
 
-export function _freeFuncs(fdata, prng, usePrng) {
+export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
   const ast = fdata.tenkoOutput.ast;
 
   let changed = 0;
@@ -76,7 +76,7 @@ export function _freeFuncs(fdata, prng, usePrng) {
     vgroup('- Can @', +node.$p.pid, '("', funcName, '") be compiled to pcode?');
     const conditionalNames = pcanCompile(node, fdata, funcName);
     if (conditionalNames) vlog('~~> Yes ', [funcName], 'can be pcode compiled, but only if the funcs it calls can too;', conditionalNames);
-    vlog('~~> nope', [funcName], 'can not be pcode compiled;', conditionalNames);
+    else vlog('~~> nope', [funcName], 'can not be pcode compiled;', conditionalNames);
     vgroupEnd();
     if (conditionalNames) {
       if (conditionalNames.size === 0 || (conditionalNames.size === 1 && conditionalNames.has(funcName))) {
@@ -128,18 +128,27 @@ export function _freeFuncs(fdata, prng, usePrng) {
   /** @var {Map<pid | name, {name: string, pcode: Pcode}>} */
   fdata.pcodeOutput = new Map;
   if (validatedUserFuncNames.size > 0) {
+    vlog('\nAt least one function was accepted, yay!');
     vlog('Now compiling validated funcs'); // We should lazily compile them, actually. Init to undefined and compile them when used...
 
+    // This set includes all the builtins that pcode supports...
     validated.forEach((funcNode, funcName) => {
-      if (!pcodeSupportedBuiltinFuncs.has(funcName) ) {
-        vgroup('-', funcName);
+      if (!pcodeSupportedBuiltinFuncs.has(funcName)) {
+        vgroup('- pcodeSupportedBuiltinFuncs does not yet have:', [funcName], '; compiling that now');
         const pcode = pcompile(funcNode, fdata);
         fdata.pcodeOutput.set(+funcNode.$p.pid, { pcode, funcNode, name: funcName });
         fdata.pcodeOutput.set(funcName, { pcode, funcNode, name: funcName });
 
-        const meta = fdata.globallyUniqueNamingRegistry.get(funcName);
+        if (pcodeTestMode) {
+          vlog('Skipping inlining in pcodeTestMode. This is the resulting pcode:');
+          vlog(pcode)
+        }
+
         // Only process constant functions for now
-        if (meta.isConstant) {
+        // Note: there won't be any reads in pcode test mode, so it would skip this...
+        const meta = fdata.globallyUniqueNamingRegistry.get(funcName);
+        if (!pcodeTestMode && meta.isConstant) {
+          vlog('It is a constant, now inlining', meta.reads.length, 'reads to', funcName);
           meta.reads.forEach((read) => {
             if (
               read.parentNode.type === 'CallExpression' &&

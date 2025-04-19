@@ -122,7 +122,7 @@ function _dotcallSelfAssigning(fdata) {
       before(methodMeta.writes[0].blockBody[methodMeta.writes[0].blockIndex]);
       before(read.blockBody[read.blockIndex]);
 
-      methodMeta.writes[0].parentNode.init = AST.identifier(symbo('string', 'replace')); // TODO: --> symbol, right?
+      methodMeta.writes[0].parentNode.init = AST.identifier(symbol);
       // This doesn't work because after this transform it will call phase1 which resets typing information (that's the whole point even)
       //methodMeta.typing.mustBeType = 'string';
       //methodMeta.typing.mustBePrimitive = true;

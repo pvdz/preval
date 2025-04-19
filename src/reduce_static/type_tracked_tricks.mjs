@@ -3164,6 +3164,38 @@ function _typeTrackedTricks(fdata) {
           }
         }
 
+        if (!node.computed) {
+          let symbol;
+          if (AST.isPrimitive(node.object)) {
+            symbol = symbo(AST.getPrimitiveType(node.object), node.property.name);
+          }
+          if (node.object.type === 'Identifier') {
+            const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);
+            // The `object` case is unfortunate but too risky here without further checks. I think everything else is fair game.
+            if (meta?.typing.mustBeType && meta.typing.mustBeType !== 'object') {
+              symbol = symbo(meta.typing.mustBeType, node.property.name);
+            }
+          }
+          if (symbol && BUILTIN_SYMBOLS.has(symbol)) {
+            queue.push({
+              index: blockIndex,
+              func: () => {
+                rule('Property reads that read builtin symbols should be replaced by those symbols');
+                example('const x = []; x.forEach;', `x; ${symbo('array', 'forEach')};`);
+                before(blockBody[blockIndex]);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.identifier(symbol);
+                else parentNode[parentProp][parentIndex] = AST.identifier(symbol);
+                // We have to retain the object reference to catch TDZ
+                blockBody.splice(blockIndex, 0, AST.expressionStatement(node.object));
+
+                after(blockBody[blockIndex]);
+                ++changes;
+              }
+            });
+          }
+        }
+
         break;
       }
     }

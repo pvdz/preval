@@ -81,7 +81,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) access object property that also exists on prototype? $array_reverse
-- (todo) can try-escaping support this expr node type? MemberExpression
 - (todo) try escaping may support dotcalling $array_reverse
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) objects in isFree check

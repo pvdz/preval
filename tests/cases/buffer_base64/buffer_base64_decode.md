@@ -23,9 +23,6 @@ $(x); // hello, world
 
 
 `````js filename=intro
-const buf /*:buffer*/ = $Buffer_from(`aGVsbG8sIHdvcmxk=`, `base64`);
-const tmpMCF$1 /*:unknown*/ = buf.toString;
-$dotCall(tmpMCF$1, buf, `toString`, `ascii`);
 $(`hello, world`);
 `````
 
@@ -34,8 +31,6 @@ $(`hello, world`);
 (This ought to be the final result)
 
 `````js filename=intro
-const buf = $Buffer_from(`aGVsbG8sIHdvcmxk=`, `base64`);
-buf.toString(`ascii`);
 $(`hello, world`);
 `````
 
@@ -44,9 +39,6 @@ $(`hello, world`);
 With rename=true
 
 `````js filename=intro
-const a = $Buffer_from( "aGVsbG8sIHdvcmxk=", "base64" );
-const b = a.toString;
-$dotCall( b, a, "toString", "ascii" );
 $( "hello, world" );
 `````
 

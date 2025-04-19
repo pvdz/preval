@@ -43,7 +43,7 @@ $( "true" );
 ## Todos triggered
 
 
-- (todo) convert this Boolean trap to the symbo pattern
+None
 
 
 ## Globals

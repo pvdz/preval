@@ -23,12 +23,11 @@ $(f ("cGF0aA")); // path
 
 
 `````js filename=intro
-const f /*:(unknown)=>unknown*/ = function ($$0) {
+const f /*:(unknown)=>string*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   const tmp /*:buffer*/ = $Buffer_from(x, `base64`);
-  const tmpMCF$1 /*:unknown*/ = tmp.toString;
-  const tmp2 /*:unknown*/ = $dotCall(tmpMCF$1, tmp, `toString`, `utf8`);
+  const tmp2 /*:string*/ = $dotCall($buffer_toString, tmp, `toString`, `utf8`);
   return tmp2;
 };
 $(f);
@@ -41,8 +40,7 @@ $(`path`);
 
 `````js filename=intro
 $(function (x) {
-  const tmp = $Buffer_from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
+  const tmp2 = $dotCall($buffer_toString, $Buffer_from(x, `base64`), `toString`, `utf8`);
   return tmp2;
 });
 $(`path`);
@@ -57,9 +55,8 @@ const a = function($$0 ) {
   const b = $$0;
   debugger;
   const c = $Buffer_from( b, "base64" );
-  const d = c.toString;
-  const e = $dotCall( d, c, "toString", "utf8" );
-  return e;
+  const d = $dotCall( $buffer_toString, c, "toString", "utf8" );
+  return d;
 };
 $( a );
 $( "path" );
@@ -71,7 +68,6 @@ $( "path" );
 
 - (todo) type trackeed tricks can possibly support static $Buffer_from
 - (todo) access object property that also exists on prototype? $buffer_toString
-- (todo) these should be eliminated by eliminating builtin-globals-as-statements in normalize
 
 
 ## Globals

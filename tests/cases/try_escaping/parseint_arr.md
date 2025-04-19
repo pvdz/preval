@@ -84,7 +84,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_push
-- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
 
 
 ## Globals

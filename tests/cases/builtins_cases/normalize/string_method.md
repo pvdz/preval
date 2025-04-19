@@ -55,10 +55,10 @@ const tmpFree$2 /*:(string)=>string*/ = function $free($$0) {
   return tmpRet;
 };
 const f /*:(string)=>string*/ = function ($$0) {
-  const inputstr /*:string*/ = $$0;
+  const inputstr$1 /*:string*/ = $$0;
   debugger;
   const regex /*:regex*/ = /[^A-Za-z0-9\+\/\=]/g;
-  const repl$3 /*:string*/ = $dotCall($string_replace, inputstr, `replace`, regex, ``);
+  const repl$3 /*:string*/ = $dotCall($string_replace, inputstr$1, `replace`, regex, ``);
   const len /*:number*/ = repl$3.length;
   const test /*:boolean*/ = 0 < len;
   if (test) {
@@ -102,8 +102,8 @@ const tmpFree$2 = function $free(repl$2) {
   );
   return tmpRet;
 };
-const f = function (inputstr) {
-  const repl$3 = $dotCall($string_replace, inputstr, `replace`, /[^A-Za-z0-9\+\/\=]/g, ``);
+const f = function (inputstr$1) {
+  const repl$3 = $dotCall($string_replace, inputstr$1, `replace`, /[^A-Za-z0-9\+\/\=]/g, ``);
   const len = repl$3.length;
   if (0 < len) {
     const tmpClusterSSA_outputstr = $frfr(tmpFree$2, repl$3);

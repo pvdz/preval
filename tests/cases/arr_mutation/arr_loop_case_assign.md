@@ -199,10 +199,10 @@ $( q );
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_slice
-- (todo) can try-escaping support this expr node type? MemberExpression
-- (todo) phase1_1 support this array method call? $array_slice
+- (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) type trackeed tricks can possibly support static $array_slice
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) phase1_1 support this array method call? $array_slice
 - (todo) outline any args for tdz
 
 

@@ -53,9 +53,7 @@ $( a );
 
 - (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) access object property that also exists on prototype? $array_join
-- (todo) arr mutation may be able to inline this method: tmpMCF$3
-- (todo) arr mutation may be able to inline this method: tmpMCF$7
-- (todo) arr mutation may be able to inline this method: tmpMCF$11
+- (todo) free with zero args, we can eliminate this?
 
 
 ## Globals

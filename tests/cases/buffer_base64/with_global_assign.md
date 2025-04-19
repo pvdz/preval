@@ -27,13 +27,12 @@ $(unknown);
 
 
 `````js filename=intro
-const f /*:(unknown)=>unknown*/ = function ($$0) {
+const f /*:(unknown)=>string*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   unknown = x;
   const tmp /*:buffer*/ = $Buffer_from(x, `base64`);
-  const tmpMCF$1 /*:unknown*/ = tmp.toString;
-  const tmp2 /*:unknown*/ = $dotCall(tmpMCF$1, tmp, `toString`, `utf8`);
+  const tmp2 /*:string*/ = $dotCall($buffer_toString, tmp, `toString`, `utf8`);
   return tmp2;
 };
 let unknown /*:unknown*/ = $(1);
@@ -50,8 +49,7 @@ $(unknown);
 `````js filename=intro
 const f = function (x) {
   unknown = x;
-  const tmp = $Buffer_from(x, `base64`);
-  const tmp2 = tmp.toString(`utf8`);
+  const tmp2 = $dotCall($buffer_toString, $Buffer_from(x, `base64`), `toString`, `utf8`);
   return tmp2;
 };
 let unknown = $(1);
@@ -71,9 +69,8 @@ const a = function($$0 ) {
   debugger;
   c = b;
   const d = $Buffer_from( b, "base64" );
-  const e = d.toString;
-  const f = $dotCall( e, d, "toString", "utf8" );
-  return f;
+  const e = $dotCall( $buffer_toString, d, "toString", "utf8" );
+  return e;
 };
 let c = $( 1 );
 $( a );

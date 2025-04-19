@@ -105,7 +105,7 @@ $( "I should become first element" );
 
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_push
-- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) should parseInts not be transformed to symbols?
 
 

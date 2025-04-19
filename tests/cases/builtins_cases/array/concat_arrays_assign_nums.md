@@ -62,7 +62,6 @@ else {
 
 
 - (todo) access object property that also exists on prototype? $array_concat
-- (todo) arr mutation may be able to inline this method: tmpMCF
 
 
 ## Globals

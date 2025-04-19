@@ -6,7 +6,7 @@
 //   debugger;
 //   Buffer;
 //   const tmpCallCompObj$23 = Buffer.from(_0x1a8433, `base64`);
-//   const tmpReturnArg$17 = tmpCallCompObj$23.toString(`utf8`);
+//   const tmpReturnArg$17 = $dotCall($buffer_toString, tmpCallCompObj$23, `toString`, `utf8`);
 //   return tmpReturnArg$17;
 // };
 // f('ZXhpc3RzU3luYw');
@@ -80,12 +80,11 @@ function _buffer_base64(fdata) {
     const statementCount = funcNode.body.body.length - bodyOffset;
 
     // We are looking for the pattern:
-    // - Buffer; (Let's make this one optional)
-    // - const <a> = Buffer.from($$1. 'base64')
-    // - const <t> = a.toString;
-    // - const <b> = $dotCall(t, a, undefined, 'utf8');
+    // - Buffer;                                            (This one's optional)
+    // - const <a> = $Buffer_from($$1. 'base64')
+    // - const <b> = $dotCall($buffer_toString, a, undefined, 'utf8');
     // - return b;
-    if (statementCount !== 4 && statementCount !== 5) {
+    if (statementCount !== 3 && statementCount !== 4) {
       vlog('  - The function does not have four or five statements so it cannot be a bool trampoline');
       return;
     }
@@ -147,36 +146,27 @@ function _buffer_base64(fdata) {
     if (AST.getPrimitiveValue(init1.arguments[1]) !== 'base64') return vlog('  - bail: step 1 call arg 2 is not "base64"');
     // Ok, this is some form of `const buf = Buffer.from(param, "base64");`
 
-    if (funcBody[index+1]?.type !== 'VarStatement') return vlog('  - bail: missing tmp var statement');
-    vlog('  - Checking step 2: const tmp = buf.toString');
-    const method = funcBody[index+1];
-    if (method.init.type !== 'MemberExpression') return vlog('  - bail: tmp var init is not a member', method.init.type); // TODO: or builtin? we'll probably revisit this soon enough :)
-    if (method.init.object.type !== 'Identifier') return vlog('  - bail: tmp var obj is not an ident');
-    if (method.init.object.name !== funcBody[index].id.name) return vlog('  - bail: tmp var obj is not reading a property from the buffer');
-    if (method.init.computed) return vlog('  - bail: tmp var obj is reading computed property');
-    if (method.init.property.name !== 'toString') return vlog('  - bail: tmp var obj is not reading the `toString` property, which is what we are targeting explicitly');
-    // Ok, this is some form of `const tmp = buf.toString;`
-
-    vlog('  - Checking step 3: calling tmp with $dotcall');
-    // Find the `var y = y.toString('utf8')` part
-    const init2 = funcBody[index+2].init;
+    vlog('  - Checking step 2: calling tmp with $dotcall');
+    // Find the `var y = $dotCall($buffer_toString, x, `toString`, `utf8`)` part
+    if (funcBody[index+1].type !== 'VarStatement') return vlog('  - bail: step 2 is not a var statement');
+    const init2 = funcBody[index+1].init;
     if (init2.type !== 'CallExpression') return vlog('  - bail: init not call');
     if (init2.callee.type !== 'Identifier') return vlog('  - bail: callee not ident??');
     if (init2.callee.name !== SYMBOL_DOTCALL) return vlog('  - bail: not dotcalling');
     if (init2.arguments.length !== 4) return vlog('  - bail: dotcall does not have 4 args');
     if (init2.arguments[0].type !== 'Identifier') return vlog('  - bail: dotcall callee not ident?');
-    if (init2.arguments[0].name !== method.id.name) return vlog('  - bail: dotcall callee not calling the tmp tostring');
+    if (init2.arguments[0].name !== symbo('buffer', 'toString')) return vlog('  - bail: dotcall callee not calling the tmp tostring');
     if (init2.arguments[1].type !== 'Identifier') return vlog('  - bail: dotcall context not ident');
     if (init2.arguments[1].name !== funcBody[index].id.name) return vlog('  - bail: dotcall context not the buffer');
     if (!AST.isStringLiteral(init2.arguments[3])) return vlog('  - bail: arg not primitive');
     if (AST.getPrimitiveValue(init2.arguments[3]) !== 'utf8') return vlog('  - bail: arg not "utf8"');
     // Ok, this is some form of `const r = $dotCall(tmp, buf, "toString", "utf8");`
 
-    vlog('  - Checking step 4: returning the dotcall result');
+    vlog('  - Checking step 3: returning the dotcall result');
     // And finally the `return y` part
-    if (funcBody[index+3].type !== 'ReturnStatement') return vlog('  - bail: not returning??');
-    if (funcBody[index+3].argument?.type !== 'Identifier') return vlog('  - bail: not returning an ident');
-    if (funcBody[index+3].argument.name !== funcBody[index+2].id.name) return vlog('  - bail: not returning the toString result');
+    if (funcBody[index+2].type !== 'ReturnStatement') return vlog('  - bail: not returning??');
+    if (funcBody[index+2].argument?.type !== 'Identifier') return vlog('  - bail: not returning an ident');
+    if (funcBody[index+2].argument.name !== funcBody[index+1].id.name) return vlog('  - bail: not returning the toString result');
 
     vlog(`  - ok: Found the base64decode Buffer pattern in function \`${funcName}\`, now reducing call sites`);
 

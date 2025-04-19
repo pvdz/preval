@@ -47,8 +47,8 @@ $( x );
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_slice
-- (todo) can we always safely clone ident refs in this case?
 - (todo) type trackeed tricks can possibly support static $array_slice
+- (todo) can we always safely clone ident refs in this case?
 
 
 ## Globals

@@ -46,7 +46,7 @@ throw "[Preval]: Array spread must crash before this line";
 ## Todos triggered
 
 
-- (todo) replace with $array_slice
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

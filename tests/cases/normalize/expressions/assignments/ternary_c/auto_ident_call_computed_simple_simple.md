@@ -29,7 +29,7 @@ if (tmpIfTest) {
   $(a);
 } else {
   const b /*:object*/ = { $: $ };
-  const tmpNestedComplexRhs /*:unknown*/ = b.$(1);
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, b, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
@@ -44,7 +44,7 @@ if ($(0)) {
   $($(100));
   $({ a: 999, b: 1000 });
 } else {
-  const tmpNestedComplexRhs = { $: $ }.$(1);
+  const tmpNestedComplexRhs = $dotCall($, { $: $ }, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
@@ -67,7 +67,7 @@ if (a) {
 }
 else {
   const d = { $: $ };
-  const e = d.$( 1 );
+  const e = $dotCall( $, d, "$", 1 );
   $( e );
   $( e );
 }

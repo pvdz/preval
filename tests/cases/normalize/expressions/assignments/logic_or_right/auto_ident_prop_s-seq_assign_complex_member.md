@@ -29,8 +29,8 @@ if (tmpCalleeParam) {
   $(a, b);
 } else {
   const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`d`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
+  const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
   b.c = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
   $(varInitAssignLhsComputedRhs, b);
@@ -49,8 +49,8 @@ if (tmpCalleeParam) {
   $({ a: 999, b: 1000 }, b);
 } else {
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam$1 = $(`d`);
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$1];
   b.c = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
   $(varInitAssignLhsComputedRhs, b);

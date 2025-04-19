@@ -74,7 +74,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-None
+- (todo) do we want to support ArrayExpression as expression statement in free loops?
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

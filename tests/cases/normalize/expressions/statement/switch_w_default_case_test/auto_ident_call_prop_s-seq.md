@@ -31,7 +31,7 @@ $(a);
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { $: $ };
-const tmpBinLhs /*:unknown*/ = b.$(1);
+const tmpBinLhs /*:unknown*/ = $dotCall($, b, `\$`, 1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -64,7 +64,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-if ({ $: $ }.$(1) === tmpSwitchValue) {
+if ($dotCall($, { $: $ }, `\$`, 1) === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -90,7 +90,7 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 const c = { $: $ };
-const d = c.$( 1 );
+const d = $dotCall( $, c, "$", 1 );
 const e = d === a;
 if (e) {
   b = 0;

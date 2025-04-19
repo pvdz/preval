@@ -31,7 +31,8 @@ if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
   const tmpCallCompObj /*:unknown*/ = $(b);
   const tmpCallCompProp /*:unknown*/ = $(`\$`);
-  const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+  const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
   $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
@@ -65,15 +66,16 @@ if (c) {
   const d = { $: $ };
   const e = $( d );
   const f = $( "$" );
-  const g = e[ f ]( 1 );
-  $( g );
+  const g = e[ f ];
+  const h = $dotCall( g, e, undefined, 1 );
+  $( h );
 }
 else {
-  const h = {
+  const i = {
     a: 999,
     b: 1000,
   };
-  $( h );
+  $( i );
 }
 `````
 

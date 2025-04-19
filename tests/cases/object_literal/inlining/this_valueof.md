@@ -28,10 +28,12 @@ const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
   $(tmpCalleeParam);
   return undefined;
 };
+const tmpCallCompVal /*:unknown*/ = $Object_prototype.value;
 const obj /*:object*/ = { g: 1, f: tmpObjLitVal$1 };
-const tmpAssignMemLhsObj /*:unknown*/ = obj.value();
+const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpCallCompVal, obj, `value`);
 tmpAssignMemLhsObj.g = 2;
-const tmpCalleeParam$1 /*:unknown*/ = obj.f();
+const tmpCallCompVal$1 /*:unknown*/ = obj.f;
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, obj, `f`);
 $(tmpCalleeParam$1);
 `````
 
@@ -44,8 +46,9 @@ const tmpObjLitVal$1 = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis.g);
 };
+const tmpCallCompVal = $Object_prototype.value;
 const obj = { g: 1, f: tmpObjLitVal$1 };
-const tmpAssignMemLhsObj = obj.value();
+const tmpAssignMemLhsObj = $dotCall(tmpCallCompVal, obj, `value`);
 tmpAssignMemLhsObj.g = 2;
 $(obj.f());
 `````
@@ -62,14 +65,16 @@ const a = function() {
   $( c );
   return undefined;
 };
-const d = {
+const d = $Object_prototype.value;
+const e = {
   g: 1,
   f: a,
 };
-const e = d.value();
-e.g = 2;
-const f = d.f();
-$( f );
+const f = $dotCall( d, e, "value" );
+f.g = 2;
+const g = e.f;
+const h = $dotCall( g, e, "f" );
+$( h );
 `````
 
 

@@ -33,7 +33,7 @@ const NOOP /*:()=>unknown*/ = function () {
 };
 $(`c`);
 $(NOOP);
-ARR.push(`c`);
+$dotCall($array_push, ARR, `push`, `c`);
 $(ARR);
 `````
 
@@ -48,7 +48,7 @@ const NOOP = function () {
 };
 $(`c`);
 $(NOOP);
-ARR.push(`c`);
+$dotCall($array_push, ARR, `push`, `c`);
 $(ARR);
 `````
 
@@ -65,7 +65,7 @@ const b = function() {
 };
 $( "c" );
 $( b );
-a.push( "c" );
+$dotCall( $array_push, a, "push", "c" );
 $( a );
 `````
 
@@ -73,7 +73,9 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
+- (todo) outline any args for tdz
+- (todo) access object property that also exists on prototype? $array_push
 
 
 ## Globals

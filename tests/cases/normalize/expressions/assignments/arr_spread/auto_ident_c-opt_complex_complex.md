@@ -85,7 +85,7 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

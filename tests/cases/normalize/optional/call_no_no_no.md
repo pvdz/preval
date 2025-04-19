@@ -45,8 +45,10 @@ const a$1 /*:object*/ = {
     return a$1;
   },
 };
-const tmpCallObj /*:unknown*/ = a$1.b();
-const tmpCompObj /*:unknown*/ = tmpCallObj.c();
+const tmpCallCompVal /*:unknown*/ = a$1.b;
+const tmpCallObj /*:unknown*/ = $dotCall(tmpCallCompVal, a$1, `b`);
+const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj.c;
+const tmpCompObj /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallObj, `c`);
 const tmpCalleeParam /*:unknown*/ = tmpCompObj.d;
 $(tmpCalleeParam);
 `````
@@ -70,7 +72,8 @@ const a$1 = {
     return a$1;
   },
 };
-$(a$1.b().c().d);
+const tmpCallObj = a$1.b();
+$(tmpCallObj.c().d);
 `````
 
 
@@ -96,10 +99,12 @@ const a = {
     return a;
   },
 };
-const b = a.b();
-const c = b.c();
-const d = c.d;
-$( d );
+const b = a.b;
+const c = $dotCall( b, a, "b" );
+const d = c.c;
+const e = $dotCall( d, c, "c" );
+const f = e.d;
+$( f );
 `````
 
 

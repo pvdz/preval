@@ -59,7 +59,9 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD!?
+ - 1: 'called $console_log:', ['console tet case']
+ - eval returned: undefined
 
 Post settled calls: BAD!!
  - 1: 'called $console_log:', ['console tet case']

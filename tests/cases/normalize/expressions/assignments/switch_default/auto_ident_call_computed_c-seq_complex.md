@@ -28,7 +28,8 @@ $(1);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 $(tmpClusterSSA_a);
 `````
 
@@ -52,8 +53,9 @@ $( 1 );
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
-$( d );
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
+$( e );
 `````
 
 

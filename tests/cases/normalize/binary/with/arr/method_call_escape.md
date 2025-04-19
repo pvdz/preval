@@ -26,7 +26,7 @@ const tmpArrElement /*:()=>object*/ = function () {
   return tmpPrevalAliasThis;
 };
 const arr /*:array*/ = [tmpArrElement];
-const tmpBinLhs /*:unknown*/ = arr[0]();
+const tmpBinLhs /*:unknown*/ = $dotCall(tmpArrElement, arr, undefined);
 const tmpCalleeParam /*:boolean*/ = tmpBinLhs === arr;
 $(tmpCalleeParam);
 `````
@@ -41,7 +41,7 @@ const tmpArrElement = function () {
   return tmpPrevalAliasThis;
 };
 const arr = [tmpArrElement];
-$(arr[0]() === arr);
+$($dotCall(tmpArrElement, arr, undefined) === arr);
 `````
 
 
@@ -55,7 +55,7 @@ const a = function() {
   return b;
 };
 const c = [ a ];
-const d = c[ 0 ]();
+const d = $dotCall( a, c, undefined );
 const e = d === c;
 $( e );
 `````
@@ -64,7 +64,10 @@ $( e );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) can we always safely clone ident refs in this case?
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
+- (todo) arr mutation may be able to inline this method: tmpArrElement
 
 
 ## Globals

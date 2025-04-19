@@ -23,8 +23,8 @@ $(a, b);
 
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(2);
-const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 $coerce(tmpNestedAssignObjPatternRhs, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };

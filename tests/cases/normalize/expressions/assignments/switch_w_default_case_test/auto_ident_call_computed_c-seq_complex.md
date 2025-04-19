@@ -32,7 +32,8 @@ let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -91,26 +92,27 @@ let b = 1;
 const c = { $: $ };
 const d = $( c );
 const e = $( "$" );
-const f = d[ e ]( 1 );
-const g = f === a;
-if (g) {
+const f = d[ e ];
+const g = $dotCall( f, d, undefined, 1 );
+const h = g === a;
+if (h) {
   b = 0;
 }
 else {
-  const h = 2 === a;
-  if (h) {
+  const i = 2 === a;
+  if (i) {
     b = 2;
   }
 }
-const i = b <= 1;
-if (i) {
+const j = b <= 1;
+if (j) {
   $( "fail1" );
   $( "fail2" );
-  $( f );
+  $( g );
 }
 else {
   $( "fail2" );
-  $( f );
+  $( g );
 }
 `````
 

@@ -56,7 +56,8 @@ const oops /*:object*/ = {
     $(`iterator called, o.x=`, tmpCalleeParam);
     const tmpCallCompObj /*:unknown*/ = tmpPrevalAliasThis.values;
     const tmpCallCompProp /*:unknown*/ = Symbol.iterator;
-    const tmpReturnArg /*:unknown*/ = tmpCallCompObj[tmpCallCompProp]();
+    const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+    const tmpReturnArg /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined);
     return tmpReturnArg;
   },
   values: tmpObjLitVal$1,
@@ -131,27 +132,28 @@ const c = {
     $( "iterator called, o.x=", e );
     const g = d.values;
     const h = Symbol.iterator;
-    const i = g[ h ]();
-    return i;
+    const i = g[ h ];
+    const j = $dotCall( i, g, undefined );
+    return j;
   },,
   values: b,
 };
-const j = $( 1 );
-const f = { x: j };
-const k = [ ...c ];
-const l = f.x;
-$( l );
+const k = $( 1 );
+const f = { x: k };
+const l = [ ...c ];
+const m = f.x;
+$( m );
 f.x = 10;
-k();
-k();
-k();
+l();
+l();
+l();
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

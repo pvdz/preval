@@ -22,8 +22,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
-const tmpCompProp /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-$coerce(tmpCompProp, `string`);
+const tmpCalleeParam /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+$coerce(tmpCalleeParam, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -59,7 +59,7 @@ $( d );
 ## Todos triggered
 
 
-None
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

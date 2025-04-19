@@ -21,13 +21,13 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpIfTest /*:unknown*/ = b[tmpCompProp];
+const tmpIfTest /*:unknown*/ = b[tmpCalleeParam];
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCompProp$1 /*:unknown*/ = $(`c`);
-  b[tmpCompProp$1];
+  const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
+  b[tmpCalleeParam$1];
   $(a, b);
 } else {
   $(a, b);
@@ -39,13 +39,13 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`c`);
+const tmpCalleeParam = $(`c`);
 const b = { c: 1 };
-const tmpIfTest = b[tmpCompProp];
+const tmpIfTest = b[tmpCalleeParam];
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCompProp$1 = $(`c`);
-  b[tmpCompProp$1];
+  const tmpCalleeParam$1 = $(`c`);
+  b[tmpCalleeParam$1];
   $(a, b);
 } else {
   $(a, b);

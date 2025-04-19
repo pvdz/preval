@@ -22,7 +22,7 @@ $(f({ a: 11, b: 12 }, 10));
 `````js filename=intro
 const objPatternNoDefault /*:unknown*/ = $Object_prototype.x;
 const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-arrPatternSplat.slice(0);
+$dotCall($array_slice, arrPatternSplat, `slice`, 0);
 $(`bad`);
 `````
 
@@ -32,7 +32,7 @@ $(`bad`);
 
 `````js filename=intro
 const objPatternNoDefault = $Object_prototype.x;
-[...objPatternNoDefault].slice(0);
+$dotCall($array_slice, [...objPatternNoDefault], `slice`, 0);
 $(`bad`);
 `````
 
@@ -43,7 +43,7 @@ With rename=true
 `````js filename=intro
 const a = $Object_prototype.x;
 const b = [ ...a ];
-b.slice( 0 );
+$dotCall( $array_slice, b, "slice", 0 );
 $( "bad" );
 `````
 
@@ -51,8 +51,9 @@ $( "bad" );
 ## Todos triggered
 
 
-- (todo) replace with $array_slice
-- (todo) type trackeed tricks can possibly support method $array_slice
+- (todo) Deal with array spreads in arr mutation?
+- (todo) access object property that also exists on prototype? $array_slice
+- (todo) type trackeed tricks can possibly support static $array_slice
 
 
 ## Globals

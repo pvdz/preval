@@ -24,7 +24,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCalleeParam$1 /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
@@ -51,15 +52,16 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
-const e = $coerce( d, "string" );
-const f = `before  ${e}  after`;
-$( f );
-const g = {
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
+const f = $coerce( e, "string" );
+const g = `before  ${f}  after`;
+$( g );
+const h = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( h );
 `````
 
 

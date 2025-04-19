@@ -37,7 +37,8 @@ const x /*:class*/ = class {
   }
 };
 const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam /*:unknown*/ = tmpCallObj.y();
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.y;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `y`);
 $(tmpCalleeParam);
 `````
 
@@ -56,7 +57,8 @@ const x = class {
     }
   }
 };
-$(new x().y());
+const tmpCallObj = new x();
+$(tmpCallObj.y());
 `````
 
 
@@ -79,8 +81,9 @@ y( $$0 ) {
 }
 };
 const e = new a();
-const f = e.y();
-$( f );
+const f = e.y;
+const g = $dotCall( f, e, "y" );
+$( g );
 `````
 
 

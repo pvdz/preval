@@ -32,7 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam /*:number*/ = parseInt(tmpCalleeParam$1);
   try {
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -49,7 +49,7 @@ while (true) {
   const tmpCalleeParam = parseInt(arr[0]);
   try {
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -67,7 +67,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const c = parseInt( b );
   try {
     $( c );
-    a.reverse();
+    $dotCall( $array_reverse, a, "reverse" );
   }
   catch (d) {
     $( "fail" );
@@ -79,6 +79,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? CallExpression
 - (todo) should parseInts not be transformed to symbols?
 
 

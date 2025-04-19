@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-b.$(1);
+$dotCall($, b, `\$`, 1);
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -43,7 +43,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-({ $: $ }.$(1));
+$dotCall($, { $: $ }, `\$`, 1);
 if ($(0)) {
   while (true) {
     if (!$(0)) {
@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-a.$( 1 );
+$dotCall( $, a, "$", 1 );
 const b = $( 0 );
 if (b) {
   while ($LOOP_UNROLL_10) {
@@ -84,7 +84,7 @@ $( d );
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: b.$
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

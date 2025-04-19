@@ -42,13 +42,14 @@ if ($) {
   const d___23__ = $(`x`);
   const tmpIfTest___29__ = d___31__.length___32__;
   if (tmpIfTest___34__) {
-    /*35*/ b___43__ = a___40__.slice___41__(1);
-  } /*44*/ else {
-    b___48__ = a___47__;
+    /*35*/ const tmpCallCompVal___38__ = a___40__.slice___41__;
+    b___51__ = $dotCall___45__(tmpCallCompVal___46__, a___47__, `slice`, 1);
+  } /*52*/ else {
+    b___56__ = a___55__;
   }
-  const h___50__ = b___52__.length___53__;
-  $(h___57__);
-} /*58*/ else {
+  const h___58__ = b___60__.length___61__;
+  $(h___65__);
+} /*66*/ else {
 }
 `````
 
@@ -62,17 +63,18 @@ None
 ## Ref tracking result
 
 
-               | reads      | read by     | overWrites     | overwritten by
+                   | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @5       | ########## | 40,47       | none           | none
+  - w @5       | ########## | 40,47,55    | none           | none
   - r @40      | 5
   - r @47      | 5
+  - r @55      | 5
 
 b:
-  - w @9       | ########## | not read    | none           | 43,48
-  - w @43      | ########## | 52          | 9              | none
-  - w @48      | ########## | 52          | 9              | none
-  - r @52      | 43,48
+  - w @9       | ########## | not read    | none           | 51,56
+  - w @51      | ########## | 60          | 9              | none
+  - w @56      | ########## | 60          | 9              | none
+  - r @60      | 51,56
 
 c:
   - w @20      | ########## | not read    | none           | none
@@ -85,6 +87,10 @@ tmpIfTest:
   - w @29      | ########## | 34          | none           | none
   - r @34      | 29
 
+tmpCallCompVal:
+  - w @38          | ########## | 46          | none           | none
+  - r @46          | 38
+
 h:
-  - w @50      | ########## | 57          | none           | none
-  - r @57      | 50
+  - w @58          | ########## | 65          | none           | none
+  - r @65          | 58

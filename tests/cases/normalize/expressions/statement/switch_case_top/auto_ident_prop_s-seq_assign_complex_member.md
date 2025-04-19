@@ -31,8 +31,8 @@ const b /*:object*/ = { c: 10, d: 20 };
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`d`);
-  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`d`);
+  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
   b.c = tmpAssignMemRhs;
   $(a, b);
 } else {
@@ -50,8 +50,8 @@ const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  b.c = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam = $(`d`);
+  b.c = tmpCompObj[tmpCalleeParam];
   $(a, b);
 } else {
   $(a, b);

@@ -23,10 +23,10 @@ $(bool1, bool2);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $spy(1);
 const tmpttr$1 /*:string*/ = $coerce(tmpCalleeParam, `string`);
-const bool1 /*:boolean*/ = `123`.includes(tmpttr$1, 1);
+const bool1 /*:boolean*/ = $dotCall($string_includes, `123`, `includes`, tmpttr$1, 1);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(1);
 const tmpttr /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-const bool2 /*:boolean*/ = `321`.includes(tmpttr, 1);
+const bool2 /*:boolean*/ = $dotCall($string_includes, `321`, `includes`, tmpttr, 1);
 $(bool1, bool2);
 `````
 
@@ -35,7 +35,10 @@ $(bool1, bool2);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`123`.includes($coerce($spy(1), `string`), 1), `321`.includes($coerce($spy(1), `string`), 1));
+$(
+  $dotCall($string_includes, `123`, `includes`, $coerce($spy(1), `string`), 1),
+  $dotCall($string_includes, `321`, `includes`, $coerce($spy(1), `string`), 1),
+);
 `````
 
 
@@ -45,10 +48,10 @@ With rename=true
 `````js filename=intro
 const a = $spy( 1 );
 const b = $coerce( a, "string" );
-const c = "123".includes( b, 1 );
+const c = $dotCall( $string_includes, "123", "includes", b, 1 );
 const d = $spy( 1 );
 const e = $coerce( d, "string" );
-const f = "321".includes( e, 1 );
+const f = $dotCall( $string_includes, "321", "includes", e, 1 );
 $( c, f );
 `````
 

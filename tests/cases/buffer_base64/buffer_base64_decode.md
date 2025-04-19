@@ -23,6 +23,9 @@ $(x); // hello, world
 
 
 `````js filename=intro
+const buf /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, `aGVsbG8sIHdvcmxk=`, `base64`);
+const tmpCallCompVal$1 /*:unknown*/ = buf.toString;
+$dotCall(tmpCallCompVal$1, buf, `toString`, `ascii`);
 $(`hello, world`);
 `````
 
@@ -31,6 +34,8 @@ $(`hello, world`);
 (This ought to be the final result)
 
 `````js filename=intro
+const buf = $dotCall($Buffer_from, Buffer, `from`, `aGVsbG8sIHdvcmxk=`, `base64`);
+buf.toString(`ascii`);
 $(`hello, world`);
 `````
 
@@ -39,6 +44,9 @@ $(`hello, world`);
 With rename=true
 
 `````js filename=intro
+const a = $dotCall( $Buffer_from, Buffer, "from", "aGVsbG8sIHdvcmxk=", "base64" );
+const b = a.toString;
+$dotCall( b, a, "toString", "ascii" );
 $( "hello, world" );
 `````
 
@@ -47,6 +55,7 @@ $( "hello, world" );
 
 
 - (todo) type trackeed tricks can possibly support static $Buffer_from
+- (todo) access object property that also exists on prototype? $buffer_toString
 
 
 ## Globals

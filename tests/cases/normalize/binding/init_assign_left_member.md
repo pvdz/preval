@@ -19,7 +19,7 @@ let a = b = c.x
 
 
 `````js filename=intro
-(20).x;
+$Number_prototype.x;
 `````
 
 
@@ -27,7 +27,7 @@ let a = b = c.x
 (This ought to be the final result)
 
 `````js filename=intro
-(20).x;
+$Number_prototype.x;
 `````
 
 
@@ -35,7 +35,7 @@ let a = b = c.x
 With rename=true
 
 `````js filename=intro
-(20).x;
+$Number_prototype.x;
 `````
 
 

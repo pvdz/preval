@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 b.c = varInitAssignLhsComputedRhs;
 const tmpForOfGen /*:unknown*/ = $forOf(varInitAssignLhsComputedRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -47,8 +47,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 = $(`d`);
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$1];
 b.c = varInitAssignLhsComputedRhs;
 const tmpForOfGen = $forOf(varInitAssignLhsComputedRhs);
 while (true) {

@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpObjSpreadArg /*:unknown*/ = b.$(1);
+const tmpObjSpreadArg /*:unknown*/ = $dotCall($, b, `\$`, 1);
 ({ ...tmpObjSpreadArg });
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -33,7 +33,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjSpreadArg = { $: $ }.$(1);
+const tmpObjSpreadArg = $dotCall($, { $: $ }, `\$`, 1);
 ({ ...tmpObjSpreadArg });
 $({ a: 999, b: 1000 });
 `````
@@ -44,7 +44,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 { ... b };
 const c = {
   a: 999,

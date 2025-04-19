@@ -23,7 +23,7 @@ $(a, b, c);
 
 
 `````js filename=intro
-(3).a;
+$Number_prototype.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 const b /*:object*/ = { x: 3 };
 $(a, b, 3);
@@ -34,7 +34,7 @@ $(a, b, 3);
 (This ought to be the final result)
 
 `````js filename=intro
-(3).a;
+$Number_prototype.a;
 $({ a: 999, b: 1000 }, { x: 3 }, 3);
 `````
 
@@ -43,7 +43,7 @@ $({ a: 999, b: 1000 }, { x: 3 }, 3);
 With rename=true
 
 `````js filename=intro
-(3).a;
+$Number_prototype.a;
 const a = {
   a: 999,
   b: 1000,

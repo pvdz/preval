@@ -24,8 +24,8 @@ const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
   a = tmpChainElementCall$1;
 }
 if (a) {
@@ -124,8 +124,7 @@ else {
 ## Todos triggered
 
 
-- (todo) objects in isFree check
-- (todo) Support referencing this builtin in isFree: $
+None
 
 
 ## Globals

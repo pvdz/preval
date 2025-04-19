@@ -45,7 +45,8 @@ if ($) {
 } else {
 }
 const xyz /*:unknown*/ = $();
-t[0]();
+const tmpCallCompVal /*:unknown*/ = t[0];
+$dotCall(tmpCallCompVal, t, undefined);
 $(xyz, `g`);
 $(undefined);
 `````
@@ -84,7 +85,8 @@ if ($) {
   $( 1 );
 }
 const b = $();
-d[ 0 ]();
+const e = d[ 0 ];
+$dotCall( e, d, undefined );
 $( b, "g" );
 $( undefined );
 `````

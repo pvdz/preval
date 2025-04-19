@@ -24,9 +24,9 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCompProp /*:unknown*/ = $(`\$`);
+  const tmpCalleeParam /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+  const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
   new tmpNewCallee(1);
   $(a);
 } else {
@@ -43,8 +43,8 @@ if (tmpIfTest) {
 const tmpIfTest = $(1);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = { $: $ }[tmpCompProp];
+  const tmpCalleeParam = $(`\$`);
+  const tmpNewCallee = { $: $ }[tmpCalleeParam];
   new tmpNewCallee(1);
   $(a);
 } else {

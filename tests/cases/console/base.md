@@ -17,7 +17,7 @@ console.log('console test case');
 
 
 `````js filename=intro
-console.log(`console test case`);
+$dotCall($console_log, console, `log`, `console test case`);
 `````
 
 
@@ -25,7 +25,7 @@ console.log(`console test case`);
 (This ought to be the final result)
 
 `````js filename=intro
-console.log(`console test case`);
+$dotCall($console_log, console, `log`, `console test case`);
 `````
 
 
@@ -33,7 +33,7 @@ console.log(`console test case`);
 With rename=true
 
 `````js filename=intro
-console.log( "console test case" );
+$dotCall( $console_log, console, "log", "console test case" );
 `````
 
 
@@ -57,8 +57,14 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD!?
+ - 1: 'called $console_log:', 'console test case'
+ - eval returned: undefined
 
-Post settled calls: Same
+Post settled calls: BAD!!
+ - 1: 'called $console_log:', 'console test case'
+ - eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!!
+ - 1: 'called $console_log:', 'console test case'
+ - eval returned: undefined

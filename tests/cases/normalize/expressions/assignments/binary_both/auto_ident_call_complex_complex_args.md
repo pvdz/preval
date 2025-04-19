@@ -21,14 +21,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCallCallee$1 /*:unknown*/ = $($);
+const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCallComplexCallee$1 /*:unknown*/ = $($);
 const tmpCalleeParam$5 /*:unknown*/ = $(1);
 const tmpCalleeParam$7 /*:unknown*/ = $(2);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+const tmpClusterSSA_a /*:unknown*/ = tmpCallComplexCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
 const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
@@ -39,10 +39,10 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const a = tmpCallCallee($(1), $(2));
-const tmpCallCallee$1 = $($);
-const tmpClusterSSA_a = tmpCallCallee$1($(1), $(2));
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee($(1), $(2));
+const tmpCallComplexCallee$1 = $($);
+const tmpClusterSSA_a = tmpCallComplexCallee$1($(1), $(2));
 $(a + tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

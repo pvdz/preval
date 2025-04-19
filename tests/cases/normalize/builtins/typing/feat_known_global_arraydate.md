@@ -44,13 +44,13 @@ $(`object`);
 $spy(`Date.now`);
 $(`number`);
 const tmpCalleeParam$17 /*:unknown*/ = $spy(`Date.UTC`);
-+tmpCalleeParam$17;
+$coerce(tmpCalleeParam$17, `number`);
 $(`number`);
 const tmpCalleeParam$21 /*:unknown*/ = $spy(`Date.parse`);
 $coerce(tmpCalleeParam$21, `string`);
 $(`number`);
 const tmpCalleeParam$25 /*:unknown*/ = $spy(`JSON.stringify`);
-const tmpUnaryArg$11 /*:primitive*/ = $JSON_stringify(tmpCalleeParam$25);
+const tmpUnaryArg$11 /*:primitive*/ = $dotCall($JSON_stringify, JSON, `stringify`, tmpCalleeParam$25);
 const tmpCalleeParam$23 /*:string*/ = typeof tmpUnaryArg$11;
 $(tmpCalleeParam$23);
 const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.abs`);
@@ -77,12 +77,11 @@ $spy(`Array.of`);
 $(`object`);
 $spy(`Date.now`);
 $(`number`);
-const tmpCalleeParam$17 = $spy(`Date.UTC`);
-+tmpCalleeParam$17;
+$coerce($spy(`Date.UTC`), `number`);
 $(`number`);
 $coerce($spy(`Date.parse`), `string`);
 $(`number`);
-const tmpUnaryArg$11 = $JSON_stringify($spy(`JSON.stringify`));
+const tmpUnaryArg$11 = $dotCall($JSON_stringify, JSON, `stringify`, $spy(`JSON.stringify`));
 $(typeof tmpUnaryArg$11);
 $coerce($spy(`Math.abs`), `number`);
 $(`number`);
@@ -107,13 +106,13 @@ $( "object" );
 $spy( "Date.now" );
 $( "number" );
 const b = $spy( "Date.UTC" );
-+b;
+$coerce( b, "number" );
 $( "number" );
 const c = $spy( "Date.parse" );
 $coerce( c, "string" );
 $( "number" );
 const d = $spy( "JSON.stringify" );
-const e = $JSON_stringify( d );
+const e = $dotCall( $JSON_stringify, JSON, "stringify", d );
 const f = typeof e;
 $( f );
 const g = $spy( "Math.abs" );
@@ -131,9 +130,6 @@ $( "number" );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Array_from
-- (todo) type trackeed tricks can possibly support static $Array_isArray
-- (todo) type trackeed tricks can possibly support static $Array_of
 - (todo) type trackeed tricks can possibly support static $Date_now
 - (todo) type trackeed tricks can possibly support static $Date_UTC
 - (todo) type trackeed tricks can possibly support static $Date_parse
@@ -141,6 +137,9 @@ $( "number" );
 - (todo) type trackeed tricks can possibly support static $Math_abs
 - (todo) type trackeed tricks can possibly support static $Math_acos
 - (todo) type trackeed tricks can possibly support static $Math_acosh
+- (todo) type trackeed tricks can possibly support static $Array_from
+- (todo) type trackeed tricks can possibly support static $Array_isArray
+- (todo) type trackeed tricks can possibly support static $Array_of
 
 
 ## Globals

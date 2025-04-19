@@ -53,7 +53,7 @@ $( "3xyz" );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+None
 
 
 ## Globals

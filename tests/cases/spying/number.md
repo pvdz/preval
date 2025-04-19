@@ -21,14 +21,14 @@ $(Number($spy('x', 'y')));
 
 
 `````js filename=intro
-const tmpStringFirstArg /*:unknown*/ = $spy();
-const tmpCalleeParam /*:number*/ = $coerce(tmpStringFirstArg, `number`);
+const tmpNumberFirstArg /*:unknown*/ = $spy();
+const tmpCalleeParam /*:number*/ = $coerce(tmpNumberFirstArg, `number`);
 $(tmpCalleeParam);
-const tmpStringFirstArg$1 /*:unknown*/ = $spy(1, 2);
-const tmpCalleeParam$1 /*:number*/ = $coerce(tmpStringFirstArg$1, `number`);
+const tmpNumberFirstArg$1 /*:unknown*/ = $spy(1, 2);
+const tmpCalleeParam$1 /*:number*/ = $coerce(tmpNumberFirstArg$1, `number`);
 $(tmpCalleeParam$1);
-const tmpStringFirstArg$3 /*:unknown*/ = $spy(`x`, `y`);
-const tmpCalleeParam$3 /*:number*/ = $coerce(tmpStringFirstArg$3, `number`);
+const tmpNumberFirstArg$3 /*:unknown*/ = $spy(`x`, `y`);
+const tmpCalleeParam$3 /*:number*/ = $coerce(tmpNumberFirstArg$3, `number`);
 $(tmpCalleeParam$3);
 `````
 

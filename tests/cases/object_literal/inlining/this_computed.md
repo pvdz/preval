@@ -26,7 +26,7 @@ const tmpObjLitVal /*:()=>undefined*/ = function () {
   return undefined;
 };
 const obj /*:object*/ = { f: tmpObjLitVal };
-const tmpCalleeParam$1 /*:unknown*/ = obj.f();
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpObjLitVal, obj, `f`);
 $(tmpCalleeParam$1);
 `````
 
@@ -39,7 +39,7 @@ const tmpObjLitVal = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis[`f f`]);
 };
-$({ f: tmpObjLitVal }.f());
+$($dotCall(tmpObjLitVal, { f: tmpObjLitVal }, `f`));
 `````
 
 
@@ -55,7 +55,7 @@ const a = function() {
   return undefined;
 };
 const d = { f: a };
-const e = d.f();
+const e = $dotCall( a, d, "f" );
 $( e );
 `````
 

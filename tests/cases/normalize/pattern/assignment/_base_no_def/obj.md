@@ -18,7 +18,7 @@ let x = 10;
 
 
 `````js filename=intro
-(1).x;
+$Number_prototype.x;
 `````
 
 
@@ -26,7 +26,7 @@ let x = 10;
 (This ought to be the final result)
 
 `````js filename=intro
-(1).x;
+$Number_prototype.x;
 `````
 
 
@@ -34,7 +34,7 @@ let x = 10;
 With rename=true
 
 `````js filename=intro
-(1).x;
+$Number_prototype.x;
 `````
 
 

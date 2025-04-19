@@ -38,8 +38,8 @@ if (test) {
     if (test$1) {
       break;
     } else {
-      const tmp$1 /*:unknown*/ = arr.shift();
-      arr.push(tmp$1);
+      const tmp$1 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+      $dotCall($array_push, arr, `push`, tmp$1);
     }
   }
 }
@@ -56,7 +56,7 @@ if (!$(`never`)) {
     if ($(`never`)) {
       break;
     } else {
-      arr.push(arr.shift());
+      $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
     }
   }
 }
@@ -79,8 +79,8 @@ else {
       break;
     }
     else {
-      const d = b.shift();
-      b.push( d );
+      const d = $dotCall( $array_shift, b, "shift" );
+      $dotCall( $array_push, b, "push", d );
     }
   }
 }
@@ -90,7 +90,10 @@ else {
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) outline any args for tdz
+- (todo) do we want to support Literal as expression statement in free loops?
 
 
 ## Globals

@@ -28,16 +28,16 @@ $(100);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpNestedAssignObj$1 /*:unknown*/ = $(b);
     const tmpCompObj$1 /*:unknown*/ = $(b);
-    const tmpCompProp$1 /*:unknown*/ = $(`d`);
-    const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+    const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
+    const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
     tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
     a = tmpNestedAssignPropRhs$1;
     if (tmpNestedAssignPropRhs$1) {
@@ -61,16 +61,16 @@ $(100);
 const b = { c: 10, d: 20 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while (true) {
     $(100);
     const tmpNestedAssignObj$1 = $(b);
     const tmpCompObj$1 = $(b);
-    const tmpCompProp$1 = $(`d`);
-    const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+    const tmpCalleeParam$1 = $(`d`);
+    const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
     tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
     a = tmpNestedAssignPropRhs$1;
     if (!tmpNestedAssignPropRhs$1) {

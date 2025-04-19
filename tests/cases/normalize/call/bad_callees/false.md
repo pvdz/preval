@@ -20,8 +20,7 @@ $('after');
 
 `````js filename=intro
 $(`before`);
-false();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`false()\``;
+throw `Attempting to call a value that cannot be called: \`false();\``;
 `````
 
 
@@ -30,8 +29,7 @@ throw `[Preval]: Call expression with illegal callee must crash before this line
 
 `````js filename=intro
 $(`before`);
-false();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`false()\``;
+throw `Attempting to call a value that cannot be called: \`false();\``;
 `````
 
 
@@ -40,8 +38,7 @@ With rename=true
 
 `````js filename=intro
 $( "before" );
-false.undefined();
-throw "[Preval]: Call expression with illegal callee must crash before this line ; `false()`";
+throw "Attempting to call a value that cannot be called: `false();`";
 `````
 
 

@@ -33,7 +33,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     a = undefined;
-    const tmpChainElementCall /*:unknown*/ = b.c(1);
+    const tmpChainElementObject /*:unknown*/ = b.c;
+    const tmpChainElementCall /*:unknown*/ = $dotCall(tmpChainElementObject, b, `c`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpChainElementCall.x = tmpAssignMemRhs;
   }
@@ -83,9 +84,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
   else {
     a = undefined;
-    const h = e.c( 1 );
-    const i = f.value;
-    h.x = i;
+    const h = e.c;
+    const i = $dotCall( h, e, "c", 1 );
+    const j = f.value;
+    i.x = j;
   }
 }
 $( a );

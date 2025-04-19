@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
@@ -40,8 +40,8 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const a = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee($(1), $(2));
 if (a) {
   $($(100));
   $(a);

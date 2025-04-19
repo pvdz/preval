@@ -23,9 +23,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee /*:unknown*/ = $($);
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam$3 /*:unknown*/ = $(2);
+const a /*:object*/ = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 $coerce(a, `string`);
 $(a);
 `````
@@ -36,9 +36,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$3 = $(2);
+const a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 $coerce(a, `string`);
 $(a);
 `````

@@ -32,7 +32,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpCallObj /*:unknown*/ = $(b);
-    const tmpAssignMemLhsObj /*:unknown*/ = tmpCallObj.$(1);
+    const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+    const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
@@ -53,7 +54,8 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const tmpAssignMemLhsObj = $(b).$(1);
+    const tmpCallObj = $(b);
+    const tmpAssignMemLhsObj = tmpCallObj.$(1);
     tmpAssignMemLhsObj.x = tmpForOfNext.value;
   }
 }
@@ -77,16 +79,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
   else {
     const g = $( d );
-    const h = g.$( 1 );
-    const i = e.value;
-    h.x = i;
+    const h = g.$;
+    const i = $dotCall( h, g, "$", 1 );
+    const j = e.value;
+    i.x = j;
   }
 }
-const j = {
+const k = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( k );
 `````
 
 

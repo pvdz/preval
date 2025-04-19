@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`\$`);
-const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`\$`);
+const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 const tmpObjSpreadArg /*:object*/ = new tmpNewCallee(1);
 ({ ...tmpObjSpreadArg });
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -37,8 +37,8 @@ $(a);
 
 `````js filename=intro
 const tmpCompObj = $({ $: $ });
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`\$`);
+const tmpNewCallee = tmpCompObj[tmpCalleeParam];
 const tmpObjSpreadArg = new tmpNewCallee(1);
 ({ ...tmpObjSpreadArg });
 $({ a: 999, b: 1000 });

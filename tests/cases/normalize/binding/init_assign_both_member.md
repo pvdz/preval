@@ -19,7 +19,7 @@ let a = b.x = c.x
 
 
 `````js filename=intro
-const varInitAssignLhsComputedRhs /*:unknown*/ = (20).x;
+const varInitAssignLhsComputedRhs /*:unknown*/ = $Number_prototype.x;
 (10).x = varInitAssignLhsComputedRhs;
 `````
 
@@ -28,7 +28,7 @@ const varInitAssignLhsComputedRhs /*:unknown*/ = (20).x;
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedRhs = (20).x;
+const varInitAssignLhsComputedRhs = $Number_prototype.x;
 (10).x = varInitAssignLhsComputedRhs;
 `````
 
@@ -37,7 +37,7 @@ const varInitAssignLhsComputedRhs = (20).x;
 With rename=true
 
 `````js filename=intro
-const a = (20).x;
+const a = $Number_prototype.x;
 10.x = a;
 `````
 

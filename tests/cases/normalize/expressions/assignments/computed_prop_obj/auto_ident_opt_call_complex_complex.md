@@ -26,8 +26,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpCompObj /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
   a = tmpChainElementCall$1;
   tmpCompObj = tmpChainElementCall$1;
 }

@@ -92,7 +92,7 @@ else {
 ## Todos triggered
 
 
-- (todo) objects in isFree check
+- (todo) do we want to support Literal as expression statement in free loops?
 
 
 ## Globals

@@ -33,20 +33,20 @@ while ($LOOP_UNROLL_1) {      // The unrolled body is not in a loop so it can in
 const test /*:unknown*/ = $(`never`);
 const arr /*:array*/ = [1, 2, 3, 4, 5];
 if (test) {
-  const tmpCalleeParam /*:array*/ = arr.slice(0);
+  const tmpCalleeParam /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
   $(tmpCalleeParam);
 } else {
-  const tmp /*:unknown*/ = arr.shift();
-  arr.push(tmp);
+  const tmp /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+  $dotCall($array_push, arr, `push`, tmp);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const test$1 /*:unknown*/ = $(`never`);
     if (test$1) {
-      const tmpCalleeParam$1 /*:array*/ = arr.slice(0);
+      const tmpCalleeParam$1 /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
       $(tmpCalleeParam$1);
       break;
     } else {
-      const tmp$1 /*:unknown*/ = arr.shift();
-      arr.push(tmp$1);
+      const tmp$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+      $dotCall($array_push, arr, `push`, tmp$1);
     }
   }
 }
@@ -60,15 +60,15 @@ if (test) {
 const test = $(`never`);
 const arr = [1, 2, 3, 4, 5];
 if (test) {
-  $(arr.slice(0));
+  $($dotCall($array_slice, arr, `slice`, 0));
 } else {
-  arr.push(arr.shift());
+  $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   while (true) {
     if ($(`never`)) {
-      $(arr.slice(0));
+      $($dotCall($array_slice, arr, `slice`, 0));
       break;
     } else {
-      arr.push(arr.shift());
+      $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
     }
   }
 }
@@ -82,22 +82,22 @@ With rename=true
 const a = $( "never" );
 const b = [ 1, 2, 3, 4, 5 ];
 if (a) {
-  const c = b.slice( 0 );
+  const c = $dotCall( $array_slice, b, "slice", 0 );
   $( c );
 }
 else {
-  const d = b.shift();
-  b.push( d );
+  const d = $dotCall( $array_shift, b, "shift" );
+  $dotCall( $array_push, b, "push", d );
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const e = $( "never" );
     if (e) {
-      const f = b.slice( 0 );
+      const f = $dotCall( $array_slice, b, "slice", 0 );
       $( f );
       break;
     }
     else {
-      const g = b.shift();
-      b.push( g );
+      const g = $dotCall( $array_shift, b, "shift" );
+      $dotCall( $array_push, b, "push", g );
     }
   }
 }
@@ -107,8 +107,12 @@ else {
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $array_slice
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: arr.push
+- (todo) access object property that also exists on prototype? $array_slice
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) phase1_1 support this array method call? $array_slice
+- (todo) type trackeed tricks can possibly support static $array_slice
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

@@ -18,8 +18,8 @@ $(y);
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 let objPatternAfterDefault /*:unknown*/ = undefined;
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { y: `pass2` };
@@ -42,8 +42,8 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $Object_prototype.x;
 let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault = $Object_prototype.x;
 if (objPatternBeforeDefault === undefined) {
   objPatternAfterDefault = $({ y: `pass2` });
 } else {
@@ -62,17 +62,17 @@ if (objPatternBeforeDefault$1 === undefined) {
 With rename=true
 
 `````js filename=intro
-const a = $Object_prototype.x;
-let b = undefined;
-const c = a === undefined;
+let a = undefined;
+const b = $Object_prototype.x;
+const c = b === undefined;
 if (c) {
   const d = { y: "pass2" };
-  b = $( d );
+  a = $( d );
 }
 else {
-  b = a;
+  a = b;
 }
-const e = b.y;
+const e = a.y;
 const f = e === undefined;
 if (f) {
   const g = $( "fail" );

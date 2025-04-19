@@ -25,12 +25,14 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
   const tmpCallObj /*:unknown*/ = $(b);
-  let tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+  let tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCallObj$1 /*:unknown*/ = $(b);
-      tmpClusterSSA_a = tmpCallObj$1.$(1);
+      const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
+      tmpClusterSSA_a = $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
     } else {
       break;
     }
@@ -49,10 +51,12 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(1)) {
   const b = { $: $ };
-  let tmpClusterSSA_a = $(b).$(1);
+  const tmpCallObj = $(b);
+  let tmpClusterSSA_a = tmpCallObj.$(1);
   while (true) {
     if ($(1)) {
-      tmpClusterSSA_a = $(b).$(1);
+      const tmpCallObj$1 = $(b);
+      tmpClusterSSA_a = tmpCallObj$1.$(1);
     } else {
       break;
     }
@@ -72,25 +76,27 @@ const a = $( 1 );
 if (a) {
   const b = { $: $ };
   const c = $( b );
-  let d = c.$( 1 );
+  const d = c.$;
+  let e = $dotCall( d, c, "$", 1 );
   while ($LOOP_UNROLL_10) {
-    const e = $( 1 );
-    if (e) {
-      const f = $( b );
-      d = f.$( 1 );
+    const f = $( 1 );
+    if (f) {
+      const g = $( b );
+      const h = g.$;
+      e = $dotCall( h, g, "$", 1 );
     }
     else {
       break;
     }
   }
-  $( d );
+  $( e );
 }
 else {
-  const g = {
+  const i = {
     a: 999,
     b: 1000,
   };
-  $( g );
+  $( i );
 }
 `````
 
@@ -99,7 +105,7 @@ else {
 
 
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpCallObj.$
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

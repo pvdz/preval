@@ -29,7 +29,7 @@ if (tmpIfTest) {
   $(a);
 } else {
   const b /*:object*/ = { c: $ };
-  const tmpChainElementCall /*:unknown*/ = b.c(1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
   $(tmpChainElementCall);
   $(tmpChainElementCall);
 }
@@ -44,7 +44,7 @@ if ($(0)) {
   $($(100));
   $({ a: 999, b: 1000 });
 } else {
-  const tmpChainElementCall = { c: $ }.c(1);
+  const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
   $(tmpChainElementCall);
   $(tmpChainElementCall);
 }
@@ -67,7 +67,7 @@ if (a) {
 }
 else {
   const d = { c: $ };
-  const e = d.c( 1 );
+  const e = $dotCall( $, d, "c", 1 );
   $( e );
   $( e );
 }

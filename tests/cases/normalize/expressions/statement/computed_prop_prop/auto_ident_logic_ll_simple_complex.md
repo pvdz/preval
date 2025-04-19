@@ -20,9 +20,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
-$coerce(tmpCompProp, `string`);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+$coerce(tmpCalleeParam, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

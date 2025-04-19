@@ -110,6 +110,7 @@ else {
 ## Todos triggered
 
 
+- (todo) regex in free loops
 - (todo) regular property access of an ident feels tricky;
 
 

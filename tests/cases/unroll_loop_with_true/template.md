@@ -41,7 +41,7 @@ $( "is it true that stuff" );
 ## Todos triggered
 
 
-None
+- (todo) when does the loop unroll constant escape?
 
 
 ## Globals

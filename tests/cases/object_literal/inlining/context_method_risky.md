@@ -35,7 +35,7 @@ const tmpObjLitVal /*:()=>undefined*/ = function () {
   return undefined;
 };
 const obj /*:object*/ = { encode: tmpObjLitVal, str: `abc` };
-const tmpCalleeParam$1 /*:unknown*/ = obj.encode();
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpObjLitVal, obj, `encode`);
 $(tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:unknown*/ = obj.str;
 $(tmpCalleeParam$3);
@@ -52,7 +52,7 @@ const tmpObjLitVal = function () {
   $(tmpPrevalAliasThis.str);
 };
 const obj = { encode: tmpObjLitVal, str: `abc` };
-$(obj.encode());
+$($dotCall(tmpObjLitVal, obj, `encode`));
 $(obj.str);
 `````
 
@@ -73,7 +73,7 @@ const d = {
   encode: a,
   str: "abc",
 };
-const e = d.encode();
+const e = $dotCall( a, d, "encode" );
 $( e );
 const f = d.str;
 $( f );

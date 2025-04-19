@@ -20,8 +20,8 @@ $(f({ b: 11, c: 12 }, 10));
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 let objPatternAfterDefault /*:unknown*/ = undefined;
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
@@ -39,8 +39,8 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $Object_prototype.x;
 let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault = $Object_prototype.x;
 if (objPatternBeforeDefault === undefined) {
   objPatternAfterDefault = $({ a: `pass` });
 } else {
@@ -54,18 +54,18 @@ $($objPatternRest(objPatternAfterDefault, [], undefined));
 With rename=true
 
 `````js filename=intro
-const a = $Object_prototype.x;
-let b = undefined;
-const c = a === undefined;
+let a = undefined;
+const b = $Object_prototype.x;
+const c = b === undefined;
 if (c) {
   const d = { a: "pass" };
-  b = $( d );
+  a = $( d );
 }
 else {
-  b = a;
+  a = b;
 }
 const e = [];
-const f = $objPatternRest( b, e, undefined );
+const f = $objPatternRest( a, e, undefined );
 $( f );
 `````
 

@@ -40,7 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     $(tmpCalleeParam);
     x = arr;
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     y = [5, 6];
     const tmpIfTest /*:boolean*/ = y === $;
     if (tmpIfTest) {
@@ -67,7 +67,7 @@ while (true) {
   try {
     $(tmpCalleeParam);
     x = arr;
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     y = [5, 6];
     if (y === $) {
       break;
@@ -92,7 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     $( d );
     a = c;
-    c.reverse();
+    $dotCall( $array_reverse, c, "reverse" );
     b = [ 5, 6 ];
     const e = b === $;
     if (e) {
@@ -110,7 +110,8 @@ $( a, b );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

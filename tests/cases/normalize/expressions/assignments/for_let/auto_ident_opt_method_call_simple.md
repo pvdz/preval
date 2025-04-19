@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = b.c(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpChainElementCall);
   $(1);
@@ -34,7 +34,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = { c: $ }.c(1);
+const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
 while (true) {
   $(tmpChainElementCall);
   $(1);
@@ -47,7 +47,7 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = a.c( 1 );
+const b = $dotCall( $, a, "c", 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );
@@ -59,7 +59,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) can we support this const aliasing blocking statement? WhileStatement
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: b.c
+- (todo) regular property access of an ident feels tricky;
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

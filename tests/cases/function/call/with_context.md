@@ -22,13 +22,13 @@ $(function(){ $(this.x); }.call({x: 15}, ['x']));
 const tmpCallObj /*:()=>undefined*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
-  const tmpCalleeParam$5 /*:unknown*/ = tmpPrevalAliasThis.x;
-  $(tmpCalleeParam$5);
+  const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.x;
+  $(tmpCalleeParam$1);
   return undefined;
 };
-const tmpCalleeParam$1 /*:object*/ = { x: 15 };
-const tmpCalleeParam$3 /*:array*/ = [`x`];
-const tmpCalleeParam /*:unknown*/ = tmpCallObj.call(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam$3 /*:object*/ = { x: 15 };
+const tmpCalleeParam$5 /*:array*/ = [`x`];
+const tmpCalleeParam /*:unknown*/ = $dotCall($function_call, tmpCallObj, `call`, tmpCalleeParam$3, tmpCalleeParam$5);
 $(tmpCalleeParam);
 `````
 
@@ -41,8 +41,8 @@ const tmpCallObj = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis.x);
 };
-const tmpCalleeParam$1 = { x: 15 };
-$(tmpCallObj.call(tmpCalleeParam$1, [`x`]));
+const tmpCalleeParam$3 = { x: 15 };
+$($dotCall($function_call, tmpCallObj, `call`, tmpCalleeParam$3, [`x`]));
 `````
 
 
@@ -59,7 +59,7 @@ const a = function() {
 };
 const d = { x: 15 };
 const e = [ "x" ];
-const f = a.call( d, e );
+const f = $dotCall( $function_call, a, "call", d, e );
 $( f );
 `````
 
@@ -67,7 +67,7 @@ $( f );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $function_call
 
 
 ## Globals

@@ -24,11 +24,13 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 if (tmpClusterSSA_a) {
   const tmpCallCompObj$1 /*:unknown*/ = $(b);
   const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-  const tmpNestedComplexRhs /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1](1);
+  const tmpCallCompVal$1 /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1];
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallCompObj$1, undefined, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -66,17 +68,19 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
-if (d) {
-  const e = $( a );
-  const f = $( "$" );
-  const g = e[ f ]( 1 );
-  $( g );
-  $( g );
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
+if (e) {
+  const f = $( a );
+  const g = $( "$" );
+  const h = f[ g ];
+  const i = $dotCall( h, f, undefined, 1 );
+  $( i );
+  $( i );
 }
 else {
-  $( d );
-  $( d );
+  $( e );
+  $( e );
 }
 `````
 

@@ -30,9 +30,9 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
 const tmpBinLhs /*:object*/ = new tmpNewCallee(1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -66,8 +66,8 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpCalleeParam = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCalleeParam];
 if (new tmpNewCallee(1) === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {

@@ -27,8 +27,8 @@ const b /*:object*/ = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`\$`);
-  const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`\$`);
+  const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
   new tmpNewCallee(1);
 }
 `````
@@ -42,8 +42,8 @@ const b = { $: $ };
 while (true) {
   $(100);
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam = $(`\$`);
+  const tmpNewCallee = tmpCompObj[tmpCalleeParam];
   new tmpNewCallee(1);
 }
 `````

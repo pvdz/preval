@@ -44,7 +44,7 @@ $( 2 );
 ## Todos triggered
 
 
-None
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
 
 
 ## Globals

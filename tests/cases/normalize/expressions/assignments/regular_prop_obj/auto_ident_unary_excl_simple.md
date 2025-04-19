@@ -22,7 +22,7 @@ $(a, arg);
 
 
 `````js filename=intro
-false.a;
+$Boolean_prototype.a;
 $(false, 1);
 `````
 
@@ -31,7 +31,7 @@ $(false, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-false.a;
+$Boolean_prototype.a;
 $(false, 1);
 `````
 
@@ -40,7 +40,7 @@ $(false, 1);
 With rename=true
 
 `````js filename=intro
-false.a;
+$Boolean_prototype.a;
 $( false, 1 );
 `````
 
@@ -48,7 +48,7 @@ $( false, 1 );
 ## Todos triggered
 
 
-None
+- (todo) convert this Boolean trap to the symbo pattern
 
 
 ## Globals

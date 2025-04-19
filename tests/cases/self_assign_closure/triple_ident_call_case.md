@@ -177,11 +177,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (tmpBinLhs$166) {
       break;
     } else {
-      const tmpCalleeParam$11 /*:unknown*/ = arr.shift();
+      const tmpCalleeParam$11 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
       $dotCall($array_push, arr, `push`, tmpCalleeParam$11);
     }
   } catch (_0x4f54af$22) {
-    const tmpCalleeParam$13 /*:unknown*/ = arr.shift();
+    const tmpCalleeParam$13 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
     $dotCall($array_push, arr, `push`, tmpCalleeParam$13);
   }
 }
@@ -254,10 +254,10 @@ while (true) {
     if (parseInt(alias2(457))) {
       break;
     } else {
-      $dotCall($array_push, arr, `push`, arr.shift());
+      $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
     }
   } catch (_0x4f54af$22) {
-    $dotCall($array_push, arr, `push`, arr.shift());
+    $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   }
 }
 $(arr);
@@ -303,12 +303,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       break;
     }
     else {
-      const q = a.shift();
+      const q = $dotCall( $array_shift, a, "shift" );
       $dotCall( $array_push, a, "push", q );
     }
   }
   catch (r) {
-    const s = a.shift();
+    const s = $dotCall( $array_shift, a, "shift" );
     $dotCall( $array_push, a, "push", s );
   }
 }
@@ -319,8 +319,10 @@ $( a );
 ## Todos triggered
 
 
-- (todo) Missed opportunity to inline a type tracked trick for $array_push
-- (todo) processArrayWriteReadImmutableBinding slow path
+- (todo) can try-escaping support this expr node type? CallExpression
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) ReturnStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) can we support this const aliasing blocking statement? WhileStatement
 
 

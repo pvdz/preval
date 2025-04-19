@@ -24,7 +24,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCalleeParam /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -66,23 +67,24 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
-const e = $forIn( d );
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
+const f = $forIn( e );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = e();
-  const g = f.done;
-  if (g) {
+  const g = f();
+  const h = g.done;
+  if (h) {
     break;
   }
   else {
-    f.value;
+    g.value;
   }
 }
-const h = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( h );
+$( i );
 `````
 
 

@@ -20,19 +20,19 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-let tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
-if (tmpCompProp) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  tmpCompProp = $(tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+let tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+if (tmpCalleeParam) {
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  tmpCalleeParam = $(tmpCalleeParam$3);
 } else {
 }
-if (tmpCompProp) {
-  $coerce(tmpCompProp, `string`);
+if (tmpCalleeParam) {
+  $coerce(tmpCalleeParam, `string`);
 } else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  const tmpClusterSSA_tmpCompProp /*:unknown*/ = $(tmpCalleeParam$3);
-  $coerce(tmpClusterSSA_tmpCompProp, `string`);
+  const tmpCalleeParam$5 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$5);
+  $coerce(tmpClusterSSA_tmpCalleeParam, `string`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -43,12 +43,12 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpCompProp = $($(1));
-if (tmpCompProp) {
-  tmpCompProp = $($(1));
+let tmpCalleeParam = $($(1));
+if (tmpCalleeParam) {
+  tmpCalleeParam = $($(1));
 }
-if (tmpCompProp) {
-  $coerce(tmpCompProp, `string`);
+if (tmpCalleeParam) {
+  $coerce(tmpCalleeParam, `string`);
 } else {
   $coerce($($(2)), `string`);
 }

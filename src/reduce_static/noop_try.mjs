@@ -2,6 +2,8 @@
 // `try { return 100; } catch {}`
 // -> `return 100; try {} catch {}`
 
+// TODO: rename to try_hoisting or something
+
 import walk from '../../lib/walk.mjs';
 import {
   ASSERT,
@@ -24,7 +26,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function noopTry(fdata) {
-  group('\n\n\nLooking for statemetns inside a try that can not throw\n');
+  group('\n\n\nLooking for statements inside a try that can not throw\n');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _noopTry(fdata);

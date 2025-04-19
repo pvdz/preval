@@ -18,9 +18,9 @@ a.b(x.y);
 
 
 `````js filename=intro
-const tmpCallVal /*:unknown*/ = true.b;
-const tmpCalleeParam /*:unknown*/ = false.y;
-$dotCall(tmpCallVal, true, `b`, tmpCalleeParam);
+const tmpCallCompVal /*:unknown*/ = $Boolean_prototype.b;
+const tmpCalleeParam /*:unknown*/ = $Boolean_prototype.y;
+$dotCall(tmpCallCompVal, true, `b`, tmpCalleeParam);
 `````
 
 
@@ -28,7 +28,7 @@ $dotCall(tmpCallVal, true, `b`, tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall(true.b, true, `b`, false.y);
+$dotCall($Boolean_prototype.b, true, `b`, $Boolean_prototype.y);
 `````
 
 
@@ -36,8 +36,8 @@ $dotCall(true.b, true, `b`, false.y);
 With rename=true
 
 `````js filename=intro
-const a = true.b;
-const b = false.y;
+const a = $Boolean_prototype.b;
+const b = $Boolean_prototype.y;
 $dotCall( a, true, "b", b );
 `````
 
@@ -45,7 +45,7 @@ $dotCall( a, true, "b", b );
 ## Todos triggered
 
 
-None
+- (todo) convert this Boolean trap to the symbo pattern
 
 
 ## Globals

@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
 const xyz /*:object*/ = new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
@@ -36,8 +36,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpCalleeParam = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCalleeParam];
 const xyz = new tmpNewCallee(1);
 while (true) {
   $(xyz);

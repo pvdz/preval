@@ -24,7 +24,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 tmpClusterSSA_a.a;
 $(tmpClusterSSA_a);
 `````
@@ -34,7 +35,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $({ $: $ }).$(1);
+const tmpCallObj = $({ $: $ });
+const tmpClusterSSA_a = tmpCallObj.$(1);
 tmpClusterSSA_a.a;
 $(tmpClusterSSA_a);
 `````
@@ -46,9 +48,10 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-c.a;
-$( c );
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+d.a;
+$( d );
 `````
 
 

@@ -32,7 +32,7 @@ const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
 const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-(3).a;
+$Number_prototype.a;
 $(3, b, c, 3);
 `````
 
@@ -49,7 +49,7 @@ const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-(3).a;
+$Number_prototype.a;
 $(3, b, c, 3);
 `````
 
@@ -66,7 +66,7 @@ const e = $( d );
 const f = $( "y" );
 e[f] = 3;
 b[c] = 3;
-(3).a;
+$Number_prototype.a;
 $( 3, a, d, 3 );
 `````
 

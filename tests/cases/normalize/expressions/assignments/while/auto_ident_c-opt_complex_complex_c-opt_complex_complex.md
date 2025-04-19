@@ -171,7 +171,6 @@ else {
 
 
 - (todo) objects in isFree check
-- (todo) Support referencing this builtin in isFree: $
 
 
 ## Globals

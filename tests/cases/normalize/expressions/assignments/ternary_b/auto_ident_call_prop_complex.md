@@ -25,7 +25,8 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
   const tmpCallObj /*:unknown*/ = $(b);
-  const tmpNestedComplexRhs /*:unknown*/ = tmpCallObj.$(1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -42,7 +43,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  const tmpNestedComplexRhs = $({ $: $ }).$(1);
+  const tmpCallObj = $({ $: $ });
+  const tmpNestedComplexRhs = tmpCallObj.$(1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -60,18 +62,19 @@ const a = $( 1 );
 if (a) {
   const b = { $: $ };
   const c = $( b );
-  const d = c.$( 1 );
-  $( d );
-  $( d );
+  const d = c.$;
+  const e = $dotCall( d, c, "$", 1 );
+  $( e );
+  $( e );
 }
 else {
-  const e = $( 200 );
-  $( e );
-  const f = {
+  const f = $( 200 );
+  $( f );
+  const g = {
     a: 999,
     b: 1000,
   };
-  $( f );
+  $( g );
 }
 `````
 

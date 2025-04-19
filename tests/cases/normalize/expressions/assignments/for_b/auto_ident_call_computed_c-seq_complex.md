@@ -25,13 +25,15 @@ let a /*:unknown*/ = undefined;
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpCallCompObj$1 /*:unknown*/ = $(b);
     const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-    a = tmpCallCompObj$1[tmpCallCompProp$1](1);
+    const tmpCallCompVal$1 /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1];
+    a = $dotCall(tmpCallCompVal$1, tmpCallCompObj$1, undefined, 1);
     if (a) {
     } else {
       break;
@@ -78,13 +80,15 @@ let a = undefined;
 const b = { $: $ };
 const c = $( b );
 const d = $( "$" );
-const e = c[ d ]( 1 );
-if (e) {
+const e = c[ d ];
+const f = $dotCall( e, c, undefined, 1 );
+if (f) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const f = $( b );
-    const g = $( "$" );
-    a = f[ g ]( 1 );
+    const g = $( b );
+    const h = $( "$" );
+    const i = g[ h ];
+    a = $dotCall( i, g, undefined, 1 );
     if (a) {
 
     }
@@ -95,7 +99,7 @@ if (e) {
   $( a );
 }
 else {
-  $( e );
+  $( f );
 }
 `````
 

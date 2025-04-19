@@ -29,7 +29,8 @@ if (tmpIfTest) {
 } else {
   const b /*:object*/ = { $: $ };
   const tmpCallObj /*:unknown*/ = $(b);
-  tmpCallObj.$(1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+  $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
   $(a);
 }
 `````
@@ -45,7 +46,8 @@ if (tmpIfTest) {
   $(100);
   $(a);
 } else {
-  $({ $: $ }).$(1);
+  const tmpCallObj = $({ $: $ });
+  tmpCallObj.$(1);
   $(a);
 }
 `````
@@ -67,7 +69,8 @@ if (a) {
 else {
   const c = { $: $ };
   const d = $( c );
-  d.$( 1 );
+  const e = d.$;
+  $dotCall( e, d, "$", 1 );
   $( b );
 }
 `````

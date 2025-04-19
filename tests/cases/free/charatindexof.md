@@ -43,10 +43,15 @@ $(f(String(y)));
 const tmpFree$2 /*:(string)=>string*/ = function $free($$0) {
   const repl$2 /*:string*/ = $$0;
   debugger;
-  const a1 /*:string*/ = repl$2.charAt(0);
-  const tmpRet$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(a1);
-  const b1$1 /*:string*/ = repl$2.charAt(1);
-  const b2$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(b1$1);
+  const a1 /*:string*/ = $dotCall($string_charAt, repl$2, `charAt`, 0);
+  const tmpRet$1 /*:number*/ = $dotCall(
+    $string_indexOf,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
+    `indexOf`,
+    a1,
+  );
+  const b1$1 /*:string*/ = $dotCall($string_charAt, repl$2, `charAt`, 1);
+  const b2$1 /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, b1$1);
   const frout /*:number*/ = tmpRet$1 + b2$1;
   const tmpRet /*:string*/ = $coerce(frout, `string`);
   return tmpRet;
@@ -55,7 +60,7 @@ const f /*:(string)=>string*/ = function ($$0) {
   const inputstr /*:string*/ = $$0;
   debugger;
   const regex /*:regex*/ = /[^A-Za-z0-9\+\/\=]/g;
-  const repl$3 /*:string*/ = inputstr.replace(regex, ``);
+  const repl$3 /*:string*/ = $dotCall($string_replace, inputstr, `replace`, regex, ``);
   const len /*:number*/ = repl$3.length;
   const test /*:boolean*/ = 0 < len;
   if (test) {
@@ -81,15 +86,26 @@ $(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpFree$2 = function $free(repl$2) {
-  const tmpRet$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(repl$2.charAt(0));
+  const tmpRet$1 = $dotCall(
+    $string_indexOf,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
+    `indexOf`,
+    $dotCall($string_charAt, repl$2, `charAt`, 0),
+  );
   const tmpRet = $coerce(
-    tmpRet$1 + `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(repl$2.charAt(1)),
+    tmpRet$1 +
+      $dotCall(
+        $string_indexOf,
+        `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
+        `indexOf`,
+        $dotCall($string_charAt, repl$2, `charAt`, 1),
+      ),
     `string`,
   );
   return tmpRet;
 };
 const f = function (inputstr) {
-  const repl$3 = inputstr.replace(/[^A-Za-z0-9\+\/\=]/g, ``);
+  const repl$3 = $dotCall($string_replace, inputstr, `replace`, /[^A-Za-z0-9\+\/\=]/g, ``);
   const len = repl$3.length;
   if (0 < len) {
     const tmpClusterSSA_outputstr = $frfr(tmpFree$2, repl$3);
@@ -110,10 +126,10 @@ With rename=true
 const a = function b($$0 ) {
   const c = $$0;
   debugger;
-  const d = c.charAt( 0 );
-  const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( d );
-  const f = c.charAt( 1 );
-  const g = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( f );
+  const d = $dotCall( $string_charAt, c, "charAt", 0 );
+  const e = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", d );
+  const f = $dotCall( $string_charAt, c, "charAt", 1 );
+  const g = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", f );
   const h = e + g;
   const i = $coerce( h, "string" );
   return i;
@@ -122,7 +138,7 @@ const j = function($$0 ) {
   const k = $$0;
   debugger;
   const l = /[^A-Za-z0-9\+\/\=]/g;
-  const m = k.replace( l, "" );
+  const m = $dotCall( $string_replace, k, "replace", l, "" );
   const n = m.length;
   const o = 0 < n;
   if (o) {

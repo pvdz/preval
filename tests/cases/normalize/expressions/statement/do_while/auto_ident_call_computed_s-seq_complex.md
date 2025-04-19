@@ -26,12 +26,14 @@ $(a);
 $(100);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpIfTest /*:unknown*/ = b[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-    const tmpIfTest$1 /*:unknown*/ = b[tmpCallCompProp$1](1);
+    const tmpCallCompVal$1 /*:unknown*/ = b[tmpCallCompProp$1];
+    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, b, undefined, 1);
     if (tmpIfTest$1) {
     } else {
       break;
@@ -71,13 +73,15 @@ With rename=true
 $( 100 );
 const a = $( "$" );
 const b = { $: $ };
-const c = b[ a ]( 1 );
-if (c) {
+const c = b[ a ];
+const d = $dotCall( c, b, undefined, 1 );
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = $( "$" );
-    const e = b[ d ]( 1 );
-    if (e) {
+    const e = $( "$" );
+    const f = b[ e ];
+    const g = $dotCall( f, b, undefined, 1 );
+    if (g) {
 
     }
     else {
@@ -85,11 +89,11 @@ if (c) {
     }
   }
 }
-const f = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( h );
 `````
 
 

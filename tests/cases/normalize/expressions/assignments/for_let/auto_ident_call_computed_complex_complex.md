@@ -24,7 +24,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
@@ -53,9 +54,10 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( d );
+  $( e );
   $( 1 );
 }
 `````
@@ -65,7 +67,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) can we support this const aliasing blocking statement? WhileStatement
-- (todo) Computed method call but we dont know whats being called
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

@@ -27,7 +27,7 @@ if (tmpIfTest) {
   $(a);
 } else {
   const b /*:object*/ = { c: $ };
-  b.c(1);
+  $dotCall($, b, `c`, 1);
   $(a);
 }
 `````
@@ -42,7 +42,7 @@ const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a);
 } else {
-  ({ c: $ }.c(1));
+  $dotCall($, { c: $ }, `c`, 1);
   $(a);
 }
 `````
@@ -62,7 +62,7 @@ if (a) {
 }
 else {
   const c = { c: $ };
-  c.c( 1 );
+  $dotCall( $, c, "c", 1 );
   $( b );
 }
 `````

@@ -17,7 +17,7 @@
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
 const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
 a = objPatternNoDefault$1.z;
 `````
@@ -27,7 +27,7 @@ a = objPatternNoDefault$1.z;
 (This ought to be the final result)
 
 `````js filename=intro
-a = (1).x.y.z;
+a = $Number_prototype.x.y.z;
 `````
 
 
@@ -35,7 +35,7 @@ a = (1).x.y.z;
 With rename=true
 
 `````js filename=intro
-const b = (1).x;
+const b = $Number_prototype.x;
 const c = b.y;
 a = c.z;
 `````

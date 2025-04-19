@@ -24,14 +24,14 @@ $(a, b);
 
 `````js filename=intro
 $(100);
-const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpIfTest /*:unknown*/ = b[tmpCompProp];
+const tmpIfTest /*:unknown*/ = b[tmpCalleeParam];
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCompProp$1 /*:unknown*/ = $(`c`);
-    const tmpIfTest$1 /*:unknown*/ = b[tmpCompProp$1];
+    const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
+    const tmpIfTest$1 /*:unknown*/ = b[tmpCalleeParam$1];
     if (tmpIfTest$1) {
     } else {
       break;
@@ -49,13 +49,13 @@ $(a, b);
 
 `````js filename=intro
 $(100);
-const tmpCompProp = $(`c`);
+const tmpCalleeParam = $(`c`);
 const b = { c: 1 };
-if (b[tmpCompProp]) {
+if (b[tmpCalleeParam]) {
   while (true) {
     $(100);
-    const tmpCompProp$1 = $(`c`);
-    if (!b[tmpCompProp$1]) {
+    const tmpCalleeParam$1 = $(`c`);
+    if (!b[tmpCalleeParam$1]) {
       break;
     }
   }

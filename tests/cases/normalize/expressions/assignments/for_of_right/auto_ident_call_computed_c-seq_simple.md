@@ -23,7 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
@@ -42,7 +43,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $({ $: $ }).$(1);
+const tmpCallObj = $({ $: $ });
+const tmpClusterSSA_a = tmpCallObj.$(1);
 const tmpForOfGen = $forOf(tmpClusterSSA_a);
 while (true) {
   const tmpForOfNext = tmpForOfGen();
@@ -62,19 +64,20 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-const d = $forOf( c );
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+const e = $forOf( d );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d();
-  const f = e.done;
-  if (f) {
+  const f = e();
+  const g = f.done;
+  if (g) {
     break;
   }
   else {
-    e.value;
+    f.value;
   }
 }
-$( c );
+$( d );
 `````
 
 

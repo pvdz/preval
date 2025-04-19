@@ -21,10 +21,10 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const xyz /*:unknown*/ = b[tmpCompProp];
+  const xyz /*:unknown*/ = b[tmpCalleeParam];
   $(xyz);
   $(1);
 }
@@ -35,10 +35,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`c`);
+const tmpCalleeParam = $(`c`);
 const b = { c: 1 };
 while (true) {
-  $(b[tmpCompProp]);
+  $(b[tmpCalleeParam]);
   $(1);
 }
 `````
@@ -61,7 +61,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) regular property access of an ident feels tricky;
 - (todo) objects in isFree check
 
 

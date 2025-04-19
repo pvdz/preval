@@ -42,8 +42,7 @@ if ($) {
   b = a;
   tmpClusterSSA_f();
 } else {
-  undefined();
-  throw `[Preval]: Call expression with illegal callee must crash before this line ; \`undefined()\``;
+  throw `Attempting to call a value that cannot be called: \`undefined(1);\``;
 }
 `````
 
@@ -64,8 +63,7 @@ if ($) {
   b = a;
   tmpClusterSSA_f();
 } else {
-  undefined();
-  throw `[Preval]: Call expression with illegal callee must crash before this line ; \`undefined()\``;
+  throw `Attempting to call a value that cannot be called: \`undefined(1);\``;
 }
 `````
 
@@ -89,8 +87,7 @@ if ($) {
   c();
 }
 else {
-  undefined.undefined();
-  throw "[Preval]: Call expression with illegal callee must crash before this line ; `undefined()`";
+  throw "Attempting to call a value that cannot be called: `undefined(1);`";
 }
 `````
 

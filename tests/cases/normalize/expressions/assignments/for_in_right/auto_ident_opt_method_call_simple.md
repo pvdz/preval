@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = b.c(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
 const tmpClusterSSA_tmpForInGen /*:unknown*/ = $forIn(tmpChainElementCall);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpClusterSSA_tmpForInGen();
@@ -41,7 +41,7 @@ $(tmpChainElementCall);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = { c: $ }.c(1);
+const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
 const tmpClusterSSA_tmpForInGen = $forIn(tmpChainElementCall);
 while (true) {
   const tmpForInNext = tmpClusterSSA_tmpForInGen();
@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = a.c( 1 );
+const b = $dotCall( $, a, "c", 1 );
 const c = $forIn( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = c();

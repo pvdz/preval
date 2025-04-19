@@ -50,11 +50,11 @@ try {
   const tmpIfTest /*:number*/ = $frfr(tmpFree$21, tmpCalleeParam$1);
   if (tmpIfTest) {
   } else {
-    const tmpCalleeParam$5 /*:unknown*/ = _0xb34c4b.shift();
+    const tmpCalleeParam$5 /*:primitive*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
     $dotCall($array_push, _0xb34c4b, `push`, tmpCalleeParam$5);
   }
 } catch (_0xa7aced$11) {
-  const tmpCalleeParam$7 /*:unknown*/ = _0xb34c4b.shift();
+  const tmpCalleeParam$7 /*:primitive*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
   $dotCall($array_push, _0xb34c4b, `push`, tmpCalleeParam$7);
 }
 $(`thend`);
@@ -73,10 +73,10 @@ const tmpFree$21 = function $free(tmpUnaryArg$489) {
 const _0xb34c4b = [`a`, `b`];
 try {
   if (!$frfr(tmpFree$21, parseInt($(824)))) {
-    $dotCall($array_push, _0xb34c4b, `push`, _0xb34c4b.shift());
+    $dotCall($array_push, _0xb34c4b, `push`, $dotCall($array_shift, _0xb34c4b, `shift`));
   }
 } catch (_0xa7aced$11) {
-  $dotCall($array_push, _0xb34c4b, `push`, _0xb34c4b.shift());
+  $dotCall($array_push, _0xb34c4b, `push`, $dotCall($array_shift, _0xb34c4b, `shift`));
 }
 $(`thend`);
 `````
@@ -102,12 +102,12 @@ try {
 
   }
   else {
-    const k = f.shift();
+    const k = $dotCall( $array_shift, f, "shift" );
     $dotCall( $array_push, f, "push", k );
   }
 }
 catch (l) {
-  const m = f.shift();
+  const m = $dotCall( $array_shift, f, "shift" );
   $dotCall( $array_push, f, "push", m );
 }
 $( "thend" );
@@ -117,7 +117,9 @@ $( "thend" );
 ## Todos triggered
 
 
-- (todo) Missed opportunity to inline a type tracked trick for $array_push
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

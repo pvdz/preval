@@ -31,8 +31,8 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
   const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`\$`);
-  const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`\$`);
+  const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
   const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
   $(tmpClusterSSA_a);
 } else {
@@ -48,8 +48,8 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(1) === $(1)) {
   const tmpCompObj = $({ $: $ });
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam = $(`\$`);
+  const tmpNewCallee = tmpCompObj[tmpCalleeParam];
   $(new tmpNewCallee(1));
 } else {
   $({ a: 999, b: 1000 });

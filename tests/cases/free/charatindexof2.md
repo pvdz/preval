@@ -30,36 +30,28 @@ $(f(String(y)));
 
 
 `````js filename=intro
-const tmpFree$1 /*:(string)=>number*/ = function $free($$0) {
-  const tmpCalleeParam$2 /*:string*/ = $$0;
-  debugger;
-  const tmpSaooB /*:string*/ = tmpCalleeParam$2.charAt(0);
-  const tmpRet$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB);
-  return tmpRet$1;
-};
 const tmpFree /*:(string)=>number*/ = function $free($$0) {
-  const tmpCalleeParam$4 /*:string*/ = $$0;
+  const repl /*:string*/ = $$0;
   debugger;
-  const tmpSaooB$1 /*:string*/ = tmpCalleeParam$4.charAt(0);
-  const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB$1);
+  const a1 /*:string*/ = $dotCall($string_charAt, repl, `charAt`, 0);
+  const tmpRet /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
   return tmpRet;
 };
-const f /*:(number)=>string*/ = function ($$0) {
-  const tmpOutlinedParam$1 /*:number*/ = $$0;
+const f /*:(string)=>string*/ = function ($$0) {
+  const repl$1 /*:string*/ = $$0;
   debugger;
-  const frout /*:primitive*/ = tmpOutlinedParam$1 + b2;
+  const a2 /*:number*/ = $frfr(tmpFree, repl$1);
+  const frout /*:primitive*/ = a2 + b2;
   outputstr = $coerce(frout, `plustr`);
   return outputstr;
 };
 const x /*:unknown*/ = $(`co_rn`);
 const tmpCalleeParam$1 /*:string*/ = $coerce(x, `string`);
-const tmpSaooB$4 /*:number*/ = $frfr(tmpFree, tmpCalleeParam$1);
-const tmpCalleeParam /*:string*/ = f(tmpSaooB$4);
+const tmpCalleeParam /*:string*/ = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 const y /*:unknown*/ = $(`m#az#e`);
 const tmpCalleeParam$5 /*:string*/ = $coerce(y, `string`);
-const tmpSaooB$2 /*:number*/ = $frfr(tmpFree$1, tmpCalleeParam$5);
-const tmpCalleeParam$3 /*:string*/ = f(tmpSaooB$2);
+const tmpCalleeParam$3 /*:string*/ = f(tmpCalleeParam$5);
 $(tmpCalleeParam$3);
 `````
 
@@ -68,20 +60,21 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree$1 = function $free(tmpCalleeParam$2) {
-  const tmpRet$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpCalleeParam$2.charAt(0));
-  return tmpRet$1;
-};
-const tmpFree = function $free(tmpCalleeParam$4) {
-  const tmpRet = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpCalleeParam$4.charAt(0));
+const tmpFree = function $free(repl) {
+  const tmpRet = $dotCall(
+    $string_indexOf,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
+    `indexOf`,
+    $dotCall($string_charAt, repl, `charAt`, 0),
+  );
   return tmpRet;
 };
-const f = function (tmpOutlinedParam$1) {
-  outputstr = $coerce(tmpOutlinedParam$1 + b2, `plustr`);
+const f = function (repl$1) {
+  outputstr = $coerce($frfr(tmpFree, repl$1) + b2, `plustr`);
   return outputstr;
 };
-$(f($frfr(tmpFree, $coerce($(`co_rn`), `string`))));
-$(f($frfr(tmpFree$1, $coerce($(`m#az#e`), `string`))));
+$(f($coerce($(`co_rn`), `string`)));
+$(f($coerce($(`m#az#e`), `string`)));
 `````
 
 
@@ -92,34 +85,26 @@ With rename=true
 const a = function b($$0 ) {
   const c = $$0;
   debugger;
-  const d = c.charAt( 0 );
-  const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( d );
+  const d = $dotCall( $string_charAt, c, "charAt", 0 );
+  const e = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", d );
   return e;
 };
-const f = function b($$0 ) {
+const f = function($$0 ) {
   const g = $$0;
   debugger;
-  const h = g.charAt( 0 );
-  const i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( h );
-  return i;
-};
-const j = function($$0 ) {
-  const k = $$0;
-  debugger;
-  const l = k + b2;
-  outputstr = $coerce( l, "plustr" );
+  const h = i( a, g );
+  const j = h + b2;
+  outputstr = $coerce( j, "plustr" );
   return outputstr;
 };
-const m = $( "co_rn" );
-const n = $coerce( m, "string" );
-const o = p( f, n );
-const q = j( o );
-$( q );
-const r = $( "m#az#e" );
-const s = $coerce( r, "string" );
-const t = p( a, s );
-const u = j( t );
-$( u );
+const k = $( "co_rn" );
+const l = $coerce( k, "string" );
+const m = f( l );
+$( m );
+const n = $( "m#az#e" );
+const o = $coerce( n, "string" );
+const p = f( o );
+$( p );
 `````
 
 

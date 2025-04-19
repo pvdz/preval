@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`\$`);
-const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
+const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 const tmpCalleeParam /*:object*/ = new tmpNewCallee(1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -46,8 +46,8 @@ $(a);
 
 `````js filename=intro
 const tmpCompObj = $({ $: $ });
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 = $(`\$`);
+const tmpNewCallee = tmpCompObj[tmpCalleeParam$1];
 const tmpForOfGen = $forOf(new tmpNewCallee(1));
 while (true) {
   const tmpForOfNext = tmpForOfGen();

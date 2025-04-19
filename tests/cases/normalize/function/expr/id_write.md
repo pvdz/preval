@@ -8,6 +8,10 @@
 
 For this reason we must create a constant outside of the function and a local alias as let. The local alias should be eliminated if it has no writes.
 
+## Options
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -24,7 +28,7 @@ $(x, typeof f);
 
 
 `````js filename=intro
-throw `Preval: Cannot write to const binding \`funcexprname\``;
+$(20, `function`);
 `````
 
 
@@ -32,7 +36,7 @@ throw `Preval: Cannot write to const binding \`funcexprname\``;
 (This ought to be the final result)
 
 `````js filename=intro
-throw `Preval: Cannot write to const binding \`funcexprname\``;
+$(20, `function`);
 `````
 
 
@@ -40,7 +44,7 @@ throw `Preval: Cannot write to const binding \`funcexprname\``;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot write to const binding `funcexprname`";
+$( 20, "function" );
 `````
 
 
@@ -60,7 +64,7 @@ None
 
 
 Should call `$` with:
- - eval returned: ('<crash[ Assignment to constant variable. ]>')
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 

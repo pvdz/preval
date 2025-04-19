@@ -55,6 +55,7 @@ s;
 
 
 - (todo) Support this node type in isFree: DebuggerStatement
+- (todo) do we want to support BinaryExpression as expression statement in free loops?
 
 
 ## Globals

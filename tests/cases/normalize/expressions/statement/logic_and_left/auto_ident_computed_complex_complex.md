@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`c`);
-const tmpIfTest /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`c`);
+const tmpIfTest /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
@@ -41,8 +41,8 @@ if (tmpIfTest) {
 `````js filename=intro
 const b = { c: 1 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-const tmpIfTest = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`c`);
+const tmpIfTest = tmpCompObj[tmpCalleeParam];
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);

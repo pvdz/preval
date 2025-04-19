@@ -73,7 +73,8 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   debugger;
   const index$1 /*:unknown*/ = heap.length;
   const tmpSaooB$1 /*:boolean*/ = index$1 > 0;
-  heap.push(node$1);
+  const tmpCallCompVal /*:unknown*/ = heap.push;
+  $dotCall(tmpCallCompVal, heap, `push`, node$1);
   if (tmpSaooB$1) {
     const tmpSaooB /*:number*/ = index$1 - 1;
     const tmpSaooB$9 /*:number*/ = tmpSaooB >>> 1;
@@ -188,52 +189,53 @@ const a = function($$0,$$1 ) {
   debugger;
   const d = b.length;
   const e = d > 0;
-  b.push( c );
+  const f = b.push;
+  $dotCall( f, b, "push", c );
   if (e) {
-    const f = d - 1;
-    const g = f >>> 1;
-    h( b, c, d, g );
-    const i = d - 1;
-    const j = i >>> 1;
-    h( b, c, d, j );
-    const k = d - 1;
-    const l = k >>> 1;
-    h( b, c, d, l );
-    const m = d - 1;
-    const n = m >>> 1;
-    h( b, c, d, n );
+    const g = d - 1;
+    const h = g >>> 1;
+    i( b, c, d, h );
+    const j = d - 1;
+    const k = j >>> 1;
+    i( b, c, d, k );
+    const l = d - 1;
+    const m = l >>> 1;
+    i( b, c, d, m );
+    const n = d - 1;
+    const o = n >>> 1;
+    i( b, c, d, o );
     return undefined;
   }
   else {
     return undefined;
   }
 };
-const h = function($$0,$$1,$$2,$$3 ) {
-  const o = $$0;
-  const p = $$1;
-  const q = $$2;
-  const r = $$3;
+const i = function($$0,$$1,$$2,$$3 ) {
+  const p = $$0;
+  const q = $$1;
+  const r = $$2;
+  const s = $$3;
   debugger;
-  const s = o[ r ];
-  const t = compare( s, p );
-  const u = t > 0;
-  if (u) {
-    o[r] = p;
-    o[q] = s;
-    let v = r;
-    let w = r > 0;
+  const t = p[ s ];
+  const u = compare( t, q );
+  const v = u > 0;
+  if (v) {
+    p[s] = q;
+    p[r] = t;
+    let w = s;
+    let x = s > 0;
     while ($LOOP_UNROLL_100) {
-      if (w) {
-        const x = v - 1;
-        const y = x >>> 1;
-        const z = o[ y ];
-        const ba = compare( z, p );
-        const bb = ba > 0;
-        if (bb) {
-          o[y] = p;
-          o[v] = z;
-          v = y;
-          w = y > 0;
+      if (x) {
+        const y = w - 1;
+        const z = y >>> 1;
+        const ba = p[ z ];
+        const bb = compare( ba, q );
+        const bc = bb > 0;
+        if (bc) {
+          p[z] = q;
+          p[w] = ba;
+          w = z;
+          x = z > 0;
         }
         else {
           return undefined;

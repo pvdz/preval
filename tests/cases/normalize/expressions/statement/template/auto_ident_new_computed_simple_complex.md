@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$3];
 const tmpCalleeParam$1 /*:object*/ = new tmpNewCallee(1);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
@@ -37,8 +37,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpCalleeParam$3 = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCalleeParam$3];
 $(`before  ${new tmpNewCallee(1)}  after`);
 $({ a: 999, b: 1000 });
 `````

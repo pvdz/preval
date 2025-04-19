@@ -28,8 +28,9 @@ $(r);
 
 `````js filename=intro
 $(`toString`);
-const r /*:unknown*/ = String[undefined]();
-$(r);
+const tmpCallCompVal /*:unknown*/ = String.undefined;
+const y /*:unknown*/ = $dotCall(tmpCallCompVal, String, undefined);
+$(y);
 `````
 
 
@@ -38,7 +39,7 @@ $(r);
 
 `````js filename=intro
 $(`toString`);
-$(String[undefined]());
+$(String.undefined());
 `````
 
 
@@ -47,8 +48,9 @@ With rename=true
 
 `````js filename=intro
 $( "toString" );
-const a = String[ undefined ]();
-$( a );
+const a = String.undefined;
+const b = $dotCall( a, String, undefined );
+$( b );
 `````
 
 

@@ -17,7 +17,7 @@ $(parseInt(15)?.foo);
 
 
 `````js filename=intro
-const tmpChainElementObject /*:unknown*/ = (15).foo;
+const tmpChainElementObject /*:unknown*/ = $Number_prototype.foo;
 $(tmpChainElementObject);
 `````
 
@@ -26,7 +26,7 @@ $(tmpChainElementObject);
 (This ought to be the final result)
 
 `````js filename=intro
-$((15).foo);
+$($Number_prototype.foo);
 `````
 
 
@@ -34,7 +34,7 @@ $((15).foo);
 With rename=true
 
 `````js filename=intro
-const a = (15).foo;
+const a = $Number_prototype.foo;
 $( a );
 `````
 

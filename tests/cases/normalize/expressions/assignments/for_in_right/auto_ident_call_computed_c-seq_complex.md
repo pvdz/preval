@@ -24,7 +24,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 const tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -66,19 +67,20 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
-const e = $forIn( d );
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
+const f = $forIn( e );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = e();
-  const g = f.done;
-  if (g) {
+  const g = f();
+  const h = g.done;
+  if (h) {
     break;
   }
   else {
-    f.value;
+    g.value;
   }
 }
-$( d );
+$( e );
 `````
 
 

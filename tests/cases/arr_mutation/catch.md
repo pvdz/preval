@@ -27,7 +27,7 @@ const blob /*:array*/ = [1, 2, 3];
 try {
   $(`try`);
 } catch (e) {
-  const tmpCalleeParam /*:unknown*/ = blob.shift();
+  const tmpCalleeParam /*:unknown*/ = $dotCall($array_shift, blob, `shift`);
   $(`catch`, tmpCalleeParam);
 }
 $(`after`, blob);
@@ -42,7 +42,7 @@ const blob = [1, 2, 3];
 try {
   $(`try`);
 } catch (e) {
-  $(`catch`, blob.shift());
+  $(`catch`, $dotCall($array_shift, blob, `shift`));
 }
 $(`after`, blob);
 `````
@@ -57,7 +57,7 @@ try {
   $( "try" );
 }
 catch (b) {
-  const c = a.shift();
+  const c = $dotCall( $array_shift, a, "shift" );
   $( "catch", c );
 }
 $( "after", a );
@@ -67,7 +67,8 @@ $( "after", a );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

@@ -73,7 +73,7 @@ $( "yolo" );
 ## Todos triggered
 
 
-- (todo) Support this node type as init in isFree:
+None
 
 
 ## Globals

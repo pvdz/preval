@@ -31,8 +31,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCompProp /*:unknown*/ = $(`\$`);
-    const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+    const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
+    const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$3];
     const tmpAssignMemLhsObj /*:object*/ = new tmpNewCallee(1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
@@ -54,8 +54,8 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const tmpCompProp = $(`\$`);
-    const tmpNewCallee = b[tmpCompProp];
+    const tmpCalleeParam$3 = $(`\$`);
+    const tmpNewCallee = b[tmpCalleeParam$3];
     const tmpAssignMemLhsObj = new tmpNewCallee(1);
     tmpAssignMemLhsObj.x = tmpForOfNext.value;
   }

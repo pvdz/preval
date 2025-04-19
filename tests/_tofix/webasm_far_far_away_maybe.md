@@ -34,23 +34,21 @@ const tmpCalleeParam$5 /*:(unknown)=>unknown*/ = function ($$0) {
     const tmpClusterSSA_tmpReturnArg$1 /*:array*/ = [65, t];
     return tmpClusterSSA_tmpReturnArg$1;
   } else {
-    const tmpBinBothRhs /*:number*/ = `-*/`.indexOf(t);
+    const tmpBinBothRhs /*:number*/ = $dotCall($string_indexOf, `-*/`, `indexOf`, t);
     const tmpClusterSSA_tmpReturnArg$2 /*:number*/ = 107 + tmpBinBothRhs;
     return tmpClusterSSA_tmpReturnArg$2;
   }
 };
 const c /*:()=>unknown*/ = function () {
   debugger;
-  const tmpCallObj$1 /*:unknown*/ = WebAssembly;
-  const tmpCallVal /*:unknown*/ = tmpCallObj$1.instantiate;
+  const tmpCallCompVal /*:unknown*/ = WebAssembly.instantiate;
   const tmpNewCallee /*:unknown*/ = Int8Array;
-  const tmpCalleeParam$7 /*:array*/ = [` `];
-  const tmpCallObj$3 /*:unknown*/ = $dotCall($string_split, `11 11 1 - + 4 * 2 /`, `split`, tmpCalleeParam$7);
-  const tmpClusterSSA_b /*:unknown*/ = tmpCallObj$3.flatMap(tmpCalleeParam$5);
-  const tmpBinLhs /*:unknown*/ = tmpClusterSSA_b.length;
-  const tmpClusterSSA_l /*:primitive*/ = tmpBinLhs + 4;
+  const tmpCallObj$1 /*:array*/ = [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`];
+  const tmpClusterSSA_b /*:array*/ = $dotCall($array_flatMap, tmpCallObj$1, `flatMap`, tmpCalleeParam$5);
+  const tmpBinLhs /*:number*/ = tmpClusterSSA_b.length;
+  const tmpClusterSSA_l /*:number*/ = tmpBinLhs + 4;
   const tmpArrElement$37 /*:number*/ = tmpClusterSSA_l - 2;
-  const tmpCalleeParam$3 /*:array*/ = [
+  const tmpCalleeParam$1 /*:array*/ = [
     ,
     97,
     115,
@@ -84,13 +82,14 @@ const c /*:()=>unknown*/ = function () {
     ...tmpClusterSSA_b,
     11,
   ];
-  const tmpCalleeParam$1 /*:object*/ = new tmpNewCallee(tmpCalleeParam$3);
-  const tmpCallCallee /*:unknown*/ = $dotCall(tmpCallVal, tmpCallObj$1, `instantiate`, tmpCalleeParam$1);
-  const tmpCalleeParam /*:unknown*/ = c();
-  const tmpCompObj$1 /*:unknown*/ = tmpCallCallee(tmpCalleeParam);
+  const tmpCalleeParam /*:object*/ = new tmpNewCallee(tmpCalleeParam$1);
+  const tmpCallComplexCallee /*:unknown*/ = $dotCall(tmpCallCompVal, WebAssembly, `instantiate`, tmpCalleeParam);
+  const tmpCalleeParam$7 /*:unknown*/ = c();
+  const tmpCompObj$1 /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$7);
   const tmpCompObj /*:unknown*/ = tmpCompObj$1.instance;
   const tmpCallObj /*:unknown*/ = tmpCompObj.exports;
-  const tmpReturnArg /*:unknown*/ = tmpCallObj[``]();
+  const tmpCallCompVal$7 /*:unknown*/ = tmpCallObj[``];
+  const tmpReturnArg /*:unknown*/ = $dotCall(tmpCallCompVal$7, tmpCallObj, undefined);
   return tmpReturnArg;
 };
 `````
@@ -105,19 +104,18 @@ const tmpCalleeParam$5 = function (t) {
     const tmpClusterSSA_tmpReturnArg$1 = [65, t];
     return tmpClusterSSA_tmpReturnArg$1;
   } else {
-    const tmpBinBothRhs = `-*/`.indexOf(t);
+    const tmpBinBothRhs = $dotCall($string_indexOf, `-*/`, `indexOf`, t);
     const tmpClusterSSA_tmpReturnArg$2 = 107 + tmpBinBothRhs;
     return tmpClusterSSA_tmpReturnArg$2;
   }
 };
 const c = function () {
-  const tmpCallObj$1 = WebAssembly;
-  const tmpCallVal = tmpCallObj$1.instantiate;
+  const tmpCallCompVal = WebAssembly.instantiate;
   const tmpNewCallee = Int8Array;
-  const tmpClusterSSA_b = $dotCall($string_split, `11 11 1 - + 4 * 2 /`, `split`, [` `]).flatMap(tmpCalleeParam$5);
+  const tmpClusterSSA_b = $dotCall($array_flatMap, [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`], `flatMap`, tmpCalleeParam$5);
   const tmpClusterSSA_l = tmpClusterSSA_b.length + 4;
   const tmpArrElement$37 = tmpClusterSSA_l - 2;
-  const tmpCalleeParam$3 = [
+  const tmpCalleeParam$1 = [
     ,
     97,
     115,
@@ -151,8 +149,9 @@ const c = function () {
     ...tmpClusterSSA_b,
     11,
   ];
-  const tmpCallCallee = $dotCall(tmpCallVal, tmpCallObj$1, `instantiate`, new tmpNewCallee(tmpCalleeParam$3));
-  const tmpReturnArg = tmpCallCallee(c()).instance.exports[``]();
+  const tmpCallComplexCallee = $dotCall(tmpCallCompVal, WebAssembly, `instantiate`, new tmpNewCallee(tmpCalleeParam$1));
+  const tmpCallObj = tmpCallComplexCallee(c()).instance.exports;
+  const tmpReturnArg = tmpCallObj[``]();
   return tmpReturnArg;
 };
 `````
@@ -171,31 +170,30 @@ const a = function($$0 ) {
     return d;
   }
   else {
-    const e = "-*/".indexOf( b );
+    const e = $dotCall( $string_indexOf, "-*/", "indexOf", b );
     const f = 107 + e;
     return f;
   }
 };
 const g = function() {
   debugger;
-  const h = WebAssembly;
-  const i = h.instantiate;
-  const j = Int8Array;
-  const k = [ " " ];
-  const l = $dotCall( $string_split, "11 11 1 - + 4 * 2 /", "split", k );
-  const m = l.flatMap( a );
-  const n = m.length;
-  const o = n + 4;
-  const p = o - 2;
-  const q = [ ,, 97, 115, 109, 1, ,, ,, ,, 1, 5, 1, 96, ,, 1, 127, 3, 2, 1, ,, 7, 4, 1, ,, ,, ,, 10, o, 1, p, ,, ...m, 11 ];
-  const r = new j( q );
-  const s = $dotCall( i, h, "instantiate", r );
-  const t = g();
-  const u = s( t );
-  const v = u.instance;
-  const w = v.exports;
-  const x = w[ "" ]();
-  return x;
+  const h = WebAssembly.instantiate;
+  const i = Int8Array;
+  const j = [ "11", "11", "1", "-", "+", "4", "*", "2", "/" ];
+  const k = $dotCall( $array_flatMap, j, "flatMap", a );
+  const l = k.length;
+  const m = l + 4;
+  const n = m - 2;
+  const o = [ ,, 97, 115, 109, 1, ,, ,, ,, 1, 5, 1, 96, ,, 1, 127, 3, 2, 1, ,, 7, 4, 1, ,, ,, ,, 10, m, 1, n, ,, ...k, 11 ];
+  const p = new i( o );
+  const q = $dotCall( h, WebAssembly, "instantiate", p );
+  const r = g();
+  const s = q( r );
+  const t = s.instance;
+  const u = t.exports;
+  const v = u[ "" ];
+  const w = $dotCall( v, u, undefined );
+  return w;
 };
 `````
 
@@ -203,7 +201,11 @@ const g = function() {
 ## Todos triggered
 
 
-- (todo) Missed opportunity to inline a type tracked trick for $string_split
+- (todo) Deal with array spreads in arr mutation?
+- (todo) access object property that also exists on prototype? $array_flatMap
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal$3
+- (todo) arr mutation may be able to inline this method: $array_flatMap
+- (todo) support $array_flatmap with arguments?
 
 
 ## Globals

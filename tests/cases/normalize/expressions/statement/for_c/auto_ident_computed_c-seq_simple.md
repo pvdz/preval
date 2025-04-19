@@ -25,14 +25,14 @@ const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { c: 1 };
 if (tmpIfTest) {
   const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`c`);
-  tmpCompObj[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`c`);
+  tmpCompObj[tmpCalleeParam];
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCompObj$1 /*:unknown*/ = $(b);
-      const tmpCompProp$1 /*:unknown*/ = $(`c`);
-      tmpCompObj$1[tmpCompProp$1];
+      const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
+      tmpCompObj$1[tmpCalleeParam$1];
     } else {
       break;
     }
@@ -52,13 +52,13 @@ const tmpIfTest = $(1);
 const b = { c: 1 };
 if (tmpIfTest) {
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`c`);
-  tmpCompObj[tmpCompProp];
+  const tmpCalleeParam = $(`c`);
+  tmpCompObj[tmpCalleeParam];
   while (true) {
     if ($(1)) {
       const tmpCompObj$1 = $(b);
-      const tmpCompProp$1 = $(`c`);
-      tmpCompObj$1[tmpCompProp$1];
+      const tmpCalleeParam$1 = $(`c`);
+      tmpCompObj$1[tmpCalleeParam$1];
     } else {
       break;
     }
@@ -102,7 +102,7 @@ $( h, b );
 
 
 - (todo) objects in isFree check
-- (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) do we want to support MemberExpression as expression statement in free loops?
 
 
 ## Globals

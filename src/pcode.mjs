@@ -36,11 +36,11 @@
 // - i dont think we want to allow loops
 // - we may allow try/catch because why not
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset, tmat } from './utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, tmat, todo, } from './utils.mjs';
 import * as AST from './ast.mjs';
-import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE } from './constants.mjs';
-import { SYMBOL_COERCE } from './symbols_preval.mjs';
-import { symbo } from './symbols_builtins.mjs';
+import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF, } from './constants.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL } from './symbols_preval.mjs';
+import { BUILTIN_SYMBOLS, symbo } from './symbols_builtins.mjs';
 
 const NONE = 0;
 const RETURN = 1;
@@ -161,6 +161,7 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   symbo('Math', 'trunc'),
 
   SYMBOL_COERCE, // Preval special func
+  //SYMBOL_DOTCALL, // handled explicitly below
 ]);
 
 export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng, usePrng) {
@@ -168,7 +169,7 @@ export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng,
   const callsWhenCompiled = pcanCompile(funcNode, fdata, freeFuncName);
   vlog('Can pcode body?', freeFuncName, !!callsWhenCompiled, callsWhenCompiled ? 'Proceeding with compile and run...' : 'Not compiling or running...');
   if (callsWhenCompiled) {
-    vgroup('Compiling:');
+    vgroup('Compiling into pcode:');
     const pcode = pcompile(funcNode, fdata);
     vgroupEnd();
     // Temp
@@ -202,7 +203,7 @@ export function runFreeWithPcode(funcNode, argNodes, fdata, freeFuncName, $prng,
  * This check will include known typing information to "prove" this. When
  * it can't guarantee pureness it will return false. Always room for improvement.
  */
-export function pcanCompile(funcNode, fdata, funcNameForDebug) {
+export function pcanCompile(funcNode, fdata, funcName) {
   // Note: the func will return a set of zero or more idents. If it does then
   // this func is only compilable if all those idents are too: it calls them.
 
@@ -223,8 +224,9 @@ export function pcanCompile(funcNode, fdata, funcNameForDebug) {
     return false;
   }
 
-  const calls = new Set; // Track which idents are called. We must verify them separately.
-  const locals = new Map;
+  const calls = new Map; // Track which idents are called and what functions they represent, if we know. We must verify them separately.
+  vlog('Starting at', [funcName]);
+  const locals = new Map([[funcName, 'r0']]);
   if (pcanCompileBody(locals, calls, funcNode.body.body, fdata)) {
     vlog('- pcode can compile body:');
     vlog('  - the func calls:', calls);
@@ -235,6 +237,7 @@ export function pcanCompile(funcNode, fdata, funcNameForDebug) {
   return false;
 }
 function pcanCompileBody(locals, calls, body, fdata) {
+  vlog('pcanCompileBody()');
   for (let i=0; i<body.length; ++i) {
     const stmt = body[i];
     //vlog('-', stmt.type);
@@ -247,11 +250,12 @@ function pcanCompileBody(locals, calls, body, fdata) {
         break;
       }
       case 'VarStatement': {
-        if (!pcanCompileExpr(locals, calls, stmt.init, fdata, stmt)) {
-          vlog('- bail: var init is bad');
+        vlog('- recording', [stmt.id.name], 'as local', 'r' + locals.size);
+        locals.set(stmt.id.name, 'r' + locals.size);
+        if (!pcanCompileExpr(locals, calls, stmt.init, fdata, stmt, stmt.kind === 'const' ? stmt.id.name : undefined)) {
+          vlog('- bail: var init is bad;', stmt.init.type);
           return false;
         }
-        locals.set(stmt.id.name, 'r' + locals.size);
         break;
       }
       case 'ThrowStatement': {
@@ -321,7 +325,7 @@ function pcanCompileBody(locals, calls, body, fdata) {
 
   return true;
 }
-function pcanCompileExpr(locals, calls, expr, fdata, stmt) {
+function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
   if (AST.isPrimitive(expr)) return true;
   switch (expr.type) {
     case 'BinaryExpression': {
@@ -342,78 +346,62 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt) {
       return pcanCompileExpr(locals, calls, expr.argument, fdata, stmt);
     }
     case 'CallExpression': {
-      //vlog('huh:', expr.callee.type, expr.callee.object?.type, expr.callee.property?.name, expr.callee.object?.name, expr.callee.property?.name)
-      if (
-        expr.callee.type === 'Identifier' &&
-        expr.arguments.every(anode => anode.type !== 'SpreadElement' && pcanCompileExpr(locals, calls, anode, fdata, stmt))
-      ) {
-        calls.add(expr.callee.name);
-        return true; // This is provided the ident is pcode compilable as well. Which we test later.
+      ASSERT(expr.callee.type === 'Identifier', 'anything else should be normalized away, right?', expr);
+      let calleeName = expr.callee.name;
+      let contextNode = undefined;
+      let args = expr.arguments;
+
+      if (calleeName === SYMBOL_DOTCALL) {
+        calleeName = args[0].name;
+        contextNode = args[1];
+        args = args.slice(3);
       }
-      else if (
-        expr.callee.type === 'MemberExpression' &&
-        !expr.callee.computed
-      ) {
-        if (AST.isPrimitive(expr.callee.object)) {
-          // ie. `string.charCodeAt(0)` (lower cased type, to distinguish from a static)
-          const method = symbo(AST.getPrimitiveType(expr.callee.object), expr.callee.property.name);
-          if (method === symbo('Math', 'random') && expr.arguments.length > 0) {
-            // Ignore math.random if it has args. This way the user could control to keep a Math.random :shrug:
-            // We may omit this rule later because obfuscators may stuff trash into the args
-            vlog('- bail: Math.random with args are assumed to be excluded by the user');
-            return false;
-          }
-          if (
-            pcodeSupportedBuiltinFuncs.has(method) &&
-            expr.arguments.every(anode => anode.type !== 'SpreadElement' && pcanCompileExpr(locals, calls, anode, fdata, stmt))
-          ) {
-            // This is a built-in method on a primitive literal
-            calls.add(method);
-            return true;
-          }
-          vlog('- bail: callee is a member expression and not a supported primitive method or with spread:', method);
-          return false;
-        }
 
-        if (expr.callee.object.type === 'Identifier') {
-          const symbol = symbo(expr.callee.object.name, expr.callee.property.name);
-          if (
-            pcodeSupportedBuiltinFuncs.has(symbol) && // ie. '$Math_pow'
-            expr.arguments.every(anode => anode.type !== 'SpreadElement' && pcanCompileExpr(locals, calls, anode, fdata, stmt))
-          ) {
-            // This is a builtin that is a member expression of a static function that we can support
-            calls.add(symbol);
-            return true;
-          }
-
-          const meta = fdata.globallyUniqueNamingRegistry.get(expr.callee.object.name);
-          const method = symbo(meta.typing.mustBeType, expr.callee.property.name); // ie. `$string_charCodeAt` (lower cased type)
-          if (
-            pcodeSupportedBuiltinFuncs.has(method) && // ie `$string_charAt` (note the lowercase class)
-            expr.arguments.every(anode => anode.type !== 'SpreadElement' && pcanCompileExpr(locals, calls, anode, fdata, stmt))
-          ) {
-            // This is a built-in method on a primitive value
-            calls.add(symbo(meta.typing.mustBeType, expr.callee.property.name));
-            return true;
-          }
-
-          vlog('- bail: callee is an ident and not a supported static method and not a supported typed method, or it has spread:', symbol, method);
-          return false;
-        }
-
-        // ? this/super/etc?
-        vlog('- bail: callee is a member expression and we dont know what it is or dont support it yet:', expr.callee.type);
+      if (contextNode && !pcanCompileExpr(locals, calls, contextNode, fdata, stmt)) {
+        vlog('- the context node could not be compiled', contextNode);
         return false;
       }
-      else {
-        vlog('- bail: callee is not an ident or args has a spread:', expr.callee.type);
+
+      if (!args.every(anode => anode.type !== 'SpreadElement' && pcanCompileExpr(locals, calls, anode, fdata, stmt))) {
+        vlog('- at least one arg was a spread or not compileable');
         return false;
       }
+
+      if (calleeName === symbo('Math', 'random') && args.length > 0) {
+        // Ignore math.random if it has args. This way the user could control to keep a Math.random :shrug:
+        // We may omit this rule later because obfuscators may stuff trash into the args
+        vlog('- bail: Math.random with args are assumed to be excluded by the user');
+        return false;
+      }
+
+      if (pcodeSupportedBuiltinFuncs.has(calleeName)) {
+        // This is a built-in method on a primitive literal
+        calls.set(calleeName, calleeName);
+        return true;
+      }
+
+      // If we know it and call it then ... it's probably ok? maybe?
+      if (locals.has(calleeName)) {
+        calls.set(calleeName, calleeName);
+        return true;
+      }
+
+      // ? this/super/etc?
+      vlog('- bail: callee is not something we can fully infer or support:', expr.callee.type, calleeName);
+      return false;
     }
     case 'Identifier': {
       // Only allowed to refer to local variables (the callee for ident calls don't reach here)
+      //vlog('Checking whether', locals, 'has', [expr.name])
       const has = locals.has(expr.name);
       if (!has) {
+        if (pcodeSupportedBuiltinFuncs.has(expr.name)) {
+          return true;
+        }
+        if (expr.name === 'Math') {
+          vlog('- accepting Math, temp, until we move these globals to a symbol as well.');
+          return true;
+        }
         vlog('- bail: found non-local ident', expr.name);
       }
       return has;
@@ -428,6 +416,58 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt) {
     case 'MemberExpression': {
       // Might be true if we completely know the shape of the
       // object, though, and if we can fully and safely recreate it.
+      vlog('- member expression: not sure yet; working on it');
+
+      if (expr.computed) {
+        vlog('- bail: computed access');
+        return false;
+      }
+
+      // So basically it seems this would be necessary to support method calls. But if we can't
+      // resolve those methods then we don't know what to call anyways. And if we can resolve
+      // those methods, then this property access should be eliminated in favor of that.
+      // So either way, we should still ignore property reads at least for the sake of func calls.
+
+      //// If this is assigned to a const then we can maybe map that const to a builtin? Arguably other parts
+      //// of preval ought to do this and then revisit whatever triggers this, but ...
+      //if (constDeclNameMaybe) {
+      //  // If we can prove that the prop read will yield a builtin method then maybe we can do it that way
+      //  if (AST.isPrimitive(expr.object)) {
+      //    const symbol = symbo(AST.getPrimitiveType(expr.object), expr.property.name);
+      //    vlog('- Reading', [symbol], 'on a primitive node');
+      //    if (pcodeSupportedBuiltinFuncs.has(symbol)) {
+      //      if (constDeclNameMaybe) {
+      //        // Mark this id as being this function
+      //
+      //      }
+      //      // This will be fun eh
+      //      return true;
+      //    }
+      //  }
+      //  else if (expr.object.type === 'Identifier') {
+      //    if (!locals.has(expr.object.name)) {
+      //      vlog('- bail: member object is not a local;', expr.object.type, expr.object.name);
+      //      return false;
+      //    }
+      //
+      //    const meta = fdata.globallyUniqueNamingRegistry.get(expr.object.name);
+      //    if (PRIMITIVE_TYPE_NAMES_TYPEOF.has(meta.typing.mustBeType)) {
+      //      const symbol = symbo(meta.typing.mustBeType, expr.property.name);
+      //      vlog('- Reading', [symbol], 'on an ident that mustBe a primitive');
+      //      if (pcodeSupportedBuiltinFuncs.has(symbol)) {
+      //        // This will be fun eh
+      //        calls.set(constDeclNameMaybe, symbol);
+      //        return true;
+      //      }
+      //    }
+      //  }
+      //  else {
+      //    todo(`what is this a member of? ${expr.object.type}`);
+      //    vlog('Unable to verify member expression object');
+      //    return false;
+      //  }
+      //}
+
       return false;
     }
     case 'FunctionExpression': {
@@ -607,61 +647,34 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
       return [left, ...right];
     }
     case 'Identifier': {
+      vlog('- compiling identifier', [exprNode.name]);
       const r = compileReglit(exprNode, regs);
       if (withAssign) return['=', ...r];
       return r;
     }
     case 'CallExpression': {
-      if (exprNode.callee.type === 'Identifier') {
+      ASSERT(exprNode.callee.type === 'Identifier', 'should have checked that it only calls an ident', exprNode.callee.object, stmt);
+      // $dotcall gets compiled here as a special opcode because we need to make it context sensitive
+      // One alternative is to compile regular calls this way as well but leave the context undefined.
+      if (exprNode.callee.name === SYMBOL_DOTCALL) {
+        vlog('This is a dotcall', exprNode.arguments[0].name, exprNode.arguments[1].type);
+        ASSERT(exprNode.arguments[0]?.type === 'Identifier', 'we chcecked this no?');
+        const opcode = ['dotcall', exprNode.arguments[0].name];
+        const ctx = compileExpression(exprNode.arguments[1], regs, fdata, stmt)
+        opcode.push(...ctx);
+        for (let i=3; i<exprNode.arguments.length; ++i) {
+          opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt));
+        }
+        return opcode;
+      } else {
         ASSERT(exprNode.callee.name, 'and the ident has a name?', exprNode);
         const opcode = ['call', exprNode.callee.name];
+        opcode.push(...compileExpression(AST.undef(), regs, fdata, stmt));
         for (let i=0; i<exprNode.arguments.length; ++i) {
           opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt));
         }
         return opcode;
       }
-      if (exprNode.callee.type === 'MemberExpression') {
-        // Methods are compiled for built-ins. If we do then the first "param" is the context.
-        // Since this is always for built-ins, which we must hand-code, we can implicitly follow that contract.
-        if (AST.isPrimitive(exprNode.callee.object)) {
-          // ie. `string.charCodeAt` (lower cased type)
-          // (First "arg" is context)
-          const methodName = symbo(AST.getPrimitiveType(exprNode.callee.object), exprNode.callee.property.name);
-          const opcode = ['call', methodName, ...compileExpression(exprNode.callee.object, regs, fdata, stmt)];
-          for (let i=0; i<exprNode.arguments.length; ++i) {
-            opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt));
-          }
-          return opcode;
-        }
-        else if (exprNode.callee.object.type === 'Identifier') {
-          // ie. 'Math.pow'
-          const staticName = symbo(exprNode.callee.object.name, exprNode.callee.property.name);
-          if (pcodeSupportedBuiltinFuncs.has(staticName)) { // ie `$Math_pow`
-            const opcode = ['call', staticName];
-            for (let i=0; i<exprNode.arguments.length; ++i) {
-              opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt));
-            }
-            return opcode;
-          }
-
-          const meta = fdata.globallyUniqueNamingRegistry.get(exprNode.callee.object.name);
-          // ie. `string.charCodeAt` (lower cased type)
-          const methodName = symbo(meta.typing.mustBeType, exprNode.callee.property.name);
-          if (pcodeSupportedBuiltinFuncs.has(methodName)) { // ie `$string_charAt` (note the lowercase class)
-            // This is a built-in method on an unknown primitive value
-            // (First "arg" is context)
-            const opcode = ['call', methodName, ...compileExpression(exprNode.callee.object, regs, fdata, stmt)];
-            for (let i=0; i<exprNode.arguments.length; ++i) {
-              opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt));
-            }
-            return opcode;
-          }
-
-          ASSERT(false, 'should have checked method before compiling it', exprNode.callee, stmt, stmt.id?.name, stmt.init?.type, stmt.init?.callee.type, stmt.init?.callee.object.name);
-        }
-      }
-      ASSERT(false, 'should have checked that it only calls an ident or member', exprNode.callee.object, stmt);
-      break;
     }
     case 'TemplateLiteral': {
       if (!exprNode.expressions.length) {
@@ -714,6 +727,9 @@ function compileReglit(node, regs) {
     return ['', AST.getPrimitiveValue(node)];
   }
   if (node.type === 'Identifier') {
+    if (pcodeSupportedBuiltinFuncs.has(node.name)) return [node.name, ''];
+    if (BUILTIN_SYMBOLS.has(node.name)) ASSERT(false, 'builtin symbol that is not supported by pcode should not reach the compile step', node.name);
+
     const r = regs.get(node.name);
     if (r) return [r, ''];
     const s = 'r' + regs.size;
@@ -786,14 +802,12 @@ export function runPcode(funcName, args, pcodeData, fdata, prng, usePrng, depth 
 }
 
 function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
-  //console.log('huh? prunStmt', Boolean(bytecode))
   for (let i=0; i<bytecode.length; ++i) {
     const op = bytecode[i];
     const opcode = op[0];
     switch (opcode) {
       case 'if': {
         // ['if', 'testReg', 'testLit', consequent[], alternate[]]
-        //console.log('oh yeah?', [opcode])
         const test = op[1] ? registers[op[1]] : op[2];
         vgroup('if(', test, ')');
         if (test) {
@@ -878,11 +892,6 @@ function prunStmt(registers, bytecode, pcodeData, fdata, prng, usePrng, depth) {
           break;
         }
 
-        //if (opcode === '=') {
-        //  vlog(opcode, '=', registers[opcode]);
-        //
-        //}
-
         console.log('wat stmt?', op)
         TODO // what is this?
         break;
@@ -934,505 +943,424 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
     case '>>': return prunVal(registers, op[2], op[3]) >> prunVal(registers, op[4], op[5]);
     case '>>>': return prunVal(registers, op[2], op[3]) >>> prunVal(registers, op[4], op[5]);
 
+    case 'dotcall':
     case 'call': {
+      let targetFuncName = op[2];
+
+      let context = prunVal(registers, op[3], op[4]);
+
       // If it throws I guess it actually throws...
       const arr = [];
-      for (let i=3; i<op.length; i+=2) {
+      for (let i= 5; i<op.length; i+=2) {
         arr.push(prunVal(registers, op[i], op[i+1]))
       }
-      if (pcodeSupportedBuiltinFuncs.has(op[2])) {
-        switch (op[2]) {
-          //case 'clearInterval': throw new Error('Do not call `clearInterval`');
-          //case 'clearTimeout': throw new Error('Do not call `clearTimeout`');
-          case 'parseInt': return parseInt(...arr);
-          case 'parseFloat': return parseFloat(...arr);
-          case 'setInterval': throw new Error('Do not call `setInterval`');
-          case 'setTimeout': throw new Error('Do not call `setTimeout`');
-          case 'isNaN': return isNaN(...arr);
-          case 'eval': throw new Error('Do not call `eval`');
-          case 'isFinite': return isFinite(...arr);
-          //case 'Array':
-          case 'Boolean': return Boolean(...arr);
-          //case 'Date':
-          //case 'Error':
-          //case 'JSON':
-          //case 'Map':
-          case 'Number': return Number(...arr);
-          //case 'Object':
-          //case 'RegExp':
-          //case 'Set':
-          case 'String': return String(...arr);
-          case 'Function': throw new Error('Do not call `Function`');
 
-          case 'encodeURI': return encodeURI(...arr);
-          case 'decodeURI': return decodeURI(...arr);
-          case 'encodeURIComponent': return encodeURIComponent(...arr);
-          case 'decodeURIComponent': return decodeURIComponent(...arr);
-          case 'escape': return escape(...arr);
-          case 'unescape': return unescape(...arr);
-          case 'btoa': return btoa(...arr);
-          case 'atob': return atob(...arr);
+      ASSERT(pcodeData.has(op[2]) || pcodeSupportedBuiltinFuncs.has(targetFuncName), 'prun should only receive funcs to call that it supports', targetFuncName);
 
-          case symbo('boolean', 'toString'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'boolean');
-            vlog('(', v, '.toString() )');
-            return v.toString();
-          }
-          case symbo('boolean', 'valueOf'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'boolean');
-            vlog('(', v, '.valueOf() )');
-            return v.valueOf();
-          }
-
-          case symbo('Number', 'isFinite'): {
-            const a = prunVal(registers, op[3], op[4]);
-            vlog('(Number.isFinite(', a, '))');
-            return Number.isFinite(a);
-          }
-          case symbo('Number', 'isInteger'): {
-            const a = prunVal(registers, op[3], op[4]);
-            vlog('(Number.isInteger(', a, '))');
-            return Number.isInteger(a);
-          }
-          case symbo('Number', 'isNaN'): {
-            const a = prunVal(registers, op[3], op[4]);
-            vlog('(Number.isNaN(', a, '))');
-            return Number.isNaN(a);
-          }
-          case symbo('Number', 'isSafeInteger'): {
-            const a = prunVal(registers, op[3], op[4]);
-            vlog('(Number.isSafeInteger(', a, '))');
-            return Number.isSafeInteger(a);
-          }
-          case symbo('Number', 'parseFloat'): {
-            const a = prunVal(registers, op[3], op[4]);
-            vlog('(Number.parseFloat(', a, '))');
-            return Number.parseFloat(a);
-          }
-          case symbo('Number', 'parseInt'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const b = prunVal(registers, op[4], op[5]);
-            vlog('(Number.isFinite(', a, ',', b, '))');
-            return Number.parseInt(a, b);
-          }
-
-          case symbo('number', 'toExponential'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'number');
-            const a = prunVal(registers, op[5], op[6])
-            vlog('(', v, '.toString(', a, ') )');
-            return v.toString(a);
-          }
-          case symbo('number', 'toFixed'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'number');
-            const a = prunVal(registers, op[5], op[6])
-            vlog('(', v, '.toFixed(', a, ') )');
-            return v.toFixed(a);
-          }
-          case symbo('number', 'toLocaleString'): {
-            ASSERT(false, 'no not this one');
-            break;
-          }
-          case symbo('number', 'toPrecision'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'number');
-            const a = prunVal(registers, op[5], op[6])
-            vlog('(', v, '.toPrecision(', a, ') )');
-            return v.toPrecision(a);
-          }
-          case symbo('number', 'toString'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'number');
-            const a = prunVal(registers, op[5], op[6])
-            vlog('(', v, '.toString(', a, ') )');
-            return v.toString(a);
-          }
-          case symbo('number', 'valueOf'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'number');
-            vlog('(', v, '.toPrecision(...) )');
-            return v.valueOf();
-          }
-
-          case symbo('String', 'fromCharCode'): {
-            const args = [];
-            for (let i=3; i<op.length; i+=2) {
-              args.push(prunVal(registers, op[i], op[i+1]))
-            }
-            vlog('(String.fromCharCode(...) )');
-            return String.fromCharCode(...args);
-          }
-          case symbo('String', 'fromCodePoint'): {
-            const args = [];
-            for (let i=3; i<op.length; i+=2) {
-              args.push(prunVal(registers, op[i], op[i+1]))
-            }
-            vlog('(String.fromCodePoint(...) )');
-            return String.fromCodePoint(...args);
-          }
-          case symbo('String', 'raw'): {
-            const args = [];
-            for (let i=3; i<op.length; i+=2) {
-              args.push(prunVal(registers, op[i], op[i+1]))
-            }
-            vlog('(String.raw(...) )');
-            return String.raw(...args);
-          }
-
-          case symbo('string', 'charAt'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const a = prunVal(registers, op[5], op[6])
-            const c = v.charAt(a);
-            vlog('(', v, '.charAt(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('string', 'charCodeAt'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const a = prunVal(registers, op[5], op[6])
-            const c = v.charCodeAt(a);
-            vlog('(', v, '.charCodeAt(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('string', 'concat'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const args = [];
-            for (let i=3; i<op.length; i+=2) {
-              args.push(prunVal(registers, op[i], op[i+1]))
-            }
-            const c = v.concat(...args);
-            vlog('(', v, '.concat(', ...args, ') ) =', c);
-            return c;
-          }
-          case symbo('string', 'includes'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const a = prunVal(registers, op[5], op[6])
-            const c = v.includes(a);
-            vlog('(', v, '.includes(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('string', 'indexOf'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const a = prunVal(registers, op[5], op[6])
-            const c = v.charAt(a);
-            vlog('(', v, '.indexOf(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('string', 'lastIndexOf'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const a = prunVal(registers, op[5], op[6])
-            const c = v.lastIndexOf(a);
-            vlog('(', v, '.lastIndexOf(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('string', 'match'): { ASSERT(false, 'TODO') }
-          case symbo('string', 'replace'): { ASSERT(false, 'TODO') }
-          case symbo('string', 'slice'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const a = prunVal(registers, op[5], op[6])
-            const b = prunVal(registers, op[7], op[8])
-            const c = v.slice(a, b);
-            vlog('(', v, '.slice(', a, ',', b, ') ) =', c);
-            return c;
-          }
-          case symbo('string', 'split'): { ASSERT(false, 'TODO') }
-          case symbo('string', 'substring'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const a = prunVal(registers, op[5], op[6])
-            const b = prunVal(registers, op[7], op[8])
-            const c = v.substring(a, b);
-            vlog('(', v, '.substring(', a, ',', b, ') ) =', c);
-            return c;
-          }
-          case symbo('string', 'substr'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const a = prunVal(registers, op[5], op[6])
-            const b = prunVal(registers, op[7], op[8])
-            const c = v.substr(a, b);
-            vlog('(', v, '.substr(', a, ',', b, ') ) =', c);
-            return c;
-          }
-          case symbo('string', 'toString'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const c = v.toString();
-            vlog('(', v, '.toString() ) =', c);
-            return c;
-          }
-          case symbo('string', 'toLowerCase'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const c = v.toLowerCase();
-            vlog('(', v, '.toLowerCase() ) =', c);
-            return c;
-          }
-          case symbo('string', 'toUpperCase'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const c = v.toUpperCase();
-            vlog('(', v, '.toUpperCase() ) =', c);
-            return c;
-          }
-          case symbo('string', 'valueOf'): {
-            const v = prunVal(registers, op[3], op[4]);
-            ASSERT(typeof v === 'string');
-            const c = v.valueOf();
-            vlog('(', v, '.valueOf() ) =', c);
-            return c;
-          }
-
-          // Note: some of the math props are questionable due to risk of rounding errors and lossy serialization of complex floats
-          case symbo('Math', 'abs'):  {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.abs(a);
-            vlog('( Math.abs(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'acos'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.acos(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.acos(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'acosh'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.acosh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.acosh(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'asin'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.asin(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.asin(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'asinh'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.asinh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.asinh(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'atan'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.atan(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.atan(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'atan2'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const b = prunVal(registers, op[5], op[6]);
-            const c = Math.atan2(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.atan2(', a, ', ', b, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'atanh'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.atanh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.atanh(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'cbrt'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.cbrt(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.cbrt(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'ceil'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.ceil(a);
-            vlog('( Math.ceil(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'clz32'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.clz32(a);
-            vlog('( Math.clz32(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'cos'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.cos(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.cos(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'cosh'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.cosh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.cosh(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'exp'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.exp(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.exp(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'expm1'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.expm1(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.expm1(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'f16round'): {
-            const v = prunVal(registers, op[3], op[4]);
-            const c = Math.f16round(v);
-            vlog('(Math.f16round(', v, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'floor'): {
-            const v = prunVal(registers, op[3], op[4]);
-            const c = Math.floor(v);
-            vlog('(Math.floor(', v, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'fround'): {
-            const v = prunVal(registers, op[3], op[4]);
-            const c = Math.fround(v);
-            vlog('(Math.fround(', v, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'hypot'): {
-            const a = prunVal(registers, op[3], op[4]);
-            vlog('( Math.hypot(', a, ') )');
-            return Math.hypot(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-          }
-          case symbo('Math', 'imul'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const b = prunVal(registers, op[3], op[4]);
-            const c = Math.imul(a);
-            vlog('(Math.imul(', a, ', ', b, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'log'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.log(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.log(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'log10'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.log10(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.log10(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'log1p'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.log1p(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.log1p(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'log2'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.log2(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.log2(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'max'): {
-            const args = [];
-            for (let i=3; i<op.length; i+=2) {
-              args.push(prunVal(registers, op[i], op[i+1]))
-            }
-            const c = Math.max(...args);
-            vlog('( Math.max(', args.join(', '), ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'min'): {
-            const args = [];
-            for (let i=3; i<op.length; i+=2) {
-              args.push(prunVal(registers, op[i], op[i+1]))
-            }
-            const c = Math.min(...args);
-            vlog('( Math.min(', args.join(', '), ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'pow'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const b = prunVal(registers, op[3], op[4]);
-            const c = Math.pow(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('(Math.pow(', a, ', ', b, ') ) =', c);
-            return c;
-          }
-          // we can fake this with a prng, fails if the prngSeed is zero
-          case symbo('Math', 'random'): {
-            if (!usePrng) throw new Error('Tried to invoke pcode function that contained Math.random but the prngSeed is zero');
-            // Ignore if there are args. This way the user could control to keep a Math.random :shrug:
-            ASSERT(arr.length === 0, 'can compile should have checked this');
-            return prng();
-          }
-          case symbo('Math', 'round'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.round(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.round(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'sign'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.sign(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.sign(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'sin'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.sin(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.sin(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'sinh'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.sinh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.sinh(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'sqrt'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.sqrt(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.sqrt(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'tan'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.tan(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.tan(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'tanh'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.tanh(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.tanh(', a, ') ) =', c);
-            return c;
-          }
-          case symbo('Math', 'trunc'): {
-            const a = prunVal(registers, op[3], op[4]);
-            const c = Math.trunc(a); // TODO: this is dangerous with rounding errors and serialization precision loss
-            vlog('( Math.trunc(', a, ') ) =', c);
-            return c;
-          }
-
-          case SYMBOL_COERCE: {
-            // see reduce_static/coerced.mjs
-            const v = prunVal(registers, op[3], op[4]);
-            const target = prunVal(registers, op[5], op[6]); // number, string, plustr
-
-            if (target === 'number') return Number(v);
-            if (target === 'string') return String(v);
-            if (target === 'plustr') return '' + v;
-            ASSERT(false, '$coerce target should be fixed and controlled by us', [v, target]);
-            break;
-          }
-          default: ASSERT(false, 'Missing impl for builtin which was marked in pcodeSupportedBuiltins?: func', op[2]);
+      switch (targetFuncName) {
+        case symbo('boolean', 'toString'): {
+          const r = Boolean.prototype.toString.call(context);
+          vlog('Boolean.prototype.toString.call(', context, ') =', [r]);
+          return r;
         }
+        case symbo('boolean', 'valueOf'): {
+          const r = Boolean.prototype.valueOf.call(context);
+          vlog('Boolean.prototype.valueOf.call(', context, ') =', [r]);
+          return r;
+        }
+
+        case symbo('Number', 'isFinite'): {
+          const r = Number.isFinite(...arr);
+          vlog('Number.isFinite(', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('Number', 'isInteger'): {
+          const r = Number.isInteger(...arr);
+          vlog('Number.isInteger(', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('Number', 'isNaN'): {
+          const r = Number.isNaN(...arr);
+          vlog('Number.isNaN(', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('Number', 'isSafeInteger'): {
+          const r = Number.isSafeInteger(...arr);
+          vlog('Number.isSafeInteger(', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('Number', 'parseFloat'): {
+          const r = Number.parseFloat(...arr);
+          vlog('Number.parseFloat(', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('Number', 'parseInt'): {
+          const r = Number.parseInt(...arr);
+          vlog('Number.parseInt(', arr[0], arr[1], ') =', [r]);
+          return r;
+        }
+
+        case symbo('number', 'toExponential'): {
+          const r = Number.prototype.toExponential.call(context, ...arr);
+          vlog('Number.prototype.toExponential.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('number', 'toFixed'): {
+          const r = Number.prototype.toFixed.call(context, ...arr);
+          vlog('Number.prototype.toFixed.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('number', 'toLocaleString'): {
+          ASSERT(false, 'no not this one'); // I mean we could be we woudl defy the point. Maybe for obfuscation tho?
+          break;
+        }
+        case symbo('number', 'toPrecision'): {
+          const r = Number.prototype.toPrecision.call(context, ...arr);
+          vlog('Number.prototype.toPrecision.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('number', 'toString'): {
+          const r = Number.prototype.toString.call(context, ...arr);
+          vlog('Number.prototype.toString.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('number', 'valueOf'): {
+          const r = Number.prototype.valueOf.call(context, ...arr);
+          vlog('Number.prototype.valueOf.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+
+        case symbo('String', 'fromCharCode'): {
+          const r = String.fromCharCode(...arr);
+          vlog('String.fromCharCode(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('String', 'fromCodePoint'): {
+          const r = String.fromCodePoint(...arr);
+          vlog('String.fromCodePoint(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('String', 'raw'): {
+          const r = String.raw(...arr);
+          vlog('String.raw(', ...arr, ') =', [r]);
+          return r;
+        }
+
+        case symbo('string', 'charAt'): {
+          const r = String.prototype.charAt.call(context, ...arr);
+          vlog('String.prototype.charAt.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'charCodeAt'): {
+          const r = String.prototype.charCodeAt.call(context, ...arr);
+          vlog('String.prototype.charCodeAt.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'concat'): {
+          const r = String.prototype.concat.call(context, ...arr);
+          vlog('String.prototype.concat.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'includes'): {
+          const r = String.prototype.includes.call(context, ...arr);
+          vlog('String.prototype.includes.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'indexOf'): {
+          const r = String.prototype.indexOf.call(context, ...arr);
+          vlog('String.prototype.indexOf.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'lastIndexOf'): {
+          const r = String.prototype.lastIndexOf.call(context, ...arr);
+          vlog('String.prototype.lastIndexOf.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'match'): { ASSERT(false, 'TODO') }
+        case symbo('string', 'replace'): { ASSERT(false, 'TODO') }
+        case symbo('string', 'slice'): {
+          const r = String.prototype.slice.call(context, ...arr);
+          vlog('String.prototype.slice.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'split'): { ASSERT(false, 'TODO') }
+        case symbo('string', 'substring'): {
+          const r = String.prototype.substring.call(context, ...arr);
+          vlog('String.prototype.substring.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'substr'): {
+          const r = String.prototype.substr.call(context, ...arr);
+          vlog('String.prototype.substr.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'toString'): {
+          const r = String.prototype.toString.call(context, ...arr);
+          vlog('String.prototype.toString.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'toLowerCase'): {
+          const r = String.prototype.toLowerCase.call(context, ...arr);
+          vlog('String.prototype.toLowerCase.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'toUpperCase'): {
+          const r = String.prototype.toUpperCase.call(context, ...arr);
+          vlog('String.prototype.toUpperCase.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'valueOf'): {
+          const r = String.prototype.valueOf.call(context, ...arr);
+          vlog('String.prototype.valueOf.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+
+        // Note: some of the math props are questionable due to risk of rounding errors and lossy serialization of complex floats
+        case symbo('Math', 'abs'):  {
+          const r = Math.abs(...arr);
+          vlog('Math.abs(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'acos'): {
+          const r = Math.acos(...arr);
+          vlog('Math.acos(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'acosh'): {
+          const r = Math.acosh(...arr);
+          vlog('Math.acosh(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'asin'): {
+          const r = Math.asin(...arr);
+          vlog('Math.asin(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'asinh'): {
+          const r = Math.asinh(...arr);
+          vlog('Math.asinh(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'atan'): {
+          const r = Math.atan(...arr);
+          vlog('Math.atan(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'atan2'): {
+          const r = Math.atan2(...arr);
+          vlog('Math.atan2(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'atanh'): {
+          const r = Math.atanh(...arr);
+          vlog('Math.atanh(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'cbrt'): {
+          const r = Math.cbrt(...arr);
+          vlog('Math.cbrt(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'ceil'): {
+          const r = Math.ceil(...arr);
+          vlog('Math.ceil(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'clz32'): {
+          const r = Math.clz32(...arr);
+          vlog('Math.clz32(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'cos'): {
+          const r = Math.cos(...arr);
+          vlog('Math.cos(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'cosh'): {
+          const r = Math.cosh(...arr);
+          vlog('Math.cosh(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'exp'): {
+          const r = Math.exp(...arr);
+          vlog('Math.exp(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'expm1'): {
+          const r = Math.expm1(...arr);
+          vlog('Math.expm1(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'f16round'): {
+          const r = Math.f16round(...arr);
+          vlog('Math.f16round(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'floor'): {
+          const r = Math.floor(...arr);
+          vlog('Math.floor(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'fround'): {
+          const r = Math.fround(...arr);
+          vlog('Math.fround(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'hypot'): {
+          // TODO: this is dangerous with rounding errors and serialization precision loss
+          const r = Math.hypot(...arr);
+          vlog('Math.hypot(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'imul'): {
+          const r = Math.imul(...arr);
+          vlog('Math.imul(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'log'): {
+          const r = Math.log(...arr);
+          vlog('Math.log(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'log10'): {
+          const r = Math.log10(...arr);
+          vlog('Math.log10(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'log1p'): {
+          const r = Math.log1p(...arr);
+          vlog('Math.log1p(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'log2'): {
+          const r = Math.log2(...arr);
+          vlog('Math.log2(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'max'): {
+          const r = Math.max(...arr);
+          vlog('Math.max(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'min'): {
+          const r = Math.min(...arr);
+          vlog('Math.min(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'pow'): {
+          const r = Math.pow(...arr);
+          vlog('Math.pow(', ...arr, ') =', [r]);
+          return r;
+        }
+        // we can fake this with a prng, fails if the prngSeed is zero
+        case symbo('Math', 'random'): {
+          if (!usePrng) throw new Error('Tried to invoke pcode function that contained Math.random but the prngSeed is zero');
+          // Ignore if there are args. This way the user could control to keep a Math.random :shrug:
+          ASSERT(arr.length === 0, 'can compile should have checked this');
+          return prng();
+        }
+        case symbo('Math', 'round'): {
+          const r = Math.round(...arr);
+          vlog('Math.round(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'sign'): {
+          const r = Math.sign(...arr);
+          vlog('Math.sign(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'sin'): {
+          const r = Math.sin(...arr);
+          vlog('Math.sin(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'sinh'): {
+          const r = Math.sinh(...arr);
+          vlog('Math.sinh(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'sqrt'): {
+          const r = Math.sqrt(...arr);
+          vlog('Math.sqrt(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'tan'): {
+          const r = Math.tan(...arr);
+          vlog('Math.tan(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'tanh'): {
+          const r = Math.tanh(...arr);
+          vlog('Math.tanh(', ...arr, ') =', [r]);
+          return r;
+        }
+        case symbo('Math', 'trunc'): {
+          const r = Math.trunc(...arr);
+          vlog('Math.trunc(', ...arr, ') =', [r]);
+          return r;
+        }
+
+        //case 'clearInterval': throw new Error('Do not call `clearInterval`');
+        //case 'clearTimeout': throw new Error('Do not call `clearTimeout`');
+
+        case 'parseInt':
+        case symbo('Number', 'parseInt'):
+          return parseInt(...arr);
+        case 'parseFloat':
+        case symbo('Number', 'parseFloat'):
+          return parseFloat(...arr);
+        case 'setInterval': throw new Error('Do not call `setInterval`');
+        case 'setTimeout': throw new Error('Do not call `setTimeout`');
+        case 'isNaN':
+        case symbo('Number', 'isNaN'):
+          return isNaN(...arr);
+        case 'eval': throw new Error('Do not call `eval`');
+        case 'isFinite':
+        case symbo('Number', 'isFinite'):
+          return isFinite(...arr);
+        case symbo('Number', 'isInteger'):
+          return Number.isInteger(...arr);
+        case symbo('Number', 'isSafeInteger'):
+          return Number.isSafeInteger(...arr);
+        //case 'Array':
+        case 'Boolean': return Boolean(...arr);
+        //case 'Date':
+        //case 'Error':
+        //case 'JSON':
+        //case 'Map':
+        case 'Number': return Number(...arr);
+        //case 'Object':
+        //case 'RegExp':
+        //case 'Set':
+        case 'String': return String(...arr);
+        case 'Function': throw new Error('Do not call `Function`');
+
+        case 'encodeURI': return encodeURI(...arr);
+        case 'decodeURI': return decodeURI(...arr);
+        case 'encodeURIComponent': return encodeURIComponent(...arr);
+        case 'decodeURIComponent': return decodeURIComponent(...arr);
+        case 'escape': return escape(...arr);
+        case 'unescape': return unescape(...arr);
+        case 'btoa': return btoa(...arr);
+        case 'atob': return atob(...arr);
+
+        case SYMBOL_COERCE: {
+          vlog('Calling special $coerce()');
+          // see reduce_static/coerced.mjs
+          // Context is 3+4, not used here, but that means args are 5+
+          const v = prunVal(registers, op[5], op[6]);
+          const target = prunVal(registers, op[7], op[8]); // number, string, plustr
+
+          if (target === 'number') return Number(v);
+          if (target === 'string') return String(v);
+          if (target === 'plustr') return '' + v;
+          ASSERT(false, '$coerce target should be fixed and controlled by us', [v, target]);
+          break;
+        }
+
+        //default: ASSERT(false, 'Missing impl for builtin which was marked in pcodeSupportedBuiltins?: func', op[2]);
       }
+
       const obj = pcodeData.get(op[2]);
       ASSERT(obj, 'pcode should not compile func calls when that func cannot compile to pcode', [op[2], op]);
       vgroup(op[2], '(', ...arr, ')');
@@ -1511,6 +1439,22 @@ export function printPcode(pcode, ind=0) {
     }
     else if (arr[0] === 'return') {
       return sp + '[ return ' + printReglit(arr[1], arr[2]) + ' ]';
+    }
+    else if (arr[1] === 'call') {
+      const x = [sp + '[ ' + arr[0] + ' ' + arr[1] + ' ' + arr[2]];
+      x.push(' {'+printReglit(arr[3], arr[4]) + '}');
+      for (let i=5; i<arr.length; i+=2) {
+        x.push(' '+printReglit(arr[i], arr[i+1]));
+      }
+      return x.join('') + ' ]';
+    }
+    else if (arr[1] === 'dotcall') {
+      const x = [sp + '[ ' + arr[0] + ' ' + arr[1] + ' ' + arr[2]];
+      x.push(' {'+printReglit(arr[3], arr[4]) + '}');
+      for (let i=5; i<arr.length; i+=2) {
+        x.push(' '+printReglit(arr[i], arr[i+1]));
+      }
+      return x.join('') + ' ]';
     }
     else {
       const x = [sp + '[ ' + arr[0] + ' ' + arr[1]];

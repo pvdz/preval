@@ -60,7 +60,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-None
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

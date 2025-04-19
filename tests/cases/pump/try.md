@@ -10,7 +10,7 @@
 
 `````js filename=intro
 const arrB = [`body`, `abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr`, `return (function() `, `iframe`, `[?&]`, `translate(-50%, -50%) scale(`, `url`, `1362209nkUUHI`, `replace`, `9xZRzHa`, `transform`, `html`, `onresize`, `indexOf`, `abiOoSuUt:bIlankADCBvgHcQBEUXeTIAVMAGBVQCY`, `1JaahTn`, `3061356MCYqjv`, `342560iciMGV`, `I should become first element`, `shift`, `apply`, `toFixed`, `innerHeight`, `[PMqKQMxzmdxSqSWYuSGzTIQUgOHRSMAPMywHKjJxSSjMhXqTz]`, `fromCharCode`, `4752RglSeO`, `56iWBGHd`, `innerHTML`, `length`, `innerWidth`, `39FiERKs`, `push`, `{}.constructor("return this")( )`, `8BCJskD`, `style`, `660ZidKsh`, `2iSfZLX`, `97677mcFAZT`, `onkeydown`, `slice`, `href`, `exec`, `display`, `addEventListener`, `getBoundingClientRect`, `12301465WsvUdn`, `onload`, `12134309DXtrYO`, `597052UCghKm`, `2880154MAzcYZ`, `width`, `querySelector`, `preventDefault`, `block`, `6047706RzKpil`, `contextmenu`, `split`, `8119482rsyVwd`, `charCodeAt`, `.html`, `[OPIHFwFSsTXHOCpGGeeFsJMHCLEPCWr]`, `663804iQLXQy`];
-while (true) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const _0x5cfb5d$49 = arrB[51];
   const tmpBinLhs$21 = parseInt(_0x5cfb5d$49);
   const _0x5cfb5d$47 = arrB[18];
@@ -103,7 +103,10 @@ $( "I should become first element" );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) should parseInts not be transformed to symbols?
 
 
 ## Globals

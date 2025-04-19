@@ -45,7 +45,8 @@ const a$1 /*:object*/ = {
     return a$1;
   },
 };
-const tmpChainElementCall$1 /*:unknown*/ = a$1.b();
+const tmpChainElementObject /*:unknown*/ = a$1.b;
+const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, a$1, `b`);
 const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.c;
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementObject$1 == null;
 if (tmpIfTest$1) {
@@ -108,16 +109,17 @@ const a = {
     return a;
   },
 };
-const b = a.b();
-const c = b.c;
-const d = c == null;
-if (d) {
+const b = a.b;
+const c = $dotCall( b, a, "b" );
+const d = c.c;
+const e = d == null;
+if (e) {
   $( undefined );
 }
 else {
-  const e = $dotCall( c, b, "c" );
-  const f = e.d;
-  $( f );
+  const f = $dotCall( d, c, "c" );
+  const g = f.d;
+  $( g );
 }
 `````
 

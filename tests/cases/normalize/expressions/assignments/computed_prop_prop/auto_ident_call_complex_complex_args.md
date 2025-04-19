@@ -22,10 +22,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCallComplexCallee /*:unknown*/ = $($);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam$3 /*:unknown*/ = $(2);
+const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 $coerce(a, `string`);
 $(a);
 `````
@@ -35,8 +35,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const a = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee($(1), $(2));
 $coerce(a, `string`);
 $(a);
 `````

@@ -44,9 +44,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpCompProp /*:unknown*/ = $(`\$`);
+  const tmpCalleeParam /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+  const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
   a = new tmpNewCallee(1);
 } else {
 }
@@ -77,8 +77,8 @@ if ($(1) === tmpSwitchValue) {
   }
 }
 if (tmpSwitchCaseToStart <= 0) {
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = { $: $ }[tmpCompProp];
+  const tmpCalleeParam = $(`\$`);
+  const tmpNewCallee = { $: $ }[tmpCalleeParam];
   a = new tmpNewCallee(1);
 }
 if (tmpSwitchCaseToStart <= 1) {

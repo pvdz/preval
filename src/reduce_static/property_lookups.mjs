@@ -1,7 +1,7 @@
 // Find properties that we can inline. Use type inference or whatever.
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, useRiskyRules } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, useRiskyRules, todo, } from '../utils.mjs';
 import { BUILTIN_SYMBOLS, NUMBER, STRING, FUNCTION, REGEXP, symbo, ARRAY } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import {getPrimitiveType} from "../ast.mjs"
@@ -40,7 +40,8 @@ function _propertyLookups(fdata) {
     const isPrimitive = AST.isPrimitive(node.object);
     if (isPrimitive || (node.object.type === 'Identifier' && node.object.name !== 'arguments')) {
       ASSERT(isPrimitive || fdata.globallyUniqueNamingRegistry.get(node.object.name)?.typing, 'if not a primitive then the ident should be known and have typing data available');
-      const mustBe = isPrimitive ? getPrimitiveType(node.object) : fdata.globallyUniqueNamingRegistry.get(node.object.name).typing.mustBeType;
+      const mustBe = isPrimitive ? AST.getPrimitiveType(node.object) : fdata.globallyUniqueNamingRegistry.get(node.object.name).typing.mustBeType;
+      const propName = node.property.name;
 
       //const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);
       vlog('  -', node.computed ? node.object.name + '[' + node.property.type + ']' : node.object.name + '.' + node.property.name);
@@ -48,8 +49,8 @@ function _propertyLookups(fdata) {
 
       if (mustBe === 'array') {
         ASSERT(node.property.type === 'Identifier');
-        const prop = node.property.name;
-        if (ARRAY.has(symbo('array', prop))) {
+        const propName = node.property.name;
+        if (ARRAY.has(symbo('array', propName))) {
           // Add to the list here: Array#filter, Array#flat, Array#concat, Array#push, Array#pop, Array#shift, Array#unshift
           if (useRiskyRules()) {
             // jsf*ck specific support
@@ -58,7 +59,7 @@ function _propertyLookups(fdata) {
             example('f([].flat)', 'f(' + symbo('array', 'flat') + ')');
             before(node, grandNode);
 
-            const newNode = AST.identifier(symbo('array', 'flat'));
+            const newNode = AST.identifier(symbo('array', propName));
             if (parentIndex < 0) parentNode[parentProp] = newNode;
             else parentNode[parentProp][parentIndex] = newNode;
 
@@ -66,7 +67,8 @@ function _propertyLookups(fdata) {
             ++changes;
             return;
           }
-        } else if (prop === 'constructor') {
+        } else if (propName === 'constructor') {
+          TODO // drop this, should match the symbol
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function ...
@@ -104,6 +106,7 @@ function _propertyLookups(fdata) {
             return;
           }
         } else if (prop === 'constructor') {
+          TODO // drop this, should match the symbol
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Function ...
@@ -122,6 +125,7 @@ function _propertyLookups(fdata) {
         }
       }
       else if (mustBe === 'boolean') {
+        todo('convert this Boolean trap to the symbo pattern');
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
         if (prop === 'constructor') {
@@ -162,6 +166,7 @@ function _propertyLookups(fdata) {
             return;
           }
         } else if (prop === 'constructor') {
+          TODO // drop this, should match the symbol
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is Number ...
@@ -200,6 +205,7 @@ function _propertyLookups(fdata) {
             return;
           }
         } else if (prop === 'constructor') {
+          TODO // drop this, should match the symbol
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is String ...
@@ -238,6 +244,7 @@ function _propertyLookups(fdata) {
             return;
           }
         } else if (prop === 'constructor') {
+          TODO // drop this, should match the symbol
           if (useRiskyRules()) {
             // jsf*ck specific support
             // This is RegExp ...
@@ -260,7 +267,10 @@ function _propertyLookups(fdata) {
         // I think it's fine to even drop any property lookup on known builtins.
         // Technically expandos could cause observable side effects for accessing them. But aren't you just really trying at that point?
 
+        ASSERT(!isPrimitive, 'per definition? or how would this work', node);
         if (!isPrimitive && !node.computed) {
+          vlog('    - node.object is an object type and prop is not computed. Check if constant with objectexpression init...');
+
           // `$String_prototype.replace`
           // `$string_replace.toString` -> `$function_toString`
           const targetSymbol = node.object.name;
@@ -327,6 +337,42 @@ function _propertyLookups(fdata) {
                 ++changes;
                 return;
               }
+            }
+          }
+
+          const blockBody = path.blockBodies[path.blockBodies.length - 1];
+          const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
+
+          // Note: we can't just do builtin symbol lookup because an object could have an own property all the same.
+          // We can verify that a property is not defined on the object expression, and then safely assert it must
+          // either be a property on the Object.prototype, or undefined.
+          // This requires the init to be an object.
+          const objName = node.object.name;
+          const objMeta = fdata.globallyUniqueNamingRegistry.get(objName);
+          if (
+            (parentNode.type !== 'AssignmentExpression' || parentProp !== 'left') && // If we allowed this we'd be assigning to the proto
+            (parentNode.type !== 'UnaryExpression' || parentNode.operator !== 'delete') && // Should not even be possible but if we allowed it we'd end up deleting proto props
+            objMeta.isConstant &&
+            objMeta.writes.length === 1 &&
+            objMeta.varDeclRef?.node.type === 'ObjectExpression' &&
+            // In order to be predictable, all props must be non-computed and no spread must occur
+            objMeta.varDeclRef.node.properties.every(pnode => pnode.type !== 'RestElement' && !pnode.computed) &&
+            // Object can not have been mutated so some reachability check needs to happen
+            objMeta.writes[0].blockBody === blockBody &&
+            objMeta.writes[0].blockIndex === blockIndex-1
+          ) {
+            vlog('    - This is an object expr and none of the props are computed or rest. Now looking for prop', [propName]);
+            if (!objMeta.varDeclRef.node.properties.some(pnode => pnode.key.name === propName)) {
+              vlog('    - The obj had no explicit property so we should be safe to look into the prototype');
+              rule('When property is not explicitly declared on objlit it must refer to proto prop');
+              example('const x = {a: 1}; $(x.b);', `const x = {a: 1}; $(${symbo('Object', 'prototype')}.b);`);
+              before(grandNode);
+
+              node.object = AST.identifier(symbo('Object', 'prototype'));
+
+              after(grandNode);
+              ++changes;
+              return;
             }
           }
         }

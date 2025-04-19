@@ -38,9 +38,10 @@ if ($) tmpArrElement$513();
 `````js filename=intro
 if ($) {
   $(144);
-  const a /*:()=>unknown*/ = function () {
+  const a /*:()=>undefined*/ = function () {
     debugger;
-    needle.f();
+    const tmpCallCompVal /*:unknown*/ = needle.f;
+    $dotCall(tmpCallCompVal, needle, `f`);
     return undefined;
   };
   const needle /*:object*/ = { a: a };
@@ -73,11 +74,12 @@ if ($) {
   $( 144 );
   const a = function() {
     debugger;
-    b.f();
+    const b = c.f;
+    $dotCall( b, c, "f" );
     return undefined;
   };
-  const b = { a: a };
-  $( b );
+  const c = { a: a };
+  $( c );
 }
 `````
 

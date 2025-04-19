@@ -88,7 +88,7 @@ $( e );
 ## Todos triggered
 
 
-- (todo) Support this node type in isFree: NewExpression
+- (todo) do we want to support NewExpression as expression statement in free loops?
 
 
 ## Globals

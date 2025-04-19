@@ -31,7 +31,8 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -60,7 +61,8 @@ if (tmpIfTest$5) {
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpClusterSSA_a = $({ $: $ }).$(1);
+const tmpCallObj = $({ $: $ });
+const tmpClusterSSA_a = tmpCallObj.$(1);
 if (tmpClusterSSA_a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -87,26 +89,27 @@ const a = $( 1 );
 let b = 1;
 const c = { $: $ };
 const d = $( c );
-const e = d.$( 1 );
-const f = e === a;
-if (f) {
+const e = d.$;
+const f = $dotCall( e, d, "$", 1 );
+const g = f === a;
+if (g) {
   b = 0;
 }
 else {
-  const g = 2 === a;
-  if (g) {
+  const h = 2 === a;
+  if (h) {
     b = 2;
   }
 }
-const h = b <= 1;
-if (h) {
+const i = b <= 1;
+if (i) {
   $( "fail1" );
   $( "fail2" );
-  $( e );
+  $( f );
 }
 else {
   $( "fail2" );
-  $( e );
+  $( f );
 }
 `````
 

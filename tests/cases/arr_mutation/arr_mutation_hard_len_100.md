@@ -56,7 +56,7 @@ $( a );
 ## Todos triggered
 
 
-- (todo) Assigning a much bigger value to arr.length than the len
+None
 
 
 ## Globals

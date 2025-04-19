@@ -20,9 +20,7 @@ $(o.f("200", 15));
 
 
 `````js filename=intro
-const o /*:object*/ = { f: parseInt };
-const tmpCalleeParam /*:unknown*/ = o.f(`200`, 15);
-$(tmpCalleeParam);
+$(450);
 `````
 
 
@@ -30,7 +28,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$({ f: parseInt }.f(`200`, 15));
+$(450);
 `````
 
 
@@ -38,9 +36,7 @@ $({ f: parseInt }.f(`200`, 15));
 With rename=true
 
 `````js filename=intro
-const a = { f: parseInt };
-const b = a.f( "200", 15 );
-$( b );
+$( 450 );
 `````
 
 

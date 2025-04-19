@@ -110,7 +110,9 @@ $( "2880154MAzcYZ" );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) should parseInts not be transformed to symbols?
 
 
 ## Globals

@@ -22,7 +22,7 @@ $(N);
 const tmpCalleeParam /*:array*/ = [`a`, `b`, `c`];
 const tmpArrSpread /*:unknown*/ = $(tmpCalleeParam);
 const ARR /*:array*/ = [...tmpArrSpread];
-const N /*:unknown*/ = ARR.shift();
+const N /*:unknown*/ = $dotCall($array_shift, ARR, `shift`);
 $(N);
 `````
 
@@ -32,7 +32,7 @@ $(N);
 
 `````js filename=intro
 const tmpArrSpread = $([`a`, `b`, `c`]);
-$([...tmpArrSpread].shift());
+$($dotCall($array_shift, [...tmpArrSpread], `shift`));
 `````
 
 
@@ -43,7 +43,7 @@ With rename=true
 const a = [ "a", "b", "c" ];
 const b = $( a );
 const c = [ ...b ];
-const d = c.shift();
+const d = $dotCall( $array_shift, c, "shift" );
 $( d );
 `````
 
@@ -51,7 +51,8 @@ $( d );
 ## Todos triggered
 
 
-None
+- (todo) Deal with array spreads in arr mutation?
+- (todo) access object property that also exists on prototype? $array_shift
 
 
 ## Globals

@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpThrowArg /*:unknown*/ = b.$(1);
+const tmpThrowArg /*:unknown*/ = $dotCall($, b, `\$`, 1);
 throw tmpThrowArg;
 `````
 
@@ -31,7 +31,7 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpThrowArg = { $: $ }.$(1);
+const tmpThrowArg = $dotCall($, { $: $ }, `\$`, 1);
 throw tmpThrowArg;
 `````
 
@@ -41,7 +41,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 throw b;
 `````
 

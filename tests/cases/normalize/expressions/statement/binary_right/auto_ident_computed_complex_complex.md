@@ -24,8 +24,8 @@ $(a, b);
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`c`);
-const tmpBinBothRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`c`);
+const tmpBinBothRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
@@ -39,8 +39,8 @@ $(a, b);
 const tmpBinBothLhs = $(100);
 const b = { c: 1 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-tmpBinBothLhs + tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`c`);
+tmpBinBothLhs + tmpCompObj[tmpCalleeParam];
 $({ a: 999, b: 1000 }, b);
 `````
 

@@ -26,7 +26,7 @@ const o /*:object*/ = {
     return `xyz`;
   },
 };
-const tmpCalleeParam /*:string*/ = o.toString();
+const tmpCalleeParam /*:string*/ = $dotCall($object_toString, o, `toString`);
 $(tmpCalleeParam);
 `````
 
@@ -36,11 +36,15 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 $(
-  {
-    valueOf() {
-      return `xyz`;
+  $dotCall(
+    $object_toString,
+    {
+      valueOf() {
+        return `xyz`;
+      },
     },
-  }.toString(),
+    `toString`,
+  ),
 );
 `````
 
@@ -53,7 +57,7 @@ const a = { valueOf(  ) {
   debugger;
   return "xyz";
 } };
-const b = a.toString();
+const b = $dotCall( $object_toString, a, "toString" );
 $( b );
 `````
 
@@ -61,7 +65,7 @@ $( b );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $object_toString
+- (todo) type trackeed tricks can possibly support static $object_toString
 
 
 ## Globals

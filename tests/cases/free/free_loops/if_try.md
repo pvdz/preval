@@ -129,8 +129,10 @@ $( "Qdcyq" );
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) can try-escaping support this expr node type? CallExpression
 - (todo) should parseInts not be transformed to symbols?
-- (todo) inline computed array property read
 
 
 ## Globals

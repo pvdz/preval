@@ -31,7 +31,7 @@ const arr /*:array*/ = [1, 2, 3];
 const obj /*:object*/ = { [`1,2,3`]: `pass` };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     const tmpCalleeParam /*:unknown*/ = obj[arr];
     $(tmpCalleeParam);
   } catch (e) {
@@ -49,7 +49,7 @@ const arr = [1, 2, 3];
 const obj = { [`1,2,3`]: `pass` };
 while (true) {
   try {
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     $(obj[arr]);
   } catch (e) {
     $(`fail`);
@@ -66,7 +66,7 @@ const a = [ 1, 2, 3 ];
 const b = { [ "1,2,3" ]: "pass" };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    a.reverse();
+    $dotCall( $array_reverse, a, "reverse" );
     const c = b[ a ];
     $( c );
   }
@@ -80,8 +80,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) try escaping may support dotcalling $array_reverse
+- (todo) can try-escaping support this expr node type? CallExpression
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: arr.reverse
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

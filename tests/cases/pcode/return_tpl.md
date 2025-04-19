@@ -29,9 +29,9 @@ $(f(true));
 f =
     [ r0 = $$0 - ]
     [ r1 = - "haha " ]
-    [ r2 call $coerce - - "" string - ]
+    [ r2 call $coerce {- undefined} r0 - - "string" ]
     [ r3 + r1 - r2 - ]
-    [ r4 call $coerce - - "" plustr - ]
+    [ r4 call $coerce {- undefined} r3 - - "plustr" ]
     [ return r4 - ]
 `````
 

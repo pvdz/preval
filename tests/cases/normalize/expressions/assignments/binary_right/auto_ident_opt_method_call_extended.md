@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall;
 $(tmpCalleeParam);
 $(tmpChainElementCall);
@@ -35,7 +35,7 @@ $(tmpChainElementCall);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpChainElementCall = { e: $ }.e(1);
+const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
 $(tmpBinBothLhs + tmpChainElementCall);
 $(tmpChainElementCall);
 `````
@@ -47,7 +47,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 const b = { e: $ };
-const c = b.e( 1 );
+const c = $dotCall( $, b, "e", 1 );
 const d = a + c;
 $( d );
 $( c );

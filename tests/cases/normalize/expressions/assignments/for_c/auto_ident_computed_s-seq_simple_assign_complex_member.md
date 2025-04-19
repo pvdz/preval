@@ -26,8 +26,8 @@ const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
   const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`d`);
-  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`d`);
+  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
   b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
   let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
   while ($LOOP_UNROLL_10) {
@@ -35,8 +35,8 @@ if (tmpIfTest) {
     if (tmpIfTest$1) {
       const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`c`);
       const tmpCompObj$1 /*:unknown*/ = $(b);
-      const tmpCompProp$1 /*:unknown*/ = $(`d`);
-      const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+      const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
+      const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
       b[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
       tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
     } else {
@@ -60,16 +60,16 @@ const b = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam = $(`d`);
+  const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
   b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
   let tmpClusterSSA_a = tmpNestedAssignPropRhs;
   while (true) {
     if ($(1)) {
       const tmpNestedAssignComMemberProp$1 = $(`c`);
       const tmpCompObj$1 = $(b);
-      const tmpCompProp$1 = $(`d`);
-      const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+      const tmpCalleeParam$1 = $(`d`);
+      const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
       b[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
       tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
     } else {

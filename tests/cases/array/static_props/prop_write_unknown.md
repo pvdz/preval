@@ -55,7 +55,7 @@ $( c );
 ## Todos triggered
 
 
-None
+- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 
 
 ## Globals

@@ -24,7 +24,8 @@ const a /*:unknown*/ = $spy(`a`);
 const b /*:unknown*/ = $spy(`b`);
 const c /*:unknown*/ = $spy(`c`);
 const d /*:unknown*/ = $spy(`d`);
-a[b](c, d);
+const tmpCallCompVal /*:unknown*/ = a[b];
+$dotCall(tmpCallCompVal, a, undefined, c, d);
 `````
 
 
@@ -46,7 +47,8 @@ const a = $spy( "a" );
 const b = $spy( "b" );
 const c = $spy( "c" );
 const d = $spy( "d" );
-a[ b ]( c, d );
+const e = a[ b ];
+$dotCall( e, a, undefined, c, d );
 `````
 
 

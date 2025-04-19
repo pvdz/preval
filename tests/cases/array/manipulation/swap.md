@@ -19,8 +19,7 @@ $(arr);
 
 
 `````js filename=intro
-const arr /*:array*/ = [2];
-$dotCall($array_push, arr, `push`, 1);
+const arr /*:array*/ = [2, 1];
 $(arr);
 `````
 
@@ -29,9 +28,7 @@ $(arr);
 (This ought to be the final result)
 
 `````js filename=intro
-const arr = [2];
-$dotCall($array_push, arr, `push`, 1);
-$(arr);
+$([2, 1]);
 `````
 
 
@@ -39,8 +36,7 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-const a = [ 2 ];
-$dotCall( $array_push, a, "push", 1 );
+const a = [ 2, 1 ];
 $( a );
 `````
 
@@ -48,7 +44,8 @@ $( a );
 ## Todos triggered
 
 
-- (todo) Missed opportunity to inline a type tracked trick for $array_push
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal$1
+- (todo) outline any args for tdz
 
 
 ## Globals

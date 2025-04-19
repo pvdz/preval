@@ -44,8 +44,9 @@ $( x );
 ## Todos triggered
 
 
-- (todo) replace with $array_slice
-- (todo) type trackeed tricks can possibly support method $array_slice
+- (todo) Deal with array spreads in arr mutation?
+- (todo) access object property that also exists on prototype? $array_slice
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
 
 
 ## Globals

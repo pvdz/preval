@@ -244,15 +244,21 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
       if (varNodeSet.has(node)) {
         vlog('    - node to consider...');
         while (i && shouldMoveUp(node, block[i - 1])) {
+          rule('When a block should be above another, move it');
+          example('???', '!!!');
+          before(block);
+
           block.splice(i, 1);
           block.splice(i - 1, 0, node);
+
+          after(block);
         }
       }
     });
 
     const blockAfter = block.map((n) => n.$p.pid).join(',');
-    vlog('Block before:', blockBefore);
-    vlog('Block after :', blockAfter);
+    //vlog('Block before:', blockBefore);
+    //vlog('Block after :', blockAfter);
     if (blockBefore !== blockAfter) {
       ++updated;
     }
@@ -384,6 +390,8 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
       'let x = 1; function f(){ x = 2; $(x); } function g() { x = 3; $(x); }',
       'let x = 1; function f() { let tmp = 2; $(tmp); } function g(){ let tmp2 = 3; $(tmp2); }',
     );
+    before(rwOrder[0]?.blockBody[rwOrder[0]?.blockIndex]);
+
     rwOrder.forEach((ref) => before(ref.blockBody[ref.blockIndex]));
 
     vlog('The ref is used in', funcs.size, 'scopes. Will eliminate the original binding scope.');
@@ -440,6 +448,8 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
   return updated;
 }
 function processAttempt3OnlyUsedInOtherScope(fdata) {
+  // This case seems a bit shallow since it only supports the let being used inside one other function, and the first ref
+  // in there must be a write with the others being reads that reach that write. Pretty limited artifact.
   vlog('\nLet hoisting, attempt 3; if an outer var is only used inside another scope and that scope starts with a write then apply SSA');
 
   let updated = 0;
@@ -461,9 +471,10 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
     ]);
 
     const funcs = new Set();
-    const varDeclFunc = meta.bfuncNode;
-    let vardeclRef = undefined;
-    let otherFunc = undefined;
+    const declFunc = meta.bfuncNode; // Func that contains actual declaration of this var
+    let declWrite = undefined; // Write that declares this var. All reads in that scope must be guaranteed to read only this write.
+    let otherFunc = undefined; // Func that contains the other write to this var, in another func from the decl func
+    let otherWrite = undefined; // In the scope without the var decl, this is the first write. All other refs must be in/under same if/loop/try scope as this one.
     let failed = false;
     let canStillDeclRef = false; // true only after seeing the decl
     vgroup();
@@ -472,14 +483,15 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
         vlog('- Found var decl');
         //ASSERT(varDeclFunc === ref.pfuncNode); // This broke for tests/cases/if_tail_extending/base_return_else.md but can't remember if super relevant...
         canStillDeclRef = true;
-        vardeclRef = ref;
-      } else if (varDeclFunc === ref.pfuncNode) {
+        declWrite = ref;
+      } else if (declFunc === ref.pfuncNode) {
         vlog('- found ref in same scope as var decl');
-        if (canStillDeclRef && vardeclRef.blockBody === ref.blockBody) {
+        if (canStillDeclRef && declWrite.blockBody === ref.blockBody) {
           // Verify whether there were observable side effects between the decl and the read in this scope.
           // If that holds then we can ignore the read and still apply this trick. Same for all reads that follow it.
+          // `let x = 1; $(x);` versus `let x = 1; f(); $(x);` when f closes over x.
           vlog('  - in same block and can still do decl-ref case, checking all statements between');
-          let start = vardeclRef.blockIndex;
+          let start = declWrite.blockIndex;
           let stop = ref.blockIndex;
           ASSERT(start <= stop);
           for (let n = start + 1; n <= stop; ++n) {
@@ -498,10 +510,14 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
           // ok
         } else {
           if (canStillDeclRef) {
+            // `let x = 1; function f() { x = 2; }; if (y) $(x)`. We can support these kinds of cases, mind you.
             vlog('  - ref was in same scope as decl but not in same block so not the decl-ref case, bailing');
+            //todo('we might support this let_hoisting case by being less lazy about it. this is just old stuff.');
           } else {
             // This could be triggered by a TDZ ref
+            // `{ x = 2; } let x = 1;` (should/would not get here but point being; seeing a read before a write in different block)
             vlog('  - can not be decl-ref case, was this tdz?');
+            todo('i think this let_hoisting case is unreachable');
           }
           canStillDeclRef = false;
           failed = true;
@@ -513,18 +529,44 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
           failed = true;
           return true;
         } else if (otherFunc === ref.pfuncNode) {
-          vlog('- found ref in same scope as previous ref, ok');
-          // ok, usage in same scope as previous usage
+          vlog('- found ref in same scope as previous assign, ok. checking if/loop/try scoping...');
+          vlog('  - if:', ref.ifChain, '.startsWith', otherWrite.ifChain);
+          vlog('  - loop:', ref.innerLoop, otherWrite.innerLoop);
+          vlog('  - trap:', ref.innerTrap, otherWrite.innerTrap);
+          if (!(ref.ifChain + ',').startsWith(otherWrite.ifChain + ',')) {
+            vlog('- bail: Read is in at least one different if-branch of the write, and there it can observe the closure value if not written.');
+            failed = true;
+            return true;
+          }
+          if (ref.innerLoop !== otherWrite.innerLoop) {
+            todo('i need loopChain for this to work properly');
+            vlog('- bail: Read is in at least one different loop versus the write, and there it can observe the closure value if not it breaks early.');
+            failed = true;
+            return true;
+          }
+          if (ref.innerTrap !== otherWrite.innerTrap) {
+            todo('i need trapChain for this to work properly');
+            vlog('- bail: Read is in at least one different try-block versus the write, and there it can observe the closure value if code throws early.');
+            failed = true;
+            return true;
+          }
+          vlog('- ok, read is in same if/loop/trap scope so must still always read from the previous write in this func');
         } else if (otherFunc) {
           // TODO: we can still be okay if the scope is nested inside the other scope, as long as the write goes first
           vlog('- found ref in different scope as previous ref, bailing');
           failed = true;
           return true;
         } else if (ref.action === 'write') {
-          vlog('- found first non-decl ref in scope', ref.pfuncNode.$p.pid);
+          // The write must be unconditional before reading it.
+          // This means we must verify that the reads all happen in the same or a sub
+          // if/while/try as the first write in order to be eligible for SSA. Else the
+          // closure state is observable when the code branch doesn't hit.
+          vlog('- found first non-decl write in different scope', ref.pfuncNode.$p.pid);
+          vlog('- all reads in this scope must be ')
           otherFunc = ref.pfuncNode;
+          otherWrite = ref;
         } else {
-          vlog('- first ref is not a write, bailing');
+          vlog('- first read in different scope is not a write, bailing');
           failed = true;
           return true;
         }
@@ -534,25 +576,32 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
     vgroupEnd();
 
     if (failed) {
-      vlog('Failed attempt 3 hoisting.');
+      vlog('Failed; attempt 3 hoisting.');
     } else if (!otherFunc) {
       vlog('Binding only used in one scope. Nothing to do here.');
-    } else if (!AST.isPrimitive(vardeclRef.parentNode.init)) {
+    } else if (!AST.isPrimitive(declWrite.parentNode.init)) {
       // TODO: can we support this?
       vlog('Init was not a primitive, bailing for now');
     } else {
       vlog(
         'All refs for a binding are in a different scope than the scope where it was defined, all of them in the same scope, and the first ref in that scope was an assignment. Good to go.',
       );
+      rule('If an outer var is only used inside another scope and that scope unconditionally starts with a write, apply SSA');
+      example('let x = 1; function f() { x = 2; $(x); }', 'let x = 1; function f() { let SSAx = 2; $(SSAx); }')
+      before(declWrite.parentNode);
+
       const tmpName = createFreshVar('tmpssa3_' + name, fdata);
       vlog('SSA all other refs into `' + tmpName + '`');
-      const value = AST.getPrimitiveValue(vardeclRef.parentNode.init);
+      const value = AST.getPrimitiveValue(declWrite.parentNode.init);
       vlog('Injecting it at the top, using the original init (ought to be primitive) as init:', value);
       otherFunc.body.body.splice(otherFunc.$p.bodyOffset, 0, AST.varStatement('let', tmpName, AST.primitive(value)));
-      vlog('Renaming to `' + tmpName + '`');
+      after(otherFunc.body.body[otherFunc.$p.bodyOffset]);
+      vlog('Renaming all refs of', [name], 'to', [tmpName]);
       rwOrder.forEach((ref) => {
         if (ref.pfuncNode === otherFunc) {
+          before(ref.blockBody[ref.blockIndex]);
           ref.node.name = tmpName;
+          after(ref.blockBody[ref.blockIndex]);
         }
       });
       vlog('Complete');

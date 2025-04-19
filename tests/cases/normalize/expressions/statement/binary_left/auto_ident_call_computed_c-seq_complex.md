@@ -24,7 +24,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpBinBothLhs /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpBinBothLhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -50,14 +51,15 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
-const e = $( 100 );
-d + e;
-const f = {
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
+const f = $( 100 );
+e + f;
+const g = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( g );
 `````
 
 

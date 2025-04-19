@@ -43,7 +43,7 @@ const g /*:()=>undefined*/ = function () {
   debugger;
   if (tmpFuncLock) {
     const obj /*:object*/ = {};
-    f.call(obj, 1, 2, 3);
+    $dotCall($function_call, f, `call`, obj, 1, 2, 3);
     tmpFuncLock = false;
     return undefined;
   } else {
@@ -67,7 +67,7 @@ const f = function (a, b, c) {
 };
 const g = function () {
   if (tmpFuncLock) {
-    f.call({}, 1, 2, 3);
+    $dotCall($function_call, f, `call`, {}, 1, 2, 3);
     tmpFuncLock = false;
   }
 };
@@ -96,7 +96,7 @@ const g = function() {
   debugger;
   if (a) {
     const h = {};
-    b.call( h, 1, 2, 3 );
+    $dotCall( $function_call, b, "call", h, 1, 2, 3 );
     a = false;
     return undefined;
   }
@@ -114,7 +114,7 @@ $( undefined );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $function_call
 
 
 ## Globals

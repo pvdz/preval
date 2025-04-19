@@ -53,12 +53,21 @@ $(b);
 
 
 `````js filename=intro
-const tmpFree$1 /*:(number, string)=>string*/ = function $free($$0, $$1) {
+const tmpFree$3 /*:(number, string)=>string*/ = function $free($$0, $$1) {
   const perc /*:number*/ = $$0;
   const out_str /*:string*/ = $$1;
   debugger;
-  const alt /*:string*/ = perc.toString(36);
-  const tmpRet$1 /*:string*/ = out_str + alt;
+  const alt /*:string*/ = $dotCall($number_toString, perc, `toString`, 36);
+  const tmpRet$3 /*:string*/ = out_str + alt;
+  return tmpRet$3;
+};
+const tmpFree$1 /*:(number, string)=>string*/ = function $free($$0, $$1) {
+  const perc$1 /*:number*/ = $$0;
+  const out_str$1 /*:string*/ = $$1;
+  debugger;
+  const plus /*:number*/ = perc$1 + 29;
+  const chr /*:string*/ = $String_fromCharCode(plus);
+  const tmpRet$1 /*:string*/ = out_str$1 + chr;
   return tmpRet$1;
 };
 const tmpFree /*:(number)=>number*/ = function $free($$0) {
@@ -71,22 +80,20 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
 const pcode /*:(number)=>string*/ = function ($$0) {
   const $dlr_$$2 /*:number*/ = $$0;
   debugger;
-  let out_str$1 /*:string*/ = ``;
+  let out_str$3 /*:string*/ = ``;
   const tmpIfTest /*:boolean*/ = $dlr_$$2 < 62;
   if (tmpIfTest) {
   } else {
     const pint /*:number*/ = $frfr(tmpFree, $dlr_$$2);
-    out_str$1 = pcode(pint);
+    out_str$3 = pcode(pint);
   }
-  const perc$1 /*:number*/ = $dlr_$$2 % 62;
-  const tmpIfTest$1 /*:boolean*/ = perc$1 > 35;
+  const perc$3 /*:number*/ = $dlr_$$2 % 62;
+  const tmpIfTest$1 /*:boolean*/ = perc$3 > 35;
   if (tmpIfTest$1) {
-    const plus /*:number*/ = perc$1 + 29;
-    const chr /*:string*/ = $String_fromCharCode(plus);
-    const str /*:string*/ = out_str$1 + chr;
+    const str /*:string*/ = $frfr(tmpFree$1, perc$3, out_str$3);
     return str;
   } else {
-    const altstr /*:string*/ = $frfr(tmpFree$1, perc$1, out_str$1);
+    const altstr /*:string*/ = $frfr(tmpFree$3, perc$3, out_str$3);
     return altstr;
   }
 };
@@ -101,8 +108,12 @@ $(b);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree$1 = function $free(perc, out_str) {
-  const tmpRet$1 = out_str + perc.toString(36);
+const tmpFree$3 = function $free(perc, out_str) {
+  const tmpRet$3 = out_str + $dotCall($number_toString, perc, `toString`, 36);
+  return tmpRet$3;
+};
+const tmpFree$1 = function $free(perc$1, out_str$1) {
+  const tmpRet$1 = out_str$1 + $String_fromCharCode(perc$1 + 29);
   return tmpRet$1;
 };
 const tmpFree = function $free($dlr_$$0) {
@@ -110,16 +121,16 @@ const tmpFree = function $free($dlr_$$0) {
   return tmpRet;
 };
 const pcode = function ($dlr_$$2) {
-  let out_str$1 = ``;
+  let out_str$3 = ``;
   if (!($dlr_$$2 < 62)) {
-    out_str$1 = pcode($frfr(tmpFree, $dlr_$$2));
+    out_str$3 = pcode($frfr(tmpFree, $dlr_$$2));
   }
-  const perc$1 = $dlr_$$2 % 62;
-  if (perc$1 > 35) {
-    const str = out_str$1 + $String_fromCharCode(perc$1 + 29);
+  const perc$3 = $dlr_$$2 % 62;
+  if (perc$3 > 35) {
+    const str = $frfr(tmpFree$1, perc$3, out_str$3);
     return str;
   } else {
-    const altstr = $frfr(tmpFree$1, perc$1, out_str$1);
+    const altstr = $frfr(tmpFree$3, perc$3, out_str$3);
     return altstr;
   }
 };
@@ -136,46 +147,53 @@ const a = function b($$0,$$1 ) {
   const c = $$0;
   const d = $$1;
   debugger;
-  const e = c.toString( 36 );
+  const e = $dotCall( $number_toString, c, "toString", 36 );
   const f = d + e;
   return f;
 };
-const g = function b($$0 ) {
+const g = function b($$0,$$1 ) {
   const h = $$0;
+  const i = $$1;
   debugger;
-  const i = h / 62;
-  const j = parseInt( i );
-  return j;
+  const j = h + 29;
+  const k = $String_fromCharCode( j );
+  const l = i + k;
+  return l;
 };
-const k = function($$0 ) {
-  const l = $$0;
+const m = function b($$0 ) {
+  const n = $$0;
   debugger;
-  let m = "";
-  const n = l < 62;
-  if (n) {
+  const o = n / 62;
+  const p = parseInt( o );
+  return p;
+};
+const q = function($$0 ) {
+  const r = $$0;
+  debugger;
+  let s = "";
+  const t = r < 62;
+  if (t) {
 
   }
   else {
-    const o = p( g, l );
-    m = k( o );
+    const u = v( m, r );
+    s = q( u );
   }
-  const q = l % 62;
-  const r = q > 35;
-  if (r) {
-    const s = q + 29;
-    const t = $String_fromCharCode( s );
-    const u = m + t;
-    return u;
+  const w = r % 62;
+  const x = w > 35;
+  if (x) {
+    const y = v( g, w, s );
+    return y;
   }
   else {
-    const v = p( a, q, m );
-    return v;
+    const z = v( a, w, s );
+    return z;
   }
 };
-const w = k( 1 );
-$( w );
-const x = k( 2 );
-$( x );
+const ba = q( 1 );
+$( ba );
+const bb = q( 2 );
+$( bb );
 `````
 
 

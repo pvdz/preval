@@ -26,7 +26,8 @@ const o /*:object*/ = {
     return `xyz`;
   },
 };
-const tmpCalleeParam /*:string*/ = o.toString();
+const tmpCallCompVal /*:unknown*/ = o.toString;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, o, `toString`);
 $(tmpCalleeParam);
 `````
 
@@ -35,13 +36,12 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$(
-  {
-    toString() {
-      return `xyz`;
-    },
-  }.toString(),
-);
+const o = {
+  toString() {
+    return `xyz`;
+  },
+};
+$(o.toString());
 `````
 
 
@@ -53,15 +53,16 @@ const a = { toString(  ) {
   debugger;
   return "xyz";
 } };
-const b = a.toString();
-$( b );
+const b = a.toString;
+const c = $dotCall( b, a, "toString" );
+$( c );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $object_toString
+- (todo) access object property that also exists on prototype? $object_toString
 
 
 ## Globals

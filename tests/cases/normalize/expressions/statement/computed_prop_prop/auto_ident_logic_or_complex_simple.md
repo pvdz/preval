@@ -20,10 +20,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(0);
-const tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
-if (tmpCompProp) {
-  $coerce(tmpCompProp, `string`);
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+if (tmpCalleeParam) {
+  $coerce(tmpCalleeParam, `string`);
 } else {
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -35,9 +35,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $($(0));
-if (tmpCompProp) {
-  $coerce(tmpCompProp, `string`);
+const tmpCalleeParam = $($(0));
+if (tmpCalleeParam) {
+  $coerce(tmpCalleeParam, `string`);
 }
 $({ a: 999, b: 1000 });
 `````

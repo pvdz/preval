@@ -20,16 +20,16 @@ $('a is not b'.replace(rex, (c) => ($(c, obj[c]), obj[c])));
 
 `````js filename=intro
 const obj /*:object*/ = { a: 1, b: 2 };
-const tmpCalleeParam$3 /*:(unknown)=>unknown*/ = function ($$0) {
+const tmpCalleeParam$1 /*:(unknown)=>unknown*/ = function ($$0) {
   const c /*:unknown*/ = $$0;
   debugger;
-  const tmpCalleeParam$7 /*:unknown*/ = obj[c];
-  $(c, tmpCalleeParam$7);
+  const tmpCalleeParam$5 /*:unknown*/ = obj[c];
+  $(c, tmpCalleeParam$5);
   const tmpReturnArg /*:unknown*/ = obj[c];
   return tmpReturnArg;
 };
 const rex /*:regex*/ = /\w.*\w/g;
-const tmpCalleeParam /*:string*/ = `a is not b`.replace(rex, tmpCalleeParam$3);
+const tmpCalleeParam /*:string*/ = $dotCall($string_replace, `a is not b`, `replace`, rex, tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
@@ -39,12 +39,12 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const obj = { a: 1, b: 2 };
-const tmpCalleeParam$3 = function (c) {
+const tmpCalleeParam$1 = function (c) {
   $(c, obj[c]);
   const tmpReturnArg = obj[c];
   return tmpReturnArg;
 };
-$(`a is not b`.replace(/\w.*\w/g, tmpCalleeParam$3));
+$($dotCall($string_replace, `a is not b`, `replace`, /\w.*\w/g, tmpCalleeParam$1));
 `````
 
 
@@ -65,7 +65,7 @@ const b = function($$0 ) {
   return e;
 };
 const f = /\w.*\w/g;
-const g = "a is not b".replace( f, b );
+const g = $dotCall( $string_replace, "a is not b", "replace", f, b );
 $( g );
 `````
 

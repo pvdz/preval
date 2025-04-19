@@ -22,12 +22,12 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCompProp /*:unknown*/ = $(2);
-  $coerce(tmpClusterSSA_tmpCompProp, `string`);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2);
+  $coerce(tmpClusterSSA_tmpCalleeParam, `string`);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_tmpCompProp$1 /*:unknown*/ = $(tmpCalleeParam);
-  $coerce(tmpClusterSSA_tmpCompProp$1, `string`);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$1);
+  $coerce(tmpClusterSSA_tmpCalleeParam$1, `string`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

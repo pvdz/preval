@@ -22,8 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = b.c(1);
-const tmpChainElementCall$1 /*:unknown*/ = b.c(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
+const tmpChainElementObject$1 /*:unknown*/ = b.c;
+const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
 const tmpCalleeParam /*:primitive*/ = tmpChainElementCall + tmpChainElementCall$1;
 $(tmpCalleeParam);
 $(tmpChainElementCall$1);
@@ -35,7 +36,7 @@ $(tmpChainElementCall$1);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpChainElementCall = b.c(1);
+const tmpChainElementCall = $dotCall($, b, `c`, 1);
 const tmpChainElementCall$1 = b.c(1);
 $(tmpChainElementCall + tmpChainElementCall$1);
 $(tmpChainElementCall$1);
@@ -47,11 +48,12 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = a.c( 1 );
-const c = a.c( 1 );
-const d = b + c;
+const b = $dotCall( $, a, "c", 1 );
+const c = a.c;
+const d = $dotCall( c, a, "c", 1 );
+const e = b + d;
+$( e );
 $( d );
-$( c );
 `````
 
 

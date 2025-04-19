@@ -24,13 +24,15 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpIfTest /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpCallCompObj$1 /*:unknown*/ = $(b);
     const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-    const tmpIfTest$1 /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1](1);
+    const tmpCallCompVal$1 /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1];
+    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallCompObj$1, undefined, 1);
     if (tmpIfTest$1) {
     } else {
       break;
@@ -71,14 +73,16 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
-if (d) {
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
+if (e) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const e = $( a );
-    const f = $( "$" );
-    const g = e[ f ]( 1 );
-    if (g) {
+    const f = $( a );
+    const g = $( "$" );
+    const h = f[ g ];
+    const i = $dotCall( h, f, undefined, 1 );
+    if (i) {
 
     }
     else {
@@ -86,11 +90,11 @@ if (d) {
     }
   }
 }
-const h = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( h );
+$( j );
 `````
 
 

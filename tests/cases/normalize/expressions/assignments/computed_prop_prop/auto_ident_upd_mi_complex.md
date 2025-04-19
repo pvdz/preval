@@ -23,8 +23,8 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$1 /*:unknown*/ = $(b);
+const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum - 1;

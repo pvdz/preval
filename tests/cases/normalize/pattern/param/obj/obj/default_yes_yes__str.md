@@ -20,7 +20,7 @@ $(f('abc', 10));
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = `abc`.x;
+const objPatternBeforeDefault /*:unknown*/ = $String_prototype.x;
 let objPatternAfterDefault /*:unknown*/ = undefined;
 let objPatternCrashTest /*:boolean*/ = false;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
@@ -48,7 +48,7 @@ if (objPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = `abc`.x;
+const objPatternBeforeDefault = $String_prototype.x;
 let objPatternAfterDefault = undefined;
 let objPatternCrashTest = false;
 if (objPatternBeforeDefault === undefined) {
@@ -73,7 +73,7 @@ if (objPatternCrashTest) {
 With rename=true
 
 `````js filename=intro
-const a = "abc".x;
+const a = $String_prototype.x;
 let b = undefined;
 let c = false;
 const d = a === undefined;

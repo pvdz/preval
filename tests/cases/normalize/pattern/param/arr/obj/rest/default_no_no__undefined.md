@@ -46,7 +46,7 @@ throw "[Preval]: Array spread must crash before this line";
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

@@ -136,7 +136,7 @@ $( j, i, k );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+None
 
 
 ## Globals

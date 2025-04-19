@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b.$(1);
+const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(tmpClusterSSA_a);
   $(1);
 }
 `````
@@ -34,9 +34,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = { $: $ }.$(1);
+const tmpClusterSSA_a = $dotCall($, { $: $ }, `\$`, 1);
 while (true) {
-  $(a);
+  $(tmpClusterSSA_a);
   $(1);
 }
 `````
@@ -47,7 +47,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );
   $( 1 );
@@ -58,7 +58,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: b.$
+- (todo) can we support this const aliasing blocking statement? WhileStatement
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

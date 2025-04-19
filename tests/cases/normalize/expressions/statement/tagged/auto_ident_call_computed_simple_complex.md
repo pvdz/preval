@@ -23,7 +23,8 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCalleeParam$1 /*:unknown*/ = b[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -36,7 +37,8 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const tmpCalleeParam$1 = { $: $ }[tmpCallCompProp](1);
+const b = { $: $ };
+const tmpCalleeParam$1 = b[tmpCallCompProp](1);
 $([`before `, ` after`], tmpCalleeParam$1);
 $({ a: 999, b: 1000 });
 `````
@@ -48,14 +50,15 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-const c = b[ a ]( 1 );
-const d = [ "before ", " after" ];
-$( d, c );
-const e = {
+const c = b[ a ];
+const d = $dotCall( c, b, undefined, 1 );
+const e = [ "before ", " after" ];
+$( e, d );
+const f = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( f );
 `````
 
 

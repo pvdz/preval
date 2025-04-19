@@ -22,7 +22,7 @@ $(tmpCalleeParam);
 `````js filename=intro
 const arg /*:unknown*/ = $(`give food`);
 const tmpCallObj /*:regex*/ = /foo/;
-const tmpCalleeParam /*:unknown*/ = tmpCallObj.test(arg);
+const tmpCalleeParam /*:unknown*/ = $dotCall($regex_test, tmpCallObj, `test`, arg);
 $(tmpCalleeParam);
 `````
 
@@ -32,7 +32,7 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const arg = $(`give food`);
-$(/foo/.test(arg));
+$($dotCall($regex_test, /foo/, `test`, arg));
 `````
 
 
@@ -42,7 +42,7 @@ With rename=true
 `````js filename=intro
 const a = $( "give food" );
 const b = /foo/;
-const c = b.test( a );
+const c = $dotCall( $regex_test, b, "test", a );
 $( c );
 `````
 
@@ -50,7 +50,7 @@ $( c );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $regex_test
 
 
 ## Globals

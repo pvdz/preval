@@ -21,8 +21,8 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`c`);
-$coerce(tmpCompProp, `string`);
+const tmpCalleeParam /*:unknown*/ = $(`c`);
+$coerce(tmpCalleeParam, `string`);
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -86,7 +86,7 @@ $( d, e );
 ## Todos triggered
 
 
-- (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) do we want to support MemberExpression as expression statement in free loops?
 - (todo) Support non-primitive in first arg to $coerce
 
 

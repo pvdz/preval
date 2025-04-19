@@ -29,8 +29,8 @@ if (tmpIfTest) {
   $(a, b);
 } else {
   const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`d`);
-  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`d`);
+  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
   b.c = tmpAssignMemRhs;
   $(a, b);
 }
@@ -49,8 +49,8 @@ if (tmpIfTest) {
   $(a, b);
 } else {
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  b.c = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam = $(`d`);
+  b.c = tmpCompObj[tmpCalleeParam];
   $(a, b);
 }
 `````

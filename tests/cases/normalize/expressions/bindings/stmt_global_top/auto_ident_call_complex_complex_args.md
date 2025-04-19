@@ -20,10 +20,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 
@@ -32,9 +32,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
+const tmpCallComplexCallee = $($);
 const tmpCalleeParam = $(1);
-$(tmpCallCallee(tmpCalleeParam, $(2)));
+$(tmpCallComplexCallee(tmpCalleeParam, $(2)));
 `````
 
 

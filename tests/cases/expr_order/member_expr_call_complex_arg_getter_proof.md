@@ -40,7 +40,7 @@ const x /*:object*/ = {
     return $;
   },
 };
-const tmpCallVal /*:unknown*/ = x.y;
+const tmpCallCompVal /*:unknown*/ = x.y;
 const a /*:object*/ = {
   get b() {
     debugger;
@@ -49,7 +49,7 @@ const a /*:object*/ = {
   },
 };
 const tmpCalleeParam /*:unknown*/ = a.b;
-$dotCall(tmpCallVal, x, `y`, tmpCalleeParam);
+$dotCall(tmpCallCompVal, x, `y`, tmpCalleeParam);
 `````
 
 

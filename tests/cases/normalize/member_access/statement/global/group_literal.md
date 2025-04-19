@@ -18,7 +18,7 @@
 
 `````js filename=intro
 $(1);
-(2).foo;
+$Number_prototype.foo;
 `````
 
 
@@ -27,7 +27,7 @@ $(1);
 
 `````js filename=intro
 $(1);
-(2).foo;
+$Number_prototype.foo;
 `````
 
 
@@ -36,7 +36,7 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-(2).foo;
+$Number_prototype.foo;
 `````
 
 

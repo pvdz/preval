@@ -25,7 +25,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpNestedComplexRhs /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````
@@ -50,9 +51,10 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
 $( undefined );
-$( d );
+$( e );
 `````
 
 

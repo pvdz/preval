@@ -23,7 +23,7 @@ $(res);
 `````js filename=intro
 const wat /*:unknown*/ = $(`x`);
 const str /*:string*/ = $coerce(wat, `plustr`);
-const res /*:array*/ = str.split(` `);
+const res /*:array*/ = $dotCall($string_split, str, `split`, ` `);
 $(res);
 `````
 
@@ -32,7 +32,7 @@ $(res);
 (This ought to be the final result)
 
 `````js filename=intro
-$($coerce($(`x`), `plustr`).split(` `));
+$($dotCall($string_split, $coerce($(`x`), `plustr`), `split`, ` `));
 `````
 
 
@@ -42,7 +42,7 @@ With rename=true
 `````js filename=intro
 const a = $( "x" );
 const b = $coerce( a, "plustr" );
-const c = b.split( " " );
+const c = $dotCall( $string_split, b, "split", " " );
 $( c );
 `````
 

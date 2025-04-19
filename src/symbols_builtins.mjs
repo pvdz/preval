@@ -33,8 +33,9 @@ export function sym_prefix(className, proto) {
 export const BOOLEAN = new Map([
   [symbo('Boolean', 'prototype'), { prop: 'prototype', isProto: false, typings: { sym: symbo('Boolean', 'prototype'), mustBeType: 'object',   mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false}}],
 
-  [symbo('boolean', 'toString'),  { prop: 'toString',  isProto: true,  typings: { sym: symbo('boolean', 'toString'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}}],
-  [symbo('boolean', 'valueOf'),   { prop: 'valueOf',   isProto: true,  typings: { sym: symbo('boolean', 'valueOf'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}}],
+  [symbo('boolean', 'constructor'),{ prop: 'constructor', isProto: true,  typings: { sym: symbo('boolean', 'constructor'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('boolean', 'toString'),  { prop: 'toString',    isProto: true,  typings: { sym: symbo('boolean', 'toString'),    mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string'}}],
+  [symbo('boolean', 'valueOf'),   { prop: 'valueOf',     isProto: true,  typings: { sym: symbo('boolean', 'valueOf'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean'}}],
 ]);
 
 
@@ -63,6 +64,7 @@ export const NUMBER = new Map([
   [symbo('Number', 'parseFloat'),         {prop: 'parseFloat',        isProto: false, typings: { sym: symbo('Number', 'parseFloat'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
   [symbo('Number', 'parseInt'),           {prop: 'parseInt',          isProto: false, typings: { sym: symbo('Number', 'parseInt'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
 
+  [symbo('number', 'constructor'),        {prop: 'constructor',       isProto: true,  typings: { sym: symbo('number', 'constructor'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
   [symbo('number', 'toExponential'),      {prop: 'toExponential',     isProto: true,  typings: { sym: symbo('number', 'toExponential'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   [symbo('number', 'toFixed'),            {prop: 'toFixed',           isProto: true,  typings: { sym: symbo('number', 'toFixed'),            mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   [symbo('number', 'toLocaleString'),     {prop: 'toLocaleString',    isProto: true,  typings: { sym: symbo('number', 'toLocaleString'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
@@ -87,6 +89,7 @@ export const STRING = new Map([
   [symbo('string', 'at'),            {prop: 'at',            isProto: true,  typings: { sym: symbo('string', 'at'),            mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   [symbo('string', 'charAt'),        {prop: 'charAt',        isProto: true,  typings: { sym: symbo('string', 'charAt'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   [symbo('string', 'charCodeAt'),    {prop: 'charCodeAt',    isProto: true,  typings: { sym: symbo('string', 'charCodeAt'),    mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
+  [symbo('string', 'constructor'),   {prop: 'constructor',   isProto: true,  typings: { sym: symbo('string', 'constructor'),   mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   [symbo('string', 'concat'),        {prop: 'concat',        isProto: true,  typings: { sym: symbo('string', 'concat'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   [symbo('string', 'endsWith'),      {prop: 'endsWith',      isProto: true,  typings: { sym: symbo('string', 'endsWith'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
   [symbo('string', 'includes'),      {prop: 'includes',      isProto: true,  typings: { sym: symbo('string', 'includes'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
@@ -161,6 +164,7 @@ export const OBJECT = new Map([
   [symbo('Object', 'setPrototypeOf'),            {prop: 'setPrototypeOf',            isProto: false, typings: { sym: symbo('Object', 'setPrototypeOf'),            mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}],
   [symbo('Object', 'values'),                    {prop: 'values',                    isProto: false, typings: { sym: symbo('Object', 'values'),                    mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'array' }}],
 
+  [symbo('object', 'constructor'),          {prop: 'constructor',          isProto: true, typings: { sym: symbo('object', 'constructor'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}],
   [symbo('object', 'hasOwnProperty'),       {prop: 'hasOwnProperty',       isProto: true, typings: { sym: symbo('object', 'hasOwnProperty'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
   [symbo('object', 'isPrototypeOf'),        {prop: 'isPrototypeOf',        isProto: true, typings: { sym: symbo('object', 'isPrototypeOf'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
   [symbo('object', 'propertyIsEnumerable'), {prop: 'propertyIsEnumerable', isProto: true, typings: { sym: symbo('object', 'propertyIsEnumerable'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
@@ -184,6 +188,7 @@ export const ARRAY = new Map([
 
   [symbo('array', 'at'),             {prop: 'at',              isProto: true, typings: { sym: symbo('array', 'at'),              mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
   [symbo('array', 'concat'),         {prop: 'concat',          isProto: true, typings: { sym: symbo('array', 'concat'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'array' }}],
+  [symbo('array', 'constructor'),    {prop: 'constructor',     isProto: true, typings: { sym: symbo('array', 'constructor'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'array' }}],
   [symbo('array', 'copyWithin'),     {prop: 'copyWithin',      isProto: true, typings: { sym: symbo('array', 'copyWithin'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'array' }}],
   [symbo('array', 'entries'),        {prop: 'entries',         isProto: true, typings: { sym: symbo('array', 'entries'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'object' }}], // iterator
   [symbo('array', 'every'),          {prop: 'every',           isProto: true, typings: { sym: symbo('array', 'every'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
@@ -237,6 +242,7 @@ export const DATE = new Map([
   [symbo('Date', 'parse'), {prop: 'parse', isProto: false, typings: { sym: symbo('Date', 'parse'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
   [symbo('Date', 'UTC'),   {prop: 'UTC',   isProto: false, typings: { sym: symbo('Date', 'UTC'),   mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
 
+  [symbo('date', 'constructor'),        {prop: 'constructor',         isProto: true, typings: { sym: symbo('date', 'constructor'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'date' }}],
   [symbo('date', 'getDate'),            {prop: 'getDate',             isProto: true, typings: { sym: symbo('date', 'getDate'),             mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
   [symbo('date', 'getDay'),             {prop: 'getDay',              isProto: true, typings: { sym: symbo('date', 'getDay'),              mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
   [symbo('date', 'getFullYear'),        {prop: 'getFullYear',         isProto: true, typings: { sym: symbo('date', 'getFullYear'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'number' }}],
@@ -291,10 +297,11 @@ export const DATE = new Map([
 export const FUNCTION = new Map([
   [symbo('Function', 'prototype'), {prop: 'prototype', isProto: false, typings: { sym: symbo('Function', 'prototype'), mustBeType: 'array', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
 
-  [symbo('function', 'apply'),    {prop: 'apply',     isProto: true, typings: { sym: symbo('function', 'apply'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
-  [symbo('function', 'call'),     {prop: 'call',      isProto: true, typings: { sym: symbo('function', 'call'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
-  [symbo('function', 'bind'),     {prop: 'bind',      isProto: true, typings: { sym: symbo('function', 'bind'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function' }}],
-  [symbo('function', 'toString'), {prop: 'toString',  isProto: true, typings: { sym: symbo('function', 'toString'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('function', 'apply'),       {prop: 'apply',       isProto: true, typings: { sym: symbo('function', 'apply'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
+  [symbo('function', 'call'),        {prop: 'call',        isProto: true, typings: { sym: symbo('function', 'call'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
+  [symbo('function', 'constructor'), {prop: 'constructor', isProto: true, typings: { sym: symbo('function', 'constructor'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function' }}],
+  [symbo('function', 'bind'),        {prop: 'bind',        isProto: true, typings: { sym: symbo('function', 'bind'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function' }}],
+  [symbo('function', 'toString'),    {prop: 'toString',    isProto: true, typings: { sym: symbo('function', 'toString'),    mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
 ]);
 
 
@@ -376,9 +383,10 @@ export const REGEXP = new Map([
   [symbo('RegExp', 'escape'), {prop: 'escape', isProto: false, typings: { sym: symbo('RegExp', 'escape'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
   // Not sure what to do with RegExp.lastIndex
 
-  [symbo('regex', 'exec'),     {prop: 'exec', isProto: true, typings: { sym: symbo('regex', 'exec'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
-  [symbo('regex', 'test'),     {prop: 'test',  isProto: true, typings: { sym: symbo('regex', 'test'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
-  [symbo('regex', 'toString'), {prop: 'toString',  isProto: true, typings: { sym: symbo('regex', 'toString'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function' }}],
+  [symbo('regex', 'constructor'), {prop: 'constructor', isProto: true, typings: { sym: symbo('regex', 'constructor'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'regex' }}],
+  [symbo('regex', 'exec'),        {prop: 'exec', isProto: true, typings: { sym: symbo('regex', 'exec'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
+  [symbo('regex', 'test'),        {prop: 'test',  isProto: true, typings: { sym: symbo('regex', 'test'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
+  [symbo('regex', 'toString'),    {prop: 'toString',  isProto: true, typings: { sym: symbo('regex', 'toString'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function' }}],
   // Note: there are a bunch of instance properties available like, flags, global, hasIndices, etc. Not sure if they need to be exposed here. TBD
 ]);
 
@@ -396,8 +404,9 @@ export const BUFFER = new Map([
   [symbo('Buffer', 'from'), {prop: 'from', isProto: true, typings: { sym: symbo('Buffer', 'from'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'buffer' }}],
   // Not sure what to do with RegExp.lastIndex
 
-  [symbo('buffer', 'toString'), {prop: 'toString', isProto: true, typings: { sym: symbo('buffer', 'toString'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
-  [symbo('buffer', 'valueOf'),  {prop: 'valueOf',  isProto: true, typings: { sym: symbo('buffer', 'valueOf'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'buffer' }}],
+  [symbo('buffer', 'constructor'), {prop: 'constructor', isProto: true, typings: { sym: symbo('buffer', 'constructor'),   mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'buffer' }}],
+  [symbo('buffer', 'toString'),    {prop: 'toString',    isProto: true, typings: { sym: symbo('buffer', 'toString'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('buffer', 'valueOf'),     {prop: 'valueOf',     isProto: true, typings: { sym: symbo('buffer', 'valueOf'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'buffer' }}],
   // Note: there are a bunch of instance properties available like, flags, global, hasIndices, etc. Not sure if they need to be exposed here. TBD
 ]);
 
@@ -412,7 +421,6 @@ export const GLOBAL_NAMESPACES_FOR_STATIC_METHODS = new Set([
  */
 
 
-// TODO: rename back to PREVAL_BUILTIN_SYMBOLS after the switch
 export const BUILTIN_SYMBOLS = new Map([
   Array.from(BOOLEAN.entries()),
   Array.from(NUMBER.entries()),
@@ -427,3 +435,96 @@ export const BUILTIN_SYMBOLS = new Map([
   Array.from(BUFFER.entries()),
   // Map, Set, WeakMap, WeakSet, AraryBuffer, etc?
 ].flat());
+
+// Resolve the prototype symbol to its instance string
+export const protoToInstName = new Map([
+  [symbo('Boolean', 'prototype'), 'boolean'],
+  [symbo('Number', 'prototype'), 'number'],
+  [symbo('String', 'prototype'), 'string'],
+  [symbo('RegExp', 'prototype'), 'regex'],
+  [symbo('Function', 'prototype'), 'function'],
+  [symbo('Array', 'prototype'), 'array'],
+  [symbo('Object', 'prototype'), 'object'],
+  [symbo('Map', 'prototype'), 'map'],
+  [symbo('Set', 'prototype'), 'set'],
+  [symbo('Date', 'prototype'), 'date'],
+  [symbo('Buffer', 'prototype'), 'buffer'],
+]);
+
+// These methods do not trigger side effects, they don't coerce their args (ignore them, or only test them verbatim)
+export const BUILTIN_FUNCS_NO_CTXT_NON_COERCE = new Set([
+  'Boolean',
+  symbo('Array', 'isArray'),
+  symbo('Array', 'of'),
+  symbo('Date', 'now'),
+  symbo('Math', 'random'),
+  symbo('Number', 'isFinite'), // This does NOT coerce the arg, unlike it's global isFinite counterpart (!)
+  symbo('Number', 'isInteger'), // If number, do stuff, otherwise return false
+  symbo('Number', 'isNaN'), // If number, do stuff, otherwise return false. This does NOT coerce the arg, unlike the global.
+  symbo('Number', 'isSafeInteger'), // If number, do stuff, otherwise return false
+  symbo('Object', 'is'),
+  symbo('Object', 'isExtensible'),
+  symbo('Object', 'isFrozen'),
+  symbo('Object', 'isSealed'),
+]);
+export const BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER = new Set([
+  'isFinite', // https://tc39.es/ecma262/#sec-isfinite-number . Note: this DOES coerce the arg, unlike Number.isFinite (!)
+  'isNaN', // https://tc39.es/ecma262/#sec-isnan-number . Note: this DOES coerce the arg, unlike Number.isFinite (!)
+  'Number',
+  symbo('number', 'constructor'),
+  symbo('Math', 'abs'),
+  symbo('Math', 'acos'),
+  symbo('Math', 'acosh'),
+  symbo('Math', 'asin'),
+  symbo('Math', 'asinh'),
+  symbo('Math', 'atan'),
+  symbo('Math', 'atanh'),
+  symbo('Math', 'cbrt'),
+  symbo('Math', 'ceil'),
+  symbo('Math', 'clz32'),
+  symbo('Math', 'cos'),
+  symbo('Math', 'cosh'),
+  symbo('Math', 'exp'),
+  symbo('Math', 'expm1'),
+  symbo('Math', 'floor'),
+  symbo('Math', 'fround'),
+  symbo('Math', 'log'),
+  symbo('Math', 'log10'),
+  symbo('Math', 'log1p'),
+  symbo('Math', 'log2'),
+  symbo('Math', 'round'),
+  symbo('Math', 'sign'),
+  symbo('Math', 'sin'),
+  symbo('Math', 'sinh'),
+  symbo('Math', 'sqrt'),
+  symbo('Math', 'tan'),
+  symbo('Math', 'tanh'),
+  symbo('Math', 'trunc'),
+]);
+export const BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING = new Set([
+  'parseFloat',
+  'String',
+  symbo('string', 'constructor'),
+  symbo('Date', 'parse'),
+  symbo('Number', 'parseFloat'),
+]);
+
+// TODO: merge the context free lists above into this one
+// List of builtins that ignore their `this` value
+export const contextFreeBuiltin = new Set([
+  symbo('Number', 'parseInt'),
+  symbo('Number', 'parseFloat'),
+  symbo('Number', 'isNaN'),
+  symbo('Number', 'isInteger'),
+  symbo('Number', 'isSafeInteger'),
+  symbo('Number', 'isFinite'),
+  //symbo('Math', 'pow'),
+  //symbo('Object', 'is'),
+  symbo('Array', 'isArray'),
+  symbo('Array', 'from'),
+  symbo('Array', 'of'),
+  symbo('String', 'fromCharCode'),
+  symbo('String', 'fromCodePoint'),
+  symbo('String', 'raw'),
+  // etc
+]);

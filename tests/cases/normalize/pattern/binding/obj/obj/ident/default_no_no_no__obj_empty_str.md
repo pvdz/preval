@@ -18,7 +18,7 @@ $(y);
 
 
 `````js filename=intro
-const y /*:unknown*/ = ``.y;
+const y /*:unknown*/ = $String_prototype.y;
 $(y);
 `````
 
@@ -27,7 +27,7 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-$(``.y);
+$($String_prototype.y);
 `````
 
 
@@ -35,7 +35,7 @@ $(``.y);
 With rename=true
 
 `````js filename=intro
-const a = "".y;
+const a = $String_prototype.y;
 $( a );
 `````
 

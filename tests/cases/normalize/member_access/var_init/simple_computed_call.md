@@ -19,9 +19,9 @@ $(x);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`foo`);
+const tmpCalleeParam /*:unknown*/ = $(`foo`);
 const obj /*:object*/ = { foo: 10 };
-const x /*:unknown*/ = obj[tmpCompProp];
+const x /*:unknown*/ = obj[tmpCalleeParam];
 $(x);
 `````
 
@@ -30,8 +30,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`foo`);
-$({ foo: 10 }[tmpCompProp]);
+const tmpCalleeParam = $(`foo`);
+$({ foo: 10 }[tmpCalleeParam]);
 `````
 
 

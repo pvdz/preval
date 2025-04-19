@@ -20,7 +20,7 @@ $(f('abc'));
 
 
 `````js filename=intro
-const x /*:unknown*/ = `a`.x;
+const x /*:unknown*/ = $String_prototype.x;
 $(x);
 `````
 
@@ -29,7 +29,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`a`.x);
+$($String_prototype.x);
 `````
 
 
@@ -37,7 +37,7 @@ $(`a`.x);
 With rename=true
 
 `````js filename=intro
-const a = "a".x;
+const a = $String_prototype.x;
 $( a );
 `````
 
@@ -45,7 +45,7 @@ $( a );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+- (todo) Deal with array spreads in arr mutation?
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

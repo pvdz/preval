@@ -18,7 +18,7 @@ $(y);
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = (0).x;
+const objPatternBeforeDefault /*:unknown*/ = $Number_prototype.x;
 let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
@@ -43,7 +43,7 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = (0).x;
+const objPatternBeforeDefault = $Number_prototype.x;
 let objPatternAfterDefault = undefined;
 if (objPatternBeforeDefault === undefined) {
   objPatternAfterDefault = $({ y: `pass2` });
@@ -65,7 +65,7 @@ if (objPatternBeforeDefault$1 === undefined) {
 With rename=true
 
 `````js filename=intro
-const a = (0).x;
+const a = $Number_prototype.x;
 let b = undefined;
 const c = a === undefined;
 if (c) {

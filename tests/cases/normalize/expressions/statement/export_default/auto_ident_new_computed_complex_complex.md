@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`\$`);
-const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`\$`);
+const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 const tmpAnonDefaultExport /*:object*/ = new tmpNewCallee(1);
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -37,8 +37,8 @@ $(a);
 
 `````js filename=intro
 const tmpCompObj = $({ $: $ });
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`\$`);
+const tmpNewCallee = tmpCompObj[tmpCalleeParam];
 const tmpAnonDefaultExport = new tmpNewCallee(1);
 export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 });

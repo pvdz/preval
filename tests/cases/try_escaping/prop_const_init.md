@@ -30,7 +30,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     const x /*:primitive*/ = arr[0];
     $(x);
   } catch (e) {
@@ -47,7 +47,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const arr = [1, 2, 3];
 while (true) {
   try {
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     $(arr[0]);
   } catch (e) {
     $(`fail`);
@@ -63,7 +63,7 @@ With rename=true
 const a = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    a.reverse();
+    $dotCall( $array_reverse, a, "reverse" );
     const b = a[ 0 ];
     $( b );
   }
@@ -77,7 +77,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Not supporting this method just yet:
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) try escaping may support dotcalling $array_reverse
+- (todo) can try-escaping support this expr node type? CallExpression
+- (todo) Support this ident in isFree CallExpression: $array_reverse
 
 
 ## Globals

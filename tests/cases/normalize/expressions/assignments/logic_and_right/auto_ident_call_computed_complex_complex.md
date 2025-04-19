@@ -26,7 +26,8 @@ if (tmpCalleeParam) {
   const b /*:object*/ = { $: $ };
   const tmpCallCompObj /*:unknown*/ = $(b);
   const tmpCallCompProp /*:unknown*/ = $(`\$`);
-  const tmpNestedComplexRhs /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -64,17 +65,18 @@ if (a) {
   const b = { $: $ };
   const c = $( b );
   const d = $( "$" );
-  const e = c[ d ]( 1 );
-  $( e );
-  $( e );
+  const e = c[ d ];
+  const f = $dotCall( e, c, undefined, 1 );
+  $( f );
+  $( f );
 }
 else {
   $( a );
-  const f = {
+  const g = {
     a: 999,
     b: 1000,
   };
-  $( f );
+  $( g );
 }
 `````
 

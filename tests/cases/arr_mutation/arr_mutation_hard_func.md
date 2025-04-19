@@ -56,7 +56,7 @@ $( b );
 ## Todos triggered
 
 
-- (todo) arr_mutation: implement array inlining analysis stuff
+- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 
 
 ## Globals

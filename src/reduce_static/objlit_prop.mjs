@@ -3,11 +3,11 @@
 // - If we can resolve it to not exist, we should replace it with a prototype if we can
 // - If we can resolve writes then we should update the associated object literal
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
-import { symbo } from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, contextFreeBuiltin, symbo } from '../symbols_builtins.mjs';
 
 export function objlitPropAccess(fdata) {
   group('\n\n\nChecking for object literals whose props are accessed immediately');
@@ -50,7 +50,7 @@ function _objlitPropAccess(fdata) {
       //if (meta.isConstant) return; // Not relevant right now
 
       vgroup(
-        '- `' + name + '`',
+        '- binding:', [name], ', rwOrder:',
         meta.rwOrder.map((ref) => ref.action + ':' + ref.kind),
       );
       process(meta, name);
@@ -67,19 +67,19 @@ function _objlitPropAccess(fdata) {
       // Second step: for as long as there are no observable side effects between 'em, process each read
       //   For every read that is a property access, try to resolve it immediately, and cut out the property access
       rwOrder.forEach((ref, ri) => {
-        vlog('-', ri, ref.action, ref.kind);
+        vlog('- ref[' + ri + ']:', ref.action + ':' + ref.kind);
         let rhs;
         if (ref.kind === 'var') {
           rhs = ref.parentNode.init;
         } else if (ref.kind === 'assign') {
           rhs = ref.parentNode.right;
         } else {
-          vlog('Not a var or assign;', ref.parentNode.type);
+          vlog('  - bail: Not a var or assign;', ref.parentNode.type);
           return;
         }
 
         if (rhs.type !== 'ObjectExpression') {
-          vlog('Assigned value is not an object (', rhs.type, ')');
+          vlog('  - bail: Assigned value is not an object (', rhs.type, ')');
           return;
         }
 
@@ -88,7 +88,7 @@ function _objlitPropAccess(fdata) {
           if (pnode.type === 'SpreadElement') return true; // We can support some sub-cases but not worth the squeeze right now
           if (pnode.kind === 'get' || pnode.kind === 'set') return true; // Ignore getters and setters eeeew
         })) {
-          vlog('Objlit had computed, get, set, or spread properties; bailing');
+          vlog('  - bail: Objlit had computed, get, set, or spread properties; bailing');
           return;
         }
 
@@ -99,8 +99,9 @@ function _objlitPropAccess(fdata) {
         //}
 
         // Ok this was a write that assigned an object literal. Hurray!
-        vlog('Found "simple" object expression at ref', ri, ' assigned to `' + name + '`. Tracing nearest property lookups.');
+        vgroup('  - ok; Found "simple" object expression at ref', ri, ' assigned to `' + name + '`. Tracing nearest property lookups.');
         verifyAfterObjectAssign(meta, rwOrder, ref, ri, rhs);
+        vgroupEnd();
 
         // This is a bit of a hack or whatever but it's going try and eliminate consecutive prop writes to the same
         // property when the object is known to be simple (no get/set/spread/computed).
@@ -174,32 +175,32 @@ function _objlitPropAccess(fdata) {
       if (read.parentNode.type !== 'MemberExpression' || read.parentProp !== 'object') {
         // - `f(obj)`
         // - `foo[obj]`
-        vlog('note: at least one read escaped as it was not a member. singleWriteSafe=false');
+        vlog('- mightMutate: at least one read escaped as it was not a member. singleWriteSafe=false');
         return true;
       }
 
       if (read.parentNode.computed) {
         // - `obj[foo]`
-        vlog('note: at least one read was a computed prop access (hard to predict). singleWriteSafe=false');
+        vlog('- mightMutate: at least one read was a computed prop access (hard to predict). singleWriteSafe=false');
         return true;
       }
 
       if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
         // - `x.y = z`
-        vlog('note: at least one member expression was being assigned to. singleWriteSafe=false');
+        vlog('- mightMutate: at least one member expression was being assigned to. singleWriteSafe=false');
         return true;
       }
 
       if (read.grandNode.type === 'CallExpression' && read.grandProp === 'callee') {
         // A method call may refer to `this` and mutate object, `arr.splice(1, 1)`
         // - `x.foo()`
-        vlog('note: at least one member expression was called. singleWriteSafe=false');
+        vlog('- mightMutate: at least one member expression was called. singleWriteSafe=false');
         return true;
       }
 
       if (read.parentNode.type === 'UnaryExpression' && read.parentNode.op === 'delete') {
         // - `delete x.y`
-        vlog('note: at least one member expression was a property delete. singleWriteSafe=false');
+        vlog('- mightMutate: at least one member expression was a property delete. singleWriteSafe=false');
         return true;
       }
 
@@ -208,7 +209,7 @@ function _objlitPropAccess(fdata) {
 
     function verifyAfterObjectAssign(meta, rwOrder, writeRef, wi, objExprNode) {
       if (wi === rwOrder.length - 1) {
-        vlog('This write is the last ref. The assignment is probably observed by a loop?');
+        vlog('- bail: This write is the last ref. The assignment is probably observed by a loop?');
         return;
       }
 
@@ -220,13 +221,13 @@ function _objlitPropAccess(fdata) {
       });
 
       if (singleWriteSafe) {
-        vlog('Single write and all reads do not escape, process any read that can reach the write');
+        vlog('- ok; Single write and all reads do not escape, process any read that can reach the write');
 
         // All reads should be safe to resolve now
         meta.reads.forEach(read => {
           // If the first prop-read after the write was a statement and it's not mutated in between then we can drop the statement.
           if (read.parentNode.type === 'MemberExpression' && read.parentProp === 'object' && read.grandNode.type === 'ExpressionStatement') {
-            vlog('Prop access was a statement');
+            vlog('- Prop access was a statement, applying transform now');
             // This should be a property access on a "simple" object, verified to be free of getters/setters.
             // As such, the prop access should not be able to trigger any spies and should be free to drop.
             if (!read.parentNode.computed || AST.isPrimitive(read.parentNode.property)) {
@@ -258,7 +259,7 @@ function _objlitPropAccess(fdata) {
       } else {
         // Slow path. Try to verify immutability between the write and the read.
         // Requirements are more stringent here, like it must also be same if/loop/try etc.
-        vlog('verifyAfterObjectAssign(): Checking', rwOrder.length - wi - 1, 'refs, starting at', wi);
+        vlog('- verifyAfterObjectAssign(): Checking', rwOrder.length - wi - 1, 'refs, starting at', wi);
         for (let ri = wi; ri < rwOrder.length; ++ri) {
           const ref = rwOrder[ri];
           vgroup('- ref', ri, ';', ref.action + ':' + ref.kind, ref.pfuncNode.$p.pid, ref.parentNode.type);
@@ -280,7 +281,7 @@ function _objlitPropAccess(fdata) {
 
       if (ref.action === 'write') {
         lastRefArr.push(ref);
-        vlog('Updated last write ref for scope', ref.pfuncNode.$p.pid, 'to a write');
+        vlog('- Updated last write ref for scope', ref.pfuncNode.$p.pid, 'to a write');
         return;
       }
 
@@ -302,18 +303,18 @@ function _objlitPropAccess(fdata) {
         // This is a potential bug though. What if the previous write was not a "simple object" but the write before was?
         // Then that would show up here and incorrectly be considered "the previous write" even though it wasn't...
         // TODO ^^^^
-        vlog('This read has no previous write in the same scope (could mean that the previous write in this scope was not a "simple object")');
+        vlog('- bail: This read has no previous write in the same scope (could mean that the previous write in this scope was not a "simple object")');
         return;
       }
 
       if (prevWrite.kind !== 'var' && prevWrite.kind !== 'assign') {
-        vlog('Previous write was not a var or assign (so, for-x?)');
+        vlog('- bail: Previous write was not a var or assign (so, for-x?)');
         return;
       }
 
       if (readRef.innerTry !== prevWrite.innerTry) {
         // Can't guarantee the write if one ref is inside a try while the other is not
-        return vlog('- read/write not in same try', readRef.innerCatch, prevWrite.innerCatch);
+        return vlog('- bail: read/write not in same try', readRef.innerCatch, prevWrite.innerCatch);
       }
 
       // Not sure if the catch clause is relevant here. It's just a block
@@ -324,24 +325,24 @@ function _objlitPropAccess(fdata) {
 
       if (readRef.parentNode.type === 'UnaryExpression' && readRef.parentNode.op === 'delete') {
         // delete x.y;
-        vlog('The member expression was a property delete. Bailing');
+        vlog('- bail: The member expression was a property delete. Bailing');
         return;
       }
 
       if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
         // `x.foo();` (may refer to `this` and mutate object)
-        vlog('At least one member expression was called. Bailing');
+        vlog('- bail: At least one member expression was called. Bailing');
         return true;
       }
 
       if (readRef.parentNode.type !== 'MemberExpression' || readRef.parentProp !== 'object') {
         // Object escapes. Any mutation may happen.
-        vlog('Not a non-computed member expression or the read was not the object; type:', readRef.parentNode.type, ', computed:', readRef.parentNode.computed, ', parent prop:', readRef.parentProp);
+        vlog('- bail: Not a non-computed member expression or the read was not the object; type:', readRef.parentNode.type, ', computed:', readRef.parentNode.computed, ', parent prop:', readRef.parentProp);
         return true;
       }
 
       if (mayBindingMutateBetweenRefs(meta, prevWrite, readRef, true)) {
-        vlog('There was at least one observable side effect that could have mutated the property on the object, so bailing');
+        vlog('- bail: There was at least one observable side effect that could have mutated the property on the object, so bailing');
         return;
       }
 
@@ -403,7 +404,7 @@ function _objlitPropAccess(fdata) {
 
       if (prevWrite.innerLoop !== readRef.innerLoop) {
         // TODO: if the loop contained no further writes this would still be okay...
-        vlog('The read happened inside a different loop from the write. Bailing just in case.');
+        vlog('- bail: The read happened inside a different loop from the write. Bailing just in case.');
         return;
       }
 
@@ -439,7 +440,7 @@ function _objlitPropAccess(fdata) {
       if (readRef.parentNode.computed) {
         // Computed props are hard to predict.
         // TODO: we could do for literals `x[20]` or `x["a b"]`... but how often does that happen? aside from arrays... which this is not
-        vlog('A computed member expression; type:', readRef.parentNode.type, ', computed:', readRef.parentNode.computed, ', parent prop:', readRef.parentProp, ', prop type:', readRef.parentNode.property.type);
+        vlog('- bail: A computed member expression; type:', readRef.parentNode.type, ', computed:', readRef.parentNode.computed, ', parent prop:', readRef.parentProp, ', prop type:', readRef.parentNode.property.type);
         return true;
       }
 
@@ -455,8 +456,8 @@ function _objlitPropAccess(fdata) {
           // The write and read are in same block, between them are zero or more statements that cannot trigger spies,
           // whatever they are, like var decl with functions.
 
-          log('The assignment to this prop comes after assigning the object so we should be able to inline it');
-          log('The write is at index', prevWrite.blockIndex, ', the read at index', readRef.blockIndex, ', between them:', readRef.blockBody.slice(prevWrite.blockIndex+1, readRef.blockIndex).map(node => node.type));
+          vlog('- The assignment to this prop comes after assigning the object so we should be able to inline it');
+          vlog('- The write is at index', prevWrite.blockIndex, ', the read at index', readRef.blockIndex, ', between them:', readRef.blockBody.slice(prevWrite.blockIndex+1, readRef.blockIndex).map(node => node.type));
 
           const prop = readRef.parentNode.property;
           ASSERT(prop.type === 'Identifier', 'not computed so property node must be an identifier?');
@@ -472,7 +473,7 @@ function _objlitPropAccess(fdata) {
             //}
             //else {
               // TODO: if we can prove that the binding is not TDZ'd _at the point of the object_ then we can use it
-              log('Found prop, is not assigned a primitive, bailing');
+              vlog('- bail: Found prop, is not assigned a primitive');
               return true; // Move to next write
             //}
           }
@@ -482,7 +483,7 @@ function _objlitPropAccess(fdata) {
           if (propNode) {
             if (propNode.computed) {
               // - `const b = {[a]: 2}; b.a = 1'
-              log('Found prop, is computed, bailing');
+              vlog('- bail: Found prop, is computed');
               ASSERT(false, 'unreachable; we asserted properties are not computed earlier on');
               return true; // Move to next write
             }
@@ -490,7 +491,7 @@ function _objlitPropAccess(fdata) {
               // - `const b = {get a(){}}; b.a = 1'
               // - `const b = {set a(x){}}; b.a = 1'
               ASSERT(false, 'unreachable; we asserted properties are not get/set earlier on');
-              log('Found prop, is getter/setter, bailing');
+              vlog('- bail: Found prop, is getter/setter');
               return true; // Move to next write
             }
             if (propNode.method) {
@@ -498,7 +499,7 @@ function _objlitPropAccess(fdata) {
               // - `const b = {a(){}; b.a = 1' -> `const b = {a: 1}`
             }
 
-            log('There exists a prop node with that name. Updating it');
+            vlog('- ok: There exists a prop node with that name. Updating it');
             rule('Writing to a property after the object literal can be inlined');
             example('const x = {a: 1}; x.a = 2;', 'const x = {a: 2}; ;');
             before(prevWrite.blockBody[prevWrite.blockIndex]);
@@ -516,7 +517,7 @@ function _objlitPropAccess(fdata) {
           } else {
             // The prop does not exist and since there are no computed props and no spreads, it
             // must mean this object simply does not have this own property yet and we can create it.
-            log('Object expression currently does not have this property. Adding it');
+            vlog('- ok: Object expression currently does not have this property. Adding it');
             rule('Writing to a new property after the object literal can be inlined');
             example('const x = {}; x.a = 2;', 'const x = {a: 2}; ;');
             before(prevWrite.blockBody[prevWrite.blockIndex]);
@@ -534,12 +535,12 @@ function _objlitPropAccess(fdata) {
         }
 
         // x.y = z;
-        vlog('The member expression was being assigned to is not singleInner. Bailing');
+        vlog('- bail: The member expression was being assigned to is not singleInner');
         return true; // "prop mutation". Move to next write
       }
 
       if (readRef.grandNode.type === 'UnaryExpression' && readRef.grandProp === 'argument' && readRef.grandNode.operator === 'delete') {
-        vlog('This "property lookup" was actually the argument to `delete`. Must keep this.');
+        vlog('- bail: This "property lookup" was actually the argument to `delete`. Must keep this.');
         return;
       }
 
@@ -547,7 +548,7 @@ function _objlitPropAccess(fdata) {
     }
 
     function haveRef(objExprNode, writeRef, readRef) {
-      vlog('Found a read to an object literal while the object literal could not have been mutated!');
+      vlog('- ok: Found a read to an object literal while the object literal could not have been mutated!');
 
       // We have a write ref and a read ref and they are in the same block and there are no observable side effects in between
       // and the write is an object literal and the read is a property lookup. Game time.
@@ -556,9 +557,9 @@ function _objlitPropAccess(fdata) {
       const propName = readRef.parentNode.property.name;
       const pnode = objExprNode.properties.find((pnode) => !pnode.computed && pnode.key.name === propName);
       if (!pnode) {
-        vlog('Could not find the property... bailing');
+        vlog('- Could not find the property...');
         // TODO: can do this when we checked the property can not exist, like through computed prop or whatever
-        vlog('The object literal did not have a property `' + propName + '` so it must be undefined?');
+        vlog('- The object literal did not have a property `' + propName + '` so it must be undefined?');
 
         if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
           // This would change `const o = {}; o.toString()` into `objectPrototype.toString()`. This would actually fine in most
@@ -617,22 +618,22 @@ function _objlitPropAccess(fdata) {
               updated += 1;
             },
           });
-        } else {
+        } else if (BUILTIN_SYMBOLS.has(symbo('object', readRef.parentNode.property.name))) {
           queue.push({
             pid: +readRef.node.$p.pid,
             func: () => {
               // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
               // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
               rule('An object literal prop lookup when the obj has no such prop must read from the prototype');
-              example('let obj = {}; let x = obj.x;', `let obj = {}; let x = ${symbo('Object', 'prototype')}.x;`);
+              example('let obj = {}; $(obj.toString);', `let obj = {}; $(${symbo('object', 'toString')});`);
               before(writeRef.blockBody[writeRef.blockIndex]);
               before(readRef.blockBody[readRef.blockIndex]);
 
               ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
 
-              const finalNode = AST.memberExpression(symbo('Object', 'prototype'), readRef.parentNode.property.name, false);
+              const finalNode = AST.identifier(symbo('object', readRef.parentNode.property.name))
               if (readRef.grandIndex < 0) readRef.grandNode[readRef.grandProp] = finalNode;
-              else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.identifier('undefined'); // FIXME: broken?? shouldnt this be finalNode?
+              else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = finalNode;
 
               after(readRef.blockBody[readRef.blockIndex]);
               updated += 1;
@@ -641,11 +642,11 @@ function _objlitPropAccess(fdata) {
         }
       } else if (pnode.kind !== 'init') {
         // Maybe we can still do something here but for now we're bailing
-        vlog('The property `' + propName + '` resolves to a getter or setter. Bailing');
+        vlog('- bail: The property `' + propName + '` resolves to a getter or setter.');
 
         if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
           // TODO: allow list for certain methods, like toString or join. Maybe.
-          vlog('The member expression was the callee of a call. Bailing');
+          vlog('- bail: The member expression was the callee of a call.');
           // x.y();
           // This would transform into what exactly?
           // Even `o = {a: f}; o.a()` to `f()` would be non-trivial since we would need to confirm that `f` does not access `this`.
@@ -655,11 +656,11 @@ function _objlitPropAccess(fdata) {
         }
       } else if (pnode.method) {
         // TODO: can we do anything here?
-        vlog('The property resolves to a method. Bailing.');
+        vlog('- bail: The property resolves to a method.');
 
         if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
           // TODO: allow list for certain methods, like toString or join. Maybe.
-          vlog('The member expression was the callee of a call. Bailing');
+          vlog('- bail: The member expression was the callee of a call.');
           // x.y();
           // This would transform into what exactly?
           // Even `o = {a: f}; o.a()` to `f()` would be non-trivial since we would need to confirm that `f` does not access `this`.
@@ -668,7 +669,7 @@ function _objlitPropAccess(fdata) {
           return true;
         }
       } else {
-        vlog('The object literal contained a node for `' + propName + '` (pid', pnode.$p.pid, ')');
+        vlog('- The object literal contained a node for `' + propName + '` (pid', pnode.$p.pid, ')');
 
         if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
           // Tricky case. We may be able to find the reference but we may still not be able to improve anything
@@ -680,7 +681,7 @@ function _objlitPropAccess(fdata) {
           let newCallee;
           let fail = true;
           if (AST.isPrimitive(pnode.value)) {
-            vlog('Since the value leads to a primitive, it must lead to a runtime error. But another rule will take care of that.');
+            vlog('- Since the value leads to a primitive, it must lead to a runtime error. But another rule will take care of that.');
             fail = false;
             newCallee = AST.cloneSimple(pnode.value);
           } else if (pnode.value.type === 'Identifier') {
@@ -688,16 +689,16 @@ function _objlitPropAccess(fdata) {
             if (calleeMeta.isConstant) {
               if (calleeMeta.varDeclRef.node.type !== 'FunctionExpression') {
                 vlog(
-                  'The callee is actually constant `' + pnode.value.name + '` which is not a function (',
+                  '- bail: The callee is actually constant `' + pnode.value.name + '` which is not a function (',
                   calleeMeta.varDeclRef.node.type,
                   '), probably a runtime error, but bailing nonetheless',
                 );
               } else if (!calleeMeta.varDeclRef.node.$p.thisAccess) {
-                vlog('The callee is actually constant `' + pnode.value.name + '` which is a function that does not access `this`');
+                vlog('- The callee is actually constant `' + pnode.value.name + '` which is a function that does not access `this`');
                 fail = false;
                 newCallee = AST.identifier(pnode.value.name);
               } else {
-                vlog('The callee is actually constant `' + pnode.value.name + '` which is a function that accesses `this`, bailing');
+                vlog('- bail: The callee is actually constant `' + pnode.value.name + '` which is a function that accesses `this`');
               }
             } else if (calleeMeta.isBuiltin) {
               switch (pnode.value.name) {
@@ -713,20 +714,23 @@ function _objlitPropAccess(fdata) {
                 case symbo('Number', 'isInteger'):
                 case symbo('Number', 'isSafeInteger'):
                 case 'RegExp':
-                  vlog('The callee is actually builtin `' + pnode.value.name + '` and it does not use `this`');
+                  vlog('- The callee is actually builtin `' + pnode.value.name + '` and it does not use `this`');
                   fail = false;
                   newCallee = AST.identifier(pnode.value.name);
                   break;
                 default:
-                  vlog('The callee is actually constant `' + pnode.value.name + '` and it does use `this`');
+                  if (contextFreeBuiltin.has(pnode.value.name)) {
+                    todo('Use contextFreeBuiltin to check this callee');
+                  }
+                  vlog('- The callee is actually constant `' + pnode.value.name + '` and it does use `this`');
               }
             } else {
-              vlog('The callee is actually `' + pnode.value.name + '` and since it is neither a constant nor a builtin, we must bail');
+              vlog('- bail: The callee is actually `' + pnode.value.name + '` and since it is neither a constant nor a builtin, we must bail');
             }
           }
 
           if (fail) {
-            vlog('(bailing)');
+            vlog('- (bailing)');
             return true;
           } else {
             rule('A method call that we know does not use the context can call the function directly');

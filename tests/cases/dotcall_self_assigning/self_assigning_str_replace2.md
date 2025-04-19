@@ -50,7 +50,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (chr) {
       const chr2 /*:primitive*/ = arr[count];
       const regex /*:regex*/ = /xyz/g;
-      str = str.replace(regex, chr2);
+      str = $dotCall($string_replace, str, `replace`, regex, chr2);
     } else {
     }
   } else {
@@ -73,7 +73,7 @@ while (true) {
   count = count - 1;
   if (tmpPostUpdArgIdent$1) {
     if (arr[count]) {
-      str = str.replace(/xyz/g, arr[count]);
+      str = $dotCall($string_replace, str, `replace`, /xyz/g, arr[count]);
     }
   } else {
     break;
@@ -98,7 +98,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (e) {
       const f = c[ a ];
       const g = /xyz/g;
-      b = b.replace( g, f );
+      b = $dotCall( $string_replace, b, "replace", g, f );
     }
   }
   else {
@@ -112,7 +112,7 @@ $( b );
 ## Todos triggered
 
 
-None
+- (todo) regex in free loops
 
 
 ## Globals

@@ -28,8 +28,8 @@ const b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(tmpNestedAssignPropRhs);
@@ -38,8 +38,8 @@ if (tmpNestedAssignPropRhs) {
   const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
   const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
   const tmpCompObj$1 /*:unknown*/ = $(b);
-  const tmpCompProp$1 /*:unknown*/ = $(`d`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+  const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
+  const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$3];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
   $(varInitAssignLhsComputedRhs, b);
@@ -55,8 +55,8 @@ const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(tmpNestedAssignPropRhs);
@@ -65,8 +65,8 @@ if (tmpNestedAssignPropRhs) {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $(`d`);
-  const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
+  const tmpCalleeParam$3 = $(`d`);
+  const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam$3];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
   $(varInitAssignLhsComputedRhs, b);

@@ -23,9 +23,9 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(30);
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
-  $coerce(tmpClusterSSA_tmpCompProp, `string`);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+  $coerce(tmpClusterSSA_tmpCalleeParam, `string`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

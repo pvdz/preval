@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const tmpCalleeParam /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -44,9 +44,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
+const tmpCallComplexCallee = $($);
 const tmpCalleeParam$1 = $(1);
-const tmpForInGen = $forIn(tmpCallCallee(tmpCalleeParam$1, $(2)));
+const tmpForInGen = $forIn(tmpCallComplexCallee(tmpCalleeParam$1, $(2)));
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {

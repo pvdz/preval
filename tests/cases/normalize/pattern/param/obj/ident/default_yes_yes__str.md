@@ -20,7 +20,7 @@ $(f('abc', 10));
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = `abc`.x;
+const objPatternBeforeDefault /*:unknown*/ = $String_prototype.x;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
@@ -35,7 +35,7 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = `abc`.x;
+const objPatternBeforeDefault = $String_prototype.x;
 if (objPatternBeforeDefault === undefined) {
   $($(`pass`));
 } else {
@@ -48,7 +48,7 @@ if (objPatternBeforeDefault === undefined) {
 With rename=true
 
 `````js filename=intro
-const a = "abc".x;
+const a = $String_prototype.x;
 const b = a === undefined;
 if (b) {
   const c = $( "pass" );

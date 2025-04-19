@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
 const tmpAnonDefaultExport /*:object*/ = new tmpNewCallee(1);
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -35,8 +35,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpCalleeParam = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCalleeParam];
 const tmpAnonDefaultExport = new tmpNewCallee(1);
 export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 });

@@ -20,7 +20,7 @@ $(f(0, 10));
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (0).x;
+const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
 [...objPatternNoDefault];
 $(`bad`);
 `````
@@ -30,7 +30,7 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = (0).x;
+const objPatternNoDefault = $Number_prototype.x;
 [...objPatternNoDefault];
 $(`bad`);
 `````
@@ -40,7 +40,7 @@ $(`bad`);
 With rename=true
 
 `````js filename=intro
-const a = (0).x;
+const a = $Number_prototype.x;
 [ ...a ];
 $( "bad" );
 `````

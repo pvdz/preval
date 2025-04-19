@@ -31,7 +31,7 @@ const spy /*:object*/ = {
     return tmpReturnArg;
   },
 };
-const tmpCallVal /*:unknown*/ = spy.x;
+const tmpCallCompVal /*:unknown*/ = spy.x;
 const spy2 /*:object*/ = {
   get x() {
     debugger;
@@ -40,7 +40,7 @@ const spy2 /*:object*/ = {
   },
 };
 const tmpCalleeParam /*:unknown*/ = spy2.x;
-$dotCall(tmpCallVal, spy, `x`, tmpCalleeParam);
+$dotCall(tmpCallCompVal, spy, `x`, tmpCalleeParam);
 `````
 
 

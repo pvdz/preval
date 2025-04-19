@@ -27,9 +27,9 @@ import {
   SYMBOL_LOOP_UNROLL,
   SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE,
 } from '../symbols_preval.mjs';
-import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, contextFreeBuiltin, symbo } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
-import { getRegexFromLiteralNode } from '../ast.mjs';
+import { getRegexFromLiteralNode, isNumberValueNode } from '../ast.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { createFreshVar } from '../bindings.mjs';
@@ -965,6 +965,8 @@ function _typeTrackedTricks(fdata) {
                   }
                 }
 
+                if (meta.typing.builtinTag?.includes?.('#')) FIXME
+
                 switch (meta.typing.builtinTag) {
                   case 'Array#filter': {
                     // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#filter)
@@ -1061,1280 +1063,1894 @@ function _typeTrackedTricks(fdata) {
         break;
       }
       case 'CallExpression': {
-        if (node.callee.type === 'Identifier') {
-          switch (node.callee.name) {
-            case 'eval': {
-              // Even more difficult than Function because of direct eval stuffs
-              break;
-            }
-            case 'Function': {
-              // TODO: if the arg is a string, we could generate a function from it? Dunno if that's gonna break anything :)
-              break;
-            }
-            case SYMBOL_DOTCALL: {
-              // '$dotCall' -- folding builtins
-              // Resolve .call in some cases ($dotCall)
+        if (node.callee.type !== 'Identifier') {
+          if (node.callee.type === 'MemberExpression') {
+            todo('when we are still receiving method calls in typed tracked tricks?');
+          }
+          return;
+        }
 
-              ASSERT(node.arguments.length >= 3, 'should at least have the function to call and context, and then any number of args');
-              ASSERT(
-                node.arguments[1].type !== 'Identifier' || node.arguments[1].name !== 'arguments',
-                'in normalized code this can never be `arguments` (the only exception to meta fetching)',
-              );
+        // Only dotcall would have a context but that doesn't mean you can't do `String.prototype.toString.call(undefined, ...)`
 
-              const [
-                funcRefNode, // This is the (potentially cached) function value passed on as first arg
-                contextNode, // This is the original object that must be the context of this call (until we can determine the context is unused/eliminable)
-                propNode, // The original property name if it's not computed, undefined if it was computed
-                ...argNodes // These are the actual args of the original call
-              ] = node.arguments;
+        let callee = node.callee;
+        let calleeName = callee.name;
+        let args = node.arguments;
+        let context = undefined;
 
-              if (funcRefNode.type === 'Identifier') {
-                // Let's see if we can eliminate some cases here :D
-                switch (funcRefNode.name) {
-                  case 'Function': {
-                    // Context is ignored. Replace with regular call
-                    rule('Doing .call on `Function` is moot because it ignores the context');
-                    example('Function.call(a, b, c)', 'Function(b, c)');
-                    before(node, grandNode);
+        // For dotcall, map the call
+        const isDotcall = calleeName === SYMBOL_DOTCALL;
+        vlog('- is dotcall?', isDotcall);
+        if (isDotcall) {
+          callee = args[0];
+          calleeName = callee.name
+          context = args[1];
+          args = args.slice(3);
+        }
 
-                    node.callee = funcRefNode;
-                    // Mark all args as tainted, just in case.
-                    // We should not need to taint Function and $dotCall metas for this.
-                    node.arguments.forEach((enode, i) => {
-                      if (i === 1 || i > 3) {
-                        if (enode.type === 'Identifier') {
-                          taint(enode, fdata);
-                        } else if (enode.type === 'SpreadElement') {
-                          taint(enode.argument, fdata);
-                        }
-                      }
-                    });
+        const contextMustBe =
+          !context
+          ? false
+          : AST.isPrimitive(context)
+          ? AST.getPrimitiveType(context)
+          : context.type === 'Identifier'
+          ? fdata.globallyUniqueNamingRegistry.get(context.name)?.typing.mustBeType
+          : false;
+        const isContextPrimitive = PRIMITIVE_TYPE_NAMES_PREVAL.has(contextMustBe);
 
-                    // Mark all args as tainted, just in case.
-                    // We should not need to taint Function and $dotCall metas for this.
-                    node.arguments.forEach((enode, i) => {
-                      if (i) {
-                        if (enode.type === 'Identifier') {
-                          const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
-                          meta.tainted = true;
-                        } else if (enode.type === 'SpreadElement' && enode.argument.type === 'Identifier') {
-                          const meta = fdata.globallyUniqueNamingRegistry.get(enode.argument.name);
-                          meta.tainted = true;
-                        }
-                      }
-                    });
+        if (calleeName?.includes('#')) TOFIX
 
-                    node.arguments.splice(0, 3); // Drop `Function`, the context ref, and the prop name
+        if (isDotcall) {
+          // Where calleeName is the apply symbol, we now need the function being applied
+          const funcMeta = fdata.globallyUniqueNamingRegistry.get(calleeName);
+          if (!funcMeta) {
+            vlog('  - bail: could not find func meta for', [calleeName]);
+            return;
+          }
+          vlog('  - can we convert this $dotcall to a regular call? name=', calleeName, ', constant=', funcMeta.isConstant, ', builtin=', funcMeta.isBuiltin, ', builtin+this=', contextFreeBuiltin.has(calleeName));
+          if (
+            calleeName &&
+            (
+              (funcMeta.isConstant && funcMeta.varDeclRef.node.type === 'FunctionExpression' && !funcMeta.varDeclRef.node.$p.thisAccess) ||
+              (funcMeta.isBuiltin && contextFreeBuiltin.has(calleeName))
+            )
+          ) {
+            vlog('  - yes, queued transform to eliminate .apply');
+            ++changes;
+            // The transform is a little more subtle since excessive args should also be placed as statements
+            queue.push({
+              index: blockIndex,
+              func: () => {
+                rule('When a function does not use `this`, an dotcall can be a regular call');
+                example('$dotCall($Number_parseInt, x, `f`, `200`, 15)', 'x; parseInt("200", 15)');
+                before(blockBody[blockIndex]);
 
-                    after(node);
-                    ++changes;
-                    break;
-                  }
-                  case 'RegExp': {
-                    // Context is ignored. Replace with regular call
-                    rule('Doing .call on `RegExp` is moot because it ignores the context');
-                    example('RegExp.call(a, b, c)', 'RegExp(b, c)');
-                    example(SYMBOL_DOTCALL + '(RegExp, a, b, c)', 'RegExp(a, b, c)');
-                    before(node, grandNode);
+                const ctxt = AST.cloneSimple(context);
+                const finalNode = AST.callExpression(calleeName, args.slice(0));
+                if (parentIndex < 0) parentNode[parentProp] = finalNode;
+                else parentNode[parentProp][parentIndex] = finalNode;
 
-                    node.callee = funcRefNode;
-                    // Mark all args as tainted, just in case.
-                    // We should not need to taint Function and $dotCall metas for this.
-                    node.arguments.forEach((enode, i) => {
-                      if (i === 1 || i > 3) {
-                        if (enode.type === 'Identifier') {
-                          taint(enode, fdata);
-                        } else if (enode.type === 'SpreadElement') {
-                          taint(enode.argument, fdata);
-                        }
-                      }
-                    });
-                    node.arguments.splice(0, 3); // Drop `RegExp`, the context ref, and the prop name
+                blockBody.splice(
+                  blockIndex,
+                  0,
+                  AST.expressionStatement(ctxt || AST.identifier('undefined')),
+                  // These are unused args to .apply(), which only uses the first arg
+                  ...args.map((n) => AST.expressionStatement(
+                    n.type === 'SpreadElement'
+                      ? AST.arrayExpression([AST.spreadElement(AST.cloneSimple(n.argument))])
+                      : AST.cloneSimple(n)
+                  )),
+                );
 
-                    after(node);
-                    ++changes;
-                    break;
-                  }
-                  case symbo('Function', 'apply'): {
-                    // If the context is known to be a function, reconstruct it into a regular method call
-                    if (contextNode.type === 'Identifier') {
-                      const meta = fdata.globallyUniqueNamingRegistry.get(contextNode.name);
-                      if (meta.typing.mustBeType === 'function') {
-                        // The dotCall always converts dotCall(A, B, C, D, E) to B.apply(C, D, E)
-                        rule('Calling function.apply on a function can be a regular method call');
-                        example('dotcall($apply, func, A, B, C)', 'func.apply(A, B, C)');
-                        before(node, blockBody[blockIndex]);
-
-                        // Reconstruct the method call
-                        const finalNode = AST.callExpression(AST.memberExpression(contextNode, 'apply'), argNodes);
-                        if (parentIndex < 0) parentNode[parentProp] = finalNode;
-                        else parentNode[parentProp][parentIndex] = finalNode;
-
-                        after(finalNode, blockBody[blockIndex]);
-                        ++changes;
-                        break;
-                      }
-                    }
-                    break;
-                  }
-                  case symbo('Function', 'call'): {
-                    // If the context is known to be a function, reconstruct it into a regular method call
-                    if (node.arguments[1].type === 'Identifier') {
-                      const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[1].name);
-                      if (meta.typing.mustBeType === 'function') {
-                        rule('Calling function.call on a function can be a regular method call');
-                        example('Regexp.prototype.test.call(/foo/, x, y, z)', '/foo/.test(x, y, z)');
-                        before(node, blockBody[blockIndex]);
-
-                        // Reconstruct the method call
-                        const finalNode = AST.callExpression(AST.memberExpression(contextNode, 'apply'), argNodes);
-                        if (parentIndex < 0) parentNode[parentProp] = finalNode;
-                        else parentNode[parentProp][parentIndex] = finalNode;
-
-                        after(node, blockBody[blockIndex]);
-                        ++changes;
-                        break;
-                      }
-                    }
-                    break;
-                  }
-                  case symbo('regex', 'test'): {
-                    // If the context is known to be a regex, reconstruct it into a regular method call
-                    if (node.arguments[1].type === 'Identifier') {
-                      const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[1].name);
-                      if (meta.typing.mustBeType === 'regex') {
-                        rule('Calling regexp.test on a regex can be a regular method call');
-                        example('Regexp.prototype.test.call(/foo/, x)', '/foo/.test(x)');
-                        before(node, blockBody[blockIndex]);
-
-                        // Reconstruct the method call
-                        const finalNode = AST.callExpression(AST.memberExpression(contextNode, 'test'), argNodes);
-                        if (parentIndex < 0) parentNode[parentProp] = finalNode;
-                        else parentNode[parentProp][parentIndex] = finalNode;
-
-                        after(node, blockBody[blockIndex]);
-                        ++changes;
-                        break;
-                      }
-                    }
-                    break;
-                  }
-                  default: {
-                    if (BUILTIN_SYMBOLS.has(funcRefNode.name)) {
-                      todo(`Missed opportunity to inline a type tracked trick for ${funcRefNode.name}`);
-                    }
-                  }
-                }
-
-                // Resolve builtin functions when we somehow know they're being cached
-                const refMeta = fdata.globallyUniqueNamingRegistry.get(funcRefNode.name);
-                switch (refMeta.typing.builtinTag) {
-                  case 'Array#push':
-                  case 'Array#pop':
-                  case 'Array#shift':
-                  case 'Array#unshift': {
-                    // Fold the call, make a regular array call. This lets another rule deal with the semantics, which we'll need anyways.
-                    // `$dotCall(func, context, "tag", arg1, arg2, arg3);`
-                    // -> `context.tag(arg1, arg2, arg3);`
-                    // The $dotCall asserts for us that the method was called before as well so it should be safe to do
-                    // (Additionally, we could verify that the value is an array, but I believe we don't need to?)
-
-                    rule('A $dotCall with builtin methods can be a regular method call');
-                    example(`$dotCall(${symbo('array', 'push')}, arr, "push", arg1, arg2, arg3);`, 'arr.push(arg1, arg2, arg3);');
-                    before(node, blockBody[blockIndex]);
-
-                    const methodName = refMeta.typing.builtinTag.slice(refMeta.typing.builtinTag.indexOf('#') + 1);
-
-                    node.callee = AST.memberExpression(node['arguments'][1], methodName);
-                    node.arguments.shift(); // Array#<methodName>
-                    node.arguments.shift(); // the arr context
-                    node.arguments.shift(); // the prop
-
-                    after(node, blockBody[blockIndex]);
-                    return true;
-                  }
-                  case 'Number#toString': {
-                    // The radix is a vital arg so we can't resolve this unless we can resolve the arg
-                    // This could even support something like `Number.prototype.toString.call("foo")` because why not
-                    if ((AST.isPrimitive(contextNode) && !argNodes.length) || AST.isPrimitive(argNodes[0])) {
-                      rule('Calling `Number#toString` on a primitive can be resolved if we know the radix');
-                      example('123..toString()', '"123"');
-                      example('123..toString(15)', '"83"');
-                      before(node, blockBody[blockIndex]);
-
-                      const pv = AST.getPrimitiveValue(contextNode);
-                      // We don't care about the radix as long as we can resolve the primitive. Defer to JS to resolve the final value.
-                      const radix = argNodes[0] ? AST.getPrimitiveValue(argNodes[0]) : 10;
-                      const pvn = Number.prototype.toString.call(pv, radix); // pv may not be a string so we do it this way. Let JS sort it out.
-                      const finalNode = AST.primitive(pvn);
-
-                      if (parentIndex < 0) parentNode[parentProp] = finalNode;
-                      else parentNode[parentProp][parentIndex] = finalNode;
-
-                      // Such an edge case, but make sure additional args (which are ignored) do not trigger tdz errors etc.
-                      argNodes.forEach((enode, i) => i && taint(enode.type === 'SpreadElement' ? enode.argument : enode));
-                      queue.push({
-                        index: blockIndex,
-                        func: () =>
-                          blockBody.splice(
-                            blockIndex,
-                            0,
-                            // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
-                            // If the method was called with a spread, make sure the spread still happens.
-                            ...argNodes
-                              .slice(1)
-                              .map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
-                          ),
-                      });
-
-                      after(node, blockBody[blockIndex]);
-                      ++changes;
-                      return true;
-                    }
-                    break;
-                  }
-                }
-              }
-
-              break;
-            }
-            case BUILTIN_REST_HANDLER_NAME: {
-              // Resolve object spread in some cases
-              break;
-            }
-            case symbo('String', 'fromCharCode'): {
-              if (node.arguments.every(arg => AST.isPrimitive(arg))) {
-                // String.fromCharCode(15, 33, 32)
-
-                rule('Calling `String.fromCharCode` on primitive args should resolve the call');
-                example('String.fromCharCode(104,101,108,108,111)', '"hello"');
-                before(parentNode);
-
-                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(String.fromCharCode(...node.arguments.map(n => AST.getPrimitiveValue(n))));
-                else parentNode[parentProp][parentIndex] = AST.primitive(String.fromCharCode(...node.arguments.map(n => AST.getPrimitiveValue(n))));
-
-                after(parentNode);
-                ++changes;
-                break;
-              }
-              break;
-            }
-            default: {
-              if (BUILTIN_SYMBOLS.has(node.callee.name)) {
-                todo(`type trackeed tricks can possibly support static ${node.callee.name}`);
-              }
-            }
+                after(blockBody.slice(blockIndex, blockIndex + args.length + 2));
+              },
+            });
+            return;
+          } else {
+            vlog('  - no.');
           }
         }
-        else if (node.callee.type === 'MemberExpression') {
-          // (Parent node is CallExpression)
-          const isPrim = AST.isPrimitive(node.callee.object);
-          const objMetaRegex = !isPrim && node.callee.object.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-          const isRegex = objMetaRegex?.typing?.mustBeType === 'regex' && objMetaRegex.isConstant && AST.isRegexLiteral(objMetaRegex.varDeclRef);
-          if ((isPrim || isRegex || node.callee.object.type === 'Identifier') && !node.callee.computed) {
-            let mustBe = isRegex ? 'regex' : isPrim ? AST.getPrimitiveType(node.callee.object) : fdata.globallyUniqueNamingRegistry.get(node.callee.object.name).typing.mustBeType;
+        vlog('  - running', [calleeName], 'through builtins list...'); // :)
 
-            const symbol = symbo(mustBe, node.callee.property.name);
+        // TODO: move this to normalization...
+        switch (calleeName) {
+          case SYMBOL_DOTCALL: {
+            ASSERT( false, 'Should not find dotcall here because that can only mean dotcall is calling dotcall', node);
+            break;
+          }
+          case BUILTIN_REST_HANDLER_NAME: {
+            // Resolve object spread in some cases
+            break;
+          }
+          case 'eval': {
+            // Even more difficult than Function because of direct eval stuffs
+            vlog('Skipping eval()');
+            break;
+          }
+          case 'Array#push':
+          case 'Array#pop':
+          case 'Array#shift':
+          case 'Array#unshift': {
+            // Fold the call, make a regular array call. This lets another rule deal with the semantics, which we'll need anyways.
+            // `$dotCall(func, context, "tag", arg1, arg2, arg3);`
+            // -> `context.tag(arg1, arg2, arg3);`
+            // The $dotCall asserts for us that the method was called before as well so it should be safe to do
+            // (Additionally, we could verify that the value is an array, but I believe we don't need to?)
 
-            if (PRIMITIVE_TYPE_NAMES_PREVAL.has(mustBe) && BUILTIN_SYMBOLS.has(symbol) && parentNode.type === 'ExpressionStatement') {
-              // This call was a statement. It's a method call on a primitive.
-              // If it has no discernible args then we can just drop it.
-              if (node.arguments.every(anode => AST.isPrimitive(anode))) {
-                rule('Statement that is a method call on a primitive with primitive args can be dropped');
-                example('2..toString(2);', ';');
-                before(parentNode);
+            rule('A $dotCall with builtin methods can be a regular method call');
+            example(`$dotCall(${symbo('array', 'push')}, arr, "push", arg1, arg2, arg3);`, 'arr.push(arg1, arg2, arg3);');
+            before(node, blockBody[blockIndex]);
 
-                grandNode[grandProp][grandIndex] = AST.emptyStatement();
+            const methodName = refMeta.typing.builtinTag.slice(refMeta.typing.builtinTag.indexOf?.('#') + 1);
 
-                after(AST.emptyStatement());
-                ++changes;
-                break;
+            node.callee = AST.memberExpression(node['arguments'][1], methodName);
+            node.arguments.shift(); // Array#<methodName>
+            node.arguments.shift(); // the arr context
+            node.arguments.shift(); // the prop
+
+            after(node, blockBody[blockIndex]);
+            return true;
+          }
+          case 'Number#toString': {
+            // The radix is a vital arg so we can't resolve this unless we can resolve the arg
+            // This could even support something like `Number.prototype.toString.call("foo")` because why not
+            if ((AST.isPrimitive(contextNode) && !argNodes.length) || AST.isPrimitive(argNodes[0])) {
+              rule('Calling `Number#toString` on a primitive can be resolved if we know the radix');
+              example('123..toString()', '"123"');
+              example('123..toString(15)', '"83"');
+              before(node, blockBody[blockIndex]);
+
+              const pv = AST.getPrimitiveValue(contextNode);
+              // We don't care about the radix as long as we can resolve the primitive. Defer to JS to resolve the final value.
+              const radix = argNodes[0] ? AST.getPrimitiveValue(argNodes[0]) : 10;
+              const pvn = Number.prototype.toString.call(pv, radix); // pv may not be a string so we do it this way. Let JS sort it out.
+              const finalNode = AST.primitive(pvn);
+
+              if (parentIndex < 0) parentNode[parentProp] = finalNode;
+              else parentNode[parentProp][parentIndex] = finalNode;
+
+              // Such an edge case, but make sure additional args (which are ignored) do not trigger tdz errors etc.
+              argNodes.forEach((enode, i) => i && taint(enode.type === 'SpreadElement' ? enode.argument : enode));
+              queue.push({
+                index: blockIndex,
+                func: () =>
+                  blockBody.splice(
+                    blockIndex,
+                    0,
+                    // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
+                    // If the method was called with a spread, make sure the spread still happens.
+                    ...argNodes
+                    .slice(1)
+                    .map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
+                  ),
+              });
+
+              after(node, blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('array', 'concat'): {
+            // We can do this provided we can determine the concrete value of all elements of the array
+            // See the 'shift' case in arr_mutation
+            break;
+          }
+          case symbo('array', 'flatMap'): {
+            if (isDotcall) {
+              // This is a whole other level due to the callback.
+              if (args.length === 0) {
+                todo('support $array_flatmap without arguments');
+              } else {
+                todo('support $array_flatmap with arguments?');
               }
             }
+            break;
+          }
+          case symbo('array', 'includes'): {
+            if (isDotcall && context) {
+              if (parentNode.type === 'ExpressionStatement' && args.every(anode => anode.type !== 'SpreadElement')) {
+                // The first arg is not coerced. The second arg is coerced to number. Rest is ignored.
+                // It's doing the same as strict eq so the comparison itself is not observable
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('Calling .includes on an array as statement is moot1');
+                    example('arr.includes(x, y, z);', 'arr; x; $coerce(y, "string"); z;');
+                    before(blockBody[blockIndex]);
 
-            switch (symbol) {
-              case symbo('array', 'flatMap'): {
-                // This is a whole other level due to the callback.
-                if (node.arguments.length === 0) {
-                  todo('support $array_flatmap without arguments');
-                } else {
-                  todo('support $array_flatmap with arguments?');
-                }
-                break;
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(context), // Note: arr elements are evaluated before the call args
+                      ...args.map((anode,i) => {
+                        if (i === 1) {
+                          return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
+                        } else {
+                          return AST.expressionStatement(anode)
+                        }
+                      }),
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex+args.length));
+                  },
+                });
+                changes += 1;
+                return;
+              } else {
+                todo(`type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: ${calleeName}`);
               }
-              case symbo('array', 'includes'): {
-                if (parentNode.type === 'ExpressionStatement' && node.arguments.every(anode => anode.type !== 'SpreadElement')) {
-                  // The first arg is not coerced. The second arg is coerced to number. Rest is ignored.
-                  // It's doing the same as strict eq so the comparison itself is not observable
-                  queue.push({
-                    index: blockIndex,
-                    func: () => {
-                      rule('Calling .includes on an array as statement is moot1');
-                      example('arr.includes(x, y, z);', 'arr; x; $coerce(y, "string"); z;');
-                      before(blockBody[blockIndex]);
+            }
+            break;
+          }
+          case symbo('array', 'join'): {
+            // We can do this provided we can determine the concrete value of all elements of the array
+            // See the 'join' case in arr_mutation
+            break;
+          }
+          case symbo('array', 'push'): {
+            // We can do this provided we can determine the concrete value of all elements of the array
+            // See the 'push' case in arr_mutation
+            break;
+          }
+          case symbo('array', 'reverse'): {
+            // See the 'reverse' case in arr_mutation
+            // Here we only deal with the fact that .reverse() returns its context
+            // Don't do it when the call is already an expression statement
+            if (
+              isDotcall &&
+              parentNode.type !== 'ExpressionStatement' &&
+              context
+            ) {
+              queue.push({
+                index: blockIndex,
+                func: () => {
+                  rule('Calling .reverse on an array returns the array itself');
+                  example('const y = arr.reverse();', 'arr.reverse(); const y = arr;');
+                  before(blockBody[blockIndex]);
 
-                      blockBody.splice(blockIndex, 1,
-                        AST.expressionStatement(node.callee.object), // Note: arr elements are evaluated before the call args
-                        ...node.arguments.map((anode,i) => {
-                          if (i === 1) {
-                            return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
-                          } else {
-                            return AST.expressionStatement(anode)
-                          }
-                        }),
-                      );
+                  // .reverse() returns the array it mutated so we should be able to leave the context
 
-                      after(blockBody.slice(blockIndex, blockIndex+node.arguments.length));
-                    },
-                  });
-                  changes += 1;
-                } else {
-                  todo(`type trackeed tricks can possibly support resolving the type for calling this builtin method symbol: ${symbo(mustBe, node.callee.property.name)}`);
-                }
-                break;
-              }
-              case symbo('array', 'join'): {
-                // We can do this provided we can determine the concrete value of all elements of the array
-                // See the 'join' case in arr_mutation
-                break;
-              }
-              case symbo('array', 'push'): {
-                // We can do this provided we can determine the concrete value of all elements of the array
-                // See the 'push' case in arr_mutation
-                break;
-              }
-              case symbo('array', 'reverse'): {
-                // See the 'reverse' case in arr_mutation
-                // Here we only deal with the fact that .reverse() returns its context
-                // Don't do it when the call is already an expression statement
-                if (parentNode.type !== 'ExpressionStatement') {
-                  queue.push({
-                    index: blockIndex,
-                    func: () => {
-                      rule('Calling .reverse on an array returns the array itself');
-                      example('const y = arr.reverse();', 'arr.reverse(); const y = arr;');
-                      before(blockBody[blockIndex]);
+                  // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
+                  // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
 
-                      // .reverse() returns the array it mutated so we should be able to leave the context
+                  // Replace the call with the `arr` of `arr.reverse()`
+                  const newNode = AST.cloneSimple(context);
+                  if (parentIndex < 0) parentNode[parentProp] = newNode;
+                  else parentNode[parentProp][parentIndex] = newNode;
+                  // Turn the arr.reverse() call into its own statement now, before where the call happens (although that should not matter much)
+                  blockBody.splice(blockIndex, 0, AST.expressionStatement(node));
 
-                      // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
-                      // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
+                  before(blockBody[blockIndex]);
+                  before(blockBody[blockIndex+1]);
+                },
+              });
+              changes += 1;
+              return;
+            }
 
-                      // Replace the call with the `arr` of `arr.reverse()`
-                      const newNode = AST.cloneSimple(node.callee.object);
-                      if (parentIndex < 0) parentNode[parentProp] = newNode;
-                      else parentNode[parentProp][parentIndex] = newNode;
-                      // Turn the arr.reverse() call into its own statement now, before where the call happens (although that should not matter much)
-                      blockBody.splice(blockIndex, 0, AST.expressionStatement(node));
+            break;
+          }
+          case symbo('array', 'shift'): {
+            // We can do this provided we can determine the concrete value of all elements of the array
+            // See the 'shift' case in arr_mutation
+            break;
+          }
+          case symbo('array', 'splice'): {
+            // We can do this provided we can determine the concrete value of all elements of the array
+            // See the 'splice' case in arr_mutation
+            break;
+          }
+          case symbo('array', 'toString'): {
+            // We can do this provided we can determine the concrete value of all elements of the array
+            // See the 'toString' case in arr_mutation
+            break;
+          }
+          case symbo('array', 'unshift'): {
+            // We can do this provided we can determine the concrete value of all elements of the array
+            // See the 'unshift' case in arr_mutation
+            break;
+          }
+          case symbo('boolean', 'toString'): {
+            // - `true.toString()`
+            // - `false.toString()`
+            // - `x.toString()` with x an unknown boolean
+            // - `Boolean.prototype.toString.call(x)`
 
-                      before(blockBody[blockIndex]);
-                      before(blockBody[blockIndex+1]);
-                    },
-                  });
-                  changes += 1;
-                }
+            if (isDotcall) {
+              // Context must be a boolean.
+              if (isContextPrimitive) {
+                if (AST.isBoolean(context)) {
+                  const primValue = AST.getPrimitiveValue(context);
+                  ASSERT(typeof primValue === 'boolean', 'any primValue type other than boolean will trigger an error here which is why we checked', context);
+                  let outcome = Boolean.prototype.toString.call(primValue);
 
-                break;
-              }
-              case symbo('array', 'shift'): {
-                // We can do this provided we can determine the concrete value of all elements of the array
-                // See the 'shift' case in arr_mutation
-                break;
-              }
-              case symbo('array', 'splice'): {
-                // We can do this provided we can determine the concrete value of all elements of the array
-                // See the 'splice' case in arr_mutation
-                break;
-              }
-              case symbo('array', 'toString'): {
-                // We can do this provided we can determine the concrete value of all elements of the array
-                // See the 'toString' case in arr_mutation
-                break;
-              }
-              case symbo('array', 'unshift'): {
-                // We can do this provided we can determine the concrete value of all elements of the array
-                // See the 'unshift' case in arr_mutation
-                break;
-              }
-              case symbo('boolean', 'toString'): {
-                // `true.toString()`
-                // `false.toString()`
-                // `x.toString()` with x an unknown boolean
+                  const newNode = AST.primitive(outcome);
 
-                if (isPrim) {
-                  const primValue = AST.getPrimitiveValue(node.callee.object);
-
-                  const rest = node.arguments.slice(0);
+                  vlog('Queued something...');
+                  // Call Boolean.prototype.toString on the context
+                  const rest = args.slice(0);
                   queue.push({
                     index: blockIndex,
                     func: () => {
                       rule('Calling bool.toString() on a primitive should inline the call');
                       example('true.toString()', '"true"');
-                      before(node, parentNode);
+                      before(blockBody[blockIndex]);
 
-                      if (parentIndex < 0) parentNode[parentProp] = AST.primitive(primValue.toString());
-                      else parentNode[parentProp][parentIndex] = AST.primitive(primValue.toString());
+                      if (parentIndex < 0) parentNode[parentProp] = newNode;
+                      else parentNode[parentProp][parentIndex] = newNode;
+                      rest.forEach(arg => {
+                        if (arg.type === 'SpreadElement') {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(AST.arrayExpression([arg])));
+                        } else {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        }
+                      });
+
+                      after(blockBody.slice(blockIndex, blockIndex + rest.length + 1));
+                      changes += 1;
+                    },
+                  });
+                  return;
+                } else {
+                  vlog('- bail: context is a boolean but we dont know which way');
+                  todo('calling bool_tostring on a non-bool can be predicted to throw');
+                }
+              } else {
+                vlog('- bail: dunno if the context is a primitive alone, alone alone a boolean');
+              }
+            } else {
+              // This will lead to an error since the context won't be bool... Note that you can call
+              // it on a Boolean instance, including the Boolean constructor and its prototype...
+              todo('calling bool.tostring without context will crash');
+            }
+            if (args.length > 0) {
+              queue.push({
+                index: blockIndex,
+                func: () => {
+                  // This function accepts no arguments so just move them out
+                  rule('Args for bool.toString() are ignored so move them');
+                  example('true.toString(a, b);', 'a; b; true.toString();');
+                  before(blockBody[blockIndex]);
+
+                  blockBody.splice(blockIndex, 0,
+                    ...args.map(anode => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode))
+                  );
+                  node.arguments.length = isDotcall ? 3 : 0;
+
+                  after(blockBody[blockIndex]);
+
+                  changes += 1;
+                }
+              });
+              return;
+            }
+            break;
+          }
+          case symbo('buffer', 'toString'): {
+            // This is a common obfuscator trick to just do `Buffer.from(x, 'base64').toString('ascii')`
+            // There are other variations we can support here and I suppose if the conversion is really that simple, we can just resolve it regardless.
+
+            // Start by confirming that the buffer was created with a literal string.
+            if (isDotcall && context?.type === 'Identifier') {
+              const bufMeta = fdata.globallyUniqueNamingRegistry.get(context.name);
+              if (bufMeta.isConstant && bufMeta.writes[0]?.kind === 'var' && bufMeta.writes[0].parentNode.kind === 'const') {
+                const write = bufMeta.writes[0];
+                const init = write.parentNode.init;
+                if (
+                  init.type === 'CallExpression' &&
+                  init.callee.type === 'Identifier' &&
+                  init.callee.name === symbo('Buffer', 'from') &&
+                  init.arguments.length > 0 &&
+                  AST.isStringLiteral(init.arguments[0]) &&
+                  // Remaining args are literals as well
+                  init.arguments.every(anode => AST.isPrimitive(anode)) &&
+                  // Same for toString
+                  args.every(anode => AST.isPrimitive(anode))
+                ) {
+                  // I think we should be able to convert this, regardless of the other args:
+                  // We have:
+                  // - a `buffer.toString()` call on a value we know to be a buffer
+                  // - the buffer var is a constant
+                  // - the buffer var was initialized through Buffer.from() with a string literal as first arg
+                  // - all args for the Buffer.from and buf.toString calls are primitives
+                  // The encoding args as well as remaining args as well as toString encoding arg should not matter, I think
+
+                  rule('Buffer.from().toString() can be resolved when args are all primitives');
+                  example(
+                    'const a = Buffer.from("hello, world", "base64"); const b = a.toString("ascii"); $(b);',
+                    '$("hello, world");'
+                  );
+                  before(write.blockBody[write.blockIndex]);
+                  before(blockBody[blockIndex]);
+
+                  const initArgValues = init.arguments.map(anode => AST.getPrimitiveValue(anode));
+                  const tosArgValues = args.map(anode => AST.getPrimitiveValue(anode));
+
+                  const result = Buffer.from(...initArgValues).toString(...tosArgValues);
+                  // Now eliminate that call expression. We have to go the hard way because it goes one level beyond the grandNode
+                  if (blockBody[blockIndex].type === 'VarStatement') {
+                    blockBody[blockIndex].init = AST.primitive(result);
+                  } else if (blockBody[blockIndex].type === 'ExpressionStatement') {
+                    if (blockBody[blockIndex].expression.type === 'AssignmentExpression') {
+                      blockBody[blockIndex].expression.right = AST.primitive(result);
+                    } else {
+                      blockBody[blockIndex].expression = AST.identifier('undefined');
+                    }
+                  } else {
+                    ASSERT(false, 'in normalized code, a call must be a var init, assign rhs, or statement', blockBody[blockIndex]);
+                  }
+
+                  after(write.blockBody[write.blockIndex]);
+                  after(blockBody[blockIndex]);
+
+                  ++changes;
+                  return;
+                }
+              }
+            }
+            break;
+          }
+          case 'Function': {
+            if (isDotcall) {
+              // Context is ignored. Replace with regular call
+              rule('Doing dotcall on `Function` is moot because it ignores the context');
+              example('$dotcall(Function, a, "b", c)', 'Function(b, c)');
+              before(blockBody[blockIndex]);
+
+              node.callee = AST.cloneSimple(node.arguments[0]);
+
+              // Mark all args as tainted, just in case.
+              // We should not need to taint Function and $dotCall metas for this.
+              args.forEach((enode, i) => {
+                if (enode.type === 'Identifier') {
+                  taint(enode, fdata);
+                }
+                else if (enode.type === 'SpreadElement') {
+                  taint(enode.argument, fdata);
+                }
+              });
+
+              node.arguments.splice(0, 3); // Drop `Function`, the context ref, and the prop name
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            // TODO: if the arg is a string, we could generate a function from it? Dunno if that's gonna break anything :)
+
+            break;
+          }
+          case symbo('function', 'apply'): {
+            if (isDotcall) {
+              // Where calleeName is the apply symbol, we now need the function being applied
+              const contextName = context?.name;
+              const objMeta = fdata.globallyUniqueNamingRegistry.get(contextName);
+              vlog('Can we convert this .apply() to a regular call?', contextName, objMeta.isConstant, objMeta.isBuiltin);
+              if (
+                context?.type === 'Identifier' &&
+                (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) ||
+                (objMeta.isBuiltin && contextFreeBuiltin.has(contextName)) ||
+                // Or if the context is known to be a function, it should be fine to fold it up since $dotcall is essentially doing .call()
+                BUILTIN_SYMBOLS.get(contextName)?.typings.mustBeType === 'function'
+              ) {
+                vlog('Queued transform to eliminate .apply');
+                ++changes;
+                // The transform is a little more subtle since excessive args should also be placed as statements
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('When a function does not use `this`, an `.apply` can be a regular call');
+                    example('function f(){} f.apply(ctxt, arr, B, C);', 'function f(){} ctxt; arr; B; C; f(...arr);');
+                    before(blockBody[blockIndex]);
+
+                    const args = node.arguments;
+                    args.shift(); // This should be $function_apply
+                    const funcNameNode = args.shift(); // This should be the actual function name to call
+                    args.shift(); // This should be the propname or undefined (ignore)
+                    const newCtxtNode = args.shift(); // This would be the actual context of the call
+                    const argsArrNode = args.shift() || AST.arrayExpression(); // The arr arg is optional
+
+                    if (newCtxtNode?.type === 'Identifier' && newCtxtNode.name === 'undefined') {
+                      // The call has undefined as context. This may as well be a regular call.
+                      // Reflection aside (proxy etc), there's no way to distinguish a regular call from .apply with undefined
+                      node.callee = funcNameNode;
+                      // The rest of the args should be injected as a statement. They are ignored by .apply()
+                      node.arguments = [
+                        AST.spreadElement(argsArrNode)
+                      ];
+                    } else {
+                      // The rest of the args should be injected as a statement. They are ignored by .apply()
+                      node.arguments = [
+                        funcNameNode,
+                        newCtxtNode,
+                        AST.undef(),
+                        AST.spreadElement(argsArrNode)
+                      ];
+                    }
+
+                    blockBody.splice(
+                      blockIndex,
+                      0,
+                      ...args.map(anode => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode))
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex + args.length));
+                  },
+                });
+
+                return;
+              }
+            } else {
+              // Calling `Function.prototype.apply` directly is a weird error.
+              // - `const t = Function.prototype.apply; t()` -> `t is not a function` (but `typeof t` is "function")
+              // Ignore.
+            }
+            break;
+          }
+          case symbo('function', 'call'): {
+            if (isDotcall) {
+              // Where calleeName is the call symbol, we now need the function being called
+              const contextName = context?.name;
+              const objMeta = fdata.globallyUniqueNamingRegistry.get(contextName);
+              vlog('Can we convert this .call() to a regular call?', calleeName, contextName, objMeta.isConstant, objMeta.isBuiltin, context?.type);
+              if (
+                context?.type === 'Identifier' &&
+                (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) ||
+                (objMeta.isBuiltin && contextFreeBuiltin.has(contextName)) ||
+                // Or if the context is known to be a function, it should be fine to fold it up since $dotcall is essentially doing .call()
+                BUILTIN_SYMBOLS.get(contextName)?.typings.mustBeType === 'function'
+              ) {
+                vlog('Queued transform to eliminate .call');
+                ++changes;
+                // The transform is a little more subtle since excessive args should also be placed as statements
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('When a function does not use `this`, a `.call` can be a regular call');
+                    example('function f(){} f.call(ctxt, A, B, C);', 'function f(){} ctxt; f(A, B, C);');
+                    example(
+                      `${SYMBOL_DOTCALL}(${symbo('function', 'call')}, ${symbo('array', 'splice')}, "prop", A, B, C);`,
+                      `${SYMBOL_DOTCALL}(${symbo('array', 'splice')}, A, undefined, B, C);`,
+                    );
+                    before(blockBody[blockIndex]);
+
+                    node.arguments.shift(); // This should be $function_call
+                    const funcNameNode = node.arguments.shift(); // This should be the actual function name to call
+                    node.arguments.shift(); // This should be the propname or undefined (ignore)
+                    const newCtxtNode = node.arguments.shift();
+
+                    // The call has undefined as context. This may as well be a regular call.
+                    // Reflection aside (proxy etc), there's no way to distinguish a regular call from .apply with undefined
+                    if (newCtxtNode?.type === 'Identifier' && newCtxtNode.name === 'undefined') {
+                      node.callee = funcNameNode;
+                    } else {
+                      node.arguments.unshift(AST.undef());
+                      node.arguments.unshift(newCtxtNode);
+                      node.arguments.unshift(funcNameNode);
+                    }
+
+                    after(blockBody[blockIndex]);
+                  },
+                });
+
+                return;
+              }
+            } else {
+              // Calling `Function.prototype.apply` directly is a weird error.
+              // - `const t = Function.prototype.apply; t()` -> `t is not a function` (but `typeof t` is "function")
+              // Ignore.
+            }
+            break;
+          }
+          case symbo('function', 'constructor'): {
+            if (isDotcall) {
+              // `(function(){}).constructor('x')` is equal to calling `Function('x')`
+              // Rather than mimicking that logic here, we'll just transform it to `Function` instead and let another rule pick that up
+
+              rule('Calling `function.constructor` should call `Function`');
+              example('(function(){}).constructor("x")', 'Function("x")');
+              before(blockBody[blockIndex]);
+
+              callee.name = 'Function';
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('function', 'toString'): {
+            if (isDotcall && BUILTIN_GLOBAL_FUNC_NAMES.has(context?.name)) {
+              rule('Calling .toString() on a global builtin function can be resolved');
+              example('String.toString();', '"function String() { [native code] }";');
+              before(blockBody[blockIndex]);
+
+              const newNode = AST.primitive(`function ${context.name}() { [native code] }`)
+              if (parentIndex < 0) parentNode[parentProp] = newNode;
+              else parentNode[parentProp][parentIndex] = newNode;
+
+              before(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('number', 'toString'): {
+            // `$dotCall($number_toString, true, 'xyz'))`
+            // `$dotCall($number_toString, false, 'xyz'))`
+            // `$dotCall($number_toString, x, 'xyz'))`
+
+            // Note: this will throw if context is not a number (we could make it throw here for that case)
+            if (
+              isDotcall &&
+              contextMustBe === 'number' &&
+              AST.isNumberValueNode(context) &&
+              (args.length === 0 || AST.isPrimitive(args[0]))
+            ) {
+              if (parentNode.type === 'ExpressionStatement') {
+                vlog('- ok! queued the removal of this statement');
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('number.toString() as a statement on string can be dropped');
+                    example('a.toString(b, c, d)', `a; ${SYMBOL_COERCE}(b, "number"); c; d;`);
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'charAt')}, a, undefined, b, c)`, `a; ${SYMBOL_COERCE}(b, "number");c; d;`);
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(AST.cloneSimple(context)),
+                      ...args.map((anode,i) =>
+                        i === 0
+                          ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]))
+                          : AST.expressionStatement(anode)
+                      ),
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                  }
+                });
+                changes += 1;
+                return;
+              } else {
+                const primValue = AST.getPrimitiveValue(context);
+
+                rule('Calling number.toString() on a primitive should inline the call');
+                example(`$dotCall(${symbo('number', 'toString')}, NaN, "prop")`, '"NaN"');
+                before(blockBody[blockIndex]);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(primValue.toString(...args.length === 0 ? [] : [AST.getPrimitiveValue(args[0])]));
+                else parentNode[parentProp][parentIndex] = AST.primitive(primValue.toString(...args.length === 0 ? [] : [AST.getPrimitiveValue(args[0])]));
+
+                if (args.length > 1) {
+                  const rest = args.slice(1);
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
                       rest.forEach(arg => {
                         blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
                       });
-                      after(node, parentNode);
                     },
                   });
-
-                  ++changes;
                 }
-                break;
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
               }
-              case symbo('buffer', 'toString'): {
-                // This is a common obfuscator trick to just do `Buffer.from(x, 'base64').toString('ascii')`
-                // There are other variations we can support here and I suppose if the conversion is really that simple, we can just resolve it regardless.
+            }
+            break;
+          }
+          case 'RegExp': {
+            if (isDotcall) {
+              // Context is ignored. Replace with regular call
+              rule('Doing .call on `RegExp` is moot because it ignores the context');
+              example(SYMBOL_DOTCALL + '(RegExp, a, "xyz", b, c)', 'RegExp(b, c)');
+              before(blockBody[blockIndex]);
 
-                // Start by confirming that the buffer was created with a literal string.
-                if (!isPrim && node.callee.object.type === 'Identifier') {
-                  const bufMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-                  if (bufMeta.isConstant && bufMeta.writes[0]?.kind === 'var' && bufMeta.writes[0].parentNode.kind === 'const') {
-                    const write = bufMeta.writes[0];
-                    const init = write.parentNode.init;
-                    if (
-                      init.type === 'CallExpression' &&
-                      init.callee.type === 'Identifier' &&
-                      init.callee.name === symbo('Buffer', 'from') &&
-                      init.arguments.length > 0 &&
-                      AST.isStringLiteral(init.arguments[0]) &&
-                      // Remaining args are literals as well
-                      init.arguments.every(anode => AST.isPrimitive(anode)) &&
-                      // Same for toString
-                      node.arguments.every(anode => AST.isPrimitive(anode))
-                    ) {
-                      // I think we should be able to convert this, regardless of the other args:
-                      // We have:
-                      // - a `buffer.toString()` call on a value we know to be a buffer
-                      // - the buffer var is a constant
-                      // - the buffer var was initialized through Buffer.from() with a string literal as first arg
-                      // - all args for the Buffer.from and buf.toString calls are primitives
-                      // The encoding args as well as remaining args as well as toString encoding arg should not matter, I think
+              node.callee = AST.identifier('RegExp');
+              // Mark all args as tainted, just in case.
+              // We should not need to taint Function and $dotCall metas for this.
+              args.forEach((enode, i) => {
+                if (i === 1 || i > 3) {
+                  if (enode.type === 'Identifier') {
+                    taint(enode, fdata);
+                  } else if (enode.type === 'SpreadElement') {
+                    taint(enode.argument, fdata);
+                  }
+                }
+              });
+              node.arguments.splice(0, 3); // Drop `RegExp`, the context ref, and the prop name
 
-                      rule('Buffer.from().toString() can be resolved when args are all primitives');
-                      example(
-                        'const a = Buffer.from("hello, world", "base64"); const b = a.toString("ascii"); $(b);',
-                        '$("hello, world");'
-                      );
-                      before(write.blockBody[write.blockIndex]);
-                      before(blockBody[blockIndex]);
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('regex', 'constructor'): {
+            if (isDotcall) {
+              // -  `/foo/.constructor("bar", "g")` silliness, originated from jsf*ck
+              // -> `$dotCall($regex_constructor, /foo/, "xyz", "bar", "g")`
+              // -> `RegExp("bar", "g")`
 
+              rule('Calling regex.constructor() should call the constructor directly');
+              example(`$dotCall(${symbo('regex', 'constructor')}, /foo/, "xyz", ""bar", "g")`, 'RegExp("bar", "g")');
+              before(blockBody[blockIndex]);
 
-                      const initArgValues = init.arguments.map(anode => AST.getPrimitiveValue(anode));
-                      const tosArgValues = node.arguments.map(anode => AST.getPrimitiveValue(anode));
+              node.arguments[0] = AST.identifier('RegExp');
 
-                      const result = Buffer.from(...initArgValues).toString(...tosArgValues);
-                      // Now eliminate that call expression. We have to go the hard way because it goes one level beyond the grandNode
-                      if (blockBody[blockIndex].type === 'VarStatement') {
-                        blockBody[blockIndex].init = AST.primitive(result);
-                      } else if (blockBody[blockIndex].type === 'ExpressionStatement') {
-                        if (blockBody[blockIndex].expression.type === 'AssignmentExpression') {
-                          blockBody[blockIndex].expression.right = AST.primitive(result);
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('regex', 'test'):  {
+            const objMeta = fdata.globallyUniqueNamingRegistry.get(context?.name);
+            if (
+              isDotcall &&
+              context?.type === 'Identifier' &&
+              objMeta?.isConstant &&
+              objMeta.typing.mustBeType === 'regex' &&
+              (args.length === 0 || AST.isPrimitive(args[0]))
+            ) {
+              rule('regex.test when the object is a regex and the arg is known can be resolved');
+              example('/foo/.test("brafoody")', 'true');
+              example(`${SYMBOL_DOTCALL}(${symbo('regex', 'test')}, /foo/, "xyz", "brafoody")`, 'true');
+              before(blockBody[blockIndex]);
+
+              const regex = RegExp(objMeta.varDeclRef.node.regex.pattern, objMeta.varDeclRef.node.regex.flags);
+              const v = args.length ? regex.test(AST.getPrimitiveValue(args[0])) : regex.test();
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(v);
+              else parentNode[parentProp][parentIndex] = AST.primitive(v);
+
+              if (args.length > 1) {
+                const rest = args.slice(1);
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rest.forEach(arg => {
+                      blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                    });
+                  },
+                });
+              }
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+
+            break;
+          }
+          case symbo('String', 'fromCharCode'): {
+            if (args.every(arg => AST.isPrimitive(arg))) {
+              // - `String.fromCharCode(15, 33, 32)`
+              // - `$dotCall($String_fromCharCode, String, "xyz", 15, 33, 32)
+
+              rule('Calling `String.fromCharCode` on primitive args should resolve the call');
+              example('String.fromCharCode(104,101,108,108,111)', '"hello"');
+              example(`${SYMBOL_DOTCALL}(${symbo('String', 'fromCharCode')}, String, "xyz", 104,101,108,108,111)`, '"hello"');
+              example(`${symbo('String', 'fromCharCode')}(104,101,108,108,111)`, '"hello"');
+              before(blockBody[blockIndex]);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(String.fromCharCode(...args.map(n => AST.getPrimitiveValue(n))));
+              else parentNode[parentProp][parentIndex] = AST.primitive(String.fromCharCode(...args.map(n => AST.getPrimitiveValue(n))));
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('String', 'fromCodePoint'): {
+            if (args.every(arg => AST.isPrimitive(arg))) {
+              // - `String.fromCodePoint(15, 33, 32)`
+              // - `$dotCall($String_fromCodePoint, String, "xyz", 15, 33, 32)
+
+              rule('Calling `String.fromCodePoint` on primitive args should resolve the call');
+              example('String.fromCodePoint(104,101,108,108,111)', '"hello"');
+              example(`${SYMBOL_DOTCALL}(${symbo('String', 'fromCodePoint')}, String, "xyz", 104,101,108,108,111)`, '"hello"');
+              example(`${symbo('String', 'fromCodePoint')}(104,101,108,108,111)`, '"hello"');
+              before(blockBody[blockIndex]);
+
+              if (parentIndex < 0) parentNode[parentProp] = AST.primitive(String.fromCodePoint(...args.map(n => AST.getPrimitiveValue(n))));
+              else parentNode[parentProp][parentIndex] = AST.primitive(String.fromCodePoint(...args.map(n => AST.getPrimitiveValue(n))));
+
+              after(blockBody[blockIndex]);
+              ++changes;
+              return;
+            }
+            break;
+          }
+          case symbo('string', 'charAt'): {
+            if (isDotcall) {
+              // https://tc39.es/ecma262/multipage/text-processing.html#sec-string.prototype.charAt
+              // Context is coerced to string, except it will throw for null and undefined.
+              // That makes this a little mor
+
+              if (!isContextPrimitive || !['boolean', 'number', 'string'].includes(contextMustBe)) {
+                vlog('- bail: context is not known to be a primitive at all');
+                todo('coerce the context of string.charAt to a string first');
+              }
+              else if (!args.every(anode => anode.type !== 'SpreadElement')) {
+                vlog('- bail: at least one arg was a spread');
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                // Since we know the context is a bool, num, or string, we can safely proceed to eliminate this statement.
+
+                vlog('- ok! queued the removal of this statement');
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('string.charAt() as a statement on bool/num/str can be dropped');
+                    example('a.charAt(b, c, d)', `a; ${SYMBOL_COERCE}(b, "number"); c; d;`);
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'charAt')}, a, undefined, b, c)`, `a; ${SYMBOL_COERCE}(b, "number");c; d;`);
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(AST.cloneSimple(context)),
+                      ...args.map((anode,i) =>
+                        i === 0
+                          ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]))
+                          : AST.expressionStatement(anode)
+                      ),
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                  }
+                });
+                changes += 1;
+                return;
+              }
+              else if (
+                AST.isStringLiteral(context, true) &&
+                (args.length === 0 || AST.isPrimitive(args[0]))
+              ) {
+                // 'foo'.charAt(0)
+
+                rule('Calling `charAt` on a string with primitive args should resolve the call');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'charAt')}, "hello, world", "prop", 7, 20, $)`, '20; $, "w"');
+                before(blockBody[blockIndex]);
+
+                const ctxString = AST.getPrimitiveValue(context);
+                const newArgs = [];
+                if (args[0]) newArgs.push(AST.getPrimitiveValue(args[0]));
+                const rest = args.slice(1);
+                const result = ctxString.charAt(...newArgs);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+          case symbo('string', 'charCodeAt'): {
+            if (isDotcall) {
+              // https://tc39.es/ecma262/multipage/text-processing.html#sec-string.prototype.charCodeAt
+              // Context is coerced to string, except it will throw for null and undefined.
+              // That makes this a little mor
+
+              if (!isContextPrimitive || !['boolean', 'number', 'string'].includes(contextMustBe)) {
+                // If it's a primitive then we just don't know what the value is. Otherwise we can at least coerce it to a string.
+                if (!isContextPrimitive) {
+                  todo(`Support string.charCodeAt when the object is not a string literal`);
+                }
+              }
+              else if (!(args.length === 0 || AST.isPrimitive(args[0]))) {
+                todo(`Support string.charCodeAt when the arg is not a string literal`);
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                // Since we know the context is a bool, num, or string, we can safely proceed to eliminate this statement.
+
+                vlog('- ok! queued the removal of this statement');
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('string.charCodeAt() as a statement on bool/num/str can be dropped');
+                    example('a.charCodeAt(b, c, d)', `a; ${SYMBOL_COERCE}(b, "number"); c; d;`);
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'charCodeAt')}, a, undefined, b, c)`, `a; ${SYMBOL_COERCE}(b, "number");c; d;`);
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(AST.cloneSimple(context)),
+                      ...args.map((anode,i) =>
+                        i === 0
+                        ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]))
+                        : AST.expressionStatement(anode)
+                      ),
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                  }
+                });
+                changes += 1;
+                return;
+              }
+              else {
+                // - `'foo'.charCodeAt(0)`
+                // - `$dotCall($strin_charCodeAt, 'foo', "prop", 0)`
+
+                rule('Calling `charCodeAt` on a string with primitive args should resolve the call');
+                example('"hello, world".charCodeAt(7, a, b)', '20; a, b');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'charCodeAt')}, "hello, world", "prop", 7)`, '20; $, "w"');
+                before(blockBody[blockIndex]);
+
+                const ctxValue = AST.getPrimitiveValue(context);
+                const rest = args.slice(1);
+                // Note: use .call because it may not be a string!
+                const result = String.prototype.charCodeAt.call(ctxValue, AST.getPrimitiveValue(args[0]));
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+          case symbo('string', 'codePointAt'): {
+            if (isDotcall) {
+              // https://tc39.es/ecma262/multipage/text-processing.html#sec-string.prototype.codePointAt
+              // Context is coerced to string, except it will throw for null and undefined.
+              // That makes this a little mor
+
+              if (!isContextPrimitive || !['boolean', 'number', 'string'].includes(contextMustBe)) {
+                // If it's a primitive then we just don't know what the value is. Otherwise we can at least coerce it to a string.
+                if (!isContextPrimitive) {
+                  todo(`Support string.codePointAt when the object is not a string literal`);
+                }
+              }
+              else if (!(args.length === 0 || AST.isPrimitive(args[0]))) {
+                todo(`Support string.codePointAt when the arg is not a string literal`);
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                // Since we know the context is a bool, num, or string, we can safely proceed to eliminate this statement.
+
+                vlog('- ok! queued the removal of this statement');
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('string.codePointAt() as a statement on bool/num/str can be dropped');
+                    example('a.codePointAt(b, c, d)', `a; ${SYMBOL_COERCE}(b, "number"); c; d;`);
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'codePointAt')}, a, undefined, b, c)`, `a; ${SYMBOL_COERCE}(b, "number");c; d;`);
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(AST.cloneSimple(context)),
+                      ...args.map((anode,i) =>
+                        i === 0
+                        ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]))
+                        : AST.expressionStatement(anode)
+                      ),
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                  }
+                });
+                changes += 1;
+                return;
+              }
+              else {
+                // - `'foo'.codePointAt(0)`
+                // - `$dotCall($strin_codePointAt, 'foo', "prop", 0)`
+
+                rule('Calling `codePointAt` on a string with primitive args should resolve the call');
+                example('"hello, world".codePointAt(7)', '20; $, "w"');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'codePointAt')}, "hello, world", "prop", 7)`, '20; $, "w"');
+                before(blockBody[blockIndex]);
+
+                const ctxValue = AST.getPrimitiveValue(context);
+                const rest = args.slice(1);
+                // Note: use .call because it may not be a string!
+                const result = String.prototype.codePointAt.call(ctxValue, AST.getPrimitiveValue(args[0]));
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+          case symbo('string', 'concat'): {
+            // Calling .concat() on a known string/num/bool is equal to `${context}${arg1}${arg2}${etc}`
+            // So if we know the number of args, not a splat, then we can transform this to a template
+
+            // Note: context does not need to be a string. It will be coerced to a string.
+            if (isDotcall) {
+              if (!isContextPrimitive) {
+                // Transform into a coerce?
+                todo('type tracked trick of string concat when context is non-primitive should coerce the context');
+              }
+              else if (!args.every(a => a.type !== 'SpreadElement')) {
+                todo('Maybe support type tracked trick of string.concat with spread');
+              }
+              else {
+                rule('Calling `.concat` on a primitive should change the call expression into a template');
+                example('"add".concat(a, "b", 200)', '`${"add"}${a}${"b"}${200}`');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'concat')}, "add", "prop", a, "b", 200)`, '`${"add"}${a}${"b"}${200}`');
+                before(blockBody[blockIndex]);
+
+                const newNode = AST.templateLiteral(
+                  ['', ''].concat(args.map(_ => '')), // TWo more string than args; the context is the base case
+                  [context].concat(args), // The context and each arg becomes a quasi
+                );
+
+                if (parentIndex < 0) parentNode[parentProp] = newNode;
+                else parentNode[parentProp][parentIndex] = newNode;
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+          case symbo('string', 'includes'): {
+            vlog('  - checking dotcall=', isDotcall, ', context=', context?.type, ', and if its a string:', AST.isStringLiteral(context, true), contextMustBe);
+            if (isDotcall) {
+              if (!isContextPrimitive) {
+                vlog('- bail: context is not known to be a primitive at all');
+                todo('coerce the context of string.includes to a string first');
+              }
+              else if (!args.every(anode => anode.type !== 'SpreadElement')) {
+                vlog('- bail: at least one arg was a spread');
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                vlog('  - transform queued to eliminate expr stmt');
+                // The first arg is coerced to string. The second arg is coerced to number. Rest is ignored.
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('Calling .includes on an array as statement is moot2');
+                    example('str.includes(x, y, z);', 'str; x; $coerce(y, "string"); z;');
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, str, "prop", x, y, z);`, 'str; x; $coerce(y, "string"); z;');
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(context),
+                      ...args.map((anode,i) => {
+                        if (i === 0) {
+                          return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('string')]));
+                        } else if (i === 1) {
+                          return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
                         } else {
-                          blockBody[blockIndex].expression = AST.identifier('undefined');
+                          return AST.expressionStatement(anode)
                         }
-                      } else {
-                        ASSERT(false, 'in normalized code, a call must be a var init, assign rhs, or statement', blockBody[blockIndex]);
-                      }
+                      })
+                    );
 
-                      after(write.blockBody[write.blockIndex]);
-                      after(blockBody[blockIndex]);
-
-                      ++changes;
-                      break;
-                    }
-                  }
-                }
-                break;
+                    after(blockBody.slice(blockIndex, blockIndex+args.length));
+                  },
+                });
+                changes += 1;
+                return;
               }
-              case symbo('function', 'apply'): {
-                const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-                if (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) {
-                  vlog('Queued transform to eliminate .apply');
-                  ++changes;
-                  // The transform is a little more subtle since excessive args should also be placed as statements
-                  queue.push({
-                    index: blockIndex,
-                    func: () => {
-                      rule('When a function does not use `this`, an `.apply` can be a regular call');
-                      example('function f(){} f.apply(ctxt, arr);', 'function f(){} ctxt; f(...arr);');
-                      before(node, blockBody[blockIndex]);
-
-                      const ctxt = node.arguments[0];
-                      const arr = node.arguments[1];
-                      const rest = node.arguments.slice(2);
-
-                      const finalNode = AST.callExpression(node.callee.object, arr ? [AST.spreadElement(arr)] : []);
-                      if (parentIndex < 0) parentNode[parentProp] = finalNode;
-                      else parentNode[parentProp][parentIndex] = finalNode;
-
-                      blockBody.splice(
-                        blockIndex,
-                        0,
-                        AST.expressionStatement(ctxt || AST.identifier('undefined')),
-                        ...rest.map((n) => AST.expressionStatement(n)),
-                      );
-
-                      after(blockBody.slice(blockIndex, blockIndex + rest.length + 2));
-                    },
-                  });
-
-                  break;
-                }
-                break;
+              else if (!AST.isPrimitive(context)) {
+                // Need concrete value so check if primitive node
+                vlog('- bail: context is not a primitive node so we cant resolve it');
               }
-              case symbo('function', 'call'): {
-                const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-                if (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) {
-                  vlog('Queued transform to eliminate .call');
-                  ++changes;
-                  queue.push({
-                    index: blockIndex,
-                    func: () => {
-                      rule('When a function does not use `this`, a `.call` can be a regular call');
-                      example('function f(){} f.call(ctxt, A, B, C);', 'function f(){} ctxt; f(A, B, C);');
-                      before(node, blockBody[blockIndex]);
-
-                      const ctxt = node.arguments[0];
-                      const rest = node.arguments.slice(1);
-
-                      const finalNode = AST.callExpression(node.callee.object, rest);
-                      if (parentIndex < 0) parentNode[parentProp] = finalNode;
-                      else parentNode[parentProp][parentIndex] = finalNode;
-
-                      if (ctxt) {
-                        blockBody.splice(blockIndex, 0, AST.expressionStatement(ctxt || AST.identifier('undefined')));
-                      }
-
-                      after(blockBody.slice(blockIndex, blockIndex + rest.length + 2));
-                    },
-                  });
-
-                  break;
-                }
-                break;
-              }
-              case symbo('function', 'constructor'): {
-                // `(function(){}).constructor('x')` is equal to calling `Function('x')`
-                // Rather than mimicking that logic here, we'll just transform it to `Function` instead and let another rule pick that up
-
-                rule('Calling `.constructor` on a value that must be a function is essentially a call to `Function`');
-                example('(function(){}).constructor("x")', 'Function("x")');
-                before(node, parentNode);
-
-                node.callee = AST.identifier('Function');
-
-                after(node, parentNode);
-                ++changes;
-                break;
-              }
-              case symbo('function', 'toString'): {
-                if (BUILTIN_GLOBAL_FUNC_NAMES.has(node.callee.object.name)) {
-                  rule('Calling .toString() on a global builtin function can be resolved');
-                  example('String.toString();', '"function String() { [native code] }";');
-                  before(parentNode);
-
-                  const newNode = AST.primitive(`function ${node.callee.object.name}() { [native code] }`)
-                  if (parentIndex < 0) parentNode[parentProp] = newNode;
-                  else parentNode[parentProp][parentIndex] = newNode;
-
-                  after(AST.emptyStatement());
-                  ++changes;
-                  break;
-                }
-                break;
-              }
-              case symbo('number', 'toString'): {
-                // `true.toString()`
-                // `false.toString()`
-                // `x.toString()` with x an unknown boolean
-
-                if (isPrim && (node.arguments.length === 0 || AST.isPrimitive(node.arguments[0]))) {
-                  const primValue = AST.getPrimitiveValue(node.callee.object);
-
-                  rule('Calling number.toString() on a primitive should inline the call');
-                  example('NaN.toString()', '"NaN"');
-                  before(node, parentNode);
-
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(primValue.toString(...node.arguments.length === 0 ? [] : [AST.getPrimitiveValue(node.arguments[0])]));
-                  else parentNode[parentProp][parentIndex] = AST.primitive(primValue.toString(...node.arguments.length === 0 ? [] : [AST.getPrimitiveValue(node.arguments[0])]));
-
-                  if (node.arguments.length > 1) {
-                    const rest = node.arguments.slice(1);
-                    queue.push({
-                      index: blockIndex,
-                      func: () => {
-                        rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        });
-                      },
-                    });
-                  }
-
-                  after(node, parentNode);
-                  ++changes;
-                }
-                break;
-              }
-              case symbo('regex', 'constructor'): {
-                // `/foo/.constructor("bar", "g")` silliness, originated from jsf*ck
-
-                rule('Calling regex.constructor() should call the constructor directly');
-                example('/foo/.constructor("bar", "g")', 'RegExp("bar", "g")');
-                before(node, parentNode);
-
-                node.callee = AST.identifier('RegExp');
-
-                after(node, parentNode);
-                ++changes;
-                break;
-              }
-              case symbo('regex', 'test'): {
-                const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-                if (
-                  objMeta.isConstant &&
-                  objMeta.typing.mustBeType === 'regex' &&
-                  (node.arguments.length === 0 || AST.isPrimitive(node['arguments'][0]))
-                ) {
-                  rule('regex.test when the object is a regex and the arg is known can be resolved');
-                  example('/foo/.test("brafoody")', 'true');
-                  before(parentNode);
-
-                  const regex = new RegExp(objMeta.varDeclRef.node.regex.pattern, objMeta.varDeclRef.node.regex.flags);
-                  const v = node.arguments.length ? regex.test(AST.getPrimitiveValue(node.arguments[0])) : regex.test();
-
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(v);
-                  else parentNode[parentProp][parentIndex] = AST.primitive(v);
-
-                  if (node.arguments.length > 1) {
-                    const rest = node.arguments.slice(1);
-                    queue.push({
-                      index: blockIndex,
-                      func: () => {
-                        rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        });
-                      },
-                    });
-                  }
-
-                  after(parentNode);
-                  ++changes;
-                  break;
-                }
-
-                break;
-              }
-              case symbo('string', 'concat'): {
-                // Calling .concat() on a known string is equal to `${context}${arg1}${arg2}${etc}`
-                // So if we know the number of args, not a splat, then we can transform this to a template
-
-                // Note: context does not need to be a string. we just need to be certain it is a string value.
-                if (node.arguments.every(a => a.type !== 'SpreadElement')) {
-                  rule('Calling `.concat` on a string literal should change the call expression into a template');
-                  example('"add".concat(a, "b", 200)', '`${"add"}${a}${"b"}${200}`');
-                  before(parentNode);
-
-                  const newNode = AST.templateLiteral(
-                    ['', ''].concat(node.arguments.map(_ => '')), // TWo more string than args; the context is the base case
-                    [node.callee.object].concat(node.arguments), // The context and each arg becomes a quasi
+              else {
+                // Okay now we have three cases:
+                // - No args: change the first arg to the string "undefined", no second arg
+                // - One arg: if it's a string lit, resolve it. If it's a string ident, ignore it. Otherwise coerce it to string.
+                // - Two args: Same as with one arg except also; resolve it when num lit, coerce index to number when not a number.
+                if (args.length === 0) {
+                  rule('Calling string.includes() without args should call it with the string "undefined"');
+                  example('str.includes()', 'str.includes("undefined")');
+                  example(
+                    `${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, str, "prop")`,
+                    `${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, str, "prop", "undefined")`,
                   );
-
-                  if (parentIndex < 0) parentNode[parentProp] = newNode;
-                  else parentNode[parentProp][parentIndex] = newNode;
-
-                  after(parentNode);
-                  ++changes;
-                  break;
-                } else {
-                  todo('Maybe support type tracked trick of string.concat with spread');
-                }
-                break;
-              }
-              case symbo('string', 'charCodeAt'): {
-                const arglen = node.arguments.length;
-                if (isPrim && (arglen === 0 || AST.isPrimitive(node.arguments[0]))) {
-                  // 'foo'.charAt(0)
-
-                  rule('Calling `charCodeAt` on a string with primitive args should resolve the call');
-                  example('"hello, world".charAt(7)', '20; $, "w"');
                   before(blockBody[blockIndex]);
 
-                  const ctxString = AST.getPrimitiveValue(node.callee.object);
-                  const rest = node.arguments.slice(1);
-                  const result = ctxString.charCodeAt(AST.getPrimitiveValue(node.arguments[0]));
-
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
-
-                  if (rest.length > 0) {
-                    // Inject excessive args as statements to preserve reference errors
-                    queue.push({
-                      index: blockIndex,
-                      func: () => {
-                        rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        });
-                      },
-                    });
-                  }
+                  node.arguments.push(AST.primitive("undefined"));
 
                   after(blockBody[blockIndex]);
-                  ++changes;
-                  break;
-                } else {
-                  if (!isPrim) {
-                    todo(`Support string.charCodeAt when the object is not a string literal`);
-                  } else {
-                    todo(`Support string.charCodeAt when the arg is not a string literal`);
-                  }
+                  changes += 1;
+                  return;
                 }
-                break;
-              }
-              case symbo('string', 'indexOf'): {
-                const arglen = node.arguments.length;
-                if (isPrim && (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1]))))) {
-                  // 'foo'.indexOf('o', 15)
-
-                  rule('Calling `indexOf` on a string with primitive args should resolve the call');
-                  example('"hello, world".indexOf("w", 4, $)', '$, 7');
-                  before(parentNode);
-
-                  const ctxString = AST.getPrimitiveValue(node.callee.object);
-                  const args = [];
-                  if (node.arguments[0]) args.push(AST.getPrimitiveValue(node.arguments[0]));
-                  if (node.arguments[1]) args.push(AST.getPrimitiveValue(node.arguments[1])); // I don't think arg 3+ are used?
-                  const rest = node.arguments.slice(2);
-                  const result = ctxString.indexOf(...args);
-
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
-
-                  if (rest.length > 0) {
-                    // Inject excessive args as statements to preserve reference errors
+                else if (args.length === 1) {
+                  // The context is a primitive node
+                  // The arg is either a string literal, an ident mustbe string, and otherwise we coerce it to a string
+                  const arg = args[0];
+                  if (AST.isStringLiteral(arg)) {
                     queue.push({
                       index: blockIndex,
                       func: () => {
-                        rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        });
-                      },
-                    });
-                  }
-
-                  after(parentNode);
-                  ++changes;
-                  break;
-                }
-                break;
-              }
-              case symbo('string', 'includes'): {
-                if (parentNode.type === 'ExpressionStatement') {
-                  if (node.arguments.every(anode => anode.type !== 'SpreadElement')) {
-                    // The first arg is coerced to string. The second arg is coerced to number. Rest is ignored.
-                    queue.push({
-                      index: blockIndex,
-                      func: () => {
-                        rule('Calling .includes on an array as statement is moot2');
-                        example('str.includes(x, y, z);', 'str; x; $coerce(y, "string"); z;');
+                        rule('Calling string.includes() with a string primitive should resolve');
+                        example('"foobar".includes("1")', 'false');
+                        example('"foo1bar".includes("1")', 'true');
+                        example(`${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, "foobar", "prop", "1")`, 'false');
+                        example(`${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, "foo1bar", "prop", "1")`, 'true');
                         before(blockBody[blockIndex]);
 
-                        blockBody.splice(blockIndex, 1,
-                          AST.expressionStatement(node.callee.object),
-                          ...node.arguments.map((anode,i) => {
-                            if (i === 0) {
-                              return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('string')]));
-                            } else if (i === 1) {
-                              return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
-                            } else {
-                              return AST.expressionStatement(anode)
-                            }
-                          })
-                        );
+                        const ctxValue = AST.getPrimitiveValue(context);
+                        const argValue = AST.getPrimitiveValue(arg);
+                        // Note: use .call because the context may not be a string
+                        const bool = String.prototype.includes.call(ctxValue, argValue);
 
-                        after(blockBody.slice(blockIndex, blockIndex+node.arguments.length));
-                      },
+                        const newNode = AST.primitive(bool);
+                        if (parentIndex < 0) parentNode[parentProp] = newNode;
+                        else parentNode[parentProp][parentIndex] = newNode;
+
+                        after(newNode);
+                        after(blockBody[blockIndex]);
+                      }
                     });
                     changes += 1;
+                    return;
+                  }
+                  else if (
+                    AST.isPrimitive(arg) ||
+                    (arg.type === 'Identifier' && shouldCoerceIdentToString(fdata.globallyUniqueNamingRegistry.get(arg.name)))
+                  ) {
+                    // Just coerce to string. Take the lazy route.
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rule('Calling string.includes(x) with a non-string primitive should have its arg coerced to string');
+                        example('"foobar".includes(1)', 'const tmp = $coerce(1, "string"); "foobar".includes(tmp)');
+                        example(
+                          `${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, "foobar", "prop", 1)`,
+                          `const tmp = $coerce(1, "string"); ${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, "foobar", "prop", tmp)`,
+                        );
+                        before(blockBody[blockIndex]);
+
+                        const tmp = createFreshVar('tmpttr', fdata);
+                        const newNode = AST.varStatement('const', tmp, AST.callExpression(SYMBOL_COERCE, [arg, AST.primitive('string')]));
+                        blockBody.splice(blockIndex, 0, newNode);
+
+                        node.arguments[3] = AST.identifier(tmp);
+
+                        after(newNode);
+                        after(blockBody[blockIndex]);
+                      }
+                    });
+                    changes += 1;
+                    return;
                   }
                   else {
-                    // Ignore the case where the arg contains a spread. We can but.
-                  }
-                } else {
-                  // Okay now we have three cases:
-                  // - No args: change the first arg to the string "undefined", no second arg
-                  // - One arg: if it's a string lit, resolve it. If it's a string ident, ignore it. Otherwise coerce it to string.
-                  // - Two args: Same as with one arg except also; resolve it when num lit, coerce index to number when not a number.
-                  if (node.arguments.length === 0) {
-                    rule('Calling string.includes() without args should call it with the string "undefined"');
-                    example('str.includes()', 'str.includes("undefined")');
-                    before(node);
-
-                    node.arguments[0] = AST.primitive("undefined");
-
-                    after(node);
-                    changes += 1;
-                  }
-                  else if (node.arguments.length === 1) {
-                    // The object is either a string literal, or it is not.
-                    // The arg is either a string literal, an ident mustbe string, and otherwise we coerce it to a string
-                    const arg = node.arguments[0];
-                    if (AST.isStringLiteral(arg)) {
-                      // We can resolve this if the object is a string. Otherwise we can't and ignore it.
-                      if (AST.isStringLiteral(node.callee.object)) {
-                        queue.push({
-                          index: blockIndex,
-                          func: () => {
-                            rule('Calling string.includes() with a string primitive should resolve');
-                            example('"foobar".includes("1")', 'false');
-                            example('"foo1bar".includes("1")', 'true');
-                            before(node);
-
-                            const objstr = AST.getPrimitiveValue(node.callee.object);
-                            const argstr = AST.getPrimitiveValue(arg);
-                            const bool = objstr.includes(argstr);
-
-                            const newNode = AST.primitive(bool);
-                            if (parentIndex < 0) parentNode[parentProp] = newNode;
-                            else parentNode[parentProp][parentIndex] = newNode;
-
-                            after(newNode);
-                            after(node);
-                          }
-                        });
-                        changes += 1;
-                      }
+                    if (arg.type !== 'Identifier') {
+                      todo('What arg type can .includes be?', arg.type)
                     }
-                    else if (
-                      AST.isPrimitive(arg) ||
-                      (arg.type === 'Identifier' && shouldCoerceIdentToString(fdata.globallyUniqueNamingRegistry.get(arg.name)))
-                    ) {
-                      // Just coerce to string. Take the lazy route.
+                  }
+                }
+                else {
+                  // Call has at least two args
+                  // - If if first arg is string and second arg is number, resolve it
+                  // - If first arg is not a string, coerce it to a string if const/builtin
+                  // - If second arg is not a number, coerce it to a number if const/builtin
+                  // Ignore the other cases. It is what it is.
+                  const arg1 = args[0];
+                  const arg2 = args[1];
+                  const isStr1 = AST.isStringLiteral(arg1);
+                  const isNum2 = AST.isNumberLiteral(arg2);
+                  if (isStr1 && isNum2) {
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rule('Calling string.includes() with a string and number primitive should resolve');
+                        example('"foo1bar".includes("1", 4)', 'false');
+                        example('"foobar1".includes("1", 4)', 'true');
+                        example(`${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, "foo1bar", "prop", "1", 4)`, 'false');
+                        example(`${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, "foobar1", "prop", "1", 4)`, 'true');
+                        before(blockBody[blockIndex]);
+
+                        const ctxValue = AST.getPrimitiveValue(context);
+                        const argstr = AST.getPrimitiveValue(arg1);
+                        const argnum = AST.getPrimitiveValue(arg2);
+                        // Note: use .call because the context may not be a string
+                        const bool = String.prototype.includes.call(ctxValue, argstr, argnum);
+
+                        const newNode = AST.primitive(bool);
+                        if (parentIndex < 0) parentNode[parentProp] = newNode;
+                        else parentNode[parentProp][parentIndex] = newNode;
+
+                        after(newNode);
+                        after(blockBody[blockIndex]);
+                      }
+                    });
+                    changes += 1;
+                    return;
+                  }
+                  else {
+                    // Coerce arg1 to string if it's a primitive or a safe ident
+                    const do1 = !isStr1 && (AST.isPrimitive(arg1) || (arg1.type === 'Identifier' && shouldCoerceIdentToString(fdata.globallyUniqueNamingRegistry.get(arg1.name))));
+                    // Coerce arg2 to number if it's a primitive or a safe ident
+                    const do2 = !isNum2 && (AST.isPrimitive(arg2) || (arg2.type === 'Identifier' && shouldCoerceIdentToNumber(fdata.globallyUniqueNamingRegistry.get(arg2.name))));
+
+                    // Prevent race conditions; arg1 must be coerced before arg2, so do them in one callback
+                    if (do1 || do2) {
                       queue.push({
                         index: blockIndex,
                         func: () => {
-                          rule('Calling string.includes(x) with a non-string primitive should have its arg coerced to string');
-                          example('"foobar".includes(1)', 'const tmp = $coerce(1, "string"); "foobar".includes(tmp)');
-                          before(node);
-
-                          const tmp = createFreshVar('tmpttr', fdata);
-                          const newNode = AST.varStatement('const', tmp, AST.callExpression(SYMBOL_COERCE, [arg, AST.primitive('string')]));
-                          blockBody.splice(blockIndex, 0, newNode);
-
-                          node.arguments[0] = AST.identifier(tmp);
-
-                          after(newNode);
-                          after(node);
-                        }
-                      });
-                      changes += 1;
-                    }
-                    else {
-                      if (arg.type !== 'Identifier') {
-                        todo('What arg type can .includes be?', arg.type)
-                      }
-                    }
-                  } else {
-                    // Call has at least two args
-                    // - If object is string, first arg is string, and second arg is number, resolve it
-                    // - If first arg is not a string, coerce it to a string if const/builtin
-                    // - If second arg is not a number, coerce it to a number if const/builtin
-                    // Ignore the other cases. It is what it is.
-                    const arg1 = node.arguments[0];
-                    const arg2 = node.arguments[1];
-                    const isStr1 = AST.isStringLiteral(arg1);
-                    const isNum2 = AST.isNumberLiteral(arg2);
-                    if (isStr1 && isNum2) {
-                      if (AST.isStringLiteral(node.callee.object)) {
-                        queue.push({
-                          index: blockIndex,
-                          func: () => {
-                            rule('Calling string.includes() with a string and number primitive should resolve');
-                            example('"foo1bar".includes("1", 4)', 'false');
-                            example('"foobar1".includes("1", 4)', 'true');
-                            before(node);
-
-                            const objstr = AST.getPrimitiveValue(node.callee.object);
-                            const argstr = AST.getPrimitiveValue(arg1);
-                            const argnum = AST.getPrimitiveValue(arg2);
-                            const bool = objstr.includes(argstr, argnum);
-
-                            const newNode = AST.primitive(bool);
-                            if (parentIndex < 0) parentNode[parentProp] = newNode;
-                            else parentNode[parentProp][parentIndex] = newNode;
-
-                            after(newNode);
-                            after(node);
-                          }
-                        });
-                        changes += 1;
-                      }
-                    }
-                    else {
-                      // Coerce arg1 to string if it's a primitive or a safe ident
-                      const do1 = !isStr1 && (AST.isPrimitive(arg1) || (arg1.type === 'Identifier' && shouldCoerceIdentToString(fdata.globallyUniqueNamingRegistry.get(arg1.name))));
-                      // Coerce arg2 to number if it's a primitive or a safe ident
-                      const do2 = !isNum2 && (AST.isPrimitive(arg2) || (arg2.type === 'Identifier' && shouldCoerceIdentToNumber(fdata.globallyUniqueNamingRegistry.get(arg2.name))));
-
-                      // Prevent race conditions; arg1 must be coerced before arg2, so do them in one callback
-                      if (do1 || do2) {
-                        queue.push({
-                          index: blockIndex,
-                          func: () => {
-                            rule('Calling string.includes() should coerce the first two args if possible');
-                            example('x.includes(a, b, c)', 'const tmp = $coerce(a, "string"); const tmp2 = $coerce(b, "number"); c; x.includes(tmp, tmp2)');
-                            before(blockBody[blockIndex]);
-
-                            // Do them back to front because the splice will basically unshift them
-
-                            let n = 0;
-
-                            if (node.arguments.length > 2) {
-                              // While we're here, make sure the arg count is 2
-                              blockBody.splice(blockIndex, 0, ...node.arguments.slice(2).map(anode => AST.expressionStatement(anode)));
-                              n += node.arguments.length-2;
-                              node.arguments.length = 2;
-                            }
-
-                            if (do2) {
-                              const tmp = createFreshVar('tmpttr', fdata);
-                              const newNode = AST.varStatement('const', tmp, AST.callExpression(SYMBOL_COERCE, [arg2, AST.primitive('number')]));
-                              blockBody.splice(blockIndex, 0, newNode);
-                              node.arguments[1] = AST.identifier(tmp);
-                              n += 1;
-                            }
-
-                            if (do1) {
-                              const tmp = createFreshVar('tmpttr', fdata);
-                              const newNode = AST.varStatement('const', tmp, AST.callExpression(SYMBOL_COERCE, [arg1, AST.primitive('string')]));
-                              blockBody.splice(blockIndex, 0, newNode);
-                              node.arguments[0] = AST.identifier(tmp);
-                              n += 1;
-                            }
-
-                            after(blockBody.slice(blockIndex, n + 1));
-                          }
-                        });
-                        changes += 1;
-                      }
-                    }
-                  }
-                }
-                break;
-              }
-              case symbo('string', 'lastIndexOf'): {
-                const arglen = node.arguments.length;
-                if (isPrim && (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1]))))) {
-                  // 'foo'.lastIndexOf('o', 15)
-
-                  rule('Calling `lastIndexOf` on a string with primitive args should resolve the call');
-                  example('"hello, world".lastIndexOf("w", 4, $)', '$, 7');
-                  before(parentNode);
-
-                  const ctxString = AST.getPrimitiveValue(node.callee.object);
-                  const args = [];
-                  if (node.arguments[0]) args.push(AST.getPrimitiveValue(node.arguments[0]));
-                  if (node.arguments[1]) args.push(AST.getPrimitiveValue(node.arguments[1])); // I don't think arg 3+ are used?
-                  const rest = node.arguments.slice(2);
-                  const result = ctxString.lastIndexOf(...args);
-
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
-
-                  if (rest.length > 0) {
-                    // Inject excessive args as statements to preserve reference errors
-                    queue.push({
-                      index: blockIndex,
-                      func: () => {
-                        rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        });
-                      },
-                    });
-                  }
-
-                  after(parentNode);
-                  ++changes;
-                  break;
-                }
-                break;
-              }
-              case symbo('string', 'replace'): {
-                if (
-                  isPrim &&
-                  node.arguments.length > 1 &&
-                  AST.isPrimitive(node.arguments[0]) && AST.getPrimitiveType(node.arguments[0]) === 'string' &&
-                  AST.isPrimitive(node.arguments[1]) && AST.getPrimitiveType(node.arguments[1]) === 'string'
-                ) {
-                  // 'foo'.replace('bar', 'baz')
-
-                  rule('Calling `replace` on a string with string args should resolve the call');
-                  example('"foo".replace("o", "a". x, y ,z)', 'x; y; z; "fao"');
-                  before(parentNode);
-
-                  const ctxString = AST.getPrimitiveValue(node.callee.object);
-                  const rexString = AST.getPrimitiveValue(node.arguments[0]);
-                  const rplString = AST.getPrimitiveValue(node.arguments[1]);
-                  const rest = node.arguments.slice(2);
-                  const result = ctxString.replace(rexString, rplString);
-
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
-
-                  if (rest.length > 0) {
-                    // Inject excessive args as statements
-                    queue.push({
-                      index: blockIndex,
-                      func: () => {
-                        rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        });
-                      },
-                    });
-                  }
-
-                  after(parentNode);
-                  ++changes;
-                  break;
-                }
-
-                if (isPrim) {
-                  const metaArg1 = node.arguments.length > 1 && node.arguments[0].type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
-
-                  if (
-                    metaArg1 &&
-                    metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.varDeclRef.node)
-                  ) {
-                    if (!node.arguments[1] || AST.isPrimitive(node.arguments[1])) {
-                      // - `'foo'.replace(/bar/)`
-                      // - `'foo'.replace(/bar/, 'baz')`
-
-                      rule('Calling `replace` on a string with regex and primitive args should resolve the call');
-                      example('"foo".replace(/a/g, "a")', '"faa"');
-                      before(parentNode);
-
-                      const ctxString = node.arguments[1] ? AST.getPrimitiveValue(node.callee.object) : undefined;
-                      const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
-                      const rplString = AST.getPrimitiveValue(node.arguments[1]);
-                      const rest = node.arguments.slice(2);
-                      const result = ctxString.replace(regex, rplString);
-
-                      if (rest.length > 0) {
-                        // Inject excessive args as statements
-                        queue.push({
-                          index: blockIndex,
-                          func: () => {
-                            rest.forEach(arg => {
-                              blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                            });
-                          },
-                        });
-                      }
-
-                      if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                      else parentNode[parentProp][parentIndex] = AST.primitive(result);
-
-                      after(parentNode);
-                      ++changes;
-                      break;
-                    }
-
-                    ASSERT(node.arguments[1].type === 'Identifier', 'either an arg is a primitive or an ident when normalized', node.arguments[1].type);
-                    const metaArg2 = fdata.globallyUniqueNamingRegistry.get(node.arguments[1].name);
-                    if (metaArg2.isConstant && metaArg2.varDeclRef.node.type === 'FunctionExpression') {
-                      // There is a (small) subclass of functions that we can support here
-                      const funcNode = metaArg2.varDeclRef.node;
-                      const funcBody = funcNode.body.body;
-                      const bodyOffset = funcNode.$p.bodyOffset;
-
-                      vlog('Verifying whether func arg to string.replace can be simulated, funcOffset=', bodyOffset);
-
-                      // - simple array lookup replacer; `'abc'.replace(/b/, s => { const r = obj[s]; return r; });`
-                      // - two statements;
-                      //   - var decl that reads property from an object based on first arg. object must be known entirely
-                      //   - return statement of that value
-                      if (
-                        funcBody[bodyOffset].type === 'VarStatement' &&
-                        funcBody[bodyOffset].init.type === 'MemberExpression' &&
-                        funcBody[bodyOffset].init.object.type === 'Identifier' &&
-                        funcBody[bodyOffset].init.computed &&
-                        funcBody[bodyOffset].init.property.type === 'Identifier' &&
-                        // Confirm that the function starts with assigning param 0
-                        funcBody[0].type === 'VarStatement' &&
-                        funcBody[0].init.type === 'Param' &&
-                        funcBody[0].init.name === '$$0' &&
-                        // Is the property being accessed coming from the first param?
-                        funcBody[0].id.name === funcBody[bodyOffset].init.property.name &&
-                        // And the tail, must only be a return for that ident
-                        funcBody[bodyOffset+1]?.type === 'ReturnStatement' &&
-                        funcBody[bodyOffset+1].argument.type === 'Identifier' &&
-                        funcBody[bodyOffset+1].argument.name === funcBody[bodyOffset].id.name &&
-                        !funcBody[bodyOffset+2] // No more
-                      ) {
-                        // - We've verified this function; function f($$0) { const s = $$0; debugger; const r = obj[s]; return r; }`
-                        // We now have to confirm that the `obj` here is fully known and only used
-                        // as property access that is not the child of delete or call or assignment-lhs.
-                        const objMeta = fdata.globallyUniqueNamingRegistry.get(funcBody[bodyOffset].init.object.name);
-                        const objNode = objMeta.isConstant && objMeta.varDeclRef.node;
-                        if (
-                          objNode?.type === 'ObjectExpression' &&
-                          objNode.properties.every(pnode => {
-                            // - Key must be known (ident or primitive computed)
-                            // - Prop must not be getter/setter
-                            // - Value must be primitive
-                            if (pnode.key.computed && !AST.isPrimitive(pnode.key)) return false;
-                            if (pnode.kind !== 'init') return false;
-                            if (!AST.isPrimitive(pnode.value)) return false;
-                            return true;
-                          }) &&
-                          objMeta.reads.every(read => {
-                            // - read parent must be member expression
-                            // - read grand must not be delete or call or assignment-lhs
-                            if (read.parentNode.type !== 'MemberExpression') return false;
-                            if (read.grandNode.type === 'CallExpression') return false;
-                            if (read.grandNode.type === 'UnaryExpression' && read.grandNode.operator === 'delete') return false;
-                            if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') return false;
-                            return true;
-                          })
-                        ) {
-                          // This is `function r($$0) { const s = $$0; debugger; const r = obj[s]; return r; } 'abc'.replace(/b/, r);`
-                          // And the object is a constant object literal where all the keys are known and values are primitives
-                          // We should be able to apply this now. The only risk is a "regex ddos", for which we offer no real defense rn...
-                          vlog('Now resolving string replacement with function callback. If this is a very evil regex things will get stuck now.');
-
-                          const str = AST.getPrimitiveValue(node.callee.object);
-                          const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
-                          const out = str.replace(regex, s => {
-                            const pnode = objNode.properties.find(pnode => {
-                              if (pnode.computed) {
-                                // We should have asserted that all computed keys are primitives
-                                return String(AST.getPrimitiveValue(pnode.key)) === s;
-                              } else {
-                                return pnode.key.name === s;
-                              }
-                            });
-                            if (pnode) {
-                              return AST.getPrimitiveValue(pnode.value);
-                            } else {
-                              return undefined;
-                            }
-                          });
-
-                          rule('String replace on string with regex arg and func that is a simple obj lookup can be resolved');
+                          rule('Calling string.includes() should coerce the first two args if possible');
+                          example('x.includes(a, b, c)', 'const tmp = $coerce(a, "string"); const tmp2 = $coerce(b, "number"); c; x.includes(tmp, tmp2)');
                           example(
-                            'const obj = {b: "x"}; function f($$0) { const s = $$0; const v = obj[s]; return v; } "abc".replace(/b/, r);',
-                            'const obj = {b: "x"}; function f($$0) { const s = $$0; const v = obj[s]; return v; } "axc";',
+                            `${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, x, "prop", a, b, c)`,
+                            `const tmp = $coerce(a, "string"); const tmp2 = $coerce(b, "number"); c; ${SYMBOL_DOTCALL}(${symbo('string', 'includes')}, x, "prop", tmp, tmp2)`,
                           );
                           before(blockBody[blockIndex]);
 
-                          if (parentIndex < 0) parentNode[parentProp] = AST.primitive(out);
-                          else parentNode[parentProp][parentIndex] = AST.primitive(out);
+                          // Do them back to front because the splice will basically unshift them
 
-                          after(blockBody[blockIndex]);
-                          ++changes;
-                          break;
+                          let n = 0;
+
+                          if (args.length > 2) {
+                            // While we're here, make sure the arg count is 2
+                            blockBody.splice(blockIndex, 0, ...args.slice(2).map(anode => AST.expressionStatement(anode)));
+                            n += args.length-2;
+                            args.length = 2;
+                          }
+
+                          if (do2) {
+                            const tmp = createFreshVar('tmpttr', fdata);
+                            const newNode = AST.varStatement('const', tmp, AST.callExpression(SYMBOL_COERCE, [arg2, AST.primitive('number')]));
+                            blockBody.splice(blockIndex, 0, newNode);
+                            node.arguments[4] = AST.identifier(tmp);
+                            n += 1;
+                          }
+
+                          if (do1) {
+                            const tmp = createFreshVar('tmpttr', fdata);
+                            const newNode = AST.varStatement('const', tmp, AST.callExpression(SYMBOL_COERCE, [arg1, AST.primitive('string')]));
+                            blockBody.splice(blockIndex, 0, newNode);
+                            node.arguments[3] = AST.identifier(tmp);
+                            n += 1;
+                          }
+
+                          after(blockBody.slice(blockIndex, n + 1));
                         }
-                      }
-
+                      });
+                      changes += 1;
+                      return;
                     }
                   }
                 }
-
-                break;
               }
-              case symbo('string', 'slice'): {
-                const arglen = node.arguments.length;
-                if (isPrim && (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1]))))) {
-                  // 'foo'.slice(0)
+            }
+            break;
+          }
+          case symbo('string', 'indexOf'): {
+            if (isDotcall) {
+              // https://tc39.es/ecma262/multipage/text-processing.html#sec-string.prototype.indexof
+              // Context is coerced to string, except it will throw for null and undefined.
+              // That makes this a little more awkward for us, unfortunately.
 
-                  rule('Calling `slice` on a string with primitive args should resolve the call');
-                  example('"hello, world".slice(7, 20, $)', '$, "world"');
-                  before(parentNode);
+              if (!isContextPrimitive || !['boolean', 'number', 'string'].includes(contextMustBe)) {
+                vlog('- bail: context is not known to be a primitive at all');
+                todo('coerce the context of string.indexOf to a string first');
+              }
+              else if (!args.every(anode => anode.type !== 'SpreadElement')) {
+                vlog('- bail: at least one arg was a spread');
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                // Since we know the context is a bool, num, or string, we can safely proceed to eliminate this statement.
 
-                  const ctxString = AST.getPrimitiveValue(node.callee.object);
-                  const args = [];
-                  if (node.arguments[0]) args.push(AST.getPrimitiveValue(node.arguments[0]));
-                  if (node.arguments[1]) args.push(AST.getPrimitiveValue(node.arguments[1])); // I don't think arg 3+ are used?
-                  const rest = node.arguments.slice(2);
-                  const result = ctxString.slice(...args);
+                vlog('- ok! queued the removal of this statement');
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('string.indexOf() as a statement on bool/num/str can be dropped');
+                    example('a.indexOf(b, c, d)', `a; ${SYMBOL_COERCE}(b, "string"); ${SYMBOL_COERCE}(c, "number"); d;`);
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'indexOf')}, a, undefined, b, c)`, `a; ${SYMBOL_COERCE}(b, "string"); ${SYMBOL_COERCE}(c, "number"); d;`);
+                    before(blockBody[blockIndex]);
 
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(AST.cloneSimple(context)),
+                      ...args.map((anode,i) =>
+                        i === 0
+                        ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('string')]))
+                        : i === 1
+                        ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]))
+                        : AST.expressionStatement(anode)
+                      ),
+                    );
 
-                  if (rest.length > 0) {
-                    // Inject excessive args as statements to preserve reference errors
-                    queue.push({
-                      index: blockIndex,
-                      func: () => {
-                        rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        });
-                      },
-                    });
+                    after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                  }
+                });
+                changes += 1;
+                return;
+              }
+              else if (
+                AST.isStringLiteral(context, true) &&
+                (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
+              ) {
+                // - `'foo'.indexOf('o', 15)`
+                // - `$dotCall($string_indexOf, 'foo', "prop", 'o', 15)`
+
+                rule('Calling `indexOf` on a string with primitive args should resolve the call');
+                example('"hello, world".indexOf("w", 4, $)', '$, 7');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'indexOf')}, "hello, world", "prop", "w", 4)`, '7');
+                before(blockBody[blockIndex]);
+
+                const ctxValue = AST.getPrimitiveValue(context);
+                const newArgs = [];
+                if (args[0]) newArgs.push(AST.getPrimitiveValue(args[0]));
+                if (args[1]) newArgs.push(AST.getPrimitiveValue(args[1])); // I don't think arg 3+ are used?
+                const rest = args.slice(2);
+                // Note: use .apply because the context may not be a string
+                const result = String.prototype.indexOf.apply(ctxValue, newArgs);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+          case symbo('string', 'lastIndexOf'): {
+            if (isDotcall) {
+              // https://tc39.es/ecma262/multipage/text-processing.html#sec-string.prototype.lastIndexOf
+              // Context is coerced to string, except it will throw for null and undefined.
+              // That makes this a little more awkward for us, unfortunately.
+
+              if (!isContextPrimitive || !['boolean', 'number', 'string'].includes(contextMustBe)) {
+                vlog('- bail: context is not known to be a primitive at all');
+                todo('coerce the context of string.lastIndexOf to a string first');
+              }
+              else if (!args.every(anode => anode.type !== 'SpreadElement')) {
+                vlog('- bail: at least one arg was a spread');
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                // Since we know the context is a bool, num, or string, we can safely proceed to eliminate this statement.
+
+                vlog('- ok! queued the removal of this statement');
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('string.lastIndexOf() as a statement on bool/num/str can be dropped');
+                    example('a.lastIndexOf(b, c, d)', `a; ${SYMBOL_COERCE}(b, "string"); ${SYMBOL_COERCE}(c, "number"); d;`);
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'lastIndexOf')}, a, undefined, b, c)`, `a; ${SYMBOL_COERCE}(b, "string"); ${SYMBOL_COERCE}(c, "number"); d;`);
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(AST.cloneSimple(context)),
+                      ...args.map((anode,i) =>
+                        i === 0
+                          ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('string')]))
+                          : i === 1
+                            ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]))
+                            : AST.expressionStatement(anode)
+                      ),
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                  }
+                });
+                changes += 1;
+                return;
+              }
+              else if (
+                AST.isStringLiteral(context, true) &&
+                (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
+              ) {
+                // 'foo'.lastIndexOf('o', 15)
+
+                rule('Calling `lastIndexOf` on a string with primitive args should resolve the call');
+                example('"hello, world".lastIndexOf("w", 4, $)', '$, 7');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'lastIndexOf')}, "hello, world", "prop", "w", 4, $)`, '$, 7');
+                before(blockBody[blockIndex]);
+
+                const ctxValue = AST.getPrimitiveValue(context);
+                const newArgs = [];
+                if (args[0]) newArgs.push(AST.getPrimitiveValue(args[0]));
+                if (args[1]) newArgs.push(AST.getPrimitiveValue(args[1])); // I don't think arg 3+ are used?
+                const rest = args.slice(2);
+                // Note: use .apply because the context may not be a string
+                const result = String.prototype.lastIndexOf.apply(ctxValue, newArgs);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+          case symbo('string', 'replace'): {
+            if (isDotcall) {
+              if (
+                context &&
+                AST.isStringLiteral(context, true) &&
+                args.length > 1 &&
+                AST.isPrimitive(args[0]) && AST.getPrimitiveType(args[0]) === 'string' &&
+                AST.isPrimitive(args[1]) && AST.getPrimitiveType(args[1]) === 'string'
+              ) {
+                // - `'foo'.replace('bar', 'baz')`
+                // - `$dotCall($string_replace, 'foo', "prop", 'bar', 'baz')`
+
+                rule('Calling `replace` on a string with string args should resolve the call');
+                example('"foo".replace("o", "a". x, y ,z)', 'x; y; z; "fao"');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'replace')}, "foo", "prop", "o", "a". x, y ,z)`, 'x; y; z; "fao"');
+                before(blockBody[blockIndex]);
+
+                const ctxString = AST.getPrimitiveValue(context);
+                const rexString = AST.getPrimitiveValue(args[0]);
+                const rplString = AST.getPrimitiveValue(args[1]);
+                const rest = args.slice(2);
+                const result = ctxString.replace(rexString, rplString);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+
+              if (
+                context &&
+                AST.isStringLiteral(context, true)
+              ) {
+                const metaArg1 = args.length > 1 && args[0].type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(args[0].name);
+
+                if (
+                  metaArg1 &&
+                  metaArg1.typing.mustBeType === 'regex' &&
+                  metaArg1.isConstant &&
+                  AST.isRegexLiteral(metaArg1.varDeclRef.node)
+                ) {
+                  if (!args[1] || AST.isPrimitive(args[1])) {
+                    // - `'foo'.replace(/bar/)`
+                    // - `'foo'.replace(/bar/, 'baz')`
+
+                    rule('Calling `replace` on a string with regex and primitive args should resolve the call');
+                    example('"foo".replace(/a/g, "a")', '"faa"');
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'replace')}, "foo", "prop", /a/g, "a")`, '"faa"');
+                    before(blockBody[blockIndex]);
+
+                    const ctxString = args[1] ? AST.getPrimitiveValue(context) : undefined;
+                    const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
+                    const rplString = AST.getPrimitiveValue(args[1]);
+                    const rest = args.slice(2);
+                    const result = ctxString.replace(regex, rplString);
+
+                    if (rest.length > 0) {
+                      // Inject excessive args as statements
+                      queue.push({
+                        index: blockIndex,
+                        func: () => {
+                          rest.forEach(arg => {
+                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                          });
+                        },
+                      });
+                    }
+
+                    if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                    else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                    after(blockBody[blockIndex]);
+                    ++changes;
+                    return;
                   }
 
-                  after(parentNode);
-                  ++changes;
-                  break;
-                }
-                break;
-              }
-              case symbo('string', 'charAt'): {
-                const arglen = node.arguments.length;
-                if (isPrim && (arglen === 0 || AST.isPrimitive(node.arguments[0]))) {
-                  // 'foo'.charAt(0)
+                  if (args[1]?.type === 'Identifier' && args[1].name === 'String') {
+                    // - `'foo'.replace(/bar/, String)`
 
-                  rule('Calling `charAt` on a string with primitive args should resolve the call');
-                  example('"hello, world".charAt(7, 20, $)', '20; $, "w"');
+                    // Not sure, actually, but does it always just return the input string when you pass in String? :hmm:
+                    rule('Calling `replace` on a string with regex and the function String should resolve the call');
+                    example('"foo".replace(/a/g, "a", String)', '"foo"');
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'replace')}, "foo", "prop", /a/g, String)`, '"foo"');
+                    before(blockBody[blockIndex]);
+
+                    const ctxString = args[1] ? AST.getPrimitiveValue(context) : undefined;
+                    const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
+                    const rest = args.slice(2);
+                    const result = ctxString.replace(regex, String);
+
+                    if (rest.length > 0) {
+                      // Inject excessive args as statements
+                      queue.push({
+                        index: blockIndex,
+                        func: () => {
+                          rest.forEach(arg => {
+                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                          });
+                        },
+                      });
+                    }
+
+                    if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                    else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                    after(blockBody[blockIndex]);
+                    ++changes;
+                    return;
+                  }
+
+                  ASSERT(args[1].type === 'Identifier', 'either an arg is a primitive or an ident when normalized', args[1].type);
+                  const metaArg2 = fdata.globallyUniqueNamingRegistry.get(args[1].name);
+                  if (metaArg2.isConstant && metaArg2.varDeclRef.node.type === 'FunctionExpression') {
+                    // There is a (small) subclass of functions that we can support here
+                    const funcNode = metaArg2.varDeclRef.node;
+                    const funcBody = funcNode.body.body;
+                    const bodyOffset = funcNode.$p.bodyOffset;
+
+                    vlog('Verifying whether func arg to string.replace can be simulated, funcOffset=', bodyOffset);
+
+                    // - simple array lookup replacer; `'abc'.replace(/b/, s => { const r = obj[s]; return r; });`
+                    // - two statements;
+                    //   - var decl that reads property from an object based on first arg. object must be known entirely
+                    //   - return statement of that value
+                    if (
+                      funcBody[bodyOffset].type === 'VarStatement' &&
+                      funcBody[bodyOffset].init.type === 'MemberExpression' &&
+                      funcBody[bodyOffset].init.object.type === 'Identifier' &&
+                      funcBody[bodyOffset].init.computed &&
+                      funcBody[bodyOffset].init.property.type === 'Identifier' &&
+                      // Confirm that the function starts with assigning param 0
+                      funcBody[0].type === 'VarStatement' &&
+                      funcBody[0].init.type === 'Param' &&
+                      funcBody[0].init.name === '$$0' &&
+                      // Is the property being accessed coming from the first param?
+                      funcBody[0].id.name === funcBody[bodyOffset].init.property.name &&
+                      // And the tail, must only be a return for that ident
+                      funcBody[bodyOffset+1]?.type === 'ReturnStatement' &&
+                      funcBody[bodyOffset+1].argument.type === 'Identifier' &&
+                      funcBody[bodyOffset+1].argument.name === funcBody[bodyOffset].id.name &&
+                      !funcBody[bodyOffset+2] // No more
+                    ) {
+                      // - We've verified this function; function f($$0) { const s = $$0; debugger; const r = obj[s]; return r; }`
+                      // We now have to confirm that the `obj` here is fully known and only used
+                      // as property access that is not the child of delete or call or assignment-lhs.
+                      const objMeta = fdata.globallyUniqueNamingRegistry.get(funcBody[bodyOffset].init.object.name);
+                      const objNode = objMeta.isConstant && objMeta.varDeclRef.node;
+                      if (
+                        objNode?.type === 'ObjectExpression' &&
+                        objNode.properties.every(pnode => {
+                          // - Key must be known (ident or primitive computed)
+                          // - Prop must not be getter/setter
+                          // - Value must be primitive
+                          if (pnode.key.computed && !AST.isPrimitive(pnode.key)) return false;
+                          if (pnode.kind !== 'init') return false;
+                          if (!AST.isPrimitive(pnode.value)) return false;
+                          return true;
+                        }) &&
+                        objMeta.reads.every(read => {
+                          // - read parent must be member expression
+                          // - read grand must not be delete or call or assignment-lhs
+                          if (read.parentNode.type !== 'MemberExpression') return false;
+                          if (read.grandNode.type === 'CallExpression') return false;
+                          if (read.grandNode.type === 'UnaryExpression' && read.grandNode.operator === 'delete') return false;
+                          if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') return false;
+                          return true;
+                        })
+                      ) {
+                        // This is `function r($$0) { const s = $$0; debugger; const r = obj[s]; return r; } 'abc'.replace(/b/, r);`
+                        // And the object is a constant object literal where all the keys are known and values are primitives
+                        // We should be able to apply this now. The only risk is a "regex ddos", for which we offer no real defense rn...
+                        vlog('Now resolving string replacement with function callback. If this is a very evil regex things will get stuck now.');
+
+                        const str = AST.getPrimitiveValue(context);
+                        const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
+                        const out = str.replace(regex, s => {
+                          const pnode = objNode.properties.find(pnode => {
+                            if (pnode.computed) {
+                              // We should have asserted that all computed keys are primitives
+                              return String(AST.getPrimitiveValue(pnode.key)) === s;
+                            } else {
+                              return pnode.key.name === s;
+                            }
+                          });
+                          if (pnode) {
+                            return AST.getPrimitiveValue(pnode.value);
+                          } else {
+                            return undefined;
+                          }
+                        });
+
+                        rule('String replace on string with regex arg and func that is a simple obj lookup can be resolved');
+                        example(
+                          'const obj = {b: "x"}; function f($$0) { const s = $$0; const v = obj[s]; return v; } "abc".replace(/b/, r);',
+                          'const obj = {b: "x"}; function f($$0) { const s = $$0; const v = obj[s]; return v; } "axc";',
+                        );
+                        example(
+                          `const obj = {b: "x"}; function f($$0) { const s = $$0; const v = obj[s]; return v; } ${SYMBOL_DOTCALL}(${symbo('string', 'replace')}, "abc", "prop", /b/, r);`,
+                          'const obj = {b: "x"}; function f($$0) { const s = $$0; const v = obj[s]; return v; } "axc";',
+                        );
+                        before(blockBody[blockIndex]);
+
+                        if (parentIndex < 0) parentNode[parentProp] = AST.primitive(out);
+                        else parentNode[parentProp][parentIndex] = AST.primitive(out);
+
+                        after(blockBody[blockIndex]);
+                        ++changes;
+                        return;
+                      }
+                    }
+
+                  }
+                }
+              }
+            }
+
+            break;
+          }
+          case symbo('string', 'slice'): {
+            if (isDotcall) {
+              if (!isContextPrimitive) {
+                vlog('- bail: context is not known to be a primitive at all');
+                todo('coerce the context of string.slice to a string first');
+              }
+              else if (!args.every(anode => anode.type !== 'SpreadElement')) {
+                vlog('- bail: at least one arg was a spread');
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                vlog('  - transform queued to eliminate expr stmt');
+                // The first arg is coerced to string. The second arg is coerced to number. Rest is ignored.
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('Calling .slice on a string as statement is moot');
+                    example('str.slice(x, y, z);', 'str; x; $coerce(y, "string"); z;');
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'slice')}, str, "prop", x, y, z);`, 'str; x; $coerce(y, "string"); z;');
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(context),
+                      ...args.map((anode,i) => {
+                        if (i === 0) {
+                          return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
+                        }
+                        else if (i === 1) {
+                          return AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]));
+                        }
+                        else {
+                          return AST.expressionStatement(anode)
+                        }
+                      })
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex+args.length));
+                  },
+                });
+                changes += 1;
+                return;
+              }
+              else if (
+                AST.isStringLiteral(context, true) &&
+                (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
+              ) {
+                // 'foo'.slice(0)
+
+                rule('Calling `slice` on a string with primitive args should resolve the call');
+                example('"hello, world".slice(7, 20, $)', '$, "world"');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'slice')}, "hello, world", "prop", 7, 20, $)`, '$, "world"');
+                before(blockBody[blockIndex]);
+
+                const ctxString = AST.getPrimitiveValue(context);
+                const newArgs = [];
+                if (args[0]) newArgs.push(AST.getPrimitiveValue(args[0]));
+                if (args[1]) newArgs.push(AST.getPrimitiveValue(args[1])); // I don't think arg 3+ are used?
+                const rest = args.slice(2);
+                const result = ctxString.slice(...newArgs);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+          case symbo('string', 'split'): {
+            if (isDotcall) {
+              // https://tc39.es/ecma262/multipage/text-processing.html#sec-string.prototype.split
+              // Context is coerced to string, except it will throw for null and undefined.
+              // That makes this a little more awkward for us, unfortunately.
+              // Furthermore, if the first arg is not nullable, it will first try to read a special
+              // split function from it before falling back to string coercion.
+              // So we can play ball only if we know the arg is a non-nullable primitive or regex.
+
+              if (!isContextPrimitive || !['boolean', 'number', 'string'].includes(contextMustBe)) {
+                // can't safely coerce the context because a nullable crashes but an object might not
+                vlog('- bail: context is not a regex and not a bool/num/string');
+              }
+              else if (!args.every(anode => anode.type !== 'SpreadElement')) {
+                vlog('- bail: at least one arg was a spread');
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                // Since we know the context is a bool, num, string, or regex, we can safely proceed to eliminate this statement.
+                // The second arg is coerced to number, but the first one first has
+                // a method read attempt. If that succeeds, it just calls that method
+                // and only otherwise will it coerce the arg. So that makes this way more
+                // awkward.
+
+                const argType =
+                  (args[0] && AST.isPrimitive(args[0]) && AST.getPrimitiveType(args[0])) ||
+                  (args[0]?.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(args[0].name)?.typing.mustBeType)
+                ;
+
+                if (!args[0] || ['boolean', 'number', 'string', 'regex'].includes(argType)) {
+                  vlog('- ok! First arg is not present or a bool/num/str/regex, so we can eliminate this safely...');
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rule('string.split() as a statement on bool/num/str can be dropped');
+                      example('a.substr(b, c)', 'a; b; c;');
+                      example(`${SYMBOL_DOTCALL}(${symbo('string', 'substr')}, a, undefined, b, c)`, 'a; b; c;');
+                      before(blockBody[blockIndex]);
+
+                      blockBody.splice(blockIndex, 1,
+                        AST.expressionStatement(AST.cloneSimple(context)),
+                        ...args.map((anode,i) =>
+                          i === 0
+                            // We've verified this is a primitive or regex; no need to coerce it. just reference it.
+                            ? AST.expressionStatement(anode)
+                            : i === 1
+                            ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]))
+                            : AST.expressionStatement(anode)
+                        ),
+                      );
+
+                      after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                    }
+                  });
+                }
+
+              }
+              else if (
+                AST.isStringLiteral(context, true) &&
+                (args.length === 0 || AST.isPrimitive(args[0]))
+              ) {
+                // 'foo'.split()
+                // 'foo'.split('o')
+
+                rule('Calling `split` on a string with none or a primitive arg should resolve the call');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'split')}, "hello, world", "prop", ",", $)`, '$, ["hello", " world"]');
+                before(blockBody[blockIndex]);
+
+                const ctxString = AST.getPrimitiveValue(context);
+                const newArgs = [];
+                if (args.length > 0) {
+                  newArgs.push(AST.getPrimitiveValue(args[0]));
+                }
+                const rest = args.slice(1);
+                const result = ctxString.split(...newArgs);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.arrayExpression(result.map(str => AST.primitive(str)));
+                else parentNode[parentProp][parentIndex] = AST.arrayExpression(result.map(str => AST.primitive(str)));
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+              else if (args.length > 0 && args[0].type === 'Identifier') {
+                const metaArg1 = fdata.globallyUniqueNamingRegistry.get(args[0].name);
+                if (
+                  context &&
+                  AST.isStringLiteral(context, true) &&
+                  metaArg1 &&
+                  metaArg1.typing.mustBeType === 'regex' &&
+                  metaArg1.isConstant &&
+                  AST.isRegexLiteral(metaArg1.varDeclRef.node)
+                ) {
+                  // 'foo'.split(/o/)
+
+                  rule('Calling `split` on a string with a regex should resolve the call');
+                  example('"hello, world".split(/o/g, $)', '$, ["hell", ", w", "rld"]');
+                  example(`${SYMBOL_DOTCALL}(${symbo('string', 'split')}, "hello, world", "prop", /o/g, $)`, '$, ["hell", ", w", "rld"]');
                   before(blockBody[blockIndex]);
 
-                  const ctxString = AST.getPrimitiveValue(node.callee.object);
-                  const args = [];
-                  if (node.arguments[0]) args.push(AST.getPrimitiveValue(node.arguments[0]));
-                  const rest = node.arguments.slice(1);
-                  const result = ctxString.charAt(...args);
-
-                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
-
-                  if (rest.length > 0) {
-                    // Inject excessive args as statements to preserve reference errors
-                    queue.push({
-                      index: blockIndex,
-                      func: () => {
-                        rest.forEach(arg => {
-                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                        });
-                      },
-                    });
-                  }
-
-                  after(blockBody[blockIndex]);
-                  ++changes;
-                  break;
-                }
-                break;
-              }
-              case symbo('string', 'split'): {
-                const arglen = node.arguments.length;
-                if (isPrim && (arglen === 0 || AST.isPrimitive(node.arguments[0]))) {
-                  // 'foo'.split()
-                  // 'foo'.split('o')
-
-                  rule('Calling `split` on a string with none or a primitive arg should resolve the call');
-                  example('"hello, world".split(",", $)', '$, ["hello", " world"]');
-                  before(parentNode);
-
-                  const ctxString = AST.getPrimitiveValue(node.callee.object);
-                  const args = [];
-                  if (arglen > 0) {
-                    args.push(AST.getPrimitiveValue(node.arguments[0]));
-                  }
-                  const rest = node.arguments.slice(1);
-                  const result = ctxString.split(...args);
+                  const ctxString = AST.getPrimitiveValue(context);
+                  const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
+                  const rest = args.slice(1);
+                  const result = ctxString.split(regex);
 
                   if (parentIndex < 0) parentNode[parentProp] = AST.arrayExpression(result.map(str => AST.primitive(str)));
                   else parentNode[parentProp][parentIndex] = AST.arrayExpression(result.map(str => AST.primitive(str)));
@@ -2351,113 +2967,314 @@ function _typeTrackedTricks(fdata) {
                     });
                   }
 
-                  after(parentNode);
+                  after(blockBody[blockIndex]);
                   ++changes;
-                  break;
+                  return;
                 }
-                else if (arglen > 0 && node.arguments[0].type === 'Identifier') {
-                  const metaArg1 = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
+                else {
                   if (
-                    isPrim &&
                     metaArg1 &&
-                    metaArg1.typing.mustBeType === 'regex' &&
+                    metaArg1.typing.mustBeType === 'array' &&
                     metaArg1.isConstant &&
-                    AST.isRegexLiteral(metaArg1.varDeclRef.node)
-                  ) {
-                    // 'foo'.split(/o/)
-
-                    rule('Calling `split` on a string with a regex should resolve the call');
-                    example('"hello, world".split(/o/g, $)', '$, ["hell", ", w", "rld"]');
-                    before(parentNode);
-
-                    const ctxString = AST.getPrimitiveValue(node.callee.object);
-                    const regex = getRegexFromLiteralNode(metaArg1.varDeclRef.node);
-                    const rest = node.arguments.slice(1);
-                    const result = ctxString.split(regex);
-
-                    if (parentIndex < 0) parentNode[parentProp] = AST.arrayExpression(result.map(str => AST.primitive(str)));
-                    else parentNode[parentProp][parentIndex] = AST.arrayExpression(result.map(str => AST.primitive(str)));
-
-                    if (rest.length > 0) {
-                      // Inject excessive args as statements to preserve reference errors
-                      queue.push({
-                        index: blockIndex,
-                        func: () => {
-                          rest.forEach(arg => {
-                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                          });
-                        },
-                      });
-                    }
-
-                    after(parentNode);
-                    ++changes;
-                    break;
-                  }
-                  else {
-
-                    if (
-                      metaArg1 &&
-                      metaArg1.typing.mustBeType === 'array' &&
-                      metaArg1.isConstant &&
-                      metaArg1.writes.length === 1 &&
-                      metaArg1.reads.length === 1 && // Technically we can do more than this but this is low hanging fruit
-                      metaArg1.varDeclRef.node.type === 'ArrayExpression' &&
-                      metaArg1.varDeclRef.node.elements.length &&
-                      metaArg1.varDeclRef.node.elements[0] &&
-                      (
-                        // If it _is_ a string, that's cool
-                        AST.isStringLiteral(metaArg1.varDeclRef.node.elements[0]) ||
-                        ( // If we know the arg mustbea string, that's fine too
-                          metaArg1.varDeclRef.node.elements[0].type === 'Identifier' &&
-                          fdata.globallyUniqueNamingRegistry.get(metaArg1.varDeclRef.node.elements[0].name)?.typing?.mustBeType === 'string'
-                        )
+                    metaArg1.writes.length === 1 &&
+                    metaArg1.reads.length === 1 && // Technically we can do more than this but this is low hanging fruit
+                    metaArg1.varDeclRef.node.type === 'ArrayExpression' &&
+                    metaArg1.varDeclRef.node.elements.length &&
+                    metaArg1.varDeclRef.node.elements[0] &&
+                    (
+                      // If it _is_ a string, that's cool
+                      AST.isStringLiteral(metaArg1.varDeclRef.node.elements[0]) ||
+                      ( // If we know the arg mustbea string, that's fine too
+                        metaArg1.varDeclRef.node.elements[0].type === 'Identifier' &&
+                        fdata.globallyUniqueNamingRegistry.get(metaArg1.varDeclRef.node.elements[0].name)?.typing?.mustBeType === 'string'
                       )
-                    ) {
-                      // `foo`.split(['bar'])
-                      // `foo`.split([bar])  (with bar a known string)
-                      //
-                      // (This can be found after doing `foo`.split`bar` because the tagged template will pass in ['bar'] as an array)
-                      // Split will coerce the arg to a string, if it exists, but it has a caveat where it will first check for
-                      // Symbol.split and if it's undefined then behavior is different as well.
+                    )
+                  ) {
+                    // `foo`.split(['bar'])
+                    // `foo`.split([bar])  (with bar a known string)
+                    //
+                    // (This can be found after doing `foo`.split`bar` because the tagged template will pass in ['bar'] as an array)
+                    // Split will coerce the arg to a string, if it exists, but it has a caveat where it will first check for
+                    // Symbol.split and if it's undefined then behavior is different as well.
 
-                      rule('Calling `split` on a string with an array with a string is like calling split with a string');
-                      example('const arr = ["x"]; "axbxc".split(arr)', 'const arr = "x"; "axbxc".split(arr)');
-                      example('const arr = [x]; "axbxc".split(arr)', 'const arr = x; "axbxc".split(arr)'); // with x mustbe string
-                      before(node);
-                      before(metaArg1.varDeclRef.varDeclNode);
+                    rule('Calling `split` on a string with an array with a string is like calling split with a string');
+                    example('const arr = ["x"]; "axbxc".split(arr)', 'const arr = "x"; "axbxc".split(arr)');
+                    example('const arr = [x]; "axbxc".split(arr)', 'const arr = x; "axbxc".split(arr)'); // with x mustbe string
+                    example(`const arr = ["x"]; ${SYMBOL_DOTCALL}(${symbo('string', 'split')}, "axbxc", "prop", arr)`, `const arr = "x"; ${SYMBOL_DOTCALL}(${symbo('string', 'split')}, "axbxc", "prop", arr)`);
+                    example(`const arr = [x]; ${SYMBOL_DOTCALL}(${symbo('string', 'split')}, "axbxc", "prop", arr)`, `const arr = x; ${SYMBOL_DOTCALL}(${symbo('string', 'split')}, "axbxc", "prop", arr)`); // with x mustbe string
+                    before(blockBody[blockIndex]);
+                    before(metaArg1.varDeclRef.varDeclNode);
 
-                      ASSERT(metaArg1.varDeclRef.varDeclNode.type === 'VarStatement', 'not assign or anything because write.len===1, right?', metaArg1.varDeclRef);
+                    ASSERT(metaArg1.varDeclRef.varDeclNode.type === 'VarStatement', 'not assign or anything because write.len===1, right?', metaArg1.varDeclRef);
 
-                      metaArg1.varDeclRef.varDeclNode.init = metaArg1.varDeclRef.node.elements[0];
+                    metaArg1.varDeclRef.varDeclNode.init = metaArg1.varDeclRef.node.elements[0];
 
-                      after(metaArg1.varDeclRef.varDeclNode);
-                      after(node);
+                    after(metaArg1.varDeclRef.varDeclNode);
+                    after(blockBody[blockIndex]);
 
-                      ++changes;
-                      break;
-                    }
+                    ++changes;
+                    return;
                   }
-                }
-                break;
-              }
-              default: {
-                if (BUILTIN_SYMBOLS.has(symbo(mustBe, node.callee.property.name))) {
-                  todo(`type trackeed tricks can possibly support method ${symbo(mustBe, node.callee.property.name)}`);
                 }
               }
             }
-          }
-          else if (node.callee.computed) {
-            // Nope.
             break;
           }
-          else {
-            // Can't predict value of object so can't do anything here
+          case symbo('string', 'substr'): {
+            if (isDotcall) {
+              // https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-string.prototype.substr
+              // Context is coerced to string, except it will throw for null and undefined.
+              // That makes this a little more awkward for us, unfortunately.
 
+              if (!isContextPrimitive || !['boolean', 'number', 'string'].includes(contextMustBe)) {
+                vlog('- bail: context is not known to be a primitive or an unknown primitive or a nullable', isContextPrimitive, contextMustBe);
+                todo('coerce the context of string.substr to a string first, but consider the nullable edge case');
+              }
+              else if (!args.every(anode => anode.type !== 'SpreadElement')) {
+                vlog('- bail: at least one arg was a spread');
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                // Since we know the context is a bool, num, or string, we can safely proceed to eliminate this statement.
+
+                vlog('- ok! queued the removal of this statement');
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('string.substr() as a statement on bool/num/str can be dropped');
+                    example('a.substr(b, c)', 'a; b; c;');
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'substr')}, a, undefined, b, c)`, 'a; b; c;');
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(AST.cloneSimple(context)),
+                      ...args.map((anode,i) =>
+                        i < 2
+                          ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]))
+                          : AST.expressionStatement(anode)
+                      ),
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                  }
+                });
+                changes += 1;
+                return;
+              }
+              else if (
+                AST.isStringLiteral(context, true) &&
+                (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
+              ) {
+                // - `'foo'.substr()`
+                // - `'foo'.substr(0)`
+                // - `'foo'.substr(0, 1)`
+
+                rule('Calling `substr` on a string with primitive args should resolve the call');
+                example('"hello, world".substr(7, 20, $)', '$, "world"');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'substr')}, "hello, world", "prop", 7, 20, $)`, '$, "world"');
+                before(blockBody[blockIndex]);
+
+                const ctxString = AST.getPrimitiveValue(context);
+                const newArgs = [];
+                if (args[0]) newArgs.push(AST.getPrimitiveValue(args[0]));
+                if (args[1]) newArgs.push(AST.getPrimitiveValue(args[1])); // I don't think arg 3+ are used?
+                const rest = args.slice(2);
+                const result = ctxString['substr'](...newArgs);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
             break;
+          }
+          case symbo('string', 'substring'): {
+            if (isDotcall) {
+              // https://tc39.es/ecma262/multipage/text-processing.html#sec-stringpad
+              // Context is coerced to string, except it will throw for null and undefined.
+              // That makes this a little more awkward for us, unfortunately.
+
+              if (!isContextPrimitive || !['boolean', 'number', 'string'].includes(contextMustBe)) {
+                vlog('- bail: context is not known to be a primitive or an unknown primitive or a nullable', isContextPrimitive, contextMustBe);
+                todo('coerce the context of string.substring to a string first, but consider the nullable edge case');
+              }
+              else if (!args.every(anode => anode.type !== 'SpreadElement')) {
+                vlog('- bail: at least one arg was a spread');
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                // Since we know the context is a bool, num, or string, we can safely proceed to eliminate this statement.
+
+                vlog('- ok! queued the removal of this statement');
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('string.substring() as a statement on bool/num/str can be dropped');
+                    example('a.substring(b, c)', 'a; b; c;');
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'substring')}, a, undefined, b, c)`, 'a; b; c;');
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(AST.cloneSimple(context)),
+                      ...args.map((anode,i) =>
+                        i < 2
+                        ? AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [anode, AST.primitive('number')]))
+                        : AST.expressionStatement(anode)
+                      ),
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                  }
+                });
+                changes += 1;
+                return;
+              }
+              else if (
+                AST.isStringLiteral(context, true) &&
+                (args.length === 0 || (AST.isPrimitive(args[0]) && (args.length === 1 || AST.isPrimitive(args[1]))))
+              ) {
+                // - `'foo'.substring()`
+                // - `'foo'.substring(0)`
+                // - `'foo'.substring(0, 1)`
+
+                rule('Calling `substring` on a string with primitive args should resolve the call');
+                example('"hello, world".substring(7, 20, $)', '$, "world"');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'substring')}, "hello, world", "prop", 7, 20, $)`, '$, "world"');
+                before(blockBody[blockIndex]);
+
+                const ctxString = AST.getPrimitiveValue(context);
+                const newArgs = [];
+                if (args[0]) newArgs.push(AST.getPrimitiveValue(args[0]));
+                if (args[1]) newArgs.push(AST.getPrimitiveValue(args[1])); // I don't think arg 3+ are used?
+                const rest = args.slice(2);
+                const result = ctxString.substring(...newArgs);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+          case symbo('string', 'valueOf'): {
+            if (isDotcall) {
+              // https://tc39.es/ecma262/multipage/text-processing.html#sec-string.prototype.valueof
+              // Basically, if the context is a string, return the string.
+              // If the context has a special "StringData" thing. Do the thing. (*magic happens*)
+              // Otherwise throw an error.
+              // Note: that StringData is only set on `new String` instances and String.prototype
+              //       (where it is the empty string). Gnarly edge cases but at least contained?
+              //       Note that String may be extended by a class so it kind of gets lost there.
+
+              if (!isContextPrimitive) {
+                // This is being called on a non-string. It should not be coerced. It will
+                // do the StringData thing or die. But we can't reliably infer that here.
+                vlog('- bail: context is not known to be a primitive at all');
+              }
+              else if (contextMustBe !== 'string') {
+                // We can't reliably do anything here so just bail.
+                vlog('- bail: context is not known to be a string');
+              }
+              else if (!args.every(anode => anode.type !== 'SpreadElement')) {
+                vlog('- bail: at least one arg was a spread');
+              }
+              else if (parentNode.type === 'ExpressionStatement') {
+                // It was a valueOf on a string value as a statement.
+                // Map it and the args to expression statements and call it a day.
+
+                vlog('- ok! queued the removal of this statement');
+                queue.push({
+                  index: blockIndex,
+                  func: () => {
+                    rule('string.valueOf() as a statement can be dropped');
+                    example('"xyz".valueOf(a, b)', 'a; b;');
+                    before(blockBody[blockIndex]);
+
+                    blockBody.splice(blockIndex, 1,
+                      AST.expressionStatement(AST.cloneSimple(context)),
+                      ...args.map(anode => AST.expressionStatement(anode)),
+                    );
+
+                    after(blockBody.slice(blockIndex, blockIndex + args.length + 1));
+                  }
+                });
+
+                changes += 1;
+                return;
+              }
+              else if (AST.isStringLiteral(context, true)) {
+                // - `'foo'.valueOf()`
+
+                rule('Calling `valueOf` on a string should resolve to the string');
+                example('"hello, world".valueOf(7, 20, $)', '"hello, world"; 7; 20; $');
+                example(`${SYMBOL_DOTCALL}(${symbo('string', 'valueOf')}, "hello, world", "prop", 7, 20, $)`, '"hello, world"; 7; 20; $');
+                before(blockBody[blockIndex]);
+
+                const ctxString = AST.getPrimitiveValue(context);
+                const newArgs = [];
+                if (args[0]) newArgs.push(AST.getPrimitiveValue(args[0]));
+                if (args[1]) newArgs.push(AST.getPrimitiveValue(args[1])); // I don't think arg 3+ are used?
+                const rest = args.slice(2);
+                const result = ctxString.substring(...newArgs);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                if (rest.length > 0) {
+                  // Inject excessive args as statements to preserve reference errors
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rest.forEach(arg => {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                      });
+                    },
+                  });
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+          default: {
+            if (BUILTIN_SYMBOLS.has(calleeName)) {
+              todo(`type trackeed tricks can possibly support static ${calleeName}`);
+            }
           }
         }
+
+        vlog('  - no changes applied...');
 
         break;
       }
@@ -2477,20 +3294,27 @@ function _typeTrackedTricks(fdata) {
           if (meta.isConstant && meta.typing.mustBeType) {
             // This is assignment with just the member expression as rhs. There's some obfuscation techniques that do this.
             // Note: Member expression calls go above.
+            // Note: this is unsafe for non-primitives because they may have own properties that shadow the prototype. So
+            //       unless we can prove that the object has no own property of that name, we can't proceed.
 
-            if (BUILTIN_SYMBOLS.has(symbo(meta.typing.mustBeType,  node.property.name))) {
-              rule('Reading a builtin method property of a builtin type should change to a preval builtin symbol');
-              example('const x = parseInt.apply;', `const x = ${symbo('function', 'apply')};`);
-              before(blockBody[blockIndex]);
+            const symb = symbo(meta.typing.mustBeType, node.property.name);
+            if (BUILTIN_SYMBOLS.has(symb)) {
+              if (PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType)) {
+                rule('Reading a builtin method property of a builtin type should change to a preval builtin symbol');
+                example('const x = parseInt.apply;', `const x = ${symbo('function', 'apply')};`);
+                before(blockBody[blockIndex]);
 
-              if (parentNode.type === 'AssignmentExpression') {
-                parentNode.right = AST.identifier(symbo(meta.typing.mustBeType,  node.property.name));
+                if (parentNode.type === 'AssignmentExpression') {
+                  parentNode.right = AST.identifier(symbo(meta.typing.mustBeType,  node.property.name));
+                } else {
+                  parentNode.init = AST.identifier(symbo(meta.typing.mustBeType,  node.property.name));
+                }
+
+                after(blockBody[blockIndex]);
+                ++changes;
               } else {
-                parentNode.init = AST.identifier(symbo(meta.typing.mustBeType,  node.property.name));
+                todo(`access object property that also exists on prototype? ${symb}`)
               }
-
-              after(blockBody[blockIndex]);
-              ++changes;
             }
           }
         }
@@ -2500,7 +3324,7 @@ function _typeTrackedTricks(fdata) {
     }
   }
 
-  if (changes) {
+  if (changes || queue.length) {
     // By index, high to low. This way it should not be possible to cause reference problems by moving index
     queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
     queue.forEach(({ index, func }) => func());

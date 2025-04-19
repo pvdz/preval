@@ -29,10 +29,10 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -61,8 +61,8 @@ if (tmpIfTest$5) {
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpCallCallee = $($);
-const a = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee($(1), $(2));
 if (a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {

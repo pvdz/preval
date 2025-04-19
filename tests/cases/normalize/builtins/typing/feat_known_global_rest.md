@@ -46,7 +46,7 @@ $(`boolean`);
 $spy(`Object.isSealed`);
 $(`boolean`);
 const tmpCalleeParam$13 /*:unknown*/ = $spy(`String.fromCharCode`);
-+tmpCalleeParam$13;
+$coerce(tmpCalleeParam$13, `number`);
 $(`string`);
 const tmpCalleeParam$17 /*:unknown*/ = $spy(`String.fromCodePoint`);
 $String_fromCodePoint(tmpCalleeParam$17);
@@ -75,8 +75,7 @@ $spy(`Object.isFrozen`);
 $(`boolean`);
 $spy(`Object.isSealed`);
 $(`boolean`);
-const tmpCalleeParam$13 = $spy(`String.fromCharCode`);
-+tmpCalleeParam$13;
+$coerce($spy(`String.fromCharCode`), `number`);
 $(`string`);
 $String_fromCodePoint($spy(`String.fromCodePoint`));
 $(`string`);
@@ -104,7 +103,7 @@ $( "boolean" );
 $spy( "Object.isSealed" );
 $( "boolean" );
 const a = $spy( "String.fromCharCode" );
-+a;
+$coerce( a, "number" );
 $( "string" );
 const b = $spy( "String.fromCodePoint" );
 $String_fromCodePoint( b );
@@ -129,7 +128,6 @@ $( "number", "Math.SQRT2" );
 - (todo) type trackeed tricks can possibly support static $Object_is
 - (todo) type trackeed tricks can possibly support static $Object_isFrozen
 - (todo) type trackeed tricks can possibly support static $Object_isSealed
-- (todo) type trackeed tricks can possibly support static $String_fromCodePoint
 - (todo) type trackeed tricks can possibly support static $String_raw
 
 

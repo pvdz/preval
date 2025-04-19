@@ -51,7 +51,11 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
+- (todo) access object property that also exists on prototype? $array_join
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal$3
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal$7
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal$11
 
 
 ## Globals

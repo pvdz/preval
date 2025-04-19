@@ -25,8 +25,8 @@ const b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, b);
 `````
@@ -40,8 +40,8 @@ const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, b);
 `````

@@ -24,7 +24,7 @@ $(bool);
 const tmpStringFirstArg /*:unknown*/ = $spy();
 const str /*:string*/ = $coerce(tmpStringFirstArg, `string`);
 const tmpCalleeParam /*:unknown*/ = $spy();
-const bool /*:unknown*/ = $dotCall($string_includes, str, `includes`, tmpCalleeParam);
+const bool /*:boolean*/ = $dotCall($string_includes, str, `includes`, tmpCalleeParam);
 $(bool);
 `````
 
@@ -53,7 +53,7 @@ $( d );
 ## Todos triggered
 
 
-- (todo) Missed opportunity to inline a type tracked trick for $string_includes
+None
 
 
 ## Globals

@@ -23,9 +23,9 @@ if (stuff) {
 
 `````js filename=intro
 const cook /*:unknown*/ = document.cookie;
-const tmpCallVal /*:unknown*/ = cook.match;
+const tmpCallCompVal /*:unknown*/ = cook.match;
 const tmpCalleeParam /*:regex*/ = /x/;
-const stuff /*:unknown*/ = $dotCall(tmpCallVal, cook, `match`, tmpCalleeParam);
+const stuff /*:unknown*/ = $dotCall(tmpCallCompVal, cook, `match`, tmpCalleeParam);
 if (stuff) {
   const tmpCalleeParam$1 /*:unknown*/ = stuff[1];
   const deco /*:string*/ = decodeURIComponent(tmpCalleeParam$1);

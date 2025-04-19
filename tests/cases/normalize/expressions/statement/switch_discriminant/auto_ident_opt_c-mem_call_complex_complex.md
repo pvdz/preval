@@ -39,8 +39,8 @@ if (tmpIfTest) {
     $(100);
     $(a);
   } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+    const tmpCalleeParam /*:unknown*/ = $(1);
+    $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
     $(100);
     $(a);
   }

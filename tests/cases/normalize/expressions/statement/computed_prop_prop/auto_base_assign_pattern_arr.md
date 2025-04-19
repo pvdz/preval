@@ -23,8 +23,8 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(2);
-const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
 $coerce(tmpNestedAssignArrPatternRhs, `string`);
@@ -67,7 +67,7 @@ $( f, e );
 
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- (todo) inline computed array property read
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

@@ -27,10 +27,10 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpStringFirstArg /*:unknown*/ = $(1);
-  const x /*:number*/ = $coerce(tmpStringFirstArg, `number`);
-  const tmpStringFirstArg$1 /*:unknown*/ = $(2);
-  const y /*:number*/ = $coerce(tmpStringFirstArg$1, `number`);
+  const tmpNumberFirstArg /*:unknown*/ = $(1);
+  const x /*:number*/ = $coerce(tmpNumberFirstArg, `number`);
+  const tmpNumberFirstArg$1 /*:unknown*/ = $(2);
+  const y /*:number*/ = $coerce(tmpNumberFirstArg$1, `number`);
   const z /*:number*/ = x / y;
   try {
     $(z);
@@ -79,7 +79,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-None
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

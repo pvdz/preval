@@ -36,8 +36,8 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     $(undefined);
   } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+    const tmpCalleeParam /*:unknown*/ = $(1);
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
     $(tmpChainElementCall$1);
   }
 }

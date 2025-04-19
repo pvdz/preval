@@ -108,7 +108,7 @@ $( f, b );
 
 
 - (todo) objects in isFree check
-- (todo) regular property access of an ident feels tricky;
+- (todo) do we want to support UnaryExpression as expression statement in free loops?
 
 
 ## Globals

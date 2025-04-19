@@ -23,7 +23,8 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCalleeParam /*:unknown*/ = b[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
@@ -44,7 +45,8 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const tmpForOfGen = $forOf({ $: $ }[tmpCallCompProp](1));
+const b = { $: $ };
+const tmpForOfGen = $forOf(b[tmpCallCompProp](1));
 while (true) {
   const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {
@@ -63,23 +65,24 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-const c = b[ a ]( 1 );
-const d = $forOf( c );
+const c = b[ a ];
+const d = $dotCall( c, b, undefined, 1 );
+const e = $forOf( d );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d();
-  const f = e.done;
-  if (f) {
+  const f = e();
+  const g = f.done;
+  if (g) {
     break;
   }
   else {
-    e.value;
+    f.value;
   }
 }
-const g = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( h );
 `````
 
 

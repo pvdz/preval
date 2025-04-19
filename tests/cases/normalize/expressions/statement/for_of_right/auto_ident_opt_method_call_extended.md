@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const tmpClusterSSA_tmpForOfGen /*:unknown*/ = $forOf(tmpChainElementCall);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGen();
@@ -42,7 +42,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_tmpForOfGen = $forOf({ e: $ }.e(1));
+const tmpClusterSSA_tmpForOfGen = $forOf($dotCall($, { e: $ }, `e`, 1));
 while (true) {
   const tmpForOfNext = tmpClusterSSA_tmpForOfGen();
   if (tmpForOfNext.done) {
@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-const b = a.e( 1 );
+const b = $dotCall( $, a, "e", 1 );
 const c = $forOf( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = c();

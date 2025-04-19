@@ -20,9 +20,9 @@ $(f({ b: 11, c: 12 }, 10));
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 let objPatternAfterDefault /*:unknown*/ = undefined;
 let objPatternCrashTest /*:boolean*/ = false;
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { x: `pass` };
@@ -48,9 +48,9 @@ if (objPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $Object_prototype.x;
 let objPatternAfterDefault = undefined;
 let objPatternCrashTest = false;
+const objPatternBeforeDefault = $Object_prototype.x;
 if (objPatternBeforeDefault === undefined) {
   objPatternAfterDefault = $({ x: `pass` });
   objPatternCrashTest = objPatternAfterDefault === undefined;
@@ -73,26 +73,26 @@ if (objPatternCrashTest) {
 With rename=true
 
 `````js filename=intro
-const a = $Object_prototype.x;
-let b = undefined;
-let c = false;
-const d = a === undefined;
+let a = undefined;
+let b = false;
+const c = $Object_prototype.x;
+const d = c === undefined;
 if (d) {
   const e = { x: "pass" };
-  b = $( e );
-  c = b === undefined;
+  a = $( e );
+  b = a === undefined;
 }
 else {
-  b = a;
+  a = c;
 }
-if (c) {
+if (b) {
 
 }
 else {
-  c = b === null;
+  b = a === null;
 }
-if (c) {
-  b.cannotDestructureThis;
+if (b) {
+  a.cannotDestructureThis;
   $( "ok" );
 }
 else {

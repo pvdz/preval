@@ -18,7 +18,7 @@ $(y);
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = `abc`.x;
+const objPatternBeforeDefault /*:unknown*/ = $String_prototype.x;
 let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
@@ -44,7 +44,7 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = `abc`.x;
+const objPatternBeforeDefault = $String_prototype.x;
 let objPatternAfterDefault = undefined;
 if (objPatternBeforeDefault === undefined) {
   objPatternAfterDefault = $([`pass2`]);
@@ -66,7 +66,7 @@ if (arrPatternBeforeDefault === undefined) {
 With rename=true
 
 `````js filename=intro
-const a = "abc".x;
+const a = $String_prototype.x;
 let b = undefined;
 const c = a === undefined;
 if (c) {
@@ -94,7 +94,7 @@ else {
 
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- (todo) inline computed array property read
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

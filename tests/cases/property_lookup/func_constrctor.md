@@ -19,7 +19,7 @@ $(f);
 
 
 `````js filename=intro
-$(Function);
+$($function_constructor);
 `````
 
 
@@ -27,7 +27,7 @@ $(Function);
 (This ought to be the final result)
 
 `````js filename=intro
-$(Function);
+$($function_constructor);
 `````
 
 
@@ -35,7 +35,7 @@ $(Function);
 With rename=true
 
 `````js filename=intro
-$( Function );
+$( $function_constructor );
 `````
 
 

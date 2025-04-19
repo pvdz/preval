@@ -22,11 +22,12 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b.$(1);
-const tmpClusterSSA_a /*:unknown*/ = b.$(1);
-const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
+const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
+const tmpCallCompVal$1 /*:unknown*/ = b.$;
+const tmpClusterSSA_a$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, b, `\$`, 1);
+const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(tmpClusterSSA_a$1);
 `````
 
 
@@ -35,10 +36,10 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const b = { $: $ };
-const a = b.$(1);
-const tmpClusterSSA_a = b.$(1);
-$(a + tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const tmpClusterSSA_a = $dotCall($, b, `\$`, 1);
+const tmpClusterSSA_a$1 = b.$(1);
+$(tmpClusterSSA_a + tmpClusterSSA_a$1);
+$(tmpClusterSSA_a$1);
 `````
 
 
@@ -47,11 +48,12 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
-const c = a.$( 1 );
-const d = b + c;
+const b = $dotCall( $, a, "$", 1 );
+const c = a.$;
+const d = $dotCall( c, a, "$", 1 );
+const e = b + d;
+$( e );
 $( d );
-$( c );
 `````
 
 

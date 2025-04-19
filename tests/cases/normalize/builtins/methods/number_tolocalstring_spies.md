@@ -4,7 +4,10 @@
 
 > Normalize > Builtins > Methods > Number tolocalstring spies
 >
-> Bug: was printing string as a var name
+> This is an exception in the spec and the args are optional but may be significant
+> for ECMA402 support: https://tc39.es/ecma262/#sec-number.prototype.tolocalestring
+>
+> We must make sure not to accidentally eliminate them...
 
 ## Input
 
@@ -19,8 +22,9 @@ const y = $spy('b');
 
 
 `````js filename=intro
-$spy(`a`);
-$spy(`b`);
+const x /*:unknown*/ = $spy(`a`);
+const y /*:unknown*/ = $spy(`b`);
+$dotCall($number_toLocaleString, 200, `toLocaleString`, x, y);
 `````
 
 
@@ -28,8 +32,7 @@ $spy(`b`);
 (This ought to be the final result)
 
 `````js filename=intro
-$spy(`a`);
-$spy(`b`);
+$dotCall($number_toLocaleString, 200, `toLocaleString`, $spy(`a`), $spy(`b`));
 `````
 
 
@@ -37,15 +40,16 @@ $spy(`b`);
 With rename=true
 
 `````js filename=intro
-$spy( "a" );
-$spy( "b" );
+const a = $spy( "a" );
+const b = $spy( "b" );
+$dotCall( $number_toLocaleString, 200, "toLocaleString", a, b );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $number_toLocaleString
 
 
 ## Globals

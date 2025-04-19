@@ -21,7 +21,7 @@ const y = $spy('b');
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
 const y /*:unknown*/ = $spy(`b`);
-``.match(x, y);
+$dotCall($string_match, ``, `match`, x, y);
 `````
 
 
@@ -29,7 +29,7 @@ const y /*:unknown*/ = $spy(`b`);
 (This ought to be the final result)
 
 `````js filename=intro
-``.match($spy(`a`), $spy(`b`));
+$dotCall($string_match, ``, `match`, $spy(`a`), $spy(`b`));
 `````
 
 
@@ -39,14 +39,14 @@ With rename=true
 `````js filename=intro
 const a = $spy( "a" );
 const b = $spy( "b" );
-"".match( a, b );
+$dotCall( $string_match, "", "match", a, b );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $string_match
+- (todo) type trackeed tricks can possibly support static $string_match
 
 
 ## Globals

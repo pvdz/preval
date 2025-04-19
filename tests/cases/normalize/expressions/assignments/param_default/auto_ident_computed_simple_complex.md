@@ -22,9 +22,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpNestedComplexRhs /*:unknown*/ = b[tmpCompProp];
+const tmpNestedComplexRhs /*:unknown*/ = b[tmpCalleeParam];
 $(undefined);
 $(tmpNestedComplexRhs, b);
 `````
@@ -34,9 +34,9 @@ $(tmpNestedComplexRhs, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`c`);
+const tmpCalleeParam = $(`c`);
 const b = { c: 1 };
-const tmpNestedComplexRhs = b[tmpCompProp];
+const tmpNestedComplexRhs = b[tmpCalleeParam];
 $(undefined);
 $(tmpNestedComplexRhs, b);
 `````

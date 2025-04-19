@@ -282,6 +282,9 @@ export function assertNoDupeNodes(rootNode, prop, force = false, ...desc) {
     (node, down, type, path) => {
       if (!node || !node.$p) return;
       if (down) {
+        if (type === 'ArrayExpression') {
+          ASSERT(node.elements.length === Object.keys(node.elements).length, 'the ast array elements should not have elided arrays, even if the source codes', node.elements);
+        }
         if (map.has(node.$p.pid)) {
 
           console.log('\n\n')

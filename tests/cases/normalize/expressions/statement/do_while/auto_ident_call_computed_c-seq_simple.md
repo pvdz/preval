@@ -26,12 +26,14 @@ $(a);
 $(100);
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpIfTest /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCallObj$1 /*:unknown*/ = $(b);
-    const tmpIfTest$1 /*:unknown*/ = tmpCallObj$1.$(1);
+    const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
+    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
     if (tmpIfTest$1) {
     } else {
       break;
@@ -50,10 +52,12 @@ $(a);
 `````js filename=intro
 $(100);
 const b = { $: $ };
-if ($(b).$(1)) {
+const tmpCallObj = $(b);
+if (tmpCallObj.$(1)) {
   while (true) {
     $(100);
-    if (!$(b).$(1)) {
+    const tmpCallObj$1 = $(b);
+    if (!tmpCallObj$1.$(1)) {
       break;
     }
   }
@@ -69,13 +73,15 @@ With rename=true
 $( 100 );
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-if (c) {
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = $( a );
-    const e = d.$( 1 );
-    if (e) {
+    const e = $( a );
+    const f = e.$;
+    const g = $dotCall( f, e, "$", 1 );
+    if (g) {
 
     }
     else {
@@ -83,11 +89,11 @@ if (c) {
     }
   }
 }
-const f = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( h );
 `````
 
 

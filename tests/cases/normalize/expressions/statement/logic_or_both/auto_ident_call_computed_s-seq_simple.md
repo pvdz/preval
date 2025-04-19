@@ -22,12 +22,13 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpIfTest /*:unknown*/ = b.$(1);
+const tmpIfTest /*:unknown*/ = $dotCall($, b, `\$`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a);
 } else {
-  b.$(1);
+  const tmpCallCompVal$1 /*:unknown*/ = b.$;
+  $dotCall(tmpCallCompVal$1, b, `\$`, 1);
   $(a);
 }
 `````
@@ -38,7 +39,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const b = { $: $ };
-const tmpIfTest = b.$(1);
+const tmpIfTest = $dotCall($, b, `\$`, 1);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a);
@@ -54,7 +55,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 const c = {
   a: 999,
   b: 1000,
@@ -63,7 +64,8 @@ if (b) {
   $( c );
 }
 else {
-  a.$( 1 );
+  const d = a.$;
+  $dotCall( d, a, "$", 1 );
   $( c );
 }
 `````

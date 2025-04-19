@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpCalleeParamSpread /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParamSpread /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(...tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -35,8 +35,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpCalleeParamSpread = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const tmpCalleeParamSpread = tmpCallComplexCallee($(1), $(2));
 $(...tmpCalleeParamSpread);
 $({ a: 999, b: 1000 });
 `````

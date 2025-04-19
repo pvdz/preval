@@ -34,7 +34,7 @@ const tmpObjLitVal$1 /*:(array)=>undefined*/ = function (...$$0 /*:array*/) {
   return undefined;
 };
 const tmpObjLitVal /*:object*/ = { c: tmpObjLitVal$1 };
-tmpObjLitVal.c();
+$dotCall(tmpObjLitVal$1, tmpObjLitVal, `c`);
 `````
 
 
@@ -47,7 +47,7 @@ const tmpObjLitVal$1 = function (...$$0 /*:array*/) {
   const $dlr_$$0 = $$0;
   $($($dlr_$$0), tmpPrevalAliasThis$1);
 };
-({ c: tmpObjLitVal$1 }.c());
+$dotCall(tmpObjLitVal$1, { c: tmpObjLitVal$1 }, `c`);
 `````
 
 
@@ -64,7 +64,7 @@ const a = function($$0 ) {
   return undefined;
 };
 const e = { c: a };
-e.c();
+$dotCall( a, e, "c" );
 `````
 
 

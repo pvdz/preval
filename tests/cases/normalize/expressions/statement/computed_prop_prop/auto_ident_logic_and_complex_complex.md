@@ -20,14 +20,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
-if (tmpCompProp) {
-  const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const tmpClusterSSA_tmpCompProp /*:unknown*/ = $(tmpCalleeParam$1);
-  $coerce(tmpClusterSSA_tmpCompProp, `string`);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+if (tmpCalleeParam) {
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$3);
+  $coerce(tmpClusterSSA_tmpCalleeParam, `string`);
 } else {
-  $coerce(tmpCompProp, `string`);
+  $coerce(tmpCalleeParam, `string`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -38,11 +38,11 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $($(1));
-if (tmpCompProp) {
+const tmpCalleeParam = $($(1));
+if (tmpCalleeParam) {
   $coerce($($(2)), `string`);
 } else {
-  $coerce(tmpCompProp, `string`);
+  $coerce(tmpCalleeParam, `string`);
 }
 $({ a: 999, b: 1000 });
 `````

@@ -22,8 +22,8 @@ $dotCall(f, regex, 'test', arg, {some: 'stuff'});
 `````js filename=intro
 const arg /*:unknown*/ = $(`give food`);
 const regex /*:regex*/ = /foo/;
-const tmpCalleeParam$5 /*:object*/ = { some: `stuff` };
-regex.test(arg, tmpCalleeParam$5);
+const tmpCalleeParam$1 /*:object*/ = { some: `stuff` };
+$dotCall($regex_test, regex, `test`, arg, tmpCalleeParam$1);
 `````
 
 
@@ -31,7 +31,7 @@ regex.test(arg, tmpCalleeParam$5);
 (This ought to be the final result)
 
 `````js filename=intro
-/foo/.test($(`give food`), { some: `stuff` });
+$dotCall($regex_test, /foo/, `test`, $(`give food`), { some: `stuff` });
 `````
 
 
@@ -42,7 +42,7 @@ With rename=true
 const a = $( "give food" );
 const b = /foo/;
 const c = { some: "stuff" };
-b.test( a, c );
+$dotCall( $regex_test, b, "test", a, c );
 `````
 
 

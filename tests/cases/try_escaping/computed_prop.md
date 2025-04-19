@@ -29,8 +29,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    arr.reverse();
-    const tmpCalleeParam /*:unknown*/ = $[arr]();
+    $dotCall($array_reverse, arr, `reverse`);
+    const tmpCallCompVal$1 /*:unknown*/ = $[arr];
+    const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal$1, $, undefined);
     $(tmpCalleeParam);
   } catch (e) {
     $(`fail`);
@@ -46,7 +47,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const arr = [1, 2, 3];
 while (true) {
   try {
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     $($[arr]());
   } catch (e) {
     $(`fail`);
@@ -62,11 +63,12 @@ With rename=true
 const a = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
-    a.reverse();
-    const b = $[ a ]();
-    $( b );
+    $dotCall( $array_reverse, a, "reverse" );
+    const b = $[ a ];
+    const c = $dotCall( b, $, undefined );
+    $( c );
   }
-  catch (c) {
+  catch (d) {
     $( "fail" );
   }
 }
@@ -76,7 +78,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Not supporting this method just yet:
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) try escaping may support dotcalling $array_reverse
+- (todo) can try-escaping support this expr node type? CallExpression
+- (todo) Support this ident in isFree CallExpression: $array_reverse
 
 
 ## Globals

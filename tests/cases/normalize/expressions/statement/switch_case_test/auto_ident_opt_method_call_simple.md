@@ -25,7 +25,7 @@ $(a);
 `````js filename=intro
 $(1);
 const b /*:object*/ = { c: $ };
-b.c(1);
+$dotCall($, b, `c`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -36,7 +36,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-({ c: $ }.c(1));
+$dotCall($, { c: $ }, `c`, 1);
 $({ a: 999, b: 1000 });
 `````
 
@@ -47,7 +47,7 @@ With rename=true
 `````js filename=intro
 $( 1 );
 const a = { c: $ };
-a.c( 1 );
+$dotCall( $, a, "c", 1 );
 const b = {
   a: 999,
   b: 1000,

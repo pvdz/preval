@@ -29,7 +29,7 @@ $(x);
 
 
 `````js filename=intro
-const f /*:unknown*/ = console.log(`ok`);
+const f /*:unknown*/ = $dotCall($console_log, console, `log`, `ok`);
 if ($) {
   $(f);
   const tmpClusterSSA_x /*:unknown*/ = $(`do not inline me`);
@@ -44,7 +44,7 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
-const f = console.log(`ok`);
+const f = $dotCall($console_log, console, `log`, `ok`);
 if ($) {
   $(f);
   $($(`do not inline me`));
@@ -58,7 +58,7 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-const a = console.log( "ok" );
+const a = $dotCall( $console_log, console, "log", "ok" );
 if ($) {
   $( a );
   const b = $( "do not inline me" );
@@ -93,8 +93,23 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD!?
+ - 1: 'called $console_log:', 'ok'
+ - 2: undefined
+ - 3: 'do not inline me'
+ - 4: 'do not inline me'
+ - eval returned: undefined
 
-Post settled calls: Same
+Post settled calls: BAD!!
+ - 1: 'called $console_log:', 'ok'
+ - 2: undefined
+ - 3: 'do not inline me'
+ - 4: 'do not inline me'
+ - eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!!
+ - 1: 'called $console_log:', 'ok'
+ - 2: undefined
+ - 3: 'do not inline me'
+ - 4: 'do not inline me'
+ - eval returned: undefined

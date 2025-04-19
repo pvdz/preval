@@ -76,7 +76,7 @@ const tmpFree$1 /*:(unknown, unknown)=>string*/ = function $free($$0, $$1) {
   const $dlr_$$1 /*:unknown*/ = $$1;
   debugger;
   const tmpBinBothLhs$3633 /*:primitive*/ = $dlr_$$0 + 71046;
-  const tmpBinBothRhs$3633 /*:number*/ = `xyz`.charCodeAt($dlr_$$1);
+  const tmpBinBothRhs$3633 /*:number*/ = $dotCall($string_charCodeAt, `xyz`, `charCodeAt`, $dlr_$$1);
   const tmpCalleeParam$9457 /*:number*/ = tmpBinBothLhs$3633 ^ tmpBinBothRhs$3633;
   const tmpRet$1 /*:string*/ = $String_fromCharCode(tmpCalleeParam$9457);
   return tmpRet$1;
@@ -94,9 +94,11 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
     tmpSSA__u_t(t$3391);
   } else {
   }
-  tmpCallObj$3807.toString(36);
+  const tmpCallCompVal$3 /*:unknown*/ = tmpCallObj$3807.toString;
+  $dotCall(tmpCallCompVal$3, tmpCallObj$3807, `toString`, 36);
+  const tmpCallCompVal$5 /*:unknown*/ = tmpCallObj$3811.replace;
   const tmpCalleeParam$11085 /*:regex*/ = /^0./;
-  const tmpClusterSSA_r$2027 /*:unknown*/ = tmpCallObj$3811.replace(tmpCalleeParam$11085, ``);
+  const tmpClusterSSA_r$2027 /*:unknown*/ = $dotCall(tmpCallCompVal$5, tmpCallObj$3811, `replace`, tmpCalleeParam$11085, ``);
   $coerce(tmpBinBothRhs$32, `string`);
   $coerce(tmpClusterSSA_r$2027, `string`);
   const tmpClusterSSA_t$9 /*:unknown*/ = tmpSSA_Tu();
@@ -134,7 +136,7 @@ $(tmpObjLitVal$159);
 `````js filename=intro
 const tmpFree$1 = function $free($dlr_$$0, $dlr_$$1) {
   const tmpBinBothLhs$3633 = $dlr_$$0 + 71046;
-  const tmpRet$1 = $String_fromCharCode(tmpBinBothLhs$3633 ^ `xyz`.charCodeAt($dlr_$$1));
+  const tmpRet$1 = $String_fromCharCode(tmpBinBothLhs$3633 ^ $dotCall($string_charCodeAt, `xyz`, `charCodeAt`, $dlr_$$1));
   return tmpRet$1;
 };
 $(function () {
@@ -184,7 +186,7 @@ const a = function b($$0,$$1 ) {
   const d = $$1;
   debugger;
   const e = c + 71046;
-  const f = "xyz".charCodeAt( d );
+  const f = $dotCall( $string_charCodeAt, "xyz", "charCodeAt", d );
   const g = e ^ f;
   const h = $String_fromCharCode( g );
   return h;
@@ -202,27 +204,29 @@ const i = function() {
   if (j) {
     tmpSSA__u_t( j );
   }
-  tmpCallObj$3807.toString( 36 );
-  const k = /^0./;
-  const l = tmpCallObj$3811.replace( k, "" );
+  const k = tmpCallObj$3807.toString;
+  $dotCall( k, tmpCallObj$3807, "toString", 36 );
+  const l = tmpCallObj$3811.replace;
+  const m = /^0./;
+  const n = $dotCall( l, tmpCallObj$3811, "replace", m, "" );
   $coerce( tmpBinBothRhs$32, "string" );
-  $coerce( l, "string" );
-  const m = tmpSSA_Tu();
-  if (m) {
-    tmpClusterSSA_tmpssa3_c$245 = m;
+  $coerce( n, "string" );
+  const o = tmpSSA_Tu();
+  if (o) {
+    tmpClusterSSA_tmpssa3_c$245 = o;
   }
   else {
-    const n = tmpSSA_Su();
-    if (n) {
-      tmpClusterSSA_tmpssa3_c$245 = n;
+    const p = tmpSSA_Su();
+    if (p) {
+      tmpClusterSSA_tmpssa3_c$245 = p;
     }
   }
   if (tmpIfTest$5467) {
-    let o = p( a, $, $ );
+    let q = r( a, $, $ );
     while ($LOOP_UNROLL_10) {
       if (tmpIfTest$5467) {
-        const q = p( a, $, $ );
-        o = o + q;
+        const s = r( a, $, $ );
+        q = q + s;
       }
       else {
         break;

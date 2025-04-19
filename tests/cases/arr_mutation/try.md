@@ -59,7 +59,10 @@ $( "after", b );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) outline any args for tdz
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

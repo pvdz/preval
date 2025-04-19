@@ -22,11 +22,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpCompProp /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-$coerce(tmpCompProp, `string`);
+const tmpCallComplexCallee /*:unknown*/ = $($);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam$3 /*:unknown*/ = $(2);
+const tmpCalleeParam /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+$coerce(tmpCalleeParam, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -36,9 +36,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpCalleeParam = $(1);
-$coerce(tmpCallCallee(tmpCalleeParam, $(2)), `string`);
+const tmpCallComplexCallee = $($);
+const tmpCalleeParam$1 = $(1);
+$coerce(tmpCallComplexCallee(tmpCalleeParam$1, $(2)), `string`);
 $({ a: 999, b: 1000 });
 `````
 

@@ -99,8 +99,8 @@ $(typeof Number.NaN, 'Number.NaN');
 const tmpStringFirstArg /*:unknown*/ = $spy(`String`);
 $coerce(tmpStringFirstArg, `string`);
 $(`string`);
-const tmpStringFirstArg$1 /*:unknown*/ = $spy(`Number`);
-$coerce(tmpStringFirstArg$1, `number`);
+const tmpNumberFirstArg /*:unknown*/ = $spy(`Number`);
+$coerce(tmpNumberFirstArg, `number`);
 $(`number`);
 $spy(`Boolean`);
 $(`boolean`);
@@ -126,13 +126,13 @@ $(`object`);
 $spy(`Date.now`);
 $(`number`);
 const tmpCalleeParam$41 /*:unknown*/ = $spy(`Date.UTC`);
-+tmpCalleeParam$41;
+$coerce(tmpCalleeParam$41, `number`);
 $(`number`);
 const tmpCalleeParam$45 /*:unknown*/ = $spy(`Date.parse`);
 $coerce(tmpCalleeParam$45, `string`);
 $(`number`);
 const tmpCalleeParam$49 /*:unknown*/ = $spy(`JSON.stringify`);
-const tmpUnaryArg$25 /*:primitive*/ = $JSON_stringify(tmpCalleeParam$49);
+const tmpUnaryArg$25 /*:primitive*/ = $dotCall($JSON_stringify, JSON, `stringify`, tmpCalleeParam$49);
 const tmpCalleeParam$47 /*:string*/ = typeof tmpUnaryArg$25;
 $(tmpCalleeParam$47);
 const tmpCalleeParam$53 /*:unknown*/ = $spy(`Math.abs`);
@@ -154,7 +154,7 @@ const tmpCalleeParam$73 /*:unknown*/ = $spy(`Math.atan`);
 $coerce(tmpCalleeParam$73, `number`);
 $(`number`);
 const tmpCalleeParam$77 /*:unknown*/ = $spy(`Math.atan2`);
-+tmpCalleeParam$77;
+$coerce(tmpCalleeParam$77, `number`);
 $(`number`);
 const tmpCalleeParam$81 /*:unknown*/ = $spy(`Math.atanh`);
 $coerce(tmpCalleeParam$81, `number`);
@@ -187,10 +187,10 @@ const tmpCalleeParam$117 /*:unknown*/ = $spy(`Math.fround`);
 $coerce(tmpCalleeParam$117, `number`);
 $(`number`);
 const tmpCalleeParam$121 /*:unknown*/ = $spy(`Math.hypot`);
-+tmpCalleeParam$121;
+$coerce(tmpCalleeParam$121, `number`);
 $(`number`);
 const tmpCalleeParam$125 /*:unknown*/ = $spy(`Math.imul`);
-+tmpCalleeParam$125;
+$coerce(tmpCalleeParam$125, `number`);
 $(`number`);
 const tmpCalleeParam$129 /*:unknown*/ = $spy(`Math.log`);
 $coerce(tmpCalleeParam$129, `number`);
@@ -205,13 +205,13 @@ const tmpCalleeParam$141 /*:unknown*/ = $spy(`Math.log2`);
 $coerce(tmpCalleeParam$141, `number`);
 $(`number`);
 const tmpCalleeParam$145 /*:unknown*/ = $spy(`Math.max`);
-+tmpCalleeParam$145;
+$coerce(tmpCalleeParam$145, `number`);
 $(`number`);
 const tmpCalleeParam$149 /*:unknown*/ = $spy(`Math.min`);
-+tmpCalleeParam$149;
+$coerce(tmpCalleeParam$149, `number`);
 $(`number`);
 const tmpCalleeParam$153 /*:unknown*/ = $spy(`Math.pow`);
-+tmpCalleeParam$153;
+$coerce(tmpCalleeParam$153, `number`);
 $(`number`);
 $spy(`Math.random`);
 $(`number`);
@@ -245,7 +245,7 @@ $(`boolean`);
 $spy(`Object.isSealed`);
 $(`boolean`);
 const tmpCalleeParam$209 /*:unknown*/ = $spy(`String.fromCharCode`);
-+tmpCalleeParam$209;
+$coerce(tmpCalleeParam$209, `number`);
 $(`string`);
 const tmpCalleeParam$213 /*:unknown*/ = $spy(`String.fromCodePoint`);
 $String_fromCodePoint(tmpCalleeParam$213);
@@ -296,12 +296,11 @@ $spy(`Array.of`);
 $(`object`);
 $spy(`Date.now`);
 $(`number`);
-const tmpCalleeParam$41 = $spy(`Date.UTC`);
-+tmpCalleeParam$41;
+$coerce($spy(`Date.UTC`), `number`);
 $(`number`);
 $coerce($spy(`Date.parse`), `string`);
 $(`number`);
-const tmpUnaryArg$25 = $JSON_stringify($spy(`JSON.stringify`));
+const tmpUnaryArg$25 = $dotCall($JSON_stringify, JSON, `stringify`, $spy(`JSON.stringify`));
 $(typeof tmpUnaryArg$25);
 $coerce($spy(`Math.abs`), `number`);
 $(`number`);
@@ -315,8 +314,7 @@ $coerce($spy(`Math.asinh`), `number`);
 $(`number`);
 $coerce($spy(`Math.atan`), `number`);
 $(`number`);
-const tmpCalleeParam$77 = $spy(`Math.atan2`);
-+tmpCalleeParam$77;
+$coerce($spy(`Math.atan2`), `number`);
 $(`number`);
 $coerce($spy(`Math.atanh`), `number`);
 $(`number`);
@@ -338,11 +336,9 @@ $coerce($spy(`Math.floor`), `number`);
 $(`number`);
 $coerce($spy(`Math.fround`), `number`);
 $(`number`);
-const tmpCalleeParam$121 = $spy(`Math.hypot`);
-+tmpCalleeParam$121;
+$coerce($spy(`Math.hypot`), `number`);
 $(`number`);
-const tmpCalleeParam$125 = $spy(`Math.imul`);
-+tmpCalleeParam$125;
+$coerce($spy(`Math.imul`), `number`);
 $(`number`);
 $coerce($spy(`Math.log`), `number`);
 $(`number`);
@@ -352,14 +348,11 @@ $coerce($spy(`Math.log1p`), `number`);
 $(`number`);
 $coerce($spy(`Math.log2`), `number`);
 $(`number`);
-const tmpCalleeParam$145 = $spy(`Math.max`);
-+tmpCalleeParam$145;
+$coerce($spy(`Math.max`), `number`);
 $(`number`);
-const tmpCalleeParam$149 = $spy(`Math.min`);
-+tmpCalleeParam$149;
+$coerce($spy(`Math.min`), `number`);
 $(`number`);
-const tmpCalleeParam$153 = $spy(`Math.pow`);
-+tmpCalleeParam$153;
+$coerce($spy(`Math.pow`), `number`);
 $(`number`);
 $spy(`Math.random`);
 $(`number`);
@@ -387,8 +380,7 @@ $spy(`Object.isFrozen`);
 $(`boolean`);
 $spy(`Object.isSealed`);
 $(`boolean`);
-const tmpCalleeParam$209 = $spy(`String.fromCharCode`);
-+tmpCalleeParam$209;
+$coerce($spy(`String.fromCharCode`), `number`);
 $(`string`);
 $String_fromCodePoint($spy(`String.fromCodePoint`));
 $(`string`);
@@ -445,13 +437,13 @@ $( "object" );
 $spy( "Date.now" );
 $( "number" );
 const h = $spy( "Date.UTC" );
-+h;
+$coerce( h, "number" );
 $( "number" );
 const i = $spy( "Date.parse" );
 $coerce( i, "string" );
 $( "number" );
 const j = $spy( "JSON.stringify" );
-const k = $JSON_stringify( j );
+const k = $dotCall( $JSON_stringify, JSON, "stringify", j );
 const l = typeof k;
 $( l );
 const m = $spy( "Math.abs" );
@@ -473,7 +465,7 @@ const r = $spy( "Math.atan" );
 $coerce( r, "number" );
 $( "number" );
 const s = $spy( "Math.atan2" );
-+s;
+$coerce( s, "number" );
 $( "number" );
 const t = $spy( "Math.atanh" );
 $coerce( t, "number" );
@@ -506,10 +498,10 @@ const bc = $spy( "Math.fround" );
 $coerce( bc, "number" );
 $( "number" );
 const bd = $spy( "Math.hypot" );
-+bd;
+$coerce( bd, "number" );
 $( "number" );
 const be = $spy( "Math.imul" );
-+be;
+$coerce( be, "number" );
 $( "number" );
 const bf = $spy( "Math.log" );
 $coerce( bf, "number" );
@@ -524,13 +516,13 @@ const bi = $spy( "Math.log2" );
 $coerce( bi, "number" );
 $( "number" );
 const bj = $spy( "Math.max" );
-+bj;
+$coerce( bj, "number" );
 $( "number" );
 const bk = $spy( "Math.min" );
-+bk;
+$coerce( bk, "number" );
 $( "number" );
 const bl = $spy( "Math.pow" );
-+bl;
+$coerce( bl, "number" );
 $( "number" );
 $spy( "Math.random" );
 $( "number" );
@@ -564,7 +556,7 @@ $( "boolean" );
 $spy( "Object.isSealed" );
 $( "boolean" );
 const br = $spy( "String.fromCharCode" );
-+br;
+$coerce( br, "number" );
 $( "string" );
 const bs = $spy( "String.fromCodePoint" );
 $String_fromCodePoint( bs );
@@ -592,9 +584,6 @@ $( "number", "Number.NaN" );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Array_from
-- (todo) type trackeed tricks can possibly support static $Array_isArray
-- (todo) type trackeed tricks can possibly support static $Array_of
 - (todo) type trackeed tricks can possibly support static $Date_now
 - (todo) type trackeed tricks can possibly support static $Date_UTC
 - (todo) type trackeed tricks can possibly support static $Date_parse
@@ -629,16 +618,18 @@ $( "number", "Number.NaN" );
 - (todo) type trackeed tricks can possibly support static $Math_round
 - (todo) type trackeed tricks can possibly support static $Math_sign
 - (todo) type trackeed tricks can possibly support static $Math_sin
+- (todo) type trackeed tricks can possibly support static $Object_is
+- (todo) type trackeed tricks can possibly support static $Object_isFrozen
+- (todo) type trackeed tricks can possibly support static $Object_isSealed
+- (todo) type trackeed tricks can possibly support static $Array_from
+- (todo) type trackeed tricks can possibly support static $Array_isArray
+- (todo) type trackeed tricks can possibly support static $Array_of
 - (todo) type trackeed tricks can possibly support static $Number_isFinite
 - (todo) type trackeed tricks can possibly support static $Number_isInteger
 - (todo) type trackeed tricks can possibly support static $Number_isNaN
 - (todo) type trackeed tricks can possibly support static $Number_isSafeInteger
 - (todo) type trackeed tricks can possibly support static $Number_parseFloat
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
-- (todo) type trackeed tricks can possibly support static $Object_is
-- (todo) type trackeed tricks can possibly support static $Object_isFrozen
-- (todo) type trackeed tricks can possibly support static $Object_isSealed
-- (todo) type trackeed tricks can possibly support static $String_fromCodePoint
 - (todo) type trackeed tricks can possibly support static $String_raw
 
 

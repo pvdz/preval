@@ -122,7 +122,7 @@ $( i );
 ## Todos triggered
 
 
-- (todo) Support referencing this builtin in isFree: $
+None
 
 
 ## Globals

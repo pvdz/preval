@@ -21,11 +21,11 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpBinBothLhs /*:unknown*/ = b[tmpCompProp];
-const tmpCompProp$1 /*:unknown*/ = $(`c`);
-const tmpBinBothRhs /*:unknown*/ = b[tmpCompProp$1];
+const tmpBinBothLhs /*:unknown*/ = b[tmpCalleeParam];
+const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
+const tmpBinBothRhs /*:unknown*/ = b[tmpCalleeParam$1];
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
@@ -36,11 +36,11 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`c`);
+const tmpCalleeParam = $(`c`);
 const b = { c: 1 };
-const tmpBinBothLhs = b[tmpCompProp];
-const tmpCompProp$1 = $(`c`);
-tmpBinBothLhs + b[tmpCompProp$1];
+const tmpBinBothLhs = b[tmpCalleeParam];
+const tmpCalleeParam$1 = $(`c`);
+tmpBinBothLhs + b[tmpCalleeParam$1];
 $({ a: 999, b: 1000 }, b);
 `````
 

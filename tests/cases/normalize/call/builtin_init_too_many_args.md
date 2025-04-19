@@ -18,10 +18,10 @@ $(x);
 
 
 `````js filename=intro
-const tmpArgOverflow /*:unknown*/ = $spy(`a`);
+const tmpCalleeParam /*:unknown*/ = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-const x /*:boolean*/ = isNaN(tmpArgOverflow);
+const x /*:boolean*/ = isNaN(tmpCalleeParam);
 $(x);
 `````
 
@@ -30,10 +30,10 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArgOverflow = $spy(`a`);
+const tmpCalleeParam = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-$(isNaN(tmpArgOverflow));
+$(isNaN(tmpCalleeParam));
 `````
 
 

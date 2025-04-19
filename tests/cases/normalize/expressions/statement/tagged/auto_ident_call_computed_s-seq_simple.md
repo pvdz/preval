@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCalleeParam$1 /*:unknown*/ = b.$(1);
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall($, b, `\$`, 1);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -34,7 +34,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$1 = { $: $ }.$(1);
+const tmpCalleeParam$1 = $dotCall($, { $: $ }, `\$`, 1);
 $([`before `, ` after`], tmpCalleeParam$1);
 $({ a: 999, b: 1000 });
 `````
@@ -45,7 +45,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 const c = [ "before ", " after" ];
 $( c, b );
 const d = {

@@ -63,7 +63,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-None
+- (todo) Support this node type in isFree: SpreadElement
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

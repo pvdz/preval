@@ -23,7 +23,8 @@ $(arr.length);
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`splice`);
 const arr /*:array*/ = [1, 2, 3];
-arr[tmpCallCompProp](1, 2, 20);
+const tmpCallCompVal /*:unknown*/ = arr[tmpCallCompProp];
+$dotCall(tmpCallCompVal, arr, undefined, 1, 2, 20);
 const tmpCalleeParam /*:number*/ = arr.length;
 $(tmpCalleeParam);
 `````
@@ -46,16 +47,17 @@ With rename=true
 `````js filename=intro
 const a = $( "splice" );
 const b = [ 1, 2, 3 ];
-b[ a ]( 1, 2, 20 );
-const c = b.length;
-$( c );
+const c = b[ a ];
+$dotCall( c, b, undefined, 1, 2, 20 );
+const d = b.length;
+$( d );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+None
 
 
 ## Globals

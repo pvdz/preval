@@ -1,4 +1,3 @@
-import walk from '../lib/walk.mjs';
 import {walkStmt, WALK_NO_FURTHER, HARD_STOP} from '../lib/walk_stmt_norm.mjs';
 import {ASSERT, source, tmat, vlog, log, vgroup, vgroupEnd, todo} from './utils.mjs';
 import { $p } from './$p.mjs';
@@ -8,6 +7,7 @@ import {
   ARGUMENTS_ALIAS_BASE_NAME,
   SYMBOL_COERCE,
   SYMBOL_FRFR,
+  SYMBOL_DOTCALL,
   THIS_ALIAS_BASE_NAME,
 } from './symbols_preval.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL } from './constants.mjs';
@@ -2851,14 +2851,20 @@ export function isArraySerializable(arrayMeta, fdata, knownParent = null, sush =
 
 export function getSerializableArrayParts(arrayMeta, fdata) {
   // Should have been checked by isArraySerializable before calling this func
-  return arrayMeta.varDeclRef.node.elements.map(enode => {
-    if (!enode) return undefined;
-    if (isPrimitive(enode)) return getPrimitiveValue(enode);
-    ASSERT(enode.type === 'Identifier');
-    const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
-    ASSERT(meta.isConstant && meta.varDeclRef);
-    return getSerializableArrayParts(meta, fdata);
-  });
+  const elements = arrayMeta.varDeclRef.node.elements;
+  const arr = [];
+  for (let i=0; i<elements.length; ++i) {
+    const enode = elements[i];
+    if (!enode) arr.push(undefined);
+    else if (isPrimitive(enode)) arr.push(getPrimitiveValue(enode));
+    else {
+      ASSERT(enode.type === 'Identifier');
+      const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
+      ASSERT(meta.isConstant && meta.varDeclRef);
+      arr.push(getSerializableArrayParts(meta, fdata));
+    }
+  }
+  return arr;
 }
 
 
@@ -2969,4 +2975,57 @@ export function normalizeTemplateSimple(node) {
   vgroupEnd();
 
   return newNode;
+}
+
+/**
+ * Confirm that given statement pair is doing: `const x = Buffer.from('str', 'enc'); const y = x.toString('enc');`
+ * More concretely: `const x = $dotCall($Buffer_from, Buffer, undefined, "str", "enc"); const y = x.toString; $dotCall(y, x, "toString", "utf8");
+ * The args of both calls should be predictable primitives. The second method call object should be on the first var.
+ * The var decls should be const.
+ */
+export function isBufferConvertPattern(stmt1, stmt2, stmt3, paramNameOrPrim) {
+  // Verify that the first statement is like `const x = $dotCall($Buffer_from, <Buffer>, <undefined>, x, "base64")`, where x is a param
+  if (stmt1.type !== 'VarStatement') return false;
+  if (stmt2.type !== 'VarStatement') return false;
+  if (stmt3.type !== 'VarStatement') return false;
+
+  const init1 = stmt1.init;
+  if (init1.type !== 'CallExpression') return false;
+  if (init1.callee.type !== 'Identifier') return false;
+  if (init1.callee.name !== SYMBOL_DOTCALL) return false;
+  if (init1.arguments.length === 3) return false;
+  if (init1.arguments[0].type !== 'Identifier') return false;
+  if (init1.arguments[0].name !== symbo('Buffer', 'from')) return false;
+  // Ignore second/third arg. We don't care so much (though we should preserve the second arg)
+  // If param arg is `true` then the arg must be a primitive of any kind. Otherwise it must match the given param name.
+  if (paramNameOrPrim === true) {
+    if (!isPrimitive(init1.arguments[3])) return false;
+  } else {
+    if (init1.arguments[3].type !== 'Identifier') return false;
+    if (init1.arguments[3].name !== paramNameOrPrim) return false;
+  }
+  // All args beyond the fourth must be primitives we can predict, regardless
+  if (!init1.arguments.every((anode,i) => i <= 3 || isPrimitive(anode))) return false;
+
+  // Verify that the second statement is something like `const tmp = id1.toString;`
+  // (In some future another transform will eliminate this and use the $buffer_tostring symbol...)
+  const init2 = stmt2.init;
+  if (init2.type !== 'MemberExpression') return false;
+  if (init2.computed) return false;
+  if (init2.object.type !== 'Identifier') return false;
+  if (init2.object.name !== stmt1.id.name) return false; // buf.
+  if (init2.property.name !== 'toString') return false;
+
+  // Verify that the third statement is something like `$dotCall(id2, id1, 'toString', 'ascii')`
+  const init3 = stmt3.init;
+  if (init3.type !== 'CallExpression') return false;
+  if (init3.callee.type !== 'Identifier') return false;
+  if (init3.callee.name !== SYMBOL_DOTCALL) return false;
+  if (init3.arguments.length === 3) return false; // I mean this is probably fine to ignore, but...
+  if (init3.arguments[0].type !== 'Identifier') return false;
+  if (init3.arguments[0].name !== stmt2.id.name) return false;
+  // Verify that all the args to .toString() are primitives
+  if (!init3.arguments.every((anode,i) => i<=2 || isPrimitive(anode))) return false;
+
+  return true;
 }

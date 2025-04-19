@@ -23,7 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpBinBothRhs /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
@@ -35,7 +36,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs = $({ $: $ }).$(1);
+const tmpCallObj = $({ $: $ });
+const tmpBinBothRhs = tmpCallObj.$(1);
 const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
@@ -48,14 +50,15 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-const d = {
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+const e = {
   a: 999,
   b: 1000,
 };
-const e = d * c;
-$( e );
-$( e );
+const f = e * d;
+$( f );
+$( f );
 `````
 
 

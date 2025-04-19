@@ -21,7 +21,7 @@ const y = $spy('b');
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
 const y /*:unknown*/ = $spy(`b`);
-``.split(x, y);
+$dotCall($string_split, ``, `split`, x, y);
 `````
 
 
@@ -29,7 +29,7 @@ const y /*:unknown*/ = $spy(`b`);
 (This ought to be the final result)
 
 `````js filename=intro
-``.split($spy(`a`), $spy(`b`));
+$dotCall($string_split, ``, `split`, $spy(`a`), $spy(`b`));
 `````
 
 
@@ -39,7 +39,7 @@ With rename=true
 `````js filename=intro
 const a = $spy( "a" );
 const b = $spy( "b" );
-"".split( a, b );
+$dotCall( $string_split, "", "split", a, b );
 `````
 
 

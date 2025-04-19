@@ -31,7 +31,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpAssignMemLhsObj /*:unknown*/ = b.$(1);
+    const tmpCallCompVal /*:unknown*/ = b.$;
+    const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpCallCompVal, b, `\$`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
@@ -75,16 +76,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const g = d.$( 1 );
-    const h = e.value;
-    g.x = h;
+    const g = d.$;
+    const h = $dotCall( g, d, "$", 1 );
+    const i = e.value;
+    h.x = i;
   }
 }
-const i = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( i );
+$( j );
 `````
 
 

@@ -21,6 +21,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function returnsParam(fdata) {
   group('\n\n\nChecking for functions that return a static mutation of an arg');
@@ -77,12 +78,12 @@ function _returnsParam(fdata) {
       vlog('- Returns a builtin.');
       return;
     }
-    if (returnMeta.isImplicitGlobal) {
+    else if (returnMeta.isImplicitGlobal) {
       // TODO: I think we can outline this as well but globals may be observable so I'm not sure if it'd be safe
       vlog('- Returned value is an implicit global');
       return;
     }
-    if (!returnMeta.isConstant) {
+    else if (!returnMeta.isConstant) {
       vlog('- Returned value is not a constant');
       return;
     }
@@ -96,7 +97,7 @@ function _returnsParam(fdata) {
 
     const varDeclWrite = returnMeta.writes.find((write) => write.kind === 'var');
     if (!varDeclWrite) {
-      // TODO: not sure when this can happen. Should assert it but for not let's just let it slide...
+      // TODO: not sure when this can happen. Should assert it but for now let's just let it slide...
       vlog('- Returned ident had no var decl');
       return;
     }
@@ -146,20 +147,40 @@ function _returnsParam(fdata) {
       }
       case 'CallExpression': {
         // TODO: we can improve this a little bit by also mapping closures and other params.
-        if (init.callee.type === 'Identifier' && funcNode.$p.paramNames.includes(init.callee.name)) {
-          // Regular call.
-          if (init['arguments'].every((anode) => AST.isPrimitive(anode))) {
-            vlog('May be able to outline this call');
-            param = funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === init.callee.name);
-            ASSERT(param, 'should not get here otherwise', init.callee.name, funcNode.params);
-            expr = init;
+        ASSERT(init.callee.type === 'Identifier', 'normalized to ident calls', init);
+        const funcName = init.callee.name;
+
+        if (funcName === SYMBOL_DOTCALL) {
+          // Is this dotcalling a func with the context a param?
+          const funcName = init.arguments[0].name;
+          const ctxNode = init.arguments[1];
+          const args = init.arguments.slice(3);
+          if (args.every((anode) => AST.isPrimitive(anode))) {
+            // Less likely but the dotcall callee could also be a param (maybe due to transforms or simple a contrived example)
+            const calleeIsParam = init.arguments[0].type === 'Identifier' && funcNode.$p.paramNames.includes(funcName);
+            const contextIsParam = init.arguments[1].type === 'Identifier' && funcNode.$p.paramNames.includes(init.arguments[1].name);
+
+            // Do not outline if context or callee is a local var or something.
+            if ((calleeIsParam || AST.isPrimitive(init.arguments[0])) && (contextIsParam || AST.isPrimitive(init.arguments[1]))) {
+              // `function f(a) { return a.toString(); }`
+              // `function f(a) { return $dotCall(a, x, undefined); }`
+              // `function f(a, b) { return $dotCall(a, b, undefined); }` (like a function apply abstraction)
+              vlog('May be able to outline this dotcall; callee and/or context are params');
+              // Doesn't matter. Both have to be checked below.
+              param = 'ignored_because_both_must_be_resolved';
+              expr = init;
+            }
+            else {
+              // `function f(a) { return $dotCall(x, a, undefined); }`
+            }
           }
-        } else if (init.callee.type === 'MemberExpression' && funcNode.$p.paramNames.includes(init.callee.object.name)) {
-          // Method call. Why not.
-          if (init['arguments'].every((anode) => AST.isPrimitive(anode))) {
-            vlog('May be able to outline this call');
-            param = funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === init.callee.object.name);
-            ASSERT(param, 'should not get here otherwise', init.callee.object, funcNode.params);
+        } else {
+          // Is this directly calling a param?
+          if (funcNode.$p.paramNames.includes(funcName) && init['arguments'].every((anode) => AST.isPrimitive(anode))) {
+            // `function f(a){ return a(); } f(g)`
+            vlog('May be able to outline this ident call');
+            param = funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === funcName);
+            ASSERT(param, 'should not get here otherwise', funcName, funcNode.params);
             expr = init;
           }
         }
@@ -263,38 +284,69 @@ function _returnsParam(fdata) {
         }
       });
       if (!ok) return false;
+      //TODO // if there are multiple calls, we must do them all or none...
 
+      // This is the actual value being passed on to the param that's being outlined.
+      // Eg. `function f(x) { return x(); } f(g)` then the clone would be a clone of the ident node `g`
       const matchingArgNodeClone = AST.cloneSimple(callNode['arguments'][paramIndex]);
 
       let clone;
       if (expr.type === 'UnaryExpression') {
         clone = AST.unaryExpression(expr.operator, matchingArgNodeClone);
-      } else if (expr.type === 'BinaryExpression') {
-        ASSERT((expr.left.type === 'Identifier') ^ (expr.right.type === 'Identifier'), 'either must be ident but not both', expr);
+      }
+      else if (expr.type === 'BinaryExpression') {
+        ASSERT((expr.left.type === 'Identifier' && !AST.isPrimitive(expr.left)) ^ (expr.right.type === 'Identifier' && !AST.isPrimitive(expr.right)), 'either must be ident but not both', expr);
         if (expr.left.type === 'Identifier') {
           clone = AST.binaryExpression(expr.operator, matchingArgNodeClone, AST.cloneSimple(expr.right));
         } else {
           clone = AST.binaryExpression(expr.operator, AST.cloneSimple(expr.left), matchingArgNodeClone);
         }
-      } else if (expr.type === 'Identifier') {
+      }
+      else if (expr.type === 'Identifier') {
         clone = matchingArgNodeClone;
-      } else if (expr.type === 'CallExpression') {
-        if (expr.callee.type === 'Identifier') {
-          clone = AST.callExpression(
-            matchingArgNodeClone,
-            expr['arguments'].map((anode) => AST.cloneSimple(anode)),
-          );
-        } else if (expr.callee.type === 'MemberExpression') {
-          clone = AST.callExpression(
-            AST.memberExpression(matchingArgNodeClone, AST.cloneSimple(expr.callee.property), expr.callee.computed),
-            expr['arguments'].map((anode) => AST.cloneSimple(anode)),
-          );
+      }
+      else if (expr.type === 'CallExpression') {
+        ASSERT(expr.callee.type === 'Identifier');
+        // Note: we have to be careful with dotcall as we have to check both the callee and the context separately
+
+        // `expr` is the call that is at the end of the function, the expression we're trying to move out
+        clone = AST.cloneSortOfSimple(expr); // Normalized call is sort-of-simple
+
+        const callName = expr.callee.name;
+        if (callName === SYMBOL_DOTCALL) {
+          ASSERT(typeof param === 'string', 'the param for dotcall must be resolved per callee/context'); // see above
+          // The callee (arg 0) might be a param, or the context (arg 1) might be a param, or both
+          // Note: `expr` is the func call inside the function that we are trying to move. callNode is the call to the function
+          //       from which expr is being moved out. We need to check (again) whether the callee/context is a param.
+          const calleeParam =
+            expr.arguments[0].type === 'Identifier' &&
+            funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === expr.arguments[0].name);
+          if (calleeParam) {
+            clone.arguments[0] = AST.cloneSimple(callNode['arguments'][calleeParam.index]);
+          }
+          const contextParam =
+            expr.arguments[1].type === 'Identifier' &&
+            funcNode.params.find((pnode) => pnode.$p.paramVarDeclRef.name === expr.arguments[1].name);
+          if (contextParam) {
+            clone.arguments[1] = AST.cloneSimple(callNode['arguments'][contextParam.index]);
+          }
+          ASSERT(calleeParam || contextParam, 'should find at least the callee or context as param');
         } else {
-          ASSERT(false);
+          // The callee is the param
+          clone.callee = matchingArgNodeClone;
         }
-      } else if (expr.type === 'MemberExpression') {
+
+        // We have to replace the proper node here
+        // When we're dotcalling, we replace the context, otherwise the callee
+        if (callName === SYMBOL_DOTCALL) {
+          clone.arguments[1] = matchingArgNodeClone;
+        } else {
+        }
+      }
+      else if (expr.type === 'MemberExpression') {
         clone = AST.memberExpression(matchingArgNodeClone, AST.cloneSimple(expr.property), expr.computed);
-      } else {
+      }
+      else {
         ASSERT(false);
       }
 
@@ -308,7 +360,10 @@ function _returnsParam(fdata) {
           // then yet another rule will eliminate it.
 
           rule('If a function returns a static operation on a parameter, it should outline this operation');
-          example('function f(a) { const x = a + 1; return x; } $(f(y));', 'function f(a) { const x = a + 1; return x; } f(); $(y + 1);');
+          example(
+            'function f(a) { const x = a + 1; return x; } $(f(y));',
+            'function f(a) { const x = a + 1; return x; } f(); $(y + 1);'
+          );
           before(varDeclWrite.blockBody[varDeclWrite.blockIndex], funcNode);
           before(callRead.blockBody[callRead.blockIndex], varDeclWrite.blockBody[returnMeta.blockIndex]);
 

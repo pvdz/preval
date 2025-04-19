@@ -50,7 +50,8 @@ With rename=true
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
 
 
 ## Globals

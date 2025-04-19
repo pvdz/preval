@@ -21,9 +21,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpThrowArg /*:unknown*/ = b[tmpCompProp];
+const tmpThrowArg /*:unknown*/ = b[tmpCalleeParam];
 throw tmpThrowArg;
 `````
 
@@ -32,8 +32,8 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`c`);
-const tmpThrowArg = { c: 1 }[tmpCompProp];
+const tmpCalleeParam = $(`c`);
+const tmpThrowArg = { c: 1 }[tmpCalleeParam];
 throw tmpThrowArg;
 `````
 

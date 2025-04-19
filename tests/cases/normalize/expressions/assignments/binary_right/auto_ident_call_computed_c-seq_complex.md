@@ -25,7 +25,8 @@ const tmpBinBothLhs /*:unknown*/ = $(100);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
@@ -53,10 +54,11 @@ const a = $( 100 );
 const b = { $: $ };
 const c = $( b );
 const d = $( "$" );
-const e = c[ d ]( 1 );
-const f = a + e;
+const e = c[ d ];
+const f = $dotCall( e, c, undefined, 1 );
+const g = a + f;
+$( g );
 $( f );
-$( e );
 `````
 
 

@@ -21,8 +21,8 @@ $(f());
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`foo`);
-$coerce(tmpCompProp, `string`);
+const tmpCalleeParam /*:unknown*/ = $(`foo`);
+$coerce(tmpCalleeParam, `string`);
 $(undefined);
 `````
 

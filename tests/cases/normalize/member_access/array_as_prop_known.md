@@ -22,7 +22,9 @@ $(xyz);
 `````js filename=intro
 const arr /*:array*/ = [`toString`];
 $Array_from(arr);
-$(`function String() { [native code] }`);
+const tmpCallCompVal$1 /*:unknown*/ = String[arr];
+const xyz /*:unknown*/ = $dotCall(tmpCallCompVal$1, String, undefined);
+$(xyz);
 `````
 
 
@@ -30,8 +32,9 @@ $(`function String() { [native code] }`);
 (This ought to be the final result)
 
 `````js filename=intro
-$Array_from([`toString`]);
-$(`function String() { [native code] }`);
+const arr = [`toString`];
+$Array_from(arr);
+$(String[arr]());
 `````
 
 
@@ -41,7 +44,9 @@ With rename=true
 `````js filename=intro
 const a = [ "toString" ];
 $Array_from( a );
-$( "function String() { [native code] }" );
+const b = String[ a ];
+const c = $dotCall( b, String, undefined );
+$( c );
 `````
 
 

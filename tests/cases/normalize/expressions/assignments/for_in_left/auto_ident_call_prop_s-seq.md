@@ -32,7 +32,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    a = b.$(1);
+    const tmpCallCompVal /*:unknown*/ = b.$;
+    a = $dotCall(tmpCallCompVal, b, `\$`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     a.x = tmpAssignMemRhs;
   }
@@ -80,9 +81,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    a = e.$( 1 );
-    const h = f.value;
-    a.x = h;
+    const h = e.$;
+    a = $dotCall( h, e, "$", 1 );
+    const i = f.value;
+    a.x = i;
   }
 }
 $( a );

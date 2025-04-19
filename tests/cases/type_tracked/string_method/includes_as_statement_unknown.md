@@ -6,7 +6,7 @@
 
 ## Options
 
-- globals: a b c
+- globals: a b c x
 
 ## Input
 
@@ -64,9 +64,7 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None (except for the 4 globals expected by the test)
 
 
 ## Runtime Outcome

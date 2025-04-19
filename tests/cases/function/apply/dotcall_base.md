@@ -19,16 +19,14 @@ $($dotCall(apply, f, 'prop-unused', undefined, ['x'])); // should print x
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
+const f /*:()=>unknown*/ = function () {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   $(...tmpPrevalAliasArgumentsAny);
   return undefined;
 };
-const apply /*:unknown*/ = $Function_prototype.apply;
-const tmpCalleeParam$5 /*:array*/ = [`x`];
-const tmpCalleeParam /*:unknown*/ = $dotCall(apply, f, `prop-unused`, undefined, tmpCalleeParam$5);
-$(tmpCalleeParam);
+f(`x`);
+$(undefined);
 `````
 
 
@@ -40,8 +38,8 @@ const f = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
   $(...tmpPrevalAliasArgumentsAny);
 };
-const apply = $Function_prototype.apply;
-$($dotCall(apply, f, `prop-unused`, undefined, [`x`]));
+f(`x`);
+$(undefined);
 `````
 
 
@@ -55,10 +53,8 @@ const a = function() {
   $( ...b );
   return undefined;
 };
-const d = $Function_prototype.apply;
-const e = [ "x" ];
-const f = $dotCall( d, a, "prop-unused", undefined, e );
-$( f );
+a( "x" );
+$( undefined );
 `````
 
 

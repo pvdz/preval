@@ -45,8 +45,10 @@ const a$1 /*:object*/ = {
     return a$1;
   },
 };
-const tmpChainElementCall$1 /*:unknown*/ = a$1.b();
-const tmpChainElementCall$3 /*:unknown*/ = tmpChainElementCall$1.c();
+const tmpChainElementObject /*:unknown*/ = a$1.b;
+const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, a$1, `b`);
+const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.c;
+const tmpChainElementCall$3 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, `c`);
 const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementCall$3.d;
 $(tmpChainElementObject$3);
 `````
@@ -70,7 +72,8 @@ const a$1 = {
     return a$1;
   },
 };
-$(a$1.b().c().d);
+const tmpChainElementCall$1 = a$1.b();
+$(tmpChainElementCall$1.c().d);
 `````
 
 
@@ -96,10 +99,12 @@ const a = {
     return a;
   },
 };
-const b = a.b();
-const c = b.c();
-const d = c.d;
-$( d );
+const b = a.b;
+const c = $dotCall( b, a, "b" );
+const d = c.c;
+const e = $dotCall( d, c, "c" );
+const f = e.d;
+$( f );
 `````
 
 

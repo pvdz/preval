@@ -49,7 +49,7 @@ $( 2 );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+None
 
 
 ## Globals

@@ -49,7 +49,8 @@ if (tmpIfTest$3) {
   const b /*:object*/ = { $: $ };
   const tmpCallCompObj /*:unknown*/ = $(b);
   const tmpCallCompProp /*:unknown*/ = $(`\$`);
-  tmpCallCompObj[tmpCallCompProp](1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+  $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 } else {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$5) {
@@ -115,11 +116,12 @@ if (f) {
   const g = { $: $ };
   const h = $( g );
   const i = $( "$" );
-  h[ i ]( 1 );
+  const j = h[ i ];
+  $dotCall( j, h, undefined, 1 );
 }
 else {
-  const j = b <= 1;
-  if (j) {
+  const k = b <= 1;
+  if (k) {
     $( "fail1" );
     $( "fail2" );
   }
@@ -127,11 +129,11 @@ else {
     $( "fail2" );
   }
 }
-const k = {
+const l = {
   a: 999,
   b: 1000,
 };
-$( k );
+$( l );
 `````
 
 

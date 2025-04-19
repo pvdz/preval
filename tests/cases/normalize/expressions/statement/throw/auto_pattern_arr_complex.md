@@ -56,7 +56,7 @@ throw c;
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

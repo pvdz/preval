@@ -23,17 +23,17 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpCallCallee /*:unknown*/ = $($);
+  const tmpCallComplexCallee /*:unknown*/ = $($);
   const tmpCalleeParam /*:unknown*/ = $(1);
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  let tmpClusterSSA_a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  let tmpClusterSSA_a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCallCallee$1 /*:unknown*/ = $($);
+      const tmpCallComplexCallee$1 /*:unknown*/ = $($);
       const tmpCalleeParam$2 /*:unknown*/ = $(1);
       const tmpCalleeParam$4 /*:unknown*/ = $(2);
-      tmpClusterSSA_a = tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
+      tmpClusterSSA_a = tmpCallComplexCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
     } else {
       break;
     }
@@ -51,12 +51,12 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  const tmpCallCallee = $($);
-  let tmpClusterSSA_a = tmpCallCallee($(1), $(2));
+  const tmpCallComplexCallee = $($);
+  let tmpClusterSSA_a = tmpCallComplexCallee($(1), $(2));
   while (true) {
     if ($(1)) {
-      const tmpCallCallee$1 = $($);
-      tmpClusterSSA_a = tmpCallCallee$1($(1), $(2));
+      const tmpCallComplexCallee$1 = $($);
+      tmpClusterSSA_a = tmpCallComplexCallee$1($(1), $(2));
     } else {
       break;
     }
@@ -106,6 +106,7 @@ else {
 
 
 - (todo) objects in isFree check
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 b.c = tmpNestedAssignPropRhs;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
@@ -38,8 +38,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-b.c = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+b.c = tmpCompObj[tmpCalleeParam];
 while (true) {
   $(1);
 }

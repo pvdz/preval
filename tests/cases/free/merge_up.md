@@ -41,7 +41,7 @@ const tmpFree /*:(string, number)=>string*/ = function $free($$0, $$1) {
   const x$1 /*:number*/ = $$1;
   debugger;
   const extra$1 /*:string*/ = `${somestr}x`;
-  const chr /*:string*/ = extra$1.charAt(1);
+  const chr /*:string*/ = $dotCall($string_charAt, extra$1, `charAt`, 1);
   const tmpIfTest$3 /*:number*/ = x$1 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
   const ret2 /*:string*/ = tmpRet + chr;
@@ -67,7 +67,7 @@ if (x) {
 
 `````js filename=intro
 const tmpFree = function $free(somestr, x$1) {
-  const chr = `${somestr}x`.charAt(1);
+  const chr = $dotCall($string_charAt, `${somestr}x`, `charAt`, 1);
   const ret2 = ((x$1 & 48) === 48) + chr;
   return ret2;
 };
@@ -90,7 +90,7 @@ const a = function b($$0,$$1 ) {
   const d = $$1;
   debugger;
   const e = `${c}x`;
-  const f = e.charAt( 1 );
+  const f = $dotCall( $string_charAt, e, "charAt", 1 );
   const g = d & 48;
   const h = g === 48;
   const i = h + f;

@@ -58,7 +58,7 @@ $( c, a );
 ## Todos triggered
 
 
-None
+- (todo) convert this Boolean trap to the symbo pattern
 
 
 ## Globals

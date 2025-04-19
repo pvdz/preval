@@ -53,7 +53,7 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_push
 
 
 ## Globals

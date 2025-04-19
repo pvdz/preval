@@ -33,8 +33,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
     if (tmpIfTest$1) {
     } else {
-      const tmpCalleeParam$7 /*:unknown*/ = $(1);
-      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$7);
+      const tmpCalleeParam$3 /*:unknown*/ = $(1);
+      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
       tmpAssignMemLhsObj$1 = tmpChainElementCall$1;
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;

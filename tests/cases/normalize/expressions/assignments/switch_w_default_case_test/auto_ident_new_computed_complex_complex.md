@@ -31,8 +31,8 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`\$`);
-const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`\$`);
+const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
@@ -63,8 +63,8 @@ if (tmpIfTest$5) {
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCompObj = $({ $: $ });
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`\$`);
+const tmpNewCallee = tmpCompObj[tmpCalleeParam];
 const tmpClusterSSA_a = new tmpNewCallee(1);
 if (tmpClusterSSA_a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;

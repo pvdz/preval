@@ -25,8 +25,8 @@ const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a);
 } else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
   $(a);
 }
 `````

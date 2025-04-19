@@ -56,7 +56,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (chr$1) {
       const chr2$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
       const regex$1 /*:regex*/ = /xyz/g;
-      str = str.replace(regex$1, chr2$1);
+      str = $dotCall($string_replace, str, `replace`, regex$1, chr2$1);
     } else {
     }
   } else {
@@ -79,7 +79,7 @@ while (true) {
   tmpClusterSSA_count$2 = tmpClusterSSA_count$2 - 1;
   if (tmpPostUpdArgIdent$2) {
     if (arr[tmpClusterSSA_count$2]) {
-      str = str.replace(/xyz/g, arr[tmpClusterSSA_count$2]);
+      str = $dotCall($string_replace, str, `replace`, /xyz/g, arr[tmpClusterSSA_count$2]);
     }
   } else {
     break;
@@ -104,7 +104,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (e) {
       const f = c[ b ];
       const g = /xyz/g;
-      a = a.replace( g, f );
+      a = $dotCall( $string_replace, a, "replace", g, f );
     }
   }
   else {
@@ -118,8 +118,8 @@ $( a );
 ## Todos triggered
 
 
-- (todo) Support referencing this builtin in isFree: $string_replace
-- (todo) inline computed array property read
+- (todo) regex in free loops
+- (todo) do we want to support Literal as expression statement in free loops?
 
 
 ## Globals

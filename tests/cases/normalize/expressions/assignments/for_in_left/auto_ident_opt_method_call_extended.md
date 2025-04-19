@@ -33,7 +33,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     a = undefined;
-    const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+    const tmpChainElementObject$3 /*:unknown*/ = tmpObjLitVal$1.e;
+    const tmpChainElementCall /*:unknown*/ = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, `e`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpChainElementCall.x = tmpAssignMemRhs;
   }
@@ -83,9 +84,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
   else {
     a = undefined;
-    const h = e.e( 1 );
-    const i = f.value;
-    h.x = i;
+    const h = e.e;
+    const i = $dotCall( h, e, "e", 1 );
+    const j = f.value;
+    i.x = j;
   }
 }
 $( a );
@@ -96,6 +98,7 @@ $( a );
 
 
 - (todo) objects in isFree check
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 
 
 ## Globals

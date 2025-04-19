@@ -28,8 +28,8 @@ if (tmpCalleeParam) {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, b);
 } else {
-  const tmpCompProp /*:unknown*/ = $(`c`);
-  const tmpNestedComplexRhs /*:unknown*/ = b[tmpCompProp];
+  const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
+  const tmpNestedComplexRhs /*:unknown*/ = b[tmpCalleeParam$1];
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, b);
 }
@@ -46,8 +46,8 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 }, b);
 } else {
-  const tmpCompProp = $(`c`);
-  const tmpNestedComplexRhs = b[tmpCompProp];
+  const tmpCalleeParam$1 = $(`c`);
+  const tmpNestedComplexRhs = b[tmpCalleeParam$1];
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, b);
 }

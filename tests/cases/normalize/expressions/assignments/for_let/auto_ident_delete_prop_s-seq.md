@@ -59,7 +59,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Support this node type as init in isFree:
+- (todo) support delete in free loop?
 
 
 ## Globals

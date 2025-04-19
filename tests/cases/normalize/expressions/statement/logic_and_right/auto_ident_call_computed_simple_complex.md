@@ -26,7 +26,8 @@ const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCallCompProp /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  b[tmpCallCompProp](1);
+  const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+  $dotCall(tmpCallCompVal, b, undefined, 1);
   $(a);
 } else {
   $(a);
@@ -42,7 +43,8 @@ const tmpIfTest = $(100);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCallCompProp = $(`\$`);
-  ({ $: $ }[tmpCallCompProp](1));
+  const b = { $: $ };
+  b[tmpCallCompProp](1);
   $(a);
 } else {
   $(a);
@@ -62,7 +64,8 @@ const b = {
 if (a) {
   const c = $( "$" );
   const d = { $: $ };
-  d[ c ]( 1 );
+  const e = d[ c ];
+  $dotCall( e, d, undefined, 1 );
   $( b );
 }
 else {

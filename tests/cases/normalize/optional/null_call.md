@@ -40,7 +40,8 @@ $( undefined );
 ## Todos triggered
 
 
-- (todo) maybe support this call case too
+- (todo) infertyping on a non-ident? is that a crash or bug? Literal
+- (todo) Encountered non-ident as callee
 
 
 ## Globals

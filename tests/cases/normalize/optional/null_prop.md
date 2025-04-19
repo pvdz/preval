@@ -40,7 +40,7 @@ $( undefined );
 ## Todos triggered
 
 
-- (todo) Method on primitive was not found, do we miss anything?
+None
 
 
 ## Globals

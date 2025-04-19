@@ -33,8 +33,8 @@ let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const tmpIfTest /*:boolean*/ = varInitAssignLhsComputedRhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -71,8 +71,8 @@ let tmpSwitchCaseToStart = 1;
 const b = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;

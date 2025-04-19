@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`c`);
-tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`c`);
+tmpCompObj[tmpCalleeParam];
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -47,8 +47,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`c`);
+tmpCompObj[tmpCalleeParam];
 if ($(0)) {
   while (true) {
     if (!$(0)) {
@@ -91,7 +91,7 @@ $( f, a );
 ## Todos triggered
 
 
-- (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) do we want to support MemberExpression as expression statement in free loops?
 
 
 ## Globals

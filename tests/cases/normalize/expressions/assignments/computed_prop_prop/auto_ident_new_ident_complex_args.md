@@ -22,9 +22,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:object*/ = new $(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam$3 /*:unknown*/ = $(2);
+const a /*:object*/ = new $(tmpCalleeParam$1, tmpCalleeParam$3);
 $coerce(a, `string`);
 $(a);
 `````
@@ -34,9 +34,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-const tmpCalleeParam$1 = $(2);
-const a = new $(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam$3 = $(2);
+const a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
 $coerce(a, `string`);
 $(a);
 `````

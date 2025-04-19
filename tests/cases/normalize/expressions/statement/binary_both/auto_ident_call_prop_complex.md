@@ -23,9 +23,11 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpBinBothLhs /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpBinBothLhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 const tmpCallObj$1 /*:unknown*/ = $(b);
-const tmpBinBothRhs /*:unknown*/ = tmpCallObj$1.$(1);
+const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
+const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -37,7 +39,10 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-$(b).$(1) + $(b).$(1);
+const tmpCallObj = $(b);
+const tmpBinBothLhs = tmpCallObj.$(1);
+const tmpCallObj$1 = $(b);
+tmpBinBothLhs + tmpCallObj$1.$(1);
 $({ a: 999, b: 1000 });
 `````
 
@@ -48,15 +53,17 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-const d = $( a );
-const e = d.$( 1 );
-c + e;
-const f = {
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+const e = $( a );
+const f = e.$;
+const g = $dotCall( f, e, "$", 1 );
+d + g;
+const h = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( h );
 `````
 
 

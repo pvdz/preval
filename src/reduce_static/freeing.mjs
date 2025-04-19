@@ -49,7 +49,116 @@ import { createFreshVar, getMeta } from '../bindings.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, VERBOSE_TRACING } from '../constants.mjs';
 import { pcodeSupportedBuiltinFuncs, runFreeWithPcode } from '../pcode.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
-import { GLOBAL_PREVAL_SYMBOLS, SYMBOL_COERCE } from '../symbols_preval.mjs';
+import { GLOBAL_PREVAL_SYMBOLS, SYMBOL_COERCE, SYMBOL_DOTCALL } from '../symbols_preval.mjs';
+
+const SUPPORTED_FREE_BUILTINS = new Set([
+  symbo('boolean', 'constructor'),
+  symbo('boolean', 'toString'),
+  symbo('boolean', 'valueOf'),
+  symbo('Math', 'E'),
+  symbo('Math', 'LN10'),
+  symbo('Math', 'LN2'),
+  symbo('Math', 'LOG10E'),
+  symbo('Math', 'LOG2E'),
+  symbo('Math', 'PI'),
+  symbo('Math', 'SQRT1_2'),
+  symbo('Math', 'SQRT2'),
+  symbo('Math', 'abs'),
+  symbo('Math', 'acos'),
+  symbo('Math', 'acosh'),
+  symbo('Math', 'asin'),
+  symbo('Math', 'asinh'),
+  symbo('Math', 'atan'),
+  symbo('Math', 'atan2'),
+  symbo('Math', 'atanh'),
+  symbo('Math', 'cbrt'),
+  symbo('Math', 'ceil'),
+  symbo('Math', 'clz32'),
+  symbo('Math', 'cos'),
+  symbo('Math', 'cosh'),
+  symbo('Math', 'exp'),
+  symbo('Math', 'expm1'),
+  symbo('Math', 'f16round'),
+  symbo('Math', 'floor'),
+  symbo('Math', 'fround'),
+  symbo('Math', 'hypot'),
+  symbo('Math', 'imul'),
+  symbo('Math', 'log'),
+  symbo('Math', 'log10'),
+  symbo('Math', 'log1p'),
+  symbo('Math', 'log2'),
+  symbo('Math', 'max'),
+  symbo('Math', 'min'),
+  symbo('Math', 'pow'),
+  //symbo('Math', 'random'), // Not this one
+  symbo('Math', 'round'),
+  symbo('Math', 'sign'),
+  symbo('Math', 'sin'),
+  symbo('Math', 'sinh'),
+  symbo('Math', 'sqrt'),
+  symbo('Math', 'tan'),
+  symbo('Math', 'tanh'),
+  symbo('Math', 'trunc'),
+  symbo('Number', 'EPSILON'),
+  symbo('Number', 'MAX_SAFE_INTEGER'),
+  symbo('Number', 'MAX_VALUE'),
+  symbo('Number', 'MIN_SAFE_INTEGER'),
+  symbo('Number', 'MIN_VALUE'),
+  symbo('Number', 'NaN'),
+  symbo('Number', 'NEGATIVE_INFINITY'),
+  symbo('Number', 'POSITIVE_INFINITY'),
+  symbo('Number', 'isFinite'),
+  symbo('Number', 'isInteger'),
+  symbo('Number', 'isNaN'),
+  symbo('Number', 'isSafeInteger'),
+  symbo('Number', 'parseFloat'),
+  symbo('Number', 'parseInt'),
+  symbo('number', 'constructor'),
+  symbo('number', 'toExponential'),
+  symbo('number', 'toFixed'),
+  symbo('number', 'toLocaleString'),
+  symbo('number', 'toPrecision'),
+  symbo('number', 'toString'),
+  symbo('number', 'valueOf'),
+  symbo('String', 'fromCharCode'),
+  symbo('String', 'fromCodePoint'),
+  symbo('String', 'raw'),
+  symbo('string', 'at'),
+  symbo('string', 'charAt'),
+  symbo('string', 'charCodeAt'),
+  symbo('string', 'constructor'),
+  symbo('string', 'concat'),
+  symbo('string', 'endsWith'),
+  symbo('string', 'includes'),
+  symbo('string', 'indexOf'),
+  symbo('string', 'isWellFormed'),
+  symbo('string', 'lastIndexOf'),
+  symbo('string', 'localeCompare'),
+  symbo('string', 'match'),
+  symbo('string', 'matchAll'),
+  symbo('string', 'normalize'),
+  symbo('string', 'padEnd'),
+  symbo('string', 'padStart'),
+  symbo('string', 'repeat'),
+  symbo('string', 'replace'),
+  symbo('string', 'replaceAll'),
+  symbo('string', 'search'),
+  symbo('string', 'slice'),
+  symbo('string', 'split'),
+  symbo('string', 'startsWith'),
+  symbo('string', 'substring'),
+  symbo('string', 'substr'),
+  symbo('string', 'toLocaleLowerCase'),
+  symbo('string', 'toLocaleUpperCase'),
+  symbo('string', 'toLowerCase'),
+  symbo('string', 'toString'),
+  symbo('string', 'toUpperCase'),
+  symbo('string', 'toWellFormed'),
+  symbo('string', 'trim'),
+  symbo('string', 'trimEnd'),
+  symbo('string', 'trimStart'),
+  symbo('string', 'valueOf'),
+])
 
 export function freeing(fdata, $prng, usePrng = true) {
   group('\n\n\nSearching for free statements to collect\n');
@@ -194,11 +303,12 @@ function _freeing(fdata, $prng, usePrng) {
           }
         }
       });
-      vlog('Has explicit user global?', hasExplicitGlobal);
+      vlog('freeing; Has explicit user global?');
       vgroupEnd();
 
       if (!hasExplicitGlobal) {
-        // Attempt to resolve the $frfr call
+        vlog('Ok. Now attempt to resolve the $frfr call');
+
         const outNode = runFreeWithPcode(freeFuncNode, frfrCallNode.arguments.slice(1), fdata, freeFuncName, $prng, usePrng);
         if (outNode) {
           rule('A $frfr that only receives primitives should be inlined so it can get resolved');
@@ -214,7 +324,7 @@ function _freeing(fdata, $prng, usePrng) {
           changed += 1;
           return true;
         } else {
-          ASSERT(false, 'We should be able to resolve the $frfr call but pcode failed to complete');
+          ASSERT(false, 'We should be able to resolve the $frfr call but pcode failed to complete, hasExplicitGlobal=false', outNode);
         }
       }
     }
@@ -640,14 +750,22 @@ function isFreeExpression(exprNode, fdata) {
 
   switch (exprNode.type) {
     case 'CallExpression': {
-      vlog('  - Is call?', [exprNode.callee.name], exprNode.callee.object?.name, exprNode.callee.property?.name);
+      vlog('  - Is call?', [exprNode.callee.name]);
       // Yes when the args are predictable and when the callee is
       // - a builtin ident (`parseInt()`), or
       // - a builtin member expression (`Math.random()`), or
       // - calling another $free function, or
       // - a local (? not sure if we'll ever do this because that sub-function would then just be another $free func, right?)
 
-      if (exprNode.callee.type === 'Identifier' && exprNode.callee.name === '$frfr') {
+      if (exprNode.callee.type !== 'Identifier') {
+        todo('Encountered non-ident as callee');
+        vlog('- bail: calling a non-ident should throw at this point');
+        return false;
+      }
+
+      const funcName = exprNode.callee.name;
+
+      if (funcName === '$frfr') {
         // We created this and I think it should always be safe to call these
         // nested, even after other rules may have transformed it further?
         return true;
@@ -663,88 +781,37 @@ function isFreeExpression(exprNode, fdata) {
         return false;
       }
 
-      if (exprNode.callee.type === 'Identifier') {
-        vlog('  - ident call;', exprNode.callee.name);
-        if ([
-          'parseInt',
-          symbo('Number', 'parseInt'),
-          'parseFloat',
-          symbo('Number', 'parseFloat'),
-          'isNaN',
-          symbo('Number', 'isNaN'),
-          'isFinite',
-          symbo('Number', 'isFinite'),
-          symbo('Number', 'isInteger'),
-          symbo('Number', 'isSafeInteger'),
-        ].includes(exprNode.callee.name)) {
-          vlog('  - ok! its a global builtin call:', exprNode.callee.name);
-          return true; // Ok as long as args are ok
+      if (funcName === SYMBOL_COERCE) {
+        const meta = getMeta(exprNode.arguments[0].name, fdata);
+        if (meta.typing?.mustBeType || meta.typing?.mustBePrimitive) {
+          vlog('  - ok! its a coerce call with primitive arg:', funcName);
+          return true; // $coerce on a primitive is safe and predictable
         }
-        if (MATH.get(exprNode.callee.name)) { // This works because all Math.foo cases should get converted to symbo()
-          vlog('  - ok! its a math call:', exprNode.callee.name);
-          return true; // Calls to Math.prop are ok as long as args are ok
-        }
-        if (exprNode.callee.name === SYMBOL_COERCE) {
-          const meta = getMeta(exprNode.arguments[0].name, fdata);
-          if (meta.typing?.mustBeType || meta.typing?.mustBePrimitive) {
-            vlog('  - ok! its a coerce call with primitive arg:', exprNode.callee.name);
-            return true; // $coerce on a primitive is safe and predictable
-          }
-          vlog('  - no. its a coerce call but the arg is not a primitive:', exprNode.callee.name);
-          return false; // $coerce may have side effects on non-primitives. That's why we do this in $coerce in the first place.
-        }
-        vlog('  - the ident call is not accepted (can it be?):', exprNode.callee.name);
+        vlog('  - no. its a coerce call but the arg is not a primitive:', funcName);
+        return false; // $coerce may have side effects on non-primitives. That's why we do this in $coerce in the first place.
       }
 
-      if (exprNode.callee.type === 'MemberExpression') {
-        vlog('  - member call;', exprNode.callee.computed, exprNode.callee.object.name, exprNode.callee.property.name);
-        if (exprNode.callee.computed) return false; // Not going to bother with this
-
-        if (exprNode.callee.object.type === 'Identifier') {
-          const objName = exprNode.callee.object.name;
-          const propName = exprNode.callee.property.name;
-          if (objName === 'Math' && propName !== 'random' && MATH.has(symbo('Math', propName))) {
-            vlog('  - Static Math functions ok');
-            return true; // ok, Math.abs with predictable args
-          }
-          if (objName === 'String' && STRING.has(symbo('String', propName))) {
-            vlog('  - Static String functions ok');
-            return true;
-          }
-          if (objName === 'Number' && NUMBER.has(symbo('Number', propName))) {
-            vlog('  - Static Number functions ok');
-            return true;
-          }
-
-          // See if the object is a primitive and calling a known builtin on it
-          const meta = fdata.globallyUniqueNamingRegistry.get(objName);
-          switch (meta.typing?.mustBeType) {
-            case 'number': {
-              if (NUMBER.has(symbo('number', propName))) {
-                return true;
-              }
-              break;
-            }
-            case 'string': {
-              if (STRING.has(symbo('string', propName))) {
-                return true;
-              }
-              break;
-            }
-          }
+      if (funcName === SYMBOL_DOTCALL) {
+        vlog('  - its a dotcall:', [exprNode.arguments[0].name]);
+        ASSERT(exprNode.arguments[0].type === 'Identifier', 'we control dotcall?', exprNode.arguments[0]);
+        if (SUPPORTED_FREE_BUILTINS.has(exprNode.arguments[0].name)) {
+          vlog('  - ok! its a global builtin dotcall:', exprNode.arguments[0].name);
+          return true; // Ok as long as args are ok
         }
+        //todo('  - the ident call is not accepted (can it be?):', [funcName]);
+        vlog('  - the dotcalled ident is not a supported name');
+        return false;
+      }
 
-        if (AST.isPrimitive(exprNode.callee.object)) {
-          const qualifiedName = symbo(AST.getPrimitiveType(exprNode.callee.object), exprNode.callee.property.name); // Lower cased class `$string_charAt`
-          if (pcodeSupportedBuiltinFuncs.has(qualifiedName)) {
-            vlog('  - yes, this builtin is supported;', qualifiedName);
-            return true;
-          }
-        }
+      vlog('  - ident call;', funcName);
+      if (SUPPORTED_FREE_BUILTINS.has(funcName)) {
+        vlog('  - ok! its a global builtin call:', funcName);
+        return true; // Ok as long as args are ok
       }
 
       // Anything else is an exception? Not my problem here.
-      vlog('  - No, bad call');
+      //todo('  - the ident call is not accepted (can it be?):', [funcName]);
+      vlog('  - No, supported func name call');
       return false;
     }
     case 'Identifier': {
@@ -758,11 +825,13 @@ function isFreeExpression(exprNode, fdata) {
       //   - only need to guarantee that the value is immutable at the point of calling the free func
       // - it refers to a local var which is mutated in the free func but not referenced any further after the free func
 
-      if (['undefined', 'NaN', 'Infinity', 'arguments'].includes(exprNode.name)) {
+      const funcName = exprNode.name;
+
+      if (['undefined', 'NaN', 'Infinity', 'arguments'].includes(funcName)) {
         return true;
       }
-      const meta = fdata.globallyUniqueNamingRegistry.get(exprNode.name);
-      vlog('  - Ident "', exprNode.name, '", meta typing:', JSON.stringify(meta.typing));
+      const meta = fdata.globallyUniqueNamingRegistry.get(funcName);
+      vlog('  - Ident "', funcName, '", meta typing:', JSON.stringify(meta.typing));
       if (PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) || meta.typing.mustBePrimitive) {
         vlog('    - ident=ok');
         return true;
@@ -780,6 +849,9 @@ function isFreeExpression(exprNode, fdata) {
         AST.isPrimitive(meta.varDeclRef)
       ) {
         return true;
+      }
+      if (SUPPORTED_FREE_BUILTINS.has(funcName)) {
+         return true;
       }
 
       // rest: tbd

@@ -20,8 +20,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:object*/ = {};
-$coerce(tmpCompProp, `string`);
+const tmpCalleeParam /*:object*/ = {};
+$coerce(tmpCalleeParam, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

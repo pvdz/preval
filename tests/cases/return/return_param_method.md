@@ -25,19 +25,22 @@ $(f('three'));
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:(primitive)=>unknown*/ = function ($$0) {
+  const a /*:primitive*/ = $$0;
   debugger;
   $(`stop`);
   $(`the`);
   $(`inlining`);
-  return undefined;
+  const tmpCallCompVal /*:unknown*/ = a.toString;
+  const tmpReturnArg /*:unknown*/ = $dotCall(tmpCallCompVal, a, `toString`, 2);
+  return tmpReturnArg;
 };
-f();
-$(`1`);
-f();
-$(`10`);
-f();
-$(`three`);
+const tmpCalleeParam /*:unknown*/ = f(1);
+$(tmpCalleeParam);
+const tmpCalleeParam$1 /*:unknown*/ = f(2);
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 /*:unknown*/ = f(`three`);
+$(tmpCalleeParam$3);
 `````
 
 
@@ -45,17 +48,16 @@ $(`three`);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {
+const f = function (a) {
   $(`stop`);
   $(`the`);
   $(`inlining`);
+  const tmpReturnArg = a.toString(2);
+  return tmpReturnArg;
 };
-f();
-$(`1`);
-f();
-$(`10`);
-f();
-$(`three`);
+$(f(1));
+$(f(2));
+$(f(`three`));
 `````
 
 
@@ -63,19 +65,22 @@ $(`three`);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function($$0 ) {
+  const b = $$0;
   debugger;
   $( "stop" );
   $( "the" );
   $( "inlining" );
-  return undefined;
+  const c = b.toString;
+  const d = $dotCall( c, b, "toString", 2 );
+  return d;
 };
-a();
-$( "1" );
-a();
-$( "10" );
-a();
-$( "three" );
+const e = a( 1 );
+$( e );
+const f = a( 2 );
+$( f );
+const g = a( "three" );
+$( g );
 `````
 
 

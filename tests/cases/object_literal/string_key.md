@@ -30,7 +30,8 @@ const x /*:object*/ = {
     return tmpReturnArg;
   },
 };
-const tmpCalleeParam$1 /*:unknown*/ = x[`Hey, me too!`]();
+const tmpCallCompVal /*:unknown*/ = x[`Hey, me too!`];
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal, x, undefined);
 $(x, tmpCalleeParam$1);
 `````
 
@@ -64,8 +65,9 @@ const b = {
     return c;
   },,
 };
-const d = b[ "Hey, me too!" ]();
-$( b, d );
+const d = b[ "Hey, me too!" ];
+const e = $dotCall( d, b, undefined );
+$( b, e );
 `````
 
 

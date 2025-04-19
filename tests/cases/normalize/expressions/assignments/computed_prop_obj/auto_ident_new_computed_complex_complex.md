@@ -24,8 +24,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCompObj$1 /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`\$`);
-const tmpNewCallee /*:unknown*/ = tmpCompObj$1[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`\$`);
+const tmpNewCallee /*:unknown*/ = tmpCompObj$1[tmpCalleeParam];
 const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 tmpClusterSSA_a.a;
 $(tmpClusterSSA_a);
@@ -37,8 +37,8 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpCompObj$1 = $({ $: $ });
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = tmpCompObj$1[tmpCompProp];
+const tmpCalleeParam = $(`\$`);
+const tmpNewCallee = tmpCompObj$1[tmpCalleeParam];
 const tmpClusterSSA_a = new tmpNewCallee(1);
 tmpClusterSSA_a.a;
 $(tmpClusterSSA_a);

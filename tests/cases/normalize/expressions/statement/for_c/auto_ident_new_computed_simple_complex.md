@@ -23,15 +23,15 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpCompProp /*:unknown*/ = $(`\$`);
+  const tmpCalleeParam /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+  const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
   new tmpNewCallee(1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCompProp$1 /*:unknown*/ = $(`\$`);
-      const tmpNewCallee$1 /*:unknown*/ = b[tmpCompProp$1];
+      const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
+      const tmpNewCallee$1 /*:unknown*/ = b[tmpCalleeParam$1];
       new tmpNewCallee$1(1);
     } else {
       break;
@@ -49,14 +49,14 @@ $(a);
 
 `````js filename=intro
 if ($(1)) {
-  const tmpCompProp = $(`\$`);
+  const tmpCalleeParam = $(`\$`);
   const b = { $: $ };
-  const tmpNewCallee = b[tmpCompProp];
+  const tmpNewCallee = b[tmpCalleeParam];
   new tmpNewCallee(1);
   while (true) {
     if ($(1)) {
-      const tmpCompProp$1 = $(`\$`);
-      const tmpNewCallee$1 = b[tmpCompProp$1];
+      const tmpCalleeParam$1 = $(`\$`);
+      const tmpNewCallee$1 = b[tmpCalleeParam$1];
       new tmpNewCallee$1(1);
     } else {
       break;
@@ -101,7 +101,7 @@ $( h );
 
 
 - (todo) objects in isFree check
-- (todo) Support this node type in isFree: NewExpression
+- (todo) do we want to support NewExpression as expression statement in free loops?
 
 
 ## Globals

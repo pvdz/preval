@@ -21,7 +21,7 @@ const y = $spy('b');
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
 $spy(`b`);
-$coerce(x, `number`);
+$dotCall($number_toExponential, 200, `toExponential`, x);
 `````
 
 
@@ -31,7 +31,7 @@ $coerce(x, `number`);
 `````js filename=intro
 const x = $spy(`a`);
 $spy(`b`);
-$coerce(x, `number`);
+$dotCall($number_toExponential, 200, `toExponential`, x);
 `````
 
 
@@ -41,14 +41,14 @@ With rename=true
 `````js filename=intro
 const a = $spy( "a" );
 $spy( "b" );
-$coerce( a, "number" );
+$dotCall( $number_toExponential, 200, "toExponential", a );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $number_toExponential
 
 
 ## Globals

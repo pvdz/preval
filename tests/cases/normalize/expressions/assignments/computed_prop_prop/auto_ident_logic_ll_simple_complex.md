@@ -20,8 +20,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
-const a /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const a /*:unknown*/ = $(tmpCalleeParam$1);
 $coerce(a, `string`);
 $(a);
 `````

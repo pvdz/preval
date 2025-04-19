@@ -17,11 +17,11 @@ crash($spy('a'), $spy('b'), $spy('c'));
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = crash;
+crash;
 const tmpCalleeParam /*:unknown*/ = $spy(`a`);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(`b`);
 const tmpCalleeParam$3 /*:unknown*/ = $spy(`c`);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+crash(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 
@@ -29,6 +29,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
+crash;
 crash($spy(`a`), $spy(`b`), $spy(`c`));
 `````
 
@@ -37,11 +38,11 @@ crash($spy(`a`), $spy(`b`), $spy(`c`));
 With rename=true
 
 `````js filename=intro
-const a = crash;
-const b = $spy( "a" );
-const c = $spy( "b" );
-const d = $spy( "c" );
-a( b, c, d );
+crash;
+const a = $spy( "a" );
+const b = $spy( "b" );
+const c = $spy( "c" );
+crash( a, b, c );
 `````
 
 

@@ -18,8 +18,8 @@ $(1)[$(2)];
 
 `````js filename=intro
 const tmpCompObj /*:unknown*/ = $(1);
-const tmpCompProp /*:unknown*/ = $(2);
-tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(2);
+tmpCompObj[tmpCalleeParam];
 `````
 
 
@@ -28,8 +28,8 @@ tmpCompObj[tmpCompProp];
 
 `````js filename=intro
 const tmpCompObj = $(1);
-const tmpCompProp = $(2);
-tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(2);
+tmpCompObj[tmpCalleeParam];
 `````
 
 

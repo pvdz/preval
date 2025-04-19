@@ -23,10 +23,7 @@ $(arr.length);
 
 
 `````js filename=intro
-const arr /*:array*/ = [1, 2, 3];
-$array_splice.call(arr, 1, 2, 10, 20);
-const tmpCalleeParam /*:number*/ = arr.length;
-$(tmpCalleeParam);
+$(3);
 `````
 
 
@@ -34,9 +31,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const arr = [1, 2, 3];
-$array_splice.call(arr, 1, 2, 10, 20);
-$(arr.length);
+$(3);
 `````
 
 
@@ -44,17 +39,14 @@ $(arr.length);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-$array_splice.call( a, 1, 2, 10, 20 );
-const b = a.length;
-$( b );
+$( 3 );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) replace with $array_splice
+None
 
 
 ## Globals

@@ -27,7 +27,7 @@ function f(x) {
 const f /*:(unknown)=>undefined*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
-  arr.splice(1, 5);
+  $dotCall($array_splice, arr, `splice`, 1, 5);
   if (x) {
     f(x);
     return undefined;
@@ -37,7 +37,7 @@ const f /*:(unknown)=>undefined*/ = function ($$0) {
 };
 const arr /*:array*/ = [1, 2, 3, 4];
 f();
-arr.push(`a`, `b`);
+$dotCall($array_push, arr, `push`, `a`, `b`);
 $(arr);
 `````
 
@@ -47,14 +47,14 @@ $(arr);
 
 `````js filename=intro
 const f = function (x) {
-  arr.splice(1, 5);
+  $dotCall($array_splice, arr, `splice`, 1, 5);
   if (x) {
     f(x);
   }
 };
 const arr = [1, 2, 3, 4];
 f();
-arr.push(`a`, `b`);
+$dotCall($array_push, arr, `push`, `a`, `b`);
 $(arr);
 `````
 
@@ -66,7 +66,7 @@ With rename=true
 const a = function($$0 ) {
   const b = $$0;
   debugger;
-  c.splice( 1, 5 );
+  $dotCall( $array_splice, c, "splice", 1, 5 );
   if (b) {
     a( b );
     return undefined;
@@ -77,7 +77,7 @@ const a = function($$0 ) {
 };
 const c = [ 1, 2, 3, 4 ];
 a();
-c.push( "a", "b" );
+$dotCall( $array_push, c, "push", "a", "b" );
 $( c );
 `````
 
@@ -85,7 +85,8 @@ $( c );
 ## Todos triggered
 
 
-- (todo) processArrayWriteReadImmutableBinding slow path
+- (todo) access object property that also exists on prototype? $array_splice
+- (todo) access object property that also exists on prototype? $array_push
 
 
 ## Globals

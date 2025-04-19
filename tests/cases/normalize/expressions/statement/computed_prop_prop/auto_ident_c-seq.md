@@ -24,8 +24,8 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpCompProp /*:unknown*/ = $(1);
-$coerce(tmpCompProp, `string`);
+const tmpCalleeParam /*:unknown*/ = $(1);
+$coerce(tmpCalleeParam, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, 1);
 `````

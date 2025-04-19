@@ -43,9 +43,8 @@ $( 2 );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
 - (todo) free with zero args, we can eliminate this?
-- (todo) arr_mutation: implement array inlining analysis stuff
+- (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 
 
 ## Globals

@@ -100,6 +100,7 @@ else {
 
 
 - (todo) objects in isFree check
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

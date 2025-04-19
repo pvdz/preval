@@ -50,7 +50,7 @@ $( "$(1, 2)" );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $array_concat
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
 - (todo) free with zero args, we can eliminate this?
 
 

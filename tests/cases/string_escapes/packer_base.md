@@ -43,7 +43,7 @@ eval( "console.log('boo')" );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) objects in isFree check
-- (todo) inline computed array property read
+- (todo) can we always safely clone ident refs in this case?
 
 
 ## Globals

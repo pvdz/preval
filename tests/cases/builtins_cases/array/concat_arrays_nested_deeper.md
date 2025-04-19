@@ -61,7 +61,7 @@ $( e );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $array_concat
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
 
 
 ## Globals

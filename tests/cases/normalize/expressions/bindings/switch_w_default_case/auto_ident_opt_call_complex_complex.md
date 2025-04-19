@@ -32,8 +32,8 @@ if (tmpIfTest$5) {
   $(`fail1`);
   $(`fail2`);
 } else {
-  const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
   $(tmpChainElementCall$1);
   $(`fail1`);
   $(`fail2`);

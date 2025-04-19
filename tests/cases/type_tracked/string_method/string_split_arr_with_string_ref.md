@@ -27,7 +27,7 @@ const wat /*:unknown*/ = $(`xyz`);
 const str /*:string*/ = $coerce(wat, `plustr`);
 const wat2 /*:unknown*/ = $(`y`);
 const s /*:string*/ = $coerce(wat2, `plustr`);
-const res /*:array*/ = str.split(s);
+const res /*:array*/ = $dotCall($string_split, str, `split`, s);
 $(res);
 `````
 
@@ -37,7 +37,7 @@ $(res);
 
 `````js filename=intro
 const str = $coerce($(`xyz`), `plustr`);
-$(str.split($coerce($(`y`), `plustr`)));
+$($dotCall($string_split, str, `split`, $coerce($(`y`), `plustr`)));
 `````
 
 
@@ -49,7 +49,7 @@ const a = $( "xyz" );
 const b = $coerce( a, "plustr" );
 const c = $( "y" );
 const d = $coerce( c, "plustr" );
-const e = b.split( d );
+const e = $dotCall( $string_split, b, "split", d );
 $( e );
 `````
 

@@ -12,6 +12,8 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 import { ASSUME_BUILTINS } from '../constants.mjs';
+import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function functionLocks(fdata) {
   group('\n\n\nLooking for functions that get locked after the first call\n');
@@ -58,13 +60,32 @@ function _functionLocks(fdata) {
         }
 
         if (ASSUME_BUILTINS) {
+          vlog('-', read.parentNode.type, read.parentProp, read.parentIndex, read.parentNode.callee?.name, read.parentNode.arguments?.[0]?.name)
           if (
-            read.parentNode.type === 'MemberExpression' &&
-            read.parentProp === 'object' &&
-            !read.parentNode.computed &&
-            ['apply', 'bind', 'call'].includes(read.parentNode.property.name) &&
-            read.grandNode.type === 'CallExpression' &&
-            read.grandProp === 'callee'
+            read.parentNode.type === 'CallExpression' &&
+            read.parentProp === 'arguments' &&
+            read.parentIndex === 1 && // context
+            read.parentNode.callee.type === 'Identifier' && // mandatory at this point
+            read.parentNode.callee.name === SYMBOL_DOTCALL &&
+            read.parentNode.arguments[0].type === 'Identifier' && // mandatory at this point...
+            (
+              [
+                symbo('function', 'call'),
+                symbo('function', 'apply'),
+                symbo('function', 'bind'),
+              ].includes(read.parentNode.arguments[0].name) ||
+              (
+                // In this trick, the binding holding the function value may also be undefined
+                // so preval doesn't know for sure that reading .call will yield the builtin
+                // function. As such, preval won't replace the result with the builtin symbol.
+                // The idea is that if you call a method that was the result of reading .call
+                // .apply or .bind, then it must be the builtins, right? I'm not sure it can be
+                // anything else unless the prototype was poisoned. Aside from undefined on
+                // false. But that would lead to an inevitable crash when called.
+                AST.isPrimitive(read.parentNode.arguments[2]) && // When is this not true? undef or str, right?
+                ['call', 'apply', 'bind'].includes(AST.getPrimitiveValue(read.parentNode.arguments[2]))
+              )
+            )
           ) {
             // func.apply(), func.call(), func.bind()
             // We asserted that these are the builtins since func is a function
@@ -73,8 +94,13 @@ function _functionLocks(fdata) {
           }
         }
 
+        if (read.parentNode.type === 'MemberExpression') {
+          vlog('- Ignoring a property read...');
+          return false;
+        }
+
         vlog(
-          '- Function was used in one place where it was not an if-test nor being called; bailing',
+          '- bail: Function was used in one place where it was not an if-test nor being called;',
           read.parentNode.type,
           read.parentProp,
         );
@@ -207,14 +233,17 @@ function _functionLocks(fdata) {
     });
 
     memberCallReads.forEach((read) => {
-      // This is for regular calls to the func as an ident.
+      // This is for dotcalls to the func as context
       const throwNode = AST.throwStatement(AST.primitive('Preval: cannot call a locked function (binding overwritten with non-func)'));
       if (read.blockBody[read.blockIndex]?.type === 'ExpressionStatement') {
         // `f.call();` or `x = f.call();` --> `if (tmp) f.call(); else throw ...`
+        // `$dotCall($function_call, f, undefined);` or `x = $dotCall($function_call, f, undefined);` --> `if (tmp) $dotCall($function_call, f, undefined); else throw ...`
 
         rule('A function that is declared and only overwritten by falsy values and only used in ifs and calls can be separated; guard method call expr');
         example('f.call();', 'if (tmpLock) f.call(); else throw "fail";');
+        example(`${SYMBOL_DOTCALL}(${symbo('function', 'call')}, f, undefined);`, `if (tmpLock) ${SYMBOL_DOTCALL}(${symbo('function', 'call')}); else throw "fail";`);
         example('x = f.call();', 'if (tmpLock) x = f.call(); else throw "fail";');
+        example(`x = ${SYMBOL_DOTCALL}(${symbo('function', 'call')}, f, undefined);`, `if (tmpLock) x = ${SYMBOL_DOTCALL}(${symbo('function', 'call')}); else throw "fail";`);
         before(read.blockBody[read.blockIndex]);
 
         read.blockBody.splice(read.blockIndex, 1, AST.ifStatement(
@@ -226,6 +255,7 @@ function _functionLocks(fdata) {
         after(read.blockBody[read.blockIndex]);
       } else {
         // `const x = f.call();` --> `let x = undefined; if (tmp) x= f.call(); else throw ...`
+        // `const x = $dotCall($function_call, f, undefined);` --> `let x = undefined; if (tmp) x= $dotCall($function_call, f, undefined); else throw ...`
         // We inject a var so we schedule it to preserve index caches
         queue.push({
           index: read.blockIndex,
@@ -233,6 +263,7 @@ function _functionLocks(fdata) {
 
             rule('A function that is declared and only overwritten by falsy values and only used in ifs and calls can be separated; guard method call to const expr');
             example('const x = f.call();', 'let x = undefined; if (tmpLock) x = f.call(); else throw "fail";');
+            example(`let x = ${SYMBOL_DOTCALL}(${symbo('function', 'call')}, f, undefined);`, `let x = undefined; if (tmpLock) x = ${SYMBOL_DOTCALL}(${symbo('function', 'call')}); else throw "fail";`);
             before(read.blockBody[read.blockIndex]);
 
             read.blockBody.splice(read.blockIndex, 1,

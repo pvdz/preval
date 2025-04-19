@@ -79,7 +79,7 @@ $( a );
 
 
 - (todo) inline async functions safely (because await)
-- (todo) Missed opportunity to inline a type tracked trick for $JSON_parse
+- (todo) type trackeed tricks can possibly support static $JSON_parse
 
 
 ## Globals

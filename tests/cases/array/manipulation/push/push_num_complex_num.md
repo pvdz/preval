@@ -25,15 +25,14 @@ $(NOOP);
 
 
 `````js filename=intro
-const ARR /*:array*/ = [`a`, `b`, `c`, 10];
+const ARR /*:array*/ = [`a`, `b`, `c`, 10, $, 20];
 const NOOP /*:()=>unknown*/ = function () {
   debugger;
   $(ARR);
   return undefined;
 };
-ARR.push($, 20);
 $(6);
-ARR.push(6);
+$dotCall($array_push, ARR, `push`, 6);
 $(NOOP);
 `````
 
@@ -42,13 +41,12 @@ $(NOOP);
 (This ought to be the final result)
 
 `````js filename=intro
-const ARR = [`a`, `b`, `c`, 10];
+const ARR = [`a`, `b`, `c`, 10, $, 20];
 const NOOP = function () {
   $(ARR);
 };
-ARR.push($, 20);
 $(6);
-ARR.push(6);
+$dotCall($array_push, ARR, `push`, 6);
 $(NOOP);
 `````
 
@@ -57,15 +55,14 @@ $(NOOP);
 With rename=true
 
 `````js filename=intro
-const a = [ "a", "b", "c", 10 ];
+const a = [ "a", "b", "c", 10, $, 20 ];
 const b = function() {
   debugger;
   $( a );
   return undefined;
 };
-a.push( $, 20 );
 $( 6 );
-a.push( 6 );
+$dotCall( $array_push, a, "push", 6 );
 $( b );
 `````
 
@@ -73,7 +70,8 @@ $( b );
 ## Todos triggered
 
 
-None
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
+- (todo) access object property that also exists on prototype? $array_push
 
 
 ## Globals

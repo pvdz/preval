@@ -20,12 +20,13 @@ $dotCall(alias, obj, 'g');
 
 
 `````js filename=intro
-const g /*:()=>unknown*/ = function () {
+const g /*:()=>string*/ = function () {
   debugger;
   return `win`;
 };
+const alias /*:unknown*/ = $Object_prototype.g;
 const obj /*:object*/ = { f: g };
-obj.g();
+$dotCall(alias, obj, `g`);
 `````
 
 
@@ -36,7 +37,7 @@ obj.g();
 const g = function () {
   return `win`;
 };
-({ f: g }.g());
+$dotCall($Object_prototype.g, { f: g }, `g`);
 `````
 
 
@@ -48,8 +49,9 @@ const a = function() {
   debugger;
   return "win";
 };
-const b = { f: a };
-b.g();
+const b = $Object_prototype.g;
+const c = { f: a };
+$dotCall( b, c, "g" );
 `````
 
 

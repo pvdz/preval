@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCompProp /*:unknown*/ = $(`\$`);
-  const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`\$`);
+  const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
   new tmpNewCallee(1);
   $(100);
 }
@@ -37,8 +37,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const b = { $: $ };
 while (true) {
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = b[tmpCompProp];
+  const tmpCalleeParam = $(`\$`);
+  const tmpNewCallee = b[tmpCalleeParam];
   new tmpNewCallee(1);
   $(100);
 }

@@ -23,7 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpCalleeParam$1 /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
@@ -36,7 +37,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`before  ${$({ $: $ }).$(1)}  after`);
+const tmpCallObj = $({ $: $ });
+$(`before  ${tmpCallObj.$(1)}  after`);
 $({ a: 999, b: 1000 });
 `````
 
@@ -47,15 +49,16 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-const d = $coerce( c, "string" );
-const e = `before  ${d}  after`;
-$( e );
-const f = {
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+const e = $coerce( d, "string" );
+const f = `before  ${e}  after`;
+$( f );
+const g = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( g );
 `````
 
 

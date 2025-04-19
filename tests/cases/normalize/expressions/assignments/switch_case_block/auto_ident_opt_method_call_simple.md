@@ -30,7 +30,7 @@ const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const b /*:object*/ = { c: $ };
-  const tmpChainElementCall /*:unknown*/ = b.c(1);
+  const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
   $(tmpChainElementCall);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
@@ -44,7 +44,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1) === $(1)) {
-  $({ c: $ }.c(1));
+  $($dotCall($, { c: $ }, `c`, 1));
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -60,7 +60,7 @@ const b = $( 1 );
 const c = a === b;
 if (c) {
   const d = { c: $ };
-  const e = d.c( 1 );
+  const e = $dotCall( $, d, "c", 1 );
   $( e );
 }
 else {

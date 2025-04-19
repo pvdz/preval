@@ -19,7 +19,7 @@ $(x);
 
 `````js filename=intro
 $(1);
-const x /*:unknown*/ = (2).foo;
+const x /*:unknown*/ = $Number_prototype.foo;
 $(x);
 `````
 
@@ -29,7 +29,7 @@ $(x);
 
 `````js filename=intro
 $(1);
-$((2).foo);
+$($Number_prototype.foo);
 `````
 
 
@@ -38,7 +38,7 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-const a = (2).foo;
+const a = $Number_prototype.foo;
 $( a );
 `````
 

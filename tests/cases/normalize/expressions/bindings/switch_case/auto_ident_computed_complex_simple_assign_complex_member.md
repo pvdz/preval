@@ -26,8 +26,8 @@ switch (1) {
 const tmpClusterSSA_b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignObj /*:unknown*/ = $(tmpClusterSSA_b);
 const tmpCompObj /*:unknown*/ = $(tmpClusterSSA_b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, tmpClusterSSA_b);
 `````
@@ -40,8 +40,8 @@ $(tmpNestedAssignPropRhs, tmpClusterSSA_b);
 const tmpClusterSSA_b = { c: 10, d: 20 };
 const tmpNestedAssignObj = $(tmpClusterSSA_b);
 const tmpCompObj = $(tmpClusterSSA_b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, tmpClusterSSA_b);
 `````

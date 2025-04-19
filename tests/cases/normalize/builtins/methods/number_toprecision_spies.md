@@ -22,8 +22,8 @@ $(200..foo)
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
 const y /*:unknown*/ = $spy(`b`);
-(200).toPrecision(x, y);
-const tmpCalleeParam /*:unknown*/ = (200).foo;
+$dotCall($number_toPrecision, 200, `toPrecision`, x, y);
+const tmpCalleeParam /*:unknown*/ = $Number_prototype.foo;
 $(tmpCalleeParam);
 `````
 
@@ -32,8 +32,8 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-(200).toPrecision($spy(`a`), $spy(`b`));
-$((200).foo);
+$dotCall($number_toPrecision, 200, `toPrecision`, $spy(`a`), $spy(`b`));
+$($Number_prototype.foo);
 `````
 
 
@@ -43,8 +43,8 @@ With rename=true
 `````js filename=intro
 const a = $spy( "a" );
 const b = $spy( "b" );
-(200).toPrecision( a, b );
-const c = (200).foo;
+$dotCall( $number_toPrecision, 200, "toPrecision", a, b );
+const c = $Number_prototype.foo;
 $( c );
 `````
 
@@ -52,7 +52,7 @@ $( c );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $number_toPrecision
+- (todo) type trackeed tricks can possibly support static $number_toPrecision
 
 
 ## Globals

@@ -55,7 +55,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) do we want to support MemberExpression as expression statement in free loops?
 - (todo) Support non-primitive in first arg to $coerce
 
 

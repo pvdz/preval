@@ -23,11 +23,12 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = undefined;
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = b.c(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
 if (tmpChainElementCall) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = b.c(1);
+    const tmpChainElementObject$1 /*:unknown*/ = b.c;
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
     a = tmpChainElementCall$1;
     if (tmpChainElementCall$1) {
     } else {
@@ -47,7 +48,7 @@ if (tmpChainElementCall) {
 `````js filename=intro
 let a = undefined;
 const b = { c: $ };
-const tmpChainElementCall = b.c(1);
+const tmpChainElementCall = $dotCall($, b, `c`, 1);
 if (tmpChainElementCall) {
   while (true) {
     $(1);
@@ -70,13 +71,14 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = { c: $ };
-const c = b.c( 1 );
+const c = $dotCall( $, b, "c", 1 );
 if (c) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const d = b.c( 1 );
-    a = d;
-    if (d) {
+    const d = b.c;
+    const e = $dotCall( d, b, "c", 1 );
+    a = e;
+    if (e) {
 
     }
     else {
@@ -95,7 +97,7 @@ else {
 
 
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: b.c
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

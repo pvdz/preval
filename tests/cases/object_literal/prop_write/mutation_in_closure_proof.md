@@ -41,7 +41,7 @@ const f /*:()=>undefined*/ = function () {
     delete x.y;
   } else {
   }
-  const tmpCalleeParam$1 /*:object*/ = {
+  const tmpCalleeParam /*:object*/ = {
     set($$0) {
       debugger;
       return undefined;
@@ -51,7 +51,7 @@ const f /*:()=>undefined*/ = function () {
       return `intercepted`;
     },
   };
-  $Object_defineProperty(x, `y`, tmpCalleeParam$1);
+  $dotCall($Object_defineProperty, Object, `defineProperty`, x, `y`, tmpCalleeParam);
   $(`b`);
   return undefined;
 };
@@ -60,8 +60,8 @@ f();
 x.y = 10;
 f();
 $(x);
-const tmpCalleeParam$3 /*:unknown*/ = x.y;
-$(tmpCalleeParam$3);
+const tmpCalleeParam$1 /*:unknown*/ = x.y;
+$(tmpCalleeParam$1);
 $(f);
 `````
 
@@ -76,7 +76,7 @@ const f = function () {
     $(`yeeting`);
     delete x.y;
   }
-  $Object_defineProperty(x, `y`, {
+  $dotCall($Object_defineProperty, Object, `defineProperty`, x, `y`, {
     set($$0) {},
     get() {
       return `intercepted`;
@@ -116,7 +116,7 @@ const a = function() {
       return "intercepted";
     },
   };
-  $Object_defineProperty( c, "y", d );
+  $dotCall( $Object_defineProperty, Object, "defineProperty", c, "y", d );
   $( "b" );
   return undefined;
 };

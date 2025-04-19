@@ -1,9 +1,10 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing, PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, todo, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, todo } from '../utils.mjs';
 import { createTypingObject, getCleanTypingObject, getMeta, inferNodeTyping, mergeTyping } from '../bindings.mjs';
-import { SYMBOL_COERCE, SYMBOL_FRFR } from '../symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 // This phase walks the AST a few times to discover things for which it needs phase1 to complete
 // Currently it discovers call arg types (for which it needs the meta.typing data) and propagated mustBeType cases
@@ -25,10 +26,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
   );
   if (!(!verboseTracing && (passes > 1 || phase1s > 1))) {
-    if (
-      //VERBOSE_TRACING ||
-      REF_TRACK_TRACING
-    ) {
+    if (REF_TRACK_TRACING) {
       const code = fmat(tmat(ast, true), true);
       console.log('\nCurrent state (start of phase1.1)\n--------------\n' + code + '\n--------------\n');
       vlog('\n\n\n#################################################################### phase1.1 [',passes,'::', phase1s, ']\n\n\n');
@@ -331,116 +329,363 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
 
     vgroup(untypedConstDecls.size, 'const decl types to discover');
     let cdi = 0;
-    untypedConstDecls.forEach((obj) => {
-      const {node, meta} = obj;
+      untypedConstDecls.forEach((untypedObj) => {
+      const {node, meta} = untypedObj;
       const name = node.id.name;
-      vgroup('-- decl', cdi++, '::', [name], ', mustBeType:', meta.typing?.mustBeType);
+      vgroup('-- decl', cdi++, '::', [name], ', mustBeType:', [meta.typing?.mustBeType, meta.typing?.mustBePrimitive]);
       if (!meta.typing?.mustBeType || meta.typing?.mustBeType === 'primitive') {
-        // Note: deal with lets properly. That's not just this init.
-        const init = node.init;
-        vlog('Resolving .typing with the details of the init, type=', init.type);
-        const newTyping = inferNodeTyping(fdata, init);
-        vlog('++ Results in', newTyping?.mustBeType, '(mustbeprimitive:', newTyping?.mustBePrimitive, ') which we will inject');
-        meta.writes.forEach(write => {
-          if (write.kind === 'assign') {
-            const rhsTyping = inferNodeTyping(fdata, write.parentNode.right);
-            vlog('Merging rhs typing with binding;', rhsTyping);
-            mergeTyping(rhsTyping, newTyping);
-            vlog('newTyping now:', newTyping);
-          } else {
-            ASSERT(write.kind === 'var', 'not catch var or export or smth, right?', write);
-          }
-        });
-
-        if (
-          !newTyping?.mustBeType &&
-          init.type === 'MemberExpression' &&
-          init.object.type === 'Identifier' &&
-          AST.isNumberLiteral(init.property)
-        ) {
-          // `const x = arr[100]`
-          vlog('Special array access check for var that has unknown typing but is assigned a number computed prop of an ident');
-          // valueNode is a computed member expression.
-          // If the object is an array and we can assert the array only contains primitives
-          // and we can assert the array cannot get other types then ... it must be a primitive?
-          const meta = fdata.globallyUniqueNamingRegistry.get(init.object.name);
-          vlog('- The object of the member expression mustBeType', meta.typing.mustBeType);
-          if (meta.typing.mustBeType === 'array') {
-            // Must verify that the array only contains primitives and doesn't escape
-            if (!meta.isConstant) vlog('- is not a var decl');
-            else if (meta.isImplicitGlobal) vlog('- is an implicit global');
-            else if (meta.isBuiltin) vlog('- is builtin');
-            else if (meta.varDeclRef.node.type !== 'ArrayExpression') vlog('- init of obj ident is not an array expression');
-            else if (!meta.varDeclRef.node.elements.every(e => !e || AST.isPrimitive(e))) vlog('- array does not only contain primitives');
-            else if (meta.writes.length !== 1) vlog('- array ref has multiple writes');
-            else {
-              vgroup('Checking all reads of this array ref for escape analysis');
-              const escapes = meta.reads.some(read => {
-                // Confirm this is not a method call
-                // If this is the lhs of an assignment, confirm that the rhs is a primitive
-                vlog('- read:', meta.reads.length, read.grandNode.type, read.grandProp, read.parentNode.type, read.parentProp, meta.uniqueName);
-                if (read.grandNode.type === 'CallExpression') return true;
-                if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
-                  let ok = true;
-
-                  if (AST.isPrimitive(read.grandNode.right)) ok = false;
-                  else if (read.grandNode.right.type === 'Identifier') {
-                    const rhsMeta = fdata.globallyUniqueNamingRegistry.get(init.object.name);
-                    if (PRIMITIVE_TYPE_NAMES_PREVAL.has(rhsMeta.typing.mustBeType)) ok = false;
-                  }
-                  if (!ok) return true;
-
-                  // So this was an assignment to an array prop and the rhs was a primitive.. should be good?
-                  return false;
-                }
-                if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'right') {
-                  // Should be fine to assign, that's just a read
-                  return false;
-                }
-                if (read.grandNode.type === 'VarStatement') {
-                  // init of var decl is ok
-                  return false;
-                }
-                todo('How else are member expressions used in normalized code?', read.grandNode);
-                return true;
-              });
-              vgroupEnd();
-              vlog('- Escape analysis verdict:', escapes);
-              if (!escapes) {
-                // Seems the array must contain primitives? Only mutations are writes to properties and those are assigned primitives too.
-                // This must mean the array can only contain primitives (or the default undefined, which is a primitive too)
-                // So it should be safe to assert the result of reading a computed number prop from the array results in a primitive of sorts.
-                vlog('- Numbered computed property on an array that doesnt escape and only contains primitives; must be primitive');
-                newTyping.mustBeType = 'primitive';
-                newTyping.mustBePrimitive = true;
-              }
-            }
-          } else {
-            vlog('- is not an array');
-          }
-        }
-
-        ASSERT(newTyping?.mustBeType === 'primitive' ? newTyping.mustBePrimitive : true, 'if mustbetype is primitive then isprimitive must be set too', newTyping);
-        if (newTyping?.mustBeType && newTyping.mustBeType !== 'primitive') {
-          vlog('  - We have a mustBeType (', newTyping.mustBeType, '), typingChanged=true');
-          meta.typing = newTyping; // Is there any reason we shouldn't overwrite it anyways? It may have discovered other typing things?
-          typingChanged = true;
-          typingUpdated += 1;
-          untypedConstDecls.delete(obj);
-        }
-        else if (newTyping?.mustBePrimitive && !meta.typing?.mustBePrimitive) {
-          vlog('  - We have a mustBePrimitive, typingChanged=true');
-          meta.typing = newTyping; // Is there any reason we shouldn't overwrite it anyways? It may have discovered other typing things?
-          typingChanged = true;
-          typingUpdated += 1;
-          // Primitive is better than nothing but we'd still like to get to a more concrete type if we can
-          //untypedConstDecls.delete(obj); // Don't delete. Maybe we can push it further to the concrete primitive type.
-        }
-        vlog('---- Typing:', meta.typing.mustBeType, meta.typing.mustBePrimitive);
+        untypedCheck(untypedObj, node, meta, name)
+      } else {
+        vlog('- already has a concrete mustBeType:', meta.typing.mustBeType)
       }
       vgroupEnd();
     });
     vgroupEnd();
+
+    function untypedCheck(untypedObj, node, meta, name) {
+      // Note: deal with lets properly. That's not just this init.
+      const init = node.init;
+      vlog('Resolving .typing with the details of the init, type=', init.type);
+      const newTyping = inferNodeTyping(fdata, init);
+      vlog('++ Results in', newTyping?.mustBeType, '(mustbeprimitive:', newTyping?.mustBePrimitive, ') which we will inject');
+      meta.writes.forEach(write => {
+        if (write.kind === 'assign') {
+          const rhsTyping = inferNodeTyping(fdata, write.parentNode.right);
+          vlog('Merging rhs typing with binding;', rhsTyping);
+          mergeTyping(rhsTyping, newTyping);
+          vlog('newTyping now:', newTyping);
+        } else {
+          ASSERT(write.kind === 'var', 'not catch var or export or smth, right?', write);
+        }
+      });
+
+      if (
+        !newTyping?.mustBeType &&
+        init.type === 'MemberExpression' &&
+        init.object.type === 'Identifier' &&
+        AST.isNumberLiteral(init.property)
+      ) {
+        // `const x = arr[100]`
+        vlog('Special array access check for var that has unknown typing but is assigned a number computed prop of an ident');
+        // valueNode is a computed member expression.
+        // If the object is an array and we can assert the array only contains primitives
+        // and we can assert the array cannot get other types then ... it must be a primitive?
+        const meta = fdata.globallyUniqueNamingRegistry.get(init.object.name);
+        vlog('- The object of the member expression mustBeType', meta.typing.mustBeType);
+        if (meta.typing.mustBeType === 'array') {
+          // Must verify that the array only contains primitives and doesn't escape
+          if (!meta.isConstant) vlog('- is not a var decl');
+          else if (meta.isImplicitGlobal) vlog('- is an implicit global');
+          else if (meta.isBuiltin) vlog('- is builtin');
+          else if (meta.varDeclRef.node.type !== 'ArrayExpression') vlog('- init of obj ident is not an array expression');
+          else if (!meta.varDeclRef.node.elements.every(e => !e || AST.isPrimitive(e))) vlog('- array does not only contain primitives');
+          else if (meta.writes.length !== 1) vlog('- array ref has multiple writes');
+          else {
+            vgroup('Checking all reads of this array ref for escape analysis');
+            const escapes = meta.reads.some(read => {
+              // Confirm this is not a method call
+              // If this is the lhs of an assignment, confirm that the rhs is a primitive
+              vlog('- read:', meta.reads.length, read.grandNode.type, read.grandProp, read.parentNode.type, read.parentProp, meta.uniqueName);
+              if (read.grandNode.type === 'CallExpression') return true;
+              if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
+                let ok = true;
+
+                if (AST.isPrimitive(read.grandNode.right)) ok = false;
+                else if (read.grandNode.right.type === 'Identifier') {
+                  const rhsMeta = fdata.globallyUniqueNamingRegistry.get(init.object.name);
+                  if (PRIMITIVE_TYPE_NAMES_PREVAL.has(rhsMeta.typing.mustBeType)) ok = false;
+                }
+                if (!ok) return true;
+
+                // So this was an assignment to an array prop and the rhs was a primitive.. should be good?
+                return false;
+              }
+              if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'right') {
+                // Should be fine to assign, that's just a read
+                return false;
+              }
+              if (read.grandNode.type === 'VarStatement') {
+                // init of var decl is ok
+                return false;
+              }
+              if (read.grandNode.type === 'ExpressionStatement') {
+                // I guess this can happen. If it's fine to assign then it's fine to not assign.
+                return false;
+              }
+              todo(`How else are member expressions used in normalized code? ${read.grandNode.type}`, read.grandNode);
+              return true;
+            });
+            vgroupEnd();
+            vlog('- Escape analysis verdict:', escapes);
+            if (!escapes) {
+              // Seems the array must contain primitives? Only mutations are writes to properties and those are assigned primitives too.
+              // This must mean the array can only contain primitives (or the default undefined, which is a primitive too)
+              // So it should be safe to assert the result of reading a computed number prop from the array results in a primitive of sorts.
+              vlog('- Numbered computed property on an array that doesnt escape and only contains primitives; must be primitive');
+              newTyping.mustBeType = 'primitive';
+              newTyping.mustBePrimitive = true;
+            }
+          }
+        } else {
+          vlog('- is not an array');
+        }
+      }
+
+      // If we don't have a concrete type here, try to detect and cover the "array pump" trick.
+      // To cover this we only care whether the array consists of primitives or not.
+      if (
+        meta.typing.mustBeType !== 'primitive' &&
+        !newTyping?.mustBeType &&
+        init.type === 'CallExpression' &&
+        init.callee.type === 'Identifier' &&
+        init.callee.name === SYMBOL_DOTCALL &&
+        [
+          symbo('array', 'shift'),
+          symbo('array', 'pop'),
+        ].includes(init.arguments[0].name)
+      ) {
+        vlog('- Trying pump detection to recover...');
+        // The pop/shift does not add types to the array (may remove one if it's the last)
+        // We need to verify;
+        // - the written value is an array expression
+        // - the array does not escape (we cannot allow untracked mutations)
+        // - the types of elements in the array are primitives
+        // - tye types of elements in the array can not become non-primitives
+        //   - to this end we need to check every read of the array
+        //   - all property reads are fine on their own
+        //   - deleting a property is fine, this can not cause the array to contain non-primitives suddenly
+        //   - method calls need to be validated
+        //     - in particular, push/unshift need to be validated
+        //       - every arg of these methods needs to be
+        //         - primitive, or
+        //         - an ident that mustBePrimitive, or
+        //         - an ident that is the result of pop/shift on the same array (this is the key to pump detection!)
+        // (Note that we only care about primitive because arrays may always produce undefined, so there's no real point
+        // in tracking anything other than "primitive".)
+
+        const ctxNode = init.arguments[1];
+        if (ctxNode.type !== 'Identifier') return; // This is not an array, ignore and assume the call returns unknown.
+        const arrMeta = fdata.globallyUniqueNamingRegistry.get(ctxNode.name);
+        if (!arrMeta.isConstant || arrMeta.writes.length !== 1) return; // bail: can only deal with constant arrays. TODO: i mean, why not..?
+        if (arrMeta?.typing.mustBeType !== 'array') return; // failure, assume the call returns unknown
+
+        if (arrMeta.varDeclRef.node?.type !== 'ArrayExpression') {
+          // Maybe we can support this by following an alias or .slice or whatever. For now we bail.
+          todo(`can we support this edge case of array pump? ${arrMeta.varDeclRef.node?.type}`);
+          return vlog('- bail: weird but the array init was not an array expr');
+        }
+
+        if (!arrMeta.varDeclRef.node.elements.every(enode => {
+          if (!enode) return true;
+          if (AST.isPrimitive(enode)) return true;
+          const eMeta = fdata.globallyUniqueNamingRegistry.get(enode.name);
+          if (eMeta?.typing.mustBePrimitive) return true; // ok
+          return false;
+        })) {
+          return vlog('- bail: array was not just primitives');
+        }
+
+        vlog('- Passed array structure pump checks, now verifying array usage...');
+
+        // Verify the array never escapes, verify all property assignments
+        // Note: since mustBeType is array, we can skip the writes
+//TODO // cache the result on arrMeta (or the const $p)
+        const mustReturnPrimitive = arrMeta.reads.every(read => {
+          switch (read.parentNode.type) {
+            case 'CallExpression': {
+              if (read.parentNode.callee.type !== 'Identifier' || read.parentNode.callee.name !== SYMBOL_DOTCALL) {
+                vlog('- bail: at least one usage in a func call that was not a dotcall');
+                return false;
+              }
+              if (read.parentProp !== 'arguments') {
+                vlog('- bail: calling the array?');
+                return false;
+              }
+              if (read.parentIndex !== 1) {
+                vlog('- bail: array is not the context but an actual arg');
+                return false;
+              }
+              if (read.parentNode.arguments[0].type !== 'Identifier') {
+                vlog('- bail: not dotcalling an ident?');
+                return false;
+              }
+              // So this read is a dotcall with the array as context. We must do some more deep validation here next:
+              switch (read.parentNode.arguments[0].name) {
+                case symbo('array', 'push'):
+                case symbo('array', 'unshift'): {
+                  // Verify all the elements being pushed in are primitives
+                  // In this case we must follow idents too to cover the array pump trick
+                  if (read.parentNode.arguments.slice(3).some(anode => {
+                    if (AST.isPrimitive(anode)) return false;
+                    if (anode.type !== 'Identifier') return true;
+                    const aMeta = fdata.globallyUniqueNamingRegistry.get(anode.name);
+                    if (aMeta?.typing.mustBePrimitive) return false; // ok
+                    // If this is a constant that is the result of pop/shifting the same array, then we are still good!
+                    // This last grasp is necessary to break the chicken-egg circular typing of a pump.
+                    if (aMeta.isConstant && aMeta.writes.length === 1) {
+                      const init = aMeta.varDeclRef.node;
+                      if (
+                        init?.type === 'CallExpression' &&
+                        init.callee.type === 'Identifier' &&
+                        init.callee.name === SYMBOL_DOTCALL &&
+                        init.arguments[0].type === 'Identifier' &&
+                        init.arguments[1].type === 'Identifier' &&
+                        init.arguments[1].name === ctxNode.name &&
+                        [
+                          symbo('array', 'shift'),
+                          symbo('array', 'pop'),
+                        ].includes(init.arguments[0].name)
+                      ) {
+                        vlog('- still ok; this var is the result of pop/shifting the same array');
+                        return false;
+                      }
+                    }
+                    return false; // unable to verify the type to be a primitive
+                  })) {
+                    vlog('- bail: at least one arg push/unshifted is not a primitive');
+                    return false;
+                  }
+                  // This push/unshift only pushes primitives. We don't really care about the concrete primitive here.
+                  return true;
+                }
+                case symbo('array', 'pop'):
+                case symbo('array', 'shift'): {
+                  // These methods can not _add_ a new type to the array
+                  // At most they can empty the array and remove the last non-undefined type, which is ok
+                  return true;
+                }
+                default: {
+                  todo(`phase1_1 support this array method call? ${read.parentNode.arguments[0].name}`)
+                }
+              }
+              return false;
+            }
+            case 'MemberExpression': {
+              if (read.parentNode.computed) {
+                if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
+                  // Assignment to property
+                  if (AST.isNumberLiteral(read.parentNode.property)) {
+                    // need to validate the rhs type
+                    const rhs = read.grandNode.right;
+
+                    if (AST.isPrimitive(rhs)) return true; // Assigning primitive to index property is fine
+                    if (rhs.type !== 'Identifier') return true; // What the heck are we assigning here
+                    const aMeta = fdata.globallyUniqueNamingRegistry.get(rhs.name);
+                    return !!aMeta?.typing.mustBePrimitive; // If we are assigning a primitive we're okay. Otherwise we're not.
+                  } else {
+                    vlog('- bail: assignment to computed prop may be an index prop which may add a new type');
+                    return false;
+                  }
+                } else {
+                  // Either assignment of the property value, or something else entirely.
+                  // I think this is okay? It cannot be a call anymore and we can ignore delete here.
+                  // So I think this is a regular property read which cannot change the type of the array.
+                  return true;
+                }
+              } else {
+                return true; // I think assignment to any static property cannot change the array subtype?
+              }
+            }
+            case 'AssignmentExpression': {
+              vlog('- bail: array escapes in an alias');
+              return false;
+            }
+            default: {
+              todo(`${read.parentNode.type}; how else might an array be used that we may want to support in phase1_1?`)
+              return false;
+            }
+          }
+        });
+
+        vlog('- Must return primitive?', mustReturnPrimitive);
+
+        if (mustReturnPrimitive) {
+          vlog('- confirmed that the pop/shift must return a primitive');
+          meta.typing.mustBeType = 'primitive';
+          meta.typing.mustBePrimitive = true;
+          typingChanged = true;
+          typingUpdated += 1;
+          // Primitive is better than nothing but we'd still like to get to a more concrete type if we can.
+          return;
+        }
+
+
+        // Does not change type of array elements
+        // (Ok, if it removes the last element it may remove a type, which is fine here)
+        vlog('- postponing type; this is a array_shift/array_pop which does not change the array');
+        return;
+      }
+
+      /*
+      if (read.grandNode.type === 'CallExpression') {
+                if (read.grandNode.callee.type !== 'Identifier') return true; // shouldnt happen anymore
+                if (read.grandNode.callee.name !== SYMBOL_DOTCALL) return true;
+                if (read.grandProp !== 'arguments') return true;
+                if (read.grandIndex !== 1) return true; // was not the context
+                if (read.grandNode.arguments[0].type !== 'Identifier') return true; // should be ident?
+                if (read.grandNode.arguments[1].type !== 'Identifier') return true; // context must be ident or we can't check it
+                // Check callee (of the dotcall)
+                if ([
+                  symbo('array', 'shift'),
+                  symbo('array', 'pop'),
+                ].includes(read.grandNode.arguments[0].name)) {
+                  // Removing an element from the array does not change the array type
+                  return false; // ok
+                }
+                if ([
+                  symbo('array', 'unshift'),
+                  symbo('array', 'push'),
+                ].includes(read.grandNode.arguments[0].name)) {
+                  // This is tricky because we need to know what is being pushed into the array
+                  // We will settle for any primitive, or "whatever came out of the array".
+                  // Note that push/unshift support multiple args so we have to check all of them.
+                  if (read.grandNode.arguments.slice(3).every(anode => {
+                    if (AST.isPrimitive(anode)) return true;
+                    if (anode.type !== 'Identifier') return false;
+                    const meta = fdata.globallyUniqueNamingRegistry.get(anode.name);
+                    if (PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType)) return true; // ok
+                    // One more attempt to save it: confirm this is the result of shift/popping the same array
+                    if (!meta.isConstant || meta.writes.length !== 1) return false;
+                    const init = meta.varDeclRef?.node;
+                    if (!init) return false;
+                    // Now expecting a dotcall to shift/pop with the array as context
+                    return (
+                      init.type === 'CallExpression' &&
+                      init.callee.type === 'Identifier' &&
+                      init.callee.name === SYMBOL_DOTCALL &&
+                      init.arguments[0].type === 'Identifier' &&
+                      (init.arguments[0].name === symbo('array', 'shift') || init.arguments[0].name === symbo('array', 'pop')) &&
+                      init.arguments[1].type === 'Identifier' &&
+                      init.arguments[1].name === read.grandNode.arguments[1].name // context of current call
+                    );
+                  })) {
+                    return false; // ok. all args inserted into the array were of a primitive type
+                  }
+                }
+
+                // Whatever we called here may change the type of the array in unpredictable ways
+                return true;
+              }
+       */
+
+      ASSERT(newTyping?.mustBeType === 'primitive' ? newTyping.mustBePrimitive : true, 'if mustbetype is primitive then isprimitive must be set too', newTyping);
+      if (newTyping?.mustBeType && newTyping.mustBeType !== 'primitive') {
+        vlog('  - We have a mustBeType (', newTyping.mustBeType, '), typingChanged=true');
+        meta.typing = newTyping; // Is there any reason we shouldn't overwrite it anyways? It may have discovered other typing things?
+        typingChanged = true;
+        typingUpdated += 1;
+        untypedConstDecls.delete(untypedObj);
+      }
+      else if (newTyping?.mustBePrimitive && !meta.typing?.mustBePrimitive) {
+        vlog('  - We have a mustBePrimitive, typingChanged=true');
+        meta.typing = newTyping; // Is there any reason we shouldn't overwrite it anyways? It may have discovered other typing things?
+        typingChanged = true;
+        typingUpdated += 1;
+        // Primitive is better than nothing but we'd still like to get to a more concrete type if we can
+        //untypedConstDecls.delete(obj); // Don't delete. Maybe we can push it further to the concrete primitive type.
+      }
+      vlog('---- Typing:', meta.typing.mustBeType, meta.typing.mustBePrimitive);
+    }
 
     vgroup(funcNodesForSomething.size, 'function return types to discover');
     let fni = 0;

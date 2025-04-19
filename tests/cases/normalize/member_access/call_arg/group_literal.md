@@ -18,7 +18,7 @@ $(($(1), 2).foo);
 
 `````js filename=intro
 $(1);
-const tmpCalleeParam /*:unknown*/ = (2).foo;
+const tmpCalleeParam /*:unknown*/ = $Number_prototype.foo;
 $(tmpCalleeParam);
 `````
 
@@ -28,7 +28,7 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 $(1);
-$((2).foo);
+$($Number_prototype.foo);
 `````
 
 
@@ -37,7 +37,7 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-const a = (2).foo;
+const a = $Number_prototype.foo;
 $( a );
 `````
 

@@ -41,9 +41,11 @@ const tmpFree /*:(string, string)=>primitive*/ = function $free($$0, $$1) {
   debugger;
   const tmpCalleeParam /*:string*/ = xs$1 + 5;
   const one /*:number*/ = parseInt(tmpCalleeParam, ys$1);
-  const two /*:unknown*/ = one.slice(1);
+  const tmpCallCompVal /*:unknown*/ = one.slice;
+  const two /*:unknown*/ = $dotCall(tmpCallCompVal, one, `slice`, 1);
   two + 0;
-  const two$1 /*:unknown*/ = two.slice(2);
+  const tmpCallCompVal$1 /*:unknown*/ = two.slice;
+  const two$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, two, `slice`, 2);
   const tmpRet /*:primitive*/ = two + two$1;
   return tmpRet;
 };
@@ -61,7 +63,8 @@ $(rs);
 
 `````js filename=intro
 const tmpFree = function $free(xs$1, ys$1) {
-  const two = parseInt(xs$1 + 5, ys$1).slice(1);
+  const one = parseInt(xs$1 + 5, ys$1);
+  const two = one.slice(1);
   two + 0;
   const tmpRet = two + two.slice(2);
   return tmpRet;
@@ -81,18 +84,20 @@ const a = function b($$0,$$1 ) {
   debugger;
   const e = c + 5;
   const f = parseInt( e, d );
-  const g = f.slice( 1 );
-  g + 0;
-  const h = g.slice( 2 );
-  const i = g + h;
-  return i;
+  const g = f.slice;
+  const h = $dotCall( g, f, "slice", 1 );
+  h + 0;
+  const i = h.slice;
+  const j = $dotCall( i, h, "slice", 2 );
+  const k = h + j;
+  return k;
 };
-const j = $spy( "x" );
-const k = $coerce( j, "plustr" );
-const l = $spy( "y" );
+const l = $spy( "x" );
 const m = $coerce( l, "plustr" );
-const n = o( a, k, m );
-$( n );
+const n = $spy( "y" );
+const o = $coerce( n, "plustr" );
+const p = q( a, m, o );
+$( p );
 `````
 
 

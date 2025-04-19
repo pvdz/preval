@@ -47,8 +47,8 @@ const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest$3) {
   const tmpAssignMemLhsObj /*:unknown*/ = $(b);
   const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`d`);
-  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`d`);
+  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
   tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 } else {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -82,8 +82,8 @@ const b = { c: 10, d: 20 };
 if (tmpIfTest$3) {
   const tmpAssignMemLhsObj = $(b);
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  tmpAssignMemLhsObj.c = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam = $(`d`);
+  tmpAssignMemLhsObj.c = tmpCompObj[tmpCalleeParam];
 } else {
   if (tmpSwitchCaseToStart <= 1) {
     $(`fail1`);

@@ -41,7 +41,7 @@ $( "foo" );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $string_toString
 
 
 ## Globals

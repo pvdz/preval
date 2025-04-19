@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpIfTest /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpIfTest /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
@@ -40,8 +40,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpIfTest = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const tmpIfTest = tmpCallComplexCallee($(1), $(2));
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);

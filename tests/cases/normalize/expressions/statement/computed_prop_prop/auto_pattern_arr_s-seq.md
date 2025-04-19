@@ -60,7 +60,8 @@ $( c );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+- (todo) Deal with array spreads in arr mutation?
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

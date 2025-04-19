@@ -21,11 +21,11 @@ $(arr.length);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(1);
+const tmpCalleeParam /*:unknown*/ = $(1);
 const arr /*:array*/ = [1, 2, 3];
-$dotCall($function_call, $array_splice, `call`, arr, tmpCalleeParam$1, 2, 10, 20);
-const tmpCalleeParam$3 /*:number*/ = arr.length;
-$(tmpCalleeParam$3);
+$dotCall($array_splice, arr, undefined, tmpCalleeParam, 2, 10, 20);
+const tmpCalleeParam$1 /*:number*/ = arr.length;
+$(tmpCalleeParam$1);
 `````
 
 
@@ -33,9 +33,9 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(1);
+const tmpCalleeParam = $(1);
 const arr = [1, 2, 3];
-$dotCall($function_call, $array_splice, `call`, arr, tmpCalleeParam$1, 2, 10, 20);
+$dotCall($array_splice, arr, undefined, tmpCalleeParam, 2, 10, 20);
 $(arr.length);
 `````
 
@@ -46,7 +46,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = [ 1, 2, 3 ];
-$dotCall( $function_call, $array_splice, "call", b, a, 2, 10, 20 );
+$dotCall( $array_splice, b, undefined, a, 2, 10, 20 );
 const c = b.length;
 $( c );
 `````
@@ -55,8 +55,7 @@ $( c );
 ## Todos triggered
 
 
-- (todo) replace with $array_splice
-- (todo) Missed opportunity to inline a type tracked trick for $function_call
+None
 
 
 ## Globals

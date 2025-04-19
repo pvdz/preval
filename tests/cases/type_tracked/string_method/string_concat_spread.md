@@ -16,7 +16,7 @@ $(x);
 
 
 `````js filename=intro
-const x /*:string*/ = `foo`.concat(a, ...b);
+const x /*:string*/ = $dotCall($string_concat, `foo`, `concat`, a, ...b);
 $(x);
 `````
 
@@ -25,7 +25,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`foo`.concat(a, ...b));
+$($dotCall($string_concat, `foo`, `concat`, a, ...b));
 `````
 
 
@@ -33,7 +33,7 @@ $(`foo`.concat(a, ...b));
 With rename=true
 
 `````js filename=intro
-const c = "foo".concat( a, ...b );
+const c = $dotCall( $string_concat, "foo", "concat", a, ...b );
 $( c );
 `````
 

@@ -45,7 +45,8 @@ $( "abc" );
 
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- (todo) inline computed array property read
+- (todo) Deal with array spreads in arr mutation?
+- (todo) can we always safely clone ident refs in this case?
 
 
 ## Globals

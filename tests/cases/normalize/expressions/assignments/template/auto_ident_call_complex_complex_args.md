@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam$3 /*:unknown*/ = $(1);
 const tmpCalleeParam$5 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$3, tmpCalleeParam$5);
+const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$3, tmpCalleeParam$5);
 const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
@@ -36,8 +36,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const a = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee($(1), $(2));
 $(`before  ${a}  after`);
 $(a);
 `````

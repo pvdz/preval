@@ -27,8 +27,8 @@ const b /*:object*/ = { c: 1 };
 if (tmpIfTest) {
   $(a, b);
 } else {
-  const tmpCompProp /*:unknown*/ = $(`c`);
-  b[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`c`);
+  b[tmpCalleeParam];
   $(a, b);
 }
 `````
@@ -44,8 +44,8 @@ const b = { c: 1 };
 if (tmpIfTest) {
   $(a, b);
 } else {
-  const tmpCompProp = $(`c`);
-  b[tmpCompProp];
+  const tmpCalleeParam = $(`c`);
+  b[tmpCalleeParam];
   $(a, b);
 }
 `````

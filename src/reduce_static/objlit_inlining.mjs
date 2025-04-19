@@ -19,7 +19,7 @@
 // TODO: if the object escapes after the call then we could ignore that case? example: tests/cases/ifelse/this.md
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
@@ -94,7 +94,11 @@ function process(fdata, queue) {
         }
 
         // Now verify that the first arg is indeed the result of a property of the objlit
-        ASSERT(read.parentNode.arguments[0]?.type === 'Identifier', 'dotcall calls idents');
+        if (read.parentNode.arguments[0]?.type !== 'Identifier') {
+          vlog(`dotcall should have ident as first arg, right?`, read.parentNode.arguments[0]);
+          return true;
+        }
+
         const aliasName = read.parentNode.arguments[0].name;
         const aliasMeta = fdata.globallyUniqueNamingRegistry.get(aliasName);
         if (!aliasMeta.isConstant || aliasMeta.isBuiltin || aliasMeta.isImplicitGlobal || !aliasMeta.varDeclRef) {

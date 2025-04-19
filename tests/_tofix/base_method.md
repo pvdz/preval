@@ -32,19 +32,23 @@ $(f('three'));
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const f /*:(unknown)=>unknown*/ = function ($$0) {
+  const x /*:unknown*/ = $$0;
   debugger;
   $(`no`);
   $(`inlining`);
   $(`please`);
-  return undefined;
+  const tmpCallCompVal /*:unknown*/ = x.toString;
+  const y /*:unknown*/ = $dotCall(tmpCallCompVal, x, `toString`);
+  return y;
 };
-f();
-$(`1,2,3`);
-f();
-$(`300`);
-f();
-$(`three`);
+const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
+const tmpCalleeParam /*:unknown*/ = f(tmpCalleeParam$1);
+$(tmpCalleeParam);
+const tmpCalleeParam$3 /*:unknown*/ = f(300);
+$(tmpCalleeParam$3);
+const tmpCalleeParam$5 /*:unknown*/ = f(`three`);
+$(tmpCalleeParam$5);
 `````
 
 
@@ -52,17 +56,16 @@ $(`three`);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {
+const f = function (x) {
   $(`no`);
   $(`inlining`);
   $(`please`);
+  const y = x.toString();
+  return y;
 };
-f();
-$(`1,2,3`);
-f();
-$(`300`);
-f();
-$(`three`);
+$(f([1, 2, 3]));
+$(f(300));
+$(f(`three`));
 `````
 
 
@@ -70,19 +73,23 @@ $(`three`);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+const a = function($$0 ) {
+  const b = $$0;
   debugger;
   $( "no" );
   $( "inlining" );
   $( "please" );
-  return undefined;
+  const c = b.toString;
+  const d = $dotCall( c, b, "toString" );
+  return d;
 };
-a();
-$( "1,2,3" );
-a();
-$( "300" );
-a();
-$( "three" );
+const e = [ 1, 2, 3 ];
+const f = a( e );
+$( f );
+const g = a( 300 );
+$( g );
+const h = a( "three" );
+$( h );
 `````
 
 

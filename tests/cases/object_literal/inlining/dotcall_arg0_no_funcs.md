@@ -20,13 +20,7 @@ $dotCall(h, obj, undefined); // obj has no funcs heh
 
 
 `````js filename=intro
-const h /*:()=>unknown*/ = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const obj /*:object*/ = { f: 123 };
-$dotCall(h, obj, undefined);
+$();
 `````
 
 
@@ -34,13 +28,7 @@ $dotCall(h, obj, undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-$dotCall(
-  function () {
-    $();
-  },
-  { f: 123 },
-  undefined,
-);
+$();
 `````
 
 
@@ -48,13 +36,7 @@ $dotCall(
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  $();
-  return undefined;
-};
-const b = { f: 123 };
-$dotCall( a, b, undefined );
+$();
 `````
 
 

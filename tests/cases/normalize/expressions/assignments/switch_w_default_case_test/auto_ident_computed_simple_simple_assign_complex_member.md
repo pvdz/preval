@@ -31,8 +31,8 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 b.c = tmpNestedAssignPropRhs;
 const tmpIfTest /*:boolean*/ = tmpNestedAssignPropRhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -64,8 +64,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
 b.c = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;

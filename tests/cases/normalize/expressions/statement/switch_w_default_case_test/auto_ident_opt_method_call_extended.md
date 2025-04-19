@@ -31,7 +31,7 @@ $(a);
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const tmpClusterSSA_tmpIfTest /*:boolean*/ = tmpChainElementCall === tmpSwitchValue;
 if (tmpClusterSSA_tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -64,7 +64,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-if ({ e: $ }.e(1) === tmpSwitchValue) {
+if ($dotCall($, { e: $ }, `e`, 1) === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -90,7 +90,7 @@ With rename=true
 const a = $( 1 );
 let b = 1;
 const c = { e: $ };
-const d = c.e( 1 );
+const d = $dotCall( $, c, "e", 1 );
 const e = d === a;
 if (e) {
   b = 0;

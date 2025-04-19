@@ -54,6 +54,7 @@ $( a );
 
 
 - (todo) Support this node type in isFree: NewExpression
+- (todo) regular property access of an ident feels tricky;
 - (todo) Support this node type in isFree: DebuggerStatement
 
 

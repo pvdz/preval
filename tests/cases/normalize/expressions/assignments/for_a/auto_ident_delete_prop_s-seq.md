@@ -56,8 +56,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) regular property access of an ident feels tricky;
-- (todo) objects in isFree check
+- (todo) do we want to support UnaryExpression as expression statement in free loops?
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 
 
 ## Globals

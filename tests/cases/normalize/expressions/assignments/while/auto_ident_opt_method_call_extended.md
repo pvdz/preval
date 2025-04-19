@@ -23,11 +23,12 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = undefined;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 if (tmpChainElementCall) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpChainElementCall$1 /*:unknown*/ = tmpObjLitVal$1.e(1);
+    const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
+    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
     a = tmpChainElementCall$1;
     if (tmpChainElementCall$1) {
     } else {
@@ -47,7 +48,7 @@ if (tmpChainElementCall) {
 `````js filename=intro
 let a = undefined;
 const tmpObjLitVal$1 = { e: $ };
-const tmpChainElementCall = tmpObjLitVal$1.e(1);
+const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, `e`, 1);
 if (tmpChainElementCall) {
   while (true) {
     $(100);
@@ -70,13 +71,14 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = { e: $ };
-const c = b.e( 1 );
+const c = $dotCall( $, b, "e", 1 );
 if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = b.e( 1 );
-    a = d;
-    if (d) {
+    const d = b.e;
+    const e = $dotCall( d, b, "e", 1 );
+    a = e;
+    if (e) {
 
     }
     else {
@@ -95,7 +97,8 @@ else {
 
 
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpObjLitVal$1.e
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

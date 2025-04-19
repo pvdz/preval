@@ -120,7 +120,7 @@ else {
 
 
 - (todo) objects in isFree check
-- (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

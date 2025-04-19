@@ -8,10 +8,11 @@
 // Also includes a special case for Buffer.from().toString()
 //
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
-import { THIS_ALIAS_BASE_NAME } from '../symbols_preval.mjs';
+import { SYMBOL_DOTCALL, THIS_ALIAS_BASE_NAME } from '../symbols_preval.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function pruneTrampolineFunctions(fdata) {
   group('\n\n\nPruning trampoline functions that only return the call to another function\n');
@@ -28,19 +29,17 @@ function _pruneTrampolineFunctions(fdata) {
     if (meta.isBuiltin) return;
     if (!meta.isConstant) return;
 
-    vlog(
-      '- `' + funcName + '`:',
-      meta.varDeclRef.node.type,
-      'reads `arguments` len/any?',
-      meta.varDeclRef.node.$p.readsArgumentsLen,
-      meta.varDeclRef.node.$p.readsArgumentsAny,
-    );
-
     const funcNode = meta.varDeclRef.node;
     if (funcNode.type !== 'FunctionExpression') {
-      vlog('  - Not a function');
       return;
     }
+
+    vgroup('- func ', [funcName], ': does it read `arguments` len/any?', meta.varDeclRef.node.$p.readsArgumentsLen, meta.varDeclRef.node.$p.readsArgumentsAny);
+    processFunc(meta, funcNode, funcName)
+    vgroupEnd();
+  });
+
+  function processFunc(meta, funcNode, funcName) {
 
     if (funcNode.$p.readsArgumentsAny || funcNode.$p.readsArgumentsLen) {
       // Note: Inlining the arg count should be trivial so we can do that easily
@@ -60,7 +59,7 @@ function _pruneTrampolineFunctions(fdata) {
     // Ignore this step if the function has a rest arg. It'll be too difficult to map for now.
     const lastParam = funcParams[funcParams.length - 1];
     ASSERT(lastParam === undefined || lastParam.type === 'Param');
-    vlog('  - Has rest?', !!lastParam?.rest);
+    vlog('- Has rest?', !!lastParam?.rest);
     if (lastParam?.rest) {
       vlog('  - Bailing. Cannot deal with rest right now');
       return;
@@ -68,7 +67,7 @@ function _pruneTrampolineFunctions(fdata) {
 
     const bodyOffset = findBodyOffset(funcNode);
     const statementCount = funcNode.body.body.length - bodyOffset;
-    vlog('  - Has', statementCount, 'statements');
+    vlog('- Has', statementCount, 'statements');
 
     if (statementCount === 1) {
       vlog('  - This function is has one statement. Trying to figure out easy inline cases.');
@@ -201,7 +200,8 @@ function _pruneTrampolineFunctions(fdata) {
         vlog('      - queuing into toOutlineCall to eliminating call to trampoline function');
         toOutlineCall.push([read, innerCallNode, paramArgMapping, calleeMapping, calleeObjMapping, calleePropMapping]);
       });
-    } else if (statementCount === 2) {
+    }
+    else if (statementCount === 2) {
       vlog('    - this function is has two statements. Trying to figure out easy inline cases.');
 
       const varNode = funcNode.body.body[bodyOffset];
@@ -236,10 +236,10 @@ function _pruneTrampolineFunctions(fdata) {
           const calleeName = innerCallee.name;
           vlog(
             '        - Checking if the callee `' +
-              calleeName +
-              '` is a param [' +
-              funcParams.map((n) => '`' + n.name + '`').join(', ') +
-              ']',
+            calleeName +
+            '` is a param [' +
+            funcParams.map((n) => '`' + n.name + '`').join(', ') +
+            ']',
           );
 
           funcParams.some((anode, ai) => {
@@ -257,12 +257,12 @@ function _pruneTrampolineFunctions(fdata) {
           const calleeNameProp = innerCallee.property.name;
           vlog(
             '        - Checking if the callee.object `' +
-              (innerCallee.object.type === 'Identifier' ? calleeNameObj : '<??>') +
-              '` or property `' +
-              (innerCallee.computed && innerCallee.property.type === 'Identifier' ? innerCallee.property.name : '<??>') +
-              '` is a param [' +
-              funcParams.map((n) => '`' + n.name + '`').join(', ') +
-              ']',
+            (innerCallee.object.type === 'Identifier' ? calleeNameObj : '<??>') +
+            '` or property `' +
+            (innerCallee.computed && innerCallee.property.type === 'Identifier' ? innerCallee.property.name : '<??>') +
+            '` is a param [' +
+            funcParams.map((n) => '`' + n.name + '`').join(', ') +
+            ']',
           );
           ASSERT(innerCallee.type === 'MemberExpression', 'All other cases are eliminated, yes?', innerCallNode);
           // For now, reject both object and property. Later we may support property in a special case.
@@ -335,44 +335,52 @@ function _pruneTrampolineFunctions(fdata) {
           toReplaceWith.push([read, innerCallNode, paramArgMapping, calleeIdentIndex, calleeObjectIndex, calleePropIndex]);
         });
       }
-    } else if (statementCount === 3) {
+    }
+    else if (statementCount === 4) {
       // Two statements that are called in tandem and may as well be considered one
-      // statement, for example `a.b.c()` is going to be `const x = a.b; x.c()`.
+      // statement, for example `a.b.c()` is going to be `const x = a.b; const y = x.c; $dotCall(y, x, 'c')()`.
 
-      const stmt1 = funcNode.body.body[bodyOffset];
-      const stmt2 = funcNode.body.body[bodyOffset+1];
-      const ret = funcNode.body.body[bodyOffset + 2];
+      const stmt1 = funcNode.body.body[bodyOffset];   // const buf = $dotCall($Buffer_from, Buffer, 'from', param, 'base64')
+      const stmt2 = funcNode.body.body[bodyOffset+1]; // const tmp = buf.toString;
+      const stmt3 = funcNode.body.body[bodyOffset+2]; // const ret = $dotCall(tmp, buf, 'toString', 'utf8')
+      const ret = funcNode.body.body[bodyOffset + 3]; // return ret
 
-      if (!isBufferConvertPattern(stmt1, stmt2, funcNode.params[0]?.$p.paramVarDeclRef?.name)) return;
-      if (!isDeclaredVarReturned(stmt2, ret)) return;
+      if (!AST.isBufferConvertPattern(stmt1, stmt2, stmt3, funcNode.params[0]?.$p.paramVarDeclRef?.name)) return vlog('- bail: isBufferConvertPattern is false');
+      if (!isDeclaredVarReturned(stmt3, ret)) return vlog('- bail: not returning id1');
+      vlog('- ok; pattern seems to match! walking through', meta.reads.length, 'of the trampo function');
 
       const init1 = stmt1.init;
-      const init2 = stmt2.init;
+      const init3 = stmt2.init;
 
       // Should have found our Buffer.from(x,"y").toString("z") trampoline. Find calls to inline.
 
-      meta.reads.forEach(read => {
+      meta.reads.forEach((read, n) => {
         if (
           read.parentNode.type === 'CallExpression' &&
-          read.parentProp === 'callee' &&
-          read.parentNode.arguments.length === 1 &&
-          AST.isPrimitive(read.parentNode.arguments[0])
+          read.parentProp === 'arguments' &&
+          read.parentNode.arguments.length === 4 && // 3 for dotcall + 1 for tostring
+          AST.isPrimitive(read.parentNode.arguments[3])
         ) {
+          vlog('- queued call', n, 'to be transformed');
           bufferTrick.push({
             index: +read.node.$p.pid,
             func: () => {
+              // I think this check may be superseded by the concrete reduce_static/buffer_base64.mjs transform... which is fine.
+              todo('cover this trampoline with a test case'); // Remove me when one is found :)
               // This is a case we can inline
-              const args = read.parentNode.arguments;
-
               rule('Calling a function that just calls Buffer.from().toString() on the arg can be inlined');
               example(
                 'function f(a) { const x = Buffer.from(a, "base64"); const y = x.toString("binary"); return y; } const boo = f("boo")',
                 'function f(a) { const x = Buffer.from(a, "base64"); const y = x.toString("binary"); return y; } const x = Buffer.from("boo", "base64"); const boo = x.toString("binary");)',
               );
+              example(
+                `function f(a) { const x = ${SYMBOL_DOTCALL}(${symbo('Buffer', 'from')}, a, "base64"); const y = x.toString("binary"); return y; } const boo = f("boo")`,
+                `function f(a) { const x = ${SYMBOL_DOTCALL}(${symbo('Buffer', 'from')}, a, "base64"); const y = x.toString("binary"); return y; } const x = ${SYMBOL_DOTCALL}(${symbo('Buffer', 'from')}, "boo", "base64"); const boo = x.toString("binary");)`,
+              );
               before(funcNode);
               before(read.blockBody[read.blockIndex]);
 
-              const tmpName = createFreshVar('$bufferfrom', fdata);
+              const tmpName = createFreshVar('tmpBufFrom', fdata);
 
               read.blockBody.splice(
                 read.blockIndex, 0,
@@ -380,35 +388,41 @@ function _pruneTrampolineFunctions(fdata) {
                   'const',
                   tmpName,
                   AST.callExpression(
-                    AST.memberExpression('Buffer', 'from'),
+                    AST.identifier(SYMBOL_DOTCALL),
                     [
-                      AST.primitive(AST.getPrimitiveValue(args[0])),
-                      ...init1.arguments.slice(1).map(anode => AST.primitive(AST.getPrimitiveValue(anode)))
+                      symbo('Buffer', 'from'),
+                      AST.identifier(stmt1.id.name),
+                      AST.undef(),
+                      // Remember: it's a dotcall so slice from arg3+
+                      ...init1.arguments.slice(3).map(anode => AST.primitive(AST.getPrimitiveValue(anode)))
                     ]
                   ),
                 )
               );
-               // replace the call, whereever it is, with a call to the tmp.toString with the same args
+              // replace the call, whereever it is, with a call to the tmp.toString with the same args
               read.parentNode.callee = AST.memberExpression(tmpName, 'toString');
-              read.parentNode.arguments = init2.arguments.map(anode => AST.primitive(AST.getPrimitiveValue(anode)));
+              read.parentNode.arguments = init3.arguments.slice(3).map(anode => AST.primitive(AST.getPrimitiveValue(anode)));
 
               after(read.blockBody[read.blockIndex]);
               after(read.blockBody[read.blockIndex+1]);
             }
-          })
+          });
+        } else {
+          vlog('- bailed on call', n, ' because parent wasnt a call or not calling this function;', read.parentNode.type, read.parentProp);
         }
       });
-    } else if (statementCount === 4) {
+    }
+    else if (statementCount === 5) {
       // This is a bit of a manual hack to support the buffer encode case when there's an extra statement. So sue me.
       // In this pattern we target a function that does:
       // `function f(x) { whatever = x; const a = Buffer.from(x); const b = a.toString(); return b; }`
       // So in particular, we search for an assignment of the param to a global. Should be safe to outline that too, regardless.
 
       const stmt = funcNode.body.body[bodyOffset];
-      if (stmt.type !== 'ExpressionStatement') return;
-      if (stmt.expression.type !== 'AssignmentExpression') return;
-      if (stmt.expression.left.type !== 'Identifier') return;
-      if (stmt.expression.right.type !== 'Identifier') return;
+      if (stmt.type !== 'ExpressionStatement') return vlog('- bail: first not exprstmt');
+      if (stmt.expression.type !== 'AssignmentExpression') return vlog('- bail: first not assign stmt');
+      if (stmt.expression.left.type !== 'Identifier') return vlog('- bail: first not assigning to ident');
+      if (stmt.expression.right.type !== 'Identifier') return vlog('- bail: first not assigning an ident');
 
       const firstParamName = funcNode.params[0]?.$p.paramVarDeclRef?.name;
       if (stmt.expression.right.name !== firstParamName) return;
@@ -420,15 +434,18 @@ function _pruneTrampolineFunctions(fdata) {
         !lhsMeta.writes.some(write => write.kind === 'var' && write.funcChain === '1')
       ) return; // an explicit var whose decl is not a var or not in global space; bail
 
-      const stmt1 = funcNode.body.body[bodyOffset + 1];
-      const stmt2 = funcNode.body.body[bodyOffset + 2];
-      const ret = funcNode.body.body[bodyOffset + 3];
+      // x = param
+      const stmt1 = funcNode.body.body[bodyOffset+1]; // const buf = $dotCall($Buffer_from, Buffer, 'from', param, 'base64')
+      const stmt2 = funcNode.body.body[bodyOffset+2]; // const tmp = buf.toString;
+      const stmt3 = funcNode.body.body[bodyOffset+3]; // const ret = $dotCall(tmp, buf, 'toString', 'utf8')
+      const ret = funcNode.body.body[bodyOffset + 4]; // return ret
 
-      if (!isBufferConvertPattern(stmt1, stmt2, firstParamName)) return;
-      if (!isDeclaredVarReturned(stmt2, ret)) return;
+      if (!AST.isBufferConvertPattern(stmt1, stmt2, stmt3, firstParamName)) return vlog('- bail: isBufferConvertPattern is false');
+      if (!isDeclaredVarReturned(stmt3, ret)) return vlog('- bail: not returning id1');
+      vlog('- ok; pattern seems to match!');
 
       const init1 = stmt1.init;
-      const init2 = stmt2.init;
+      const init3 = stmt3.init;
 
       // Should have found our Buffer.from(x,"y").toString("z") trampoline. Find calls to inline.
 
@@ -453,7 +470,7 @@ function _pruneTrampolineFunctions(fdata) {
               before(funcNode);
               before(read.blockBody[read.blockIndex]);
 
-              const tmpName = createFreshVar('$bufferfrom', fdata);
+              const tmpName = createFreshVar('tmpBufFrom', fdata);
               const argValue = AST.getPrimitiveValue(args[0]);
 
               read.blockBody.splice(
@@ -471,14 +488,14 @@ function _pruneTrampolineFunctions(fdata) {
                     AST.memberExpression('Buffer', 'from'),
                     [
                       AST.primitive(argValue),
-                      ...init1.arguments.slice(1).map(anode => AST.primitive(AST.getPrimitiveValue(anode)))
+                      ...init1.arguments.slice(4).map(anode => AST.primitive(AST.getPrimitiveValue(anode)))
                     ]
                   ),
                 )
               );
               // replace the call, whereever it is, with a call to the tmp.toString with the same args
               read.parentNode.callee = AST.memberExpression(tmpName, 'toString');
-              read.parentNode.arguments = init2.arguments.map(anode => AST.primitive(AST.getPrimitiveValue(anode)));
+              read.parentNode.arguments = init3.arguments.slice(3).map(anode => AST.primitive(AST.getPrimitiveValue(anode)));
 
               after(read.blockBody[read.blockIndex]);
               after(read.blockBody[read.blockIndex+1]);
@@ -486,11 +503,14 @@ function _pruneTrampolineFunctions(fdata) {
           })
         }
       });
-    } else {
-      // I dunno, gotta draw the line somewhere. Can't risk code bloat.
-      vlog('bail: Func body is more than three statements');
     }
-  });
+    else {
+      // I dunno, gotta draw the line somewhere. Can't risk code bloat.
+      vlog('bail: Func body statement count does not match any expected pattern:', statementCount);
+    }
+  }
+
+
   log('Queued', toReplaceWith.length, 'calls for remapping and', toOutlineCall.length, 'calls for outlining');
   if (toReplaceWith.length || toOutlineCall.length || bufferTrick.length) {
     vgroup('toReplaceWith');
@@ -657,43 +677,6 @@ function _pruneTrampolineFunctions(fdata) {
   return false;
 }
 
-
-/**
- * Confirm that given statement pair is doing: `const x = Buffer.from('str', 'enc'); const y = x.toString('enc');`
- * The args of both calls should be predictable primitives. The second method call object should be on the first var.
- * The var decls should be const.
- */
-function isBufferConvertPattern(stmt1, stmt2, paramName) {
-  // Verify that the first statement is like `const x = Buffer.from(x, "base64")`, where x is a param
-  if (stmt1.type !== 'VarStatement') return false;
-  const init1 = stmt1.init;
-  if (init1.type !== 'CallExpression') return false;
-  if (init1.arguments.length === 0) return false;
-  if (init1.callee.type !== 'MemberExpression') return false;
-  if (init1.callee.object.type !== 'Identifier') return false;
-  if (init1.callee.computed) return false;
-  if (init1.callee.property.name !== 'from') return false;
-  // All args beyond the first must be primitives we can predict
-  if (!init1.arguments.every((anode,i) => i === 0 || AST.isPrimitive(anode))) return false;
-  // Verify that the second statement is something like `id1.toString("ascii")`
-  const init2 = stmt2.init;
-  if (init2.type !== 'CallExpression') return false;
-  if (init2.callee.type !== 'MemberExpression') return false;
-  if (init2.callee.object.type !== 'Identifier') return false;
-  if (init2.callee.computed) return false;
-  if (init2.callee.property.name !== 'toString') return false;
-  // Verify that the first arg of init1 is a param
-  if (init1.arguments[0].type !== 'Identifier') return false;
-  if (init1.arguments[0].name !== paramName) return false;
-  // Calling .toString() on the result of stmt1
-  if (init2.callee.object.name !== stmt1.id.name) return false;
-  // Verify that the args of init1 after the first arg primitives
-  if (!init1.arguments.every((anode,i) => i === 0 || AST.isPrimitive(anode))) return false;
-  // Verify that all the args to .toString() are primitives
-  if (!init2.arguments.every(anode => AST.isPrimitive(anode))) return false;
-
-  return true;
-}
 function isDeclaredVarReturned(stmt2, ret) {
   // Verify that it returns the stmt2 var
   if (ret.type !== 'ReturnStatement') return false;

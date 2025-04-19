@@ -21,12 +21,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$1];
 const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpCompProp$1 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$1 /*:unknown*/ = b[tmpCompProp$1];
+const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
+const tmpNewCallee$1 /*:unknown*/ = b[tmpCalleeParam$3];
 const tmpClusterSSA_a$1 /*:object*/ = new tmpNewCallee$1(1);
 const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
@@ -38,12 +38,12 @@ $(tmpClusterSSA_a$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
+const tmpCalleeParam$1 = $(`\$`);
 const b = { $: $ };
-const tmpNewCallee = b[tmpCompProp];
+const tmpNewCallee = b[tmpCalleeParam$1];
 const tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpCompProp$1 = $(`\$`);
-const tmpNewCallee$1 = b[tmpCompProp$1];
+const tmpCalleeParam$3 = $(`\$`);
+const tmpNewCallee$1 = b[tmpCalleeParam$3];
 const tmpClusterSSA_a$1 = new tmpNewCallee$1(1);
 $(tmpClusterSSA_a + tmpClusterSSA_a$1);
 $(tmpClusterSSA_a$1);

@@ -23,7 +23,7 @@ if ($(true)) {
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const a /*:unknown*/ = (3).foo;
+  const a /*:unknown*/ = $Number_prototype.foo;
   const b /*:object*/ = { x: 2 };
   $(a, b, 3);
 } else {
@@ -36,7 +36,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(true)) {
-  $((3).foo, { x: 2 }, 3);
+  $($Number_prototype.foo, { x: 2 }, 3);
 }
 `````
 
@@ -47,7 +47,7 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  const b = (3).foo;
+  const b = $Number_prototype.foo;
   const c = { x: 2 };
   $( b, c, 3 );
 }

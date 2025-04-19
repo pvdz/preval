@@ -20,7 +20,7 @@ $(f(0, 10));
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (0).x;
+const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
 let objPatternCrashTest /*:boolean*/ = objPatternNoDefault === undefined;
 if (objPatternCrashTest) {
 } else {
@@ -39,7 +39,7 @@ if (objPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = (0).x;
+const objPatternNoDefault = $Number_prototype.x;
 let objPatternCrashTest = objPatternNoDefault === undefined;
 if (!objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault === null;
@@ -57,7 +57,7 @@ if (objPatternCrashTest) {
 With rename=true
 
 `````js filename=intro
-const a = (0).x;
+const a = $Number_prototype.x;
 let b = a === undefined;
 if (b) {
 

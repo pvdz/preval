@@ -25,8 +25,8 @@ if (tmpIfTest) {
   $(`before  undefined  after`);
   $(undefined);
 } else {
-  const tmpCalleeParam$7 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$7);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
   const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall$1, `string`);
   const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
   $(tmpClusterSSA_tmpCalleeParam);

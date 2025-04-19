@@ -17,7 +17,7 @@ const {x: {y: {z = a }}} = 1;
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
 const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
 const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault$1.z;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
@@ -32,7 +32,7 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ((1).x.y.z === undefined) {
+if ($Number_prototype.x.y.z === undefined) {
   a;
 }
 `````
@@ -42,7 +42,7 @@ if ((1).x.y.z === undefined) {
 With rename=true
 
 `````js filename=intro
-const b = (1).x;
+const b = $Number_prototype.x;
 const c = b.y;
 const d = c.z;
 const e = d === undefined;

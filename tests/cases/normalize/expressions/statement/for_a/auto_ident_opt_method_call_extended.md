@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-tmpObjLitVal$1.e(1);
+$dotCall($, tmpObjLitVal$1, `e`, 1);
 const tmpIfTest$1 /*:unknown*/ = $(0);
 if (tmpIfTest$1) {
   while ($LOOP_UNROLL_10) {
@@ -43,7 +43,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-({ e: $ }.e(1));
+$dotCall($, { e: $ }, `e`, 1);
 if ($(0)) {
   while (true) {
     if (!$(0)) {
@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-a.e( 1 );
+$dotCall( $, a, "e", 1 );
 const b = $( 0 );
 if (b) {
   while ($LOOP_UNROLL_10) {
@@ -85,8 +85,7 @@ $( d );
 
 
 - (todo) regular property access of an ident feels tricky;
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpChainElementObject$1.e
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpObjLitVal$1.e
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

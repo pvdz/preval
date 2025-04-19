@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$3];
 const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpClusterSSA_a);
@@ -35,8 +35,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpCalleeParam$3 = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCalleeParam$3];
 const tmpClusterSSA_a = new tmpNewCallee(1);
 $([`before `, ` after`], tmpClusterSSA_a);
 $(tmpClusterSSA_a);

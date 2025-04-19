@@ -21,7 +21,8 @@ $(arr);
 
 `````js filename=intro
 const arr /*:array*/ = [];
-arr.call(arr, 1);
+const tmpCallCompVal /*:unknown*/ = arr.call;
+$dotCall(tmpCallCompVal, arr, `call`, arr, 1);
 $(arr);
 `````
 
@@ -41,7 +42,8 @@ With rename=true
 
 `````js filename=intro
 const a = [];
-a.call( a, 1 );
+const b = a.call;
+$dotCall( b, a, "call", a, 1 );
 $( a );
 `````
 
@@ -49,7 +51,7 @@ $( a );
 ## Todos triggered
 
 
-- (todo) replace with $array_push
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

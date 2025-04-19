@@ -280,7 +280,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing);
           phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing);
           // In a pcode test we have to run the pcode plugin here because we don't want ot run all of phase2
-          if (options.pcodeTest) freeFuncs(fdata, prng, !!options.prngSeed);
+          if (options.pcodeTest) freeFuncs(fdata, prng, !!options.prngSeed, true);
           contents.lastPhase1Ast[fname] = fdata.tenkoOutput.ast;
 
           options?.onAfterPhase?.(1, passes, phaseLoop, fdata, false, options);
@@ -384,6 +384,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
       } catch (e) {
         console.error('AST to PST conversion failed:', e);
         contents.settledPst[fname] = {failure: true, e};
+        throw e;
       }
 
       if (!options.refTest && !options.pcodeTest) {

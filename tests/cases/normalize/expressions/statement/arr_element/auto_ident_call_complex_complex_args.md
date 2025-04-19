@@ -21,14 +21,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpBinBothLhs /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpCallCallee$1 /*:unknown*/ = $($);
+const tmpBinBothLhs /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCallComplexCallee$1 /*:unknown*/ = $($);
 const tmpCalleeParam$3 /*:unknown*/ = $(1);
 const tmpCalleeParam$5 /*:unknown*/ = $(2);
-const tmpBinBothRhs /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpBinBothRhs /*:unknown*/ = tmpCallComplexCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -39,11 +39,11 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpBinBothLhs = tmpCallCallee($(1), $(2));
-const tmpCallCallee$1 = $($);
+const tmpCallComplexCallee = $($);
+const tmpBinBothLhs = tmpCallComplexCallee($(1), $(2));
+const tmpCallComplexCallee$1 = $($);
 const tmpCalleeParam$3 = $(1);
-tmpBinBothLhs + tmpCallCallee$1(tmpCalleeParam$3, $(2));
+tmpBinBothLhs + tmpCallComplexCallee$1(tmpCalleeParam$3, $(2));
 $({ a: 999, b: 1000 });
 `````
 

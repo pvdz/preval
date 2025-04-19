@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$1];
 const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
@@ -37,8 +37,8 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpCalleeParam$1 = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCalleeParam$1];
 const tmpClusterSSA_a = new tmpNewCallee(1);
 $(tmpBinBothLhs + tmpClusterSSA_a);
 $(tmpClusterSSA_a);

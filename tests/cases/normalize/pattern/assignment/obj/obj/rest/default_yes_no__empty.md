@@ -18,7 +18,7 @@ $('bad');
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = (1).x;
+const objPatternBeforeDefault /*:unknown*/ = $Number_prototype.x;
 let objPatternAfterDefault /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
@@ -37,7 +37,7 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = (1).x;
+const objPatternBeforeDefault = $Number_prototype.x;
 let objPatternAfterDefault = undefined;
 if (objPatternBeforeDefault === undefined) {
   objPatternAfterDefault = $({ a: `fail` });
@@ -53,7 +53,7 @@ $(`bad`);
 With rename=true
 
 `````js filename=intro
-const a = (1).x;
+const a = $Number_prototype.x;
 let b = undefined;
 const c = a === undefined;
 if (c) {

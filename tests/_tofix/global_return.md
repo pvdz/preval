@@ -52,14 +52,24 @@ $(tmpCalleeParam$3);
 `````js filename=intro
 const a /*:()=>number*/ = function $free() {
   debugger;
-  const tmpSaooB /*:string*/ = tmpCalleeParam$5.charAt(0);
-  const tmpRet$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB);
+  const tmpSaooB /*:string*/ = $dotCall($string_charAt, tmpCalleeParam$5, `charAt`, 0);
+  const tmpRet$1 /*:number*/ = $dotCall(
+    $string_indexOf,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
+    `indexOf`,
+    tmpSaooB,
+  );
   return tmpRet$1;
 };
 const b /*:()=>number*/ = function $free() {
   debugger;
-  const tmpSaooB$1 /*:string*/ = tmpCalleeParam$1.charAt(0);
-  const tmpRet /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpSaooB$1);
+  const tmpSaooB$1 /*:string*/ = $dotCall($string_charAt, tmpCalleeParam$1, `charAt`, 0);
+  const tmpRet /*:number*/ = $dotCall(
+    $string_indexOf,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
+    `indexOf`,
+    tmpSaooB$1,
+  );
   return tmpRet;
 };
 const CALLME /*:(number)=>string*/ = function ($$0) {
@@ -88,11 +98,21 @@ $(tmpCalleeParam$3);
 
 `````js filename=intro
 const a = function $free() {
-  const tmpRet$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpCalleeParam$5.charAt(0));
+  const tmpRet$1 = $dotCall(
+    $string_indexOf,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
+    `indexOf`,
+    $dotCall($string_charAt, tmpCalleeParam$5, `charAt`, 0),
+  );
   return tmpRet$1;
 };
 const b = function $free() {
-  const tmpRet = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`.indexOf(tmpCalleeParam$1.charAt(0));
+  const tmpRet = $dotCall(
+    $string_indexOf,
+    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
+    `indexOf`,
+    $dotCall($string_charAt, tmpCalleeParam$1, `charAt`, 0),
+  );
   return tmpRet;
 };
 const CALLME = function ($dlr_$$0) {
@@ -113,14 +133,14 @@ With rename=true
 `````js filename=intro
 const a = function b() {
   debugger;
-  const c = d.charAt( 0 );
-  const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( c );
+  const c = $dotCall( $string_charAt, d, "charAt", 0 );
+  const e = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", c );
   return e;
 };
 const f = function b() {
   debugger;
-  const g = h.charAt( 0 );
-  const i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf( g );
+  const g = $dotCall( $string_charAt, h, "charAt", 0 );
+  const i = $dotCall( $string_indexOf, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", "indexOf", g );
   return i;
 };
 const j = function($$0 ) {

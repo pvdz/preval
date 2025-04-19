@@ -21,7 +21,7 @@ const y = $();
 `````js filename=intro
 const x /*:unknown*/ = $();
 const y /*:unknown*/ = $();
-``.replace(x, y);
+$dotCall($string_replace, ``, `replace`, x, y);
 `````
 
 
@@ -29,7 +29,7 @@ const y /*:unknown*/ = $();
 (This ought to be the final result)
 
 `````js filename=intro
-``.replace($(), $());
+$dotCall($string_replace, ``, `replace`, $(), $());
 `````
 
 
@@ -39,7 +39,7 @@ With rename=true
 `````js filename=intro
 const a = $();
 const b = $();
-"".replace( a, b );
+$dotCall( $string_replace, "", "replace", a, b );
 `````
 
 

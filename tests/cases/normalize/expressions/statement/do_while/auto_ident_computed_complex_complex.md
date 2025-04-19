@@ -26,14 +26,14 @@ $(a, b);
 $(100);
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`c`);
-const tmpIfTest /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`c`);
+const tmpIfTest /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCompObj$1 /*:unknown*/ = $(b);
-    const tmpCompProp$1 /*:unknown*/ = $(`c`);
-    const tmpIfTest$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+    const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
+    const tmpIfTest$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
     if (tmpIfTest$1) {
     } else {
       break;
@@ -53,13 +53,13 @@ $(a, b);
 $(100);
 const b = { c: 1 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-if (tmpCompObj[tmpCompProp]) {
+const tmpCalleeParam = $(`c`);
+if (tmpCompObj[tmpCalleeParam]) {
   while (true) {
     $(100);
     const tmpCompObj$1 = $(b);
-    const tmpCompProp$1 = $(`c`);
-    if (!tmpCompObj$1[tmpCompProp$1]) {
+    const tmpCalleeParam$1 = $(`c`);
+    if (!tmpCompObj$1[tmpCalleeParam$1]) {
       break;
     }
   }

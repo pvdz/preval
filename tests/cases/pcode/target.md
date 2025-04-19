@@ -51,33 +51,7 @@ $('end');
 
 
 `````fileintro
-pcode =
-    [ r0 = $$0 - ]
-    [ r1 = - "" ]
-    [ r2 < r0 - - 62 ]
-    [ if r2 -
-      [
 
-      ] [
-        [ r3 / r0 - - 62 ]
-        [ r4 call parseInt - - undefined ]
-        [ r1 call pcode - - undefined ]
-      ]
-    ]
-    [ r5 % r0 - - 62 ]
-    [ r6 > r5 - - 35 ]
-    [ if r6 -
-      [
-        [ r7 + r5 - - 29 ]
-        [ r8 call $String_fromCharCode - - undefined ]
-        [ r9 + r1 - r8 - ]
-        [ return r9 - ]
-      ] [
-        [ r10 call $number_toString - - "" 36 - ]
-        [ r11 + r1 - r10 - ]
-        [ return r11 - ]
-      ]
-    ]
 `````
 
 
@@ -92,21 +66,3 @@ None
 ## Pcode result
 
 
-Running function "pcode":
-
-                                    pcode          =>   eval
- - `pcode()`                   => `"<max pcode call depth exceeded>"` => `"Maximum call stack size exceeded"`  Ok
- - `pcode(undefined)`          => `"<max pcode call depth exceeded>"` => `"Maximum call stack size exceeded"`  Ok
- - `pcode(null)`               => `"0"`            => `"0"`             Ok
- - `pcode(true)`               => `"1"`            => `"1"`             Ok
- - `pcode(false)`              => `"0"`            => `"0"`             Ok
- - `pcode("")`                 => `"0"`            => `"0"`             Ok
- - `pcode("preval")`           => `"<max pcode call depth exceeded>"` => `"Maximum call stack size exceeded"`  Ok
- - `pcode(0)`                  => `"0"`            => `"0"`             Ok
- - `pcode(1)`                  => `"1"`            => `"1"`             Ok
- - `pcode(0, 0)`               => `"0"`            => `"0"`             Ok
- - `pcode(0, 1)`               => `"0"`            => `"0"`             Ok
- - `pcode(1, 0)`               => `"1"`            => `"1"`             Ok
- - `pcode(1, 1)`               => `"1"`            => `"1"`             Ok
- - `pcode(1)`                  => `"1"`            => `"1"`             Ok
- - `pcode(2)`                  => `"2"`            => `"2"`             Ok

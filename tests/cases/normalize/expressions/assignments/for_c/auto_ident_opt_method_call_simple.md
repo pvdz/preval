@@ -24,10 +24,12 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { c: $ };
+  $dotCall($, b, `c`, 1);
   while ($LOOP_UNROLL_10) {
-    b.c(1);
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
+      const tmpChainElementObject$1 /*:unknown*/ = b.c;
+      $dotCall(tmpChainElementObject$1, b, `c`, 1);
     } else {
       break;
     }
@@ -46,9 +48,11 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(1)) {
   const b = { c: $ };
+  $dotCall($, b, `c`, 1);
   while (true) {
-    b.c(1);
-    if (!$(1)) {
+    if ($(1)) {
+      b.c(1);
+    } else {
       break;
     }
   }
@@ -66,11 +70,12 @@ With rename=true
 const a = $( 1 );
 if (a) {
   const b = { c: $ };
+  $dotCall( $, b, "c", 1 );
   while ($LOOP_UNROLL_10) {
-    b.c( 1 );
     const c = $( 1 );
     if (c) {
-
+      const d = b.c;
+      $dotCall( d, b, "c", 1 );
     }
     else {
       break;
@@ -79,11 +84,11 @@ if (a) {
   $( undefined );
 }
 else {
-  const d = {
+  const e = {
     a: 999,
     b: 1000,
   };
-  $( d );
+  $( e );
 }
 `````
 
@@ -92,7 +97,7 @@ else {
 
 
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: b.c
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

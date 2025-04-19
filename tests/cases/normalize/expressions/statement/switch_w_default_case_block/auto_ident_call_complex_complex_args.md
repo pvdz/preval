@@ -46,10 +46,10 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpCallCallee /*:unknown*/ = $($);
+  const tmpCallComplexCallee /*:unknown*/ = $($);
   const tmpCalleeParam /*:unknown*/ = $(1);
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
 } else {
   const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$5) {
@@ -78,8 +78,8 @@ if ($(1) === tmpSwitchValue) {
   }
 }
 if (tmpSwitchCaseToStart <= 0) {
-  const tmpCallCallee = $($);
-  tmpCallCallee($(1), $(2));
+  const tmpCallComplexCallee = $($);
+  tmpCallComplexCallee($(1), $(2));
 } else {
   if (tmpSwitchCaseToStart <= 1) {
     $(`fail1`);

@@ -73,7 +73,7 @@ catch (a) {
 ## Todos triggered
 
 
-None
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

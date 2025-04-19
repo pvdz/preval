@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$1];
 const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
 const tmpForOfGen /*:unknown*/ = $forOf(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -43,8 +43,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpCalleeParam$1 = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCalleeParam$1];
 const tmpClusterSSA_a = new tmpNewCallee(1);
 const tmpForOfGen = $forOf(tmpClusterSSA_a);
 while (true) {

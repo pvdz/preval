@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -45,8 +45,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+tmpCallComplexCallee($(1), $(2));
 if ($(0)) {
   while (true) {
     if (!$(0)) {
@@ -89,7 +89,7 @@ $( f );
 ## Todos triggered
 
 
-None
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

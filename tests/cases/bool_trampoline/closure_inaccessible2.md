@@ -49,12 +49,14 @@ const tmpObjLitVal /*:()=>function*/ = function () {
   $(undefined);
   return f$1;
 };
+$(undefined);
 const obj /*:object*/ = {
   f: tmpObjLitVal,
   g() {
     const tmpPrevalAliasThis /*:object*/ = this;
     debugger;
-    const tmpIfTest /*:unknown*/ = tmpPrevalAliasThis.f();
+    const tmpCallCompVal /*:unknown*/ = tmpPrevalAliasThis.f;
+    const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpPrevalAliasThis, `f`);
     if (tmpIfTest) {
       $(`pass`);
       return undefined;
@@ -64,7 +66,6 @@ const obj /*:object*/ = {
     }
   },
 };
-obj.f();
 $(obj);
 `````
 
@@ -81,18 +82,18 @@ const tmpObjLitVal = function () {
   $(undefined);
   return f$1;
 };
-const obj = {
+$(undefined);
+$({
   f: tmpObjLitVal,
   g() {
-    if (this.f()) {
+    const tmpPrevalAliasThis = this;
+    if (tmpPrevalAliasThis.f()) {
       $(`pass`);
     } else {
       $(`fail`);
     }
   },
-};
-obj.f();
-$(obj);
+});
 `````
 
 
@@ -111,13 +112,15 @@ const d = function() {
   $( undefined );
   return a;
 };
+$( undefined );
 const e = {
   f: d,
   g(  ) {
     const f = this;
     debugger;
-    const g = f.f();
-    if (g) {
+    const g = f.f;
+    const h = $dotCall( g, f, "f" );
+    if (h) {
       $( "pass" );
       return undefined;
     }
@@ -127,7 +130,6 @@ const e = {
     }
   },
 };
-e.f();
 $( e );
 `````
 

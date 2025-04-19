@@ -23,7 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpIfTest /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
@@ -38,7 +39,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpIfTest = $({ $: $ }).$(1);
+const tmpCallObj = $({ $: $ });
+const tmpIfTest = tmpCallObj.$(1);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(100);
@@ -55,17 +57,18 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-const d = {
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+const e = {
   a: 999,
   b: 1000,
 };
-if (c) {
+if (d) {
   $( 100 );
-  $( d );
+  $( e );
 }
 else {
-  $( d );
+  $( e );
 }
 `````
 

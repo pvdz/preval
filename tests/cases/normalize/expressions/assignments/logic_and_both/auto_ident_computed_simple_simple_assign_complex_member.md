@@ -23,13 +23,13 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 b.c = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   const tmpCompObj$1 /*:unknown*/ = $(b);
-  const tmpCompProp$1 /*:unknown*/ = $(`d`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+  const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
+  const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$3];
   b.c = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
   $(varInitAssignLhsComputedRhs, b);
@@ -46,13 +46,13 @@ if (tmpNestedAssignPropRhs) {
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
 b.c = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $(`d`);
-  const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
+  const tmpCalleeParam$3 = $(`d`);
+  const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam$3];
   b.c = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
   $(varInitAssignLhsComputedRhs, b);

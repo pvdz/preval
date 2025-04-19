@@ -22,11 +22,11 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b.$(1);
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
+const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -34,9 +34,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = { $: $ }.$(1);
-$(`before  ${a}  after`);
-$(a);
+const tmpClusterSSA_a = $dotCall($, { $: $ }, `\$`, 1);
+$(`before  ${tmpClusterSSA_a}  after`);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -45,7 +45,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 const c = $coerce( b, "string" );
 const d = `before  ${c}  after`;
 $( d );

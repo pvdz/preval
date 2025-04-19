@@ -97,8 +97,8 @@ $( g );
 ## Todos triggered
 
 
-- (todo) objects in isFree check
-- (todo) Support this node type in isFree: NewExpression
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) do we want to support NewExpression as expression statement in free loops?
 
 
 ## Globals

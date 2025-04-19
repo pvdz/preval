@@ -28,8 +28,8 @@ $(1);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpAssignMemLhsObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
@@ -44,8 +44,8 @@ $(1);
 const b = { c: 10, d: 20 };
 const tmpAssignMemLhsObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-tmpAssignMemLhsObj.c = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+tmpAssignMemLhsObj.c = tmpCompObj[tmpCalleeParam];
 $({ a: 999, b: 1000 }, b);
 `````
 

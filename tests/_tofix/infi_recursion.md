@@ -26,7 +26,7 @@ $(alias);
 
 
 `````js filename=intro
-throw `<max pcode call depth exceeded>; calling \`const tmp = f(undefined, undefined);\``;
+throw `<max pcode call depth exceeded>; calling \`let tmpCalleeParam = f(428);\``;
 `````
 
 
@@ -34,7 +34,7 @@ throw `<max pcode call depth exceeded>; calling \`const tmp = f(undefined, undef
 (This ought to be the final result)
 
 `````js filename=intro
-throw `<max pcode call depth exceeded>; calling \`const tmp = f(undefined, undefined);\``;
+throw `<max pcode call depth exceeded>; calling \`let tmpCalleeParam = f(428);\``;
 `````
 
 
@@ -42,7 +42,7 @@ throw `<max pcode call depth exceeded>; calling \`const tmp = f(undefined, undef
 With rename=true
 
 `````js filename=intro
-throw "<max pcode call depth exceeded>; calling `const tmp = f(undefined, undefined);`";
+throw "<max pcode call depth exceeded>; calling `let tmpCalleeParam = f(428);`";
 `````
 
 

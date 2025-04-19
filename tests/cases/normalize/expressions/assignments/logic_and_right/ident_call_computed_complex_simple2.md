@@ -24,7 +24,8 @@ const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
   const b /*:object*/ = { $: $ };
   const tmpCallObj /*:unknown*/ = $(b);
-  const tmpNestedComplexRhs /*:unknown*/ = tmpCallObj.$(1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
@@ -38,7 +39,8 @@ if (tmpCalleeParam) {
 `````js filename=intro
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  $($({ $: $ }).$(1));
+  const tmpCallObj = $({ $: $ });
+  $(tmpCallObj.$(1));
 } else {
   $(tmpCalleeParam);
 }
@@ -53,8 +55,9 @@ const a = $( 100 );
 if (a) {
   const b = { $: $ };
   const c = $( b );
-  const d = c.$( 1 );
-  $( d );
+  const d = c.$;
+  const e = $dotCall( d, c, "$", 1 );
+  $( e );
 }
 else {
   $( a );

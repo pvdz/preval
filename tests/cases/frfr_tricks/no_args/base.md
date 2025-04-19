@@ -25,7 +25,7 @@ $(t);
 
 
 `````js filename=intro
-const t /*:string*/ = `005`.repeat(2);
+const t /*:string*/ = $dotCall($string_repeat, `005`, `repeat`, 2);
 $(t);
 `````
 
@@ -34,7 +34,7 @@ $(t);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`005`.repeat(2));
+$($dotCall($string_repeat, `005`, `repeat`, 2));
 `````
 
 
@@ -42,7 +42,7 @@ $(`005`.repeat(2));
 With rename=true
 
 `````js filename=intro
-const a = "005".repeat( 2 );
+const a = $dotCall( $string_repeat, "005", "repeat", 2 );
 $( a );
 `````
 
@@ -51,7 +51,7 @@ $( a );
 
 
 - (todo) free with zero args, we can eliminate this?
-- (todo) type trackeed tricks can possibly support method $string_repeat
+- (todo) type trackeed tricks can possibly support static $string_repeat
 
 
 ## Globals

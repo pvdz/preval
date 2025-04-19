@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = b.c(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementCall;
 $(tmpClusterSSA_a$1);
@@ -34,7 +34,7 @@ $(tmpClusterSSA_a$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = { c: $ }.c(1);
+const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
 const tmpClusterSSA_a$1 = { a: 999, b: 1000 } * tmpChainElementCall;
 $(tmpClusterSSA_a$1);
 $(tmpClusterSSA_a$1);
@@ -46,7 +46,7 @@ With rename=true
 
 `````js filename=intro
 const a = { c: $ };
-const b = a.c( 1 );
+const b = $dotCall( $, a, "c", 1 );
 const c = {
   a: 999,
   b: 1000,

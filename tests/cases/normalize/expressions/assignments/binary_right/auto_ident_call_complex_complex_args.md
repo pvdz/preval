@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
@@ -37,8 +37,8 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpCallCallee = $($);
-const a = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee($(1), $(2));
 $(tmpBinBothLhs + a);
 $(a);
 `````

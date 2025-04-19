@@ -91,7 +91,7 @@ $( f, a );
 ## Todos triggered
 
 
-- (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) do we want to support UnaryExpression as expression statement in free loops?
 
 
 ## Globals

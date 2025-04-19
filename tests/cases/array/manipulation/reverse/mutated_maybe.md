@@ -24,12 +24,14 @@ $(rra);
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3, 4];
 if ($) {
-  const tmpCalleeParam /*:unknown*/ = arr.pop();
+  const tmpCalleeParam /*:unknown*/ = $dotCall($array_pop, arr, `pop`);
   $(tmpCalleeParam);
+  $dotCall($array_reverse, arr, `reverse`);
+  $(arr);
 } else {
+  $dotCall($array_reverse, arr, `reverse`);
+  $(arr);
 }
-arr.reverse();
-$(arr);
 `````
 
 
@@ -39,10 +41,13 @@ $(arr);
 `````js filename=intro
 const arr = [1, 2, 3, 4];
 if ($) {
-  $(arr.pop());
+  $($dotCall($array_pop, arr, `pop`));
+  $dotCall($array_reverse, arr, `reverse`);
+  $(arr);
+} else {
+  $dotCall($array_reverse, arr, `reverse`);
+  $(arr);
 }
-arr.reverse();
-$(arr);
 `````
 
 
@@ -52,18 +57,25 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3, 4 ];
 if ($) {
-  const b = a.pop();
+  const b = $dotCall( $array_pop, a, "pop" );
   $( b );
+  $dotCall( $array_reverse, a, "reverse" );
+  $( a );
 }
-a.reverse();
-$( a );
+else {
+  $dotCall( $array_reverse, a, "reverse" );
+  $( a );
+}
 `````
 
 
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $array_pop
+- (todo) access object property that also exists on prototype? $array_pop
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) phase1_1 support this array method call? $array_reverse
+- (todo) type trackeed tricks can possibly support static $array_pop
 
 
 ## Globals

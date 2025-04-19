@@ -66,4 +66,3 @@ Running function "f":
  - `f(0, 1)`                   => `null`           => `null`            Ok
  - `f(1, 0)`                   => `null`           => `null`            Ok
  - `f(1, 1)`                   => `null`           => `null`            Ok
- - `f()`                       => `null`           => `null`            Ok

@@ -23,7 +23,8 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-b[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+$dotCall(tmpCallCompVal, b, undefined, 1);
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -45,7 +46,8 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-({ $: $ }[tmpCallCompProp](1));
+const b = { $: $ };
+b[tmpCallCompProp](1);
 if ($(0)) {
   while (true) {
     if (!$(0)) {
@@ -63,12 +65,13 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-b[ a ]( 1 );
-const c = $( 0 );
-if (c) {
+const c = b[ a ];
+$dotCall( c, b, undefined, 1 );
+const d = $( 0 );
+if (d) {
   while ($LOOP_UNROLL_10) {
-    const d = $( 0 );
-    if (d) {
+    const e = $( 0 );
+    if (e) {
 
     }
     else {
@@ -76,18 +79,18 @@ if (c) {
     }
   }
 }
-const e = {
+const f = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( f );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) Computed method call but we dont know whats being called
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

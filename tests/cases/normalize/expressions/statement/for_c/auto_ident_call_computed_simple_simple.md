@@ -24,10 +24,12 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
+  $dotCall($, b, `\$`, 1);
   while ($LOOP_UNROLL_10) {
-    b.$(1);
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
+      const tmpCallCompVal$1 /*:unknown*/ = b.$;
+      $dotCall(tmpCallCompVal$1, b, `\$`, 1);
     } else {
       break;
     }
@@ -45,9 +47,11 @@ $(a);
 `````js filename=intro
 if ($(1)) {
   const b = { $: $ };
+  $dotCall($, b, `\$`, 1);
   while (true) {
-    b.$(1);
-    if (!$(1)) {
+    if ($(1)) {
+      b.$(1);
+    } else {
       break;
     }
   }
@@ -63,22 +67,23 @@ With rename=true
 const a = $( 1 );
 if (a) {
   const b = { $: $ };
+  $dotCall( $, b, "$", 1 );
   while ($LOOP_UNROLL_10) {
-    b.$( 1 );
     const c = $( 1 );
     if (c) {
-
+      const d = b.$;
+      $dotCall( d, b, "$", 1 );
     }
     else {
       break;
     }
   }
 }
-const d = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( e );
 `````
 
 
@@ -86,7 +91,7 @@ $( d );
 
 
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: b.$
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

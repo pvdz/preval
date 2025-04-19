@@ -20,7 +20,7 @@ $(o.x());
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 const o /*:object*/ = { x: tmpObjLitVal };
-const tmpCalleeParam /*:unknown*/ = o.x();
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpObjLitVal, o, `x`);
 $(tmpCalleeParam);
 `````
 
@@ -30,7 +30,7 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-$({ x: tmpObjLitVal }.x());
+$($dotCall(tmpObjLitVal, { x: tmpObjLitVal }, `x`));
 `````
 
 
@@ -40,7 +40,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = { x: a };
-const c = b.x();
+const c = $dotCall( a, b, "x" );
 $( c );
 `````
 

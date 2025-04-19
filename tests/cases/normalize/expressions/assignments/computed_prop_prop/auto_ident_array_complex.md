@@ -55,7 +55,7 @@ $( c );
 ## Todos triggered
 
 
-None
+- (todo) what other ways do member expressions still appear? ExpressionStatement
 
 
 ## Globals

@@ -17,8 +17,7 @@ $(''?.());
 
 
 `````js filename=intro
-``();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`\`\`()\``;
+throw `Attempting to call a value that cannot be called: \`const tmpChainElementCall = \`\`();\``;
 `````
 
 
@@ -26,8 +25,7 @@ throw `[Preval]: Call expression with illegal callee must crash before this line
 (This ought to be the final result)
 
 `````js filename=intro
-``();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`\`\`()\``;
+throw `Attempting to call a value that cannot be called: \`const tmpChainElementCall = \`\`();\``;
 `````
 
 
@@ -35,15 +33,15 @@ throw `[Preval]: Call expression with illegal callee must crash before this line
 With rename=true
 
 `````js filename=intro
-"".undefined();
-throw "[Preval]: Call expression with illegal callee must crash before this line ; ```()`";
+throw "Attempting to call a value that cannot be called: `const tmpChainElementCall = ``();`";
 `````
 
 
 ## Todos triggered
 
 
-- (todo) maybe support this call case too
+- (todo) infertyping on a non-ident? is that a crash or bug? TemplateLiteral
+- (todo) Encountered non-ident as callee
 
 
 ## Globals

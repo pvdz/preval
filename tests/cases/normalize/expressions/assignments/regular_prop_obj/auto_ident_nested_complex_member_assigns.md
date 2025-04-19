@@ -44,7 +44,7 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-(3).a;
+$Number_prototype.a;
 $(3, b, 3);
 `````
 
@@ -72,7 +72,7 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-(3).a;
+$Number_prototype.a;
 $(3, b, 3);
 `````
 
@@ -100,7 +100,7 @@ h[i] = 3;
 f[g] = 3;
 d[e] = 3;
 b[c] = 3;
-(3).a;
+$Number_prototype.a;
 $( 3, a, 3 );
 `````
 

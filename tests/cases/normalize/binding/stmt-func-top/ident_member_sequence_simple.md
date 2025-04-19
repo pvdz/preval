@@ -22,7 +22,7 @@ $(f());
 
 
 `````js filename=intro
-const a /*:unknown*/ = (3).foo;
+const a /*:unknown*/ = $Number_prototype.foo;
 const b /*:object*/ = { x: 2 };
 $(a, b, 3);
 $(undefined);
@@ -33,7 +33,7 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-$((3).foo, { x: 2 }, 3);
+$($Number_prototype.foo, { x: 2 }, 3);
 $(undefined);
 `````
 
@@ -42,7 +42,7 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = (3).foo;
+const a = $Number_prototype.foo;
 const b = { x: 2 };
 $( a, b, 3 );
 $( undefined );

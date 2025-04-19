@@ -26,7 +26,7 @@ if (expires) {
 `````js filename=intro
 if (expires) {
   const date /*:object*/ = new Date();
-  const time /*:unknown*/ = date.getTime();
+  const time /*:number*/ = $dotCall($date_getTime, date, `getTime`);
   $(time);
   unknown = date;
 } else {
@@ -40,7 +40,7 @@ if (expires) {
 `````js filename=intro
 if (expires) {
   const date = new Date();
-  $(date.getTime());
+  $($dotCall($date_getTime, date, `getTime`));
   unknown = date;
 }
 `````
@@ -52,7 +52,7 @@ With rename=true
 `````js filename=intro
 if (expires) {
   const a = new Date();
-  const b = a.getTime();
+  const b = $dotCall( $date_getTime, a, "getTime" );
   $( b );
   unknown = a;
 }
@@ -62,7 +62,7 @@ if (expires) {
 ## Todos triggered
 
 
-- (todo) maybe fix the type for calling builtin $date_getTime
+- (todo) type trackeed tricks can possibly support static $date_getTime
 
 
 ## Globals

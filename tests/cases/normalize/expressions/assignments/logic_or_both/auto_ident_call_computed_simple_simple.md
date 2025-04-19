@@ -22,12 +22,13 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b.$(1);
-if (a) {
-  $(a);
-  $(a);
+const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
-  const tmpNestedComplexRhs /*:unknown*/ = b.$(1);
+  const tmpCallCompVal$1 /*:unknown*/ = b.$;
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal$1, b, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
@@ -39,10 +40,10 @@ if (a) {
 
 `````js filename=intro
 const b = { $: $ };
-const a = b.$(1);
-if (a) {
-  $(a);
-  $(a);
+const tmpClusterSSA_a = $dotCall($, b, `\$`, 1);
+if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 } else {
   const tmpNestedComplexRhs = b.$(1);
   $(tmpNestedComplexRhs);
@@ -56,15 +57,16 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 if (b) {
   $( b );
   $( b );
 }
 else {
-  const c = a.$( 1 );
-  $( c );
-  $( c );
+  const c = a.$;
+  const d = $dotCall( c, a, "$", 1 );
+  $( d );
+  $( d );
 }
 `````
 

@@ -43,7 +43,7 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) when does the loop unroll constant escape?
 
 
 ## Globals

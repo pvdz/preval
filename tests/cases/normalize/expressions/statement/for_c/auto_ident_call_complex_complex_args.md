@@ -23,17 +23,17 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpCallCallee /*:unknown*/ = $($);
+  const tmpCallComplexCallee /*:unknown*/ = $($);
   const tmpCalleeParam /*:unknown*/ = $(1);
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCallCallee$1 /*:unknown*/ = $($);
+      const tmpCallComplexCallee$1 /*:unknown*/ = $($);
       const tmpCalleeParam$2 /*:unknown*/ = $(1);
       const tmpCalleeParam$4 /*:unknown*/ = $(2);
-      tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
+      tmpCallComplexCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
     } else {
       break;
     }
@@ -50,12 +50,12 @@ $(a);
 
 `````js filename=intro
 if ($(1)) {
-  const tmpCallCallee = $($);
-  tmpCallCallee($(1), $(2));
+  const tmpCallComplexCallee = $($);
+  tmpCallComplexCallee($(1), $(2));
   while (true) {
     if ($(1)) {
-      const tmpCallCallee$1 = $($);
-      tmpCallCallee$1($(1), $(2));
+      const tmpCallComplexCallee$1 = $($);
+      tmpCallComplexCallee$1($(1), $(2));
     } else {
       break;
     }
@@ -99,7 +99,8 @@ $( i );
 ## Todos triggered
 
 
-- (todo) objects in isFree check
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

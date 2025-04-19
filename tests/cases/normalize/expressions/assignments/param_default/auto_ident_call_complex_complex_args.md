@@ -22,10 +22,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpNestedComplexRhs /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpNestedComplexRhs /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````
@@ -35,8 +35,8 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpNestedComplexRhs = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const tmpNestedComplexRhs = tmpCallComplexCallee($(1), $(2));
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

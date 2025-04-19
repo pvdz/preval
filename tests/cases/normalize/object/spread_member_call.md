@@ -26,7 +26,8 @@ const obj /*:object*/ = {
     return tmpReturnArg;
   },
 };
-const tmpObjSpread /*:unknown*/ = obj.foo();
+const tmpCallCompVal /*:unknown*/ = obj.foo;
+const tmpObjSpread /*:unknown*/ = $dotCall(tmpCallCompVal, obj, `foo`);
 const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
 $(tmpCalleeParam$1);
 `````
@@ -36,12 +37,13 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpObjSpread = {
+const obj = {
   foo() {
     const tmpReturnArg = $({ x: 1 });
     return tmpReturnArg;
   },
-}.foo();
+};
+const tmpObjSpread = obj.foo();
 $({ ...tmpObjSpread });
 `````
 
@@ -56,9 +58,10 @@ const a = { foo(  ) {
   const c = $( b );
   return c;
 } };
-const d = a.foo();
-const e = { ... d };
-$( e );
+const d = a.foo;
+const e = $dotCall( d, a, "foo" );
+const f = { ... e };
+$( f );
 `````
 
 

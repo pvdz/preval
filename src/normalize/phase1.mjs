@@ -1138,7 +1138,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         );
         ASSERT(parentProp === 'body', 'amirite?', parentProp);
         meta.varDeclRef = {
-          // needles: varDeclRef, constdeclref, constdeclinit, initref
+          // needles: varDeclRef, constdeclref, constdeclinit, initref, vardeclinit
           // This is supposed to be the ref of the binding _value_, not the variable declaration node !
           // If the var decl is not a constant, this value has little meaning. But it is what it is.
           node: init,

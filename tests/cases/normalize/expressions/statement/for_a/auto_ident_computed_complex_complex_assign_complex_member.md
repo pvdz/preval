@@ -25,8 +25,8 @@ const b /*:object*/ = { c: 10, d: 20 };
 const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`c`);
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const tmpAssignComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
@@ -52,8 +52,8 @@ const b = { c: 10, d: 20 };
 const tmpAssignComMemLhsObj = $(b);
 const tmpAssignComMemLhsProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+const tmpAssignComputedRhs = tmpCompObj[tmpCalleeParam];
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 if ($(0)) {
   while (true) {

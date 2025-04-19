@@ -33,7 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     unknown = x;
     const tmpCalleeParam /*:primitive*/ = arr[0];
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -50,7 +50,7 @@ while (true) {
   try {
     unknown = x;
     $(arr[0]);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -68,7 +68,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     unknown = x;
     const b = a[ 0 ];
     $( b );
-    a.reverse();
+    $dotCall( $array_reverse, a, "reverse" );
   }
   catch (c) {
     $( "fail" );
@@ -80,7 +80,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_reverse
 
 
 ## Globals

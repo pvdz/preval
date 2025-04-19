@@ -63,32 +63,33 @@ function _dotcallSelfAssigning(fdata) {
     if (BUILTIN_SYMBOLS.has(read.parentNode.arguments[0].name)) {
       // It's calling a known builtin function/method. If it returns the same type then we should be able to safely replace it..?
       const obj = BUILTIN_SYMBOLS.get(read.parentNode.arguments[0].name);
-      if (
-        initType === obj.typings?.returns && // does this builtin return the same type?
-        read.parentNode.arguments[0].name.startsWith(sym_prefix(initType, true)) // if string, make sure it's a string method, etc.
-      ) {
-        rule('Dotcall assigning a method to its context can eliminate the dotcall when returning the same type');
-        example(
-          `let x = "foo"; x = $dotCall(${symbo('string', 'replace')}, x, "replace", "o", "e")`,
-          `let x = "foo"; x = x.replace("o", "e")`,
-        );
-        before(read.blockBody[read.blockIndex]);
-
-        // Replace the callee ($dotcall(a,b,"c",d) -> b.c(d)
-        read.parentNode.callee = AST.memberExpression(read.parentNode.arguments[1], obj.prop);
-        // Drop the func and context args
-        read.parentNode.arguments.shift(); // func
-        read.parentNode.arguments.shift(); // context
-        read.parentNode.arguments.shift(); // propname
-
-        after(read.blockBody[read.blockIndex]);
-        changes += 1;
-        return;
-      } else {
-        todo('There might be some cases where we can simplify this dotcall to a known builtin:', read.parentNode.arguments[1].name);
-        // The function being called is a builtin. There's no saving this. Bail now.
-        return;
-      }
+      //if (
+      //  initType === obj.typings?.returns && // does this builtin return the same type?
+      //  read.parentNode.arguments[0].name.startsWith(sym_prefix(initType, true)) // if string, make sure it's a string method, etc.
+      //) {
+      //  rule('Dotcall assigning a method to its context can eliminate the dotcall when returning the same type');
+      //  example(
+      //    `let x = "foo"; x = $dotCall(${symbo('string', 'replace')}, x, "replace", "o", "e")`,
+      //    `let x = "foo"; x = x.replace("o", "e")`,
+      //  );
+      //  before(read.blockBody[read.blockIndex]);
+      //
+      //  // Replace the callee ($dotcall(a,b,"c",d) -> b.c(d)
+      //  read.parentNode.callee = AST.memberExpression(read.parentNode.arguments[1], obj.prop);
+      //  // Drop the func and context args
+      //  read.parentNode.arguments.shift(); // func
+      //  read.parentNode.arguments.shift(); // context
+      //  read.parentNode.arguments.shift(); // propname
+      //
+      //  after(read.blockBody[read.blockIndex]);
+      //  changes += 1;
+      //  return;
+      //} else {
+      //  todo('There might be some cases where we can simplify this dotcall to a known builtin:', read.parentNode.arguments[1].name);
+      //  // The function being called is a builtin. There's no saving this. Bail now.
+      //  return;
+      //}
+      return
     }
 
     // Now check if we can figure out what the type is of the second arg.
@@ -112,13 +113,16 @@ function _dotcallSelfAssigning(fdata) {
 
     // Okay we're here! Replace the member expression with the symbol.
     if (initType === BUILTIN_SYMBOLS.get(symbol).typings?.returns) {
-      rule('When a $dotCall is assinging the result to the callee and we can predict the func, we can improve the func');
-      example('let x/*:unknown*/ = "abc"; const func = x.replace; x = $dotCall(func, x, "replace", a, b);', `let x/*:string*/ = "abc"; const func = ${symbo('String', 'replace')}; x = $dotCall(func, x, a, b)`);
+      rule('When a $dotCall is assigning the result to the callee and we can predict the func, we can improve the func');
+      example(
+        'let x/*:unknown*/ = "abc"; const func = x.replace; x = $dotCall(func, x, "replace", a, b);',
+        `let x/*:string*/ = "abc"; const func = ${symbo('String', 'replace')}; x = $dotCall(func, x, a, b)`
+      );
       before(decl.blockBody[decl.blockIndex]);
       before(methodMeta.writes[0].blockBody[methodMeta.writes[0].blockIndex]);
       before(read.blockBody[read.blockIndex]);
 
-      methodMeta.writes[0].parentNode.init = AST.identifier(symbo('string', 'replace'));
+      methodMeta.writes[0].parentNode.init = AST.identifier(symbo('string', 'replace')); // TODO: --> symbol, right?
       // This doesn't work because after this transform it will call phase1 which resets typing information (that's the whole point even)
       //methodMeta.typing.mustBeType = 'string';
       //methodMeta.typing.mustBePrimitive = true;

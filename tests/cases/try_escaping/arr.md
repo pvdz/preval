@@ -43,8 +43,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (a) {
     break;
   } else {
-    const M /*:unknown*/ = arr.shift();
-    arr.push(M);
+    const M /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    $dotCall($array_push, arr, `push`, M);
   }
 }
 $(arr);
@@ -61,7 +61,7 @@ while (true) {
   if (arr[286]) {
     break;
   } else {
-    arr.push(arr.shift());
+    $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   }
 }
 $(arr);
@@ -81,8 +81,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const d = a.shift();
-    a.push( d );
+    const d = $dotCall( $array_shift, a, "shift" );
+    $dotCall( $array_push, a, "push", d );
   }
 }
 $( a );
@@ -92,7 +92,9 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) can try-escaping support this expr node type? MemberExpression
 
 
 ## Globals

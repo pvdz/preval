@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`c`);
-const tmpThrowArg /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`c`);
+const tmpThrowArg /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 throw tmpThrowArg;
 `````
 
@@ -34,8 +34,8 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpCompObj = $({ c: 1 });
-const tmpCompProp = $(`c`);
-const tmpThrowArg = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`c`);
+const tmpThrowArg = tmpCompObj[tmpCalleeParam];
 throw tmpThrowArg;
 `````
 

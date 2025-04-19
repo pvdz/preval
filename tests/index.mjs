@@ -167,9 +167,19 @@ if (isMainThread) {
   console.timeEnd('Total ./p time');
 }
 function runTestCase(
-  { md, mdHead, mdOptions, mdChunks, fname, sname = fname.slice(PROJECT_ROOT_DIR.length + 1), fin, withOutput = false, ...other },
+  { md, mdHead, mdOptions, mdChunks, fname, fin, withOutput = false, ...other },
   relativeCaseIndex,
 ) {
+  const sname =
+    fname.startsWith(PROJECT_ROOT_DIR)
+    ? fname.slice(PROJECT_ROOT_DIR.length + 1)
+    : fname.includes('test/cases')
+    ? fname.slice(fname.indexOf('test/cases'))
+    : fname.includes('test/_tofix')
+    ? fname.slice(fname.indexOf('test/_tofix'))
+    : fname.includes('test/')
+    ? fname.slice(fname.indexOf('test/'))
+    : fname;
   lastStartedFile = fname;
   const caseIndex = workerOffset + relativeCaseIndex;
   if (JSON.stringify(other) !== '{}') {
@@ -378,7 +388,10 @@ function runTestCase(
               console.log(`--log: Not logging ${passString} (${code.length} bytes) because logFrom is ${options.logFrom}`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, into ${changed.next}` : '');
             }
           } else if (!CONFIG.targetDir && !CONFIG.updateSnapshots) {
-            console.log(`-- ${passString} (${code.length} bytes)`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, into ${changed.next}` : '');
+            console.log(`\n-- onAfterPhase: ${passString} (${code.length} bytes)`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, into ${changed.next}` : '');
+
+            console.log('\nCurrent state (onAfterPhase)\n--------------\n' + code + '\n--------------\n');
+
           }
           lastWrite = now;
         },
@@ -533,7 +546,7 @@ function runTestCase(
     };
 
     for (const key of BUILTIN_SYMBOLS.keys()) {
-      ASSERT(key in frameworkInjectedGlobals, 'All builtin symbols should be exposed in the test runner. Missing:', key);
+      ASSERT(key in frameworkInjectedGlobals, 'All builtin symbols should be exposed in the test runner. Missing:', [key]);
     }
     for (const key of Object.keys(frameworkInjectedGlobals)) {
       ASSERT(
@@ -565,14 +578,17 @@ function runTestCase(
   // Test the input verbatim against pre-normal, normal, and output transforms.
   // Then also test while inverting bools and 0/1 inside $() calls, to try and catch a subset of untested logic branches/loops
   const evalled = { $in: [], $pre: [], $norm: [], $settled: [], $denorm: [], $in_inv: [], $pre_inv: [], $norm_inv: [], $settled_inv: [], $denorm_inv: [] };
-  function evaluate_inv(desc, fdata, stack) {
-    return evaluate(desc, fdata, stack, true);
+  function evaluate_inv(desc, inputCode, stack) {
+    return evaluate(desc, inputCode, stack, true);
   }
-  function evaluate(desc, inputCodePerFile, stack, inverse) {
+  function evaluate(desc, inputCode, stack, inverse, isPcodeTest) {
     // `inverse` means $(true) becomes $(false), $(false) becomes $(true), $(1) becomes $(0), and $(0) becomes $(1).
     //           Attempts to catch "the reverse logic" or break otherwise infinite loops for some cases.
-    ASSERT(inputCodePerFile, 'this evaluate func should receive an object with serialized code for this particular step being tested, one key for each file, starting at `intro`', inputCodePerFile);
-    //console.log(inputCodePerFile)
+    ASSERT(typeof desc === 'string');
+    ASSERT(typeof inputCode === 'string', 'this evaluate func should receive the serialized code for this particular step being tested');
+    ASSERT(Array.isArray(stack));
+    ASSERT(typeof inverse === 'boolean' || inverse === undefined);
+    ASSERT(typeof isPcodeTest === 'boolean' || isPcodeTest === undefined);
 
     try {
       let before = true;
@@ -719,29 +735,35 @@ function runTestCase(
       const logbak = console.log;
       console.log = () => {}; // dont show logs
 
+      let returned;
       try {
         // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
         //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
-        const returns = new Function( // window. eval()
+        const func = new Function( // window. eval()
           // Globals to inject
           ...Object.keys(frameworkInjectedGlobals),
           // Test code to execute/eval
           // Patch "global" arguments so we can detect it (it's the arguments of the Function we generate here) because they blow up test case results.
-          '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = '+SYMBOL_PRNG+';' : '') + ' ' + inputCodePerFile.intro,
-        )(
+          '"use strict"; arguments.$preval_isArguments = true; '+ (initialPrngSeed ? 'Math.random = '+SYMBOL_PRNG+';' : '') + ' ' + inputCode,
+        );
+        const returns = func(
           // The values of the injected globals
           ...Object.values(frameworkInjectedGlobals),
         );
+        console.log = logbak;
+
+        if (isPcodeTest) return {ok: true, result: returns};
+
         before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
         stack.push(
           safeCloneString(returns)
             // We normalize to return undefined so empty functions should get that too
             .replace(/\(\) \{\}/g, '() {return undefined;}'),
         );
+        if (isPcodeTest) returned = returns;
       } finally {
         console.log = logbak;
       }
-
 
       if (withOutput) {
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack);
@@ -769,6 +791,7 @@ function runTestCase(
         .replace(/Preval: Cannot write to const binding .*/, 'Assignment to constant variable.')
         .replace(/Spread syntax requires.*/, '<ref> is not function/iterable')
         .replace(/.*max pcode call depth.*/, 'Maximum call stack size exceeded')
+        .replace(/Attempting to call a value that cannot be called.*/, '<ref> is not function/iterable') // Ultimately, not doing this creates more noise than signal.
 
         // All arrows are transformed to function expressions
         .replace(/\(\) => \{\}/g, 'function() {}')
@@ -779,7 +802,11 @@ function runTestCase(
         // We normalize to return undefined so empty functions should get that too
         .replace(/\(\) \{\}/g, '() {return undefined;}');
 
-      stack.push('"<crash[ ' + msg.replace(/"/g, '\\"').replace(/\n/g, '') + ' ]>"');
+      const result = '"<crash[ ' + msg.replace(/"/g, '\\"').replace(/\n/g, '') + ' ]>"';
+
+      if (isPcodeTest) return {ok: false, result: result};
+
+      stack.push(result);
 
       if (withOutput) {
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack.concat(e?.message ?? e));
@@ -791,17 +818,17 @@ function runTestCase(
     return stack.slice(0);
   }
   const SKIPPED = '"<skipped by option>"';
-  evalled.$in = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest || isPcodeTest ? [SKIPPED] : evaluate('input', fin, evalled.$in);
-  evalled.$in_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv input', fin, evalled.$in_inv);
-  evalled.$pre = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('pre normalization', fin, evalled.$pre);
-  evalled.$pre_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv pre normalization', fin, evalled.$pre_inv);
-  evalled.$norm = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
-  evalled.$norm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv normalized', output?.normalized, evalled.$norm_inv);
+  evalled.$in = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest || isPcodeTest ? [SKIPPED] : evaluate('input', fin.intro, evalled.$in);
+  evalled.$in_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv input', fin.intro, evalled.$in_inv);
+  evalled.$pre = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('pre normalization', fin.intro, evalled.$pre);
+  evalled.$pre_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv pre normalization', fin.intro, evalled.$pre_inv);
+  evalled.$norm = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest || isPcodeTest ? [SKIPPED] : evaluate('normalized', output?.normalized.intro, evalled.$norm);
+  evalled.$norm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv normalized', output?.normalized.intro, evalled.$norm_inv);
   if (!CONFIG.onlyNormalized) {
-    evalled.$settled = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('settled', output?.files, evalled.$settled);
-    evalled.$settled_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv settled', output?.files, evalled.$settled_inv);
-    evalled.$denorm = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalDenorm || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('denorm', output?.denormed, evalled.$denorm);
-    evalled.$denorm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalDenorm || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv denorm', output?.denormed, evalled.$denorm_inv);
+    evalled.$settled = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('settled', output?.files.intro, evalled.$settled);
+    evalled.$settled_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv settled', output?.files.intro, evalled.$settled_inv);
+    evalled.$denorm = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalDenorm || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate('denorm', output?.denormed.intro, evalled.$denorm);
+    evalled.$denorm_inv = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalDenorm || isRefTest || isPcodeTest  ? [SKIPPED] : evaluate_inv('inv denorm', output?.denormed.intro, evalled.$denorm_inv);
   }
 
   if (isPcodeTest && !CONFIG.skipEval) {
@@ -831,12 +858,20 @@ function runTestCase(
           const pcodeData = output.pcodeData[fname];
 
           const testArgs = [[], undefined, null, true, false, '', 'preval', 0, 1, [0, 0], [0, 1], [1, 0], [1, 1]];
+          //const testArgs = [[]];
+
+          // Try to make sure inputs are only fed once...
+          const unique = new Set([[].join('##')]);
 
           const meta = output.globallyUniqueNamingRegistry.get(funcName);
           meta.reads.forEach(read => {
             if (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') {
               if (read.parentNode.arguments.every(anode => AST.isPrimitive(anode))) {
-                testArgs.push(read.parentNode.arguments.map(anode => AST.getPrimitiveValue(anode)));
+                const args = read.parentNode.arguments.map(anode => AST.getPrimitiveValue(anode));
+                if (!unique.has(args.join('##'))) {
+                  testArgs.push(args);
+                  unique.add(args.join('##'));
+                }
               }
             }
           });
@@ -863,28 +898,21 @@ function runTestCase(
             const out = runPcode(funcName, Array.isArray(vals) ? vals : [vals], pcodeData, output, $prng, rngSeed);
 
             const argStr = Array.isArray(vals) ? vals.map(v => JSON.stringify(v)).join(', ') : JSON.stringify(vals);
+
             const testCode = `const ${funcName} = ${code}; return ${funcName}(${argStr})`;
             const evalCode = `${coerceStr} ; ${testCode}`;
-            //console.log('testCode:\n', testCode);
-            // Note: (0,eval) is an old trick to do indirect eval, which is slightly safer than direct eval. only slightly.
+
             let eout;
             const bak = Math.random;
             Math.random = $prng; // Wire up prng for the eval (shares same global scope)
-            rngSeed = initialPrngSeed;
-            const builtinMapper = createBuiltinSymbolGlobals();
-            builtinMapper[symbo('Math', 'random')] = $prng;
+
+            const stack = []; // $ and $spy output is stored in this. We should ignore them for pcode tests.
             try {
-              //console.log('test code:', [evalCode])
-              eout = new Function(
-                ...Object.keys(builtinMapper),
-                evalCode
-              )(
-                ...Object.values(builtinMapper)
-              );
+              eout = evaluate('pcode test run', evalCode, stack, false, true);
             }
             catch (e) {
               eout = e.message;
-              vlog('pcode test runtime error:', e);
+              vlog('pcode eval() test had a runtime error:', e);
             }
             finally {
               Math.random = bak; // Restore built-in
@@ -893,8 +921,8 @@ function runTestCase(
             list.push(
               (` - \`${funcName}(${argStr})\``.padEnd(30, ' ')) +
               (` => \`${JSON.stringify(out)}\``.padEnd(20, ' ')) +
-              (` => \`${JSON.stringify(eout)}\``.padEnd(20, ' ')) +
-              ((Object.is(out, eout) || (out === '<max pcode call depth exceeded>' && eout === 'Maximum call stack size exceeded')) ? '  Ok' : '  BAD!!')
+              (` => \`${eout.ok ? JSON.stringify(eout.result) : eout.result}\``.padEnd(20, ' ')) +
+              ((Object.is(out, eout.result) || (out === '<max pcode call depth exceeded>' && eout.result === '"<crash[ Maximum call stack size exceeded ]>"')) ? '  Ok' : '  BAD!!')
             );
             if (VERBOSE_TRACING) console.groupEnd();
           });
@@ -906,7 +934,9 @@ function runTestCase(
       .join('\n')
     );
   }
-  else log('-- Skipping pcode eval...');
+  else {
+    if (!lastError) log('-- Skipping pcode eval...');
+  }
 
   if (lastError && !isExpectingAnError) console.log('\n\nPreval crashed hard on test/file, skipped evals:', CONFIG.targetFile);
 

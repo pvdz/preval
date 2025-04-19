@@ -29,7 +29,8 @@ if (tmpCalleeParam) {
 } else {
   const b /*:object*/ = { $: $ };
   const tmpCallObj /*:unknown*/ = $(b);
-  const tmpNestedComplexRhs /*:unknown*/ = tmpCallObj.$(1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
@@ -45,7 +46,8 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 });
 } else {
-  const tmpNestedComplexRhs = $({ $: $ }).$(1);
+  const tmpCallObj = $({ $: $ });
+  const tmpNestedComplexRhs = tmpCallObj.$(1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
@@ -68,9 +70,10 @@ if (a) {
 else {
   const c = { $: $ };
   const d = $( c );
-  const e = d.$( 1 );
-  $( e );
-  $( e );
+  const e = d.$;
+  const f = $dotCall( e, d, "$", 1 );
+  $( f );
+  $( f );
 }
 `````
 

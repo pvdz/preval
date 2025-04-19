@@ -36,23 +36,17 @@
 
 
 `````js filename=intro
-const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
-  const a /*:primitive*/ = $$0;
-  debugger;
-  const b /*:number*/ = parseInt(a);
-  const tmpRet /*:number*/ = b / 1;
-  return tmpRet;
-};
 const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a$1 /*:primitive*/ = arr[2];
-  $(a$1);
-  const c /*:number*/ = $frfr(tmpFree, a$1);
+  const a /*:primitive*/ = arr[2];
+  $(a);
+  const b /*:number*/ = parseInt(a);
+  const c /*:number*/ = b / 1;
   if (c) {
     break;
   } else {
-    const M /*:unknown*/ = arr.shift();
-    arr.push(M);
+    const M /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    $dotCall($array_push, arr, `push`, M);
   }
 }
 const tmpCalleeParam /*:primitive*/ = arr[1];
@@ -64,18 +58,14 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(a) {
-  const tmpRet = parseInt(a) / 1;
-  return tmpRet;
-};
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while (true) {
-  const a$1 = arr[2];
-  $(a$1);
-  if ($frfr(tmpFree, a$1)) {
+  const a = arr[2];
+  $(a);
+  if (parseInt(a) / 1) {
     break;
   } else {
-    arr.push(arr.shift());
+    $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   }
 }
 $(arr[1]);
@@ -86,35 +76,31 @@ $(arr[1]);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = parseInt( c );
-  const e = d / 1;
-  return e;
-};
-const f = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
+const a = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = f[ 2 ];
-  $( g );
-  const h = i( a, g );
-  if (h) {
+  const b = a[ 2 ];
+  $( b );
+  const c = parseInt( b );
+  const d = c / 1;
+  if (d) {
     break;
   }
   else {
-    const j = f.shift();
-    f.push( j );
+    const e = $dotCall( $array_shift, a, "shift" );
+    $dotCall( $array_push, a, "push", e );
   }
 }
-const k = f[ 1 ];
-$( k );
+const f = a[ 1 ];
+$( f );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) can try-escaping support this expr node type? MemberExpression
 
 
 ## Globals

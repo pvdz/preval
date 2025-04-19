@@ -21,7 +21,7 @@ $(o.toString());
 
 `````js filename=intro
 const o /*:object*/ = {};
-const tmpCalleeParam /*:string*/ = o.toString();
+const tmpCalleeParam /*:string*/ = $dotCall($object_toString, o, `toString`);
 $(tmpCalleeParam);
 `````
 
@@ -30,7 +30,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$({}.toString());
+$($dotCall($object_toString, {}, `toString`));
 `````
 
 
@@ -39,7 +39,7 @@ With rename=true
 
 `````js filename=intro
 const a = {};
-const b = a.toString();
+const b = $dotCall( $object_toString, a, "toString" );
 $( b );
 `````
 
@@ -47,7 +47,7 @@ $( b );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $object_toString
+- (todo) type trackeed tricks can possibly support static $object_toString
 
 
 ## Globals

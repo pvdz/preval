@@ -22,8 +22,8 @@ $(c);
 `````js filename=intro
 $(1);
 const tmpCompObj /*:unknown*/ = $(2);
-const tmpCompProp /*:unknown*/ = $(`toString`);
-const tmpCalleeParam /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 /*:unknown*/ = $(`toString`);
+const tmpCalleeParam /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 $(tmpCalleeParam);
 $(c);
 `````
@@ -35,8 +35,8 @@ $(c);
 `````js filename=intro
 $(1);
 const tmpCompObj = $(2);
-const tmpCompProp = $(`toString`);
-$(tmpCompObj[tmpCompProp]);
+const tmpCalleeParam$1 = $(`toString`);
+$(tmpCompObj[tmpCalleeParam$1]);
 $(c);
 `````
 

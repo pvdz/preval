@@ -43,30 +43,30 @@ $(a, b);
 
 
 `````js filename=intro
-let tmpExpando /*:primitive*/ = undefined;
 const arr /*:array*/ = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+let arg1 /*:unknown*/ = 3;
 const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1) {
   const tmpPrevalAliasArgumentsAny$1 /*:arguments*/ = arguments;
   const $dlr_$$0 /*:unknown*/ = $$0;
   debugger;
-  let tmpssa3_tmpExpando$1 /*:unknown*/ = undefined;
-  let tmpssa3_arg1 /*:unknown*/ = 3;
   const index /*:number*/ = $dlr_$$0 - 1;
   const arrval /*:primitive*/ = arr[index];
-  const tmpIfTest /*:boolean*/ = tmpExpando === undefined;
+  const tmpBinLhs /*:unknown*/ = func.IS_EXPANDO_SET;
+  const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
   if (tmpIfTest) {
-    tmpssa3_tmpExpando$1 = $spy;
-    tmpssa3_arg1 = tmpPrevalAliasArgumentsAny$1;
-    tmpExpando = true;
+    func.THIS_IS_AN_EXPANDO = $spy;
+    arg1 = tmpPrevalAliasArgumentsAny$1;
+    func.IS_EXPANDO_SET = true;
   } else {
   }
   const newIndex /*:number*/ = index + 100;
-  const arguments_x /*:unknown*/ = tmpssa3_arg1[newIndex];
+  const arguments_x /*:unknown*/ = arg1[newIndex];
   if (arguments_x) {
     return arguments_x;
   } else {
-    const expando_result /*:unknown*/ = tmpssa3_tmpExpando$1.call(func, arrval);
-    tmpssa3_arg1[newIndex] = expando_result;
+    const tmpCallCompVal /*:unknown*/ = func.THIS_IS_AN_EXPANDO;
+    const expando_result /*:unknown*/ = $dotCall(tmpCallCompVal, func, `THIS_IS_AN_EXPANDO`, arrval);
+    arg1[newIndex] = expando_result;
     return expando_result;
   }
 };
@@ -80,26 +80,24 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpExpando = undefined;
 const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+let arg1 = 3;
 const func = function ($dlr_$$0, $$1) {
   const tmpPrevalAliasArgumentsAny$1 = arguments;
-  let tmpssa3_tmpExpando$1 = undefined;
-  let tmpssa3_arg1 = 3;
   const index = $dlr_$$0 - 1;
   const arrval = arr[index];
-  if (tmpExpando === undefined) {
-    tmpssa3_tmpExpando$1 = $spy;
-    tmpssa3_arg1 = tmpPrevalAliasArgumentsAny$1;
-    tmpExpando = true;
+  if (func.IS_EXPANDO_SET === undefined) {
+    func.THIS_IS_AN_EXPANDO = $spy;
+    arg1 = tmpPrevalAliasArgumentsAny$1;
+    func.IS_EXPANDO_SET = true;
   }
   const newIndex = index + 100;
-  const arguments_x = tmpssa3_arg1[newIndex];
+  const arguments_x = arg1[newIndex];
   if (arguments_x) {
     return arguments_x;
   } else {
-    const expando_result = tmpssa3_tmpExpando$1.call(func, arrval);
-    tmpssa3_arg1[newIndex] = expando_result;
+    const expando_result = func.THIS_IS_AN_EXPANDO(arrval);
+    arg1[newIndex] = expando_result;
     return expando_result;
   }
 };
@@ -111,30 +109,30 @@ $(func(3, 4), func(1, 2));
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
+const a = [ 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 ];
+let b = 3;
 const c = function($$0,$$1 ) {
   const d = e;
   const f = $$0;
   debugger;
-  let g = undefined;
-  let h = 3;
-  const i = f - 1;
-  const j = b[ i ];
-  const k = a === undefined;
-  if (k) {
-    g = $spy;
-    h = d;
-    a = true;
+  const g = f - 1;
+  const h = a[ g ];
+  const i = c.IS_EXPANDO_SET;
+  const j = i === undefined;
+  if (j) {
+    c.THIS_IS_AN_EXPANDO = $spy;
+    b = d;
+    c.IS_EXPANDO_SET = true;
   }
-  const l = i + 100;
-  const m = h[ l ];
-  if (m) {
-    return m;
+  const k = g + 100;
+  const l = b[ k ];
+  if (l) {
+    return l;
   }
   else {
-    const n = g.call( c, j );
-    h[l] = n;
+    const m = c.THIS_IS_AN_EXPANDO;
+    const n = $dotCall( m, c, "THIS_IS_AN_EXPANDO", h );
+    b[k] = n;
     return n;
   }
 };
@@ -147,7 +145,7 @@ $( o, p );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+None
 
 
 ## Globals
@@ -169,10 +167,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - 1: 'Creating spy', 1, 1, [300, 300]
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - 1: 'Creating spy', 1, 1, [300, 300]
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+Denormalized calls: Same

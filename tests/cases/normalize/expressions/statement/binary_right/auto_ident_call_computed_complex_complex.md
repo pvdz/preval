@@ -25,7 +25,8 @@ const tmpBinBothLhs /*:unknown*/ = $(100);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpBinBothRhs /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -52,13 +53,14 @@ const a = $( 100 );
 const b = { $: $ };
 const c = $( b );
 const d = $( "$" );
-const e = c[ d ]( 1 );
-a + e;
-const f = {
+const e = c[ d ];
+const f = $dotCall( e, c, undefined, 1 );
+a + f;
+const g = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( g );
 `````
 
 

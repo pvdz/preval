@@ -31,7 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const tmpCalleeParam /*:boolean*/ = delete arr[0];
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -47,7 +47,7 @@ const arr = [1, 2, 3];
 while (true) {
   try {
     $(delete arr[0]);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -64,7 +64,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const b = delete a[ 0 ];
     $( b );
-    a.reverse();
+    $dotCall( $array_reverse, a, "reverse" );
   }
   catch (c) {
     $( "fail" );
@@ -76,7 +76,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Support this node type as init in isFree:
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) support delete in free loop?
 
 
 ## Globals

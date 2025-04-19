@@ -23,7 +23,8 @@ let tmpIfTest /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = tmpClusterSSA_x.x(tmpClusterSSA_x);
+  const tmpChainElementObject /*:unknown*/ = tmpClusterSSA_x.x;
+  const tmpChainElementCall /*:unknown*/ = $dotCall(tmpChainElementObject, tmpClusterSSA_x, `x`, tmpClusterSSA_x);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
@@ -34,7 +35,8 @@ if (tmpIfTest) {
     const tmpIfTest$4 /*:boolean*/ = tmpClusterSSA_x == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementCall$1 /*:unknown*/ = tmpClusterSSA_x.x(tmpClusterSSA_x);
+      const tmpChainElementObject$1 /*:unknown*/ = tmpClusterSSA_x.x;
+      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpClusterSSA_x, `x`, tmpClusterSSA_x);
       tmpIfTest$2 = tmpChainElementCall$1;
     }
     if (tmpIfTest$2) {
@@ -83,23 +85,25 @@ if (c) {
 
 }
 else {
-  const d = a.x( a );
-  b = d;
+  const d = a.x;
+  const e = $dotCall( d, a, "x", a );
+  b = e;
 }
 if (b) {
   while ($LOOP_UNROLL_10) {
     a ** 0;
     a = NaN.x;
-    let e = undefined;
-    const f = a == null;
-    if (f) {
+    let f = undefined;
+    const g = a == null;
+    if (g) {
 
     }
     else {
-      const g = a.x( a );
-      e = g;
+      const h = a.x;
+      const i = $dotCall( h, a, "x", a );
+      f = i;
     }
-    if (e) {
+    if (f) {
 
     }
     else {
@@ -113,8 +117,7 @@ if (b) {
 ## Todos triggered
 
 
-- (todo) regular property access of an ident feels tricky;
-- (todo) regular property of a primitive;
+- (todo) do we want to support BinaryExpression as expression statement in free loops?
 
 
 ## Globals

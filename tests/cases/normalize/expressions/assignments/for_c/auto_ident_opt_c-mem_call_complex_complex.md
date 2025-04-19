@@ -33,8 +33,8 @@ if (tmpIfTest) {
     const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
     if (tmpIfTest$3) {
     } else {
-      const tmpCalleeParam$3 /*:unknown*/ = $(1);
-      $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+      const tmpCalleeParam /*:unknown*/ = $(1);
+      $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
     }
   }
   while ($LOOP_UNROLL_10) {

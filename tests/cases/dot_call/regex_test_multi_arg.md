@@ -46,7 +46,7 @@ $( true );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $regex_test
 
 
 ## Globals

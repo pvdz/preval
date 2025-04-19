@@ -78,7 +78,7 @@ $( e );
 ## Todos triggered
 
 
-- (todo) Missed opportunity to inline a type tracked trick for $function_call
+- (todo) access object property that also exists on prototype? $function_call
 
 
 ## Globals

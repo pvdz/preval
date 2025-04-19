@@ -45,7 +45,7 @@ throw "[Preval]: Array spread must crash before this line";
 ## Todos triggered
 
 
-None
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

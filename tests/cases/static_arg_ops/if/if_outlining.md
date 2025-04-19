@@ -77,7 +77,8 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   $inlinedFunction: {
     const index$1 /*:unknown*/ = heap.length;
     const tmpSaooB$1 /*:boolean*/ = index$1 > 0;
-    heap.push(node);
+    const tmpCallCompVal /*:unknown*/ = heap.push;
+    $dotCall(tmpCallCompVal, heap, `push`, node);
     if (tmpSaooB$1) {
       const tmpBinLhs$261 /*:number*/ = index$1 - 1;
       const tmpClusterSSA_parentIndex /*:number*/ = tmpBinLhs$261 >>> 1;
@@ -170,30 +171,31 @@ const a = function($$0,$$1 ) {
   $inlinedFunction: {
     const d = b.length;
     const e = d > 0;
-    b.push( c );
+    const f = b.push;
+    $dotCall( f, b, "push", c );
     if (e) {
-      const f = d - 1;
-      const g = f >>> 1;
-      const h = b[ g ];
-      const i = compare( h, c );
-      const j = i > 0;
-      if (j) {
-        b[g] = c;
-        b[d] = h;
-        let k = g;
-        let l = g > 0;
+      const g = d - 1;
+      const h = g >>> 1;
+      const i = b[ h ];
+      const j = compare( i, c );
+      const k = j > 0;
+      if (k) {
+        b[h] = c;
+        b[d] = i;
+        let l = h;
+        let m = h > 0;
         while ($LOOP_UNROLL_100) {
-          if (l) {
-            const m = k - 1;
-            const n = m >>> 1;
-            const o = b[ n ];
-            const p = compare( o, c );
-            const q = p > 0;
-            if (q) {
-              b[n] = c;
-              b[k] = o;
-              k = n;
-              l = n > 0;
+          if (m) {
+            const n = l - 1;
+            const o = n >>> 1;
+            const p = b[ o ];
+            const q = compare( p, c );
+            const r = q > 0;
+            if (r) {
+              b[o] = c;
+              b[l] = p;
+              l = o;
+              m = o > 0;
             }
             else {
               break $inlinedFunction;

@@ -57,7 +57,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
     const tmpCalleeParam /*:primitive*/ = arr[0];
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e$3) {
     $(`fail`);
   }
@@ -86,7 +86,7 @@ while (true) {
       }
     }
     $(arr[0]);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e$3) {
     $(`fail`);
   }
@@ -119,7 +119,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
     const d = a[ 0 ];
     $( d );
-    a.reverse();
+    $dotCall( $array_reverse, a, "reverse" );
   }
   catch (e) {
     $( "fail" );
@@ -131,6 +131,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? CallExpression
 - (todo) Support referencing this builtin in isFree: $
 
 

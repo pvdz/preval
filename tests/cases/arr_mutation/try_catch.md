@@ -27,7 +27,7 @@ const blob /*:array*/ = [2, 3];
 try {
   $(`try`, 1);
 } catch (e) {
-  const tmpCalleeParam$1 /*:unknown*/ = blob.shift();
+  const tmpCalleeParam$1 /*:unknown*/ = $dotCall($array_shift, blob, `shift`);
   $(`catch`, tmpCalleeParam$1);
 }
 $(`after`, blob);
@@ -42,7 +42,7 @@ const blob = [2, 3];
 try {
   $(`try`, 1);
 } catch (e) {
-  $(`catch`, blob.shift());
+  $(`catch`, $dotCall($array_shift, blob, `shift`));
 }
 $(`after`, blob);
 `````
@@ -57,7 +57,7 @@ try {
   $( "try", 1 );
 }
 catch (b) {
-  const c = a.shift();
+  const c = $dotCall( $array_shift, a, "shift" );
   $( "catch", c );
 }
 $( "after", a );
@@ -67,7 +67,10 @@ $( "after", a );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) outline any args for tdz
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

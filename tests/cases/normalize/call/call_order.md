@@ -17,11 +17,11 @@ $spy(isNaN)($spy('a'), $spy('b'), $spy('c'));
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $spy(isNaN);
+const tmpCallComplexCallee /*:unknown*/ = $spy(isNaN);
 const tmpCalleeParam /*:unknown*/ = $spy(`a`);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(`b`);
 const tmpCalleeParam$3 /*:unknown*/ = $spy(`c`);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 
@@ -29,8 +29,8 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $spy(isNaN);
-tmpCallCallee($spy(`a`), $spy(`b`), $spy(`c`));
+const tmpCallComplexCallee = $spy(isNaN);
+tmpCallComplexCallee($spy(`a`), $spy(`b`), $spy(`c`));
 `````
 
 

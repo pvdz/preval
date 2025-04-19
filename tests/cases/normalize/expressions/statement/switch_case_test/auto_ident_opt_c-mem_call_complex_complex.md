@@ -34,8 +34,8 @@ if (tmpIfTest$1) {
   const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+    const tmpCalleeParam /*:unknown*/ = $(1);
+    $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };

@@ -68,7 +68,7 @@ $( b );
 ## Todos triggered
 
 
-- (todo) processArrayWriteReadImmutableBinding slow path
+None
 
 
 ## Globals

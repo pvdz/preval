@@ -47,22 +47,22 @@ const arr /*:array*/ = [`two`, `three`, `four`, `five`, `one`];
 try {
   $(tmpCalleeParam);
 } catch (e) {
-  const v /*:unknown*/ = arr.shift();
-  arr.push(v);
+  const v /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+  $dotCall($array_push, arr, `push`, v);
 }
 $(1);
 const tmpBinLhs$1 /*:primitive*/ = arr[2];
 const test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
 if (test$1) {
 } else {
-  const next$1 /*:unknown*/ = arr.shift();
-  arr.push(next$1);
-  const tmpCalleeParam$2 /*:array*/ = arr.slice(0);
+  const next$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+  $dotCall($array_push, arr, `push`, next$1);
+  const tmpCalleeParam$2 /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
   try {
     $(tmpCalleeParam$2);
   } catch (e$1) {
-    const v$1 /*:unknown*/ = arr.shift();
-    arr.push(v$1);
+    const v$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    $dotCall($array_push, arr, `push`, v$1);
   }
   while ($LOOP_UNROLL_9) {
     $(1);
@@ -71,19 +71,19 @@ if (test$1) {
     if (test$2) {
       break;
     } else {
-      const next$2 /*:unknown*/ = arr.shift();
-      arr.push(next$2);
-      const tmpCalleeParam$3 /*:array*/ = arr.slice(0);
+      const next$2 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+      $dotCall($array_push, arr, `push`, next$2);
+      const tmpCalleeParam$3 /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
       try {
         $(tmpCalleeParam$3);
       } catch (e$2) {
-        const v$2 /*:unknown*/ = arr.shift();
-        arr.push(v$2);
+        const v$2 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+        $dotCall($array_push, arr, `push`, v$2);
       }
     }
   }
 }
-const tmpCalleeParam$1 /*:array*/ = arr.slice(0, 3);
+const tmpCalleeParam$1 /*:array*/ = $dotCall($array_slice, arr, `slice`, 0, 3);
 $(tmpCalleeParam$1);
 `````
 
@@ -98,33 +98,33 @@ const arr = [`two`, `three`, `four`, `five`, `one`];
 try {
   $(tmpCalleeParam);
 } catch (e) {
-  arr.push(arr.shift());
+  $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
 }
 $(1);
 if (!(arr[2] === 820304)) {
-  arr.push(arr.shift());
-  const tmpCalleeParam$2 = arr.slice(0);
+  $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
+  const tmpCalleeParam$2 = $dotCall($array_slice, arr, `slice`, 0);
   try {
     $(tmpCalleeParam$2);
   } catch (e$1) {
-    arr.push(arr.shift());
+    $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   }
   while (true) {
     $(1);
     if (arr[2] === 820304) {
       break;
     } else {
-      arr.push(arr.shift());
-      const tmpCalleeParam$3 = arr.slice(0);
+      $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
+      const tmpCalleeParam$3 = $dotCall($array_slice, arr, `slice`, 0);
       try {
         $(tmpCalleeParam$3);
       } catch (e$2) {
-        arr.push(arr.shift());
+        $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
       }
     }
   }
 }
-$(arr.slice(0, 3));
+$($dotCall($array_slice, arr, `slice`, 0, 3));
 `````
 
 
@@ -139,8 +139,8 @@ try {
   $( a );
 }
 catch (c) {
-  const d = b.shift();
-  b.push( d );
+  const d = $dotCall( $array_shift, b, "shift" );
+  $dotCall( $array_push, b, "push", d );
 }
 $( 1 );
 const e = b[ 2 ];
@@ -149,15 +149,15 @@ if (f) {
 
 }
 else {
-  const g = b.shift();
-  b.push( g );
-  const h = b.slice( 0 );
+  const g = $dotCall( $array_shift, b, "shift" );
+  $dotCall( $array_push, b, "push", g );
+  const h = $dotCall( $array_slice, b, "slice", 0 );
   try {
     $( h );
   }
   catch (i) {
-    const j = b.shift();
-    b.push( j );
+    const j = $dotCall( $array_shift, b, "shift" );
+    $dotCall( $array_push, b, "push", j );
   }
   while ($LOOP_UNROLL_9) {
     $( 1 );
@@ -167,20 +167,20 @@ else {
       break;
     }
     else {
-      const m = b.shift();
-      b.push( m );
-      const n = b.slice( 0 );
+      const m = $dotCall( $array_shift, b, "shift" );
+      $dotCall( $array_push, b, "push", m );
+      const n = $dotCall( $array_slice, b, "slice", 0 );
       try {
         $( n );
       }
       catch (o) {
-        const p = b.shift();
-        b.push( p );
+        const p = $dotCall( $array_shift, b, "shift" );
+        $dotCall( $array_push, b, "push", p );
       }
     }
   }
 }
-const q = b.slice( 0, 3 );
+const q = $dotCall( $array_slice, b, "slice", 0, 3 );
 $( q );
 `````
 
@@ -188,8 +188,14 @@ $( q );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $array_slice
-- (todo) inline computed array property read
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) access object property that also exists on prototype? $array_slice
+- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) phase1_1 support this array method call? $array_slice
+- (todo) type trackeed tricks can possibly support static $array_slice
+- (todo) can try-escaping support this expr node type? CallExpression
+- (todo) outline any args for tdz
 
 
 ## Globals

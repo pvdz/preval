@@ -25,12 +25,12 @@ log(f());
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = log;
+log;
 if (a) {
   log(3);
 } else {
   b;
-  tmpCallCallee(3);
+  log(3);
 }
 `````
 
@@ -39,12 +39,12 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = log;
+log;
 if (a) {
   log(3);
 } else {
   b;
-  tmpCallCallee(3);
+  log(3);
 }
 `````
 
@@ -53,13 +53,13 @@ if (a) {
 With rename=true
 
 `````js filename=intro
-const c = log;
+log;
 if (a) {
   log( 3 );
 }
 else {
   b;
-  c( 3 );
+  log( 3 );
 }
 `````
 
@@ -67,7 +67,7 @@ else {
 ## Todos triggered
 
 
-- (todo) can we support this const aliasing blocking statement? TryStatement
+None
 
 
 ## Globals

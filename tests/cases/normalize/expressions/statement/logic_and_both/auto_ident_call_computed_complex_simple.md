@@ -23,11 +23,13 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpIfTest /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const tmpCallObj$1 /*:unknown*/ = $(b);
-  tmpCallObj$1.$(1);
+  const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
+  $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
   $(a);
 } else {
   $(a);
@@ -40,10 +42,12 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const b = { $: $ };
-const tmpIfTest = $(b).$(1);
+const tmpCallObj = $(b);
+const tmpIfTest = tmpCallObj.$(1);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  $(b).$(1);
+  const tmpCallObj$1 = $(b);
+  tmpCallObj$1.$(1);
   $(a);
 } else {
   $(a);
@@ -57,18 +61,20 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-const d = {
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+const e = {
   a: 999,
   b: 1000,
 };
-if (c) {
-  const e = $( a );
-  e.$( 1 );
-  $( d );
+if (d) {
+  const f = $( a );
+  const g = f.$;
+  $dotCall( g, f, "$", 1 );
+  $( e );
 }
 else {
-  $( d );
+  $( e );
 }
 `````
 

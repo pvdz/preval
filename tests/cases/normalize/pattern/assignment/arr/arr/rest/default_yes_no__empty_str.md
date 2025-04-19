@@ -20,7 +20,7 @@ $(x);
 `````js filename=intro
 const arrPatternStep /*:unknown*/ = $(`pass`);
 const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-x = arrPatternSplat$1.slice(0);
+x = $dotCall($array_slice, arrPatternSplat$1, `slice`, 0);
 $(x);
 `````
 
@@ -30,7 +30,7 @@ $(x);
 
 `````js filename=intro
 const arrPatternStep = $(`pass`);
-x = [...arrPatternStep].slice(0);
+x = $dotCall($array_slice, [...arrPatternStep], `slice`, 0);
 $(x);
 `````
 
@@ -41,7 +41,7 @@ With rename=true
 `````js filename=intro
 const a = $( "pass" );
 const b = [ ...a ];
-x = b.slice( 0 );
+x = $dotCall( $array_slice, b, "slice", 0 );
 $( x );
 `````
 
@@ -50,9 +50,9 @@ $( x );
 
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- (todo) inline computed array property read
-- (todo) replace with $array_slice
-- (todo) type trackeed tricks can possibly support method $array_slice
+- (todo) Deal with array spreads in arr mutation?
+- (todo) access object property that also exists on prototype? $array_slice
+- (todo) type trackeed tricks can possibly support static $array_slice
 
 
 ## Globals

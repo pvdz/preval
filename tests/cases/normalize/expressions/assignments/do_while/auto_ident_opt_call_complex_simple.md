@@ -125,7 +125,7 @@ else {
 ## Todos triggered
 
 
-- (todo) objects in isFree check
+None
 
 
 ## Globals

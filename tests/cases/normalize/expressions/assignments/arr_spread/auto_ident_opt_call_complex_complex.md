@@ -25,8 +25,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpArrSpread /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$5);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
   a = tmpChainElementCall$1;
   tmpArrSpread = tmpChainElementCall$1;
 }
@@ -80,7 +80,7 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

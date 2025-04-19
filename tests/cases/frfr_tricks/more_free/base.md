@@ -33,8 +33,8 @@ const tmpFree /*:(string, unused)=>string*/ = function $free($$0, $$1) {
   const xs$1 /*:string*/ = $$0;
   debugger;
   const one /*:string*/ = xs$1 + 5;
-  const two /*:string*/ = one.slice(1);
-  const tmpRet /*:string*/ = two.repeat(2);
+  const two /*:string*/ = $dotCall($string_slice, one, `slice`, 1);
+  const tmpRet /*:string*/ = $dotCall($string_repeat, two, `repeat`, 2);
   return tmpRet;
 };
 const x /*:unknown*/ = $(`x`);
@@ -51,7 +51,7 @@ $(t);
 
 `````js filename=intro
 const tmpFree = function $free(xs$1, $$1) {
-  const tmpRet = (xs$1 + 5).slice(1).repeat(2);
+  const tmpRet = $dotCall($string_repeat, $dotCall($string_slice, xs$1 + 5, `slice`, 1), `repeat`, 2);
   return tmpRet;
 };
 const xs = $coerce($(`x`), `plustr`);
@@ -67,8 +67,8 @@ const a = function b($$0,$$1 ) {
   const c = $$0;
   debugger;
   const d = c + 5;
-  const e = d.slice( 1 );
-  const f = e.repeat( 2 );
+  const e = $dotCall( $string_slice, d, "slice", 1 );
+  const f = $dotCall( $string_repeat, e, "repeat", 2 );
   return f;
 };
 const g = $( "x" );
@@ -84,7 +84,7 @@ $( k );
 
 
 - (todo) frfr and free arg mismatch
-- (todo) type trackeed tricks can possibly support method $string_repeat
+- (todo) type trackeed tricks can possibly support static $string_repeat
 
 
 ## Globals

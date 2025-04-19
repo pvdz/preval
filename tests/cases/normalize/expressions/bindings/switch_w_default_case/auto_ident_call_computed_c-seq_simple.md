@@ -29,7 +29,8 @@ switch (1) {
 `````js filename=intro
 const tmpClusterSSA_b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(tmpClusterSSA_b);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 $(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
@@ -40,7 +41,8 @@ $(`fail2`);
 (This ought to be the final result)
 
 `````js filename=intro
-$($({ $: $ }).$(1));
+const tmpCallObj = $({ $: $ });
+$(tmpCallObj.$(1));
 $(`fail1`);
 $(`fail2`);
 `````
@@ -52,8 +54,9 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-$( c );
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+$( d );
 $( "fail1" );
 $( "fail2" );
 `````

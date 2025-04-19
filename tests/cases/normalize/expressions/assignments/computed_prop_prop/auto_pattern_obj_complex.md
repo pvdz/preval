@@ -20,8 +20,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 $coerce(tmpNestedAssignObjPatternRhs, `string`);
 $(tmpClusterSSA_a);

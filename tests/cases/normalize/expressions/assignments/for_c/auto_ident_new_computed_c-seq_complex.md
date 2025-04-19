@@ -25,15 +25,15 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
   const tmpCompObj /*:unknown*/ = $(b);
-  const tmpCompProp /*:unknown*/ = $(`\$`);
-  const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`\$`);
+  const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
   let tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCompObj$1 /*:unknown*/ = $(b);
-      const tmpCompProp$1 /*:unknown*/ = $(`\$`);
-      const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+      const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
+      const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
       tmpClusterSSA_a = new tmpNewCallee$1(1);
     } else {
       break;
@@ -54,14 +54,14 @@ if (tmpIfTest) {
 if ($(1)) {
   const b = { $: $ };
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
+  const tmpCalleeParam = $(`\$`);
+  const tmpNewCallee = tmpCompObj[tmpCalleeParam];
   let tmpClusterSSA_a = new tmpNewCallee(1);
   while (true) {
     if ($(1)) {
       const tmpCompObj$1 = $(b);
-      const tmpCompProp$1 = $(`\$`);
-      const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
+      const tmpCalleeParam$1 = $(`\$`);
+      const tmpNewCallee$1 = tmpCompObj$1[tmpCalleeParam$1];
       tmpClusterSSA_a = new tmpNewCallee$1(1);
     } else {
       break;

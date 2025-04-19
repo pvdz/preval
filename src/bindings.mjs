@@ -6,7 +6,7 @@ import {
   PRIMITIVE_TYPE_NAMES_PREVAL,
   ALL_PREVAL_TYPE_NAMES, PRIMITIVE_TYPE_NAMES_TYPEOF,
 } from './constants.mjs';
-import { IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, SYMBOL_FRFR } from './symbols_preval.mjs';
+import { IMPLICIT_GLOBAL_PREFIX, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, SYMBOL_FRFR, SYMBOL_DOTCALL, } from './symbols_preval.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source, fmat, tmat, todo } from './utils.mjs';
 import globals, {MAX_UNROLL_TRUE_COUNT} from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
@@ -1516,112 +1516,88 @@ function _inferNodeTyping(fdata, valueNode) {
       });
     }
     case 'CallExpression': {
-      vlog('- Node is a call', valueNode.callee.type);
+      const callee = valueNode.callee;
+
+      vlog('- Node is a call', callee.type);
+      if (callee.type !== 'Identifier') {
+        todo(`infertyping on a non-ident? is that a crash or bug? ${callee.type}`);
+        return createTypingObject({});
+      }
+
+      const args = valueNode.arguments;
+
       // Certain builtins have a guaranteed outcome... (or an exception is thrown, which we can ignore here)
-      if (valueNode.callee.type === 'Identifier') {
-        const calleeMeta = getMeta(valueNode.callee.name, fdata);
-        if (calleeMeta.typing.returns) {
-          // It always returns this particular type. That's very helpful.
+      switch (callee.name) {
+        case SYMBOL_COERCE: {
+          const kind = AST.getPrimitiveValue(valueNode.arguments[1]);
           return createTypingObject({
-            mustBeType: calleeMeta.typing.returns,
-            mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(calleeMeta.typing.returns),
-            mustBeTruthy: !PRIMITIVE_TYPE_NAMES_PREVAL.has(calleeMeta.typing.returns),
-            mustBeFalsy: calleeMeta.typing.returns === 'undefined' || calleeMeta.typing.returns === 'null',
-            ...calleeMeta.typing.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
+            mustBeType:
+              kind === 'string' || kind === 'plustr' ? 'string' : kind === 'number' ? 'number' : ASSERT(false, 'add this kind', kind),
+            mustBePrimitive: true,
           });
         }
-
-        switch (valueNode.callee.name) {
-          case SYMBOL_COERCE: {
-            const kind = AST.getPrimitiveValue(valueNode.arguments[1]);
+        case SYMBOL_DOTCALL: {
+          vlog('infer Dotcalling', args[0]?.name);
+          const symb = BUILTIN_SYMBOLS.get(args[0].name);
+          if (symb) {
+            vlog('- is a known builtin symbol; returning it now');
             return createTypingObject({
-              mustBeType:
-                kind === 'string' || kind === 'plustr' ? 'string' : kind === 'number' ? 'number' : ASSERT(false, 'add this kind', kind),
-              mustBePrimitive: true,
+              mustBeType: symb.typings.returns,
+              mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
+              mustBeTruthy: !PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
+              mustBeFalsy: symb.typings.returns === 'undefined' || symb.typings.returns === 'null',
+              ...symb.typings.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
             });
           }
-          case SYMBOL_FRFR: {
-            const freeMeta = getMeta(valueNode.arguments[0].name, fdata);
-            if (freeMeta.typing.returns && freeMeta.typing.returns !== 'primitive') {
-              // It always returns this particular type. That's very helpful.
-              const mustbe = freeMeta.typing.returns;
-              return createTypingObject({
-                mustBeType: mustbe,
-                mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(mustbe),
-              });
-            }
-            // Either we don't know the return type at all (which is strange), or we don't know beyond it
-            // being a primitive (can happen), or have multiple concrete candidates. Whatever the case, we
-            // assert that $free functions always return a primitive of sorts, so of you go.
+
+          // This may miss in phase1 if the typing is not yet known but would be discovered/settled in phase1.1
+          const meta = fdata.globallyUniqueNamingRegistry.get(args[0]);
+          if (meta?.typing.returns) {
             return createTypingObject({
-              mustBePrimitive: true,
+              mustBeType: meta.typing.returns,
+              mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.returns),
+              mustBeTruthy: meta.typing.returns === 'undefined' || meta.typing.returns === 'null' ? false : undefined,
+              mustBeFalsy: meta.typing.returns === 'undefined' || meta.typing.returns === 'null' || undefined,
+              ...meta.typing.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
             });
           }
+
+          return createTypingObject({});
         }
-
-        // We have no real idea what's going on here yet
-        return createTypingObject({});
-      }
-      if (valueNode.callee.type === 'MemberExpression') {
-        if (!valueNode.callee.computed) {
-
-          vlog('- Node is calling a non-computed member expression');
-          if (valueNode.callee.object.type === 'Identifier') {
-            // This isn't safe because if there's a variable `number` then that too will check for number.toString
-            // into $number_toString even when it's not a number.
-            // We shouldn't need to do this anymore when we convert all global static methods into builtin symbols, though.
-            if (BUILTIN_SYMBOLS.has(symbo(valueNode.callee.object.name, valueNode.callee.property.name))) {
-              todo(`maybe fix the type for calling builtin ${symbo(valueNode.callee.object.name, valueNode.callee.property.name)}`)
-            }
-            //const symb = BUILTIN_SYMBOLS.get(symbo(valueNode.callee.object.name, valueNode.callee.property.name));
-            //if (symb?.typings.returns) {
-            //  vlog('And it returns', symb.typings.returns);
-            //  return createTypingObject({
-            //    mustBeType: symb.returns,
-            //    mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.returns),
-            //    mustBeTruthy: !PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.returns),
-            //    mustBeFalsy: symb.returns === 'undefined' || symb.returns === 'null',
-            //    ...symb.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
-            //  });
-            //}
-
-            // This may miss in phase1 if the typing is not yet known but would be discovered/settled in phase1.1
-            const meta = fdata.globallyUniqueNamingRegistry.get(valueNode.callee.object.name);
-            if (meta.typing?.mustBeType) {
-              const symbol = symbo(meta.typing?.mustBeType, valueNode.callee.property.name);
-              const symb = BUILTIN_SYMBOLS.get(symbol);
-              if (symb) {
-                return createTypingObject({
-                  mustBeType: symb.typings.returns,
-                  mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
-                  mustBeTruthy: !PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
-                  mustBeFalsy: symb.typings.returns === 'undefined' || symb.typings.returns === 'null',
-                  ...symb.typings.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
-                });
-              }
-            }
-
-            return createTypingObject({});
+        case SYMBOL_FRFR: {
+          const freeMeta = getMeta(valueNode.arguments[0].name, fdata);
+          if (freeMeta.typing.returns && freeMeta.typing.returns !== 'primitive') {
+            // It always returns this particular type. That's very helpful.
+            const mustbe = freeMeta.typing.returns;
+            return createTypingObject({
+              mustBeType: mustbe,
+              mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(mustbe),
+            });
           }
-          else if (AST.isPrimitive(valueNode.callee.object) && !valueNode.callee.computed) {
-            const symbol = symbo(AST.getPrimitiveType(valueNode.callee.object), valueNode.callee.property.name);
-            const symb = BUILTIN_SYMBOLS.get(symbol);
-            if (symb?.typings.returns) {
-              return createTypingObject({
-                mustBeType: symb.typings.returns,
-                mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
-                mustBeTruthy: !PRIMITIVE_TYPE_NAMES_PREVAL.has(symb.typings.returns),
-                mustBeFalsy: symb.typings.returns === 'undefined' || symb.typings.returns === 'null',
-                ...symb.typings.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
-              });
-            }
-            todo('Method on primitive was not found, do we miss anything?', symbol);
-          }
+          // Either we don't know the return type at all (which is strange), or we don't know beyond it
+          // being a primitive (can happen), or have multiple concrete candidates. Whatever the case, we
+          // assert that $free functions always return a primitive of sorts, so of you go.
+          return createTypingObject({
+            mustBePrimitive: true,
+          });
         }
-
-        vlog('- Node is calling a computed member expression, not generating any typing for that');
-        return createTypingObject({});
       }
+
+      const calleeMeta = getMeta(valueNode.callee.name, fdata);
+      if (calleeMeta.typing.returns) {
+        // It always returns this particular type. That's very helpful.
+        return createTypingObject({
+          mustBeType: calleeMeta.typing.returns,
+          mustBePrimitive: PRIMITIVE_TYPE_NAMES_PREVAL.has(calleeMeta.typing.returns),
+          mustBeTruthy: !PRIMITIVE_TYPE_NAMES_PREVAL.has(calleeMeta.typing.returns),
+          mustBeFalsy: calleeMeta.typing.returns === 'undefined' || calleeMeta.typing.returns === 'null',
+          ...calleeMeta.typing.returns === 'boolean' ? {worstCaseValueSet: new Set([true, false])} : {},
+        });
+      }
+
+      // We have no real idea what's going on here yet
+      return createTypingObject({});
+
 
       // We have no real idea what's going on here yet
       // TODO: we can track the callee and see if the return type reveals a clue...
@@ -1697,6 +1673,7 @@ function _inferNodeTyping(fdata, valueNode) {
         }
       }
 
+      //hier gingen we voorheen misschien wel checken of wat array.shift() teruggeeft ofzo...
       if (valueNode.object.type === 'Identifier' && valueNode.computed) {
         // The object needs to be an array literal const
         const ometa = fdata.globallyUniqueNamingRegistry.get(valueNode.object.name);

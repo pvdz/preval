@@ -24,7 +24,7 @@ switch (1) {
 
 `````js filename=intro
 const tmpClusterSSA_b /*:object*/ = { $: $ };
-const tmpClusterSSA_a /*:unknown*/ = tmpClusterSSA_b.$(1);
+const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpClusterSSA_b, `\$`, 1);
 $(tmpClusterSSA_a);
 `````
 
@@ -33,7 +33,7 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-$({ $: $ }.$(1));
+$($dotCall($, { $: $ }, `\$`, 1));
 `````
 
 
@@ -42,7 +42,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 $( b );
 `````
 

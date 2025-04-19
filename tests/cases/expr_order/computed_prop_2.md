@@ -29,8 +29,8 @@ var c;
 `````js filename=intro
 const a /*:unknown*/ = $(1);
 const c /*:unknown*/ = $(2);
-const tmpCompProp /*:unknown*/ = $(c);
-a[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(c);
+a[tmpCalleeParam];
 `````
 
 
@@ -39,8 +39,8 @@ a[tmpCompProp];
 
 `````js filename=intro
 const a = $(1);
-const tmpCompProp = $($(2));
-a[tmpCompProp];
+const tmpCalleeParam = $($(2));
+a[tmpCalleeParam];
 `````
 
 

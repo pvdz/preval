@@ -23,9 +23,9 @@ $(a);
 const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
 const a /*:unknown*/ = arrPatternSplat[0];
-const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpCompProp /*:unknown*/ = $(tmpCalleeParam);
-$coerce(tmpCompProp, `string`);
+const tmpCalleeParam$1 /*:array*/ = [1, 2];
+const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
+$coerce(tmpCalleeParam, `string`);
 $(a);
 `````
 
@@ -61,7 +61,7 @@ $( c );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+- (todo) Deal with array spreads in arr mutation?
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

@@ -25,7 +25,8 @@ const a /*:object*/ = {
     return undefined;
   },
 };
-a.$();
+const tmpCallCompVal /*:unknown*/ = a.$;
+$dotCall(tmpCallCompVal, a, `\$`);
 `````
 
 
@@ -33,11 +34,12 @@ a.$();
 (This ought to be the final result)
 
 `````js filename=intro
-({
+const a = {
   $() {
     $(1);
   },
-}.$());
+};
+a.$();
 `````
 
 
@@ -50,7 +52,8 @@ const a = { $(  ) {
   $( 1 );
   return undefined;
 } };
-a.$();
+const b = a.$;
+$dotCall( b, a, "$" );
 `````
 
 

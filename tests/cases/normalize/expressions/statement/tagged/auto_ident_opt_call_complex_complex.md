@@ -27,8 +27,8 @@ if (tmpIfTest) {
   $(tmpCalleeParam, undefined);
   $(a);
 } else {
-  const tmpCalleeParam$7 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$7);
+  const tmpCalleeParam$3 /*:unknown*/ = $(1);
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$3);
   $(tmpCalleeParam, tmpChainElementCall$1);
   $(a);
 }

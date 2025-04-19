@@ -31,8 +31,9 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b[tmpCallCompProp](1);
-const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
+const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -46,10 +47,10 @@ const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
   $(`fail2`);
-  $(a);
+  $(tmpClusterSSA_a);
 } else {
   $(`fail2`);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -61,8 +62,9 @@ if (tmpIfTest$5) {
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCallCompProp = $(`\$`);
-const a = { $: $ }[tmpCallCompProp](1);
-if (a === tmpSwitchValue) {
+const b = { $: $ };
+const tmpClusterSSA_a = b[tmpCallCompProp](1);
+if (tmpClusterSSA_a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -72,10 +74,10 @@ if (a === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
   $(`fail2`);
-  $(a);
+  $(tmpClusterSSA_a);
 } else {
   $(`fail2`);
-  $(a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -88,26 +90,27 @@ const a = $( 1 );
 let b = 1;
 const c = $( "$" );
 const d = { $: $ };
-const e = d[ c ]( 1 );
-const f = e === a;
-if (f) {
+const e = d[ c ];
+const f = $dotCall( e, d, undefined, 1 );
+const g = f === a;
+if (g) {
   b = 0;
 }
 else {
-  const g = 2 === a;
-  if (g) {
+  const h = 2 === a;
+  if (h) {
     b = 2;
   }
 }
-const h = b <= 1;
-if (h) {
+const i = b <= 1;
+if (i) {
   $( "fail1" );
   $( "fail2" );
-  $( e );
+  $( f );
 }
 else {
   $( "fail2" );
-  $( e );
+  $( f );
 }
 `````
 

@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$1];
 const tmpCalleeParam /*:object*/ = new tmpNewCallee(1);
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -35,8 +35,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpCalleeParam$1 = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCalleeParam$1];
 $(new tmpNewCallee(1));
 $({ a: 999, b: 1000 });
 `````

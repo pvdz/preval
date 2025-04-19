@@ -20,8 +20,8 @@ $(f({ a: 11, b: 12 }, 10));
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 let objPatternAfterDefault /*:unknown*/ = undefined;
+const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
 const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [`fail`];
@@ -38,8 +38,8 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $Object_prototype.x;
 let objPatternAfterDefault = undefined;
+const objPatternBeforeDefault = $Object_prototype.x;
 if (objPatternBeforeDefault === undefined) {
   objPatternAfterDefault = $([`fail`]);
 } else {
@@ -54,17 +54,17 @@ $(`ok`);
 With rename=true
 
 `````js filename=intro
-const a = $Object_prototype.x;
-let b = undefined;
-const c = a === undefined;
+let a = undefined;
+const b = $Object_prototype.x;
+const c = b === undefined;
 if (c) {
   const d = [ "fail" ];
-  b = $( d );
+  a = $( d );
 }
 else {
-  b = a;
+  a = b;
 }
-[ ...b ];
+[ ...a ];
 $( "ok" );
 `````
 

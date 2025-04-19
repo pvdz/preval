@@ -41,7 +41,7 @@ const f /*:()=>unknown*/ = function () {
   }
 };
 const obj /*:object*/ = { f: f, foo: 10 };
-const tmpCalleeParam /*:unknown*/ = obj.f();
+const tmpCalleeParam /*:unknown*/ = $dotCall(f, obj, `f`);
 $(tmpCalleeParam);
 `````
 
@@ -58,7 +58,7 @@ const f = function () {
     }
   }
 };
-$({ f: f, foo: 10 }.f());
+$($dotCall(f, { f: f, foo: 10 }, `f`));
 `````
 
 
@@ -87,7 +87,7 @@ const e = {
   f: a,
   foo: 10,
 };
-const f = e.f();
+const f = $dotCall( a, e, "f" );
 $( f );
 `````
 

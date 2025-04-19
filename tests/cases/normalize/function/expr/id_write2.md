@@ -6,6 +6,12 @@
 >
 > Function recursion by referencing a function expr id
 
+## Options
+
+Assignment to func expr local name will just crash in strict mode.
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -27,7 +33,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 
 `````js filename=intro
-throw `Preval: Cannot write to const binding \`r\``;
+$(20, `function`);
 `````
 
 
@@ -35,7 +41,7 @@ throw `Preval: Cannot write to const binding \`r\``;
 (This ought to be the final result)
 
 `````js filename=intro
-throw `Preval: Cannot write to const binding \`r\``;
+$(20, `function`);
 `````
 
 
@@ -43,7 +49,7 @@ throw `Preval: Cannot write to const binding \`r\``;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot write to const binding `r`";
+$( 20, "function" );
 `````
 
 
@@ -63,7 +69,7 @@ None
 
 
 Should call `$` with:
- - eval returned: ('<crash[ Assignment to constant variable. ]>')
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 

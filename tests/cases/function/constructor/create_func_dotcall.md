@@ -21,8 +21,7 @@ $(f());
 
 
 `````js filename=intro
-const obj /*:object*/ = { Function: Function };
-const f /*:unknown*/ = obj.Function(a, b, c, d);
+const f /*:function*/ = Function(a, b, c, d);
 const tmpCalleeParam /*:unknown*/ = f();
 $(tmpCalleeParam);
 `````
@@ -32,7 +31,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = { Function: Function }.Function(a, b, c, d);
+const f = Function(a, b, c, d);
 $(f());
 `````
 
@@ -41,10 +40,9 @@ $(f());
 With rename=true
 
 `````js filename=intro
-const e = { Function: Function };
-const f = e.Function( a, b, c, d );
-const g = f();
-$( g );
+const e = Function( a, b, c, d );
+const f = e();
+$( f );
 `````
 
 

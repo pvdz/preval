@@ -54,7 +54,8 @@ if (tmpIfTest$3) {
 } else {
   const tmpCallVal$2 /*:unknown*/ = tmpChainElementCall$2.call;
   const tmpCalleeParam$5 /*:unknown*/ = $(1);
-  const tmpChainElementCall$5 /*:unknown*/ = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
+  const tmpCallCompVal /*:unknown*/ = tmpCallVal$2.call;
+  const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallVal$2, `call`, tmpChainElementCall$2, $, tmpCalleeParam$5);
   $(tmpChainElementCall$5);
   $(tmpChainElementCall$5);
 }
@@ -70,7 +71,8 @@ if (tmpChainElementCall$2 == null) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpChainElementCall$5 = tmpChainElementCall$2.call.call(tmpChainElementCall$2, $, $(1));
+  const tmpCallVal$2 = tmpChainElementCall$2.call;
+  const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, $(1));
   $(tmpChainElementCall$5);
   $(tmpChainElementCall$5);
 }
@@ -90,9 +92,10 @@ if (b) {
 else {
   const c = a.call;
   const d = $( 1 );
-  const e = c.call( a, $, d );
-  $( e );
-  $( e );
+  const e = c.call;
+  const f = $dotCall( e, c, "call", a, $, d );
+  $( f );
+  $( f );
 }
 `````
 

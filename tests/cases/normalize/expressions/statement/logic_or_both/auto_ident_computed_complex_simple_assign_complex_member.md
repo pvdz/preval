@@ -24,8 +24,8 @@ $(a, b);
 const b /*:object*/ = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (varInitAssignLhsComputedRhs) {
@@ -33,8 +33,8 @@ if (varInitAssignLhsComputedRhs) {
 } else {
   const tmpAssignMemLhsObj /*:unknown*/ = $(b);
   const tmpCompObj$1 /*:unknown*/ = $(b);
-  const tmpCompProp$1 /*:unknown*/ = $(`d`);
-  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+  const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
+  const tmpAssignMemRhs /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
   tmpAssignMemLhsObj.c = tmpAssignMemRhs;
   $(a, b);
 }
@@ -48,8 +48,8 @@ if (varInitAssignLhsComputedRhs) {
 const b = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const a = { a: 999, b: 1000 };
 if (varInitAssignLhsComputedRhs) {
@@ -57,8 +57,8 @@ if (varInitAssignLhsComputedRhs) {
 } else {
   const tmpAssignMemLhsObj = $(b);
   const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $(`d`);
-  tmpAssignMemLhsObj.c = tmpCompObj$1[tmpCompProp$1];
+  const tmpCalleeParam$1 = $(`d`);
+  tmpAssignMemLhsObj.c = tmpCompObj$1[tmpCalleeParam$1];
   $(a, b);
 }
 `````

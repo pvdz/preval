@@ -24,7 +24,7 @@ $(o.arr());
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 const o /*:object*/ = { arr: arr };
-const tmpCalleeParam /*:unknown*/ = o.arr();
+const tmpCalleeParam /*:unknown*/ = $dotCall(arr, o, `arr`);
 $(tmpCalleeParam);
 `````
 
@@ -34,7 +34,7 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const arr = [1, 2, 3];
-$({ arr: arr }.arr());
+$($dotCall(arr, { arr: arr }, `arr`));
 `````
 
 
@@ -44,7 +44,7 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3 ];
 const b = { arr: a };
-const c = b.arr();
+const c = $dotCall( a, b, "arr" );
 $( c );
 `````
 

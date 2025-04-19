@@ -31,7 +31,7 @@ if (tmpIfTest$1) {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const x /*:array*/ = arrPatternSplat$1.slice(0);
+const x /*:array*/ = $dotCall($array_slice, arrPatternSplat$1, `slice`, 0);
 $(x);
 `````
 
@@ -48,7 +48,7 @@ if (arrPatternBeforeDefault === undefined) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-$([...arrPatternStep].slice(0));
+$($dotCall($array_slice, [...arrPatternStep], `slice`, 0));
 `````
 
 
@@ -68,7 +68,7 @@ else {
   d = c;
 }
 const f = [ ...d ];
-const g = f.slice( 0 );
+const g = $dotCall( $array_slice, f, "slice", 0 );
 $( g );
 `````
 
@@ -76,10 +76,10 @@ $( g );
 ## Todos triggered
 
 
-- (todo) inline computed array property read
-- (todo) replace with $array_slice
+- (todo) Deal with array spreads in arr mutation?
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- (todo) type trackeed tricks can possibly support method $array_slice
+- (todo) access object property that also exists on prototype? $array_slice
+- (todo) type trackeed tricks can possibly support static $array_slice
 
 
 ## Globals

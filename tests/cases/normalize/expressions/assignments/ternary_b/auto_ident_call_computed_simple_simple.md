@@ -24,7 +24,7 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
-  const tmpNestedComplexRhs /*:unknown*/ = b.$(1);
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, b, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -41,7 +41,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  const tmpNestedComplexRhs = { $: $ }.$(1);
+  const tmpNestedComplexRhs = $dotCall($, { $: $ }, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -58,7 +58,7 @@ With rename=true
 const a = $( 1 );
 if (a) {
   const b = { $: $ };
-  const c = b.$( 1 );
+  const c = $dotCall( $, b, "$", 1 );
   $( c );
   $( c );
 }

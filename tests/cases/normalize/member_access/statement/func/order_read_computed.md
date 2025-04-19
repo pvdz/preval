@@ -38,8 +38,8 @@ const obj /*:object*/ = {
   },
 };
 const tmpCompObj /*:unknown*/ = $(obj);
-const tmpCompProp /*:unknown*/ = $(`x`);
-tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`x`);
+tmpCompObj[tmpCalleeParam];
 $(undefined);
 `````
 
@@ -57,8 +57,8 @@ const tmpCompObj = $({
     $(20);
   },
 });
-const tmpCompProp = $(`x`);
-tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`x`);
+tmpCompObj[tmpCalleeParam];
 $(undefined);
 `````
 

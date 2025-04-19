@@ -21,7 +21,7 @@ $(f());
 
 
 `````js filename=intro
-const tmpChainElementObject /*:unknown*/ = (3).foo;
+const tmpChainElementObject /*:unknown*/ = $Number_prototype.foo;
 const tmpReturnArg /*:unknown*/ = $(tmpChainElementObject);
 $(tmpReturnArg);
 `````
@@ -31,7 +31,7 @@ $(tmpReturnArg);
 (This ought to be the final result)
 
 `````js filename=intro
-$($((3).foo));
+$($($Number_prototype.foo));
 `````
 
 
@@ -39,7 +39,7 @@ $($((3).foo));
 With rename=true
 
 `````js filename=intro
-const a = (3).foo;
+const a = $Number_prototype.foo;
 const b = $( a );
 $( b );
 `````

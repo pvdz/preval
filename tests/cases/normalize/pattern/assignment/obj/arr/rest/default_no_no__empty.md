@@ -18,9 +18,9 @@ $('bad');
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
 const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-y = arrPatternSplat.slice(0);
+y = $dotCall($array_slice, arrPatternSplat, `slice`, 0);
 $(`bad`);
 `````
 
@@ -29,8 +29,8 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = (1).x;
-y = [...objPatternNoDefault].slice(0);
+const objPatternNoDefault = $Number_prototype.x;
+y = $dotCall($array_slice, [...objPatternNoDefault], `slice`, 0);
 $(`bad`);
 `````
 
@@ -39,9 +39,9 @@ $(`bad`);
 With rename=true
 
 `````js filename=intro
-const a = (1).x;
+const a = $Number_prototype.x;
 const b = [ ...a ];
-y = b.slice( 0 );
+y = $dotCall( $array_slice, b, "slice", 0 );
 $( "bad" );
 `````
 
@@ -49,8 +49,9 @@ $( "bad" );
 ## Todos triggered
 
 
-- (todo) replace with $array_slice
-- (todo) type trackeed tricks can possibly support method $array_slice
+- (todo) Deal with array spreads in arr mutation?
+- (todo) access object property that also exists on prototype? $array_slice
+- (todo) type trackeed tricks can possibly support static $array_slice
 
 
 ## Globals

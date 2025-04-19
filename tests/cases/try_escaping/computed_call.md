@@ -28,10 +28,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCallCompVal /*:primitive*/ = arr[0];
   try {
-    const tmpCalleeParam /*:unknown*/ = arr[0]();
+    const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, arr, undefined);
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -45,9 +46,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr = [1, 2, 3];
 while (true) {
+  const tmpCallCompVal = arr[0];
   try {
-    $(arr[0]());
-    arr.reverse();
+    $($dotCall(tmpCallCompVal, arr, undefined));
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -61,12 +63,13 @@ With rename=true
 `````js filename=intro
 const a = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const b = a[ 0 ];
   try {
-    const b = a[ 0 ]();
-    $( b );
-    a.reverse();
+    const c = $dotCall( b, a, undefined );
+    $( c );
+    $dotCall( $array_reverse, a, "reverse" );
   }
-  catch (c) {
+  catch (d) {
     $( "fail" );
   }
 }
@@ -76,7 +79,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Computed method call but we dont know whats being called
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

@@ -20,14 +20,14 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(0);
-const a /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$1 /*:unknown*/ = $(0);
+const a /*:unknown*/ = $(tmpCalleeParam$1);
 if (a) {
   $coerce(a, `string`);
   $(a);
 } else {
-  const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpCalleeParam$3 /*:unknown*/ = $(2);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
   $coerce(tmpClusterSSA_a, `string`);
   $(tmpClusterSSA_a);
 }

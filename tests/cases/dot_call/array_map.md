@@ -33,7 +33,7 @@ const f /*:(unknown)=>primitive*/ = function ($$0) {
   return tmpReturnArg;
 };
 const pre /*:array*/ = [1, 2, 3];
-const arr /*:unknown*/ = $dotCall($array_map, pre, `map`, f);
+const arr /*:array*/ = $dotCall($array_map, pre, `map`, f);
 $(arr);
 `````
 
@@ -71,7 +71,9 @@ $( e );
 ## Todos triggered
 
 
-- (todo) Missed opportunity to inline a type tracked trick for $array_map
+- (todo) arr mutation may be able to inline this method: map
+- (todo) arr mutation may be able to inline this method: $array_map
+- (todo) type trackeed tricks can possibly support static $array_map
 
 
 ## Globals

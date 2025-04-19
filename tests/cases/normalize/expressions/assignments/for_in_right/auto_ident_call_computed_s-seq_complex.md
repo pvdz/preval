@@ -23,8 +23,9 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b[tmpCallCompProp](1);
-const tmpForInGen /*:unknown*/ = $forIn(a);
+const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -34,7 +35,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -43,8 +44,9 @@ $(a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const a = { $: $ }[tmpCallCompProp](1);
-const tmpForInGen = $forIn(a);
+const b = { $: $ };
+const tmpClusterSSA_a = b[tmpCallCompProp](1);
+const tmpForInGen = $forIn(tmpClusterSSA_a);
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
@@ -53,7 +55,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -63,19 +65,20 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-const c = b[ a ]( 1 );
-const d = $forIn( c );
+const c = b[ a ];
+const d = $dotCall( c, b, undefined, 1 );
+const e = $forIn( d );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const e = d();
-  const f = e.done;
-  if (f) {
+  const f = e();
+  const g = f.done;
+  if (g) {
     break;
   }
   else {
-    e.value;
+    f.value;
   }
 }
-$( c );
+$( d );
 `````
 
 

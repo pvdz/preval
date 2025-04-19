@@ -53,8 +53,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) objects in isFree check
-- (todo) Support this node type as init in isFree:
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 
 
 ## Globals

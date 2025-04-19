@@ -36,11 +36,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (test) {
     break;
   } else {
-    const tmp /*:unknown*/ = arr.shift();
-    arr.push(tmp);
+    const tmp /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    $dotCall($array_push, arr, `push`, tmp);
   }
 }
-const tmpCalleeParam /*:array*/ = arr.slice(0);
+const tmpCalleeParam /*:array*/ = $dotCall($array_slice, arr, `slice`, 0);
 $(tmpCalleeParam);
 `````
 
@@ -54,10 +54,10 @@ while (true) {
   if ($(`never`)) {
     break;
   } else {
-    arr.push(arr.shift());
+    $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   }
 }
-$(arr.slice(0));
+$($dotCall($array_slice, arr, `slice`, 0));
 `````
 
 
@@ -72,11 +72,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const c = a.shift();
-    a.push( c );
+    const c = $dotCall( $array_shift, a, "shift" );
+    $dotCall( $array_push, a, "push", c );
   }
 }
-const d = a.slice( 0 );
+const d = $dotCall( $array_slice, a, "slice", 0 );
 $( d );
 `````
 
@@ -84,7 +84,11 @@ $( d );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support method $array_slice
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) access object property that also exists on prototype? $array_slice
+- (todo) phase1_1 support this array method call? $array_slice
+- (todo) type trackeed tricks can possibly support static $array_slice
 
 
 ## Globals

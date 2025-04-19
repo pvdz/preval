@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpAnonDefaultExport /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpAnonDefaultExport /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -35,8 +35,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpAnonDefaultExport = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const tmpAnonDefaultExport = tmpCallComplexCallee($(1), $(2));
 export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 });
 `````

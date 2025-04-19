@@ -29,15 +29,21 @@ $(maxed);
 
 
 `````js filename=intro
+const tmpFree /*:(number)=>number*/ = function $free($$0) {
+  const twoten$1 /*:number*/ = $$0;
+  debugger;
+  const zero /*:number*/ = 0 * twoten$1;
+  const tmpRet /*:number*/ = zero / 695;
+  return tmpRet;
+};
 const tmpBinLhs /*:unknown*/ = $(120);
 const ten /*:number*/ = tmpBinLhs / 12;
-const twoten /*:unknown*/ = $dotCall($Math_pow, Math, `pow`, 2, ten);
-const zero /*:number*/ = 0 * twoten;
-const divvy /*:number*/ = zero / 695;
-const sinned /*:unknown*/ = $dotCall($Math_sin, Math, `sin`, divvy);
+const twoten /*:number*/ = $dotCall($Math_pow, Math, `pow`, 2, ten);
+const divvy /*:number*/ = $frfr(tmpFree, twoten);
+const sinned /*:number*/ = $dotCall($Math_sin, Math, `sin`, divvy);
 const lottasin /*:number*/ = 1000000 * sinned;
-const minned /*:unknown*/ = $dotCall($Math_min, Math, `min`, 10000, lottasin);
-const maxed /*:unknown*/ = $dotCall($Math_max, Math, `max`, -10000, minned);
+const minned /*:number*/ = $dotCall($Math_min, Math, `min`, 10000, lottasin);
+const maxed /*:number*/ = $dotCall($Math_max, Math, `max`, -10000, minned);
 $(maxed);
 `````
 
@@ -46,8 +52,11 @@ $(maxed);
 (This ought to be the final result)
 
 `````js filename=intro
-const twoten = $dotCall($Math_pow, Math, `pow`, 2, $(120) / 12);
-const sinned = $dotCall($Math_sin, Math, `sin`, (0 * twoten) / 695);
+const tmpFree = function $free(twoten$1) {
+  const tmpRet = (0 * twoten$1) / 695;
+  return tmpRet;
+};
+const sinned = $dotCall($Math_sin, Math, `sin`, $frfr(tmpFree, $dotCall($Math_pow, Math, `pow`, 2, $(120) / 12)));
 $($dotCall($Math_max, Math, `max`, -10000, $dotCall($Math_min, Math, `min`, 10000, 1000000 * sinned)));
 `````
 
@@ -56,26 +65,32 @@ $($dotCall($Math_max, Math, `max`, -10000, $dotCall($Math_min, Math, `min`, 1000
 With rename=true
 
 `````js filename=intro
-const a = $( 120 );
-const b = a / 12;
-const c = $dotCall( $Math_pow, Math, "pow", 2, b );
-const d = 0 * c;
-const e = d / 695;
-const f = $dotCall( $Math_sin, Math, "sin", e );
-const g = 1000000 * f;
-const h = $dotCall( $Math_min, Math, "min", 10000, g );
-const i = $dotCall( $Math_max, Math, "max", -10000, h );
-$( i );
+const a = function b($$0 ) {
+  const c = $$0;
+  debugger;
+  const d = 0 * c;
+  const e = d / 695;
+  return e;
+};
+const f = $( 120 );
+const g = f / 12;
+const h = $dotCall( $Math_pow, Math, "pow", 2, g );
+const i = j( a, h );
+const k = $dotCall( $Math_sin, Math, "sin", i );
+const l = 1000000 * k;
+const m = $dotCall( $Math_min, Math, "min", 10000, l );
+const n = $dotCall( $Math_max, Math, "max", -10000, m );
+$( n );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) Missed opportunity to inline a type tracked trick for $Math_pow
-- (todo) Missed opportunity to inline a type tracked trick for $Math_sin
-- (todo) Missed opportunity to inline a type tracked trick for $Math_min
-- (todo) Missed opportunity to inline a type tracked trick for $Math_max
+- (todo) type trackeed tricks can possibly support static $Math_pow
+- (todo) type trackeed tricks can possibly support static $Math_sin
+- (todo) type trackeed tricks can possibly support static $Math_min
+- (todo) type trackeed tricks can possibly support static $Math_max
 
 
 ## Globals

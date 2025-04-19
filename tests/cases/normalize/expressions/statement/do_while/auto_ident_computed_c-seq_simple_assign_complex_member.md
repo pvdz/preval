@@ -28,8 +28,8 @@ const b /*:object*/ = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`d`);
+const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   while ($LOOP_UNROLL_10) {
@@ -37,8 +37,8 @@ if (varInitAssignLhsComputedRhs) {
     const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
     const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`c`);
     const tmpCompObj$1 /*:unknown*/ = $(b);
-    const tmpCompProp$1 /*:unknown*/ = $(`d`);
-    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCompProp$1];
+    const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
+    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
     if (varInitAssignLhsComputedRhs$1) {
     } else {
@@ -61,8 +61,8 @@ const b = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`d`);
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   while (true) {
@@ -70,8 +70,8 @@ if (varInitAssignLhsComputedRhs) {
     const varInitAssignLhsComputedObj$1 = $(b);
     const varInitAssignLhsComputedProp$1 = $(`c`);
     const tmpCompObj$1 = $(b);
-    const tmpCompProp$1 = $(`d`);
-    const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
+    const tmpCalleeParam$1 = $(`d`);
+    const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
     if (!varInitAssignLhsComputedRhs$1) {
       break;

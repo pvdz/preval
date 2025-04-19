@@ -26,8 +26,8 @@ f();
 
 `````js filename=intro
 $(1);
+$dotCall($console_log, console, `log`, `hi`);
 const x /*:unknown*/ = $(2);
-console.log(`hi`);
 $(x, `f`);
 `````
 
@@ -37,9 +37,8 @@ $(x, `f`);
 
 `````js filename=intro
 $(1);
-const x = $(2);
-console.log(`hi`);
-$(x, `f`);
+$dotCall($console_log, console, `log`, `hi`);
+$($(2), `f`);
 `````
 
 
@@ -48,8 +47,8 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
+$dotCall( $console_log, console, "log", "hi" );
 const a = $( 2 );
-console.log( "hi" );
 $( a, "f" );
 `````
 
@@ -77,8 +76,23 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD!?
+ - 1: 1
+ - 2: 'called $console_log:', 'hi'
+ - 3: 2
+ - 4: 2, 'f'
+ - eval returned: undefined
 
-Post settled calls: Same
+Post settled calls: BAD!!
+ - 1: 1
+ - 2: 'called $console_log:', 'hi'
+ - 3: 2
+ - 4: 2, 'f'
+ - eval returned: undefined
 
-Denormalized calls: Same
+Denormalized calls: BAD!!
+ - 1: 1
+ - 2: 'called $console_log:', 'hi'
+ - 3: 2
+ - 4: 2, 'f'
+ - eval returned: undefined

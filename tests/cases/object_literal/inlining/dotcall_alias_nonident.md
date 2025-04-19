@@ -34,7 +34,7 @@ const g /*:()=>string*/ = function () {
   return `win`;
 };
 const obj /*:object*/ = { f: g };
-const alias /*:unknown*/ = (123)[`f f`];
+const alias /*:unknown*/ = $Number_prototype[`f f`];
 $(order);
 `````
 
@@ -50,7 +50,7 @@ const g = function () {
   return `win`;
 };
 const obj = { f: g };
-const alias = (123)[`f f`];
+const alias = $Number_prototype[`f f`];
 $(order);
 `````
 
@@ -70,7 +70,7 @@ const e = function() {
   return "win";
 };
 const d = { f: e };
-const c = 123[ "f f" ];
+const c = $Number_prototype[ "f f" ];
 $( a );
 `````
 

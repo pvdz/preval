@@ -23,7 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const tmpCalleeParamSpread /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const tmpCalleeParamSpread /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 $(...tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -34,7 +35,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParamSpread = $({ $: $ }).$(1);
+const tmpCallObj = $({ $: $ });
+const tmpCalleeParamSpread = tmpCallObj.$(1);
 $(...tmpCalleeParamSpread);
 $({ a: 999, b: 1000 });
 `````
@@ -46,13 +48,14 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
-$( ...c );
-const d = {
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
+$( ...d );
+const e = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( e );
 `````
 
 

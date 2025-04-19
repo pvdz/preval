@@ -21,9 +21,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`c`);
+const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpCalleeParam /*:unknown*/ = b[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = b[tmpCalleeParam$1];
 const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
@@ -43,9 +43,9 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`c`);
+const tmpCalleeParam$1 = $(`c`);
 const b = { c: 1 };
-const tmpForOfGen = $forOf(b[tmpCompProp]);
+const tmpForOfGen = $forOf(b[tmpCalleeParam$1]);
 while (true) {
   const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {

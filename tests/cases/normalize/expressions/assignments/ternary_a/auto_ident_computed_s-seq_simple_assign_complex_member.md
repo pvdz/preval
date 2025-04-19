@@ -24,8 +24,8 @@ $(a, b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
+const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
@@ -46,8 +46,8 @@ if (tmpNestedAssignPropRhs) {
 const tmpNestedAssignComMemberProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$1 = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $($(100));

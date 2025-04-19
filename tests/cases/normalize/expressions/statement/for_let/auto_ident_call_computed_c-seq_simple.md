@@ -23,7 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCallObj /*:unknown*/ = $(b);
-const xyz /*:unknown*/ = tmpCallObj.$(1);
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+const xyz /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -35,7 +36,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const xyz = $({ $: $ }).$(1);
+const tmpCallObj = $({ $: $ });
+const xyz = tmpCallObj.$(1);
 while (true) {
   $(xyz);
   $(1);
@@ -49,9 +51,10 @@ With rename=true
 `````js filename=intro
 const a = { $: $ };
 const b = $( a );
-const c = b.$( 1 );
+const c = b.$;
+const d = $dotCall( c, b, "$", 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( c );
+  $( d );
   $( 1 );
 }
 `````
@@ -60,7 +63,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpCallObj.$
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

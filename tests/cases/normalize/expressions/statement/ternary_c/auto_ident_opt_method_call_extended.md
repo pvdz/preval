@@ -28,7 +28,7 @@ if (tmpIfTest) {
   $(a);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  tmpObjLitVal$1.e(1);
+  $dotCall($, tmpObjLitVal$1, `e`, 1);
   $(a);
 }
 `````
@@ -44,7 +44,7 @@ if (tmpIfTest) {
   $(100);
   $(a);
 } else {
-  ({ e: $ }.e(1));
+  $dotCall($, { e: $ }, `e`, 1);
   $(a);
 }
 `````
@@ -65,7 +65,7 @@ if (a) {
 }
 else {
   const c = { e: $ };
-  c.e( 1 );
+  $dotCall( $, c, "e", 1 );
   $( b );
 }
 `````

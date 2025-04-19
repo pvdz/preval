@@ -28,8 +28,8 @@ if (tmpIfTest) {
   $(100);
   $(a, b);
 } else {
-  const tmpCompProp /*:unknown*/ = $(`c`);
-  b[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`c`);
+  b[tmpCalleeParam];
   $(a, b);
 }
 `````
@@ -46,8 +46,8 @@ if (tmpIfTest) {
   $(100);
   $(a, b);
 } else {
-  const tmpCompProp = $(`c`);
-  b[tmpCompProp];
+  const tmpCalleeParam = $(`c`);
+  b[tmpCalleeParam];
   $(a, b);
 }
 `````

@@ -22,11 +22,12 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-let a /*:unknown*/ = b.$(1);
+let a /*:unknown*/ = $dotCall($, b, `\$`, 1);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    a = b.$(1);
+    const tmpCallCompVal$1 /*:unknown*/ = b.$;
+    a = $dotCall(tmpCallCompVal$1, b, `\$`, 1);
     if (a) {
     } else {
       break;
@@ -44,7 +45,7 @@ if (a) {
 
 `````js filename=intro
 const b = { $: $ };
-let a = b.$(1);
+let a = $dotCall($, b, `\$`, 1);
 if (a) {
   while (true) {
     $(1);
@@ -65,11 +66,12 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-let b = a.$( 1 );
+let b = $dotCall( $, a, "$", 1 );
 if (b) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    b = a.$( 1 );
+    const c = a.$;
+    b = $dotCall( c, a, "$", 1 );
     if (b) {
 
     }
@@ -89,6 +91,7 @@ else {
 
 
 - (todo) objects in isFree check
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

@@ -45,7 +45,7 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const b /*:object*/ = { $: $ };
-  a = b.$(1);
+  a = $dotCall($, b, `\$`, 1);
 } else {
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -75,7 +75,7 @@ if ($(1) === tmpSwitchValue) {
   }
 }
 if (tmpSwitchCaseToStart <= 0) {
-  a = { $: $ }.$(1);
+  a = $dotCall($, { $: $ }, `\$`, 1);
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
@@ -112,7 +112,7 @@ else {
 const g = c <= 0;
 if (g) {
   const h = { $: $ };
-  a = h.$( 1 );
+  a = $dotCall( $, h, "$", 1 );
 }
 const i = c <= 1;
 if (i) {

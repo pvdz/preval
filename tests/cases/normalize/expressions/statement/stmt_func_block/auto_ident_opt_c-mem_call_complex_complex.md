@@ -41,8 +41,8 @@ if (tmpIfTest) {
     $(a);
     $(undefined);
   } else {
-    const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+    const tmpCalleeParam /*:unknown*/ = $(1);
+    $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
     $(a);
     $(undefined);
   }

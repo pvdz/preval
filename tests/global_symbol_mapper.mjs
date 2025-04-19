@@ -23,6 +23,7 @@ export function createBuiltinSymbolGlobals() {
     [symbo('Array', 'prototype')]: Array.prototype,
     [symbo('array', 'at')]: Array.prototype.at,
     [symbo('array', 'concat')]: Array.prototype.concat,
+    [symbo('array', 'constructor')]: Array.prototype.constructor,
     [symbo('array', 'copyWithin')]: Array.prototype.copyWithin,
     [symbo('array', 'entries')]: Array.prototype.entries,
     [symbo('array', 'every')]: Array.prototype.every,
@@ -61,10 +62,12 @@ export function createBuiltinSymbolGlobals() {
     [symbo('array', 'with')]: Array.prototype.with,
 
     [symbo('Boolean', 'prototype')]: Boolean.prototype,
+    [symbo('boolean', 'constructor')]: Boolean.prototype.constructor,
     [symbo('boolean', 'toString')]: Boolean.prototype.toString,
     [symbo('boolean', 'valueOf')]: Boolean.prototype.valueOf,
 
     [symbo('Function', 'prototype')]: Function.prototype,
+    [symbo('function', 'constructor')]: Function.prototype.constructor,
     [symbo('function', 'apply')]: Function.prototype.apply,
     [symbo('function', 'call')]: Function.prototype.call,
     [symbo('function', 'bind')]: Function.prototype.bind,
@@ -85,6 +88,7 @@ export function createBuiltinSymbolGlobals() {
     [symbo('Number', 'parseFloat')]: Number.parseFloat,
     [symbo('Number', 'parseInt')]: Number.parseInt,
     [symbo('Number', 'prototype')]: Number.prototype,
+    [symbo('number', 'constructor')]: Number.prototype.constructor,
     [symbo('number', 'toExponential')]: Number.prototype.toExponential,
     [symbo('number', 'toFixed')]: Number.prototype.toFixed,
     [symbo('number', 'toLocaleString')]: Number.prototype.toLocaleString,
@@ -116,6 +120,7 @@ export function createBuiltinSymbolGlobals() {
     [symbo('Object', 'setPrototypeOf')]: Object.setPrototypeOf,
     [symbo('Object', 'values')]: Object.values,
     [symbo('Object', 'prototype')]: Object.prototype,
+    [symbo('object', 'constructor')]: Object.prototype.constructor,
     [symbo('object', 'hasOwnProperty')]: Object.prototype.hasOwnProperty,
     [symbo('object', 'isPrototypeOf')]: Object.prototype.isPrototypeOf,
     [symbo('object', 'propertyIsEnumerable')]: Object.prototype.propertyIsEnumerable,
@@ -125,6 +130,7 @@ export function createBuiltinSymbolGlobals() {
 
     [symbo('RegExp', 'escape')]: RegExp.escape,
     [symbo('RegExp', 'prototype')]: RegExp.prototype,
+    [symbo('regex', 'constructor')]: RegExp.prototype.constructor,
     [symbo('regex', 'exec')]: RegExp.prototype.exec,
     [symbo('regex', 'test')]: RegExp.prototype.test,
     [symbo('regex', 'toString')]: RegExp.prototype.toString,
@@ -136,6 +142,7 @@ export function createBuiltinSymbolGlobals() {
     [symbo('string', 'at')]: String.at,
     [symbo('string', 'charAt')]: String.prototype.charAt,
     [symbo('string', 'charCodeAt')]: String.prototype.charCodeAt,
+    [symbo('string', 'constructor')]: String.prototype.constructor,
     [symbo('string', 'concat')]: String.prototype.concat,
     [symbo('string', 'endsWith')]: String.prototype.endsWith,
     [symbo('string', 'includes')]: String.prototype.includes,
@@ -172,6 +179,7 @@ export function createBuiltinSymbolGlobals() {
     [symbo('Date', 'parse')]: Date.parse,
     [symbo('Date', 'UTC')]: Date.UTC,
     [symbo('Date', 'prototype')]: Date.prototype,
+    [symbo('date', 'constructor')]: Date.prototype.constructor,
     [symbo('date', 'getDate')]: Date.prototype.getDate,
     [symbo('date', 'getDay')]: Date.prototype.getDay,
     [symbo('date', 'getFullYear')]: Date.prototype.getFullYear,
@@ -265,6 +273,7 @@ export function createBuiltinSymbolGlobals() {
     [symbo('JSON', 'stringify')]: JSON.stringify,
 
     [symbo('Buffer', 'prototype')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype, // eh.
+    [symbo('buffer', 'constructor')]: Buffer.prototype.constructor,
     [symbo('Buffer', 'from')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.from, // eh.
     [symbo('buffer', 'toString')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype.toString, // eh.
     [symbo('buffer', 'valueOf')]: (typeof Buffer !== 'undefined' ? Buffer : {})?.prototype.valueOf, // eh.

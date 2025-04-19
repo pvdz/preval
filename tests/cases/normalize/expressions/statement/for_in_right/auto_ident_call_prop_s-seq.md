@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCalleeParam /*:unknown*/ = b.$(1);
+const tmpCalleeParam /*:unknown*/ = $dotCall($, b, `\$`, 1);
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -42,7 +42,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForInGen = $forIn({ $: $ }.$(1));
+const tmpForInGen = $forIn($dotCall($, { $: $ }, `\$`, 1));
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 const c = $forIn( b );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = c();

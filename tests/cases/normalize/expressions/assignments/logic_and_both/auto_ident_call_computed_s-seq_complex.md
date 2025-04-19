@@ -23,15 +23,17 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = b[tmpCallCompProp](1);
-if (a) {
+const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+if (tmpClusterSSA_a) {
   const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-  const tmpNestedComplexRhs /*:unknown*/ = b[tmpCallCompProp$1](1);
+  const tmpCallCompVal$1 /*:unknown*/ = b[tmpCallCompProp$1];
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal$1, b, undefined, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
-  $(a);
-  $(a);
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -42,15 +44,15 @@ if (a) {
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
 const b = { $: $ };
-const a = b[tmpCallCompProp](1);
-if (a) {
+const tmpClusterSSA_a = b[tmpCallCompProp](1);
+if (tmpClusterSSA_a) {
   const tmpCallCompProp$1 = $(`\$`);
   const tmpNestedComplexRhs = b[tmpCallCompProp$1](1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
-  $(a);
-  $(a);
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -61,16 +63,18 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-const c = b[ a ]( 1 );
-if (c) {
-  const d = $( "$" );
-  const e = b[ d ]( 1 );
-  $( e );
-  $( e );
+const c = b[ a ];
+const d = $dotCall( c, b, undefined, 1 );
+if (d) {
+  const e = $( "$" );
+  const f = b[ e ];
+  const g = $dotCall( f, b, undefined, 1 );
+  $( g );
+  $( g );
 }
 else {
-  $( c );
-  $( c );
+  $( d );
+  $( d );
 }
 `````
 

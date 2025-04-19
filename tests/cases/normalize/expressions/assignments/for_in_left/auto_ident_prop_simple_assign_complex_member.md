@@ -33,8 +33,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpCompObj /*:unknown*/ = $(b);
-    const tmpCompProp /*:unknown*/ = $(`d`);
-    const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+    const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
+    const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
     b.c = tmpNestedAssignPropRhs;
     a = tmpNestedAssignPropRhs;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
@@ -58,8 +58,8 @@ while (true) {
     break;
   } else {
     const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpCalleeParam$3 = $(`d`);
+    const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$3];
     b.c = tmpNestedAssignPropRhs;
     a = tmpNestedAssignPropRhs;
     tmpNestedAssignPropRhs.x = tmpForInNext.value;

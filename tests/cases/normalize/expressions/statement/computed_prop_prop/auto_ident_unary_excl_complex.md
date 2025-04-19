@@ -22,8 +22,8 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
 const obj /*:object*/ = {};
-const tmpCompProp /*:boolean*/ = !tmpUnaryArg;
-obj[tmpCompProp];
+const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
+obj[tmpCalleeParam];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -35,8 +35,8 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg = $(100);
 const obj = {};
-const tmpCompProp = !tmpUnaryArg;
-obj[tmpCompProp];
+const tmpCalleeParam = !tmpUnaryArg;
+obj[tmpCalleeParam];
 $({ a: 999, b: 1000 });
 `````
 

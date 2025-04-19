@@ -22,7 +22,7 @@ $(a, b);
 
 
 `````js filename=intro
-(0).a;
+$Number_prototype.a;
 $(0, 0);
 `````
 
@@ -31,7 +31,7 @@ $(0, 0);
 (This ought to be the final result)
 
 `````js filename=intro
-(0).a;
+$Number_prototype.a;
 $(0, 0);
 `````
 
@@ -40,7 +40,7 @@ $(0, 0);
 With rename=true
 
 `````js filename=intro
-(0).a;
+$Number_prototype.a;
 $( 0, 0 );
 `````
 

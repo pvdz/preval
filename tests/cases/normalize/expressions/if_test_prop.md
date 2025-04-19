@@ -19,7 +19,7 @@ if (({ x } = 1).foo) y;
 
 `````js filename=intro
 x = (1).x;
-(1).foo;
+$Number_prototype.foo;
 `````
 
 
@@ -28,7 +28,7 @@ x = (1).x;
 
 `````js filename=intro
 x = (1).x;
-(1).foo;
+$Number_prototype.foo;
 `````
 
 
@@ -37,7 +37,7 @@ With rename=true
 
 `````js filename=intro
 x = (1).x;
-(1).foo;
+$Number_prototype.foo;
 `````
 
 

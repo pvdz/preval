@@ -23,7 +23,8 @@ $(xyz);
 const tmpCalleeParam /*:array*/ = [`toString`];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 $Array_from(arr);
-const xyz /*:unknown*/ = String[arr]();
+const tmpCallCompVal$1 /*:unknown*/ = String[arr];
+const xyz /*:unknown*/ = $dotCall(tmpCallCompVal$1, String, undefined);
 $(xyz);
 `````
 
@@ -45,8 +46,9 @@ With rename=true
 const a = [ "toString" ];
 const b = $( a );
 $Array_from( b );
-const c = String[ b ]();
-$( c );
+const c = String[ b ];
+const d = $dotCall( c, String, undefined );
+$( d );
 `````
 
 

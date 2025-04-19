@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = b.c(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
 tmpAnonDefaultExport = tmpChainElementCall;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -36,7 +36,7 @@ $(a);
 
 `````js filename=intro
 let tmpAnonDefaultExport = undefined;
-tmpAnonDefaultExport = { c: $ }.c(1);
+tmpAnonDefaultExport = $dotCall($, { c: $ }, `c`, 1);
 export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 });
 `````
@@ -48,7 +48,7 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = { c: $ };
-const c = b.c( 1 );
+const c = $dotCall( $, b, "c", 1 );
 a = c;
 export { a as default };
 const d = {

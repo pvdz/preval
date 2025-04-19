@@ -23,7 +23,7 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpNestedComplexRhs /*:unknown*/ = b.$(1);
+const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, b, `\$`, 1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````
@@ -33,7 +33,7 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedComplexRhs = { $: $ }.$(1);
+const tmpNestedComplexRhs = $dotCall($, { $: $ }, `\$`, 1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````
@@ -44,7 +44,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-const b = a.$( 1 );
+const b = $dotCall( $, a, "$", 1 );
 $( undefined );
 $( b );
 `````

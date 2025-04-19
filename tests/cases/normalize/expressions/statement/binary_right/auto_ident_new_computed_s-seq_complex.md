@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
 const tmpBinBothRhs /*:object*/ = new tmpNewCallee(1);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -37,8 +37,8 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpCompProp = $(`\$`);
-const tmpNewCallee = { $: $ }[tmpCompProp];
+const tmpCalleeParam = $(`\$`);
+const tmpNewCallee = { $: $ }[tmpCalleeParam];
 tmpBinBothLhs + new tmpNewCallee(1);
 $({ a: 999, b: 1000 });
 `````

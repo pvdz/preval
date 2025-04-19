@@ -28,9 +28,9 @@ $(arr);
 const arr /*:array*/ = [1, 2, 3, 4];
 try {
   $(1);
-  arr.splice(1, 2);
+  $dotCall($array_splice, arr, `splice`, 1, 2);
 } catch (e) {}
-arr.push(`a`, `b`);
+$dotCall($array_push, arr, `push`, `a`, `b`);
 $(arr);
 `````
 
@@ -42,9 +42,9 @@ $(arr);
 const arr = [1, 2, 3, 4];
 try {
   $(1);
-  arr.splice(1, 2);
+  $dotCall($array_splice, arr, `splice`, 1, 2);
 } catch (e) {}
-arr.push(`a`, `b`);
+$dotCall($array_push, arr, `push`, `a`, `b`);
 $(arr);
 `````
 
@@ -56,12 +56,12 @@ With rename=true
 const a = [ 1, 2, 3, 4 ];
 try {
   $( 1 );
-  a.splice( 1, 2 );
+  $dotCall( $array_splice, a, "splice", 1, 2 );
 }
 catch (b) {
 
 }
-a.push( "a", "b" );
+$dotCall( $array_push, a, "push", "a", "b" );
 $( a );
 `````
 
@@ -69,7 +69,9 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_splice
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

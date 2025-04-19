@@ -44,7 +44,7 @@ varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-(3).a;
+$Number_prototype.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b, 3);
 `````
@@ -73,7 +73,7 @@ varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-(3).a;
+$Number_prototype.a;
 $({ a: 999, b: 1000 }, b, 3);
 `````
 
@@ -101,7 +101,7 @@ h[i] = 3;
 f[g] = 3;
 d[e] = 3;
 b[c] = 3;
-(3).a;
+$Number_prototype.a;
 const n = {
   a: 999,
   b: 1000,

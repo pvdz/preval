@@ -24,8 +24,8 @@ $(a, b);
 const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { c: 1 };
 if (tmpIfTest) {
-  const tmpCompProp /*:unknown*/ = $(`c`);
-  const tmpNestedComplexRhs /*:unknown*/ = b[tmpCompProp];
+  const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
+  const tmpNestedComplexRhs /*:unknown*/ = b[tmpCalleeParam$1];
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, b);
 } else {
@@ -44,8 +44,8 @@ if (tmpIfTest) {
 const tmpIfTest = $(1);
 const b = { c: 1 };
 if (tmpIfTest) {
-  const tmpCompProp = $(`c`);
-  const tmpNestedComplexRhs = b[tmpCompProp];
+  const tmpCalleeParam$1 = $(`c`);
+  const tmpNestedComplexRhs = b[tmpCalleeParam$1];
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, b);
 } else {

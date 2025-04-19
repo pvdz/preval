@@ -32,8 +32,8 @@ const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`c`);
-const tmpBinLhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`c`);
+const tmpBinLhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -68,8 +68,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const b = { c: 1 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-if (tmpCompObj[tmpCompProp] === tmpSwitchValue) {
+const tmpCalleeParam = $(`c`);
+if (tmpCompObj[tmpCalleeParam] === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {

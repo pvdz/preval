@@ -68,14 +68,16 @@ if ($) {
   const tmpBinBothLhs$30 /*:unknown*/ = A[0];
   const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
   if (tmpIfTest$10) {
-    B = A.slice(1);
+    const tmpCallCompVal /*:unknown*/ = A.slice;
+    B = $dotCall(tmpCallCompVal, A, `slice`, 1);
   } else {
     B = A;
   }
   const tmpBinBothLhs$32 /*:unknown*/ = tmpClusterSSA__0x26b289.length;
   const tmpBinBothRhs$32 /*:unknown*/ = B.length;
   tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-  tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf(B, tmpClusterSSA__0x30c47e);
+  const tmpCallCompVal$1 /*:unknown*/ = tmpClusterSSA__0x26b289.indexOf;
+  tmpClusterSSA__0x2a669d = $dotCall(tmpCallCompVal$1, tmpClusterSSA__0x26b289, `indexOf`, B, tmpClusterSSA__0x30c47e);
   tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
   if (tmpClusterSSA__0x5dc746) {
     tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
@@ -85,7 +87,8 @@ if ($) {
       const tmpIfTest$12 /*:boolean*/ = tmpBinBothLhs$34 === tmpBinBothRhs$34;
       if (tmpIfTest$12) {
       } else {
-        A.indexOf(`.`);
+        const tmpCallCompVal$3 /*:unknown*/ = A.indexOf;
+        $dotCall(tmpCallCompVal$3, A, `indexOf`, `.`);
       }
     } else {
     }
@@ -135,27 +138,30 @@ if ($) {
   const d = c[ 0 ];
   const e = d === ".";
   if (e) {
-    a = c.slice( 1 );
+    const f = c.slice;
+    a = $dotCall( f, c, "slice", 1 );
   }
   else {
     a = c;
   }
-  const f = tmpClusterSSA__0x26b289.length;
-  const g = a.length;
-  tmpClusterSSA__0x30c47e = f - g;
-  tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf( a, tmpClusterSSA__0x30c47e );
+  const g = tmpClusterSSA__0x26b289.length;
+  const h = a.length;
+  tmpClusterSSA__0x30c47e = g - h;
+  const i = tmpClusterSSA__0x26b289.indexOf;
+  tmpClusterSSA__0x2a669d = $dotCall( i, tmpClusterSSA__0x26b289, "indexOf", a, tmpClusterSSA__0x30c47e );
   tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
   if (tmpClusterSSA__0x5dc746) {
     tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
     if (tmpClusterSSA__0x5dc746) {
-      const h = tmpClusterSSA__0x26b289.length;
-      const i = c.length;
-      const j = h === i;
-      if (j) {
+      const j = tmpClusterSSA__0x26b289.length;
+      const k = c.length;
+      const l = j === k;
+      if (l) {
 
       }
       else {
-        c.indexOf( "." );
+        const m = c.indexOf;
+        $dotCall( m, c, "indexOf", "." );
       }
     }
   }

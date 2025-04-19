@@ -39,8 +39,8 @@ const tmpFree /*:(string, unused)=>string*/ = function $free($$0, $$1) {
   const xs$1 /*:string*/ = $$0;
   debugger;
   const one /*:string*/ = xs$1 + 5;
-  const two /*:string*/ = one.slice(1);
-  const s /*:string*/ = xs$1.slice(2);
+  const two /*:string*/ = $dotCall($string_slice, one, `slice`, 1);
+  const s /*:string*/ = $dotCall($string_slice, xs$1, `slice`, 2);
   const tmpRet /*:string*/ = two + s;
   return tmpRet;
 };
@@ -58,7 +58,7 @@ $(rs);
 
 `````js filename=intro
 const tmpFree = function $free(xs$1, $$1) {
-  const tmpRet = (xs$1 + 5).slice(1) + xs$1.slice(2);
+  const tmpRet = $dotCall($string_slice, xs$1 + 5, `slice`, 1) + $dotCall($string_slice, xs$1, `slice`, 2);
   return tmpRet;
 };
 const xs = $coerce($spy(`x`), `plustr`);
@@ -74,8 +74,8 @@ const a = function b($$0,$$1 ) {
   const c = $$0;
   debugger;
   const d = c + 5;
-  const e = d.slice( 1 );
-  const f = c.slice( 2 );
+  const e = $dotCall( $string_slice, d, "slice", 1 );
+  const f = $dotCall( $string_slice, c, "slice", 2 );
   const g = e + f;
   return g;
 };

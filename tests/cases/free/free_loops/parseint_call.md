@@ -58,7 +58,7 @@ $( a );
 ## Todos triggered
 
 
-- (todo) should isNaNs not be transformed to symbols?
+- (todo) access object property that also exists on prototype? $array_push
 
 
 ## Globals

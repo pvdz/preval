@@ -25,7 +25,8 @@ switch (1) {
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const tmpClusterSSA_b /*:object*/ = { $: $ };
-const tmpClusterSSA_a /*:unknown*/ = tmpClusterSSA_b[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpClusterSSA_b[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpClusterSSA_b, undefined, 1);
 $(tmpClusterSSA_a);
 `````
 
@@ -35,7 +36,8 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-$({ $: $ }[tmpCallCompProp](1));
+const tmpClusterSSA_b = { $: $ };
+$(tmpClusterSSA_b[tmpCallCompProp](1));
 `````
 
 
@@ -45,8 +47,9 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-const c = b[ a ]( 1 );
-$( c );
+const c = b[ a ];
+const d = $dotCall( c, b, undefined, 1 );
+$( d );
 `````
 
 

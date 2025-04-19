@@ -31,7 +31,7 @@ const f /*:(string)=>undefined*/ = function ($$0) {
   const thisisastring /*:string*/ = $$0;
   debugger;
   const regex /*:regex*/ = /[^A-Za-z0-9\+\/\=]/g;
-  const str /*:string*/ = thisisastring.replace(regex, ``);
+  const str /*:string*/ = $dotCall($string_replace, thisisastring, `replace`, regex, ``);
   $(str);
   return undefined;
 };
@@ -47,7 +47,7 @@ $(undefined, undefined, undefined);
 
 `````js filename=intro
 const f = function (thisisastring) {
-  $(thisisastring.replace(/[^A-Za-z0-9\+\/\=]/g, ``));
+  $($dotCall($string_replace, thisisastring, `replace`, /[^A-Za-z0-9\+\/\=]/g, ``));
 };
 f(`a!bc`);
 f(`de?f`);
@@ -64,7 +64,7 @@ const a = function($$0 ) {
   const b = $$0;
   debugger;
   const c = /[^A-Za-z0-9\+\/\=]/g;
-  const d = b.replace( c, "" );
+  const d = $dotCall( $string_replace, b, "replace", c, "" );
   $( d );
   return undefined;
 };

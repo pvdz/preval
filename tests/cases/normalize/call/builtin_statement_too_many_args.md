@@ -17,10 +17,10 @@ isNaN($spy('a'), $spy('b'), $spy('c'));
 
 
 `````js filename=intro
-const tmpArgOverflow /*:unknown*/ = $spy(`a`);
+const tmpEA1 /*:unknown*/ = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-$coerce(tmpArgOverflow, `number`);
+$coerce(tmpEA1, `number`);
 `````
 
 
@@ -28,10 +28,10 @@ $coerce(tmpArgOverflow, `number`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArgOverflow = $spy(`a`);
+const tmpEA1 = $spy(`a`);
 $spy(`b`);
 $spy(`c`);
-$coerce(tmpArgOverflow, `number`);
+$coerce(tmpEA1, `number`);
 `````
 
 

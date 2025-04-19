@@ -34,7 +34,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const tmpCalleeParam /*:unknown*/ = obj[arr];
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     const tmpBinLhs /*:primitive*/ = arr[0];
     const tmpIfTest /*:boolean*/ = tmpBinLhs === $;
     if (tmpIfTest) {
@@ -57,7 +57,7 @@ const arr = [1, 2, 3];
 while (true) {
   try {
     $(obj[arr]);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     if (arr[0] === $) {
       break;
     }
@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     const c = a[ b ];
     $( c );
-    b.reverse();
+    $dotCall( $array_reverse, b, "reverse" );
     const d = b[ 0 ];
     const e = d === $;
     if (e) {
@@ -95,8 +95,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? MemberExpression
 - (todo) objects in isFree check
-- (todo) computed property access of an ident on a non-number feels tricky;
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

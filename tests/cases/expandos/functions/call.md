@@ -21,8 +21,20 @@ $(f.foo());
 
 
 `````js filename=intro
-$(`pass`);
-$(undefined);
+const f /*:()=>undefined*/ = function () {
+  debugger;
+  $(1);
+  return undefined;
+};
+const tmpAssignMemRhs /*:()=>undefined*/ = function () {
+  debugger;
+  $(`pass`);
+  return undefined;
+};
+f.foo = tmpAssignMemRhs;
+const tmpCallCompVal /*:unknown*/ = f.foo;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, f, `foo`);
+$(tmpCalleeParam);
 `````
 
 
@@ -30,8 +42,13 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`pass`);
-$(undefined);
+const f = function () {
+  $(1);
+};
+f.foo = function () {
+  $(`pass`);
+};
+$(f.foo());
 `````
 
 
@@ -39,8 +56,20 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-$( "pass" );
-$( undefined );
+const a = function() {
+  debugger;
+  $( 1 );
+  return undefined;
+};
+const b = function() {
+  debugger;
+  $( "pass" );
+  return undefined;
+};
+a.foo = b;
+const c = a.foo;
+const d = $dotCall( c, a, "foo" );
+$( d );
 `````
 
 

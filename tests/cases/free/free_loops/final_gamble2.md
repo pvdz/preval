@@ -176,7 +176,7 @@ $( "//\u00c0\u000a\u000a(function(j,o){var _fix_ios6=j;for(var b,a,h,m,f,k,l,n,e
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $array_join
 
 
 ## Globals

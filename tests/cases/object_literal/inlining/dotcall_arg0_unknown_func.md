@@ -20,18 +20,7 @@ $dotCall(h, obj, undefined); // not calling an obj prop value
 
 
 `````js filename=intro
-const g /*:()=>unknown*/ = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const h /*:()=>unknown*/ = function () {
-  debugger;
-  $();
-  return undefined;
-};
-const obj /*:object*/ = { f: g };
-$dotCall(h, obj, undefined);
+$();
 `````
 
 
@@ -39,16 +28,7 @@ $dotCall(h, obj, undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-const g = function () {
-  $();
-};
-$dotCall(
-  function () {
-    $();
-  },
-  { f: g },
-  undefined,
-);
+$();
 `````
 
 
@@ -56,18 +36,7 @@ $dotCall(
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  $();
-  return undefined;
-};
-const b = function() {
-  debugger;
-  $();
-  return undefined;
-};
-const c = { f: a };
-$dotCall( b, c, undefined );
+$();
 `````
 
 

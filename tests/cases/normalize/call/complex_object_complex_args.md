@@ -20,10 +20,10 @@ $(a).b($(1), $(2));
 `````js filename=intro
 const a /*:object*/ = { b: $ };
 const tmpCallObj /*:unknown*/ = $(a);
-const tmpCallVal /*:unknown*/ = tmpCallObj.b;
+const tmpCallCompVal /*:unknown*/ = tmpCallObj.b;
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-$dotCall(tmpCallVal, tmpCallObj, `b`, tmpCalleeParam, tmpCalleeParam$1);
+$dotCall(tmpCallCompVal, tmpCallObj, `b`, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 

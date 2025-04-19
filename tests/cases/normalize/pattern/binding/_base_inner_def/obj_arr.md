@@ -17,7 +17,7 @@ const {x: [ y = a ]} = 1;
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = (1).x;
+const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
 const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
 const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
 const tmpIfTest /*:boolean*/ = arrPatternBeforeDefault === undefined;
@@ -32,7 +32,7 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = (1).x;
+const objPatternNoDefault = $Number_prototype.x;
 if ([...objPatternNoDefault][0] === undefined) {
   a;
 }
@@ -43,7 +43,7 @@ if ([...objPatternNoDefault][0] === undefined) {
 With rename=true
 
 `````js filename=intro
-const b = (1).x;
+const b = $Number_prototype.x;
 const c = [ ...b ];
 const d = c[ 0 ];
 const e = d === undefined;
@@ -57,7 +57,7 @@ if (e) {
 
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- (todo) inline computed array property read
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

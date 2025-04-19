@@ -44,22 +44,24 @@ if ($) {
 
 `````filename=intro
 if ($) {
-  /*4*/ let a___13__ = `jhayon.vercel.app`;
-  let b___17__ = `jhayon.vercel.app`;
-  let c___21__ = 1;
-  const d___24__ = $(`x`);
-  a___36__ = d___33__.slice___34__(0);
-  const e___38__ = a___40__[0];
-  const f___43__ = e___45__ === `.`;
-  if (f___49__) {
-    /*50*/ b___58__ = a___55__.slice___56__(1);
-  } /*59*/ else {
-    b___63__ = a___62__;
+  /*4*/ let a___14__ = `jhayon.vercel.app`;
+  let b___18__ = `jhayon.vercel.app`;
+  let c___22__ = 1;
+  const d___25__ = $(`x`);
+  const tmpCallCompVal___31__ = d___33__.slice___34__;
+  a___44__ = $dotCall___38__(tmpCallCompVal___39__, d___40__, `slice`, 0);
+  const e___46__ = a___48__[0];
+  const f___51__ = e___53__ === `.`;
+  if (f___57__) {
+    /*58*/ const tmpCallCompVal$1___61__ = a___63__.slice___64__;
+    b___74__ = $dotCall___68__(tmpCallCompVal$1___69__, a___70__, `slice`, 1);
+  } /*75*/ else {
+    b___79__ = a___78__;
   }
-  const h___65__ = b___67__.length___68__;
-  $(h___72__);
-  c___78__ = c___76__ + 1;
-} /*79*/ else {
+  const h___81__ = b___83__.length___84__;
+  $(h___88__);
+  c___94__ = c___92__ + 1;
+} /*95*/ else {
 }
 `````
 
@@ -73,37 +75,47 @@ None
 ## Ref tracking result
 
 
-               | reads      | read by     | overWrites     | overwritten by
+                     | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @13      | ########## | not read    | none           | 36
-  - w @36      | ########## | 40,55,62    | 13             | none
-  - r @40      | 36
-  - r @55      | 36
-  - r @62      | 36
+  - w @14      | ########## | not read    | none           | 44
+  - w @44      | ########## | 48,63,70,78 | 14             | none
+  - r @48      | 44
+  - r @63      | 44
+  - r @70      | 44
+  - r @78      | 44
 
 b:
-  - w @17      | ########## | not read    | none           | 58,63
-  - w @58      | ########## | 67          | 17             | none
-  - w @63      | ########## | 67          | 17             | none
-  - r @67      | 58,63
+  - w @18      | ########## | not read    | none           | 74,79
+  - w @74      | ########## | 83          | 18             | none
+  - w @79      | ########## | 83          | 18             | none
+  - r @83      | 74,79
 
 c:
-  - w @21      | ########## | 76          | none           | 78
-  - r @76      | 21
-  - w @78      | ########## | not read    | 21             | none
+  - w @22      | ########## | 92          | none           | 94
+  - r @92      | 22
+  - w @94      | ########## | not read    | 22             | none
 
 d:
-  - w @24      | ########## | 33          | none           | none
-  - r @33      | 24
+  - w @25      | ########## | 33,40       | none           | none
+  - r @33      | 25
+  - r @40      | 25
+
+tmpCallCompVal:
+  - w @31          | ########## | 39          | none           | none
+  - r @39          | 31
 
 e:
-  - w @38      | ########## | 45          | none           | none
-  - r @45      | 38
+  - w @46          | ########## | 53          | none           | none
+  - r @53          | 46
 
 f:
-  - w @43      | ########## | 49          | none           | none
-  - r @49      | 43
+  - w @51          | ########## | 57          | none           | none
+  - r @57          | 51
+
+tmpCallCompVal$1:
+  - w @61            | ########## | 69          | none           | none
+  - r @69            | 61
 
 h:
-  - w @65      | ########## | 72          | none           | none
-  - r @72      | 65
+  - w @81            | ########## | 88          | none           | none
+  - r @88            | 81

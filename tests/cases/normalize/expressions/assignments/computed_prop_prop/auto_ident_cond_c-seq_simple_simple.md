@@ -26,8 +26,8 @@ if (tmpIfTest) {
   $coerce(tmpClusterSSA_a, `string`);
   $(tmpClusterSSA_a);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
+  const tmpCalleeParam$1 /*:unknown*/ = $(100);
+  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$1);
   $coerce(tmpClusterSSA_a$1, `string`);
   $(tmpClusterSSA_a$1);
 }

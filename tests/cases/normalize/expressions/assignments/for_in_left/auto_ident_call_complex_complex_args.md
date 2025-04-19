@@ -31,10 +31,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCallee /*:unknown*/ = $($);
+    const tmpCallComplexCallee /*:unknown*/ = $($);
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
     const tmpCalleeParam$5 /*:unknown*/ = $(2);
-    a = tmpCallCallee(tmpCalleeParam$3, tmpCalleeParam$5);
+    a = tmpCallComplexCallee(tmpCalleeParam$3, tmpCalleeParam$5);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     a.x = tmpAssignMemRhs;
   }
@@ -54,8 +54,8 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const tmpCallCallee = $($);
-    a = tmpCallCallee($(1), $(2));
+    const tmpCallComplexCallee = $($);
+    a = tmpCallComplexCallee($(1), $(2));
     a.x = tmpForInNext.value;
   }
 }

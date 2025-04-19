@@ -35,7 +35,7 @@ const tmpObjLitVal /*:()=>undefined*/ = function () {
   return undefined;
 };
 const obj /*:object*/ = { encode: tmpObjLitVal, str: `abc` };
-const tmpCalleeParam$1 /*:unknown*/ = tmpObjLitVal.call(obj);
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall($function_call, tmpObjLitVal, `call`, obj);
 $(tmpCalleeParam$1);
 const tmpCalleeParam$3 /*:unknown*/ = obj.str;
 $(tmpCalleeParam$3);
@@ -52,7 +52,7 @@ const tmpObjLitVal = function () {
   $(tmpPrevalAliasThis.str);
 };
 const obj = { encode: tmpObjLitVal, str: `abc` };
-$(tmpObjLitVal.call(obj));
+$($dotCall($function_call, tmpObjLitVal, `call`, obj));
 $(obj.str);
 `````
 
@@ -73,7 +73,7 @@ const d = {
   encode: a,
   str: "abc",
 };
-const e = a.call( d );
+const e = $dotCall( $function_call, a, "call", d );
 $( e );
 const f = d.str;
 $( f );
@@ -83,7 +83,7 @@ $( f );
 ## Todos triggered
 
 
-None
+- (todo) access object property that also exists on prototype? $function_call
 
 
 ## Globals

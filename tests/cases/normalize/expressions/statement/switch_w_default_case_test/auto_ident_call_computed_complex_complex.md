@@ -33,7 +33,8 @@ let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpBinLhs /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpBinLhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -96,24 +97,25 @@ let b = 1;
 const c = { $: $ };
 const d = $( c );
 const e = $( "$" );
-const f = d[ e ]( 1 );
-const g = f === a;
-if (g) {
+const f = d[ e ];
+const g = $dotCall( f, d, undefined, 1 );
+const h = g === a;
+if (h) {
   b = 0;
 }
 else {
-  const h = 2 === a;
-  if (h) {
+  const i = 2 === a;
+  if (i) {
     b = 2;
   }
 }
-const i = b <= 0;
-if (i) {
+const j = b <= 0;
+if (j) {
 
 }
 else {
-  const j = b <= 1;
-  if (j) {
+  const k = b <= 1;
+  if (k) {
     $( "fail1" );
     $( "fail2" );
   }
@@ -121,11 +123,11 @@ else {
     $( "fail2" );
   }
 }
-const k = {
+const l = {
   a: 999,
   b: 1000,
 };
-$( k );
+$( l );
 `````
 
 

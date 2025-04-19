@@ -22,7 +22,7 @@ f(obj, '$'); // In this test, this is the call we expect to be replaced by tramp
 
 `````js filename=intro
 const obj /*:object*/ = { $: $ };
-obj.$(1);
+$dotCall($, obj, undefined, 1);
 `````
 
 
@@ -30,7 +30,7 @@ obj.$(1);
 (This ought to be the final result)
 
 `````js filename=intro
-({ $: $ }.$(1));
+$dotCall($, { $: $ }, undefined, 1);
 `````
 
 
@@ -39,7 +39,7 @@ With rename=true
 
 `````js filename=intro
 const a = { $: $ };
-a.$( 1 );
+$dotCall( $, a, undefined, 1 );
 `````
 
 

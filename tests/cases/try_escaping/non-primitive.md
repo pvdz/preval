@@ -31,7 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam /*:unknown*/ = arr[0];
   try {
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -48,7 +48,7 @@ while (true) {
   const tmpCalleeParam = arr[0];
   try {
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);
   }
@@ -65,7 +65,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a[ 0 ];
   try {
     $( b );
-    a.reverse();
+    $dotCall( $array_reverse, a, "reverse" );
   }
   catch (c) {
     $( "fail" );
@@ -78,7 +78,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- (todo) Support referencing this builtin in isFree: $
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

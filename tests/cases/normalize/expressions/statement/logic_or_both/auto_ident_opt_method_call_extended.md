@@ -22,12 +22,13 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = tmpObjLitVal$1.e(1);
+const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpChainElementCall) {
   $(a);
 } else {
-  tmpObjLitVal$1.e(1);
+  const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
+  $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
   $(a);
 }
 `````
@@ -38,7 +39,7 @@ if (tmpChainElementCall) {
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpChainElementCall = tmpObjLitVal$1.e(1);
+const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const a = { a: 999, b: 1000 };
 if (tmpChainElementCall) {
   $(a);
@@ -54,7 +55,7 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-const b = a.e( 1 );
+const b = $dotCall( $, a, "e", 1 );
 const c = {
   a: 999,
   b: 1000,
@@ -63,7 +64,8 @@ if (b) {
   $( c );
 }
 else {
-  a.e( 1 );
+  const d = a.e;
+  $dotCall( d, a, "e", 1 );
   $( c );
 }
 `````

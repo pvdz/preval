@@ -28,10 +28,10 @@ const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpCallCallee /*:unknown*/ = $($);
+  const tmpCallComplexCallee /*:unknown*/ = $($);
   const tmpCalleeParam /*:unknown*/ = $(1);
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const tmpClusterSSA_a /*:unknown*/ = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpClusterSSA_a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam, tmpCalleeParam$1);
   $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
@@ -45,9 +45,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1) === $(1)) {
-  const tmpCallCallee = $($);
+  const tmpCallComplexCallee = $($);
   const tmpCalleeParam = $(1);
-  $(tmpCallCallee(tmpCalleeParam, $(2)));
+  $(tmpCallComplexCallee(tmpCalleeParam, $(2)));
 } else {
   $({ a: 999, b: 1000 });
 }

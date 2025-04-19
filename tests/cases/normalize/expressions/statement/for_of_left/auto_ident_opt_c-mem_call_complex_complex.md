@@ -41,8 +41,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       const tmpIfTest$3 /*:boolean*/ = tmpChainElementObject == null;
       if (tmpIfTest$3) {
       } else {
-        const tmpCalleeParam$7 /*:unknown*/ = $(1);
-        const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$7);
+        const tmpCalleeParam$3 /*:unknown*/ = $(1);
+        const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
         tmpAssignMemLhsObj = tmpChainElementCall$1;
       }
     }

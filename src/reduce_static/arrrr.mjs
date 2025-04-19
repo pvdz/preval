@@ -59,7 +59,7 @@ function processAttempt(fdata, queue) {
     // These reads should not be accessed again so we can safely drop statements of prop access.
     meta.reads.forEach(read => {
       if (read.parentNode.type === 'MemberExpression' && read.parentProp === 'object' && read.grandNode.type === 'ExpressionStatement') {
-        // Statement that is a property access on this array. Whatever it is is, it's irrelevant.
+        // Statement that is a property access on this array. Whatever it is, it's irrelevant.
         if (!read.parentNode.computed || AST.isPrimitive(read.parentNode.property)) {
           rule('Statement that is plain/primitive property access on plain array can be removed');
           example('const arr = []; arr[0];', ';');
@@ -420,8 +420,9 @@ function processAttempt(fdata, queue) {
         }
       }
       else if (read.parentNode.type === 'CallExpression') {
+        vlog('  - arr is an arg to a func call, probably');
         if (read.parentProp !== 'arguments') {
-          vlog('Calling an array? Okay good luck');
+          vlog('  - oh, no, calling an array? Okay good luck');
           failed = true;
           return;
         }
@@ -430,13 +431,13 @@ function processAttempt(fdata, queue) {
         let callee;
         if (read.parentNode.callee.type === 'Identifier') {
           callee = read.parentNode.callee.name;
-        } else if (
-          read.parentNode.callee.type === 'MemberExpression' &&
-          read.parentNode.callee.object.type === 'Identifier' &&
-          read.parentNode.callee.property.type === 'Identifier' &&
-          !read.parentNode.callee.computed
-        ) {
-          callee = read.parentNode.callee.object.name + '.' + read.parentNode.callee.property.name;
+        //} else if (
+        //  read.parentNode.callee.type === 'MemberExpression' &&
+        //  read.parentNode.callee.object.type === 'Identifier' &&
+        //  read.parentNode.callee.property.type === 'Identifier' &&
+        //  !read.parentNode.callee.computed
+        //) {
+        //  callee = read.parentNode.callee.object.name + '.' + read.parentNode.callee.property.name;
         } else {
           // TODO: what valid member expressions might this array be an arg to? Like, Array.isArray()
           vlog('Array was arg to a call with unknown callee. Bailing');
@@ -447,7 +448,7 @@ function processAttempt(fdata, queue) {
         switch (callee) {
           case 'String':
           case 'Number': {
-            ASSERT(false, 'string an number constructors should be replaced by $coerce during normalization');
+            ASSERT(false, 'string and number constructors should be replaced by $coerce during normalization');
             break;
           }
           case SYMBOL_COERCE: {
@@ -497,8 +498,7 @@ function processAttempt(fdata, queue) {
             ++updated;
             return;
           }
-          case symbo('Array', 'isArray'):
-          case 'Array.isArray': {
+          case symbo('Array', 'isArray'): {
             rule('An array literal called on Array.isArray always returns true');
             example('const x = [1, 2, 3]; f(Array.isArray(x))', 'const x = [1, 2, 3]; f(true);');
             before(read.node, read.blockBody[read.blockIndex]);
@@ -511,6 +511,11 @@ function processAttempt(fdata, queue) {
             meta.tainted = true;
 
             ++updated;
+            return;
+          }
+          default: {
+            vlog('  - This array escapes as a call arg. In a bad way. Bailing');
+            failed = true;
             return;
           }
         }

@@ -76,7 +76,8 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   debugger;
   const index$1 /*:unknown*/ = heap.length;
   index$1 ** 0;
-  heap.push(node$1);
+  const tmpCallCompVal /*:unknown*/ = heap.push;
+  $dotCall(tmpCallCompVal, heap, `push`, node$1);
   const tmpSaooB$1 /*:number*/ = index$1 - 1;
   const tmpSaooB$4 /*:number*/ = tmpSaooB$1 >>> 1;
   siftUp_t(heap, node$1, index$1, tmpSaooB$4);
@@ -181,32 +182,33 @@ const a = function($$0,$$1 ) {
   debugger;
   const d = b.length;
   d ** 0;
-  b.push( c );
-  const e = d - 1;
-  const f = e >>> 1;
-  g( b, c, d, f );
-  const h = d - 1;
-  const i = h >>> 1;
-  g( b, c, d, i );
-  j( b, c, d );
-  j( b, c, d );
+  const e = b.push;
+  $dotCall( e, b, "push", c );
+  const f = d - 1;
+  const g = f >>> 1;
+  h( b, c, d, g );
+  const i = d - 1;
+  const j = i >>> 1;
+  h( b, c, d, j );
+  k( b, c, d );
+  k( b, c, d );
   return undefined;
 };
-const g = function($$0,$$1,$$2,$$3 ) {
-  const k = $$0;
-  const l = $$1;
-  const m = $$2;
-  const n = $$3;
+const h = function($$0,$$1,$$2,$$3 ) {
+  const l = $$0;
+  const m = $$1;
+  const n = $$2;
+  const o = $$3;
   debugger;
-  const o = k[ n ];
-  const p = $( o, l );
-  const q = p > 0;
-  if (q) {
-    k[n] = l;
-    k[m] = o;
+  const p = l[ o ];
+  const q = $( p, m );
+  const r = q > 0;
+  if (r) {
+    l[o] = m;
+    l[n] = p;
     while ($LOOP_UNROLL_100) {
-      const r = n > 0;
-      if (r) {
+      const s = o > 0;
+      if (s) {
         $( 123 );
       }
       else {
@@ -219,14 +221,14 @@ const g = function($$0,$$1,$$2,$$3 ) {
     return undefined;
   }
 };
-const j = function($$0,$$1,$$2 ) {
-  const s = $$0;
-  const t = $$1;
-  const u = $$2;
+const k = function($$0,$$1,$$2 ) {
+  const t = $$0;
+  const u = $$1;
+  const v = $$2;
   debugger;
-  s[u] = t;
-  const v = u > 0;
-  if (v) {
+  t[v] = u;
+  const w = v > 0;
+  if (w) {
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       $( 123 );
     }

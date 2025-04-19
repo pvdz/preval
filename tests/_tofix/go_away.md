@@ -92,7 +92,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest$1) {
     const tmpAssignComputedRhs$1 /*:unknown*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
     chars[tmpClusterSSA_s$1] = tmpAssignComputedRhs$1;
-    const tmpAssignComMemLhsProp$1 /*:number*/ = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(
+    const tmpAssignComMemLhsProp$1 /*:number*/ = $dotCall(
+      $string_charCodeAt,
+      `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+      `charCodeAt`,
       tmpClusterSSA_s$1,
     );
     index2char[tmpAssignComMemLhsProp$1] = tmpClusterSSA_s$1;
@@ -141,7 +144,12 @@ while (true) {
   if (tmpClusterSSA_s$1 < 64) {
     const tmpAssignComputedRhs$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`[tmpClusterSSA_s$1];
     chars[tmpClusterSSA_s$1] = tmpAssignComputedRhs$1;
-    const tmpAssignComMemLhsProp$1 = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`.charCodeAt(tmpClusterSSA_s$1);
+    const tmpAssignComMemLhsProp$1 = $dotCall(
+      $string_charCodeAt,
+      `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`,
+      `charCodeAt`,
+      tmpClusterSSA_s$1,
+    );
     index2char[tmpAssignComMemLhsProp$1] = tmpClusterSSA_s$1;
     tmpClusterSSA_s$1 = tmpClusterSSA_s$1 + 1;
   } else {
@@ -189,7 +197,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (d) {
     const e = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[ b ];
     c[b] = e;
-    const f = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charCodeAt( b );
+    const f = $dotCall( $string_charCodeAt, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", "charCodeAt", b );
     a[f] = b;
     b = b + 1;
   }
@@ -208,6 +216,7 @@ $( undefined );
 
 
 - (todo) Support string.charCodeAt when the arg is not a string literal
+- (todo) computed property of a primitive access on an unknown expr;
 
 
 ## Globals

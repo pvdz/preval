@@ -35,7 +35,7 @@ const x /*:unknown*/ = $spy(`x`);
 const xs /*:string*/ = $coerce(x, `plustr`);
 const y /*:unknown*/ = $spy(`y`);
 $coerce(y, `plustr`);
-const r /*:string*/ = xs.slice(1);
+const r /*:string*/ = $dotCall($string_slice, xs, `slice`, 1);
 $(r);
 `````
 
@@ -46,7 +46,7 @@ $(r);
 `````js filename=intro
 const xs = $coerce($spy(`x`), `plustr`);
 $coerce($spy(`y`), `plustr`);
-$(xs.slice(1));
+$($dotCall($string_slice, xs, `slice`, 1));
 `````
 
 
@@ -58,7 +58,7 @@ const a = $spy( "x" );
 const b = $coerce( a, "plustr" );
 const c = $spy( "y" );
 $coerce( c, "plustr" );
-const d = b.slice( 1 );
+const d = $dotCall( $string_slice, b, "slice", 1 );
 $( d );
 `````
 

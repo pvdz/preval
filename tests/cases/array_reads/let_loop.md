@@ -87,7 +87,7 @@ else {
 ## Todos triggered
 
 
-- (todo) inline computed array property read
+- (todo) do we want to support ArrayExpression as expression statement in free loops?
 
 
 ## Globals

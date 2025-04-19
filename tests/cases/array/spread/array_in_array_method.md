@@ -20,10 +20,8 @@ $(y);
 
 
 `````js filename=intro
-const x /*:array*/ = [1, 2, 3];
-const tmpCalleeParam /*:string*/ = x.join(``);
-$(tmpCalleeParam);
-const y /*:array*/ = [`a`, ...x, `b`];
+$(`123`);
+const y /*:array*/ = [`a`, 1, 2, 3, `b`];
 $(y);
 `````
 
@@ -32,9 +30,8 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = [1, 2, 3];
-$(x.join(``));
-$([`a`, ...x, `b`]);
+$(`123`);
+$([`a`, 1, 2, 3, `b`]);
 `````
 
 
@@ -42,18 +39,17 @@ $([`a`, ...x, `b`]);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-const b = a.join( "" );
-$( b );
-const c = [ "a", ...a, "b" ];
-$( c );
+$( "123" );
+const a = [ "a", 1, 2, 3, "b" ];
+$( a );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) calling $array_join on an array that has other reads, must verify they dont mutate the array first
+- (todo) Deal with array spreads in arr mutation?
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
 
 
 ## Globals

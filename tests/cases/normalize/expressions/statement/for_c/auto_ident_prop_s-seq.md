@@ -87,7 +87,7 @@ $( d, b );
 
 
 - (todo) objects in isFree check
-- (todo) regular property access of an ident feels tricky;
+- (todo) do we want to support MemberExpression as expression statement in free loops?
 
 
 ## Globals

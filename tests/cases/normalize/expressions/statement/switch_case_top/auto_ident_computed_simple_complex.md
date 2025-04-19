@@ -30,8 +30,8 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { c: 1 };
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCompProp /*:unknown*/ = $(`c`);
-  b[tmpCompProp];
+  const tmpCalleeParam /*:unknown*/ = $(`c`);
+  b[tmpCalleeParam];
   $(a, b);
 } else {
   $(a, b);
@@ -47,8 +47,8 @@ const tmpIfTest = $(1) === $(1);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCompProp = $(`c`);
-  b[tmpCompProp];
+  const tmpCalleeParam = $(`c`);
+  b[tmpCalleeParam];
   $(a, b);
 } else {
   $(a, b);

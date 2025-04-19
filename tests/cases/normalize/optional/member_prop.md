@@ -18,7 +18,7 @@ $(x?.length);
 
 
 `````js filename=intro
-const tmpChainElementObject /*:unknown*/ = (10).length;
+const tmpChainElementObject /*:unknown*/ = $Number_prototype.length;
 $(tmpChainElementObject);
 `````
 
@@ -27,7 +27,7 @@ $(tmpChainElementObject);
 (This ought to be the final result)
 
 `````js filename=intro
-$((10).length);
+$($Number_prototype.length);
 `````
 
 
@@ -35,7 +35,7 @@ $((10).length);
 With rename=true
 
 `````js filename=intro
-const a = (10).length;
+const a = $Number_prototype.length;
 $( a );
 `````
 

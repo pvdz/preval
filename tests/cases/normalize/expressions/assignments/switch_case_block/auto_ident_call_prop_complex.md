@@ -31,7 +31,8 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
   const tmpCallObj /*:unknown*/ = $(b);
-  const tmpClusterSSA_a /*:unknown*/ = tmpCallObj.$(1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+  const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
   $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
@@ -45,7 +46,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1) === $(1)) {
-  $($({ $: $ }).$(1));
+  const tmpCallObj = $({ $: $ });
+  $(tmpCallObj.$(1));
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -62,15 +64,16 @@ const c = a === b;
 if (c) {
   const d = { $: $ };
   const e = $( d );
-  const f = e.$( 1 );
-  $( f );
+  const f = e.$;
+  const g = $dotCall( f, e, "$", 1 );
+  $( g );
 }
 else {
-  const g = {
+  const h = {
     a: 999,
     b: 1000,
   };
-  $( g );
+  $( h );
 }
 `````
 

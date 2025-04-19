@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`c`);
-const xyz /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam /*:unknown*/ = $(`c`);
+const xyz /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -37,8 +37,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpCompObj = $({ c: 1 });
-const tmpCompProp = $(`c`);
-const xyz = tmpCompObj[tmpCompProp];
+const tmpCalleeParam = $(`c`);
+const xyz = tmpCompObj[tmpCalleeParam];
 while (true) {
   $(xyz);
   $(1);
@@ -64,7 +64,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) computed property access of an ident where the property ident is not recorded;
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

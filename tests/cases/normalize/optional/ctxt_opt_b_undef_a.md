@@ -24,7 +24,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementObject == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = tmpChainElementObject.c(100);
+  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject.c;
+  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementObject, `c`, 100);
   $(tmpChainElementCall$1);
 }
 `````
@@ -54,8 +55,9 @@ if (c) {
   $( undefined );
 }
 else {
-  const d = b.c( 100 );
-  $( d );
+  const d = b.c;
+  const e = $dotCall( d, b, "c", 100 );
+  $( e );
 }
 `````
 

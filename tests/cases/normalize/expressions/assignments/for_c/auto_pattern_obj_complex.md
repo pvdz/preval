@@ -98,7 +98,7 @@ else {
 ## Todos triggered
 
 
-- (todo) objects in isFree check
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) regular property access of an ident feels tricky;
 
 

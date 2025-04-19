@@ -28,7 +28,8 @@ $(1);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+$dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -54,12 +55,13 @@ $( 1 );
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-b[ c ]( 1 );
-const d = {
+const d = b[ c ];
+$dotCall( d, b, undefined, 1 );
+const e = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( e );
 `````
 
 

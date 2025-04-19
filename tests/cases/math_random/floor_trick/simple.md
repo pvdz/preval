@@ -45,6 +45,7 @@ $( "H" );
 
 
 - (todo) type trackeed tricks can possibly support static $Math_floor
+- (todo) free with zero args, we can eliminate this?
 
 
 ## Globals

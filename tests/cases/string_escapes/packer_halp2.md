@@ -24,7 +24,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam$3 /*:object*/ = {
+const tmpCalleeParam$11 /*:object*/ = {
   z: `split`,
   y: `not_expr`,
   x: `u0020g`,
@@ -38,7 +38,7 @@ const tmpCalleeParam$3 /*:object*/ = {
   p: `p`,
 };
 let tmpClusterSSA_c$1 /*:number*/ = 25;
-const tmpCalleeParam$1 /*:array*/ = [
+const tmpCalleeParam$9 /*:array*/ = [
   ``,
   ``,
   ``,
@@ -80,13 +80,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$1;
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
-    const tmpAssignComMemLhsProp$1 /*:string*/ = tmpClusterSSA_c$1.toString(36);
-    let tmpAssignComputedRhs$1 /*:primitive*/ = tmpCalleeParam$1[tmpClusterSSA_c$1];
+    const tmpAssignComMemLhsProp$1 /*:string*/ = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
+    let tmpAssignComputedRhs$1 /*:primitive*/ = tmpCalleeParam$9[tmpClusterSSA_c$1];
     if (tmpAssignComputedRhs$1) {
     } else {
-      tmpAssignComputedRhs$1 = tmpClusterSSA_c$1.toString(36);
+      tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
     }
-    tmpCalleeParam$3[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
+    tmpCalleeParam$11[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
   } else {
     break;
   }
@@ -94,12 +94,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
   const e$1 /*:unknown*/ = $$0;
   debugger;
-  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$3[e$1];
+  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$11[e$1];
   return tmpReturnArg$1;
 };
-const tmpCalleeParam$9 /*:regex*/ = /\b\w+\b/g;
-const tmpClusterSSA_p /*:string*/ = `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`.replace(
-  tmpCalleeParam$9,
+const tmpCalleeParam$3 /*:regex*/ = /\b\w+\b/g;
+const tmpClusterSSA_p /*:string*/ = $dotCall(
+  $string_replace,
+  `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
+  `replace`,
+  tmpCalleeParam$3,
   tmpArrElement,
 );
 const x /*:unknown*/ = eval(tmpClusterSSA_p);
@@ -111,7 +114,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$3 = {
+const tmpCalleeParam$11 = {
   z: `split`,
   y: `not_expr`,
   x: `u0020g`,
@@ -125,7 +128,7 @@ const tmpCalleeParam$3 = {
   p: `p`,
 };
 let tmpClusterSSA_c$1 = 25;
-const tmpCalleeParam$1 = [
+const tmpCalleeParam$9 = [
   ``,
   ``,
   ``,
@@ -167,23 +170,26 @@ while (true) {
   const tmpPostUpdArgIdent$1 = tmpClusterSSA_c$1;
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
-    const tmpAssignComMemLhsProp$1 = tmpClusterSSA_c$1.toString(36);
-    let tmpAssignComputedRhs$1 = tmpCalleeParam$1[tmpClusterSSA_c$1];
+    const tmpAssignComMemLhsProp$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
+    let tmpAssignComputedRhs$1 = tmpCalleeParam$9[tmpClusterSSA_c$1];
     if (!tmpAssignComputedRhs$1) {
-      tmpAssignComputedRhs$1 = tmpClusterSSA_c$1.toString(36);
+      tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
     }
-    tmpCalleeParam$3[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
+    tmpCalleeParam$11[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
   } else {
     break;
   }
 }
 const tmpArrElement = function (e$1) {
-  const tmpReturnArg$1 = tmpCalleeParam$3[e$1];
+  const tmpReturnArg$1 = tmpCalleeParam$11[e$1];
   return tmpReturnArg$1;
 };
 $(
   eval(
-    `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`.replace(
+    $dotCall(
+      $string_replace,
+      `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
+      `replace`,
       /\b\w+\b/g,
       tmpArrElement,
     ),
@@ -215,13 +221,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = b;
   b = b - 1;
   if (d) {
-    const e = b.toString( 36 );
+    const e = $dotCall( $number_toString, b, "toString", 36 );
     let f = c[ b ];
     if (f) {
 
     }
     else {
-      f = b.toString( 36 );
+      f = $dotCall( $number_toString, b, "toString", 36 );
     }
     a[e] = f;
   }
@@ -236,7 +242,7 @@ const g = function($$0 ) {
   return i;
 };
 const j = /\b\w+\b/g;
-const k = "s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('\"0\\\\`1\\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6${7}8\\\\/9\"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))".replace( j, g );
+const k = $dotCall( $string_replace, "s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('\"0\\\\`1\\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6${7}8\\\\/9\"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))", "replace", j, g );
 const l = eval( k );
 $( l );
 `````
@@ -247,8 +253,8 @@ $( l );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) objects in isFree check
-- (todo) Assert whether the binding is written before/inside the loop, if not we can still totally do this
-- (todo) inline computed array property read
+- (todo) Support this ident in isFree CallExpression: $number_toString
+- (todo) can we always safely clone ident refs in this case?
 
 
 ## Globals

@@ -24,7 +24,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpBinBothRhs;
 $(tmpCalleeParam);
@@ -51,11 +52,12 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-const d = b[ c ]( 1 );
-const e = $( 100 );
-const f = d + e;
-$( f );
-$( d );
+const d = b[ c ];
+const e = $dotCall( d, b, undefined, 1 );
+const f = $( 100 );
+const g = e + f;
+$( g );
+$( e );
 `````
 
 

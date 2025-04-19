@@ -22,7 +22,7 @@ $(o.f("200", 15));
 
 `````js filename=intro
 const o /*:object*/ = { f: $ };
-const tmpCalleeParam /*:unknown*/ = o.f(`200`, 15);
+const tmpCalleeParam /*:unknown*/ = $dotCall($, o, `f`, `200`, 15);
 $(tmpCalleeParam);
 `````
 
@@ -31,7 +31,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$({ f: $ }.f(`200`, 15));
+$($dotCall($, { f: $ }, `f`, `200`, 15));
 `````
 
 
@@ -40,7 +40,7 @@ With rename=true
 
 `````js filename=intro
 const a = { f: $ };
-const b = a.f( "200", 15 );
+const b = $dotCall( $, a, "f", "200", 15 );
 $( b );
 `````
 

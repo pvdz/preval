@@ -23,9 +23,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  const tmpCompProp /*:unknown*/ = $(`\$`);
+  const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+  const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$1];
   const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee(1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
@@ -43,8 +43,8 @@ if (tmpCalleeParam) {
 `````js filename=intro
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = { $: $ }[tmpCompProp];
+  const tmpCalleeParam$1 = $(`\$`);
+  const tmpNewCallee = { $: $ }[tmpCalleeParam$1];
   const tmpNestedComplexRhs = new tmpNewCallee(1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);

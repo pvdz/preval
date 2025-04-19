@@ -45,8 +45,7 @@ f();
 $(`pass`);
 $(undefined);
 f();
-2();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`2()\``;
+throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``;
 `````
 
 
@@ -63,8 +62,7 @@ f();
 $(`pass`);
 $(undefined);
 f();
-2();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`2()\``;
+throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``;
 `````
 
 
@@ -83,15 +81,14 @@ a();
 $( "pass" );
 $( undefined );
 a();
-2.undefined();
-throw "[Preval]: Call expression with illegal callee must crash before this line ; `2()`";
+throw "Attempting to call a value that cannot be called: `const tmpCalleeParam$3 = 2();`";
 `````
 
 
 ## Todos triggered
 
 
-- (todo) maybe support this call case too
+None
 
 
 ## Globals

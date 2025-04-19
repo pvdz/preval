@@ -22,7 +22,8 @@ $(a)[b()](1);
 const a /*:object*/ = { b: $ };
 const tmpCallCompObj /*:unknown*/ = $(a);
 const tmpCallCompProp /*:unknown*/ = $(`b`);
-tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+$dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 `````
 
 
@@ -43,7 +44,8 @@ With rename=true
 const a = { b: $ };
 const b = $( a );
 const c = $( "b" );
-b[ c ]( 1 );
+const d = b[ c ];
+$dotCall( d, b, undefined, 1 );
 `````
 
 

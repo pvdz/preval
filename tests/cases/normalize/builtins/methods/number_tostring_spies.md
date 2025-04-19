@@ -21,7 +21,7 @@ const y = $spy('b');
 `````js filename=intro
 const x /*:unknown*/ = $spy(`a`);
 const y /*:unknown*/ = $spy(`b`);
-(200).toString(x, y);
+$dotCall($number_toString, 200, `toString`, x, y);
 `````
 
 
@@ -29,7 +29,7 @@ const y /*:unknown*/ = $spy(`b`);
 (This ought to be the final result)
 
 `````js filename=intro
-(200).toString($spy(`a`), $spy(`b`));
+$dotCall($number_toString, 200, `toString`, $spy(`a`), $spy(`b`));
 `````
 
 
@@ -39,7 +39,7 @@ With rename=true
 `````js filename=intro
 const a = $spy( "a" );
 const b = $spy( "b" );
-(200).toString( a, b );
+$dotCall( $number_toString, 200, "toString", a, b );
 `````
 
 

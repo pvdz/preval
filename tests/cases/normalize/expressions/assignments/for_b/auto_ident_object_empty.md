@@ -48,6 +48,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) objects in isFree check
 
 

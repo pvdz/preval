@@ -24,10 +24,12 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
+  $dotCall($, tmpObjLitVal$1, `e`, 1);
   while ($LOOP_UNROLL_10) {
-    tmpObjLitVal$1.e(1);
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
+      const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
+      $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
     } else {
       break;
     }
@@ -45,9 +47,11 @@ $(a);
 `````js filename=intro
 if ($(1)) {
   const tmpObjLitVal$1 = { e: $ };
+  $dotCall($, tmpObjLitVal$1, `e`, 1);
   while (true) {
-    tmpObjLitVal$1.e(1);
-    if (!$(1)) {
+    if ($(1)) {
+      tmpObjLitVal$1.e(1);
+    } else {
       break;
     }
   }
@@ -63,22 +67,23 @@ With rename=true
 const a = $( 1 );
 if (a) {
   const b = { e: $ };
+  $dotCall( $, b, "e", 1 );
   while ($LOOP_UNROLL_10) {
-    b.e( 1 );
     const c = $( 1 );
     if (c) {
-
+      const d = b.e;
+      $dotCall( d, b, "e", 1 );
     }
     else {
       break;
     }
   }
 }
-const d = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( e );
 `````
 
 
@@ -86,7 +91,8 @@ $( d );
 
 
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpObjLitVal$1.e
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

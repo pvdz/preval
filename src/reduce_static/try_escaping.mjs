@@ -9,26 +9,11 @@
 
 
 import walk from '../../lib/walk.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  fmat,
-  tmat,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  findBodyOffset, riskyRule, useRiskyRules, assertNoDupeNodes,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, useRiskyRules, assertNoDupeNodes, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
-import { symbo } from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
+import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function tryEscaping(fdata) {
   group('\n\n\nFind Try statements which start with statements that cannot throw and elevate them\n');
@@ -275,6 +260,12 @@ function _tryEscaping(fdata) {
  * @returns {'no' | 'lift' | 'lift-restart' | 'ifyes' | 'ifno' | 'ifyes-restart' | 'ifno-restart'}
  */
 function isLiftableStatement(node, nodeType, fdata, fromIf = false) {
+  vgroup('- isLiftableStatement(', nodeType, ')');
+  const r = _isLiftableStatement(node, nodeType, fdata, fromIf);
+  vgroupEnd();
+  return r;
+}
+function _isLiftableStatement(node, nodeType, fdata, fromIf = false) {
   const isVarDecl = node.type === 'VarStatement';
 
   if (isVarDecl || node.type === 'ExpressionStatement') {
@@ -420,10 +411,19 @@ function isLiftableStatement(node, nodeType, fdata, fromIf = false) {
 }
 
 function isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
-  if (
-    node.type === 'CallExpression') {
+  vgroup('- isNotSpyingValueNode(', node.type, ')');
+  const r = _isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint);
+  vgroupEnd();
+  return r;
+}
+function _isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
+  if (node.type === 'CallExpression') {
+    ASSERT(node.callee.type === 'Identifier', 'in normalized code, members should be dotcalls, rest should be normalized out to idents', node);
+
+    const funcName = node.callee.name;
+    vlog('- Calling', funcName);
+
     if (
-      node.callee.type === 'Identifier' &&
       [
         'parseInt',
         symbo('Number', 'parseInt'),
@@ -435,7 +435,7 @@ function isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
         symbo('Number', 'isFinite'),
         symbo('Number', 'isInteger'),
         symbo('Number', 'isSafeInteger'),
-      ].includes(node.callee.name) && // There are more like this, like on Math or url stuff.
+      ].includes(funcName) && // There are more like this, like on Math or url stuff.
       node.arguments.length === 1
     ) {
       // const x = parseInt(y) with an unknown but simple y.
@@ -454,19 +454,26 @@ function isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
       return true;
     }
 
-
     // If we can assume built-ins are untouched then certain method calls can't really fail. Ex: arr.pop() on an array literal.
     // TODO: this list is far from complete
-    if (node.callee.type === 'MemberExpression' && !node.callee.computed) {
-      const objNode = node.callee.object;
-      if (objNode.type === 'Identifier') {
-        const meta = fdata.globallyUniqueNamingRegistry.get(objNode.name);
-        if (meta.typing.mustBeType === 'array') {
-          const methodName = node.callee.property.name;
+    if (funcName === SYMBOL_DOTCALL) {
+      const targetFuncNameNode = node.arguments[0];
+      vlog('- DotCalling', targetFuncNameNode.name);
+      const targetContextNode = node.arguments[1];
 
+      if (targetContextNode.type === 'Identifier') {
+        const meta = fdata.globallyUniqueNamingRegistry.get(targetContextNode.name);
+        if (meta.typing.mustBeType === 'array') {
+          vlog('- on an array...');
           // Most built-in array method calls are safe (assuming built-ins are unchanged) and cannot realistically throw
           // (by realistically I mean, arr.push() only really throws when the array is too big, etc)
-          if (['push', 'pop', 'shift', 'unshift', 'slice'].includes(methodName)) {
+          if ([
+            symbo('array', 'push'),
+            symbo('array', 'pop'),
+            symbo('array', 'shift'),
+            symbo('array', 'unshift'),
+            symbo('array', 'slice'),
+          ].includes(targetFuncNameNode.name)) {
             if (!dontPrint) {
               riskyRule('Calling an array method on a value known to be an array literal should be safe, assuming built-ins are sound');
               example('const x = [1,2,3]; try { x.push(); } catch {}', 'const x = [1,2,3]; x.push(); try { } catch {}');
@@ -476,8 +483,13 @@ function isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
         }
 
         // TODO: Math, primitives, regular expressions, etc. Slight edge case but.
-
+        if (BUILTIN_SYMBOLS.has(targetFuncNameNode.name)) {
+          todo(`try escaping may support dotcalling ${targetFuncNameNode.name}`);
+        }
       }
+    }
+    else if (BUILTIN_SYMBOLS.has(funcName)) {
+      todo(`try escaping may support calling ${funcName}`);
     }
 
   }
@@ -563,6 +575,7 @@ function isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
   // new, yield, await, param, templateliteral, this,
 
   vlog('Unsupported expression, bailing');
+  todo(`can try-escaping support this expr node type? ${node.type}`);
   return false;
 }
 

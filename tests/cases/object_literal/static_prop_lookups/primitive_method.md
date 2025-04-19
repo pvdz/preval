@@ -18,8 +18,7 @@ $(o.oops());
 
 
 `````js filename=intro
-`fail`();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`\`fail\`()\``;
+throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``;
 `````
 
 
@@ -27,8 +26,7 @@ throw `[Preval]: Call expression with illegal callee must crash before this line
 (This ought to be the final result)
 
 `````js filename=intro
-`fail`();
-throw `[Preval]: Call expression with illegal callee must crash before this line ; \`\`fail\`()\``;
+throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``;
 `````
 
 
@@ -36,15 +34,14 @@ throw `[Preval]: Call expression with illegal callee must crash before this line
 With rename=true
 
 `````js filename=intro
-"fail".undefined();
-throw "[Preval]: Call expression with illegal callee must crash before this line ; ``fail`()`";
+throw "Attempting to call a value that cannot be called: `const tmpCalleeParam = $dotCall(`fail`, o, `oops`);`";
 `````
 
 
 ## Todos triggered
 
 
-- (todo) maybe support this call case too
+- (todo) first arg to $dotcall should be a reference to a function: TemplateLiteral
 
 
 ## Globals

@@ -23,7 +23,7 @@ $(bool);
 `````js filename=intro
 const tmpStringFirstArg /*:unknown*/ = $spy();
 const str /*:string*/ = $coerce(tmpStringFirstArg, `string`);
-const bool /*:boolean*/ = str.includes(`1`, 2);
+const bool /*:boolean*/ = $dotCall($string_includes, str, `includes`, `1`, 2);
 $(bool);
 `````
 
@@ -32,7 +32,7 @@ $(bool);
 (This ought to be the final result)
 
 `````js filename=intro
-$($coerce($spy(), `string`).includes(`1`, 2));
+$($dotCall($string_includes, $coerce($spy(), `string`), `includes`, `1`, 2));
 `````
 
 
@@ -42,7 +42,7 @@ With rename=true
 `````js filename=intro
 const a = $spy();
 const b = $coerce( a, "string" );
-const c = b.includes( "1", 2 );
+const c = $dotCall( $string_includes, b, "includes", "1", 2 );
 $( c );
 `````
 

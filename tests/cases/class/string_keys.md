@@ -29,7 +29,8 @@ const x /*:class*/ = class {
   }
 };
 const tmpCallObj /*:object*/ = new x();
-const tmpCalleeParam /*:unknown*/ = tmpCallObj[`very stringy`]();
+const tmpCallCompVal /*:unknown*/ = tmpCallObj[`very stringy`];
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, undefined);
 $(tmpCalleeParam);
 `````
 
@@ -44,7 +45,8 @@ const x = class {
     return tmpReturnArg;
   }
 };
-$(new x()[`very stringy`]());
+const tmpCallObj = new x();
+$(tmpCallObj[`very stringy`]());
 `````
 
 
@@ -60,8 +62,9 @@ const a = class   {
 }
 };
 const c = new a();
-const d = c[ "very stringy" ]();
-$( d );
+const d = c[ "very stringy" ];
+const e = $dotCall( d, c, undefined );
+$( e );
 `````
 
 

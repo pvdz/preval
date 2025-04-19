@@ -25,12 +25,14 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
   const tmpCallObj /*:unknown*/ = $(b);
-  tmpCallObj.$(1);
+  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
+  $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCallObj$1 /*:unknown*/ = $(b);
-      tmpCallObj$1.$(1);
+      const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
+      $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
     } else {
       break;
     }
@@ -48,10 +50,12 @@ $(a);
 `````js filename=intro
 if ($(1)) {
   const b = { $: $ };
-  $(b).$(1);
+  const tmpCallObj = $(b);
+  tmpCallObj.$(1);
   while (true) {
     if ($(1)) {
-      $(b).$(1);
+      const tmpCallObj$1 = $(b);
+      tmpCallObj$1.$(1);
     } else {
       break;
     }
@@ -69,23 +73,25 @@ const a = $( 1 );
 if (a) {
   const b = { $: $ };
   const c = $( b );
-  c.$( 1 );
+  const d = c.$;
+  $dotCall( d, c, "$", 1 );
   while ($LOOP_UNROLL_10) {
-    const d = $( 1 );
-    if (d) {
-      const e = $( b );
-      e.$( 1 );
+    const e = $( 1 );
+    if (e) {
+      const f = $( b );
+      const g = f.$;
+      $dotCall( g, f, "$", 1 );
     }
     else {
       break;
     }
   }
 }
-const f = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( h );
 `````
 
 
@@ -93,7 +99,7 @@ $( f );
 
 
 - (todo) objects in isFree check
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: tmpCallObj.$
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

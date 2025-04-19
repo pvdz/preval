@@ -54,8 +54,8 @@ if (tmpIfTest$3) {
     const tmpIfTest$7 /*:boolean*/ = tmpChainElementObject == null;
     if (tmpIfTest$7) {
     } else {
-      const tmpCalleeParam$3 /*:unknown*/ = $(1);
-      $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
+      const tmpCalleeParam /*:unknown*/ = $(1);
+      $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
     }
   }
 } else {

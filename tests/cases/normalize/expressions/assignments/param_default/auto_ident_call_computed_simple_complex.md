@@ -24,7 +24,8 @@ $(a);
 `````js filename=intro
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNestedComplexRhs /*:unknown*/ = b[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````
@@ -35,7 +36,8 @@ $(tmpNestedComplexRhs);
 
 `````js filename=intro
 const tmpCallCompProp = $(`\$`);
-const tmpNestedComplexRhs = { $: $ }[tmpCallCompProp](1);
+const b = { $: $ };
+const tmpNestedComplexRhs = b[tmpCallCompProp](1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````
@@ -47,9 +49,10 @@ With rename=true
 `````js filename=intro
 const a = $( "$" );
 const b = { $: $ };
-const c = b[ a ]( 1 );
+const c = b[ a ];
+const d = $dotCall( c, b, undefined, 1 );
 $( undefined );
-$( c );
+$( d );
 `````
 
 

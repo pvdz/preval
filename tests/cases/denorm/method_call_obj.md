@@ -19,7 +19,8 @@ tmpCallCompObj$23.removeChild(s);
 
 `````js filename=intro
 const tmpCallCompObj$23 /*:unknown*/ = document.body;
-tmpCallCompObj$23.removeChild(s);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj$23.removeChild;
+$dotCall(tmpCallCompVal, tmpCallCompObj$23, `removeChild`, s);
 `````
 
 
@@ -27,7 +28,8 @@ tmpCallCompObj$23.removeChild(s);
 (This ought to be the final result)
 
 `````js filename=intro
-document.body.removeChild(s);
+const tmpCallCompObj$23 = document.body;
+tmpCallCompObj$23.removeChild(s);
 `````
 
 
@@ -36,7 +38,8 @@ With rename=true
 
 `````js filename=intro
 const a = document.body;
-a.removeChild( s );
+const b = a.removeChild;
+$dotCall( b, a, "removeChild", s );
 `````
 
 

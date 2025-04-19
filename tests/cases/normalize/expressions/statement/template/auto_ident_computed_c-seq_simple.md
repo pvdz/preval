@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpCompProp /*:unknown*/ = $(`c`);
-const tmpCalleeParam$1 /*:unknown*/ = tmpCompObj[tmpCompProp];
+const tmpCalleeParam$3 /*:unknown*/ = $(`c`);
+const tmpCalleeParam$1 /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
@@ -39,8 +39,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpCompObj = $(b);
-const tmpCompProp = $(`c`);
-$(`before  ${tmpCompObj[tmpCompProp]}  after`);
+const tmpCalleeParam$3 = $(`c`);
+$(`before  ${tmpCompObj[tmpCalleeParam$3]}  after`);
 $({ a: 999, b: 1000 }, b);
 `````
 

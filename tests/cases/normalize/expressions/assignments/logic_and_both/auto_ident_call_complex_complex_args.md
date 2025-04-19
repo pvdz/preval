@@ -21,15 +21,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCallee /*:unknown*/ = $($);
+const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
-const a /*:unknown*/ = tmpCallCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const a /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 if (a) {
-  const tmpCallCallee$1 /*:unknown*/ = $($);
+  const tmpCallComplexCallee$1 /*:unknown*/ = $($);
   const tmpCalleeParam$5 /*:unknown*/ = $(1);
   const tmpCalleeParam$7 /*:unknown*/ = $(2);
-  const tmpNestedComplexRhs /*:unknown*/ = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+  const tmpNestedComplexRhs /*:unknown*/ = tmpCallComplexCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -43,11 +43,11 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const a = tmpCallCallee($(1), $(2));
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee($(1), $(2));
 if (a) {
-  const tmpCallCallee$1 = $($);
-  const tmpNestedComplexRhs = tmpCallCallee$1($(1), $(2));
+  const tmpCallComplexCallee$1 = $($);
+  const tmpNestedComplexRhs = tmpCallComplexCallee$1($(1), $(2));
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {

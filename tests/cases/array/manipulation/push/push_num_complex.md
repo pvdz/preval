@@ -25,15 +25,14 @@ $(NOOP);
 
 
 `````js filename=intro
-const ARR /*:array*/ = [`a`, `b`, `c`, 10];
+const ARR /*:array*/ = [`a`, `b`, `c`, 10, $];
 const NOOP /*:()=>unknown*/ = function () {
   debugger;
   $(ARR);
   return undefined;
 };
-ARR.push($);
 $(5);
-ARR.push(5);
+$dotCall($array_push, ARR, `push`, 5);
 $(NOOP);
 `````
 
@@ -42,13 +41,12 @@ $(NOOP);
 (This ought to be the final result)
 
 `````js filename=intro
-const ARR = [`a`, `b`, `c`, 10];
+const ARR = [`a`, `b`, `c`, 10, $];
 const NOOP = function () {
   $(ARR);
 };
-ARR.push($);
 $(5);
-ARR.push(5);
+$dotCall($array_push, ARR, `push`, 5);
 $(NOOP);
 `````
 
@@ -57,15 +55,14 @@ $(NOOP);
 With rename=true
 
 `````js filename=intro
-const a = [ "a", "b", "c", 10 ];
+const a = [ "a", "b", "c", 10, $ ];
 const b = function() {
   debugger;
   $( a );
   return undefined;
 };
-a.push( $ );
 $( 5 );
-a.push( 5 );
+$dotCall( $array_push, a, "push", 5 );
 $( b );
 `````
 
@@ -73,7 +70,8 @@ $( b );
 ## Todos triggered
 
 
-None
+- (todo) arr mutation may be able to inline this method: tmpCallCompVal
+- (todo) access object property that also exists on prototype? $array_push
 
 
 ## Globals

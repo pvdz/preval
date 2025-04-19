@@ -20,7 +20,7 @@ $(a);
 
 
 `````js filename=intro
-`foo`.a;
+$String_prototype.a;
 $(`foo`);
 `````
 
@@ -29,7 +29,7 @@ $(`foo`);
 (This ought to be the final result)
 
 `````js filename=intro
-`foo`.a;
+$String_prototype.a;
 $(`foo`);
 `````
 
@@ -38,7 +38,7 @@ $(`foo`);
 With rename=true
 
 `````js filename=intro
-"foo".a;
+$String_prototype.a;
 $( "foo" );
 `````
 

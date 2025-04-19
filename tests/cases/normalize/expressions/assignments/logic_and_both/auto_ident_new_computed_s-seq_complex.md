@@ -21,12 +21,12 @@ $(a);
 
 
 `````js filename=intro
-const tmpCompProp /*:unknown*/ = $(`\$`);
+const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpNewCallee /*:unknown*/ = b[tmpCompProp];
+const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$1];
 new tmpNewCallee(1);
-const tmpCompProp$1 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$1 /*:unknown*/ = b[tmpCompProp$1];
+const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
+const tmpNewCallee$1 /*:unknown*/ = b[tmpCalleeParam$3];
 const tmpNestedComplexRhs /*:object*/ = new tmpNewCallee$1(1);
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
@@ -37,12 +37,12 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCompProp = $(`\$`);
+const tmpCalleeParam$1 = $(`\$`);
 const b = { $: $ };
-const tmpNewCallee = b[tmpCompProp];
+const tmpNewCallee = b[tmpCalleeParam$1];
 new tmpNewCallee(1);
-const tmpCompProp$1 = $(`\$`);
-const tmpNewCallee$1 = b[tmpCompProp$1];
+const tmpCalleeParam$3 = $(`\$`);
+const tmpNewCallee$1 = b[tmpCalleeParam$3];
 const tmpNestedComplexRhs = new tmpNewCallee$1(1);
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);

@@ -33,8 +33,8 @@ const spy /*:object*/ = {
     return undefined;
   },
 };
-const tmpCalleeParam /*:array*/ = [spy, spy];
-$coerce(tmpCalleeParam, `string`);
+const tmpEA1 /*:array*/ = [spy, spy];
+$coerce(tmpEA1, `string`);
 `````
 
 

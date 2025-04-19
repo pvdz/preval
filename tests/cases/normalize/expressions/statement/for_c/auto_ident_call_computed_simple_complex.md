@@ -25,12 +25,14 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCallCompProp /*:unknown*/ = $(`\$`);
   const b /*:object*/ = { $: $ };
-  b[tmpCallCompProp](1);
+  const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
+  $dotCall(tmpCallCompVal, b, undefined, 1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-      b[tmpCallCompProp$1](1);
+      const tmpCallCompVal$1 /*:unknown*/ = b[tmpCallCompProp$1];
+      $dotCall(tmpCallCompVal$1, b, undefined, 1);
     } else {
       break;
     }
@@ -71,23 +73,25 @@ const a = $( 1 );
 if (a) {
   const b = $( "$" );
   const c = { $: $ };
-  c[ b ]( 1 );
+  const d = c[ b ];
+  $dotCall( d, c, undefined, 1 );
   while ($LOOP_UNROLL_10) {
-    const d = $( 1 );
-    if (d) {
-      const e = $( "$" );
-      c[ e ]( 1 );
+    const e = $( 1 );
+    if (e) {
+      const f = $( "$" );
+      const g = c[ f ];
+      $dotCall( g, c, undefined, 1 );
     }
     else {
       break;
     }
   }
 }
-const f = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( h );
 `````
 
 
@@ -95,7 +99,7 @@ $( f );
 
 
 - (todo) objects in isFree check
-- (todo) Computed method call but we dont know whats being called
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

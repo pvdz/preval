@@ -24,7 +24,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCallCompObj /*:unknown*/ = $(b);
 const tmpCallCompProp /*:unknown*/ = $(`\$`);
-tmpCallCompObj[tmpCallCompProp](1);
+const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
+$dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
@@ -51,7 +52,8 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = $( "$" );
-b[ c ]( 1 );
+const d = b[ c ];
+$dotCall( d, b, undefined, 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
@@ -61,7 +63,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) Computed method call but we dont know whats being called
+- (todo) - at least one of the frfr args was not isFree, bailing
 
 
 ## Globals

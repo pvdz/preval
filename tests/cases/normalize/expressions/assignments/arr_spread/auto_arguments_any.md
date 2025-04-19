@@ -50,7 +50,7 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals
@@ -133,7 +133,10 @@ Should call `$` with:
     '<function>',
     '<function>',
     '<function>',
+    '<function>',
     {},
+    '<function>',
+    '<function>',
     '<function>',
     '<function>',
     '<function>',
@@ -185,6 +188,16 @@ Should call `$` with:
     '<function>',
     '<function>',
     '<function>',
+    '<function>',
+    {},
+    '<function>',
+    '<function>',
+    '<function>',
+    '<function>',
+    '<function>',
+    '<function>',
+    '<function>',
+    '<function>',
     {},
     '<function>',
     '<function>',
@@ -200,12 +213,6 @@ Should call `$` with:
     '<function>',
     '<function>',
     '<function>',
-    {},
-    '<function>',
-    '<function>',
-    '<function>',
-    '<function>',
-    '<function>',
     '<function>',
     '<function>',
     '<function>',
@@ -239,6 +246,7 @@ Should call `$` with:
     '<function>',
     '<function>',
     {},
+    '<function>',
     '<function>',
     '<function>',
     '<function>',
@@ -425,6 +433,7 @@ Should call `$` with:
       swap64: '"<function>"',
       toLocaleString: '"<function>"',
     },
+    '<function>',
     '<function>',
     '<function>',
     '<function>',

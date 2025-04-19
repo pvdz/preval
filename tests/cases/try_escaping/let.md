@@ -33,7 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam /*:unknown*/ = arr[0];
   try {
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     const tmpBinLhs /*:unknown*/ = arr[0];
     const tmpIfTest /*:boolean*/ = tmpBinLhs === $;
     if (tmpIfTest) {
@@ -57,7 +57,7 @@ while (true) {
   const tmpCalleeParam = arr[0];
   try {
     $(tmpCalleeParam);
-    arr.reverse();
+    $dotCall($array_reverse, arr, `reverse`);
     if (arr[0] === $) {
       break;
     } else {
@@ -79,7 +79,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a[ 0 ];
   try {
     $( b );
-    a.reverse();
+    $dotCall( $array_reverse, a, "reverse" );
     const c = a[ 0 ];
     const d = c === $;
     if (d) {
@@ -99,7 +99,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) fix the member expression on array stuff. im going to hate myself for skipping this.
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

@@ -3,17 +3,10 @@
 // -> `const arr = [2, 3, 4]; f(1); f(arr)`
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, todo, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, coerce, findBodyOffset, todo, assertNoDupeNodes, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
-import {
-  hasObservableSideEffectsBetweenRefs,
-  isComplexNode,
-  isPrimitive,
-  isSimpleNodeOrSimpleMember,
-  nodeHasNoObservableSideEffectIncStatements
-} from "../ast.mjs"
-import { symbo } from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
+import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function arr_mutation(fdata) {
   group('\n\n\nChecking for array mutations to inline');
@@ -23,12 +16,10 @@ export function arr_mutation(fdata) {
   return r;
 }
 function _arr_mutation(fdata) {
+  let updated = 0;
   const queue = [];
 
-  let updated = 0;
-  let addedSequence = false;
-
-  processAttempt(fdata);
+  runArrMutation(fdata);
 
   if (queue.length) {
     queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
@@ -36,21 +27,15 @@ function _arr_mutation(fdata) {
   }
 
   log('');
-  if (addedSequence) {
-    log('Array accesses changed:', updated, '. At least one change requires a restart to normalize');
-    return {what: 'arr_mutation', changes: updated, next: 'normal'};
-  }
   if (updated) {
-    log('Array accesses changed:', updated, '. Restarting from phase1 to fix up read/write registry');
+    log('Array mutations changed:', updated, '. Restarting from phase1 to fix up read/write registry');
     return {what: 'arr_mutation', changes: updated, next: 'phase1'};
   }
-  log('Array accesses changed: 0.');
+  log('Array mutations changed: 0.');
   return;
 
-  function processAttempt(fdata) {
-    // Find arrays where the first read is a method call
-    // TODO: Find arrays that call methods before any other potential mutation happens to them (ie. reading index prop is fine, escaping is not)
-
+  function runArrMutation(fdata) {
+    // Search for array writes
     fdata.globallyUniqueNamingRegistry.forEach(arrMeta => {
       if (arrMeta.isBuiltin) return;
       if (arrMeta.isImplicitGlobal) return;
@@ -60,8 +45,8 @@ function _arr_mutation(fdata) {
           write.kind === 'var' &&
           write.parentNode.init.type === 'ArrayExpression'
         ) {
-          vgroup('- Array assignment @', +write.parentNode.init.$p.pid);
-          processArray(arrMeta, write, write.parentNode.init);
+          vgroup('- Array init @', +write.parentNode.init.$p.pid);
+          processArrayWrite(arrMeta, write, write.parentNode.init);
           vgroupEnd();
         }
         else if (
@@ -69,1118 +54,887 @@ function _arr_mutation(fdata) {
           write.parentNode.right.type === 'ArrayExpression'
         ) {
           vgroup('- Array assignment @', +write.parentNode.right.$p.pid);
-          processArray(arrMeta, write, write.parentNode.right);
+          processArrayWrite(arrMeta, write, write.parentNode.right);
           vgroupEnd();
         }
-      })
-
+      });
     });
   }
 
-  function processArray(arrMeta, write, arrNode) {
+  // Given a write, the write is init/assign of an array expression.
+  // Find the next read in same scope and determine if the array could have been
+  // mutated between the write and read. If not, and not in loop/try, we should
+  // be able to apply resolve array prop reads and write mutations.
+  function processArrayWrite(arrMeta, write, arrNode) {
+    if (arrNode.elements.some(anode => anode?.type === 'SpreadElement')) {
+      // While we can probably deal with some edge case around spreads, we currently won't.
+      todo('Deal with array spreads in arr mutation?');
+      return vlog('- bail: the array contained a spread element');
+    }
+
     const rwIndex = arrMeta.rwOrder.indexOf(write);
     ASSERT(rwIndex >= 0);
 
-    const read = arrMeta.rwOrder[rwIndex + 1];
-    if (!read) return vlog('- bail: array is not followed by read');
-
-    if (read.parentNode.type !== 'MemberExpression') {
-      // This may be `const arr = []; const f = function(){ $(arr); }; arr[0] = 1` sort of thing.
-      // In that case we are able to safely assert that the array is invariably still empty when arr[0]=1 happens.
-      // This is pretty slow path but may be worthwhile
-      if (!arrMeta.singleScoped) {
-        vlog('- Parent is not member expression but it is not single scoped so checking an alt-path; reads that can reach this write:', write.reachedByReads.size);
-        // Find the first read that can reach this write and that's in the same (func) scope.
-        // We then have to confirm that there are no observable side effects between the refs.
-
-        const read = Array.from(write.reachedByReads).find(read => {
-          if (write.funcChain === read.funcChain) {
-            return true;
-          }
-        });
-        if (read) {
-          vlog('- Have a read; @', +read.node.$p.pid, ', now scanning for spies between write and read...');
-          if (read.parentNode.type !== 'MemberExpression') {
-            return vlog('- bail: the alt-path read was also not part of a member expression');
-          }
-          if (read.parentProp !== 'object') {
-            return vlog('- bail: the alt-path read parent prop was not object');
-          }
-          // This read should be the first read in source code order in the same (func) scope as the write.
-          // Now we must confirm that there could not have been anything that mutated between them.
-          // (If no spy could have been called then no closure could have been activated and we assert
-          // that the array shape at read time must be the same as how it was written at write time.)
-          vgroup();
-          let has = hasObservableSideEffectsBetweenRefs(write, read);
-          vgroupEnd();
-          vlog('- Detected spies between write and read?', has);
-          if (has) {
-            return vlog('- bail: parent was not member and there might be a spy between the write and the first next read in same scope');
-          }
-          vlog('- It seems the next read in same scope as write will see the array as written, we can still continue!');
-          processArrayWriteRead(arrMeta, arrNode, write, read, rwIndex, true);
-          return;
-        }
-        return vlog('- bail: parent is not member expression and binding is single scoped; the array escapes');
+    // Find the next read in the same scope (closure reads are not relevant and don't block the transform)
+    let read;
+    for (let i=rwIndex+1; i<arrMeta.rwOrder.length; ++i) {
+      const ref = arrMeta.rwOrder[i];
+      if (write.funcChain === ref.funcChain) {
+        if (ref.kind !== 'read') return vlog('- bail: next ref after write in same scope is also a write');
+        read = ref;
+        break;
       }
-      return vlog('- bail: Parent is not member expression');
     }
-    if (read.parentProp !== 'object') return vlog('- bail: Array is not the member object');
+    if (!read) return vlog('- bail: did not find read after this write in same scope');
 
-    processArrayWriteRead(arrMeta, arrNode, write, read, rwIndex, false);
-  }
+    // We now have a consecutive write (of array expr) and read (of that binding) in the same scope.
+    // We have to confirm whether the array may have mutated in any way between these two refs.
 
-  function processArrayWriteRead(arrMeta, arrNode, write, read, writeRwIndex, checkedForSpiesBetween) {
-    // Note: The write and read should be adjacent in source code order. The write
-    //       is a var or assign of an array literal. There's no other guarantee.
-
-    // Confirm the read and write appear in the same if/loop/try context
-    // TODO: I think we can relax these constraints a bit
-    if (write.innerIf !== read.innerIf) return vlog('- bail: No in same if-branch', write.innerIf, read.innerIf);
+    if (write.innerIf !== read.innerIf) return vlog('- bail: Not in same if-branch', write.innerIf, read.innerIf);
     if (write.innerElse !== read.innerElse) return vlog('- bail: Not in same else-branch', write.innerElse, read.innerElse);
     if (write.innerLoop !== read.innerLoop) return vlog('- bail: Not in same loop', write.innerLoop, read.innerLoop);
     if (write.innerTry !== read.innerTry) return vlog('- bail: Not in same try', write.innerTry, read.innerTry);
 
-    // Must confirm that the next read will see this array as it is
-    // That means:
-    // - There is only one write, or
-    // - This is a single scoped var (the write+read are source code order so there's nothing in between), or
-    // - This is a multi scoped var and we walked the path between this write and the next read and the binding can not mutate between them
-    // In addition the write and read must be in the same `if` branch, loop scope, and `try`-block.
+    let has = AST.hasObservableSideEffectsBetweenRefs(write, read);
+    if (has) return vlog('- bail: there are observable side effects between the write and the read');
 
-    // We then have to confirm that the array state remains the same, which means:
-    // - The var is single scoped (since we only look at the first read after the write, no mutation is possible), or
-    // - Every read of the array was to read a numbered computed property (or .length) and the result is not called, or
-    // - Same but confirmed not to happen between the write and the read
-    //   - For example, defining a new variable with function expression as init can not possibly mutate the array
-    // - There may be exceptions to things known to be safe, like calling .slice() for example
-    // When doing the expensive part we have to be careful around loops and trys.
+    // We should at this point be able to trust that the array structure in the AST is going to be what the array
+    // looks like at read time. So we should be able to resolve reading/writing properties in certain cases.
 
-    if (arrMeta.writes.length === 1) {
-      // Ok. The array can not mutate after initialization.
-    }
-    else if (arrMeta.singleScoped) {
-      // Ok. The read is source code order following the write and if they are
-      // same if/loop/try then there's no way for the binding to mutate between them.
-    } else {
-      // Harder. We must assert that the binding does not mutate between the write
-      // and the read. We can only apply heuristics here by skipping statements where
-      // we know there is no side effect (spy) that might mutate the array binding.
+    if (read.parentNode.type === 'MemberExpression') {
+      // This is a regular array. Only assignment, delete, and method calls could mess up the array here.
+      // Note that method calls are forced to simple $dotCalls so they can't occur here.
+      if (read.grandNode.type === 'AssignmentExpression') {
+        // This mutates the array if the read is on the left
+        // - assignment to .length will mutate it
+        // - assignment to index properties will mutate it
+        // - other prop assignments are expandos and we don't really track them in preval
+        // If the read is on the right then we may be able to resolve it here
+        // - if the property is predictable (.length pr index) and we know the outcome then we
+        //   can inline that value immediately. Like `const arr = [1,2,3]; $(arr[1])` is `$(2)`
+        if (read.grandProp === 'left') {
+          vlog('- this is assignment to a prop. We can support a small set of cases but most likely we cant do much here');
+          if (read.parentNode.computed) {
+            // - index properties (numbered computed props)
+            if (
+              AST.isPrimitive(read.parentNode.property) &&
+              AST.isPrimitive(read.grandNode.right)
+            ) {
+              const pkey = AST.getPrimitiveValue(read.parentNode.property);
+              if (
+                Number.isInteger(pkey) &&
+                pkey >= 0 && pkey < arrNode.elements.length + 10
+              ) {
+                // The assignment is within range and a primitive.
+                rule('Assignment of primitive to predictable index property can be resolved');
+                example('const arr = []; arr[0] = 100;', 'const arr[100]; ;');
+                before(write.blockBody[write.blockIndex]);
+                before(read.blockBody[read.blockIndex]);
 
-      let has = hasObservableSideEffectsBetweenRefs(write, read);
-      if (has) return vlog('  - bail: found at least one observable statement between read and write');
-    }
-
-    // We should now have a write+read, the read can assume the binding still has the array literal from the write.
-    processArrayWriteReadImmutableBinding(arrMeta, arrNode, write, read, writeRwIndex, checkedForSpiesBetween);
-  }
-
-  function processArrayWriteReadImmutableBinding(arrMeta, arrNode, write, read, writeRwIndex, checkedForSpiesBetween) {
-    // Next step is to verify that the array is not _mutated_ between the write and read.
-    // We must be certain that the elements and state of the array is what we think it is
-    // at the point of the read. For this reason we must assert no assignments to properties
-    // happen and no arbitrary methods are called on the array (.pop .splice etc).
-
-    if (arrMeta.reads.length === 1) {
-      // This is the only read so it can not have mutated
-    }
-    else if (arrMeta.singleScoped) {
-      // The read is sequential to the write and since it's a single
-      // scoped, it there can not be any other reads in between.
-    }
-    else if (checkedForSpiesBetween) {
-      // We already had to confirm earlier that there were no spies between the write and the read so we're good here
-    }
-    else if (arrMeta.reads.every(anyRead => {
-      // Ignore the target read
-      if (anyRead === read) return true;
-      // The array escapes. Anything can happen now.
-      if (anyRead.parentNode.type !== 'MemberExpression') return false;
-      // Calling `arr.splice(0, 1)` may alter the array
-      if (anyRead.grandNode.type === 'CallExpression') return false;
-      // Deleting a property may alter the array
-      if (anyRead.grandNode.type === 'UnaryExpression' && anyRead.grandNode.operator === 'delete') return false;
-      // Assigning to a property is bad news
-      if (anyRead.grandNode.type === 'AssignmentExpression' && anyRead.grandProp === 'left') return false;
-      // Hopefully anything else is fine?
-      return true
-    })) {
-      // All usages of the array binding should be non-mutating
-    }
-    else {
-      // Must confirm nothing between the write and read has side effects that
-      // may mutate the array as a closure.
-      todo('processArrayWriteReadImmutableBinding slow path');
-      return;
-    }
-
-    // Ok. Ready to apply the method.
-    processApplyArrayMethod(arrMeta, arrNode, write, read, writeRwIndex);
-  }
-
-  function processApplyArrayMethod(arrMeta, arrNode, write, read, writeRwIndex) {
-    ASSERT(read.parentNode.type === 'MemberExpression' && read.parentProp === 'object', 'this was explicitly asserted above', read);
-    if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
-      // Assignment to array property
-
-      if (AST.isPrimitive(read.grandNode.right)) {
-        // - `arr.foo = x`
-        // - `arr[foo] = x`
-        vlog(' - RHS is a primitive');
-        if (read.parentNode.computed) {
-          // `arr[foo] = 123`
-          vlog(' - Computed property write on the array. We can inline certain literals');
-          if (AST.isNumberValueNode(read.parentNode.property)) {
-            const value = AST.getPrimitiveValue(read.parentNode.property);
-            vlog(' - The property is a number:', value, ', arr element count:', arrNode.elements.length);
-            if (value >= 0 && value <= arrNode.elements.length) {
-              rule('Assignment to index properties of array literals can be inlined');
-              example('const arr = []; arr[0] = 100', 'const arr = [100]');
-              before(write.blockBody[write.blockIndex]);
-              before(read.blockBody[read.blockIndex]);
-
-              arrNode.elements[value] = read.grandNode.right;
-              queue.push({
-                index: read.blockIndex,
-                func: () => read.blockBody.splice(read.blockIndex, 1),
-              });
-              read.blockBody[read.blockIndex] = AST.emptyStatement();
-
-              after(write.blockBody[write.blockIndex]);
-              after(read.blockBody[read.blockIndex]);
-
-              updated += 1;
-              return;
-            }
-          }
-        }
-        else {
-          // `arr.foo = x`
-          // Main goal is checking assignment to .length
-          if (read.parentNode.property.name === 'length') {
-            // This should be safe to do, provided the len is not too excessive and we pop the elements and whatever.
-            // I think, worst case, with normalized code, this could change which var triggers a TDZ?
-
-            if (!AST.isNumberLiteral(read.grandNode.right)) {
-              vlog('  - not assigning a number to arr.length, bailing');
-              return;
-            }
-
-            const value = AST.getPrimitiveValue(read.grandNode.right);
-            if (!(value >= 0) || !isFinite(value)) {
-              vlog('  - assigning an impossible value to arr.length, bailing');
-              return;
-            }
-
-            if (value === arrNode.elements.length) {
-              // Noop...? Not likely to happen but while we're here let's drop it...
-
-              rule('Assigning the same len to an array.length immediately after decl is ... drop it');
-              example('const arr = [1, 2, 3]; arr.length = 3;', 'const arr = [1, 2, 3];');
-              before(write.blockBody[write.blockIndex]);
-              before(read.blockBody[read.blockIndex]);
-
-              read.blockBody[read.blockIndex] = AST.emptyStatement();
-
-              after(write.blockBody[write.blockIndex]);
-              after(read.blockBody[read.blockIndex]);
-
-              updated += 1;
-              return;
-            }
-
-            if (value < arrNode.elements.length) {
-              rule('Assigning a smaller len to arr.length right after its decl should shrink the decl');
-              example('const arr = [1, 2, 3, 4, 5]; arr.length = 3;', '{ 4; 5; } const arr = [1, 2, 3];');
-              before(write.blockBody[write.blockIndex]);
-              before(read.blockBody[read.blockIndex]);
-
-              // We do have to outline the remaining vars to preserve TDZ semantics
-              // To prevent breaking indexes, we are going to replace the read with reads to
-              // the pruned array elements. This should preserve TDZ order, not change TDZ semantics
-              // and not mess with other index references until we go through phase1 again.
-
-              queue.push({
-                index: read.blockIndex,
-                func: () => {
-                  read.blockBody.splice(read.blockIndex, 1, ...arrNode.elements.slice(value).map(node => AST.expressionStatement(node)));
-                  arrNode.elements.length = value;
+                arrNode.elements[pkey] = AST.cloneSimple(read.grandNode.right);
+                for (let i=0; i<arrNode.elements.length; ++i) {
+                  if (!arrNode.elements[i]) arrNode.elements[i] = null; // Prevent elided elements in the AST
                 }
-              })
+                ASSERT(read.blockBody[read.blockIndex].type === 'ExpressionStatement' && read.blockBody[read.blockIndex].expression === read.grandNode, 'assignment should be the statement', read.blockBody);
+                read.blockBody[read.blockIndex] = AST.emptyStatement();
 
-              after(write.blockBody[write.blockIndex]);
-              after(read.blockBody[read.blockIndex]);
-
-              updated += 1;
-              addedSequence = true;
-              return;
-            }
-
-            ASSERT(value >= arrNode.elements.length, 'len should be extended now');
-            if (value - arrNode.elements.length < 10) {
-              // 10 is an arbitrary limit. I'm not sure when this is actually relevant but ok we can so let's do it.
-
-              rule('Assigning a bigger len to arr.length right after its decl should grow the decl');
-              example('const arr = [1, 2]; arr.length = 4;', 'const arr = [1, 2, , ,];');
-              before(write.blockBody[write.blockIndex]);
-              before(read.blockBody[read.blockIndex]);
-
-              // We do have to outline the remaining vars to preserve TDZ semantics
-              // In this case we're in a unique position that we have two back to back statements.
-              // So to prevent breaking indexes, we are going to replace the read with reads to
-              // the pruned array elements. This should preserve TDZ order, not change TDZ semantics
-              // and not mess with other index references until we go through phase1 again.
-
-              for (let i=arrNode.elements.length; i<value; ++i) {
-                arrNode.elements.push(null); // Gotta be nulls.
+                after(write.blockBody[write.blockIndex]);
+                after(read.blockBody[read.blockIndex]);
+                assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                updated += 1;
+                return;
+              } else {
+                return vlog('- bail: assigning to a float index or oob prop?', pkey);
               }
+            } else if (
+              AST.isPrimitive(read.parentNode.property) &&
+              write.blockBody === read.blockBody &&
+              write.blockIndex + 1 === read.blockIndex &&
+              // Warning: There are several weird (contrived) risks here involving recursive array access.
+              //          To that end we start with only allowing idents here, when the ident is not the array itself.
+              read.grandNode.right.type === 'Identifier' &&
+              read.grandNode.right.name !== write.parentNode.id.name
+            ) {
+              const pkey = AST.getPrimitiveValue(read.parentNode.property);
+              if (
+                Number.isInteger(pkey) &&
+                pkey >= 0 && pkey < arrNode.elements.length + 10
+              ) {
+                rule('Assignment of ident to predictable index property on array declared in previous line can be resolved');
+                example('const arr = []; arr[0] = x;', 'const arr[x]; ;');
+                before(write.blockBody[write.blockIndex]);
+                before(read.blockBody[read.blockIndex]);
 
-              after(write.blockBody[write.blockIndex]);
-              after(read.blockBody[read.blockIndex]);
+                arrNode.elements[pkey] = AST.cloneSimple(read.grandNode.right);
+                for (let i=0; i<arrNode.elements.length; ++i) {
+                  if (!arrNode.elements[i]) arrNode.elements[i] = null; // Prevent elided elements in the AST
+                }
+                ASSERT(read.blockBody[read.blockIndex].type === 'ExpressionStatement' && read.blockBody[read.blockIndex].expression === read.grandNode, 'assignment should be the statement', read.blockBody);
+                read.blockBody[read.blockIndex] = AST.emptyStatement();
 
-              updated += 1;
-              return;
+                after(write.blockBody[write.blockIndex]);
+                after(read.blockBody[read.blockIndex]);
+                assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                updated += 1;
+                return;
+              } else {
+                return vlog('- bail: assigning to a float index or oob prop?', pkey);
+              }
             } else {
-              todo('Assigning a much bigger value to arr.length than the len', value, arrNode.elements.length);
-              return;
-            }
-          }
-        }
-        return;
-      }
-
-      if (read.parentNode.property.name === 'length') {
-        // If the rhs is not a concrete primitive then I'm not so sure we can get
-        // a reasonable value to actually assign at all. Maybe some edge cases...
-        return;
-      }
-
-      vlog(' - RHS is NOT a primitive so this is more complicated');
-
-      // If the array is not a closure, not accessed between decl and write, and the rhs can be tracked, then it should be safe to inline
-      // We can start with the simple case: the write happens immediately after the decl
-      if (write.blockBody === read.blockBody && write.blockIndex+1 === read.blockIndex) {
-        // The read is on the next line from the decl so it must be safe to consolidate, regardless of rhs
-        // - `const arr = []; arr.foo = x`
-        // - `const arr = []; arr[foo] = x`
-
-        // One other case to consider is assigning to a numbered property that is "way" out of range `arr[1e100] = 1`, whatever "Way" is.
-
-        if (read.parentNode.computed) {
-          // - `const arr = []; arr[foo] = x`
-          vlog(' - Computed property mutation with non-primitive rhs on the array. We can inline the rhs in some cases');
-          if (AST.isPrimitive(read.parentNode.property)) {
-            const value = AST.getPrimitiveValue(read.parentNode.property);
-            vlog(' - The property is a primitive:', value);
-            if (typeof value === 'number' && value >= 0 && value <= arrNode.elements.length) {
-              vlog(' - It is a number that is either in the current range of the array or one bigger:', value, '<=', arrNode.elements.length);
-
-              rule('Assignment of complex rhs to index properties of array immediately after declaring the array can be inlined');
-              example('const arr = []; arr[0] = xyz', 'const arr = [xyz]');
-              before(write.blockBody[write.blockIndex]);
-              before(read.blockBody[read.blockIndex]);
-
-              arrNode.elements[value] = read.grandNode.right;
-              queue.push({
-                index: read.blockIndex,
-                func: () => read.blockBody.splice(read.blockIndex, 1),
-              });
-              read.blockBody[read.blockIndex] = AST.emptyStatement();
-
-              after(write.blockBody[write.blockIndex]);
-              after(read.blockBody[read.blockIndex]);
-
-              updated += 1;
-              return;
-            } else {
-              // We only allow to write within range of declaration, or one above it
-              // TODO: we could extend this by a couple and elide the rest. But where to draw the line?
-              // - `const arr = []; arr[1e100] = bar;`
-              // - `const arr = []; arr[3] = bar;`
-              // - `const arr = []; arr[-1] = bar;`
-              vlog('  - Assignment to array index that is oob; bailing');
-              return;
+              todo('In some (many?) cases the array can access this value so we could move the rhs into the array...');
+              return vlog('- bail: assigning a non-primitive to an array index property');
             }
           } else {
-            // - `arr[foo] = bar`
-            // We don't know the concrete value of `foo` so we can't inline anything here.
-            vlog('  - Assignment to property that is not primitive; bailing');
-            return;
+            // - .length, if we can resolve the rhs to a number
+            if (
+              read.parentNode.property.name === 'length' &&
+              AST.isPrimitive(read.grandNode.right)
+            ) {
+              // If the index property is within reasonable range, do the assignment. Don't create a million element array here.
+              const pvalue = AST.getPrimitiveValue(read.grandNode.right);
+              if (typeof pvalue === 'number' && pvalue >= 0 && pvalue < arrNode.elements.length+10) {
+                rule('Assignment of bounded number to array.length can be resolved');
+                example('const arr = [1,2,3,4,5]; arr.length = 2;', 'const arr = [1,2]; ;');
+                before(write.blockBody[write.blockIndex]);
+                before(read.blockBody[read.blockIndex]);
+
+                // If this grows the array then the new elements are elided. If they shrink it the excessive nodes will be pruned.
+                arrNode.elements.length = pvalue;
+                for (let i=0; i<arrNode.elements.length; ++i) {
+                  if (!arrNode.elements[i]) arrNode.elements[i] = null; // Prevent elided elements in the AST
+                }
+                // Eliminate the .length assignment
+                ASSERT(read.blockBody[read.blockIndex].type === 'ExpressionStatement' && read.blockBody[read.blockIndex].expression === read.grandNode, 'the assignment should be the child of an expression statement...', read.blockBody[read.blockIndex]);
+                read.blockBody[read.blockIndex] = AST.emptyStatement();
+
+                after(write.blockBody[write.blockIndex]);
+                after(read.blockBody[read.blockIndex]);
+                assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                updated += 1;
+                return;
+              }
+            }
           }
         } else {
-          // - `arr.foo = x`
-          // Note: even `arr.length = x` is not workable since we must know what x resolves to in order to apply it here
-          vlog('  - Assignment of complex rhs to non-index property cant be inlined, bailing');
-          return;
+          ASSERT(read.grandProp === 'right');
         }
-      } else {
-        // This can work when:
-        // - the decl and read have same scope
-        // - the there's no loop/catch/if/else boundary between the decl and the write
-        // - no abrubt completions either (`const arr; break; arr[0] = 1;` unlikely but possible as a temporary artifact)
-        // - the rhs can be guaranteed to have no mutations/decls between the arr decl and the read
-        // - I think the above rules imply the array decl can read the rhs as well
-        // But it's a lot of work for a relatively edge case so ...
-        todo('arr_mutation: implement array inlining analysis stuff')
-        return;
       }
-      return;
-    } // assignment to arr prop
-
-    //if (read.grandNode.type !== 'CallExpression') return vlog('- bail: Not calling a method, not accessing .length', read.grandNode.type);
-
-    vlog(' - Property READ on the array:', read.parentNode.property.name);
-    if (read.parentNode.computed) {
-      // `arr[foo]`
-      // `arr[foo]()`
-      vlog(' - Computed property read on the array. We can inline certain literals');
-      todo('inline computed array property read');
-    }
-    else {
-      // `arr.foo`
-      // `arr.foo()`
-      processRegularPropReadOnPredictableArray(read, arrNode, write, arrMeta.name, arrMeta);
-    }
-  }
-
-  function processRegularPropReadOnPredictableArray(nextRead, arrayLiteralNode, write, arrayName, arrayMeta) {
-    // Note: the array is not guaranteed to be immutable !!
-    //       Only that at read time, this is the state of the array, as written at write time
-
-    switch (nextRead.parentNode.property.name) {
-      case 'length': {
-        // I think this is unsafe? What if code gets moved. TODO
-        vlog('- bail: not sure if array.length is safe to inline');
-        return;
+      else if (read.grandNode.type === 'UnaryExpression' && read.grandNode.operator === 'delete') {
+        // Either way this does something funky and we should bail.
+        return vlog('- bail: explicitly deleting a property on the array');
       }
-      case 'pop': {
-        // Note: if `pop` logic fails here, also fix `reverse` below.
+      else {
+        ASSERT(read.grandNode.type !== 'CallExpression', 'method calls should be normalized to dotcalls', read);
 
-        if (nextRead.grandNode.type === 'CallExpression') {
-          // These are a bit annoying because we need to reach to the grand-grand parent
-          // node to replace the call and we don't store that by default.
-          // Instead, for now, we'll check some cases on the statement level.
+        // What are valid parents here? var init, ...?
+        if (read.grandNode.type !== 'VarStatement') todo(`what other ways do member expressions still appear? ${read.grandNode.type}`);
+        vlog('- Parent of prop is', read.grandNode.type, 'and should be good to go');
+        vlog('- this is reading a prop from the array, if we can predict the key and its value then we can inline it');
+        // - .length
+        if (read.parentNode.computed) {
+          // - index properties (numbered computed props)
+          if (AST.isPrimitive(read.parentNode.property)) {
+            const pvalue = AST.getPrimitiveValue(read.parentNode.property);
+            if (
+              typeof pvalue === 'number' &&
+              pvalue >= 0 &&
+              pvalue < arrNode.elements.length+10
+            ) {
+              if (!arrNode.elements[pvalue] || AST.isPrimitive(arrNode.elements[pvalue])) {
+                rule('Reading an index property from an array where the value is a known primitive can be resolved');
+                example('const arr = [1,2,3]; $(arr[1]);', 'const arr[1,2,3]; $(2);');
+                before(write.blockBody[write.blockIndex]);
+                before(read.blockBody[read.blockIndex]);
 
-          const arrNode = write.parentNode.init;
-          if (arrNode.elements.length === 0) {
-            rule('Calling .pop on an empty array literal resolves to undefined');
-            example('const arr = []; arr.pop();', 'const arr = []; undefined;');
+                const newNode = arrNode.elements[pvalue] ? AST.primitive(AST.getPrimitiveValue(arrNode.elements[pvalue])) : AST.undef();
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+                after(write.blockBody[write.blockIndex]);
+                after(read.blockBody[read.blockIndex]);
+                updated += 1;
+                return;
+              } else {
+                todo('can we always safely clone ident refs in this case?');
+                return vlog('- bail: array index is not a primitive;', arrNode.elements[pvalue].type);
+              }
+            } else {
+              return vlog('- bail: array index is way outside of range of array literal');
+            }
+          } else {
+            return vlog('- bail: property was not a numeric prim');
+          }
+        } else {
+          // .length
+          if (read.parentNode.property.name === 'length') {
+            rule('Reading array.length when we know the shape of the array means we can resolve it');
+            example('const arr = [1,2,3]; $(arr.length);', 'const arr[100]; $(3);');
             before(write.blockBody[write.blockIndex]);
-            before(nextRead.blockBody[nextRead.blockIndex]);
+            before(read.blockBody[read.blockIndex]);
 
-            const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([AST.identifier('undefined')])) : AST.identifier('undefined');
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-              if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                // Call was a statement
-                nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-              }
-              else if (
-                nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' &&
-                nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
-              ) {
-                // Call was assigned
-                nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-              }
-              else {
-                // what normalized cases are left?
-                TODO
-              }
-            }
-            else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-              // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].init = newNode;
-            }
-            else {
-              TODO
-            }
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(arrNode.elements.length);
+            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(arrNode.elements.length);
 
             after(write.blockBody[write.blockIndex]);
-            after(nextRead.blockBody[nextRead.blockIndex]);
+            after(read.blockBody[read.blockIndex]);
             updated += 1;
-            if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
+            return;
+          } else if (BUILTIN_SYMBOLS.has(symbo('array', read.parentNode.property.name))) {
+            // - builtin array methods, can replace the member expression
+            rule('Reading array methods from arrays can be replaced by their symbol');
+            example('const push = [].push;', `const push = ${symbo('array', 'push')};`);
+            before(write.blockBody[write.blockIndex]);
+            before(read.blockBody[read.blockIndex]);
+
+            const newNode = AST.identifier(symbo('array', read.parentNode.property.name));
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+            else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+            after(write.blockBody[write.blockIndex]);
+            after(read.blockBody[read.blockIndex]);
+            updated += 1;
             return;
           }
+        }
+      }
+    }
+
+    // Not a member expression. Most likely an alias (init/assign) or used as arg in a call expression.
+
+    if (
+      read.parentNode.type === 'CallExpression' &&
+      read.parentProp === 'arguments' && // it's a certain crash otherwise
+      read.parentIndex === 1 && // We are dotcalling a method on the array, yes? Not just passing it as an argument
+      read.parentNode.callee.type === 'Identifier' &&
+      read.parentNode.callee.name === SYMBOL_DOTCALL
+    ) {
+      // This is calling a member on the array and can resolve certain cases.
+
+      const args = read.parentNode.arguments;
+      const funcNameNode = args[0];
+      const contextNode = args[1];
+      ASSERT(funcNameNode && contextNode, 'we control $dotcall, we should be able to assert its first three args', read.parentNode);
+      //const prop = args[2]; // Unused
+      const rest = args.slice(3);
+
+      if (funcNameNode.type !== 'Identifier') return vlog('- bail: dotcall is not calling an ident, this can only end bad', funcNameNode);
+
+      vlog(`- Inspecting a $dotCall that calls ${funcNameNode.name}`);
+
+      switch (funcNameNode.name) {
+        case symbo('array', 'concat'): {
+          // We can only concat array expressions. We need to be certain that they're unchanged between write and read.
+          // We also need to make sure they don't use spreads.
+          // Concat is generic and anything that is spreadable will be spread so we can only support builtins we know.
+          // arrays and strings can spread, other primitives are not, we will bail for other or unknown kinds of values.
+
+          if (!arrNode.elements.every(enode => !enode || AST.isPrimitive(enode))) {
+            vlog('- array was not just primitives, verifying alt transform...');
+
+            const block = read.blockBody;
+            const index = read.blockIndex;
+
+            const writes = [];
+
+            // Verify whether arrays are back to back and only containing consts. In that case it should be safe to create
+            // a new array with those references, since the value they reference cannot change, even if its state mutates.
+            // We can expand on this detection later if we need to.
+            const arrNodes = [contextNode, ...rest];
+            if (!arrNodes.every(arrIdNode => {
+              vlog('  - array', [arrIdNode.name], arrIdNode.type);
+              if (arrIdNode.type !== 'Identifier') return false; // You can pass on anything to .concat() so why not
+              const meta = fdata.globallyUniqueNamingRegistry.get(arrIdNode.name);
+              vlog('  -', meta.isConstant, meta.writes.length, meta.writes[0]?.parentNode?.init.type);
+              if (!meta.isConstant || meta.writes.length !== 1) return false;
+              const write = meta.writes[0];
+              const arrNode = write.parentNode.init;
+              if (arrNode.type !== 'ArrayExpression') return false;
+              vlog('    - node ok, now check the array elements');
+              // Ok, now validate this array
+              if (!arrNode.elements.every(enode => {
+                if (!enode) return true;
+                if (AST.isPrimitive(enode)) return true;
+                if (enode.type !== 'Identifier') return false;
+                const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
+                if (!meta?.isConstant || meta.writes.length !== 1) return false;
+                return true; // it's a constant... do we care about anything else here?
+              })) {
+                return false;
+              }
+              vlog('    - array seems ok, is it next to the call?');
+              // Does the array immediately precede this concat call? We need to be sure that idents in them are accessible.
+              // The heuristic is a simple one; must appear next to the statement with the call. Only allow var statements
+              // between it with functions or arrays (without rest).
+              if (write.blockBody !== block) return false; // Not in same block scope
+              if (write.blockIndex > index) return false; // The array const appears afterwards? huh. Super tdz.
+              let n = index;
+              while (--n > write.blockIndex) { // Do not check the array itself. Assume it bails before, or else it's ok.
+                if (block[n].type !== 'VarStatement') break;
+                const init = block[n].init;
+                if (init.type === 'ArrayExpression') {
+                  // Must assert that this array does not contain spread
+                  if (init.elements.some(enode => enode?.type === 'SpreadElement')) return false;
+                }
+                else if (!['FunctionExpression'].includes(block[n].init.type) && !AST.isPrimitive(block[n].init)) {
+                  break;
+                }
+              }
+              vlog('    - array accepted.');
+              // This array should be ok:
+              // - only contains primitives or idents
+              // - any ident would be a constant
+              // - array should be immutable between decl and this call
+              // This should mean the array is safe to duplicate, which is what we want
+              writes.push(write);
+              return true;
+            })) {
+              vlog('- bail: at least one arr contained a bad element or was not safe');
+              return false;
+            }
+
+            // Looks like the arrays are safe to duplicate into a single array. Let's go...
+            // Clone the nodes, keep order (that's important).
+            // The old arrays may be removed if they are only used in this call, or not. Either is fine.
+
+            rule('Concat of arrays with prims or constants should be safe to clone into a single array');
+            example(
+              'const x = $(); const a = [x, 1, 2]; const b = [3, x, 4]; $(a.concat(b))',
+              'const x = $(); const a = [x, 1, 2]; const b = [3, x, 4]; $([x, 1, 2, 3, x, 4])',
+            );
+            writes.map(write => before(write.blockBody[write.blockIndex])); // The arrays being concat
+            before(block[index]); // The call itself
+
+            const newNode = AST.arrayExpression();
+            writes.forEach(write => write.parentNode.init.elements.forEach(enode => newNode.elements.push(AST.cloneSimple(enode))));
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+            else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+            after(block[index]); // The call itself
+            updated += 1;
+            return true;
+          }
+
+          const arr = arrNode.elements.slice(0).map(a => AST.cloneSimple(a));
+
+          for (let index=0; index<rest.length; ++index) {
+            const anode = rest[index];
+
+            if (!anode) {
+              arr.push(anode);
+            }
+            else if (AST.isPrimitive(anode)) {
+              const value = AST.getPrimitiveValue(anode);
+              if (typeof value === 'string') {
+                arr.push(Array.from(value).map(a => AST.primitive(a)));
+              } else {
+                arr.push(AST.primitive(value));
+              }
+            }
+            else if (anode.type === 'Identifier') {
+              const meta = fdata.globallyUniqueNamingRegistry.get(anode.name);
+              if (
+                meta.isConstant &&
+                meta.varDeclRef?.node?.type === 'ArrayExpression' &&
+                meta.writes.length === 1 &&
+                meta.varDeclRef?.node.elements.every(enode => !enode || AST.isPrimitive(enode))
+              ) {
+                const ref = meta.writes[0];
+                let noopBetween = index === 0 || write.blockBody === ref.blockBody && write.blockIndex + 1 === ref.blockIndex;
+                if (!noopBetween) {
+                  for (let i=write.blockIndex+1; i<=read.blockIndex; ++i) {
+                    if (i === read.blockIndex) {
+                      noopBetween = true;
+                      break;
+                    }
+                    // We can expand on this but there's not that much meat on the bone for other statements here.
+                    if (write.blockBody[i].type !== 'VarStatement') break;
+                    // There's not many things that are absolutely safe. But we can also support array/object/class here as
+                    // well as some cases of unary/binary expression when we know the args are prims. And prims.
+                    if (write.blockBody[i].init.type !== 'FunctionExpression') break;
+                  }
+                }
+                if (noopBetween) {
+                  for (let i=0; i<meta.varDeclRef.node.elements.length; ++i) {
+                    const e = meta.varDeclRef.node.elements[i];
+                    if (!e) arr.push(e);
+                    else arr.push(AST.cloneSimple(e));
+                  }
+                } else {
+                  return vlog('- bail: at least one arg to concat was not an array with just primitives');
+                }
+              }
+              else {
+                return vlog('- bail: at least one arg to concat was not an array ref that met the requirements', meta.isConstant, meta.varDeclRef?.node?.type);
+              }
+            }
+            else {
+              // ??
+              todo('what else is an arg to array_concat?', anode);
+              return vlog('At least one concat arg is not a primitive or ident', anode.type);
+            }
+          }
+
+          // If it reaches here then we can replace the concat call with a fresh array with arr elements
+
+          rule('When we can resolve array concat, we should');
+          example('const arr = [1, 2]; const y = arr.concat("abc", [3, , 5], "xyz");', 'const arr = [1, 2]; const y = [1, 2, "a", "b", "c", 3, , 5, "x", "y", "z"];');
+          before(write.blockBody[write.blockIndex]);
+          before(read.blockBody[read.blockIndex]);
+
+          const newNode = AST.arrayExpression(arr);
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+          else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+          after(write.blockBody[write.blockIndex]);
+          after(read.blockBody[read.blockIndex]);
+          updated += 1;
+          break;
+        }
+        case symbo('array', 'join'): {
+          // We can do this when:
+          // - the array is read only once, or when we can guarantee it is not accessed between the decl and this read
+          // - the first argument of the call can be fully resolved (we currently only support the trivial isPrimitive check)
+          // - the concrete values of all elements of the array can be resolved
+          // Note that this is a dotcall and the first real arg is at index 3
+          if (rest[0] && !AST.isPrimitive(rest[0])) {
+            todo('calling $array_join when the first arg is not a primitive');
+          }
+          else if (arrNode.elements.some(e => e && !AST.isPrimitive(e))) {
+            todo('calling $array_join when the array is not just primitives');
+          }
           else {
+            // Must do it in a queue to preserve tdz order in excessive args
+            queue.push({
+              index: read.blockIndex,
+              func: () => {
+                rule('Calling array.join on an array that contains only primitives, with a known argument, can resolve to a string');
+                example('[1, 2, "a", 3].join("yo")', '"1yo2yoayo3"');
+                before(write.blockBody[write.blockIndex]);
+                before(read.blockBody[read.blockIndex]);
+
+                const str = arrNode.elements
+                  .map(e => e ? AST.getPrimitiveValue(e) : '')
+                  .join(rest[0] ? AST.getPrimitiveValue(rest[0]) : ',');
+                // Now replace the call with this string literal
+
+                const newNode = AST.primitive(str);
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+                // Clone all the nodes, inc the actual params, because they may tdz all the same
+                read.blockBody.splice(read.blockIndex, 0, ...rest.map(anode => AST.expressionStatement(AST.cloneSimple(anode))))
+
+                after(write.blockBody[write.blockIndex]);
+                after(read.blockBody[read.blockIndex]);
+                ++updated;
+              }
+            })
+            return true;
+          }
+          break;
+        }
+        case symbo('array', 'pop'): {
+          // If this is an ident then it's not safe to copy the reference here without more checks:
+          // - `const arr = [x]; x = 5; $(arr.shift());` should print the previous value of x, not 5.
+          if (!arrNode.elements.length || AST.isPrimitive(arrNode.elements[arrNode.elements.length - 1])) {
             rule('Calling .pop on an array literal we can fully track can be resolved');
             example('const arr = [1, 2, 3]; arr.pop();', 'const arr = [1, 2]; 3;');
             before(write.blockBody[write.blockIndex]);
-            before(nextRead.blockBody[nextRead.blockIndex]);
+            before(read.blockBody[read.blockIndex]);
 
-            const firstArrNode = arrNode.elements.pop();
+            // - an empty array can be popped, simply returns undefined
+            // - an elided element can still be popped, returns undefined
+            // - array already asserted not to contain spread
+            const firstArrNode = arrNode.elements.pop() || AST.undef();
 
-            const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([firstArrNode])) : firstArrNode;
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-              if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                // Call was a statement
-                nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-              } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                // Call was assigned
-                nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-              } else {
-                // what normalized cases are left?
-                TODO
-              }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-              // Call was init of a binding decl
-              vlog(nextRead.blockBody[nextRead.blockIndex].init )
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].init = newNode;
-            } else {
-              TODO
-            }
+            todo('outline any args for tdz');
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = firstArrNode;
+            else read.grandNode[read.grandProp][read.grandIndex] = firstArrNode;
 
             after(write.blockBody[write.blockIndex]);
-            after(nextRead.blockBody[nextRead.blockIndex]);
+            after(read.blockBody[read.blockIndex]);
             updated += 1;
-            if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
+            return;
+          } else {
+            todo('array_popping an ident');
             return;
           }
         }
-        else {
-          vlog('- bail: Read .pop but did not call it');
-          todo('replace with $array_pop');
-          return;
-        }
-      }
-      case 'shift': {
-        if (nextRead.grandNode.type === 'CallExpression') {
-          // These are a bit annoying because we need to reach to the grand-grand parent
-          // node to replace the call and we don't store that by default.
-          // Instead, for now, we'll check some cases on the statement level.
-
-          const arrNode = write.parentNode.init;
-          if (arrNode.elements.length === 0) {
-            rule('Calling .shift on an empty array literal resolves to undefined');
-            example('const arr = []; arr.shift();', 'const arr = []; undefined;');
-            before(write.blockBody[write.blockIndex]);
-            before(nextRead.blockBody[nextRead.blockIndex]);
-
-            const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([AST.identifier('undefined')])) : AST.identifier('undefined');
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-              if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                // Call was a statement
-                nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-              } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                // Call was assigned
-                nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-              } else {
-                // what normalized cases are left?
-                TODO
-              }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-              // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].init = newNode;
-            } else {
-              TODO
-            }
-
-            after(write.blockBody[write.blockIndex]);
-            after(nextRead.blockBody[nextRead.blockIndex]);
-            updated += 1;
-            if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .shift() args
-            return;
-          }
-          else if (arrNode.elements.every(enode => enode?.type !== 'SpreadElement')) {
-            rule('Calling .shift on an array literal we can fully track can be resolved');
-            example('const arr = [1, 2, 3]; f(arr.shift()); f(arr);', 'const arr = [2, 3]; f(1); f(arr);');
-            before(write.blockBody[write.blockIndex]);
-            before(nextRead.blockBody[nextRead.blockIndex]);
-
-            const firstArrNode = arrNode.elements.shift();
-
-            const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([firstArrNode])) : firstArrNode;
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-              if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                // Call was a statement
-                nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-              } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                // Call was assigned
-                nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-              } else {
-                // what normalized cases are left?
-                console.log(nextRead.blockBody[nextRead.blockIndex].expression)
-                console.log(nextRead.grandNode)
-                TODO
-              }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-              // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init', nextRead.blockBody[nextRead.blockIndex]);
-              nextRead.blockBody[nextRead.blockIndex].init = newNode;
-            } else {
-              TODO
-            }
-
-            after(write.blockBody[write.blockIndex]);
-            after(nextRead.blockBody[nextRead.blockIndex]);
-            updated += 1;
-            if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .shift() args
-            return;
-          }
-        } else {
-          vlog('- bail: Read .shift but did not call it');
-          todo('replace with $array_shift');
-          return;
-        }
-        break;
-      }
-      case 'push': {
-        if (nextRead.grandNode.type === 'CallExpression') {
-          // These are a bit annoying because we need to reach to the grand-grand parent
-          // node to replace the call and we don't store that by default.
-          // Instead, for now, we'll check some cases on the statement level.
-
+        case symbo('array', 'push'): {
           // Keep in mind array.push returns the length of the array afterwards, which is
           // always (?) arr.length + the number of arguments. So we should always replace the
           // actual call with a sequence ending with that number. Other parts will eliminate it.
 
-          let argList = nextRead.grandNode.arguments;
+          // We can only push primitives. Example why idents are unsafe without further checks:
+          // - `let x = a; const arr[]; x = b; arr.push(x);` , we want arr to be [b], not [a].
 
-          while (argList.length && isPrimitive(argList[0])) {
+          // Exception to that is when there can be no spies between the write and the read.
+          // For example when they are back to back or there are only certain var decls between them.
+          let noopBetween = write.blockBody === read.blockBody && write.blockIndex + 1 === read.blockIndex;
+          if (!noopBetween) {
+            for (let i=write.blockIndex+1; i<=read.blockIndex; ++i) {
+              if (i === read.blockIndex) {
+                noopBetween = true;
+                break;
+              }
+              // We can expand on this but there's not that much meat on the bone for other statements here.
+              if (write.blockBody[i].type !== 'VarStatement') break;
+              // There's not many things that are absolutely safe. But we can also support array/object/class here as
+              // well as some cases of unary/binary expression when we know the args are prims. And prims.
+              if (write.blockBody[i].init.type !== 'FunctionExpression') break;
+            }
+          }
+          vlog('- back2back=', noopBetween);
+          while (args.length > 3 && (AST.isPrimitive(args[3]) || (args[3].type !== 'SpreadElement' && noopBetween))) {
             // Remove the first param from the call and append it to the array literal
 
-            rule('Push on an array literal with first element simple should move the node');
+            rule('Push on an array literal with first element a primitive should move the node');
             example('const arr = [1, 2]; arr.push("a", "b");', 'const arr = [1, 2, "a"]; f(arr.push("b"));');
-            before(arrayLiteralNode);
-            before(nextRead.grandNode);
+            before(write.blockBody[write.blockIndex]);
+            before(read.blockBody[read.blockIndex]);
 
-            arrayLiteralNode.elements.push(argList.shift());
+            arrNode.elements.push(args[3]);
+            args.splice(3, 1); // Note: this is rest.shift()
 
-            after(arrayLiteralNode);
-            after(nextRead.grandNode);
+            after(write.blockBody[write.blockIndex]);
+            after(read.blockBody[read.blockIndex]);
             ++updated;
           }
 
-          if (nextRead.grandNode.arguments.length === 0) {
-            // noop, eliminate call and replace wiht
-
-            rule('Array push without arguments can be replaced with the (final) arg count');
+          // If, after resolving the push as much as possible, there are now no args left in the .push(), replace it with the arr length
+          if (args.length === 3) {
+            rule('Array push without arguments can be replaced with the arg len');
             example('const arr = [1, 2, 3]; count = arr.push();', 'const arr = [1, 2, 3]; count = 3;');
-            before(arrayLiteralNode);
-            before(nextRead.blockBody[nextRead.blockIndex]);
+            before(write.blockBody[write.blockIndex]);
+            before(read.blockBody[read.blockIndex]);
 
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-              if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                // Call was a statement. Just drop it.
-                nextRead.blockBody[nextRead.blockIndex] = AST.emptyStatement();
-              } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                // Call was assigned
-                nextRead.blockBody[nextRead.blockIndex].expression.right = AST.literal(arrayLiteralNode.elements.length);
-              } else {
-                // what normalized cases are left?
-                TODO
-              }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-              // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].init = AST.literal(arrayLiteralNode.elements.length);
-            } else {
-              TODO
-            }
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(arrNode.elements.length);
+            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(arrNode.elements.length);
 
-            after(arrayLiteralNode);
-            after(nextRead.blockBody[nextRead.blockIndex]);
+            after(write.blockBody[write.blockIndex]);
+            after(read.blockBody[read.blockIndex]);
             ++updated;
-          } else {
-            // There are args left so the push cannot be eliminated
+          } else if (read.blockBody[read.blockIndex].type !== 'ExpressionStatement') {
+            // There are args left so the push cannot be eliminated. But we can predict the final length, right?
+            // - `const arr = []; arr.push(1, 2, a, b, 3);` the final len would always be 5 regardless of what's being pushed.
 
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-              if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                // Call was a statement. Noop
+            if (args.every(anode => anode.type !== 'SpreadElement')) {
+              queue.push({
+                index: read.blockIndex,
+                func: () => {
+                  rule('Array push on known array that cannot be eliminated can still have its final len inlined');
+                  example('const arr = []; const y = arr.push(a); $(y);', 'const arr = []; arr.push(a); const y = 1; $(y);');
+                  before(write.blockBody[write.blockIndex]);
+                  before(read.blockBody[read.blockIndex]);
 
-              } else if (
-                nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' &&
-                nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
-              ) {
-                // Call was assigned
-                rule('Array push with arguments can be replaced with the (final) arg count');
-                example('const arr = [1, 2, 3]; count = arr.push(5, $);', 'const arr = [1, 2, 3, 5]; count = (arr.push($), 5);');
-                before(arrayLiteralNode);
-                before(nextRead.blockBody[nextRead.blockIndex]);
+                  const finalLen = arrNode.elements.length + (args.length-3);
+                  const newNode = AST.primitive(finalLen);
+                  if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+                  else read.grandNode[read.grandProp][read.grandIndex] = newNode;
 
-                nextRead.blockBody[nextRead.blockIndex].expression.right = AST.sequenceExpression([
-                  nextRead.blockBody[nextRead.blockIndex].expression.right,
-                  AST.literal(arrayLiteralNode.elements.length + argList.length),
-                ]);
+                  // Move the push call
+                  read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(read.parentNode));
 
-                after(arrayLiteralNode);
-                after(nextRead.blockBody[nextRead.blockIndex]);
-                ++updated;
-                addedSequence = true;
-                return;
-              } else {
-                // already transformed sequence? ignore
-              }
-            } else if (
-              nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement' &&
-              nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode
-            ) {
-              // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
-
-              rule('Array push with arguments can be replaced with the (initial) arg count');
-              example('const arr = [1, 2, 3]; const count = arr.push(5, $);', 'const arr = [1, 2, 3, 5]; const count = (arr.push($), 5);');
-              before(arrayLiteralNode);
-              before(nextRead.blockBody[nextRead.blockIndex]);
-
-              nextRead.blockBody[nextRead.blockIndex].init = AST.sequenceExpression([
-                nextRead.blockBody[nextRead.blockIndex].init,
-                AST.literal(arrayLiteralNode.elements.length + argList.length),
-              ]);
-
-              after(arrayLiteralNode);
-              after(nextRead.blockBody[nextRead.blockIndex]);
-              ++updated;
-              addedSequence = true;
-              return;
+                  after(write.blockBody[write.blockIndex]);
+                  after(read.blockBody[read.blockIndex]);
+                  ++updated;
+                }
+              });
             } else {
-              TODO
+              // The push args contained a spread. If we can't resolve that then we probably can't resolve its length either.
             }
+          } else {
+            // Ignore expression statement that is a push call. We've done all we can at this point.
           }
-        } else {
-          vlog('- bail: Read .push but did not call it');
-          todo('replace with $array_push');
+
+          break;
+        }
+        case symbo('array', 'reverse'): {
+          rule('Calling .reverse on an array literal without changes in between can be resolved');
+          example('const arr = [1, 2, 3]; const y = arr.reverse();', 'const arr = [3, 2, 1]; const y = arr;');
+          before(write.blockBody[write.blockIndex]);
+          before(read.blockBody[read.blockIndex]);
+
+          // .reverse() returns the array it mutated so we should be able to leave the context
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = contextNode;
+          else read.grandNode[read.grandProp][read.grandIndex] = contextNode;
+
+          arrNode.elements.reverse();
+
+          if (rest.length) {
+            queue.push({
+              index: read.blockIndex,
+              func: () => {
+                // Prepend all args of the call as statements, that should preserve tdz semantics.
+                read.blockBody.splice(read.blockIndex, 0, ...rest.map(anode => AST.expressionStatement(AST.cloneSimple(anode))));
+              }
+            })
+          }
+
+          after(write.blockBody[write.blockIndex]);
+          after(read.blockBody[read.blockIndex]);
+          updated += 1;
           return;
         }
+        case symbo('array', 'shift'): {
+          // If this is an ident then it's not safe to copy the reference here without more checks:
+          // - `const arr = [x]; x = 5; $(arr.shift());` should print the previous value of x, not 5.
+          if (!arrNode.elements.length || AST.isPrimitive(arrNode.elements[arrNode.elements.length - 1])) {
+            // If the shifted element is not an ident, we don't need to statementify the array elements.
+            rule('Calling .shift on an array literal we can fully track can be resolved');
+            example('const arr = [1, 2, 3]; arr.shift();', 'const arr = [2, 3]; 1;');
+            before(write.blockBody[write.blockIndex]);
+            before(read.blockBody[read.blockIndex]);
 
-        break;
-      }
-      case 'unshift': {
-        if (nextRead.grandNode.type === 'CallExpression') {
-          // These are a bit annoying because we need to reach to the grand-grand parent
-          // node to replace the call and we don't store that by default.
-          // Instead, for now, we'll check some cases on the statement level.
+            // - an empty array can be shifted, simply returns undefined
+            // - an elided element can still be shifted, returns undefined
+            // - array already asserted not to contain spread
+            const firstArrNode = arrNode.elements.shift() || AST.undef();
 
+            todo('outline any args for tdz');
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = firstArrNode;
+            else read.grandNode[read.grandProp][read.grandIndex] = firstArrNode;
+
+            after(write.blockBody[write.blockIndex]);
+            after(read.blockBody[read.blockIndex]);
+            updated += 1;
+            return;
+          } else {
+
+            todo('array_shifting an ident');
+            return;
+
+            //// Must queue because we must retain evaluation order of array elements. As such, the first element,
+            //// which is "popped", should still get evaluated first. So we create a bunch of expr statements for them.
+            //queue.push({
+            //  index: read.blockIndex,
+            //  func: () => {
+            //    rule('Calling .shift on an array literal we can fully track can be resolved');
+            //    example('const arr = [a, b, c]; f(arr.shift()); f(arr);', 'a; b; c; const arr = [b, c]; f(a); f(arr);');
+            //    before(write.blockBody[write.blockIndex]);
+            //    before(read.blockBody[read.blockIndex]);
+            //
+            //    // But if this is indeed an ident then this is not safe, right?
+            //    // - `const arr = [x]; x = 5; $(arr.shift());` should print the previous value of x, not 5.
+            //    const firstArrNode = arrNode.elements.shift();
+            //
+            //    if (read.grandIndex < 0) read.grandNode[read.grandProp] = firstArrNode;
+            //    else read.grandNode[read.grandProp][read.grandIndex] = firstArrNode;
+            //
+            //    // Now must inject the array arg elements as statements to retain original tdz order
+            //    read.blockBody.splice(
+            //      read.blockIndex,
+            //      0,
+            //      ...arrNode.elements.map(enode => AST.expressionStatements(enode ? AST.cloneSimple(enode) : AST.undef()))
+            //    );
+            //
+            //    after(write.blockBody[write.blockIndex]);
+            //    after(read.blockBody[read.blockIndex]);
+            //  }
+            //});
+            //updated += 1;
+            //return;
+          }
+        }
+        case symbo('array', 'slice'): {
+          if (
+            // We only need up to the first two arguments. The rest is not relevant to the call
+            // Note that this is a $dotCall so the first three are for $dotCall, the next two are for slice
+            (rest.length === 0 || AST.isPrimitive(rest[0])) &&
+            (rest.length === 1 || AST.isPrimitive(rest[1])) &&
+            // Idents are tricky because their refs may have changed between the original array literal and this slice
+            arrNode.elements.every(enode => !enode || AST.isPrimitive(enode))
+          ) {
+            // Doing an array.slice on an array literal is predictable
+            // Must queue it to preserve tdz issues in excessive args
+            queue.push({
+              index: read.blockIndex,
+              func: () => {
+                rule('Array slice on a binding known to be an array literal containing primitives can be copied');
+                example(
+                  `const arr = [1, 2, undefined, "foo"]; f(); $(${SYMBOL_DOTCALL}(${symbo('array', 'slice')}, arr, "prop", 0));`,
+                  'const arr = [1, 2, undefined, "foo"]; f(); $([1, 2, undefined, "foo"]);'
+                );
+                example(
+                  `const arr = [1, 2, undefined, "foo"]; f(); $(${SYMBOL_DOTCALL}(${symbo('array', 'slice')}, arr, "prop", 1));`,
+                  'const arr = [1, 2, undefined, "foo"]; f(); $([2, undefined, "foo"]);'
+                );
+                example(
+                  `const arr = [1, 2, undefined, "foo"]; f(); $(${SYMBOL_DOTCALL}(${symbo('array', 'slice')}, arr, "prop", 1, 3));`,
+                  'const arr = [1, 2, undefined, "foo"]; f(); $([2, undefined]);'
+                );
+                before(write.blockBody[write.blockIndex]);
+                before(read.blockBody[read.blockIndex]);
+
+                const clone = AST.arrayExpression(
+                  arrNode.elements
+                  .slice(
+                    rest[0] ? AST.getPrimitiveValue(rest[0]) : undefined,
+                    rest[1] ? AST.getPrimitiveValue(rest[1]) : undefined
+                  )
+                  .map(e => e && AST.cloneSimple(e))
+                );
+
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = clone;
+                else read.grandNode[read.grandProp][read.grandIndex] = clone;
+
+                // Clone all the nodes, inc the actual params, because they may tdz all the same
+                read.blockBody.splice(read.blockIndex, 0, ...rest.map(anode => AST.expressionStatement(AST.cloneSimple(anode))))
+
+                after(write.blockBody[write.blockIndex]);
+                after(read.blockBody[read.blockIndex]);
+                ++updated;
+              }
+            })
+            return;
+          } else {
+            return vlog('- bail: either the first two args are not primitives or an element in the array is not, slicing is unsafe');
+          }
+        }
+        case symbo('array', 'splice'): {
+          if (rest.every(anode => AST.isPrimitive(anode))) {
+            rule('Calling .splice on an array literal we can fully track can be resolved');
+            example('const arr = [1, 2, 3]; arr.splice(1, 1, a, b);', 'const arr = [1, a, b, 3]; [2];');
+            before(write.blockBody[write.blockIndex]);
+            before(read.blockBody[read.blockIndex]);
+
+            const splicedNodes = arrNode.elements.splice(
+              rest[0] ? AST.getPrimitiveValue(rest[0]) : 0,
+              rest[1] ? AST.getPrimitiveValue(rest[1]) : 0,
+              ...rest.slice(2)
+            );
+
+            const newNode = AST.arrayExpression(...splicedNodes);
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+            else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+            after(write.blockBody[write.blockIndex]);
+            after(read.blockBody[read.blockIndex]);
+            updated += 1;
+            return;
+          } else {
+            return vlog('- bail: not all args of the splice are primitives');
+          }
+        }
+        case symbo('array', 'toString'): {
+          // Same logic as .join() except with fixed string ','
+          // We can do this when:
+          // - the array is read only once, or when we can guarantee it is not accessed between the decl and this read
+          // - the first argument of the call can be fully resolved (we currently only support the trivial isPrimitive check)
+          // - the concrete values of all elements of the array can be resolved
+          // Note that this is a dotcall and the first real arg is at index 3
+          if (arrNode.elements.some(e => e && !AST.isPrimitive(e))) {
+            todo('calling $array_tostring when the array is not just primitives');
+          }
+          else {
+            // Must do it in a queue to preserve tdz order in excessive args
+            queue.push({
+              index: read.blockIndex,
+              func: () => {
+                rule('Calling array.toString on an array that contains only primitives, with a known argument, can resolve to a string');
+                example('[1, 2, "a", 3].toString()', '"1,2,a,3"');
+                before(write.blockBody[write.blockIndex]);
+                before(read.blockBody[read.blockIndex]);
+
+                const str = arrNode.elements
+                  .map(e => e ? AST.getPrimitiveValue(e) : '')
+                  .join(',');
+                // Now replace the call with this string literal
+
+                const newNode = AST.primitive(str);
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = newNode;
+
+                // Clone all the nodes, inc the actual params, because they may tdz all the same
+                read.blockBody.splice(read.blockIndex, 0, ...rest.map(anode => AST.expressionStatement(AST.cloneSimple(anode))))
+
+                after(write.blockBody[write.blockIndex]);
+                after(read.blockBody[read.blockIndex]);
+                ++updated;
+              }
+            })
+            return true;
+          }
+          break;
+        }
+        case symbo('array', 'unshift'): {
           // Keep in mind array.unshift returns the length of the array afterwards, which is
           // always (?) arr.length + the number of arguments. So we should always replace the
           // actual call with a sequence ending with that number. Other parts will eliminate it.
 
-          let argList = nextRead.grandNode.arguments;
-
-          while (argList.length && isPrimitive(argList[argList.length - 1])) {
+          while (args.length > 3 && AST.isPrimitive(args[args.length - 1])) {
             // Remove the first param from the call and append it to the array literal
 
             rule('Unshift on an array literal with first element simple should move the node');
-            example('const arr = [100]; arr.unshift(1, 2));', 'const arr = [3, 100]; arr.unshift(1, 2)');
-            before(arrayLiteralNode);
-            before(nextRead.grandNode);
+            example('const arr = [100]; arr.unshift(1, 2, 3));', 'const arr = [3, 100]; arr.unshift(1, 2)');
+            before(write.blockBody[write.blockIndex]);
+            before(read.blockBody[read.blockIndex]);
 
-            arrayLiteralNode.elements.unshift(argList.pop());
+            arrNode.elements.unshift(args.pop());
 
-            after(arrayLiteralNode);
-            after(nextRead.grandNode);
+            after(write.blockBody[write.blockIndex]);
+            after(read.blockBody[read.blockIndex]);
             ++updated;
           }
 
-          if (nextRead.grandNode.arguments.length === 0) {
-            // noop, eliminate call and replace wiht
-
+          // If, after resolving the unshift as much as possible, there are now no args left in the .unshift(), replace it with the arr length
+          if (args.length === 3) {
             rule('Array unshift without arguments can be replaced with the (final) arg count');
             example('const arr = [1, 2, 3]; const count = arr.unshift();', 'const arr = [1, 2, 3]; const count = 3;');
-            before(arrayLiteralNode);
-            before(nextRead.blockBody[nextRead.blockIndex]);
-
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-              if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                // Call was a statement. Just drop it.
-                nextRead.blockBody[nextRead.blockIndex].expression = AST.emptyStatement();
-              }
-              else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                // Call was assigned
-                nextRead.blockBody[nextRead.blockIndex].expression.right = AST.literal(arrayLiteralNode.elements.length);
-              }
-              else {
-                // what normalized cases are left?
-                TODO
-              }
-            } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-              // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
-              nextRead.blockBody[nextRead.blockIndex].init = AST.literal(arrayLiteralNode.elements.length);
-            } else {
-              TODO
-            }
-
-            after(arrayLiteralNode);
-            after(nextRead.blockBody[nextRead.blockIndex]);
-            ++updated;
-          } else {
-            // There are args left so the unshift cannot be eliminated
-
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-              if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                // Call was a statement. Noop
-
-              } else if (
-                nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' &&
-                nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
-              ) {
-                // Call was assigned
-                rule('Array unshift with arguments can be replaced with the (final) arg count');
-                example('const arr = [1, 2, 3]; count = arr.unshift($, 5);', 'const arr = [5, 1, 2, 3]; count = (arr.unshift($), 5);');
-                before(arrayLiteralNode);
-                before(nextRead.blockBody[nextRead.blockIndex]);
-
-                nextRead.blockBody[nextRead.blockIndex].expression.right = AST.sequenceExpression([
-                  nextRead.blockBody[nextRead.blockIndex].expression.right,
-                  AST.literal(arrayLiteralNode.elements.length + argList.length),
-                ]);
-
-                after(arrayLiteralNode);
-                after(nextRead.blockBody[nextRead.blockIndex]);
-                ++updated;
-                addedSequence = true;
-              } else {
-                // already transformed sequence? ignore
-              }
-            } else if (
-              nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement' &&
-              nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode
-            ) {
-              // Call was init of a binding decl
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
-
-              rule('Array unshift with arguments can be replaced with the (final) arg count');
-              example('const arr = [1, 2, 3]; const count = arr.unshift($, 5);', 'const arr = [5, 1, 2, 3]; const count = (arr.unshift($), 5);');
-              before(arrayLiteralNode);
-              before(nextRead.blockBody[nextRead.blockIndex]);
-
-              nextRead.blockBody[nextRead.blockIndex].init = AST.sequenceExpression([
-                nextRead.blockBody[nextRead.blockIndex].init,
-                AST.literal(arrayLiteralNode.elements.length + argList.length),
-              ]);
-
-              after(arrayLiteralNode);
-              after(nextRead.blockBody[nextRead.blockIndex]);
-              ++updated;
-              addedSequence = true;
-            } else {
-              TODO
-            }
-          }
-        } else {
-          vlog('- bail: Read .unshift but did not call it');
-          todo('replace with $array_unshift');
-          return;
-        }
-        break;
-      }
-      case 'slice': {
-        if (
-          nextRead.grandNode.type === 'CallExpression'
-        ) {
-          if (
-            // we only need up to the first two arguments. The rest is not relevant to the call
-            (nextRead.grandNode.arguments.length === 0 || AST.isPrimitive(nextRead.grandNode.arguments[0])) &&
-            (nextRead.grandNode.arguments.length === 1 || AST.isPrimitive(nextRead.grandNode.arguments[1])) &&
-            // Idents are tricky because their refs may have changed between the original array literal and this slice
-            arrayLiteralNode.elements.every(enode => !enode || AST.isPrimitive(enode))
-          ) {
-            // Doing an array.slice on an array literal is predictable
-
-            rule('Array slice on a binding known to be an array literal containing primitives can be copied');
-            example('const arr = [1, 2, undefined, "foo"]; f(); $(arr.slice(0));', 'const arr = [1, 2, undefined, "foo"]; f(); $([1, 2, undefined, "foo"]);');
-            example('const arr = [1, 2, undefined, "foo"]; f(); x = $([1, 2, undefined, "foo"]);');
-            example('const arr = [1, 2, undefined, "foo"]; f(); const x = $([1, 2, undefined, "foo"]);');
-            before(nextRead.blockBody[nextRead.blockIndex]);
-
-            const clone = AST.arrayExpression(
-              arrayLiteralNode.elements
-              .slice(
-                nextRead.grandNode.arguments[0] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[0]) : undefined,
-                nextRead.grandNode.arguments[1] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[1]) : undefined
-              )
-              .map(e => e && AST.cloneSimple(e)));
-
-            if (
-              nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement' &&
-              nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode
-            ) {
-              // ex: tests/cases/arr_mutation/slice_const.md
-              nextRead.blockBody[nextRead.blockIndex].init = clone;
-            }
-            else if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-              if (
-                nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' &&
-                nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
-              ) {
-                // ex: tests/cases/arr_mutation/slice_assign.md
-                nextRead.blockBody[nextRead.blockIndex].expression.right = clone;
-              }
-              else if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                // ex: tests/cases/arr_mutation/slice_stmt.md
-                nextRead.blockBody[nextRead.blockIndex].expression = clone;
-              }
-              else {
-                ASSERT(false, 'What expr case is this?', nextRead)
-              }
-            } else {
-              ASSERT(false, 'What case is this?', nextRead)
-            }
-
-            after(nextRead.blockBody[nextRead.blockIndex]);
-            ++updated;
-            return true;
-          } else {
-            vlog('- bail: Read .slice but did not call it');
-            todo('replace with $array_slice');
-            return;
-          }
-        }
-
-        break;
-      }
-      case 'join': {
-        // We can do this when:
-        // - the array is read only once, or when we can guarantee it is not accessed between the decl and this read
-        // - the first argument of the call can be fully resolved (we currently only support the trivial isPrimitive check)
-        // - the concrete values of all elements of the array can be resolved
-
-        if (nextRead.grandNode.type !== 'CallExpression') {
-          todo('replace with $array_join');
-        }
-        else if (nextRead.grandNode.arguments[0] && !AST.isPrimitive(nextRead.grandNode.arguments[0])) {
-          todo('calling $array_join when the first arg is not a primitive');
-        }
-        else if (!arrayLiteralNode.elements.every(e => !e || AST.isPrimitive(e))) {
-          todo('calling $array_join when the array is not just primitives');
-        }
-        else if (arrayMeta.writes.length !== 1) {
-          todo('calling $array_join on an array that is not a constant');
-        }
-        else if (arrayMeta.reads.length !== 1) {
-          todo('calling $array_join on an array that has other reads, must verify they dont mutate the array first');
-        }
-        else {
-          rule('Calling array.join on an array that contains only primitives, with a known argument, can resolve to a string');
-          example('[1, 2, "a", 3].join("yo")', '"1yo2yoayo3"');
-          before(nextRead.blockBody[nextRead.blockIndex]);
-
-          const str = arrayLiteralNode
-          .elements
-          .map(e => e ? AST.getPrimitiveValue(e) : '')
-          .join(nextRead.grandNode.arguments[0] ? AST.getPrimitiveValue(nextRead.grandNode.arguments[0]) : ',');
-          // Now replace the call with this string literal
-
-          const newNode = AST.primitive(str);
-
-          // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
-          // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
-
-          if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-            ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
-            nextRead.blockBody[nextRead.blockIndex].init = newNode;
-          } else {
-            ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
-            if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode, 'in normalized code, if expr stmt assign, a call must be the rhs');
-              nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-            } else {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode, 'in normalized code, if expr stmt and not assign, then a call must be the expr itself');
-              nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-            }
-          }
-
-          if (nextRead.grandIndex < 0) nextRead.grandNode[nextRead.grandProp] = newNode;
-          else nextRead.grandNode[nextRead.grandProp][nextRead.grandIndex] = newNode;
-
-          after(nextRead.blockBody[nextRead.blockIndex]);
-          ++updated;
-          return true;
-        }
-        break;
-      }
-      case 'reverse': {
-        // Logic is same as `pop` above. If this breaks, fix that too.
-
-        if (nextRead.grandNode.type === 'CallExpression') {
-          // These are a bit annoying because we need to reach to the grand-grand parent
-          // node to replace the call and we don't store that by default.
-          // Instead, for now, we'll check some cases on the statement level.
-
-          const arrNode = write.parentNode.init;
-          if (arrNode.elements.length === 0) {
-            rule('Calling .reverse on an empty array literal is a noop');
-            example('const arr = []; const y = arr.reverse();', 'const arr = []; const y = arr;');
             before(write.blockBody[write.blockIndex]);
-            before(nextRead.blockBody[nextRead.blockIndex]);
+            before(read.blockBody[read.blockIndex]);
 
-            // .reverse() returns the array it mutated so we should be able to leave the context
-
-            // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
-            // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
-
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
-              nextRead.blockBody[nextRead.blockIndex].init = nextRead.parentNode.object;
-            } else {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
-              if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
-                ASSERT(nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode, 'in normalized code, if expr stmt assign, a call must be the rhs');
-                nextRead.blockBody[nextRead.blockIndex].expression.right = nextRead.parentNode.object;
-              } else {
-                ASSERT(nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode, 'in normalized code, if expr stmt and not assign, then a call must be the expr itself');
-                nextRead.blockBody[nextRead.blockIndex].expression = nextRead.parentNode.object;
-              }
-            }
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(arrNode.elements.length);
+            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(arrNode.elements.length);
 
             after(write.blockBody[write.blockIndex]);
-            after(nextRead.blockBody[nextRead.blockIndex]);
-            updated += 1;
-            return;
-          }
-          else {
-            rule('Calling .reverse on an array literal without changes in between can be resolved');
-            example('const arr = [1, 2, 3]; const y = arr.reverse();', 'const arr = [3, 2, 1]; const y = arr;');
-            before(write.blockBody[write.blockIndex]);
-            before(nextRead.blockBody[nextRead.blockIndex]);
+            after(read.blockBody[read.blockIndex]);
+            ++updated;
+          } else if (read.blockBody[read.blockIndex].type !== 'ExpressionStatement') {
+            // There are args left so the push cannot be eliminated. But we can predict the final length, right?
+            // - `const arr = []; arr.push(1, 2, a, b, 3);` the final len would always be 5 regardless of what's being pushed.
 
-            // .reverse() returns the array it mutated so we should be able to leave the context
+            if (args.every(anode => anode.type !== 'SpreadElement')) {
+              queue.push({
+                index: read.blockIndex,
+                func: () => {
+                  rule('Array unshift on known array that cannot be eliminated can still have its final len inlined');
+                  example('const arr = []; const y = arr.unshift(a); $(y);', 'const arr = []; arr.unshift(a); const y = 1; $(y);');
+                  before(write.blockBody[write.blockIndex]);
+                  before(read.blockBody[read.blockIndex]);
 
-            // Rare case where grandNode does not suffice; we need the parent of the grand node to replace the whole call.
-            // In normalized code this can only be three things: expr stmt call, expr stmt assign call, var decl init call
+                  const finalLen = arrNode.elements.length + (args.length-3);
+                  const newNode = AST.primitive(finalLen);
+                  if (read.grandIndex < 0) read.grandNode[read.grandProp] = newNode;
+                  else read.grandNode[read.grandProp][read.grandIndex] = newNode;
 
-            if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
-              nextRead.blockBody[nextRead.blockIndex].init = nextRead.parentNode.object;
+                  // Move the push call
+                  read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(read.parentNode));
+
+                  after(write.blockBody[write.blockIndex]);
+                  after(read.blockBody[read.blockIndex]);
+                  ++updated;
+                }
+              });
             } else {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
-              if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
-                ASSERT(nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode, 'in normalized code, if expr stmt assign, a call must be the rhs');
-                nextRead.blockBody[nextRead.blockIndex].expression.right = nextRead.parentNode.object;
-              } else {
-                ASSERT(nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode, 'in normalized code, if expr stmt and not assign, then a call must be the expr itself');
-                nextRead.blockBody[nextRead.blockIndex].expression = nextRead.parentNode.object;
-              }
+              // The unshift args contained a spread. If we can't resolve that then we probably can't resolve its length either.
             }
-
-            arrayLiteralNode.elements.reverse();
-
-            after(write.blockBody[write.blockIndex]);
-            after(nextRead.blockBody[nextRead.blockIndex]);
-            updated += 1;
-            return;
-          }
-        }
-        else {
-          vlog('- bail: Read .reverse but did not call it');
-          todo('replace with $array_reverse');
-          return;
-        }
-      }
-      case 'splice': {
-        if (
-          nextRead.grandNode.type === 'CallExpression' &&
-          nextRead.grandProp === 'callee' &&
-          (!nextRead.grandNode.arguments[0] || AST.isNumberLiteral(nextRead.grandNode.arguments[0])) &&
-          (!nextRead.grandNode.arguments[1] || AST.isNumberLiteral(nextRead.grandNode.arguments[1]))
-        ) {
-          // These are a bit annoying because we need to reach to the grand-grand parent
-          // node to replace the call and we don't store that by default.
-          // Instead, for now, we'll check some cases on the statement level.
-
-          rule('Calling .splice on an array literal we can fully track can be resolved');
-          example('const arr = [1, 2, 3]; arr.splice(1, 1, a, b);', 'const arr = [1, 3, a, b]; [2];');
-          before(write.blockBody[write.blockIndex]);
-          before(nextRead.blockBody[nextRead.blockIndex]);
-
-          const args = nextRead.grandNode.arguments;
-          const splicedNodes = arrayLiteralNode.elements.splice(
-            args[0] ? AST.getPrimitiveValue(args[0]) : 0,
-            args[1] ? AST.getPrimitiveValue(args[1]) : 0,
-            ...args.slice(2)
-          );
-
-          const newNode = AST.arrayExpression(...splicedNodes);
-          if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-            if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-              // Call was a statement
-              nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-            }
-            else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-              // Call was assigned
-              nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-            }
-            else {
-              // what normalized cases are left?
-              TODO
-            }
-          }
-          else if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-            // Call was init of a binding decl
-            vlog(nextRead.blockBody[nextRead.blockIndex].init )
-            ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code the call must be the init');
-            nextRead.blockBody[nextRead.blockIndex].init = newNode;
-          }
-          else {
-            TODO
-          }
-
-          after(write.blockBody[write.blockIndex]);
-          after(nextRead.blockBody[nextRead.blockIndex]);
-          updated += 1;
-          if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
-          return;
-        }
-        else {
-          vlog('- bail: Read .pop but did not call it');
-          todo('replace with $array_splice');
-          return;
-        }
-      }
-      case 'toString': {
-        // We can do this when:
-        // - the array is read only once, or when we can guarantee it is not accessed between the decl and this read
-        // - the first argument of the call can be fully resolved (we currently only support the trivial isPrimitive check)
-        // - the concrete values of all elements of the array can be resolved
-        // Note: array.toString is just an alias for array.join(',') (in the spec!)
-
-        if (nextRead.grandNode.type !== 'CallExpression') {
-          todo('replace with $array_tostring');
-        }
-        else if (!arrayLiteralNode.elements.every(e => !e || AST.isPrimitive(e))) {
-          todo('array.tostring on an array init where not all elements are primitives');
-        }
-        else if (arrayMeta.writes.length !== 1) {
-          todo('array.toString on an init is mutated?');
-        }
-        else if (arrayMeta.reads.length !== 1) {
-          todo('array.toString on an init that is read more than once, need to verify none of them mutate the array');
-        }
-        else {
-          // - `const arr = [1, 2, 3]; $(arr.toString());`
-          rule('Calling .toString on an array with only primitives can be resolved');
-          example('const arr = [1, 2, 3]; $(arr.toString());', 'const arr = [1, 2, 3]; $("1,2,3");');
-          before(nextRead.blockBody[nextRead.blockIndex]);
-
-          const str = arrayLiteralNode
-          .elements
-          .map(e => e ? AST.getPrimitiveValue(e) : '')
-          .toString();
-
-          const newNode = AST.primitive(str);
-
-          if (nextRead.blockBody[nextRead.blockIndex].type === 'VarStatement') {
-            ASSERT(nextRead.blockBody[nextRead.blockIndex].init === nextRead.grandNode, 'in normalized code, calls can not be nested so it must be the init');
-            nextRead.blockBody[nextRead.blockIndex].init = newNode;
           } else {
-            ASSERT(nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement');
-            if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression') {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode, 'in normalized code, if expr stmt assign, a call must be the rhs');
-              nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-            } else {
-              ASSERT(nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode, 'in normalized code, if expr stmt and not assign, then a call must be the expr itself');
-              nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-            }
+            // Ignore expression statement that is a shift call. We've done all we can at this point.
           }
-
-          after(nextRead.blockBody[nextRead.blockIndex]);
-          ++updated;
-          return true;
+          break;
         }
-        break;
+        default: {
+          // Certain methods are a no-go but there's probably a few missing here that we can do
+          todo(`arr mutation may be able to inline this method: ${funcNameNode.name}`);
+        }
       }
+
+      //de method calls moeten worden omgezet in static func calls
+      //deze lijst moet naar beneden worden geschoven want de afstand tussen read en write moeten nog bevestigd worden
+      //als die niet spied dan is het goed. en dan hebben we alsnog een lange weg te gaan.
+
     }
+
   }
 }

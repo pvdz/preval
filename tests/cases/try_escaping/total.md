@@ -81,47 +81,12 @@ $(arr[0]);
 
 
 `````js filename=intro
-const tmpFree /*:(primitive, primitive, primitive, primitive, primitive, primitive, primitive, primitive)=>boolean*/ = function $free(
-  $$0,
-  $$1,
-  $$2,
-  $$3,
-  $$4,
-  $$5,
-  $$6,
-  $$7,
-) {
-  const d /*:primitive*/ = $$0;
-  const h /*:primitive*/ = $$1;
-  const a /*:primitive*/ = $$2;
-  const n /*:primitive*/ = $$3;
-  const s /*:primitive*/ = $$4;
-  const w /*:primitive*/ = $$5;
-  const A /*:primitive*/ = $$6;
-  const F /*:primitive*/ = $$7;
+const tmpFree /*:(number, number, number, number)=>boolean*/ = function $free($$0, $$1, $$2, $$3) {
+  const v /*:number*/ = $$0;
+  const y /*:number*/ = $$1;
+  const C /*:number*/ = $$2;
+  const G /*:number*/ = $$3;
   debugger;
-  const e /*:number*/ = parseInt(d);
-  const i /*:number*/ = parseInt(h);
-  const f /*:number*/ = -e;
-  const j /*:number*/ = -i;
-  const b /*:number*/ = parseInt(a);
-  const g /*:number*/ = f / 2;
-  const k /*:number*/ = j / 3;
-  const o /*:number*/ = parseInt(n);
-  const c /*:number*/ = b / 1;
-  const l /*:number*/ = g * k;
-  const p /*:number*/ = -o;
-  const m /*:number*/ = c + l;
-  const q /*:number*/ = p / 4;
-  const t /*:number*/ = parseInt(s);
-  const r /*:number*/ = m + q;
-  const u /*:number*/ = t / 5;
-  const x /*:number*/ = parseInt(w);
-  const B /*:number*/ = parseInt(A);
-  const v /*:number*/ = r + u;
-  const y /*:number*/ = x / 6;
-  const C /*:number*/ = -B;
-  const G /*:number*/ = parseInt(F);
   const z /*:number*/ = v + y;
   const D /*:number*/ = C / 7;
   const H /*:number*/ = -G;
@@ -146,20 +111,42 @@ const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam$2 /*:primitive*/ = arr[0];
   $(tmpCalleeParam$2);
-  const a$2 /*:primitive*/ = arr[286];
-  const d$2 /*:primitive*/ = arr[181];
-  const h$2 /*:primitive*/ = arr[308];
-  const n$2 /*:primitive*/ = arr[32];
-  const s$2 /*:primitive*/ = arr[86];
-  const w$2 /*:primitive*/ = arr[87];
-  const A$2 /*:primitive*/ = arr[30];
-  const F$2 /*:primitive*/ = arr[356];
-  const L$1 /*:boolean*/ = $frfr(tmpFree, d$2, h$2, a$2, n$2, s$2, w$2, A$2, F$2);
+  const a$1 /*:primitive*/ = arr[286];
+  const d$1 /*:primitive*/ = arr[181];
+  const h$1 /*:primitive*/ = arr[308];
+  const n$1 /*:primitive*/ = arr[32];
+  const s$1 /*:primitive*/ = arr[86];
+  const w$1 /*:primitive*/ = arr[87];
+  const A$1 /*:primitive*/ = arr[30];
+  const F$1 /*:primitive*/ = arr[356];
+  const e$1 /*:number*/ = parseInt(d$1);
+  const i$1 /*:number*/ = parseInt(h$1);
+  const f$1 /*:number*/ = -e$1;
+  const j$1 /*:number*/ = -i$1;
+  const b$1 /*:number*/ = parseInt(a$1);
+  const g$1 /*:number*/ = f$1 / 2;
+  const k$1 /*:number*/ = j$1 / 3;
+  const o$1 /*:number*/ = parseInt(n$1);
+  const c$1 /*:number*/ = b$1 / 1;
+  const l$1 /*:number*/ = g$1 * k$1;
+  const p$1 /*:number*/ = -o$1;
+  const m$3 /*:number*/ = c$1 + l$1;
+  const q$1 /*:number*/ = p$1 / 4;
+  const t$1 /*:number*/ = parseInt(s$1);
+  const r$3 /*:number*/ = m$3 + q$1;
+  const u$1 /*:number*/ = t$1 / 5;
+  const x$1 /*:number*/ = parseInt(w$1);
+  const B$1 /*:number*/ = parseInt(A$1);
+  const v$2 /*:number*/ = r$3 + u$1;
+  const y$2 /*:number*/ = x$1 / 6;
+  const C$2 /*:number*/ = -B$1;
+  const G$2 /*:number*/ = parseInt(F$1);
+  const L$1 /*:boolean*/ = $frfr(tmpFree, v$2, y$2, C$2, G$2);
   if (L$1) {
     break;
   } else {
-    const M$1 /*:unknown*/ = arr.shift();
-    arr.push(M$1);
+    const M$1 /*:primitive*/ = $dotCall($array_shift, arr, `shift`);
+    $dotCall($array_push, arr, `push`, M$1);
   }
 }
 const tmpCalleeParam$1 /*:primitive*/ = arr[0];
@@ -171,29 +158,7 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(d, h, a, n, s, w, A, F) {
-  const e = parseInt(d);
-  const i = parseInt(h);
-  const f = -e;
-  const j = -i;
-  const b = parseInt(a);
-  const g = f / 2;
-  const k = j / 3;
-  const o = parseInt(n);
-  const c = b / 1;
-  const l = g * k;
-  const p = -o;
-  const m = c + l;
-  const q = p / 4;
-  const t = parseInt(s);
-  const r = m + q;
-  const u = t / 5;
-  const x = parseInt(w);
-  const B = parseInt(A);
-  const v = r + u;
-  const y = x / 6;
-  const C = -B;
-  const G = parseInt(F);
+const tmpFree = function $free(v, y, C, G) {
   const z = v + y;
   const D = C / 7;
   const H = -G;
@@ -215,11 +180,36 @@ $(`k`);
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while (true) {
   $(arr[0]);
-  const a$2 = arr[286];
-  if ($frfr(tmpFree, arr[181], arr[308], a$2, arr[32], arr[86], arr[87], arr[30], arr[356])) {
+  const a$1 = arr[286];
+  const d$1 = arr[181];
+  const h$1 = arr[308];
+  const n$1 = arr[32];
+  const s$1 = arr[86];
+  const w$1 = arr[87];
+  const A$1 = arr[30];
+  const F$1 = arr[356];
+  const e$1 = parseInt(d$1);
+  const i$1 = parseInt(h$1);
+  const f$1 = -e$1;
+  const j$1 = -i$1;
+  const b$1 = parseInt(a$1);
+  const g$1 = f$1 / 2;
+  const k$1 = j$1 / 3;
+  const o$1 = parseInt(n$1);
+  const c$1 = b$1 / 1;
+  const l$1 = g$1 * k$1;
+  const p$1 = -o$1;
+  const m$3 = c$1 + l$1;
+  const q$1 = p$1 / 4;
+  const t$1 = parseInt(s$1);
+  const r$3 = m$3 + q$1;
+  const u$1 = t$1 / 5;
+  const x$1 = parseInt(w$1);
+  const B$1 = parseInt(A$1);
+  if ($frfr(tmpFree, r$3 + u$1, x$1 / 6, -B$1, parseInt(F$1))) {
     break;
   } else {
-    arr.push(arr.shift());
+    $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
   }
 }
 $(arr[0]);
@@ -230,46 +220,20 @@ $(arr[0]);
 With rename=true
 
 `````js filename=intro
-const a = function b($$0,$$1,$$2,$$3,$$4,$$5,$$6,$$7 ) {
+const a = function b($$0,$$1,$$2,$$3 ) {
   const c = $$0;
   const d = $$1;
   const e = $$2;
   const f = $$3;
-  const g = $$4;
-  const h = $$5;
-  const i = $$6;
-  const j = $$7;
   debugger;
-  const k = parseInt( c );
-  const l = parseInt( d );
-  const m = -k;
-  const n = -l;
-  const o = parseInt( e );
-  const p = m / 2;
-  const q = n / 3;
-  const r = parseInt( f );
-  const s = o / 1;
-  const t = p * q;
-  const u = -r;
-  const v = s + t;
-  const w = u / 4;
-  const x = parseInt( g );
-  const y = v + w;
-  const z = x / 5;
-  const ba = parseInt( h );
-  const bb = parseInt( i );
-  const bc = y + z;
-  const bd = ba / 6;
-  const be = -bb;
-  const bf = parseInt( j );
-  const bg = bc + bd;
-  const bh = be / 7;
-  const bi = -bf;
-  const bj = bg + bh;
-  const bk = bi / 8;
-  const bl = bj + bk;
-  const bm = bl === 644244;
-  return bm;
+  const g = c + d;
+  const h = e / 7;
+  const i = -f;
+  const j = g + h;
+  const k = i / 8;
+  const l = j + k;
+  const m = l === 644244;
+  return m;
 };
 $( "a" );
 $( "b" );
@@ -282,38 +246,67 @@ $( "h" );
 $( "i" );
 $( "j" );
 $( "k" );
-const bn = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
+const n = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const bo = bn[ 0 ];
-  $( bo );
-  const bp = bn[ 286 ];
-  const bq = bn[ 181 ];
-  const br = bn[ 308 ];
-  const bs = bn[ 32 ];
-  const bt = bn[ 86 ];
-  const bu = bn[ 87 ];
-  const bv = bn[ 30 ];
-  const bw = bn[ 356 ];
-  const bx = by( a, bq, br, bp, bs, bt, bu, bv, bw );
-  if (bx) {
+  const o = n[ 0 ];
+  $( o );
+  const p = n[ 286 ];
+  const q = n[ 181 ];
+  const r = n[ 308 ];
+  const s = n[ 32 ];
+  const t = n[ 86 ];
+  const u = n[ 87 ];
+  const v = n[ 30 ];
+  const w = n[ 356 ];
+  const x = parseInt( q );
+  const y = parseInt( r );
+  const z = -x;
+  const ba = -y;
+  const bb = parseInt( p );
+  const bc = z / 2;
+  const bd = ba / 3;
+  const be = parseInt( s );
+  const bf = bb / 1;
+  const bg = bc * bd;
+  const bh = -be;
+  const bi = bf + bg;
+  const bj = bh / 4;
+  const bk = parseInt( t );
+  const bl = bi + bj;
+  const bm = bk / 5;
+  const bn = parseInt( u );
+  const bo = parseInt( v );
+  const bp = bl + bm;
+  const bq = bn / 6;
+  const br = -bo;
+  const bs = parseInt( w );
+  const bt = bu( a, bp, bq, br, bs );
+  if (bt) {
     break;
   }
   else {
-    const bz = bn.shift();
-    bn.push( bz );
+    const bv = $dotCall( $array_shift, n, "shift" );
+    $dotCall( $array_push, n, "push", bv );
   }
 }
-const ca = bn[ 0 ];
-$( ca );
+const bw = n[ 0 ];
+$( bw );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) inline computed array property read
-- (todo) Calling a static method on an ident that is not global and not recorded in free loop: arr.push
+- (todo) access object property that also exists on prototype? $array_shift
+- (todo) access object property that also exists on prototype? $array_push
+- (todo) can try-escaping support this expr node type? MemberExpression
+- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) regular property access of an ident feels tricky;
 - (todo) maybe we can inline a primitive into a frfr that is called multiple times, too?
+- (todo) Record this phase1.1 as a test case, please (A)
+- (todo) free with zero args, we can eliminate this?
+- (todo) outline any args for tdz
+- (todo) do we want to support Literal as expression statement in free loops?
 
 
 ## Globals

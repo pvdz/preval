@@ -20,9 +20,7 @@ $(y);
 
 
 `````js filename=intro
-const x /*:array*/ = [1, 2, 3];
-x[4] = 5;
-const y /*:array*/ = [`a`, ...x, `b`];
+const y /*:array*/ = [`a`, 1, 2, 3, undefined, 5, `b`];
 $(y);
 `````
 
@@ -31,9 +29,7 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = [1, 2, 3];
-x[4] = 5;
-$([`a`, ...x, `b`]);
+$([`a`, 1, 2, 3, undefined, 5, `b`]);
 `````
 
 
@@ -41,17 +37,15 @@ $([`a`, ...x, `b`]);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2, 3 ];
-a[4] = 5;
-const b = [ "a", ...a, "b" ];
-$( b );
+const a = [ "a", 1, 2, 3, undefined, 5, "b" ];
+$( a );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) Deal with array spreads in arr mutation?
 
 
 ## Globals

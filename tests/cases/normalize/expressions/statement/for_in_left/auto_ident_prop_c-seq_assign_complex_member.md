@@ -33,8 +33,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
     const tmpCompObj /*:unknown*/ = $(b);
-    const tmpCompProp /*:unknown*/ = $(`d`);
-    const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCompProp];
+    const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
+    const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
     varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     varInitAssignLhsComputedRhs.x = tmpAssignMemRhs;
@@ -58,8 +58,8 @@ while (true) {
   } else {
     const varInitAssignLhsComputedObj = $(b);
     const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+    const tmpCalleeParam$3 = $(`d`);
+    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$3];
     varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
     varInitAssignLhsComputedRhs.x = tmpForInNext.value;
   }

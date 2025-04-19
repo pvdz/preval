@@ -511,7 +511,7 @@ export const BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING = new Set([
 
 // TODO: merge the context free lists above into this one
 // List of builtins that ignore their `this` value
-export const contextFreeBuiltin = new Set([
+export const BUILTIN_FUNC_NO_CTX = new Set([
   symbo('Number', 'parseInt'),
   symbo('Number', 'parseFloat'),
   symbo('Number', 'isNaN'),
@@ -523,6 +523,7 @@ export const contextFreeBuiltin = new Set([
   symbo('Array', 'isArray'),
   symbo('Array', 'from'),
   symbo('Array', 'of'),
+  symbo('Buffer', 'from'),
   symbo('String', 'fromCharCode'),
   symbo('String', 'fromCodePoint'),
   symbo('String', 'raw'),

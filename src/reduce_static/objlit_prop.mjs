@@ -7,7 +7,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
-import { BUILTIN_SYMBOLS, contextFreeBuiltin, symbo } from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, BUILTIN_FUNC_NO_CTX, symbo } from '../symbols_builtins.mjs';
 
 export function objlitPropAccess(fdata) {
   group('\n\n\n[objlitPropAccess] Checking for object literals whose props are accessed immediately');
@@ -719,7 +719,7 @@ function _objlitPropAccess(fdata) {
                   newCallee = AST.identifier(pnode.value.name);
                   break;
                 default:
-                  if (contextFreeBuiltin.has(pnode.value.name)) {
+                  if (BUILTIN_FUNC_NO_CTX.has(pnode.value.name)) {
                     todo('Use contextFreeBuiltin to check this callee');
                   }
                   vlog('- The callee is actually constant `' + pnode.value.name + '` and it does use `this`');

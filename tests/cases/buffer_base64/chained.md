@@ -24,7 +24,7 @@ $(f("cGF0aA")); // path
 const f /*:(unknown)=>unknown*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
-  const tmpMCOO /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
+  const tmpMCOO /*:buffer*/ = $Buffer_from(x, `base64`);
   const tmpMCF$1 /*:unknown*/ = tmpMCOO.toString;
   const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO, `toString`, `utf8`);
   return tmpReturnArg;
@@ -39,7 +39,7 @@ $(`path`);
 
 `````js filename=intro
 $(function (x) {
-  const tmpMCOO = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
+  const tmpMCOO = $Buffer_from(x, `base64`);
   const tmpReturnArg = tmpMCOO.toString(`utf8`);
   return tmpReturnArg;
 });
@@ -54,7 +54,7 @@ With rename=true
 const a = function($$0 ) {
   const b = $$0;
   debugger;
-  const c = $dotCall( $Buffer_from, Buffer, "from", b, "base64" );
+  const c = $Buffer_from( b, "base64" );
   const d = c.toString;
   const e = $dotCall( d, c, "toString", "utf8" );
   return e;

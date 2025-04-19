@@ -27,7 +27,7 @@ import {
   SYMBOL_LOOP_UNROLL,
   SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE,
 } from '../symbols_preval.mjs';
-import { BUILTIN_SYMBOLS, contextFreeBuiltin, symbo } from '../symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, BUILTIN_FUNC_NO_CTX, symbo } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode, isNumberValueNode } from '../ast.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
@@ -1015,12 +1015,12 @@ function _typeTrackedTricks(fdata) {
             vlog('  - bail: could not find func meta for', [calleeName]);
             return;
           }
-          vlog('  - can we convert this $dotcall to a regular call? name=', calleeName, ', constant=', funcMeta.isConstant, ', builtin=', funcMeta.isBuiltin, ', builtin+this=', contextFreeBuiltin.has(calleeName));
+          vlog('  - can we convert this $dotcall to a regular call? name=', calleeName, ', constant=', funcMeta.isConstant, ', builtin=', funcMeta.isBuiltin, ', builtin+this=', BUILTIN_FUNC_NO_CTX.has(calleeName));
           if (
             calleeName &&
             (
               (funcMeta.isConstant && funcMeta.varDeclRef.node.type === 'FunctionExpression' && !funcMeta.varDeclRef.node.$p.thisAccess) ||
-              (funcMeta.isBuiltin && contextFreeBuiltin.has(calleeName))
+              (funcMeta.isBuiltin && BUILTIN_FUNC_NO_CTX.has(calleeName))
             )
           ) {
             vlog('  - yes, queued transform to eliminate .apply');
@@ -1372,7 +1372,7 @@ function _typeTrackedTricks(fdata) {
               if (
                 context?.type === 'Identifier' &&
                 (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) ||
-                (objMeta.isBuiltin && contextFreeBuiltin.has(contextName)) ||
+                (objMeta.isBuiltin && BUILTIN_FUNC_NO_CTX.has(contextName)) ||
                 // Or if the context is known to be a function, it should be fine to fold it up since $dotcall is essentially doing .call()
                 BUILTIN_SYMBOLS.get(contextName)?.typings.mustBeType === 'function'
               ) {
@@ -1439,7 +1439,7 @@ function _typeTrackedTricks(fdata) {
               if (
                 context?.type === 'Identifier' &&
                 (objMeta.isConstant && !objMeta.varDeclRef.node.$p.thisAccess) ||
-                (objMeta.isBuiltin && contextFreeBuiltin.has(contextName)) ||
+                (objMeta.isBuiltin && BUILTIN_FUNC_NO_CTX.has(contextName)) ||
                 // Or if the context is known to be a function, it should be fine to fold it up since $dotcall is essentially doing .call()
                 BUILTIN_SYMBOLS.get(contextName)?.typings.mustBeType === 'function'
               ) {

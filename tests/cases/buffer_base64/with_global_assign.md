@@ -31,7 +31,7 @@ const f /*:(unknown)=>unknown*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   unknown = x;
-  const tmp /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
+  const tmp /*:buffer*/ = $Buffer_from(x, `base64`);
   const tmpMCF$1 /*:unknown*/ = tmp.toString;
   const tmp2 /*:unknown*/ = $dotCall(tmpMCF$1, tmp, `toString`, `utf8`);
   return tmp2;
@@ -39,9 +39,6 @@ const f /*:(unknown)=>unknown*/ = function ($$0) {
 let unknown /*:unknown*/ = $(1);
 $(f);
 unknown = `cGF0aA`;
-const tmpBufFrom /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, `cGF0aA`, `base64`);
-const tmpMCF$2 /*:unknown*/ = tmpBufFrom.toString;
-$dotCall(tmpMCF$2, tmpBufFrom, `toString`, `utf8`);
 $(`path`);
 $(unknown);
 `````
@@ -53,15 +50,13 @@ $(unknown);
 `````js filename=intro
 const f = function (x) {
   unknown = x;
-  const tmp = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
+  const tmp = $Buffer_from(x, `base64`);
   const tmp2 = tmp.toString(`utf8`);
   return tmp2;
 };
 let unknown = $(1);
 $(f);
 unknown = `cGF0aA`;
-const tmpBufFrom = $dotCall($Buffer_from, Buffer, `from`, `cGF0aA`, `base64`);
-tmpBufFrom.toString(`utf8`);
 $(`path`);
 $(unknown);
 `````
@@ -75,7 +70,7 @@ const a = function($$0 ) {
   const b = $$0;
   debugger;
   c = b;
-  const d = $dotCall( $Buffer_from, Buffer, "from", b, "base64" );
+  const d = $Buffer_from( b, "base64" );
   const e = d.toString;
   const f = $dotCall( e, d, "toString", "utf8" );
   return f;
@@ -83,9 +78,6 @@ const a = function($$0 ) {
 let c = $( 1 );
 $( a );
 c = "cGF0aA";
-const g = $dotCall( $Buffer_from, Buffer, "from", "cGF0aA", "base64" );
-const h = g.toString;
-$dotCall( h, g, "toString", "utf8" );
 $( "path" );
 $( c );
 `````
@@ -96,9 +88,6 @@ $( c );
 
 - (todo) type trackeed tricks can possibly support static $Buffer_from
 - (todo) access object property that also exists on prototype? $buffer_toString
-- (todo) infertyping on a non-ident? is that a crash or bug? MemberExpression
-- (todo) when we are still receiving method calls in typed tracked tricks?
-- (todo) Encountered non-ident as callee
 
 
 ## Globals

@@ -133,19 +133,18 @@ function _buffer_base64(fdata) {
     vlog('  - Checking step 1: Buffer.from(param, base64)');
     // Find the `var x = Buffer.from(param, 'base64')` part
     // Note: we will invariably convert Buffer.from into a symbo ($Buffer_from)
+    // Note: any dotcall with buffer_from will be forced to a regular call
     // So that's the pattern we'll be looking for, even if technically both can appear
     if (funcBody[index].type !== 'VarStatement') return vlog('  - bail: step 1 is not a var statement');
     const init1 = funcBody[index].init;
     if (init1.type !== 'CallExpression') return vlog('  - bail: step 1 is not a call');
     if (init1.callee.type !== 'Identifier') return vlog('  - bail: step 1 is not an ident call??');
-    if (init1.callee.name !== SYMBOL_DOTCALL) return vlog('  - bail: step 1 is not dotcall');
+    if (init1.callee.name !== symbo('Buffer', 'from')) return vlog('  - bail: step 1 is not buffer.from');
+    if (init1.arguments.length !== 2) return vlog('  - bail: step 1 dotcall does not have five args');
     if (init1.arguments[0].type !== 'Identifier') return vlog('  - bail: step 1 call arg 1 is not an ident');
-    if (init1.arguments[0].name !== symbo('Buffer', 'from')) return vlog('  - bail: step 1 is not dotcalling buffer.from', init1.arguments[0].name);
-    if (init1.arguments.length !== 5) return vlog('  - bail: step 1 dotcall does not have five args'); // 3 base + 2 for actual call
-    if (init1.arguments[3].type !== 'Identifier') return vlog('  - bail: step 1 call arg 1 is not an ident');
-    if (init1.arguments[3].name !== paramName) return vlog('  - bail: step 1 call arg is not param');
-    if (!AST.isStringLiteral(init1.arguments[4])) return vlog('  - bail: step 1 call arg 2 is not a string');
-    if (AST.getPrimitiveValue(init1.arguments[4]) !== 'base64') return vlog('  - bail: step 1 call arg 2 is not "base64"');
+    if (init1.arguments[0].name !== paramName) return vlog('  - bail: step 1 call arg is not param');
+    if (!AST.isStringLiteral(init1.arguments[1])) return vlog('  - bail: step 1 call arg 2 is not a string');
+    if (AST.getPrimitiveValue(init1.arguments[1]) !== 'base64') return vlog('  - bail: step 1 call arg 2 is not "base64"');
     // Ok, this is some form of `const buf = Buffer.from(param, "base64");`
 
     if (funcBody[index+1]?.type !== 'VarStatement') return vlog('  - bail: missing tmp var statement');

@@ -71,7 +71,7 @@ pcode =
     [ if r6 -
       [
         [ r7 + r5 - - 29 ]
-        [ r8 dotcall $String_fromCharCode {String -} r7 - ]
+        [ r8 call $String_fromCharCode {- undefined} r7 - ]
         [ r9 + r1 - r8 - ]
         [ return r9 - ]
       ] [

@@ -2992,20 +2992,17 @@ export function isBufferConvertPattern(stmt1, stmt2, stmt3, paramNameOrPrim) {
   const init1 = stmt1.init;
   if (init1.type !== 'CallExpression') return false;
   if (init1.callee.type !== 'Identifier') return false;
-  if (init1.callee.name !== SYMBOL_DOTCALL) return false;
-  if (init1.arguments.length === 3) return false;
-  if (init1.arguments[0].type !== 'Identifier') return false;
-  if (init1.arguments[0].name !== symbo('Buffer', 'from')) return false;
-  // Ignore second/third arg. We don't care so much (though we should preserve the second arg)
+  if (init1.arguments.length === 0) return false;
+  if (init1.callee.name !== symbo('Buffer', 'from')) return false;
   // If param arg is `true` then the arg must be a primitive of any kind. Otherwise it must match the given param name.
   if (paramNameOrPrim === true) {
-    if (!isPrimitive(init1.arguments[3])) return false;
+    if (!isPrimitive(init1.arguments[0])) return false;
   } else {
-    if (init1.arguments[3].type !== 'Identifier') return false;
-    if (init1.arguments[3].name !== paramNameOrPrim) return false;
+    if (init1.arguments[0].type !== 'Identifier') return false;
+    if (init1.arguments[0].name !== paramNameOrPrim) return false;
   }
   // All args beyond the fourth must be primitives we can predict, regardless
-  if (!init1.arguments.every((anode,i) => i <= 3 || isPrimitive(anode))) return false;
+  if (!init1.arguments.every(anode => isPrimitive(anode))) return false;
 
   // Verify that the second statement is something like `const tmp = id1.toString;`
   // (In some future another transform will eliminate this and use the $buffer_tostring symbol...)

@@ -1,7 +1,7 @@
 import walk from '../../lib/walk.mjs';
 
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, ERR_MSG_ILLEGAL_ARRAY_SPREAD, ERR_MSG_ILLEGAL_CALLEE, FRESH, OLD, RED, BLUE, RESET, } from '../constants.mjs';
-import { BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING, BUILTIN_FUNCS_NO_CTXT_NON_COERCE, BUILTIN_SYMBOLS, FUNCTION, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, protoToInstName, symbo, } from '../symbols_builtins.mjs';
+import { BUILTIN_FUNC_NO_CTX, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING, BUILTIN_FUNCS_NO_CTXT_NON_COERCE, BUILTIN_SYMBOLS, FUNCTION, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, protoToInstName, symbo, } from '../symbols_builtins.mjs';
 import { BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_FRFR, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
 import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
@@ -3437,6 +3437,22 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         if (ASSUME_BUILTINS) {
+
+          if (isDotcall && BUILTIN_FUNC_NO_CTX.has(funcName)) {
+            rule('A builtin function known to ignore its context should not be dotcalled');
+            example(`${SYMBOL_DOTCALL}(${symbo('Array', 'from')}, Array, "from", x);`, `Array; ${symbo('Array', 'from')}(x);`);
+            before(body[i]);
+
+            node.callee = node.arguments.shift();
+            body.splice(i, 0, AST.expressionStatement(node.arguments.shift()));
+            node.arguments.shift(); // prop name of dotcall
+
+            after(body[i]);
+            after(body[i+1]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
           // First eliminate excessive args, or first args that are spreads
           switch (funcName) {
             case 'isNaN':
@@ -9663,7 +9679,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     }
 
     if (body.length > i+3) {
-      const stmt1 = body[i];   // const buf = $dotCall($Buffer_from, Buffer, 'from', param, 'base64')
+      const stmt1 = body[i];   // const buf = $Buffer_from(param, 'base64')
       const stmt2 = body[i+1]; // const tmp = buf.toString;
       const stmt3 = body[i+2]; // const ret = $dotCall(tmp, buf, 'toString', 'utf8')
       if (AST.isBufferConvertPattern(stmt1, stmt2, stmt3, true)) {
@@ -9677,7 +9693,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         before(body.slice(i, i+3));
 
         // The pattern was confirmed so the init must be a dotcall with primitve args
-        const args1 = stmt1.init.arguments.slice(3).map(anode => AST.getPrimitiveValue(anode));
+        const args1 = stmt1.init.arguments.map(anode => AST.getPrimitiveValue(anode));
         // Last init as well
         const args3 = stmt3.init.arguments.slice(3).map(anode => AST.getPrimitiveValue(anode));
         // Do the conversion now

@@ -338,7 +338,11 @@ function processAttempt(fdata) {
 
         const values = arrayLiteralNode.elements.map(enode => enode && AST.cloneSimple(enode));
         argArrays.forEach(arr => {
-          arr.elements.forEach(enode => values.push(enode && AST.cloneSimple(enode)));
+          const elements = arr.elements;
+          for (let i=0; i<elements.length; ++i) {
+            const enode = elements[i];
+            values.push(enode && AST.cloneSimple(enode));
+          }
         });
 
         const finalNode = AST.arrayExpression(values);

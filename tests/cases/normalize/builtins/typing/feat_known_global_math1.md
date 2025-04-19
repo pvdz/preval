@@ -113,10 +113,10 @@ $( "number" );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Math_atan2
 - (todo) type trackeed tricks can possibly support static $Math_asin
 - (todo) type trackeed tricks can possibly support static $Math_asinh
 - (todo) type trackeed tricks can possibly support static $Math_atan
+- (todo) type trackeed tricks can possibly support static $Math_atan2
 - (todo) type trackeed tricks can possibly support static $Math_atanh
 - (todo) type trackeed tricks can possibly support static $Math_cbrt
 - (todo) type trackeed tricks can possibly support static $Math_ceil

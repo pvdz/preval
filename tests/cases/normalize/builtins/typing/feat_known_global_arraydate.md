@@ -50,7 +50,7 @@ const tmpMCP$9 /*:unknown*/ = $spy(`Date.parse`);
 $coerce(tmpMCP$9, `string`);
 $(`number`);
 const tmpMCP$11 /*:unknown*/ = $spy(`JSON.stringify`);
-const tmpUnaryArg$11 /*:primitive*/ = $dotCall($JSON_stringify, JSON, `stringify`, tmpMCP$11);
+const tmpUnaryArg$11 /*:primitive*/ = $JSON_stringify(tmpMCP$11);
 const tmpCalleeParam$11 /*:string*/ = typeof tmpUnaryArg$11;
 $(tmpCalleeParam$11);
 const tmpMCP$13 /*:unknown*/ = $spy(`Math.abs`);
@@ -81,7 +81,7 @@ $coerce($spy(`Date.UTC`), `number`);
 $(`number`);
 $coerce($spy(`Date.parse`), `string`);
 $(`number`);
-const tmpUnaryArg$11 = $dotCall($JSON_stringify, JSON, `stringify`, $spy(`JSON.stringify`));
+const tmpUnaryArg$11 = $JSON_stringify($spy(`JSON.stringify`));
 $(typeof tmpUnaryArg$11);
 $coerce($spy(`Math.abs`), `number`);
 $(`number`);
@@ -112,7 +112,7 @@ const c = $spy( "Date.parse" );
 $coerce( c, "string" );
 $( "number" );
 const d = $spy( "JSON.stringify" );
-const e = $dotCall( $JSON_stringify, JSON, "stringify", d );
+const e = $JSON_stringify( d );
 const f = typeof e;
 $( f );
 const g = $spy( "Math.abs" );
@@ -130,13 +130,13 @@ $( "number" );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Date_UTC
-- (todo) type trackeed tricks can possibly support static $JSON_stringify
 - (todo) type trackeed tricks can possibly support static $Array_from
 - (todo) type trackeed tricks can possibly support static $Array_isArray
 - (todo) type trackeed tricks can possibly support static $Array_of
 - (todo) type trackeed tricks can possibly support static $Date_now
+- (todo) type trackeed tricks can possibly support static $Date_UTC
 - (todo) type trackeed tricks can possibly support static $Date_parse
+- (todo) type trackeed tricks can possibly support static $JSON_stringify
 - (todo) type trackeed tricks can possibly support static $Math_abs
 - (todo) type trackeed tricks can possibly support static $Math_acos
 - (todo) type trackeed tricks can possibly support static $Math_acosh

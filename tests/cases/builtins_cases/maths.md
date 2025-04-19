@@ -36,14 +36,14 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
   const zero /*:number*/ = 0 * twoten;
   const divvy /*:number*/ = zero / 695;
   const sinned /*:number*/ = $Math_sin(divvy);
-  const tmpRet /*:number*/ = 1000000 * sinned;
+  const lottasin /*:number*/ = 1000000 * sinned;
+  const minned /*:number*/ = $Math_min(10000, lottasin);
+  const tmpRet /*:number*/ = $Math_max(-10000, minned);
   return tmpRet;
 };
 const tmpBinLhs /*:unknown*/ = $(120);
 const ten /*:number*/ = tmpBinLhs / 12;
-const lottasin /*:number*/ = $frfr(tmpFree, ten);
-const minned /*:number*/ = $dotCall($Math_min, Math, `min`, 10000, lottasin);
-const maxed /*:number*/ = $dotCall($Math_max, Math, `max`, -10000, minned);
+const maxed /*:number*/ = $frfr(tmpFree, ten);
 $(maxed);
 `````
 
@@ -55,10 +55,10 @@ $(maxed);
 const tmpFree = function $free(ten$1) {
   const twoten = $Math_pow(2, ten$1);
   const sinned = $Math_sin((0 * twoten) / 695);
-  const tmpRet = 1000000 * sinned;
+  const tmpRet = $Math_max(-10000, $Math_min(10000, 1000000 * sinned));
   return tmpRet;
 };
-$($dotCall($Math_max, Math, `max`, -10000, $dotCall($Math_min, Math, `min`, 10000, $frfr(tmpFree, $(120) / 12))));
+$($frfr(tmpFree, $(120) / 12));
 `````
 
 
@@ -74,24 +74,24 @@ const a = function b($$0 ) {
   const f = e / 695;
   const g = $Math_sin( f );
   const h = 1000000 * g;
-  return h;
+  const i = $Math_min( 10000, h );
+  const j = $Math_max( -10000, i );
+  return j;
 };
-const i = $( 120 );
-const j = i / 12;
-const k = l( a, j );
-const m = $dotCall( $Math_min, Math, "min", 10000, k );
-const n = $dotCall( $Math_max, Math, "max", -10000, m );
-$( n );
+const k = $( 120 );
+const l = k / 12;
+const m = n( a, l );
+$( m );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Math_min
-- (todo) type trackeed tricks can possibly support static $Math_max
 - (todo) type trackeed tricks can possibly support static $Math_pow
 - (todo) type trackeed tricks can possibly support static $Math_sin
+- (todo) type trackeed tricks can possibly support static $Math_min
+- (todo) type trackeed tricks can possibly support static $Math_max
 
 
 ## Globals

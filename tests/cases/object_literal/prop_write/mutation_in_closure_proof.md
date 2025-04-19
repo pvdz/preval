@@ -51,7 +51,7 @@ const f /*:()=>undefined*/ = function () {
       return `intercepted`;
     },
   };
-  $dotCall($Object_defineProperty, Object, `defineProperty`, x, `y`, tmpMCP);
+  $Object_defineProperty(x, `y`, tmpMCP);
   $(`b`);
   return undefined;
 };
@@ -76,7 +76,7 @@ const f = function () {
     $(`yeeting`);
     delete x.y;
   }
-  $dotCall($Object_defineProperty, Object, `defineProperty`, x, `y`, {
+  $Object_defineProperty(x, `y`, {
     set($$0) {},
     get() {
       return `intercepted`;
@@ -116,7 +116,7 @@ const a = function() {
       return "intercepted";
     },
   };
-  $dotCall( $Object_defineProperty, Object, "defineProperty", c, "y", d );
+  $Object_defineProperty( c, "y", d );
   $( "b" );
   return undefined;
 };

@@ -999,8 +999,7 @@ export function getCleanTypingObject() {
     mustBeValue: undefined, // undefined|null|<primitive>: must be exactly this value.
     bang: undefined, // undefined|bool. Was this explicitly the result of applying `!x`? When false, known not to always be the case.
 
-    /** @deprecated in favor of .sym */
-    builtinTag: undefined, // string. When builtin, this string represents a unique id for the built-in resource (like `Number.parseInt` or `Array#slice`). There's a lot to implement here, sigh.
+    // TOOD: drop .sym
     sym: undefined, // -> symbol, like $string_replace
 
     oneBitAnded: undefined, // number. If set, this value is the result of applying the bitwise AND operator and this single bit value to an arbitrary value. In other words, either this bit is set or unset on this value.
@@ -1028,7 +1027,6 @@ export function getUnknownTypingObject(toInit) {
     mustBeValue: null,
     bang: false,
 
-    builtinTag: false,
     sym: false,
 
     oneBitAnded: false,
@@ -1052,7 +1050,6 @@ export function createTypingObject({
   mustBeValue = null,
   bang = false,
 
-  builtinTag = false,
   sym = false,
 
   oneBitAnded = false,
@@ -1078,7 +1075,6 @@ export function createTypingObject({
     mustBeValue,
     bang,
 
-    builtinTag,
     sym,
 
     oneBitAnded,
@@ -1791,7 +1787,6 @@ export function mergeTyping(from, into) {
       mustBeTruthy,
       mustBeValue,
       bang,
-      builtinTag,
       sym,
       oneBitAnded,
       anded,
@@ -1814,7 +1809,6 @@ export function mergeTyping(from, into) {
       mustBeTruthy,
       mustBeValue,
       bang,
-      builtinTag,
       sym,
       oneBitAnded,
       anded,
@@ -1897,21 +1891,6 @@ export function mergeTyping(from, into) {
     into.bang = from.bang;
   }
   ASSERT([undefined, true, false].includes(into.bang), 'typing.bang is an enum of undefined or bool', into.bang);
-
-  if (from.builtinTag === undefined || into.builtinTag === false) {
-    // Noop. Either the input was undetermined or the result was already known not to be certainly some tag.
-  } else if (into.builtinTag === undefined) {
-    // The output was not set yet so set it to the input
-    into.builtinTag = from.builtinTag;
-  } else {
-    // The input and output were set. If they are the same nothing happens. If they differ then the output is now false ("cannot be determined")
-    into.builtinTag = false;
-  }
-  ASSERT(
-    into.builtinTag === undefined || into.builtinTag === false || typeof into.builtinTag === 'string',
-    'typing.builtinTag must be undefined, false, or a string',
-    into.builtinTag,
-  );
 
   if (from.oneBitAnded === undefined || into.oneBitAnded === false) {
     // Noop. Either the input was undetermined or the result was already known not to be certainly anded.

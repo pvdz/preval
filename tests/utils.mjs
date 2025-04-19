@@ -344,14 +344,28 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsT
   const settledOutput = printStack(evalled.$settled);
   const denormOutput = printStack(evalled.$denorm);
 
-  const preEvalResult = inputOutput === preOutput ? ' Same' : ' BAD!%\n' + inputOutput;
-  const normalizedEvalResult = inputOutput === normalizedOutput ? ' Same' : ' BAD!?\n' + normalizedOutput;
+  function showDiffInOutput(input, output, badPrefix) {
+    if (input === output) return ' Same\n\n';
+
+    const inarr = input.split('\n');
+    const outarr = output.split('\n');
+
+    const mapped = outarr.map((line, i) => {
+      if (inarr[i] === line) return ' -  ' + line.slice(3);
+      return ' - !' + line.slice(3);
+    });
+
+    return ' ' + badPrefix + '\n' + mapped.join('\n') + '\n\n';
+  }
+
+  const preEvalResult = showDiffInOutput(inputOutput, preOutput, 'BAD!%');
+  const normalizedEvalResult = showDiffInOutput(inputOutput, normalizedOutput, 'BAD!?');
   const finalEvalResult = skipFinal
     ? ''
-    : 'Post settled calls:' + (inputOutput === settledOutput ? ' Same\n\n' : ' BAD!!\n' + settledOutput + '\n\n');
+    : 'Post settled calls:' + showDiffInOutput(inputOutput, settledOutput, 'BAD!!');
   const denormEvalResult = skipFinal
     ? ''
-    : 'Denormalized calls:' + (inputOutput === denormOutput ? ' Same\n' : ' BAD!!\n' + denormOutput + '\n');
+    : 'Denormalized calls:' + showDiffInOutput(inputOutput, denormOutput, 'BAD!!');
   const hasError = !(inputOutput === preOutput && inputOutput === normalizedOutput && (skipFinal || inputOutput === settledOutput) && (skipFinal || inputOutput === denormOutput));
 
   // Only show this when the transforms mismatch the input. Otherwise ignore.
@@ -393,15 +407,9 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsT
       : ''
     ) +
     '\n\n\n## Runtime Outcome\n\n\n' +
-    'Should call `$` with:\n' +
-    inputOutput +
-    '\n\n' +
-    'Pre normalization calls:' +
-    preEvalResult +
-    '\n\n' +
-    'Normalized calls:' +
-    normalizedEvalResult +
-    '\n\n' +
+    'Should call `$` with:\n' + inputOutput + '\n\n' +
+    'Pre normalization calls:' + preEvalResult +
+    'Normalized calls:' + normalizedEvalResult +
     finalEvalResult +
     denormEvalResult +
     (!hasError && (preEvalResult_inv || normalizedEvalResult_inv || finalEvalResult_inv) ?
@@ -412,9 +420,8 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal, globalsT
     (!hasError ? normalizedEvalResult_inv : '') +
     (!hasError ? finalEvalResult_inv : '') +
     (!hasError ? denormEvalResult_inv : '') +
-    (result_pcode ? result_pcode : '') +
-    ''
-  );
+    (result_pcode ? result_pcode : '')
+  ).trim()+'\n';
 }
 
 export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols, pcodeData, todos}, CONFIG) {
@@ -482,7 +489,7 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
 
   if (CONFIG.trimDollar) mdBody = mdBody.replace(/\$\d+/g, '');
 
-  return '' + mdHead + '\n\n' + mdInput + mdBody;
+  return ('' + mdHead + '\n\n' + mdInput + mdBody).trim() + '\n';
 }
 
 function createOpenRefsState(globallyUniqueNamingRegistry) {

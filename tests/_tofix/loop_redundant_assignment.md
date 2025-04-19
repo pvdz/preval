@@ -69,16 +69,16 @@ if ($) {
   const tmpBinBothLhs$30 /*:unknown*/ = A[0];
   const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
   if (tmpIfTest$10) {
-    const tmpCallCompVal /*:unknown*/ = A.slice;
-    B = $dotCall(tmpCallCompVal, A, `slice`, 1);
+    const tmpMCF /*:unknown*/ = A.slice;
+    B = $dotCall(tmpMCF, A, `slice`, 1);
   } else {
     B = A;
   }
   const tmpBinBothLhs$32 /*:unknown*/ = tmpClusterSSA__0x26b289.length;
   const tmpBinBothRhs$32 /*:unknown*/ = B.length;
   tmpClusterSSA__0x30c47e = tmpBinBothLhs$32 - tmpBinBothRhs$32;
-  const tmpCallCompVal$1 /*:unknown*/ = tmpClusterSSA__0x26b289.indexOf;
-  tmpClusterSSA__0x2a669d = $dotCall(tmpCallCompVal$1, tmpClusterSSA__0x26b289, `indexOf`, B, tmpClusterSSA__0x30c47e);
+  const tmpMCF$1 /*:unknown*/ = tmpClusterSSA__0x26b289.indexOf;
+  tmpClusterSSA__0x2a669d = $dotCall(tmpMCF$1, tmpClusterSSA__0x26b289, `indexOf`, B, tmpClusterSSA__0x30c47e);
   tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
   if (tmpClusterSSA__0x5dc746) {
     tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
@@ -88,8 +88,8 @@ if ($) {
       const tmpIfTest$12 /*:boolean*/ = tmpBinBothLhs$34 === tmpBinBothRhs$34;
       if (tmpIfTest$12) {
       } else {
-        const tmpCallCompVal$3 /*:unknown*/ = A.indexOf;
-        $dotCall(tmpCallCompVal$3, A, `indexOf`, `.`);
+        const tmpMCF$3 /*:unknown*/ = A.indexOf;
+        $dotCall(tmpMCF$3, A, `indexOf`, `.`);
       }
     } else {
     }

@@ -83,13 +83,13 @@ Should call `$` with:
 Pre normalization calls: Same
 
 Normalized calls: BAD!?
- - 1: true
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ -  1: true
+ - !eval returned: ('<crash[ <ref> is not defined ]>')
 
 Post settled calls: BAD!!
- - 1: true
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ -  1: true
+ - !eval returned: ('<crash[ <ref> is not defined ]>')
 
 Denormalized calls: BAD!!
- - 1: true
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ -  1: true
+ - !eval returned: ('<crash[ <ref> is not defined ]>')

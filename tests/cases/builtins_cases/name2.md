@@ -69,9 +69,9 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Post settled calls: BAD!!
- - 1: 'win'
- - eval returned: undefined
+ - !1: 'win'
+ - !eval returned: undefined
 
 Denormalized calls: BAD!!
- - 1: 'win'
- - eval returned: undefined
+ - !1: 'win'
+ - !eval returned: undefined

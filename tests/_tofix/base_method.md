@@ -38,8 +38,8 @@ const f /*:(unknown)=>unknown*/ = function ($$0) {
   $(`no`);
   $(`inlining`);
   $(`please`);
-  const tmpCallCompVal /*:unknown*/ = x.toString;
-  const y /*:unknown*/ = $dotCall(tmpCallCompVal, x, `toString`);
+  const tmpMCF /*:unknown*/ = x.toString;
+  const y /*:unknown*/ = $dotCall(tmpMCF, x, `toString`);
   return y;
 };
 const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];

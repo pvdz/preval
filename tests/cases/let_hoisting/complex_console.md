@@ -94,22 +94,22 @@ Should call `$` with:
 Pre normalization calls: Same
 
 Normalized calls: BAD!?
- - 1: 'called $console_log:', 'ok'
- - 2: undefined
- - 3: 'do not inline me'
- - 4: 'do not inline me'
- - eval returned: undefined
+ - !1: 'called $console_log:', 'ok'
+ - !2: undefined
+ -  3: 'do not inline me'
+ - !4: 'do not inline me'
+ - !eval returned: undefined
 
 Post settled calls: BAD!!
- - 1: 'called $console_log:', 'ok'
- - 2: undefined
- - 3: 'do not inline me'
- - 4: 'do not inline me'
- - eval returned: undefined
+ - !1: 'called $console_log:', 'ok'
+ - !2: undefined
+ -  3: 'do not inline me'
+ - !4: 'do not inline me'
+ - !eval returned: undefined
 
 Denormalized calls: BAD!!
- - 1: 'called $console_log:', 'ok'
- - 2: undefined
- - 3: 'do not inline me'
- - 4: 'do not inline me'
- - eval returned: undefined
+ - !1: 'called $console_log:', 'ok'
+ - !2: undefined
+ -  3: 'do not inline me'
+ - !4: 'do not inline me'
+ - !eval returned: undefined

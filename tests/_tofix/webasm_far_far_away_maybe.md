@@ -26,7 +26,7 @@ l=(b=b.split` `.flatMap(t=>t>-1?[65,t]:107+'-*/'.indexOf(t)))
 
 
 `````js filename=intro
-const tmpCalleeParam$5 /*:(unknown)=>unknown*/ = function ($$0) {
+const tmpMCP$3 /*:(unknown)=>unknown*/ = function ($$0) {
   const t /*:unknown*/ = $$0;
   debugger;
   const tmpIfTest /*:boolean*/ = t > -1;
@@ -41,14 +41,14 @@ const tmpCalleeParam$5 /*:(unknown)=>unknown*/ = function ($$0) {
 };
 const c /*:()=>unknown*/ = function () {
   debugger;
-  const tmpCallCompVal /*:unknown*/ = WebAssembly.instantiate;
+  const tmpMCF /*:unknown*/ = WebAssembly.instantiate;
   const tmpNewCallee /*:unknown*/ = Int8Array;
-  const tmpCallObj$1 /*:array*/ = [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`];
-  const tmpClusterSSA_b /*:array*/ = $dotCall($array_flatMap, tmpCallObj$1, `flatMap`, tmpCalleeParam$5);
+  const tmpMCOO$1 /*:array*/ = [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`];
+  const tmpClusterSSA_b /*:array*/ = $dotCall($array_flatMap, tmpMCOO$1, `flatMap`, tmpMCP$3);
   const tmpBinLhs /*:number*/ = tmpClusterSSA_b.length;
   const tmpClusterSSA_l /*:number*/ = tmpBinLhs + 4;
   const tmpArrElement$37 /*:number*/ = tmpClusterSSA_l - 2;
-  const tmpCalleeParam$1 /*:array*/ = [
+  const tmpCalleeParam /*:array*/ = [
     ,
     97,
     115,
@@ -82,14 +82,14 @@ const c /*:()=>unknown*/ = function () {
     ...tmpClusterSSA_b,
     11,
   ];
-  const tmpCalleeParam /*:object*/ = new tmpNewCallee(tmpCalleeParam$1);
-  const tmpCallComplexCallee /*:unknown*/ = $dotCall(tmpCallCompVal, WebAssembly, `instantiate`, tmpCalleeParam);
-  const tmpCalleeParam$7 /*:unknown*/ = c();
-  const tmpCompObj$1 /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$7);
+  const tmpMCP /*:object*/ = new tmpNewCallee(tmpCalleeParam);
+  const tmpCallComplexCallee /*:unknown*/ = $dotCall(tmpMCF, WebAssembly, `instantiate`, tmpMCP);
+  const tmpCalleeParam$1 /*:unknown*/ = c();
+  const tmpCompObj$1 /*:unknown*/ = tmpCallComplexCallee(tmpCalleeParam$1);
   const tmpCompObj /*:unknown*/ = tmpCompObj$1.instance;
-  const tmpCallObj /*:unknown*/ = tmpCompObj.exports;
-  const tmpCallCompVal$7 /*:unknown*/ = tmpCallObj[``];
-  const tmpReturnArg /*:unknown*/ = $dotCall(tmpCallCompVal$7, tmpCallObj, undefined);
+  const tmpMCOO /*:unknown*/ = tmpCompObj.exports;
+  const tmpMCF$7 /*:unknown*/ = tmpMCOO[``];
+  const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF$7, tmpMCOO, undefined);
   return tmpReturnArg;
 };
 `````
@@ -99,7 +99,7 @@ const c /*:()=>unknown*/ = function () {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$5 = function (t) {
+const tmpMCP$3 = function (t) {
   if (t > -1) {
     const tmpClusterSSA_tmpReturnArg$1 = [65, t];
     return tmpClusterSSA_tmpReturnArg$1;
@@ -110,12 +110,12 @@ const tmpCalleeParam$5 = function (t) {
   }
 };
 const c = function () {
-  const tmpCallCompVal = WebAssembly.instantiate;
+  const tmpMCF = WebAssembly.instantiate;
   const tmpNewCallee = Int8Array;
-  const tmpClusterSSA_b = $dotCall($array_flatMap, [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`], `flatMap`, tmpCalleeParam$5);
+  const tmpClusterSSA_b = $dotCall($array_flatMap, [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`], `flatMap`, tmpMCP$3);
   const tmpClusterSSA_l = tmpClusterSSA_b.length + 4;
   const tmpArrElement$37 = tmpClusterSSA_l - 2;
-  const tmpCalleeParam$1 = [
+  const tmpCalleeParam = [
     ,
     97,
     115,
@@ -149,9 +149,9 @@ const c = function () {
     ...tmpClusterSSA_b,
     11,
   ];
-  const tmpCallComplexCallee = $dotCall(tmpCallCompVal, WebAssembly, `instantiate`, new tmpNewCallee(tmpCalleeParam$1));
-  const tmpCallObj = tmpCallComplexCallee(c()).instance.exports;
-  const tmpReturnArg = tmpCallObj[``]();
+  const tmpCallComplexCallee = $dotCall(tmpMCF, WebAssembly, `instantiate`, new tmpNewCallee(tmpCalleeParam));
+  const tmpMCOO = tmpCallComplexCallee(c()).instance.exports;
+  const tmpReturnArg = tmpMCOO[``]();
   return tmpReturnArg;
 };
 `````
@@ -203,7 +203,7 @@ const g = function() {
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_flatMap
-- (todo) arr mutation may be able to inline this method: tmpCallCompVal$3
+- (todo) arr mutation may be able to inline this method: tmpMCF$3
 - (todo) arr mutation may be able to inline this method: $array_flatMap
 - (todo) support $array_flatmap with arguments?
 

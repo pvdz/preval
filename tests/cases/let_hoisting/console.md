@@ -77,22 +77,22 @@ Should call `$` with:
 Pre normalization calls: Same
 
 Normalized calls: BAD!?
- - 1: 1
- - 2: 'called $console_log:', 'hi'
- - 3: 2
- - 4: 2, 'f'
- - eval returned: undefined
+ -  1: 1
+ - !2: 'called $console_log:', 'hi'
+ - !3: 2
+ - !4: 2, 'f'
+ - !eval returned: undefined
 
 Post settled calls: BAD!!
- - 1: 1
- - 2: 'called $console_log:', 'hi'
- - 3: 2
- - 4: 2, 'f'
- - eval returned: undefined
+ -  1: 1
+ - !2: 'called $console_log:', 'hi'
+ - !3: 2
+ - !4: 2, 'f'
+ - !eval returned: undefined
 
 Denormalized calls: BAD!!
- - 1: 1
- - 2: 'called $console_log:', 'hi'
- - 3: 2
- - 4: 2, 'f'
- - eval returned: undefined
+ -  1: 1
+ - !2: 'called $console_log:', 'hi'
+ - !3: 2
+ - !4: 2, 'f'
+ - !eval returned: undefined

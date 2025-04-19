@@ -64,8 +64,8 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1) {
   if (arguments_x) {
     return arguments_x;
   } else {
-    const tmpCallCompVal /*:unknown*/ = func.THIS_IS_AN_EXPANDO;
-    const expando_result /*:unknown*/ = $dotCall(tmpCallCompVal, func, `THIS_IS_AN_EXPANDO`, arrval);
+    const tmpMCF /*:unknown*/ = func.THIS_IS_AN_EXPANDO;
+    const expando_result /*:unknown*/ = $dotCall(tmpMCF, func, `THIS_IS_AN_EXPANDO`, arrval);
     arg1[newIndex] = expando_result;
     return expando_result;
   }

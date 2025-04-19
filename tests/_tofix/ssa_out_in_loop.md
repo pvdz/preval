@@ -63,8 +63,8 @@ if ($) {
   const first /*:unknown*/ = A[0];
   const isdot /*:boolean*/ = first === `.`;
   if (isdot) {
-    const tmpCallCompVal /*:unknown*/ = A.slice;
-    B = $dotCall(tmpCallCompVal, A, `slice`, 1);
+    const tmpMCF /*:unknown*/ = A.slice;
+    B = $dotCall(tmpMCF, A, `slice`, 1);
   } else {
     B = A;
   }
@@ -72,8 +72,8 @@ if ($) {
   const len /*:unknown*/ = tmpClusterSSA__0x26b289.length;
   const len2 /*:unknown*/ = B.length;
   const tmpClusterSSA__0x30c47e /*:number*/ = len - len2;
-  const tmpCallCompVal$1 /*:unknown*/ = tmpClusterSSA__0x26b289.indexOf;
-  const tmpClusterSSA__0x2a669d /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpClusterSSA__0x26b289, `indexOf`, B, tmpClusterSSA__0x30c47e);
+  const tmpMCF$1 /*:unknown*/ = tmpClusterSSA__0x26b289.indexOf;
+  const tmpClusterSSA__0x2a669d /*:unknown*/ = $dotCall(tmpMCF$1, tmpClusterSSA__0x26b289, `indexOf`, B, tmpClusterSSA__0x30c47e);
   const tmpClusterSSA__0x5dc746 /*:boolean*/ = tmpClusterSSA__0x2a669d === -1;
   if (tmpClusterSSA__0x5dc746) {
   } else {

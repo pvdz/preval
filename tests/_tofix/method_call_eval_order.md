@@ -33,8 +33,8 @@ const a /*:unknown*/ = $spy(`a`);
 const b /*:unknown*/ = $spy(`b`);
 const c /*:unknown*/ = $spy(`c`);
 const d /*:unknown*/ = $spy(`d`);
-const tmpCallCompVal /*:unknown*/ = a[b];
-$dotCall(tmpCallCompVal, a, undefined, c, d);
+const tmpMCF /*:unknown*/ = a[b];
+$dotCall(tmpMCF, a, undefined, c, d);
 `````
 
 
@@ -91,9 +91,9 @@ Normalized calls: Same
 Post settled calls: Same
 
 Denormalized calls: BAD!!
- - 1: 'Creating spy', 1, 1, ['a', 'a']
- - 2: 'Creating spy', 2, 1, ['b', 'b']
- - 3: '$spy[2].toString()', 'b'
- - 4: 'Creating spy', 3, 1, ['c', 'c']
- - 5: 'Creating spy', 4, 1, ['d', 'd']
- - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+ -  1: 'Creating spy', 1, 1, ['a', 'a']
+ -  2: 'Creating spy', 2, 1, ['b', 'b']
+ - !3: '$spy[2].toString()', 'b'
+ - !4: 'Creating spy', 3, 1, ['c', 'c']
+ - !5: 'Creating spy', 4, 1, ['d', 'd']
+ -  eval returned: ('<crash[ <ref> is not function/iterable ]>')

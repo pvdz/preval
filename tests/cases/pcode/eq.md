@@ -40,5 +40,3 @@ None
 
 
 ## Pcode result
-
-

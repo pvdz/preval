@@ -108,37 +108,37 @@ Should call `$` with:
 Pre normalization calls: Same
 
 Normalized calls: BAD!?
- - 1: 1
- - 2: 'called $console_log:', 'hi'
- - 3: 'block'
- - 4: 'block'
- - 5: 1
- - 6: 'called $console_log:', 'hi'
- - 7: 'block'
- - 8: 'block'
- - 9: false
- - eval returned: undefined
+ -  1: 1
+ - !2: 'called $console_log:', 'hi'
+ -  3: 'block'
+ - !4: 'block'
+ - !5: 1
+ - !6: 'called $console_log:', 'hi'
+ - !7: 'block'
+ - !8: 'block'
+ - !9: false
+ - !eval returned: undefined
 
 Post settled calls: BAD!!
- - 1: 1
- - 2: 'called $console_log:', 'hi'
- - 3: 'block'
- - 4: 'block'
- - 5: 1
- - 6: 'called $console_log:', 'hi'
- - 7: 'block'
- - 8: 'block'
- - 9: false
- - eval returned: undefined
+ -  1: 1
+ - !2: 'called $console_log:', 'hi'
+ -  3: 'block'
+ - !4: 'block'
+ - !5: 1
+ - !6: 'called $console_log:', 'hi'
+ - !7: 'block'
+ - !8: 'block'
+ - !9: false
+ - !eval returned: undefined
 
 Denormalized calls: BAD!!
- - 1: 1
- - 2: 'called $console_log:', 'hi'
- - 3: 'block'
- - 4: 'block'
- - 5: 1
- - 6: 'called $console_log:', 'hi'
- - 7: 'block'
- - 8: 'block'
- - 9: false
- - eval returned: undefined
+ -  1: 1
+ - !2: 'called $console_log:', 'hi'
+ -  3: 'block'
+ - !4: 'block'
+ - !5: 1
+ - !6: 'called $console_log:', 'hi'
+ - !7: 'block'
+ - !8: 'block'
+ - !9: false
+ - !eval returned: undefined

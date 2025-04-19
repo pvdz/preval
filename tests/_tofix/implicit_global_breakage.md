@@ -82,9 +82,9 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Post settled calls: BAD!!
- - 1: 2
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - !1: 2
+ - !eval returned: ('<crash[ <ref> is not defined ]>')
 
 Denormalized calls: BAD!!
- - 1: 2
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - !1: 2
+ - !eval returned: ('<crash[ <ref> is not defined ]>')

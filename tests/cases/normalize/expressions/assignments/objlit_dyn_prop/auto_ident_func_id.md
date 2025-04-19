@@ -76,13 +76,13 @@ Should call `$` with:
 Pre normalization calls: Same
 
 Normalized calls: BAD!?
- - 1: { 'function() {\ndebugger;\nreturn undefined;\n}': '10' }
- - 2: '<function>'
- - eval returned: undefined
+ - !1: { 'function() {\ndebugger;\nreturn undefined;\n}': '10' }
+ -  2: '<function>'
+ -  eval returned: undefined
 
 Post settled calls: BAD!!
- - 1: { 'function() {\ndebugger;\nreturn undefined;\n}': '10' }
- - 2: '<function>'
- - eval returned: undefined
+ - !1: { 'function() {\ndebugger;\nreturn undefined;\n}': '10' }
+ -  2: '<function>'
+ -  eval returned: undefined
 
 Denormalized calls: Same

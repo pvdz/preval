@@ -37,8 +37,8 @@ const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
   const tmpForInDeclRhs /*:object*/ = { a: 1, b: 2 };
-  const tmpForInGen /*:unknown*/ = $forIn(tmpForInDeclRhs);
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInGenNext /*:unknown*/ = $forIn(tmpForInDeclRhs);
+  const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
     $(`infiloop, do not eliminate`);
@@ -52,8 +52,8 @@ if (tmpIfTest) {
     if (tmpIfTest$2) {
       $(`loop`);
       const tmpForInDeclRhs$1 /*:object*/ = { a: 1, b: 2 };
-      const tmpForInGen$1 /*:unknown*/ = $forIn(tmpForInDeclRhs$1);
-      const tmpForInNext$1 /*:unknown*/ = tmpForInGen$1();
+      const tmpForInGenNext$1 /*:unknown*/ = $forIn(tmpForInDeclRhs$1);
+      const tmpForInNext$1 /*:unknown*/ = tmpForInGenNext$1();
       const tmpIfTest$4 /*:unknown*/ = tmpForInNext$1.done;
       if (tmpIfTest$4) {
         $(`infiloop, do not eliminate`);
@@ -79,8 +79,8 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   $(`loop`);
-  const tmpForInGen = $forIn({ a: 1, b: 2 });
-  const tmpForInNext = tmpForInGen();
+  const tmpForInGenNext = $forIn({ a: 1, b: 2 });
+  const tmpForInNext = tmpForInGenNext();
   if (tmpForInNext.done) {
     $(`infiloop, do not eliminate`);
   } else {
@@ -90,8 +90,8 @@ if ($(true)) {
   while (true) {
     if ($(true)) {
       $(`loop`);
-      const tmpForInGen$1 = $forIn({ a: 1, b: 2 });
-      const tmpForInNext$1 = tmpForInGen$1();
+      const tmpForInGenNext$1 = $forIn({ a: 1, b: 2 });
+      const tmpForInNext$1 = tmpForInGenNext$1();
       if (tmpForInNext$1.done) {
         $(`infiloop, do not eliminate`);
       } else {

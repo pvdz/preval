@@ -30,9 +30,9 @@ $(a, x);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(x$1);
 const a /*:string*/ = typeof tmpUnaryArg;
-const tmpForOfGen /*:unknown*/ = $forOf(a);
+const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -50,9 +50,9 @@ $(a, 1);
 `````js filename=intro
 const tmpUnaryArg = $(x$1);
 const a = typeof tmpUnaryArg;
-const tmpForOfGen = $forOf(a);
+const tmpForOfGenNext = $forOf(a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

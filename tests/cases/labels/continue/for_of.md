@@ -29,9 +29,9 @@ $('c');
 
 `````js filename=intro
 const x /*:object*/ = { a: 0, b: 1 };
-const tmpForOfGen /*:unknown*/ = $forOf(x);
+const tmpForOfGenNext /*:unknown*/ = $forOf(x);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -61,9 +61,9 @@ $(`c`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGen = $forOf({ a: 0, b: 1 });
+const tmpForOfGenNext = $forOf({ a: 0, b: 1 });
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

@@ -23,9 +23,9 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpForOfGen /*:unknown*/ = $forOf(f);
+const tmpForOfGenNext /*:unknown*/ = $forOf(f);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -42,9 +42,9 @@ $(f);
 
 `````js filename=intro
 const f = function () {};
-const tmpForOfGen = $forOf(f);
+const tmpForOfGenNext = $forOf(f);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

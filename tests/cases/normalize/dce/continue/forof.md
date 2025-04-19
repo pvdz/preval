@@ -29,9 +29,9 @@ while (true) {
   const tmpIfTest /*:unknown*/ = $(true);
   if (tmpIfTest) {
     const tmpCalleeParam /*:array*/ = [10, 20];
-    const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+    const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+      const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
       const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
       if (tmpIfTest$1) {
         break;
@@ -53,9 +53,9 @@ $(`after, wont eval due to infinite loop`);
 `````js filename=intro
 while (true) {
   if ($(true)) {
-    const tmpForOfGen = $forOf([10, 20]);
+    const tmpForOfGenNext = $forOf([10, 20]);
     while (true) {
-      const tmpForOfNext = tmpForOfGen();
+      const tmpForOfNext = tmpForOfGenNext();
       if (tmpForOfNext.done) {
         break;
       } else {

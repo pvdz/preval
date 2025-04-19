@@ -37,9 +37,9 @@ const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1]
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 x$1 = tmpArrPatternSplat[0];
 const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignArrPatternRhs);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedAssignArrPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -64,9 +64,9 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x$1 = tmpArrPatternSplat[0];
 const tmpClusterSSA_y = tmpArrPatternSplat[1];
-const tmpForOfGen = $forOf(tmpNestedAssignArrPatternRhs);
+const tmpForOfGenNext = $forOf(tmpNestedAssignArrPatternRhs);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

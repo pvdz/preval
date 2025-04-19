@@ -18,9 +18,9 @@ for (let [x] of {a: 1, b: 2}) $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -38,9 +38,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGen = $forOf({ a: 1, b: 2 });
+const tmpForOfGenNext = $forOf({ a: 1, b: 2 });
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

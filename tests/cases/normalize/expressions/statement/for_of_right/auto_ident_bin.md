@@ -22,9 +22,9 @@ $(a);
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -42,9 +42,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(1);
-const tmpForOfGen = $forOf(tmpBinBothLhs + $(2));
+const tmpForOfGenNext = $forOf(tmpBinBothLhs + $(2));
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

@@ -18,9 +18,9 @@ for(const n of [1,2,3]) var x = n;
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2, 3];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -35,9 +35,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGen = $forOf([1, 2, 3]);
+const tmpForOfGenNext = $forOf([1, 2, 3]);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

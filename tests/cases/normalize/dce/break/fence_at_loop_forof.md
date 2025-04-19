@@ -32,8 +32,8 @@ const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
   const tmpCalleeParam /*:array*/ = [1, 2];
-  const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     $(`infiloop, do not eliminate`);
@@ -47,8 +47,8 @@ if (tmpIfTest) {
     if (tmpIfTest$2) {
       $(`loop`);
       const tmpCalleeParam$1 /*:array*/ = [1, 2];
-      const tmpForOfGen$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
-      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGen$1();
+      const tmpForOfGenNext$1 /*:unknown*/ = $forOf(tmpCalleeParam$1);
+      const tmpForOfNext$1 /*:unknown*/ = tmpForOfGenNext$1();
       const tmpIfTest$4 /*:unknown*/ = tmpForOfNext$1.done;
       if (tmpIfTest$4) {
         $(`infiloop, do not eliminate`);
@@ -74,8 +74,8 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   $(`loop`);
-  const tmpForOfGen = $forOf([1, 2]);
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfGenNext = $forOf([1, 2]);
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     $(`infiloop, do not eliminate`);
   } else {
@@ -85,8 +85,8 @@ if ($(true)) {
   while (true) {
     if ($(true)) {
       $(`loop`);
-      const tmpForOfGen$1 = $forOf([1, 2]);
-      const tmpForOfNext$1 = tmpForOfGen$1();
+      const tmpForOfGenNext$1 = $forOf([1, 2]);
+      const tmpForOfNext$1 = tmpForOfGenNext$1();
       if (tmpForOfNext$1.done) {
         $(`infiloop, do not eliminate`);
       } else {

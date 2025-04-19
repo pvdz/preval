@@ -26,9 +26,9 @@ const tmpMCCO /*:unknown*/ = $(b);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
 const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -47,9 +47,9 @@ $(a);
 `````js filename=intro
 const tmpMCCO = $({ $: $ });
 const tmpMCCP = $(`\$`);
-const tmpForOfGen = $forOf(tmpMCCO[tmpMCCP](1));
+const tmpForOfGenNext = $forOf(tmpMCCO[tmpMCCP](1));
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

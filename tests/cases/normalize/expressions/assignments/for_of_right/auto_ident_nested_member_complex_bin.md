@@ -32,9 +32,9 @@ const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-const tmpForOfGen /*:unknown*/ = $forOf(7);
+const tmpForOfGenNext /*:unknown*/ = $forOf(7);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -58,9 +58,9 @@ const tmpInitAssignLhsComputedObj = $(c);
 const tmpInitAssignLhsComputedProp = $(`y`);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-const tmpForOfGen = $forOf(7);
+const tmpForOfGenNext = $forOf(7);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

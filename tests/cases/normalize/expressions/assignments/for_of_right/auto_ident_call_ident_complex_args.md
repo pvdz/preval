@@ -24,9 +24,9 @@ $(a);
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
 const tmpCalleeParam$3 /*:unknown*/ = $(2);
 const a /*:unknown*/ = $(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpForOfGen /*:unknown*/ = $forOf(a);
+const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -43,9 +43,9 @@ $(a);
 
 `````js filename=intro
 const a = $($(1), $(2));
-const tmpForOfGen = $forOf(a);
+const tmpForOfGenNext = $forOf(a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

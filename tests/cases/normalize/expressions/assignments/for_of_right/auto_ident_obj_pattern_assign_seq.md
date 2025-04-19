@@ -35,9 +35,9 @@ const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
 x$1 = tmpObjLitVal;
 const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignObjPatternRhs);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedAssignObjPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -59,9 +59,9 @@ const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 x$1 = tmpObjLitVal;
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
+const tmpForOfGenNext = $forOf(tmpNestedAssignObjPatternRhs);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

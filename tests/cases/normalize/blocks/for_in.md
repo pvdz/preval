@@ -18,9 +18,9 @@ for (x in $(1)) $(2);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -36,9 +36,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForInGen = $forIn($(1));
+const tmpForInGenNext = $forIn($(1));
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpForInGenNext();
   if (tmpForInNext.done) {
     break;
   } else {

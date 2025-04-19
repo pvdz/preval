@@ -43,9 +43,9 @@ tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = 3;
 tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
-const tmpForOfGen /*:unknown*/ = $forOf(3);
+const tmpForOfGenNext /*:unknown*/ = $forOf(3);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -81,9 +81,9 @@ tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = 3;
 tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
-const tmpForOfGen = $forOf(3);
+const tmpForOfGenNext = $forOf(3);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

@@ -21,10 +21,10 @@ for ($(a).x in $(b)) $(a.x);
 `````js filename=intro
 const b /*:object*/ = { x: 1, y: 2 };
 const tmpCalleeParam /*:unknown*/ = $(b);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
 const a /*:object*/ = {};
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -43,10 +43,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForInGen = $forIn($({ x: 1, y: 2 }));
+const tmpForInGenNext = $forIn($({ x: 1, y: 2 }));
 const a = {};
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpForInGenNext();
   if (tmpForInNext.done) {
     break;
   } else {

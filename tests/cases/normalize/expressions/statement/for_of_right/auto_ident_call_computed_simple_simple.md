@@ -23,9 +23,9 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpCalleeParam /*:unknown*/ = $dotCall($, b, `\$`, 1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -42,9 +42,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGen = $forOf($dotCall($, { $: $ }, `\$`, 1));
+const tmpForOfGenNext = $forOf($dotCall($, { $: $ }, `\$`, 1));
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

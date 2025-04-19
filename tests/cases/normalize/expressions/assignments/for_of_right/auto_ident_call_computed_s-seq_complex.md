@@ -25,9 +25,9 @@ const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
 const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpClusterSSA_a);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -46,9 +46,9 @@ $(tmpClusterSSA_a);
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
 const tmpClusterSSA_a = b[tmpMCCP](1);
-const tmpForOfGen = $forOf(tmpClusterSSA_a);
+const tmpForOfGenNext = $forOf(tmpClusterSSA_a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

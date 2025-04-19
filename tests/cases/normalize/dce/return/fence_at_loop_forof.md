@@ -38,8 +38,8 @@ $inlinedFunction: {
     if (tmpIfTest) {
       $(`loop`);
       const tmpCalleeParam /*:array*/ = [1, 2];
-      const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-      const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+      const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
+      const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
       const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
       if (tmpIfTest$1) {
         $(`unreachable2 (but keep because the for body may not be visited...)`);
@@ -69,8 +69,8 @@ $inlinedFunction: {
   while (true) {
     if ($(true)) {
       $(`loop`);
-      const tmpForOfGen = $forOf([1, 2]);
-      const tmpForOfNext = tmpForOfGen();
+      const tmpForOfGenNext = $forOf([1, 2]);
+      const tmpForOfNext = tmpForOfGenNext();
       if (tmpForOfNext.done) {
         $(`unreachable2 (but keep because the for body may not be visited...)`);
       } else {

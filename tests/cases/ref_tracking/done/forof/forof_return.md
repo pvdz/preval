@@ -34,9 +34,9 @@ $(f());
 let f___5__ = function () /*7*/ {
   debugger;
   let tmpCalleeParam___12__ = [10, 20];
-  const tmpForOfGen___17__ = $forOf___19__(tmpCalleeParam___20__);
+  const tmpForOfGenNext___17__ = $forOf___19__(tmpCalleeParam___20__);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___22__) {
-    /*23*/ const tmpForOfNext___27__ = tmpForOfGen___29__();
+    /*23*/ const tmpForOfNext___27__ = tmpForOfGenNext___29__();
     const tmpIfTest___31__ = tmpForOfNext___33__.done___34__;
     if (tmpIfTest___36__) {
       /*37*/ break;
@@ -72,25 +72,25 @@ tmpCalleeParam:
   - w @12          | ########## | 20          | none           | none
   - r @20          | 12
 
-tmpForOfGen:
-  - w @17          | ########## | 29          | none           | none
-  - r @29          | 17
+tmpForOfGenNext:
+  - w @17           | ########## | 29          | none           | none
+  - r @29           | 17
 
 tmpForOfNext:
-  - w @27          | ########## | 33,45       | none           | none
-  - r @33          | 27
-  - r @45          | 27
+  - w @27           | ########## | 33,45       | none           | none
+  - r @33           | 27
+  - r @45           | 27
 
 tmpIfTest:
-  - w @31          | ########## | 36          | none           | none
-  - r @36          | 31
+  - w @31           | ########## | 36          | none           | none
+  - r @36           | 31
 
 x:
-  - w @43          | ########## | not read    | none           | none
+  - w @43           | ########## | not read    | none           | none
 
 tmpReturnArg:
-  - w @48          | ########## | 56          | none           | none
-  - r @56          | 48
+  - w @48           | ########## | 56          | none           | none
+  - r @56           | 48
 
 tmpCalleeParam$1:
   - w @65            | ########## | 71          | none           | none

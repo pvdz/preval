@@ -25,11 +25,11 @@ $(a, b, c, d);
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -54,11 +54,11 @@ $(a, b, c, 3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForInGen = $forIn($({ x: 1 }));
+const tmpForInGenNext = $forIn($({ x: 1 }));
 const b = { x: 1 };
 const c = { y: 2 };
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpForInGenNext();
   if (tmpForInNext.done) {
     break;
   } else {

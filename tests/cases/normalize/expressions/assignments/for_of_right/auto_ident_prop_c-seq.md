@@ -24,9 +24,9 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
 const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpClusterSSA_a);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -44,9 +44,9 @@ $(tmpClusterSSA_a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpClusterSSA_a = $(b).c;
-const tmpForOfGen = $forOf(tmpClusterSSA_a);
+const tmpForOfGenNext = $forOf(tmpClusterSSA_a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

@@ -21,9 +21,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpForOfGen /*:unknown*/ = $forOf(0);
+const tmpForOfGenNext /*:unknown*/ = $forOf(0);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -40,9 +40,9 @@ $(a, 0);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGen = $forOf(0);
+const tmpForOfGenNext = $forOf(0);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

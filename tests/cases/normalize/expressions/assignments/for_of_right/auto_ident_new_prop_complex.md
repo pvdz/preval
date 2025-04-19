@@ -25,9 +25,9 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
 const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpClusterSSA_a);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -45,9 +45,9 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const tmpNewCallee = $({ $: $ }).$;
 const tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpForOfGen = $forOf(tmpClusterSSA_a);
+const tmpForOfGenNext = $forOf(tmpClusterSSA_a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

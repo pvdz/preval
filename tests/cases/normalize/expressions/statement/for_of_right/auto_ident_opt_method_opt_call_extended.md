@@ -22,16 +22,16 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest$1 /*:boolean*/ = $ == null;
-let tmpForOfGen /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ = undefined;
 if (tmpIfTest$1) {
-  tmpForOfGen = $forOf(undefined);
+  tmpForOfGenNext = $forOf(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpForOfGen = $forOf(tmpChainElementCall);
+  tmpForOfGenNext = $forOf(tmpChainElementCall);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$3 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$3) {
     break;
@@ -49,14 +49,14 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest$1 = $ == null;
-let tmpForOfGen = undefined;
+let tmpForOfGenNext = undefined;
 if (tmpIfTest$1) {
-  tmpForOfGen = $forOf(undefined);
+  tmpForOfGenNext = $forOf(undefined);
 } else {
-  tmpForOfGen = $forOf($dotCall($, { e: $ }, `e`, 1));
+  tmpForOfGenNext = $forOf($dotCall($, { e: $ }, `e`, 1));
 }
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

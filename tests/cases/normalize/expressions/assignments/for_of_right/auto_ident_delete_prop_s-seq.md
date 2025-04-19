@@ -25,9 +25,9 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const a /*:boolean*/ = delete arg.y;
-const tmpForOfGen /*:unknown*/ = $forOf(a);
+const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -47,9 +47,9 @@ $(1);
 $(2);
 const arg = { y: 1 };
 const a = delete arg.y;
-const tmpForOfGen = $forOf(a);
+const tmpForOfGenNext = $forOf(a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

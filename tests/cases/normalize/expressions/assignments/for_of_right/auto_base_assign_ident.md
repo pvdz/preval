@@ -22,9 +22,9 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs /*:unknown*/ = $(2);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedComplexRhs);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedComplexRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -41,9 +41,9 @@ $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-const tmpForOfGen = $forOf(tmpNestedComplexRhs);
+const tmpForOfGenNext = $forOf(tmpNestedComplexRhs);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

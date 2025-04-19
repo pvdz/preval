@@ -24,10 +24,10 @@ $(a);
 let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpCalleeParam$1 /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
 const b /*:object*/ = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -47,10 +47,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpForInGen = $forIn($({ x: 1 }));
+const tmpForInGenNext = $forIn($({ x: 1 }));
 const b = { $: $ };
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpForInGenNext();
   if (tmpForInNext.done) {
     break;
   } else {

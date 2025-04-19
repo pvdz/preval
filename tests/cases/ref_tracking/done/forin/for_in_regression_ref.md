@@ -35,9 +35,9 @@ $(undefined___9__);
 let x___11__ = undefined___12__;
 const list___14__ = [100];
 let arr___18__ = undefined___19__;
-const tmpForInGen___21__ = $forIn___23__(list___24__);
+const tmpForInGenNext___21__ = $forIn___23__(list___24__);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE___26__) {
-  /*27*/ const tmpForInNext___31__ = tmpForInGen___33__();
+  /*27*/ const tmpForInNext___31__ = tmpForInGenNext___33__();
   const tmpIfTest___35__ = tmpForInNext___37__.done___38__;
   if (tmpIfTest___40__) {
     /*41*/ break;
@@ -60,7 +60,7 @@ None
 ## Ref tracking result
 
 
-                 | reads      | read by     | overWrites     | overwritten by
+                    | reads      | read by     | overWrites     | overwritten by
 x:
   - w @11      | ########## | 63          | none           | 53
   - w @53      | ########## | 63          | 11,53          | 53
@@ -76,15 +76,15 @@ arr:
   - r @52      | 49
   - r @57      | 49
 
-tmpForInGen:
-  - w @21       | ########## | 33          | none           | none
-  - r @33       | 21
+tmpForInGenNext:
+  - w @21           | ########## | 33          | none           | none
+  - r @33           | 21
 
 tmpForInNext:
-  - w @31        | ########## | 37,47       | none           | none
-  - r @37        | 31
-  - r @47        | 31
+  - w @31           | ########## | 37,47       | none           | none
+  - r @37           | 31
+  - r @47           | 31
 
 tmpIfTest:
-  - w @35        | ########## | 40          | none           | none
-  - r @40        | 35
+  - w @35           | ########## | 40          | none           | none
+  - r @40           | 35

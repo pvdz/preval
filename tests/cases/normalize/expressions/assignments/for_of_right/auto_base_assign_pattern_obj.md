@@ -25,9 +25,9 @@ const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignObjPatternRhs);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedAssignObjPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -46,9 +46,9 @@ $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
+const tmpForOfGenNext = $forOf(tmpNestedAssignObjPatternRhs);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

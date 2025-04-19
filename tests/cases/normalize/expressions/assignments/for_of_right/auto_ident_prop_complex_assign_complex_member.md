@@ -27,9 +27,9 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignPropRhs);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedAssignPropRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -51,9 +51,9 @@ const tmpCompObj = $(b);
 const tmpCalleeParam$1 = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-const tmpForOfGen = $forOf(tmpNestedAssignPropRhs);
+const tmpForOfGenNext = $forOf(tmpNestedAssignPropRhs);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

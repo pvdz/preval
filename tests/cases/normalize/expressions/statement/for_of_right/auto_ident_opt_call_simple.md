@@ -20,15 +20,15 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:boolean*/ = $ == null;
-let tmpForOfGen /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ = undefined;
 if (tmpIfTest) {
-  tmpForOfGen = $forOf(undefined);
+  tmpForOfGenNext = $forOf(undefined);
 } else {
   const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpForOfGen = $forOf(tmpChainElementCall);
+  tmpForOfGenNext = $forOf(tmpChainElementCall);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
@@ -46,14 +46,14 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest = $ == null;
-let tmpForOfGen = undefined;
+let tmpForOfGenNext = undefined;
 if (tmpIfTest) {
-  tmpForOfGen = $forOf(undefined);
+  tmpForOfGenNext = $forOf(undefined);
 } else {
-  tmpForOfGen = $forOf($(1));
+  tmpForOfGenNext = $forOf($(1));
 }
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

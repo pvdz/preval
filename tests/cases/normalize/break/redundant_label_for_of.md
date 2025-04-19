@@ -33,9 +33,9 @@ let x /*:unknown*/ = $(2);
 const tmpCalleeParam$3 /*:array*/ = [`a`, `b`];
 const tmpCalleeParam$1 /*:object*/ = new Set(tmpCalleeParam$3);
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -63,9 +63,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let x = $(2);
 const tmpCalleeParam$3 = [`a`, `b`];
-const tmpForOfGen = $forOf($(new Set(tmpCalleeParam$3)));
+const tmpForOfGenNext = $forOf($(new Set(tmpCalleeParam$3)));
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

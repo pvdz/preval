@@ -27,9 +27,9 @@ const tmpCalleeParam$1 /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignArrPatternRhs);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedAssignArrPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -51,9 +51,9 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
 const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
-const tmpForOfGen = $forOf(tmpNestedAssignArrPatternRhs);
+const tmpForOfGenNext = $forOf(tmpNestedAssignArrPatternRhs);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

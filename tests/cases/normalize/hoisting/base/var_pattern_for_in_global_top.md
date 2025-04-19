@@ -22,9 +22,9 @@ $(x);
 let x /*:unknown*/ = undefined;
 $(undefined);
 const tmpCalleeParam /*:object*/ = { y: 100 };
-const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
+const tmpForInGenNext /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -45,9 +45,9 @@ $(x);
 `````js filename=intro
 let x = undefined;
 $(undefined);
-const tmpForInGen = $forIn({ y: 100 });
+const tmpForInGenNext = $forIn({ y: 100 });
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpForInGenNext();
   if (tmpForInNext.done) {
     break;
   } else {

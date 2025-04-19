@@ -24,9 +24,9 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = tmpCompObj.c;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -44,9 +44,9 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpForOfGen = $forOf($(b).c);
+const tmpForOfGenNext = $forOf($(b).c);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

@@ -28,9 +28,9 @@ const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpUpdNum);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpUpdNum);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -50,9 +50,9 @@ const b = { x: 1 };
 const tmpUpdObj = $($(b));
 const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
 tmpUpdObj.x = tmpUpdNum + 1;
-const tmpForOfGen = $forOf(tmpUpdNum);
+const tmpForOfGenNext = $forOf(tmpUpdNum);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

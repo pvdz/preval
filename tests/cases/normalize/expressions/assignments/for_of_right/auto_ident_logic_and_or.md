@@ -26,16 +26,16 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpForOfGen /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ = undefined;
 if (a) {
-  tmpForOfGen = $forOf(a);
+  tmpForOfGenNext = $forOf(a);
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(2);
   a = $(tmpCalleeParam$5);
-  tmpForOfGen = $forOf(a);
+  tmpForOfGenNext = $forOf(a);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -55,15 +55,15 @@ let a = $($(1));
 if (a) {
   a = $($(1));
 }
-let tmpForOfGen = undefined;
+let tmpForOfGenNext = undefined;
 if (a) {
-  tmpForOfGen = $forOf(a);
+  tmpForOfGenNext = $forOf(a);
 } else {
   a = $($(2));
-  tmpForOfGen = $forOf(a);
+  tmpForOfGenNext = $forOf(a);
 }
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

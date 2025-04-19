@@ -31,9 +31,9 @@ if (tmpCalleeParam) {
   } else {
   }
 }
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -57,9 +57,9 @@ if (!tmpCalleeParam) {
     tmpCalleeParam = $($(2));
   }
 }
-const tmpForOfGen = $forOf(tmpCalleeParam);
+const tmpForOfGenNext = $forOf(tmpCalleeParam);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

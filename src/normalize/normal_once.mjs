@@ -571,15 +571,15 @@ export function phaseNormalOnce(fdata) {
         rule('The for-in loop must be a while');
         example(
           'for (x in y) f(y);',
-          'const forInGen = $forIn(y); while (true) { const next = forInGen.next(); if (next.done) { break; } else { x = next.value(); { f(x); } } }'
+          'const forInGen = $forIn(y); while (true) { const next = forInGenNext(); if (next.done) { break; } else { x = next.value(); { f(x); } } }'
         );
         example(
           'for ([x] in y) f(y);',
-          'const forInGen = $forIn(y); while (true) { const next = forInGen.next(); if (next.done) { break; } else { [x] = next.value(); { f(x); } } }'
+          'const forInGen = $forIn(y); while (true) { const next = forInGenNext(); if (next.done) { break; } else { [x] = next.value(); { f(x); } } }'
         );
         before(node);
 
-        const genName = createFreshVar('tmpForInGen', fdata);
+        const genName = createFreshVar('tmpForInGenNext', fdata);
         const valName = createFreshVar('tmpForInNext', fdata);
 
         // If prop is computed, it is not evaluated until the loop and also after the iterator is called each loop, so we
@@ -590,7 +590,7 @@ export function phaseNormalOnce(fdata) {
           // while (true) {}
           // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
           AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
-            // const next = forInGen.next();
+            // const next = forInGenNext();
             AST.variableDeclaration(valName, AST.callExpression(AST.identifier(genName), []), 'const', true),
             // if (x.done)
             AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),
@@ -645,12 +645,12 @@ export function phaseNormalOnce(fdata) {
           rule('The for-of loop must be a while');
           example(
             'for (const x of y) f(y);',
-            'const forOfGen = $forOf(y); while (true) { const next = forOfGen.next(); if (next.done) { break; } else { const x = next.value(); { f(x); } } }'
+            'const forOfGen = $forOf(y); while (true) { const next = forOfGenNext(); if (next.done) { break; } else { const x = next.value(); { f(x); } } }'
           );
           before(node);
 
 
-          const genName = createFreshVar('tmpForOfGen', fdata);
+          const genName = createFreshVar('tmpForOfGenNext', fdata);
           const valName = createFreshVar('tmpForOfNext', fdata);
 
           // Minor trickery; if the lhs was a var decl then we must update the init, otherwise dump it in the lhs of an assignment
@@ -663,7 +663,7 @@ export function phaseNormalOnce(fdata) {
             // while (true) {}
             // (It probably doesn't make sense for for-in/of loops to get unrolled because there's no base case right now, maybe later tho, but that's probably handled differently?)
             AST.whileStatement(AST.identifier(SYMBOL_MAX_LOOP_UNROLL), AST.blockStatement(
-              // const next = forOfGen.next();
+              // const next = forOfGenNext();
               AST.variableDeclaration(valName, AST.callExpression(AST.identifier(genName), []), 'const', true),
               // if (x.done)
               AST.ifStatement(AST.memberExpression(AST.identifier(valName), AST.identifier('done'), false),

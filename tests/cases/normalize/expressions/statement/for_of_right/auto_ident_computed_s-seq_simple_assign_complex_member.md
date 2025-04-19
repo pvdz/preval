@@ -27,9 +27,9 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpInitAssignLhsComputedRhs);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpInitAssignLhsComputedRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -52,9 +52,9 @@ const tmpCompObj = $(b);
 const tmpCalleeParam$1 = $(`d`);
 const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$1];
 b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
-const tmpForOfGen = $forOf(tmpInitAssignLhsComputedRhs);
+const tmpForOfGenNext = $forOf(tmpInitAssignLhsComputedRhs);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

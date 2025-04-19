@@ -37,9 +37,9 @@ while (true) {
     $(tmpClusterSSA_y, `before`);
     let x$1 /*:unknown*/ = undefined;
     const obj /*:object*/ = { a: 1, b: 2 };
-    const tmpForInGen /*:unknown*/ = $forIn(obj);
+    const tmpForInGenNext /*:unknown*/ = $forIn(obj);
     while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-      const tmpForInNext /*:unknown*/ = tmpForInGen();
+      const tmpForInNext /*:unknown*/ = tmpForInGenNext();
       const tmpIfTest /*:unknown*/ = tmpForInNext.done;
       if (tmpIfTest) {
         break;
@@ -66,9 +66,9 @@ while (true) {
   if (tmpClusterSSA_y) {
     $(tmpClusterSSA_y, `before`);
     let x$1 = undefined;
-    const tmpForInGen = $forIn({ a: 1, b: 2 });
+    const tmpForInGenNext = $forIn({ a: 1, b: 2 });
     while (true) {
-      const tmpForInNext = tmpForInGen();
+      const tmpForInNext = tmpForInGenNext();
       if (tmpForInNext.done) {
         break;
       } else {

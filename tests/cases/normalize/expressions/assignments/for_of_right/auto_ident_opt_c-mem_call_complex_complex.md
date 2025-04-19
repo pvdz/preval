@@ -37,9 +37,9 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpForOfGen /*:unknown*/ = $forOf(a);
+const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$3 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$3) {
     break;
@@ -64,9 +64,9 @@ if (!(tmpChainElementCall == null)) {
     a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
   }
 }
-const tmpForOfGen = $forOf(a);
+const tmpForOfGenNext = $forOf(a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

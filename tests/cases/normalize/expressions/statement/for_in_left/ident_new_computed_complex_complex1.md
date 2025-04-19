@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpForInGen /*:unknown*/ = $forIn(b);
+const tmpForInGenNext /*:unknown*/ = $forIn(b);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpForInGenNext();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest) {
     break;
@@ -45,9 +45,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForInGen = $forIn({ $: $ });
+const tmpForInGenNext = $forIn({ $: $ });
 while (true) {
-  const tmpForInNext = tmpForInGen();
+  const tmpForInNext = tmpForInGenNext();
   if (tmpForInNext.done) {
     break;
   } else {

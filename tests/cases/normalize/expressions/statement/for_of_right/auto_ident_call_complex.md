@@ -21,9 +21,9 @@ $(a);
 `````js filename=intro
 const tmpCallComplexCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = tmpCallComplexCallee(1);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -41,9 +41,9 @@ $(a);
 
 `````js filename=intro
 const tmpCallComplexCallee = $($);
-const tmpForOfGen = $forOf(tmpCallComplexCallee(1));
+const tmpForOfGenNext = $forOf(tmpCallComplexCallee(1));
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

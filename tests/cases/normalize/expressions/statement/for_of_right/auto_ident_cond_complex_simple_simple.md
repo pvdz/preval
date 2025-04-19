@@ -20,16 +20,16 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
-let tmpForOfGen /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ = undefined;
 if (tmpIfTest) {
-  tmpForOfGen = $forOf(2);
+  tmpForOfGenNext = $forOf(2);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpForOfGen = $forOf(tmpClusterSSA_tmpCalleeParam);
+  tmpForOfGenNext = $forOf(tmpClusterSSA_tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
@@ -47,14 +47,14 @@ $(a);
 
 `````js filename=intro
 const tmpIfTest = $(1);
-let tmpForOfGen = undefined;
+let tmpForOfGenNext = undefined;
 if (tmpIfTest) {
-  tmpForOfGen = $forOf(2);
+  tmpForOfGenNext = $forOf(2);
 } else {
-  tmpForOfGen = $forOf($($(100)));
+  tmpForOfGenNext = $forOf($($(100)));
 }
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

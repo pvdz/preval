@@ -24,9 +24,9 @@ $(a, arg);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
 const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpClusterSSA_a);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -45,9 +45,9 @@ $(tmpClusterSSA_a, arg);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpForOfGen = $forOf(tmpClusterSSA_a);
+const tmpForOfGenNext = $forOf(tmpClusterSSA_a);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

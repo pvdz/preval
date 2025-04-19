@@ -24,16 +24,16 @@ $(a);
 const b /*:object*/ = { x: 1 };
 const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
-let tmpForOfGen /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ = undefined;
 if (tmpIfTest) {
-  tmpForOfGen = $forOf(undefined);
+  tmpForOfGenNext = $forOf(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  tmpForOfGen = $forOf(tmpChainElementObject);
+  tmpForOfGenNext = $forOf(tmpChainElementObject);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
@@ -52,15 +52,15 @@ $(a);
 `````js filename=intro
 const tmpChainElementCall = $({ x: 1 });
 const tmpIfTest = tmpChainElementCall == null;
-let tmpForOfGen = undefined;
+let tmpForOfGenNext = undefined;
 if (tmpIfTest) {
-  tmpForOfGen = $forOf(undefined);
+  tmpForOfGenNext = $forOf(undefined);
 } else {
   const tmpChainRootComputed = $(`x`);
-  tmpForOfGen = $forOf(tmpChainElementCall[tmpChainRootComputed]);
+  tmpForOfGenNext = $forOf(tmpChainElementCall[tmpChainRootComputed]);
 }
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

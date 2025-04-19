@@ -27,8 +27,8 @@ $(f());
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
 const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
 if (tmpIfTest) {
   $(`unreachable (but keep because the for body may not be visited...)`);
@@ -45,8 +45,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGen = $forOf([1, 2]);
-const tmpForOfNext = tmpForOfGen();
+const tmpForOfGenNext = $forOf([1, 2]);
+const tmpForOfNext = tmpForOfGenNext();
 if (tmpForOfNext.done) {
   $(`unreachable (but keep because the for body may not be visited...)`);
   $(undefined);

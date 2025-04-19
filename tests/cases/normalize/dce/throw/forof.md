@@ -26,8 +26,8 @@ $(f());
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [10, 20];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
-const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
 const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
 if (tmpIfTest) {
   $(undefined);
@@ -43,8 +43,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGen = $forOf([10, 20]);
-const tmpForOfNext = tmpForOfGen();
+const tmpForOfGenNext = $forOf([10, 20]);
+const tmpForOfNext = tmpForOfGenNext();
 if (tmpForOfNext.done) {
   $(undefined);
 } else {

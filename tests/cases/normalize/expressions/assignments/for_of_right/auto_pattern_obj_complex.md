@@ -22,9 +22,9 @@ $(a);
 const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
-const tmpForOfGen /*:unknown*/ = $forOf(tmpNestedAssignObjPatternRhs);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedAssignObjPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -42,9 +42,9 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
-const tmpForOfGen = $forOf(tmpNestedAssignObjPatternRhs);
+const tmpForOfGenNext = $forOf(tmpNestedAssignObjPatternRhs);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

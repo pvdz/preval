@@ -26,16 +26,16 @@ if (tmpCalleeParam) {
   tmpCalleeParam = $(tmpCalleeParam$3);
 } else {
 }
-let tmpForOfGen /*:unknown*/ = undefined;
+let tmpForOfGenNext /*:unknown*/ = undefined;
 if (tmpCalleeParam) {
-  tmpForOfGen = $forOf(tmpCalleeParam);
+  tmpForOfGenNext = $forOf(tmpCalleeParam);
 } else {
   const tmpCalleeParam$5 /*:unknown*/ = $(2);
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$5);
-  tmpForOfGen = $forOf(tmpClusterSSA_tmpCalleeParam);
+  tmpForOfGenNext = $forOf(tmpClusterSSA_tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -56,14 +56,14 @@ let tmpCalleeParam = $($(1));
 if (tmpCalleeParam) {
   tmpCalleeParam = $($(1));
 }
-let tmpForOfGen = undefined;
+let tmpForOfGenNext = undefined;
 if (tmpCalleeParam) {
-  tmpForOfGen = $forOf(tmpCalleeParam);
+  tmpForOfGenNext = $forOf(tmpCalleeParam);
 } else {
-  tmpForOfGen = $forOf($($(2)));
+  tmpForOfGenNext = $forOf($($(2)));
 }
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

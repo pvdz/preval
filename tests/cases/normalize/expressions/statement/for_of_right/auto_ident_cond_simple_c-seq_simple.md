@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(60);
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -39,9 +39,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGen = $forOf($(60));
+const tmpForOfGenNext = $forOf($(60));
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

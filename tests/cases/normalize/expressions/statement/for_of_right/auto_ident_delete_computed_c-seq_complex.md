@@ -27,9 +27,9 @@ const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
 const tmpCalleeParam /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpForOfGen /*:unknown*/ = $forOf(tmpCalleeParam);
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGen();
+  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest) {
     break;
@@ -51,9 +51,9 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpForOfGen = $forOf(delete tmpDeleteCompObj[tmpDeleteCompProp]);
+const tmpForOfGenNext = $forOf(delete tmpDeleteCompObj[tmpDeleteCompProp]);
 while (true) {
-  const tmpForOfNext = tmpForOfGen();
+  const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

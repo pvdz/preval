@@ -289,10 +289,19 @@ function processAttempt(fdata) {
     // We can also replace all references to the alias (but maybe we don't have to since the func will be a constant after this step)
 
     rule('Self assignment that is redundant allow the outer function to be replaced by the inner function');
-    example('let f = function(a, b){ f = function(){ return $(a, b); }; return f(); } f(1,2) === f(3, 4);', 'let f = function(){ return $(a, b); } const a = 1; const b; f() === f(3, 4);');
+    example(
+      'let f = function(a, b){ f = function(){ return $(a, b); }; return f(); } f(1,2) === f(3, 4);',
+      'let f = function(){ return $(a, b); } const a = 1; const b; f() === f(3, 4);'
+    );
+    example(
+      'let f = function(a, b){ f = function(c, d){ return $(c, d); }; return f(a, b); } f(1,2) === f(3, 4);',
+      'let a = 3; let b = 4; let f = function(c, d){ return $(a, b); } const a = 1; const b; f() === f(3, 4);'
+    );
     before(first.blockBody[first.blockIndex]);
 
     first.parentNode.init = innerFuncNode;
+
+    vlog('Moving', outerFunc.params.length, 'params to be globals');
 
     // Outer function params become global consts, init is a clone of the args of the first call.
     // These are "closures" or "sealed"

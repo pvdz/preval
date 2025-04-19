@@ -19,9 +19,9 @@ for (let a = $(b)[$('x')] = c;false;) $(a, b, c);
 
 `````js filename=intro
 const b /*:object*/ = { x: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 `````
 
 
@@ -29,9 +29,9 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $({ x: 2 });
-const varInitAssignLhsComputedProp = $(`x`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+const tmpInitAssignLhsComputedObj = $({ x: 2 });
+const tmpInitAssignLhsComputedProp = $(`x`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 `````
 
 

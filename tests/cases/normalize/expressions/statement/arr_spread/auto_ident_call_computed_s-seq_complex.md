@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpArrElToSpread /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpArrElToSpread /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 [...tmpArrElToSpread];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -35,9 +35,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpArrElToSpread = b[tmpCallCompProp](1);
+const tmpArrElToSpread = b[tmpMCCP](1);
 [...tmpArrElToSpread];
 $({ a: 999, b: 1000 });
 `````

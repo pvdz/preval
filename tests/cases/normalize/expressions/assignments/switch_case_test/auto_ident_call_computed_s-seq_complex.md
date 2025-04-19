@@ -24,10 +24,10 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 $(tmpClusterSSA_a);
 `````
 
@@ -37,9 +37,9 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 $(1);
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-$(b[tmpCallCompProp](1));
+$(b[tmpMCCP](1));
 `````
 
 

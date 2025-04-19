@@ -20,8 +20,8 @@ $(a, b, c);
 
 `````js filename=intro
 const b /*:object*/ = { x: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-varInitAssignLhsComputedObj.x = 3;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+tmpInitAssignLhsComputedObj.x = 3;
 $(3, b, 3);
 `````
 
@@ -31,8 +31,8 @@ $(3, b, 3);
 
 `````js filename=intro
 const b = { x: 2 };
-const varInitAssignLhsComputedObj = $(b);
-varInitAssignLhsComputedObj.x = 3;
+const tmpInitAssignLhsComputedObj = $(b);
+tmpInitAssignLhsComputedObj.x = 3;
 $(3, b, 3);
 `````
 

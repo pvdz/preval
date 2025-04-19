@@ -19,8 +19,8 @@ for (let a = $(b).x = c;false;) $(a, b, c);
 
 `````js filename=intro
 const b /*:object*/ = { x: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-varInitAssignLhsComputedObj.x = 3;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+tmpInitAssignLhsComputedObj.x = 3;
 `````
 
 
@@ -28,8 +28,8 @@ varInitAssignLhsComputedObj.x = 3;
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $({ x: 2 });
-varInitAssignLhsComputedObj.x = 3;
+const tmpInitAssignLhsComputedObj = $({ x: 2 });
+tmpInitAssignLhsComputedObj.x = 3;
 `````
 
 

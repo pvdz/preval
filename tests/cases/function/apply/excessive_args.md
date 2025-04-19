@@ -18,13 +18,13 @@ $(function(){ $(...arguments); }.apply(({}), (['x']), 1, 2, 3));
 
 
 `````js filename=intro
-const tmpCallObj /*:()=>unknown*/ = function () {
+const tmpMCOO /*:()=>unknown*/ = function () {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   $(...tmpPrevalAliasArgumentsAny);
   return undefined;
 };
-tmpCallObj(`x`);
+tmpMCOO(`x`);
 $(undefined);
 `````
 
@@ -33,11 +33,11 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallObj = function () {
+const tmpMCOO = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
   $(...tmpPrevalAliasArgumentsAny);
 };
-tmpCallObj(`x`);
+tmpMCOO(`x`);
 $(undefined);
 `````
 

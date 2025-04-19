@@ -26,8 +26,8 @@ const o /*:object*/ = {
     return `xyz`;
   },
 };
-const tmpCallCompVal /*:unknown*/ = o.toString;
-const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, o, `toString`);
+const tmpMCF /*:unknown*/ = o.toString;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, o, `toString`);
 $(tmpCalleeParam);
 `````
 

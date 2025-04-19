@@ -38,9 +38,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
     const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-    const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-    const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+    const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+    const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+    tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
     a = 7;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
@@ -66,9 +66,9 @@ while (true) {
   } else {
     const tmpNestedAssignComMemberObj = $(b);
     const tmpNestedAssignComMemberProp = $(`x`);
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $(`y`);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+    const tmpInitAssignLhsComputedObj = $(c);
+    const tmpInitAssignLhsComputedProp = $(`y`);
+    tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
     a = 7;
     const tmpAssignMemRhs = tmpForInNext.value;

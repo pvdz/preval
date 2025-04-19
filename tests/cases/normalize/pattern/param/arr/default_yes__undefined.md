@@ -20,8 +20,8 @@ $(f(undefined, 200));
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:unknown*/ = $(`pass`);
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:unknown*/ = $(`pass`);
+[...tmpBindingPatternArrRoot];
 $(`ok`);
 `````
 
@@ -30,8 +30,8 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = $(`pass`);
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot = $(`pass`);
+[...tmpBindingPatternArrRoot];
 $(`ok`);
 `````
 

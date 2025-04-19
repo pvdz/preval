@@ -23,10 +23,10 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpClusterSSA_b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = tmpClusterSSA_b[tmpCallCompProp];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpClusterSSA_b, undefined, 1);
+const tmpMCF /*:unknown*/ = tmpClusterSSA_b[tmpMCCP];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpClusterSSA_b, undefined, 1);
 $(tmpClusterSSA_a);
 `````
 
@@ -35,9 +35,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const tmpClusterSSA_b = { $: $ };
-$(tmpClusterSSA_b[tmpCallCompProp](1));
+$(tmpClusterSSA_b[tmpMCCP](1));
 `````
 
 

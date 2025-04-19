@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
@@ -36,9 +36,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpClusterSSA_a = b[tmpCallCompProp](1);
+const tmpClusterSSA_a = b[tmpMCCP](1);
 while (true) {
   $(tmpClusterSSA_a);
   $(1);

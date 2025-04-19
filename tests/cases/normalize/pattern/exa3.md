@@ -56,10 +56,10 @@ const obj /*:object*/ = {
   },
 };
 const a /*:unknown*/ = obj.a;
-const objPatternNoDefault /*:unknown*/ = obj.b;
-const c /*:unknown*/ = objPatternNoDefault.c;
+const tmpOPND /*:unknown*/ = obj.b;
+const c /*:unknown*/ = tmpOPND.c;
 const tmpCalleeParam$1 /*:array*/ = [`c`];
-const rest /*:unknown*/ = $objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+const rest /*:unknown*/ = $objPatternRest(tmpOPND, tmpCalleeParam$1, undefined);
 $(a, c, rest);
 `````
 
@@ -92,8 +92,8 @@ const obj = {
   },
 };
 const a = obj.a;
-const objPatternNoDefault = obj.b;
-$(a, objPatternNoDefault.c, $objPatternRest(objPatternNoDefault, [`c`], undefined));
+const tmpOPND = obj.b;
+$(a, tmpOPND.c, $objPatternRest(tmpOPND, [`c`], undefined));
 `````
 
 

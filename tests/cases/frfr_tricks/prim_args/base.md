@@ -34,8 +34,8 @@ const tmpFree /*:(string, string)=>string*/ = function $free($$0, $$1) {
   debugger;
   const tmpCalleeParam /*:string*/ = xs$1 + 5;
   const one /*:number*/ = parseInt(tmpCalleeParam, 10);
-  const tmpCallCompVal /*:unknown*/ = one.slice;
-  const two /*:unknown*/ = $dotCall(tmpCallCompVal, one, `slice`, 1, ys$1);
+  const tmpMCF /*:unknown*/ = one.slice;
+  const two /*:unknown*/ = $dotCall(tmpMCF, one, `slice`, 1, ys$1);
   const tmpRet /*:string*/ = $coerce(two, `plustr`);
   return tmpRet;
 };

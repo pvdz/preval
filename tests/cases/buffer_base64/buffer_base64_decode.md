@@ -24,8 +24,8 @@ $(x); // hello, world
 
 `````js filename=intro
 const buf /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, `aGVsbG8sIHdvcmxk=`, `base64`);
-const tmpCallCompVal$1 /*:unknown*/ = buf.toString;
-$dotCall(tmpCallCompVal$1, buf, `toString`, `ascii`);
+const tmpMCF$1 /*:unknown*/ = buf.toString;
+$dotCall(tmpMCF$1, buf, `toString`, `ascii`);
 $(`hello, world`);
 `````
 

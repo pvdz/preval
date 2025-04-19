@@ -19,15 +19,15 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+[...tmpBindingPatternArrRoot];
 const tmpCalleeParam$1 /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 [...tmpNestedAssignArrPatternRhs];
 const tmpCalleeParam$3 /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
-const arrPatternSplat$3 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$3[0];
+const tmpArrPatternSplat$3 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
+const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$3[0];
 const tmpCalleeParam /*:primitive*/ = tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
@@ -38,8 +38,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+[...tmpBindingPatternArrRoot];
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
 [...tmpNestedAssignArrPatternRhs];
 const tmpNestedAssignArrPatternRhs$1 = $([1, 2]);

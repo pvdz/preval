@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { $: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
-const tmpCallCompVal$1 /*:unknown*/ = b.$;
-const tmpClusterSSA_a$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, b, `\$`, 1);
+const tmpMCF$1 /*:unknown*/ = b.$;
+const tmpClusterSSA_a$1 /*:unknown*/ = $dotCall(tmpMCF$1, b, `\$`, 1);
 const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1);

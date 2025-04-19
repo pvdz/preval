@@ -22,13 +22,13 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 if (tmpClusterSSA_a) {
-  const tmpCallObj$1 /*:unknown*/ = $(b);
-  const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
-  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
+  const tmpMCOO$1 /*:unknown*/ = $(b);
+  const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.$;
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO$1, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -43,11 +43,11 @@ if (tmpClusterSSA_a) {
 
 `````js filename=intro
 const b = { $: $ };
-const tmpCallObj = $(b);
-const tmpClusterSSA_a = tmpCallObj.$(1);
+const tmpMCOO = $(b);
+const tmpClusterSSA_a = tmpMCOO.$(1);
 if (tmpClusterSSA_a) {
-  const tmpCallObj$1 = $(b);
-  const tmpNestedComplexRhs = tmpCallObj$1.$(1);
+  const tmpMCOO$1 = $(b);
+  const tmpNestedComplexRhs = tmpMCOO$1.$(1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {

@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpCalleeParamSpread /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpCalleeParamSpread /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 $(...tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -36,9 +36,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $({ $: $ });
-const tmpCallCompProp = $(`\$`);
-const tmpCalleeParamSpread = tmpCallCompObj[tmpCallCompProp](1);
+const tmpMCCO = $({ $: $ });
+const tmpMCCP = $(`\$`);
+const tmpCalleeParamSpread = tmpMCCO[tmpMCCP](1);
 $(...tmpCalleeParamSpread);
 $({ a: 999, b: 1000 });
 `````

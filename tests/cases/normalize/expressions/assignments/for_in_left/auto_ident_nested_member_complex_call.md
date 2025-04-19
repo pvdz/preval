@@ -37,14 +37,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
     const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-    const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-    const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-    const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-    a = varInitAssignLhsComputedRhs;
+    const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+    const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+    const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
+    tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+    a = tmpInitAssignLhsComputedRhs;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    varInitAssignLhsComputedRhs.x = tmpAssignMemRhs;
+    tmpInitAssignLhsComputedRhs.x = tmpAssignMemRhs;
   }
 }
 $(a, b, c, 3);
@@ -66,13 +66,13 @@ while (true) {
   } else {
     const tmpNestedAssignComMemberObj = $(b);
     const tmpNestedAssignComMemberProp = $(`x`);
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $(`y`);
-    const varInitAssignLhsComputedRhs = $(3);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-    a = varInitAssignLhsComputedRhs;
-    varInitAssignLhsComputedRhs.x = tmpForInNext.value;
+    const tmpInitAssignLhsComputedObj = $(c);
+    const tmpInitAssignLhsComputedProp = $(`y`);
+    const tmpInitAssignLhsComputedRhs = $(3);
+    tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+    a = tmpInitAssignLhsComputedRhs;
+    tmpInitAssignLhsComputedRhs.x = tmpForInNext.value;
   }
 }
 $(a, b, c, 3);

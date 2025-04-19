@@ -18,13 +18,13 @@ for (let a = b[$('x')] = $(c)[$('y')] = $(d);false;) $(a, b, c);
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
+const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
 const b /*:object*/ = { x: 2 };
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
 `````
 
 
@@ -32,13 +32,13 @@ b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(3);
-const varInitAssignLhsComputedProp$1 = $(`y`);
-const varInitAssignLhsComputedRhs$1 = $(4);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedObj$1 = $(3);
+const tmpInitAssignLhsComputedProp$1 = $(`y`);
+const tmpInitAssignLhsComputedRhs$1 = $(4);
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
 const b = { x: 2 };
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
 `````
 
 

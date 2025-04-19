@@ -20,13 +20,13 @@ $(f([{}, 20, 30], 200));
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPBD /*:unknown*/ = $Object_prototype.x;
+const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
   $(tmpClusterSSA_x);
 } else {
-  $(objPatternBeforeDefault);
+  $(tmpOPBD);
 }
 `````
 
@@ -35,11 +35,11 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $Object_prototype.x;
-if (objPatternBeforeDefault === undefined) {
+const tmpOPBD = $Object_prototype.x;
+if (tmpOPBD === undefined) {
   $($(`pass`));
 } else {
-  $(objPatternBeforeDefault);
+  $(tmpOPBD);
 }
 `````
 

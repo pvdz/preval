@@ -41,8 +41,8 @@ const f /*:()=>unknown*/ = function () {
   const tmpReturnArg /*:unknown*/ = tmpPrevalAliasThis.x;
   return tmpReturnArg;
 };
-const tmpCalleeParam$1 /*:object*/ = { x: 100 };
-const tmpCalleeParam /*:unknown*/ = $dotCall($function_call, f, `call`, tmpCalleeParam$1);
+const tmpMCP /*:object*/ = { x: 100 };
+const tmpCalleeParam /*:unknown*/ = $dotCall($function_call, f, `call`, tmpMCP);
 $(tmpCalleeParam);
 `````
 

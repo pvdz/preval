@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+[...tmpBindingPatternArrRoot];
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 [...tmpNestedAssignArrPatternRhs];
@@ -32,8 +32,8 @@ throw tmpNestedAssignArrPatternRhs;
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+[...tmpBindingPatternArrRoot];
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
 [...tmpNestedAssignArrPatternRhs];
 throw tmpNestedAssignArrPatternRhs;

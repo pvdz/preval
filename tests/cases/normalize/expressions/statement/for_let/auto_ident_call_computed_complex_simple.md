@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const xyz /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const xyz /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
@@ -36,8 +36,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallObj = $({ $: $ });
-const xyz = tmpCallObj.$(1);
+const tmpMCOO = $({ $: $ });
+const xyz = tmpMCOO.$(1);
 while (true) {
   $(xyz);
   $(1);

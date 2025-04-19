@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-$dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+$dotCall(tmpMCF, tmpMCCO, undefined, 1);
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -46,9 +46,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $({ $: $ });
-const tmpCallCompProp = $(`\$`);
-tmpCallCompObj[tmpCallCompProp](1);
+const tmpMCCO = $({ $: $ });
+const tmpMCCP = $(`\$`);
+tmpMCCO[tmpMCCP](1);
 if ($(0)) {
   while (true) {
     if (!$(0)) {

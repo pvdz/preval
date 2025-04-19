@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
@@ -37,8 +37,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallObj = $({ $: $ });
-$(`before  ${tmpCallObj.$(1)}  after`);
+const tmpMCOO = $({ $: $ });
+$(`before  ${tmpMCOO.$(1)}  after`);
 $({ a: 999, b: 1000 });
 `````
 

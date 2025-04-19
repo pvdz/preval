@@ -21,9 +21,9 @@ $(f());
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass`];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const x /*:array*/ = $dotCall($array_slice, arrPatternSplat, `slice`, 0);
+const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const x /*:array*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
 $(x);
 `````
 
@@ -32,8 +32,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = $([`pass`]);
-$($dotCall($array_slice, [...bindingPatternArrRoot], `slice`, 0));
+const tmpBindingPatternArrRoot = $([`pass`]);
+$($dotCall($array_slice, [...tmpBindingPatternArrRoot], `slice`, 0));
 `````
 
 

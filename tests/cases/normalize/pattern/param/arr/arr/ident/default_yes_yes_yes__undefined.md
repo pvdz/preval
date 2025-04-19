@@ -21,25 +21,25 @@ $(f(undefined, 200));
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass3`];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-let arrPatternStep /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
+let tmpArrPatternStep /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:array*/ = [`fail2`];
-  arrPatternStep = $(tmpCalleeParam$1);
+  tmpArrPatternStep = $(tmpCalleeParam$1);
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const arrPatternBeforeDefault$1 /*:unknown*/ = arrPatternSplat$1[0];
-const tmpIfTest$3 /*:boolean*/ = arrPatternBeforeDefault$1 === undefined;
+const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrPatternStep];
+const tmpAPBD$1 /*:unknown*/ = tmpArrPatternSplat$1[0];
+const tmpIfTest$3 /*:boolean*/ = tmpAPBD$1 === undefined;
 if (tmpIfTest$3) {
   const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
   $(tmpClusterSSA_x);
 } else {
-  $(arrPatternBeforeDefault$1);
+  $(tmpAPBD$1);
 }
 `````
 
@@ -48,19 +48,19 @@ if (tmpIfTest$3) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = $([`pass3`]);
-const arrPatternBeforeDefault = [...bindingPatternArrRoot][0];
-let arrPatternStep = undefined;
-if (arrPatternBeforeDefault === undefined) {
-  arrPatternStep = $([`fail2`]);
+const tmpBindingPatternArrRoot = $([`pass3`]);
+const tmpAPBD = [...tmpBindingPatternArrRoot][0];
+let tmpArrPatternStep = undefined;
+if (tmpAPBD === undefined) {
+  tmpArrPatternStep = $([`fail2`]);
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-const arrPatternBeforeDefault$1 = [...arrPatternStep][0];
-if (arrPatternBeforeDefault$1 === undefined) {
+const tmpAPBD$1 = [...tmpArrPatternStep][0];
+if (tmpAPBD$1 === undefined) {
   $($(`fail`));
 } else {
-  $(arrPatternBeforeDefault$1);
+  $(tmpAPBD$1);
 }
 `````
 

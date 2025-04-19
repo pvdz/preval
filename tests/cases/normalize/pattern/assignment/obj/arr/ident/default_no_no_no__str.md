@@ -18,9 +18,9 @@ $('bad');
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $String_prototype.x;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-y = arrPatternSplat[0];
+const tmpOPND /*:unknown*/ = $String_prototype.x;
+const tmpArrPatternSplat /*:array*/ = [...tmpOPND];
+y = tmpArrPatternSplat[0];
 $(`bad`);
 `````
 
@@ -29,8 +29,8 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = $String_prototype.x;
-y = [...objPatternNoDefault][0];
+const tmpOPND = $String_prototype.x;
+y = [...tmpOPND][0];
 $(`bad`);
 `````
 

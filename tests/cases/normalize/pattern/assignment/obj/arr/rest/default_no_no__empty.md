@@ -18,9 +18,9 @@ $('bad');
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-y = $dotCall($array_slice, arrPatternSplat, `slice`, 0);
+const tmpOPND /*:unknown*/ = $Number_prototype.x;
+const tmpArrPatternSplat /*:array*/ = [...tmpOPND];
+y = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
 $(`bad`);
 `````
 
@@ -29,8 +29,8 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = $Number_prototype.x;
-y = $dotCall($array_slice, [...objPatternNoDefault], `slice`, 0);
+const tmpOPND = $Number_prototype.x;
+y = $dotCall($array_slice, [...tmpOPND], `slice`, 0);
 $(`bad`);
 `````
 

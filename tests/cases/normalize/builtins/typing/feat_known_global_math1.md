@@ -29,29 +29,29 @@ $(typeof Math.clz32($spy('Math.clz32')));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.asin`);
-$coerce(tmpCalleeParam$1, `number`);
+const tmpMCP /*:unknown*/ = $spy(`Math.asin`);
+$coerce(tmpMCP, `number`);
 $(`number`);
-const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.asinh`);
-$coerce(tmpCalleeParam$5, `number`);
+const tmpMCP$1 /*:unknown*/ = $spy(`Math.asinh`);
+$coerce(tmpMCP$1, `number`);
 $(`number`);
-const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.atan`);
-$coerce(tmpCalleeParam$9, `number`);
+const tmpMCP$3 /*:unknown*/ = $spy(`Math.atan`);
+$coerce(tmpMCP$3, `number`);
 $(`number`);
-const tmpCalleeParam$13 /*:unknown*/ = $spy(`Math.atan2`);
-$coerce(tmpCalleeParam$13, `number`);
+const tmpMCP$5 /*:unknown*/ = $spy(`Math.atan2`);
+$coerce(tmpMCP$5, `number`);
 $(`number`);
-const tmpCalleeParam$17 /*:unknown*/ = $spy(`Math.atanh`);
-$coerce(tmpCalleeParam$17, `number`);
+const tmpMCP$7 /*:unknown*/ = $spy(`Math.atanh`);
+$coerce(tmpMCP$7, `number`);
 $(`number`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`Math.cbrt`);
-$coerce(tmpCalleeParam$21, `number`);
+const tmpMCP$9 /*:unknown*/ = $spy(`Math.cbrt`);
+$coerce(tmpMCP$9, `number`);
 $(`number`);
-const tmpCalleeParam$25 /*:unknown*/ = $spy(`Math.ceil`);
-$coerce(tmpCalleeParam$25, `number`);
+const tmpMCP$11 /*:unknown*/ = $spy(`Math.ceil`);
+$coerce(tmpMCP$11, `number`);
 $(`number`);
-const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.clz32`);
-$coerce(tmpCalleeParam$29, `number`);
+const tmpMCP$13 /*:unknown*/ = $spy(`Math.clz32`);
+$coerce(tmpMCP$13, `number`);
 $(`number`);
 `````
 

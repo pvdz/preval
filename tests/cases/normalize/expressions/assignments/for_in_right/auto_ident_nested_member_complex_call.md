@@ -27,12 +27,12 @@ const b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-const tmpForInGen /*:unknown*/ = $forIn(varInitAssignLhsComputedRhs);
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+const tmpForInGen /*:unknown*/ = $forIn(tmpInitAssignLhsComputedRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -42,7 +42,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(varInitAssignLhsComputedRhs, b, c, 3);
+$(tmpInitAssignLhsComputedRhs, b, c, 3);
 `````
 
 
@@ -54,12 +54,12 @@ const b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const c = { y: 2 };
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-const tmpForInGen = $forIn(varInitAssignLhsComputedRhs);
+const tmpInitAssignLhsComputedObj = $(c);
+const tmpInitAssignLhsComputedProp = $(`y`);
+const tmpInitAssignLhsComputedRhs = $(3);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+const tmpForInGen = $forIn(tmpInitAssignLhsComputedRhs);
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
@@ -68,7 +68,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$(varInitAssignLhsComputedRhs, b, c, 3);
+$(tmpInitAssignLhsComputedRhs, b, c, 3);
 `````
 
 

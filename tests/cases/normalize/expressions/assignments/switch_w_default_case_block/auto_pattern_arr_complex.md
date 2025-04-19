@@ -27,9 +27,9 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-let a /*:unknown*/ = arrPatternSplat[0];
+const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+let a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);
@@ -46,9 +46,9 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpCalleeParam /*:array*/ = [1, 2];
-  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
-  a = arrPatternSplat$1[0];
+  const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+  const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrAssignPatternRhs];
+  a = tmpArrPatternSplat$1[0];
 } else {
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -67,8 +67,8 @@ if (tmpIfTest$5) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-let a = [...bindingPatternArrRoot][0];
+const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+let a = [...tmpBindingPatternArrRoot][0];
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 if ($(1) === tmpSwitchValue) {
@@ -79,8 +79,8 @@ if ($(1) === tmpSwitchValue) {
   }
 }
 if (tmpSwitchCaseToStart <= 0) {
-  const arrAssignPatternRhs = $([1, 2]);
-  a = [...arrAssignPatternRhs][0];
+  const tmpArrAssignPatternRhs = $([1, 2]);
+  a = [...tmpArrAssignPatternRhs][0];
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);

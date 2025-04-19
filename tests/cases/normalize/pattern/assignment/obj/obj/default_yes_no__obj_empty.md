@@ -18,23 +18,23 @@ $('ok');
 
 
 `````js filename=intro
-let objPatternAfterDefault /*:unknown*/ = undefined;
-let objPatternCrashTest /*:boolean*/ = false;
-const objPatternBeforeDefault /*:unknown*/ = $Object_prototype.x;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+let tmpOPAD /*:unknown*/ = undefined;
+let tmpObjPatternCrashTest /*:boolean*/ = false;
+const tmpOPBD /*:unknown*/ = $Object_prototype.x;
+const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { x: `pass` };
-  objPatternAfterDefault = $(tmpCalleeParam);
-  objPatternCrashTest = objPatternAfterDefault === undefined;
+  tmpOPAD = $(tmpCalleeParam);
+  tmpObjPatternCrashTest = tmpOPAD === undefined;
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-if (objPatternCrashTest) {
+if (tmpObjPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternAfterDefault === null;
+  tmpObjPatternCrashTest = tmpOPAD === null;
 }
-if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpOPAD.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -46,20 +46,20 @@ if (objPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-let objPatternAfterDefault = undefined;
-let objPatternCrashTest = false;
-const objPatternBeforeDefault = $Object_prototype.x;
-if (objPatternBeforeDefault === undefined) {
-  objPatternAfterDefault = $({ x: `pass` });
-  objPatternCrashTest = objPatternAfterDefault === undefined;
+let tmpOPAD = undefined;
+let tmpObjPatternCrashTest = false;
+const tmpOPBD = $Object_prototype.x;
+if (tmpOPBD === undefined) {
+  tmpOPAD = $({ x: `pass` });
+  tmpObjPatternCrashTest = tmpOPAD === undefined;
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-if (!objPatternCrashTest) {
-  objPatternCrashTest = objPatternAfterDefault === null;
+if (!tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpOPAD === null;
 }
-if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpOPAD.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);

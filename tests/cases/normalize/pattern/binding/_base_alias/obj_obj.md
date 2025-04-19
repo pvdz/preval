@@ -17,9 +17,9 @@ const {x: {y: {z: a}}} = 1
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
-const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
-objPatternNoDefault$1.z;
+const tmpOPND /*:unknown*/ = $Number_prototype.x;
+const tmpOPND$1 /*:unknown*/ = tmpOPND.y;
+tmpOPND$1.z;
 `````
 
 

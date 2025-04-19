@@ -33,28 +33,28 @@ $(typeof Math.round($spy('Math.round')));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.log10`);
-$coerce(tmpCalleeParam$1, `number`);
+const tmpMCP /*:unknown*/ = $spy(`Math.log10`);
+$coerce(tmpMCP, `number`);
 $(`number`);
-const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.log1p`);
-$coerce(tmpCalleeParam$5, `number`);
+const tmpMCP$1 /*:unknown*/ = $spy(`Math.log1p`);
+$coerce(tmpMCP$1, `number`);
 $(`number`);
-const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.log2`);
-$coerce(tmpCalleeParam$9, `number`);
+const tmpMCP$3 /*:unknown*/ = $spy(`Math.log2`);
+$coerce(tmpMCP$3, `number`);
 $(`number`);
-const tmpCalleeParam$13 /*:unknown*/ = $spy(`Math.max`);
-$coerce(tmpCalleeParam$13, `number`);
+const tmpMCP$5 /*:unknown*/ = $spy(`Math.max`);
+$coerce(tmpMCP$5, `number`);
 $(`number`);
-const tmpCalleeParam$17 /*:unknown*/ = $spy(`Math.min`);
-$coerce(tmpCalleeParam$17, `number`);
+const tmpMCP$7 /*:unknown*/ = $spy(`Math.min`);
+$coerce(tmpMCP$7, `number`);
 $(`number`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`Math.pow`);
-$coerce(tmpCalleeParam$21, `number`);
+const tmpMCP$9 /*:unknown*/ = $spy(`Math.pow`);
+$coerce(tmpMCP$9, `number`);
 $(`number`);
 $spy(`Math.random`);
 $(`number`);
-const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.round`);
-$coerce(tmpCalleeParam$29, `number`);
+const tmpMCP$13 /*:unknown*/ = $spy(`Math.round`);
+$coerce(tmpMCP$13, `number`);
 $(`number`);
 `````
 

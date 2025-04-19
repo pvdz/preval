@@ -30,9 +30,9 @@ const x /*:class*/ = class {
     return tmpReturnArg;
   }
 };
-const tmpCallObj /*:object*/ = new x();
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.f;
-const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `f`);
+const tmpMCOO /*:object*/ = new x();
+const tmpMCF /*:unknown*/ = tmpMCOO.f;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `f`);
 $(tmpCalleeParam);
 `````
 
@@ -48,8 +48,8 @@ const x = class {
     return tmpReturnArg;
   }
 };
-const tmpCallObj = new x();
-$(tmpCallObj.f());
+const tmpMCOO = new x();
+$(tmpMCOO.f());
 `````
 
 

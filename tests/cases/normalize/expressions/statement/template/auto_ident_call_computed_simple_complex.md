@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
@@ -37,9 +37,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-$(`before  ${b[tmpCallCompProp](1)}  after`);
+$(`before  ${b[tmpMCCP](1)}  after`);
 $({ a: 999, b: 1000 });
 `````
 

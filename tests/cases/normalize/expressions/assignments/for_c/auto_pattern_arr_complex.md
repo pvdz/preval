@@ -19,22 +19,22 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a /*:unknown*/ = arrPatternSplat[0];
+const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [1, 2];
-  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
-  let tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+  const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+  const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrAssignPatternRhs];
+  let tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 /*:array*/ = [1, 2];
-      const arrAssignPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      const arrPatternSplat$2 /*:array*/ = [...arrAssignPatternRhs$1];
-      tmpClusterSSA_a = arrPatternSplat$2[0];
+      const tmpArrAssignPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
+      const tmpArrPatternSplat$2 /*:array*/ = [...tmpArrAssignPatternRhs$1];
+      tmpClusterSSA_a = tmpArrPatternSplat$2[0];
     } else {
       break;
     }
@@ -50,15 +50,15 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const a = [...bindingPatternArrRoot][0];
+const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+const a = [...tmpBindingPatternArrRoot][0];
 if ($(1)) {
-  const arrAssignPatternRhs = $([1, 2]);
-  let tmpClusterSSA_a = [...arrAssignPatternRhs][0];
+  const tmpArrAssignPatternRhs = $([1, 2]);
+  let tmpClusterSSA_a = [...tmpArrAssignPatternRhs][0];
   while (true) {
     if ($(1)) {
-      const arrAssignPatternRhs$1 = $([1, 2]);
-      tmpClusterSSA_a = [...arrAssignPatternRhs$1][0];
+      const tmpArrAssignPatternRhs$1 = $([1, 2]);
+      tmpClusterSSA_a = [...tmpArrAssignPatternRhs$1][0];
     } else {
       break;
     }

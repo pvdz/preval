@@ -20,14 +20,14 @@ $(f('', 100));
 
 
 `````js filename=intro
-const arrPatternStep /*:unknown*/ = $(`pass`);
-let objPatternCrashTest /*:boolean*/ = arrPatternStep === undefined;
-if (objPatternCrashTest) {
+const tmpArrPatternStep /*:unknown*/ = $(`pass`);
+let tmpObjPatternCrashTest /*:boolean*/ = tmpArrPatternStep === undefined;
+if (tmpObjPatternCrashTest) {
 } else {
-  objPatternCrashTest = arrPatternStep === null;
+  tmpObjPatternCrashTest = tmpArrPatternStep === null;
 }
-if (objPatternCrashTest) {
-  arrPatternStep.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpArrPatternStep.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -39,13 +39,13 @@ if (objPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const arrPatternStep = $(`pass`);
-let objPatternCrashTest = arrPatternStep === undefined;
-if (!objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep === null;
+const tmpArrPatternStep = $(`pass`);
+let tmpObjPatternCrashTest = tmpArrPatternStep === undefined;
+if (!tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpArrPatternStep === null;
 }
-if (objPatternCrashTest) {
-  arrPatternStep.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpArrPatternStep.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);

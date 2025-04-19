@@ -21,9 +21,9 @@ $(a, x, y, z);
 `````js filename=intro
 let a /*:unknown*/ = undefined;
 const z /*:array*/ = [10, 20, 30];
-const arrPatternSplat /*:array*/ = [...z];
-const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
-const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
+const tmpArrPatternSplat /*:array*/ = [...z];
+const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
+const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
 a = z;
 export { a };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y, z);
@@ -36,9 +36,9 @@ $(a, tmpClusterSSA_x, tmpClusterSSA_y, z);
 `````js filename=intro
 let a = undefined;
 const z = [10, 20, 30];
-const arrPatternSplat = [...z];
-const tmpClusterSSA_x = arrPatternSplat[0];
-const tmpClusterSSA_y = arrPatternSplat[1];
+const tmpArrPatternSplat = [...z];
+const tmpClusterSSA_x = tmpArrPatternSplat[0];
+const tmpClusterSSA_y = tmpArrPatternSplat[1];
 a = z;
 export { a };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y, z);

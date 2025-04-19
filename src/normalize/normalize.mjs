@@ -229,7 +229,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         // Pre-normalization should ensure that num/string keys also become computed
         // - `let { "a b": c} = x;`
         // - `let { 200: c} = x;`
-        const keyVarName = createFreshVar('dynKey', fdata);
+        const keyVarName = createFreshVar('tmpCK', fdata);
         newBindings.push([
           keyVarName,
           FRESH,
@@ -259,12 +259,12 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         // after processing the node. Should not be a problem... Fingers crossed.
 
         // The param value before applying the default value checks
-        const paramNameBeforeDefault = createFreshVar('objPatternBeforeDefault', fdata);
+        const paramNameBeforeDefault = createFreshVar('tmpOPBD', fdata);
         log('  - Regular prop `' + propNode.key.name + '` with default');
         log('  - Stored into `' + paramNameBeforeDefault + '`');
 
         // If this is a leaf then use the actual name, otherwise use a placeholder
-        const paramNameAfterDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('objPatternAfterDefault', fdata);
+        const paramNameAfterDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('tmpOPAD', fdata);
         cacheNameStack.push(paramNameAfterDefault);
 
         // Store the property in this name. It's a regular property access and the previous step should
@@ -285,7 +285,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         );
       } else {
         // If this is a leaf then use the actual name, otherwise use a placeholder
-        const paramNameWithoutDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('objPatternNoDefault', fdata);
+        const paramNameWithoutDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('tmpOPND', fdata);
         cacheNameStack.push(paramNameWithoutDefault);
         log('  - Regular prop `' + propNode.key.name + '` without default');
         log('  - Stored into `' + paramNameWithoutDefault + '`');
@@ -313,7 +313,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
     if (!node.properties.length) {
       // No properties so we need to explicitly make sure it throws if the value is null/undefined
-      const paramNameBeforeDefault = createFreshVar('objPatternCrashTest', fdata); // Unused. Should eliminate easily.
+      const paramNameBeforeDefault = createFreshVar('tmpObjPatternCrashTest', fdata); // Unused. Should eliminate easily.
       const lastThing = cacheNameStack[cacheNameStack.length - 1];
       newBindings.push([
         paramNameBeforeDefault,
@@ -337,7 +337,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     // kind = param, var, assign
     group('- walkArrayPattern', kind);
 
-    const arrSplatName = node.type === 'Identifier' ? node.name : createFreshVar('arrPatternSplat', fdata);
+    const arrSplatName = node.type === 'Identifier' ? node.name : createFreshVar('tmpArrPatternSplat', fdata);
     cacheNameStack.push(arrSplatName);
     // Store this property in a local variable. Because it's an array pattern, we need to invoke the iterator. The easiest
     // way syntactically is to spread it into an array. Especially since we'll want indexed access to it later, anyways.
@@ -396,12 +396,12 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         // after processing the node. Should not be a problem... Fingers crossed.
 
         // The param value before applying the default value checks
-        const paramNameBeforeDefault = createFreshVar('arrPatternBeforeDefault', fdata);
+        const paramNameBeforeDefault = createFreshVar('tmpAPBD', fdata);
 
         // Store this element in a local variable. If it's a leaf, use the actual
         // element name as the binding, otherwise create a fresh var for it.
 
-        const paramNameAfterDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('arrPatternStep', fdata);
+        const paramNameAfterDefault = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('tmpArrPatternStep', fdata);
         cacheNameStack.push(paramNameAfterDefault);
 
         // Store the property in this name
@@ -428,7 +428,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         // Store this element in a local variable. If it's a leaf, use the actual
         // element name as the binding, otherwise create a fresh var for it.
 
-        const bindingName = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('arrPatternStep', fdata);
+        const bindingName = valueNode.type === 'Identifier' ? valueNode.name : createFreshVar('tmpArrPatternStep', fdata);
         cacheNameStack.push(bindingName);
 
         // Store the property in this name
@@ -1270,7 +1270,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         if (lhs.type === 'ArrayPattern') {
-          const rhsTmpName = createFreshVar('arrAssignPatternRhs', fdata);
+          const rhsTmpName = createFreshVar('tmpArrAssignPatternRhs', fdata);
           const cacheNameStack = [rhsTmpName];
           const newBindings = [];
 
@@ -3215,8 +3215,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             example('a()[b()]()', 'tmp = b(), a()[tmp2]()');
             before(node, parentNodeOrWhatever);
 
-            const tmpNameObj = createFreshVar('tmpCallCompObj', fdata); // tmpMCCO
-            const tmpNameProp = createFreshVar('tmpCallCompProp', fdata); // tmpMCCP
+            const tmpNameObj = createFreshVar('tmpMCCO', fdata);
+            const tmpNameProp = createFreshVar('tmpMCCP', fdata);
             const newNodes = [
               AST.varStatement('const', tmpNameObj, callee.object),
               AST.varStatement('const', tmpNameProp, callee.property),
@@ -3240,7 +3240,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             example('a().b()', 'tmp = a(), tmp.b()');
             before(node, parentNodeOrWhatever);
 
-            const tmpNameObj = createFreshVar('tmpCallObj', fdata); // tmpMCOO
+            const tmpNameObj = createFreshVar('tmpMCOO', fdata);
             const newNode = AST.varStatement('const', tmpNameObj, callee.object);
             callee.object = AST.identifier(tmpNameObj);
             body.splice(i, 0, newNode);
@@ -3261,7 +3261,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           example('x[y](a, b)', 'const tmp = x[y]; x.y(a, b)');
           before(body[callAtIndex]);
 
-          const tmpNameFunc = createFreshVar('tmpCallCompVal', fdata); // tmpMCF
+          const tmpNameFunc = createFreshVar('tmpMCF', fdata);
           const newNodes = [
             AST.varStatement('const', tmpNameFunc, callee),
           ];
@@ -3309,7 +3309,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               example('a.b(f())', 'const tmp = f(); a.b(tmp);');
               before(body[callAtIndex]);
 
-              const tmpName = createFreshVar('tmpCalleeParam', fdata); // tmpMCP
+              const tmpName = createFreshVar('tmpMCP', fdata);
               const newNode = AST.varStatement('const', tmpName, nodeArgs[n]);
               body.splice(callAtIndex, 0, newNode);
               nodeArgs[n] = AST.identifier(tmpName);
@@ -3319,8 +3319,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               callAtIndex += 1;
             }
           }
-
-          //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
           assertNoDupeNodes(AST.blockStatement(body), 'body');
 
@@ -3342,8 +3340,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(callAtIndex, 1, finalParent2);
 
           after(body[callAtIndex]);
-
-          //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
@@ -9456,9 +9452,9 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
           before(node, parentBlock);
 
-          const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
-          const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp', fdata);
-          const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
+          const tmpNameObj = createFreshVar('tmpInitAssignLhsComputedObj', fdata);
+          const tmpNameProp = createFreshVar('tmpInitAssignLhsComputedProp', fdata);
+          const tmpNameRhs = createFreshVar('tmpInitAssignLhsComputedRhs', fdata);
           const newNodes = [
             AST.varStatement('const', tmpNameObj, init.left.object),
             AST.varStatement('const', tmpNameProp, init.left.property),
@@ -9494,7 +9490,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           );
           before(node, parentBlock);
 
-          const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
+          const tmpNameObj = createFreshVar('tmpInitAssignLhsComputedObj', fdata);
           const newNodes = [
             AST.varStatement('const', tmpNameObj, init.left.object),
             AST.varStatement(
@@ -9543,7 +9539,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
         before(node, parentBlock);
 
-        const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
+        const tmpNameRhs = createFreshVar('tmpInitAssignLhsComputedRhs', fdata);
         const newNodes = [
           AST.varStatement('const', tmpNameRhs, init.right),
           AST.expressionStatement(AST.assignmentExpression(init.left, tmpNameRhs, init.operator)),
@@ -9729,7 +9725,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       example('let [x] = y()', 'let tmp = y(), tmp1 = [...tmp], x = tmp1[0]');
       before(node);
 
-      const bindingPatternRootName = createFreshVar('bindingPatternArrRoot', fdata); // TODO: rename to tmp prefix
+      const bindingPatternRootName = createFreshVar('tmpBindingPatternArrRoot', fdata);
       const nameStack = [bindingPatternRootName];
       const newBindings = [];
       funcArgsWalkArrayPattern(id, nameStack, newBindings, 'var');
@@ -9762,7 +9758,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       example('var {x} = y()', 'var tmp = y(), x = obj.x');
       before(node, parentBlock);
 
-      const bindingPatternRootName = createFreshVar('bindingPatternObjRoot', fdata);
+      const bindingPatternRootName = createFreshVar('tmpBindingPatternObjRoot', fdata);
       const nameStack = [bindingPatternRootName];
       const newBindings = [];
       funcArgsWalkObjectPattern(id, nameStack, newBindings, 'var', true);

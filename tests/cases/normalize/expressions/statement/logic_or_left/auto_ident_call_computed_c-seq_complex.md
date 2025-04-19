@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a);
@@ -40,9 +40,9 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $({ $: $ });
-const tmpCallCompProp = $(`\$`);
-const tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
+const tmpMCCO = $({ $: $ });
+const tmpMCCP = $(`\$`);
+const tmpIfTest = tmpMCCO[tmpMCCP](1);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a);

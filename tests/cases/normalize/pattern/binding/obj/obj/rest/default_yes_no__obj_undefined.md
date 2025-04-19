@@ -19,9 +19,9 @@ $(y);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: `pass` };
-const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
-const y /*:unknown*/ = $objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
+const y /*:unknown*/ = $objPatternRest(tmpOPAD, tmpCalleeParam$3, undefined);
 $(y);
 `````
 
@@ -30,8 +30,8 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternAfterDefault = $({ a: `pass` });
-$($objPatternRest(objPatternAfterDefault, [], undefined));
+const tmpOPAD = $({ a: `pass` });
+$($objPatternRest(tmpOPAD, [], undefined));
 `````
 
 

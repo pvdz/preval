@@ -48,13 +48,13 @@ if ($) {
   let b___18__ = `jhayon.vercel.app`;
   let c___22__ = 1;
   const d___25__ = $(`x`);
-  const tmpCallCompVal___31__ = d___33__.slice___34__;
-  a___44__ = $dotCall___38__(tmpCallCompVal___39__, d___40__, `slice`, 0);
+  const tmpMCF___31__ = d___33__.slice___34__;
+  a___44__ = $dotCall___38__(tmpMCF___39__, d___40__, `slice`, 0);
   const e___46__ = a___48__[0];
   const f___51__ = e___53__ === `.`;
   if (f___57__) {
-    /*58*/ const tmpCallCompVal$1___61__ = a___63__.slice___64__;
-    b___74__ = $dotCall___68__(tmpCallCompVal$1___69__, a___70__, `slice`, 1);
+    /*58*/ const tmpMCF$1___61__ = a___63__.slice___64__;
+    b___74__ = $dotCall___68__(tmpMCF$1___69__, a___70__, `slice`, 1);
   } /*75*/ else {
     b___79__ = a___78__;
   }
@@ -75,7 +75,7 @@ None
 ## Ref tracking result
 
 
-                     | reads      | read by     | overWrites     | overwritten by
+               | reads      | read by     | overWrites     | overwritten by
 a:
   - w @14      | ########## | not read    | none           | 44
   - w @44      | ########## | 48,63,70,78 | 14             | none
@@ -100,22 +100,22 @@ d:
   - r @33      | 25
   - r @40      | 25
 
-tmpCallCompVal:
-  - w @31          | ########## | 39          | none           | none
-  - r @39          | 31
+tmpMCF:
+  - w @31      | ########## | 39          | none           | none
+  - r @39      | 31
 
 e:
-  - w @46          | ########## | 53          | none           | none
-  - r @53          | 46
+  - w @46      | ########## | 53          | none           | none
+  - r @53      | 46
 
 f:
-  - w @51          | ########## | 57          | none           | none
-  - r @57          | 51
+  - w @51      | ########## | 57          | none           | none
+  - r @57      | 51
 
-tmpCallCompVal$1:
-  - w @61            | ########## | 69          | none           | none
-  - r @69            | 61
+tmpMCF$1:
+  - w @61      | ########## | 69          | none           | none
+  - r @69      | 61
 
 h:
-  - w @81            | ########## | 88          | none           | none
-  - r @88            | 81
+  - w @81      | ########## | 88          | none           | none
+  - r @88      | 81

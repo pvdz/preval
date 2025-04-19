@@ -21,8 +21,8 @@ for (let [x, y] = ($(a), $(b), $(z));false;) $(a, b, x, y, z);
 $(1);
 $(2);
 const z /*:array*/ = [10, 20, 30];
-const bindingPatternArrRoot /*:unknown*/ = $(z);
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:unknown*/ = $(z);
+[...tmpBindingPatternArrRoot];
 `````
 
 
@@ -32,8 +32,8 @@ const bindingPatternArrRoot /*:unknown*/ = $(z);
 `````js filename=intro
 $(1);
 $(2);
-const bindingPatternArrRoot = $([10, 20, 30]);
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot = $([10, 20, 30]);
+[...tmpBindingPatternArrRoot];
 `````
 
 

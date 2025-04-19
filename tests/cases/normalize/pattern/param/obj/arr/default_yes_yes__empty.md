@@ -22,17 +22,17 @@ $(f());
 `````js filename=intro
 const tmpObjLitVal /*:array*/ = [`fail2`];
 const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpClusterSSA_tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD /*:unknown*/ = tmpClusterSSA_tmpBindingPatternObjRoot.x;
+let tmpOPAD /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:array*/ = [`fail`];
-  objPatternAfterDefault = $(tmpCalleeParam$1);
+  tmpOPAD = $(tmpCalleeParam$1);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-[...objPatternAfterDefault];
+[...tmpOPAD];
 $(`ok`);
 `````
 
@@ -42,14 +42,14 @@ $(`ok`);
 
 `````js filename=intro
 const tmpObjLitVal = [`fail2`];
-const objPatternBeforeDefault = $({ x: tmpObjLitVal }).x;
-let objPatternAfterDefault = undefined;
-if (objPatternBeforeDefault === undefined) {
-  objPatternAfterDefault = $([`fail`]);
+const tmpOPBD = $({ x: tmpObjLitVal }).x;
+let tmpOPAD = undefined;
+if (tmpOPBD === undefined) {
+  tmpOPAD = $([`fail`]);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-[...objPatternAfterDefault];
+[...tmpOPAD];
 $(`ok`);
 `````
 

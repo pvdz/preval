@@ -18,8 +18,8 @@ $('bad');
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Object_prototype.x;
-y = objPatternNoDefault.y;
+const tmpOPND /*:unknown*/ = $Object_prototype.x;
+y = tmpOPND.y;
 $(`bad`);
 `````
 

@@ -19,8 +19,8 @@ $(/foo/.test(arg));
 
 `````js filename=intro
 const arg /*:unknown*/ = $(`give food`);
-const tmpCallObj /*:regex*/ = /foo/;
-const tmpCalleeParam /*:unknown*/ = $dotCall($regex_test, tmpCallObj, `test`, arg);
+const tmpMCOO /*:regex*/ = /foo/;
+const tmpCalleeParam /*:unknown*/ = $dotCall($regex_test, tmpMCOO, `test`, arg);
 $(tmpCalleeParam);
 `````
 

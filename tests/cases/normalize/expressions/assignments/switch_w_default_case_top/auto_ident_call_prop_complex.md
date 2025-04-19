@@ -45,9 +45,9 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const b /*:object*/ = { $: $ };
-  const tmpCallObj /*:unknown*/ = $(b);
-  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-  a = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+  const tmpMCOO /*:unknown*/ = $(b);
+  const tmpMCF /*:unknown*/ = tmpMCOO.$;
+  a = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 } else {
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -77,8 +77,8 @@ if ($(1) === tmpSwitchValue) {
   }
 }
 if (tmpSwitchCaseToStart <= 0) {
-  const tmpCallObj = $({ $: $ });
-  a = tmpCallObj.$(1);
+  const tmpMCOO = $({ $: $ });
+  a = tmpMCOO.$(1);
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);

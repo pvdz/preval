@@ -32,14 +32,14 @@ const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+  const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
   const tmpCompObj$1 /*:unknown*/ = $(b);
   const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$3];
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
-  $(varInitAssignLhsComputedRhs, b);
+  const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$3];
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs, b);
 } else {
   $(tmpNestedAssignPropRhs);
   $(tmpNestedAssignPropRhs, b);
@@ -59,14 +59,14 @@ const tmpCalleeParam$1 = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`c`);
+  const tmpInitAssignLhsComputedObj = $(b);
+  const tmpInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj$1 = $(b);
   const tmpCalleeParam$3 = $(`d`);
-  const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam$3];
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
-  $(varInitAssignLhsComputedRhs, b);
+  const tmpInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam$3];
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs, b);
 } else {
   $(tmpNestedAssignPropRhs);
   $(tmpNestedAssignPropRhs, b);

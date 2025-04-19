@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -37,9 +37,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $({ $: $ });
-const tmpCallCompProp = $(`\$`);
-const tmpCalleeParam$1 = tmpCallCompObj[tmpCallCompProp](1);
+const tmpMCCO = $({ $: $ });
+const tmpMCCP = $(`\$`);
+const tmpCalleeParam$1 = tmpMCCO[tmpMCCP](1);
 $([`before `, ` after`], tmpCalleeParam$1);
 $({ a: 999, b: 1000 });
 `````

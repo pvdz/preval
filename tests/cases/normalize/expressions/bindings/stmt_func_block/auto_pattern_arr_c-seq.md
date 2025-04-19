@@ -26,9 +26,9 @@ $(f());
 $(10);
 $(20);
 const tmpCalleeParam /*:array*/ = [1, 2];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a /*:unknown*/ = arrPatternSplat[0];
+const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const a /*:unknown*/ = tmpArrPatternSplat[0];
 $(a);
 $(undefined);
 `````
@@ -40,8 +40,8 @@ $(undefined);
 `````js filename=intro
 $(10);
 $(20);
-const bindingPatternArrRoot = $([1, 2]);
-$([...bindingPatternArrRoot][0]);
+const tmpBindingPatternArrRoot = $([1, 2]);
+$([...tmpBindingPatternArrRoot][0]);
 $(undefined);
 `````
 

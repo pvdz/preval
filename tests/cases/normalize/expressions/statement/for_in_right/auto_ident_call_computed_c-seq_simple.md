@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -44,8 +44,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallObj = $({ $: $ });
-const tmpForInGen = $forIn(tmpCallObj.$(1));
+const tmpMCOO = $({ $: $ });
+const tmpForInGen = $forIn(tmpMCOO.$(1));
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {

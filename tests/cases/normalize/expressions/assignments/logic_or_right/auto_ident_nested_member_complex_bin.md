@@ -32,12 +32,12 @@ if (tmpCalleeParam) {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, b, c, 3, 4);
 } else {
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-  const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+  const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+  const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+  const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+  tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 7;
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
   $(7);
   $(7, b, c, 3, 4);
 }
@@ -55,12 +55,12 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 }, b, c, 3, 4);
 } else {
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $(`y`);
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  const tmpInitAssignLhsComputedObj = $(b);
+  const tmpInitAssignLhsComputedProp = $(`x`);
+  const tmpInitAssignLhsComputedObj$1 = $(c);
+  const tmpInitAssignLhsComputedProp$1 = $(`y`);
+  tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 7;
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
   $(7);
   $(7, b, c, 3, 4);
 }

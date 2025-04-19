@@ -53,7 +53,7 @@ $( 3 );
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: tmpCallCompVal
+- (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) arr mutation may be able to inline this method: $array_includes
 
 

@@ -21,18 +21,18 @@ $(f());
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass3`];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-let arrPatternStep /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
+let tmpArrPatternStep /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:array*/ = [`fail2`];
-  arrPatternStep = $(tmpCalleeParam$1);
+  tmpArrPatternStep = $(tmpCalleeParam$1);
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-[...arrPatternStep];
+[...tmpArrPatternStep];
 $(`ok`);
 `````
 
@@ -41,15 +41,15 @@ $(`ok`);
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = $([`pass3`]);
-const arrPatternBeforeDefault = [...bindingPatternArrRoot][0];
-let arrPatternStep = undefined;
-if (arrPatternBeforeDefault === undefined) {
-  arrPatternStep = $([`fail2`]);
+const tmpBindingPatternArrRoot = $([`pass3`]);
+const tmpAPBD = [...tmpBindingPatternArrRoot][0];
+let tmpArrPatternStep = undefined;
+if (tmpAPBD === undefined) {
+  tmpArrPatternStep = $([`fail2`]);
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-[...arrPatternStep];
+[...tmpArrPatternStep];
 $(`ok`);
 `````
 

@@ -40,20 +40,20 @@ const tmpArrElement$5 /*:array*/ = [`false`, `boolean`];
 const tmpArrElement$7 /*:array*/ = [`null`, `null`];
 const tmpArrElement$9 /*:array*/ = [`\$`, `\$`];
 const tmpCalleeParam$3 /*:array*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
-const tmpCallObj$3 /*:object*/ = new Map(tmpCalleeParam$3);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj$3.keys;
-const tmpArrSpread /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj$3, `keys`);
-const tmpCallObj$1 /*:array*/ = [...tmpArrSpread, `module`];
-const tmpCalleeParam$5 /*:(unknown)=>array*/ = function ($$0) {
+const tmpMCOO$3 /*:object*/ = new Map(tmpCalleeParam$3);
+const tmpMCF /*:unknown*/ = tmpMCOO$3.keys;
+const tmpArrSpread /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO$3, `keys`);
+const tmpMCOO$1 /*:array*/ = [...tmpArrSpread, `module`];
+const tmpMCP /*:(unknown)=>array*/ = function ($$0) {
   const k /*:unknown*/ = $$0;
   debugger;
   const tmpReturnArg /*:array*/ = [k, k];
   return tmpReturnArg;
 };
-const tmpCalleeParam$1 /*:array*/ = $dotCall($array_map, tmpCallObj$1, `map`, tmpCalleeParam$5);
-const tmpCallObj /*:object*/ = new Map(tmpCalleeParam$1);
-const tmpCallCompVal$3 /*:unknown*/ = tmpCallObj.get;
-const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal$3, tmpCallObj, `get`, `\$`);
+const tmpCalleeParam$1 /*:array*/ = $dotCall($array_map, tmpMCOO$1, `map`, tmpMCP);
+const tmpMCOO /*:object*/ = new Map(tmpCalleeParam$1);
+const tmpMCF$3 /*:unknown*/ = tmpMCOO.get;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF$3, tmpMCOO, `get`, `\$`);
 $(tmpCalleeParam);
 `````
 
@@ -69,14 +69,14 @@ const tmpArrElement$5 = [`false`, `boolean`];
 const tmpArrElement$7 = [`null`, `null`];
 const tmpArrElement$9 = [`\$`, `\$`];
 const tmpCalleeParam$3 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
-const tmpCallObj$3 = new Map(tmpCalleeParam$3);
-const tmpArrSpread = tmpCallObj$3.keys();
+const tmpMCOO$3 = new Map(tmpCalleeParam$3);
+const tmpArrSpread = tmpMCOO$3.keys();
 const tmpCalleeParam$1 = $dotCall($array_map, [...tmpArrSpread, `module`], `map`, function (k) {
   const tmpReturnArg = [k, k];
   return tmpReturnArg;
 });
-const tmpCallObj = new Map(tmpCalleeParam$1);
-$(tmpCallObj.get(`\$`));
+const tmpMCOO = new Map(tmpCalleeParam$1);
+$(tmpMCOO.get(`\$`));
 `````
 
 

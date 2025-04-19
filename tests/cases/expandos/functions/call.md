@@ -32,8 +32,8 @@ const tmpAssignMemRhs /*:()=>undefined*/ = function () {
   return undefined;
 };
 f.foo = tmpAssignMemRhs;
-const tmpCallCompVal /*:unknown*/ = f.foo;
-const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, f, `foo`);
+const tmpMCF /*:unknown*/ = f.foo;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, f, `foo`);
 $(tmpCalleeParam);
 `````
 

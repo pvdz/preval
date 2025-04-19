@@ -23,9 +23,9 @@ $(f());
 
 `````js filename=intro
 const z /*:array*/ = [10, 20, 30];
-const arrPatternSplat /*:array*/ = [...z];
-const a /*:unknown*/ = arrPatternSplat[0];
-const b /*:unknown*/ = arrPatternSplat[1];
+const tmpArrPatternSplat /*:array*/ = [...z];
+const a /*:unknown*/ = tmpArrPatternSplat[0];
+const b /*:unknown*/ = tmpArrPatternSplat[1];
 $(a, b, 1, 2, z);
 $(undefined);
 `````
@@ -36,8 +36,8 @@ $(undefined);
 
 `````js filename=intro
 const z = [10, 20, 30];
-const arrPatternSplat = [...z];
-$(arrPatternSplat[0], arrPatternSplat[1], 1, 2, z);
+const tmpArrPatternSplat = [...z];
+$(tmpArrPatternSplat[0], tmpArrPatternSplat[1], 1, 2, z);
 $(undefined);
 `````
 

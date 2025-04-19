@@ -21,13 +21,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
-const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-const tmpCallCompVal$1 /*:unknown*/ = b[tmpCallCompProp$1];
-const tmpClusterSSA_a$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+const tmpMCCP$1 /*:unknown*/ = $(`\$`);
+const tmpMCF$1 /*:unknown*/ = b[tmpMCCP$1];
+const tmpClusterSSA_a$1 /*:unknown*/ = $dotCall(tmpMCF$1, b, undefined, 1);
 const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a$1);
@@ -38,11 +38,11 @@ $(tmpClusterSSA_a$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpClusterSSA_a = b[tmpCallCompProp](1);
-const tmpCallCompProp$1 = $(`\$`);
-const tmpClusterSSA_a$1 = b[tmpCallCompProp$1](1);
+const tmpClusterSSA_a = b[tmpMCCP](1);
+const tmpMCCP$1 = $(`\$`);
+const tmpClusterSSA_a$1 = b[tmpMCCP$1](1);
 $(tmpClusterSSA_a + tmpClusterSSA_a$1);
 $(tmpClusterSSA_a$1);
 `````

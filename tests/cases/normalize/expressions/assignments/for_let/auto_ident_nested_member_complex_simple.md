@@ -27,9 +27,9 @@ const b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(3);
@@ -44,9 +44,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const tmpNestedAssignComMemberObj = $({ x: 1 });
 const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $({ y: 2 });
-const varInitAssignLhsComputedProp = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+const tmpInitAssignLhsComputedObj = $({ y: 2 });
+const tmpInitAssignLhsComputedProp = $(`y`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 while (true) {
   $(3);

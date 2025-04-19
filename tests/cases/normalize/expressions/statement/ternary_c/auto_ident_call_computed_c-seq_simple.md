@@ -28,9 +28,9 @@ if (tmpIfTest) {
   $(a);
 } else {
   const b /*:object*/ = { $: $ };
-  const tmpCallObj /*:unknown*/ = $(b);
-  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-  $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+  const tmpMCOO /*:unknown*/ = $(b);
+  const tmpMCF /*:unknown*/ = tmpMCOO.$;
+  $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
   $(a);
 }
 `````
@@ -46,8 +46,8 @@ if (tmpIfTest) {
   $(100);
   $(a);
 } else {
-  const tmpCallObj = $({ $: $ });
-  tmpCallObj.$(1);
+  const tmpMCOO = $({ $: $ });
+  tmpMCOO.$(1);
   $(a);
 }
 `````

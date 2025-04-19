@@ -30,10 +30,10 @@ $(a);
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -62,9 +62,9 @@ if (tmpIfTest$5) {
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpCallCompObj = $({ $: $ });
-const tmpCallCompProp = $(`\$`);
-const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+const tmpMCCO = $({ $: $ });
+const tmpMCCP = $(`\$`);
+const tmpClusterSSA_a = tmpMCCO[tmpMCCP](1);
 if (tmpClusterSSA_a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {

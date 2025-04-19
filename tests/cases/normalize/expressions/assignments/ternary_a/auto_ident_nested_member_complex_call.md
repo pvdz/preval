@@ -27,19 +27,19 @@ const b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+if (tmpInitAssignLhsComputedRhs) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  $(varInitAssignLhsComputedRhs, b, c, 3);
+  $(tmpInitAssignLhsComputedRhs, b, c, 3);
 } else {
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam$1);
-  $(varInitAssignLhsComputedRhs, b, c, 3);
+  $(tmpInitAssignLhsComputedRhs, b, c, 3);
 }
 `````
 
@@ -52,17 +52,17 @@ const b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const c = { y: 2 };
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
+const tmpInitAssignLhsComputedObj = $(c);
+const tmpInitAssignLhsComputedProp = $(`y`);
+const tmpInitAssignLhsComputedRhs = $(3);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+if (tmpInitAssignLhsComputedRhs) {
   $($(100));
-  $(varInitAssignLhsComputedRhs, b, c, 3);
+  $(tmpInitAssignLhsComputedRhs, b, c, 3);
 } else {
   $($(200));
-  $(varInitAssignLhsComputedRhs, b, c, 3);
+  $(tmpInitAssignLhsComputedRhs, b, c, 3);
 }
 `````
 

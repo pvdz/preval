@@ -27,9 +27,9 @@ const f /*:()=>unknown*/ = function () {
   $(tmpPrevalAliasThis);
   return undefined;
 };
-const tmpCalleeParam /*:object*/ = { pass: 1 };
-const tmpCalleeParam$1 /*:array*/ = [1, 2, 3];
-$dotCall($function_call, f, `call`, tmpCalleeParam, tmpCalleeParam$1, `nope`, $);
+const tmpMCP /*:object*/ = { pass: 1 };
+const tmpMCP$1 /*:array*/ = [1, 2, 3];
+$dotCall($function_call, f, `call`, tmpMCP, tmpMCP$1, `nope`, $);
 `````
 
 

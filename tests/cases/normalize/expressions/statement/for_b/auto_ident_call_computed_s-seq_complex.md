@@ -21,16 +21,16 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-    const tmpCallCompVal$1 /*:unknown*/ = b[tmpCallCompProp$1];
-    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, b, undefined, 1);
+    const tmpMCCP$1 /*:unknown*/ = $(`\$`);
+    const tmpMCF$1 /*:unknown*/ = b[tmpMCCP$1];
+    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpMCF$1, b, undefined, 1);
     if (tmpIfTest$1) {
     } else {
       break;
@@ -47,13 +47,13 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-if (b[tmpCallCompProp](1)) {
+if (b[tmpMCCP](1)) {
   while (true) {
     $(1);
-    const tmpCallCompProp$1 = $(`\$`);
-    if (!b[tmpCallCompProp$1](1)) {
+    const tmpMCCP$1 = $(`\$`);
+    if (!b[tmpMCCP$1](1)) {
       break;
     }
   }

@@ -77,8 +77,8 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   $inlinedFunction: {
     const index$1 /*:unknown*/ = heap.length;
     const tmpSaooB$1 /*:boolean*/ = index$1 > 0;
-    const tmpCallCompVal /*:unknown*/ = heap.push;
-    $dotCall(tmpCallCompVal, heap, `push`, node);
+    const tmpMCF /*:unknown*/ = heap.push;
+    $dotCall(tmpMCF, heap, `push`, node);
     if (tmpSaooB$1) {
       const tmpBinLhs$261 /*:number*/ = index$1 - 1;
       const tmpClusterSSA_parentIndex /*:number*/ = tmpBinLhs$261 >>> 1;

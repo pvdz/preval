@@ -94,11 +94,11 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
     tmpSSA__u_t(t$3391);
   } else {
   }
-  const tmpCallCompVal$3 /*:unknown*/ = tmpCallObj$3807.toString;
-  $dotCall(tmpCallCompVal$3, tmpCallObj$3807, `toString`, 36);
-  const tmpCallCompVal$5 /*:unknown*/ = tmpCallObj$3811.replace;
+  const tmpMCF$3 /*:unknown*/ = tmpCallObj$3807.toString;
+  $dotCall(tmpMCF$3, tmpCallObj$3807, `toString`, 36);
+  const tmpMCF$5 /*:unknown*/ = tmpCallObj$3811.replace;
   const tmpCalleeParam$11085 /*:regex*/ = /^0./;
-  const tmpClusterSSA_r$2027 /*:unknown*/ = $dotCall(tmpCallCompVal$5, tmpCallObj$3811, `replace`, tmpCalleeParam$11085, ``);
+  const tmpClusterSSA_r$2027 /*:unknown*/ = $dotCall(tmpMCF$5, tmpCallObj$3811, `replace`, tmpCalleeParam$11085, ``);
   $coerce(tmpBinBothRhs$32, `string`);
   $coerce(tmpClusterSSA_r$2027, `string`);
   const tmpClusterSSA_t$9 /*:unknown*/ = tmpSSA_Tu();

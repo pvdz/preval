@@ -22,13 +22,13 @@ $(a, b);
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj$1 /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCalleeParam];
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-varInitAssignLhsComputedRhs.a;
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCalleeParam];
+b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpInitAssignLhsComputedRhs.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -38,13 +38,13 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`c`);
+const tmpInitAssignLhsComputedProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj$1 = $(b);
 const tmpCalleeParam = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam];
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-varInitAssignLhsComputedRhs.a;
+const tmpInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam];
+b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpInitAssignLhsComputedRhs.a;
 $({ a: 999, b: 1000 }, b);
 `````
 

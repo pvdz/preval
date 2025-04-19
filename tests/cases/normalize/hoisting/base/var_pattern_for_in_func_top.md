@@ -32,9 +32,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const arrAssignPatternRhs /*:unknown*/ = tmpForInNext.value;
-    const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-    x = arrPatternSplat[0];
+    const tmpArrAssignPatternRhs /*:unknown*/ = tmpForInNext.value;
+    const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
+    x = tmpArrPatternSplat[0];
     $(x, `for`);
   }
 }
@@ -54,8 +54,8 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const arrAssignPatternRhs = tmpForInNext.value;
-    x = [...arrAssignPatternRhs][0];
+    const tmpArrAssignPatternRhs = tmpForInNext.value;
+    x = [...tmpArrAssignPatternRhs][0];
     $(x, `for`);
   }
 }

@@ -28,9 +28,9 @@ $(f());
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
+const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
+const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 $(undefined);
@@ -42,8 +42,8 @@ $(undefined);
 
 `````js filename=intro
 const tmpArrElement = $(2);
-const arrAssignPatternRhs = $([tmpArrElement]);
-const tmpClusterSSA_b = [...arrAssignPatternRhs][0];
+const tmpArrAssignPatternRhs = $([tmpArrElement]);
+const tmpClusterSSA_b = [...tmpArrAssignPatternRhs][0];
 $({ a: 999, b: 1000 }, tmpClusterSSA_b);
 $(undefined);
 `````

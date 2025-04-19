@@ -17,8 +17,8 @@ const {x: [ y ]} = 1
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
-[...objPatternNoDefault];
+const tmpOPND /*:unknown*/ = $Number_prototype.x;
+[...tmpOPND];
 `````
 
 
@@ -26,8 +26,8 @@ const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = $Number_prototype.x;
-[...objPatternNoDefault];
+const tmpOPND = $Number_prototype.x;
+[...tmpOPND];
 `````
 
 

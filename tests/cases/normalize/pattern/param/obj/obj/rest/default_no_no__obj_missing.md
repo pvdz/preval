@@ -20,9 +20,9 @@ $(f({ b: 11, c: 12 }, 10));
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Object_prototype.x;
+const tmpOPND /*:unknown*/ = $Object_prototype.x;
 const tmpCalleeParam$1 /*:array*/ = [];
-$objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+$objPatternRest(tmpOPND, tmpCalleeParam$1, undefined);
 $(`bad`);
 `````
 

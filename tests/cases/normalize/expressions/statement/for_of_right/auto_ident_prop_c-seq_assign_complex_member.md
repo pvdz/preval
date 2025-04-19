@@ -22,12 +22,12 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 10, d: 20 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpForOfGen /*:unknown*/ = $forOf(varInitAssignLhsComputedRhs);
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
+tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
+const tmpForOfGen /*:unknown*/ = $forOf(tmpInitAssignLhsComputedRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGen();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
@@ -47,12 +47,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const varInitAssignLhsComputedObj = $(b);
+const tmpInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
 const tmpCalleeParam$1 = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$1];
-varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpForOfGen = $forOf(varInitAssignLhsComputedRhs);
+const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$1];
+tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
+const tmpForOfGen = $forOf(tmpInitAssignLhsComputedRhs);
 while (true) {
   const tmpForOfNext = tmpForOfGen();
   if (tmpForOfNext.done) {

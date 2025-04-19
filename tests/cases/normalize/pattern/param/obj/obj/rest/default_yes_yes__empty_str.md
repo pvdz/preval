@@ -20,17 +20,17 @@ $(f('', 10));
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $String_prototype.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPBD /*:unknown*/ = $String_prototype.x;
+let tmpOPAD /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { a: `pass` };
-  objPatternAfterDefault = $(tmpCalleeParam$1);
+  tmpOPAD = $(tmpCalleeParam$1);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
 const tmpCalleeParam$5 /*:array*/ = [];
-const y /*:unknown*/ = $objPatternRest(objPatternAfterDefault, tmpCalleeParam$5, undefined);
+const y /*:unknown*/ = $objPatternRest(tmpOPAD, tmpCalleeParam$5, undefined);
 $(y);
 `````
 
@@ -39,14 +39,14 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $String_prototype.x;
-let objPatternAfterDefault = undefined;
-if (objPatternBeforeDefault === undefined) {
-  objPatternAfterDefault = $({ a: `pass` });
+const tmpOPBD = $String_prototype.x;
+let tmpOPAD = undefined;
+if (tmpOPBD === undefined) {
+  tmpOPAD = $({ a: `pass` });
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-$($objPatternRest(objPatternAfterDefault, [], undefined));
+$($objPatternRest(tmpOPAD, [], undefined));
 `````
 
 

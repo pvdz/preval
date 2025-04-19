@@ -177,12 +177,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (tmpBinLhs$166) {
       break;
     } else {
-      const tmpCalleeParam$11 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
-      $dotCall($array_push, arr, `push`, tmpCalleeParam$11);
+      const tmpMCP /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+      $dotCall($array_push, arr, `push`, tmpMCP);
     }
   } catch (_0x4f54af$22) {
-    const tmpCalleeParam$13 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
-    $dotCall($array_push, arr, `push`, tmpCalleeParam$13);
+    const tmpMCP$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
+    $dotCall($array_push, arr, `push`, tmpMCP$1);
   }
 }
 $(arr);

@@ -19,9 +19,9 @@ $(a).b(1);
 
 `````js filename=intro
 const a /*:object*/ = { b: $ };
-const tmpCallObj /*:unknown*/ = $(a);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.b;
-$dotCall(tmpCallCompVal, tmpCallObj, `b`, 1);
+const tmpMCOO /*:unknown*/ = $(a);
+const tmpMCF /*:unknown*/ = tmpMCOO.b;
+$dotCall(tmpMCF, tmpMCOO, `b`, 1);
 `````
 
 
@@ -29,8 +29,8 @@ $dotCall(tmpCallCompVal, tmpCallObj, `b`, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallObj = $({ b: $ });
-tmpCallObj.b(1);
+const tmpMCOO = $({ b: $ });
+tmpMCOO.b(1);
 `````
 
 

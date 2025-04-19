@@ -21,8 +21,8 @@ $(p, q);
 `````js filename=intro
 const b /*:array*/ = [10, 20];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const arrAssignPatternRhs /*:unknown*/ = $(b);
-  [...arrAssignPatternRhs];
+  const tmpArrAssignPatternRhs /*:unknown*/ = $(b);
+  [...tmpArrAssignPatternRhs];
 }
 `````
 
@@ -33,8 +33,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const b = [10, 20];
 while (true) {
-  const arrAssignPatternRhs = $(b);
-  [...arrAssignPatternRhs];
+  const tmpArrAssignPatternRhs = $(b);
+  [...tmpArrAssignPatternRhs];
 }
 `````
 

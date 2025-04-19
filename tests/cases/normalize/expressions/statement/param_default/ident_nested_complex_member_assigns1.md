@@ -25,8 +25,8 @@ $(100);
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
 const tmpAssignMemLhsObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-varInitAssignLhsComputedObj.x = 3;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+tmpInitAssignLhsComputedObj.x = 3;
 tmpAssignMemLhsObj.x = 3;
 $(100);
 `````
@@ -38,8 +38,8 @@ $(100);
 `````js filename=intro
 const b = { x: 1 };
 const tmpAssignMemLhsObj = $(b);
-const varInitAssignLhsComputedObj = $(b);
-varInitAssignLhsComputedObj.x = 3;
+const tmpInitAssignLhsComputedObj = $(b);
+tmpInitAssignLhsComputedObj.x = 3;
 tmpAssignMemLhsObj.x = 3;
 $(100);
 `````

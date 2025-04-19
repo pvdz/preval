@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpAnonDefaultExport /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpAnonDefaultExport /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -36,9 +36,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $({ $: $ });
-const tmpCallCompProp = $(`\$`);
-const tmpAnonDefaultExport = tmpCallCompObj[tmpCallCompProp](1);
+const tmpMCCO = $({ $: $ });
+const tmpMCCP = $(`\$`);
+const tmpAnonDefaultExport = tmpMCCO[tmpMCCP](1);
 export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 });
 `````

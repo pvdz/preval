@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a /*:unknown*/ = arrPatternSplat[0];
+const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const a /*:unknown*/ = tmpArrPatternSplat[0];
 $(100);
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
@@ -48,8 +48,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const a = [...bindingPatternArrRoot][0];
+const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+const a = [...tmpBindingPatternArrRoot][0];
 $(100);
 if ($([1, 2])) {
   while (true) {

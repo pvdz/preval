@@ -31,13 +31,13 @@ const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
+  const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
   const tmpCompObj$1 /*:unknown*/ = $(b);
   const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$3];
-  b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
-  $(varInitAssignLhsComputedRhs, b);
+  const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$3];
+  b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs, b);
 } else {
   $(tmpNestedAssignPropRhs);
   $(tmpNestedAssignPropRhs, b);
@@ -56,13 +56,13 @@ const tmpCalleeParam$1 = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
-  const varInitAssignLhsComputedProp = $(`c`);
+  const tmpInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj$1 = $(b);
   const tmpCalleeParam$3 = $(`d`);
-  const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam$3];
-  b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
-  $(varInitAssignLhsComputedRhs, b);
+  const tmpInitAssignLhsComputedRhs = tmpCompObj$1[tmpCalleeParam$3];
+  b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs, b);
 } else {
   $(tmpNestedAssignPropRhs);
   $(tmpNestedAssignPropRhs, b);

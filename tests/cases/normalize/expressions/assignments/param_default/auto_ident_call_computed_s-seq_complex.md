@@ -22,10 +22,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````
@@ -35,9 +35,9 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpNestedComplexRhs = b[tmpCallCompProp](1);
+const tmpNestedComplexRhs = b[tmpMCCP](1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

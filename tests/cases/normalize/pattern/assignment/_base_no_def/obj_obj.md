@@ -18,9 +18,9 @@ let x = 10, y = 20, z = 30;
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
-const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
-objPatternNoDefault$1.z;
+const tmpOPND /*:unknown*/ = $Number_prototype.x;
+const tmpOPND$1 /*:unknown*/ = tmpOPND.y;
+tmpOPND$1.z;
 `````
 
 

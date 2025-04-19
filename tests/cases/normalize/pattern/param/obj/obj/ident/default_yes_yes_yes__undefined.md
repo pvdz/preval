@@ -22,23 +22,23 @@ $(f(undefined, 10));
 `````js filename=intro
 const tmpObjLitVal /*:object*/ = { y: `pass3` };
 const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpClusterSSA_tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD /*:unknown*/ = tmpClusterSSA_tmpBindingPatternObjRoot.x;
+let tmpOPAD /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { y: `fail2` };
-  objPatternAfterDefault = $(tmpCalleeParam$1);
+  tmpOPAD = $(tmpCalleeParam$1);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-const objPatternBeforeDefault$1 /*:unknown*/ = objPatternAfterDefault.y;
-const tmpIfTest$3 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
+const tmpOPBD$1 /*:unknown*/ = tmpOPAD.y;
+const tmpIfTest$3 /*:boolean*/ = tmpOPBD$1 === undefined;
 if (tmpIfTest$3) {
   const tmpClusterSSA_y /*:unknown*/ = $(`fail`);
   $(tmpClusterSSA_y);
 } else {
-  $(objPatternBeforeDefault$1);
+  $(tmpOPBD$1);
 }
 `````
 
@@ -48,18 +48,18 @@ if (tmpIfTest$3) {
 
 `````js filename=intro
 const tmpObjLitVal = { y: `pass3` };
-const objPatternBeforeDefault = $({ x: tmpObjLitVal }).x;
-let objPatternAfterDefault = undefined;
-if (objPatternBeforeDefault === undefined) {
-  objPatternAfterDefault = $({ y: `fail2` });
+const tmpOPBD = $({ x: tmpObjLitVal }).x;
+let tmpOPAD = undefined;
+if (tmpOPBD === undefined) {
+  tmpOPAD = $({ y: `fail2` });
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-if (objPatternBeforeDefault$1 === undefined) {
+const tmpOPBD$1 = tmpOPAD.y;
+if (tmpOPBD$1 === undefined) {
   $($(`fail`));
 } else {
-  $(objPatternBeforeDefault$1);
+  $(tmpOPBD$1);
 }
 `````
 

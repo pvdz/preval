@@ -17,11 +17,11 @@ $(bool1, bool2);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $spy(1);
-const tmpttr$1 /*:string*/ = $coerce(tmpCalleeParam, `string`);
+const tmpMCP /*:unknown*/ = $spy(1);
+const tmpttr$1 /*:string*/ = $coerce(tmpMCP, `string`);
 const bool1 /*:boolean*/ = $dotCall($string_includes, `123`, `includes`, tmpttr$1);
-const tmpCalleeParam$1 /*:unknown*/ = $spy(1);
-const tmpttr /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+const tmpMCP$1 /*:unknown*/ = $spy(1);
+const tmpttr /*:string*/ = $coerce(tmpMCP$1, `string`);
 const bool2 /*:boolean*/ = $dotCall($string_includes, `321`, `includes`, tmpttr);
 $(bool1, bool2);
 `````

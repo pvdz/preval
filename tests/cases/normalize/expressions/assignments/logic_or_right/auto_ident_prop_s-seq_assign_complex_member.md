@@ -30,10 +30,10 @@ if (tmpCalleeParam) {
 } else {
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-  b.c = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
-  $(varInitAssignLhsComputedRhs, b);
+  const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
+  b.c = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs, b);
 }
 `````
 
@@ -50,10 +50,10 @@ if (tmpCalleeParam) {
 } else {
   const tmpCompObj = $(b);
   const tmpCalleeParam$1 = $(`d`);
-  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$1];
-  b.c = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs);
-  $(varInitAssignLhsComputedRhs, b);
+  const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$1];
+  b.c = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs, b);
 }
 `````
 

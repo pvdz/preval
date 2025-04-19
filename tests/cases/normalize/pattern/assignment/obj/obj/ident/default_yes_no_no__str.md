@@ -18,14 +18,14 @@ $('bad');
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $String_prototype.x;
-const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault.y;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPND /*:unknown*/ = $String_prototype.x;
+const tmpOPBD /*:unknown*/ = tmpOPND.y;
+const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   y = $(`fail`);
   $(`bad`);
 } else {
-  y = objPatternBeforeDefault;
+  y = tmpOPBD;
   $(`bad`);
 }
 `````
@@ -35,12 +35,12 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $String_prototype.x.y;
-if (objPatternBeforeDefault === undefined) {
+const tmpOPBD = $String_prototype.x.y;
+if (tmpOPBD === undefined) {
   y = $(`fail`);
   $(`bad`);
 } else {
-  y = objPatternBeforeDefault;
+  y = tmpOPBD;
   $(`bad`);
 }
 `````

@@ -50,9 +50,9 @@ if (tmpIfTest$3) {
   const tmpArrElement /*:unknown*/ = $(3);
   const tmpArrElement$1 /*:unknown*/ = $(4);
   const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
+  const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  x = tmpArrPatternSplat[0];
+  y = tmpArrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
 } else {
 }
@@ -88,9 +88,9 @@ if (tmpSwitchCaseToStart <= 0) {
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
+  const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = tmpArrPatternSplat[0];
+  y = tmpArrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
 }
 if (tmpSwitchCaseToStart <= 1) {

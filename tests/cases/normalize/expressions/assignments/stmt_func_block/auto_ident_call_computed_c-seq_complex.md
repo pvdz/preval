@@ -27,10 +27,10 @@ $(f());
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 $(tmpClusterSSA_a);
 $(undefined);
 `````
@@ -40,9 +40,9 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $({ $: $ });
-const tmpCallCompProp = $(`\$`);
-$(tmpCallCompObj[tmpCallCompProp](1));
+const tmpMCCO = $({ $: $ });
+const tmpMCCP = $(`\$`);
+$(tmpMCCO[tmpMCCP](1));
 $(undefined);
 `````
 

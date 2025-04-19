@@ -20,9 +20,9 @@ $(f('', 10));
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $String_prototype.x;
-const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault.y;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPND /*:unknown*/ = $String_prototype.x;
+const tmpOPBD /*:unknown*/ = tmpOPND.y;
+const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   $(`fail`);
   $(`bad`);

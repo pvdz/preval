@@ -23,10 +23,10 @@
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 $(a);
 `````
 
@@ -35,9 +35,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $({ $: $ });
-const tmpCallCompProp = $(`\$`);
-$(tmpCallCompObj[tmpCallCompProp](1));
+const tmpMCCO = $({ $: $ });
+const tmpMCCP = $(`\$`);
+$(tmpMCCO[tmpMCCP](1));
 `````
 
 

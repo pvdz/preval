@@ -19,9 +19,9 @@ $(a, b, c);
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const b /*:object*/ = { x: 2 };
-b[varInitAssignLhsComputedProp] = 7;
+b[tmpInitAssignLhsComputedProp] = 7;
 const a /*:number*/ = 7;
 export { a };
 $(7, b, 3);
@@ -32,9 +32,9 @@ $(7, b, 3);
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedProp = $(`x`);
 const b = { x: 2 };
-b[varInitAssignLhsComputedProp] = 7;
+b[tmpInitAssignLhsComputedProp] = 7;
 const a = 7;
 export { a };
 $(7, b, 3);

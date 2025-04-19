@@ -17,9 +17,9 @@ $(/x/g.test($('x')));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $(`x`);
-const tmpCallObj /*:regex*/ = /x/g;
-const tmpCalleeParam /*:unknown*/ = $dotCall($regex_test, tmpCallObj, `test`, tmpCalleeParam$1);
+const tmpMCP /*:unknown*/ = $(`x`);
+const tmpMCOO /*:regex*/ = /x/g;
+const tmpCalleeParam /*:unknown*/ = $dotCall($regex_test, tmpMCOO, `test`, tmpMCP);
 $(tmpCalleeParam);
 `````
 
@@ -28,8 +28,8 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(`x`);
-$($dotCall($regex_test, /x/g, `test`, tmpCalleeParam$1));
+const tmpMCP = $(`x`);
+$($dotCall($regex_test, /x/g, `test`, tmpMCP));
 `````
 
 

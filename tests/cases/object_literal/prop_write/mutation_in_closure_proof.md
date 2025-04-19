@@ -41,7 +41,7 @@ const f /*:()=>undefined*/ = function () {
     delete x.y;
   } else {
   }
-  const tmpCalleeParam /*:object*/ = {
+  const tmpMCP /*:object*/ = {
     set($$0) {
       debugger;
       return undefined;
@@ -51,7 +51,7 @@ const f /*:()=>undefined*/ = function () {
       return `intercepted`;
     },
   };
-  $dotCall($Object_defineProperty, Object, `defineProperty`, x, `y`, tmpCalleeParam);
+  $dotCall($Object_defineProperty, Object, `defineProperty`, x, `y`, tmpMCP);
   $(`b`);
   return undefined;
 };
@@ -60,8 +60,8 @@ f();
 x.y = 10;
 f();
 $(x);
-const tmpCalleeParam$1 /*:unknown*/ = x.y;
-$(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = x.y;
+$(tmpCalleeParam);
 $(f);
 `````
 

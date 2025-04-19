@@ -33,15 +33,15 @@ $(a, b, c, d);
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { x: 1 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-const tmpIfTest /*:boolean*/ = varInitAssignLhsComputedRhs$1 === tmpSwitchValue;
+const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
+const tmpIfTest /*:boolean*/ = tmpInitAssignLhsComputedRhs$1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -74,15 +74,15 @@ $(a, b, c, 3);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const b = { x: 1 };
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedObj = $(b);
+const tmpInitAssignLhsComputedProp = $(`x`);
 const c = { y: 2 };
-const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $(`y`);
-const varInitAssignLhsComputedRhs$1 = $(3);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-if (varInitAssignLhsComputedRhs$1 === tmpSwitchValue) {
+const tmpInitAssignLhsComputedObj$1 = $(c);
+const tmpInitAssignLhsComputedProp$1 = $(`y`);
+const tmpInitAssignLhsComputedRhs$1 = $(3);
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
+if (tmpInitAssignLhsComputedRhs$1 === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {

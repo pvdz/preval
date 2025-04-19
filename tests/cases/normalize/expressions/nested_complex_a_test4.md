@@ -24,8 +24,8 @@ $($(a).length = b);
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [];
 const a /*:unknown*/ = $(tmpCalleeParam);
-const varInitAssignLhsComputedObj /*:unknown*/ = $(a);
-varInitAssignLhsComputedObj.length = undefined;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(a);
+tmpInitAssignLhsComputedObj.length = undefined;
 $(undefined);
 `````
 
@@ -34,8 +34,8 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $($([]));
-varInitAssignLhsComputedObj.length = undefined;
+const tmpInitAssignLhsComputedObj = $($([]));
+tmpInitAssignLhsComputedObj.length = undefined;
 $(undefined);
 `````
 

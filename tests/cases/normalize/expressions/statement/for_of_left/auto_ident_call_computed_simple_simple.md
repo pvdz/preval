@@ -31,8 +31,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCompVal /*:unknown*/ = b.$;
-    const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpCallCompVal, b, `\$`, 1);
+    const tmpMCF /*:unknown*/ = b.$;
+    const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpMCF, b, `\$`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }

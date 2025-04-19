@@ -21,13 +21,13 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpBinBothLhs /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
-const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-const tmpCallCompVal$1 /*:unknown*/ = b[tmpCallCompProp$1];
-const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpCallCompVal$1, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpBinBothLhs /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+const tmpMCCP$1 /*:unknown*/ = $(`\$`);
+const tmpMCF$1 /*:unknown*/ = b[tmpMCCP$1];
+const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpMCF$1, b, undefined, 1);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -38,11 +38,11 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpBinBothLhs = b[tmpCallCompProp](1);
-const tmpCallCompProp$1 = $(`\$`);
-tmpBinBothLhs + b[tmpCallCompProp$1](1);
+const tmpBinBothLhs = b[tmpMCCP](1);
+const tmpMCCP$1 = $(`\$`);
+tmpBinBothLhs + b[tmpMCCP$1](1);
 $({ a: 999, b: 1000 });
 `````
 

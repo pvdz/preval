@@ -21,10 +21,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpThrowArg /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpThrowArg /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 throw tmpThrowArg;
 `````
 
@@ -33,9 +33,9 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpThrowArg = b[tmpCallCompProp](1);
+const tmpThrowArg = b[tmpMCCP](1);
 throw tmpThrowArg;
 `````
 

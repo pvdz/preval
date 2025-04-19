@@ -17,10 +17,10 @@ const {x: {y: {z = a }}} = 1;
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
-const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
-const objPatternBeforeDefault /*:unknown*/ = objPatternNoDefault$1.z;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPND /*:unknown*/ = $Number_prototype.x;
+const tmpOPND$1 /*:unknown*/ = tmpOPND.y;
+const tmpOPBD /*:unknown*/ = tmpOPND$1.z;
+const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   a;
 } else {

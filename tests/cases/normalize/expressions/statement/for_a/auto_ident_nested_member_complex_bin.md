@@ -28,9 +28,9 @@ const b /*:object*/ = { x: 1 };
 const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
@@ -56,9 +56,9 @@ const b = { x: 1 };
 const tmpAssignComMemLhsObj = $(b);
 const tmpAssignComMemLhsProp = $(`x`);
 const c = { y: 2 };
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+const tmpInitAssignLhsComputedObj = $(c);
+const tmpInitAssignLhsComputedProp = $(`y`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
 if ($(0)) {
   while (true) {

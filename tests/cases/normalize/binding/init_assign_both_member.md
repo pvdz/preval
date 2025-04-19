@@ -19,8 +19,8 @@ let a = b.x = c.x
 
 
 `````js filename=intro
-const varInitAssignLhsComputedRhs /*:unknown*/ = $Number_prototype.x;
-(10).x = varInitAssignLhsComputedRhs;
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = $Number_prototype.x;
+(10).x = tmpInitAssignLhsComputedRhs;
 `````
 
 
@@ -28,8 +28,8 @@ const varInitAssignLhsComputedRhs /*:unknown*/ = $Number_prototype.x;
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedRhs = $Number_prototype.x;
-(10).x = varInitAssignLhsComputedRhs;
+const tmpInitAssignLhsComputedRhs = $Number_prototype.x;
+(10).x = tmpInitAssignLhsComputedRhs;
 `````
 
 

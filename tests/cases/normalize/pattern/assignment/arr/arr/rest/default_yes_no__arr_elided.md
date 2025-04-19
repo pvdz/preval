@@ -18,9 +18,9 @@ $(x);
 
 
 `````js filename=intro
-const arrPatternStep /*:unknown*/ = $(`pass`);
-const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-x = $dotCall($array_slice, arrPatternSplat$1, `slice`, 0);
+const tmpArrPatternStep /*:unknown*/ = $(`pass`);
+const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrPatternStep];
+x = $dotCall($array_slice, tmpArrPatternSplat$1, `slice`, 0);
 $(x);
 `````
 
@@ -29,8 +29,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const arrPatternStep = $(`pass`);
-x = $dotCall($array_slice, [...arrPatternStep], `slice`, 0);
+const tmpArrPatternStep = $(`pass`);
+x = $dotCall($array_slice, [...tmpArrPatternStep], `slice`, 0);
 $(x);
 `````
 

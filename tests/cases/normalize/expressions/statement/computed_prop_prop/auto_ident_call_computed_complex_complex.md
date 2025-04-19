@@ -23,10 +23,10 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 $coerce(tmpCalleeParam, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -37,9 +37,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $({ $: $ });
-const tmpCallCompProp = $(`\$`);
-$coerce(tmpCallCompObj[tmpCallCompProp](1), `string`);
+const tmpMCCO = $({ $: $ });
+const tmpMCCP = $(`\$`);
+$coerce(tmpMCCO[tmpMCCP](1), `string`);
 $({ a: 999, b: 1000 });
 `````
 

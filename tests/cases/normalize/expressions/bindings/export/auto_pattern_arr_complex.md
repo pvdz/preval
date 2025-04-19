@@ -19,9 +19,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a /*:unknown*/ = arrPatternSplat[0];
+const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const a /*:unknown*/ = tmpArrPatternSplat[0];
 export { a };
 $(a);
 `````
@@ -31,8 +31,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = $([1, 2]);
-const a = [...bindingPatternArrRoot][0];
+const tmpBindingPatternArrRoot = $([1, 2]);
+const a = [...tmpBindingPatternArrRoot][0];
 export { a };
 $(a);
 `````

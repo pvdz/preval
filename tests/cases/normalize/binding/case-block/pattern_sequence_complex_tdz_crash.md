@@ -36,8 +36,8 @@ const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
   $(undefined);
   $(undefined);
-  const arrAssignPatternRhs /*:unknown*/ = $(z);
-  [...arrAssignPatternRhs];
+  const tmpArrAssignPatternRhs /*:unknown*/ = $(z);
+  [...tmpArrAssignPatternRhs];
   $(1, 2, z);
 } else {
   $(1, 2, z);
@@ -54,8 +54,8 @@ const z = [10, 20, 30];
 if (tmpIfTest) {
   $(undefined);
   $(undefined);
-  const arrAssignPatternRhs = $(z);
-  [...arrAssignPatternRhs];
+  const tmpArrAssignPatternRhs = $(z);
+  [...tmpArrAssignPatternRhs];
   $(1, 2, z);
 } else {
   $(1, 2, z);

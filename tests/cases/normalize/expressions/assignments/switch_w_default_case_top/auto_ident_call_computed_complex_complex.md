@@ -45,10 +45,10 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const b /*:object*/ = { $: $ };
-  const tmpCallCompObj /*:unknown*/ = $(b);
-  const tmpCallCompProp /*:unknown*/ = $(`\$`);
-  const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-  a = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+  const tmpMCCO /*:unknown*/ = $(b);
+  const tmpMCCP /*:unknown*/ = $(`\$`);
+  const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+  a = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 } else {
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -78,9 +78,9 @@ if ($(1) === tmpSwitchValue) {
   }
 }
 if (tmpSwitchCaseToStart <= 0) {
-  const tmpCallCompObj = $({ $: $ });
-  const tmpCallCompProp = $(`\$`);
-  a = tmpCallCompObj[tmpCallCompProp](1);
+  const tmpMCCO = $({ $: $ });
+  const tmpMCCP = $(`\$`);
+  a = tmpMCCO[tmpMCCP](1);
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);

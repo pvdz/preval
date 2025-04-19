@@ -17,12 +17,12 @@
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Number_prototype.x;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPBD /*:unknown*/ = $Number_prototype.x;
+const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   x = b;
 } else {
-  x = objPatternBeforeDefault;
+  x = tmpOPBD;
 }
 `````
 
@@ -31,11 +31,11 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $Number_prototype.x;
-if (objPatternBeforeDefault === undefined) {
+const tmpOPBD = $Number_prototype.x;
+if (tmpOPBD === undefined) {
   x = b;
 } else {
-  x = objPatternBeforeDefault;
+  x = tmpOPBD;
 }
 `````
 

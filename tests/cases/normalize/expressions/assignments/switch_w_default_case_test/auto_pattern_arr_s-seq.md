@@ -25,15 +25,15 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+[...tmpBindingPatternArrRoot];
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [1, 2];
-const arrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest /*:boolean*/ = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -60,8 +60,8 @@ if (tmpIfTest$5) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+[...tmpBindingPatternArrRoot];
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 $(10);

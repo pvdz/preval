@@ -26,15 +26,15 @@ $(a);
 let a /*:unknown*/ = undefined;
 $(100);
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCallObj$1 /*:unknown*/ = $(b);
-    const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
-    a = $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
+    const tmpMCOO$1 /*:unknown*/ = $(b);
+    const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.$;
+    a = $dotCall(tmpMCF$1, tmpMCOO$1, `\$`, 1);
     if (a) {
     } else {
       break;
@@ -54,13 +54,13 @@ if (tmpClusterSSA_a) {
 let a = undefined;
 $(100);
 const b = { $: $ };
-const tmpCallObj = $(b);
-const tmpClusterSSA_a = tmpCallObj.$(1);
+const tmpMCOO = $(b);
+const tmpClusterSSA_a = tmpMCOO.$(1);
 if (tmpClusterSSA_a) {
   while (true) {
     $(100);
-    const tmpCallObj$1 = $(b);
-    a = tmpCallObj$1.$(1);
+    const tmpMCOO$1 = $(b);
+    a = tmpMCOO$1.$(1);
     if (!a) {
       break;
     }

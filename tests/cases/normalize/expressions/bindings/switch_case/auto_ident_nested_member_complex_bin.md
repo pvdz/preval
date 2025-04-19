@@ -30,9 +30,9 @@ const tmpClusterSSA_b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(tmpClusterSSA_b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 const tmpClusterSSA_c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_c);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(7, tmpClusterSSA_b, tmpClusterSSA_c, 3, 4);
 `````
@@ -46,9 +46,9 @@ const tmpClusterSSA_b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const tmpClusterSSA_c = { y: 2 };
-const varInitAssignLhsComputedObj = $(tmpClusterSSA_c);
-const varInitAssignLhsComputedProp = $(`y`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+const tmpInitAssignLhsComputedObj = $(tmpClusterSSA_c);
+const tmpInitAssignLhsComputedProp = $(`y`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(7, tmpClusterSSA_b, tmpClusterSSA_c, 3, 4);
 `````

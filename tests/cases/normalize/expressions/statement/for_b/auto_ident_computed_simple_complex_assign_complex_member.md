@@ -21,21 +21,21 @@ $(a, b);
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+if (tmpInitAssignLhsComputedRhs) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`c`);
+    const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`c`);
     const tmpCompObj$1 /*:unknown*/ = $(b);
     const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
-    b[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    if (varInitAssignLhsComputedRhs$1) {
+    const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
+    b[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+    if (tmpInitAssignLhsComputedRhs$1) {
     } else {
       break;
     }
@@ -51,21 +51,21 @@ $(a, b);
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`c`);
+const tmpInitAssignLhsComputedProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
+const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
+b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+if (tmpInitAssignLhsComputedRhs) {
   while (true) {
     $(1);
-    const varInitAssignLhsComputedProp$1 = $(`c`);
+    const tmpInitAssignLhsComputedProp$1 = $(`c`);
     const tmpCompObj$1 = $(b);
     const tmpCalleeParam$1 = $(`d`);
-    const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
-    b[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    if (!varInitAssignLhsComputedRhs$1) {
+    const tmpInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
+    b[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+    if (!tmpInitAssignLhsComputedRhs$1) {
       break;
     }
   }

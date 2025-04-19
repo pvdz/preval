@@ -21,8 +21,8 @@ $(arr);
 
 `````js filename=intro
 const arr /*:array*/ = [];
-const tmpCallCompVal /*:unknown*/ = arr.call;
-$dotCall(tmpCallCompVal, arr, `call`, arr, 1);
+const tmpMCF /*:unknown*/ = arr.call;
+$dotCall(tmpMCF, arr, `call`, arr, 1);
 $(arr);
 `````
 

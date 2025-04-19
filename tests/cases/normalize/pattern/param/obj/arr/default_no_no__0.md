@@ -20,8 +20,8 @@ $(f(0, 10));
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
-[...objPatternNoDefault];
+const tmpOPND /*:unknown*/ = $Number_prototype.x;
+[...tmpOPND];
 $(`bad`);
 `````
 
@@ -30,8 +30,8 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = $Number_prototype.x;
-[...objPatternNoDefault];
+const tmpOPND = $Number_prototype.x;
+[...tmpOPND];
 $(`bad`);
 `````
 

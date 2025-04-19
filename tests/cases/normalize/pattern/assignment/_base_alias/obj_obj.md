@@ -17,9 +17,9 @@
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
-const objPatternNoDefault$1 /*:unknown*/ = objPatternNoDefault.y;
-a = objPatternNoDefault$1.z;
+const tmpOPND /*:unknown*/ = $Number_prototype.x;
+const tmpOPND$1 /*:unknown*/ = tmpOPND.y;
+a = tmpOPND$1.z;
 `````
 
 

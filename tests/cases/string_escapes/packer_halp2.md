@@ -24,7 +24,7 @@ $(x);
 
 
 `````js filename=intro
-const tmpCalleeParam$11 /*:object*/ = {
+const tmpCalleeParam$5 /*:object*/ = {
   z: `split`,
   y: `not_expr`,
   x: `u0020g`,
@@ -38,7 +38,7 @@ const tmpCalleeParam$11 /*:object*/ = {
   p: `p`,
 };
 let tmpClusterSSA_c$1 /*:number*/ = 25;
-const tmpCalleeParam$9 /*:array*/ = [
+const tmpCalleeParam$3 /*:array*/ = [
   ``,
   ``,
   ``,
@@ -81,12 +81,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
     const tmpAssignComMemLhsProp$1 /*:string*/ = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
-    let tmpAssignComputedRhs$1 /*:primitive*/ = tmpCalleeParam$9[tmpClusterSSA_c$1];
+    let tmpAssignComputedRhs$1 /*:primitive*/ = tmpCalleeParam$3[tmpClusterSSA_c$1];
     if (tmpAssignComputedRhs$1) {
     } else {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
     }
-    tmpCalleeParam$11[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
+    tmpCalleeParam$5[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
   } else {
     break;
   }
@@ -94,15 +94,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
   const e$1 /*:unknown*/ = $$0;
   debugger;
-  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$11[e$1];
+  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$5[e$1];
   return tmpReturnArg$1;
 };
-const tmpCalleeParam$3 /*:regex*/ = /\b\w+\b/g;
+const tmpMCP$1 /*:regex*/ = /\b\w+\b/g;
 const tmpClusterSSA_p /*:string*/ = $dotCall(
   $string_replace,
   `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
   `replace`,
-  tmpCalleeParam$3,
+  tmpMCP$1,
   tmpArrElement,
 );
 const x /*:unknown*/ = eval(tmpClusterSSA_p);
@@ -114,7 +114,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam$11 = {
+const tmpCalleeParam$5 = {
   z: `split`,
   y: `not_expr`,
   x: `u0020g`,
@@ -128,7 +128,7 @@ const tmpCalleeParam$11 = {
   p: `p`,
 };
 let tmpClusterSSA_c$1 = 25;
-const tmpCalleeParam$9 = [
+const tmpCalleeParam$3 = [
   ``,
   ``,
   ``,
@@ -171,17 +171,17 @@ while (true) {
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
     const tmpAssignComMemLhsProp$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
-    let tmpAssignComputedRhs$1 = tmpCalleeParam$9[tmpClusterSSA_c$1];
+    let tmpAssignComputedRhs$1 = tmpCalleeParam$3[tmpClusterSSA_c$1];
     if (!tmpAssignComputedRhs$1) {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
     }
-    tmpCalleeParam$11[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
+    tmpCalleeParam$5[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
   } else {
     break;
   }
 }
 const tmpArrElement = function (e$1) {
-  const tmpReturnArg$1 = tmpCalleeParam$11[e$1];
+  const tmpReturnArg$1 = tmpCalleeParam$5[e$1];
   return tmpReturnArg$1;
 };
 $(

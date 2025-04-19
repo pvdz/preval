@@ -19,15 +19,15 @@ $($(a).x = $(b).x = $(c).x);
 
 `````js filename=intro
 const a /*:object*/ = { x: 1 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(a);
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(a);
 const b /*:object*/ = { x: 2 };
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
 const c /*:object*/ = { x: 3 };
 const tmpCompObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj.x;
-varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
-$(varInitAssignLhsComputedRhs$1);
+const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj.x;
+tmpInitAssignLhsComputedObj$1.x = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs$1;
+$(tmpInitAssignLhsComputedRhs$1);
 `````
 
 
@@ -35,12 +35,12 @@ $(varInitAssignLhsComputedRhs$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $({ x: 1 });
-const varInitAssignLhsComputedObj$1 = $({ x: 2 });
-const varInitAssignLhsComputedRhs$1 = $({ x: 3 }).x;
-varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
-$(varInitAssignLhsComputedRhs$1);
+const tmpInitAssignLhsComputedObj = $({ x: 1 });
+const tmpInitAssignLhsComputedObj$1 = $({ x: 2 });
+const tmpInitAssignLhsComputedRhs$1 = $({ x: 3 }).x;
+tmpInitAssignLhsComputedObj$1.x = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs$1;
+$(tmpInitAssignLhsComputedRhs$1);
 `````
 
 

@@ -31,13 +31,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
+    const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
     const tmpCompObj /*:unknown*/ = $(b);
     const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
-    const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
-    varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+    const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
+    tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    varInitAssignLhsComputedRhs.x = tmpAssignMemRhs;
+    tmpInitAssignLhsComputedRhs.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -56,12 +56,12 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const varInitAssignLhsComputedObj = $(b);
+    const tmpInitAssignLhsComputedObj = $(b);
     const tmpCompObj = $(b);
     const tmpCalleeParam$3 = $(`d`);
-    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$3];
-    varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-    varInitAssignLhsComputedRhs.x = tmpForOfNext.value;
+    const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$3];
+    tmpInitAssignLhsComputedObj.c = tmpInitAssignLhsComputedRhs;
+    tmpInitAssignLhsComputedRhs.x = tmpForOfNext.value;
   }
 }
 $({ a: 999, b: 1000 }, b);

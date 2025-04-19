@@ -20,14 +20,14 @@ $(f(undefined, 10));
 
 
 `````js filename=intro
-const bindingPatternObjRoot /*:unknown*/ = $(`pass`);
-let objPatternCrashTest /*:boolean*/ = bindingPatternObjRoot === undefined;
-if (objPatternCrashTest) {
+const tmpBindingPatternObjRoot /*:unknown*/ = $(`pass`);
+let tmpObjPatternCrashTest /*:boolean*/ = tmpBindingPatternObjRoot === undefined;
+if (tmpObjPatternCrashTest) {
 } else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
+  tmpObjPatternCrashTest = tmpBindingPatternObjRoot === null;
 }
-if (objPatternCrashTest) {
-  bindingPatternObjRoot.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpBindingPatternObjRoot.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -39,13 +39,13 @@ if (objPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternObjRoot = $(`pass`);
-let objPatternCrashTest = bindingPatternObjRoot === undefined;
-if (!objPatternCrashTest) {
-  objPatternCrashTest = bindingPatternObjRoot === null;
+const tmpBindingPatternObjRoot = $(`pass`);
+let tmpObjPatternCrashTest = tmpBindingPatternObjRoot === undefined;
+if (!tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpBindingPatternObjRoot === null;
 }
-if (objPatternCrashTest) {
-  bindingPatternObjRoot.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpBindingPatternObjRoot.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);

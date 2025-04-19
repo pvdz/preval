@@ -61,21 +61,21 @@ const x /*:class*/ = class extends tmpClassSuper {
     return tmpReturnArg$5;
   }
 };
-const tmpCallObj /*:object*/ = new x();
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.f;
-const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `f`);
+const tmpMCOO /*:object*/ = new x();
+const tmpMCF /*:unknown*/ = tmpMCOO.f;
+const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `f`);
 $(tmpCalleeParam);
-const tmpCallObj$1 /*:object*/ = new x();
-const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.g;
-const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallObj$1, `g`);
+const tmpMCOO$1 /*:object*/ = new x();
+const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.g;
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO$1, `g`);
 $(tmpCalleeParam$1);
-const tmpCallObj$3 /*:object*/ = new x();
-const tmpCallCompVal$3 /*:unknown*/ = tmpCallObj$3.x;
-const tmpCalleeParam$3 /*:unknown*/ = $dotCall(tmpCallCompVal$3, tmpCallObj$3, `x`);
+const tmpMCOO$3 /*:object*/ = new x();
+const tmpMCF$3 /*:unknown*/ = tmpMCOO$3.x;
+const tmpCalleeParam$3 /*:unknown*/ = $dotCall(tmpMCF$3, tmpMCOO$3, `x`);
 $(tmpCalleeParam$3);
-const tmpCallObj$5 /*:object*/ = new x();
-const tmpCallCompVal$5 /*:unknown*/ = tmpCallObj$5.y;
-const tmpCalleeParam$5 /*:unknown*/ = $dotCall(tmpCallCompVal$5, tmpCallObj$5, `y`);
+const tmpMCOO$5 /*:object*/ = new x();
+const tmpMCF$5 /*:unknown*/ = tmpMCOO$5.y;
+const tmpCalleeParam$5 /*:unknown*/ = $dotCall(tmpMCF$5, tmpMCOO$5, `y`);
 $(tmpCalleeParam$5);
 `````
 
@@ -104,14 +104,14 @@ const x = class extends tmpClassSuper {
     return tmpReturnArg$5;
   }
 };
-const tmpCallObj = new x();
-$(tmpCallObj.f());
-const tmpCallObj$1 = new x();
-$(tmpCallObj$1.g());
-const tmpCallObj$3 = new x();
-$(tmpCallObj$3.x());
-const tmpCallObj$5 = new x();
-$(tmpCallObj$5.y());
+const tmpMCOO = new x();
+$(tmpMCOO.f());
+const tmpMCOO$1 = new x();
+$(tmpMCOO$1.g());
+const tmpMCOO$3 = new x();
+$(tmpMCOO$3.x());
+const tmpMCOO$5 = new x();
+$(tmpMCOO$5.y());
 `````
 
 

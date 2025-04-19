@@ -18,9 +18,9 @@ a.b(x.y);
 
 
 `````js filename=intro
-const tmpCallCompVal /*:unknown*/ = $Boolean_prototype.b;
-const tmpCalleeParam /*:unknown*/ = $Boolean_prototype.y;
-$dotCall(tmpCallCompVal, true, `b`, tmpCalleeParam);
+const tmpMCF /*:unknown*/ = $Boolean_prototype.b;
+const tmpMCP /*:unknown*/ = $Boolean_prototype.y;
+$dotCall(tmpMCF, true, `b`, tmpMCP);
 `````
 
 

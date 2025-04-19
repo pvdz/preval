@@ -41,11 +41,11 @@ const tmpFree /*:(string, string)=>primitive*/ = function $free($$0, $$1) {
   debugger;
   const tmpCalleeParam /*:string*/ = xs$1 + 5;
   const one /*:number*/ = parseInt(tmpCalleeParam, ys$1);
-  const tmpCallCompVal /*:unknown*/ = one.slice;
-  const two /*:unknown*/ = $dotCall(tmpCallCompVal, one, `slice`, 1);
+  const tmpMCF /*:unknown*/ = one.slice;
+  const two /*:unknown*/ = $dotCall(tmpMCF, one, `slice`, 1);
   two + 0;
-  const tmpCallCompVal$1 /*:unknown*/ = two.slice;
-  const two$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, two, `slice`, 2);
+  const tmpMCF$1 /*:unknown*/ = two.slice;
+  const two$1 /*:unknown*/ = $dotCall(tmpMCF$1, two, `slice`, 2);
   const tmpRet /*:primitive*/ = two + two$1;
   return tmpRet;
 };

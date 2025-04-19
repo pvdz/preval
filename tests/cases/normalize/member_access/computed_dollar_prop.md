@@ -25,8 +25,8 @@ const a /*:object*/ = {
     return undefined;
   },
 };
-const tmpCallCompVal /*:unknown*/ = a.$;
-$dotCall(tmpCallCompVal, a, `\$`);
+const tmpMCF /*:unknown*/ = a.$;
+$dotCall(tmpMCF, a, `\$`);
 `````
 
 

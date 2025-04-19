@@ -34,8 +34,8 @@ $(typeof Math.acosh($spy('Math.acosh')));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`Array.from`);
-$Array_from(tmpCalleeParam$1);
+const tmpMCP /*:unknown*/ = $spy(`Array.from`);
+$Array_from(tmpMCP);
 $(`object`);
 $spy(`Array.isArray`);
 $(`boolean`);
@@ -43,24 +43,24 @@ $spy(`Array.of`);
 $(`object`);
 $spy(`Date.now`);
 $(`number`);
-const tmpCalleeParam$17 /*:unknown*/ = $spy(`Date.UTC`);
-$coerce(tmpCalleeParam$17, `number`);
+const tmpMCP$7 /*:unknown*/ = $spy(`Date.UTC`);
+$coerce(tmpMCP$7, `number`);
 $(`number`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`Date.parse`);
-$coerce(tmpCalleeParam$21, `string`);
+const tmpMCP$9 /*:unknown*/ = $spy(`Date.parse`);
+$coerce(tmpMCP$9, `string`);
 $(`number`);
-const tmpCalleeParam$25 /*:unknown*/ = $spy(`JSON.stringify`);
-const tmpUnaryArg$11 /*:primitive*/ = $dotCall($JSON_stringify, JSON, `stringify`, tmpCalleeParam$25);
-const tmpCalleeParam$23 /*:string*/ = typeof tmpUnaryArg$11;
-$(tmpCalleeParam$23);
-const tmpCalleeParam$29 /*:unknown*/ = $spy(`Math.abs`);
-$coerce(tmpCalleeParam$29, `number`);
+const tmpMCP$11 /*:unknown*/ = $spy(`JSON.stringify`);
+const tmpUnaryArg$11 /*:primitive*/ = $dotCall($JSON_stringify, JSON, `stringify`, tmpMCP$11);
+const tmpCalleeParam$11 /*:string*/ = typeof tmpUnaryArg$11;
+$(tmpCalleeParam$11);
+const tmpMCP$13 /*:unknown*/ = $spy(`Math.abs`);
+$coerce(tmpMCP$13, `number`);
 $(`number`);
-const tmpCalleeParam$33 /*:unknown*/ = $spy(`Math.acos`);
-$coerce(tmpCalleeParam$33, `number`);
+const tmpMCP$15 /*:unknown*/ = $spy(`Math.acos`);
+$coerce(tmpMCP$15, `number`);
 $(`number`);
-const tmpCalleeParam$37 /*:unknown*/ = $spy(`Math.acosh`);
-$coerce(tmpCalleeParam$37, `number`);
+const tmpMCP$17 /*:unknown*/ = $spy(`Math.acosh`);
+$coerce(tmpMCP$17, `number`);
 $(`number`);
 `````
 

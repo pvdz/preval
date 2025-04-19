@@ -28,12 +28,12 @@ const tmpObjLitVal$1 /*:()=>undefined*/ = function () {
   $(tmpCalleeParam);
   return undefined;
 };
-const tmpCallCompVal /*:unknown*/ = $Object_prototype.value;
+const tmpMCF /*:unknown*/ = $Object_prototype.value;
 const obj /*:object*/ = { g: 1, f: tmpObjLitVal$1 };
-const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpCallCompVal, obj, `value`);
+const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpMCF, obj, `value`);
 tmpAssignMemLhsObj.g = 2;
-const tmpCallCompVal$1 /*:unknown*/ = obj.f;
-const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, obj, `f`);
+const tmpMCF$1 /*:unknown*/ = obj.f;
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF$1, obj, `f`);
 $(tmpCalleeParam$1);
 `````
 
@@ -46,9 +46,9 @@ const tmpObjLitVal$1 = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis.g);
 };
-const tmpCallCompVal = $Object_prototype.value;
+const tmpMCF = $Object_prototype.value;
 const obj = { g: 1, f: tmpObjLitVal$1 };
-const tmpAssignMemLhsObj = $dotCall(tmpCallCompVal, obj, `value`);
+const tmpAssignMemLhsObj = $dotCall(tmpMCF, obj, `value`);
 tmpAssignMemLhsObj.g = 2;
 $(obj.f());
 `````

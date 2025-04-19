@@ -24,12 +24,12 @@ if ($(true)) {
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const z /*:array*/ = [10, 20, 30];
-  const arrPatternSplat$1 /*:array*/ = [...z];
-  const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat$1[1];
-  const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat$1[2];
-  const arrPatternSplat /*:array*/ = [...z];
-  const a /*:unknown*/ = arrPatternSplat[0];
-  const b /*:unknown*/ = arrPatternSplat[1];
+  const tmpArrPatternSplat$1 /*:array*/ = [...z];
+  const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat$1[1];
+  const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat$1[2];
+  const tmpArrPatternSplat /*:array*/ = [...z];
+  const a /*:unknown*/ = tmpArrPatternSplat[0];
+  const b /*:unknown*/ = tmpArrPatternSplat[1];
   $(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
 }
@@ -42,11 +42,11 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   const z = [10, 20, 30];
-  const arrPatternSplat$1 = [...z];
-  const tmpClusterSSA_x = arrPatternSplat$1[1];
-  const tmpClusterSSA_y = arrPatternSplat$1[2];
-  const arrPatternSplat = [...z];
-  $(arrPatternSplat[0], arrPatternSplat[1], tmpClusterSSA_x, tmpClusterSSA_y, z);
+  const tmpArrPatternSplat$1 = [...z];
+  const tmpClusterSSA_x = tmpArrPatternSplat$1[1];
+  const tmpClusterSSA_y = tmpArrPatternSplat$1[2];
+  const tmpArrPatternSplat = [...z];
+  $(tmpArrPatternSplat[0], tmpArrPatternSplat[1], tmpClusterSSA_x, tmpClusterSSA_y, z);
 }
 `````
 

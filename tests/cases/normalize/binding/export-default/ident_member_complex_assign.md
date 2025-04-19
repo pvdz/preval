@@ -20,14 +20,14 @@ $(a, b, c, d);
 
 `````js filename=intro
 const b /*:object*/ = { x: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
-varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
-const a /*:unknown*/ = varInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
+const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
+tmpInitAssignLhsComputedObj$1.y = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs$1;
+const a /*:unknown*/ = tmpInitAssignLhsComputedRhs$1;
 export { a };
-$(varInitAssignLhsComputedRhs$1, b, 3, 4);
+$(tmpInitAssignLhsComputedRhs$1, b, 3, 4);
 `````
 
 
@@ -36,14 +36,14 @@ $(varInitAssignLhsComputedRhs$1, b, 3, 4);
 
 `````js filename=intro
 const b = { x: 2 };
-const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedObj$1 = $(3);
-const varInitAssignLhsComputedRhs$1 = $(4);
-varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
-const a = varInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedObj = $(b);
+const tmpInitAssignLhsComputedObj$1 = $(3);
+const tmpInitAssignLhsComputedRhs$1 = $(4);
+tmpInitAssignLhsComputedObj$1.y = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs$1;
+const a = tmpInitAssignLhsComputedRhs$1;
 export { a };
-$(varInitAssignLhsComputedRhs$1, b, 3, 4);
+$(tmpInitAssignLhsComputedRhs$1, b, 3, 4);
 `````
 
 

@@ -25,9 +25,9 @@ $(c);
 `````js filename=intro
 const a /*:unknown*/ = $(`a`);
 const b /*:unknown*/ = $(`b`);
-const dynKey /*:primitive*/ = a + b;
+const tmpCK /*:primitive*/ = a + b;
 const x /*:object*/ = { ab: 3 };
-const c /*:unknown*/ = x[dynKey];
+const c /*:unknown*/ = x[tmpCK];
 $(c);
 `````
 
@@ -36,8 +36,8 @@ $(c);
 (This ought to be the final result)
 
 `````js filename=intro
-const dynKey = $(`a`) + $(`b`);
-$({ ab: 3 }[dynKey]);
+const tmpCK = $(`a`) + $(`b`);
+$({ ab: 3 }[tmpCK]);
 `````
 
 

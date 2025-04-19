@@ -21,14 +21,14 @@ $(a, b);
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(varInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs);
   $(1);
 }
 `````
@@ -38,14 +38,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`c`);
+const tmpInitAssignLhsComputedProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
-b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
+b[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 while (true) {
-  $(varInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs);
   $(1);
 }
 `````

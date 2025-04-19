@@ -28,9 +28,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpCallCompVal /*:primitive*/ = arr[0];
+  const tmpMCF /*:primitive*/ = arr[0];
   try {
-    const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal, arr, undefined);
+    const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF, arr, undefined);
     $(tmpCalleeParam);
     $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
@@ -46,9 +46,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr = [1, 2, 3];
 while (true) {
-  const tmpCallCompVal = arr[0];
+  const tmpMCF = arr[0];
   try {
-    $($dotCall(tmpCallCompVal, arr, undefined));
+    $($dotCall(tmpMCF, arr, undefined));
     $dotCall($array_reverse, arr, `reverse`);
   } catch (e) {
     $(`fail`);

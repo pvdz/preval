@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpObjSpreadArg /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpObjSpreadArg /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 ({ ...tmpObjSpreadArg });
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -35,8 +35,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallObj = $({ $: $ });
-const tmpObjSpreadArg = tmpCallObj.$(1);
+const tmpMCOO = $({ $: $ });
+const tmpObjSpreadArg = tmpMCOO.$(1);
 ({ ...tmpObjSpreadArg });
 $({ a: 999, b: 1000 });
 `````

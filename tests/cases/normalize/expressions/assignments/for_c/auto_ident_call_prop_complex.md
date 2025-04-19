@@ -24,15 +24,15 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
-  const tmpCallObj /*:unknown*/ = $(b);
-  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-  let tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+  const tmpMCOO /*:unknown*/ = $(b);
+  const tmpMCF /*:unknown*/ = tmpMCOO.$;
+  let tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpCallObj$1 /*:unknown*/ = $(b);
-      const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
-      tmpClusterSSA_a = $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
+      const tmpMCOO$1 /*:unknown*/ = $(b);
+      const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.$;
+      tmpClusterSSA_a = $dotCall(tmpMCF$1, tmpMCOO$1, `\$`, 1);
     } else {
       break;
     }
@@ -51,12 +51,12 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(1)) {
   const b = { $: $ };
-  const tmpCallObj = $(b);
-  let tmpClusterSSA_a = tmpCallObj.$(1);
+  const tmpMCOO = $(b);
+  let tmpClusterSSA_a = tmpMCOO.$(1);
   while (true) {
     if ($(1)) {
-      const tmpCallObj$1 = $(b);
-      tmpClusterSSA_a = tmpCallObj$1.$(1);
+      const tmpMCOO$1 = $(b);
+      tmpClusterSSA_a = tmpMCOO$1.$(1);
     } else {
       break;
     }

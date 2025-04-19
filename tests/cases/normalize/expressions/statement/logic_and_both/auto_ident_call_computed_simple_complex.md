@@ -21,15 +21,15 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-  const tmpCallCompVal$1 /*:unknown*/ = b[tmpCallCompProp$1];
-  $dotCall(tmpCallCompVal$1, b, undefined, 1);
+  const tmpMCCP$1 /*:unknown*/ = $(`\$`);
+  const tmpMCF$1 /*:unknown*/ = b[tmpMCCP$1];
+  $dotCall(tmpMCF$1, b, undefined, 1);
   $(a);
 } else {
   $(a);
@@ -41,13 +41,13 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpIfTest = b[tmpCallCompProp](1);
+const tmpIfTest = b[tmpMCCP](1);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCallCompProp$1 = $(`\$`);
-  b[tmpCallCompProp$1](1);
+  const tmpMCCP$1 = $(`\$`);
+  b[tmpMCCP$1](1);
   $(a);
 } else {
   $(a);

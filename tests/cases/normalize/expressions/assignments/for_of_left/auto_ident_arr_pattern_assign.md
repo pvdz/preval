@@ -37,9 +37,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpArrElement /*:unknown*/ = $(3);
     const tmpArrElement$1 /*:unknown*/ = $(4);
     const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
+    const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+    x = tmpArrPatternSplat[0];
+    y = tmpArrPatternSplat[1];
     a = tmpNestedAssignArrPatternRhs;
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpNestedAssignArrPatternRhs.x = tmpAssignMemRhs;
@@ -65,9 +65,9 @@ while (true) {
     const tmpArrElement = $(3);
     const tmpArrElement$1 = $(4);
     const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
+    const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = tmpArrPatternSplat[0];
+    y = tmpArrPatternSplat[1];
     a = tmpNestedAssignArrPatternRhs;
     tmpNestedAssignArrPatternRhs.x = tmpForOfNext.value;
   }

@@ -16,12 +16,12 @@ $spy('a')[$spy('b')]($spy('c'), $spy('d'));
 
 
 `````js filename=intro
-const tmpCallCompObj /*:unknown*/ = $spy(`a`);
-const tmpCallCompProp /*:unknown*/ = $spy(`b`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpCalleeParam /*:unknown*/ = $spy(`c`);
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`d`);
-$dotCall(tmpCallCompVal, tmpCallCompObj, undefined, tmpCalleeParam, tmpCalleeParam$1);
+const tmpMCCO /*:unknown*/ = $spy(`a`);
+const tmpMCCP /*:unknown*/ = $spy(`b`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpMCP /*:unknown*/ = $spy(`c`);
+const tmpMCP$1 /*:unknown*/ = $spy(`d`);
+$dotCall(tmpMCF, tmpMCCO, undefined, tmpMCP, tmpMCP$1);
 `````
 
 
@@ -29,9 +29,9 @@ $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, tmpCalleeParam, tmpCalleePar
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $spy(`a`);
-const tmpCallCompProp = $spy(`b`);
-tmpCallCompObj[tmpCallCompProp]($spy(`c`), $spy(`d`));
+const tmpMCCO = $spy(`a`);
+const tmpMCCP = $spy(`b`);
+tmpMCCO[tmpMCCP]($spy(`c`), $spy(`d`));
 `````
 
 

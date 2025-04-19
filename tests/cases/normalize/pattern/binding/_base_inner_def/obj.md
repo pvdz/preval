@@ -17,8 +17,8 @@ const { x = b } = 1;
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Number_prototype.x;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPBD /*:unknown*/ = $Number_prototype.x;
+const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   b;
 } else {

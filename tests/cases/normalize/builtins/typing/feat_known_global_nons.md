@@ -33,14 +33,14 @@ $(typeof parseFloat($spy('parseFloat')));
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:unknown*/ = $spy(`Math.sign`);
-$coerce(tmpCalleeParam$1, `number`);
+const tmpMCP /*:unknown*/ = $spy(`Math.sign`);
+$coerce(tmpMCP, `number`);
 $(`number`);
-const tmpCalleeParam$5 /*:unknown*/ = $spy(`Math.sin`);
-$coerce(tmpCalleeParam$5, `number`);
+const tmpMCP$1 /*:unknown*/ = $spy(`Math.sin`);
+$coerce(tmpMCP$1, `number`);
 $(`number`);
-const tmpCalleeParam$9 /*:unknown*/ = $spy(`Math.hypot`);
-$coerce(tmpCalleeParam$9, `number`);
+const tmpMCP$3 /*:unknown*/ = $spy(`Math.hypot`);
+$coerce(tmpMCP$3, `number`);
 $(`number`);
 const tmpStringFirstArg /*:unknown*/ = $spy(`String`);
 $coerce(tmpStringFirstArg, `string`);
@@ -50,11 +50,11 @@ $coerce(tmpNumberFirstArg, `number`);
 $(`number`);
 $spy(`Boolean`);
 $(`boolean`);
-const tmpCalleeParam$21 /*:unknown*/ = $spy(`parseInt`);
-$coerce(tmpCalleeParam$21, `string`);
+const tmpCalleeParam$15 /*:unknown*/ = $spy(`parseInt`);
+$coerce(tmpCalleeParam$15, `string`);
 $(`number`);
-const tmpCalleeParam$25 /*:unknown*/ = $spy(`parseFloat`);
-$coerce(tmpCalleeParam$25, `string`);
+const tmpCalleeParam$19 /*:unknown*/ = $spy(`parseFloat`);
+$coerce(tmpCalleeParam$19, `string`);
 $(`number`);
 `````
 

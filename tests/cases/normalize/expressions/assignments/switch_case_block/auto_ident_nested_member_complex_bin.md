@@ -36,9 +36,9 @@ const c /*:object*/ = { y: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+  const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
   $(7, b, c, 3, 4);
 } else {
@@ -58,9 +58,9 @@ const c = { y: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+  const tmpInitAssignLhsComputedObj = $(c);
+  const tmpInitAssignLhsComputedProp = $(`y`);
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 7;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
   $(7, b, c, 3, 4);
 } else {

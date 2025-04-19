@@ -23,10 +23,10 @@ const tmpSwitchDisc /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = $(4);
-  varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
-  $(1, varInitAssignLhsComputedRhs, 3);
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(3);
+  const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(4);
+  tmpInitAssignLhsComputedObj.y = tmpInitAssignLhsComputedRhs;
+  $(1, tmpInitAssignLhsComputedRhs, 3);
 } else {
   $(1, 2, 3);
 }
@@ -38,10 +38,10 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(`a`) === $(`a`)) {
-  const varInitAssignLhsComputedObj = $(3);
-  const varInitAssignLhsComputedRhs = $(4);
-  varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
-  $(1, varInitAssignLhsComputedRhs, 3);
+  const tmpInitAssignLhsComputedObj = $(3);
+  const tmpInitAssignLhsComputedRhs = $(4);
+  tmpInitAssignLhsComputedObj.y = tmpInitAssignLhsComputedRhs;
+  $(1, tmpInitAssignLhsComputedRhs, 3);
 } else {
   $(1, 2, 3);
 }

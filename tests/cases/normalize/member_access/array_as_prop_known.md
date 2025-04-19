@@ -22,8 +22,8 @@ $(xyz);
 `````js filename=intro
 const arr /*:array*/ = [`toString`];
 $Array_from(arr);
-const tmpCallCompVal$1 /*:unknown*/ = String[arr];
-const xyz /*:unknown*/ = $dotCall(tmpCallCompVal$1, String, undefined);
+const tmpMCF$1 /*:unknown*/ = String[arr];
+const xyz /*:unknown*/ = $dotCall(tmpMCF$1, String, undefined);
 $(xyz);
 `````
 

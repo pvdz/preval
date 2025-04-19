@@ -20,12 +20,12 @@ $(a)[b()]($(1), $(2));
 
 `````js filename=intro
 const a /*:object*/ = { b: $ };
-const tmpCallCompObj /*:unknown*/ = $(a);
-const tmpCallCompProp /*:unknown*/ = $(`b`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpCalleeParam$1 /*:unknown*/ = $(2);
-$dotCall(tmpCallCompVal, tmpCallCompObj, undefined, tmpCalleeParam, tmpCalleeParam$1);
+const tmpMCCO /*:unknown*/ = $(a);
+const tmpMCCP /*:unknown*/ = $(`b`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpMCP /*:unknown*/ = $(1);
+const tmpMCP$1 /*:unknown*/ = $(2);
+$dotCall(tmpMCF, tmpMCCO, undefined, tmpMCP, tmpMCP$1);
 `````
 
 
@@ -33,9 +33,9 @@ $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, tmpCalleeParam, tmpCalleePar
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompObj = $({ b: $ });
-const tmpCallCompProp = $(`b`);
-tmpCallCompObj[tmpCallCompProp]($(1), $(2));
+const tmpMCCO = $({ b: $ });
+const tmpMCCP = $(`b`);
+tmpMCCO[tmpMCCP]($(1), $(2));
 `````
 
 

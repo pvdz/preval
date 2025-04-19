@@ -616,58 +616,6 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         return;
       }
 
-      /*
-      if (read.grandNode.type === 'CallExpression') {
-                if (read.grandNode.callee.type !== 'Identifier') return true; // shouldnt happen anymore
-                if (read.grandNode.callee.name !== SYMBOL_DOTCALL) return true;
-                if (read.grandProp !== 'arguments') return true;
-                if (read.grandIndex !== 1) return true; // was not the context
-                if (read.grandNode.arguments[0].type !== 'Identifier') return true; // should be ident?
-                if (read.grandNode.arguments[1].type !== 'Identifier') return true; // context must be ident or we can't check it
-                // Check callee (of the dotcall)
-                if ([
-                  symbo('array', 'shift'),
-                  symbo('array', 'pop'),
-                ].includes(read.grandNode.arguments[0].name)) {
-                  // Removing an element from the array does not change the array type
-                  return false; // ok
-                }
-                if ([
-                  symbo('array', 'unshift'),
-                  symbo('array', 'push'),
-                ].includes(read.grandNode.arguments[0].name)) {
-                  // This is tricky because we need to know what is being pushed into the array
-                  // We will settle for any primitive, or "whatever came out of the array".
-                  // Note that push/unshift support multiple args so we have to check all of them.
-                  if (read.grandNode.arguments.slice(3).every(anode => {
-                    if (AST.isPrimitive(anode)) return true;
-                    if (anode.type !== 'Identifier') return false;
-                    const meta = fdata.globallyUniqueNamingRegistry.get(anode.name);
-                    if (PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType)) return true; // ok
-                    // One more attempt to save it: confirm this is the result of shift/popping the same array
-                    if (!meta.isConstant || meta.writes.length !== 1) return false;
-                    const init = meta.varDeclRef?.node;
-                    if (!init) return false;
-                    // Now expecting a dotcall to shift/pop with the array as context
-                    return (
-                      init.type === 'CallExpression' &&
-                      init.callee.type === 'Identifier' &&
-                      init.callee.name === SYMBOL_DOTCALL &&
-                      init.arguments[0].type === 'Identifier' &&
-                      (init.arguments[0].name === symbo('array', 'shift') || init.arguments[0].name === symbo('array', 'pop')) &&
-                      init.arguments[1].type === 'Identifier' &&
-                      init.arguments[1].name === read.grandNode.arguments[1].name // context of current call
-                    );
-                  })) {
-                    return false; // ok. all args inserted into the array were of a primitive type
-                  }
-                }
-
-                // Whatever we called here may change the type of the array in unpredictable ways
-                return true;
-              }
-       */
-
       ASSERT(newTyping?.mustBeType === 'primitive' ? newTyping.mustBePrimitive : true, 'if mustbetype is primitive then isprimitive must be set too', newTyping);
       if (newTyping?.mustBeType && newTyping.mustBeType !== 'primitive') {
         vlog('  - We have a mustBeType (', newTyping.mustBeType, '), typingChanged=true');

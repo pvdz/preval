@@ -54,10 +54,10 @@ const oops /*:object*/ = {
     debugger;
     const tmpCalleeParam /*:unknown*/ = o.x;
     $(`iterator called, o.x=`, tmpCalleeParam);
-    const tmpCallCompObj /*:unknown*/ = tmpPrevalAliasThis.values;
-    const tmpCallCompProp /*:unknown*/ = Symbol.iterator;
-    const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-    const tmpReturnArg /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined);
+    const tmpMCCO /*:unknown*/ = tmpPrevalAliasThis.values;
+    const tmpMCCP /*:unknown*/ = Symbol.iterator;
+    const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+    const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined);
     return tmpReturnArg;
   },
   values: tmpObjLitVal$1,
@@ -90,9 +90,9 @@ const oops = {
   [tmpObjLitPropKey]() {
     const tmpPrevalAliasThis = this;
     $(`iterator called, o.x=`, o.x);
-    const tmpCallCompObj = tmpPrevalAliasThis.values;
-    const tmpCallCompProp = Symbol.iterator;
-    const tmpReturnArg = tmpCallCompObj[tmpCallCompProp]();
+    const tmpMCCO = tmpPrevalAliasThis.values;
+    const tmpMCCP = Symbol.iterator;
+    const tmpReturnArg = tmpMCCO[tmpMCCP]();
     return tmpReturnArg;
   },
   values: tmpObjLitVal$1,

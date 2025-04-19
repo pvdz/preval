@@ -19,9 +19,9 @@ $(y);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: `pass` };
-const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
-y = $objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
+y = $objPatternRest(tmpOPAD, tmpCalleeParam$3, undefined);
 $(y);
 `````
 

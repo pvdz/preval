@@ -27,8 +27,8 @@ const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(a);
 } else {
-  const tmpCallCompVal$1 /*:unknown*/ = b.$;
-  $dotCall(tmpCallCompVal$1, b, `\$`, 1);
+  const tmpMCF$1 /*:unknown*/ = b.$;
+  $dotCall(tmpMCF$1, b, `\$`, 1);
   $(a);
 }
 `````

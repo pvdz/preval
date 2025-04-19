@@ -20,9 +20,9 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a /*:unknown*/ = arrPatternSplat[0];
+const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpCalleeParam$1 /*:array*/ = [1, 2];
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 $coerce(tmpCalleeParam, `string`);
@@ -34,8 +34,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const a = [...bindingPatternArrRoot][0];
+const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+const a = [...tmpBindingPatternArrRoot][0];
 $coerce($([1, 2]), `string`);
 $(a);
 `````

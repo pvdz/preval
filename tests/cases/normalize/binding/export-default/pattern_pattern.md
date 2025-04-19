@@ -20,12 +20,12 @@ $(a, b, x, y, z);
 
 `````js filename=intro
 const z /*:array*/ = [10, 20, 30];
-const arrPatternSplat$1 /*:array*/ = [...z];
-const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat$1[1];
-const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat$1[2];
-const arrPatternSplat /*:array*/ = [...z];
-const a /*:unknown*/ = arrPatternSplat[0];
-const b /*:unknown*/ = arrPatternSplat[1];
+const tmpArrPatternSplat$1 /*:array*/ = [...z];
+const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat$1[1];
+const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat$1[2];
+const tmpArrPatternSplat /*:array*/ = [...z];
+const a /*:unknown*/ = tmpArrPatternSplat[0];
+const b /*:unknown*/ = tmpArrPatternSplat[1];
 export { a, b };
 $(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
 `````
@@ -36,12 +36,12 @@ $(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
 
 `````js filename=intro
 const z = [10, 20, 30];
-const arrPatternSplat$1 = [...z];
-const tmpClusterSSA_x = arrPatternSplat$1[1];
-const tmpClusterSSA_y = arrPatternSplat$1[2];
-const arrPatternSplat = [...z];
-const a = arrPatternSplat[0];
-const b = arrPatternSplat[1];
+const tmpArrPatternSplat$1 = [...z];
+const tmpClusterSSA_x = tmpArrPatternSplat$1[1];
+const tmpClusterSSA_y = tmpArrPatternSplat$1[2];
+const tmpArrPatternSplat = [...z];
+const a = tmpArrPatternSplat[0];
+const b = tmpArrPatternSplat[1];
 export { a, b };
 $(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
 `````

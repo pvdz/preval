@@ -21,8 +21,8 @@ $(f({ x: undefined, a: 11, b: 12 }, 10));
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
-[...objPatternAfterDefault];
+const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
+[...tmpOPAD];
 $(`bad`);
 `````
 
@@ -31,8 +31,8 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternAfterDefault = $([`pass2`]);
-[...objPatternAfterDefault];
+const tmpOPAD = $([`pass2`]);
+[...tmpOPAD];
 $(`bad`);
 `````
 

@@ -26,8 +26,8 @@ const obj /*:object*/ = {
     return tmpReturnArg;
   },
 };
-const tmpCallCompVal /*:unknown*/ = obj.foo;
-const tmpObjSpread /*:unknown*/ = $dotCall(tmpCallCompVal, obj, `foo`);
+const tmpMCF /*:unknown*/ = obj.foo;
+const tmpObjSpread /*:unknown*/ = $dotCall(tmpMCF, obj, `foo`);
 const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
 $(tmpCalleeParam$1);
 `````

@@ -22,24 +22,24 @@ $(f(undefined, 10));
 `````js filename=intro
 const tmpObjLitVal /*:object*/ = { y: `pass2` };
 const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-const tmpClusterSSA_bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const objPatternBeforeDefault /*:unknown*/ = tmpClusterSSA_bindingPatternObjRoot.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-let objPatternCrashTest /*:boolean*/ = false;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpClusterSSA_tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD /*:unknown*/ = tmpClusterSSA_tmpBindingPatternObjRoot.x;
+let tmpOPAD /*:unknown*/ = undefined;
+let tmpObjPatternCrashTest /*:boolean*/ = false;
+const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { x: `fail` };
-  objPatternAfterDefault = $(tmpCalleeParam$1);
-  objPatternCrashTest = objPatternAfterDefault === undefined;
+  tmpOPAD = $(tmpCalleeParam$1);
+  tmpObjPatternCrashTest = tmpOPAD === undefined;
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-if (objPatternCrashTest) {
+if (tmpObjPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternAfterDefault === null;
+  tmpObjPatternCrashTest = tmpOPAD === null;
 }
-if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpOPAD.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);
@@ -52,20 +52,20 @@ if (objPatternCrashTest) {
 
 `````js filename=intro
 const tmpObjLitVal = { y: `pass2` };
-const objPatternBeforeDefault = $({ x: tmpObjLitVal }).x;
-let objPatternAfterDefault = undefined;
-let objPatternCrashTest = false;
-if (objPatternBeforeDefault === undefined) {
-  objPatternAfterDefault = $({ x: `fail` });
-  objPatternCrashTest = objPatternAfterDefault === undefined;
+const tmpOPBD = $({ x: tmpObjLitVal }).x;
+let tmpOPAD = undefined;
+let tmpObjPatternCrashTest = false;
+if (tmpOPBD === undefined) {
+  tmpOPAD = $({ x: `fail` });
+  tmpObjPatternCrashTest = tmpOPAD === undefined;
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-if (!objPatternCrashTest) {
-  objPatternCrashTest = objPatternAfterDefault === null;
+if (!tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpOPAD === null;
 }
-if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpOPAD.cannotDestructureThis;
   $(`ok`);
 } else {
   $(`ok`);

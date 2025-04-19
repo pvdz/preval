@@ -26,9 +26,9 @@ switch (1) {
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [1, 2];
-const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat[0];
+const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
+const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat[0];
 $(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
@@ -39,8 +39,8 @@ $(`fail2`);
 (This ought to be the final result)
 
 `````js filename=intro
-const arrAssignPatternRhs = $([1, 2]);
-$([...arrAssignPatternRhs][0]);
+const tmpArrAssignPatternRhs = $([1, 2]);
+$([...tmpArrAssignPatternRhs][0]);
 $(`fail1`);
 $(`fail2`);
 `````

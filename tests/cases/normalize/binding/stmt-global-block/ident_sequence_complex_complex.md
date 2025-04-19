@@ -24,10 +24,10 @@ if ($(true)) {
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(2);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs, 2, 3);
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(3);
+  const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
+  tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs, 2, 3);
 } else {
 }
 `````
@@ -39,10 +39,10 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   $(2);
-  const varInitAssignLhsComputedObj = $(3);
-  const varInitAssignLhsComputedRhs = $(3);
-  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs, 2, 3);
+  const tmpInitAssignLhsComputedObj = $(3);
+  const tmpInitAssignLhsComputedRhs = $(3);
+  tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs;
+  $(tmpInitAssignLhsComputedRhs, 2, 3);
 }
 `````
 

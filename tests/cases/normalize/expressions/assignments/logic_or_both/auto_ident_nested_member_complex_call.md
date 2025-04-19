@@ -30,24 +30,24 @@ const b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
-  $(varInitAssignLhsComputedRhs);
-  $(varInitAssignLhsComputedRhs, b, c, 3);
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+if (tmpInitAssignLhsComputedRhs) {
+  $(tmpInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs, b, c, 3);
 } else {
-  const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj$3 /*:unknown*/ = $(c);
-  const varInitAssignLhsComputedProp$3 /*:unknown*/ = $(`y`);
-  const varInitAssignLhsComputedRhs$3 /*:unknown*/ = $(3);
-  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
-  $(varInitAssignLhsComputedRhs$3);
-  $(varInitAssignLhsComputedRhs$3, b, c, 3);
+  const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
+  const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
+  const tmpInitAssignLhsComputedObj$3 /*:unknown*/ = $(c);
+  const tmpInitAssignLhsComputedProp$3 /*:unknown*/ = $(`y`);
+  const tmpInitAssignLhsComputedRhs$3 /*:unknown*/ = $(3);
+  tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = tmpInitAssignLhsComputedRhs$3;
+  tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$3;
+  $(tmpInitAssignLhsComputedRhs$3);
+  $(tmpInitAssignLhsComputedRhs$3, b, c, 3);
 }
 `````
 
@@ -60,24 +60,24 @@ const b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const c = { y: 2 };
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
-  $(varInitAssignLhsComputedRhs);
-  $(varInitAssignLhsComputedRhs, b, c, 3);
+const tmpInitAssignLhsComputedObj = $(c);
+const tmpInitAssignLhsComputedProp = $(`y`);
+const tmpInitAssignLhsComputedRhs = $(3);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+if (tmpInitAssignLhsComputedRhs) {
+  $(tmpInitAssignLhsComputedRhs);
+  $(tmpInitAssignLhsComputedRhs, b, c, 3);
 } else {
-  const varInitAssignLhsComputedObj$1 = $(b);
-  const varInitAssignLhsComputedProp$1 = $(`x`);
-  const varInitAssignLhsComputedObj$3 = $(c);
-  const varInitAssignLhsComputedProp$3 = $(`y`);
-  const varInitAssignLhsComputedRhs$3 = $(3);
-  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
-  $(varInitAssignLhsComputedRhs$3);
-  $(varInitAssignLhsComputedRhs$3, b, c, 3);
+  const tmpInitAssignLhsComputedObj$1 = $(b);
+  const tmpInitAssignLhsComputedProp$1 = $(`x`);
+  const tmpInitAssignLhsComputedObj$3 = $(c);
+  const tmpInitAssignLhsComputedProp$3 = $(`y`);
+  const tmpInitAssignLhsComputedRhs$3 = $(3);
+  tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = tmpInitAssignLhsComputedRhs$3;
+  tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$3;
+  $(tmpInitAssignLhsComputedRhs$3);
+  $(tmpInitAssignLhsComputedRhs$3, b, c, 3);
 }
 `````
 

@@ -19,8 +19,8 @@ $($(a).x = b = c);
 
 `````js filename=intro
 const tmpClusterSSA_a /*:object*/ = {};
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_a);
-varInitAssignLhsComputedObj.x = 30;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_a);
+tmpInitAssignLhsComputedObj.x = 30;
 $(30);
 `````
 
@@ -29,8 +29,8 @@ $(30);
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $({});
-varInitAssignLhsComputedObj.x = 30;
+const tmpInitAssignLhsComputedObj = $({});
+tmpInitAssignLhsComputedObj.x = 30;
 $(30);
 `````
 

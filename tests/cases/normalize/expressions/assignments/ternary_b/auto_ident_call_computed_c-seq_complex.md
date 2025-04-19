@@ -24,10 +24,10 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
-  const tmpCallCompObj /*:unknown*/ = $(b);
-  const tmpCallCompProp /*:unknown*/ = $(`\$`);
-  const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+  const tmpMCCO /*:unknown*/ = $(b);
+  const tmpMCCP /*:unknown*/ = $(`\$`);
+  const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -44,9 +44,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  const tmpCallCompObj = $({ $: $ });
-  const tmpCallCompProp = $(`\$`);
-  const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
+  const tmpMCCO = $({ $: $ });
+  const tmpMCCP = $(`\$`);
+  const tmpNestedComplexRhs = tmpMCCO[tmpMCCP](1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {

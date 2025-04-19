@@ -30,8 +30,8 @@ const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   try {
     $dotCall($array_reverse, arr, `reverse`);
-    const tmpCallCompVal$1 /*:unknown*/ = $[arr];
-    const tmpCalleeParam /*:unknown*/ = $dotCall(tmpCallCompVal$1, $, undefined);
+    const tmpMCF$1 /*:unknown*/ = $[arr];
+    const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF$1, $, undefined);
     $(tmpCalleeParam);
   } catch (e) {
     $(`fail`);

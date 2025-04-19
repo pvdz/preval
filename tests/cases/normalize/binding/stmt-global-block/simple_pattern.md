@@ -24,9 +24,9 @@ if ($(true)) {
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const z /*:array*/ = [10, 20, 30];
-  const arrPatternSplat /*:array*/ = [...z];
-  const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
-  const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
+  const tmpArrPatternSplat /*:array*/ = [...z];
+  const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
+  const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
   $(z, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
 }
@@ -39,8 +39,8 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   const z = [10, 20, 30];
-  const arrPatternSplat = [...z];
-  $(z, arrPatternSplat[0], arrPatternSplat[1], z);
+  const tmpArrPatternSplat = [...z];
+  $(z, tmpArrPatternSplat[0], tmpArrPatternSplat[1], z);
 }
 `````
 

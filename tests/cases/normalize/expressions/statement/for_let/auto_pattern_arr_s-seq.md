@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+[...tmpBindingPatternArrRoot];
 $(10);
 $(20);
 const xyz /*:array*/ = [1, 2];
@@ -35,8 +35,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-[...bindingPatternArrRoot];
+const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+[...tmpBindingPatternArrRoot];
 $(10);
 $(20);
 const xyz = [1, 2];

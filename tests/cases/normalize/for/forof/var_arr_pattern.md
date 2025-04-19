@@ -25,8 +25,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const bindingPatternObjRoot /*:unknown*/ = tmpForOfNext.value;
-    const x /*:unknown*/ = bindingPatternObjRoot.x;
+    const tmpBindingPatternObjRoot /*:unknown*/ = tmpForOfNext.value;
+    const x /*:unknown*/ = tmpBindingPatternObjRoot.x;
     $(x);
   }
 }

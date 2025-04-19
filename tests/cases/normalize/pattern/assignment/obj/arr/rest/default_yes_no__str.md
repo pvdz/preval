@@ -18,17 +18,17 @@ $(y);
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $String_prototype.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPBD /*:unknown*/ = $String_prototype.x;
+let tmpOPAD /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [`pass`];
-  objPatternAfterDefault = $(tmpCalleeParam);
+  tmpOPAD = $(tmpCalleeParam);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-y = $dotCall($array_slice, arrPatternSplat, `slice`, 0);
+const tmpArrPatternSplat /*:array*/ = [...tmpOPAD];
+y = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
 $(y);
 `````
 
@@ -37,14 +37,14 @@ $(y);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $String_prototype.x;
-let objPatternAfterDefault = undefined;
-if (objPatternBeforeDefault === undefined) {
-  objPatternAfterDefault = $([`pass`]);
+const tmpOPBD = $String_prototype.x;
+let tmpOPAD = undefined;
+if (tmpOPBD === undefined) {
+  tmpOPAD = $([`pass`]);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-y = $dotCall($array_slice, [...objPatternAfterDefault], `slice`, 0);
+y = $dotCall($array_slice, [...tmpOPAD], `slice`, 0);
 $(y);
 `````
 

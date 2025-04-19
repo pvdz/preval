@@ -45,8 +45,8 @@ if ($) {
 } else {
 }
 const xyz /*:unknown*/ = $();
-const tmpCallCompVal /*:unknown*/ = t[0];
-$dotCall(tmpCallCompVal, t, undefined);
+const tmpMCF /*:unknown*/ = t[0];
+$dotCall(tmpMCF, t, undefined);
 $(xyz, `g`);
 $(undefined);
 `````

@@ -29,9 +29,9 @@ if (tmpIfTest) {
 } else {
   const tmpArrElement /*:unknown*/ = $(2);
   const tmpCalleeParam /*:array*/ = [tmpArrElement];
-  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const arrPatternSplat /*:array*/ = [...arrAssignPatternRhs];
-  const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
+  const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+  const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
+  const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
   $(a, tmpClusterSSA_b);
 }
 `````
@@ -47,8 +47,8 @@ if (tmpIfTest) {
   $(a, []);
 } else {
   const tmpArrElement = $(2);
-  const arrAssignPatternRhs = $([tmpArrElement]);
-  $(a, [...arrAssignPatternRhs][0]);
+  const tmpArrAssignPatternRhs = $([tmpArrElement]);
+  $(a, [...tmpArrAssignPatternRhs][0]);
 }
 `````
 

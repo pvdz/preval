@@ -26,8 +26,8 @@ let a /*:unknown*/ = $dotCall($, b, `\$`, 1);
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCallCompVal$1 /*:unknown*/ = b.$;
-    a = $dotCall(tmpCallCompVal$1, b, `\$`, 1);
+    const tmpMCF$1 /*:unknown*/ = b.$;
+    a = $dotCall(tmpMCF$1, b, `\$`, 1);
     if (a) {
     } else {
       break;

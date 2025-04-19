@@ -25,9 +25,9 @@ $(a, b);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-b.c = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+b.c = tmpInitAssignLhsComputedRhs;
+$(tmpInitAssignLhsComputedRhs);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, b);
 `````
@@ -40,9 +40,9 @@ $(a, b);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
-b.c = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs);
+const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
+b.c = tmpInitAssignLhsComputedRhs;
+$(tmpInitAssignLhsComputedRhs);
 $({ a: 999, b: 1000 }, b);
 `````
 

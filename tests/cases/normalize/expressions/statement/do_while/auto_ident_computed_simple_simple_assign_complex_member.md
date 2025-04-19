@@ -27,16 +27,16 @@ $(100);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-b.c = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+b.c = tmpInitAssignLhsComputedRhs;
+if (tmpInitAssignLhsComputedRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpCompObj$1 /*:unknown*/ = $(b);
     const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
-    b.c = varInitAssignLhsComputedRhs$1;
-    if (varInitAssignLhsComputedRhs$1) {
+    const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
+    b.c = tmpInitAssignLhsComputedRhs$1;
+    if (tmpInitAssignLhsComputedRhs$1) {
     } else {
       break;
     }
@@ -56,16 +56,16 @@ $(100);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
-b.c = varInitAssignLhsComputedRhs;
-if (varInitAssignLhsComputedRhs) {
+const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
+b.c = tmpInitAssignLhsComputedRhs;
+if (tmpInitAssignLhsComputedRhs) {
   while (true) {
     $(100);
     const tmpCompObj$1 = $(b);
     const tmpCalleeParam$1 = $(`d`);
-    const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
-    b.c = varInitAssignLhsComputedRhs$1;
-    if (!varInitAssignLhsComputedRhs$1) {
+    const tmpInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
+    b.c = tmpInitAssignLhsComputedRhs$1;
+    if (!tmpInitAssignLhsComputedRhs$1) {
       break;
     }
   }

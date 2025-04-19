@@ -22,19 +22,19 @@ $(f(undefined, 200));
 `````js filename=intro
 const tmpArrElement /*:object*/ = { a: `pass2` };
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-let arrPatternStep /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
+let tmpArrPatternStep /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { a: `fail` };
-  arrPatternStep = $(tmpCalleeParam$1);
+  tmpArrPatternStep = $(tmpCalleeParam$1);
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
 const tmpCalleeParam$5 /*:array*/ = [];
-const x /*:unknown*/ = $objPatternRest(arrPatternStep, tmpCalleeParam$5, undefined);
+const x /*:unknown*/ = $objPatternRest(tmpArrPatternStep, tmpCalleeParam$5, undefined);
 $(x);
 `````
 
@@ -44,15 +44,15 @@ $(x);
 
 `````js filename=intro
 const tmpArrElement = { a: `pass2` };
-const bindingPatternArrRoot = $([tmpArrElement]);
-const arrPatternBeforeDefault = [...bindingPatternArrRoot][0];
-let arrPatternStep = undefined;
-if (arrPatternBeforeDefault === undefined) {
-  arrPatternStep = $({ a: `fail` });
+const tmpBindingPatternArrRoot = $([tmpArrElement]);
+const tmpAPBD = [...tmpBindingPatternArrRoot][0];
+let tmpArrPatternStep = undefined;
+if (tmpAPBD === undefined) {
+  tmpArrPatternStep = $({ a: `fail` });
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-$($objPatternRest(arrPatternStep, [], undefined));
+$($objPatternRest(tmpArrPatternStep, [], undefined));
 `````
 
 

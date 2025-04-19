@@ -32,8 +32,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCompVal /*:unknown*/ = b.$;
-    a = $dotCall(tmpCallCompVal, b, `\$`, 1);
+    const tmpMCF /*:unknown*/ = b.$;
+    a = $dotCall(tmpMCF, b, `\$`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     a.x = tmpAssignMemRhs;
   }

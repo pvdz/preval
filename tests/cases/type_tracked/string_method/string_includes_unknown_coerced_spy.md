@@ -23,8 +23,8 @@ $(bool);
 `````js filename=intro
 const tmpStringFirstArg /*:unknown*/ = $spy();
 const str /*:string*/ = $coerce(tmpStringFirstArg, `string`);
-const tmpCalleeParam /*:unknown*/ = $spy();
-const bool /*:boolean*/ = $dotCall($string_includes, str, `includes`, tmpCalleeParam);
+const tmpMCP /*:unknown*/ = $spy();
+const bool /*:boolean*/ = $dotCall($string_includes, str, `includes`, tmpMCP);
 $(bool);
 `````
 

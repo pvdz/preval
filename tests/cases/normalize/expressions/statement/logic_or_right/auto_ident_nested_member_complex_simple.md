@@ -32,9 +32,9 @@ if (tmpIfTest) {
 } else {
   const tmpAssignComMemLhsObj /*:unknown*/ = $(b);
   const tmpAssignComMemLhsProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+  const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
   $(a, b, c, 3);
 }
@@ -54,9 +54,9 @@ if (tmpIfTest) {
 } else {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
+  const tmpInitAssignLhsComputedObj = $(c);
+  const tmpInitAssignLhsComputedProp = $(`y`);
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
   $(a, b, c, 3);
 }

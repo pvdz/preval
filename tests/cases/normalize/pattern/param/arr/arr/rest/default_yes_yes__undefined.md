@@ -20,18 +20,18 @@ $(f(undefined, 200));
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:unknown*/ = $(`pass2`);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-let arrPatternStep /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+const tmpBindingPatternArrRoot /*:unknown*/ = $(`pass2`);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
+let tmpArrPatternStep /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
-  arrPatternStep = $(`fail`);
+  tmpArrPatternStep = $(`fail`);
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const x /*:array*/ = $dotCall($array_slice, arrPatternSplat$1, `slice`, 0);
+const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrPatternStep];
+const x /*:array*/ = $dotCall($array_slice, tmpArrPatternSplat$1, `slice`, 0);
 $(x);
 `````
 
@@ -40,15 +40,15 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = $(`pass2`);
-const arrPatternBeforeDefault = [...bindingPatternArrRoot][0];
-let arrPatternStep = undefined;
-if (arrPatternBeforeDefault === undefined) {
-  arrPatternStep = $(`fail`);
+const tmpBindingPatternArrRoot = $(`pass2`);
+const tmpAPBD = [...tmpBindingPatternArrRoot][0];
+let tmpArrPatternStep = undefined;
+if (tmpAPBD === undefined) {
+  tmpArrPatternStep = $(`fail`);
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-$($dotCall($array_slice, [...arrPatternStep], `slice`, 0));
+$($dotCall($array_slice, [...tmpArrPatternStep], `slice`, 0));
 `````
 
 

@@ -19,8 +19,8 @@ $($(a).length = b = c);
 
 `````js filename=intro
 const tmpClusterSSA_a /*:array*/ = [];
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_a);
-varInitAssignLhsComputedObj.length = 30;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_a);
+tmpInitAssignLhsComputedObj.length = 30;
 $(30);
 `````
 
@@ -29,8 +29,8 @@ $(30);
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $([]);
-varInitAssignLhsComputedObj.length = 30;
+const tmpInitAssignLhsComputedObj = $([]);
+tmpInitAssignLhsComputedObj.length = 30;
 $(30);
 `````
 

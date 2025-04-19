@@ -76,8 +76,8 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   debugger;
   const index$1 /*:unknown*/ = heap.length;
   index$1 ** 0;
-  const tmpCallCompVal /*:unknown*/ = heap.push;
-  $dotCall(tmpCallCompVal, heap, `push`, node$1);
+  const tmpMCF /*:unknown*/ = heap.push;
+  $dotCall(tmpMCF, heap, `push`, node$1);
   const tmpSaooB$1 /*:number*/ = index$1 - 1;
   const tmpSaooB$4 /*:number*/ = tmpSaooB$1 >>> 1;
   siftUp_t(heap, node$1, index$1, tmpSaooB$4);

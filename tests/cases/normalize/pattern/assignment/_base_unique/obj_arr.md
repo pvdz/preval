@@ -19,9 +19,9 @@
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-y = arrPatternSplat[0];
+const tmpOPND /*:unknown*/ = $Number_prototype.x;
+const tmpArrPatternSplat /*:array*/ = [...tmpOPND];
+y = tmpArrPatternSplat[0];
 `````
 
 
@@ -29,8 +29,8 @@ y = arrPatternSplat[0];
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = $Number_prototype.x;
-y = [...objPatternNoDefault][0];
+const tmpOPND = $Number_prototype.x;
+y = [...tmpOPND][0];
 `````
 
 

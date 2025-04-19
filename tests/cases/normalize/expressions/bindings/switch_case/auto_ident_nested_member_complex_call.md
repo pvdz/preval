@@ -29,12 +29,12 @@ const tmpClusterSSA_b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(tmpClusterSSA_b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
 const tmpClusterSSA_c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_c);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs, tmpClusterSSA_b, tmpClusterSSA_c, 3);
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_c);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+$(tmpInitAssignLhsComputedRhs, tmpClusterSSA_b, tmpClusterSSA_c, 3);
 `````
 
 
@@ -46,12 +46,12 @@ const tmpClusterSSA_b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const tmpClusterSSA_c = { y: 2 };
-const varInitAssignLhsComputedObj = $(tmpClusterSSA_c);
-const varInitAssignLhsComputedProp = $(`y`);
-const varInitAssignLhsComputedRhs = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-$(varInitAssignLhsComputedRhs, tmpClusterSSA_b, tmpClusterSSA_c, 3);
+const tmpInitAssignLhsComputedObj = $(tmpClusterSSA_c);
+const tmpInitAssignLhsComputedProp = $(`y`);
+const tmpInitAssignLhsComputedRhs = $(3);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+$(tmpInitAssignLhsComputedRhs, tmpClusterSSA_b, tmpClusterSSA_c, 3);
 `````
 
 

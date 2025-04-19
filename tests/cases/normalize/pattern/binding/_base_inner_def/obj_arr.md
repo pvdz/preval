@@ -17,10 +17,10 @@ const {x: [ y = a ]} = 1;
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $Number_prototype.x;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-const tmpIfTest /*:boolean*/ = arrPatternBeforeDefault === undefined;
+const tmpOPND /*:unknown*/ = $Number_prototype.x;
+const tmpArrPatternSplat /*:array*/ = [...tmpOPND];
+const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
+const tmpIfTest /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest) {
   a;
 } else {
@@ -32,8 +32,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = $Number_prototype.x;
-if ([...objPatternNoDefault][0] === undefined) {
+const tmpOPND = $Number_prototype.x;
+if ([...tmpOPND][0] === undefined) {
   a;
 }
 `````

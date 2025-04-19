@@ -20,14 +20,14 @@ $(f('', 10));
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $String_prototype.x;
-let objPatternCrashTest /*:boolean*/ = objPatternNoDefault === undefined;
-if (objPatternCrashTest) {
+const tmpOPND /*:unknown*/ = $String_prototype.x;
+let tmpObjPatternCrashTest /*:boolean*/ = tmpOPND === undefined;
+if (tmpObjPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternNoDefault === null;
+  tmpObjPatternCrashTest = tmpOPND === null;
 }
-if (objPatternCrashTest) {
-  objPatternNoDefault.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpOPND.cannotDestructureThis;
   $(`bad`);
 } else {
   $(`bad`);
@@ -39,13 +39,13 @@ if (objPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = $String_prototype.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
-if (!objPatternCrashTest) {
-  objPatternCrashTest = objPatternNoDefault === null;
+const tmpOPND = $String_prototype.x;
+let tmpObjPatternCrashTest = tmpOPND === undefined;
+if (!tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpOPND === null;
 }
-if (objPatternCrashTest) {
-  objPatternNoDefault.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpOPND.cannotDestructureThis;
   $(`bad`);
 } else {
   $(`bad`);

@@ -19,16 +19,16 @@ $(function(){ $(this.x); }.apply({x: 15}, ['x']));
 
 
 `````js filename=intro
-const tmpCallObj /*:()=>undefined*/ = function () {
+const tmpMCOO /*:()=>undefined*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
   const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.x;
   $(tmpCalleeParam$1);
   return undefined;
 };
-const tmpCalleeParam$3 /*:object*/ = { x: 15 };
-const tmpCalleeParam$5 /*:array*/ = [`x`];
-const tmpCalleeParam /*:unknown*/ = $dotCall($function_apply, tmpCallObj, `apply`, tmpCalleeParam$3, tmpCalleeParam$5);
+const tmpMCP /*:object*/ = { x: 15 };
+const tmpMCP$1 /*:array*/ = [`x`];
+const tmpCalleeParam /*:unknown*/ = $dotCall($function_apply, tmpMCOO, `apply`, tmpMCP, tmpMCP$1);
 $(tmpCalleeParam);
 `````
 
@@ -37,12 +37,12 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallObj = function () {
+const tmpMCOO = function () {
   const tmpPrevalAliasThis = this;
   $(tmpPrevalAliasThis.x);
 };
-const tmpCalleeParam$3 = { x: 15 };
-$($dotCall($function_apply, tmpCallObj, `apply`, tmpCalleeParam$3, [`x`]));
+const tmpMCP = { x: 15 };
+$($dotCall($function_apply, tmpMCOO, `apply`, tmpMCP, [`x`]));
 `````
 
 

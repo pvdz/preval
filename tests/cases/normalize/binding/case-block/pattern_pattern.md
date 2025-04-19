@@ -24,9 +24,9 @@ const tmpBinBothRhs /*:unknown*/ = $(`a`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
-  const arrPatternSplat$1 /*:array*/ = [...z];
-  const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat$1[1];
-  const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat$1[2];
+  const tmpArrPatternSplat$1 /*:array*/ = [...z];
+  const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat$1[1];
+  const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat$1[2];
   [...z];
   $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
@@ -42,9 +42,9 @@ if (tmpIfTest) {
 const tmpIfTest = $(`a`) === $(`a`);
 const z = [10, 20, 30];
 if (tmpIfTest) {
-  const arrPatternSplat$1 = [...z];
-  const tmpClusterSSA_x = arrPatternSplat$1[1];
-  const tmpClusterSSA_y = arrPatternSplat$1[2];
+  const tmpArrPatternSplat$1 = [...z];
+  const tmpClusterSSA_x = tmpArrPatternSplat$1[1];
+  const tmpClusterSSA_y = tmpArrPatternSplat$1[2];
   [...z];
   $(1, 2, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {

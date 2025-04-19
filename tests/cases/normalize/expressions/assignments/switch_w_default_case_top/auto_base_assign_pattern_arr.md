@@ -48,8 +48,8 @@ if (tmpIfTest$3) {
   const tmpArrElement /*:unknown*/ = $(2);
   const tmpCalleeParam /*:array*/ = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
+  const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+  b = tmpArrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
 } else {
 }

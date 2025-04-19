@@ -22,15 +22,15 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpCallObj$1 /*:unknown*/ = $(b);
-    const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
-    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
+    const tmpMCOO$1 /*:unknown*/ = $(b);
+    const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.$;
+    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO$1, `\$`, 1);
     if (tmpIfTest$1) {
     } else {
       break;
@@ -48,12 +48,12 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const tmpCallObj = $(b);
-if (tmpCallObj.$(1)) {
+const tmpMCOO = $(b);
+if (tmpMCOO.$(1)) {
   while (true) {
     $(1);
-    const tmpCallObj$1 = $(b);
-    if (!tmpCallObj$1.$(1)) {
+    const tmpMCOO$1 = $(b);
+    if (!tmpMCOO$1.$(1)) {
       break;
     }
   }

@@ -27,8 +27,8 @@ $(f());
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const b /*:object*/ = { x: 2 };
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-  varInitAssignLhsComputedObj.x = 7;
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+  tmpInitAssignLhsComputedObj.x = 7;
   $(7, b, 3);
   $(undefined);
 } else {
@@ -43,8 +43,8 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   const b = { x: 2 };
-  const varInitAssignLhsComputedObj = $(b);
-  varInitAssignLhsComputedObj.x = 7;
+  const tmpInitAssignLhsComputedObj = $(b);
+  tmpInitAssignLhsComputedObj.x = 7;
   $(7, b, 3);
   $(undefined);
 } else {

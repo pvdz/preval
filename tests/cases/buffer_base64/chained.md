@@ -24,9 +24,9 @@ $(f("cGF0aA")); // path
 const f /*:(unknown)=>unknown*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
-  const tmpCallObj /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
-  const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj.toString;
-  const tmpReturnArg /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallObj, `toString`, `utf8`);
+  const tmpMCOO /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
+  const tmpMCF$1 /*:unknown*/ = tmpMCOO.toString;
+  const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO, `toString`, `utf8`);
   return tmpReturnArg;
 };
 $(f);
@@ -39,8 +39,8 @@ $(`path`);
 
 `````js filename=intro
 $(function (x) {
-  const tmpCallObj = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
-  const tmpReturnArg = tmpCallObj.toString(`utf8`);
+  const tmpMCOO = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
+  const tmpReturnArg = tmpMCOO.toString(`utf8`);
   return tmpReturnArg;
 });
 $(`path`);

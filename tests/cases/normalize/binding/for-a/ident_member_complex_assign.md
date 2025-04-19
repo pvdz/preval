@@ -19,11 +19,11 @@ for (let a = $(b).x = $(c).y = $(d);false;) $(a, b, c, d);
 
 `````js filename=intro
 const b /*:object*/ = { x: 2 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
-varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(3);
+const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(4);
+tmpInitAssignLhsComputedObj$1.y = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs$1;
 `````
 
 
@@ -31,11 +31,11 @@ varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $({ x: 2 });
-const varInitAssignLhsComputedObj$1 = $(3);
-const varInitAssignLhsComputedRhs$1 = $(4);
-varInitAssignLhsComputedObj$1.y = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedObj = $({ x: 2 });
+const tmpInitAssignLhsComputedObj$1 = $(3);
+const tmpInitAssignLhsComputedRhs$1 = $(4);
+tmpInitAssignLhsComputedObj$1.y = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs$1;
 `````
 
 

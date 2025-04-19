@@ -73,8 +73,8 @@ const push /*:(unknown, unknown)=>undefined*/ = function ($$0, $$1) {
   debugger;
   const index$1 /*:unknown*/ = heap.length;
   const tmpSaooB$1 /*:boolean*/ = index$1 > 0;
-  const tmpCallCompVal /*:unknown*/ = heap.push;
-  $dotCall(tmpCallCompVal, heap, `push`, node$1);
+  const tmpMCF /*:unknown*/ = heap.push;
+  $dotCall(tmpMCF, heap, `push`, node$1);
   if (tmpSaooB$1) {
     const tmpSaooB /*:number*/ = index$1 - 1;
     const tmpSaooB$9 /*:number*/ = tmpSaooB >>> 1;

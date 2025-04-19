@@ -31,27 +31,27 @@ $(arr);
 
 
 `````js filename=intro
-const tmpCalleeParam$1 /*:array*/ = [];
-const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpUnaryArg /*:array*/ = $Array_from(tmpCalleeParam);
+const tmpCalleeParam /*:array*/ = [];
+const tmpMCP /*:unknown*/ = $(tmpCalleeParam);
+const tmpUnaryArg /*:array*/ = $Array_from(tmpMCP);
 const tmpArrElement /*:number*/ = ~tmpUnaryArg;
-const tmpCalleeParam$5 /*:array*/ = [];
-const tmpCalleeParam$3 /*:unknown*/ = $(tmpCalleeParam$5);
-$Array_from(tmpCalleeParam$3);
-const tmpCalleeParam$9 /*:array*/ = [];
-const tmpCalleeParam$7 /*:unknown*/ = $(tmpCalleeParam$9);
-const tmpUnaryArg$3 /*:array*/ = $Array_from(tmpCalleeParam$7);
+const tmpCalleeParam$1 /*:array*/ = [];
+const tmpMCP$1 /*:unknown*/ = $(tmpCalleeParam$1);
+$Array_from(tmpMCP$1);
+const tmpCalleeParam$3 /*:array*/ = [];
+const tmpMCP$3 /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpUnaryArg$3 /*:array*/ = $Array_from(tmpMCP$3);
 const tmpArrElement$3 /*:number*/ = -tmpUnaryArg$3;
-const tmpCalleeParam$13 /*:array*/ = [];
-const tmpCalleeParam$11 /*:unknown*/ = $(tmpCalleeParam$13);
-const tmpUnaryArg$5 /*:array*/ = $Array_from(tmpCalleeParam$11);
+const tmpCalleeParam$5 /*:array*/ = [];
+const tmpMCP$5 /*:unknown*/ = $(tmpCalleeParam$5);
+const tmpUnaryArg$5 /*:array*/ = $Array_from(tmpMCP$5);
 const tmpArrElement$5 /*:number*/ = +tmpUnaryArg$5;
-const tmpCalleeParam$17 /*:array*/ = [];
-const tmpCalleeParam$15 /*:unknown*/ = $(tmpCalleeParam$17);
-$Array_from(tmpCalleeParam$15);
-const tmpCalleeParam$21 /*:array*/ = [];
-const tmpCalleeParam$19 /*:unknown*/ = $(tmpCalleeParam$21);
-$Array_from(tmpCalleeParam$19);
+const tmpCalleeParam$7 /*:array*/ = [];
+const tmpMCP$7 /*:unknown*/ = $(tmpCalleeParam$7);
+$Array_from(tmpMCP$7);
+const tmpCalleeParam$9 /*:array*/ = [];
+const tmpMCP$9 /*:unknown*/ = $(tmpCalleeParam$9);
+$Array_from(tmpMCP$9);
 const arr /*:array*/ = [tmpArrElement, false, tmpArrElement$3, tmpArrElement$5, `object`, undefined];
 $(arr);
 `````

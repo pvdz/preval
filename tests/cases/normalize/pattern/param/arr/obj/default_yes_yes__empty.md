@@ -21,24 +21,24 @@ $(f());
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`fail2`];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-let arrPatternStep /*:unknown*/ = undefined;
-let objPatternCrashTest /*:boolean*/ = false;
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
+let tmpArrPatternStep /*:unknown*/ = undefined;
+let tmpObjPatternCrashTest /*:boolean*/ = false;
+const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
-  arrPatternStep = $(`fail`);
-  objPatternCrashTest = arrPatternStep === undefined;
+  tmpArrPatternStep = $(`fail`);
+  tmpObjPatternCrashTest = tmpArrPatternStep === undefined;
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-if (objPatternCrashTest) {
+if (tmpObjPatternCrashTest) {
 } else {
-  objPatternCrashTest = arrPatternStep === null;
+  tmpObjPatternCrashTest = tmpArrPatternStep === null;
 }
-if (objPatternCrashTest) {
-  arrPatternStep.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpArrPatternStep.cannotDestructureThis;
   $(`bad`);
 } else {
   $(`bad`);
@@ -50,21 +50,21 @@ if (objPatternCrashTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = $([`fail2`]);
-const arrPatternBeforeDefault = [...bindingPatternArrRoot][0];
-let arrPatternStep = undefined;
-let objPatternCrashTest = false;
-if (arrPatternBeforeDefault === undefined) {
-  arrPatternStep = $(`fail`);
-  objPatternCrashTest = arrPatternStep === undefined;
+const tmpBindingPatternArrRoot = $([`fail2`]);
+const tmpAPBD = [...tmpBindingPatternArrRoot][0];
+let tmpArrPatternStep = undefined;
+let tmpObjPatternCrashTest = false;
+if (tmpAPBD === undefined) {
+  tmpArrPatternStep = $(`fail`);
+  tmpObjPatternCrashTest = tmpArrPatternStep === undefined;
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-if (!objPatternCrashTest) {
-  objPatternCrashTest = arrPatternStep === null;
+if (!tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpArrPatternStep === null;
 }
-if (objPatternCrashTest) {
-  arrPatternStep.cannotDestructureThis;
+if (tmpObjPatternCrashTest) {
+  tmpArrPatternStep.cannotDestructureThis;
   $(`bad`);
 } else {
   $(`bad`);

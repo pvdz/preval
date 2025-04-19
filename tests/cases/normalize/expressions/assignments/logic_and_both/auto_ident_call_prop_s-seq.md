@@ -24,8 +24,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
 if (tmpClusterSSA_a) {
-  const tmpCallCompVal$1 /*:unknown*/ = b.$;
-  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal$1, b, `\$`, 1);
+  const tmpMCF$1 /*:unknown*/ = b.$;
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpMCF$1, b, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {

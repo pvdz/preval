@@ -18,23 +18,23 @@ $('bad');
 
 
 `````js filename=intro
-const objPatternBeforeDefault /*:unknown*/ = $Number_prototype.x;
-let objPatternAfterDefault /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPBD /*:unknown*/ = $Number_prototype.x;
+let tmpOPAD /*:unknown*/ = undefined;
+const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [`fail2`];
-  objPatternAfterDefault = $(tmpCalleeParam);
+  tmpOPAD = $(tmpCalleeParam);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-const arrPatternSplat /*:array*/ = [...objPatternAfterDefault];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+const tmpArrPatternSplat /*:array*/ = [...tmpOPAD];
+const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
+const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
   y = `fail`;
   $(`bad`);
 } else {
-  y = arrPatternBeforeDefault;
+  y = tmpAPBD;
   $(`bad`);
 }
 `````
@@ -44,19 +44,19 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $Number_prototype.x;
-let objPatternAfterDefault = undefined;
-if (objPatternBeforeDefault === undefined) {
-  objPatternAfterDefault = $([`fail2`]);
+const tmpOPBD = $Number_prototype.x;
+let tmpOPAD = undefined;
+if (tmpOPBD === undefined) {
+  tmpOPAD = $([`fail2`]);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpOPAD = tmpOPBD;
 }
-const arrPatternBeforeDefault = [...objPatternAfterDefault][0];
-if (arrPatternBeforeDefault === undefined) {
+const tmpAPBD = [...tmpOPAD][0];
+if (tmpAPBD === undefined) {
   y = `fail`;
   $(`bad`);
 } else {
-  y = arrPatternBeforeDefault;
+  y = tmpAPBD;
   $(`bad`);
 }
 `````

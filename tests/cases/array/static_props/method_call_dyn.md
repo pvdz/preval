@@ -21,10 +21,10 @@ $(arr.length);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`splice`);
+const tmpMCCP /*:unknown*/ = $(`splice`);
 const arr /*:array*/ = [1, 2, 3];
-const tmpCallCompVal /*:unknown*/ = arr[tmpCallCompProp];
-$dotCall(tmpCallCompVal, arr, undefined, 1, 2, 20);
+const tmpMCF /*:unknown*/ = arr[tmpMCCP];
+$dotCall(tmpMCF, arr, undefined, 1, 2, 20);
 const tmpCalleeParam /*:number*/ = arr.length;
 $(tmpCalleeParam);
 `````
@@ -34,9 +34,9 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`splice`);
+const tmpMCCP = $(`splice`);
 const arr = [1, 2, 3];
-arr[tmpCallCompProp](1, 2, 20);
+arr[tmpMCCP](1, 2, 20);
 $(arr.length);
 `````
 

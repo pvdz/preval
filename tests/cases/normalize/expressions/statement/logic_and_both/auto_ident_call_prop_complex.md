@@ -22,14 +22,14 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCallObj$1 /*:unknown*/ = $(b);
-  const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
-  $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
+  const tmpMCOO$1 /*:unknown*/ = $(b);
+  const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.$;
+  $dotCall(tmpMCF$1, tmpMCOO$1, `\$`, 1);
   $(a);
 } else {
   $(a);
@@ -42,12 +42,12 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const b = { $: $ };
-const tmpCallObj = $(b);
-const tmpIfTest = tmpCallObj.$(1);
+const tmpMCOO = $(b);
+const tmpIfTest = tmpMCOO.$(1);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCallObj$1 = $(b);
-  tmpCallObj$1.$(1);
+  const tmpMCOO$1 = $(b);
+  tmpMCOO$1.$(1);
   $(a);
 } else {
   $(a);

@@ -55,8 +55,8 @@ const obj /*:object*/ = {
   g() {
     const tmpPrevalAliasThis /*:object*/ = this;
     debugger;
-    const tmpCallCompVal /*:unknown*/ = tmpPrevalAliasThis.f;
-    const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpPrevalAliasThis, `f`);
+    const tmpMCF /*:unknown*/ = tmpPrevalAliasThis.f;
+    const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, tmpPrevalAliasThis, `f`);
     if (tmpIfTest) {
       $(`pass`);
       return undefined;

@@ -24,10 +24,10 @@ $(a);
 
 
 `````js filename=intro
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-$dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+$dotCall(tmpMCF, b, undefined, 1);
 $(100);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -38,9 +38,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-b[tmpCallCompProp](1);
+b[tmpMCCP](1);
 $(100);
 $({ a: 999, b: 1000 });
 `````

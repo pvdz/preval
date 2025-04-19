@@ -22,24 +22,24 @@ $(f(undefined));
 `````js filename=intro
 const tmpArrElement /*:object*/ = { x: `pass3` };
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
-const bindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-let arrPatternStep /*:unknown*/ = undefined;
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
+let tmpArrPatternStep /*:unknown*/ = undefined;
+const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$1 /*:object*/ = { x: `fail2` };
-  arrPatternStep = $(tmpCalleeParam$1);
+  tmpArrPatternStep = $(tmpCalleeParam$1);
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-const objPatternBeforeDefault /*:unknown*/ = arrPatternStep.x;
-const tmpIfTest$3 /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpOPBD /*:unknown*/ = tmpArrPatternStep.x;
+const tmpIfTest$3 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$3) {
   const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
   $(tmpClusterSSA_x);
 } else {
-  $(objPatternBeforeDefault);
+  $(tmpOPBD);
 }
 `````
 
@@ -49,19 +49,19 @@ if (tmpIfTest$3) {
 
 `````js filename=intro
 const tmpArrElement = { x: `pass3` };
-const bindingPatternArrRoot = $([tmpArrElement]);
-const arrPatternBeforeDefault = [...bindingPatternArrRoot][0];
-let arrPatternStep = undefined;
-if (arrPatternBeforeDefault === undefined) {
-  arrPatternStep = $({ x: `fail2` });
+const tmpBindingPatternArrRoot = $([tmpArrElement]);
+const tmpAPBD = [...tmpBindingPatternArrRoot][0];
+let tmpArrPatternStep = undefined;
+if (tmpAPBD === undefined) {
+  tmpArrPatternStep = $({ x: `fail2` });
 } else {
-  arrPatternStep = arrPatternBeforeDefault;
+  tmpArrPatternStep = tmpAPBD;
 }
-const objPatternBeforeDefault = arrPatternStep.x;
-if (objPatternBeforeDefault === undefined) {
+const tmpOPBD = tmpArrPatternStep.x;
+if (tmpOPBD === undefined) {
   $($(`pass`));
 } else {
-  $(objPatternBeforeDefault);
+  $(tmpOPBD);
 }
 `````
 

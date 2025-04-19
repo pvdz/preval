@@ -24,8 +24,8 @@ $(a, b);
 const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = arrPatternSplat[0];
+const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignArrPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

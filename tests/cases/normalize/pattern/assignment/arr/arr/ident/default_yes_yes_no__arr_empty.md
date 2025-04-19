@@ -19,16 +19,16 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass2`];
-const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
-const arrPatternSplat$1 /*:array*/ = [...arrPatternStep];
-const arrPatternBeforeDefault$1 /*:unknown*/ = arrPatternSplat$1[0];
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault$1 === undefined;
+const tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrPatternStep];
+const tmpAPBD$1 /*:unknown*/ = tmpArrPatternSplat$1[0];
+const tmpIfTest$1 /*:boolean*/ = tmpAPBD$1 === undefined;
 if (tmpIfTest$1) {
   x = $(`fail`);
   $(x);
 } else {
-  x = arrPatternBeforeDefault$1;
-  $(arrPatternBeforeDefault$1);
+  x = tmpAPBD$1;
+  $(tmpAPBD$1);
 }
 `````
 
@@ -37,14 +37,14 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const arrPatternStep = $([`pass2`]);
-const arrPatternBeforeDefault$1 = [...arrPatternStep][0];
-if (arrPatternBeforeDefault$1 === undefined) {
+const tmpArrPatternStep = $([`pass2`]);
+const tmpAPBD$1 = [...tmpArrPatternStep][0];
+if (tmpAPBD$1 === undefined) {
   x = $(`fail`);
   $(x);
 } else {
-  x = arrPatternBeforeDefault$1;
-  $(arrPatternBeforeDefault$1);
+  x = tmpAPBD$1;
+  $(tmpAPBD$1);
 }
 `````
 

@@ -48,13 +48,13 @@ if ($) {
   let c___18__ = 1;
   const d___21__ = $(`x`);
   while ($LOOP_UNROLL_500___27__) {
-    /*28*/ const tmpCallCompVal___35__ = d___37__.slice___38__;
-    a___48__ = $dotCall___42__(tmpCallCompVal___43__, d___44__, `slice`, 0);
+    /*28*/ const tmpMCF___35__ = d___37__.slice___38__;
+    a___48__ = $dotCall___42__(tmpMCF___43__, d___44__, `slice`, 0);
     const e___50__ = a___52__[0];
     const f___55__ = e___57__ === `.`;
     if (f___61__) {
-      /*62*/ const tmpCallCompVal$1___65__ = a___67__.slice___68__;
-      b___78__ = $dotCall___72__(tmpCallCompVal$1___73__, a___74__, `slice`, 1);
+      /*62*/ const tmpMCF$1___65__ = a___67__.slice___68__;
+      b___78__ = $dotCall___72__(tmpMCF$1___73__, a___74__, `slice`, 1);
     } /*79*/ else {
       b___83__ = a___82__;
     }
@@ -81,7 +81,7 @@ None
 ## Ref tracking result
 
 
-                     | reads      | read by     | overWrites     | overwritten by
+               | reads      | read by     | overWrites     | overwritten by
 a:
   - w @10      | ########## | not read    | none           | 48
   - w @48      | ########## | 52,67,74,82 | 10,48          | 48
@@ -107,26 +107,26 @@ d:
   - r @37      | 21
   - r @44      | 21
 
-tmpCallCompVal:
-  - w @35          | ########## | 43          | none           | none
-  - r @43          | 35
+tmpMCF:
+  - w @35      | ########## | 43          | none           | none
+  - r @43      | 35
 
 e:
-  - w @50          | ########## | 57          | none           | none
-  - r @57          | 50
+  - w @50      | ########## | 57          | none           | none
+  - r @57      | 50
 
 f:
-  - w @55          | ########## | 61          | none           | none
-  - r @61          | 55
+  - w @55      | ########## | 61          | none           | none
+  - r @61      | 55
 
-tmpCallCompVal$1:
-  - w @65            | ########## | 73          | none           | none
-  - r @73            | 65
+tmpMCF$1:
+  - w @65      | ########## | 73          | none           | none
+  - r @73      | 65
 
 h:
-  - w @85            | ########## | 92          | none           | none
-  - r @92            | 85
+  - w @85      | ########## | 92          | none           | none
+  - r @92      | 85
 
 tmpIfTest:
-  - w @100           | ########## | 105         | none           | none
-  - r @105           | 100
+  - w @100     | ########## | 105         | none           | none
+  - r @105     | 100

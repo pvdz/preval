@@ -27,8 +27,8 @@ const f /*:(unknown)=>unknown*/ = function ($$0) {
   const x /*:unknown*/ = $$0;
   debugger;
   const tmp /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
-  const tmpCallCompVal$1 /*:unknown*/ = tmp.toString;
-  const tmp2 /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmp, `toString`, `utf8`);
+  const tmpMCF$1 /*:unknown*/ = tmp.toString;
+  const tmp2 /*:unknown*/ = $dotCall(tmpMCF$1, tmp, `toString`, `utf8`);
   return tmp2;
 };
 $(f);

@@ -22,9 +22,9 @@ $(x, y, z);
 $(1);
 $(2);
 const z /*:array*/ = [10, 20, 30];
-const arrPatternSplat /*:array*/ = [...z];
-const x /*:unknown*/ = arrPatternSplat[0];
-const y /*:unknown*/ = arrPatternSplat[1];
+const tmpArrPatternSplat /*:array*/ = [...z];
+const x /*:unknown*/ = tmpArrPatternSplat[0];
+const y /*:unknown*/ = tmpArrPatternSplat[1];
 export { x, y };
 $(x, y, z);
 `````
@@ -37,9 +37,9 @@ $(x, y, z);
 $(1);
 $(2);
 const z = [10, 20, 30];
-const arrPatternSplat = [...z];
-const x = arrPatternSplat[0];
-const y = arrPatternSplat[1];
+const tmpArrPatternSplat = [...z];
+const x = tmpArrPatternSplat[0];
+const y = tmpArrPatternSplat[1];
 export { x, y };
 $(x, y, z);
 `````

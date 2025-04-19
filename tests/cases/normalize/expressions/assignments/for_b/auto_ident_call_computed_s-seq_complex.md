@@ -22,16 +22,16 @@ $(a);
 
 `````js filename=intro
 let a /*:unknown*/ = undefined;
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
+const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
-const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 if (tmpClusterSSA_a) {
   while ($LOOP_UNROLL_10) {
     $(1);
-    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-    const tmpCallCompVal$1 /*:unknown*/ = b[tmpCallCompProp$1];
-    a = $dotCall(tmpCallCompVal$1, b, undefined, 1);
+    const tmpMCCP$1 /*:unknown*/ = $(`\$`);
+    const tmpMCF$1 /*:unknown*/ = b[tmpMCCP$1];
+    a = $dotCall(tmpMCF$1, b, undefined, 1);
     if (a) {
     } else {
       break;
@@ -49,14 +49,14 @@ if (tmpClusterSSA_a) {
 
 `````js filename=intro
 let a = undefined;
-const tmpCallCompProp = $(`\$`);
+const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpClusterSSA_a = b[tmpCallCompProp](1);
+const tmpClusterSSA_a = b[tmpMCCP](1);
 if (tmpClusterSSA_a) {
   while (true) {
     $(1);
-    const tmpCallCompProp$1 = $(`\$`);
-    a = b[tmpCallCompProp$1](1);
+    const tmpMCCP$1 = $(`\$`);
+    a = b[tmpMCCP$1](1);
     if (!a) {
       break;
     }

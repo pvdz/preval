@@ -23,9 +23,9 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -37,8 +37,8 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpCallObj = $({ $: $ });
-tmpBinBothLhs + tmpCallObj.$(1);
+const tmpMCOO = $({ $: $ });
+tmpBinBothLhs + tmpMCOO.$(1);
 $({ a: 999, b: 1000 });
 `````
 

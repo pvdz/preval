@@ -28,8 +28,8 @@ $(r);
 
 `````js filename=intro
 $(`toString`);
-const tmpCallCompVal /*:unknown*/ = String.undefined;
-const y /*:unknown*/ = $dotCall(tmpCallCompVal, String, undefined);
+const tmpMCF /*:unknown*/ = String.undefined;
+const y /*:unknown*/ = $dotCall(tmpMCF, String, undefined);
 $(y);
 `````
 

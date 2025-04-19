@@ -22,9 +22,9 @@ $(f());
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const b /*:object*/ = { x: 2 };
-b[varInitAssignLhsComputedProp] = 3;
+b[tmpInitAssignLhsComputedProp] = 3;
 $(3, b, 3);
 $(undefined);
 `````
@@ -34,9 +34,9 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedProp = $(`x`);
 const b = { x: 2 };
-b[varInitAssignLhsComputedProp] = 3;
+b[tmpInitAssignLhsComputedProp] = 3;
 $(3, b, 3);
 $(undefined);
 `````

@@ -22,9 +22,9 @@ $(a);
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const a /*:unknown*/ = arrPatternSplat[0];
+const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
@@ -32,9 +32,9 @@ if (tmpIfTest) {
   $(10);
   $(20);
   const tmpCalleeParam /*:array*/ = [1, 2];
-  const arrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  const arrPatternSplat$1 /*:array*/ = [...arrAssignPatternRhs];
-  const tmpClusterSSA_a /*:unknown*/ = arrPatternSplat$1[0];
+  const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
+  const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrAssignPatternRhs];
+  const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
   $(tmpClusterSSA_a);
 } else {
   $(a);
@@ -46,13 +46,13 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = { a: 999, b: 1000 };
-const a = [...bindingPatternArrRoot][0];
+const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
+const a = [...tmpBindingPatternArrRoot][0];
 if ($(1) === $(1)) {
   $(10);
   $(20);
-  const arrAssignPatternRhs = $([1, 2]);
-  $([...arrAssignPatternRhs][0]);
+  const tmpArrAssignPatternRhs = $([1, 2]);
+  $([...tmpArrAssignPatternRhs][0]);
 } else {
   $(a);
 }

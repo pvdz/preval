@@ -21,11 +21,11 @@ $(arr.length);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(1);
+const tmpMCP /*:unknown*/ = $(1);
 const arr /*:array*/ = [1, 2, 3];
-$dotCall($array_splice, arr, undefined, tmpCalleeParam, 2, 10, 20);
-const tmpCalleeParam$1 /*:number*/ = arr.length;
-$(tmpCalleeParam$1);
+$dotCall($array_splice, arr, undefined, tmpMCP, 2, 10, 20);
+const tmpCalleeParam /*:number*/ = arr.length;
+$(tmpCalleeParam);
 `````
 
 
@@ -33,9 +33,9 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
+const tmpMCP = $(1);
 const arr = [1, 2, 3];
-$dotCall($array_splice, arr, undefined, tmpCalleeParam, 2, 10, 20);
+$dotCall($array_splice, arr, undefined, tmpMCP, 2, 10, 20);
 $(arr.length);
 `````
 

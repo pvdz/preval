@@ -24,16 +24,16 @@ $(a, b, c, d);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const c /*:object*/ = { y: 2 };
-const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(varInitAssignLhsComputedRhs$1);
+  $(tmpInitAssignLhsComputedRhs$1);
   $(1);
 }
 `````
@@ -43,15 +43,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $({ x: 1 });
-const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $({ y: 2 });
-const varInitAssignLhsComputedProp$1 = $(`y`);
-const varInitAssignLhsComputedRhs$1 = $(3);
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+const tmpInitAssignLhsComputedObj = $({ x: 1 });
+const tmpInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedObj$1 = $({ y: 2 });
+const tmpInitAssignLhsComputedProp$1 = $(`y`);
+const tmpInitAssignLhsComputedRhs$1 = $(3);
+tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
 while (true) {
-  $(varInitAssignLhsComputedRhs$1);
+  $(tmpInitAssignLhsComputedRhs$1);
   $(1);
 }
 `````

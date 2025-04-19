@@ -18,9 +18,9 @@ $(x);
 
 
 `````js filename=intro
-const bindingPatternObjRoot /*:object*/ = {};
+const tmpBindingPatternObjRoot /*:object*/ = {};
 const tmpCalleeParam$1 /*:array*/ = [];
-const x /*:unknown*/ = $objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, `x`);
+const x /*:unknown*/ = $objPatternRest(tmpBindingPatternObjRoot, tmpCalleeParam$1, `x`);
 $(x);
 `````
 
@@ -29,8 +29,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternObjRoot = {};
-$($objPatternRest(bindingPatternObjRoot, [], `x`));
+const tmpBindingPatternObjRoot = {};
+$($objPatternRest(tmpBindingPatternObjRoot, [], `x`));
 `````
 
 

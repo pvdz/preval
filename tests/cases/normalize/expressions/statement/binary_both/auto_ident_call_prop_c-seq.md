@@ -22,12 +22,12 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpBinBothLhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
-const tmpCallObj$1 /*:unknown*/ = $(b);
-const tmpCallCompVal$1 /*:unknown*/ = tmpCallObj$1.$;
-const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallObj$1, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpBinBothLhs /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
+const tmpMCOO$1 /*:unknown*/ = $(b);
+const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.$;
+const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO$1, `\$`, 1);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -39,10 +39,10 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const tmpCallObj = $(b);
-const tmpBinBothLhs = tmpCallObj.$(1);
-const tmpCallObj$1 = $(b);
-tmpBinBothLhs + tmpCallObj$1.$(1);
+const tmpMCOO = $(b);
+const tmpBinBothLhs = tmpMCOO.$(1);
+const tmpMCOO$1 = $(b);
+tmpBinBothLhs + tmpMCOO$1.$(1);
 $({ a: 999, b: 1000 });
 `````
 

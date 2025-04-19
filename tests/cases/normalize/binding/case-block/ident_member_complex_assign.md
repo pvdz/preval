@@ -25,10 +25,10 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignObj /*:unknown*/ = $(b);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = $(4);
-  varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
-  tmpNestedAssignObj.x = varInitAssignLhsComputedRhs;
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(3);
+  const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(4);
+  tmpInitAssignLhsComputedObj.y = tmpInitAssignLhsComputedRhs;
+  tmpNestedAssignObj.x = tmpInitAssignLhsComputedRhs;
   $(1, b, 3, 4);
 } else {
   $(1, b, 3, 4);
@@ -44,10 +44,10 @@ const tmpIfTest = $(`a`) === $(`a`);
 const b = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignObj = $(b);
-  const varInitAssignLhsComputedObj = $(3);
-  const varInitAssignLhsComputedRhs = $(4);
-  varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
-  tmpNestedAssignObj.x = varInitAssignLhsComputedRhs;
+  const tmpInitAssignLhsComputedObj = $(3);
+  const tmpInitAssignLhsComputedRhs = $(4);
+  tmpInitAssignLhsComputedObj.y = tmpInitAssignLhsComputedRhs;
+  tmpNestedAssignObj.x = tmpInitAssignLhsComputedRhs;
   $(1, b, 3, 4);
 } else {
   $(1, b, 3, 4);

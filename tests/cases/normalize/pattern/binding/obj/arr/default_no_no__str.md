@@ -18,8 +18,8 @@ $('bad');
 
 
 `````js filename=intro
-const objPatternNoDefault /*:unknown*/ = $String_prototype.x;
-[...objPatternNoDefault];
+const tmpOPND /*:unknown*/ = $String_prototype.x;
+[...tmpOPND];
 $(`bad`);
 `````
 
@@ -28,8 +28,8 @@ $(`bad`);
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternNoDefault = $String_prototype.x;
-[...objPatternNoDefault];
+const tmpOPND = $String_prototype.x;
+[...tmpOPND];
 $(`bad`);
 `````
 

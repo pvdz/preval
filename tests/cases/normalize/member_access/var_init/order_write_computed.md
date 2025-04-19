@@ -35,9 +35,9 @@ const obj /*:object*/ = {
     return undefined;
   },
 };
-const varInitAssignLhsComputedObj /*:unknown*/ = $(obj);
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(obj);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 30;
 $(30);
 `````
 
@@ -46,7 +46,7 @@ $(30);
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedObj = $({
+const tmpInitAssignLhsComputedObj = $({
   get x() {
     const tmpReturnArg = $(10);
     return tmpReturnArg;
@@ -55,8 +55,8 @@ const varInitAssignLhsComputedObj = $({
     $(20);
   },
 });
-const varInitAssignLhsComputedProp = $(`x`);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
+const tmpInitAssignLhsComputedProp = $(`x`);
+tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 30;
 $(30);
 `````
 

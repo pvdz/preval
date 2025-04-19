@@ -63,9 +63,9 @@ const obj /*:object*/ = {
   },
 };
 const a /*:unknown*/ = obj.a;
-const objPatternNoDefault /*:unknown*/ = obj.b;
+const tmpOPND /*:unknown*/ = obj.b;
 const tmpCalleeParam$1 /*:array*/ = [];
-const rest /*:unknown*/ = $objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+const rest /*:unknown*/ = $objPatternRest(tmpOPND, tmpCalleeParam$1, undefined);
 const c /*:unknown*/ = obj.c;
 $(a, c, rest);
 `````

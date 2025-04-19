@@ -31,8 +31,8 @@ const f /*:(primitive)=>unknown*/ = function ($$0) {
   $(`stop`);
   $(`the`);
   $(`inlining`);
-  const tmpCallCompVal /*:unknown*/ = a.toString;
-  const tmpReturnArg /*:unknown*/ = $dotCall(tmpCallCompVal, a, `toString`, 2);
+  const tmpMCF /*:unknown*/ = a.toString;
+  const tmpReturnArg /*:unknown*/ = $dotCall(tmpMCF, a, `toString`, 2);
   return tmpReturnArg;
 };
 const tmpCalleeParam /*:unknown*/ = f(1);

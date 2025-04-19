@@ -34,9 +34,9 @@ let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_x /*:unknown*/ = arrPatternSplat[0];
-const tmpClusterSSA_y /*:unknown*/ = arrPatternSplat[1];
+const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
+const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
 const tmpIfTest /*:boolean*/ = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -72,9 +72,9 @@ let tmpSwitchCaseToStart = 1;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_x = arrPatternSplat[0];
-const tmpClusterSSA_y = arrPatternSplat[1];
+const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const tmpClusterSSA_x = tmpArrPatternSplat[0];
+const tmpClusterSSA_y = tmpArrPatternSplat[1];
 if (tmpNestedAssignArrPatternRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {

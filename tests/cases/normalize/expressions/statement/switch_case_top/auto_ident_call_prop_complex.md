@@ -30,9 +30,9 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
   const b /*:object*/ = { $: $ };
-  const tmpCallObj /*:unknown*/ = $(b);
-  const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-  $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+  const tmpMCOO /*:unknown*/ = $(b);
+  const tmpMCF /*:unknown*/ = tmpMCOO.$;
+  $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
   $(a);
 } else {
   $(a);
@@ -47,8 +47,8 @@ if (tmpIfTest) {
 const tmpIfTest = $(1) === $(1);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpCallObj = $({ $: $ });
-  tmpCallObj.$(1);
+  const tmpMCOO = $({ $: $ });
+  tmpMCOO.$(1);
   $(a);
 } else {
   $(a);

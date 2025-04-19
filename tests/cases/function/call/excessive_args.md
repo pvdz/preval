@@ -18,14 +18,14 @@ $(function(){ $(...arguments); }.call(({}), ['x'], 1, 2, 3));
 
 
 `````js filename=intro
-const tmpCallObj /*:()=>unknown*/ = function () {
+const tmpMCOO /*:()=>unknown*/ = function () {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   debugger;
   $(...tmpPrevalAliasArgumentsAny);
   return undefined;
 };
-const tmpCalleeParam$3 /*:array*/ = [`x`];
-tmpCallObj(tmpCalleeParam$3, 1, 2, 3);
+const tmpMCP$1 /*:array*/ = [`x`];
+tmpMCOO(tmpMCP$1, 1, 2, 3);
 $(undefined);
 `````
 
@@ -34,11 +34,11 @@ $(undefined);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallObj = function () {
+const tmpMCOO = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
   $(...tmpPrevalAliasArgumentsAny);
 };
-tmpCallObj([`x`], 1, 2, 3);
+tmpMCOO([`x`], 1, 2, 3);
 $(undefined);
 `````
 

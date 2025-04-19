@@ -88,8 +88,8 @@ const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
     return arguments_x;
   } else {
     $(`f`);
-    const tmpCallCompVal /*:unknown*/ = func.THIS_IS_AN_EXPANDO;
-    const expando_result /*:unknown*/ = $dotCall(tmpCallCompVal, func, `THIS_IS_AN_EXPANDO`, arrval);
+    const tmpMCF /*:unknown*/ = func.THIS_IS_AN_EXPANDO;
+    const expando_result /*:unknown*/ = $dotCall(tmpMCF, func, `THIS_IS_AN_EXPANDO`, arrval);
     const tmpCalleeParam /*:string*/ = typeof arg1;
     $(`arg is`, tmpCalleeParam);
     arg1[newIndex] = expando_result;

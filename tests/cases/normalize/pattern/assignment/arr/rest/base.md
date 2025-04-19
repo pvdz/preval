@@ -46,7 +46,7 @@ $( x );
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_slice
-- (todo) arr mutation may be able to inline this method: tmpCallCompVal
+- (todo) arr mutation may be able to inline this method: tmpMCF
 
 
 ## Globals

@@ -42,8 +42,8 @@ if ($) {
   const d___23__ = $(`x`);
   const tmpIfTest___29__ = d___31__.length___32__;
   if (tmpIfTest___34__) {
-    /*35*/ const tmpCallCompVal___38__ = a___40__.slice___41__;
-    b___51__ = $dotCall___45__(tmpCallCompVal___46__, a___47__, `slice`, 1);
+    /*35*/ const tmpMCF___38__ = a___40__.slice___41__;
+    b___51__ = $dotCall___45__(tmpMCF___46__, a___47__, `slice`, 1);
   } /*52*/ else {
     b___56__ = a___55__;
   }
@@ -63,7 +63,7 @@ None
 ## Ref tracking result
 
 
-                   | reads      | read by     | overWrites     | overwritten by
+               | reads      | read by     | overWrites     | overwritten by
 a:
   - w @5       | ########## | 40,47,55    | none           | none
   - r @40      | 5
@@ -87,10 +87,10 @@ tmpIfTest:
   - w @29      | ########## | 34          | none           | none
   - r @34      | 29
 
-tmpCallCompVal:
-  - w @38          | ########## | 46          | none           | none
-  - r @46          | 38
+tmpMCF:
+  - w @38      | ########## | 46          | none           | none
+  - r @46      | 38
 
 h:
-  - w @58          | ########## | 65          | none           | none
-  - r @65          | 58
+  - w @58      | ########## | 65          | none           | none
+  - r @65      | 58

@@ -25,9 +25,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const bindingPatternArrRoot /*:unknown*/ = tmpForOfNext.value;
-    const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-    const x /*:unknown*/ = arrPatternSplat[0];
+    const tmpBindingPatternArrRoot /*:unknown*/ = tmpForOfNext.value;
+    const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+    const x /*:unknown*/ = tmpArrPatternSplat[0];
     $(x);
   }
 }
@@ -44,8 +44,8 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const bindingPatternArrRoot = tmpForOfNext.value;
-    $([...bindingPatternArrRoot][0]);
+    const tmpBindingPatternArrRoot = tmpForOfNext.value;
+    $([...tmpBindingPatternArrRoot][0]);
   }
 }
 `````

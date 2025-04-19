@@ -61,9 +61,9 @@ $( b );
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: tmpCallCompVal
+- (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) outline any args for tdz
-- (todo) arr mutation may be able to inline this method: tmpCallCompVal$1
+- (todo) arr mutation may be able to inline this method: tmpMCF$1
 
 
 ## Globals

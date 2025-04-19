@@ -50,12 +50,12 @@ try {
   const tmpIfTest /*:number*/ = $frfr(tmpFree$21, tmpCalleeParam$1);
   if (tmpIfTest) {
   } else {
-    const tmpCalleeParam$5 /*:primitive*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
-    $dotCall($array_push, _0xb34c4b, `push`, tmpCalleeParam$5);
+    const tmpMCP /*:primitive*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
+    $dotCall($array_push, _0xb34c4b, `push`, tmpMCP);
   }
 } catch (_0xa7aced$11) {
-  const tmpCalleeParam$7 /*:primitive*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
-  $dotCall($array_push, _0xb34c4b, `push`, tmpCalleeParam$7);
+  const tmpMCP$1 /*:primitive*/ = $dotCall($array_shift, _0xb34c4b, `shift`);
+  $dotCall($array_push, _0xb34c4b, `push`, tmpMCP$1);
 }
 $(`thend`);
 `````

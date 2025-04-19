@@ -67,16 +67,16 @@ if ($) {
   const tmpBinBothLhs$30 /*:unknown*/ = A[0];
   const tmpIfTest$10 /*:boolean*/ = tmpBinBothLhs$30 === `.`;
   if (tmpIfTest$10) {
-    const tmpCallCompVal /*:unknown*/ = A.slice;
-    B = $dotCall(tmpCallCompVal, A, `slice`, 1);
+    const tmpMCF /*:unknown*/ = A.slice;
+    B = $dotCall(tmpMCF, A, `slice`, 1);
   } else {
     B = A;
   }
   const len /*:unknown*/ = $.length;
   const len2 /*:unknown*/ = B.length;
   const diff /*:number*/ = len - len2;
-  const tmpCallCompVal$1 /*:unknown*/ = $.indexOf;
-  const pos /*:unknown*/ = $dotCall(tmpCallCompVal$1, $, `indexOf`, B, diff);
+  const tmpMCF$1 /*:unknown*/ = $.indexOf;
+  const pos /*:unknown*/ = $dotCall(tmpMCF$1, $, `indexOf`, B, diff);
   const isnot /*:boolean*/ = pos === -1;
   if (isnot) {
   } else {
@@ -87,8 +87,8 @@ if ($) {
       const isa2 /*:boolean*/ = len3 === lena2;
       if (isa2) {
       } else {
-        const tmpCallCompVal$3 /*:unknown*/ = A.indexOf;
-        $dotCall(tmpCallCompVal$3, A, `indexOf`, `.`);
+        const tmpMCF$3 /*:unknown*/ = A.indexOf;
+        $dotCall(tmpMCF$3, A, `indexOf`, `.`);
       }
     } else {
     }

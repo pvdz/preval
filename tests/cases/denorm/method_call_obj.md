@@ -19,8 +19,8 @@ tmpCallCompObj$23.removeChild(s);
 
 `````js filename=intro
 const tmpCallCompObj$23 /*:unknown*/ = document.body;
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj$23.removeChild;
-$dotCall(tmpCallCompVal, tmpCallCompObj$23, `removeChild`, s);
+const tmpMCF /*:unknown*/ = tmpCallCompObj$23.removeChild;
+$dotCall(tmpMCF, tmpCallCompObj$23, `removeChild`, s);
 `````
 
 

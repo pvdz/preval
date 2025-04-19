@@ -38,19 +38,19 @@ const tmpObjLitVal$1 /*:()=>unknown*/ = function () {
     const tmpReturnArg /*:unknown*/ = $(`burned`);
     return tmpReturnArg;
   } else {
-    const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.f;
+    const tmpCalleeParam /*:unknown*/ = tmpPrevalAliasThis.f;
     $(`once`);
-    const tmpCallCompVal /*:unknown*/ = tmpCalleeParam$1.call;
-    const tmpCalleeParam /*:object*/ = { f: 1, x: `burn` };
-    $dotCall(tmpCallCompVal, tmpCalleeParam$1, `call`, tmpCalleeParam);
-    const tmpCalleeParam$3 /*:unknown*/ = tmpPrevalAliasThis.x;
-    $(tmpCalleeParam$3);
+    const tmpMCF /*:unknown*/ = tmpCalleeParam.call;
+    const tmpMCP /*:object*/ = { f: 1, x: `burn` };
+    $dotCall(tmpMCF, tmpCalleeParam, `call`, tmpMCP);
+    const tmpCalleeParam$1 /*:unknown*/ = tmpPrevalAliasThis.x;
+    $(tmpCalleeParam$1);
     return `win`;
   }
 };
 const obj /*:object*/ = { x: `pass`, f: tmpObjLitVal$1 };
-const tmpCalleeParam$5 /*:unknown*/ = $dotCall(tmpObjLitVal$1, obj, `f`);
-$(tmpCalleeParam$5);
+const tmpCalleeParam$3 /*:unknown*/ = $dotCall(tmpObjLitVal$1, obj, `f`);
+$(tmpCalleeParam$3);
 `````
 
 
@@ -64,9 +64,9 @@ const tmpObjLitVal$1 = function () {
     const tmpReturnArg = $(`burned`);
     return tmpReturnArg;
   } else {
-    const tmpCalleeParam$1 = tmpPrevalAliasThis.f;
+    const tmpCalleeParam = tmpPrevalAliasThis.f;
     $(`once`);
-    tmpCalleeParam$1.call({ f: 1, x: `burn` });
+    tmpCalleeParam.call({ f: 1, x: `burn` });
     $(tmpPrevalAliasThis.x);
     return `win`;
   }

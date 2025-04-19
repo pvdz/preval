@@ -30,8 +30,8 @@ const x /*:object*/ = {
     return tmpReturnArg;
   },
 };
-const tmpCallCompVal /*:unknown*/ = x[`Hey, me too!`];
-const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpCallCompVal, x, undefined);
+const tmpMCF /*:unknown*/ = x[`Hey, me too!`];
+const tmpCalleeParam$1 /*:unknown*/ = $dotCall(tmpMCF, x, undefined);
 $(x, tmpCalleeParam$1);
 `````
 

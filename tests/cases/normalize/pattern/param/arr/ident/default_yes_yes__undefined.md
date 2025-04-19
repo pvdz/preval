@@ -20,15 +20,15 @@ $(f(undefined, 200));
 
 
 `````js filename=intro
-const bindingPatternArrRoot /*:unknown*/ = $(`pass2`);
-const arrPatternSplat /*:array*/ = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault /*:unknown*/ = arrPatternSplat[0];
-const tmpIfTest$1 /*:boolean*/ = arrPatternBeforeDefault === undefined;
+const tmpBindingPatternArrRoot /*:unknown*/ = $(`pass2`);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
+const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
+const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
   const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
   $(tmpClusterSSA_x);
 } else {
-  $(arrPatternBeforeDefault);
+  $(tmpAPBD);
 }
 `````
 
@@ -37,12 +37,12 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const bindingPatternArrRoot = $(`pass2`);
-const arrPatternBeforeDefault = [...bindingPatternArrRoot][0];
-if (arrPatternBeforeDefault === undefined) {
+const tmpBindingPatternArrRoot = $(`pass2`);
+const tmpAPBD = [...tmpBindingPatternArrRoot][0];
+if (tmpAPBD === undefined) {
   $($(`fail`));
 } else {
-  $(arrPatternBeforeDefault);
+  $(tmpAPBD);
 }
 `````
 

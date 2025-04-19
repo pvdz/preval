@@ -21,13 +21,13 @@ $(arr.length);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $spy();
-const arr /*:array*/ = $Array_from(tmpCalleeParam);
+const tmpMCP /*:unknown*/ = $spy();
+const arr /*:array*/ = $Array_from(tmpMCP);
 a;
 $coerce(b, `number`);
 c;
-const tmpCalleeParam$1 /*:number*/ = arr.length;
-$(tmpCalleeParam$1);
+const tmpCalleeParam /*:number*/ = arr.length;
+$(tmpCalleeParam);
 `````
 
 

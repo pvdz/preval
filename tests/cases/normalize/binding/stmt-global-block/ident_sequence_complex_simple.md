@@ -24,8 +24,8 @@ if ($(true)) {
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(2);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
-  varInitAssignLhsComputedObj.x = 3;
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(3);
+  tmpInitAssignLhsComputedObj.x = 3;
   $(3, 2, 3);
 } else {
 }
@@ -38,8 +38,8 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   $(2);
-  const varInitAssignLhsComputedObj = $(3);
-  varInitAssignLhsComputedObj.x = 3;
+  const tmpInitAssignLhsComputedObj = $(3);
+  tmpInitAssignLhsComputedObj.x = 3;
   $(3, 2, 3);
 }
 `````

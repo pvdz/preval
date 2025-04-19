@@ -29,23 +29,23 @@ const c /*:object*/ = { y: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(c);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = $(3);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-  let tmpClusterSSA_a /*:unknown*/ = varInitAssignLhsComputedRhs;
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
+  const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+  const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+  let tmpClusterSSA_a /*:unknown*/ = tmpInitAssignLhsComputedRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpNestedAssignComMemberObj$1 /*:unknown*/ = $(b);
       const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`x`);
-      const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-      const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-      const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
-      varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
-      tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
+      const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+      const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+      const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
+      tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpInitAssignLhsComputedRhs$1;
+      tmpClusterSSA_a = tmpInitAssignLhsComputedRhs$1;
     } else {
       break;
     }
@@ -68,22 +68,22 @@ const c = { y: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
-  const varInitAssignLhsComputedRhs = $(3);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-  let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
+  const tmpInitAssignLhsComputedObj = $(c);
+  const tmpInitAssignLhsComputedProp = $(`y`);
+  const tmpInitAssignLhsComputedRhs = $(3);
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+  let tmpClusterSSA_a = tmpInitAssignLhsComputedRhs;
   while (true) {
     if ($(1)) {
       const tmpNestedAssignComMemberObj$1 = $(b);
       const tmpNestedAssignComMemberProp$1 = $(`x`);
-      const varInitAssignLhsComputedObj$1 = $(c);
-      const varInitAssignLhsComputedProp$1 = $(`y`);
-      const varInitAssignLhsComputedRhs$1 = $(3);
-      varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
-      tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
+      const tmpInitAssignLhsComputedObj$1 = $(c);
+      const tmpInitAssignLhsComputedProp$1 = $(`y`);
+      const tmpInitAssignLhsComputedRhs$1 = $(3);
+      tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpInitAssignLhsComputedRhs$1;
+      tmpClusterSSA_a = tmpInitAssignLhsComputedRhs$1;
     } else {
       break;
     }

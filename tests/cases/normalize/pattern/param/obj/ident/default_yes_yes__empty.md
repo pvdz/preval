@@ -21,14 +21,14 @@ $(f());
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { x: `pass2` };
-const bindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const objPatternBeforeDefault /*:unknown*/ = bindingPatternObjRoot.x;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault === undefined;
+const tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD /*:unknown*/ = tmpBindingPatternObjRoot.x;
+const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
   const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
   $(tmpClusterSSA_x);
 } else {
-  $(objPatternBeforeDefault);
+  $(tmpOPBD);
 }
 `````
 
@@ -37,11 +37,11 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault = $({ x: `pass2` }).x;
-if (objPatternBeforeDefault === undefined) {
+const tmpOPBD = $({ x: `pass2` }).x;
+if (tmpOPBD === undefined) {
   $($(`fail`));
 } else {
-  $(objPatternBeforeDefault);
+  $(tmpOPBD);
 }
 `````
 

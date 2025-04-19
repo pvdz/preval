@@ -18,9 +18,9 @@ for (let a = b[$('x')] = c + d;false;) $(a, b, c);
 
 
 `````js filename=intro
-const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
 const b /*:object*/ = { x: 2 };
-b[varInitAssignLhsComputedProp] = 7;
+b[tmpInitAssignLhsComputedProp] = 7;
 `````
 
 
@@ -28,9 +28,9 @@ b[varInitAssignLhsComputedProp] = 7;
 (This ought to be the final result)
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $(`x`);
+const tmpInitAssignLhsComputedProp = $(`x`);
 const b = { x: 2 };
-b[varInitAssignLhsComputedProp] = 7;
+b[tmpInitAssignLhsComputedProp] = 7;
 `````
 
 

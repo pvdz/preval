@@ -19,15 +19,15 @@ $(y);
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { y: `pass2` };
-const objPatternAfterDefault /*:unknown*/ = $(tmpCalleeParam);
-const objPatternBeforeDefault$1 /*:unknown*/ = objPatternAfterDefault.y;
-const tmpIfTest$1 /*:boolean*/ = objPatternBeforeDefault$1 === undefined;
+const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD$1 /*:unknown*/ = tmpOPAD.y;
+const tmpIfTest$1 /*:boolean*/ = tmpOPBD$1 === undefined;
 if (tmpIfTest$1) {
   y = $(`fail`);
   $(y);
 } else {
-  y = objPatternBeforeDefault$1;
-  $(objPatternBeforeDefault$1);
+  y = tmpOPBD$1;
+  $(tmpOPBD$1);
 }
 `````
 
@@ -36,13 +36,13 @@ if (tmpIfTest$1) {
 (This ought to be the final result)
 
 `````js filename=intro
-const objPatternBeforeDefault$1 = $({ y: `pass2` }).y;
-if (objPatternBeforeDefault$1 === undefined) {
+const tmpOPBD$1 = $({ y: `pass2` }).y;
+if (tmpOPBD$1 === undefined) {
   y = $(`fail`);
   $(y);
 } else {
-  y = objPatternBeforeDefault$1;
-  $(objPatternBeforeDefault$1);
+  y = tmpOPBD$1;
+  $(tmpOPBD$1);
 }
 `````
 

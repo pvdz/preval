@@ -27,9 +27,9 @@ $(f());
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const z /*:array*/ = [10, 20, 30];
-  const arrPatternSplat /*:array*/ = [...z];
-  const x /*:unknown*/ = arrPatternSplat[0];
-  const y /*:unknown*/ = arrPatternSplat[1];
+  const tmpArrPatternSplat /*:array*/ = [...z];
+  const x /*:unknown*/ = tmpArrPatternSplat[0];
+  const y /*:unknown*/ = tmpArrPatternSplat[1];
   $(x, y, z);
   $(undefined);
 } else {
@@ -44,8 +44,8 @@ if (tmpIfTest) {
 `````js filename=intro
 if ($(true)) {
   const z = [10, 20, 30];
-  const arrPatternSplat = [...z];
-  $(arrPatternSplat[0], arrPatternSplat[1], z);
+  const tmpArrPatternSplat = [...z];
+  $(tmpArrPatternSplat[0], tmpArrPatternSplat[1], z);
   $(undefined);
 } else {
   $(undefined);

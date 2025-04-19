@@ -34,8 +34,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpArrElement /*:unknown*/ = $(2);
     const tmpCalleeParam$3 /*:array*/ = [tmpArrElement];
     const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
-    const arrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-    b = arrPatternSplat[0];
+    const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
+    b = tmpArrPatternSplat[0];
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpNestedAssignArrPatternRhs.x = tmpAssignMemRhs;
   }

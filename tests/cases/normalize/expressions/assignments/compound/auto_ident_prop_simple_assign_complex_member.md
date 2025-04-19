@@ -24,10 +24,10 @@ $(a, b);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-b.c = varInitAssignLhsComputedRhs;
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
+b.c = tmpInitAssignLhsComputedRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * varInitAssignLhsComputedRhs;
+const tmpClusterSSA_a /*:number*/ = a * tmpInitAssignLhsComputedRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````
@@ -40,9 +40,9 @@ $(tmpClusterSSA_a, b);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam$1 = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$1];
-b.c = varInitAssignLhsComputedRhs;
-const tmpClusterSSA_a = { a: 999, b: 1000 } * varInitAssignLhsComputedRhs;
+const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$1];
+b.c = tmpInitAssignLhsComputedRhs;
+const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpInitAssignLhsComputedRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);
 `````

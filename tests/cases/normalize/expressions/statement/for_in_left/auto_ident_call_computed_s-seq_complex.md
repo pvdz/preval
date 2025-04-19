@@ -31,9 +31,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpCallCompProp /*:unknown*/ = $(`\$`);
-    const tmpCallCompVal /*:unknown*/ = b[tmpCallCompProp];
-    const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpCallCompVal, b, undefined, 1);
+    const tmpMCCP /*:unknown*/ = $(`\$`);
+    const tmpMCF /*:unknown*/ = b[tmpMCCP];
+    const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
@@ -54,8 +54,8 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const tmpCallCompProp = $(`\$`);
-    const tmpAssignMemLhsObj = b[tmpCallCompProp](1);
+    const tmpMCCP = $(`\$`);
+    const tmpAssignMemLhsObj = b[tmpMCCP](1);
     tmpAssignMemLhsObj.x = tmpForInNext.value;
   }
 }

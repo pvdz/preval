@@ -40,8 +40,8 @@ if ($) {
   $(144);
   const a /*:()=>undefined*/ = function () {
     debugger;
-    const tmpCallCompVal /*:unknown*/ = needle.f;
-    $dotCall(tmpCallCompVal, needle, `f`);
+    const tmpMCF /*:unknown*/ = needle.f;
+    $dotCall(tmpMCF, needle, `f`);
     return undefined;
   };
   const needle /*:object*/ = { a: a };

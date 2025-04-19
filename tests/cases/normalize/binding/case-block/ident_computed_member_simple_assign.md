@@ -29,11 +29,11 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const b /*:object*/ = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-  const varInitAssignLhsComputedObj /*:unknown*/ = $(3);
-  const varInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
-  const varInitAssignLhsComputedRhs /*:unknown*/ = $(4);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  b[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+  const tmpInitAssignLhsComputedObj /*:unknown*/ = $(3);
+  const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
+  const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(4);
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  b[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
   $(1, b, 3);
 } else {
   $(1, b, 3);
@@ -49,11 +49,11 @@ const tmpIfTest = $(`a`) === $(`a`);
 const b = { x: 2 };
 if (tmpIfTest) {
   const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(3);
-  const varInitAssignLhsComputedProp = $(`y`);
-  const varInitAssignLhsComputedRhs = $(4);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  b[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+  const tmpInitAssignLhsComputedObj = $(3);
+  const tmpInitAssignLhsComputedProp = $(`y`);
+  const tmpInitAssignLhsComputedRhs = $(4);
+  tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
+  b[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
   $(1, b, 3);
 } else {
   $(1, b, 3);

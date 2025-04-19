@@ -24,9 +24,9 @@ $(a, b);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
-const varInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
-b.c = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs /*:string*/ = $coerce(varInitAssignLhsComputedRhs, `string`);
+const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
+b.c = tmpInitAssignLhsComputedRhs;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpInitAssignLhsComputedRhs, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -41,9 +41,9 @@ $(a, b);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam$3 = $(`d`);
-const varInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$3];
-b.c = varInitAssignLhsComputedRhs;
-$(`before  ${varInitAssignLhsComputedRhs}  after`);
+const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam$3];
+b.c = tmpInitAssignLhsComputedRhs;
+$(`before  ${tmpInitAssignLhsComputedRhs}  after`);
 $({ a: 999, b: 1000 }, b);
 `````
 

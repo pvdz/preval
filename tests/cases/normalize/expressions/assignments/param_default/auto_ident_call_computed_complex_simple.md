@@ -23,9 +23,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpCallObj /*:unknown*/ = $(b);
-const tmpCallCompVal /*:unknown*/ = tmpCallObj.$;
-const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallObj, `\$`, 1);
+const tmpMCOO /*:unknown*/ = $(b);
+const tmpMCF /*:unknown*/ = tmpMCOO.$;
+const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````
@@ -35,8 +35,8 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCallObj = $({ $: $ });
-const tmpNestedComplexRhs = tmpCallObj.$(1);
+const tmpMCOO = $({ $: $ });
+const tmpNestedComplexRhs = tmpMCOO.$(1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

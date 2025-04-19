@@ -34,15 +34,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const varInitAssignLhsComputedObj /*:unknown*/ = $(b);
-    const varInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-    const varInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
-    const varInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
-    const varInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+    const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
+    const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
+    const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(c);
+    const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`y`);
+    const tmpInitAssignLhsComputedRhs$1 /*:unknown*/ = $(3);
+    tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+    tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    varInitAssignLhsComputedRhs$1.x = tmpAssignMemRhs;
+    tmpInitAssignLhsComputedRhs$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -62,14 +62,14 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $(`x`);
-    const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $(`y`);
-    const varInitAssignLhsComputedRhs$1 = $(3);
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-    varInitAssignLhsComputedRhs$1.x = tmpForInNext.value;
+    const tmpInitAssignLhsComputedObj = $(b);
+    const tmpInitAssignLhsComputedProp = $(`x`);
+    const tmpInitAssignLhsComputedObj$1 = $(c);
+    const tmpInitAssignLhsComputedProp$1 = $(`y`);
+    const tmpInitAssignLhsComputedRhs$1 = $(3);
+    tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = tmpInitAssignLhsComputedRhs$1;
+    tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs$1;
+    tmpInitAssignLhsComputedRhs$1.x = tmpForInNext.value;
   }
 }
 $({ a: 999, b: 1000 }, b, c, 3);

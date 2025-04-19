@@ -28,17 +28,17 @@ var {
 
 `````js filename=intro
 const tmpAssignObjPatternRhs /*:unknown*/ = foo();
-const objPatternNoDefault /*:unknown*/ = tmpAssignObjPatternRhs.val_1_1;
-objPatternNoDefault.val_2_1;
+const tmpOPND /*:unknown*/ = tmpAssignObjPatternRhs.val_1_1;
+tmpOPND.val_2_1;
 const tmpCalleeParam$1 /*:array*/ = [`val_2_1`];
-val_2_rest = $objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+val_2_rest = $objPatternRest(tmpOPND, tmpCalleeParam$1, undefined);
 tmpAssignObjPatternRhs.val_1_2;
-const objPatternNoDefault$1 /*:unknown*/ = tmpAssignObjPatternRhs.val_1_3;
-const arrPatternSplat /*:array*/ = [...objPatternNoDefault$1];
-const arrPatternStep /*:unknown*/ = arrPatternSplat[2];
-arrPatternStep.val_3_1;
+const tmpOPND$1 /*:unknown*/ = tmpAssignObjPatternRhs.val_1_3;
+const tmpArrPatternSplat /*:array*/ = [...tmpOPND$1];
+const tmpArrPatternStep /*:unknown*/ = tmpArrPatternSplat[2];
+tmpArrPatternStep.val_3_1;
 const tmpCalleeParam$5 /*:array*/ = [`val_3_1`];
-val_3_rest = $objPatternRest(arrPatternStep, tmpCalleeParam$5, undefined);
+val_3_rest = $objPatternRest(tmpArrPatternStep, tmpCalleeParam$5, undefined);
 tmpAssignObjPatternRhs.val_1_4;
 `````
 
@@ -48,14 +48,14 @@ tmpAssignObjPatternRhs.val_1_4;
 
 `````js filename=intro
 const tmpAssignObjPatternRhs = foo();
-const objPatternNoDefault = tmpAssignObjPatternRhs.val_1_1;
-objPatternNoDefault.val_2_1;
-val_2_rest = $objPatternRest(objPatternNoDefault, [`val_2_1`], undefined);
+const tmpOPND = tmpAssignObjPatternRhs.val_1_1;
+tmpOPND.val_2_1;
+val_2_rest = $objPatternRest(tmpOPND, [`val_2_1`], undefined);
 tmpAssignObjPatternRhs.val_1_2;
-const objPatternNoDefault$1 = tmpAssignObjPatternRhs.val_1_3;
-const arrPatternStep = [...objPatternNoDefault$1][2];
-arrPatternStep.val_3_1;
-val_3_rest = $objPatternRest(arrPatternStep, [`val_3_1`], undefined);
+const tmpOPND$1 = tmpAssignObjPatternRhs.val_1_3;
+const tmpArrPatternStep = [...tmpOPND$1][2];
+tmpArrPatternStep.val_3_1;
+val_3_rest = $objPatternRest(tmpArrPatternStep, [`val_3_1`], undefined);
 tmpAssignObjPatternRhs.val_1_4;
 `````
 

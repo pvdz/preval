@@ -30,15 +30,15 @@ const f /*:(unknown)=>unknown*/ = function ($$0) {
   debugger;
   unknown = x;
   const tmp /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, x, `base64`);
-  const tmpCallCompVal$1 /*:unknown*/ = tmp.toString;
-  const tmp2 /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmp, `toString`, `utf8`);
+  const tmpMCF$1 /*:unknown*/ = tmp.toString;
+  const tmp2 /*:unknown*/ = $dotCall(tmpMCF$1, tmp, `toString`, `utf8`);
   return tmp2;
 };
 $(f);
 unknown = `cGF0aA`;
 const tmpBufFrom /*:buffer*/ = $dotCall($Buffer_from, Buffer, `from`, `cGF0aA`, `base64`);
-const tmpCallCompVal$2 /*:unknown*/ = tmpBufFrom.toString;
-$dotCall(tmpCallCompVal$2, tmpBufFrom, `toString`, `utf8`);
+const tmpMCF$2 /*:unknown*/ = tmpBufFrom.toString;
+$dotCall(tmpMCF$2, tmpBufFrom, `toString`, `utf8`);
 $(`path`);
 `````
 

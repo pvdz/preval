@@ -21,9 +21,9 @@ $(f([], 200));
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: `pass` };
-const arrPatternStep /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 const tmpCalleeParam$3 /*:array*/ = [];
-const x /*:unknown*/ = $objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
+const x /*:unknown*/ = $objPatternRest(tmpArrPatternStep, tmpCalleeParam$3, undefined);
 $(x);
 `````
 
@@ -32,8 +32,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const arrPatternStep = $({ a: `pass` });
-$($objPatternRest(arrPatternStep, [], undefined));
+const tmpArrPatternStep = $({ a: `pass` });
+$($objPatternRest(tmpArrPatternStep, [], undefined));
 `````
 
 

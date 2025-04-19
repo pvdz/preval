@@ -25,17 +25,17 @@ $(a);
 `````js filename=intro
 $(100);
 const b /*:object*/ = { $: $ };
-const tmpCallCompObj /*:unknown*/ = $(b);
-const tmpCallCompProp /*:unknown*/ = $(`\$`);
-const tmpCallCompVal /*:unknown*/ = tmpCallCompObj[tmpCallCompProp];
-const tmpIfTest /*:unknown*/ = $dotCall(tmpCallCompVal, tmpCallCompObj, undefined, 1);
+const tmpMCCO /*:unknown*/ = $(b);
+const tmpMCCP /*:unknown*/ = $(`\$`);
+const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
+const tmpIfTest /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpCallCompObj$1 /*:unknown*/ = $(b);
-    const tmpCallCompProp$1 /*:unknown*/ = $(`\$`);
-    const tmpCallCompVal$1 /*:unknown*/ = tmpCallCompObj$1[tmpCallCompProp$1];
-    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpCallCompVal$1, tmpCallCompObj$1, undefined, 1);
+    const tmpMCCO$1 /*:unknown*/ = $(b);
+    const tmpMCCP$1 /*:unknown*/ = $(`\$`);
+    const tmpMCF$1 /*:unknown*/ = tmpMCCO$1[tmpMCCP$1];
+    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCCO$1, undefined, 1);
     if (tmpIfTest$1) {
     } else {
       break;
@@ -54,14 +54,14 @@ $(a);
 `````js filename=intro
 $(100);
 const b = { $: $ };
-const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`\$`);
-if (tmpCallCompObj[tmpCallCompProp](1)) {
+const tmpMCCO = $(b);
+const tmpMCCP = $(`\$`);
+if (tmpMCCO[tmpMCCP](1)) {
   while (true) {
     $(100);
-    const tmpCallCompObj$1 = $(b);
-    const tmpCallCompProp$1 = $(`\$`);
-    if (!tmpCallCompObj$1[tmpCallCompProp$1](1)) {
+    const tmpMCCO$1 = $(b);
+    const tmpMCCP$1 = $(`\$`);
+    if (!tmpMCCO$1[tmpMCCP$1](1)) {
       break;
     }
   }

@@ -47,7 +47,8 @@ import * as AST from '../ast.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { cloneSimple, getExpressionFromNormalizedStatement } from '../ast.mjs';
 import { createFreshLabelStatement } from '../labels.mjs';
-import { SYMBOL_FRFR } from '../symbols_preval.mjs';
+import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
+import { BUILTIN_SYMBOLS } from '../symbols_builtins.mjs';
 
 export function freeNested(fdata, $prng, usePrng = true) {
   group('\n\n\nSearching for nested free calls to flatten\n');
@@ -452,8 +453,18 @@ function _freeNested(fdata, $prng, usePrng) {
       if (n >= 0) {
         return callNode.arguments[n+1] ? AST.cloneSimple(callNode.arguments[n+1]) : AST.identifier('undefined');
       } else {
+        // In this case we have an argument that is an ident that is not recorded as a local function.
         // Then this ought to be a global (builtin or explicit), which would not be passed in as an arg.
-        ASSERT(targetName === '$' || targetName === SYMBOL_FRFR || BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) || fdata.globallyUniqueNamingRegistry.get(targetName)?.varDeclRef?.node?.$p.blockChain === '1,', 'if there is no arg then the var must refer to a global of sorts', targetName);
+        ASSERT(
+          targetName === '$' ||
+          targetName === SYMBOL_FRFR ||
+          targetName === SYMBOL_DOTCALL ||
+          targetName === SYMBOL_COERCE || // I think this should be eliminated in free funcs? but eh
+          BUILTIN_GLOBAL_FUNC_NAMES.has(targetName) ||
+          BUILTIN_SYMBOLS.has(targetName) ||
+          fdata.globallyUniqueNamingRegistry.get(targetName)?.varDeclRef?.node?.$p.blockChain === '1,',
+          'if there is no arg then the var must refer to a global of sorts', targetName, BUILTIN_GLOBAL_FUNC_NAMES.has(targetName)
+        );
         return AST.identifier(targetName);
       }
     } else {

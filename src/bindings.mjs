@@ -999,8 +999,7 @@ export function getCleanTypingObject() {
     mustBeValue: undefined, // undefined|null|<primitive>: must be exactly this value.
     bang: undefined, // undefined|bool. Was this explicitly the result of applying `!x`? When false, known not to always be the case.
 
-    // TOOD: drop .sym
-    sym: undefined, // -> symbol, like $string_replace
+    sname: undefined, // -> symbol, like $string_replace
 
     oneBitAnded: undefined, // number. If set, this value is the result of applying the bitwise AND operator and this single bit value to an arbitrary value. In other words, either this bit is set or unset on this value.
     anded: undefined, // number. If set, this value is the result of bitwise AND an arbitrary value with this value
@@ -1027,7 +1026,7 @@ export function getUnknownTypingObject(toInit) {
     mustBeValue: null,
     bang: false,
 
-    sym: false,
+    sname: false,
 
     oneBitAnded: false,
     anded: false,
@@ -1050,7 +1049,7 @@ export function createTypingObject({
   mustBeValue = null,
   bang = false,
 
-  sym = false,
+  sname = false,
 
   oneBitAnded = false,
   anded = false,
@@ -1075,7 +1074,7 @@ export function createTypingObject({
     mustBeValue,
     bang,
 
-    sym,
+    sname,
 
     oneBitAnded,
     anded,
@@ -1787,7 +1786,7 @@ export function mergeTyping(from, into) {
       mustBeTruthy,
       mustBeValue,
       bang,
-      sym,
+      sname,
       oneBitAnded,
       anded,
       orredWith,
@@ -1809,7 +1808,7 @@ export function mergeTyping(from, into) {
       mustBeTruthy,
       mustBeValue,
       bang,
-      sym,
+      sname,
       oneBitAnded,
       anded,
       orredWith,
@@ -1986,7 +1985,7 @@ export function mergeTyping(from, into) {
   // If from is not a primitive (or unknown) then into can not be either. Otherwise it's whatever into was.
   if (!from.mustBePrimitive) into.mustBePrimitive = from.mustBePrimitive;
 
-  if (from.sym !== into.sym) into.sym = false;
+  if (from.sname !== into.sname) into.sname = false;
 
   if (from.returns === into.returns) {
     // same, ok

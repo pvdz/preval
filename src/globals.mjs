@@ -87,17 +87,17 @@ const globalNames = new Map([
   [SYMBOL_FORIN, SYMBOL_FORIN],
   [SYMBOL_FOROF, SYMBOL_FOROF],
 
-  ...Array.from(BOOLEAN.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from(NUMBER.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from(STRING.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from(OBJECT.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from(ARRAY.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from(DATE.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from(FUNCTION.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from($JSON.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from(MATH.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from(REGEXP.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
-  ...Array.from(BUFFER.values()).map(obj => [obj.typings.sym, {...obj.typings}]),
+  ...Array.from(BOOLEAN.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from(NUMBER.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from(STRING.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from(OBJECT.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from(ARRAY.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from(DATE.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from(FUNCTION.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from($JSON.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from(MATH.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from(REGEXP.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  ...Array.from(BUFFER.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
 ]);
 
 for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {

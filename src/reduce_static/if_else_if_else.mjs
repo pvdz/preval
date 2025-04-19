@@ -38,7 +38,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function ifelseifelse(fdata) {
-  group('\n\n\nChecking for the ifElseIfElse pattern');
+  group('\n\n\n[ifelseifelse] Checking for the ifElseIfElse pattern');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _ifelseifelse(fdata);
   groupEnd();

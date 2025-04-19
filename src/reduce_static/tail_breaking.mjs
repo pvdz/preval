@@ -27,7 +27,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function tailBreaking(fdata) {
-  group('\n\n\nFind redundant break and continue statements or labels\n');
+  group('\n\n\n[tailBreaking] Find redundant break and continue statements or labels\n');
   const r = _tailBreaking(fdata);
   groupEnd();
   return r;

@@ -27,7 +27,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function selfAssignClosure(fdata) {
-  group('\n\n\nChecking for self-assigning funcs returning their own closures');
+  group('\n\n\n[selfAssignClosure] Checking for self-assigning funcs returning their own closures');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast, true), true) + '\n--------------\n');
   const r = _selfAssignClosure(fdata);
   groupEnd();

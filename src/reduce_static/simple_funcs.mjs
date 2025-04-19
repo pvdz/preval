@@ -5,7 +5,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function inlineSimpleFuncCalls(fdata) {
-  group('\n\n\nChecking for simple func calls that can be inlined');
+  group('\n\n\n[inlineSimpleFuncCalls] Checking for simple func calls that can be inlined');
   const r = _inlineSimpleFuncCalls(fdata);
   groupEnd();
   return r;

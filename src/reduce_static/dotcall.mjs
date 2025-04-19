@@ -11,7 +11,7 @@ import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function simplifyDotCall(fdata) {
-  group('\n\n\nTrying to simplify $dotCall occurrences\n');
+  group('\n\n\n[simplifyDotCall] Trying to simplify $dotCall occurrences\n');
   const r = _dotCall(fdata);
   groupEnd();
   return r;

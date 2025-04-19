@@ -28,7 +28,7 @@ import * as AST from '../ast.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 
 export function andIfAndIf(fdata) {
-  group('\n\n\nSearching for and-if-and-if\n');
+  group('\n\n\n[andIfAndIf] Searching for and-if-and-if\n');
   const r = _andIfAndIf(fdata);
   groupEnd();
   return r;

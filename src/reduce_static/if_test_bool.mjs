@@ -25,7 +25,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function ifTestBool(fdata) {
-  group('\n\n\nChecking for if-tests that are inverted');
+  group('\n\n\n[ifTestBool] Checking for if-tests that are inverted');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _ifTestBool(fdata);

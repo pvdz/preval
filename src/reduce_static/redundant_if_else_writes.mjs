@@ -23,7 +23,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function redundantWrites(fdata) {
-  group('\n\n\nFinding redundant if-else writes');
+  group('\n\n\n[redundantWrites] Finding redundant if-else writes');
   const r = _redundantWrites(fdata);
   groupEnd();
   return r;

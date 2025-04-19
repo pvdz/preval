@@ -26,7 +26,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function recursiveFuncs(fdata) {
-  group('\n\n\nChecking for recursive function decls stuffs');
+  group('\n\n\n[recursiveFuncs] Checking for recursive function decls stuffs');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _recursiveFuncs(fdata);
   groupEnd();

@@ -161,7 +161,7 @@ const SUPPORTED_FREE_BUILTINS = new Set([
 ])
 
 export function freeing(fdata, $prng, usePrng = true) {
-  group('\n\n\nSearching for free statements to collect\n');
+  group('\n\n\n[freeing] Searching for free statements to collect\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _freeing(fdata, $prng, usePrng);
   groupEnd();

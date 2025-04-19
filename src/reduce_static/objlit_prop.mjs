@@ -10,7 +10,7 @@ import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mj
 import { BUILTIN_SYMBOLS, contextFreeBuiltin, symbo } from '../symbols_builtins.mjs';
 
 export function objlitPropAccess(fdata) {
-  group('\n\n\nChecking for object literals whose props are accessed immediately');
+  group('\n\n\n[objlitPropAccess] Checking for object literals whose props are accessed immediately');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _objlitPropAccess(fdata);
   groupEnd();

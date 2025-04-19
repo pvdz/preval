@@ -26,7 +26,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function ifTestFolding(fdata) {
-  group('\n\n\nSearching for ifs where the branches reflect the test\n');
+  group('\n\n\n[ifTestFolding] Searching for ifs where the branches reflect the test\n');
   const r = _ifTestFolding(fdata);
   groupEnd();
   return r;

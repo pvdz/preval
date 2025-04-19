@@ -6,7 +6,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function ifTestOnly(fdata) {
-  group('\n\n\nLooking for bindings only used in unobservable boolean testing places\n');
+  group('\n\n\n[ifTestOnly] Looking for bindings only used in unobservable boolean testing places\n');
   const r = _ifTestOnly(fdata);
   groupEnd();
   return r;

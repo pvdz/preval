@@ -7,7 +7,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function bitSetTests(fdata) {
-  group('\n\n\nChecking for bit-set `if`-test pattern\n');
+  group('\n\n\n[bitSetTests] Checking for bit-set `if`-test pattern\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _bitSetTests(fdata);
   groupEnd();

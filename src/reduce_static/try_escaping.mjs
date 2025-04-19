@@ -16,7 +16,7 @@ import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function tryEscaping(fdata) {
-  group('\n\n\nFind Try statements which start with statements that cannot throw and elevate them\n');
+  group('\n\n\n[tryEscaping] Find Try statements which start with statements that cannot throw and elevate them\n');
   const r = _tryEscaping(fdata);
   groupEnd();
   return r;

@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function staticLets(fdata) {
-  group('\n\n\nChecking for let bindings whose value we can predict anyways');
+  group('\n\n\n[staticLets] Checking for let bindings whose value we can predict anyways');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _staticLets(fdata);
   groupEnd();

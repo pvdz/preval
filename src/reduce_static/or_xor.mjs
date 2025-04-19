@@ -6,7 +6,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function orXor(fdata) {
-  group('\n\n\nChecking OrXor cases\n');
+  group('\n\n\n[orXor] Checking OrXor cases\n');
   const r = _orXor(fdata);
   groupEnd();
   return r;

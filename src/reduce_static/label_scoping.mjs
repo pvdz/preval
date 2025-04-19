@@ -10,7 +10,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule
 import * as AST from '../ast.mjs';
 
 export function labelScoping(fdata) {
-  group('\n\n\nFinding var decls to get scoped up by labels\n');
+  group('\n\n\n[labelScoping] Finding var decls to get scoped up by labels\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _labelScoping(fdata);
   groupEnd();

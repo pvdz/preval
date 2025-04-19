@@ -28,7 +28,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function ifUpdateTest(fdata) {
-  group('\n\n\nCheck for if-mutate-test-if-test');
+  group('\n\n\n[ifUpdateTest] Check for if-mutate-test-if-test');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _ifUpdateTest(fdata);

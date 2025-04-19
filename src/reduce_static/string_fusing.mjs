@@ -23,7 +23,7 @@ import { createFreshVar } from '../bindings.mjs';
 import { normalizeTemplateSimple } from '../ast.mjs';
 
 export function stringFusing(fdata) {
-  group('\n\n\nSearching for strings to fuse together');
+  group('\n\n\n[stringFusing] Searching for strings to fuse together');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _stringFusing(fdata);
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');

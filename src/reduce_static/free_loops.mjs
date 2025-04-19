@@ -54,7 +54,7 @@ const SUPPORTED_GLOBAL_FUNCS = [
 ];
 
 export function freeLoops(fdata, prng, usePrng = true) {
-  group('\n\n\nChecking for free loops to simulate and resolve\n');
+  group('\n\n\n[freeLoops] Checking for free loops to simulate and resolve\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   //assertNoDupeNodes(AST.blockStatement(fdata.tenkoOutput.ast), 'body', true);
   const r = _freeLoops(fdata, prng, usePrng);

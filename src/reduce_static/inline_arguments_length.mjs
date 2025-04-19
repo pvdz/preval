@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function inlineArgLen(fdata) {
-  group('\n\n\nChecking for predictable `arguments.length` occurrences');
+  group('\n\n\n[inlineArgLen] Checking for predictable `arguments.length` occurrences');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _inlineArgLen(fdata);
   groupEnd();

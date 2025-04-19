@@ -23,7 +23,7 @@ import * as AST from '../ast.mjs';
 import { createFreshLabelStatement } from '../labels.mjs';
 
 export function inlineOneTimeFunctions(fdata) {
-  group('\n\n\nChecking for functions that are called once');
+  group('\n\n\n[inlineOneTimeFunctions] Checking for functions that are called once');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _inlineOneTimeFunctions(fdata);
   groupEnd();

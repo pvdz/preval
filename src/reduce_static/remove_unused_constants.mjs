@@ -5,7 +5,7 @@ import * as AST from '../ast.mjs';
 import { isArgumentsLength } from '../ast.mjs';
 
 export function removeUnusedConstants(fdata) {
-  group('\n\n\nEliminating unused constants\n');
+  group('\n\n\n[removeUnusedConstants] Eliminating unused constants\n');
   let queue = [];
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const changes = _inlineConstants(fdata, queue);

@@ -6,7 +6,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function builtinCases(fdata) {
-  group('\n\n\nSearching for usages of builtins\n');
+  group('\n\n\n[builtinCases] Searching for usages of builtins\n');
   const r = _builtinCases(fdata);
   groupEnd();
   return r;

@@ -20,7 +20,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function dropUnusedReturns(fdata) {
-  group('\n\n\nChecking for functions that should return undefined but dont yet');
+  group('\n\n\n[dropUnusedReturns] Checking for functions that should return undefined but dont yet');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _dropUnusedReturns(fdata);
   groupEnd();

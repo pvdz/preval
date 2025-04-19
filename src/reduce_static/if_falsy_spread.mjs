@@ -26,7 +26,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function ifFalsySpread(fdata) {
-  group('\n\n\nSearching for if tests that are spread in the else branch\n');
+  group('\n\n\n[ifFalsySpread] Searching for if tests that are spread in the else branch\n');
   const r = _ifFalsySpread(fdata);
   groupEnd();
   return r;

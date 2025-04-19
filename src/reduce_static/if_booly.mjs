@@ -9,7 +9,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function ifBooly(fdata) {
-  group('\n\n\nChecking for bool bindings that conditionally get mutated');
+  group('\n\n\n[ifBooly] Checking for bool bindings that conditionally get mutated');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _ifBooly(fdata);

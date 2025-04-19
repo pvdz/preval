@@ -11,7 +11,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function expandoSplitting(fdata) {
-  group('\n\n\nFinding funcs with expandos so we can split them into regular objects\n');
+  group('\n\n\n[expandoSplitting] Finding funcs with expandos so we can split them into regular objects\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _expandoSplitting(fdata);
   groupEnd();

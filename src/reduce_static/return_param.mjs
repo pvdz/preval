@@ -24,7 +24,7 @@ import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function returnsParam(fdata) {
-  group('\n\n\nChecking for functions that return a static mutation of an arg');
+  group('\n\n\n[returnsParam] Checking for functions that return a static mutation of an arg');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _returnsParam(fdata);
   groupEnd();

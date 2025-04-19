@@ -21,7 +21,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function inlineConstants(fdata) {
-  group('\n\n\nInlining constants with primitive or constant values\n');
+  group('\n\n\n[inlineConstants] Inlining constants with primitive or constant values\n');
   const r = _inlineConstants(fdata);
   groupEnd();
 

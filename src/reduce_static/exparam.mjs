@@ -8,7 +8,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function pruneExcessiveParams(fdata) {
-  group('\n\n\nPruning excessive params and args\n');
+  group('\n\n\n[pruneExcessiveParams] Pruning excessive params and args\n');
   const r = _pruneExcessiveParams(fdata);
   groupEnd();
   return r;

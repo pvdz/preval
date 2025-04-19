@@ -10,7 +10,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function functionSplitting(fdata) {
-  group('\n\n\nLooking for funcs where a param splits the behavior of the function\n');
+  group('\n\n\n[functionSplitting] Looking for funcs where a param splits the behavior of the function\n');
   const r = _funcionSplitting(fdata);
   groupEnd();
   return r;

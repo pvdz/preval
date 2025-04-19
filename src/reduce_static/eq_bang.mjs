@@ -22,7 +22,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function eqBang(fdata) {
-  group('\n\n\nSearching for the eq-bang pattern\n');
+  group('\n\n\n[eqBang] Searching for the eq-bang pattern\n');
   const r = _eqBang(fdata);
   groupEnd();
   return r;

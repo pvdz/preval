@@ -35,7 +35,7 @@ import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function typeTrackedTricks(fdata) {
-  group('\n\n\nFinding type tracking based tricks\n');
+  group('\n\n\n[typeTrackedTricks] Finding type tracking based tricks\n');
   const r = _typeTrackedTricks(fdata);
   groupEnd();
   return r;
@@ -1007,8 +1007,6 @@ function _typeTrackedTricks(fdata) {
           ? fdata.globallyUniqueNamingRegistry.get(context.name)?.typing.mustBeType
           : false;
         const isContextPrimitive = PRIMITIVE_TYPE_NAMES_PREVAL.has(contextMustBe);
-
-        if (calleeName?.includes('#')) TOFIX
 
         if (isDotcall) {
           // Where calleeName is the apply symbol, we now need the function being applied

@@ -5,7 +5,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule
 import * as AST from '../ast.mjs';
 
 export function writeOnly(fdata) {
-  group('\n\n\nEliminating bindings that are only written to\n');
+  group('\n\n\n[writeOnly] Eliminating bindings that are only written to\n');
   const r = _writeOnly(fdata);
   groupEnd();
   return r;

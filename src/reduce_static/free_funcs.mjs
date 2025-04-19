@@ -12,7 +12,7 @@ import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE
 // so this will have to happen at runtime through a counter of sorts.
 
 export function freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
-  group('\n\n\nChecking for free function calls to simulate and resolve\n');
+  group('\n\n\n[freeFuncs] Checking for free function calls to simulate and resolve\n');
   if (pcodeTestMode) vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _freeFuncs(fdata, prng, usePrng, pcodeTestMode);
   groupEnd();

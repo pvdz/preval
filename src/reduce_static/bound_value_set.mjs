@@ -5,7 +5,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function resolveBoundValueSet(fdata) {
-  group('\n\n\nChecking for ops that return the same for all possible worlds\n');
+  group('\n\n\n[resolveBoundValueSet] Checking for ops that return the same for all possible worlds\n');
   const r = _resolveBoundValueSet(fdata);
   groupEnd();
   return r;

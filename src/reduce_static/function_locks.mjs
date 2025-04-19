@@ -16,7 +16,7 @@ import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 import { symbo } from '../symbols_builtins.mjs';
 
 export function functionLocks(fdata) {
-  group('\n\n\nLooking for functions that get locked after the first call\n');
+  group('\n\n\n[functionLocks] Looking for functions that get locked after the first call\n');
   const r = _functionLocks(fdata);
   groupEnd();
   return r;

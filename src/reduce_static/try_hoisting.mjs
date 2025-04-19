@@ -26,7 +26,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function tryHoisting(fdata) {
-  group('\n\n\nLooking for statements inside a try that can not throw and hoist them out\n');
+  group('\n\n\n[tryHoisting] Looking for statements inside a try that can not throw and hoist them out\n');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _tryHoisting(fdata);

@@ -15,7 +15,7 @@ import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 import { symbo } from '../symbols_builtins.mjs';
 
 export function arrCoerce(fdata) {
-  group('\n\n\nChecking for arrays that get coerced');
+  group('\n\n\n[arrCoerce] Checking for arrays that get coerced');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _arrCoerce(fdata);
   groupEnd();

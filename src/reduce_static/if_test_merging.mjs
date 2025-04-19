@@ -26,7 +26,7 @@ import { isSameFlatStatementExceptBool } from '../utils/is_same_except_bool.mjs'
 import { createFreshVar } from '../bindings.mjs';
 
 export function ifTestMerging(fdata) {
-  group('\n\n\nFinding ifs with bool tests that can hoist statements\n');
+  group('\n\n\n[ifTestMerging] Finding ifs with bool tests that can hoist statements\n');
   const r = _ifTestMerging(fdata);
   groupEnd();
   return r;

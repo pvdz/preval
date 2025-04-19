@@ -27,7 +27,7 @@ import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, sym_prefix, symbo } from '../symbols_builtins.mjs';
 
 export function dotcallSelfAssigning(fdata) {
-  group('\n\n\nLooking for $dotCalls that assign to the var on which they are calling a method\n');
+  group('\n\n\n[dotcallSelfAssigning] Looking for $dotCalls that assign to the var on which they are calling a method\n');
   const r = _dotcallSelfAssigning(fdata);
   groupEnd();
   return r;

@@ -12,7 +12,7 @@ import * as AST from '../ast.mjs';
 import { PRIMITVE_TYPE_NAMES_NOT_STRING } from '../constants.mjs';
 
 export function typedComparison(fdata) {
-  group('\n\n\nChecking for predictable strict type comparisons');
+  group('\n\n\n[typedComparison] Checking for predictable strict type comparisons');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _typedComparison(fdata);

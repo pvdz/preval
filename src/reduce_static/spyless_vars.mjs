@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 import { DIM, RESET, VERBOSE_TRACING } from '../constants.mjs';
 
 export function spylessVars(fdata) {
-  group('\n\n\nChecking for single scoped spyless vars to move');
+  group('\n\n\n[spylessVars] Checking for single scoped spyless vars to move');
   //vlog('\nCurrent statex\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _spylessVars(fdata);
   //vlog('\nCurrent statex\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');

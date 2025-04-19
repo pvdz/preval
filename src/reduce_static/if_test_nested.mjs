@@ -9,7 +9,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function ifTestNested(fdata) {
-  group('\n\n\nLooking for bindings as nested if-test\n');
+  group('\n\n\n[ifTestNested] Looking for bindings as nested if-test\n');
   const r = _ifTestNested(fdata);
   groupEnd();
   return r;

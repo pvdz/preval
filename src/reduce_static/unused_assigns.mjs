@@ -27,7 +27,7 @@ import * as AST from '../ast.mjs';
 import { isStringType } from '../ast.mjs';
 
 export function unusedAssigns(fdata) {
-  group('\n\n\nFinding assignments that can not be read throuh complex tails\n');
+  group('\n\n\n[unusedAssigns] Finding assignments that can not be read throuh complex tails\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _unusedAssigns(fdata);
   groupEnd();

@@ -41,7 +41,7 @@ import { resolveNodeAgainstParams } from '../bindings.mjs';
 import { returnStatement } from '../ast.mjs';
 
 export function ifCallIf(fdata) {
-  group('\n\n\nChecking for the if-call-if pattern');
+  group('\n\n\n[ifCallIf] Checking for the if-call-if pattern');
   //const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _assignHoisting(fdata);

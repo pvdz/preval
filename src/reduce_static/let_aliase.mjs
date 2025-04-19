@@ -31,7 +31,7 @@ import * as AST from '../ast.mjs';
 import {hasObservableSideEffectsBetweenRefs} from "../ast.mjs"
 
 export function letAliasing(fdata) {
-  group('\n\n\nSearching for back-to-back writes of a let binding to a const binding\n');
+  group('\n\n\n[letAliasing] Searching for back-to-back writes of a let binding to a const binding\n');
   const r = _letAliasing(fdata);
   groupEnd();
   return r;

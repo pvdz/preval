@@ -13,7 +13,7 @@ import { cloneSimple, isSimpleNodeOrSimpleMember } from '../ast.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function staticArgOpOutlining(fdata) {
-  group('\n\n\nFinding static param ops to outline\n');
+  group('\n\n\n[staticArgOpOutlining] Finding static param ops to outline\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _staticArgOpOutlining(fdata);
   groupEnd();

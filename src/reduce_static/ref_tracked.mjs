@@ -24,7 +24,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function refTracked(fdata) {
-  group('\n\n\nLooking ref-tracking tricks to apply\n');
+  group('\n\n\n[refTracked] Looking ref-tracking tricks to apply\n');
   const r = _refTracked(fdata);
   groupEnd();
   return r;

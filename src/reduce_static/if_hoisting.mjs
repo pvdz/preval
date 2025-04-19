@@ -25,7 +25,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function ifHoisting(fdata) {
-  group('\n\n\nFinding ifs with branches that start the same\n');
+  group('\n\n\n[ifHoisting] Finding ifs with branches that start the same\n');
   const r = _ifHoisting(fdata);
   groupEnd();
   return r;

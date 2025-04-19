@@ -39,7 +39,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function assignHoisting(fdata) {
-  group('\n\n\nChecking for assignments that are actually a decl init');
+  group('\n\n\n[assignHoisting] Checking for assignments that are actually a decl init');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _assignHoisting(fdata);
   groupEnd();

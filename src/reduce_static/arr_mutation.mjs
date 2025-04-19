@@ -8,14 +8,14 @@ import * as AST from '../ast.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
-export function arr_mutation(fdata) {
-  group('\n\n\nChecking for array mutations to inline');
+export function arrMutation(fdata) {
+  group('\n\n\n[arrMutation] Checking for array mutations to inline');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _arr_mutation(fdata);
+  const r = _arrMutation(fdata);
   groupEnd();
   return r;
 }
-function _arr_mutation(fdata) {
+function _arrMutation(fdata) {
   let updated = 0;
   const queue = [];
 

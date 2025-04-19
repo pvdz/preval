@@ -15,7 +15,7 @@ import { SYMBOL_DOTCALL, THIS_ALIAS_BASE_NAME } from '../symbols_preval.mjs';
 import { symbo } from '../symbols_builtins.mjs';
 
 export function pruneTrampolineFunctions(fdata) {
-  group('\n\n\nPruning trampoline functions that only return the call to another function\n');
+  group('\n\n\n[pruneTrampolineFunctions] Pruning trampoline functions that only return the call to another function\n');
   const r = _pruneTrampolineFunctions(fdata);
   groupEnd();
   return r;

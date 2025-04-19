@@ -22,7 +22,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function arrSpreads(fdata) {
-  group('\n\n\nChecking for array/call spreads');
+  group('\n\n\n[arrSpreads] Checking for array/call spreads');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _arrSpreads(fdata);

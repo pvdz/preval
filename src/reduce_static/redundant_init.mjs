@@ -14,7 +14,7 @@ import { setPrintVarTyping } from "../../lib/printer.mjs";
 import { getCleanTypingObject, inferNodeTyping, mergeTyping } from '../bindings.mjs';
 
 export function redundantInit(fdata) {
-  group('\n\n\nFinding redundant var inits');
+  group('\n\n\n[redundantInit] Finding redundant var inits');
   const r = _redundantInit(fdata);
   groupEnd();
   return r;

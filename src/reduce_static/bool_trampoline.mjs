@@ -8,7 +8,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function boolTrampolines(fdata) {
-  group('\n\n\nPruning boolean trampolines\n');
+  group('\n\n\n[boolTrampolines] Pruning boolean trampolines\n');
   const r = _boolTrampolines(fdata);
   groupEnd();
   return r;

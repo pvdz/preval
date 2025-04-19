@@ -24,7 +24,7 @@ import { createFreshLabelStatement } from '../labels.mjs';
 import { SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 
 export function infiniteLoops(fdata) {
-  group('\n\n\nFind loops that always loop and add a "throw unreachable" after them\n');
+  group('\n\n\n[infiniteLoops] Find loops that always loop and add a "throw unreachable" after them\n');
   const r = _infiniteLoops(fdata);
   groupEnd();
   return r;

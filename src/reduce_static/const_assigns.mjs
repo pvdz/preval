@@ -4,7 +4,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function constAssigns(fdata) {
-  group('\n\n\nChecking assignments to bindings that are const\n');
+  group('\n\n\n[constAssigns] Checking assignments to bindings that are const\n');
   const r = _constAssigns(fdata);
   groupEnd();
   return r;

@@ -12,7 +12,7 @@ import * as AST from '../ast.mjs';
 
 
 export function singleScopeTdz(fdata) {
-  group('\n\n\nChecking for TDZ cases in single scope\n');
+  group('\n\n\n[singleScopeTdz] Checking for TDZ cases in single scope\n');
   const r = _singleScopeTdz(fdata);
   groupEnd();
   return r;

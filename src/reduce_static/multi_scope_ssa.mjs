@@ -3,7 +3,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function multiScopeSSA(fdata) {
-  group('\n\n\nChecking for vars to SSA in multiple scopes\n');
+  group('\n\n\n[multiScopeSSA] Checking for vars to SSA in multiple scopes\n');
   const r = _multiScopeSSA(fdata);
   groupEnd();
   return r;

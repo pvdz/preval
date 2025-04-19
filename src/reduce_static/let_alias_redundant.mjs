@@ -32,7 +32,7 @@ import * as AST from '../ast.mjs';
 import {hasObservableSideEffectsBetweenRefs} from "../ast.mjs"
 
 export function letAliasRedundant(fdata) {
-  group('\n\n\nSearching for let-as-const aliases that are redundant\n');
+  group('\n\n\n[letAliasRedundant] Searching for let-as-const aliases that are redundant\n');
   const r = _letAliasRedundant(fdata);
   groupEnd();
   return r;

@@ -26,7 +26,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar, getIdentUsageKind } from '../bindings.mjs';
 
 export function ifUpdateCall(fdata) {
-  group('\n\n\nFinding if-update-call patterns to replace\n');
+  group('\n\n\n[ifUpdateCall] Finding if-update-call patterns to replace\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _ifUpdateCall(fdata);
   groupEnd();

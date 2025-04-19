@@ -8,7 +8,7 @@ import * as AST from '../ast.mjs';
 import {cloneSimple} from "../ast.mjs"
 
 export function testingAlias(fdata) {
-  group('\n\n\nLooking for bindings only used as if-test bools and an alias to another var\n');
+  group('\n\n\n[testingAlias] Looking for bindings only used as if-test bools and an alias to another var\n');
   const r = _testingAlias(fdata);
   groupEnd();
   return r;

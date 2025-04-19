@@ -36,7 +36,7 @@ import { cloneSimple, cloneSortOfSimple, functionExpressionNormalized, isSimpleN
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function staticIfOutlining(fdata) {
-  group('\n\n\nFinding static ifs to outline\n');
+  group('\n\n\n[staticIfOutlining] Finding static ifs to outline\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _staticIfOutlining(fdata);
   groupEnd();

@@ -17,7 +17,7 @@ import * as AST from '../ast.mjs';
 import {findClosureRefs} from "./func_scope_promo.mjs"
 
 export function selfAssignNoop(fdata) {
-  group('\n\n\nChecking for self-assigning noop funcs');
+  group('\n\n\n[selfAssignNoop] Checking for self-assigning noop funcs');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _selfAssignNoop(fdata);
   groupEnd();

@@ -9,7 +9,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule
 import * as AST from '../ast.mjs';
 
 export function ifFlipping(fdata) {
-  group('\n\n\nFinding inverted if tests and flip them\n');
+  group('\n\n\n[ifFlipping] Finding inverted if tests and flip them\n');
   const r = _ifFlipping(fdata);
   groupEnd();
   return r;

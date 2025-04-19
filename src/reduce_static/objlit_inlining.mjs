@@ -24,7 +24,7 @@ import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function objlitInlining(fdata) {
-  group('\n\n\nChecking for object literals to inline');
+  group('\n\n\n[objlitInlining] Checking for object literals to inline');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _objlitInlining(fdata);
   groupEnd();

@@ -8,7 +8,7 @@ import globalNames from "../globals.mjs"
 import { symbo } from '../symbols_builtins.mjs';
 
 export function aliasedGlobals(fdata) {
-  group('\n\n\nInlining implicit globals assigned to constants\n');
+  group('\n\n\n[aliasedGlobals] Inlining implicit globals assigned to constants\n');
   const r = _aliasedGlobals(fdata);
   groupEnd();
   return r;

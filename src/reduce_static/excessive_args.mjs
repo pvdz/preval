@@ -8,7 +8,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function excessiveArgs(fdata) {
-  group('\n\n\nLooking for function calls containing args where the functions dont have params at that position\n');
+  group('\n\n\n[excessiveArgs] Looking for function calls containing args where the functions dont have params at that position\n');
   const r = _excessiveArgs(fdata);
   groupEnd();
   return r;

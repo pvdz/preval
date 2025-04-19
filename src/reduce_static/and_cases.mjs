@@ -7,7 +7,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function andCases(fdata) {
-  group('\n\n\nChecking AND cases\n');
+  group('\n\n\n[andCases] Checking AND cases\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _andCases(fdata);
   groupEnd();

@@ -18,7 +18,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function pruneEmptyFunctions(fdata) {
-  group('\n\n\nPruning calls to empty and noop functions\n');
+  group('\n\n\n[pruneEmptyFunctions] Pruning calls to empty and noop functions\n');
   const r = _pruneEmptyFunctions(fdata);
   groupEnd();
   return r;

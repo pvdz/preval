@@ -31,7 +31,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function fakeDoWhile(fdata) {
-  group('\n\n\nFind loops with do-while logic inside and outline the truthy if-consequent\n');
+  group('\n\n\n[fakeDoWhile] Find loops with do-while logic inside and outline the truthy if-consequent\n');
   const r = _fakeDoWhile(fdata);
   groupEnd();
   return r;

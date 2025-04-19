@@ -25,7 +25,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function ifMerging(fdata) {
-  group('\n\n\nSearching for back2back ifs to merge\n');
+  group('\n\n\n[ifMerging] Searching for back2back ifs to merge\n');
   const r = _ifMerging(fdata);
   groupEnd();
   return r;

@@ -33,7 +33,7 @@ import {RESET, GREEN, VERBOSE_TRACING} from '../constants.mjs';
 import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function letHoisting(fdata) {
-  group('\n\n\nChecking for let decls to move up');
+  group('\n\n\n[letHoisting] Checking for let decls to move up');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _letHoisting(fdata);
   groupEnd();

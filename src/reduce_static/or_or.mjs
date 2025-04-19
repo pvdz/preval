@@ -22,7 +22,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function orOr(fdata) {
-  group('\n\n\nSearching for or-or\n');
+  group('\n\n\n[orOr] Searching for or-or\n');
   const r = _orOr(fdata);
   groupEnd();
   return r;

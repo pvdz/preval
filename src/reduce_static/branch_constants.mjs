@@ -22,7 +22,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function branchConstantInlining(fdata) {
-  group('\n\n\nSearching for constants whose value is known in a branch\n');
+  group('\n\n\n[branchConstantInlining] Searching for constants whose value is known in a branch\n');
   const r = _branchConstantInlining(fdata);
   groupEnd();
   return r;

@@ -64,7 +64,7 @@ import { ifFalsySpread } from '../reduce_static/if_falsy_spread.mjs';
 import { tailBreaking } from '../reduce_static/tail_breaking.mjs';
 import { infiniteLoops } from '../reduce_static/infinite_loops.mjs';
 import { staticArgOpOutlining } from '../reduce_static/static_arg_op_outlining.mjs';
-import { arr_mutation } from '../reduce_static/arr_mutation.mjs';
+import { arrMutation } from '../reduce_static/arr_mutation.mjs';
 import { functionLocks } from '../reduce_static/function_locks.mjs';
 import { readOnce } from '../reduce_static/read_once.mjs';
 import { ifTestOnly } from '../reduce_static/if_test_only.mjs';
@@ -96,7 +96,7 @@ import { recursiveFuncs } from '../reduce_static/recursive_funcs.mjs';
 import { freeFuncs } from '../reduce_static/free_funcs.mjs';
 import { arrMethodCall } from '../reduce_static/arr_method_call.mjs';
 import { freeing } from '../reduce_static/freeing.mjs';
-import { buffer_base64 } from "../reduce_static/buffer_base64.mjs"
+import { bufferBase64 } from "../reduce_static/buffer_base64.mjs"
 import { letAliasRedundant } from '../reduce_static/let_alias_redundant.mjs';
 import { freeLoops } from '../reduce_static/free_loops.mjs';
 import { freeNested } from '../reduce_static/free_nested.mjs';
@@ -247,7 +247,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     // Do early because it's likely to catch common cases
     refTracked(fdata) ||
     // Do early because it can be expensive with many writes
-    arr_mutation(fdata) ||
+    arrMutation(fdata) ||
     letHoisting(fdata) ||
     findThrowers(fdata) ||
     singleScopeTdz(fdata) || // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
@@ -342,7 +342,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     unusedAssigns(fdata) ||
     objlitInlining(fdata) ||
     arrMethodCall(fdata) ||
-    buffer_base64(fdata) ||
+    bufferBase64(fdata) ||
 
     freeLoops(fdata, prng, !!options.prngSeed) || // Most other stuff should probably precede this?
 

@@ -4,10 +4,9 @@ import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, useRiskyRules, todo, } from '../utils.mjs';
 import { BUILTIN_SYMBOLS, NUMBER, STRING, FUNCTION, REGEXP, symbo, ARRAY } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
-import {getPrimitiveType} from "../ast.mjs"
 
 export function propertyLookups(fdata) {
-  group('\n\n\nFinding static builtin properties to resolve\n');
+  group('\n\n\n[propertyLookups] Finding static builtin properties to resolve\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _propertyLookups(fdata);
   groupEnd();

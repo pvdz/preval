@@ -22,7 +22,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function restParams(fdata) {
-  group('\n\n\nFinding unused rest params');
+  group('\n\n\n[restParams] Finding unused rest params');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _restParams(fdata);
   groupEnd();

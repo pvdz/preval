@@ -25,7 +25,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function dedupeBranchedReturns(fdata) {
-  group('\n\n\nDetecting branched returns that return the same call\n');
+  group('\n\n\n[dedupeBranchedReturns] Detecting branched returns that return the same call\n');
   const r = _dedupeBranchedReturns(fdata);
   groupEnd();
   return r;

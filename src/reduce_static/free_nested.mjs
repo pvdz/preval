@@ -51,7 +51,7 @@ import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mj
 import { BUILTIN_SYMBOLS } from '../symbols_builtins.mjs';
 
 export function freeNested(fdata, $prng, usePrng = true) {
-  group('\n\n\nSearching for nested free calls to flatten\n');
+  group('\n\n\n[freeNested] Searching for nested free calls to flatten\n');
   const r = _freeNested(fdata, $prng, usePrng);
   groupEnd();
   return r;

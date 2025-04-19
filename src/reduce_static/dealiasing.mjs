@@ -22,7 +22,7 @@ import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function dealiasing(fdata) {
-  group('\n\n\nSearching for let-alias constants that are redundant so we can dealias them\n');
+  group('\n\n\n[dealiasing] Searching for let-alias constants that are redundant so we can dealias them\n');
   const r = _dealiasing(fdata);
   groupEnd();
   return r;

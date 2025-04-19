@@ -7,7 +7,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function aliasIfIf(fdata) {
-  group('\n\n\nLooking for alias of var that is if-tested followed by the alias if-tested\n');
+  group('\n\n\n[aliasIfIf] Looking for alias of var that is if-tested followed by the alias if-tested\n');
   const r = _aliasIfIf(fdata);
   groupEnd();
   return r;

@@ -22,7 +22,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function andAnd(fdata) {
-  group('\n\n\nSearching for and-and\n');
+  group('\n\n\n[andAnd] Searching for and-and\n');
   const r = _andAnd(fdata);
   groupEnd();
   return r;

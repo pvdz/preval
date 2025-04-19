@@ -6,7 +6,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 
 export function readOnce(fdata) {
-  group('\n\n\nLooking for self destructing bindings that clear after use\n');
+  group('\n\n\n[readOnce] Looking for self destructing bindings that clear after use\n');
   const r = _readOnce(fdata);
   groupEnd();
   return r;

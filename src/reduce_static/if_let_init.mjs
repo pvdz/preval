@@ -22,7 +22,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function ifLetInit(fdata) {
-  group('\n\n\nSearching for conditionally initialized lets\n');
+  group('\n\n\n[ifLetInit] Searching for conditionally initialized lets\n');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _ifLetInit(fdata);
   groupEnd();

@@ -35,7 +35,7 @@ import { getIdentUsageKind } from '../bindings.mjs';
 // up the collection or re-running phase1 for the same reason is also expensive.
 
 export function funcScopePromo(fdata) {
-  group('\n\n\nPromoting functions to an upper scope when possible\n');
+  group('\n\n\n[funcScopePromo] Promoting functions to an upper scope when possible\n');
   const r = _funcScopePromo(fdata);
   groupEnd();
   return r;

@@ -1,24 +1,8 @@
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  fmat,
-  tmat,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  findBodyOffset,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function findThrowers(fdata) {
-  group('\n\n\nSearching for functions that only throw\n');
+  group('\n\n\n[findThrowers] Searching for functions that only throw\n');
   const r = _findThrowers(fdata);
   groupEnd();
   return r;

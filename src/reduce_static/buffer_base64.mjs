@@ -45,8 +45,8 @@ import {createFreshVar, mayBindingMutateBetweenRefs} from '../bindings.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 import { symbo } from '../symbols_builtins.mjs';
 
-export function buffer_base64(fdata) {
-  group('\n\n\nChecking for buffer_base64; base64 decoding through Buffer');
+export function bufferBase64(fdata) {
+  group('\n\n\n[bufferBase64] Checking for buffer_base64; base64 decoding through Buffer');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _buffer_base64(fdata);
   groupEnd();

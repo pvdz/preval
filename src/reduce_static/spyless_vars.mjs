@@ -80,7 +80,7 @@ function _spylessVars(fdata) {
 
       if (VERBOSE_TRACING) {
         vlog('Before:', DIM, tmat(varNode,true), RESET, ', from:', oldIndex);
-        vlog('After :', DIM, tmat(oldBody[oldIndex],true), RESET, 'same?', oldBody[oldIndex] === varNode);
+        vlog('After :', DIM, oldBody[oldIndex] ? tmat(oldBody[oldIndex],true) : ';', RESET, 'same?', oldBody[oldIndex] === varNode);
       }
 
       if (oldBody[oldIndex] !== varNode) ++changed;

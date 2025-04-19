@@ -124,40 +124,40 @@ export const pcodeSupportedBuiltinFuncs = new Set([
 
   // Note: some of the math props are questionable due to rounding errors and lossy serialization of complex floats
   symbo('Math', 'abs'),
-  symbo('Math', 'acos'),
-  symbo('Math', 'acosh'),
-  symbo('Math', 'asin'),
-  symbo('Math', 'asinh'),
-  symbo('Math', 'atan'),
-  symbo('Math', 'atan2'),
-  symbo('Math', 'atanh'),
-  symbo('Math', 'cbrt'),
+  //symbo('Math', 'acos'),
+  //symbo('Math', 'acosh'),
+  //symbo('Math', 'asin'),
+  //symbo('Math', 'asinh'),
+  //symbo('Math', 'atan'),
+  //symbo('Math', 'atan2'),
+  //symbo('Math', 'atanh'),
+  //symbo('Math', 'cbrt'),
   symbo('Math', 'ceil'),
   symbo('Math', 'clz32'),
-  symbo('Math', 'cos'),
-  symbo('Math', 'cosh'),
-  symbo('Math', 'exp'),
-  symbo('Math', 'expm1'),
+  //symbo('Math', 'cos'),
+  //symbo('Math', 'cosh'),
+  //symbo('Math', 'exp'),
+  //symbo('Math', 'expm1'),
   symbo('Math', 'f16round'),
   symbo('Math', 'floor'), // Static built-in
   symbo('Math', 'fround'),
-  symbo('Math', 'hypot'),
+  //symbo('Math', 'hypot'),
   symbo('Math', 'imul'),
-  symbo('Math', 'log'),
-  symbo('Math', 'log10'),
-  symbo('Math', 'log1p'),
-  symbo('Math', 'log2'),
+  //symbo('Math', 'log'),
+  //symbo('Math', 'log10'),
+  //symbo('Math', 'log1p'),
+  //symbo('Math', 'log2'),
   symbo('Math', 'max'),
   symbo('Math', 'min'),
-  symbo('Math', 'pow'),
+  //symbo('Math', 'pow'),
   symbo('Math', 'random'), // we can fake this with a prng, fails if the prngSeed is zero
   symbo('Math', 'round'),
   symbo('Math', 'sign'),
-  symbo('Math', 'sin'),
-  symbo('Math', 'sinh'),
-  symbo('Math', 'sqrt'),
-  symbo('Math', 'tan'),
-  symbo('Math', 'tanh'),
+  //symbo('Math', 'sin'),
+  //symbo('Math', 'sinh'),
+  //symbo('Math', 'sqrt'),
+  //symbo('Math', 'tan'),
+  //symbo('Math', 'tanh'),
   symbo('Math', 'trunc'),
 
   SYMBOL_COERCE, // Preval special func
@@ -1119,6 +1119,9 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         case symbo('Math', 'abs'):  {
           const r = Math.abs(...arr);
           vlog('Math.abs(', ...arr, ') =', [r]);
+          if (!Object.is((parseFloat(String(r)), r))) {
+            return
+          }
           return r;
         }
         case symbo('Math', 'acos'): {

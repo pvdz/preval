@@ -32,8 +32,9 @@ $(i);
 
 `````js filename=intro
 const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const a /*:number*/ = $$0;
+  const n /*:number*/ = $$0;
   debugger;
+  const a /*:number*/ = $Math_pow(n, 2);
   const b /*:number*/ = a / 2;
   const tmpRet /*:string*/ = $coerce(b, `string`);
   return tmpRet;
@@ -41,9 +42,8 @@ const tmpFree /*:(number)=>string*/ = function $free($$0) {
 let i /*:number*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const r /*:unknown*/ = $(i);
-  const n /*:number*/ = r * 1;
-  const a$1 /*:number*/ = $dotCall($Math_pow, Math, `pow`, n, 2);
-  const c /*:string*/ = $frfr(tmpFree, a$1);
+  const n$1 /*:number*/ = r * 1;
+  const c /*:string*/ = $frfr(tmpFree, n$1);
   $(i, c);
   i = i + 1;
   const tmpIfTest /*:boolean*/ = i > 10;
@@ -60,13 +60,13 @@ $(i);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(a) {
-  const tmpRet = $coerce(a / 2, `string`);
+const tmpFree = function $free(n) {
+  const tmpRet = $coerce($Math_pow(n, 2) / 2, `string`);
   return tmpRet;
 };
 let i = 0;
 while (true) {
-  $(i, $frfr(tmpFree, $dotCall($Math_pow, Math, `pow`, $(i) * 1, 2)));
+  $(i, $frfr(tmpFree, $(i) * 1));
   i = i + 1;
   if (i > 10) {
     break;
@@ -83,24 +83,24 @@ With rename=true
 const a = function b($$0 ) {
   const c = $$0;
   debugger;
-  const d = c / 2;
-  const e = $coerce( d, "string" );
-  return e;
+  const d = $Math_pow( c, 2 );
+  const e = d / 2;
+  const f = $coerce( e, "string" );
+  return f;
 };
-let f = 0;
+let g = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = $( f );
-  const h = g * 1;
-  const i = $dotCall( $Math_pow, Math, "pow", h, 2 );
+  const h = $( g );
+  const i = h * 1;
   const j = k( a, i );
-  $( f, j );
-  f = f + 1;
-  const l = f > 10;
+  $( g, j );
+  g = g + 1;
+  const l = g > 10;
   if (l) {
     break;
   }
 }
-$( f );
+$( g );
 `````
 
 

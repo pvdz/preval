@@ -29,14 +29,14 @@ $(rngstr());
 `````fileintro
 rngstr =
     [ r0 = $Math_random - ]
-    [ r1 dotcall $Math_random {r2 -} ]
-    [ r3 * r1 - - 62 ]
-    [ r4 = $Math_floor - ]
-    [ r5 dotcall $Math_floor {r2 -} r3 - ]
-    [ r6 = $string_charAt - ]
-    [ r7 dotcall $string_charAt {- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"} r5 - ]
-    [ r8 call $coerce {- undefined} r7 - - "plustr" ]
-    [ return r8 - ]
+    [ r1 call $Math_random {- undefined} ]
+    [ r2 * r1 - - 62 ]
+    [ r3 = $Math_floor - ]
+    [ r4 call $Math_floor {- undefined} r2 - ]
+    [ r5 = $string_charAt - ]
+    [ r6 dotcall $string_charAt {- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"} r4 - ]
+    [ r7 call $coerce {- undefined} r6 - - "plustr" ]
+    [ return r7 - ]
 `````
 
 

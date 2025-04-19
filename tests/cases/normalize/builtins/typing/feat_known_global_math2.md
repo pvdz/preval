@@ -117,13 +117,13 @@ $( "number" );
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Math_imul
 - (todo) type trackeed tricks can possibly support static $Math_cos
 - (todo) type trackeed tricks can possibly support static $Math_cosh
 - (todo) type trackeed tricks can possibly support static $Math_exp
 - (todo) type trackeed tricks can possibly support static $Math_expm1
 - (todo) type trackeed tricks can possibly support static $Math_floor
 - (todo) type trackeed tricks can possibly support static $Math_fround
-- (todo) type trackeed tricks can possibly support static $Math_imul
 - (todo) type trackeed tricks can possibly support static $Math_log
 
 

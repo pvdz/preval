@@ -512,17 +512,13 @@ export const BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING = new Set([
 // TODO: merge the context free lists above into this one
 // List of builtins that ignore their `this` value
 export const BUILTIN_FUNC_NO_CTX = new Set([
+  ...BUILTIN_FUNCS_NO_CTXT_NON_COERCE,
+  ...BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER,
+  ...BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING,
   symbo('Number', 'parseInt'),
-  symbo('Number', 'parseFloat'),
-  symbo('Number', 'isNaN'),
-  symbo('Number', 'isInteger'),
-  symbo('Number', 'isSafeInteger'),
-  symbo('Number', 'isFinite'),
-  //symbo('Math', 'pow'),
-  //symbo('Object', 'is'),
-  symbo('Array', 'isArray'),
+  symbo('Math', 'pow'), // Not part of the list above...
+  symbo('Object', 'is'),
   symbo('Array', 'from'),
-  symbo('Array', 'of'),
   symbo('Buffer', 'from'),
   symbo('String', 'fromCharCode'),
   symbo('String', 'fromCodePoint'),

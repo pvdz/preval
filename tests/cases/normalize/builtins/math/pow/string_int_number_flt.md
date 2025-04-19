@@ -17,7 +17,7 @@ $(Math.pow('3', 5.7));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:number*/ = $dotCall($Math_pow, Math, `pow`, `3`, 5.7);
+const tmpCalleeParam /*:number*/ = $Math_pow(`3`, 5.7);
 $(tmpCalleeParam);
 `````
 
@@ -26,7 +26,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$($dotCall($Math_pow, Math, `pow`, `3`, 5.7));
+$($Math_pow(`3`, 5.7));
 `````
 
 
@@ -34,7 +34,7 @@ $($dotCall($Math_pow, Math, `pow`, `3`, 5.7));
 With rename=true
 
 `````js filename=intro
-const a = $dotCall( $Math_pow, Math, "pow", "3", 5.7 );
+const a = $Math_pow( "3", 5.7 );
 $( a );
 `````
 

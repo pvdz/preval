@@ -26,10 +26,10 @@ $(rng());
 `````fileintro
 rng =
     [ r0 = $Math_random - ]
-    [ r1 dotcall $Math_random {r2 -} ]
-    [ r3 = $Math_floor - ]
-    [ r4 dotcall $Math_floor {r2 -} r1 - ]
-    [ return r4 - ]
+    [ r1 call $Math_random {- undefined} ]
+    [ r2 = $Math_floor - ]
+    [ r3 call $Math_floor {- undefined} r1 - ]
+    [ return r3 - ]
 `````
 
 

@@ -21,7 +21,7 @@ while (true) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const rnd /*:number*/ = $dotCall($Math_random, Math, `random`);
+  const rnd /*:number*/ = $Math_random();
   $(rnd);
 }
 `````
@@ -32,7 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while (true) {
-  $($dotCall($Math_random, Math, `random`));
+  $($Math_random());
 }
 `````
 
@@ -42,7 +42,7 @@ With rename=true
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = $dotCall( $Math_random, Math, "random" );
+  const a = $Math_random();
   $( a );
 }
 `````
@@ -52,8 +52,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) type trackeed tricks can possibly support static $Math_random
-- (todo) Support referencing this builtin in isFree: Math
-- (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) Support this ident in isFree CallExpression: $Math_random
 
 
 ## Globals

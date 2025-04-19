@@ -76,7 +76,7 @@ import { selfAssignClosure } from '../reduce_static/self_assign_closure.mjs';
 import { selfAssignNoop } from '../reduce_static/self_assign_noop.mjs';
 import { letAliasing } from '../reduce_static/let_aliase.mjs';
 import { aliasedGlobals } from '../reduce_static/aliasing_globals.mjs';
-import { dotCall } from '../reduce_static/dotcall.mjs';
+import { simplifyDotCall } from '../reduce_static/dotcall.mjs';
 import { testingAlias } from '../reduce_static/testing_alias.mjs';
 import { aliasIfIf } from '../reduce_static/alias_if_if.mjs';
 import { removeUnusedConstants } from '../reduce_static/remove_unused_constants.mjs';
@@ -237,7 +237,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
   const action = (
     redundantInit(fdata) ||
     dotcallSelfAssigning(fdata) || // This is a real fast one, it only walks the dotcalls
-    freeFuncs(fdata, prng, !!options.prngSeed) || // Do this first...?
+    freeFuncs(fdata, prng, !!options.prngSeed, false) || // Do this first...?
     frfrTricks(fdata) ||
 
     coercials(fdata) ||
@@ -255,7 +255,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     constAliasing(fdata) ||
     aliasedGlobals(fdata) ||
     freeNested(fdata, prng, !!options.prngSeed) || // I think it's fine to do this early
-    dotCall(fdata) ||
+    simplifyDotCall(fdata) ||
     assignHoisting(fdata) ||
     ifFlipping(fdata) ||
     staticLets(fdata) ||

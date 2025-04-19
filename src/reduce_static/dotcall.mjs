@@ -6,12 +6,11 @@
 // For certain values and builtins we can assert what they're doing, though.
 
 import { NUMBER, BOOLEAN, STRING, OBJECT, ARRAY, DATE, FUNCTION, $JSON, MATH, REGEXP, symbo, sym_prefix, BUFFER, } from '../symbols_builtins.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import globalNames from '../globals.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
-export function dotCall(fdata) {
+export function simplifyDotCall(fdata) {
   group('\n\n\nTrying to simplify $dotCall occurrences\n');
   const r = _dotCall(fdata);
   groupEnd();
@@ -30,7 +29,7 @@ function _dotCall(fdata) {
 
     ASSERT(read.parentNode.arguments.length >= 3, '$dotcall should have at least a func, context, and prop arg.', read.parentNode, read.parentNode.arguments);
     const funcArg = read.parentNode.arguments[0];
-    ASSERT(funcArg.type === 'Identifier', 'first arg to $dotcall should be a reference to a function', read.parentNode, read.parentNode.arguments);
+    if (funcArg.type !== 'Identifier') return todo(`first arg to $dotcall should be a reference to a function: ${funcArg.type}`, read.parentNode, read.parentNode.arguments);
     const context = read.parentNode.arguments[1];
     ASSERT(read.parentNode.arguments.length >= 3, 'the new $dotcall should have 3+ args', read.grandNode);
     ASSERT(AST.isPrimitive(read.parentNode.arguments[2]), 'third param to $dotcall should be a primitive', read.parentNode, read.parentNode.arguments);

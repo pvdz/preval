@@ -122,26 +122,29 @@ function _arrSpreads(fdata) {
 
               // Any ident needs to be cached (if they're lets, they might be changed. And otherwise it will be cleaned up)
               const tmpVarNodes = [];
-              const newElements = arrNodeBeingSpreaded.elements.map((enode) => {
-                if (enode === null) {
+              const newElements = [];
+              for (let n=0; n<arrNodeBeingSpreaded.elements.length; ++n) {
+                const enode = arrNodeBeingSpreaded.elements[n];
+                if (!enode) {
                   // The holes get plugged. (`[1, [,,2], 3]` -> `[1, undefined, undefined, 2, 3]`)
-                  return AST.identifier('undefined');
+                  newElements.push(AST.identifier('undefined'));
                 }
-                if (enode.type === 'Identifier') {
+                else if (enode.type === 'Identifier') {
                   // Cache this
                   const tmpName = createFreshVar('arrEl', fdata);
                   const varNode = AST.varStatement('const', tmpName, AST.cloneSimple(enode));
                   tmpVarNodes.push(varNode);
                   const finalNode = AST.identifier(tmpName);
 
-                  return finalNode;
-                } else {
+                  newElements.push(finalNode);
+                }
+                else {
                   // Clone this simple node (literal or whatever)
                   const finalNode = AST.cloneSimple(enode);
 
-                  return finalNode;
+                  newElements.push(finalNode);
                 }
-              });
+              }
 
               nodes.splice(spreadOffset, 1, ...newElements);
               // The parent array of  is either a statement, assignment, or var init

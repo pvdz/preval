@@ -25,15 +25,15 @@ import {
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
-export function noopTry(fdata) {
-  group('\n\n\nLooking for statements inside a try that can not throw\n');
+export function tryHoisting(fdata) {
+  group('\n\n\nLooking for statements inside a try that can not throw and hoist them out\n');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _noopTry(fdata);
+  const r = _tryHoisting(fdata);
   groupEnd();
   return r;
 }
-function _noopTry(fdata) {
+function _tryHoisting(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
   const queue = [];
@@ -130,7 +130,7 @@ function _noopTry(fdata) {
   }
 
   if (queue.length) {
-    vlog('Running', queue.length, 'inliners now');
+    vlog('Running queue:', queue.length, 'items');
     queue.sort(({ index: a }, { index: b }) => b - a);
     queue.forEach(({ node, blockBody, blockIndex }) => {
       // Given a try node and its parent body, keep taking the first node away from its block and moving it
@@ -151,9 +151,9 @@ function _noopTry(fdata) {
       after(blockBody.slice(offset, blockIndex + 1));
     });
 
-    log('Try statements updated:', queue.length, '. Restarting from phase1 to fix up read/write registry');
-    return {what: 'noopTry', changes: queue.length, next: 'phase1'};
+    log('Statements hoisted out of try:', queue.length, '. Restarting from phase1 to fix up read/write registry');
+    return {what: 'tryHoisting', changes: queue.length, next: 'phase1'};
   }
 
-  log('Try statements updated:', 0, '.');
+  log('Statements hoisted out of try:', 0, '.');
 }

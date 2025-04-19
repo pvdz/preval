@@ -69,7 +69,7 @@ import { functionLocks } from '../reduce_static/function_locks.mjs';
 import { readOnce } from '../reduce_static/read_once.mjs';
 import { ifTestOnly } from '../reduce_static/if_test_only.mjs';
 import { functionSplitting } from '../reduce_static/function_splitting.mjs';
-import { noopTry } from '../reduce_static/noop_try.mjs';
+import { tryHoisting } from '../reduce_static/try_hoisting.mjs';
 import { implicitThis } from '../reduce_static/implicit_this.mjs';
 import { expandoSplitting } from '../reduce_static/expando_splitting.mjs';
 import { selfAssignClosure } from '../reduce_static/self_assign_closure.mjs';
@@ -328,7 +328,7 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     readOnce(fdata) ||
     ifTestOnly(fdata) ||
     functionSplitting(fdata) ||
-    noopTry(fdata) ||
+    tryHoisting(fdata) ||
     implicitThis(fdata, options.implicitThisIdent) ||
     expandoSplitting(fdata) ||
     selfAssignClosure(fdata) ||

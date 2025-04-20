@@ -20,7 +20,7 @@ $('out:', y);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(false);
-const x /*:boolean*/ = Boolean(tmpCalleeParam);
+const x /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
 const y /*:boolean*/ = !x;
 $(`out:`, y);
 `````
@@ -30,7 +30,7 @@ $(`out:`, y);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = Boolean($(false));
+const x = $boolean_constructor($(false));
 $(`out:`, !x);
 `````
 
@@ -40,7 +40,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( false );
-const b = Boolean( a );
+const b = $boolean_constructor( a );
 const c = !b;
 $( "out:", c );
 `````
@@ -49,7 +49,7 @@ $( "out:", c );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

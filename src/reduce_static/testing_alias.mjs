@@ -6,6 +6,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import {cloneSimple} from "../ast.mjs"
+import { symbo } from '../symbols_builtins.mjs';
 
 export function testingAlias(fdata) {
   group('\n\n\n[testingAlias] Looking for bindings only used as if-test bools and an alias to another var\n');
@@ -33,7 +34,7 @@ function _testingAlias(fdata) {
           read.parentProp === 'arguments' &&
           read.parentNode['arguments'][0] === read.node &&
           read.parentNode.callee.type === 'Identifier' &&
-          read.parentNode.callee.name === 'Boolean'
+          read.parentNode.callee.name === symbo('boolean', 'constructor')
         ) {
           // Boolean(x) does not evaluate x, only abstract testing (same as !)
           return;

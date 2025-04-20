@@ -24,6 +24,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function ifTestFolding(fdata) {
   group('\n\n\n[ifTestFolding] Searching for ifs where the branches reflect the test\n');
@@ -100,7 +101,7 @@ function _ifTestFolding(fdata) {
                 ? AST.unaryExpression('!', AST.cloneSimple(node.test))
                 : testIsBool
                 ? AST.cloneSimple(node.test)
-                : AST.callExpression('Boolean', [AST.cloneSimple(node.test)]),
+                : AST.callExpression(symbo('boolean', 'constructor'), [AST.cloneSimple(node.test)]),
             ),
           );
           parentNode[parentProp][parentIndex] = finalNode;
@@ -160,7 +161,7 @@ function _ifTestFolding(fdata) {
               AST.varStatement(
                 'const',
                 tmpName,
-                flip ? AST.unaryExpression('!', AST.cloneSimple(node.test)) : AST.callExpression('Boolean', [AST.cloneSimple(node.test)]),
+                flip ? AST.unaryExpression('!', AST.cloneSimple(node.test)) : AST.callExpression(symbo('boolean', 'constructor'), [AST.cloneSimple(node.test)]),
               ),
               AST.returnStatement(AST.identifier(tmpName)),
             ];

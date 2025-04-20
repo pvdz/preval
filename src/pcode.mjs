@@ -61,16 +61,19 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   //'eval', // dangerous
   'isFinite',
   //'Array', // returns object
+  symbo('boolean', 'constructor'),
   'Boolean',
   //'Date', // returns object
   //'Error', // returns object
   //'JSON', // Cant call this
   //'Math', // Cant call this
   //'Map', // returns object
+  symbo('number', 'constructor'),
   'Number',
   //'Object', // returns object
   //'RegExp', // returns object
   //'Set', // returns object
+  symbo('string', 'constructor'),
   'String',
   //'Function', // returns object
 
@@ -84,6 +87,7 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   'btoa',
   'atob',
 
+  symbo('boolean', 'constructor'),
   symbo('boolean', 'toString'),
   symbo('boolean', 'valueOf'),
 
@@ -1326,15 +1330,18 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         case symbo('Number', 'isSafeInteger'):
           return Number.isSafeInteger(...arr);
         //case 'Array':
+        case symbo('boolean', 'constructor'):
         case 'Boolean': return Boolean(...arr);
         //case 'Date':
         //case 'Error':
         //case 'JSON':
         //case 'Map':
+        case symbo('number', 'constructor'):
         case 'Number': return Number(...arr);
         //case 'Object':
         //case 'RegExp':
         //case 'Set':
+        case symbo('string', 'constructor'):
         case 'String': return String(...arr);
         case 'Function': throw new Error('Do not call `Function`');
 

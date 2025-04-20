@@ -446,8 +446,8 @@ function processAttempt(fdata, queue) {
         }
 
         switch (callee) {
-          case 'String':
-          case 'Number': {
+          case symbo('string', 'constructor'):
+          case symbo('number', 'constructor'): {
             ASSERT(false, 'string and number constructors should be replaced by $coerce during normalization');
             break;
           }
@@ -484,7 +484,7 @@ function processAttempt(fdata, queue) {
             }
             break;
           }
-          case 'Boolean': {
+          case symbo('boolean', 'constructor'): {
             rule('An array literal called on Boolean always returns true');
             example('const x = [1, 2, 3]; f(Boolean(x));', 'const x = [1, 2, 3]; f(true);');
             before(read.node, read.blockBody[read.blockIndex]);

@@ -33,7 +33,7 @@ const x /*:boolean*/ = a === 67636;
 if (x) {
   $(true);
 } else {
-  const tmpBool /*:boolean*/ = Boolean($);
+  const tmpBool /*:boolean*/ = $boolean_constructor($);
   $(tmpBool);
 }
 `````
@@ -46,7 +46,7 @@ if (x) {
 if ($(67637) === 67636) {
   $(true);
 } else {
-  $(Boolean($));
+  $($boolean_constructor($));
 }
 `````
 
@@ -61,7 +61,7 @@ if (b) {
   $( true );
 }
 else {
-  const c = Boolean( $ );
+  const c = $boolean_constructor( $ );
   $( c );
 }
 `````
@@ -70,7 +70,7 @@ else {
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

@@ -37,7 +37,7 @@ $(new x().y());
 
 
 `````js filename=intro
-const tmpClassSuper /*:unknown*/ = $(String);
+const tmpClassSuper /*:unknown*/ = $($string_constructor);
 const tmpClassComputedKey /*:unknown*/ = $(`f`);
 const x /*:class*/ = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
@@ -84,7 +84,7 @@ $(tmpCalleeParam$5);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClassSuper = $(String);
+const tmpClassSuper = $($string_constructor);
 const tmpClassComputedKey = $(`f`);
 const x = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
@@ -119,7 +119,7 @@ $(tmpMCOO$5.y());
 With rename=true
 
 `````js filename=intro
-const a = $( String );
+const a = $( $string_constructor );
 const b = $( "f" );
 const c = class   {
 [ b ](  ) {

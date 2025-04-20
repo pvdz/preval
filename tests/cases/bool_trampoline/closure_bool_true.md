@@ -35,7 +35,7 @@ $(x);
 const f /*:()=>boolean*/ = function () {
   debugger;
   x = $(1);
-  const y /*:boolean*/ = Boolean(x);
+  const y /*:boolean*/ = $boolean_constructor(x);
   return y;
 };
 let x /*:unknown*/ = 1;
@@ -58,7 +58,7 @@ if (x) {
 `````js filename=intro
 const f = function () {
   x = $(1);
-  const y = Boolean(x);
+  const y = $boolean_constructor(x);
   return y;
 };
 let x = 1;
@@ -82,7 +82,7 @@ With rename=true
 const a = function() {
   debugger;
   b = $( 1 );
-  const c = Boolean( b );
+  const c = $boolean_constructor( b );
   return c;
 };
 let b = 1;
@@ -103,7 +103,7 @@ else {
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

@@ -7,6 +7,7 @@
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function ifFlipping(fdata) {
   group('\n\n\n[ifFlipping] Finding inverted if tests and flip them\n');
@@ -76,7 +77,7 @@ function _ifFlipping(fdata) {
       if (
         write.parentNode.init.type === 'CallExpression' &&
         write.parentNode.init.callee.type === 'Identifier' &&
-        write.parentNode.init.callee.name === 'Boolean'
+        write.parentNode.init.callee.name === symbo('boolean', 'constructor')
       ) {
         const arg = write.parentNode.init['arguments'].length && write.parentNode.init['arguments'][0];
         if (arg?.type === 'Identifier' && !AST.isPrimitive(arg)) {
@@ -230,7 +231,7 @@ function _ifFlipping(fdata) {
       prevNode.id.name === testName &&
       prevNode.init.type === 'CallExpression' &&
       prevNode.init.callee.type === 'Identifier' &&
-      prevNode.init.callee.name === 'Boolean'
+      prevNode.init.callee.name === symbo('boolean', 'constructor')
     ) {
       // The statement before this `if` statement was the var decl on which is being tested and the name is just a boolean alias.
       // While the binding may still change later on, it can not have between the var decl and the `if`, and `Boolean()` is also not observable

@@ -20,6 +20,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function globalCasting(fdata) {
   group('\n\n\n[globalCasting] Searching for calls to global builtins that cast their arg\n');
@@ -37,7 +38,7 @@ function _globalCasting(fdata) {
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (!meta.isBuiltin) return;
-    if (!['Boolean', SYMBOL_COERCE].includes(name)) return;
+    if (![symbo('boolean', 'constructor'), SYMBOL_COERCE].includes(name)) return;
 
     vgroup('- Checking an explicit cast using `' + name + '()` (', meta.reads.length, 'reads)');
     process(fdata, meta, name, queue);
@@ -64,20 +65,20 @@ function process(fdata, meta, name, queue) {
 
     const args = read.parentNode['arguments'];
     ASSERT(
-      name === 'Boolean' || args.length === 2,
+      name === symbo('boolean', 'constructor') || args.length === 2,
       'We completely control $coerce and it should always have exactly two args',
       read.parentNode,
     );
     const kind = name === SYMBOL_COERCE ? AST.getPrimitiveValue(args[1]) : 'boolean';
 
     if (args.length === 0) {
-      ASSERT(name === 'Boolean');
+      ASSERT(name === symbo('boolean', 'constructor'), '(should not be coerce, and not be Boolean)');
       vlog('  - Queuing for argless call to Boolean()');
       queue.push({
         pid: +read.parentNode.$p.pid,
         func: () => {
           rule('Calling `Boolean()` without args results a `false`');
-          example('Boolean()', 'false', () => name === 'Boolean');
+          example('Boolean()', 'false');
           before(read.parentNode, read.blockBody[read.blockIndex]);
 
           const finalNode = AST.fals();
@@ -100,9 +101,7 @@ function process(fdata, meta, name, queue) {
             if (kind === 'number') rule('Calling `$coerce(x, "number")` on a value that we know must be a number is a noop');
             if (kind === 'string') rule('Calling `$coerce(x, "string")` on a value that we know must be a string is a noop');
             if (kind === 'plustr') rule('Calling `$coerce(x, "plustr")` on a value that we know must be a string is a noop');
-            example('const x = a === b; f(Boolean(x));', 'const x = a === b; f(x);', () => name === 'Boolean');
-            example('const x = +a; f(Number(x));', 'const x = +a; f(x);', () => kind === 'number');
-            example('const x = ""+a; f(String(x));', 'const x = ""+a; f(x);', () => kind === 'string' || kind === 'plustr');
+            example('const x = a === b; f(Boolean(x));', 'const x = a === b; f(x);');
             before(read.parentNode, read.blockBody[read.blockIndex]);
 
             if (read.grandIndex < 0) read.grandNode[read.grandProp] = arg;

@@ -377,7 +377,7 @@ export const MATH = new Map([
 
 // The only exception to the static<>instance mapping: RegExp <> regex :grimmace:
 export const REGEXP = new Map([
-  [symbo('RegExp', 'prototype'), {prop: 'prototype', isProto: false, typings: { sname: symbo('RegExp', 'prototype'), mustBeType: 'array', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('RegExp', 'prototype'), {prop: 'prototype', isProto: false, typings: { sname: symbo('RegExp', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
 
   // Note: there are some legacy static props that mdn lists. I don't think we should try to support them. Not worth the squeeze.
   [symbo('RegExp', 'escape'), {prop: 'escape', isProto: false, typings: { sname: symbo('RegExp', 'escape'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
@@ -388,6 +388,60 @@ export const REGEXP = new Map([
   [symbo('regex', 'test'),        {prop: 'test',  isProto: true, typings: { sname: symbo('regex', 'test'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
   [symbo('regex', 'toString'),    {prop: 'toString',  isProto: true, typings: { sname: symbo('regex', 'toString'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'function' }}],
   // Note: there are a bunch of instance properties available like, flags, global, hasIndices, etc. Not sure if they need to be exposed here. TBD
+]);
+
+
+/**
+ *      Map
+ */
+
+
+export const MAP = new Map([
+  [symbo('Map', 'prototype'), {prop: 'prototype', isProto: false, typings: { sname: symbo('Map', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('Map', 'groupBy'),   {prop: 'groupBy', isProto: false, typings:   { sname: symbo('Map', 'groupBy'),   mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'map' }}],
+
+  [symbo('map', 'clear'),        {prop: 'clear',        isProto: true, typings: { sname: symbo('map', 'clear'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}],
+  [symbo('map', 'constructor'),  {prop: 'constructor',  isProto: true, typings: { sname: symbo('map', 'constructor'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'map' }}],
+  [symbo('map', 'delete'),       {prop: 'delete',       isProto: true, typings: { sname: symbo('map', 'delete'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('map', 'entries'),      {prop: 'entries',      isProto: true, typings: { sname: symbo('map', 'entries'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'iterator' }}],
+  [symbo('map', 'forEach'),      {prop: 'forEach',      isProto: true, typings: { sname: symbo('map', 'forEach'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}],
+  [symbo('map', 'get'),          {prop: 'get',          isProto: true, typings: { sname: symbo('map', 'get'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: false }}],
+  [symbo('map', 'has'),          {prop: 'has',          isProto: true, typings: { sname: symbo('map', 'has'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('map', 'keys'),         {prop: 'keys',         isProto: true, typings: { sname: symbo('map', 'keys'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'iterator' }}],
+  [symbo('map', 'set'),          {prop: 'set',          isProto: true, typings: { sname: symbo('map', 'set'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'map' }}],
+  [symbo('map', 'values'),       {prop: 'values',       isProto: true, typings: { sname: symbo('map', 'values'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'iterator' }}],
+
+  // Static: .size (treat like array.length)
+]);
+
+
+/**
+ *      Set
+ */
+
+
+export const SET = new Map([
+  [symbo('Set', 'prototype'), {prop: 'prototype', isProto: false, typings: { sname: symbo('Set', 'prototype'), mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+
+  [symbo('set', 'add'),          {prop: 'add',          isProto: true, typings: { sname: symbo('set', 'add'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'set' }}],
+  [symbo('set', 'constructor'),  {prop: 'constructor',  isProto: true, typings: { sname: symbo('set', 'constructor'), mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'set' }}],
+  [symbo('set', 'clear'),        {prop: 'clear',        isProto: true, typings: { sname: symbo('set', 'clear'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}],
+  [symbo('set', 'delete'),       {prop: 'delete',       isProto: true, typings: { sname: symbo('set', 'delete'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('set', 'difference'),   {prop: 'difference',   isProto: true, typings: { sname: symbo('set', 'difference'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'set' }}],
+  [symbo('set', 'entries'),      {prop: 'entries',      isProto: true, typings: { sname: symbo('set', 'entries'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'iterator' }}],
+  [symbo('set', 'forEach'),      {prop: 'forEach',      isProto: true, typings: { sname: symbo('set', 'forEach'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'undefined' }}],
+  [symbo('set', 'has'),          {prop: 'has',          isProto: true, typings: { sname: symbo('set', 'has'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('set', 'intersection'), {prop: 'intersection', isProto: true, typings: { sname: symbo('set', 'intersection'),mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'set' }}],
+  [symbo('set', 'isDisjointFrom'),{prop: 'isDisjointFrom',isProto: true, typings: { sname: symbo('set', 'isDisjointFrom'),mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('set', 'isSubsetOf'),   {prop: 'isSubsetOf',   isProto: true, typings: { sname: symbo('set', 'isSubsetOf'),  mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('set', 'isSupersetOf'), {prop: 'isSupersetOf', isProto: true, typings: { sname: symbo('set', 'isSupersetOf'),mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'boolean' }}],
+  [symbo('set', 'keys'),         {prop: 'keys',         isProto: true, typings: { sname: symbo('set', 'keys'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'iterator' }}],
+  [symbo('set', 'symmetricDifference'),{prop: 'symmetricDifference',isProto: true, typings: { sname: symbo('set', 'symmetricDifference'),mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'set' }}],
+  [symbo('set', 'set'),          {prop: 'set',          isProto: true, typings: { sname: symbo('set', 'set'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'map' }}],
+  [symbo('set', 'values'),       {prop: 'values',       isProto: true, typings: { sname: symbo('set', 'values'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'iterator' }}],
+  [symbo('set', 'union'),        {prop: 'union',        isProto: true, typings: { sname: symbo('set', 'union'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'set' }}],
+
+  // Static: .size (treat like array.length)
 ]);
 
 
@@ -415,6 +469,25 @@ export const BUFFER = new Map([
 export const GLOBAL_NAMESPACES_FOR_STATIC_METHODS = new Set([
   'Boolean', 'Number', 'String', 'Array', 'Object', 'Date', 'Function', 'JSON', 'Math', 'RegExp', 'Buffer', 'Map', 'Set',
 ]);
+/** @var {Map<string, symbol>} */
+export const BUILTIN_CLASSES_TO_SYMBOL = new Map([
+  ['Boolean', symbo('boolean', 'constructor')],
+  ['Number', symbo('number', 'constructor')],
+  ['String', symbo('string', 'constructor')],
+  ['Array', symbo('array', 'constructor')],
+  ['Object', symbo('object', 'constructor')],
+  ['Date', symbo('date', 'constructor')],
+  ['Function', symbo('function', 'constructor')],
+  ['RegExp', symbo('regex', 'constructor')],
+  ['Buffer', symbo('buffer', 'constructor')],
+  ['Map', symbo('map', 'constructor')],
+  ['Set', symbo('set', 'constructor')],
+]);
+// string_constructor -> String
+export const BUILTIN_SYMBOL_TO_CLASSES = new Map(
+  [...BUILTIN_CLASSES_TO_SYMBOL.entries()].map(([key, value]) => [value, key])
+);
+
 
 /**
  *      Aggregates
@@ -432,8 +505,10 @@ export const BUILTIN_SYMBOLS = new Map([
   Array.from($JSON.entries()),
   Array.from(MATH.entries()),
   Array.from(REGEXP.entries()),
+  Array.from(MAP.entries()),
+  Array.from(SET.entries()),
   Array.from(BUFFER.entries()),
-  // Map, Set, WeakMap, WeakSet, AraryBuffer, etc?
+  // WeakMap, WeakSet, AraryBuffer, etc?
 ].flat());
 
 // Resolve the prototype symbol to its instance string
@@ -453,6 +528,7 @@ export const protoToInstName = new Map([
 
 // These methods do not trigger side effects, they don't coerce their args (ignore them, or only test them verbatim)
 export const BUILTIN_FUNCS_NO_CTXT_NON_COERCE = new Set([
+  symbo('boolean', 'constructor'),
   'Boolean',
   symbo('Array', 'isArray'),
   symbo('Array', 'of'),
@@ -504,9 +580,9 @@ export const BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER = new Set([
 export const BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING = new Set([
   'parseFloat',
   'String',
-  symbo('string', 'constructor'),
   symbo('Date', 'parse'),
   symbo('Number', 'parseFloat'),
+  symbo('string', 'constructor'),
 ]);
 
 // TODO: merge the context free lists above into this one

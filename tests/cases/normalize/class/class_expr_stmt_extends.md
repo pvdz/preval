@@ -17,7 +17,7 @@
 
 
 `````js filename=intro
-$(Number);
+$($number_constructor);
 `````
 
 
@@ -25,7 +25,7 @@ $(Number);
 (This ought to be the final result)
 
 `````js filename=intro
-$(Number);
+$($number_constructor);
 `````
 
 
@@ -33,7 +33,7 @@ $(Number);
 With rename=true
 
 `````js filename=intro
-$( Number );
+$( $number_constructor );
 `````
 
 

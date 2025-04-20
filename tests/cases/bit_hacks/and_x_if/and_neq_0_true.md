@@ -20,10 +20,16 @@ $(z);
 
 
 `````js filename=intro
+const tmpFree /*:(number)=>boolean*/ = function $free($$0) {
+  const x$1 /*:number*/ = $$0;
+  debugger;
+  const y /*:number*/ = x$1 & 32768;
+  const tmpRet /*:boolean*/ = $boolean_constructor(y);
+  return tmpRet;
+};
 const tmpUnaryArg /*:unknown*/ = $(1);
 const x /*:number*/ = +tmpUnaryArg;
-const y /*:number*/ = x & 32768;
-const z /*:boolean*/ = Boolean(y);
+const z /*:boolean*/ = $frfr(tmpFree, x);
 $(z);
 `````
 
@@ -32,8 +38,12 @@ $(z);
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpFree = function $free(x$1) {
+  const tmpRet = $boolean_constructor(x$1 & 32768);
+  return tmpRet;
+};
 const tmpUnaryArg = $(1);
-$(Boolean(+tmpUnaryArg & 32768));
+$($frfr(tmpFree, +tmpUnaryArg));
 `````
 
 
@@ -41,18 +51,24 @@ $(Boolean(+tmpUnaryArg & 32768));
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = +a;
-const c = b & 32768;
-const d = Boolean( c );
-$( d );
+const a = function b($$0 ) {
+  const c = $$0;
+  debugger;
+  const d = c & 32768;
+  const e = $boolean_constructor( d );
+  return e;
+};
+const f = $( 1 );
+const g = +f;
+const h = i( a, g );
+$( h );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

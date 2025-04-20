@@ -68,7 +68,35 @@ function core(fdata) {
       return;
     }
 
-    const argName = argNode.name;
+    let argName = argNode.name;
+
+    // Convert to regular name because it's used for serialization
+    switch (argName) {
+      case symbo('boolean', 'constructor'): {
+        argName = 'Boolean';
+        break;
+      }
+      case symbo('array', 'constructor'): {
+        argName = 'Array';
+        break;
+      }
+      case symbo('object', 'constructor'): {
+        argName = 'Object';
+        break;
+      }
+      case symbo('number', 'constructor'): {
+        argName = 'Number';
+        break;
+      }
+      case symbo('string', 'constructor'): {
+        argName = 'String';
+        break;
+      }
+      case symbo('regex', 'constructor'): {
+        argName = 'RegExp';
+        break;
+      }
+    }
 
     // Support some globals. Mostly for jsf*ck cases.
     switch (argName) {
@@ -80,11 +108,6 @@ function core(fdata) {
       case 'RegExp': {
         rule('Adding a builtin constructor to a primitive can be resolved');
         example('f(0 + String);', 'f("0function Array() { [native code] }");', () => argName === 'Array');
-        example('f(0 + String);', 'f("0function Object() { [native code] }");', () => argName === 'Object');
-        example('f(0 + String);', 'f("0function Boolean() { [native code] }");', () => argName === 'Boolean');
-        example('f(0 + String);', 'f("0function Number() { [native code] }");', () => argName === 'Number');
-        example('f(0 + String);', 'f("0function String() { [native code] }");', () => argName === 'String');
-        example('f(0 + String);', 'f("0function RegExp() { [native code] }");', () => argName === 'RegExp');
         before(read.blockBody[read.blockIndex]);
 
         ASSERT(['number', 'string', 'plustr'].includes(kind), 'result is the same no matter the kind', kind);

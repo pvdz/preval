@@ -115,6 +115,7 @@ $( "number" );
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 - (todo) type trackeed tricks can possibly support static $Math_sign
 - (todo) type trackeed tricks can possibly support static $Math_sin
 - (todo) type trackeed tricks can possibly support static $Math_hypot

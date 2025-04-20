@@ -17,7 +17,7 @@ class x extends $(String) {}
 
 
 `````js filename=intro
-$(String);
+$($string_constructor);
 `````
 
 
@@ -25,7 +25,7 @@ $(String);
 (This ought to be the final result)
 
 `````js filename=intro
-$(String);
+$($string_constructor);
 `````
 
 
@@ -33,7 +33,7 @@ $(String);
 With rename=true
 
 `````js filename=intro
-$( String );
+$( $string_constructor );
 `````
 
 

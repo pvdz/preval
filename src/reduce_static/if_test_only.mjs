@@ -4,6 +4,7 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function ifTestOnly(fdata) {
   group('\n\n\n[ifTestOnly] Looking for bindings only used in unobservable boolean testing places\n');
@@ -30,7 +31,7 @@ function _ifTestOnly(fdata) {
         read.parentProp === 'arguments' &&
         read.parentNode['arguments'][0] === read.node &&
         read.parentNode.callee.type === 'Identifier' &&
-        read.parentNode.callee.name === 'Boolean'
+        read.parentNode.callee.name === symbo('boolean', 'constructor')
       ) {
         return;
       }

@@ -18,7 +18,7 @@ $(!!!!!$(1));
 
 `````js filename=intro
 const tmpUnaryArg$7 /*:unknown*/ = $(1);
-const tmpUnaryArg$3 /*:boolean*/ = Boolean(tmpUnaryArg$7);
+const tmpUnaryArg$3 /*:boolean*/ = $boolean_constructor(tmpUnaryArg$7);
 const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg$3;
 $(tmpCalleeParam);
 `````
@@ -28,7 +28,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpUnaryArg$3 = Boolean($(1));
+const tmpUnaryArg$3 = $boolean_constructor($(1));
 $(!tmpUnaryArg$3);
 `````
 
@@ -38,7 +38,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = Boolean( a );
+const b = $boolean_constructor( a );
 const c = !b;
 $( c );
 `````
@@ -47,7 +47,7 @@ $( c );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

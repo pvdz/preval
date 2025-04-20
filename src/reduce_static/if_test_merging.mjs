@@ -24,6 +24,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule
 import * as AST from '../ast.mjs';
 import { isSameFlatStatementExceptBool } from '../utils/is_same_except_bool.mjs';
 import { createFreshVar } from '../bindings.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function ifTestMerging(fdata) {
   group('\n\n\n[ifTestMerging] Finding ifs with bool tests that can hoist statements\n');
@@ -94,7 +95,7 @@ function _ifTestMerging(fdata) {
         tmpName,
         needInverse
           ? AST.unaryExpression('!', AST.identifier(node.test.name))
-          : AST.callExpression('Boolean', [AST.identifier(node.test.name)])
+          : AST.callExpression(symbo('boolean', 'constructor'), [AST.identifier(node.test.name)])
       );
       parentNode.body.splice(parentIndex, 0, tmpNode);
       collect.forEach(({ap, prop}) => {

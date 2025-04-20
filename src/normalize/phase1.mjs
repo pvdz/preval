@@ -45,7 +45,6 @@ import {
 } from '../utils/ref_tracking.mjs';
 import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
-import globalNames from '../globals.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.

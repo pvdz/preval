@@ -10,6 +10,7 @@ import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { PRIMITVE_TYPE_NAMES_NOT_STRING } from '../constants.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function typedComparison(fdata) {
   group('\n\n\n[typedComparison] Checking for predictable strict type comparisons');
@@ -111,7 +112,7 @@ function _typedComparison(fdata) {
         example('f(x !== "");', 'f(!x);');
         before(blockBody[blockIndex]);
 
-        const finalNode = op === '!==' ? AST.callExpression('Boolean', [literalNode]) : AST.unaryExpression('!', literalNode);
+        const finalNode = op === '!==' ? AST.callExpression(symbo('boolean', 'constructor'), [literalNode]) : AST.unaryExpression('!', literalNode);
         if (parentIndex < 0) parentNode[parentProp] = finalNode;
         else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -162,7 +163,7 @@ function _typedComparison(fdata) {
         example('f(x !== "");', 'f(!x);');
         before(blockBody[blockIndex]);
 
-        const finalNode = op === '!==' ? AST.callExpression('Boolean', [identNode]) : AST.unaryExpression('!', identNode);
+        const finalNode = op === '!==' ? AST.callExpression(symbo('boolean', 'constructor'), [identNode]) : AST.unaryExpression('!', identNode);
         if (parentIndex < 0) parentNode[parentProp] = finalNode;
         else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -179,7 +180,7 @@ function _typedComparison(fdata) {
 
         const pv = AST.getPrimitiveValue(primitiveNode);
 
-        const finalNode = pv === (op === '===') ? AST.callExpression('Boolean', [identNode]) : AST.unaryExpression('!', identNode);
+        const finalNode = pv === (op === '===') ? AST.callExpression(symbo('boolean', 'constructor'), [identNode]) : AST.unaryExpression('!', identNode);
         if (parentIndex < 0) parentNode[parentProp] = finalNode;
         else parentNode[parentProp][parentIndex] = finalNode;
 

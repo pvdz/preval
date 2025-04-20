@@ -30,10 +30,10 @@ if (itooamanumberjack) {
 
 
 `````js filename=intro
-const tmpBool /*:boolean*/ = Boolean(imanumberandilovethrees);
+const tmpBool /*:boolean*/ = $boolean_constructor(imanumberandilovethrees);
 const tmpCalleeParam /*:unknown*/ = $(tmpBool);
 imanumberandilovethrees;
-const tmpClusterSSA_itooamanumberjack /*:boolean*/ = Boolean(tmpCalleeParam);
+const tmpClusterSSA_itooamanumberjack /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
 if (tmpCalleeParam) {
   $(`a`, tmpClusterSSA_itooamanumberjack);
 } else {
@@ -46,9 +46,9 @@ if (tmpCalleeParam) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpCalleeParam = $(Boolean(imanumberandilovethrees));
+const tmpCalleeParam = $($boolean_constructor(imanumberandilovethrees));
 imanumberandilovethrees;
-const tmpClusterSSA_itooamanumberjack = Boolean(tmpCalleeParam);
+const tmpClusterSSA_itooamanumberjack = $boolean_constructor(tmpCalleeParam);
 if (tmpCalleeParam) {
   $(`a`, tmpClusterSSA_itooamanumberjack);
 } else {
@@ -61,10 +61,10 @@ if (tmpCalleeParam) {
 With rename=true
 
 `````js filename=intro
-const a = Boolean( imanumberandilovethrees );
+const a = $boolean_constructor( imanumberandilovethrees );
 const b = $( a );
 imanumberandilovethrees;
-const c = Boolean( b );
+const c = $boolean_constructor( b );
 if (b) {
   $( "a", c );
 }
@@ -77,7 +77,7 @@ else {
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

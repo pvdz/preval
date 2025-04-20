@@ -24,7 +24,7 @@ const tmpCalleeParam /*:array*/ = [`toString`];
 const arr /*:unknown*/ = $(tmpCalleeParam);
 $Array_from(arr);
 const tmpMCF$1 /*:unknown*/ = String[arr];
-const xyz /*:unknown*/ = $dotCall(tmpMCF$1, String, undefined);
+const xyz /*:unknown*/ = $dotCall(tmpMCF$1, $string_constructor, undefined);
 $(xyz);
 `````
 
@@ -35,7 +35,7 @@ $(xyz);
 `````js filename=intro
 const arr = $([`toString`]);
 $Array_from(arr);
-$(String[arr]());
+$($dotCall(String[arr], $string_constructor, undefined));
 `````
 
 
@@ -47,7 +47,7 @@ const a = [ "toString" ];
 const b = $( a );
 $Array_from( b );
 const c = String[ b ];
-const d = $dotCall( c, String, undefined );
+const d = $dotCall( c, $string_constructor, undefined );
 $( d );
 `````
 

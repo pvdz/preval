@@ -28,7 +28,7 @@ $(x);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(true);
 const a /*:unknown*/ = $();
-const tmpBool /*:boolean*/ = Boolean(tmpCalleeParam);
+const tmpBool /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
 const tmpClusterSSA_x /*:object*/ = { [a]: 1, b: tmpBool };
 $(tmpClusterSSA_x);
 `````
@@ -40,7 +40,7 @@ $(tmpClusterSSA_x);
 `````js filename=intro
 const tmpCalleeParam = $(true);
 const a = $();
-const tmpBool = Boolean(tmpCalleeParam);
+const tmpBool = $boolean_constructor(tmpCalleeParam);
 $({ [a]: 1, b: tmpBool });
 `````
 
@@ -51,7 +51,7 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 const b = $();
-const c = Boolean( a );
+const c = $boolean_constructor( a );
 const d = {
   [ b ]: 1,
   b: c,
@@ -63,7 +63,7 @@ $( d );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

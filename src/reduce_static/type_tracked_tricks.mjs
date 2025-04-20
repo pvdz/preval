@@ -27,7 +27,12 @@ import {
   SYMBOL_LOOP_UNROLL,
   SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE,
 } from '../symbols_preval.mjs';
-import { BUILTIN_SYMBOLS, BUILTIN_FUNC_NO_CTX, symbo } from '../symbols_builtins.mjs';
+import {
+  BUILTIN_SYMBOLS,
+  BUILTIN_FUNC_NO_CTX,
+  symbo,
+  BUILTIN_SYMBOL_TO_CLASSES,
+} from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode, isNumberValueNode } from '../ast.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
@@ -419,7 +424,7 @@ function _typeTrackedTricks(fdata) {
 
                   // Note: this is normalized code so the arg should be simple at this point
                   // Note: the current node is the bang, not the arg, so we just want to replace in the parent
-                  const finalNode = AST.callExpression('Boolean', [AST.cloneSimple(originalArg)]);
+                  const finalNode = AST.callExpression(symbo('boolean', 'constructor'), [AST.cloneSimple(originalArg)]);
                   if (parentIndex < 0) parentNode[parentProp] = finalNode;
                   else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -874,7 +879,7 @@ function _typeTrackedTricks(fdata) {
                   (
                     linit.type === 'NewExpression' &&
                     linit.callee.type === 'Identifier' &&
-                    ['RegExp', 'Set', 'Map', 'Array', 'String', 'Number', 'Boolean', 'Function', 'Object'].includes(linit.callee.name)
+                    ['RegExp', 'Set', 'Map', 'Array', symbo('string', 'constructor'), symbo('number', 'constructor'), symbo('boolean', 'constructor'), 'Function', 'Object'].includes(linit.callee.name)
                   ) ||
                   linit.type === 'FunctionExpression';
                 const rIsInstance =
@@ -884,7 +889,7 @@ function _typeTrackedTricks(fdata) {
                   (
                     rinit.type === 'NewExpression' &&
                     rinit.callee.type === 'Identifier' &&
-                    ['RegExp', 'Set', 'Map', 'Array', 'String', 'Number', 'Boolean', 'Function', 'Object'].includes(rinit.callee.name)
+                    ['RegExp', 'Set', 'Map', 'Array', symbo('string', 'constructor'), symbo('number', 'constructor'), symbo('boolean', 'constructor'), 'Function', 'Object'].includes(rinit.callee.name)
                   ) ||
                   rinit.type === 'FunctionExpression';
                 vlog('Is left an obj instance?', lIsInstance, ', and is right?', rIsInstance);
@@ -1503,12 +1508,17 @@ function _typeTrackedTricks(fdata) {
             break;
           }
           case symbo('function', 'toString'): {
-            if (isDotcall && BUILTIN_GLOBAL_FUNC_NAMES.has(context?.name)) {
+            let targetName = context?.name;
+            if (BUILTIN_SYMBOL_TO_CLASSES.has(targetName)) {
+              targetName = BUILTIN_SYMBOL_TO_CLASSES.get(targetName);
+            }
+
+            if (isDotcall && BUILTIN_GLOBAL_FUNC_NAMES.has(targetName)) {
               rule('Calling .toString() on a global builtin function can be resolved');
               example('String.toString();', '"function String() { [native code] }";');
               before(blockBody[blockIndex]);
 
-              const newNode = AST.primitive(`function ${context.name}() { [native code] }`)
+              const newNode = AST.primitive(`function ${targetName}() { [native code] }`)
               if (parentIndex < 0) parentNode[parentProp] = newNode;
               else parentNode[parentProp][parentIndex] = newNode;
 
@@ -2458,13 +2468,13 @@ function _typeTrackedTricks(fdata) {
                     return;
                   }
 
-                  if (args[1]?.type === 'Identifier' && args[1].name === 'String') {
-                    // - `'foo'.replace(/bar/, String)`
+                  if (args[1]?.type === 'Identifier' && args[1].name === symbo('string', 'constructor')) {
+                    // - `'foo'.replace(/bar/, $string_constructor)`
 
                     // Not sure, actually, but does it always just return the input string when you pass in String? :hmm:
                     rule('Calling `replace` on a string with regex and the function String should resolve the call');
-                    example('"foo".replace(/a/g, "a", String)', '"foo"');
-                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'replace')}, "foo", "prop", /a/g, String)`, '"foo"');
+                    example(`"foo".replace(/a/g, "a", ${symbo('string', 'constructor')})`, '"foo"');
+                    example(`${SYMBOL_DOTCALL}(${symbo('string', 'replace')}, "foo", "prop", /a/g, ${symbo('string', 'constructor')})`, '"foo"');
                     before(blockBody[blockIndex]);
 
                     const ctxString = args[1] ? AST.getPrimitiveValue(context) : undefined;

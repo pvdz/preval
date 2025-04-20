@@ -22,7 +22,7 @@ $(z);
 `````js filename=intro
 const x /*:unknown*/ = $(`32768`);
 const y /*:number*/ = x & 32768;
-const z /*:boolean*/ = Boolean(y);
+const z /*:boolean*/ = $boolean_constructor(y);
 $(z);
 `````
 
@@ -31,7 +31,7 @@ $(z);
 (This ought to be the final result)
 
 `````js filename=intro
-$(Boolean($(`32768`) & 32768));
+$($boolean_constructor($(`32768`) & 32768));
 `````
 
 
@@ -41,7 +41,7 @@ With rename=true
 `````js filename=intro
 const a = $( "32768" );
 const b = a & 32768;
-const c = Boolean( b );
+const c = $boolean_constructor( b );
 $( c );
 `````
 
@@ -49,7 +49,7 @@ $( c );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

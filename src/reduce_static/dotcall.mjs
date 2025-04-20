@@ -212,13 +212,13 @@ function _dotCall(fdata) {
     //    ++changed;
     //    return;
     //  }
-    //  if (NUMBER.has(funcArg.name) && context.name === 'Number' && funcArg.name.startsWith(sym_prefix('Number'))) { // Make sure to dodge `$dotCall($number_toFixed, Number, "toFixed")`
+    //  if (NUMBER.has(funcArg.name) && context.name === symbo('number', 'constructor') && funcArg.name.startsWith(sym_prefix('Number'))) { // Make sure to dodge `$dotCall($number_toFixed, Number, "toFixed")`
     //    rule('A dotCall with known Number function should be simplified to a method call');
     //    example(`$dotCall(${symbo('Number', 'isSafeInteger')}, Number, "isSafeInteger", 2, 3)`, 'Number.isSafeInteger(2, 3)');
     //    before(read.blockBody[read.blockIndex]);
     //
     //    const prop = NUMBER.get(funcArg.name).prop;
-    //    const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('Number'), prop), args);
+    //    const finalNode = AST.callExpression(AST.memberExpression(AST.identifier(symbo('number', 'constructor')), prop), args);
     //    if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
     //    else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
     //
@@ -240,13 +240,13 @@ function _dotCall(fdata) {
     //    ++changed;
     //    return;
     //  }
-    //  if (STRING.has(funcArg.name) && context.name === 'String' && funcArg.name.startsWith(sym_prefix('String'))) { // Make sure to dodge `$dotCall($number_toFixed, Number, "toFixed")` sort of case
+    //  if (STRING.has(funcArg.name) && context.name === symbo('string', 'constructor') && funcArg.name.startsWith(sym_prefix('String'))) { // Make sure to dodge `$dotCall($number_toFixed, Number, "toFixed")` sort of case
     //    rule('A dotCall with known String function should be simplified to a method call');
     //    example(`$dotCall(${symbo('String', 'fromCharCode')}, String, "fromCharCode", 2, 3)`, 'String.fromCharCode(2, 3)');
     //    before(read.blockBody[read.blockIndex]);
     //
     //    const prop = STRING.get(funcArg.name).prop;
-    //    const finalNode = AST.callExpression(AST.memberExpression(AST.identifier('String'), prop), args);
+    //    const finalNode = AST.callExpression(AST.memberExpression(AST.identifier(symbo('string', 'constructor')), prop), args);
     //    if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
     //    else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
     //

@@ -1,18 +1,15 @@
 # Preval test case
 
-# base_true.md
+# new_set.md
 
-> Excl > Double bang > Base true
+> Builtins cases > New set
 >
-> A double bang is really just a Boolean
+> If a labeled break does the same thing without the label then the label should be dropped
 
 ## Input
 
 `````js filename=intro
-const a = $(1);
-const b = !a;
-const c = !b;
-$(c);
+$(new Set(['a', 'b']));
 `````
 
 
@@ -20,9 +17,9 @@ $(c);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(1);
-const c /*:boolean*/ = $boolean_constructor(a);
-$(c);
+const tmpCalleeParam$1 /*:array*/ = [`a`, `b`];
+const tmpCalleeParam /*:object*/ = new Set(tmpCalleeParam$1);
+$(tmpCalleeParam);
 `````
 
 
@@ -30,7 +27,8 @@ $(c);
 (This ought to be the final result)
 
 `````js filename=intro
-$($boolean_constructor($(1)));
+const tmpCalleeParam$1 = [`a`, `b`];
+$(new Set(tmpCalleeParam$1));
 `````
 
 
@@ -38,8 +36,8 @@ $($boolean_constructor($(1)));
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $boolean_constructor( a );
+const a = [ "a", "b" ];
+const b = new Set( a );
 $( b );
 `````
 
@@ -47,7 +45,7 @@ $( b );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $boolean_constructor
+None
 
 
 ## Globals
@@ -60,8 +58,7 @@ None
 
 
 Should call `$` with:
- - 1: 1
- - 2: true
+ - 1: {}
  - eval returned: undefined
 
 Pre normalization calls: Same

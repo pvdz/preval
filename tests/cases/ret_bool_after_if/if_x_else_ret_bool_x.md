@@ -31,7 +31,7 @@ const f /*:()=>unknown*/ = function () {
   if (y) {
     return y;
   } else {
-    const x /*:boolean*/ = Boolean(y);
+    const x /*:boolean*/ = $boolean_constructor(y);
     return x;
   }
 };
@@ -50,7 +50,7 @@ const f = function () {
   if (y) {
     return y;
   } else {
-    const x = Boolean(y);
+    const x = $boolean_constructor(y);
     return x;
   }
 };
@@ -69,7 +69,7 @@ const a = function() {
     return y;
   }
   else {
-    const b = Boolean( y );
+    const b = $boolean_constructor( y );
     return b;
   }
 };
@@ -83,7 +83,7 @@ $( d );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

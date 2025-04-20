@@ -27,11 +27,11 @@ $(!!f(), 'three');
 
 
 `````js filename=intro
-const tmpUnaryArg$1 /*:boolean*/ = Boolean($);
+const tmpUnaryArg$1 /*:boolean*/ = $boolean_constructor($);
 $(tmpUnaryArg$1, `one`);
-const tmpUnaryArg$5 /*:boolean*/ = Boolean($);
+const tmpUnaryArg$5 /*:boolean*/ = $boolean_constructor($);
 $(tmpUnaryArg$5, `two`);
-const tmpUnaryArg$9 /*:boolean*/ = Boolean($);
+const tmpUnaryArg$9 /*:boolean*/ = $boolean_constructor($);
 $(tmpUnaryArg$9, `three`);
 `````
 
@@ -40,9 +40,9 @@ $(tmpUnaryArg$9, `three`);
 (This ought to be the final result)
 
 `````js filename=intro
-$(Boolean($), `one`);
-$(Boolean($), `two`);
-$(Boolean($), `three`);
+$($boolean_constructor($), `one`);
+$($boolean_constructor($), `two`);
+$($boolean_constructor($), `three`);
 `````
 
 
@@ -50,11 +50,11 @@ $(Boolean($), `three`);
 With rename=true
 
 `````js filename=intro
-const a = Boolean( $ );
+const a = $boolean_constructor( $ );
 $( a, "one" );
-const b = Boolean( $ );
+const b = $boolean_constructor( $ );
 $( b, "two" );
-const c = Boolean( $ );
+const c = $boolean_constructor( $ );
 $( c, "three" );
 `````
 
@@ -62,7 +62,7 @@ $( c, "three" );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

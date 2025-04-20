@@ -23,6 +23,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function ifTestBool(fdata) {
   group('\n\n\n[ifTestBool] Checking for if-tests that are inverted');
@@ -86,7 +87,7 @@ function _ifTestBool(fdata) {
         } else if (
           read.parentNode.type === 'CallExpression' &&
           read.parentNode.callee.type === 'Identifier' &&
-          read.parentNode.callee.name === 'Boolean' &&
+          read.parentNode.callee.name === symbo('boolean', 'constructor') &&
           read.parentNode['arguments'].length === 1 &&
           read.parentProp === 'arguments'
         ) {
@@ -116,7 +117,7 @@ function _ifTestBool(fdata) {
         } else if (
           read.parentNode.type === 'CallExpression' &&
           read.parentNode.callee.type === 'Identifier' &&
-          read.parentNode.callee.name === 'Boolean' &&
+          read.parentNode.callee.name === symbo('boolean', 'constructor') &&
           read.parentNode['arguments'].length === 1 &&
           read.parentProp === 'arguments'
         ) {

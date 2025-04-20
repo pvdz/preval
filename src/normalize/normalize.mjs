@@ -1,7 +1,18 @@
 import walk from '../../lib/walk.mjs';
 
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, ERR_MSG_ILLEGAL_ARRAY_SPREAD, ERR_MSG_ILLEGAL_CALLEE, FRESH, OLD, RED, BLUE, RESET, } from '../constants.mjs';
-import { BUILTIN_FUNC_NO_CTX, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING, BUILTIN_FUNCS_NO_CTXT_NON_COERCE, BUILTIN_SYMBOLS, FUNCTION, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, protoToInstName, symbo, } from '../symbols_builtins.mjs';
+import {
+  BUILTIN_CLASSES_TO_SYMBOL,
+  BUILTIN_FUNC_NO_CTX,
+  BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER,
+  BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING,
+  BUILTIN_FUNCS_NO_CTXT_NON_COERCE,
+  BUILTIN_SYMBOLS,
+  FUNCTION,
+  GLOBAL_NAMESPACES_FOR_STATIC_METHODS,
+  protoToInstName,
+  symbo,
+} from '../symbols_builtins.mjs';
 import { BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_FRFR, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
 import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
@@ -106,21 +117,6 @@ import { cloneSortOfSimple, isNumberValueNode, varStatement } from '../ast.mjs';
  */
 
 // high level stuff that's not supported: async, iterators, classes <methods, super, inheritance>, prototype, most built-in behavior/funcs.
-
-const BUILTIN_GLOBAL_NAMES = new Set([
-  'Array',
-  'Date',
-  'JSON',
-  'Math',
-  'Number',
-  'String',
-  'Boolean',
-  'RegExp',
-  'Symbol',
-  'Object',
-  'Function',
-]);
-
 
 export function phaseNormalize(fdata, fname, firstTime, prng, options) {
   {
@@ -2682,11 +2678,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             const builtinLeftOrRight = node.left === isBuiltinConstructor ? 'left' : 'right';
             rule('Adding a builtin constructor to a primitive can be resolved');
             example('f(0 + Array);', 'f("0function Array() { [native code] }");', () => constructorName === 'Array');
-            example('f(0 + Object);', 'f("0function Object() { [native code] }");', () => constructorName === 'Object');
-            example('f(0 + Boolean);', 'f("0function Boolean() { [native code] }");', () => constructorName === 'Boolean');
-            example('f(0 + Number);', 'f("0function Number() { [native code] }");', () => constructorName === 'Number');
-            example('f(0 + String);', 'f("0function String() { [native code] }");', () => constructorName === 'String');
-            example('f(0 + RegExp);', 'f("0function RegExp() { [native code] }");', () => constructorName === 'RegExp');
             before(node, body[i]);
 
             node[builtinLeftOrRight] = AST.primitive('function ' + constructorName + '() { [native code] }');
@@ -3437,6 +3428,18 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         if (ASSUME_BUILTINS) {
+          if (BUILTIN_CLASSES_TO_SYMBOL.has(funcName)) {
+            // Note: seems these almost never reach this place... caught elsewhere
+            rule('Builtin JS classes should change into the symbol for their constructor for consistency');
+            example('String', symbo('string', 'constructor'));
+            before(body[i]);
+
+            replaceCallee(AST.identifier(BUILTIN_CLASSES_TO_SYMBOL.get(funcName)));
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
 
           if (isDotcall && BUILTIN_FUNC_NO_CTX.has(funcName)) {
             rule('A builtin function known to ignore its context should not be dotcalled');
@@ -3461,10 +3464,13 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             case symbo('Number', 'isFinite'):
             case symbo('Number', 'isInteger'):
             case symbo('Number', 'isSafeInteger'):
+            case symbo('boolean', 'constructor'):
             case 'Boolean':
             case 'parseFloat':
             case symbo('Number', 'parseFloat'):
+            case symbo('number', 'constructor'):
             case 'Number':
+            case symbo('string', 'constructor'):
             case 'String': {
               if (firstSpread) {
                 rule('Builtins that accept one arg but receive a spread can be improved');
@@ -3520,6 +3526,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   case symbo('Number', 'isSafeInteger'):
                     v = args.length === 0 ? Number.isSafeInteger() : Number.isSafeInteger(pv);
                     break;
+                  case symbo('boolean', 'constructor'):
                   case 'Boolean':
                     v = args.length === 0 ? Boolean() : Boolean(pv);
                     break;
@@ -3527,9 +3534,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   case 'parseFloat':
                     v = args.length === 0 ? parseFloat() : parseFloat(pv);
                     break;
+                  case symbo('number', 'constructor'):
                   case 'Number':
                     v = args.length === 0 ? 0 : Number(pv);
                     break;
+                  case symbo('string', 'constructor'):
                   case 'String':
                     v = args.length === 0 ? '' : String(pv);
                     break;
@@ -4438,12 +4447,12 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 // We eliminate Number in favor of $coerce
 
                 if (args.length === 0) {
-                  rule('A call to `Number` or `number.constructor()` without args is empty number');
+                  rule('A call to `Number` or `number.constructor()` without args is number 0');
                   example('f(Number());', 'f("");');
                   example(`${SYMBOL_DOTCALL}(${symbo('number', 'constructor')}, 1, "constructor");`, '"";');
                   before(body[i]);
 
-                  const finalNode = AST.primitive('');
+                  const finalNode = AST.primitive(0);
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                   body.splice(i, 1,
                     // Context might not be used but if it is referenced we keep for tdz reasons.
@@ -4908,9 +4917,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           }
         }
 
-        args.forEach((argNode, n) => {
+        let newArg = false;
+        node.arguments.forEach((argNode, n) => {
           if (
-            argNode?.type === 'Identifier' &&
+            argNode.type === 'Identifier' &&
             (argNode.name === SYMBOL_MAX_LOOP_UNROLL || argNode.name.startsWith(SYMBOL_LOOP_UNROLL))
           ) {
             todo('when does the loop unroll constant escape?');
@@ -4919,11 +4929,28 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             before(body[i]);
 
             node.arguments[n] = AST.tru();
+            newArg = true;
 
             after(body[i]);
-            return true;
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return;
+          }
+
+          if (argNode.type === 'Identifier' && BUILTIN_CLASSES_TO_SYMBOL.has(argNode.name)) {
+            // Note: seems these almost never reach this place... caught elsewhere
+            rule('Builtin JS classes should change into the symbol for their constructor for consistency');
+            example('String', symbo('string', 'constructor'));
+            before(body[i]);
+
+            node.arguments[n] = AST.identifier(BUILTIN_CLASSES_TO_SYMBOL.get(argNode.name));
+            newArg = true;
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return;
           }
         });
+        if (newArg) return true;
 
         // Check if the callee or any arg was just assigned to (`const f = g; f()` -> `const f = g; g()`)
         if (body[i-1]?.type === 'VarStatement' || body[i-1]?.type === 'ExpressionStatement') {
@@ -5447,6 +5474,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
 
       case 'Identifier': {
+        // Warning: not every ident passes through here.
+
         vlog('- name: `' + node.name + '`');
 
         if (node.name === '$free') {
@@ -5463,6 +5492,21 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           'we control $coerce so it should always have a fixed form',
           node.parentNode,
         );
+
+        if (BUILTIN_CLASSES_TO_SYMBOL.has(node.name)) {
+          // Note: seems these almost never reach this place... caught elsewhere
+          rule('Builtin JS classes should change into the symbol for their constructor for consistency');
+          example('String', symbo('string', 'constructor'));
+          before(body[i]);
+
+          const newNode = AST.identifier(BUILTIN_CLASSES_TO_SYMBOL.get(node.name));
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
+          body.splice(i, 1, finalParent);
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
 
         if (wrapKind === 'statement') {
           // The `arguments` reference is special as it implies func params can not be changed. Something to improve later.
@@ -5874,7 +5918,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         // The object must be simple
         // If computed, the property must be simple. Check this first because in that case, the object must be cached too.
 
-        // (!!) Note: this visitor is not walked for the callee of a method call (!!) It might break.
+        // Note: The callee of a callexpression can no(t/ longer) be a member expression. Always changed to a dotcall.
+        //       As such I believe the member expression can only ever be the child of a delete or either side of an assignment
+        //       And for consistency, perhaps we'll transform the delete case away too.
+        //       But not sure about that. It needs to poison certain transforms and syntactic delete is good for that...
 
         if (node.optional) {
           // `x = a?.b` -> `let x = a; if (x != null) x = x.b; else x = undefined;`
@@ -6001,11 +6048,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 case 'constructor': {
                   // Found this in jsf*ck code... So why not.
-                  rule('`str.constructor should resolve to `String`');
-                  example('"abc".constructor(500)', 'String(500)');
+                  rule('`str.constructor should resolve to `$string_constructor`');
+                  example('"abc".constructor(500)', `${symbo('string', 'constructor')}(500)`);
                   before(node, body[i]);
 
-                  const finalNode = AST.identifier('String');
+                  const finalNode = AST.identifier(symbo('string', 'constructor'));
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                   body.splice(i, 1, finalParent);
 
@@ -6102,7 +6149,8 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               after(finalNode, finalParent);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
-            } else {
+            }
+            else {
               rule('Accessing unknown properties on a boolean should access properties on Boolean.prototype instead');
               example('false..x', `${symbo('Boolean', 'prototype')}.x`);
               example('false[x]', `${symbo('Boolean', 'prototype')}[x]`);
@@ -6140,7 +6188,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 example('false.constructor("bar")', 'Boolean("bar")');
                 before(node, body[i]);
 
-                const finalNode = AST.identifier('Boolean');
+                const finalNode = AST.identifier(symbo('boolean', 'constructor'));
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body.splice(i, 1, finalParent);
 
@@ -6164,10 +6212,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               if (node.property.name === 'constructor') {
                 // Found this in jsf*ck code... So why not.
                 rule('`num.constructor` should resolve to `Number`');
-                example('500..constructor("bar")', 'Number("bar")');
+                example('500..constructor("bar")', `${symbo('number', 'constructor')}("bar")`);
                 before(node, body[i]);
 
-                const finalNode = AST.identifier('Number');
+                const finalNode = AST.identifier(symbo('number', 'constructor'));
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body.splice(i, 1, finalParent);
 
@@ -6225,7 +6273,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             }
 
             // We can replace some of the "new" Number properties. The Math ones are unsafe to inline (precision loss).
-            if (node.object.name === 'Number') {
+            if (node.object.name === symbo('number', 'constructor')) {
               switch (node.property.name) {
                 case 'EPSILON': // We keep this as is
                 case 'MAX_VALUE': // We keep this as is

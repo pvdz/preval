@@ -6,6 +6,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function boolTrampolines(fdata) {
   group('\n\n\n[boolTrampolines] Pruning boolean trampolines\n');
@@ -125,7 +126,7 @@ function _boolTrampolines(fdata) {
     if (
       rhs2.type === 'CallExpression' &&
       rhs2.callee.type === 'Identifier' &&
-      rhs2.callee.name === 'Boolean' &&
+      rhs2.callee.name === symbo('boolean', 'constructor') &&
       rhs2['arguments'].length === 1 &&
       rhs2['arguments'][0].type === 'Identifier' &&
       rhs2['arguments'][0].name === lhs1.name
@@ -268,7 +269,7 @@ function _boolTrampolines(fdata) {
           const secondNAme = secondClosure ? lhs2.name : createFreshVar('tmpBoolTrampolineB', fdata);
           const newRhs = wasInvert
             ? AST.unaryExpression('!', firstName)
-            : AST.callExpression('Boolean', [AST.identifier(firstName)]);
+            : AST.callExpression(symbo('boolean', 'constructor'), [AST.identifier(firstName)]);
           const newLine2 = secondClosure
             ? AST.expressionStatement(AST.assignmentExpression(AST.identifier(secondNAme), newRhs))
             : AST.varStatement('const', secondNAme, newRhs);

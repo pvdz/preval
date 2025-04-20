@@ -5,6 +5,7 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function bitSetTests(fdata) {
   group('\n\n\n[bitSetTests] Checking for bit-set `if`-test pattern\n');
@@ -168,7 +169,7 @@ function replaceEqTests(meta, read, op, pv, name) {
   before(read.parentNode, read.blockBody[read.blockIndex]);
 
   const finalNode =
-    (op === '===') !== (pv === 0) ? AST.callExpression('Boolean', [AST.identifier(name)]) : AST.unaryExpression('!', AST.identifier(name));
+    (op === '===') !== (pv === 0) ? AST.callExpression(symbo('boolean', 'constructor'), [AST.identifier(name)]) : AST.unaryExpression('!', AST.identifier(name));
   if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
   else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 

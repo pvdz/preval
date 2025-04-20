@@ -1,7 +1,7 @@
 // Built-in symbol names and their `typeof` result
 
 import { SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_COERCE, } from './symbols_preval.mjs';
-import { $JSON, ARRAY, BOOLEAN, BUFFER, DATE, FUNCTION, MATH, NUMBER, OBJECT, REGEXP, STRING, } from './symbols_builtins.mjs';
+import { BUILTIN_SYMBOLS, } from './symbols_builtins.mjs';
 
 // We have to set a max of unrolling infinite loops because we have to predefine their global constant value here.
 // It's fine to up but would have to be upped in code. Can't pass this as an argument. Well. Not without changing smoe logic around first.
@@ -87,17 +87,8 @@ const globalNames = new Map([
   [SYMBOL_FORIN, SYMBOL_FORIN],
   [SYMBOL_FOROF, SYMBOL_FOROF],
 
-  ...Array.from(BOOLEAN.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from(NUMBER.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from(STRING.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from(OBJECT.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from(ARRAY.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from(DATE.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from(FUNCTION.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from($JSON.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from(MATH.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from(REGEXP.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
-  ...Array.from(BUFFER.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
+  // All the builtin symbols that we define. Test framework will assert each symbol is plugged in the harnas.
+  ...Array.from(BUILTIN_SYMBOLS.entries()).map(([sname, obj]) => [sname, {...obj.typings}]),
 ]);
 
 for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {

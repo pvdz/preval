@@ -39,7 +39,7 @@ if ($(true)) {
 
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
-const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpBool /*:boolean*/ = $boolean_constructor(tmpIfTest);
 const tmpUnaryArg /*:unknown*/ = $(tmpBool);
 if (tmpUnaryArg) {
   $(`b`);
@@ -49,7 +49,7 @@ if (tmpUnaryArg) {
   $(`d`);
 }
 const tmpIfTest$1 /*:unknown*/ = $(true);
-const tmpBool$1 /*:boolean*/ = Boolean(tmpIfTest$1);
+const tmpBool$1 /*:boolean*/ = $boolean_constructor(tmpIfTest$1);
 const tmpUnaryArg$3 /*:unknown*/ = $(tmpBool$1);
 const tmpIfTest$3 /*:unknown*/ = $(true);
 const tmpClusterSSA_x /*:boolean*/ = !tmpUnaryArg$3;
@@ -65,14 +65,14 @@ if (tmpIfTest$3) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(Boolean($(true)))) {
+if ($($boolean_constructor($(true)))) {
   $(`b`);
   $(`c`);
 } else {
   $(`a`);
   $(`d`);
 }
-const tmpUnaryArg$3 = $(Boolean($(true)));
+const tmpUnaryArg$3 = $($boolean_constructor($(true)));
 const tmpIfTest$3 = $(true);
 const tmpClusterSSA_x = !tmpUnaryArg$3;
 if (tmpIfTest$3) {
@@ -88,7 +88,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( true );
-const b = Boolean( a );
+const b = $boolean_constructor( a );
 const c = $( b );
 if (c) {
   $( "b" );
@@ -99,7 +99,7 @@ else {
   $( "d" );
 }
 const d = $( true );
-const e = Boolean( d );
+const e = $boolean_constructor( d );
 const f = $( e );
 const g = $( true );
 const h = !f;
@@ -115,7 +115,7 @@ else {
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

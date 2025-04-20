@@ -66,9 +66,9 @@ $( "-9007199254740991" );
 
 - (todo) Support coercing "$Number_NaN" to a "string"
 - (todo) Support coercing "$Number_POSITIVE_INFINITY" to a "string"
+- (todo) Support coercing "$Number_NEGATIVE_INFINITY" to a "string"
 - (todo) Support coercing "$Number_MAX_SAFE_INTEGER" to a "string"
 - (todo) Support coercing "$Number_MIN_SAFE_INTEGER" to a "string"
-- (todo) Support coercing "$Number_NEGATIVE_INFINITY" to a "string"
 
 
 ## Globals

@@ -33,7 +33,7 @@ const f /*:(unknown)=>boolean*/ = function ($$0) {
   const arg /*:unknown*/ = $$0;
   debugger;
   const x /*:unknown*/ = $(arg);
-  const y /*:boolean*/ = Boolean(x);
+  const y /*:boolean*/ = $boolean_constructor(x);
   return y;
 };
 $(f);
@@ -53,7 +53,7 @@ if (tmpBoolTrampoline) {
 
 `````js filename=intro
 const f = function (arg) {
-  const y = Boolean($(arg));
+  const y = $boolean_constructor($(arg));
   return y;
 };
 $(f);
@@ -74,7 +74,7 @@ const a = function($$0 ) {
   const b = $$0;
   debugger;
   const c = $( b );
-  const d = Boolean( c );
+  const d = $boolean_constructor( c );
   return d;
 };
 $( a );
@@ -93,7 +93,7 @@ else {
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

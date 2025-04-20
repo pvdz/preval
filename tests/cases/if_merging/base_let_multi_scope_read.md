@@ -44,7 +44,7 @@ const f /*:()=>undefined*/ = function () {
 };
 let x /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(true);
-const tmpBool /*:boolean*/ = Boolean(tmpIfTest);
+const tmpBool /*:boolean*/ = $boolean_constructor(tmpIfTest);
 const tmpUnaryArg /*:unknown*/ = $(tmpBool);
 const tmpBool$1 /*:boolean*/ = !tmpUnaryArg;
 x = tmpBool$1;
@@ -75,7 +75,7 @@ const f = function () {
   $(x);
 };
 let x = undefined;
-const tmpUnaryArg = $(Boolean($(true)));
+const tmpUnaryArg = $($boolean_constructor($(true)));
 x = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $(`b`);
@@ -107,7 +107,7 @@ const a = function() {
 };
 let b = undefined;
 const c = $( true );
-const d = Boolean( c );
+const d = $boolean_constructor( c );
 const e = $( d );
 const f = !e;
 b = f;
@@ -131,7 +131,7 @@ else {
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
 
 
 ## Globals

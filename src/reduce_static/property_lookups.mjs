@@ -135,7 +135,7 @@ function _propertyLookups(fdata) {
             example('f(false.constructor)', 'f(Boolean)');
             before(node, grandNode);
 
-            const finalNode = AST.identifier('Boolean');
+            const finalNode = AST.identifier(symbo('boolean', 'constructor'));
             if (parentIndex < 0) parentNode[parentProp] = finalNode;
             else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -173,7 +173,7 @@ function _propertyLookups(fdata) {
             example('f("hello".constructor)', 'f(Number)');
             before(node, grandNode);
 
-            const finalNode = AST.identifier('Number');
+            const finalNode = AST.identifier(symbo('number', 'constructor'));
             if (parentIndex < 0) parentNode[parentProp] = finalNode;
             else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -212,7 +212,7 @@ function _propertyLookups(fdata) {
             example('f("hello".constructor)', 'f(String)');
             before(node, grandNode);
 
-            const finalNode = AST.identifier('String');
+            const finalNode = AST.identifier(symbo('string', 'constructor'));
             if (parentIndex < 0) parentNode[parentProp] = finalNode;
             else parentNode[parentProp][parentIndex] = finalNode;
 

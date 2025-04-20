@@ -18,7 +18,7 @@ $(obj.f);
 
 
 `````js filename=intro
-$(Array);
+$($array_constructor);
 `````
 
 
@@ -26,7 +26,7 @@ $(Array);
 (This ought to be the final result)
 
 `````js filename=intro
-$(Array);
+$($array_constructor);
 `````
 
 
@@ -34,7 +34,7 @@ $(Array);
 With rename=true
 
 `````js filename=intro
-$( Array );
+$( $array_constructor );
 `````
 
 

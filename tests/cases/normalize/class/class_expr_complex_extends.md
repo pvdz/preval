@@ -18,7 +18,7 @@ $(a, x);
 
 
 `````js filename=intro
-const tmpClassSuper /*:unknown*/ = $(String);
+const tmpClassSuper /*:unknown*/ = $($string_constructor);
 const a /*:class*/ = class x extends tmpClassSuper {};
 $(a, x);
 `````
@@ -28,7 +28,7 @@ $(a, x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClassSuper = $(String);
+const tmpClassSuper = $($string_constructor);
 $(class x extends tmpClassSuper {}, x);
 `````
 
@@ -37,7 +37,7 @@ $(class x extends tmpClassSuper {}, x);
 With rename=true
 
 `````js filename=intro
-const a = $( String );
+const a = $( $string_constructor );
 const b = class x  {
 
 };

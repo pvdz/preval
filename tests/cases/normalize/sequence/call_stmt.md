@@ -18,7 +18,7 @@
 
 `````js filename=intro
 $();
-Date();
+$date_constructor();
 `````
 
 
@@ -27,7 +27,7 @@ Date();
 
 `````js filename=intro
 $();
-Date();
+$date_constructor();
 `````
 
 
@@ -36,14 +36,14 @@ With rename=true
 
 `````js filename=intro
 $();
-Date();
+$date_constructor();
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $date_constructor
 
 
 ## Globals

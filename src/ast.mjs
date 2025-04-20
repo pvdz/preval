@@ -2347,14 +2347,15 @@ export function _complexExpressionNodeMightSpy(node, fdata) {
 
       if (node.callee.type === 'Identifier') {
         // Zero param funcs (or Boolean, which is not observable, regardless of the args)
-        if (node.callee.name === 'Boolean') {
+        if (node.callee.name === symbo('boolean', 'constructor')) {
           return false;
         }
 
         // Funcs that call one arg and may coerce them but are otherwise not spying themselves
         // There's quite a few nowadays that Preval is oblivious to like Symbol, URL, and all the common browser methods
         if ([
-          'Number', 'String', 'RegExp', 'Array', 'Date', 'BigInt', 'Symbol', 'Buffer', 'Object', 'Function', 'Map', 'Set', 'WeakMap', 'WeakSet', 
+          'Number', 'String', 'RegExp', 'Array', 'Date', 'BigInt', 'Symbol', 'Buffer', 'Object', 'Function', 'Map', 'Set', 'WeakMap', 'WeakSet',
+          symbo('boolean', 'constructor'), symbo('number', 'constructor'), symbo('string', 'constructor'),
           'Error', // Is Error an observable thing? Other than the stack trace, which I'll accept as destructive
           'Proxy', // Anyone using proxy is doomed for using preval tbh
           'AggregateError', 'EvalError', 'RangeError', 'ReferenceError', 'SyntaxError', 'TypeError', 'URIError', // You can see I went to MDN for these

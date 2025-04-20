@@ -5,6 +5,7 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function andCases(fdata) {
   group('\n\n\n[andCases] Checking AND cases\n');
@@ -90,7 +91,7 @@ function _andCases(fdata) {
               const finalNode =
                 read.parentNode.operator === '==='
                   ? AST.unaryExpression('!', AST.identifier(name))
-                  : AST.callExpression('Boolean', [AST.identifier(name)]);
+                  : AST.callExpression(symbo('boolean', 'constructor'), [AST.identifier(name)]);
               if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
               else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 

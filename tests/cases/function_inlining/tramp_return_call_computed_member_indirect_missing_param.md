@@ -28,8 +28,8 @@ $(r);
 
 `````js filename=intro
 $(`toString`);
-const tmpMCF /*:unknown*/ = String.undefined;
-const y /*:unknown*/ = $dotCall(tmpMCF, String, undefined);
+const tmpMCF /*:unknown*/ = $string_constructor.undefined;
+const y /*:unknown*/ = $dotCall(tmpMCF, $string_constructor, undefined);
 $(y);
 `````
 
@@ -39,7 +39,7 @@ $(y);
 
 `````js filename=intro
 $(`toString`);
-$(String.undefined());
+$($string_constructor.undefined());
 `````
 
 
@@ -48,8 +48,8 @@ With rename=true
 
 `````js filename=intro
 $( "toString" );
-const a = String.undefined;
-const b = $dotCall( a, String, undefined );
+const a = $string_constructor.undefined;
+const b = $dotCall( a, $string_constructor, undefined );
 $( b );
 `````
 

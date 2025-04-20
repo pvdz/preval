@@ -1,18 +1,15 @@
 # Preval test case
 
-# base_true.md
+# call_number.md
 
-> Excl > Double bang > Base true
+> Builtins cases > Call number
 >
-> A double bang is really just a Boolean
+> Check if builtin toplevel classes are changed into their symbols
 
 ## Input
 
 `````js filename=intro
-const a = $(1);
-const b = !a;
-const c = !b;
-$(c);
+$('Number:', Number());
 `````
 
 
@@ -20,9 +17,7 @@ $(c);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(1);
-const c /*:boolean*/ = $boolean_constructor(a);
-$(c);
+$(`Number:`, 0);
 `````
 
 
@@ -30,7 +25,7 @@ $(c);
 (This ought to be the final result)
 
 `````js filename=intro
-$($boolean_constructor($(1)));
+$(`Number:`, 0);
 `````
 
 
@@ -38,16 +33,14 @@ $($boolean_constructor($(1)));
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $boolean_constructor( a );
-$( b );
+$( "Number:", 0 );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $boolean_constructor
+None
 
 
 ## Globals
@@ -60,8 +53,7 @@ None
 
 
 Should call `$` with:
- - 1: 1
- - 2: true
+ - 1: 'Number:', 0
  - eval returned: undefined
 
 Pre normalization calls: Same

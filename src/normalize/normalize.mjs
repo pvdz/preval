@@ -6781,7 +6781,22 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
         if (node.callee.type === 'Identifier' && ASSUME_BUILTINS) {
           switch (node.callee.name) {
+            case 'Array': {
+              // They are equal as per spec: https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array-constructor
+              rule('Array should not be called with `new`');
+              example('new Array(a, b)', 'Array(a, b)');
+              before(body[i]);
+
+              const finalNode = AST.callExpression(AST.identifier('Array'), node.arguments);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, finalParent);
+
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
             case 'RegExp': {
+              // Note: new RegExp is NOT the same RegExp because calling it as a function returns the arg if the arg is already regex.
               if (node.arguments.length > 0) {
                 if (AST.isPrimitive(node.arguments[0]) && (node.arguments.length === 1 || AST.isPrimitive(node.arguments[1]))) {
                   rule('new RegExp with primitives can be changed to a literal');

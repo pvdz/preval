@@ -28,8 +28,8 @@ $(error());
 
 
 `````js filename=intro
-const tmpClusterSSA_args /*:array*/ = [];
-$(tmpClusterSSA_args);
+const tmpCalleeParam$1 /*:array*/ = $array_constructor(0);
+$(tmpCalleeParam$1);
 `````
 
 
@@ -37,7 +37,7 @@ $(tmpClusterSSA_args);
 (This ought to be the final result)
 
 `````js filename=intro
-$([]);
+$($array_constructor(0));
 `````
 
 
@@ -45,7 +45,7 @@ $([]);
 With rename=true
 
 `````js filename=intro
-const a = [];
+const a = $array_constructor( 0 );
 $( a );
 `````
 
@@ -53,9 +53,9 @@ $( a );
 ## Todos triggered
 
 
-- (todo) Support this node type in isFree: NewExpression
+- (todo) type trackeed tricks can possibly support static $array_constructor
 - (todo) regular property access of an ident feels tricky;
-- (todo) Support this node type in isFree: DebuggerStatement
+- (todo) Support this ident in isFree CallExpression: $array_constructor
 
 
 ## Globals

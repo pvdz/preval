@@ -103,7 +103,6 @@ $( k, d );
 ## Todos triggered
 
 
-- (todo) convert this Boolean trap to the symbo pattern
 - (todo) objects in isFree check
 
 

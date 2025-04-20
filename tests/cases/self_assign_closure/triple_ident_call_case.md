@@ -173,7 +173,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpCalleeParam$7 /*:unknown*/ = alias2(599);
     $coerce(tmpCalleeParam$7, `string`);
     const tmpCalleeParam$9 /*:unknown*/ = alias2(457);
-    const tmpBinLhs$166 /*:number*/ = parseInt(tmpCalleeParam$9);
+    const tmpBinLhs$166 /*:number*/ = $Number_parseInt(tmpCalleeParam$9);
     if (tmpBinLhs$166) {
       break;
     } else {
@@ -251,7 +251,7 @@ while (true) {
     $coerce(alias2(849), `string`);
     $coerce(alias2(679), `string`);
     $coerce(alias2(599), `string`);
-    if (parseInt(alias2(457))) {
+    if ($Number_parseInt(alias2(457))) {
       break;
     } else {
       $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
@@ -298,7 +298,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const n = i( 599 );
     $coerce( n, "string" );
     const o = i( 457 );
-    const p = parseInt( o );
+    const p = $Number_parseInt( o );
     if (p) {
       break;
     }
@@ -319,6 +319,7 @@ $( a );
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift

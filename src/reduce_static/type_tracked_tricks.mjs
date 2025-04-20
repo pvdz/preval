@@ -31,7 +31,7 @@ import {
   BUILTIN_SYMBOLS,
   BUILTIN_FUNC_NO_CTX,
   symbo,
-  BUILTIN_SYMBOL_TO_CLASSES,
+  SYMBOL_TO_BUILTIN_GLOBAL_FUNCS,
 } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode, isNumberValueNode } from '../ast.mjs';
@@ -1509,8 +1509,8 @@ function _typeTrackedTricks(fdata) {
           }
           case symbo('function', 'toString'): {
             let targetName = context?.name;
-            if (BUILTIN_SYMBOL_TO_CLASSES.has(targetName)) {
-              targetName = BUILTIN_SYMBOL_TO_CLASSES.get(targetName);
+            if (SYMBOL_TO_BUILTIN_GLOBAL_FUNCS.has(targetName)) {
+              targetName = SYMBOL_TO_BUILTIN_GLOBAL_FUNCS.get(targetName);
             }
 
             if (isDotcall && BUILTIN_GLOBAL_FUNC_NAMES.has(targetName)) {

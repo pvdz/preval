@@ -46,7 +46,7 @@ const tmpFree$21 /*:(number)=>number*/ = function $free($$0) {
 const _0xb34c4b /*:array*/ = [`a`, `b`];
 try {
   const tmpCalleeParam$3 /*:unknown*/ = $(824);
-  const tmpCalleeParam$1 /*:number*/ = parseInt(tmpCalleeParam$3);
+  const tmpCalleeParam$1 /*:number*/ = $Number_parseInt(tmpCalleeParam$3);
   const tmpIfTest /*:number*/ = $frfr(tmpFree$21, tmpCalleeParam$1);
   if (tmpIfTest) {
   } else {
@@ -72,7 +72,7 @@ const tmpFree$21 = function $free(tmpUnaryArg$489) {
 };
 const _0xb34c4b = [`a`, `b`];
 try {
-  if (!$frfr(tmpFree$21, parseInt($(824)))) {
+  if (!$frfr(tmpFree$21, $Number_parseInt($(824)))) {
     $dotCall($array_push, _0xb34c4b, `push`, $dotCall($array_shift, _0xb34c4b, `shift`));
   }
 } catch (_0xa7aced$11) {
@@ -96,7 +96,7 @@ const a = function b($$0 ) {
 const f = [ "a", "b" ];
 try {
   const g = $( 824 );
-  const h = parseInt( g );
+  const h = $Number_parseInt( g );
   const i = j( a, h );
   if (i) {
 
@@ -117,6 +117,7 @@ $( "thend" );
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?

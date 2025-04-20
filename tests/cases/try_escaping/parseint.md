@@ -28,7 +28,7 @@ while (true) {
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpStringFirstArg /*:unknown*/ = $(`1`);
   const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
-  const y /*:number*/ = parseInt(x);
+  const y /*:number*/ = $Number_parseInt(x);
   try {
     $(y);
   } catch (e) {
@@ -43,7 +43,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while (true) {
-  const y = parseInt($coerce($(`1`), `string`));
+  const y = $Number_parseInt($coerce($(`1`), `string`));
   try {
     $(y);
   } catch (e) {
@@ -60,7 +60,7 @@ With rename=true
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const a = $( "1" );
   const b = $coerce( a, "string" );
-  const c = parseInt( b );
+  const c = $Number_parseInt( b );
   try {
     $( c );
   }
@@ -74,6 +74,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) can try-escaping support this expr node type? CallExpression
 
 

@@ -18,14 +18,14 @@ existing test
 ## Input
 
 `````js filename=intro
-$(typeof Math.log10($spy('Math.log10')));
-$(typeof Math.log1p($spy('Math.log1p')));
-$(typeof Math.log2($spy('Math.log2')));
-$(typeof Math.max($spy('Math.max')));
-$(typeof Math.min($spy('Math.min')));
-$(typeof Math.pow($spy('Math.pow')));
-$(typeof Math.random($spy('Math.random')));
-$(typeof Math.round($spy('Math.round')));
+$('Math.log10:', typeof Math.log10($spy('Math.log10')));
+$('Math.log1p:', typeof Math.log1p($spy('Math.log1p')));
+$('Math.log2:', typeof Math.log2($spy('Math.log2')));
+$('Math.max:', typeof Math.max($spy('Math.max')));
+$('Math.min:', typeof Math.min($spy('Math.min')));
+$('Math.pow:', typeof Math.pow($spy('Math.pow')));
+$('Math.random:', typeof Math.random($spy('Math.random')));
+$('Math.round:', typeof Math.round($spy('Math.round')));
 `````
 
 
@@ -35,27 +35,27 @@ $(typeof Math.round($spy('Math.round')));
 `````js filename=intro
 const tmpMCP /*:unknown*/ = $spy(`Math.log10`);
 $coerce(tmpMCP, `number`);
-$(`number`);
+$(`Math.log10:`, `number`);
 const tmpMCP$1 /*:unknown*/ = $spy(`Math.log1p`);
 $coerce(tmpMCP$1, `number`);
-$(`number`);
+$(`Math.log1p:`, `number`);
 const tmpMCP$3 /*:unknown*/ = $spy(`Math.log2`);
 $coerce(tmpMCP$3, `number`);
-$(`number`);
+$(`Math.log2:`, `number`);
 const tmpMCP$5 /*:unknown*/ = $spy(`Math.max`);
 $coerce(tmpMCP$5, `number`);
-$(`number`);
+$(`Math.max:`, `number`);
 const tmpMCP$7 /*:unknown*/ = $spy(`Math.min`);
 $coerce(tmpMCP$7, `number`);
-$(`number`);
+$(`Math.min:`, `number`);
 const tmpMCP$9 /*:unknown*/ = $spy(`Math.pow`);
 $coerce(tmpMCP$9, `number`);
-$(`number`);
+$(`Math.pow:`, `number`);
 $spy(`Math.random`);
-$(`number`);
+$(`Math.random:`, `number`);
 const tmpMCP$13 /*:unknown*/ = $spy(`Math.round`);
 $coerce(tmpMCP$13, `number`);
-$(`number`);
+$(`Math.round:`, `number`);
 `````
 
 
@@ -64,21 +64,21 @@ $(`number`);
 
 `````js filename=intro
 $coerce($spy(`Math.log10`), `number`);
-$(`number`);
+$(`Math.log10:`, `number`);
 $coerce($spy(`Math.log1p`), `number`);
-$(`number`);
+$(`Math.log1p:`, `number`);
 $coerce($spy(`Math.log2`), `number`);
-$(`number`);
+$(`Math.log2:`, `number`);
 $coerce($spy(`Math.max`), `number`);
-$(`number`);
+$(`Math.max:`, `number`);
 $coerce($spy(`Math.min`), `number`);
-$(`number`);
+$(`Math.min:`, `number`);
 $coerce($spy(`Math.pow`), `number`);
-$(`number`);
+$(`Math.pow:`, `number`);
 $spy(`Math.random`);
-$(`number`);
+$(`Math.random:`, `number`);
 $coerce($spy(`Math.round`), `number`);
-$(`number`);
+$(`Math.round:`, `number`);
 `````
 
 
@@ -88,27 +88,27 @@ With rename=true
 `````js filename=intro
 const a = $spy( "Math.log10" );
 $coerce( a, "number" );
-$( "number" );
+$( "Math.log10:", "number" );
 const b = $spy( "Math.log1p" );
 $coerce( b, "number" );
-$( "number" );
+$( "Math.log1p:", "number" );
 const c = $spy( "Math.log2" );
 $coerce( c, "number" );
-$( "number" );
+$( "Math.log2:", "number" );
 const d = $spy( "Math.max" );
 $coerce( d, "number" );
-$( "number" );
+$( "Math.max:", "number" );
 const e = $spy( "Math.min" );
 $coerce( e, "number" );
-$( "number" );
+$( "Math.min:", "number" );
 const f = $spy( "Math.pow" );
 $coerce( f, "number" );
-$( "number" );
+$( "Math.pow:", "number" );
 $spy( "Math.random" );
-$( "number" );
+$( "Math.random:", "number" );
 const g = $spy( "Math.round" );
 $coerce( g, "number" );
-$( "number" );
+$( "Math.round:", "number" );
 `````
 
 
@@ -137,27 +137,27 @@ None
 Should call `$` with:
  - 1: 'Creating spy', 1, 1, ['Math.log10', 'Math.log10']
  - 2: '$spy[1].valueOf()', 'Math.log10'
- - 3: 'number'
+ - 3: 'Math.log10:', 'number'
  - 4: 'Creating spy', 2, 1, ['Math.log1p', 'Math.log1p']
  - 5: '$spy[2].valueOf()', 'Math.log1p'
- - 6: 'number'
+ - 6: 'Math.log1p:', 'number'
  - 7: 'Creating spy', 3, 1, ['Math.log2', 'Math.log2']
  - 8: '$spy[3].valueOf()', 'Math.log2'
- - 9: 'number'
+ - 9: 'Math.log2:', 'number'
  - 10: 'Creating spy', 4, 1, ['Math.max', 'Math.max']
  - 11: '$spy[4].valueOf()', 'Math.max'
- - 12: 'number'
+ - 12: 'Math.max:', 'number'
  - 13: 'Creating spy', 5, 1, ['Math.min', 'Math.min']
  - 14: '$spy[5].valueOf()', 'Math.min'
- - 15: 'number'
+ - 15: 'Math.min:', 'number'
  - 16: 'Creating spy', 6, 1, ['Math.pow', 'Math.pow']
  - 17: '$spy[6].valueOf()', 'Math.pow'
- - 18: 'number'
+ - 18: 'Math.pow:', 'number'
  - 19: 'Creating spy', 7, 1, ['Math.random', 'Math.random']
- - 20: 'number'
+ - 20: 'Math.random:', 'number'
  - 21: 'Creating spy', 8, 1, ['Math.round', 'Math.round']
  - 22: '$spy[8].valueOf()', 'Math.round'
- - 23: 'number'
+ - 23: 'Math.round:', 'number'
  - eval returned: undefined
 
 Pre normalization calls: Same

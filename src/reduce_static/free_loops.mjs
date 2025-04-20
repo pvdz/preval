@@ -33,15 +33,13 @@ const BREAK_SYMBOL = {};
 const SUPPORTED_GLOBAL_FUNCS = [
   SYMBOL_FRFR,
   SYMBOL_COERCE,
-  'parseInt',
-  'parseFloat',
-  'isNaN',
-  'isFinite',
   symbo('array', 'pop'),
   symbo('array', 'push'),
   symbo('array', 'shift'),
   symbo('array', 'unshift'),
+  'isNaN',
   symbo('Number', 'isNaN'),
+  'isFinite',
   symbo('Number', 'isFinite'),
   symbo('Number', 'isInteger'),
   symbo('Number', 'isSafeInteger'),
@@ -452,16 +450,8 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
           return true;
         }
         case 'isNaN':
-          todo('should isNaNs not be transformed to symbols?');
         case symbo('Number', 'isNaN'):
-        {
-          vlog('- ok');
-          if (assignedTo) declaredNameTypes.set(assignedTo, 'boolean');
-          callNodeToCalleeSymbol.set(node, symbo('Number', 'isNaN'));
-          return true;
-        }
         case 'isFinite':
-          todo('should isFinites not be transformed to symbols?');
         case symbo('Number', 'isFinite'):
         case symbo('Number', 'isInteger'):
         case symbo('Number', 'isSafeInteger'): {
@@ -470,16 +460,12 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
           callNodeToCalleeSymbol.set(node, calleeName);
           return true;
         }
-        case 'parseInt':
-          todo('should parseInts not be transformed to symbols?');
         case symbo('Number', 'parseInt'): {
           vlog('- ok');
           if (assignedTo) declaredNameTypes.set(assignedTo, 'number');
           callNodeToCalleeSymbol.set(node, calleeName);
           return true;
         }
-        case 'parseFloat':
-          todo('should parseFloats not be transformed to symbols?');
         case symbo('Number', 'parseFloat'): {
           vlog('- ok');
           if (assignedTo) declaredNameTypes.set(assignedTo, 'number');
@@ -1102,28 +1088,34 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
             if (targetType === 'number') return value + 0;
             return ASSERT(false, '$coerce should not have anything else');
           }
-          case symbo('Number', 'isNaN'):
           case 'isNaN': {
             const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             return isNaN(value);
           }
-          case symbo('Number', 'isFinite'):
+          case symbo('Number', 'isNaN'): {
+            const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
+            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+            return Number.isNaN(value);
+          }
           case 'isFinite': {
             const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             return isFinite(value);
           }
-          case symbo('Number', 'parseInt'):
-          case 'parseInt': {
+          case symbo('Number', 'isFinite'): {
+            const value = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
+            if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+            return Number.isFinite(value);
+          }
+          case symbo('Number', 'parseInt'): {
             const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             const base = args[1] ? runExpression(fdata, args[1], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
             if (base === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             return parseInt(value, base);
           }
-          case symbo('Number', 'parseFloat'):
-          case 'parseFloat': {
+          case symbo('Number', 'parseFloat'): {
             const value = args[0] ? runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng) : undefined;
             if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
             return parseFloat(value);

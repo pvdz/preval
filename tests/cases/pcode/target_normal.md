@@ -49,41 +49,47 @@ $('end');
 
 
 `````js filename=intro
-const tmpFree$1 /*:(number, string)=>string*/ = function $free($$0, $$1) {
+const tmpFree$3 /*:(number, string)=>string*/ = function $free($$0, $$1) {
   const perc /*:number*/ = $$0;
   const out_str /*:string*/ = $$1;
   debugger;
   const alt /*:string*/ = $dotCall($number_toString, perc, `toString`, 36);
-  const tmpRet$1 /*:string*/ = out_str + alt;
-  return tmpRet$1;
+  const tmpRet$3 /*:string*/ = out_str + alt;
+  return tmpRet$3;
 };
-const tmpFree /*:(number, string)=>string*/ = function $free($$0, $$1) {
+const tmpFree$1 /*:(number, string)=>string*/ = function $free($$0, $$1) {
   const perc$1 /*:number*/ = $$0;
   const out_str$1 /*:string*/ = $$1;
   debugger;
   const plus /*:number*/ = perc$1 + 29;
   const chr /*:string*/ = $String_fromCharCode(plus);
-  const tmpRet /*:string*/ = out_str$1 + chr;
+  const tmpRet$1 /*:string*/ = out_str$1 + chr;
+  return tmpRet$1;
+};
+const tmpFree /*:(number)=>number*/ = function $free($$0) {
+  const num_arg /*:number*/ = $$0;
+  debugger;
+  const div /*:number*/ = num_arg / 62;
+  const tmpRet /*:number*/ = $Number_parseInt(div);
   return tmpRet;
 };
 const pcode /*:(number)=>string*/ = function ($$0) {
-  const num_arg /*:number*/ = $$0;
+  const num_arg$1 /*:number*/ = $$0;
   debugger;
   let out_str$3 /*:string*/ = ``;
-  const tmpIfTest /*:boolean*/ = num_arg < 62;
+  const tmpIfTest /*:boolean*/ = num_arg$1 < 62;
   if (tmpIfTest) {
   } else {
-    const div /*:number*/ = num_arg / 62;
-    const pint /*:number*/ = parseInt(div);
+    const pint /*:number*/ = $frfr(tmpFree, num_arg$1);
     out_str$3 = pcode(pint);
   }
-  const perc$3 /*:number*/ = num_arg % 62;
+  const perc$3 /*:number*/ = num_arg$1 % 62;
   const tmpIfTest$1 /*:boolean*/ = perc$3 > 35;
   if (tmpIfTest$1) {
-    const str /*:string*/ = $frfr(tmpFree, perc$3, out_str$3);
+    const str /*:string*/ = $frfr(tmpFree$1, perc$3, out_str$3);
     return str;
   } else {
-    const altstr /*:string*/ = $frfr(tmpFree$1, perc$3, out_str$3);
+    const altstr /*:string*/ = $frfr(tmpFree$3, perc$3, out_str$3);
     return altstr;
   }
 };
@@ -128,25 +134,29 @@ $(`end`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree$1 = function $free(perc, out_str) {
-  const tmpRet$1 = out_str + $dotCall($number_toString, perc, `toString`, 36);
+const tmpFree$3 = function $free(perc, out_str) {
+  const tmpRet$3 = out_str + $dotCall($number_toString, perc, `toString`, 36);
+  return tmpRet$3;
+};
+const tmpFree$1 = function $free(perc$1, out_str$1) {
+  const tmpRet$1 = out_str$1 + $String_fromCharCode(perc$1 + 29);
   return tmpRet$1;
 };
-const tmpFree = function $free(perc$1, out_str$1) {
-  const tmpRet = out_str$1 + $String_fromCharCode(perc$1 + 29);
+const tmpFree = function $free(num_arg) {
+  const tmpRet = $Number_parseInt(num_arg / 62);
   return tmpRet;
 };
-const pcode = function (num_arg) {
+const pcode = function (num_arg$1) {
   let out_str$3 = ``;
-  if (!(num_arg < 62)) {
-    out_str$3 = pcode(parseInt(num_arg / 62));
+  if (!(num_arg$1 < 62)) {
+    out_str$3 = pcode($frfr(tmpFree, num_arg$1));
   }
-  const perc$3 = num_arg % 62;
+  const perc$3 = num_arg$1 % 62;
   if (perc$3 > 35) {
-    const str = $frfr(tmpFree, perc$3, out_str$3);
+    const str = $frfr(tmpFree$1, perc$3, out_str$3);
     return str;
   } else {
-    const altstr = $frfr(tmpFree$1, perc$3, out_str$3);
+    const altstr = $frfr(tmpFree$3, perc$3, out_str$3);
     return altstr;
   }
 };
@@ -195,59 +205,65 @@ const g = function b($$0,$$1 ) {
   const l = i + k;
   return l;
 };
-const m = function($$0 ) {
+const m = function b($$0 ) {
   const n = $$0;
   debugger;
-  let o = "";
-  const p = n < 62;
-  if (p) {
+  const o = n / 62;
+  const p = $Number_parseInt( o );
+  return p;
+};
+const q = function($$0 ) {
+  const r = $$0;
+  debugger;
+  let s = "";
+  const t = r < 62;
+  if (t) {
 
   }
   else {
-    const q = n / 62;
-    const r = parseInt( q );
-    o = m( r );
+    const u = v( m, r );
+    s = q( u );
   }
-  const s = n % 62;
-  const t = s > 35;
-  if (t) {
-    const u = v( g, s, o );
-    return u;
+  const w = r % 62;
+  const x = w > 35;
+  if (x) {
+    const y = v( g, w, s );
+    return y;
   }
   else {
-    const w = v( a, s, o );
-    return w;
+    const z = v( a, w, s );
+    return z;
   }
 };
-const x = m( 476 );
-$( x );
-const y = m( 475 );
-$( y );
-const z = m( 474 );
-$( z );
-const ba = m( 473 );
+const ba = q( 476 );
 $( ba );
-const bb = m( 472 );
+const bb = q( 475 );
 $( bb );
-const bc = m( 471 );
+const bc = q( 474 );
 $( bc );
-const bd = m( 470 );
+const bd = q( 473 );
 $( bd );
-const be = m( 469 );
+const be = q( 472 );
 $( be );
-const bf = m( 468 );
+const bf = q( 471 );
 $( bf );
-const bg = m( 467 );
+const bg = q( 470 );
 $( bg );
-let bh = 466;
-const bi = m( 466 );
+const bh = q( 469 );
+$( bh );
+const bi = q( 468 );
 $( bi );
+const bj = q( 467 );
+$( bj );
+let bk = 466;
+const bl = q( 466 );
+$( bl );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  bh = bh - 1;
-  const bj = bh > 0;
-  if (bj) {
-    const bk = m( bh );
-    $( bk );
+  bk = bk - 1;
+  const bm = bk > 0;
+  if (bm) {
+    const bn = q( bk );
+    $( bn );
   }
   else {
     break;
@@ -260,6 +276,7 @@ $( "end" );
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) do we want to support TemplateLiteral as expression statement in free loops?
 
 

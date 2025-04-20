@@ -425,9 +425,7 @@ function _isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
 
     if (
       [
-        'parseInt',
         symbo('Number', 'parseInt'),
-        'parseFloat',
         symbo('Number', 'parseFloat'),
         'isNaN',
         symbo('Number', 'isNaN'),

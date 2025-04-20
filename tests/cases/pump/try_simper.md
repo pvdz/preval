@@ -40,10 +40,12 @@ $(arrB[0]);
 
 
 `````js filename=intro
-const tmpFree /*:(number, number)=>boolean*/ = function $free($$0, $$1) {
-  const aint /*:number*/ = $$0;
-  const bint /*:number*/ = $$1;
+const tmpFree /*:(primitive, primitive)=>boolean*/ = function $free($$0, $$1) {
+  const a /*:primitive*/ = $$0;
+  const b /*:primitive*/ = $$1;
   debugger;
+  const aint /*:number*/ = $Number_parseInt(a);
+  const bint /*:number*/ = $Number_parseInt(b);
   const a1 /*:number*/ = aint / 1;
   const b2 /*:number*/ = bint / 2;
   const ab /*:number*/ = a1 * b2;
@@ -63,11 +65,9 @@ const arrB /*:array*/ = [
 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`protect`);
-  const a /*:primitive*/ = arrB[51];
-  const b /*:primitive*/ = arrB[18];
-  const aint$1 /*:number*/ = parseInt(a);
-  const bint$1 /*:number*/ = parseInt(b);
-  const abeq /*:boolean*/ = $frfr(tmpFree, aint$1, bint$1);
+  const a$1 /*:primitive*/ = arrB[51];
+  const b$1 /*:primitive*/ = arrB[18];
+  const abeq /*:boolean*/ = $frfr(tmpFree, a$1, b$1);
   if (abeq) {
     break;
   } else {
@@ -84,7 +84,9 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(aint, bint) {
+const tmpFree = function $free(a, b) {
+  const aint = $Number_parseInt(a);
+  const bint = $Number_parseInt(b);
   const a1 = aint / 1;
   const tmpRet = a1 * (bint / 2) === 712261;
   return tmpRet;
@@ -102,9 +104,7 @@ const arrB = [
 ];
 while (true) {
   $(`protect`);
-  const a = arrB[51];
-  const b = arrB[18];
-  if ($frfr(tmpFree, parseInt(a), parseInt(b))) {
+  if ($frfr(tmpFree, arrB[51], arrB[18])) {
     break;
   } else {
     $dotCall($array_push, arrB, `push`, $dotCall($array_shift, arrB, `shift`));
@@ -122,29 +122,29 @@ const a = function b($$0,$$1 ) {
   const c = $$0;
   const d = $$1;
   debugger;
-  const e = c / 1;
-  const f = d / 2;
-  const g = e * f;
-  const h = g === 712261;
-  return h;
+  const e = $Number_parseInt( c );
+  const f = $Number_parseInt( d );
+  const g = e / 1;
+  const h = f / 2;
+  const i = g * h;
+  const j = i === 712261;
+  return j;
 };
-const i = [ "body", "abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr", "return (function() ", "iframe", "[?&]", "translate(-50%, -50%) scale(", "url", "1362209nkUUHI", "replace" ];
+const k = [ "body", "abOPIoHFut:bwlFaSsnkTXHOCpGGeeFsJMHCLEPCWr", "return (function() ", "iframe", "[?&]", "translate(-50%, -50%) scale(", "url", "1362209nkUUHI", "replace" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( "protect" );
-  const j = i[ 51 ];
-  const k = i[ 18 ];
-  const l = parseInt( j );
-  const m = parseInt( k );
+  const l = k[ 51 ];
+  const m = k[ 18 ];
   const n = o( a, l, m );
   if (n) {
     break;
   }
   else {
-    const p = $dotCall( $array_shift, i, "shift" );
-    $dotCall( $array_push, i, "push", p );
+    const p = $dotCall( $array_shift, k, "shift" );
+    $dotCall( $array_push, k, "push", p );
   }
 }
-const q = i[ 0 ];
+const q = k[ 0 ];
 $( q );
 `````
 
@@ -152,6 +152,7 @@ $( q );
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?

@@ -29,7 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam$1 /*:primitive*/ = arr[0];
-  const tmpCalleeParam /*:number*/ = parseInt(tmpCalleeParam$1);
+  const tmpCalleeParam /*:number*/ = $Number_parseInt(tmpCalleeParam$1);
   try {
     $(tmpCalleeParam);
     $dotCall($array_reverse, arr, `reverse`);
@@ -46,7 +46,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr = [1, 2, 3];
 while (true) {
-  const tmpCalleeParam = parseInt(arr[0]);
+  const tmpCalleeParam = $Number_parseInt(arr[0]);
   try {
     $(tmpCalleeParam);
     $dotCall($array_reverse, arr, `reverse`);
@@ -64,7 +64,7 @@ With rename=true
 const a = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a[ 0 ];
-  const c = parseInt( b );
+  const c = $Number_parseInt( b );
   try {
     $( c );
     $dotCall( $array_reverse, a, "reverse" );
@@ -79,9 +79,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) should parseInts not be transformed to symbols?
 
 
 ## Globals

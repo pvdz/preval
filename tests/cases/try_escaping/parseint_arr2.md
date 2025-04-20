@@ -36,12 +36,18 @@
 
 
 `````js filename=intro
+const tmpFree /*:(primitive)=>number*/ = function $free($$0) {
+  const a /*:primitive*/ = $$0;
+  debugger;
+  const b /*:number*/ = $Number_parseInt(a);
+  const tmpRet /*:number*/ = b / 1;
+  return tmpRet;
+};
 const arr /*:array*/ = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a /*:primitive*/ = arr[2];
-  $(a);
-  const b /*:number*/ = parseInt(a);
-  const c /*:number*/ = b / 1;
+  const a$1 /*:primitive*/ = arr[2];
+  $(a$1);
+  const c /*:number*/ = $frfr(tmpFree, a$1);
   if (c) {
     break;
   } else {
@@ -58,11 +64,15 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpFree = function $free(a) {
+  const tmpRet = $Number_parseInt(a) / 1;
+  return tmpRet;
+};
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while (true) {
-  const a = arr[2];
-  $(a);
-  if (parseInt(a) / 1) {
+  const a$1 = arr[2];
+  $(a$1);
+  if ($frfr(tmpFree, a$1)) {
     break;
   } else {
     $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
@@ -76,28 +86,35 @@ $(arr[1]);
 With rename=true
 
 `````js filename=intro
-const a = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
+const a = function b($$0 ) {
+  const c = $$0;
+  debugger;
+  const d = $Number_parseInt( c );
+  const e = d / 1;
+  return e;
+};
+const f = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = a[ 2 ];
-  $( b );
-  const c = parseInt( b );
-  const d = c / 1;
-  if (d) {
+  const g = f[ 2 ];
+  $( g );
+  const h = i( a, g );
+  if (h) {
     break;
   }
   else {
-    const e = $dotCall( $array_shift, a, "shift" );
-    $dotCall( $array_push, a, "push", e );
+    const j = $dotCall( $array_shift, f, "shift" );
+    $dotCall( $array_push, f, "push", j );
   }
 }
-const f = a[ 1 ];
-$( f );
+const k = f[ 1 ];
+$( k );
 `````
 
 
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?

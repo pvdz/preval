@@ -25,29 +25,35 @@ $(x);
 
 
 `````js filename=intro
-const tmpFree /*:(number)=>string*/ = function $free($$0) {
+const tmpFree$1 /*:(number)=>string*/ = function $free($$0) {
   const tmpClusterSSA_c$2 /*:number*/ = $$0;
   debugger;
   const tmpMCP /*:number*/ = tmpClusterSSA_c$2 + 29;
-  const tmpRet /*:string*/ = $String_fromCharCode(tmpMCP);
+  const tmpRet$1 /*:string*/ = $String_fromCharCode(tmpMCP);
+  return tmpRet$1;
+};
+const tmpFree /*:(number)=>number*/ = function $free($$0) {
+  const c$1 /*:number*/ = $$0;
+  debugger;
+  const tmpCalleeParam$3 /*:number*/ = c$1 / 52;
+  const tmpRet /*:number*/ = $Number_parseInt(tmpCalleeParam$3);
   return tmpRet;
 };
 const tmpCalleeParam$9 /*:object*/ = {};
 let tmpSSA_e /*:(number)=>unknown*/ = function ($$0) {
-  const c$1 /*:number*/ = $$0;
+  const c$2 /*:number*/ = $$0;
   debugger;
   let tmpBinBothLhs /*:unknown*/ = ``;
-  const tmpIfTest /*:boolean*/ = c$1 < 52;
+  const tmpIfTest /*:boolean*/ = c$2 < 52;
   if (tmpIfTest) {
   } else {
-    const tmpCalleeParam$3 /*:number*/ = c$1 / 52;
-    const tmpCalleeParam$1 /*:number*/ = parseInt(tmpCalleeParam$3);
+    const tmpCalleeParam$1 /*:number*/ = $frfr(tmpFree, c$2);
     tmpBinBothLhs = tmpSSA_e(tmpCalleeParam$1);
   }
-  const tmpClusterSSA_c$4 /*:number*/ = c$1 % 52;
+  const tmpClusterSSA_c$4 /*:number*/ = c$2 % 52;
   const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_c$4 > 35;
   if (tmpIfTest$1) {
-    const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $frfr(tmpFree, tmpClusterSSA_c$4);
+    const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $frfr(tmpFree$1, tmpClusterSSA_c$4);
     const tmpClusterSSA_tmpReturnArg /*:string*/ = tmpBinBothLhs + tmpClusterSSA_tmpBinBothRhs;
     return tmpClusterSSA_tmpReturnArg;
   } else {
@@ -175,19 +181,23 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(tmpClusterSSA_c$2) {
-  const tmpRet = $String_fromCharCode(tmpClusterSSA_c$2 + 29);
+const tmpFree$1 = function $free(tmpClusterSSA_c$2) {
+  const tmpRet$1 = $String_fromCharCode(tmpClusterSSA_c$2 + 29);
+  return tmpRet$1;
+};
+const tmpFree = function $free(c$1) {
+  const tmpRet = $Number_parseInt(c$1 / 52);
   return tmpRet;
 };
 const tmpCalleeParam$9 = {};
-let tmpSSA_e = function (c$1) {
+let tmpSSA_e = function (c$2) {
   let tmpBinBothLhs = ``;
-  if (!(c$1 < 52)) {
-    tmpBinBothLhs = tmpSSA_e(parseInt(c$1 / 52));
+  if (!(c$2 < 52)) {
+    tmpBinBothLhs = tmpSSA_e($frfr(tmpFree, c$2));
   }
-  const tmpClusterSSA_c$4 = c$1 % 52;
+  const tmpClusterSSA_c$4 = c$2 % 52;
   if (tmpClusterSSA_c$4 > 35) {
-    const tmpClusterSSA_tmpReturnArg = tmpBinBothLhs + $frfr(tmpFree, tmpClusterSSA_c$4);
+    const tmpClusterSSA_tmpReturnArg = tmpBinBothLhs + $frfr(tmpFree$1, tmpClusterSSA_c$4);
     return tmpClusterSSA_tmpReturnArg;
   } else {
     const tmpClusterSSA_tmpReturnArg$1 = tmpBinBothLhs + $dotCall($number_toString, tmpClusterSSA_c$4, `toString`, 36);
@@ -317,95 +327,102 @@ const a = function b($$0 ) {
   const e = $String_fromCharCode( d );
   return e;
 };
-const f = {};
-let g = function($$0 ) {
-  const h = $$0;
+const f = function b($$0 ) {
+  const g = $$0;
   debugger;
-  let i = "";
-  const j = h < 52;
-  if (j) {
+  const h = g / 52;
+  const i = $Number_parseInt( h );
+  return i;
+};
+const j = {};
+let k = function($$0 ) {
+  const l = $$0;
+  debugger;
+  let m = "";
+  const n = l < 52;
+  if (n) {
 
   }
   else {
-    const k = h / 52;
-    const l = parseInt( k );
-    i = g( l );
+    const o = p( f, l );
+    m = k( o );
   }
-  const m = h % 52;
-  const n = m > 35;
-  if (n) {
-    const o = p( a, m );
-    const q = i + o;
-    return q;
+  const q = l % 52;
+  const r = q > 35;
+  if (r) {
+    const s = p( a, q );
+    const t = m + s;
+    return t;
   }
   else {
-    const r = $dotCall( $number_toString, m, "toString", 36 );
-    const s = i + r;
-    return s;
+    const u = $dotCall( $number_toString, q, "toString", 36 );
+    const v = m + u;
+    return v;
   }
 };
-const t = g( 51 );
-f[t] = "not_expr";
-const u = g( 50 );
-f[u] = "u0020g";
-const v = g( 49 );
-f[v] = "x20f";
-const w = g( 48 );
-f[w] = "10";
-const x = g( 47 );
-f[x] = "toString";
-const y = g( 46 );
-f[y] = "split";
-const z = g( 45 );
-f[z] = "36";
-const ba = g( 44 );
-f[ba] = "RegExp";
-const bb = g( 43 );
-f[bb] = "new";
-const bc = g( 42 );
-f[bc] = "String";
-let bd = 41;
-const be = g( 41 );
-f[be] = "eval";
-const bf = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "function", "return", "if", "replace", "while", "eval", "String", "new", "RegExp", "36", "split", "toString", "10", "x20f", "u0020g", "not_expr" ];
+const w = k( 51 );
+j[w] = "not_expr";
+const x = k( 50 );
+j[x] = "u0020g";
+const y = k( 49 );
+j[y] = "x20f";
+const z = k( 48 );
+j[z] = "10";
+const ba = k( 47 );
+j[ba] = "toString";
+const bb = k( 46 );
+j[bb] = "split";
+const bc = k( 45 );
+j[bc] = "36";
+const bd = k( 44 );
+j[bd] = "RegExp";
+const be = k( 43 );
+j[be] = "new";
+const bf = k( 42 );
+j[bf] = "String";
+let bg = 41;
+const bh = k( 41 );
+j[bh] = "eval";
+const bi = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "function", "return", "if", "replace", "while", "eval", "String", "new", "RegExp", "36", "split", "toString", "10", "x20f", "u0020g", "not_expr" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const bg = bd;
-  bd = bd - 1;
-  if (bg) {
-    const bh = g( bd );
-    let bi = bf[ bd ];
-    if (bi) {
+  const bj = bg;
+  bg = bg - 1;
+  if (bj) {
+    const bk = k( bg );
+    let bl = bi[ bg ];
+    if (bl) {
 
     }
     else {
-      bi = g( bd );
+      bl = k( bg );
     }
-    f[bh] = bi;
+    j[bk] = bl;
   }
   else {
     break;
   }
 }
-const bj = function($$0 ) {
-  const bk = $$0;
+const bm = function($$0 ) {
+  const bn = $$0;
   debugger;
-  const bl = f[ bk ];
-  return bl;
+  const bo = j[ bn ];
+  return bo;
 };
-g = function() {
+k = function() {
   debugger;
   return "\\w+";
 };
-const bm = /\b\w+\b/g;
-const bn = $dotCall( $string_replace, "F(A(p,a,c,k,e,r){e=A(c){B c.L(a)};C(!''.D(/^/,G)){E(c--)r[e(c)]=k[c]||e(c);k=[A(e){B r[e]}];e=A(){B'\\\\w+'};c=1};E(c--)C(k[c])p=p.D(H I('\\\\b'+e(c)+'\\\\b','g'),k[c]);B p}('s(f(p,a,c,k,e,r){e=l;m(!\\'\\'.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j\\'\\\\\\\\w+\\'};c=1};o(c--)m(k[c])p=p.n(t u(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);j p}(\\'\"0\\\\\\\\`1\\\\\\\\\"2\\\\\\\\\\\\\\'3\\\\\\\\\\\\\\\\4\\\\\\\\5\\\\\\\\6${7}8\\\\\\\\/9\"\\',q,q,\\'a|b|c|d|e|v|x|y|h|i\\'.z(\\'|\\'),0,{}))',J,J,'|||||||||||||||A||||B||G|C|D|E||M||F|H|I|N||O|P|K'.K('|'),0,{}))", "replace", bm, bj );
-const bo = eval( bn );
-$( bo );
+const bp = /\b\w+\b/g;
+const bq = $dotCall( $string_replace, "F(A(p,a,c,k,e,r){e=A(c){B c.L(a)};C(!''.D(/^/,G)){E(c--)r[e(c)]=k[c]||e(c);k=[A(e){B r[e]}];e=A(){B'\\\\w+'};c=1};E(c--)C(k[c])p=p.D(H I('\\\\b'+e(c)+'\\\\b','g'),k[c]);B p}('s(f(p,a,c,k,e,r){e=l;m(!\\'\\'.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j\\'\\\\\\\\w+\\'};c=1};o(c--)m(k[c])p=p.n(t u(\\'\\\\\\\\b\\'+e(c)+\\'\\\\\\\\b\\',\\'g\\'),k[c]);j p}(\\'\"0\\\\\\\\`1\\\\\\\\\"2\\\\\\\\\\\\\\'3\\\\\\\\\\\\\\\\4\\\\\\\\5\\\\\\\\6${7}8\\\\\\\\/9\"\\',q,q,\\'a|b|c|d|e|v|x|y|h|i\\'.z(\\'|\\'),0,{}))',J,J,'|||||||||||||||A||||B||G|C|D|E||M||F|H|I|N||O|P|K'.K('|'),0,{}))", "replace", bp, bm );
+const br = eval( bq );
+$( br );
 `````
 
 
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) objects in isFree check
 - (todo) can we always safely clone ident refs in this case?

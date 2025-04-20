@@ -470,7 +470,7 @@ export const GLOBAL_NAMESPACES_FOR_STATIC_METHODS = new Set([
   'Boolean', 'Number', 'String', 'Array', 'Object', 'Date', 'Function', 'JSON', 'Math', 'RegExp', 'Buffer', 'Map', 'Set',
 ]);
 /** @var {Map<string, symbol>} */
-export const BUILTIN_CLASSES_TO_SYMBOL = new Map([
+export const BUILTIN_GLOBAL_FUNCS_TO_SYMBOL = new Map([
   ['Boolean', symbo('boolean', 'constructor')],
   ['Number', symbo('number', 'constructor')],
   ['String', symbo('string', 'constructor')],
@@ -482,10 +482,17 @@ export const BUILTIN_CLASSES_TO_SYMBOL = new Map([
   ['Buffer', symbo('buffer', 'constructor')],
   ['Map', symbo('map', 'constructor')],
   ['Set', symbo('set', 'constructor')],
+
+  ['parseInt', symbo('Number', 'parseInt')],
+  ['parseFloat', symbo('Number', 'parseFloat')],
+  //['isNaN', symbo('Number', 'isNaN')], // Note: these are NOT equal; the Number variant does NOT coerce the arg.
+  //['isFinite', symbo('Number', 'isFinite')], // Note: these are NOT equal; the Number variant does NOT coerce the arg.
+
+  // Are there other things that we should map to a global_func ? url encoders, atob, setTimeout, etc
 ]);
 // string_constructor -> String
-export const BUILTIN_SYMBOL_TO_CLASSES = new Map(
-  [...BUILTIN_CLASSES_TO_SYMBOL.entries()].map(([key, value]) => [value, key])
+export const SYMBOL_TO_BUILTIN_GLOBAL_FUNCS = new Map(
+  [...BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.entries()].map(([key, value]) => [value, key])
 );
 
 

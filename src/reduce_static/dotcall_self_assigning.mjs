@@ -60,39 +60,8 @@ function _dotcallSelfAssigning(fdata) {
     ) return;
 
     ASSERT(read.parentNode.arguments[0].type === 'Identifier', 'we control dotcall and the first arg should be an ident which is the func being invoked', read.parentNode);
-    if (BUILTIN_SYMBOLS.has(read.parentNode.arguments[0].name)) {
-      // It's calling a known builtin function/method. If it returns the same type then we should be able to safely replace it..?
-      const obj = BUILTIN_SYMBOLS.get(read.parentNode.arguments[0].name);
-      //if (
-      //  initType === obj.typings?.returns && // does this builtin return the same type?
-      //  read.parentNode.arguments[0].name.startsWith(sym_prefix(initType, true)) // if string, make sure it's a string method, etc.
-      //) {
-      //  rule('Dotcall assigning a method to its context can eliminate the dotcall when returning the same type');
-      //  example(
-      //    `let x = "foo"; x = $dotCall(${symbo('string', 'replace')}, x, "replace", "o", "e")`,
-      //    `let x = "foo"; x = x.replace("o", "e")`,
-      //  );
-      //  before(read.blockBody[read.blockIndex]);
-      //
-      //  // Replace the callee ($dotcall(a,b,"c",d) -> b.c(d)
-      //  read.parentNode.callee = AST.memberExpression(read.parentNode.arguments[1], obj.prop);
-      //  // Drop the func and context args
-      //  read.parentNode.arguments.shift(); // func
-      //  read.parentNode.arguments.shift(); // context
-      //  read.parentNode.arguments.shift(); // propname
-      //
-      //  after(read.blockBody[read.blockIndex]);
-      //  changes += 1;
-      //  return;
-      //} else {
-      //  todo('There might be some cases where we can simplify this dotcall to a known builtin:', read.parentNode.arguments[1].name);
-      //  // The function being called is a builtin. There's no saving this. Bail now.
-      //  return;
-      //}
-      return
-    }
 
-    // Now check if we can figure out what the type is of the second arg.
+    // Check if we can figure out what the type is of the second arg.
     // For the cases that we target, it's most likely easy to find.
 
     const methodRef = read.parentNode.arguments[0];
@@ -123,9 +92,6 @@ function _dotcallSelfAssigning(fdata) {
       before(read.blockBody[read.blockIndex]);
 
       methodMeta.writes[0].parentNode.init = AST.identifier(symbol);
-      // This doesn't work because after this transform it will call phase1 which resets typing information (that's the whole point even)
-      //methodMeta.typing.mustBeType = 'string';
-      //methodMeta.typing.mustBePrimitive = true;
 
       after(decl.blockBody[decl.blockIndex]);
       after(methodMeta.writes[0].blockBody[methodMeta.writes[0].blockIndex]);

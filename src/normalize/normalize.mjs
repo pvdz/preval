@@ -2,7 +2,7 @@ import walk from '../../lib/walk.mjs';
 
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, ERR_MSG_ILLEGAL_ARRAY_SPREAD, ERR_MSG_ILLEGAL_CALLEE, FRESH, OLD, RED, BLUE, RESET, } from '../constants.mjs';
 import {
-  BUILTIN_CLASSES_TO_SYMBOL,
+  BUILTIN_GLOBAL_FUNCS_TO_SYMBOL,
   BUILTIN_FUNC_NO_CTX,
   BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER,
   BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING,
@@ -3428,13 +3428,13 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         if (ASSUME_BUILTINS) {
-          if (BUILTIN_CLASSES_TO_SYMBOL.has(funcName)) {
+          if (BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.has(funcName)) {
             // Note: seems these almost never reach this place... caught elsewhere
             rule('Builtin JS classes should change into the symbol for their constructor for consistency');
-            example('String', symbo('string', 'constructor'));
+            example('String(x)', `${symbo('string', 'constructor')}(x)`);
             before(body[i]);
 
-            replaceCallee(AST.identifier(BUILTIN_CLASSES_TO_SYMBOL.get(funcName)));
+            replaceCallee(AST.identifier(BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.get(funcName)));
 
             after(body[i]);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -3459,19 +3459,16 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           // First eliminate excessive args, or first args that are spreads
           switch (funcName) {
             case 'isNaN':
-            case symbo('Number', 'isNaN'):
             case 'isFinite':
+            case symbo('Number', 'isNaN'):
             case symbo('Number', 'isFinite'):
             case symbo('Number', 'isInteger'):
             case symbo('Number', 'isSafeInteger'):
             case symbo('boolean', 'constructor'):
-            case 'Boolean':
-            case 'parseFloat':
             case symbo('Number', 'parseFloat'):
             case symbo('number', 'constructor'):
-            case 'Number':
             case symbo('string', 'constructor'):
-            case 'String': {
+            {
               if (firstSpread) {
                 rule('Builtins that accept one arg but receive a spread can be improved');
                 example('isNaN(...a(), b(), c());', 'const tmp = [...a()][0]; b(); c(); isNaN(tmp);');
@@ -3512,36 +3509,46 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 const pv = args.length === 0 ? undefined : AST.getPrimitiveValue(args[0]);
                 let v;
                 switch (funcName) {
-                  case symbo('Number', 'isNaN'):
-                  case 'isNaN':
+                  case 'isNaN': {
                     v = args.length === 0 ? isNaN() : isNaN(pv);
                     break;
-                  case symbo('Number', 'isFinite'):
-                  case 'isFinite':
+                  }
+                  case symbo('Number', 'isNaN'): {
+                    v = args.length === 0 ? Number.isNaN() : Number.isNaN(pv);
+                    break;
+                  }
+                  case 'isFinite': {
                     v = args.length === 0 ? isFinite() : isFinite(pv);
                     break;
-                  case symbo('Number', 'isInteger'):
+                  }
+                  case symbo('Number', 'isFinite'): {
+                    v = args.length === 0 ? Number.isFinite() : Number.isFinite(pv);
+                    break;
+                  }
+                  case symbo('Number', 'isInteger'): {
                     v = args.length === 0 ? Number.isInteger() : Number.isInteger(pv);
                     break;
-                  case symbo('Number', 'isSafeInteger'):
+                  }
+                  case symbo('Number', 'isSafeInteger'): {
                     v = args.length === 0 ? Number.isSafeInteger() : Number.isSafeInteger(pv);
                     break;
-                  case symbo('boolean', 'constructor'):
-                  case 'Boolean':
+                  }
+                  case symbo('boolean', 'constructor'): {
                     v = args.length === 0 ? Boolean() : Boolean(pv);
                     break;
-                  case symbo('Number', 'parseFloat'):
-                  case 'parseFloat':
+                  }
+                  case symbo('Number', 'parseFloat'): {
                     v = args.length === 0 ? parseFloat() : parseFloat(pv);
                     break;
-                  case symbo('number', 'constructor'):
-                  case 'Number':
+                  }
+                  case symbo('number', 'constructor'): {
                     v = args.length === 0 ? 0 : Number(pv);
                     break;
-                  case symbo('string', 'constructor'):
-                  case 'String':
+                  }
+                  case symbo('string', 'constructor'): {
                     v = args.length === 0 ? '' : String(pv);
                     break;
+                  }
                   default:
                     ASSERT(false);
                 }
@@ -3579,8 +3586,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               break;
             }
-            case symbo('Number', 'parseInt'):
-            case 'parseInt': {
+            case symbo('Number', 'parseInt'): {
               if (
                 args.length === 0 ||
                 (args.length === 1 && AST.isPrimitive(args[0])) ||
@@ -3754,11 +3760,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             }
 
             switch (funcName) {
-              case 'Function': {
-                // TODO. Are args coerced? I think the call itself is not observable otherwise.
-                break;
-              }
-
               case symbo('boolean', 'valueOf'): {
                 if (isDotcall && AST.isBoolean(node.arguments[1])) {
                   // This should be safe to eliminate. A statement that calls .valueOf() on a boolean literal.
@@ -3778,7 +3779,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-
               case symbo('Buffer', 'from'): {
                 if (args.map(anode => AST.isPrimitive(anode))) {
                   riskyRule('A statement that is Buffer.from with only primitives can be eliminated');
@@ -3795,7 +3795,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-
               case symbo('Date', 'UTC'): {
                 // Coerce the first seven args to number
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 7)) {
@@ -3842,34 +3841,13 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-
-              case symbo('Math', 'atan2'): // Coerce the first two args to number
-              case symbo('Math', 'imul'): // Coerce the first two args to number
-              case symbo('Math', 'pow'): {
-                // Coerce the first two args to number
-                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
-                  rule('A Math statement with two args can be eliminated');
-                  example('Math.pow(a, b);', '+a; +b;');
-
-                  eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 2, 'number', 'number');
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-                break;
-              }
-
-              case symbo('Math', 'hypot'): // Coerce all args to number
-              case symbo('Math', 'max'): // Coerce all args to number
-              case symbo('Math', 'min'): // Coerce all args to number
-              case symbo('String', 'fromCharCode'): // Coerce all args to number
-              //case symbo('String', 'fromCodePoint'): // fromCodePoint can crash on invalid input ... :/
-              {
+              case symbo('Math', 'atan2'): {
                 // Coerce all args to number
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
-                  rule('A statement that is a builtin func call that coerces all its args to number can be eliminated');
-                  example('Math.pow(a, b, c);', `${SYMBOL_COERCE}(a, "number"); ${SYMBOL_COERCE}(b, "number"); ${SYMBOL_COERCE}(c, "number");`);
+                  rule('A statement that is a call to Math.atan2 must simply coerce all its args to number');
+                  example('Math.atan2(a, b, c);', `${SYMBOL_COERCE}(a, "number"); ${SYMBOL_COERCE}(b, "number"); ${SYMBOL_COERCE}(c, "number");`);
                   example(
-                    `${SYMBOL_DOTCALL}(${symbo('Math', 'pow')}, ctx, undefined, a, b, c);`,
+                    `${SYMBOL_DOTCALL}(${symbo('Math', 'atan2')}, ctx, undefined, a, b, c);`,
                     `const t1 = a; const t2 = b; const t3 = c; ctx; ${SYMBOL_COERCE}(t1, "number"); ${SYMBOL_COERCE}(t2, "number"); ${SYMBOL_COERCE}(t3, "number");`
                   );
                   before(body[i]);
@@ -3895,7 +3873,298 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
+              case symbo('Math', 'imul'): {
+                // Coerce all args to number
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
+                  rule('A statement that is a call to Math.imul must simply coerce all its args to number');
+                  example('Math.imul(a, b, c);', `${SYMBOL_COERCE}(a, "number"); ${SYMBOL_COERCE}(b, "number"); ${SYMBOL_COERCE}(c, "number");`);
+                  example(
+                    `${SYMBOL_DOTCALL}(${symbo('Math', 'imul')}, ctx, undefined, a, b, c);`,
+                    `const t1 = a; const t2 = b; const t3 = c; ctx; ${SYMBOL_COERCE}(t1, "number"); ${SYMBOL_COERCE}(t2, "number"); ${SYMBOL_COERCE}(t3, "number");`
+                  );
+                  before(body[i]);
 
+                  const tmpNames = args.map((_,i) => createFreshVar('tmpEA' + i, fdata)); // builtin-excessive-arg
+                  const newVarNodes = tmpNames.map((tmpName, i) => AST.varStatement('const', tmpName, args[i]));
+                  const coerceNodes = args.map((anode, ai) =>
+                    AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [AST.identifier(tmpNames[ai]), AST.primitive('number')]))
+                  );
+                  const newNodes = [
+                    ...newVarNodes,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    // The context goes between referencing the args and actually coercing them...
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    // Do coerce last. That's when the function is actually being invoked, after reading the context, property, and args.
+                    ...coerceNodes
+                  ].filter(Boolean);
+                  body.splice(i, 1, ...newNodes);
+
+                  after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                break;
+              }
+              case symbo('Math', 'pow'): {
+                // Coerce the first two args to number
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                  rule('A Math statement with two args can be eliminated');
+                  example('Math.pow(a, b);', '+a; +b;');
+
+                  eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 2, 'number', 'number');
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                break;
+              }
+              case symbo('Math', 'hypot'): {
+                // Coerce all args to number
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
+                  rule('A statement that is a call to Math.hypot must simply coerce all its args to number');
+                  example('Math.hypot(a, b, c);', `${SYMBOL_COERCE}(a, "number"); ${SYMBOL_COERCE}(b, "number"); ${SYMBOL_COERCE}(c, "number");`);
+                  example(
+                    `${SYMBOL_DOTCALL}(${symbo('Math', 'hypot')}, ctx, undefined, a, b, c);`,
+                    `const t1 = a; const t2 = b; const t3 = c; ctx; ${SYMBOL_COERCE}(t1, "number"); ${SYMBOL_COERCE}(t2, "number"); ${SYMBOL_COERCE}(t3, "number");`
+                  );
+                  before(body[i]);
+
+                  const tmpNames = args.map((_,i) => createFreshVar('tmpEA' + i, fdata)); // builtin-excessive-arg
+                  const newVarNodes = tmpNames.map((tmpName, i) => AST.varStatement('const', tmpName, args[i]));
+                  const coerceNodes = args.map((anode, ai) =>
+                    AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [AST.identifier(tmpNames[ai]), AST.primitive('number')]))
+                  );
+                  const newNodes = [
+                    ...newVarNodes,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    // The context goes between referencing the args and actually coercing them...
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    // Do coerce last. That's when the function is actually being invoked, after reading the context, property, and args.
+                    ...coerceNodes
+                  ].filter(Boolean);
+                  body.splice(i, 1, ...newNodes);
+
+                  after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                break;
+              }
+              case symbo('Math', 'max'): {
+                // Coerce all args to number
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
+                  rule('A statement that is a call to Math.max must simply coerce all its args to number');
+                  example('Math.max(a, b, c);', `${SYMBOL_COERCE}(a, "number"); ${SYMBOL_COERCE}(b, "number"); ${SYMBOL_COERCE}(c, "number");`);
+                  example(
+                    `${SYMBOL_DOTCALL}(${symbo('Math', 'max')}, ctx, undefined, a, b, c);`,
+                    `const t1 = a; const t2 = b; const t3 = c; ctx; ${SYMBOL_COERCE}(t1, "number"); ${SYMBOL_COERCE}(t2, "number"); ${SYMBOL_COERCE}(t3, "number");`
+                  );
+                  before(body[i]);
+
+                  const tmpNames = args.map((_,i) => createFreshVar('tmpEA' + i, fdata)); // builtin-excessive-arg
+                  const newVarNodes = tmpNames.map((tmpName, i) => AST.varStatement('const', tmpName, args[i]));
+                  const coerceNodes = args.map((anode, ai) =>
+                    AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [AST.identifier(tmpNames[ai]), AST.primitive('number')]))
+                  );
+                  const newNodes = [
+                    ...newVarNodes,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    // The context goes between referencing the args and actually coercing them...
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    // Do coerce last. That's when the function is actually being invoked, after reading the context, property, and args.
+                    ...coerceNodes
+                  ].filter(Boolean);
+                  body.splice(i, 1, ...newNodes);
+
+                  after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                break;
+              }
+              case symbo('Math', 'min'): {
+                // Coerce all args to number
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
+                  rule('A statement that is a call to Math.min must simply coerce all its args to number');
+                  example('Math.min(a, b, c);', `${SYMBOL_COERCE}(a, "number"); ${SYMBOL_COERCE}(b, "number"); ${SYMBOL_COERCE}(c, "number");`);
+                  example(
+                    `${SYMBOL_DOTCALL}(${symbo('Math', 'min')}, ctx, undefined, a, b, c);`,
+                    `const t1 = a; const t2 = b; const t3 = c; ctx; ${SYMBOL_COERCE}(t1, "number"); ${SYMBOL_COERCE}(t2, "number"); ${SYMBOL_COERCE}(t3, "number");`
+                  );
+                  before(body[i]);
+
+                  const tmpNames = args.map((_,i) => createFreshVar('tmpEA' + i, fdata)); // builtin-excessive-arg
+                  const newVarNodes = tmpNames.map((tmpName, i) => AST.varStatement('const', tmpName, args[i]));
+                  const coerceNodes = args.map((anode, ai) =>
+                    AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [AST.identifier(tmpNames[ai]), AST.primitive('number')]))
+                  );
+                  const newNodes = [
+                    ...newVarNodes,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    // The context goes between referencing the args and actually coercing them...
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    // Do coerce last. That's when the function is actually being invoked, after reading the context, property, and args.
+                    ...coerceNodes
+                  ].filter(Boolean);
+                  body.splice(i, 1, ...newNodes);
+
+                  after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                break;
+              }
+              case symbo('Number', 'parseInt'): {
+                // Coerce the first arg to string, the second to number, drop the stmt
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                  rule('A statement that is Number.parseInt can be eliminated');
+                  example('Number.parseInt(a, b, c);', '""+a; +b; c;');
+
+                  eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 2, 'string', 'number');
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                break;
+              }
+              case symbo('number', 'toExponential'): {
+                if (args.length === 0) {
+                  rule('A call to `number.toExponential()` without args is like calling it with zero');
+                  example(
+                    `${SYMBOL_DOTCALL}(${symbo('number', 'toExponential')}, 100, "toExponential");`,
+                    `${SYMBOL_DOTCALL}(${symbo('number', 'toExponential')}, 100, "toExponential", 0);`
+                  );
+                  before(body[i]);
+
+                  node.argument.push(AST.primitive(0))
+
+                  after(body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                // Note: consider `Number(...x, y)` when x is an empty array. We can't support spread as first arg unless we know the arg.
+                if (args.length > 1 && args[0].type !== 'SpreadElement') {
+                  rule('A call to ``number.toExponential`` with some args should call `$coerce` with one');
+                  example('f(100..toExponential(a, b, c));', 'const tmp = a; b; c; f(100.toExponential(tmp));');
+                  before(node, parentNodeOrWhatever);
+
+                  const newNodes = [];
+
+                  const tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                  args.forEach((anode, ai) => {
+                    if (ai === 0) {
+                      newNodes.push(AST.varStatement('const', tmpArgName, anode));
+                    } else {
+                      newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                    }
+                  });
+
+                  replaceArgs([
+                    args[0].type === 'SpreadElement'
+                      ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
+                      : AST.identifier(tmpArgName),
+                  ]);
+
+                  body.splice(i, 0,
+                    ...newNodes,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                  );
+
+                  after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                if (args.length === 1 && AST.isPrimitive(args[0])) {
+                  rule('A primitive value to `number.toExponential` should be resolved');
+                  example('f(123..toExponential("50foo"))', 'f(1e+2)');
+                  before(node, body[i]);
+
+                  const finalNode = AST.primitive(Number.prototype.toExponential(AST.getPrimitiveValue(args[0])));
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    finalParent,
+                  );
+
+                  after(finalParent, body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                break;
+              }
+              case symbo('number', 'toFixed'): {
+                if (args.length === 0) {
+                  rule('A call to `number.toFixed()` without args is like calling it with zero');
+                  example(
+                    `${SYMBOL_DOTCALL}(${symbo('number', 'toFixed')}, 100, "toFixed");`,
+                    `${SYMBOL_DOTCALL}(${symbo('number', 'toFixed')}, 100, "toFixed", 0);`
+                  );
+                  before(body[i]);
+
+                  node.argument.push(AST.primitive(0))
+
+                  after(body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                // Note: consider `Number(...x, y)` when x is an empty array. We can't support spread as first arg unless we know the arg.
+                if (args.length > 1 && args[0].type !== 'SpreadElement') {
+                  rule('A call to `parseFloat` with some args should call `$coerce` with one');
+                  example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(tmp));');
+                  before(node, parentNodeOrWhatever);
+
+                  const newNodes = [];
+
+                  const tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                  args.forEach((anode, ai) => {
+                    if (ai === 0) {
+                      newNodes.push(AST.varStatement('const', tmpArgName, anode));
+                    } else {
+                      newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                    }
+                  });
+
+                  replaceArgs([
+                    args[0].type === 'SpreadElement'
+                      ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
+                      : AST.identifier(tmpArgName),
+                  ]);
+
+                  body.splice(i, 0,
+                    ...newNodes,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                  );
+
+                  after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                if (args.length === 1 && AST.isPrimitive(args[0])) {
+                  rule('A primitive value to `parseFloat` should be resolved');
+                  example('f(parseFloat("50foo"))', 'f(50)');
+                  before(node, body[i]);
+
+                  const finalNode = AST.primitive(parseFloat(AST.getPrimitiveValue(args[0])));
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    finalParent,
+                  );
+
+                  after(finalParent, body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                break;
+              }
               case symbo('number', 'toString'): {
                 // Note: This can only be eliminated if we know that the first arg is missing or between 2 and 36, inclusive.
                 //       The function will throw for OOB or NaN values.
@@ -3943,6 +4212,39 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(args.length ? body.slice(i, i+args.length) : AST.emptyStatement());
+                  return true;
+                }
+                break;
+              }
+                //case symbo('String', 'fromCodePoint'): // fromCodePoint can crash on invalid input ... :/
+              case symbo('String', 'fromCharCode'): {
+                // Coerce all args to number
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
+                  rule('A statement that is a builtin func call that coerces all its args to number can be eliminated');
+                  example('Math.pow(a, b, c);', `${SYMBOL_COERCE}(a, "number"); ${SYMBOL_COERCE}(b, "number"); ${SYMBOL_COERCE}(c, "number");`);
+                  example(
+                    `${SYMBOL_DOTCALL}(${symbo('Math', 'pow')}, ctx, undefined, a, b, c);`,
+                    `const t1 = a; const t2 = b; const t3 = c; ctx; ${SYMBOL_COERCE}(t1, "number"); ${SYMBOL_COERCE}(t2, "number"); ${SYMBOL_COERCE}(t3, "number");`
+                  );
+                  before(body[i]);
+
+                  const tmpNames = args.map((_,i) => createFreshVar('tmpEA' + i, fdata)); // builtin-excessive-arg
+                  const newVarNodes = tmpNames.map((tmpName, i) => AST.varStatement('const', tmpName, args[i]));
+                  const coerceNodes = args.map((anode, ai) =>
+                    AST.expressionStatement(AST.callExpression(SYMBOL_COERCE, [AST.identifier(tmpNames[ai]), AST.primitive('number')]))
+                  );
+                  const newNodes = [
+                    ...newVarNodes,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    // The context goes between referencing the args and actually coercing them...
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    // Do coerce last. That's when the function is actually being invoked, after reading the context, property, and args.
+                    ...coerceNodes
+                  ].filter(Boolean);
+                  body.splice(i, 1, ...newNodes);
+
+                  after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
                 break;
@@ -4047,162 +4349,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-
-              case symbo('number', 'toExponential'): {
-                if (args.length === 0) {
-                  rule('A call to `number.toExponential()` without args is like calling it with zero');
-                  example(
-                    `${SYMBOL_DOTCALL}(${symbo('number', 'toExponential')}, 100, "toExponential");`,
-                    `${SYMBOL_DOTCALL}(${symbo('number', 'toExponential')}, 100, "toExponential", 0);`
-                  );
-                  before(body[i]);
-
-                  node.argument.push(AST.primitive(0))
-
-                  after(body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                // Note: consider `Number(...x, y)` when x is an empty array. We can't support spread as first arg unless we know the arg.
-                if (args.length > 1 && args[0].type !== 'SpreadElement') {
-                  rule('A call to `parseFloat` with some args should call `$coerce` with one');
-                  example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(tmp));');
-                  before(node, parentNodeOrWhatever);
-
-                  const newNodes = [];
-
-                  const tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
-                  args.forEach((anode, ai) => {
-                    if (ai === 0) {
-                      newNodes.push(AST.varStatement('const', tmpArgName, anode));
-                    } else {
-                      newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
-                    }
-                  });
-
-                  replaceArgs([
-                    args[0].type === 'SpreadElement'
-                      ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
-                      : AST.identifier(tmpArgName),
-                  ]);
-
-                  body.splice(i, 0,
-                    ...newNodes,
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                  );
-
-                  after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                if (args.length === 1 && AST.isPrimitive(args[0])) {
-                  rule('A primitive value to `parseFloat` should be resolved');
-                  example('f(parseFloat("50foo"))', 'f(50)');
-                  before(node, body[i]);
-
-                  const finalNode = AST.primitive(parseFloat(AST.getPrimitiveValue(args[0])));
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1,
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    finalParent,
-                  );
-
-                  after(finalParent, body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                break;
-              }
-
-              case symbo('number', 'toFixed'): {
-                if (args.length === 0) {
-                  rule('A call to `number.toFixed()` without args is like calling it with zero');
-                  example(
-                    `${SYMBOL_DOTCALL}(${symbo('number', 'toFixed')}, 100, "toFixed");`,
-                    `${SYMBOL_DOTCALL}(${symbo('number', 'toFixed')}, 100, "toFixed", 0);`
-                  );
-                  before(body[i]);
-
-                  node.argument.push(AST.primitive(0))
-
-                  after(body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                // Note: consider `Number(...x, y)` when x is an empty array. We can't support spread as first arg unless we know the arg.
-                if (args.length > 1 && args[0].type !== 'SpreadElement') {
-                  rule('A call to `parseFloat` with some args should call `$coerce` with one');
-                  example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(tmp));');
-                  before(node, parentNodeOrWhatever);
-
-                  const newNodes = [];
-
-                  const tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
-                  args.forEach((anode, ai) => {
-                    if (ai === 0) {
-                      newNodes.push(AST.varStatement('const', tmpArgName, anode));
-                    } else {
-                      newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
-                    }
-                  });
-
-                  replaceArgs([
-                    args[0].type === 'SpreadElement'
-                      ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
-                      : AST.identifier(tmpArgName),
-                  ]);
-
-                  body.splice(i, 0,
-                    ...newNodes,
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                  );
-
-                  after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                if (args.length === 1 && AST.isPrimitive(args[0])) {
-                  rule('A primitive value to `parseFloat` should be resolved');
-                  example('f(parseFloat("50foo"))', 'f(50)');
-                  before(node, body[i]);
-
-                  const finalNode = AST.primitive(parseFloat(AST.getPrimitiveValue(args[0])));
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1,
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    finalParent,
-                  );
-
-                  after(finalParent, body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                break;
-              }
-
-              case 'parseInt':
-              case symbo('Number', 'parseInt'): {
-                // Coerce the first arg to string, the second to number, drop the stmt
-                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
-                  rule('A statement that is Number.parseInt can be eliminated');
-                  example('Number.parseInt(a, b, c);', '""+a; +b; c;');
-
-                  eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 2, 'string', 'number');
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-                break;
-              }
             }
           }
           else {
@@ -4210,8 +4356,27 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             const firstArgNode = args[0];
             switch (funcName) {
-              case symbo('function', 'constructor'):
-              case 'Function': {
+              case symbo('boolean', 'constructor'): {
+                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `Boolean` on a primitive should resolve');
+                  example('Boolean("hello")', 'true');
+                  before(node, parentNodeOrWhatever);
+
+                  const finalNode = Boolean(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1,
+                    ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    finalParent,
+                  );
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
+              case symbo('function', 'constructor'): {
                 // The "easier" eval
                 // If we can determine all the args then I think we can construct a new global function and that's just it
                 // However, doing so may introduce new implicit globals and naming collisions that need to be resolved.
@@ -4263,9 +4428,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case 'isNaN':
-              case symbo('Number', 'isNaN'):
-              {
+              case 'isNaN': {
                 if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isNaN` on a primitive should resolve');
                   example('isNaN("hello")', 'true'); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
@@ -4285,9 +4448,27 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case 'isFinite':
-              case symbo('Number', 'isFinite'):
-              {
+              case symbo('Number', 'isNaN'): {
+                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `Number.isNaN` on a primitive should resolve');
+                  example('Number.isNaN("hello")', 'true'); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
+                  before(node, parentNodeOrWhatever);
+
+                  const finalNode = Number.isNaN(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1,
+                    ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    finalParent
+                  );
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
+              case 'isFinite': {
                 if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isFinite` on a primitive should resolve');
                   example('isFinite("hello")', 'false'); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
@@ -4307,14 +4488,13 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case symbo('boolean', 'constructor'):
-              case 'Boolean': {
+              case symbo('Number', 'isFinite'): {
                 if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
-                  rule('Calling `Boolean` on a primitive should resolve');
-                  example('Boolean("hello")', 'true');
+                  rule('Calling `Number.isFinite` on a primitive should resolve');
+                  example('Number.isFinite("hello")', 'false'); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
                   before(node, parentNodeOrWhatever);
 
-                  const finalNode = Boolean(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalNode = Number.isFinite(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                   body.splice(i, 1,
                     ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
@@ -4328,48 +4508,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-              case 'parseInt':
-              case symbo('Number', 'parseInt'):
-              {
-                if (firstArgNode && AST.isPrimitive(firstArgNode) && args.length <= 2) {
-                  if (args.length === 1 || AST.isPrimitive(args[1])) {
-                    const pv1 = AST.getPrimitiveValue(firstArgNode);
-                    const pv2 = args[1] && AST.getPrimitiveValue(args[1]);
-
-                    const pvn = args[1] ? parseInt(pv1, pv2) : parseInt(pv1);
-                    // Confirm that we can serialize it without loss of precision
-                    if (pvn === +String(pvn)) {
-                      // Ok... Seems this is safe to convert
-
-                      rule('Calling `parseFloat` on a primitive should resolve');
-                      example('parseInt("50hello")', '50'); // tests/cases/normalize/builtins/globals_with_primitives/parseint_500.md
-                      before(node, parentNodeOrWhatever);
-
-                      const finalNode = AST.primitive(pvn);
-                      const finalParent = wrapExpressionAs(
-                        wrapKind,
-                        varInitAssignKind,
-                        varInitAssignId,
-                        wrapLhs,
-                        varOrAssignKind,
-                        finalNode,
-                      );
-                      // If there was a second arg it must have been a primitive to get here. In that case we can ignore it here.
-                      body.splice(i, 1,
-                        ...args.slice(2).map((enode) => AST.expressionStatement(enode)),
-                        // Context might not be used but if it is referenced we keep for tdz reasons.
-                        ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                        finalParent,
-                      );
-
-                      after(finalNode, body.slice(i, args.length));
-                      return true;
-                    }
-                  }
-                }
-                break;
-              }
-              case 'parseFloat':
               case symbo('Number', 'parseFloat'):
               {
                 // This is not "just" calling Number or String... We can probably do this anyways.
@@ -4442,8 +4580,47 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 break;
               }
-              case symbo('number', 'constructor'):
-              case 'Number': {
+              case symbo('Number', 'parseInt'):
+              {
+                if (firstArgNode && AST.isPrimitive(firstArgNode) && args.length <= 2) {
+                  if (args.length === 1 || AST.isPrimitive(args[1])) {
+                    const pv1 = AST.getPrimitiveValue(firstArgNode);
+                    const pv2 = args[1] && AST.getPrimitiveValue(args[1]);
+
+                    const pvn = args[1] ? parseInt(pv1, pv2) : parseInt(pv1);
+                    // Confirm that we can serialize it without loss of precision
+                    if (pvn === +String(pvn)) {
+                      // Ok... Seems this is safe to convert
+
+                      rule('Calling `parseFloat` on a primitive should resolve');
+                      example('parseInt("50hello")', '50'); // tests/cases/normalize/builtins/globals_with_primitives/parseint_500.md
+                      before(node, parentNodeOrWhatever);
+
+                      const finalNode = AST.primitive(pvn);
+                      const finalParent = wrapExpressionAs(
+                        wrapKind,
+                        varInitAssignKind,
+                        varInitAssignId,
+                        wrapLhs,
+                        varOrAssignKind,
+                        finalNode,
+                      );
+                      // If there was a second arg it must have been a primitive to get here. In that case we can ignore it here.
+                      body.splice(i, 1,
+                        ...args.slice(2).map((enode) => AST.expressionStatement(enode)),
+                        // Context might not be used but if it is referenced we keep for tdz reasons.
+                        ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                        finalParent,
+                      );
+
+                      after(finalNode, body.slice(i, args.length));
+                      return true;
+                    }
+                  }
+                }
+                break;
+              }
+              case symbo('number', 'constructor'): {
                 // We eliminate Number in favor of $coerce
 
                 if (args.length === 0) {
@@ -4494,8 +4671,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 return false;
               }
-              case symbo('regex', 'constructor'):
-              case 'RegExp': {
+              case symbo('regex', 'constructor'): {
                 // I'm pretty sure we can safely convert regular expressions to literals when the args are strings
                 // The exception would be for illegal regexes, where they would be safer in their constructor form...
 
@@ -4546,56 +4722,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 break;
               }
-              case symbo('string', 'constructor'):
-              case 'String': {
-                // We eliminate String in favor of $coerce
-
-                if (args.length === 0) {
-                  rule('A call to `String` or `String.constructor()` without args is empty string');
-                  example('f(String());', 'f("");');
-                  example(`${SYMBOL_DOTCALL}(${symbo('string', 'constructor')}, 1, "constructor");`, '"";');
-                  before(body[i]);
-
-                  const finalNode = AST.primitive('');
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1,
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    finalParent,
-                  );
-
-                  before(body.slice(i, i+(contextNode?1:0)+1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                // We cannot safely transform `String(...x, y)` because if x is empty then `y` is the one being coerced, else y is ignored.
-                if (args[0].type !== 'SpreadElement') {
-                  rule('A call to `String` or `string.constructor` with some args should call `$coerce` with one');
-                  example('f(String(a, b, c));', `const tmp = a; b; c; f(${SYMBOL_COERCE}(tmp, "string"));`);
-                  example(`${SYMBOL_DOTCALL}(${symbo('string', 'constructor')}, 1, "constructor", a, b, c);`, `const tmp = a; b; c; ${SYMBOL_COERCE}(tmp, "string");`);
-                  before(body[i]);
-
-                  let tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
-                  const newArgs = args.map((anode, ai) => {
-                    if (ai === 0) return AST.varStatement('const', tmpArgName, anode);
-                    return AST.expressionStatement(AST.cloneSimple(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
-                  });
-                  node.callee = AST.identifier(SYMBOL_COERCE);
-                  node.arguments = [AST.identifier(tmpArgName), AST.primitive('string')];
-                  body.splice(i, 0,
-                    ...newArgs,
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                  );
-
-                  after(body.slice(i, i + newArgs.length + (contextNode ? 1 : 0) + 1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                return false;
-              }
               case symbo('Number', 'isInteger'): {
                 if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isInteger` on a primitive should resolve');
@@ -4636,7 +4762,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-
               case symbo('Math', 'pow'): {
                 if (AST.isPrimitive(args[0]) && AST.isPrimitive(args[1])) {
                   // TODO: there are many combinations of arguments we can "safely" inline here.
@@ -4694,7 +4819,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-
               case symbo('Math', 'random'): {
                 // We can special case Math.random with args to be excluded as a
                 // way for users to control math.randoms that should be left alone.
@@ -4735,7 +4859,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-
               case symbo('Math', 'floor'): {
                 if (args.length > 0 && AST.isPrimitive(args[0])) {
                   rule('Calling `Math.floor` with a primitive can be resolved');
@@ -4767,7 +4890,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-
               case symbo('Math', 'ceil'): {
                 if (args.length > 0 && AST.isPrimitive(args[0])) {
                   rule('Calling `Math.ceil` with a primitive can be resolved');
@@ -4799,7 +4921,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
-
               case symbo('Math', 'round'): {
                 if (args.length > 0 && AST.isPrimitive(args[0])) {
                   rule('Calling `Math.round` with a primitive can be resolved');
@@ -4830,6 +4951,55 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   return true;
                 }
                 break;
+              }
+              case symbo('string', 'constructor'): {
+                // We eliminate String in favor of $coerce
+
+                if (args.length === 0) {
+                  rule('A call to `String` or `String.constructor()` without args is empty string');
+                  example('f(String());', 'f("");');
+                  example(`${SYMBOL_DOTCALL}(${symbo('string', 'constructor')}, 1, "constructor");`, '"";');
+                  before(body[i]);
+
+                  const finalNode = AST.primitive('');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                    finalParent,
+                  );
+
+                  before(body.slice(i, i+(contextNode?1:0)+1));
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                // We cannot safely transform `String(...x, y)` because if x is empty then `y` is the one being coerced, else y is ignored.
+                if (args[0].type !== 'SpreadElement') {
+                  rule('A call to `String` or `string.constructor` with some args should call `$coerce` with one');
+                  example('f(String(a, b, c));', `const tmp = a; b; c; f(${SYMBOL_COERCE}(tmp, "string"));`);
+                  example(`${SYMBOL_DOTCALL}(${symbo('string', 'constructor')}, 1, "constructor", a, b, c);`, `const tmp = a; b; c; ${SYMBOL_COERCE}(tmp, "string");`);
+                  before(body[i]);
+
+                  let tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                  const newArgs = args.map((anode, ai) => {
+                    if (ai === 0) return AST.varStatement('const', tmpArgName, anode);
+                    return AST.expressionStatement(AST.cloneSimple(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                  });
+                  node.callee = AST.identifier(SYMBOL_COERCE);
+                  node.arguments = [AST.identifier(tmpArgName), AST.primitive('string')];
+                  body.splice(i, 0,
+                    ...newArgs,
+                    // Context might not be used but if it is referenced we keep for tdz reasons.
+                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                  );
+
+                  after(body.slice(i, i + newArgs.length + (contextNode ? 1 : 0) + 1));
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                return false;
               }
             }
           }
@@ -4936,13 +5106,13 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             return;
           }
 
-          if (argNode.type === 'Identifier' && BUILTIN_CLASSES_TO_SYMBOL.has(argNode.name)) {
+          if (argNode.type === 'Identifier' && BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.has(argNode.name)) {
             // Note: seems these almost never reach this place... caught elsewhere
             rule('Builtin JS classes should change into the symbol for their constructor for consistency');
             example('String', symbo('string', 'constructor'));
             before(body[i]);
 
-            node.arguments[n] = AST.identifier(BUILTIN_CLASSES_TO_SYMBOL.get(argNode.name));
+            node.arguments[n] = AST.identifier(BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.get(argNode.name));
             newArg = true;
 
             after(body[i]);
@@ -5493,13 +5663,13 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           node.parentNode,
         );
 
-        if (BUILTIN_CLASSES_TO_SYMBOL.has(node.name)) {
+        if (BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.has(node.name)) {
           // Note: seems these almost never reach this place... caught elsewhere
           rule('Builtin JS classes should change into the symbol for their constructor for consistency');
           example('String', symbo('string', 'constructor'));
           before(body[i]);
 
-          const newNode = AST.identifier(BUILTIN_CLASSES_TO_SYMBOL.get(node.name));
+          const newNode = AST.identifier(BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.get(node.name));
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
           body.splice(i, 1, finalParent);
 
@@ -5656,66 +5826,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
-        if (node.name === 'parseInt') {
-          rule('The identifier parseInt should become the preval symbol for it');
-          example('parseInt', symbo('Number', 'parseInt'));
-          before(node, parentNodeOrWhatever);
-
-          const newNode = AST.identifier(symbo('Number', 'parseInt'));
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
-          body.splice(i, 1, finalParent);
-
-          after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        if (node.name === 'parseFloat') {
-          rule('The identifier parseFloat should become the preval symbol for it');
-          example('parseFloat', symbo('Number', 'parseFloat'));
-          before(node, parentNodeOrWhatever);
-
-          const newNode = AST.identifier(symbo('Number', 'parseFloat'));
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
-          body.splice(i, 1, finalParent);
-
-          after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        if (node.name === 'isNaN') {
-          rule('The identifier isNaN should become the preval symbol for it');
-          example('isNaN', symbo('Number', 'isNaN'));
-          before(node, parentNodeOrWhatever);
-
-          const newNode = AST.identifier(symbo('Number', 'NaNisNaN'));
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
-          body.splice(i, 1, finalParent);
-
-          after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        if (node.name === 'isFinite') {
-          rule('The identifier isFinite should become the preval symbol for it');
-          example('isFinite', symbo('Number', 'isFinite'));
-          before(node, parentNodeOrWhatever);
-
-          const newNode = AST.identifier(symbo('Number', 'isFinite'));
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
-          body.splice(i, 1, finalParent);
-
-          after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
         if (
           parentNodeOrWhatever.type !== 'WhileStatement' &&
           (node.name === SYMBOL_MAX_LOOP_UNROLL || node.name.startsWith(SYMBOL_LOOP_UNROLL))
         ) {
+          todo('while constant managed to escape');
           rule('Any usage of the unroll constants that is not the while-test should become `true`');
           example('x = $LOOP_DONE_UNROLLING_ALWAYS_TRUE;', 'x = true');
           before(body[i]);
@@ -10726,9 +10841,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 expr.callee.type === 'Identifier' &&
                 [
                   '$',
-                  'parseInt',
                   symbo('Number', 'parseInt'),
-                  'parseFloat',
                   symbo('Number', 'parseFloat'),
                   'isNaN',
                   symbo('Number', 'isNaN'),
@@ -10855,17 +10968,23 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
               }
               else if (step.action === 'call') {
-                if (step.func === 'parseInt' || step.func === symbo('Number', 'parseInt')) {
+                if (step.func === symbo('Number', 'parseInt')) {
                   localNames.set(step.lhs, parseInt(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
-                else if (step.func === 'parseFloat' || step.func === symbo('Number', 'parseFloat')) {
+                else if (step.func === symbo('Number', 'parseFloat')) {
                   localNames.set(step.lhs, parseFloat(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
-                else if (step.func === 'isNaN' || step.func === symbo('Number', 'isNaN')) {
+                else if ('isNaN') {
                   localNames.set(step.lhs, isNaN(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
-                else if (step.func === 'isFinite' || step.func === symbo('Number', 'isFinite')) {
+                else if (step.func === symbo('Number', 'isNaN')) {
+                  localNames.set(step.lhs, Number.isNaN(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                }
+                else if (step.func === 'isFinite') {
                   localNames.set(step.lhs, isFinite(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
+                }
+                else if (step.func === symbo('Number', 'isFinite')) {
+                  localNames.set(step.lhs, Number.isFinite(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));
                 }
                 else if (step.func === symbo('Number', 'isNumber')) {
                   localNames.set(step.lhs, Number.isNumber(...step.args.map(a => (AST.isPrimitive(a) ? AST.getPrimitiveValue(a) : localNames.get(a.name)))));

@@ -702,10 +702,8 @@ function _objlitPropAccess(fdata) {
               }
             } else if (calleeMeta.isBuiltin) {
               switch (pnode.value.name) {
-                case 'Function':
-                case 'parseInt':
+                case symbo('Function', 'constructor'):
                 case symbo('Number', 'parseInt'):
-                case 'parseFloat':
                 case symbo('Number', 'parseFloat'):
                 case 'isNaN':
                 case symbo('Number', 'isNaN'):
@@ -713,7 +711,7 @@ function _objlitPropAccess(fdata) {
                 case symbo('Number', 'isFinite'):
                 case symbo('Number', 'isInteger'):
                 case symbo('Number', 'isSafeInteger'):
-                case 'RegExp':
+                case symbo('RegExp', 'constructor'):
                   vlog('- The callee is actually builtin `' + pnode.value.name + '` and it does not use `this`');
                   fail = false;
                   newCallee = AST.identifier(pnode.value.name);

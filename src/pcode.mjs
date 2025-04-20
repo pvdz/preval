@@ -53,28 +53,21 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   // global builtins (only include those that return a primitive we can transform into)
   //'clearInterval', // has side-effect. returns an object in nodejs
   //'clearTimeout', // has side-effect. returns an object in nodejs
-  'parseInt',
-  'parseFloat',
   //'setInterval', // (obviously) has side-effect
   //'setTimeout', // (obviously) has side-effect
-  'isNaN',
   //'eval', // dangerous
-  'isFinite',
   //'Array', // returns object
   symbo('boolean', 'constructor'),
-  'Boolean',
   //'Date', // returns object
   //'Error', // returns object
   //'JSON', // Cant call this
   //'Math', // Cant call this
   //'Map', // returns object
   symbo('number', 'constructor'),
-  'Number',
   //'Object', // returns object
   //'RegExp', // returns object
   //'Set', // returns object
   symbo('string', 'constructor'),
-  'String',
   //'Function', // returns object
 
   // NodeJS / Browser
@@ -93,6 +86,7 @@ export const pcodeSupportedBuiltinFuncs = new Set([
 
   symbo('Number', 'isFinite'),
   symbo('Number', 'isInteger'),
+  'isNaN',
   symbo('Number', 'isNaN'),
   symbo('Number', 'isSafeInteger'),
   symbo('Number', 'parseFloat'),
@@ -973,14 +967,26 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
           return r;
         }
 
+        case 'isFinite': {
+          // Note: this coerces the first arg, unlike Number.isFinite
+          const r = isFinite(...arr);
+          vlog('isFinite(', arr[0], ') =', [r]);
+          return r;
+        }
         case symbo('Number', 'isFinite'): {
-          const r = Number.isFinite(...arr);
+          const r = Number.isFinite(...arr); // Does NOT coerce first arg
           vlog('Number.isFinite(', arr[0], ') =', [r]);
           return r;
         }
         case symbo('Number', 'isInteger'): {
           const r = Number.isInteger(...arr);
           vlog('Number.isInteger(', arr[0], ') =', [r]);
+          return r;
+        }
+        case 'isNaN': {
+          // Note: this coerces the first arg, unlike Number.isNaN
+          const r = isNaN(...arr);
+          vlog('isNaN(', arr[0], ') =', [r]);
           return r;
         }
         case symbo('Number', 'isNaN'): {
@@ -1310,40 +1316,21 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         //case 'clearInterval': throw new Error('Do not call `clearInterval`');
         //case 'clearTimeout': throw new Error('Do not call `clearTimeout`');
 
-        case 'parseInt':
-        case symbo('Number', 'parseInt'):
-          return parseInt(...arr);
-        case 'parseFloat':
-        case symbo('Number', 'parseFloat'):
-          return parseFloat(...arr);
         case 'setInterval': throw new Error('Do not call `setInterval`');
         case 'setTimeout': throw new Error('Do not call `setTimeout`');
-        case 'isNaN':
-        case symbo('Number', 'isNaN'):
-          return isNaN(...arr);
         case 'eval': throw new Error('Do not call `eval`');
-        case 'isFinite':
-        case symbo('Number', 'isFinite'):
-          return isFinite(...arr);
-        case symbo('Number', 'isInteger'):
-          return Number.isInteger(...arr);
-        case symbo('Number', 'isSafeInteger'):
-          return Number.isSafeInteger(...arr);
         //case 'Array':
-        case symbo('boolean', 'constructor'):
-        case 'Boolean': return Boolean(...arr);
+        case symbo('boolean', 'constructor'): return Boolean(...arr);
         //case 'Date':
         //case 'Error':
         //case 'JSON':
         //case 'Map':
-        case symbo('number', 'constructor'):
-        case 'Number': return Number(...arr);
+        case symbo('number', 'constructor'): return Number(...arr);
         //case 'Object':
         //case 'RegExp':
         //case 'Set':
-        case symbo('string', 'constructor'):
-        case 'String': return String(...arr);
-        case 'Function': throw new Error('Do not call `Function`');
+        case symbo('string', 'constructor'): return String(...arr);
+        case symbo('function', 'constructor'): throw new Error('Do not call `Function`');
 
         case 'encodeURI': return encodeURI(...arr);
         case 'decodeURI': return decodeURI(...arr);

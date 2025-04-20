@@ -34,7 +34,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   };
   const x /*:unknown*/ = $(tmpCalleeParam);
   try {
-    const y /*:number*/ = parseInt(x);
+    const y /*:number*/ = $Number_parseInt(x);
     $(y);
   } catch (e) {}
 }
@@ -52,7 +52,7 @@ while (true) {
     },
   });
   try {
-    $(parseInt(x));
+    $($Number_parseInt(x));
   } catch (e) {}
 }
 `````
@@ -70,7 +70,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } };
   const b = $( a );
   try {
-    const c = parseInt( b );
+    const c = $Number_parseInt( b );
     $( c );
   }
   catch (d) {
@@ -83,6 +83,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) objects in isFree check
 
 

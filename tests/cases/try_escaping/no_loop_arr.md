@@ -109,12 +109,11 @@ $( a );
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) can try-escaping support this expr node type? CallExpression
-- (todo) Record this phase1.1 as a test case, please (A)
-- (todo) free with zero args, we can eliminate this?
 - (todo) outline any args for tdz
 
 

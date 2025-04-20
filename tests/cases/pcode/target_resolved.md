@@ -62,7 +62,7 @@ pcode =
 
       ] [
         [ r3 / r0 - - 62 ]
-        [ r4 call parseInt {- undefined} r3 - ]
+        [ r4 call $Number_parseInt {- undefined} r3 - ]
         [ r1 call pcode {- undefined} r4 - ]
       ]
     ]

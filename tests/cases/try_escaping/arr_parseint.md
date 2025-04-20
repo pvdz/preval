@@ -66,7 +66,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam /*:primitive*/ = arr[0];
   $(tmpCalleeParam);
   const a /*:primitive*/ = arr[286];
-  const b /*:number*/ = parseInt(a);
+  const b /*:number*/ = $Number_parseInt(a);
   if (b) {
     break;
   } else {
@@ -85,7 +85,7 @@ $(arr);
 const arr = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`];
 while (true) {
   $(arr[0]);
-  if (parseInt(arr[286])) {
+  if ($Number_parseInt(arr[286])) {
     break;
   } else {
     $dotCall($array_push, arr, `push`, $dotCall($array_shift, arr, `shift`));
@@ -104,7 +104,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a[ 0 ];
   $( b );
   const c = a[ 286 ];
-  const d = parseInt( c );
+  const d = $Number_parseInt( c );
   if (d) {
     break;
   }
@@ -120,6 +120,7 @@ $( a );
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?

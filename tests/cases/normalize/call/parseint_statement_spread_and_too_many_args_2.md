@@ -21,7 +21,7 @@ const tmpCalleeParam$3 /*:array*/ = [1, 2];
 const tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpCalleeParam /*:unknown*/ = $spy(`b`);
 const tmpCalleeParam$1 /*:unknown*/ = $spy(`c`);
-parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
+$Number_parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 
@@ -32,7 +32,7 @@ parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
 const tmpCalleeParamSpread = $([1, 2]);
 const tmpCalleeParam = $spy(`b`);
 const tmpCalleeParam$1 = $spy(`c`);
-parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
+$Number_parseInt(...tmpCalleeParamSpread, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 
@@ -44,14 +44,14 @@ const a = [ 1, 2 ];
 const b = $( a );
 const c = $spy( "b" );
 const d = $spy( "c" );
-parseInt( ...b, c, d );
+$Number_parseInt( ...b, c, d );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

@@ -74,7 +74,7 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
   const $dlr_$$0 /*:number*/ = $$0;
   debugger;
   const div /*:number*/ = $dlr_$$0 / 62;
-  const tmpRet /*:number*/ = parseInt(div);
+  const tmpRet /*:number*/ = $Number_parseInt(div);
   return tmpRet;
 };
 const pcode /*:(number)=>string*/ = function ($$0) {
@@ -117,7 +117,7 @@ const tmpFree$1 = function $free(perc$1, out_str$1) {
   return tmpRet$1;
 };
 const tmpFree = function $free($dlr_$$0) {
-  const tmpRet = parseInt($dlr_$$0 / 62);
+  const tmpRet = $Number_parseInt($dlr_$$0 / 62);
   return tmpRet;
 };
 const pcode = function ($dlr_$$2) {
@@ -164,7 +164,7 @@ const m = function b($$0 ) {
   const n = $$0;
   debugger;
   const o = n / 62;
-  const p = parseInt( o );
+  const p = $Number_parseInt( o );
   return p;
 };
 const q = function($$0 ) {
@@ -200,7 +200,7 @@ $( bb );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

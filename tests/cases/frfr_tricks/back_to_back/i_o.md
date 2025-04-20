@@ -40,7 +40,7 @@ const tmpFree /*:(string, string)=>primitive*/ = function $free($$0, $$1) {
   const ys$1 /*:string*/ = $$1;
   debugger;
   const tmpCalleeParam /*:string*/ = xs$1 + 5;
-  const one /*:number*/ = parseInt(tmpCalleeParam, ys$1);
+  const one /*:number*/ = $Number_parseInt(tmpCalleeParam, ys$1);
   const tmpMCF /*:unknown*/ = one.slice;
   const two /*:unknown*/ = $dotCall(tmpMCF, one, `slice`, 1);
   two + 0;
@@ -63,7 +63,7 @@ $(rs);
 
 `````js filename=intro
 const tmpFree = function $free(xs$1, ys$1) {
-  const one = parseInt(xs$1 + 5, ys$1);
+  const one = $Number_parseInt(xs$1 + 5, ys$1);
   const two = one.slice(1);
   two + 0;
   const tmpRet = two + two.slice(2);
@@ -83,7 +83,7 @@ const a = function b($$0,$$1 ) {
   const d = $$1;
   debugger;
   const e = c + 5;
-  const f = parseInt( e, d );
+  const f = $Number_parseInt( e, d );
   const g = f.slice;
   const h = $dotCall( g, f, "slice", 1 );
   h + 0;
@@ -104,7 +104,7 @@ $( p );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

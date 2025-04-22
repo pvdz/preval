@@ -18,7 +18,7 @@ $(new Set(['a', 'b']));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:array*/ = [`a`, `b`];
-const tmpCalleeParam /*:object*/ = new Set(tmpCalleeParam$1);
+const tmpCalleeParam /*:set*/ = new $set_constructor(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
@@ -28,7 +28,7 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCalleeParam$1 = [`a`, `b`];
-$(new Set(tmpCalleeParam$1));
+$(new $set_constructor(tmpCalleeParam$1));
 `````
 
 
@@ -37,7 +37,7 @@ With rename=true
 
 `````js filename=intro
 const a = [ "a", "b" ];
-const b = new Set( a );
+const b = new $set_constructor( a );
 $( b );
 `````
 

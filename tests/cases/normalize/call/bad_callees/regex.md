@@ -20,7 +20,7 @@ $('after');
 
 `````js filename=intro
 $(`before`);
-const tmpCallComplexCallee /*:regex*/ = /nope/;
+const tmpCallComplexCallee /*:regex*/ = new $regex_constructor(`nope`, ``);
 tmpCallComplexCallee();
 $(`after`);
 `````
@@ -31,7 +31,7 @@ $(`after`);
 
 `````js filename=intro
 $(`before`);
-const tmpCallComplexCallee = /nope/;
+const tmpCallComplexCallee = new $regex_constructor(`nope`, ``);
 tmpCallComplexCallee();
 $(`after`);
 `````
@@ -42,7 +42,7 @@ With rename=true
 
 `````js filename=intro
 $( "before" );
-const a = /nope/;
+const a = new $regex_constructor( "nope", "" );
 a();
 $( "after" );
 `````

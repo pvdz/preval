@@ -194,7 +194,7 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
 
             if (arg1.type === 'Identifier') {
               const arg1meta = fdata.globallyUniqueNamingRegistry.get(arg1.name);
-              if (arg1meta.isConstant && AST.isRegexLiteral(arg1meta.varDeclRef?.node)) {
+              if (arg1meta.isConstant && AST.isNewRegexLit(arg1meta.varDeclRef?.node)) {
                 vlog('- first arg is a regex const');
               } else {
                 vlog('- bail: string replace and the first arg spies;', arg1.type, arg1.name);

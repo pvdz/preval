@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
+const a /*:regex*/ = new $regex_constructor(`foo`, ``);
 $(`before  /foo/  after`);
-const a /*:regex*/ = /foo/;
 $(a);
 `````
 
@@ -29,8 +29,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
+const a = new $regex_constructor(`foo`, ``);
 $(`before  /foo/  after`);
-$(/foo/);
+$(a);
 `````
 
 
@@ -38,8 +39,8 @@ $(/foo/);
 With rename=true
 
 `````js filename=intro
+const a = new $regex_constructor( "foo", "" );
 $( "before  /foo/  after" );
-const a = /foo/;
 $( a );
 `````
 

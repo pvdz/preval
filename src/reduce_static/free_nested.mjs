@@ -222,6 +222,7 @@ function _freeNested(fdata, $prng, usePrng) {
               break;
             }
             case 'Literal': {
+              // TODO: can't be regex anymore. This will fail over bigints, not sure what else.
               ASSERT(init.raw.startsWith('/'), 'literal should be regex literal', init);
               finalNode = AST.cloneSortOfSimple(init);
               break;

@@ -40,9 +40,8 @@ const tmpArrElement$5 /*:array*/ = [`false`, `boolean`];
 const tmpArrElement$7 /*:array*/ = [`null`, `null`];
 const tmpArrElement$9 /*:array*/ = [`\$`, `\$`];
 const tmpCalleeParam$3 /*:array*/ = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
-const tmpMCOO$3 /*:object*/ = new Map(tmpCalleeParam$3);
-const tmpMCF /*:unknown*/ = tmpMCOO$3.keys;
-const tmpArrSpread /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO$3, `keys`);
+const tmpMCOO$3 /*:map*/ = new $map_constructor(tmpCalleeParam$3);
+const tmpArrSpread /*:iterator*/ = $dotCall($map_keys, tmpMCOO$3, `keys`);
 const tmpMCOO$1 /*:array*/ = [...tmpArrSpread, `module`];
 const tmpMCP /*:(unknown)=>array*/ = function ($$0) {
   const k /*:unknown*/ = $$0;
@@ -51,9 +50,8 @@ const tmpMCP /*:(unknown)=>array*/ = function ($$0) {
   return tmpReturnArg;
 };
 const tmpCalleeParam$1 /*:array*/ = $dotCall($array_map, tmpMCOO$1, `map`, tmpMCP);
-const tmpMCOO /*:object*/ = new Map(tmpCalleeParam$1);
-const tmpMCF$3 /*:unknown*/ = tmpMCOO.get;
-const tmpCalleeParam /*:unknown*/ = $dotCall(tmpMCF$3, tmpMCOO, `get`, `\$`);
+const tmpMCOO /*:map*/ = new $map_constructor(tmpCalleeParam$1);
+const tmpCalleeParam /*:unknown*/ = $dotCall($map_get, tmpMCOO, `get`, `\$`);
 $(tmpCalleeParam);
 `````
 
@@ -69,14 +67,12 @@ const tmpArrElement$5 = [`false`, `boolean`];
 const tmpArrElement$7 = [`null`, `null`];
 const tmpArrElement$9 = [`\$`, `\$`];
 const tmpCalleeParam$3 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
-const tmpMCOO$3 = new Map(tmpCalleeParam$3);
-const tmpArrSpread = tmpMCOO$3.keys();
+const tmpArrSpread = $dotCall($map_keys, new $map_constructor(tmpCalleeParam$3), `keys`);
 const tmpCalleeParam$1 = $dotCall($array_map, [...tmpArrSpread, `module`], `map`, function (k) {
   const tmpReturnArg = [k, k];
   return tmpReturnArg;
 });
-const tmpMCOO = new Map(tmpCalleeParam$1);
-$(tmpMCOO.get(`\$`));
+$($dotCall($map_get, new $map_constructor(tmpCalleeParam$1), `get`, `\$`));
 `````
 
 
@@ -91,21 +87,19 @@ const d = [ "false", "boolean" ];
 const e = [ "null", "null" ];
 const f = [ "$", "$" ];
 const g = [ a, b, c, d, e, f ];
-const h = new Map( g );
-const i = h.keys;
-const j = $dotCall( i, h, "keys" );
-const k = [ ...j, "module" ];
-const l = function($$0 ) {
-  const m = $$0;
+const h = new $map_constructor( g );
+const i = $dotCall( $map_keys, h, "keys" );
+const j = [ ...i, "module" ];
+const k = function($$0 ) {
+  const l = $$0;
   debugger;
-  const n = [ m, m ];
-  return n;
+  const m = [ l, l ];
+  return m;
 };
-const o = $dotCall( $array_map, k, "map", l );
-const p = new Map( o );
-const q = p.get;
-const r = $dotCall( q, p, "get", "$" );
-$( r );
+const n = $dotCall( $array_map, j, "map", k );
+const o = new $map_constructor( n );
+const p = $dotCall( $map_get, o, "get", "$" );
+$( p );
 `````
 
 
@@ -115,6 +109,10 @@ $( r );
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_map
 - (todo) type trackeed tricks can possibly support static $array_map
+- (todo) access object property that also exists on prototype? $map_keys
+- (todo) access object property that also exists on prototype? $map_get
+- (todo) type trackeed tricks can possibly support static $map_keys
+- (todo) type trackeed tricks can possibly support static $map_get
 
 
 ## Globals

@@ -18,7 +18,6 @@ $(typeof x);
 
 
 `````js filename=intro
-new Map();
 $(`object`);
 `````
 
@@ -27,7 +26,6 @@ $(`object`);
 (This ought to be the final result)
 
 `````js filename=intro
-new Map();
 $(`object`);
 `````
 
@@ -36,7 +34,6 @@ $(`object`);
 With rename=true
 
 `````js filename=intro
-new Map();
 $( "object" );
 `````
 

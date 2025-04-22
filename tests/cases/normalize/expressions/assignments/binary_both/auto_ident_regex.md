@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
+const tmpClusterSSA_a /*:regex*/ = new $regex_constructor(`foo`, ``);
 $(`/foo//foo/`);
-const tmpClusterSSA_a /*:regex*/ = /foo/;
 $(tmpClusterSSA_a);
 `````
 
@@ -29,8 +29,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
+const tmpClusterSSA_a = new $regex_constructor(`foo`, ``);
 $(`/foo//foo/`);
-$(/foo/);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -38,8 +39,8 @@ $(/foo/);
 With rename=true
 
 `````js filename=intro
+const a = new $regex_constructor( "foo", "" );
 $( "/foo//foo/" );
-const a = /foo/;
 $( a );
 `````
 

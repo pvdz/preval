@@ -97,7 +97,7 @@ const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
   const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$5[e$1];
   return tmpReturnArg$1;
 };
-const tmpMCP$1 /*:regex*/ = /\b\w+\b/g;
+const tmpMCP$1 /*:regex*/ = new $regex_constructor(`\\b\\w+\\b`, `g`);
 const tmpClusterSSA_p /*:string*/ = $dotCall(
   $string_replace,
   `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
@@ -190,7 +190,7 @@ $(
       $string_replace,
       `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
       `replace`,
-      /\b\w+\b/g,
+      new $regex_constructor(`\\b\\w+\\b`, `g`),
       tmpArrElement,
     ),
   ),
@@ -241,7 +241,7 @@ const g = function($$0 ) {
   const i = a[ h ];
   return i;
 };
-const j = /\b\w+\b/g;
+const j = new $regex_constructor( "\\b\\w+\\b", "g" );
 const k = $dotCall( $string_replace, "s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('\"0\\\\`1\\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6${7}8\\\\/9\"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))", "replace", j, g );
 const l = eval( k );
 $( l );
@@ -255,6 +255,7 @@ $( l );
 - (todo) objects in isFree check
 - (todo) Support this ident in isFree CallExpression: $number_toString
 - (todo) can we always safely clone ident refs in this case?
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

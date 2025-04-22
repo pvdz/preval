@@ -31,11 +31,11 @@ while (x) {
 
 
 `````js filename=intro
-let x /*:regex*/ = /foo/;
+let x /*:regex*/ = new $regex_constructor(`foo`, ``);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCalleeParam /*:unknown*/ = x.foo;
   $(tmpCalleeParam);
-  x = /foo/;
+  x = new $regex_constructor(`foo`, ``);
   x.foo = `object`;
 }
 `````
@@ -45,10 +45,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-let x = /foo/;
+let x = new $regex_constructor(`foo`, ``);
 while (true) {
   $(x.foo);
-  x = /foo/;
+  x = new $regex_constructor(`foo`, ``);
   x.foo = `object`;
 }
 `````
@@ -58,11 +58,11 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-let a = /foo/;
+let a = new $regex_constructor( "foo", "" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a.foo;
   $( b );
-  a = /foo/;
+  a = new $regex_constructor( "foo", "" );
   a.foo = "object";
 }
 `````
@@ -71,7 +71,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) regex in free loops
+- (todo) Support this node type in isFree: NewExpression
 - (todo) regular property access of an ident feels tricky;
 
 

@@ -24,12 +24,12 @@ while ($LOOP_UNROLL_10) {
 
 
 `````js filename=intro
-let x /*:regex*/ = /foo/;
+let x /*:regex*/ = new $regex_constructor(`foo`, ``);
 x.foo = `object`;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmp /*:unknown*/ = x.foo;
   $(tmp);
-  x = /foo/;
+  x = new $regex_constructor(`foo`, ``);
   x.foo = `object`;
 }
 `````
@@ -39,11 +39,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-let x = /foo/;
+let x = new $regex_constructor(`foo`, ``);
 x.foo = `object`;
 while (true) {
   $(x.foo);
-  x = /foo/;
+  x = new $regex_constructor(`foo`, ``);
   x.foo = `object`;
 }
 `````
@@ -53,12 +53,12 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-let a = /foo/;
+let a = new $regex_constructor( "foo", "" );
 a.foo = "object";
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = a.foo;
   $( b );
-  a = /foo/;
+  a = new $regex_constructor( "foo", "" );
   a.foo = "object";
 }
 `````

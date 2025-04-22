@@ -31,7 +31,7 @@ exit: for (const key of $(new Set(['a', 'b']))) {
 `````js filename=intro
 let x /*:unknown*/ = $(2);
 const tmpCalleeParam$3 /*:array*/ = [`a`, `b`];
-const tmpCalleeParam$1 /*:object*/ = new Set(tmpCalleeParam$3);
+const tmpCalleeParam$1 /*:set*/ = new $set_constructor(tmpCalleeParam$3);
 const tmpCalleeParam /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
@@ -62,7 +62,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 let x = $(2);
 const tmpCalleeParam$3 = [`a`, `b`];
-const tmpForOfGenNext = $forOf($(new Set(tmpCalleeParam$3)));
+const tmpForOfGenNext = $forOf($(new $set_constructor(tmpCalleeParam$3)));
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
@@ -86,7 +86,7 @@ With rename=true
 `````js filename=intro
 let a = $( 2 );
 const b = [ "a", "b" ];
-const c = new Set( b );
+const c = new $set_constructor( b );
 const d = $( c );
 const e = $forOf( d );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {

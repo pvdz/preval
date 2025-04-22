@@ -206,14 +206,22 @@ function core(fdata) {
     }
 
     if (at === 'regex') {
-      if (argMeta.typing.mustBeValue || argMeta.varDeclRef?.node?.raw) {
+      if (argMeta.varDeclRef?.node && AST.isNewRegexLit(argMeta.varDeclRef.node)) {
         rule('A regex as arg to $coerce can be resolved');
         example('$coerce(/foo/, "number")', 'NaN');
         example('$coerce(/foo/, "string")', '"/foo/"');
         example('$coerce(/foo/, "plustr")', '"/foo/"');
         before(read.blockBody[read.blockIndex]);
 
-        const finalNode = AST.primitive(coerce(argMeta.typing.mustBeValue || argMeta.varDeclRef.node.raw, kind));
+        const finalNode = AST.primitive(
+          coerce(
+            new RegExp(
+              AST.getPrimitiveValue(argMeta.varDeclRef.node.arguments[0]),
+              AST.getPrimitiveValue(argMeta.varDeclRef.node.arguments[1]),
+            ),
+            kind
+          )
+        );
         read.parentNode['arguments'][0] = finalNode;
 
         after(read.blockBody[read.blockIndex]);

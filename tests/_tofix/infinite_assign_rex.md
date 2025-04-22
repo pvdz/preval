@@ -6,6 +6,8 @@
 >
 > Rotating statements in an infinite loop
 
+existing test: regression when we changed regex literals to new regexp calls
+
 Note: Because a regex is a stateful object, Preval won't eliminate it.
       Preval should check if the last line before the loop serializes
       to the same string as the last statement in the loop, and in that
@@ -32,9 +34,14 @@ $(x);             // unreachable
 
 
 `````js filename=intro
+const x /*:regex*/ = new $regex_constructor(`tmp`, ``);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`tmp`, ``);
-  $(tmpClusterSSA_x);
+  $(x);
+  let tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`tmp`, ``);
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $(tmpClusterSSA_x);
+    tmpClusterSSA_x = new $regex_constructor(`tmp`, ``);
+  }
 }
 `````
 
@@ -43,8 +50,14 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
+const x = new $regex_constructor(`tmp`, ``);
 while (true) {
-  $(new $regex_constructor(`tmp`, ``));
+  $(x);
+  let tmpClusterSSA_x = new $regex_constructor(`tmp`, ``);
+  while (true) {
+    $(tmpClusterSSA_x);
+    tmpClusterSSA_x = new $regex_constructor(`tmp`, ``);
+  }
 }
 `````
 
@@ -53,9 +66,14 @@ while (true) {
 With rename=true
 
 `````js filename=intro
+const a = new $regex_constructor( "tmp", "" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = new $regex_constructor( "tmp", "" );
   $( a );
+  let b = new $regex_constructor( "tmp", "" );
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    $( b );
+    b = new $regex_constructor( "tmp", "" );
+  }
 }
 `````
 

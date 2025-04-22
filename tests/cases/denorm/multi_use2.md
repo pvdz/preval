@@ -25,7 +25,7 @@ if (expires) {
 
 `````js filename=intro
 if (expires) {
-  const date /*:object*/ = new Date();
+  const date /*:date*/ = new $date_constructor();
   const time /*:number*/ = $dotCall($date_getTime, date, `getTime`);
   $(time);
   unknown = date;
@@ -39,7 +39,7 @@ if (expires) {
 
 `````js filename=intro
 if (expires) {
-  const date = new Date();
+  const date = new $date_constructor();
   $($dotCall($date_getTime, date, `getTime`));
   unknown = date;
 }
@@ -51,7 +51,7 @@ With rename=true
 
 `````js filename=intro
 if (expires) {
-  const a = new Date();
+  const a = new $date_constructor();
   const b = $dotCall( $date_getTime, a, "getTime" );
   $( b );
   unknown = a;

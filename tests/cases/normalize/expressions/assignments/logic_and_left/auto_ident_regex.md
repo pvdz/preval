@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
+const a /*:regex*/ = new $regex_constructor(`foo`, ``);
 const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
-const a /*:regex*/ = /foo/;
 $(a);
 `````
 
@@ -30,8 +30,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
+const a = new $regex_constructor(`foo`, ``);
 $($(100));
-$(/foo/);
+$(a);
 `````
 
 
@@ -39,10 +40,10 @@ $(/foo/);
 With rename=true
 
 `````js filename=intro
-const a = $( 100 );
-$( a );
-const b = /foo/;
+const a = new $regex_constructor( "foo", "" );
+const b = $( 100 );
 $( b );
+$( a );
 `````
 
 

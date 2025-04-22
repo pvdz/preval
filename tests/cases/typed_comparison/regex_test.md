@@ -17,8 +17,8 @@ $(/x/g.test($('x')));
 
 
 `````js filename=intro
+const tmpMCOO /*:regex*/ = new $regex_constructor(`x`, `g`);
 const tmpMCP /*:unknown*/ = $(`x`);
-const tmpMCOO /*:regex*/ = /x/g;
 const tmpCalleeParam /*:unknown*/ = $dotCall($regex_test, tmpMCOO, `test`, tmpMCP);
 $(tmpCalleeParam);
 `````
@@ -28,8 +28,8 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpMCP = $(`x`);
-$($dotCall($regex_test, /x/g, `test`, tmpMCP));
+const tmpMCOO = new $regex_constructor(`x`, `g`);
+$($dotCall($regex_test, tmpMCOO, `test`, $(`x`)));
 `````
 
 
@@ -37,9 +37,9 @@ $($dotCall($regex_test, /x/g, `test`, tmpMCP));
 With rename=true
 
 `````js filename=intro
-const a = $( "x" );
-const b = /x/g;
-const c = $dotCall( $regex_test, b, "test", a );
+const a = new $regex_constructor( "x", "g" );
+const b = $( "x" );
+const c = $dotCall( $regex_test, a, "test", b );
 $( c );
 `````
 

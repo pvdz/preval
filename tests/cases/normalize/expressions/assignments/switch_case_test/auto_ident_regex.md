@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const a /*:regex*/ = /foo/;
+const a /*:regex*/ = new $regex_constructor(`foo`, ``);
 $(a);
 `````
 
@@ -32,7 +32,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-$(/foo/);
+$(new $regex_constructor(`foo`, ``));
 `````
 
 
@@ -41,7 +41,7 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-const a = /foo/;
+const a = new $regex_constructor( "foo", "" );
 $( a );
 `````
 

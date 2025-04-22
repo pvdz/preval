@@ -28,8 +28,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
+    const tmpAssignMemLhsObj /*:regex*/ = new $regex_constructor(`foo`, ``);
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    const tmpAssignMemLhsObj /*:regex*/ = /foo/;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   }
 }
@@ -48,9 +48,8 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const tmpAssignMemRhs = tmpForOfNext.value;
-    const tmpAssignMemLhsObj = /foo/;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    const tmpAssignMemLhsObj = new $regex_constructor(`foo`, ``);
+    tmpAssignMemLhsObj.x = tmpForOfNext.value;
   }
 }
 $({ a: 999, b: 1000 });
@@ -71,9 +70,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const f = d.value;
-    const g = /foo/;
-    g.x = f;
+    const f = new $regex_constructor( "foo", "" );
+    const g = d.value;
+    f.x = g;
   }
 }
 const h = {

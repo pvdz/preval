@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const a /*:regex*/ = /foo/;
+const a /*:regex*/ = new $regex_constructor(`foo`, ``);
 const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -30,7 +30,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const a = /foo/;
+const a = new $regex_constructor(`foo`, ``);
 const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -41,7 +41,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
+const a = new $regex_constructor( "foo", "" );
 const b = a;
 export { b as default };
 $( a );

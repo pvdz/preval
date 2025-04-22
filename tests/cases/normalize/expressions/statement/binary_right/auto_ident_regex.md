@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const tmpBinBothRhs /*:regex*/ = /foo/;
+const tmpBinBothRhs /*:regex*/ = new $regex_constructor(`foo`, ``);
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -31,7 +31,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$(100) + /foo/;
+$(100) + new $regex_constructor(`foo`, ``);
 $({ a: 999, b: 1000 });
 `````
 
@@ -41,7 +41,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-const b = /foo/;
+const b = new $regex_constructor( "foo", "" );
 a + b;
 const c = {
   a: 999,

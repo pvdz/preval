@@ -20,8 +20,8 @@ while (x) {
 
 
 `````js filename=intro
+const x /*:regex*/ = new $regex_constructor(`foo`, ``);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const x /*:regex*/ = /foo/;
   $(x);
 }
 `````
@@ -31,8 +31,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
+const x = new $regex_constructor(`foo`, ``);
 while (true) {
-  $(/foo/);
+  $(x);
 }
 `````
 
@@ -41,8 +42,8 @@ while (true) {
 With rename=true
 
 `````js filename=intro
+const a = new $regex_constructor( "foo", "" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = /foo/;
   $( a );
 }
 `````
@@ -51,7 +52,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) regex in free loops
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

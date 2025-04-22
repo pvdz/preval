@@ -21,7 +21,7 @@ import { createFreshVar, } from '../bindings.mjs';
 import globals, { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
 import { addLabelReference, createFreshLabelStatement, removeLabelReference } from '../labels.mjs';
-import { cloneSortOfSimple, isNumberValueNode, varStatement } from '../ast.mjs';
+import { cloneSortOfSimple, isNewRegexLit, isNumberValueNode, isSameNewRegexLit, newRegex, varStatement } from '../ast.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -3717,6 +3717,48 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               }
               break;
             }
+
+            case symbo('regex', 'constructor'): {
+              if (args.length === 2 && AST.isPrimitive(args[0]) && AST.isPrimitive(args[1])) {
+                rule('A RegExp call with two string args should normalize to a new');
+                example('RegExp("a", "g")', 'new RegExp("a" ,"g")');
+                before(body[i]);
+
+                const finalNode = AST.newRegex(AST.getPrimitiveValue(args[0]), AST.getPrimitiveValue(args[1]));
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+              if (args.length === 1 && AST.isPrimitive(args[0])) {
+                rule('A RegExp call with one string should normalize to a new');
+                example('RegExp("a")', 'new RegExp("a" ,"")');
+                before(body[i]);
+
+                const finalNode = AST.newRegex(AST.getPrimitiveValue(args[0]), '');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+              if (args.length === 0) {
+                rule('A RegExp call with no args should normalize to a new');
+                example('RegExp()', 'new RegExp("(?:)" ,"")');
+                before(body[i]);
+
+                const finalNode = AST.newRegex('(?:)', '');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+            }
           }
 
           if (wrapKind === 'statement') {
@@ -4683,30 +4725,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   example(`${SYMBOL_DOTCALL}(${symbo('regex', 'constructor')}, /x/, "constructor")`, '/(?:)/');
                   before(node, body[i]);
 
-                  const finalNode = AST.regex('(?:)', '', '/(?:)/');
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1,
-                    ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
-                    // Context might not be used but if it is referenced we keep for tdz reasons.
-                    ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
-                    finalParent,
-                  );
-
-                  after(finalNode, body.slice(i, args.length));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                if (args.length <= 2 && AST.isPrimitive(args[0]) && (!args[1] || AST.isPrimitive(args[1]))) {
-                  rule('Calling `RegExp()` with primitives should construct the regex');
-                  example('RegExp("foo")', '/foo/', () => !args[1]);
-                  example('RegExp("foo". "g")', '/foo/g', () => !!args[1]);
-                  example(`${SYMBOL_DOTCALL}(${symbo('regex', 'constructor')}, /x/, "constructor", "foo", "g")`, '/foo/g');
-                  before(node, body[i]);
-
-                  const pattern = AST.getPrimitiveValue(args[0]);
-                  const flags = args[1] ? AST.getPrimitiveValue(args[1]) : '';
-                  const finalNode = AST.regex(pattern, flags, String(RegExp(pattern, flags)));
+                  const finalNode = AST.newRegex('(?:)', '');
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                   body.splice(i, 1,
                     ...args.slice(1).map((enode) => AST.expressionStatement(enode)),
@@ -5866,6 +5885,20 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
+        if (node.raw.startsWith('/')) {
+          rule('A regular expression literal should be a new RegExp call instead');
+          example('const r = /foo/g;', `const r = new ${symbo('regex', 'constructor')}("foo", "g");`);
+          before(body[i]);
+
+          const finalNode = AST.newRegex(node.regex.pattern, node.regex.flags);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body[i] = finalParent;
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         return false;
       }
 
@@ -6780,11 +6813,23 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         if (node.callee.type === 'Identifier' && ASSUME_BUILTINS) {
+          if (BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.has(node.callee.name)) {
+            rule('Builtin JS classes should change into the symbol for their constructor for consistency');
+            example('new RegExp(x)', `new ${symbo('regex', 'constructor')}(x)`);
+            before(body[i]);
+
+            node.callee = AST.identifier(BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.get(node.callee.name));
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
           switch (node.callee.name) {
-            case 'Array': {
+            case symbo('array', 'constructor'): {
               // They are equal as per spec: https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array-constructor
-              rule('Array should not be called with `new`');
-              example('new Array(a, b)', 'Array(a, b)');
+              rule('ne wArray should not be called without `new`');
+              example(`new ${symbo('array', 'constructor')}(a, b)`, `${symbo('array', 'constructor')}(a, b)`);
               before(body[i]);
 
               const finalNode = AST.callExpression(AST.identifier('Array'), node.arguments);
@@ -6795,30 +6840,25 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
-            case 'RegExp': {
-              // Note: new RegExp is NOT the same RegExp because calling it as a function returns the arg if the arg is already regex.
-              if (node.arguments.length > 0) {
-                if (AST.isPrimitive(node.arguments[0]) && (node.arguments.length === 1 || AST.isPrimitive(node.arguments[1]))) {
-                  rule('new RegExp with primitives can be changed to a literal');
-                  example('new RegExp("foo", "g")', '/foo/g');
-                  before(node, parentNodeOrWhatever);
+            case SYMBOL_DOTCALL:
+            case SYMBOL_FRFR:
+            case SYMBOL_COERCE:
+              ASSERT(false, 'preval special builtins should not leak into becoming a `new` callee', node);
+              break;
+            default: {
+              if (wrapKind === 'statement') {
+                if (BUILTIN_SYMBOLS.has(node.callee.name) && node.arguments.every(anode => AST.isPrimitive(anode))) {
+                  rule('A statement that calls `new` on a builtin with only primitives can be dropped');
+                  example('new RegExp("a", "g")', ';');
+                  before(body[i]);
 
-                  const pattern = AST.getPrimitiveValue(node.arguments[0]);
-                  vlog('pattern:', pattern);
-                  const flags = node.arguments.length > 1 ? AST.getPrimitiveValue(node.arguments[1]) : '';
-                  vlog('flags:', flags);
-                  const r = new RegExp(pattern, flags);
-                  const finalNode = AST.regex(pattern, flags, String(r));
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1, finalParent);
+                  body[i] = AST.emptyStatement();
 
-                  after(finalNode, parentNodeOrWhatever);
+                  after(body[i]);
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
               }
-
-              break;
             }
           }
         }
@@ -10476,7 +10516,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               // `x = 1; while (true) { ...; x = 1; }`
               //TODO
             }
-            else if (AST.isRegexLiteral(rhsA) && AST.isRegexLiteral(rhsB) && AST.isSameRegexLiteral(rhsA, rhsB)) {
+            else if (
+              AST.isNewRegexLit(rhsA) &&
+              AST.isNewRegexLit(rhsB) &&
+              AST.isSameNewRegexLit(rhsA, rhsB)
+            ) {
               // Note: the example looks silly but another rule will detect the unobservable write and drop it (SSA, actually)
               rule('A loop with a decl/assign before and matching assign of regex in tail position can rotate-merge');
               example('let x = /xyz/g; while (true) { f(x); x = /xyz/g; }', 'let x = /xyz/g; while (true) { x = /xyz/g; f(x); }');
@@ -10631,7 +10675,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   // `x = 1; while (true) { if ($) { ...; break; } else { ...; x = 1; } }`
                   //TODO
                 }
-                else if (AST.isRegexLiteral(rhsA) && AST.isRegexLiteral(rhsB) && AST.isSameRegexLiteral(rhsA, rhsB)) {
+                else if (
+                  AST.isNewRegexLit(rhsA) &&
+                  AST.isNewRegexLit(rhsB) &&
+                  AST.isSameNewRegexLit(rhsA, rhsB)
+                ) {
                   rule('A loop with a decl/assign before and matching assign of regex in tail position of a tail-If in the While can rotate-merge');
                   example(
                     'let x = /xyz/g; while (true) { if ($) { f(x); break; } else { g(x); x = /xyz/g; } }',

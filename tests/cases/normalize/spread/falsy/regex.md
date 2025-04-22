@@ -22,7 +22,7 @@ if (x) {
 
 
 `````js filename=intro
-const tmpCalleeParam /*:regex*/ = /foo/g;
+const tmpCalleeParam /*:regex*/ = new $regex_constructor(`foo`, `g`);
 const x /*:unknown*/ = $(tmpCalleeParam);
 if (x) {
   $(`truthy`, ...x);
@@ -41,7 +41,7 @@ if (x) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(/foo/g);
+const x = $(new $regex_constructor(`foo`, `g`));
 if (x) {
   $(`truthy`, ...x);
 } else {
@@ -58,7 +58,7 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = /foo/g;
+const a = new $regex_constructor( "foo", "g" );
 const b = $( a );
 if (b) {
   $( "truthy", ...b );

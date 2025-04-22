@@ -49,7 +49,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const chr /*:primitive*/ = arr[count];
     if (chr) {
       const chr2 /*:primitive*/ = arr[count];
-      const regex /*:regex*/ = /xyz/g;
+      const regex /*:regex*/ = new $regex_constructor(`xyz`, `g`);
       str = $dotCall($string_replace, str, `replace`, regex, chr2);
     } else {
     }
@@ -73,7 +73,8 @@ while (true) {
   count = count - 1;
   if (tmpPostUpdArgIdent$1) {
     if (arr[count]) {
-      str = $dotCall($string_replace, str, `replace`, /xyz/g, arr[count]);
+      const chr2 = arr[count];
+      str = $dotCall($string_replace, str, `replace`, new $regex_constructor(`xyz`, `g`), chr2);
     }
   } else {
     break;
@@ -97,7 +98,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const e = c[ a ];
     if (e) {
       const f = c[ a ];
-      const g = /xyz/g;
+      const g = new $regex_constructor( "xyz", "g" );
       b = $dotCall( $string_replace, b, "replace", g, f );
     }
   }
@@ -112,7 +113,7 @@ $( b );
 ## Todos triggered
 
 
-- (todo) regex in free loops
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

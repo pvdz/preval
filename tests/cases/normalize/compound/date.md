@@ -34,7 +34,7 @@ $(a, s); // 5, 'read;write[5]'
 `````js filename=intro
 let s /*:string*/ = ``;
 let a /*:primitive*/ = 0;
-const tmpAssignMemRhs /*:object*/ = new Date(12345);
+const tmpAssignMemRhs /*:date*/ = new $date_constructor(12345);
 const obj /*:object*/ = {
   get x() {
     debugger;
@@ -64,7 +64,7 @@ $(a, s);
 `````js filename=intro
 let s = ``;
 let a = 0;
-const tmpAssignMemRhs = new Date(12345);
+const tmpAssignMemRhs = new $date_constructor(12345);
 const obj = {
   get x() {
     const tmpStringConcatR = s;
@@ -90,7 +90,7 @@ With rename=true
 `````js filename=intro
 let a = "";
 let b = 0;
-const c = new Date( 12345 );
+const c = new $date_constructor( 12345 );
 const d = {
   get x() {
     debugger;

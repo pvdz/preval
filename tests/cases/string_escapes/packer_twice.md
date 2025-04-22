@@ -45,6 +45,7 @@ eval( "console.log('bo\\`\\'\\\"\\x20o')" );
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) objects in isFree check
 - (todo) can we always safely clone ident refs in this case?
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

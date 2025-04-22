@@ -25,7 +25,7 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:regex*/ = /foo/;
+const tmpClusterSSA_a /*:regex*/ = new $regex_constructor(`foo`, ``);
 $(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
@@ -36,7 +36,7 @@ $(`fail2`);
 (This ought to be the final result)
 
 `````js filename=intro
-$(/foo/);
+$(new $regex_constructor(`foo`, ``));
 $(`fail1`);
 $(`fail2`);
 `````
@@ -46,7 +46,7 @@ $(`fail2`);
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
+const a = new $regex_constructor( "foo", "" );
 $( a );
 $( "fail1" );
 $( "fail2" );

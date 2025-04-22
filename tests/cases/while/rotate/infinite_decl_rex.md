@@ -29,7 +29,7 @@ $(x); // unreachable
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpClusterSSA_x /*:regex*/ = /tmp/;
+  const tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`tmp`, ``);
   $(tmpClusterSSA_x);
 }
 `````
@@ -40,7 +40,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while (true) {
-  $(/tmp/);
+  $(new $regex_constructor(`tmp`, ``));
 }
 `````
 
@@ -50,7 +50,7 @@ With rename=true
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = /tmp/;
+  const a = new $regex_constructor( "tmp", "" );
   $( a );
 }
 `````
@@ -59,7 +59,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) regex in free loops
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

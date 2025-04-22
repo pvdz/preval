@@ -25,7 +25,7 @@ if (tmpCalleeParam) {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
 } else {
-  const tmpNestedComplexRhs /*:regex*/ = /foo/;
+  const tmpNestedComplexRhs /*:regex*/ = new $regex_constructor(`foo`, ``);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
@@ -41,7 +41,7 @@ if (tmpCalleeParam) {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 });
 } else {
-  const tmpNestedComplexRhs = /foo/;
+  const tmpNestedComplexRhs = new $regex_constructor(`foo`, ``);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 }
@@ -62,7 +62,7 @@ if (a) {
   $( b );
 }
 else {
-  const c = /foo/;
+  const c = new $regex_constructor( "foo", "" );
   $( c );
   $( c );
 }

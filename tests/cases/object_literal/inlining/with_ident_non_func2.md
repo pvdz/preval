@@ -19,7 +19,7 @@ $(obj.f);
 
 
 `````js filename=intro
-const g /*:regex*/ = /regex/;
+const g /*:regex*/ = new $regex_constructor(`regex`, ``);
 $(g);
 `````
 
@@ -28,7 +28,7 @@ $(g);
 (This ought to be the final result)
 
 `````js filename=intro
-$(/regex/);
+$(new $regex_constructor(`regex`, ``));
 `````
 
 
@@ -36,7 +36,7 @@ $(/regex/);
 With rename=true
 
 `````js filename=intro
-const a = /regex/;
+const a = new $regex_constructor( "regex", "" );
 $( a );
 `````
 

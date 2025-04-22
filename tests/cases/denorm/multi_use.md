@@ -29,7 +29,7 @@ if (expires) {
 
 `````js filename=intro
 if (expires) {
-  const date /*:object*/ = new Date();
+  const date /*:date*/ = new $date_constructor();
   const time /*:number*/ = $dotCall($date_getTime, date, `getTime`);
   const exp /*:number*/ = expires * 1000;
   const endtime /*:number*/ = time + exp;
@@ -46,7 +46,7 @@ if (expires) {
 
 `````js filename=intro
 if (expires) {
-  const date = new Date();
+  const date = new $date_constructor();
   const time = $dotCall($date_getTime, date, `getTime`);
   $dotCall($date_setTime, date, `setTime`, time + expires * 1000);
   a8.expires = date;
@@ -60,7 +60,7 @@ With rename=true
 
 `````js filename=intro
 if (expires) {
-  const a = new Date();
+  const a = new $date_constructor();
   const b = $dotCall( $date_getTime, a, "getTime" );
   const c = expires * 1000;
   const d = b + c;

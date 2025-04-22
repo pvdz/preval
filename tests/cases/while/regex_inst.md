@@ -1,19 +1,19 @@
 # Preval test case
 
-# auto_ident_regex.md
+# regex_inst.md
 
-> Normalize > Expressions > Assignments > Do while > Auto ident regex
+> While > Regex inst
 >
-> Normalization of assignments should work the same everywhere they are
+> Regex reference
 
 ## Input
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-do {
-  $(100);
-} while ((a = /foo/));
-$(a);
+const x = /foo/; 
+const alias = x;
+while (x) {
+  $(x === alias);
+}
 `````
 
 
@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
+  $(true);
 }
 `````
 
@@ -32,7 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while (true) {
-  $(100);
+  $(true);
 }
 `````
 
@@ -42,7 +42,7 @@ With rename=true
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( 100 );
+  $( true );
 }
 `````
 
@@ -50,7 +50,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) do we want to support NewExpression as expression statement in free loops?
 
 
@@ -64,32 +63,32 @@ None
 
 
 Should call `$` with:
- - 1: 100
- - 2: 100
- - 3: 100
- - 4: 100
- - 5: 100
- - 6: 100
- - 7: 100
- - 8: 100
- - 9: 100
- - 10: 100
- - 11: 100
- - 12: 100
- - 13: 100
- - 14: 100
- - 15: 100
- - 16: 100
- - 17: 100
- - 18: 100
- - 19: 100
- - 20: 100
- - 21: 100
- - 22: 100
- - 23: 100
- - 24: 100
- - 25: 100
- - 26: 100
+ - 1: true
+ - 2: true
+ - 3: true
+ - 4: true
+ - 5: true
+ - 6: true
+ - 7: true
+ - 8: true
+ - 9: true
+ - 10: true
+ - 11: true
+ - 12: true
+ - 13: true
+ - 14: true
+ - 15: true
+ - 16: true
+ - 17: true
+ - 18: true
+ - 19: true
+ - 20: true
+ - 21: true
+ - 22: true
+ - 23: true
+ - 24: true
+ - 25: true
+ - 26: true
  - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
 
 Pre normalization calls: Same

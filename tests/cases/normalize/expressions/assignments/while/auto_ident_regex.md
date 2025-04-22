@@ -49,8 +49,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
-- (todo) regex in free loops
-- (todo) do we want to support Literal as expression statement in free loops?
+- (todo) Support this node type in isFree: NewExpression
+- (todo) do we want to support NewExpression as expression statement in free loops?
 
 
 ## Globals

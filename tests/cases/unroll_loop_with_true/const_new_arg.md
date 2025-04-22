@@ -18,7 +18,7 @@ $(x);
 
 
 `````js filename=intro
-const x /*:object*/ = new String(true);
+const x /*:object*/ = new $string_constructor(true);
 $(x);
 `````
 
@@ -27,7 +27,7 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-$(new String(true));
+$(new $string_constructor(true));
 `````
 
 
@@ -35,7 +35,7 @@ $(new String(true));
 With rename=true
 
 `````js filename=intro
-const a = new String( true );
+const a = new $string_constructor( true );
 $( a );
 `````
 

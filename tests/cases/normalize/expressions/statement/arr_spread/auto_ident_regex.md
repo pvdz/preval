@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpArrElToSpread /*:regex*/ = /foo/;
+const tmpArrElToSpread /*:regex*/ = new $regex_constructor(`foo`, ``);
 [...tmpArrElToSpread];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -30,7 +30,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpArrElToSpread = /foo/;
+const tmpArrElToSpread = new $regex_constructor(`foo`, ``);
 [...tmpArrElToSpread];
 $({ a: 999, b: 1000 });
 `````
@@ -40,7 +40,7 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
+const a = new $regex_constructor( "foo", "" );
 [ ...a ];
 const b = {
   a: 999,

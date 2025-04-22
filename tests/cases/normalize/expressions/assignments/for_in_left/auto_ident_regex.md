@@ -29,7 +29,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    a = /foo/;
+    a = new $regex_constructor(`foo`, ``);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     a.x = tmpAssignMemRhs;
   }
@@ -49,7 +49,7 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    a = /foo/;
+    a = new $regex_constructor(`foo`, ``);
     a.x = tmpForInNext.value;
   }
 }
@@ -75,7 +75,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    a = /foo/;
+    a = new $regex_constructor( "foo", "" );
     const g = e.value;
     a.x = g;
   }

@@ -27,7 +27,7 @@ const tmpSwitchDisc /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpClusterSSA_a /*:regex*/ = /foo/;
+  const tmpClusterSSA_a /*:regex*/ = new $regex_constructor(`foo`, ``);
   $(tmpClusterSSA_a);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
@@ -41,7 +41,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1) === $(1)) {
-  $(/foo/);
+  $(new $regex_constructor(`foo`, ``));
 } else {
   $({ a: 999, b: 1000 });
 }
@@ -56,7 +56,7 @@ const a = $( 1 );
 const b = $( 1 );
 const c = a === b;
 if (c) {
-  const d = /foo/;
+  const d = new $regex_constructor( "foo", "" );
   $( d );
 }
 else {

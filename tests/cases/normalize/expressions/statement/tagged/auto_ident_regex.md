@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
+const tmpCalleeParam$1 /*:regex*/ = new $regex_constructor(`foo`, ``);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-const tmpCalleeParam$1 /*:regex*/ = /foo/;
 $(tmpCalleeParam, tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -31,7 +31,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-$([`before `, ` after`], /foo/);
+const tmpCalleeParam$1 = new $regex_constructor(`foo`, ``);
+$([`before `, ` after`], tmpCalleeParam$1);
 $({ a: 999, b: 1000 });
 `````
 
@@ -40,9 +41,9 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = [ "before ", " after" ];
-const b = /foo/;
-$( a, b );
+const a = new $regex_constructor( "foo", "" );
+const b = [ "before ", " after" ];
+$( b, a );
 const c = {
   a: 999,
   b: 1000,

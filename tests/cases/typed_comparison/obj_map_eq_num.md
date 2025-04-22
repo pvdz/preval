@@ -19,7 +19,6 @@ $('out:', y);
 
 
 `````js filename=intro
-new Map();
 $(`out:`, false);
 `````
 
@@ -28,7 +27,6 @@ $(`out:`, false);
 (This ought to be the final result)
 
 `````js filename=intro
-new Map();
 $(`out:`, false);
 `````
 
@@ -37,7 +35,6 @@ $(`out:`, false);
 With rename=true
 
 `````js filename=intro
-new Map();
 $( "out:", false );
 `````
 

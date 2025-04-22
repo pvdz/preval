@@ -411,7 +411,7 @@ export function coerce(v, kind) {
   } else if (kind === 'number') {
     return Number(v);
   } else {
-    ASSERT(false);
+    ASSERT(false, 'huh?', [kind]);
   }
 }
 

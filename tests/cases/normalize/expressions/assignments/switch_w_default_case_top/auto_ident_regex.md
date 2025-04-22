@@ -42,7 +42,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  a = /foo/;
+  a = new $regex_constructor(`foo`, ``);
 } else {
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -72,7 +72,7 @@ if ($(1) === tmpSwitchValue) {
   }
 }
 if (tmpSwitchCaseToStart <= 0) {
-  a = /foo/;
+  a = new $regex_constructor(`foo`, ``);
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
@@ -108,7 +108,7 @@ else {
 }
 const g = c <= 0;
 if (g) {
-  a = /foo/;
+  a = new $regex_constructor( "foo", "" );
 }
 const h = c <= 1;
 if (h) {

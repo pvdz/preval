@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs /*:regex*/ = /foo/;
+const tmpNestedComplexRhs /*:regex*/ = new $regex_constructor(`foo`, ``);
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````
@@ -29,7 +29,7 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedComplexRhs = /foo/;
+const tmpNestedComplexRhs = new $regex_constructor(`foo`, ``);
 $(tmpNestedComplexRhs);
 $(tmpNestedComplexRhs);
 `````
@@ -39,7 +39,7 @@ $(tmpNestedComplexRhs);
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
+const a = new $regex_constructor( "foo", "" );
 $( a );
 $( a );
 `````

@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:regex*/ = /foo/;
+const tmpCalleeParam /*:regex*/ = new $regex_constructor(`foo`, ``);
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
@@ -39,7 +39,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGenNext = $forOf(/foo/);
+const tmpForOfGenNext = $forOf(new $regex_constructor(`foo`, ``));
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
@@ -56,7 +56,7 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
+const a = new $regex_constructor( "foo", "" );
 const b = $forOf( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const c = b();

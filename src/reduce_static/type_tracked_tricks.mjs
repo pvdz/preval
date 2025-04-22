@@ -875,23 +875,43 @@ function _typeTrackedTricks(fdata) {
                 const lIsInstance =
                   linit.type === 'ObjectExpression' ||
                   linit.type === 'ArrayExpression' ||
-                  AST.isRegexLiteral(linit) ||
+                  linit.type === 'FunctionExpression' ||
                   (
                     linit.type === 'NewExpression' &&
                     linit.callee.type === 'Identifier' &&
-                    ['RegExp', 'Set', 'Map', 'Array', symbo('string', 'constructor'), symbo('number', 'constructor'), symbo('boolean', 'constructor'), 'Function', 'Object'].includes(linit.callee.name)
-                  ) ||
-                  linit.type === 'FunctionExpression';
+                    [
+                      symbo('regex', 'constructor'),
+                      symbo('set', 'constructor'),
+                      symbo('map', 'constructor'),
+                      symbo('array', 'constructor'),
+                      symbo('string', 'constructor'),
+                      symbo('number', 'constructor'),
+                      symbo('boolean', 'constructor'),
+                      symbo('function', 'constructor'),
+                      symbo('date', 'constructor'),
+                      symbo('object', 'constructor'),
+                    ].includes(linit.callee.name)
+                  );
                 const rIsInstance =
                   rinit.type === 'ObjectExpression' ||
                   rinit.type === 'ArrayExpression' ||
-                  AST.isRegexLiteral(rinit) ||
+                  rinit.type === 'FunctionExpression' ||
                   (
                     rinit.type === 'NewExpression' &&
                     rinit.callee.type === 'Identifier' &&
-                    ['RegExp', 'Set', 'Map', 'Array', symbo('string', 'constructor'), symbo('number', 'constructor'), symbo('boolean', 'constructor'), 'Function', 'Object'].includes(rinit.callee.name)
-                  ) ||
-                  rinit.type === 'FunctionExpression';
+                    [
+                      symbo('regex', 'constructor'),
+                      symbo('set', 'constructor'),
+                      symbo('map', 'constructor'),
+                      symbo('array', 'constructor'),
+                      symbo('string', 'constructor'),
+                      symbo('number', 'constructor'),
+                      symbo('boolean', 'constructor'),
+                      symbo('function', 'constructor'),
+                      symbo('date', 'constructor'),
+                      symbo('object', 'constructor'),
+                    ].includes(rinit.callee.name)
+                  );
                 vlog('Is left an obj instance?', lIsInstance, ', and is right?', rIsInstance);
                 if (lIsInstance && rIsInstance) {
                   // Both sides are an object reference of sorts and both have one write; they cannot be equal
@@ -945,6 +965,7 @@ function _typeTrackedTricks(fdata) {
               }
             }
 
+
             const li = node.left.type === 'Identifier';
             const ri = node.right.type === 'Identifier';
             if (li || ri) {
@@ -953,21 +974,29 @@ function _typeTrackedTricks(fdata) {
               const pr = AST.isPrimitive(node.right);
               if (!pl || !pr) {
                 const meta = fdata.globallyUniqueNamingRegistry.get(pl ? node.right.name : node.left.name);
+                if (
+                  meta.typing.mustBeType === 'regex' &&
+                  meta.isConstant &&
+                  meta.writes.length === 1 &&
+                  meta.varDeclRef.node &&
+                  AST.isNewRegexLit(meta.varDeclRef.node)
+                ) {
+                  rule('A regex that is used with `+` becomes a string');
+                  example('/foo/ + 1', '"/foo/1"');
+                  before(node, parentNode);
 
-                if (meta.typing.mustBeType === 'regex') {
-                  if (meta.typing.mustBeValue || meta.varDeclRef?.node?.raw) {
-                    rule('A regex that is used with `+` becomes a string');
-                    example('/foo/ + 1', '"/foo/1"');
-                    before(node, parentNode);
+                  const finalNode = AST.primitive(String(
+                    new RegExp(
+                      AST.getPrimitiveValue(meta.varDeclRef.node.arguments[0]),
+                      AST.getPrimitiveValue(meta.varDeclRef.node.arguments[1]),
+                    )
+                  ));
+                  if (pl) node.right = finalNode;
+                  else node.left = finalNode;
 
-                    const finalNode = AST.primitive(String(meta.typing.mustBeValue || meta.varDeclRef.node.raw));
-                    if (pl) node.right = finalNode;
-                    else node.left = finalNode;
-
-                    after(node, parentNode);
-                    ++changes;
-                    return;
-                  }
+                  after(node, parentNode);
+                  ++changes;
+                  return;
                 }
               }
             }
@@ -1639,20 +1668,37 @@ function _typeTrackedTricks(fdata) {
             break;
           }
           case symbo('regex', 'test'):  {
-            const objMeta = fdata.globallyUniqueNamingRegistry.get(context?.name);
+            const ctxMeta = fdata.globallyUniqueNamingRegistry.get(context?.name);
             if (
               isDotcall &&
               context?.type === 'Identifier' &&
-              objMeta?.isConstant &&
-              objMeta.typing.mustBeType === 'regex' &&
+              ctxMeta?.isConstant &&
+              ctxMeta.writes.length === 1 &&
+              ctxMeta.varDeclRef.node.type === 'NewExpression' &&
+              ctxMeta.varDeclRef.node.callee.type === 'Identifier' &&
+              ctxMeta.varDeclRef.node.callee.name === symbo('regex', 'constructor') &&
+              (!ctxMeta.varDeclRef.node.arguments[0] || AST.isPrimitive(ctxMeta.varDeclRef.node.arguments[0])) &&
+              (!ctxMeta.varDeclRef.node.arguments[1] || AST.isPrimitive(ctxMeta.varDeclRef.node.arguments[1])) &&
               (args.length === 0 || AST.isPrimitive(args[0]))
             ) {
-              rule('regex.test when the object is a regex and the arg is known can be resolved');
+              const pattern = ctxMeta.varDeclRef.node.arguments[0] ? String(AST.getPrimitiveValue(ctxMeta.varDeclRef.node.arguments[0])) : undefined;
+              const flags = ctxMeta.varDeclRef.node.arguments[1] ? String(AST.getPrimitiveValue(ctxMeta.varDeclRef.node.arguments[1])) : undefined;
+              vlog('RegExp: pattern=', [pattern], ', flags=', [flags]);
+              let regex;
+              try {
+                regex = new RegExp(pattern, flags);
+              } catch (e) {
+                vlog('Looks like the regex is invalid, bailing (error=', e.message, ')');
+                break;
+              }
+
+              rule('regex.test when the context is a known regex and the arg is known can be resolved');
               example('/foo/.test("brafoody")', 'true');
+              example('new RegExp("foo").test("brafoody")', 'true');
               example(`${SYMBOL_DOTCALL}(${symbo('regex', 'test')}, /foo/, "xyz", "brafoody")`, 'true');
+              before(ctxMeta.varDeclRef.node);
               before(blockBody[blockIndex]);
 
-              const regex = RegExp(objMeta.varDeclRef.node.regex.pattern, objMeta.varDeclRef.node.regex.flags);
               const v = args.length ? regex.test(AST.getPrimitiveValue(args[0])) : regex.test();
 
               if (parentIndex < 0) parentNode[parentProp] = AST.primitive(v);
@@ -2431,11 +2477,13 @@ function _typeTrackedTricks(fdata) {
                   metaArg1 &&
                   metaArg1.typing.mustBeType === 'regex' &&
                   metaArg1.isConstant &&
-                  AST.isRegexLiteral(metaArg1.varDeclRef.node)
+                  AST.isNewRegexLit(metaArg1.varDeclRef.node)
                 ) {
                   if (!args[1] || AST.isPrimitive(args[1])) {
                     // - `'foo'.replace(/bar/)`
                     // - `'foo'.replace(/bar/, 'baz')`
+                    // normalized:
+                    // - `const arg = new $regex_constructor('bar', ''); $dotCall($regex_replace, 'foo', 'replace', arg);`
 
                     rule('Calling `replace` on a string with regex and primitive args should resolve the call');
                     example('"foo".replace(/a/g, "a")', '"faa"');
@@ -2793,9 +2841,11 @@ function _typeTrackedTricks(fdata) {
                   metaArg1 &&
                   metaArg1.typing.mustBeType === 'regex' &&
                   metaArg1.isConstant &&
-                  AST.isRegexLiteral(metaArg1.varDeclRef.node)
+                  AST.isNewRegexLit(metaArg1.varDeclRef.node)
                 ) {
                   // 'foo'.split(/o/)
+                  // normalized:
+                  // - `const arg = new $regex_constructor('o', ''); $dotCall($regex_split, 'foo', 'split', arg);`
 
                   rule('Calling `split` on a string with a regex should resolve the call');
                   example('"hello, world".split(/o/g, $)', '$, ["hell", ", w", "rld"]');

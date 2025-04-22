@@ -21,7 +21,7 @@ while (x) {
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpClusterSSA_x /*:regex*/ = /foo/;
+  const tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`foo`, ``);
   $(tmpClusterSSA_x);
 }
 `````
@@ -32,7 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 while (true) {
-  $(/foo/);
+  $(new $regex_constructor(`foo`, ``));
 }
 `````
 
@@ -42,7 +42,7 @@ With rename=true
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a = /foo/;
+  const a = new $regex_constructor( "foo", "" );
   $( a );
 }
 `````
@@ -51,8 +51,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) do we want to support Literal as expression statement in free loops?
-- (todo) regex in free loops
+- (todo) do we want to support NewExpression as expression statement in free loops?
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

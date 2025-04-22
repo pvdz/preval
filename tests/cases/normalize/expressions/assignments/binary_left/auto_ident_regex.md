@@ -19,11 +19,11 @@ $(a);
 
 
 `````js filename=intro
+const a /*:regex*/ = new $regex_constructor(`foo`, ``);
 const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpStringConcatL /*:string*/ = $coerce(tmpBinBothRhs, `plustr`);
 const tmpCalleeParam /*:string*/ = `/foo/${tmpStringConcatL}`;
 $(tmpCalleeParam);
-const a /*:regex*/ = /foo/;
 $(a);
 `````
 
@@ -32,9 +32,10 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
+const a = new $regex_constructor(`foo`, ``);
 const tmpStringConcatL = $coerce($(100), `plustr`);
 $(`/foo/${tmpStringConcatL}`);
-$(/foo/);
+$(a);
 `````
 
 
@@ -42,12 +43,12 @@ $(/foo/);
 With rename=true
 
 `````js filename=intro
-const a = $( 100 );
-const b = $coerce( a, "plustr" );
-const c = `/foo/${b}`;
-$( c );
-const d = /foo/;
+const a = new $regex_constructor( "foo", "" );
+const b = $( 100 );
+const c = $coerce( b, "plustr" );
+const d = `/foo/${c}`;
 $( d );
+$( a );
 `````
 
 

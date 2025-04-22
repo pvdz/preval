@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs /*:regex*/ = /foo/;
+  const tmpNestedComplexRhs /*:regex*/ = new $regex_constructor(`foo`, ``);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -38,7 +38,7 @@ if (tmpCalleeParam) {
 `````js filename=intro
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = /foo/;
+  const tmpNestedComplexRhs = new $regex_constructor(`foo`, ``);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
@@ -54,7 +54,7 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 if (a) {
-  const b = /foo/;
+  const b = new $regex_constructor( "foo", "" );
   $( b );
   $( b );
 }

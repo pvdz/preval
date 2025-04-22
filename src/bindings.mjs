@@ -1123,6 +1123,7 @@ function _inferNodeTyping(fdata, valueNode) {
   switch (valueNode.type) {
     case 'Literal': {
       if (valueNode.raw[0] === '/') {
+        // Should this still hit?
         vlog('- Node is a regex literal');
         return createTypingObject({
           mustBeType: 'regex',
@@ -1601,9 +1602,19 @@ function _inferNodeTyping(fdata, valueNode) {
       return createTypingObject({});
     }
     case 'NewExpression': {
-      vlog('- Node is a new expression');
+      vlog('- Node is a new expression, callee is', valueNode.callee.name);
+      let t = 'object'; // New always returns an object. But we may narrow that down.
+      switch (valueNode.callee.name) {
+        case symbo('array', 'constructor'): t = 'array'; break;
+        case symbo('date', 'constructor'): t = 'date'; break;
+        case symbo('map', 'constructor'): t = 'map'; break;
+        case symbo('set', 'constructor'): t = 'set'; break;
+        case symbo('regex', 'constructor'): t = 'regex'; break;
+        case symbo('function', 'constructor'): t = 'function'; break;
+        case symbo('buffer', 'constructor'): t = 'buffer'; break;
+      }
       return createTypingObject({
-        mustBeType: 'object',
+        mustBeType: t,
         mustBePrimitive: false,
         mustBeTruthy: true,
       });

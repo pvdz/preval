@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const a /*:regex*/ = /foo/;
+const a /*:regex*/ = new $regex_constructor(`foo`, ``);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
@@ -32,7 +32,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const a = /foo/;
+const a = new $regex_constructor(`foo`, ``);
 $(tmpBinBothLhs + a);
 $(a);
 `````
@@ -43,7 +43,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-const b = /foo/;
+const b = new $regex_constructor( "foo", "" );
 const c = a + b;
 $( c );
 $( b );

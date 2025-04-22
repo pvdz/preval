@@ -19,7 +19,6 @@ $('out:', y);
 
 
 `````js filename=intro
-new Date();
 $(`out:`, true);
 `````
 
@@ -28,7 +27,6 @@ $(`out:`, true);
 (This ought to be the final result)
 
 `````js filename=intro
-new Date();
 $(`out:`, true);
 `````
 
@@ -37,7 +35,6 @@ $(`out:`, true);
 With rename=true
 
 `````js filename=intro
-new Date();
 $( "out:", true );
 `````
 

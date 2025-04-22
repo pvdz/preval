@@ -54,8 +54,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpPostUpdArgIdent$2) {
     const chr$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
     if (chr$1) {
+      const regex$1 /*:regex*/ = new $regex_constructor(`xyz`, `g`);
       const chr2$1 /*:primitive*/ = arr[tmpClusterSSA_count$2];
-      const regex$1 /*:regex*/ = /xyz/g;
       str = $dotCall($string_replace, str, `replace`, regex$1, chr2$1);
     } else {
     }
@@ -79,7 +79,7 @@ while (true) {
   tmpClusterSSA_count$2 = tmpClusterSSA_count$2 - 1;
   if (tmpPostUpdArgIdent$2) {
     if (arr[tmpClusterSSA_count$2]) {
-      str = $dotCall($string_replace, str, `replace`, /xyz/g, arr[tmpClusterSSA_count$2]);
+      str = $dotCall($string_replace, str, `replace`, new $regex_constructor(`xyz`, `g`), arr[tmpClusterSSA_count$2]);
     }
   } else {
     break;
@@ -102,9 +102,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (d) {
     const e = c[ b ];
     if (e) {
-      const f = c[ b ];
-      const g = /xyz/g;
-      a = $dotCall( $string_replace, a, "replace", g, f );
+      const f = new $regex_constructor( "xyz", "g" );
+      const g = c[ b ];
+      a = $dotCall( $string_replace, a, "replace", f, g );
     }
   }
   else {
@@ -118,8 +118,7 @@ $( a );
 ## Todos triggered
 
 
-- (todo) regex in free loops
-- (todo) do we want to support Literal as expression statement in free loops?
+- (todo) Support this node type in isFree: NewExpression
 
 
 ## Globals

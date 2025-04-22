@@ -96,8 +96,8 @@ const tmpObjLitVal$159 /*:()=>undefined*/ = function () {
   }
   const tmpMCF$3 /*:unknown*/ = tmpCallObj$3807.toString;
   $dotCall(tmpMCF$3, tmpCallObj$3807, `toString`, 36);
+  const tmpCalleeParam$11085 /*:regex*/ = new $regex_constructor(`^0.`, ``);
   const tmpMCF$5 /*:unknown*/ = tmpCallObj$3811.replace;
-  const tmpCalleeParam$11085 /*:regex*/ = /^0./;
   const tmpClusterSSA_r$2027 /*:unknown*/ = $dotCall(tmpMCF$5, tmpCallObj$3811, `replace`, tmpCalleeParam$11085, ``);
   $coerce(tmpBinBothRhs$32, `string`);
   $coerce(tmpClusterSSA_r$2027, `string`);
@@ -151,7 +151,7 @@ $(function () {
     tmpSSA__u_t(t$3391);
   }
   tmpCallObj$3807.toString(36);
-  const tmpClusterSSA_r$2027 = tmpCallObj$3811.replace(/^0./, ``);
+  const tmpClusterSSA_r$2027 = tmpCallObj$3811.replace(new $regex_constructor(`^0.`, ``), ``);
   $coerce(tmpBinBothRhs$32, `string`);
   $coerce(tmpClusterSSA_r$2027, `string`);
   const tmpClusterSSA_t$9 = tmpSSA_Tu();
@@ -206,9 +206,9 @@ const i = function() {
   }
   const k = tmpCallObj$3807.toString;
   $dotCall( k, tmpCallObj$3807, "toString", 36 );
-  const l = tmpCallObj$3811.replace;
-  const m = /^0./;
-  const n = $dotCall( l, tmpCallObj$3811, "replace", m, "" );
+  const l = new $regex_constructor( "^0.", "" );
+  const m = tmpCallObj$3811.replace;
+  const n = $dotCall( m, tmpCallObj$3811, "replace", l, "" );
   $coerce( tmpBinBothRhs$32, "string" );
   $coerce( n, "string" );
   const o = tmpSSA_Tu();

@@ -19,7 +19,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpAnonDefaultExport /*:regex*/ = /foo/;
+const tmpAnonDefaultExport /*:regex*/ = new $regex_constructor(`foo`, ``);
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -30,7 +30,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAnonDefaultExport = /foo/;
+const tmpAnonDefaultExport = new $regex_constructor(`foo`, ``);
 export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 });
 `````
@@ -40,7 +40,7 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
+const a = new $regex_constructor( "foo", "" );
 export { a as default };
 const b = {
   a: 999,

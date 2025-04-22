@@ -27,7 +27,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const a /*:regex*/ = /foo/;
+const a /*:regex*/ = new $regex_constructor(`foo`, ``);
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -56,7 +56,7 @@ if (tmpIfTest$5) {
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const a = /foo/;
+const a = new $regex_constructor(`foo`, ``);
 if (a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -81,7 +81,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = 1;
-const c = /foo/;
+const c = new $regex_constructor( "foo", "" );
 const d = c === a;
 if (d) {
   b = 0;

@@ -23,7 +23,7 @@ new String(8.5, 8, ...tmpObjLitVal);
 $Number_prototype.c;
 $Number_prototype[6];
 const tmpObjLitVal /*:array*/ = [7];
-new String(8.5, 8, ...tmpObjLitVal);
+new $string_constructor(8.5, 8, ...tmpObjLitVal);
 `````
 
 
@@ -34,7 +34,7 @@ new String(8.5, 8, ...tmpObjLitVal);
 $Number_prototype.c;
 $Number_prototype[6];
 const tmpObjLitVal = [7];
-new String(8.5, 8, ...tmpObjLitVal);
+new $string_constructor(8.5, 8, ...tmpObjLitVal);
 `````
 
 
@@ -45,7 +45,7 @@ With rename=true
 $Number_prototype.c;
 $Number_prototype[ 6 ];
 const a = [ 7 ];
-new String( 8.5, 8, ...a );
+new $string_constructor( 8.5, 8, ...a );
 `````
 
 

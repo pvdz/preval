@@ -21,7 +21,7 @@ export function cloneSimple(node) {
   if (node.type === 'Literal') {
     if (node.raw === 'null') return nul(); // be explicit for null
     if (typeof node.value === 'string') return templateLiteral(node.value);
-    if (node.regex) return regex(node.regex.pattern, node.regex.flags, node.raw);
+    if (node.regex) return regex(node.regex.pattern, node.regex.flags, node.raw); // after normalization i dont think this should hit anymore
     ASSERT(node.value !== null, 'the null case was checked before?', node);
     return literal(node.value);
   }
@@ -101,7 +101,7 @@ export function cloneSortOfSimple(node) {
   }
 
   if (node.type === 'Literal' && node.raw.startsWith('/')) {
-    return regex(node.pattern, node.flags, node.raw);
+    return regex(node.regex.pattern, node.regex.flags, node.raw); // after normalization i dont think this should hit anymore
   }
 
   if (node.type === 'UnaryExpression' && !isComplexNode(node.argument)) {
@@ -612,17 +612,44 @@ export function literal(value, yesnull = false) {
 }
 
 export function isRegexLiteral(node) {
-  return node.type === 'Literal' && Boolean(node.regex);
+  ASSERT(false, 'normalized code has no regex literals. you should check isNewRegexLit() instead', node);
+  //return node.type === 'Literal' && Boolean(node.regex);
 }
 export function isSameRegexLiteral(nodeA, nodeB) {
-  ASSERT(nodeA.type === 'Literal' && nodeB.type === 'Literal' && nodeA.regex && nodeB.regex, 'expecting regex literal nodes', nodeA, nodeB);
-  return nodeA.regex.pattern === nodeB.regex.pattern && nodeA.regex.flags === nodeB.regex.flags;
+  ASSERT(false, 'normalized code has no regex literals. you should check isSameRegexLiteral() instead', nodeA, nodeB);
+  //ASSERT(nodeA.type === 'Literal' && nodeB.type === 'Literal' && nodeA.regex && nodeB.regex, 'expecting regex literal nodes', nodeA, nodeB);
+  //return nodeA.regex.pattern === nodeB.regex.pattern && nodeA.regex.flags === nodeB.regex.flags;
 }
+export function isNewRegex(node) {
+  return (
+    node.type === 'NewExpression' &&
+    node.callee.type === 'Identifier' &&
+    node.callee.name === symbo('regex', 'constructor')
+  );
+}
+export function isNewRegexLit(node) {
+  // Not an actual lit but a `new RegExp(a, b)` where a and b are strings.
+  // Maybe we should change this into a special symbol instead, like $regex(a, b) ? Then we can skip this check
+  return (
+    isNewRegex(node) &&
+    node.arguments.length === 2 &&
+    isStringLiteral(node.arguments[0]) &&
+    isStringLiteral(node.arguments[1])
+  );
+}
+export function isSameNewRegexLit(nodeA, nodeB) {
+  return (
+    getPrimitiveValue(nodeA.arguments[0]) === getPrimitiveValue(nodeB.arguments[0]) &&
+    getPrimitiveValue(nodeA.arguments[1]) === getPrimitiveValue(nodeB.arguments[1])
+  );
+}
+
 export function getRegexFromLiteralNode(node) {
-  ASSERT(isRegexLiteral(node), 'given node should be regex literal', node);
-  return new RegExp(node.regex.pattern, node.regex.flags)
+  ASSERT(isNewRegexLit(node), 'given node should be regex literal', node);
+  return new RegExp(getPrimitiveValue(node.arguments[0]), getPrimitiveValue(node.arguments[1]));
 }
-export function regex(pattern, flags, raw) {
+export function regex(pattern, flags, raw, yesNotNormalized = false) {
+  ASSERT(yesNotNormalized, 'dont use regex() for normalized code. use newRegex(), unless you have a good reason for it');
   ASSERT(typeof raw === 'string', 'the raw value should be a string');
   return {
     type: 'Literal',
@@ -632,7 +659,15 @@ export function regex(pattern, flags, raw) {
     $p: $p(),
   };
 }
+export function newRegex(pattern, flags) {
+  ASSERT(typeof pattern === 'string', 'pattern=string', [pattern]);
+  ASSERT(typeof flags === 'string', 'flags=string', [flags]);
 
+  return newExpression(
+    identifier(symbo('regex', 'constructor')),
+    [primitive(pattern), primitive(flags)]
+  );
+}
 export function logicalExpression(operator, left, right) {
   if (typeof left === 'string') left = identifier(left);
   if (typeof right === 'string') right = identifier(right);
@@ -1434,7 +1469,8 @@ export function isSortOfSimpleNode(node) {
     (node.type === 'AssignmentExpression' && isSimpleNodeOrSimpleMember(node.left) && isSimpleNodeOrSimpleMember(node.right)) ||
     (node.type === 'BinaryExpression' && isSimpleNodeOrSimpleMember(node.left) && isSimpleNodeOrSimpleMember(node.right)) ||
     (node.type === 'CallExpression' && isSimpleNodeOrSimpleMember(node.callee) && node.arguments.every(node => isSimpleNodeOrSimpleMember(node))) ||
-    (node.type === 'Literal' && node.raw.startsWith('/')) || // regex
+    (node.type === 'Literal' && node.raw.startsWith('/')) || // regex, should this happen anymore?
+    isNewRegexLit(node) || // new style
     (node.type === 'UnaryExpression' && !isComplexNode(node.argument))
   );
 }

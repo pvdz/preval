@@ -17,7 +17,7 @@ $(~/1/);
 
 
 `````js filename=intro
-const tmpUnaryArg /*:regex*/ = /1/;
+const tmpUnaryArg /*:regex*/ = new $regex_constructor(`1`, ``);
 const tmpCalleeParam /*:number*/ = ~tmpUnaryArg;
 $(tmpCalleeParam);
 `````
@@ -27,7 +27,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpUnaryArg = /1/;
+const tmpUnaryArg = new $regex_constructor(`1`, ``);
 $(~tmpUnaryArg);
 `````
 
@@ -36,7 +36,7 @@ $(~tmpUnaryArg);
 With rename=true
 
 `````js filename=intro
-const a = /1/;
+const a = new $regex_constructor( "1", "" );
 const b = ~a;
 $( b );
 `````

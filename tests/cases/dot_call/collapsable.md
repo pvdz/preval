@@ -24,7 +24,7 @@ $(out);
 `````js filename=intro
 const str /*:unknown*/ = $(`hello`);
 const method /*:unknown*/ = str.replace;
-const regex /*:regex*/ = /e/g;
+const regex /*:regex*/ = new $regex_constructor(`e`, `g`);
 const out /*:unknown*/ = $dotCall(method, str, `replace`, regex, `u`);
 $(out);
 `````
@@ -36,7 +36,7 @@ $(out);
 `````js filename=intro
 const str = $(`hello`);
 const method = str.replace;
-$($dotCall(method, str, `replace`, /e/g, `u`));
+$($dotCall(method, str, `replace`, new $regex_constructor(`e`, `g`), `u`));
 `````
 
 
@@ -46,7 +46,7 @@ With rename=true
 `````js filename=intro
 const a = $( "hello" );
 const b = a.replace;
-const c = /e/g;
+const c = new $regex_constructor( "e", "g" );
 const d = $dotCall( b, a, "replace", c, "u" );
 $( d );
 `````

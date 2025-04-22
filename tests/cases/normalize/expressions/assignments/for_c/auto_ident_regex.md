@@ -23,7 +23,7 @@ let a /*:unknown*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
-    a = /foo/;
+    a = new $regex_constructor(`foo`, ``);
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
     } else {
@@ -44,7 +44,7 @@ if (tmpIfTest) {
 let a = { a: 999, b: 1000 };
 if ($(1)) {
   while (true) {
-    a = /foo/;
+    a = new $regex_constructor(`foo`, ``);
     if (!$(1)) {
       break;
     }
@@ -67,7 +67,7 @@ let a = {
 const b = $( 1 );
 if (b) {
   while ($LOOP_UNROLL_10) {
-    a = /foo/;
+    a = new $regex_constructor( "foo", "" );
     const c = $( 1 );
     if (c) {
 

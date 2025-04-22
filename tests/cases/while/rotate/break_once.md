@@ -29,14 +29,14 @@ while ($LOOP_UNROLL_10) {
 
 
 `````js filename=intro
-const x /*:regex*/ = /foo/;
+const x /*:regex*/ = new $regex_constructor(`foo`, ``);
 x.foo = `object`;
 const tmp /*:unknown*/ = x.foo;
 $(tmp);
 const end /*:unknown*/ = $(x);
 if (end) {
 } else {
-  let tmpClusterSSA_x /*:regex*/ = /foo/;
+  let tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`foo`, ``);
   tmpClusterSSA_x.foo = `object`;
   while ($LOOP_UNROLL_9) {
     const tmp$1 /*:unknown*/ = tmpClusterSSA_x.foo;
@@ -45,7 +45,7 @@ if (end) {
     if (end$1) {
       break;
     } else {
-      tmpClusterSSA_x = /foo/;
+      tmpClusterSSA_x = new $regex_constructor(`foo`, ``);
       tmpClusterSSA_x.foo = `object`;
     }
   }
@@ -57,18 +57,18 @@ if (end) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = /foo/;
+const x = new $regex_constructor(`foo`, ``);
 x.foo = `object`;
 $(x.foo);
 if (!$(x)) {
-  let tmpClusterSSA_x = /foo/;
+  let tmpClusterSSA_x = new $regex_constructor(`foo`, ``);
   tmpClusterSSA_x.foo = `object`;
   while (true) {
     $(tmpClusterSSA_x.foo);
     if ($(tmpClusterSSA_x)) {
       break;
     } else {
-      tmpClusterSSA_x = /foo/;
+      tmpClusterSSA_x = new $regex_constructor(`foo`, ``);
       tmpClusterSSA_x.foo = `object`;
     }
   }
@@ -80,7 +80,7 @@ if (!$(x)) {
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
+const a = new $regex_constructor( "foo", "" );
 a.foo = "object";
 const b = a.foo;
 $( b );
@@ -89,7 +89,7 @@ if (c) {
 
 }
 else {
-  let d = /foo/;
+  let d = new $regex_constructor( "foo", "" );
   d.foo = "object";
   while ($LOOP_UNROLL_9) {
     const e = d.foo;
@@ -99,7 +99,7 @@ else {
       break;
     }
     else {
-      d = /foo/;
+      d = new $regex_constructor( "foo", "" );
       d.foo = "object";
     }
   }

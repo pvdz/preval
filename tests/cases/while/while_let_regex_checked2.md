@@ -32,13 +32,13 @@ while (x) {
 
 
 `````js filename=intro
-const x /*:regex*/ = /foo/;
+const x /*:regex*/ = new $regex_constructor(`foo`, ``);
 const tmpCalleeParam /*:unknown*/ = x.foo;
 $(tmpCalleeParam);
 const tmpIfTest /*:unknown*/ = $(x);
 if (tmpIfTest) {
 } else {
-  let tmpClusterSSA_x /*:regex*/ = /foo/;
+  let tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`foo`, ``);
   tmpClusterSSA_x.foo = `object`;
   while ($LOOP_UNROLL_10) {
     const tmpCalleeParam$1 /*:unknown*/ = tmpClusterSSA_x.foo;
@@ -47,7 +47,7 @@ if (tmpIfTest) {
     if (tmpIfTest$1) {
       break;
     } else {
-      tmpClusterSSA_x = /foo/;
+      tmpClusterSSA_x = new $regex_constructor(`foo`, ``);
       tmpClusterSSA_x.foo = `object`;
     }
   }
@@ -59,17 +59,17 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = /foo/;
+const x = new $regex_constructor(`foo`, ``);
 $(x.foo);
 if (!$(x)) {
-  let tmpClusterSSA_x = /foo/;
+  let tmpClusterSSA_x = new $regex_constructor(`foo`, ``);
   tmpClusterSSA_x.foo = `object`;
   while (true) {
     $(tmpClusterSSA_x.foo);
     if ($(tmpClusterSSA_x)) {
       break;
     } else {
-      tmpClusterSSA_x = /foo/;
+      tmpClusterSSA_x = new $regex_constructor(`foo`, ``);
       tmpClusterSSA_x.foo = `object`;
     }
   }
@@ -81,7 +81,7 @@ if (!$(x)) {
 With rename=true
 
 `````js filename=intro
-const a = /foo/;
+const a = new $regex_constructor( "foo", "" );
 const b = a.foo;
 $( b );
 const c = $( a );
@@ -89,7 +89,7 @@ if (c) {
 
 }
 else {
-  let d = /foo/;
+  let d = new $regex_constructor( "foo", "" );
   d.foo = "object";
   while ($LOOP_UNROLL_10) {
     const e = d.foo;
@@ -99,7 +99,7 @@ else {
       break;
     }
     else {
-      d = /foo/;
+      d = new $regex_constructor( "foo", "" );
       d.foo = "object";
     }
   }
@@ -110,7 +110,7 @@ else {
 ## Todos triggered
 
 
-- (todo) regex in free loops
+- (todo) Support this node type in isFree: NewExpression
 - (todo) regular property access of an ident feels tricky;
 
 

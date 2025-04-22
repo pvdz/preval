@@ -139,6 +139,7 @@ function _dedupeBranchedReturns(fdata) {
           break;
         }
       } else if (a.type === 'Literal') {
+        // Note: this cant be regex
         // Checking .raw also catches the null case properly. And probably everything tbh. So whatever.
         // It should even be fine for references like regex, since they'd be fresh either way.
         // (Though normalized calls would not have regexes in their call args, so it's a moot point)

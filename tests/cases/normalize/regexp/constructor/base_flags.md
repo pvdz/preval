@@ -17,7 +17,7 @@ $(new RegExp("foo\\(x\\)", "mg"));
 
 
 `````js filename=intro
-const tmpCalleeParam /*:regex*/ = /foo\(x\)/gm;
+const tmpCalleeParam /*:regex*/ = new $regex_constructor(`foo\\(x\\)`, `mg`);
 $(tmpCalleeParam);
 `````
 
@@ -26,7 +26,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$(/foo\(x\)/gm);
+$(new $regex_constructor(`foo\\(x\\)`, `mg`));
 `````
 
 
@@ -34,7 +34,7 @@ $(/foo\(x\)/gm);
 With rename=true
 
 `````js filename=intro
-const a = /foo\(x\)/gm;
+const a = new $regex_constructor( "foo\\(x\\)", "mg" );
 $( a );
 `````
 

@@ -132,6 +132,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     const fdata = parseCode(preCode, nextFname);
     prepareNormalization(fdata, resolve, req, false, {unrollLimit: options.unrollLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalize(fdata, nextFname, true, prng, { allowEval: options.allowEval, prngSeed: options.prngSeed });
+    options.onAfterPhase?.(0.1, 0, 0, fdata, false, options, queueFileCounter);
 
     mod.children = new Set(fdata.imports.values());
     mod.fdata = fdata;

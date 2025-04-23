@@ -66,7 +66,7 @@ export function getIdentUsageKind(parentNode, parentProp) {
       ASSERT(parentProp === 'params' || parentProp === 'body');
       return 'write';
     case 'AssignmentExpression':
-      ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       if (parentProp === 'right') return 'read';
       if (parentNode.operator === '=') return 'write';
       return 'readwrite';
@@ -79,12 +79,12 @@ export function getIdentUsageKind(parentNode, parentProp) {
       ASSERT(parentProp === 'argument');
       return 'read';
     case 'BinaryExpression':
-      ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'BlockStatement':
       throw ASSERT(false, 'blocks dont have expression children');
     case 'BreakStatement':
-      ASSERT(parentProp === 'label', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'label', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'label';
     case 'CallExpression':
       ASSERT(
@@ -100,12 +100,12 @@ export function getIdentUsageKind(parentNode, parentProp) {
       );
       return 'read';
     case 'CatchClause':
-      ASSERT(parentProp === 'param', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'param', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'write';
     case 'ChainExpression':
       throw ASSERT(false, 'chain elements have member and call expressions as children');
     case 'ClassBody':
-      throw ASSERT(false, 'class bodies have methods as children', parentNode.type, '.', parentProp);
+      throw ASSERT(false, 'class bodies have methods as children', parentNode.type, '.', parentProp, parentNode);
     case 'ClassDeclaration':
       ASSERT(
         parentProp === 'id' || parentProp === 'superClass',
@@ -127,25 +127,25 @@ export function getIdentUsageKind(parentNode, parentProp) {
       if (parentProp === 'superClass') return 'read';
       return 'write';
     case 'ConditionalExpression':
-      ASSERT(parentProp === 'test' || parentProp === 'consequent' || parentProp === 'alternate', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'test' || parentProp === 'consequent' || parentProp === 'alternate', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'ContinueStatement':
-      ASSERT(parentProp === 'label', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'label', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'label';
     case 'DebuggerStatement':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'Directive':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'DoWhileStatement':
-      ASSERT(parentProp === 'body' || parentProp === 'test', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'body' || parentProp === 'test', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'EmptyStatement':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'ExportAllDeclaration':
-      ASSERT(parentProp === 'exported', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'exported', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'none';
     case 'ExportDefaultDeclaration':
-      ASSERT(parentProp === 'declaration', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'declaration', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'ExportNamedDeclaration':
       throw ASSERT(false, 'I dont think ident can be a direct child here');
@@ -160,7 +160,7 @@ export function getIdentUsageKind(parentNode, parentProp) {
       if (parentProp === 'local') return 'read';
       return 'none';
     case 'ExpressionStatement':
-      ASSERT(parentProp === 'expression', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'expression', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'ForInStatement':
       ASSERT(
@@ -192,23 +192,23 @@ export function getIdentUsageKind(parentNode, parentProp) {
       );
       return 'read';
     case 'FunctionDeclaration':
-      ASSERT(parentProp === 'id' || parentProp === 'params', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'id' || parentProp === 'params', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'write';
     case 'FunctionExpression':
-      ASSERT(parentProp === 'id' || parentProp === 'params', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'id' || parentProp === 'params', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'write';
     case 'Identifier':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'IfStatement':
-      ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'ImportDeclaration':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'ImportDefaultSpecifier':
-      ASSERT(parentProp === 'local', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'local', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'write';
     case 'ImportNamespaceSpecifier':
-      ASSERT(parentProp === 'local', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'local', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'write';
     case 'ImportSpecifier':
       ASSERT(
@@ -221,13 +221,13 @@ export function getIdentUsageKind(parentNode, parentProp) {
       if (parentProp === 'local') return 'write';
       return 'none';
     case 'LabeledStatement':
-      ASSERT(parentProp === 'label' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'label' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       if (parentProp === 'label') return 'label';
       return 'read';
     case 'Literal':
       throw ASSERT(false, 'literals do not have ident children');
     case 'LogicalExpression':
-      ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'left' || parentProp === 'right', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'MemberExpression':
       ASSERT(
@@ -243,14 +243,14 @@ export function getIdentUsageKind(parentNode, parentProp) {
       if (parentProp === 'object') return 'read';
       if (parentNode.computed) return 'read';
       if (parentProp !== 'property') source(parentNode, true);
-      ASSERT(parentProp === 'property', 'is there any other way for this ident to be the object or property? ' + parentNode.type + ', ' + parentProp);
+      ASSERT(parentProp === 'property', 'is there any other way for this ident to be the object or property? ' + parentNode.type + ', ' + parentProp, parentNode);
       return 'none';
     case 'MetaProperty':
-      ASSERT(parentProp === 'meta' || parentProp === 'property', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'meta' || parentProp === 'property', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       if (parentNode.computed) return 'read';
       return 'none';
     case 'MethodDefinition':
-      ASSERT(parentProp === 'key', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'key', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       if (parentNode.computed) return 'read';
       return 'none';
     case 'NewExpression':
@@ -263,32 +263,32 @@ export function getIdentUsageKind(parentNode, parentProp) {
       );
       return 'read';
     case 'ObjectExpression':
-      throw ASSERT(false, 'idents here are always wrapped in a Property or SpreadElement');
+      throw ASSERT(false, 'idents here are always wrapped in a Property or SpreadElement', parentNode);
     case 'ObjectPattern':
-      throw ASSERT(false, 'idents here are always wrapped in a Property or SpreadElement');
+      throw ASSERT(false, 'idents here are always wrapped in a Property or SpreadElement', parentNode);
     case 'Program':
-      throw ASSERT(false, 'this probably means you forgot to wrap an ident in an expression statement...');
+      throw ASSERT(false, 'this probably means you forgot to wrap an ident in an expression statement...', parentNode);
     case 'Property':
-      ASSERT(parentProp === 'key' || parentProp === 'value', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'key' || parentProp === 'value', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       if (parentProp === 'key') {
         if (parentNode.computed) return 'read';
         return 'none';
       }
       return 'read';
     case 'RestElement':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'write';
     case 'ReturnStatement':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'SequenceExpression':
-      ASSERT(parentProp === 'expressions', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'expressions', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'SpreadElement':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'Super':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'SwitchCase':
       ASSERT(
         parentProp === 'test',
@@ -299,53 +299,53 @@ export function getIdentUsageKind(parentNode, parentProp) {
       );
       return 'read';
     case 'SwitchStatement':
-      ASSERT(parentProp === 'discriminant', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'discriminant', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'TaggedTemplateExpression':
-      ASSERT(parentProp === 'tag', 'the expressions are wrapped in a TemplateElement', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'tag', 'the expressions are wrapped in a TemplateElement', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'TemplateElement':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'TemplateLiteral':
-      ASSERT(parentProp === 'expressions', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'expressions', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'ThisExpression':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'ThrowStatement':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'TryStatement':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'UnaryExpression':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       // Note: none of the unary operators currently mutate. (++/-- are update expressions)
       return 'read';
     case 'UpdateExpression':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'readwrite';
     case 'VarStatement': {
-      ASSERT(parentProp === 'id' || parentProp === 'init', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'id' || parentProp === 'init', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       if (parentProp === 'id') return 'write';
       return 'read';
     }
     case 'VariableDeclaration':
-      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
+      throw ASSERT(false, 'normalized code does not have this node: ', parentNode.type, parentNode);
     case 'VariableDeclarator':
       // Apparently this is called before normalization, as well, so gotta keep this
-      ASSERT(parentProp === 'id' || parentProp === 'init', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'id' || parentProp === 'init', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       if (parentProp === 'id') return 'write';
       return 'read';
     case 'WhileStatement':
-      ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'WithStatement':
-      ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
     case 'YieldExpression':
-      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
+      ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp, parentNode);
       return 'read';
   }
-  throw ASSERT(false, 'Support this new node', parentNode);
+  throw ASSERT(false, 'Support this new node', parentNode, parentNode);
 }
 
 export function generateUniqueGlobalName(name, fdata, assumeDoubleDollar = false) {
@@ -1753,31 +1753,31 @@ function _inferNodeTyping(fdata, valueNode) {
       return createTypingObject({});
     }
     case 'ChainExpression': {
-      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
+      ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;
     }
     case 'SequenceExpression': {
-      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
+      ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;
     }
     case 'AssignmentExpression': {
-      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
+      ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;
     }
     case 'LogicalExpression': {
-      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
+      ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;
     }
     case 'ConditionalExpression': {
-      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
+      ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;
     }
     case 'UpdateExpression': {
-      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
+      ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;
     }
     case 'ArrowFunctionExpression': {
-      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
+      ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;
     }
     default: {

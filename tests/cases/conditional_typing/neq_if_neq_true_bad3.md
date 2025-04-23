@@ -1,15 +1,15 @@
 # Preval test case
 
-# neq_if_neq_true_bad.md
+# neq_if_neq_true_bad3.md
 
-> Conditional typing > Neq if neq true bad
+> Conditional typing > Neq if neq true bad3
 >
 > Assignment that cannot be observed should be dropped
 
 ## Input
 
 `````js filename=intro
-const a = $(67636)
+const a = $(null)
 let x = a !== 67636;
 if (x) {
   a = 10;
@@ -25,7 +25,7 @@ $(x);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(67636);
+const a /*:unknown*/ = $(null);
 const x /*:boolean*/ = a === 67636;
 if (x) {
   $(`Preval: Cannot write to const binding \`a\``);
@@ -40,7 +40,7 @@ if (x) {
 (This ought to be the final result)
 
 `````js filename=intro
-if ($(67636) === 67636) {
+if ($(null) === 67636) {
   $(`Preval: Cannot write to const binding \`a\``);
   $(false);
 } else {
@@ -53,7 +53,7 @@ if ($(67636) === 67636) {
 With rename=true
 
 `````js filename=intro
-const a = $( 67636 );
+const a = $( null );
 const b = a === 67636;
 if (b) {
   $( "Preval: Cannot write to const binding `a`" );
@@ -81,10 +81,8 @@ None
 
 
 Should call `$` with:
- - 1: 67636
- - 2: 'Preval: Cannot write to const binding `a`'
- - 3: false
- - eval returned: undefined
+ - 1: null
+ - eval returned: ('<crash[ Assignment to constant variable. ]>')
 
 Pre normalization calls: Same
 

@@ -1399,28 +1399,49 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             // The compound assignment is not assignable so no need to return an assignment or assignable
             // The a and b ought to be simple at this point. It's not relevant whether or not it's computed.
 
-            rule('Compound assignment to property must be regular assignment');
-            example('a.b += c()', 'tmp = a.b, tmp.b = tmp + c()', () => !mem.computed);
-            example('a[b] += c()', 'tmp = a[b], tmp[b] = tmp + c()', () => mem.computed);
-            before(node, parentNodeOrWhatever);
+            if (node.operator === '||=' || node.operator === '&&=' || node.operator === '??=') {
+              rule('Compound logical assignment should be regular assignment; member');
+              example('a.b ||= c', 'a.b || (a.b = c)');
+              example('a.b &&= c', 'a.b && (a.b = c)');
+              example('a.b ??= c', 'a.b ?? (a.b = c)');
+              before(body[i]);
 
-            const tmpNameLhs = createFreshVar('tmpCompoundAssignLhs', fdata);
-            // tmp = a.b, or tmp = a[b]
-            const newNodes = [
-              AST.varStatement('const', tmpNameLhs, AST.memberExpression(AST.cloneSimple(a), AST.cloneSimple(b), mem.computed)),
-            ];
-            // tmp.b = tmp + c(), or tmp[b] = tmp + c()
-            const finalNode = AST.assignmentExpression(
-              AST.memberExpression(AST.cloneSimple(a), AST.cloneSimple(b), mem.computed),
-              AST.binaryExpression(node.operator.slice(0, -1), tmpNameLhs, c),
-            );
-            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-            body.splice(i, 1, ...newNodes, finalParent);
+              const finalNode = AST.logicalExpression(
+                node.operator === '||=' ? '||' : node.operator === '&&=' ? '&&' : '??',
+                AST.cloneSimple(lhs),
+                AST.assignmentExpression(node.left, node.right, '='),
+              );
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
 
-            after(newNodes);
-            after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+            else {
+              rule('Compound assignment to property must be regular assignment');
+              example('a.b += c()', 'tmp = a.b, tmp.b = tmp + c()', () => !mem.computed);
+              example('a[b] += c()', 'tmp = a[b], tmp[b] = tmp + c()', () => mem.computed);
+              before(node, parentNodeOrWhatever);
+
+              const tmpNameLhs = createFreshVar('tmpCompoundAssignLhs', fdata);
+              // tmp = a.b, or tmp = a[b]
+              const newNodes = [
+                AST.varStatement('const', tmpNameLhs, AST.memberExpression(AST.cloneSimple(a), AST.cloneSimple(b), mem.computed)),
+              ];
+              // tmp.b = tmp + c(), or tmp[b] = tmp + c()
+              const finalNode = AST.assignmentExpression(
+                AST.memberExpression(AST.cloneSimple(a), AST.cloneSimple(b), mem.computed),
+                AST.binaryExpression(node.operator.slice(0, -1), tmpNameLhs, c),
+              );
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, ...newNodes, finalParent);
+
+              after(newNodes);
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
           }
 
           if (mem.computed && AST.isComplexNode(c)) {
@@ -1534,23 +1555,48 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           // At this point the lhs is either an identifier or a simple member expression
           // We should be safe to transform compound assignments away such that they don't complicate later transforms
           // We couldn't do this before because it might have duplicated complex node. But it's fine for idents and simple props
-          rule('Compound assignments with simple lhs should be regular assignments');
-          example('a *= c()', 'a = a * c()', () => lhs.type === 'Identifier');
-          example('a.b *= c()', 'a.b = a.b * c()', () => lhs.type !== 'Identifier' && !lhs.computed);
-          example('a[b] *= c()', 'a[b] = a[b] * c()', () => lhs.type !== 'Identifier' && lhs.computed);
-          before(node, parentNodeOrWhatever);
 
-          const finalNode = AST.assignmentExpression(
-            AST.cloneSimple(lhs),
-            AST.binaryExpression(node.operator.slice(0, -1), AST.cloneSimple(lhs), rhs),
-          );
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body[i] = finalParent;
+          // Note: The operator may be logical (|| &&) and nullish (??) and those result in different AST nodes!
 
-          after(body[i]);
-          after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
+          if (node.operator === '||=' || node.operator === '&&=' || node.operator === '??=') {
+            // This is `x || (x=y)` or `x && (x = y)`
+            rule('Compound logical assignment should be regular assignment; stmt');
+            example('a ||= b', 'a || (a = b)');
+            example('a &&= b', 'a && (a = b)');
+            example('a ??= b', 'a ?? (a = b)');
+            before(body[i]);
+
+            const finalNode = AST.logicalExpression(
+              node.operator === '||=' ? '||' : node.operator === '&&=' ? '&&' : '??',
+              AST.cloneSimple(lhs),
+              AST.assignmentExpression(node.left, node.right, '='),
+            );
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+          else {
+            rule('Compound assignments with simple lhs should be regular assignments');
+            example('a *= c()', 'a = a * c()', () => lhs.type === 'Identifier');
+            example('a.b *= c()', 'a.b = a.b * c()', () => lhs.type !== 'Identifier' && !lhs.computed);
+            example('a[b] *= c()', 'a[b] = a[b] * c()', () => lhs.type !== 'Identifier' && lhs.computed);
+            before(body[i]);
+
+            const finalNode = AST.assignmentExpression(
+              AST.cloneSimple(lhs),
+              AST.binaryExpression(node.operator.slice(0, -1), AST.cloneSimple(lhs), rhs),
+            );
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(body[i]);
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
         }
 
         if (rhs.type === 'AssignmentExpression') {
@@ -1583,27 +1629,53 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             const c = rhsRhs;
 
             if (rhs.operator !== '=') {
-              // This is a = b *= c() with simple a and ident b
-              rule('Nested compound assignment must not be compound');
-              example('a = b *= c()', 'tmp = b, a = b = tmp * c()');
-              before(node, parentNodeOrWhatever);
+              if (rhs.operator === '||=' || rhs.operator === '&&=' || rhs.operator === '??=') {
+                // This is `x || (x=y)` or `x && (x = y)`
+                rule('Compound logical assignment should be regular assignment; ident assign');
+                example('x = a ||= b', 'x = a || (a = b)');
+                example('x = a &&= b', 'x = a && (a = b)');
+                example('x = a ??= b', 'x = a ?? (a = b)');
+                before(body[i]);
 
-              const tmpName = createFreshVar('tmpNestedCompoundLhs', fdata);
-              // tmp = b
-              const newNodes = [AST.varStatement('const', tmpName, b)];
-              // a = b = tmp * c()
-              const finalNode = AST.assignmentExpression(
-                a,
-                // b = tmp * c()
-                AST.assignmentExpression(AST.cloneSimple(b), AST.binaryExpression(rhs.operator.slice(0, -1), tmpName, c)),
-              );
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body.splice(i, 1, ...newNodes, finalParent);
+                const tmpName = createFreshVar('tmpNestedCompoundLhs', fdata);
+                // tmp = b
+                const newNodes = [AST.varStatement('const', tmpName, b)];
+                // a = b = tmp * c()
+                const finalNode = AST.assignmentExpression(
+                  a,
+                  // b = tmp * c()
+                  AST.assignmentExpression(AST.cloneSimple(b), AST.logicalExpression(rhs.operator.slice(0, -1), tmpName, c)),
+                );
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, ...newNodes, finalParent);
 
-              after(newNodes);
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
+                after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+              else {
+                // This is a = b *= c() with simple a and ident b
+                rule('Nested compound assignment must not be compound');
+                example('a = b *= c()', 'tmp = b, a = b = tmp * c()');
+                before(node, parentNodeOrWhatever);
+
+                const tmpName = createFreshVar('tmpNestedCompoundLhs', fdata);
+                // tmp = b
+                const newNodes = [AST.varStatement('const', tmpName, b)];
+                // a = b = tmp * c()
+                const finalNode = AST.assignmentExpression(
+                  a,
+                  // b = tmp * c()
+                  AST.assignmentExpression(AST.cloneSimple(b), AST.binaryExpression(rhs.operator.slice(0, -1), tmpName, c)),
+                );
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, ...newNodes, finalParent);
+
+                after(newNodes);
+                after(finalNode, finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
             }
 
             if (AST.isComplexNode(c)) {
@@ -1704,23 +1776,46 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             // and which may be a compound assignment. We need to check that first to preserve get/set order.
 
             if (rhs.operator !== '=') {
-              rule('Nested compound prop assignment with all simple parts must be split');
-              example('a = b.c *= d()', 'tmp = b.c * d(), a = b.c = tmp');
-              before(node, parentNodeOrWhatever);
+              if (rhs.operator === '||=' || rhs.operator === '&&=' || rhs.operator === '??=') {
+                // This is `x || (x=y)` or `x && (x = y)`
+                rule('Compound logical assignment should be regular assignment; member assign');
+                example('x = a ||= b', 'x = a || (a = b)');
+                example('x = a &&= b', 'x = a && (a = b)');
+                example('x = a ??= b', 'x = a ?? (a = b)');
+                before(body[i]);
 
-              const tmpName = createFreshVar('tmpNestedPropCompoundComplexRhs', fdata);
-              const newNodes = [
-                AST.varStatement('const', tmpName, AST.binaryExpression(rhs.operator.slice(0, -1), AST.cloneSimple(rhsLhs), d)),
-                AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(rhsLhs), tmpName)),
-              ];
-              const finalNode = AST.assignmentExpression(a, tmpName);
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body.splice(i, 1, ...newNodes, finalParent);
+                const tmpName = createFreshVar('tmpNestedPropCompoundComplexRhs', fdata);
+                const newNodes = [
+                  AST.varStatement('const', tmpName, AST.logicalExpression(rhs.operator.slice(0, -1), AST.cloneSimple(rhsLhs), d)),
+                  AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(rhsLhs), tmpName)),
+                ];
+                const finalNode = AST.assignmentExpression(a, tmpName);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, ...newNodes, finalParent);
 
-              after(newNodes);
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
+                after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+              else {
+                rule('Nested compound prop assignment with all simple parts must be split');
+                example('a = b.c *= d()', 'tmp = b.c * d(), a = b.c = tmp');
+                before(node, parentNodeOrWhatever);
+
+                const tmpName = createFreshVar('tmpNestedPropCompoundComplexRhs', fdata);
+                const newNodes = [
+                  AST.varStatement('const', tmpName, AST.binaryExpression(rhs.operator.slice(0, -1), AST.cloneSimple(rhsLhs), d)),
+                  AST.expressionStatement(AST.assignmentExpression(AST.cloneSimple(rhsLhs), tmpName)),
+                ];
+                const finalNode = AST.assignmentExpression(a, tmpName);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, ...newNodes, finalParent);
+
+                after(newNodes);
+                after(finalNode, finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
             }
 
             if (AST.isComplexNode(d)) {
@@ -5917,11 +6012,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           if (wrapKind === 'statement') {
             rule('Nullish coalescing statement should be normalized away');
             example('a() ?? b()', 'if (a() == null) b();');
-            before(node, parentNodeOrWhatever);
+            before(body[i]);
 
             const finalParent = AST.ifStatement(
               AST.binaryExpression('==', node.left, AST.nul()),
-              AST.expressionStatement(AST.assignmentExpression(wrapLhs, node.right)),
+              AST.expressionStatement(node.right),
             );
             body[i] = finalParent;
 
@@ -5932,10 +6027,10 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           if (wrapKind === 'var') {
             rule('Nullish coalescing var decl should be normalized away');
-            example('let x = a() ?? b()', 'let x = a(); if (a == null) a = b();');
+            example('let x = a() ?? b()', 'let x = a(); if (x == null) x = b();');
           } else if (wrapKind === 'assign') {
             rule('Nullish coalescing assign should be normalized away');
-            example('x = a() ?? b()', 'x = a(); if (a == null) a = b();');
+            example('x = a() ?? b()', 'x = a(); if (x == null) x = b();');
           } else {
             ASSERT(false);
           }
@@ -9646,22 +9741,42 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
       if (init.left.type === 'Identifier') {
         if (init.operator !== '=') {
-          rule('Var inits can not be compound assignments to ident');
-          example('let x = y *= z()', 'let x = y = y * z();');
-          before(node, parentBlock);
+          if (init.operator === '||=' || init.operator === '&&=' || init.operator === '??=') {
+            // This is `x || (x=y)` or `x && (x = y)`
+            rule('Compound logical assignment should be regular assignment; var');
+            example('const x = a ||= b', 'const x = a || (a = b)');
+            example('const x = a &&= b', 'const x = a && (a = b)');
+            example('const x = a ??= b', 'const x = a ?? (a = b)');
+            before(body[i]);
 
-          node.init = AST.assignmentExpression(
-            init.left,
-            AST.binaryExpression(
-              init.operator.slice(0, -1), // *= becomes *
+            node.init = AST.logicalExpression(
+              node.operator === '||=' ? '||' : init.operator === '&&=' ? '&&' : '??',
               AST.cloneSimple(init.left),
-              init.right,
-            ),
-          );
+              AST.assignmentExpression(init.left, init.right, '='),
+            );
 
-          after(node);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+          else {
+            rule('Var inits can not be compound assignments to ident');
+            example('let x = y *= z()', 'let x = y = y * z();');
+            before(node, parentBlock);
+
+            node.init = AST.assignmentExpression(
+              init.left,
+              AST.binaryExpression(
+                init.operator.slice(0, -1), // *= becomes *
+                AST.cloneSimple(init.left),
+                init.right,
+              ),
+            );
+
+            after(node);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
         }
 
         rule('Var inits can not be assignments; lhs ident');
@@ -9747,23 +9862,46 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         // At this point the assignment has an lhs that is a property and the object and property are simple (maybe computed)
 
         if (init.operator !== '=') {
-          ASSERT(id.type === 'Identifier');
-          rule('Var inits can not be compound assignments to simple member');
-          example('let x = a.b *= z()', 'let x = a.b = a.b * z();');
-          before(node);
+          if (init.operator === '||=' || init.operator === '&&=' || init.operator === '??=') {
+            // This is `x || (x=y)` or `x && (x = y)`
+            rule('Compound logical assignment should be regular assignment; ident assign');
+            example('x = a ||= b', 'x = a || (a = b)');
+            example('x = a &&= b', 'x = a && (a = b)');
+            example('x = a ??= b', 'x = a ?? (a = b)');
+            before(body[i]);
 
-          node.init = AST.assignmentExpression(
-            init.left,
-            AST.binaryExpression(
-              init.operator.slice(0, -1), // *= becomes *
-              AST.cloneSimple(init.left),
-              init.right,
-            ),
-          );
+            node.init = AST.assignmentExpression(
+              init.left,
+              AST.logicalExpression(
+                init.operator.slice(0, -1), // &&= becomes &&
+                AST.cloneSimple(init.left),
+                init.right,
+              ),
+            );
 
-          after(node);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+          else {
+            ASSERT(id.type === 'Identifier');
+            rule('Var inits can not be compound assignments to simple member');
+            example('let x = a.b *= z()', 'let x = a.b = a.b * z();');
+            before(node);
+
+            node.init = AST.assignmentExpression(
+              init.left,
+              AST.binaryExpression(
+                init.operator.slice(0, -1), // *= becomes *
+                AST.cloneSimple(init.left),
+                init.right,
+              ),
+            );
+
+            after(node);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
         }
 
         // We should be able to stash the rhs without worrying about side effects by reading the lhs first.

@@ -288,22 +288,38 @@ function _refTracked(fdata) {
               queue.push({
                 index: write.blockIndex,
                 func: () => {
-                  rule('A write that is not reached by any read can be eliminated; assign');
-                  example('let x = 1; x = 2; x = 3;', 'let x = 1; x; 2; x = 3;');
-                  before(write.blockBody[write.blockIndex]);
+                  if (meta.isConstant) {
+                    // This is supposed to be a constant so a write should trigger an error.
+                    // As such this write is not completely dead, even though it's write could
+                    // never be observed other than the crash happening. We gotta keep it.
+                    rule('A write to a constant should be kept even if the write cannot be read');
+                    example('const x = 1; x = 2; x = 3;', 'let x = 1; x; 2; throw new Error();');
+                    before(write.blockBody[write.blockIndex]);
 
-                  if (AST.isPrimitive(write.parentNode.right) || write.parentNode.right.type === 'Param') {
-                    write.blockBody[write.blockIndex] = AST.expressionStatement(write.parentNode.left);
+                    write.blockBody[write.blockIndex] = AST.throwStatement(
+                      AST.primitive(
+                        `Preval: Assignment to constant variable: \`${tmat(write.blockBody[write.blockIndex], true)}\``
+                      )
+                    )
                     after(write.blockBody[write.blockIndex]);
                   } else {
-                    write.blockBody.splice(
-                      write.blockIndex, 1,
-                      AST.expressionStatement(write.parentNode.left),
-                      AST.expressionStatement(write.parentNode.right)
-                    );
-                    after(write.blockBody[write.blockIndex]);
-                    after(write.blockBody[write.blockIndex + 1]);
-                    assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                    rule('A write that is not reached by any read can be eliminated; assign');
+                    example('let x = 1; x = 2; x = 3;', 'let x = 1; x; 2; x = 3;');
+                    before(write.blockBody[write.blockIndex]);
+
+                    if (AST.isPrimitive(write.parentNode.right) || write.parentNode.right.type === 'Param') {
+                      write.blockBody[write.blockIndex] = AST.expressionStatement(write.parentNode.left);
+                      after(write.blockBody[write.blockIndex]);
+                    } else {
+                      write.blockBody.splice(
+                        write.blockIndex, 1,
+                        AST.expressionStatement(write.parentNode.left),
+                        AST.expressionStatement(write.parentNode.right)
+                      );
+                      after(write.blockBody[write.blockIndex]);
+                      after(write.blockBody[write.blockIndex + 1]);
+                      assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                    }
                   }
                 }
               });

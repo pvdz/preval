@@ -789,6 +789,7 @@ function runTestCase(
         .replace(/Preval: This statement contained a read that reached no writes.*/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: TDZ triggered for.*/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: Cannot write to const binding .*/, 'Assignment to constant variable.')
+        .replace(/Preval: Assignment to constant variable.*/, 'Assignment to constant variable.')
         .replace(/Spread syntax requires.*/, '<ref> is not function/iterable')
         .replace(/.*max pcode call depth.*/, 'Maximum call stack size exceeded')
         .replace(/Attempting to call a value that cannot be called.*/, '<ref> is not function/iterable') // Ultimately, not doing this creates more noise than signal.

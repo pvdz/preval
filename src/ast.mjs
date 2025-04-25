@@ -151,6 +151,10 @@ export function assignmentExpression(left, right, operator = '=') {
 export function binaryExpression(operator, left, right) {
   if (typeof left === 'string') left = identifier(left);
   if (typeof right === 'string') right = identifier(right);
+  ASSERT([
+    '**', '*', '/', '%', '+', '-', '<<', '>>', '>>>', '<', '>', '<=', '>=',
+    'in', 'instanceof', '==', '!=', '===', '!==', '&', '^', '|'
+  ].includes(operator), 'should only use binary operators, not logicals', [operator]);
 
   return {
     type: 'BinaryExpression',
@@ -745,6 +749,16 @@ export function nul() {
   return literal(null, true);
 }
 
+export function nullish(left, right) {
+  return {
+    type: 'LogicalExpression',
+    left,
+    operator: '??',
+    right,
+    $p: $p(),
+  };
+}
+
 export function objectExpression(...properties) {
   if (Array.isArray(properties[0])) properties = properties[0];
 
@@ -827,6 +841,14 @@ export function spreadElement(argument) {
   return {
     type: 'SpreadElement',
     argument,
+    $p: $p(),
+  };
+}
+
+export function superKeyword(argument) {
+  // Note: super is not a legit expression on its own. Must be call or member... you're on your own here.
+  return {
+    type: 'Super',
     $p: $p(),
   };
 }
@@ -2134,6 +2156,14 @@ export function _ssaFindIdentRefs(node, set = new Set()) {
   }
   if (node.type === 'SpreadElement') {
     return ssaFindIdentRefs(node.argument, set);
+  }
+  if (node.type === 'AwaitExpression') {
+    // await is not expressionHasNoObservableSideEffect-friendly
+    return false;
+  }
+  if (node.type === 'YieldExpression') {
+    // yield is not expressionHasNoObservableSideEffect-friendly
+    return false;
   }
 
   //if (node.type === 'IfStatement') {

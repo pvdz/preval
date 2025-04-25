@@ -8761,7 +8761,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           // so the second `if` should be moved to the back of the `else` branch instead.
           rule('Back to back if statements testing on the same identifier when neither has an `if` branch should be merged');
           example('if (x) { } else { f(); } if (x) { } else { g(); }', 'if (x) {} else { f(); if (x) { g(); } }');
-          before(prev, parentBlock);
+          before(prev);
           before(node);
 
           // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
@@ -8781,7 +8781,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           // so the second `if` should be moved to the back of the `false` branch instead.
           rule('Back to back if statements testing on the same identifier when the first if has no else branch should be merged');
           example('if (x) { f(); } if (x) { g(); }', 'if (x) { f(); if (x) { g(); } }');
-          before(prev, parentBlock);
+          before(prev);
           before(node);
 
           // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
@@ -8789,7 +8789,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = prev;
           prevConsequentBlock.push(node);
 
-          after(body[i], parentBlock);
+          after(body[i]);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
@@ -8804,7 +8804,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             'if (x) {} else { x = f(); } if (x) { return x; } else { g(); }',
             'if (x) { return x; } else { x = f(); if (x) { return x; } else { g(); } }',
           );
-          before(prev, parentBlock);
+          before(prev);
           before(node);
 
           const target = currentConsequentBlock[0];
@@ -8833,7 +8833,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           prevAlternateBlock.push(node);
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 
-          after(body[i - 1], parentBlock);
+          after(body[i - 1]);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
@@ -8848,7 +8848,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             'if (x) { x = f(); } else { } if (x) { g(); } else { return x; }',
             'if (x) { x = f(); if (x) { g(); } else { return x; } } else { return x; }',
           );
-          before(prev, parentBlock);
+          before(prev);
           before(node);
 
           const target = currentAlternateBlock[0];
@@ -8876,7 +8876,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           prevConsequentBlock.push(node);
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 
-          after(body[i - 1], parentBlock);
+          after(body[i - 1]);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
@@ -8892,7 +8892,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           rule('Back to back ifs, first else empty, second else one statement, should be inlined');
           example('if (x) f(); else {} if (x) g(); else h();', 'if (x) { f(); if (x) g() else h(); } else { h(); }');
-          before(prev, parentBlock);
+          before(prev);
           before(node);
 
           prevConsequentBlock.push(node);
@@ -8906,7 +8906,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           );
           body.splice(i, 1); // Drop the second if. It was moved.
 
-          after(body[i - 1], parentBlock);
+          after(body[i - 1]);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         } else if (
@@ -8922,7 +8922,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           rule('Back to back ifs, first if empty, second if one statement, should be inlined');
           example('if (x) {} else f(); if (x) g(); else h();', 'if (x) { g(); } else { f(); if (x) g() else h(); }');
-          before(prev, parentBlock);
+          before(prev);
           before(node);
 
           prevAlternateBlock.push(node);
@@ -8936,7 +8936,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           );
           body.splice(i, 1); // Drop the second if. It was moved.
 
-          after(body[i - 1], parentBlock);
+          after(body[i - 1]);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }

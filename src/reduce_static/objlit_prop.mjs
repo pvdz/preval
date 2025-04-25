@@ -11,7 +11,7 @@ import { BUILTIN_SYMBOLS, BUILTIN_FUNC_NO_CTX, symbo } from '../symbols_builtins
 
 export function objlitPropAccess(fdata) {
   group('\n\n\n[objlitPropAccess] Checking for object literals whose props are accessed immediately');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'objlitPropAccess'. true);
   const r = _objlitPropAccess(fdata);
   groupEnd();
   return r;

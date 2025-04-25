@@ -229,8 +229,6 @@ function _pruneEmptyFunctions(fdata) {
       else grandNode[grandProp] = newNode;
 
       after(newNode, grandNode);
-
-      //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
     });
     toReplaceWith.forEach(([what, { node, parentNode, grandNode, grandProp, grandIndex, ...rest }, arg], i) => {
       rule(

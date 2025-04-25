@@ -9,7 +9,7 @@ import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 
 export function coercials(fdata) {
   group('\n\n\n[coercials] Find cases of $coerce to eliminate');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'coercials'. true);
   const r = _coercials(fdata);
   groupEnd();
   return r;

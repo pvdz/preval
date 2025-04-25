@@ -14,7 +14,7 @@ import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\n[staticArgOpOutlining] Finding static param ops to outline\n');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'staticArgOpOutlining'. true);
   const r = _staticArgOpOutlining(fdata);
   groupEnd();
   return r;

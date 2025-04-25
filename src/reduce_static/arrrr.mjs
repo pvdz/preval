@@ -16,7 +16,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function arrrrrr(fdata) {
   group('\n\n\n[arrrrrr] Checking for arrrrrrray stuffs');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'arrrrrr'. true);
   const r = _arrrrrr(fdata);
   groupEnd();
   return r;

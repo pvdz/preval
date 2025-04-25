@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 
 export function returnArg(fdata) {
   group('\n\n\n[returnArg] Checking for functions that return an arg');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'returnArg'. true);
   const r = _returnArg(fdata);
   groupEnd();
   return r;

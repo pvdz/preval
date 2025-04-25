@@ -25,7 +25,7 @@ import * as AST from '../ast.mjs';
 
 export function arrMethodCall(fdata) {
   group('\n\n\n[arrMethodCall] Checking for array method calls to inline');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'arrMethodCall'. true);
   const r = _arrMethodCall(fdata);
   groupEnd();
 

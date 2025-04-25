@@ -24,7 +24,7 @@ import { createFreshLabelStatement } from '../labels.mjs';
 
 export function inlineOneTimeFunctions(fdata) {
   group('\n\n\n[inlineOneTimeFunctions] Checking for functions that are called once');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'inlineOneTimeFunctions'. true);
   const r = _inlineOneTimeFunctions(fdata);
   groupEnd();
   return r;

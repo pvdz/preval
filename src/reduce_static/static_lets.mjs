@@ -22,10 +22,9 @@ import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function staticLets(fdata) {
   group('\n\n\n[staticLets] Checking for let bindings whose value we can predict anyways');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'staticLets'. true);
   const r = _staticLets(fdata);
   groupEnd();
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   return r;
 }
 function _staticLets(fdata) {

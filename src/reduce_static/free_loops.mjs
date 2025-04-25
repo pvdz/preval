@@ -21,7 +21,7 @@
 
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, rule, example, before, after, todo } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, rule, example, before, after, todo, currentState, } from '../utils.mjs';
 import { runFreeWithPcode } from '../pcode.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
 import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
@@ -53,7 +53,7 @@ const SUPPORTED_GLOBAL_FUNCS = [
 
 export function freeLoops(fdata, prng, usePrng = true) {
   group('\n\n\n[freeLoops] Checking for free loops to simulate and resolve\n');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'freeLoops'. true);
   //assertNoDupeNodes(AST.blockStatement(fdata.tenkoOutput.ast), 'body', true);
   const r = _freeLoops(fdata, prng, usePrng);
   groupEnd();

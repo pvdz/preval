@@ -43,8 +43,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
       '\n##################################\n\n\n',
   );
 
-  const ast = fdata.tenkoOutput.ast;
-  if (VERBOSE_TRACING) vlog('\nCurrent state (before primitive arg inlining)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  currentState(fdata, 'phasePrimitiveArgInlining'. true);
 
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
   // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.
@@ -306,7 +305,6 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
   });
   log('End of primitive arg inlining. Cloned', newFuncs.length, 'functions, checked', truncableCallArgs.length, 'funcs for excessive args');
 
-  //if (VERBOSE_TRACING) vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   groupEnd();
 }
 

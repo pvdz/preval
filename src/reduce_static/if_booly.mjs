@@ -11,7 +11,7 @@ import * as AST from '../ast.mjs';
 export function ifBooly(fdata) {
   group('\n\n\n[ifBooly] Checking for bool bindings that conditionally get mutated');
   const ast = fdata.tenkoOutput.ast;
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'ifBooly'. true);
   const r = _ifBooly(fdata);
   groupEnd();
   return r;

@@ -2,8 +2,7 @@
 // Given code should be normalized and the settled result of running Preval
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, after, assertNoDupeNodes, rule, riskyRule, example } from '../utils.mjs';
-import { VERBOSE_TRACING } from '../constants.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, after, assertNoDupeNodes, rule, riskyRule, example, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 import { isComplexNode } from '../ast.mjs';
@@ -11,7 +10,7 @@ import { isComplexNode } from '../ast.mjs';
 export function denorm(fdata, resolve, req, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## denorm  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  if (VERBOSE_TRACING) vlog('\nCurrent state (before denorm)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  currentState(fdata, 'before denorm', true);
   vlog('\n\n\n##################################\n## denorm  ::  ' + fdata.fname + '\n##################################\n');
   vlog('Converting normalized code back to somewhat regular JS code...\n\n\n\n');
 

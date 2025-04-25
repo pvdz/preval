@@ -19,28 +19,12 @@
 // ```
 //
 
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-  findBodyOffset,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function assignHoisting(fdata) {
   group('\n\n\n[assignHoisting] Checking for assignments that are actually a decl init');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'assignHoisting'. true);
   const r = _assignHoisting(fdata);
   groupEnd();
   return r;
@@ -130,16 +114,19 @@ function processAttempt(fdata) {
       if (node.type === 'ExpressionStatement' && node.expression.type === 'AssignmentExpression') {
         // The lhs is allowed to be a local reference
         if (node.$p.reffedNamesCache === undefined) {
-          node.$p.reffedNamesCache = [...AST.ssaFindIdentRefs(node.expression.right)];
+          const set = AST.ssaFindIdentRefs(node.expression.right);
+          node.$p.reffedNamesCache = set && [...set];
         }
       } else if (node.type === 'VarStatement') {
         // The lhs is allowed to be a local reference
         if (node.$p.reffedNamesCache === undefined) {
-          node.$p.reffedNamesCache = [...AST.ssaFindIdentRefs(node.init)];
+          const set = AST.ssaFindIdentRefs(node.init)
+          node.$p.reffedNamesCache = set && [...set];
         }
       } else if (node.type === 'ExpressionStatement') {
         if (node.$p.reffedNamesCache === undefined) {
-          node.$p.reffedNamesCache = [...AST.ssaFindIdentRefs(node)];
+          const set = AST.ssaFindIdentRefs(node);
+          node.$p.reffedNamesCache = set && [...set];
         }
       } else {
         // Ignore other statements
@@ -147,8 +134,8 @@ function processAttempt(fdata) {
       }
 
       const reffedNames = node.$p.reffedNamesCache;
-      ASSERT(reffedNames, 'see above');
       if (reffedNames === false) break;
+      ASSERT(reffedNames, 'see above');
 
       if (
         reffedNames.some((name) => meta.bfuncNode.$p.ownBindings.has(name) && !meta.bfuncNode.$p.paramNames.includes(name)) &&

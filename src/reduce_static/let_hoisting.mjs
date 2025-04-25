@@ -34,7 +34,7 @@ import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function letHoisting(fdata) {
   group('\n\n\n[letHoisting] Checking for let decls to move up');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'letHoisting'. true);
   const r = _letHoisting(fdata);
   groupEnd();
   return r;
@@ -430,7 +430,6 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
     rwOrder.forEach((ref) => after(ref.blockBody[ref.blockIndex]));
 
     const ast = fdata.tenkoOutput.ast;
-    if (VERBOSE_TRACING) vlog('\nCurrent state (after let hoisting 2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   }
 
   if (toInject.size) {

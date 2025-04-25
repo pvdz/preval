@@ -14,7 +14,7 @@ import {
   symbo,
 } from '../symbols_builtins.mjs';
 import { BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_FRFR, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
-import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo } from '../utils.mjs';
+import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 import { createFreshVar, } from '../bindings.mjs';
@@ -141,14 +141,18 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');
   assertNoDupeNodes(ast, 'body');
 
-  if (VERBOSE_TRACING && firstTime) vlog('\nCurrent state (start of normalize)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  if (VERBOSE_TRACING && firstTime) {
+    currentState(fdata, 'pre normalize');
+  }
 
   let passes = 0;
   do {
     changed = false;
     transformProgram(ast);
     //stmt(null, 'ast', -1, ast, false, false);
-    if (VERBOSE_TRACING && firstTime && passes === 0) vlog('\nCurrent state (post normalize)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+    if (VERBOSE_TRACING && firstTime && passes === 0) {
+      currentState(fdata, 'post normalize');
+    }
     if (changed) {
       somethingChanged = true;
       log('Something changed. Running another normalization pass (' + ++passes + ')\n');

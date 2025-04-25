@@ -15,7 +15,7 @@ import { symbo } from '../symbols_builtins.mjs';
 export function typedComparison(fdata) {
   group('\n\n\n[typedComparison] Checking for predictable strict type comparisons');
   const ast = fdata.tenkoOutput.ast;
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'typedComparison'. true);
   const r = _typedComparison(fdata);
   groupEnd();
   return r;

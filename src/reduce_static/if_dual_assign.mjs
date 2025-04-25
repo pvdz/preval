@@ -26,7 +26,7 @@ import { tru } from '../ast.mjs';
 
 export function ifDualAssign(fdata) {
   group('\n\n\n[ifDualAssign] Looking for ifs that return a bit that they check');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'ifDualAssign'. true);
   const r = _ifDualAssign(fdata);
   groupEnd();
   return r;

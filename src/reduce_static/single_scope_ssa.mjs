@@ -244,7 +244,6 @@ function _singleScopeSSA(fdata) {
   if (changed) {
     log('Assignments SSAd:', changed, '. Restarting from phase1 to fix up read/write registry');
 
-    //if (VERBOSE_TRACING) vlog('\nCurrent state (after SSA)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
     return {what: 'singleScopeSSA', changes: changed, next: 'phase1'};
   }
 

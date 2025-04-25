@@ -1,9 +1,9 @@
 //import Prettier from 'prettier';
 import Prettier from '../lib/prettier.mjs';
-import { printer, setPrintPids } from '../lib/printer.mjs';
+import { printer, setPrintPids, setPrintVarTyping } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
-import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, GREEN } from './constants.mjs';
+import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, GREEN, BLUE } from './constants.mjs';
 import { SYMBOL_MAX_LOOP_UNROLL } from './symbols_preval.mjs';
 
 /**
@@ -269,6 +269,42 @@ export function after(node, parentNode) {
       log(YELLOW + 'After :' + RESET, nodeCode);
       if (parentNode && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
       if (anon) node.id = null;
+    }
+  }
+}
+
+export function currentState(fdata, suffix, withTyping=false) {
+  ASSERT((typeof fdata === 'object' && fdata) || typeof fdata === 'string', 'arg type bad', fdata);
+  if (VERBOSE_TRACING) {
+    try {
+      if (withTyping) setPrintVarTyping(true, fdata); // Handy typing details
+      let code;
+      try {
+        if (typeof fdata === 'string') code = fdata;
+        else {
+          code = tmat(fdata.tenkoOutput.ast, true);
+          try {
+            code = fmat(code, true);
+          } catch (e) {
+            //
+            code = `// fmat failed (prettier failed on syntax?): ${e}\n` + code;
+          }
+        }
+      } catch (e) {
+        console.log('tmat failed...');
+        console.log(e);
+        console.log(fdata?.tenkoOutput?.ast ?? fdata);
+        console.log('tmat failed...');
+        ASSERT(false, 'dont throw while tmat the ast', e);
+      }
+      if (withTyping) setPrintVarTyping(false);
+      console.log('\n'+PURPLE+'## Current state'+RESET+' '+suffix+'\n--------------\n' + code + '\n--------------\n');
+    } catch (e) {
+      console.log('*gasp* printing ast failed');
+      console.log(e);
+      console.log(fdata?.tenkoOutput?.ast ?? fdata);
+      console.log('*gasp* printing ast failed');
+      ASSERT(false, 'dont throw while printing the ast', e);
     }
   }
 }

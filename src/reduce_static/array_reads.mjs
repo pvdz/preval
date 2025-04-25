@@ -25,7 +25,7 @@ import * as AST from '../ast.mjs';
 
 export function arrayReads(fdata) {
   group('\n\n\n[arrayReads] Finding property reads on array literals\n');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'arrayReads'. true);
   const r = _arrayReads(fdata);
   groupEnd();
   return r;

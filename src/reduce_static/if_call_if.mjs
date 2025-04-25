@@ -42,8 +42,7 @@ import { returnStatement } from '../ast.mjs';
 
 export function ifCallIf(fdata) {
   group('\n\n\n[ifCallIf] Checking for the if-call-if pattern');
-  //const ast = fdata.tenkoOutput.ast;
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'ifCallIf'. true);
   const r = _assignHoisting(fdata);
   groupEnd();
   return r;

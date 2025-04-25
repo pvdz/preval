@@ -31,8 +31,7 @@ import * as AST from '../ast.mjs';
 
 export function ifTestInvIdent(fdata) {
   group('\n\n\n[ifTestInvIdent] Checking for if-tests on inverted idents');
-  const ast = fdata.tenkoOutput.ast;
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'ifTestInvIdent'. true);
   const r = _ifTestInvIdent(fdata);
   groupEnd();
   return r;

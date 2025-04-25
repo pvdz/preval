@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 
 export function returnClosure(fdata) {
   group('\n\n\n[returnClosure] Checking for functions that return a closure');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'returnClosure'. true);
   const r = _returnClosure(fdata);
   groupEnd();
   return r;

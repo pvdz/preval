@@ -3,13 +3,13 @@
 // We can eliminate the check in this case since we know `set` must be zero or a non-zero non-NaN number, so there is only one falsy case.
 // --> `const x = y & 200; if (x) {} else f();`
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { symbo } from '../symbols_builtins.mjs';
 
 export function andCases(fdata) {
   group('\n\n\n[andCases] Checking AND cases\n');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'andCases', true);
   const r = _andCases(fdata);
   groupEnd();
   return r;

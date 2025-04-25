@@ -9,7 +9,7 @@ import { RED, GREEN, YELLOW, BLUE, WHITE, BOLD, RESET, WHITE_BLACK, ORANGE, GOOD
 import { DIM, VERBOSE_TRACING, } from '../src/constants.mjs';
 import { SYMBOL_FOROF, SYMBOL_FORIN, SYMBOL_DOTCALL, BUILTIN_REST_HANDLER_NAME, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL, SYMBOL_THROW_TDZ_ERROR, SYMBOL_PRNG, SYMBOL_COERCE, SYMBOL_FRFR } from '../src/symbols_preval.mjs';
 import { BUILTIN_SYMBOLS, sym_prefix, symbo } from '../src/symbols_builtins.mjs';
-import { coerce, log, setRefTracing, tmat, vlog } from '../src/utils.mjs';
+import { coerce, currentState, log, setRefTracing, tmat, vlog } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
 import { parseTestArgs } from './process-env.mjs';
 // Note: worker_threads are node 10.15. I'd make them optional if import syntax allowed this, but I'm not gonna taint the whole test suite with async for the sake of it.
@@ -390,8 +390,7 @@ function runTestCase(
           } else if (!CONFIG.targetDir && !CONFIG.updateSnapshots) {
             console.log(`\n-- onAfterPhase: ${passString} (${code.length} bytes)`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, into ${changed.next}` : '');
 
-            console.log('\nCurrent state (onAfterPhase)\n--------------\n' + code + '\n--------------\n');
-
+            currentState(code, 'onAfterPhase'. true);
           }
           lastWrite = now;
         },

@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 
 export function inlineCommonReturns(fdata) {
   group('\n\n\n[inlineCommonReturns] Checking for functions that have a common return value that is a primitive');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'inlineCommonReturns'. true);
   const r = _inlineCommonReturns(fdata);
   groupEnd();
   return r;

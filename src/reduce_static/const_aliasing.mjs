@@ -27,7 +27,7 @@ import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function constAliasing(fdata) {
   group('\n\n\n[constAliasing] Searching for two const values that get assigned to each other\n');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'constAliasing'. true);
   const r = _constAliasing(fdata);
   groupEnd();
   return r;

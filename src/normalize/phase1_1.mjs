@@ -1,7 +1,7 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing, PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, todo } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, todo, currentState, } from '../utils.mjs';
 import { createTypingObject, getCleanTypingObject, getMeta, inferNodeTyping, mergeTyping } from '../bindings.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
 import { symbo } from '../symbols_builtins.mjs';
@@ -27,8 +27,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   );
   if (!(!verboseTracing && (passes > 1 || phase1s > 1))) {
     if (REF_TRACK_TRACING) {
-      const code = fmat(tmat(ast, true), true);
-      console.log('\nCurrent state (start of phase1.1)\n--------------\n' + code + '\n--------------\n');
+      currentState(fdata, 'start of phase1.1', true);
       vlog('\n\n\n#################################################################### phase1.1 [',passes,'::', phase1s, ']\n\n\n');
     }
   }

@@ -2,7 +2,7 @@ import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
 import { VERBOSE_TRACING, RED, BLUE, RESET, DIM, setVerboseTracing, } from '../constants.mjs';
 import { THIS_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, ARGLENGTH_ALIAS_BASE_NAME, IMPLICIT_GLOBAL_PREFIX, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after, source, assertNoDupeNodes } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after, source, assertNoDupeNodes, currentState, } from '../utils.mjs';
 import {$p, resetUid} from '../$p.mjs';
 import globals from '../globals.mjs';
 import { getIdentUsageKind, registerGlobalIdent, findUniqueNameForBindingIdent, preprocessScopeNode, createFreshVar, } from '../bindings.mjs';
@@ -59,8 +59,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
     '\n\n\n##################################\n## prepare normalization  ::  ' + fdata.fname + '\n##################################\n\n\n',
   );
   if (VERBOSE_TRACING && oncePass) {
-    const code = fmat(tmat(ast, true), true);
-    vlog('\nCurrent state (start of prepare)\n--------------\n' + code + '\n--------------\n');
+    currentState(fdata, 'start of prepare');
   }
 
   if (!options.skipUidReset) {
@@ -901,7 +900,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
         : [...globallyUniqueLabelRegistry.keys()].join(', '),
     );
 
-    //vlog('\nCurrent state (prepare)\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+    //currentState(fdata, 'end of prepare');
   }
   log('End of phase 1');
   groupEnd();

@@ -1,6 +1,6 @@
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, assertNoDupeNodes, rule, example, before, after, todo } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, assertNoDupeNodes, rule, example, before, after, todo, currentState, } from '../utils.mjs';
 import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE } from '../pcode.mjs';
 
 // This phase walks the AST to verify and compile eligible functions into pcode
@@ -13,7 +13,7 @@ import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE
 
 export function freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
   group('\n\n\n[freeFuncs] Checking for free function calls to simulate and resolve\n');
-  if (pcodeTestMode) vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  if (pcodeTestMode) currentState(fdata, 'freeFuncs'. true);
   const r = _freeFuncs(fdata, prng, usePrng, pcodeTestMode);
   groupEnd();
   return r;

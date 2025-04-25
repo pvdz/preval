@@ -26,7 +26,7 @@ import { createFreshVar } from '../bindings.mjs';
 export function conditionalTyping(fdata) {
   group('\n\n\n[conditionalTyping] Checking for known types under condition');
   const ast = fdata.tenkoOutput.ast;
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'conditionalTyping'. true);
   const r = _conditionalTyping(fdata);
   groupEnd();
   return r;

@@ -27,7 +27,7 @@ import { createFreshVar } from '../bindings.mjs';
 export function implicitThis(fdata, implicitThisIdent = 'undefined') {
   group('\n\n\n[implicitThis] Looking for implicit `this` cases to replace with another ident\n');
   const ast = fdata.tenkoOutput.ast;
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'implicitThis'. true);
   const r = _implicitThis(fdata, implicitThisIdent);
   groupEnd();
   return r;

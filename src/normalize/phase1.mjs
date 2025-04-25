@@ -1,18 +1,9 @@
 import walk from '../../lib/walk.mjs';
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing, PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, currentState, } from '../utils.mjs';
 import { $p, resetUid, getUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
-import {
-  createReadRef,
-  createWriteRef,
-  getCleanTypingObject,
-  getIdentUsageKind,
-  getUnknownTypingObject,
-  inferNodeTyping,
-  mergeTyping,
-  registerGlobalIdent,
-} from '../bindings.mjs';
+import { createReadRef, createWriteRef, getCleanTypingObject, getIdentUsageKind, getUnknownTypingObject, inferNodeTyping, mergeTyping, registerGlobalIdent, } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import {
   openRefsOnBeforeProgram,
@@ -121,8 +112,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
     (VERBOSE_TRACING && firstAfterParse && passes === 0) ||
     REF_TRACK_TRACING
   ) {
-    const code = fmat(tmat(ast, true), true);
-    console.log('\nCurrent state (start of phase1)\n--------------\n' + code + '\n--------------\n');
+    currentState(fdata, 'start of phase1');
     vlog('\n\n\n#################################################################### phase1 [',passes,'::', phase1s, ']\n\n\n');
   }
 
@@ -1249,7 +1239,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       ),
     );
 
-    //vlog('\nCurrent state (after phase1)\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+    //currentState(fdata, 'after phase1');
   }
 
   log('\n\nEnd of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');

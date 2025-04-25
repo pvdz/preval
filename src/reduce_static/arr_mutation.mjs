@@ -10,7 +10,7 @@ import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function arrMutation(fdata) {
   group('\n\n\n[arrMutation] Checking for array mutations to inline');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'arrMutation'. true);
   const r = _arrMutation(fdata);
   groupEnd();
   return r;

@@ -33,7 +33,7 @@ import {
   before,
   after,
   findBodyOffsetExpensiveMaybe,
-  assertNoDupeNodes,
+  assertNoDupeNodes, currentState,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import {
@@ -55,10 +55,7 @@ export function phaseNormalOnce(fdata) {
   const loopStack = [];
 
   group('\n\n\n##################################\n## phaseNormalOnce  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  if (VERBOSE_TRACING) {
-    const code = fmat(tmat(ast, true), true);
-    vlog('\nCurrent state (start of once)\n--------------\n' + code + '\n--------------\n');
-  }
+  currentState(fdata, 'start of once');
 
   fdata.globallyUniqueLabelRegistry = new Map();
 
@@ -870,7 +867,7 @@ export function phaseNormalOnce(fdata) {
           //       actually care about that distinction. Within Preval we treat templates (post pre-normalization) as strings.
           rule('Strings should be templates');
           example('"foo"', '`foo`');
-          before(node, parentNode);
+          before(parentNode);
 
           if (parentIndex < 0) parentNode[parentProp] = AST.templateLiteral(node.value);
           else parentNode[parentProp][parentIndex] = AST.templateLiteral(node.value);
@@ -1571,7 +1568,7 @@ export function phaseNormalOnce(fdata) {
     vgroupEnd();
   }
 
-  //if (VERBOSE_TRACING) vlog('\nCurrent state (normal_once)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  //currentState(fdata, 'end of once', true);
 }
 function hoistingOnce(hoistingRoot, from) {
   ASSERT(

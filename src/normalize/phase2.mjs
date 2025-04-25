@@ -1,5 +1,4 @@
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, assertNoDupeNodes } from '../utils.mjs';
-import { setPrintVarTyping } from "../../lib/printer.mjs";
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, assertNoDupeNodes, currentState, } from '../utils.mjs';
 import { mergeTyping } from '../bindings.mjs';
 import { pruneEmptyFunctions } from '../reduce_static/empty_func.mjs';
 import { pruneTrampolineFunctions } from '../reduce_static/trampoline.mjs';
@@ -132,16 +131,7 @@ export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTra
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   if (VERBOSE_TRACING) {
-    try {
-      setPrintVarTyping(true, fdata); // Handy typing details
-      const code = fmat(tmat(ast, true), true);
-      setPrintVarTyping(false);
-      console.log('\nCurrent state typed (start of phase2)\n--------------\n' + code + '\n--------------\n');
-    } catch (e) {
-      vlog('printing ast failed');
-      console.dir(ast, { depth: null });
-      throw e;
-    }
+    currentState(fdata, 'phase2', true);
     groupEnd();
     group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   }

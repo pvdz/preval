@@ -31,7 +31,7 @@ import { getPrimitiveValue } from '../ast.mjs';
 
 export function inlineIdenticalParam(fdata) {
   group('\n\n\n[inlineIdenticalParam] Checking for params which are always a certain primitive or the same object literal');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'inlineIdenticalParam'. true);
   const r = _inlineIdenticalParam(fdata);
   groupEnd();
   return r;

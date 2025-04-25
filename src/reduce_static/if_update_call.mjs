@@ -27,7 +27,7 @@ import { createFreshVar, getIdentUsageKind } from '../bindings.mjs';
 
 export function ifUpdateCall(fdata) {
   group('\n\n\n[ifUpdateCall] Finding if-update-call patterns to replace\n');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'ifUpdateCall'. true);
   const r = _ifUpdateCall(fdata);
   groupEnd();
   return r;

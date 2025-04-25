@@ -22,7 +22,7 @@ import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function inlineArgLen(fdata) {
   group('\n\n\n[inlineArgLen] Checking for predictable `arguments.length` occurrences');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  //currentState(fdata, 'inlineArgLen'. true);
   const r = _inlineArgLen(fdata);
   groupEnd();
   return r;

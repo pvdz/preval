@@ -162,7 +162,8 @@ const SUPPORTED_FREE_BUILTINS = new Set([
   symbo('string', 'valueOf'),
 ])
 
-export function freeing(fdata, $prng, usePrng = true) {
+export function freeing(fdata, $prng, options) {
+  const usePrng = !!options.prngSeed;
   group('\n\n\n[freeing] Searching for free statements to collect\n');
   //currentState(fdata, 'freeing'. true);
   const r = _freeing(fdata, $prng, usePrng);

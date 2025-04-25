@@ -1,5 +1,5 @@
 import { setVerboseTracing, VERBOSE_TRACING, MARK_NONE, MARK_TEMP, MARK_PERM } from './constants.mjs';
-import { clearStdio, setStdio, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, setRefTracing, setRiskyRules, registerTodoSink, } from './utils.mjs';
+import { clearStdio, setStdio, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, setRefTracing, setRiskyRules, registerTodoSink, currentState, } from './utils.mjs';
 import globals from './globals.mjs';
 import {setPrintVarTyping} from "../lib/printer.mjs";
 
@@ -13,7 +13,7 @@ import { phase2 } from './normalize/phase2.mjs';
 import { phase3 } from './normalize/phase3.mjs';
 import { phase1_1 } from './normalize/phase1_1.mjs';
 import { ASSERT } from './utils.mjs';
-import { freeFuncs } from './reduce_static/free_funcs.mjs';
+import { freeFuncs, freeFuncsForTest } from './reduce_static/free_funcs.mjs';
 import { denorm } from './normalize/denorm.mjs';
 import { astToPst } from './utils/ast_to_pst.mjs';
 
@@ -281,7 +281,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing);
           phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing);
           // In a pcode test we have to run the pcode plugin here because we don't want ot run all of phase2
-          if (options.pcodeTest) freeFuncs(fdata, prng, !!options.prngSeed, true);
+          if (options.pcodeTest) freeFuncsForTest(fdata, prng, options);
           contents.lastPhase1Ast[fname] = fdata.tenkoOutput.ast;
 
           options?.onAfterPhase?.(1, passes, phaseLoop, fdata, false, options);
@@ -332,7 +332,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
             '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',
           );
 
-          vlog('\nCurrent state before restart\n--------------\n' + fmat(inputCode) + '\n--------------\n');
+          currentState(inputCode, 'before restart');
 
           const fdata = parseCode(inputCode, fname);
           prepareNormalization(fdata, resolve, req, false, {unrollLimit: options.unrollLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
@@ -409,7 +409,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   if (VERBOSE_TRACING) {
     // Conditional to prevent the fmat call here
     const result = fmat(tmat(modules.get('intro').fdata.tenkoOutput.ast));
-    vlog('\nCurrent state, final\n--------------\n' + result.slice(0, 1000) + (result.length > 1000 ? '   ... <snip>' : '') + '\n--------------\n');
+    currentState(result.slice(0, 1000) + (result.length > 1000 ? '   ... <snip>' : ''), 'final');
   }
 
   const reports = [];

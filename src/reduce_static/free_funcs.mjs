@@ -11,12 +11,17 @@ import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE
 // We can't guarantee that a function actually completes ("halting problem")
 // so this will have to happen at runtime through a counter of sorts.
 
-export function freeFuncs(fdata, prng, usePrng, pcodeTestMode) {
+export function freeFuncs(fdata, prng, options, pcodeTestMode = false) {
+  const usePrng = !!options.prngSeed
   group('\n\n\n[freeFuncs] Checking for free function calls to simulate and resolve\n');
   if (pcodeTestMode) currentState(fdata, 'freeFuncs'. true);
   const r = _freeFuncs(fdata, prng, usePrng, pcodeTestMode);
   groupEnd();
   return r;
+}
+
+export function freeFuncsForTest(fdata, prng, options) {
+  return freeFuncs(fdata, prng, options, true)
 }
 
 export function _freeFuncs(fdata, prng, usePrng, pcodeTestMode) {

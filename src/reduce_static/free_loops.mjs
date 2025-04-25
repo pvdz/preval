@@ -51,7 +51,8 @@ const SUPPORTED_GLOBAL_FUNCS = [
   symbo('String', 'fromCodePoint'),
 ];
 
-export function freeLoops(fdata, prng, usePrng = true) {
+export function freeLoops(fdata, prng, options) {
+  const usePrng = !!options.prngSeed;
   group('\n\n\n[freeLoops] Checking for free loops to simulate and resolve\n');
   //currentState(fdata, 'freeLoops'. true);
   //assertNoDupeNodes(AST.blockStatement(fdata.tenkoOutput.ast), 'body', true);

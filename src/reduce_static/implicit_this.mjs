@@ -24,7 +24,8 @@ import {
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
-export function implicitThis(fdata, implicitThisIdent = 'undefined') {
+export function implicitThis(fdata, prng, options) {
+  const implicitThisIdent = options.implicitThisIdent;
   group('\n\n\n[implicitThis] Looking for implicit `this` cases to replace with another ident\n');
   const ast = fdata.tenkoOutput.ast;
   //currentState(fdata, 'implicitThis'. true);

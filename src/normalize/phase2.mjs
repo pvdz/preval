@@ -1,5 +1,7 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, before, assertNoDupeNodes, currentState, } from '../utils.mjs';
+import { VERBOSE_TRACING } from '../constants.mjs';
 import { mergeTyping } from '../bindings.mjs';
+
 import { pruneEmptyFunctions } from '../reduce_static/empty_func.mjs';
 import { pruneTrampolineFunctions } from '../reduce_static/trampoline.mjs';
 import { pruneExcessiveParams } from '../reduce_static/exparam.mjs';
@@ -107,25 +109,8 @@ import { ifWeaving } from '../reduce_static/if_weaving.mjs';
 import { ifTestNested } from '../reduce_static/if_test_nested.mjs';
 import { frfrTricks } from '../reduce_static/frfr_tricks.mjs';
 import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
-import { VERBOSE_TRACING } from '../constants.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
-
-// Things to do
-// - Inline local constants, numbers, literal idents
-// - Inline imported constants
-// - Unroll a function when called with a primitive
-// - Branch out
-// - Const binding folding (const a = $(); const b = a; -> redundant)
-// - `let x = $(1); const y = x; x = $(2);` -> `const y = $(1); const x = $(2);`
-// - tail break, if not already done; `foo: { break foo; }` the break is redundant. same for other cases where break (and continue) are at the end. Should prefer this to the "Labeled break as direct child of function. Eliminate the break." rule.
-// - Unary negative/positive should look at argument
-// - Function whose body is one if-else driven by an argument. If the func does not escape then it can be split into two functions and the arg eliminated. in react there is executeDispatchesAndRelease for example.
-// - The boolean cast in isNode$1 in react can be moved?
-// - If two let bindings are updated in tandom (with same value) then they could be combined (`let x; let y; x = z; y = z; $(x,y); x = zz; y = zz; $(x, y)`, etc)
-// - Eliminate continue
-// - should Program always have a block just to eliminate the Program? That's not going to fix function boundaries though but maybe it is more consistent anyways?
-// - should loops always explicitly end with a continue statement? does that matter?
 
 export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, options) {
   const ast = fdata.tenkoOutput.ast;
@@ -225,118 +210,118 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
   });
 
   const action = (
-    redundantInit(fdata) ||
-    dotcallSelfAssigning(fdata) || // This is a real fast one, it only walks the dotcalls
-    freeFuncs(fdata, prng, !!options.prngSeed, false) || // Do this first...?
-    frfrTricks(fdata) ||
+    redundantInit(fdata, prng, options) ||
+    dotcallSelfAssigning(fdata, prng, options) || // This is a real fast one, it only walks the dotcalls
+    freeFuncs(fdata, prng, options, false) || // Do this first...?
+    frfrTricks(fdata, prng, options) ||
 
-    coercials(fdata) ||
-    resolveBoundValueSet(fdata) ||
-    removeUnusedConstants(fdata) ||
-    builtinCases(fdata) || // fast
+    coercials(fdata, prng, options) ||
+    resolveBoundValueSet(fdata, prng, options) ||
+    removeUnusedConstants(fdata, prng, options) ||
+    builtinCases(fdata, prng, options) || // fast
     // Do early because it's likely to catch common cases
-    refTracked(fdata) ||
+    refTracked(fdata, prng, options) ||
     // Do early because it can be expensive with many writes
-    arrMutation(fdata) ||
-    letHoisting(fdata) ||
-    findThrowers(fdata) ||
-    singleScopeTdz(fdata) || // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
-    constAssigns(fdata) ||
-    constAliasing(fdata) ||
-    aliasedGlobals(fdata) ||
-    freeNested(fdata, prng, !!options.prngSeed) || // I think it's fine to do this early
-    simplifyDotCall(fdata) ||
-    assignHoisting(fdata) ||
-    ifFlipping(fdata) ||
-    staticLets(fdata) ||
-    pruneEmptyFunctions(fdata) ||
-    pruneTrampolineFunctions(fdata) ||
-    inlineConstants(fdata) ||
-    writeOnly(fdata) ||
-    dealiasing(fdata) ||
-    singleScopeSSA(fdata) ||
-    multiScopeSSA(fdata) ||
-    pruneExcessiveParams(fdata) ||
-    excessiveArgs(fdata) ||
-    inlineOneTimeFunctions(fdata) ||
-    inlineSimpleFuncCalls(fdata) ||
-    funcScopePromo(fdata) ||
-    dedupeBranchedReturns(fdata) ||
-    inlineCommonReturns(fdata) ||
-    dropUnusedReturns(fdata) ||
-    ifelseifelse(fdata) ||
-    ifCallIf(fdata) ||
-    arrrrrr(fdata) ||
-    arrCoerce(fdata) ||
-    recursiveFuncs(fdata) ||
-    labelScoping(fdata) ||
-    objlitPropAccess(fdata) ||
-    bitSetTests(fdata) ||
-    ifUpdateCall(fdata) ||
-    inlineArgLen(fdata) ||
-    inlineIdenticalParam(fdata) ||
-    returnClosure(fdata) ||
-    returnArg(fdata) ||
-    ifTestInvIdent(fdata) ||
-    ifWeaving(fdata) ||
-    typeTrackedTricks(fdata) ||
-    arrSpreads(fdata) ||
-    conditionalTyping(fdata) ||
-    ifTestBool(fdata) ||
-    ifTestFolding(fdata) ||
-    ifDualAssign(fdata) ||
-    returnsParam(fdata) ||
-    spylessVars(fdata) ||
-    stringFusing(fdata) ||
-    andCases(fdata) ||
-    globalCasting(fdata) ||
-    tryEscaping(fdata) ||
-    binExprStmt(fdata) ||
-    protoPropReads(fdata) ||
-    ifLetInit(fdata) ||
-    redundantWrites(fdata) ||
-    ifHoisting(fdata) ||
-    orXor(fdata) ||
-    typedComparison(fdata) ||
-    eqBang(fdata) ||
-    orOr(fdata) ||
-    andAnd(fdata) ||
-    ifTestMerging(fdata) ||
-    ifTestNested(fdata) ||
-    branchConstantInlining(fdata) ||
-    boolTrampolines(fdata) ||
-    restParams(fdata) ||
-    andIfAndIf(fdata) ||
-    ifMerging(fdata) ||
-    ifFalsySpread(fdata) ||
-    tailBreaking(fdata) ||
-    infiniteLoops(fdata) || // Make sure to do this before loop unrolling
-    arrayReads(fdata) ||
-    staticArgOpOutlining(fdata) ||
-    staticIfOutlining(fdata) || // Maybe even lower since this duplicates functions? Or maybe higher i dunno.
-    functionLocks(fdata) ||
-    readOnce(fdata) ||
-    ifTestOnly(fdata) ||
-    functionSplitting(fdata) ||
-    tryHoisting(fdata) ||
-    implicitThis(fdata, options.implicitThisIdent) ||
-    expandoSplitting(fdata) ||
-    selfAssignClosure(fdata) ||
-    selfAssignNoop(fdata) ||
-    letAliasing(fdata) ||
-    letAliasRedundant(fdata) ||
-    testingAlias(fdata) ||
-    aliasIfIf(fdata) ||
-    ifUpdateTest(fdata) ||
-    fakeDoWhile(fdata) ||
-    unusedAssigns(fdata) ||
-    objlitInlining(fdata) ||
-    arrMethodCall(fdata) ||
-    bufferBase64(fdata) ||
+    arrMutation(fdata, prng, options) ||
+    letHoisting(fdata, prng, options) ||
+    findThrowers(fdata, prng, options) ||
+    singleScopeTdz(fdata, prng, options) || // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
+    constAssigns(fdata, prng, options) ||
+    constAliasing(fdata, prng, options) ||
+    aliasedGlobals(fdata, prng, options) ||
+    freeNested(fdata, prng, options) || // I think it's fine to do this early
+    simplifyDotCall(fdata, prng, options) ||
+    assignHoisting(fdata, prng, options) ||
+    ifFlipping(fdata, prng, options) ||
+    staticLets(fdata, prng, options) ||
+    pruneEmptyFunctions(fdata, prng, options) ||
+    pruneTrampolineFunctions(fdata, prng, options) ||
+    inlineConstants(fdata, prng, options) ||
+    writeOnly(fdata, prng, options) ||
+    dealiasing(fdata, prng, options) ||
+    singleScopeSSA(fdata, prng, options) ||
+    multiScopeSSA(fdata, prng, options) ||
+    pruneExcessiveParams(fdata, prng, options) ||
+    excessiveArgs(fdata, prng, options) ||
+    inlineOneTimeFunctions(fdata, prng, options) ||
+    inlineSimpleFuncCalls(fdata, prng, options) ||
+    funcScopePromo(fdata, prng, options) ||
+    dedupeBranchedReturns(fdata, prng, options) ||
+    inlineCommonReturns(fdata, prng, options) ||
+    dropUnusedReturns(fdata, prng, options) ||
+    ifelseifelse(fdata, prng, options) ||
+    ifCallIf(fdata, prng, options) ||
+    arrrrrr(fdata, prng, options) ||
+    arrCoerce(fdata, prng, options) ||
+    recursiveFuncs(fdata, prng, options) ||
+    labelScoping(fdata, prng, options) ||
+    objlitPropAccess(fdata, prng, options) ||
+    bitSetTests(fdata, prng, options) ||
+    ifUpdateCall(fdata, prng, options) ||
+    inlineArgLen(fdata, prng, options) ||
+    inlineIdenticalParam(fdata, prng, options) ||
+    returnClosure(fdata, prng, options) ||
+    returnArg(fdata, prng, options) ||
+    ifTestInvIdent(fdata, prng, options) ||
+    ifWeaving(fdata, prng, options) ||
+    typeTrackedTricks(fdata, prng, options) ||
+    arrSpreads(fdata, prng, options) ||
+    conditionalTyping(fdata, prng, options) ||
+    ifTestBool(fdata, prng, options) ||
+    ifTestFolding(fdata, prng, options) ||
+    ifDualAssign(fdata, prng, options) ||
+    returnsParam(fdata, prng, options) ||
+    spylessVars(fdata, prng, options) ||
+    stringFusing(fdata, prng, options) ||
+    andCases(fdata, prng, options) ||
+    globalCasting(fdata, prng, options) ||
+    tryEscaping(fdata, prng, options) ||
+    binExprStmt(fdata, prng, options) ||
+    protoPropReads(fdata, prng, options) ||
+    ifLetInit(fdata, prng, options) ||
+    redundantWrites(fdata, prng, options) ||
+    ifHoisting(fdata, prng, options) ||
+    orXor(fdata, prng, options) ||
+    typedComparison(fdata, prng, options) ||
+    eqBang(fdata, prng, options) ||
+    orOr(fdata, prng, options) ||
+    andAnd(fdata, prng, options) ||
+    ifTestMerging(fdata, prng, options) ||
+    ifTestNested(fdata, prng, options) ||
+    branchConstantInlining(fdata, prng, options) ||
+    boolTrampolines(fdata, prng, options) ||
+    restParams(fdata, prng, options) ||
+    andIfAndIf(fdata, prng, options) ||
+    ifMerging(fdata, prng, options) ||
+    ifFalsySpread(fdata, prng, options) ||
+    tailBreaking(fdata, prng, options) ||
+    infiniteLoops(fdata, prng, options) || // Make sure to do this before loop unrolling
+    arrayReads(fdata, prng, options) ||
+    staticArgOpOutlining(fdata, prng, options) ||
+    staticIfOutlining(fdata, prng, options) || // Maybe even lower since this duplicates functions? Or maybe higher i dunno.
+    functionLocks(fdata, prng, options) ||
+    readOnce(fdata, prng, options) ||
+    ifTestOnly(fdata, prng, options) ||
+    functionSplitting(fdata, prng, options) ||
+    tryHoisting(fdata, prng, options) ||
+    implicitThis(fdata, prng, options) ||
+    expandoSplitting(fdata, prng, options) ||
+    selfAssignClosure(fdata, prng, options) ||
+    selfAssignNoop(fdata, prng, options) ||
+    letAliasing(fdata, prng, options) ||
+    letAliasRedundant(fdata, prng, options) ||
+    testingAlias(fdata, prng, options) ||
+    aliasIfIf(fdata, prng, options) ||
+    ifUpdateTest(fdata, prng, options) ||
+    fakeDoWhile(fdata, prng, options) ||
+    unusedAssigns(fdata, prng, options) ||
+    objlitInlining(fdata, prng, options) ||
+    arrMethodCall(fdata, prng, options) ||
+    bufferBase64(fdata, prng, options) ||
 
-    freeLoops(fdata, prng, !!options.prngSeed) || // Most other stuff should probably precede this?
+    freeLoops(fdata, prng, options) || // Most other stuff should probably precede this?
 
-    freeing(fdata, prng, !!options.prngSeed) || // Do this last. Let other tricks precede it.
+    freeing(fdata, prng, options) || // Do this last. Let other tricks precede it.
 
     //// This one is very invasive and expands the code. Needs more work.
     //phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit) ||

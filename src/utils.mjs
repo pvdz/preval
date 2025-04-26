@@ -5,6 +5,7 @@ import walk from '../lib/walk.mjs';
 
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM, ORANGE, GREEN, BLUE } from './constants.mjs';
 import { SYMBOL_MAX_LOOP_UNROLL } from './symbols_preval.mjs';
+import { $p } from './$p.mjs';
 
 /**
  * Allow the use of risky rules? These are rules that are not completely sound but should be okay in normal environments.
@@ -310,7 +311,11 @@ export function currentState(fdata, suffix, withTyping=false) {
 }
 
 export function assertNoDupeNodes(rootNode, prop, force = false, ...desc) {
+  if (!VERBOSE) return; // When silent=true it's more like running in prod mode, less about tests.
   if (!force && !VERBOSE_TRACING) return; // Disable this for large inputs but keep it for tests
+
+  if (Array.isArray(rootNode)) rootNode = { type: 'BlockStatement', body: rootNode, specialNoDupeAssertionPlaceholder: true };
+
   // Assert AST contains no duplicate node objects
   const refset = new Set();
   const map = new Map();

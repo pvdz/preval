@@ -44,6 +44,7 @@ PARAM_RISKY=''
 PARAM_PCODE=''
 PARAM_SEED=''
 PARAM_SEED_N=''
+PARAM_TIME=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -77,7 +78,7 @@ Preval CLI Toolkit help:
  u               Run all test files and just write output
  U               Run all test files and force write output (ignores ASSERT failures)
  m               Run all tests and ask for update one-by-one
- A <path>        Alias for `rm -r out && mkdirp out && ./p F <path> --logto out --silent`
+ A <path>        Alias for `rm -r out && mkdirp out && ./p F <path> --logto out --silent --time`
  fast            Omit many of the expression variation tests (ignores about 18k auto generated tests). Use -fast for the inverse.
 
  --log           Automatically write code after every phase executed to a log file. Defaults to .
@@ -103,6 +104,7 @@ Preval CLI Toolkit help:
  --no-risky      Disable risky rules. These rules cut a few corners but should be okay in most scenarios. Enabled by default.
  --pcode         Consider input a pcode test
  --seed n        Set the rng seed to inline certain Math.random cases. If zero then math.random is never inlined. Default: 1
+ --time          Track and print some rudimentary timing data for phases 1, 1.1, and 2.
  -C              Do not print colors
  -n              Only show normalized output
  -t <count>      Run tests in this many threads (default=1; no threads)
@@ -135,6 +137,7 @@ Preval CLI Toolkit help:
       ACTION='-F'
       shift
       ACTION_ARG=$1
+      PARAM_TIME='--time'
       ;;
     u)
       # Update all test files with their current output (fast)
@@ -158,6 +161,7 @@ Preval CLI Toolkit help:
       PARAM_LOG='--logto'
       PARAM_LOGTO='out'
       PARAM_SILENT='--silent'
+      PARAM_TIME='--time'
       ;;
 
     --log)
@@ -251,6 +255,9 @@ Preval CLI Toolkit help:
       shift
       PARAM_SEED_N=$1
       ;;
+    --time)
+      PARAM_TIME='--time'
+      ;;
     -C)
       shift
       PARAM_NO_COLOR="-C"
@@ -302,7 +309,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=32768 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_LOG_FROM}" "${PARAM_LOG_FROM_N}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}" "${PARAM_PCODE}" "${PARAM_SEED}" "${PARAM_SEED_N}"
+      ${NODE_BIN} --max-old-space-size=32768 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_LOG_FROM}" "${PARAM_LOG_FROM_N}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}" "${PARAM_RISKY}" "${PARAM_PCODE}" "${PARAM_SEED}" "${PARAM_SEED_N}" "${PARAM_TIME}"
     ;;
 esac
 set +x

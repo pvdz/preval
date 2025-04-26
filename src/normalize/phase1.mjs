@@ -42,10 +42,18 @@ import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 // It does replace Identifier nodes in the AST that are $$123 param names with a special custom Param node
 // It runs twice; once for actual input code and once on normalized code.
 
-export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest, pcodeTest, verboseTracing) {
+export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest, pcodeTest, verboseTracing, optionsTime) {
+  const enableTiming = optionsTime || 0;
   const ast = fdata.tenkoOutput.ast;
 
   const start = Date.now();
+  const mstart = enableTiming && performance.now();
+
+  const TIMING = {
+    init: 0,
+    walk: 0,
+    end: 0,
+  };
 
   const funcStack = []; // (also includes global/Program)
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments. Not used for global.
@@ -108,7 +116,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
   );
   if (
-    //VERBOSE_TRACING ||
     (VERBOSE_TRACING && firstAfterParse && passes === 0) ||
     REF_TRACK_TRACING
   ) {
@@ -124,6 +131,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
     setVerboseTracing(false);
   }
 
+  const minit = enableTiming && performance.now();
+  TIMING.init = minit - mstart;
+
   let called = 0;
   const now = Date.now();
   vlog(`RTT: phase1 (REF_TRACK_TRACING=${REF_TRACK_TRACING}, enable with --ref-tracing)\n`);
@@ -133,6 +143,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   log('Walked AST in', Date.now() - now, 'ms');
   if (REF_TRACK_TRACING) console.groupEnd();
   vlog('End of phase1\n');
+
+  const mwalk = enableTiming && performance.now();
+  TIMING.walk = mwalk - minit;
 
   assertNoDupeNodes(ast, 'body');
 
@@ -189,7 +202,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         pathIndexes,
       );
     }
-    //vlog('ids/indexes:', blockIds, blockIndexes);
+    //const mbefore = enableTiming && performance.now();
+
     switch (key) {
       case 'AssignmentExpression:after': {
         vlog('-', node.left.type, node.operator, node.right.type);
@@ -277,7 +291,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.promoParent = blockStack[blockStack.length - 1];
 
         blockStack.push(node);
+        //const mor = enableTiming && performance.now();
         openRefsOnBeforeBlock(node, parentNode, parentProp, pathNodes[pathNodes.length - 3], blockStack[blockStack.length - 2], globallyUniqueNamingRegistry);
+        //if (enableTiming) TIMING['openRefsOnBeforeBlock'] = (TIMING['openRefsOnBeforeBlock'] | 0) + (performance.now() - mor);
 
         if (tryNodeStack.length) {
           if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(+node.$p.pid);
@@ -795,7 +811,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'IfStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
+        //const mor = enableTiming && performance.now();
         openRefsOnAfterIf(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack);
+        // if (enableTiming) TIMING['openRefsOnAfterIf'] = (TIMING['openRefsOnAfterIf'] | 0) + (performance.now() - mor);
 
         if (node.consequent.$p.alwaysCompletes?.size && node.alternate.$p.alwaysCompletes?.size) {
           if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
@@ -1186,6 +1204,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
     }
+    //const mafter = enableTiming && performance.now();
+    //TIMING[key] = (TIMING[key] | 0) + (mafter - mbefore);
 
     if (!before && (parentNode?.type === 'Program' || parentNode?.type === 'BlockStatement')) {
       blockIndexes.pop();
@@ -1194,9 +1214,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
     vgroupEnd();
   }
 
-  dumpOpenRefsState(globallyUniqueNamingRegistry);
-
   if (VERBOSE_TRACING) {
+    dumpOpenRefsState(globallyUniqueNamingRegistry);
+
     vlog();
     vlog('Imports from:');
     vlog(
@@ -1249,6 +1269,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   });
 
   groupEnd();
+
+  if (enableTiming) {
+    const mend = performance.now();
+    TIMING.end = mend - mwalk;
+    //Object.keys(TIMING).forEach(key => TIMING[key] = Math.floor(TIMING[key]))
+    console.log('Phase1   timing:', JSON.stringify(TIMING).replace(/"|\.\d+/g, '').replace(/(:|,)/g, '$1 '));
+  }
 }
 
 function reachAtString(set, what) {

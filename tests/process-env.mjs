@@ -35,6 +35,7 @@ export function parseTestArgs() {
     targetDir: undefined,
     threadIndex: 0, // ... and this will be that thread
     threads: 1, // By default, only run one thread (only useful for multiple files)
+    time: undefined, // Show some timing information to track biggest bottlenecks
     trace: undefined, // Force set VERBOSE_TRACING=true regardless of input size? If undefined, defaults to verbose.
     trimDollar: false, // Remove trailing $12 from outputs? Reduces noise when diffing when new vars shuffle the incremental suffix
     unrollLimit: undefined, // Max number of attempts to unroll infinite loops. The cap is arbitrary. Higher caps may lead to longer processing times without changing anything but sometimes a loop takes that many times to unroll.
@@ -207,6 +208,11 @@ export function parseTestArgs() {
 
       case '--skip-eval': {
         config.skipEval = true;
+        break;
+      }
+
+      case '--time': {
+        config.time = true;
         break;
       }
 

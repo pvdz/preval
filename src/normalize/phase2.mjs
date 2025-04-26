@@ -112,6 +112,126 @@ import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
 
 //import { phasePrimitiveArgInlining } from '../reduce_static/phase_primitive_arg_inlining.mjs';
 
+export const ORDER = [
+  ['redundantInit', redundantInit],
+  ['dotcallSelfAssigning', dotcallSelfAssigning], // This is a real fast one, it only walks the dotcalls
+  ['freeFuncs', freeFuncs], // Do this first...?
+  ['frfrTricks', frfrTricks],
+  ['coercials', coercials],
+  ['resolveBoundValueSet', resolveBoundValueSet],
+  ['removeUnusedConstants', removeUnusedConstants],
+  ['builtinCases', builtinCases], // fast
+  // Do early because it's likely to catch common cases
+  ['refTracked', refTracked],
+  // Do early because it can be expensive with many writes
+  ['arrMutation', arrMutation],
+  ['letHoisting', letHoisting],
+  ['findThrowers', findThrowers],
+  ['singleScopeTdz', singleScopeTdz], // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
+  ['constAssigns', constAssigns],
+  ['constAliasing', constAliasing],
+  ['aliasedGlobals', aliasedGlobals],
+  ['freeNested', freeNested], // I think it's fine to do this early
+  ['simplifyDotCall', simplifyDotCall],
+  ['assignHoisting', assignHoisting],
+  ['ifFlipping', ifFlipping],
+  ['staticLets', staticLets],
+  ['pruneEmptyFunctions', pruneEmptyFunctions],
+  ['pruneTrampolineFunctions', pruneTrampolineFunctions],
+  ['inlineConstants', inlineConstants],
+  ['writeOnly', writeOnly],
+  ['dealiasing', dealiasing],
+  ['singleScopeSSA', singleScopeSSA],
+  ['multiScopeSSA', multiScopeSSA],
+  ['pruneExcessiveParams', pruneExcessiveParams],
+  ['excessiveArgs', excessiveArgs],
+  ['inlineOneTimeFunctions', inlineOneTimeFunctions],
+  ['inlineSimpleFuncCalls', inlineSimpleFuncCalls],
+  ['funcScopePromo', funcScopePromo],
+  ['dedupeBranchedReturns', dedupeBranchedReturns],
+  ['inlineCommonReturns', inlineCommonReturns],
+  ['dropUnusedReturns', dropUnusedReturns],
+  ['ifelseifelse', ifelseifelse],
+  ['ifCallIf', ifCallIf],
+  ['arrrrrr', arrrrrr],
+  ['arrCoerce', arrCoerce],
+  ['recursiveFuncs', recursiveFuncs],
+  ['labelScoping', labelScoping],
+  ['objlitPropAccess', objlitPropAccess],
+  ['bitSetTests', bitSetTests],
+  ['ifUpdateCall', ifUpdateCall],
+  ['inlineArgLen', inlineArgLen],
+  ['inlineIdenticalParam', inlineIdenticalParam],
+  ['returnClosure', returnClosure],
+  ['returnArg', returnArg],
+  ['ifTestInvIdent', ifTestInvIdent],
+  ['ifWeaving', ifWeaving],
+  ['typeTrackedTricks', typeTrackedTricks],
+  ['arrSpreads', arrSpreads],
+  ['conditionalTyping', conditionalTyping],
+  ['ifTestBool', ifTestBool],
+  ['ifTestFolding', ifTestFolding],
+  ['ifDualAssign', ifDualAssign],
+  ['returnsParam', returnsParam],
+  ['spylessVars', spylessVars],
+  ['stringFusing', stringFusing],
+  ['andCases', andCases],
+  ['globalCasting', globalCasting],
+  ['tryEscaping', tryEscaping],
+  ['binExprStmt', binExprStmt],
+  ['protoPropReads', protoPropReads],
+  ['ifLetInit', ifLetInit],
+  ['redundantWrites', redundantWrites],
+  ['ifHoisting', ifHoisting],
+  ['orXor', orXor],
+  ['typedComparison', typedComparison],
+  ['eqBang', eqBang],
+  ['orOr', orOr],
+  ['andAnd', andAnd],
+  ['ifTestMerging', ifTestMerging],
+  ['ifTestNested', ifTestNested],
+  ['branchConstantInlining', branchConstantInlining],
+  ['boolTrampolines', boolTrampolines],
+  ['restParams', restParams],
+  ['andIfAndIf', andIfAndIf],
+  ['ifMerging', ifMerging],
+  ['ifFalsySpread', ifFalsySpread],
+  ['tailBreaking', tailBreaking],
+  ['infiniteLoops', infiniteLoops], // Make sure to do this before loop unrolling
+  ['arrayReads', arrayReads],
+  ['staticArgOpOutlining', staticArgOpOutlining],
+  ['staticIfOutlining', staticIfOutlining], // Maybe even lower since this duplicates functions? Or maybe higher i dunno.
+  ['functionLocks', functionLocks],
+  ['readOnce', readOnce],
+  ['ifTestOnly', ifTestOnly],
+  ['functionSplitting', functionSplitting],
+  ['tryHoisting', tryHoisting],
+  ['implicitThis', implicitThis],
+  ['expandoSplitting', expandoSplitting],
+  ['selfAssignClosure', selfAssignClosure],
+  ['selfAssignNoop', selfAssignNoop],
+  ['letAliasing', letAliasing],
+  ['letAliasRedundant', letAliasRedundant],
+  ['testingAlias', testingAlias],
+  ['aliasIfIf', aliasIfIf],
+  ['ifUpdateTest', ifUpdateTest],
+  ['fakeDoWhile', fakeDoWhile],
+  ['unusedAssigns', unusedAssigns],
+  ['objlitInlining', objlitInlining],
+  ['arrMethodCall', arrMethodCall],
+  ['bufferBase64', bufferBase64],
+
+  ['freeLoops', freeLoops], // Most other stuff should probably precede this?
+
+  ['freeing', freeing], // Do this last. Let other tricks precede it.
+
+  //// This one is very invasive and expands the code. Needs more work.
+  //['phasePrimitiveArgInlining', phasePrimitiveArgInlining],
+];
+
+// Track time spent per func, globally
+const GLO_TIMES = new Map(ORDER.map(([key]) => [key, {calls: 0, hits: 0, time: 0, last: 0}]))
+
 export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
@@ -122,7 +242,7 @@ export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTra
   }
 
   {
-    const {prngSeed, implicitThisIdent, ...rest} = options;
+    const {prngSeed, implicitThisIdent, time, ...rest} = options;
     const keys = Object.keys(rest);
     ASSERT(keys.length === 0, 'phase 2 should not receive these options or this should be updated', keys);
   }
@@ -209,123 +329,37 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
     });
   });
 
-  const action = (
-    redundantInit(fdata, prng, options) ||
-    dotcallSelfAssigning(fdata, prng, options) || // This is a real fast one, it only walks the dotcalls
-    freeFuncs(fdata, prng, options, false) || // Do this first...?
-    frfrTricks(fdata, prng, options) ||
+  let action;
+  let ti = 0;
+  for (const [tname, tfunc] of ORDER) {
+    const mnow = options.time && performance.now();
+    action = tfunc(fdata, prng, options);
+    const mtime = options.time && performance.now();
+    const mlen = mtime-mnow;
+    if (options.time) {
+      const obj = GLO_TIMES.get(tname);
+      obj.last = mlen;
+      obj.time += mlen;
+      obj.calls += 1;
+    }
+    if (action) {
+      action.actionOrderIndex = ti;
+      action.actionOwnTime = options.time ? under(Math.round(mlen)) : '--';
+      break;
+    }
+    ti += 1;
+  }
 
-    coercials(fdata, prng, options) ||
-    resolveBoundValueSet(fdata, prng, options) ||
-    removeUnusedConstants(fdata, prng, options) ||
-    builtinCases(fdata, prng, options) || // fast
-    // Do early because it's likely to catch common cases
-    refTracked(fdata, prng, options) ||
-    // Do early because it can be expensive with many writes
-    arrMutation(fdata, prng, options) ||
-    letHoisting(fdata, prng, options) ||
-    findThrowers(fdata, prng, options) ||
-    singleScopeTdz(fdata, prng, options) || // Mostly superseded by the TDZ analysis in prepare or phase1 (but still for-in/of cases to fix first)
-    constAssigns(fdata, prng, options) ||
-    constAliasing(fdata, prng, options) ||
-    aliasedGlobals(fdata, prng, options) ||
-    freeNested(fdata, prng, options) || // I think it's fine to do this early
-    simplifyDotCall(fdata, prng, options) ||
-    assignHoisting(fdata, prng, options) ||
-    ifFlipping(fdata, prng, options) ||
-    staticLets(fdata, prng, options) ||
-    pruneEmptyFunctions(fdata, prng, options) ||
-    pruneTrampolineFunctions(fdata, prng, options) ||
-    inlineConstants(fdata, prng, options) ||
-    writeOnly(fdata, prng, options) ||
-    dealiasing(fdata, prng, options) ||
-    singleScopeSSA(fdata, prng, options) ||
-    multiScopeSSA(fdata, prng, options) ||
-    pruneExcessiveParams(fdata, prng, options) ||
-    excessiveArgs(fdata, prng, options) ||
-    inlineOneTimeFunctions(fdata, prng, options) ||
-    inlineSimpleFuncCalls(fdata, prng, options) ||
-    funcScopePromo(fdata, prng, options) ||
-    dedupeBranchedReturns(fdata, prng, options) ||
-    inlineCommonReturns(fdata, prng, options) ||
-    dropUnusedReturns(fdata, prng, options) ||
-    ifelseifelse(fdata, prng, options) ||
-    ifCallIf(fdata, prng, options) ||
-    arrrrrr(fdata, prng, options) ||
-    arrCoerce(fdata, prng, options) ||
-    recursiveFuncs(fdata, prng, options) ||
-    labelScoping(fdata, prng, options) ||
-    objlitPropAccess(fdata, prng, options) ||
-    bitSetTests(fdata, prng, options) ||
-    ifUpdateCall(fdata, prng, options) ||
-    inlineArgLen(fdata, prng, options) ||
-    inlineIdenticalParam(fdata, prng, options) ||
-    returnClosure(fdata, prng, options) ||
-    returnArg(fdata, prng, options) ||
-    ifTestInvIdent(fdata, prng, options) ||
-    ifWeaving(fdata, prng, options) ||
-    typeTrackedTricks(fdata, prng, options) ||
-    arrSpreads(fdata, prng, options) ||
-    conditionalTyping(fdata, prng, options) ||
-    ifTestBool(fdata, prng, options) ||
-    ifTestFolding(fdata, prng, options) ||
-    ifDualAssign(fdata, prng, options) ||
-    returnsParam(fdata, prng, options) ||
-    spylessVars(fdata, prng, options) ||
-    stringFusing(fdata, prng, options) ||
-    andCases(fdata, prng, options) ||
-    globalCasting(fdata, prng, options) ||
-    tryEscaping(fdata, prng, options) ||
-    binExprStmt(fdata, prng, options) ||
-    protoPropReads(fdata, prng, options) ||
-    ifLetInit(fdata, prng, options) ||
-    redundantWrites(fdata, prng, options) ||
-    ifHoisting(fdata, prng, options) ||
-    orXor(fdata, prng, options) ||
-    typedComparison(fdata, prng, options) ||
-    eqBang(fdata, prng, options) ||
-    orOr(fdata, prng, options) ||
-    andAnd(fdata, prng, options) ||
-    ifTestMerging(fdata, prng, options) ||
-    ifTestNested(fdata, prng, options) ||
-    branchConstantInlining(fdata, prng, options) ||
-    boolTrampolines(fdata, prng, options) ||
-    restParams(fdata, prng, options) ||
-    andIfAndIf(fdata, prng, options) ||
-    ifMerging(fdata, prng, options) ||
-    ifFalsySpread(fdata, prng, options) ||
-    tailBreaking(fdata, prng, options) ||
-    infiniteLoops(fdata, prng, options) || // Make sure to do this before loop unrolling
-    arrayReads(fdata, prng, options) ||
-    staticArgOpOutlining(fdata, prng, options) ||
-    staticIfOutlining(fdata, prng, options) || // Maybe even lower since this duplicates functions? Or maybe higher i dunno.
-    functionLocks(fdata, prng, options) ||
-    readOnce(fdata, prng, options) ||
-    ifTestOnly(fdata, prng, options) ||
-    functionSplitting(fdata, prng, options) ||
-    tryHoisting(fdata, prng, options) ||
-    implicitThis(fdata, prng, options) ||
-    expandoSplitting(fdata, prng, options) ||
-    selfAssignClosure(fdata, prng, options) ||
-    selfAssignNoop(fdata, prng, options) ||
-    letAliasing(fdata, prng, options) ||
-    letAliasRedundant(fdata, prng, options) ||
-    testingAlias(fdata, prng, options) ||
-    aliasIfIf(fdata, prng, options) ||
-    ifUpdateTest(fdata, prng, options) ||
-    fakeDoWhile(fdata, prng, options) ||
-    unusedAssigns(fdata, prng, options) ||
-    objlitInlining(fdata, prng, options) ||
-    arrMethodCall(fdata, prng, options) ||
-    bufferBase64(fdata, prng, options) ||
-
-    freeLoops(fdata, prng, options) || // Most other stuff should probably precede this?
-
-    freeing(fdata, prng, options) || // Do this last. Let other tricks precede it.
-
-    //// This one is very invasive and expands the code. Needs more work.
-    //phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit) ||
-  undefined);
+  if (options.time) {
+    const obj = {};
+    ORDER.slice(0, ti+1).forEach(([key]) => obj[key] = under(Math.round(GLO_TIMES.get(key).last * 1000)));
+    console.log('Phase2   timing:',
+      JSON.stringify(obj)
+      .replace(/"/g, '')
+      .replace(/(:|,)/g, '$1 ')
+      .replace(/(\w\w\w)\w+/g, '$1')
+    );
+  }
 
   ASSERT(action === undefined || (action && typeof action === 'object'), 'plugins must return an object or undefined', action);
   if (!action) {
@@ -338,4 +372,9 @@ function _phase2(fdata, prng, options = {prngSeed: 1}) {
   ASSERT(action.next === 'phase1' || action.next === 'normal', 'next should be phase1 or normal', action);
 
   return action;
+}
+
+function under(num) {
+  // meh.
+  return new Intl.NumberFormat('en-US').format(num).replace(/,/g, '_');
 }

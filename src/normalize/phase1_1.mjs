@@ -9,10 +9,23 @@ import { symbo } from '../symbols_builtins.mjs';
 // This phase walks the AST a few times to discover things for which it needs phase1 to complete
 // Currently it discovers call arg types (for which it needs the meta.typing data) and propagated mustBeType cases
 
-export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest, pcodeTest, verboseTracing) {
+export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest, pcodeTest, verboseTracing, optionsTime) {
+  const enableTiming = optionsTime;
   const ast = fdata.tenkoOutput.ast;
 
   const start = Date.now();
+  const mstart = enableTiming && performance.now();
+
+  const TIMING = {
+    init: 0,
+    one: 0,
+    two: 0,
+    three: 0,
+    four: 0,
+    five: 0,
+    six: 0,
+    seven: 0,
+  };
 
   group(
     '\n\n\n##################################\n## phase1.1 (first=' +
@@ -211,11 +224,17 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     }
   }
 
+  const minit = enableTiming && performance.now();
+  TIMING.init = minit - mstart;
+
   const now = Date.now();
   group('Walking AST to collect func call arg types...');
   walk(_callWalker, ast, 'ast');
   groupEnd();
   log('Walked AST to collect func call arg types', Date.now() - now, 'ms');
+
+  const mone = enableTiming && performance.now();
+  TIMING.one = mone - minit;
 
   // Remove any funcs when we know we won't discover its callerArgs
   calledMetas.forEach((arrArgs, calleeMeta) => {
@@ -240,6 +259,9 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       }
     });
   });
+
+  const mtwo = enableTiming && performance.now();
+  TIMING.two = mtwo - mone;
 
   const aliasChecks = [];
 
@@ -316,6 +338,9 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   });
   log('Walked AST to type params, in', Date.now() - now3, 'ms');
   groupEnd();
+
+  const mthree = enableTiming && performance.now();
+  TIMING.three = mthree - mtwo;
 
   vlog('');
   vgroup('Trying to resolve a mustBeType for', untypedConstDecls.size, 'var decls, ', funcNodesForSomething.size, 'funcs, and the callerArgs for', calledMetas.size, 'funcs');
@@ -955,6 +980,9 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   vlog('All typing settled now..., updated', typingUpdated, 'times. Still have', untypedConstDecls.size, 'decls without a mustBeType, sadge');
   vgroupEnd();
 
+  const mfour = enableTiming && performance.now();
+  TIMING.four = mfour - mthree;
+
   vlog('');
   group('Processing all', funcNodesForParams.size, 'defined function expressions that dont escape, to apply callArgs types to params...');
   const now2 = Date.now();
@@ -1033,6 +1061,9 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   log('Walked AST to type params, in', Date.now() - now2, 'ms');
   groupEnd();
 
+  const mfive = enableTiming && performance.now();
+  TIMING.five = mfive - mfour;
+
   aliasChecks.forEach(obj => {
     const {funcName, aliasName, funcMeta, aliasMeta} = obj;
     vlog('Merging callerArgs of alias "', aliasName, '" into "', funcName, '"');
@@ -1052,6 +1083,9 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     vlog('    - Caller args after merge:', funcMeta.callerArgs);
   });
 
+  const msix = enableTiming && performance.now();
+  TIMING.six = msix - mfive;
+
   assertNoDupeNodes(ast, 'body');
 
   setVerboseTracing(tracingValueBefore);
@@ -1063,4 +1097,10 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   log('\n\nEnd of phase 1.1, walker took', Date.now() - start, 'ms');
 
   groupEnd();
+
+  if (enableTiming) {
+    const mseven = performance.now();
+    TIMING.seven = mseven - msix;
+    console.log('Phase1.1 timing:', JSON.stringify(TIMING).replace(/"|\.\d+/g, '').replace(/(:|,)/g, '$1 '));
+  }
 }

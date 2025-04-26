@@ -40,7 +40,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   {
     const {
       logDir, logDirExtra, logPasses, logPhases, logFrom, maxPass, cloneLimit, allowEval, unrollLimit,
-      implicitThisIdent, refTest, pcodeTest, risky, prngSeed,
+      implicitThisIdent, refTest, pcodeTest, risky, prngSeed, time,
       ...rest
     } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error(`Preval: Unsupported options received: ${JSON.stringify(rest)}`);
@@ -278,8 +278,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           // Phase 1 does mostly noop analysis to reset information that may have gone stale after each transform
           ++phase1s;
-          phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing);
-          phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing);
+          phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing, options.time);
+          phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest, !firstAfterParse && options.pcodeTest, verboseTracing, options.time);
           // In a pcode test we have to run the pcode plugin here because we don't want ot run all of phase2
           if (options.pcodeTest) freeFuncsForTest(fdata, prng, options);
           contents.lastPhase1Ast[fname] = fdata.tenkoOutput.ast;
@@ -294,7 +294,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           firstAfterParse = false;
 
-          changed = phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, {implicitThisIdent: options.implicitThisIdent, prngSeed: rngSeed});
+          changed = phase2(program, fdata, resolve, req, passes, phase1s, verboseTracing, prng, {implicitThisIdent: options.implicitThisIdent, prngSeed: rngSeed, time: options.time});
           options?.onAfterPhase?.(2, passes, phaseLoop, fdata, changed, options);
           if (!changed) {
             // Force a normalize pass before moving to phase3. Loop if it changed anything anyways.

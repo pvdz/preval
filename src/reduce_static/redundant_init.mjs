@@ -20,8 +20,6 @@ export function redundantInit(fdata) {
   return r;
 }
 function _redundantInit(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
   let changes = 0;
   /** @var {Array<{index: number, func: Function}>} */
   const queue = [];

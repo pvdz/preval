@@ -219,6 +219,10 @@ function verifySimple(node) {
       // This will be a string. It won't have an expression.
       return true;
     }
+    case 'SuperKeyword': {
+      // I'm going to regret this.
+      return true;
+    }
     default: ASSERT(false, 'expected node to be a primitive', typeof node, node);
   }
 }
@@ -370,6 +374,9 @@ function verifyExpression(node) {
         if (typeof part === 'string') verifyString(part);
         else verifySimple(part);
       });
+      return;
+    }
+    case 'SuperKeyword': {
       return;
     }
     case 'ThisExpression': {

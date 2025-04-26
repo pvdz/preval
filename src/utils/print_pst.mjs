@@ -50,6 +50,7 @@ function printPstNode(node, indent, config) {
     case 'ReturnStatement': return printStatement(indent, config, node);
     case 'Setter': return printObjectMethod(indent, config, node);
     case 'StringConcat': return printExpression(indent, config, node);
+    case 'SuperKeyword': return printExpression(indent, config, node);
     case 'ThisExpression': return printExpression(indent, config, node);
     case 'ThrowStatement': return printStatement(indent, config, node);
     case 'TryStatement': return printStatement(indent, config, node);
@@ -195,6 +196,9 @@ function printSimple(indent, config, node) {
     case 'Param': {
       return node.name;
     }
+    case 'SuperKeyword': {
+      return 'super';
+    }
     default:
       console.log(node);
       ASSERT(false, 'expected node to be simple', node.type, [node]);
@@ -313,6 +317,9 @@ function printExpression(indent, config, node) {
         else str += '${' + printExpression(indent, config, now) + '}';
         return str;
       }, '') + '`';
+    }
+    case 'SuperKeyword': {
+      return 'super';
     }
     case 'ThisExpression': {
       return 'this';

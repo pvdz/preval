@@ -347,6 +347,12 @@ export function spreadElement(arg) {
   };
 }
 
+export function superKeyword() {
+  return {
+    type: 'SuperKeyword',
+  };
+}
+
 export function stringConcat(...parts) {
   if (Array.isArray(parts[0])) parts = parts[0];
 

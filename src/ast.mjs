@@ -63,6 +63,11 @@ export function cloneSimple(node) {
     return templateLiteral(node.quasis[0].value.cooked);
   }
 
+  if (node.type === 'Super') {
+    // TODO: probably want to find a better way than to clone super
+    return superKeyword();
+  }
+
   ASSERT(false, 'add me', node);
 }
 

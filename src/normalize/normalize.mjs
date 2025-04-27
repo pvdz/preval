@@ -656,7 +656,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     }
 
     after(body.slice(i));
-    assertNoDupeNodes(AST.blockStatement(body), 'body');
+    assertNoDupeNodes(body, 'body');
     return true;
   }
 
@@ -674,7 +674,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body.splice(i, 1, newNode);
 
         after(newNode, parentBlock);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       } else {
         // Parent statement (if/while/for-x) should eliminate this if possible
@@ -947,7 +947,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body.splice(i + 1, 0, AST.throwStatement(AST.templateLiteral(ERR_MSG_ILLEGAL_ARRAY_SPREAD)));
 
                 after(node);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             } else if (n.argument.type === 'ArrayExpression') {
@@ -964,7 +964,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           }
         }
         if (inlinedAnySpreads) {
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -1114,7 +1114,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           after(newNodes, parentNodeOrWhatever);
           after(newNodes);
           after(parentNodeOrWhatever);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -1172,7 +1172,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -1200,7 +1200,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           node.expression = false;
 
           after(node, parentNodeOrWhatever);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -1222,7 +1222,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body[i] = finalParent;
 
         after(finalParent);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -1259,7 +1259,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1272,7 +1272,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = finalParent;
 
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -1305,7 +1305,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1318,7 +1318,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = finalParent;
 
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -1349,7 +1349,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             mem.property = AST.identifier(str);
 
             after(mem, parentNodeOrWhatever);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1375,7 +1375,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1402,7 +1402,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1426,7 +1426,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = finalParent;
 
               after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
             else {
@@ -1450,7 +1450,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -1478,7 +1478,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1503,7 +1503,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1555,7 +1555,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             before(body[i-1]);
             before(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1586,7 +1586,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
           else {
@@ -1605,7 +1605,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(body[i]);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         }
@@ -1661,7 +1661,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body.splice(i, 1, ...newNodes, finalParent);
 
                 after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
               else {
@@ -1684,7 +1684,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 after(newNodes);
                 after(finalNode, finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -1704,7 +1704,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -1720,7 +1720,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1757,7 +1757,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -1779,7 +1779,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -1805,7 +1805,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body.splice(i, 1, ...newNodes, finalParent);
 
                 after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
               else {
@@ -1824,7 +1824,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 after(newNodes);
                 after(finalNode, finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -1852,7 +1852,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -1884,7 +1884,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               after(newNodes);
               after(finalNode, finalParent);
             }
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1917,7 +1917,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -1930,7 +1930,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1963,7 +1963,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -1976,7 +1976,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -1997,7 +1997,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -2025,7 +2025,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -2049,7 +2049,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -2069,7 +2069,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -2086,7 +2086,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             rhs.property = AST.identifier(str);
 
             after(rhs, parentNodeOrWhatever);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -2105,7 +2105,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = finalParent;
 
           after(finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -2188,7 +2188,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -2227,7 +2227,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -2240,7 +2240,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             node.left = AST.identifier('undefined');
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -2257,7 +2257,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               node.left = AST.primitive(typeof v === 'number' ? 0 : '');
 
               after(node, body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -2273,7 +2273,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = AST.emptyStatement();
 
               after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -2288,7 +2288,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 node.right = AST.primitive(typeof v === 'number' ? 0 : '');
 
                 after(node, body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -2309,7 +2309,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 );
 
                 after(body.slice(i, i + 2));
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -2324,7 +2324,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               node.right = t;
 
               after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -2351,7 +2351,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -2368,7 +2368,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -2487,7 +2487,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           } catch {
             vlog('Operation resulted in an error so not inlining it');
@@ -2512,7 +2512,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 after(node, body[i]);
                 after(node, body[i + 1]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -2529,7 +2529,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 node.left = AST.primitive(pvn);
 
                 after(node, body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -2548,7 +2548,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 after(node, body[i]);
                 after(node, body[i + 1]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -2565,7 +2565,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 node.right = AST.primitive(pvn);
 
                 after(node, body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -2717,7 +2717,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body.splice(i, 1, finalParent);
 
                 after(finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
               if (typeof pv === 'string') {
@@ -2733,7 +2733,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 after(varNode);
                 after(finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             } else if (rp) {
@@ -2748,7 +2748,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body.splice(i, 1, finalParent);
 
                 after(finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
               if (typeof pv === 'string') {
@@ -2764,7 +2764,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 after(varNode);
                 after(finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -2934,7 +2934,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
           if (['<=', '>='].includes(node.operator)) {
@@ -2949,7 +2949,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
           if (['!=', '!=='].includes(node.operator)) {
@@ -2964,7 +2964,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
           if (['<', '>'].includes(node.operator)) {
@@ -2979,7 +2979,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
           // These are unsafe because if anything is not a number the result is always NaN. We can't do the remaining ones.
@@ -3037,7 +3037,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = finalParent;
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -3090,7 +3090,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             } else {
               rule('Optional member call expression should be if-else');
@@ -3118,7 +3118,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes, finalParent);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -3139,7 +3139,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -3257,7 +3257,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             }
           })
         ) {
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -3319,7 +3319,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -3344,7 +3344,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -3363,7 +3363,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -3383,7 +3383,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNode);
             after(body[i+1]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -3406,7 +3406,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           callAtIndex += newNodes.length;
 
           after(body.slice(i, i+newNodes.length+1));
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
 
           //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
@@ -3456,7 +3456,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             }
           }
 
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
 
           rule('Method calls should be $dotcalls');
           example('a.b(c, d)', '$dotCall(tmp, a, "b", c, d);');
@@ -3477,7 +3477,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(body[callAtIndex]);
 
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -3518,7 +3518,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = AST.throwStatement(AST.primitive(`Attempting to call a value that cannot be called: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``))
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           } else {
             // Calling something that is not an identifier or primitive; just abstract it.
@@ -3533,7 +3533,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             replaceCallee(AST.identifier(tmpName));
 
             after(body.slice(i, i+1+1));
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         }
@@ -3555,7 +3555,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           nodeArgs[1] = AST.identifier(tmpName); // This must be a dotcall s reference nodeArgs directly
 
           after(body.slice(i, i+3));
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -3568,7 +3568,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = AST.throwStatement(args[0]);
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -3582,7 +3582,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             replaceCallee(AST.identifier(BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.get(funcName)));
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -3597,7 +3597,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(body[i]);
             after(body[i+1]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -3639,7 +3639,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 );
 
                 after(body.slice(i, i+Math.max(1, 1 + Math.max(args.length - 1, 0) + (contextNode?1:0) + 1)));
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -3709,7 +3709,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 );
 
                 after(body.slice(i, i+Math.max(1, 1 + Math.max(args.length - 1, 0) + (contextNode?1:0))));
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -3725,7 +3725,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 node.arguments.length = isDotcall ? 4 : 1;
 
                 after(body.slice(i, i+args.length));
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -3761,7 +3761,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 );
 
                 after(body.slice(i, i+Math.max(1, 1 + Math.max(args.length - 2, 0) + (contextNode?1:0))));
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -3788,7 +3788,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 );
 
                 after(body.slice(i, i+Math.max(1, 1 + Math.max(args.length - 2, 0) + (contextNode?1:0) + 2)));
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -3804,7 +3804,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 node.arguments.length = isDotcall ? 4 : 1;
 
                 after(body.slice(i, i+args.length));
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -3874,7 +3874,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body.splice(i, 1, finalParent);
 
                 after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
               if (args.length === 1 && AST.isPrimitive(args[0])) {
@@ -3887,7 +3887,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body.splice(i, 1, finalParent);
 
                 after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
               if (args.length === 0) {
@@ -3900,7 +3900,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body.splice(i, 1, finalParent);
 
                 after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -3918,7 +3918,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 0);
 
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -3931,7 +3931,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               example('Number.isNaN(a, b);', `const tmp = a; b; ${SYMBOL_COERCE}(tmp, "number")`);
 
               eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 1, 'number');
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -3942,7 +3942,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               example('String(a, b, c);', `const tmp = a; b; c; ${SYMBOL_COERCE}(tmp, "string");`);
 
               eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 1, 'string');
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -4023,7 +4023,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body.splice(i, 1, ...newNodes);
 
                   after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -4055,7 +4055,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body.splice(i, 1, ...newNodes);
 
                   after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -4087,7 +4087,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body.splice(i, 1, ...newNodes);
 
                   after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -4099,7 +4099,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   example('Math.pow(a, b);', '+a; +b;');
 
                   eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 2, 'number', 'number');
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -4131,7 +4131,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body.splice(i, 1, ...newNodes);
 
                   after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -4163,7 +4163,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body.splice(i, 1, ...newNodes);
 
                   after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -4195,7 +4195,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body.splice(i, 1, ...newNodes);
 
                   after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -4207,7 +4207,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   example('Number.parseInt(a, b, c);', '""+a; +b; c;');
 
                   eliminateStatementCallWithCoerce(fdata, body, i, args, contextNode, 2, 'string', 'number');
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -4224,7 +4224,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   node.argument.push(AST.primitive(0))
 
                   after(body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4258,7 +4258,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4276,7 +4276,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(finalParent, body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4294,7 +4294,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   node.argument.push(AST.primitive(0))
 
                   after(body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4328,7 +4328,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4346,7 +4346,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(finalParent, body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4431,7 +4431,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body.splice(i, 1, ...newNodes);
 
                   after(body.slice(i, i + Math.max(1, newNodes.length - 1)), body);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -4609,7 +4609,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                     body[i] = finalParent;
 
                     after(body[i]);
-                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    assertNoDupeNodes(body, 'body');
                     return true;
                   }
                 }
@@ -4709,7 +4709,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body.splice(i, 1, finalParent);
 
                   after(finalParent, body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4743,7 +4743,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(body.slice(i, newNodes.length + (contextNode ? 1 : 0) + 1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4761,7 +4761,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(finalParent, body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4825,7 +4825,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   before(body.slice(i, i+(contextNode?1:0)+1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4852,7 +4852,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(body.slice(i, i + newArgs.length + (contextNode ? 1 : 0) + 1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4880,7 +4880,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(finalNode, body.slice(i, args.length));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -4976,7 +4976,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                     );
 
                     after(finalNode, finalParent);
-                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    assertNoDupeNodes(body, 'body');
                     return true;
                   }
                   break;
@@ -5016,7 +5016,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                       );
 
                       after(node, body[i]);
-                      assertNoDupeNodes(AST.blockStatement(body), 'body');
+                      assertNoDupeNodes(body, 'body');
                       return true;
                     }
                   }
@@ -5049,7 +5049,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(node, body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -5080,7 +5080,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(node, body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -5111,7 +5111,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(node, body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 break;
@@ -5134,7 +5134,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   before(body.slice(i, i+(contextNode?1:0)+1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -5159,7 +5159,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   );
 
                   after(body.slice(i, i + newArgs.length + (contextNode ? 1 : 0) + 1));
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
 
@@ -5188,7 +5188,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(node);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
 
             return true;
           }
@@ -5246,7 +5246,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             );
 
             after(body.slice(i, i + newNodes.length + (contextNode ? 1 : 0) + 1));
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         }
@@ -5266,7 +5266,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             newArg = true;
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return;
           }
 
@@ -5280,7 +5280,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             newArg = true;
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return;
           }
         });
@@ -5300,7 +5300,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             replaceCallee(AST.identifier(body[i-1].init.name))
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -5318,7 +5318,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             replaceCallee(AST.identifier(body[i-1].expression.right.name));
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -5335,7 +5335,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i-1] = AST.emptyStatement();
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -5354,7 +5354,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 nodeArgs[n] = AST.identifier(body[i-1].init.name);
 
                 after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -5372,7 +5372,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 nodeArgs[n] = AST.identifier(body[i-1].expression.right.name);
 
                 after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -5389,7 +5389,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body[i-1] = AST.emptyStatement();
 
                 after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -5408,7 +5408,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1);
 
           before(body[i-1]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -5618,7 +5618,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
         vlog('Chain processing done. Result:');
         after(newNodes);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -5638,7 +5638,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           ));
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -5656,7 +5656,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNode);
           after(node);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -5726,7 +5726,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 0, ...newNodes);
 
           after([...newNodes, node]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -5742,7 +5742,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = AST.expressionStatement(AST.identifier('undefined'));
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -5763,7 +5763,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = finalParent;
 
           after(finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -5792,7 +5792,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -5811,7 +5811,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -5854,7 +5854,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, finalParent);
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -5882,7 +5882,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = AST.emptyStatement();
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
           else {
@@ -5965,7 +5965,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = AST.emptyStatement();
 
               after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -5988,7 +5988,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, finalParent);
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6002,7 +6002,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, finalParent);
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6042,7 +6042,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = AST.emptyStatement();
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6056,7 +6056,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = finalParent;
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6087,7 +6087,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -6119,7 +6119,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6135,7 +6135,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -6168,7 +6168,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6184,7 +6184,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -6215,7 +6215,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6253,7 +6253,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6279,7 +6279,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = AST.emptyStatement();
 
               before(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
             if ((parentNodeOrWhatever.type !== 'CallExpression' || parentProp !== 'callee') && !node.computed) {
@@ -6294,7 +6294,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body[i] = finalParent;
 
                   after(body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
               }
@@ -6317,7 +6317,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 body.splice(i, 1, finalParent);
 
                 after(finalNode, finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -6334,7 +6334,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   node.property = AST.primitive(n);
 
                   after(node, parentNodeOrWhatever);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
               }
@@ -6352,7 +6352,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body.splice(i, 1, finalParent);
 
                   after(finalNode, finalParent);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 case 'constructor': {
@@ -6393,7 +6393,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                       body.splice(i, 1, finalParent);
 
                       after(finalNode, finalParent);
-                      assertNoDupeNodes(AST.blockStatement(body), 'body');
+                      assertNoDupeNodes(body, 'body');
                       return true;
                     } else {
                       rule('Accessing unknown properties on a string should access properties on String.prototype instead');
@@ -6403,7 +6403,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                       node.object = AST.identifier(symbo('String', 'prototype'));
 
                       after(node);
-                      assertNoDupeNodes(AST.blockStatement(body), 'body');
+                      assertNoDupeNodes(body, 'body');
                       return true;
                     }
                   }
@@ -6426,7 +6426,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body.splice(i, 1, finalParent);
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             } else {
               rule('Accessing unknown properties on a number should access properties on Number.prototype instead');
@@ -6437,7 +6437,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               node.object = AST.identifier(symbo('Number', 'prototype'));
 
               after(node);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -6456,7 +6456,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body.splice(i, 1, finalParent);
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
             else {
@@ -6468,7 +6468,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               node.object = AST.identifier(symbo('Boolean', 'prototype'));
 
               after(node);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -6562,7 +6562,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body.splice(i, 1, finalParent);
 
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -6679,7 +6679,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body.splice(i, 1, finalParent);
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -6699,7 +6699,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body.splice(i, 1, finalParent);
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -6719,7 +6719,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body.splice(i, 1, finalParent);
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -6741,7 +6741,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body.splice(i, 1, finalParent);
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         }
@@ -6758,7 +6758,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             node.property = AST.identifier('eliminatedComputedProp'); // This does change the error message slightly...
 
             after(node, parentNodeOrWhatever);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true; // Very unlikely that we don't also want to do the next one but one step at a time.
           }
 
@@ -6778,7 +6778,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body.splice(i + 1, 0, finalNode);
 
             after(finalNode, parentNodeOrWhatever);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         }
@@ -6800,7 +6800,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6815,7 +6815,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = finalParent;
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6832,7 +6832,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6848,7 +6848,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           node.computed = false;
           node.property = AST.identifier(str, true);
           after(node, parentNodeOrWhatever);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6871,7 +6871,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           node.property = AST.identifier(key, true);
 
           after(node, parentNodeOrWhatever);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6965,7 +6965,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6984,7 +6984,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -6997,7 +6997,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             node.callee = AST.identifier(BUILTIN_GLOBAL_FUNCS_TO_SYMBOL.get(node.callee.name));
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7013,7 +7013,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body.splice(i, 1, finalParent);
 
               after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
             case SYMBOL_DOTCALL:
@@ -7031,7 +7031,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                   body[i] = AST.emptyStatement();
 
                   after(body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
               }
@@ -7254,7 +7254,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, ...finalParent);
 
           after(finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -7331,7 +7331,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7384,7 +7384,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
         after(newNodes);
         after(finalNode, finalParent);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -7429,7 +7429,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           }));
 
           after(node.expressions.length ? body.slice(i, node.expressions.length) : AST.emptyStatement(), parentNodeOrWhatever);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -7444,7 +7444,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = finalParent;
 
           after(newNode, body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -7513,7 +7513,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -7541,7 +7541,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -7568,7 +7568,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body.splice(i, 1, ...newNodes, finalParent);
 
               after(newNodes);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -7590,7 +7590,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 arg.property = AST.identifier(str);
 
                 after(arg, parentNodeOrWhatever);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -7611,7 +7611,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 after(newNodes);
                 after(finalNode, finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
 
@@ -7632,7 +7632,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(newNodes);
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -7654,7 +7654,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -7667,7 +7667,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = AST.expressionStatement(node.argument);
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7681,7 +7681,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(finalParent);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -7699,7 +7699,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7712,7 +7712,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = AST.emptyStatement();
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7730,7 +7730,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = finalParent;
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -7744,7 +7744,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = finalParent;
 
               after(finalNode, body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -7768,7 +7768,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = finalParent;
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -7782,7 +7782,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = AST.emptyStatement();
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7800,7 +7800,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = finalParent;
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -7814,7 +7814,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = finalParent;
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -7828,7 +7828,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body[i] = finalParent;
 
               after(finalNode, body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -7843,7 +7843,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = AST.expressionStatement(node.argument);
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7860,7 +7860,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7896,7 +7896,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7908,7 +7908,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = AST.expressionStatement(AST.unaryExpression('+', node.argument));
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7940,7 +7940,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = AST.expressionStatement(node.argument);
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7957,7 +7957,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7971,7 +7971,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -7986,7 +7986,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i] = finalParent;
 
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
 
@@ -8011,7 +8011,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body.splice(i, 1, ...newNodes, finalParent);
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -8030,7 +8030,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body.splice(i, 1, ...newNodes, finalParent);
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -8048,7 +8048,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body.splice(i, 1, ...newNodes, finalParent);
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
 
@@ -8065,7 +8065,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               body.splice(i, 1, ...newNodes, finalParent);
 
               after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -8085,7 +8085,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -8102,7 +8102,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
           after(newNodes);
           after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -8232,7 +8232,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           } else {
             // Note: if the arg ends up being a mustBe number then it should fold right back up
@@ -8254,7 +8254,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         } else if (arg.type === 'MemberExpression') {
@@ -8288,7 +8288,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             after(newNodes);
             after(finalParent);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           } else {
             rule('Prefix update expression to member expression must be compound assignment');
@@ -8315,7 +8315,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             after(newNodes);
             after(finalParent);
             after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         } else {
@@ -8375,7 +8375,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = AST.expressionStatement(AST.identifier('undefined'));
 
       after(body[i]);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -8495,7 +8495,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         node.alternate = tmp;
 
         after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -8585,7 +8585,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.consequent = AST.blockStatement(node.consequent);
 
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -8597,7 +8597,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.alternate = AST.blockStatement(node.alternate);
 
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -8613,7 +8613,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
       after(newNode);
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -8640,7 +8640,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         node.consequent.body.splice(0, 1, ...inner.consequent.body);
 
         after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
     } else if (node.alternate.body[0]?.type === 'IfStatement') {
@@ -8655,7 +8655,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         node.alternate.body.splice(0, 1, ...inner.alternate.body);
 
         after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
     }
@@ -8670,7 +8670,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = finalParent;
 
       after(finalParent);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -8686,7 +8686,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = finalParent;
 
       after(finalParent);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -8700,7 +8700,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = finalParent;
 
       after(finalParent);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -8714,7 +8714,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body[i] = finalParent;
 
         after(finalParent);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -8727,7 +8727,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body[i] = finalParent;
 
         after(finalParent);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
     }
@@ -8746,7 +8746,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.test = AST.tru();
 
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -8770,7 +8770,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
 
         after(body[i], parentBlock);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -8790,7 +8790,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
 
         after(body[i], parentBlock);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -8809,7 +8809,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
 
           after(body[i], parentBlock);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -8829,7 +8829,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
 
           after(body[i], parentBlock);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
       }
@@ -8864,7 +8864,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           prevAlternateBlock.push(node);
 
           after(body[i], parentBlock);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         } else if (
           // No children or no alternate body in either `if`
@@ -8884,7 +8884,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           prevConsequentBlock.push(node);
 
           after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         } else if (
           !prevConsequentBlock.length &&
@@ -8928,7 +8928,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 
           after(body[i - 1]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         } else if (
           !prevAlternateBlock.length &&
@@ -8971,7 +8971,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 
           after(body[i - 1]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         } else if (
           !prevAlternateBlock.length &&
@@ -9001,7 +9001,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1); // Drop the second if. It was moved.
 
           after(body[i - 1]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         } else if (
           !prevConsequentBlock.length &&
@@ -9031,7 +9031,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1); // Drop the second if. It was moved.
 
           after(body[i - 1]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
       }
@@ -9104,7 +9104,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         node.alternate.body.push(...remainder);
 
         after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(parentBlock), 'body');
+        assertNoDupeNodes(parentBlock, 'body');
         return true;
       }
 
@@ -9119,7 +9119,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         node.consequent.body.push(...remainder);
 
         after(parentBlock);
-        assertNoDupeNodes(AST.blockStatement(parentBlock), 'body');
+        assertNoDupeNodes(parentBlock, 'body');
         return true;
       }
     }
@@ -9167,7 +9167,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     //
     //    after(body[i - 1]);
     //    after(body[i]);
-    //    assertNoDupeNodes(AST.blockStatement(body), 'body');
+    //    assertNoDupeNodes(body, 'body');
     //    return true;
     //  } else if (prev.alternate.body.length === 0 && node.alternate.body.length === 0) {
     //    // If prev node has an empty "false" branch then append this if to its consequent
@@ -9182,7 +9182,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     //
     //    after(body[i - 1]);
     //    after(body[i]);
-    //    assertNoDupeNodes(AST.blockStatement(body), 'body');
+    //    assertNoDupeNodes(body, 'body');
     //    return true;
     //  }
     //}
@@ -9216,7 +9216,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body.splice(i, 1, ...newNodes);
 
       after(newNodes);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9233,7 +9233,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = finalParent;
 
       after(finalParent);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9260,7 +9260,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body.splice(i, 1, newNode);
 
       after(newNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9281,7 +9281,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = AST.emptyStatement();
 
       after(body[i]);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9295,7 +9295,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = node.body;
 
       after(body[i]);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9342,7 +9342,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body.splice(i, 1, node.body);
 
         after(body, parentBlock);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
 
         // CURRENTLY IN AN INVALID STATE BECAUSE BREAKS ARE STILL TARGETING THAT LABEL. We do them next.
 
@@ -9415,7 +9415,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       walk(_walker, node, 'body');
 
       after(body[i]);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9486,7 +9486,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.argument = AST.identifier('undefined');
 
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9514,7 +9514,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
     //
     //  after(body[i]);
     //  after(body[i+1]);
-    //  assertNoDupeNodes(AST.blockStatement(body), 'body');
+    //  assertNoDupeNodes(body, 'body');
     //  return true;
     //}
 
@@ -9531,7 +9531,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
       after(newNode);
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9543,7 +9543,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.argument = AST.templateLiteral(node.argument.value);
 
       after(node.argument, parentBlock);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9555,7 +9555,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
 
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9580,7 +9580,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = AST.emptyStatement();
 
       after(prev);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9602,7 +9602,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
       after(body[i - 1]);
       after(node, parentBlock);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9642,7 +9642,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.argument = AST.identifier(tmpName);
 
       after(newNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9654,7 +9654,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
 
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9700,7 +9700,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = AST.emptyStatement();
 
       after(AST.emptyStatement());
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9735,7 +9735,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = inner;
 
       after(body[i]);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9760,7 +9760,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
       after(body[i]);
       after(body[i + 1]);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9820,7 +9820,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = node.handler.body.body[0];
 
       after(body[i]);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -9854,7 +9854,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             );
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
           else {
@@ -9872,7 +9872,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             );
 
             after(node);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         }
@@ -9888,7 +9888,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body.splice(i, 1, ...newNodes);
 
         after(newNodes);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -9912,7 +9912,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, ...newNodes);
 
           after(newNodes);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -9953,7 +9953,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 1, ...newNodes);
 
           after(newNodes);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
 
@@ -9978,7 +9978,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             );
 
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
           else {
@@ -9997,7 +9997,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             );
 
             after(node);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         }
@@ -10018,7 +10018,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body.splice(i, 1, ...newNodes);
 
         after(newNodes);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -10035,7 +10035,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body.splice(i, 1, ...newNodes);
 
       after(newNodes);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -10063,7 +10063,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
       after(body[i]);
       after(body[i+1]);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -10086,7 +10086,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       // false: returns true for simple unary as well
       vlog('- init is complex, transforming expression');
       if (transformExpression('var', init, body, i, node, id, node.kind)) {
-        assertNoDupeNodes(AST.blockStatement(body), 'body', undefined, node);
+        assertNoDupeNodes(body, 'body', undefined, node);
         return true;
       }
     }
@@ -10096,7 +10096,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       (init.name === SYMBOL_MAX_LOOP_UNROLL || init.name.startsWith(SYMBOL_LOOP_UNROLL))
     ) {
       if (transformExpression('var', init, body, i, node, id, node.kind)) {
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
     }
@@ -10181,7 +10181,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body.splice(i, 1, ...newNodes);
 
       after(newNodes);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -10208,7 +10208,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         ];
 
         after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -10219,7 +10219,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = newNode;
 
       after(newNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -10241,7 +10241,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         ];
 
         after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -10252,7 +10252,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = newNode;
 
       after(newNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -10286,7 +10286,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           node.test = AST.tru();
 
           after(node);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         } else {
           rule('The while-test that is a falsy primitive should drop the while');
@@ -10296,7 +10296,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body[i] = AST.emptyStatement();
 
           after(AST.emptyStatement());
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
           return true;
         }
       }
@@ -10321,7 +10321,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.test = AST.tru();
 
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -10343,7 +10343,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       body[i] = newNode;
 
       after(newNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -10356,7 +10356,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       node.body = newNode;
 
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      assertNoDupeNodes(body, 'body');
       return true;
     }
 
@@ -10471,7 +10471,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body[[i]] = AST.emptyStatement();
 
         after(body[[i]]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -10543,7 +10543,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         body[i] = while2;
 
         after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -10619,7 +10619,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -10695,7 +10695,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -10711,7 +10711,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
         after(body[i]);
         after(body[i + 1]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
         return true;
       }
 
@@ -10776,7 +10776,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(body[i - 1]);
               after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
             else if (
@@ -10804,7 +10804,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
               after(body[i - 1]);
               after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              assertNoDupeNodes(body, 'body');
               return true;
             }
           }
@@ -10835,7 +10835,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(body[i - 1]);
             after(body[i]);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            assertNoDupeNodes(body, 'body');
             return true;
           }
         }
@@ -10889,7 +10889,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                 after(body[i - 1]);
                 after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                assertNoDupeNodes(body, 'body');
                 return true;
               }
             }
@@ -10944,7 +10944,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                   after(body[i - 1]);
                   after(body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
                 else if (
@@ -10982,7 +10982,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
                   after(body[i - 1]);
                   after(body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  assertNoDupeNodes(body, 'body');
                   return true;
                 }
               }
@@ -11164,7 +11164,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           localNames.has(last.test.name)
         ) {
           // While body conforms too. This should be the pattern! The crowd goes wiiiiild!
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          assertNoDupeNodes(body, 'body');
 
           // Compile a list of operations that we can apply here and now without using eval
           // Note that the vars stored in `localNames` are defined in order so we don't have
@@ -11350,7 +11350,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       vgroupEnd(); // pumping loop
 
       if (changed) {
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        assertNoDupeNodes(body, 'body');
       }
 
       if (finished) {

@@ -469,7 +469,7 @@ function verifyWrapperCase(fdata, meta, targetName, firstWrite, secondWrite) {
   innerBlock.pop(); // Drop the (old) now-last var tmp call
 
   after(firstWrite.blockBody[firstWrite.blockIndex]);
-  assertNoDupeNodes(AST.blockStatement(firstWrite.blockBody), 'body');
+  assertNoDupeNodes(firstWrite.blockBody, 'body');
   return true;
 }
 
@@ -602,7 +602,7 @@ function closureCaseNotEscaping(first, meta, targetName, closureValueNode) {
     after(read.blockBody[read.blockIndex]);
   });
 
-  assertNoDupeNodes(AST.blockStatement(first.blockBody), 'body');
+  assertNoDupeNodes(first.blockBody, 'body');
   return true;
 }
 

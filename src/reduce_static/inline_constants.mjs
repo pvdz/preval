@@ -151,7 +151,7 @@ function _inlineConstants(fdata) {
               after(read.blockBody[read.blockIndex]);
               after(read.blockBody[read.blockIndex + 1]);
 
-              assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+              assertNoDupeNodes(read.blockBody, 'body', true);
             }
           })
 
@@ -221,7 +221,7 @@ function _inlineConstants(fdata) {
               after(read.blockBody[read.blockIndex]);
               after(read.blockBody[read.blockIndex+1], read.blockBody);
 
-              assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+              assertNoDupeNodes(read.blockBody, 'body', true);
             }
           });
           ++changes;

@@ -113,7 +113,7 @@ function _refTracked(fdata) {
                 }
 
                 after(write.blockBody[write.blockIndex]);
-                assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                assertNoDupeNodes(write.blockBody, 'body', true);
               }
             });
             ++changed;
@@ -141,7 +141,7 @@ function _refTracked(fdata) {
               }
 
               after(write.blockBody[write.blockIndex]);
-              assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+              assertNoDupeNodes(write.blockBody, 'body', true);
             }
           });
           ++changed;
@@ -175,7 +175,7 @@ function _refTracked(fdata) {
               AST.throwStatement(AST.primitive(`Preval: This statement contained a read that reached no writes: ${stringArgTrunced}`));
 
             after(read.blockBody[read.blockIndex]);
-            assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+            assertNoDupeNodes(read.blockBody, 'body', true);
             ++changed;
             return;
           }
@@ -185,7 +185,7 @@ function _refTracked(fdata) {
           // Note: the write may be a catch etc. Explicitly check for the var decl or assignment cases. Ignore the rest.
           if (write.parentNode.type === 'AssignmentExpression') {
             // TODO: same if it's a builtin or other "predictable" value. But maybe another rule would already do this anyways?
-            assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+            assertNoDupeNodes(read.blockBody, 'body', true);
             const rhs = write.parentNode.right;
             if (AST.isPrimitive(rhs)) {
               const newNode = AST.primitive(AST.getPrimitiveValue(rhs));
@@ -207,7 +207,7 @@ function _refTracked(fdata) {
 
                 after(read.blockBody[read.blockIndex]);
                 ++changed;
-                assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+                assertNoDupeNodes(read.blockBody, 'body', true);
                 return;
               } else {
                 // Covered by tests/cases/arr_mutation/arr_loop_case_assign.md
@@ -220,7 +220,7 @@ function _refTracked(fdata) {
 
                 after(read.blockBody[read.blockIndex]);
                 ++changed;
-                assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+                assertNoDupeNodes(read.blockBody, 'body', true);
                 return;
               }
             } else {
@@ -250,7 +250,7 @@ function _refTracked(fdata) {
 
                 after(read.blockBody[read.blockIndex]);
                 ++changed;
-                assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+                assertNoDupeNodes(read.blockBody, 'body', true);
                 return;
               } else {
                 // Covered by tests/cases/_base/concat.md
@@ -263,7 +263,7 @@ function _refTracked(fdata) {
 
                 after(read.blockBody[read.blockIndex]);
                 ++changed;
-                assertNoDupeNodes(AST.blockStatement(read.blockBody), 'body', true);
+                assertNoDupeNodes(read.blockBody, 'body', true);
                 return;
               }
             } else {
@@ -318,7 +318,7 @@ function _refTracked(fdata) {
                       );
                       after(write.blockBody[write.blockIndex]);
                       after(write.blockBody[write.blockIndex + 1]);
-                      assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                      assertNoDupeNodes(write.blockBody, 'body', true);
                     }
                   }
                 }
@@ -352,7 +352,7 @@ function _refTracked(fdata) {
 
                   after(write.blockBody[write.blockIndex]);
                   after(write.blockBody[write.blockIndex + 1]);
-                  assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                  assertNoDupeNodes(write.blockBody, 'body', true);
                 }
               });
 

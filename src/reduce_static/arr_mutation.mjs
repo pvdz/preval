@@ -140,7 +140,7 @@ function _arrMutation(fdata) {
 
                 after(write.blockBody[write.blockIndex]);
                 after(read.blockBody[read.blockIndex]);
-                assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                assertNoDupeNodes(write.blockBody, 'body', true);
                 updated += 1;
                 return;
               } else {
@@ -174,7 +174,7 @@ function _arrMutation(fdata) {
 
                 after(write.blockBody[write.blockIndex]);
                 after(read.blockBody[read.blockIndex]);
-                assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                assertNoDupeNodes(write.blockBody, 'body', true);
                 updated += 1;
                 return;
               } else {
@@ -209,7 +209,7 @@ function _arrMutation(fdata) {
 
                 after(write.blockBody[write.blockIndex]);
                 after(read.blockBody[read.blockIndex]);
-                assertNoDupeNodes(AST.blockStatement(write.blockBody), 'body', true);
+                assertNoDupeNodes(write.blockBody, 'body', true);
                 updated += 1;
                 return;
               }

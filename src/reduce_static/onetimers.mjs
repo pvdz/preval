@@ -345,7 +345,7 @@ function _inlineOneTimeFunctions(fdata) {
 
     // Note: because we remove the function separately from the call, the AST will have dupe nodes
     //       in between. That's expected and fine.
-    assertNoDupeNodes(AST.blockStatement(fdata.tenkoOutput.ast), 'body');
+    assertNoDupeNodes(fdata.tenkoOutput.ast, 'body');
 
     vlog('End results, the new label statement for each transformed function:');
     results.forEach(label => {

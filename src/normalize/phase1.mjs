@@ -914,6 +914,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         ASSERT(
           parentProp === 'params' || parentProp === 'init',
           'this node should only be used as a placeholder for params or when binding the placeholder to the actual name',
+          node
         );
         ASSERT(!node.$p.paramVarDeclRef, 'each param should be referenced at most once');
         if (parentProp === 'init') {

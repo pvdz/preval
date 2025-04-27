@@ -41,7 +41,7 @@ const g /*:(unused, unused, unused)=>undefined*/ = function ($$0, $$1, $$2) {
     tmpPrevalAliasThis._pairs = tmpAssignMemRhs;
     if (t$987) {
       const tmpCalleeParam /*:unknown*/ = i$441.a;
-      const tmpCallComplexCallee$25 /*:unknown*/ = Object(tmpCalleeParam);
+      const tmpCallComplexCallee$25 /*:object*/ = $object_constructor(tmpCalleeParam);
       tmpCallComplexCallee$25(t$987, tmpPrevalAliasThis, e$767);
       return undefined;
     } else {
@@ -66,7 +66,7 @@ $(function ($$0, $$1, $$2) {
     const tmpPrevalAliasThis = this;
     tmpPrevalAliasThis._pairs = [];
     if (t$987) {
-      const tmpCallComplexCallee$25 = Object(i$441.a);
+      const tmpCallComplexCallee$25 = $object_constructor(i$441.a);
       tmpCallComplexCallee$25(t$987, tmpPrevalAliasThis, e$767);
     }
   };
@@ -91,7 +91,7 @@ const a = function($$0,$$1,$$2 ) {
     c._pairs = f;
     if (d) {
       const g = h.a;
-      const i = Object( g );
+      const i = $object_constructor( g );
       i( d, c, e );
       return undefined;
     }
@@ -111,7 +111,7 @@ $( a );
 ## Todos triggered
 
 
-None
+- (todo) type trackeed tricks can possibly support static $object_constructor
 
 
 ## Globals

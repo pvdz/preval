@@ -2,7 +2,7 @@
 
 # infinite_assign_rex.md
 
-> While > Rotate > Infinite assign rex
+> Tofix > infinite assign rex
 >
 > Rotating statements in an infinite loop
 
@@ -34,14 +34,9 @@ $(x);             // unreachable
 
 
 `````js filename=intro
-const x /*:regex*/ = new $regex_constructor(`tmp`, ``);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(x);
-  let tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`tmp`, ``);
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $(tmpClusterSSA_x);
-    tmpClusterSSA_x = new $regex_constructor(`tmp`, ``);
-  }
+  const tmpClusterSSA_x /*:regex*/ = new $regex_constructor(`tmp`, ``);
+  $(tmpClusterSSA_x);
 }
 `````
 
@@ -50,14 +45,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = new $regex_constructor(`tmp`, ``);
 while (true) {
-  $(x);
-  let tmpClusterSSA_x = new $regex_constructor(`tmp`, ``);
-  while (true) {
-    $(tmpClusterSSA_x);
-    tmpClusterSSA_x = new $regex_constructor(`tmp`, ``);
-  }
+  $(new $regex_constructor(`tmp`, ``));
 }
 `````
 
@@ -66,14 +55,9 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-const a = new $regex_constructor( "tmp", "" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const a = new $regex_constructor( "tmp", "" );
   $( a );
-  let b = new $regex_constructor( "tmp", "" );
-  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    $( b );
-    b = new $regex_constructor( "tmp", "" );
-  }
 }
 `````
 

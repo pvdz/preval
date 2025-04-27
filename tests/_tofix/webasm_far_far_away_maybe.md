@@ -46,8 +46,8 @@ const c /*:()=>unknown*/ = function () {
   const tmpMCOO$1 /*:array*/ = [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`];
   const tmpClusterSSA_b /*:array*/ = $dotCall($array_flatMap, tmpMCOO$1, `flatMap`, tmpMCP$3);
   const tmpBinLhs /*:number*/ = tmpClusterSSA_b.length;
-  const tmpClusterSSA_l /*:number*/ = tmpBinLhs + 4;
-  const tmpArrElement$37 /*:number*/ = tmpClusterSSA_l - 2;
+  const l /*:number*/ = tmpBinLhs + 4;
+  const tmpArrElement$37 /*:number*/ = l - 2;
   const tmpCalleeParam /*:array*/ = [
     ,
     97,
@@ -75,7 +75,7 @@ const c /*:()=>unknown*/ = function () {
     ,
     ,
     10,
-    tmpClusterSSA_l,
+    l,
     1,
     tmpArrElement$37,
     ,
@@ -113,8 +113,8 @@ const c = function () {
   const tmpMCF = WebAssembly.instantiate;
   const tmpNewCallee = Int8Array;
   const tmpClusterSSA_b = $dotCall($array_flatMap, [`11`, `11`, `1`, `-`, `+`, `4`, `*`, `2`, `/`], `flatMap`, tmpMCP$3);
-  const tmpClusterSSA_l = tmpClusterSSA_b.length + 4;
-  const tmpArrElement$37 = tmpClusterSSA_l - 2;
+  const l = tmpClusterSSA_b.length + 4;
+  const tmpArrElement$37 = l - 2;
   const tmpCalleeParam = [
     ,
     97,
@@ -142,7 +142,7 @@ const c = function () {
     ,
     ,
     10,
-    tmpClusterSSA_l,
+    l,
     1,
     tmpArrElement$37,
     ,
@@ -203,9 +203,8 @@ const g = function() {
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_flatMap
-- (todo) arr mutation may be able to inline this method: tmpMCF$3
-- (todo) arr mutation may be able to inline this method: $array_flatMap
 - (todo) support $array_flatmap with arguments?
+- (todo) arr mutation may be able to inline this method: $array_flatMap
 
 
 ## Globals

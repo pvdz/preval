@@ -39,10 +39,10 @@ x;
 $(false);
 x;
 $(true);
-const tmpBinLhs$7 /*:regex*/ = /x/;
+const tmpBinLhs$7 /*:regex*/ = new $regex_constructor(`x`, ``);
 const tmpCalleeParam$7 /*:boolean*/ = tmpBinLhs$7 === x;
 $(tmpCalleeParam$7);
-const tmpBinLhs$9 /*:regex*/ = /x/;
+const tmpBinLhs$9 /*:regex*/ = new $regex_constructor(`x`, ``);
 const tmpCalleeParam$9 /*:boolean*/ = tmpBinLhs$9 !== x;
 $(tmpCalleeParam$9);
 `````
@@ -58,8 +58,8 @@ x;
 $(false);
 x;
 $(true);
-$(/x/ === x);
-$(/x/ !== x);
+$(new $regex_constructor(`x`, ``) === x);
+$(new $regex_constructor(`x`, ``) !== x);
 `````
 
 
@@ -77,10 +77,10 @@ x;
 $( false );
 x;
 $( true );
-const e = /x/;
+const e = new $regex_constructor( "x", "" );
 const f = e === x;
 $( f );
-const g = /x/;
+const g = new $regex_constructor( "x", "" );
 const h = g !== x;
 $( h );
 `````

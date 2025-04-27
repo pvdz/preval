@@ -132,7 +132,7 @@ const tmpMCP$9 /*:unknown*/ = $spy(`Date.parse`);
 $coerce(tmpMCP$9, `string`);
 $(`number`);
 const tmpMCP$11 /*:unknown*/ = $spy(`JSON.stringify`);
-const tmpUnaryArg$25 /*:primitive*/ = $dotCall($JSON_stringify, JSON, `stringify`, tmpMCP$11);
+const tmpUnaryArg$25 /*:primitive*/ = $JSON_stringify(tmpMCP$11);
 const tmpCalleeParam$35 /*:string*/ = typeof tmpUnaryArg$25;
 $(tmpCalleeParam$35);
 const tmpMCP$13 /*:unknown*/ = $spy(`Math.abs`);
@@ -300,7 +300,7 @@ $coerce($spy(`Date.UTC`), `number`);
 $(`number`);
 $coerce($spy(`Date.parse`), `string`);
 $(`number`);
-const tmpUnaryArg$25 = $dotCall($JSON_stringify, JSON, `stringify`, $spy(`JSON.stringify`));
+const tmpUnaryArg$25 = $JSON_stringify($spy(`JSON.stringify`));
 $(typeof tmpUnaryArg$25);
 $coerce($spy(`Math.abs`), `number`);
 $(`number`);
@@ -443,7 +443,7 @@ const i = $spy( "Date.parse" );
 $coerce( i, "string" );
 $( "number" );
 const j = $spy( "JSON.stringify" );
-const k = $dotCall( $JSON_stringify, JSON, "stringify", j );
+const k = $JSON_stringify( j );
 const l = typeof k;
 $( l );
 const m = $spy( "Math.abs" );
@@ -584,6 +584,12 @@ $( "number", "Number.NaN" );
 ## Todos triggered
 
 
+- (todo) type trackeed tricks can possibly support static $boolean_constructor
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
+- (todo) type trackeed tricks can possibly support static $Number_parseFloat
+- (todo) type trackeed tricks can possibly support static $Array_from
+- (todo) type trackeed tricks can possibly support static $Array_isArray
+- (todo) type trackeed tricks can possibly support static $Array_of
 - (todo) type trackeed tricks can possibly support static $Date_now
 - (todo) type trackeed tricks can possibly support static $Date_UTC
 - (todo) type trackeed tricks can possibly support static $Date_parse
@@ -618,18 +624,13 @@ $( "number", "Number.NaN" );
 - (todo) type trackeed tricks can possibly support static $Math_round
 - (todo) type trackeed tricks can possibly support static $Math_sign
 - (todo) type trackeed tricks can possibly support static $Math_sin
-- (todo) type trackeed tricks can possibly support static $Object_is
-- (todo) type trackeed tricks can possibly support static $Object_isFrozen
-- (todo) type trackeed tricks can possibly support static $Object_isSealed
-- (todo) type trackeed tricks can possibly support static $Array_from
-- (todo) type trackeed tricks can possibly support static $Array_isArray
-- (todo) type trackeed tricks can possibly support static $Array_of
 - (todo) type trackeed tricks can possibly support static $Number_isFinite
 - (todo) type trackeed tricks can possibly support static $Number_isInteger
 - (todo) type trackeed tricks can possibly support static $Number_isNaN
 - (todo) type trackeed tricks can possibly support static $Number_isSafeInteger
-- (todo) type trackeed tricks can possibly support static $Number_parseFloat
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
+- (todo) type trackeed tricks can possibly support static $Object_is
+- (todo) type trackeed tricks can possibly support static $Object_isFrozen
+- (todo) type trackeed tricks can possibly support static $Object_isSealed
 - (todo) type trackeed tricks can possibly support static $String_raw
 
 

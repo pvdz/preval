@@ -19,8 +19,8 @@ $(newLineRegex);
 
 
 `````js filename=intro
-const x /*:regex*/ = /abc/g;
-const newLineRegex /*:object*/ = new RegExp(x);
+const x /*:regex*/ = new $regex_constructor(`abc`, `g`);
+const newLineRegex /*:regex*/ = new $regex_constructor(x);
 $(newLineRegex);
 `````
 
@@ -29,8 +29,8 @@ $(newLineRegex);
 (This ought to be the final result)
 
 `````js filename=intro
-const x = /abc/g;
-$(new RegExp(x));
+const x = new $regex_constructor(`abc`, `g`);
+$(new $regex_constructor(x));
 `````
 
 
@@ -38,8 +38,8 @@ $(new RegExp(x));
 With rename=true
 
 `````js filename=intro
-const a = /abc/g;
-const b = new RegExp( a );
+const a = new $regex_constructor( "abc", "g" );
+const b = new $regex_constructor( a );
 $( b );
 `````
 

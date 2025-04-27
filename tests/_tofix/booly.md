@@ -38,7 +38,7 @@ if (x) {
   $(`Preval: Cannot write to const binding \`a\``);
   $(false);
 } else {
-  $(true);
+  throw `Preval: Assignment to constant variable: \`a = 10;\``;
 }
 `````
 
@@ -51,7 +51,7 @@ if ($(67636) === 67636) {
   $(`Preval: Cannot write to const binding \`a\``);
   $(false);
 } else {
-  $(true);
+  throw `Preval: Assignment to constant variable: \`a = 10;\``;
 }
 `````
 
@@ -67,7 +67,7 @@ if (b) {
   $( false );
 }
 else {
-  $( true );
+  throw "Preval: Assignment to constant variable: `a = 10;`";
 }
 `````
 

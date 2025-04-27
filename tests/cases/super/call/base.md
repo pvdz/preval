@@ -1,21 +1,25 @@
 # Preval test case
 
-# base_call.md
+# base.md
 
-> Super > Base call
+> Super > Call > Base
 >
 >
 
 ## Input
 
 `````js filename=intro
-class A {}
-class B extends A {
-  constructor() {
-    $(super());
+class A {
+  constructor(x) {
+    $('A:', x);
   }
 }
-$(B);
+class B extends A {
+  constructor() {
+    super(1);
+  }
+}
+new B();
 `````
 
 
@@ -23,15 +27,22 @@ $(B);
 
 
 `````js filename=intro
-const A /*:class*/ = class {};
-const B /*:class*/ = class extends A {
-  constructor() {
+const A /*:class*/ = class {
+  constructor($$0) {
+    const x /*:unknown*/ = $$0;
     debugger;
-    $($super);
+    $(`A:`, x);
     return undefined;
   }
 };
-$(B);
+const B /*:class*/ = class extends A {
+  constructor() {
+    debugger;
+    super(1);
+    return undefined;
+  }
+};
+new B();
 `````
 
 
@@ -39,14 +50,17 @@ $(B);
 (This ought to be the final result)
 
 `````js filename=intro
-const A = class {};
-$(
-  class extends A {
-    constructor() {
-      $($super);
-    }
-  },
-);
+const A = class {
+  constructor(x) {
+    $(`A:`, x);
+  }
+};
+const B = class extends A {
+  constructor() {
+    super(1);
+  }
+};
+new B();
 `````
 
 
@@ -55,38 +69,41 @@ With rename=true
 
 `````js filename=intro
 const a = class   {
-
-};
-const b = class   {
-constructor(  ) {
+constructor( $$0 ) {
+  const b = $$0;
   debugger;
-  $( $super );
+  $( "A:", b );
   return undefined;
 }
 };
-$( b );
+const c = class   {
+constructor(  ) {
+  debugger;
+  super( 1 );
+  return undefined;
+}
+};
+new c();
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) Encountered non-ident as callee
 
 
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-$super
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - 1: '<function>'
+ - 1: 'A:', 1
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -63,11 +63,6 @@ export function cloneSimple(node) {
     return templateLiteral(node.quasis[0].value.cooked);
   }
 
-  if (node.type === 'Super') {
-    // TODO: probably want to find a better way than to clone super
-    return superKeyword();
-  }
-
   ASSERT(false, 'add me', node);
 }
 
@@ -850,12 +845,44 @@ export function spreadElement(argument) {
   };
 }
 
-export function superKeyword(argument) {
-  // Note: super is not a legit expression on its own. Must be call or member... you're on your own here.
+export function superCall(args) {
+  // Special preval symbol for calling super() in a constructor.
+  ASSERT(Array.isArray(args), 'super call args should be array', args);
+
   return {
-    type: 'Super',
+    type: 'SuperCall',
+    arguments: args,
     $p: $p(),
-  };
+  }
+}
+
+export function superMethodCall(property, computed, args) {
+  // Special preval symbol for calling super() in a constructor.
+  ASSERT(Array.isArray(args), 'super call args should be array', args);
+  ASSERT(typeof computed === 'boolean');
+
+  if (typeof property === 'string') property = identifier(property);
+
+  return {
+    type: 'SuperMethodCall',
+    property,
+    computed: Boolean(computed),
+    arguments: args,
+    $p: $p(),
+  }
+}
+
+export function superProp(property, computed) {
+  // Special preval symbol for accessing (but not calling) a property on super
+
+  if (typeof property === 'string') property = identifier(property);
+
+  return {
+    type: 'SuperProp',
+    property,
+    computed: Boolean(computed),
+    $p: $p(),
+  }
 }
 
 export function switchCase(test = null, ...consequent) {

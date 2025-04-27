@@ -50,7 +50,11 @@ function printPstNode(node, indent, config) {
     case 'ReturnStatement': return printStatement(indent, config, node);
     case 'Setter': return printObjectMethod(indent, config, node);
     case 'StringConcat': return printExpression(indent, config, node);
-    case 'SuperKeyword': return printExpression(indent, config, node);
+    case 'SuperCall': return printExpression(indent, config, node);
+    case 'SuperMethodCall': return printExpression(indent, config, node);
+    case 'SuperComputedMethodCall': return printExpression(indent, config, node);
+    case 'SuperProp': return printExpression(indent, config, node);
+    case 'SuperComputedProp': return printExpression(indent, config, node);
     case 'ThisExpression': return printExpression(indent, config, node);
     case 'ThrowStatement': return printStatement(indent, config, node);
     case 'TryStatement': return printStatement(indent, config, node);
@@ -186,6 +190,7 @@ function printRef(indent, config, node) {
 }
 
 function printSimple(indent, config, node) {
+  ASSERT(typeof node !== 'string', 'dont pass a string into this, just print it');
   // A simple node has no side effects (other than potentially a reference/TDZ error). Basically idents and primitive.
   switch (node?.type) {
     case 'Ref': return printRef(indent, config, node);
@@ -195,9 +200,6 @@ function printSimple(indent, config, node) {
     }
     case 'Param': {
       return node.name;
-    }
-    case 'SuperKeyword': {
-      return 'super';
     }
     default:
       console.log(node);
@@ -276,6 +278,7 @@ function printExpression(indent, config, node) {
       return `${printSimple(indent, config, node.callee)}.${node.method}${callArgs(indent, config, node)}`;
     }
     case 'CallSimpleExpression': {
+      TODO // is this used?
       return `${printSimple(indent, config, node.callee)}.${node.method}${callArgs(indent, config, node)}`;
     }
     case 'ClassExpression': {
@@ -318,8 +321,20 @@ function printExpression(indent, config, node) {
         return str;
       }, '') + '`';
     }
-    case 'SuperKeyword': {
-      return 'super';
+    case 'SuperCall': {
+      return `super${callArgs(indent, config, node)}`;
+    }
+    case 'SuperMethodCall': {
+      return `super.${node.prop}${callArgs(indent, config, node)}`;
+    }
+    case 'SuperComputedMethodCall': {
+      return `super[ ${printSimple(indent, config, node.prop)} ]${callArgs(indent, config, node)}`;
+    }
+    case 'SuperProp': {
+      return `super.${node.prop}`;
+    }
+    case 'SuperComputedProp': {
+      return `super[${printSimple(indent, config, node.prop)}]`;
     }
     case 'ThisExpression': {
       return 'this';

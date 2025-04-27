@@ -1760,6 +1760,19 @@ function _inferNodeTyping(fdata, valueNode) {
       ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;
     }
+    case 'SuperCall': {
+      return createTypingObject({
+        mustBeType: 'object',
+        mustBePrimitive: false,
+        mustBeTruthy: true,
+      });
+    }
+    case 'SuperMethodCall': {
+      return createTypingObject({});
+    }
+    case 'SuperProp': {
+      return createTypingObject({});
+    }
     case 'AssignmentExpression': {
       ASSERT(false, 'normalized code does not have this node:', valueNode.type, valueNode);
       return;

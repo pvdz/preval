@@ -291,5 +291,9 @@ function exprNodeSpyOnBinding(exprNode, fdata, bindingName) {
 
   if (exprNode.type === 'MemberExpression') return true; // TODO: we can support some cases here
 
+  if (exprNode.type === 'SuperCall') return true;
+  if (exprNode.type === 'SuperMethodCall') return true;
+  if (exprNode.type === 'SuperProp') return true; // TODO: eh. maybe we can improve this case
+
   ASSERT(false, 'missing expr here...', exprNode.type);
 }

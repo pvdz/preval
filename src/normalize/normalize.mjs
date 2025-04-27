@@ -13,7 +13,14 @@ import {
   protoToInstName,
   symbo,
 } from '../symbols_builtins.mjs';
-import { BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_FRFR, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
+import {
+  BUILTIN_REST_HANDLER_NAME,
+  SYMBOL_COERCE,
+  SYMBOL_FORIN,
+  SYMBOL_FOROF,
+  SYMBOL_FRFR,
+  SYMBOL_THROW_TDZ_ERROR,
+} from '../symbols_preval.mjs';
 import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo, currentState, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
@@ -3014,6 +3021,26 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         const nodeArgs = node.arguments;
         const firstSpread = nodeArgs.length > 0 && nodeArgs[0].type === 'SpreadElement';
 
+        if (callee.type === 'Super') {
+          // Long story short: super() is super annoying to eliminate because of various intricate syntactical rules
+          // And even if we could, we are syntactically required to call super() anyways so it wouldn't matter.
+          // So instead we'll assign it a special node and fix forward.
+          // I don't know yet how to deal with the this alias. What if we didn't? I dunno. Denorm can restore it and we'll be ok?
+
+          rule('A super() call should be transformed to a SuperCall node');
+          example('super(a, b);', 'super(a, b);');
+          before(body[i]);
+
+          // IIRC there's a syntactical requirement for `super()` to only be allowed when the class extends another class.
+          const finalNode = AST.superCall(node.arguments);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body[i] = finalParent;
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         // Convert computed prop that we know can be a valid regular prop, into a regular prop
         if (callee.type === 'MemberExpression' && callee.computed && AST.isProperIdent(callee.property, true)) {
           const str = AST.getStringValue(callee.property, true);
@@ -3317,6 +3344,25 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
             after(newNodes);
             after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          // Convert super method calls after simplifying args and context
+          if (callee.type === 'MemberExpression' && callee.object.type === 'Super') {
+            // Calling a method on super. Special casing this.
+
+            rule('A super.foo() call should be transformed to a SuperMethodCall node');
+            example('super.foo(a, b);', 'super.foo(a, b);');
+            example('super[c](a, b);', 'super[c](a, b);');
+            before(body[i]);
+
+            // IIRC there's a syntactical requirement for `super()` to only be allowed when the class extends another class.
+            const finalNode = AST.superMethodCall(node.callee.property, node.callee.computed, node.arguments);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(body[i]);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
@@ -5580,6 +5626,40 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         // Simplify extends and computed keys
         // Other rules tbd, if any
 
+        if (node.superClass && AST.isPrimitive(node.superClass)) {
+          rule('The `extends` of a class cannot be a primitive because thats a runtime error');
+          example('class x extends "foo" {}', 'throw new Error()');
+          before(body[i]);
+
+          body[i] = AST.throwStatement(AST.primitive(
+            `[Preval] Class had primitive which would throw a "constructor or null" error; \`class extends ${
+              tmat(node.superClass, true)
+            } {...}\``
+          ));
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (node.superClass && AST.isComplexNode(node.superClass)) {
+          // Since the class must be in a basic form at this point, the transforms are fairly care free.
+          // Must take care that the extends value can be affected by computed member keys.
+          rule('The `extends` of a class must be simple');
+          example('class x extends f() {}', 'tmp = f(); class x extends tmp {}');
+          before(node);
+
+          const tmpNameSuper = createFreshVar('tmpClassSuper', fdata);
+          const newNode = AST.varStatement('const', tmpNameSuper, node.superClass);
+          node.superClass = AST.identifier(tmpNameSuper);
+          body.splice(i, 0, newNode);
+
+          after(newNode);
+          after(node);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         let changes = false;
         node.body.body.forEach((methodNode) => {
           if (methodNode.computed && AST.isProperIdent(methodNode.key, true)) {
@@ -5646,24 +5726,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           body.splice(i, 0, ...newNodes);
 
           after([...newNodes, node]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        if (node.superClass && AST.isComplexNode(node.superClass)) {
-          // Since the class must be in a basic form at this point, the transforms are fairly care free.
-          // Must take care that the extends value can be affected by computed member keys.
-          rule('The `extends` of a class must be simple');
-          example('class x extends f() {}', 'tmp = f(); class x extends tmp {}');
-          before(node);
-
-          const tmpNameSuper = createFreshVar('tmpClassSuper', fdata);
-          const newNode = AST.varStatement('const', tmpNameSuper, node.superClass);
-          node.superClass = AST.identifier(tmpNameSuper);
-          body.splice(i, 0, newNode);
-
-          after(newNode);
-          after(node);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -6742,6 +6804,21 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           return true;
         }
 
+        if (node.object.type === 'Super') {
+          rule('Reading a super property must be a special node');
+          example('super.foo', 'super.foo');
+          example('super[foo]', 'super[foo]');
+          before(body[i]);
+
+          const finalNode = AST.superProp(node.property, node.computed);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body[i] = finalParent;
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         if (AST.isComplexNode(node.object)) {
           rule('Member expression object must be simple');
           example('f().x', 'tmp = f(), tmp.x');
@@ -7309,6 +7386,24 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         after(finalNode, finalParent);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
+      }
+
+      case 'Super': {
+       ASSERT(false, 'should not reach here. must be a callexpression or memberexpression and should be handled there');
+       return false;
+      }
+
+      case 'SuperCall': {
+        vlog('Skipping SuperCall...');
+        return;
+      }
+      case 'SuperMethodCall': {
+        vlog('Skipping SuperMethodCall...');
+        return;
+      }
+      case 'SuperProp': {
+        vlog('Skipping SuperProp...');
+        return;
       }
 
       case 'TemplateLiteral': {
@@ -8236,7 +8331,6 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       case 'Property':
       case 'RestElement':
       case 'SpreadElement':
-      case 'Super':
       case 'YieldExpression': {
         log(RED + 'Missed expr:', node.type, RESET);
         return false;
@@ -8254,7 +8348,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
 
     // TODO: probably want to assert false here. It means there was an expression that was not normalized.
     log(RED + 'Missed expr:', node.type, RESET);
-    addme;
+    ASSERT(false, 'addme', node);
     return false;
   }
 

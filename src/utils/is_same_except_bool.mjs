@@ -180,6 +180,36 @@ function isSameExpressionExceptBool(nodeA, nodeB, collect, ap, bp, prop) {
         return isSameExpressionExceptBool(enode, nodeB.expressions[i], collect, nodeA.elements, nodeB.elements, i)
       });
     }
+    case 'SuperCall': {
+      if (nodeA['arguments'].length !== nodeB['arguments'].length) return false;
+      return nodeA['arguments'].every((anodeA, i) => {
+        const anodeB = nodeB['arguments'][i];
+        if (anodeA.type !== anodeB.type) return false;
+        if (anodeA.type === 'SpreadElement') return isSameExpressionExceptBool(anodeA.argument, anodeB.argument, collect, anodeA, anodeB, 'argument');
+        return isSameExpressionExceptBool(anodeA, anodeB, collect, nodeA['arguments'], nodeB['arguments'], i);
+      });
+    }
+    case 'SuperMethodCall': {
+      if (nodeA.computed !== nodeB.computed) return false;
+      if (nodeA['arguments'].length !== nodeB['arguments'].length) return false;
+      if (isSameExpressionExceptBool(nodeA.property, nodeB.property, collect, nodeA, nodeB, 'property')) return false;
+      return nodeA['arguments'].every((anodeA, i) => {
+        const anodeB = nodeB['arguments'][i];
+        if (anodeA.type !== anodeB.type) return false;
+        if (anodeA.type === 'SpreadElement') return isSameExpressionExceptBool(anodeA.argument, anodeB.argument, collect, anodeA, anodeB, 'argument');
+        return isSameExpressionExceptBool(anodeA, anodeB, collect, nodeA['arguments'], nodeB['arguments'], i);
+      });
+    }
+    case 'SuperProp': {
+      if (nodeA.computed !== nodeB.computed) return false;
+      if (nodeA.computed) {
+        // The property is an (almost) arbitrary expression
+        return isSameExpressionExceptBool(nodeA.property, nodeB.property, collect, nodeA, nodeB, 'property');
+      } else {
+        ASSERT(nodeA.property.type === 'Identifier' && nodeB.property.type === 'Identifier', 'Normalized code, not computed, so this must be a simple ident', nodeA, nodeB);
+        return nodeA.property.name !== nodeB.property.name;
+      }
+    }
 
     default:
       // ASSERT(![].includes(nodeA.type), 'should not have certain expr in normalized code', nodeA.type);

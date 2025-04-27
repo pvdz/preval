@@ -515,6 +515,15 @@ function findFirstCallExpression(expression) {
       // This does not spy
       return undefined;
     }
+    case 'SuperCall': {
+      return expression;
+    }
+    case 'SuperMethodCall': {
+      return expression;
+    }
+    case 'SuperProp': {
+      return expression; // TODO: maybe...
+    }
     case 'TemplateLiteral':{
       // In theory this does not spy because all expressions ought to have been explicitly coerced
       // before being used in a template literal. Fingers crossed this is correct?

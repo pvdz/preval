@@ -910,6 +910,15 @@ function isFreeExpression(exprNode, fdata) {
     case 'YieldExpression': {
       return false;
     }
+    case 'SuperCall': {
+      return false;
+    }
+    case 'SuperMethodCall': {
+      return false;
+    }
+    case 'SuperProp': {
+      return false;
+    }
     case 'ThisExpression': {
       // Can happen when scanning Blocks where we don't know that it's a function. Just ignore.
       return false;

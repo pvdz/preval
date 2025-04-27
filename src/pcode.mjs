@@ -511,6 +511,15 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
       // Too complex right now
       return false;
     }
+    case 'SuperCall': {
+      return false;
+    }
+    case 'SuperMethodCall': {
+      return false;
+    }
+    case 'SuperProp': {
+      return false;
+    }
   }
 
   ASSERT(false, 'missing expr type', expr, stmt);

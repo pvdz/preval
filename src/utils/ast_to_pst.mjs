@@ -74,12 +74,6 @@ function convert(node) {
           node.arguments.map(convert),
         );
       }
-      if (node.callee.type === 'Super') {
-        return PST.callSimpleExpression(
-          PST.superKeyword(),
-          node.arguments.map(convert),
-        )
-      }
 
       //hoe kan tests/cases/normalize/array/spread_member_call.md toch crashen?
 
@@ -289,10 +283,16 @@ function convert(node) {
     case 'SpreadElement': {
       return PST.spreadElement(convert(node.argument));
     }
-    case 'Super': {
-      // I think we should make this SuperCall or SuperMember, a single node.
-      // Tricky though since I think `super.foo()` can trigger a getter spy...
-      return PST.superKeyword();
+    case 'SuperCall': {
+      return PST.superCall(node.arguments.map(pnode => convert(pnode)));
+    }
+    case 'SuperMethodCall': {
+      if (node.computed) return PST.superComputedMethodCall(convert(node.property), node.arguments.map(pnode => convert(pnode)));
+      return PST.SuperMethodCall(node.property.name, node.arguments.map(pnode => convert(pnode)));
+    }
+    case 'SuperProp': {
+      if (node.computed) return PST.superComputedProp(convert(node.property));
+      return PST.superProp(node.property.name);
     }
     case 'SwitchCase': {
       REJECT

@@ -1,5 +1,4 @@
-import {ASSERT} from "../utils.mjs"
-import {memberRefExpression} from "./pst.mjs"
+import { ASSERT } from "../utils.mjs"
 import { symbo } from '../symbols_builtins.mjs';
 
 export function verifyPst(node) {
@@ -219,10 +218,6 @@ function verifySimple(node) {
       // This will be a string. It won't have an expression.
       return true;
     }
-    case 'SuperKeyword': {
-      // I'm going to regret this.
-      return true;
-    }
     default: ASSERT(false, 'expected node to be a primitive', typeof node, node);
   }
 }
@@ -376,7 +371,29 @@ function verifyExpression(node) {
       });
       return;
     }
-    case 'SuperKeyword': {
+    case 'SuperCall': {
+      ASSERT(Array.isArray(node.args));
+      node.args.forEach(arg => verifySimpleOrSpread(arg));
+      return;
+    }
+    case 'SuperMethodCall': {
+      expect(typeof node.prop, 'string', node);
+      ASSERT(Array.isArray(node.args));
+      node.args.forEach(arg => verifySimpleOrSpread(arg));
+      return;
+    }
+    case 'SuperComputedMethodCall': {
+      verifySimple(node.prop);
+      ASSERT(Array.isArray(node.args));
+      node.args.forEach(arg => verifySimpleOrSpread(arg));
+      return;
+    }
+    case 'SuperProp': {
+      expect(typeof node.prop, 'string', node);
+      return;
+    }
+    case 'SuperComputedProp': {
+      verifySimple(node.prop);
       return;
     }
     case 'ThisExpression': {

@@ -220,7 +220,7 @@ export function memberComputedExpression(object, prop) {
 }
 
 export function memberRefExpression(object, prop) {
-  ASSERT(typeof prop === 'string')
+  ASSERT(typeof prop === 'string');
   return {
     type: 'MemberRefExpression',
     object, // Simple
@@ -347,9 +347,44 @@ export function spreadElement(arg) {
   };
 }
 
-export function superKeyword() {
+export function superCall(args) {
+  ASSERT(Array.isArray(args));
   return {
-    type: 'SuperKeyword',
+    type: 'SuperCall',
+    args,
+  };
+}
+
+export function SuperMethodCall(prop, args) {
+  ASSERT(Array.isArray(args), 'args should be an array', args);
+  return {
+    type: 'SuperMethodCall',
+    prop,
+    args,
+  };
+}
+
+export function superComputedMethodCall(prop, args) {
+  ASSERT(Array.isArray(args));
+  return {
+    type: 'SuperComputedMethodCall',
+    prop,
+    args,
+  };
+}
+
+export function superProp(prop) {
+  ASSERT(typeof prop === 'string');
+  return {
+    type: 'SuperProp',
+    prop,
+  };
+}
+
+export function superComputedProp(prop) {
+  return {
+    type: 'SuperComputedProp',
+    prop,
   };
 }
 

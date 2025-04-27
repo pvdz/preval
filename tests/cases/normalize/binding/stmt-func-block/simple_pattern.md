@@ -28,9 +28,9 @@ const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   const z /*:array*/ = [10, 20, 30];
   const tmpArrPatternSplat /*:array*/ = [...z];
-  const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
-  const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
-  $(z, tmpClusterSSA_x, tmpClusterSSA_y, z);
+  const x /*:unknown*/ = tmpArrPatternSplat[0];
+  const y /*:unknown*/ = tmpArrPatternSplat[1];
+  $(z, x, y, z);
   $(undefined);
 } else {
   $(undefined);

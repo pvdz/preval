@@ -30,11 +30,11 @@ const tmpArrElement$3 /*:unknown*/ = $(3);
 const tmpArrElement$5 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [tmpArrElement$3, tmpArrElement$5];
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat$1[0];
-const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat$1[1];
+const x /*:unknown*/ = tmpArrPatternSplat$1[0];
+const y /*:unknown*/ = tmpArrPatternSplat$1[1];
 tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_x, tmpClusterSSA_y);
+$(a, x, y);
 `````
 
 
@@ -50,10 +50,10 @@ const tmpArrElement$3 = $(3);
 const tmpArrElement$5 = $(4);
 const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
 const tmpArrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-const tmpClusterSSA_x = tmpArrPatternSplat$1[0];
-const tmpClusterSSA_y = tmpArrPatternSplat$1[1];
+const x = tmpArrPatternSplat$1[0];
+const y = tmpArrPatternSplat$1[1];
 tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
-$({ a: 999, b: 1000 }, tmpClusterSSA_x, tmpClusterSSA_y);
+$({ a: 999, b: 1000 }, x, y);
 `````
 
 

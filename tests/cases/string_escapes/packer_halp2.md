@@ -98,14 +98,14 @@ const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
   return tmpReturnArg$1;
 };
 const tmpMCP$1 /*:regex*/ = new $regex_constructor(`\\b\\w+\\b`, `g`);
-const tmpClusterSSA_p /*:string*/ = $dotCall(
+const p /*:string*/ = $dotCall(
   $string_replace,
   `s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('"0\\\\\`1\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6\${7}8\\\\/9"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))`,
   `replace`,
   tmpMCP$1,
   tmpArrElement,
 );
-const x /*:unknown*/ = eval(tmpClusterSSA_p);
+const x /*:unknown*/ = eval(p);
 $(x);
 `````
 

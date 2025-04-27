@@ -24,17 +24,17 @@ $(a, b);
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
   const tmpObjLitVal$1 /*:unknown*/ = $(2);
   const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal$1 };
   const tmpNestedAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$3);
-  const tmpClusterSSA_b$1 /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
+  const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs$1.b;
   $(tmpNestedAssignObjPatternRhs$1);
-  $(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b$1);
+  $(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b);
 } else {
   $(tmpNestedAssignObjPatternRhs);
-  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+  $(tmpNestedAssignObjPatternRhs, b);
 }
 `````
 
@@ -45,16 +45,16 @@ if (tmpNestedAssignObjPatternRhs) {
 `````js filename=intro
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
   const tmpObjLitVal$1 = $(2);
   const tmpNestedAssignObjPatternRhs$1 = $({ b: tmpObjLitVal$1 });
-  const tmpClusterSSA_b$1 = tmpNestedAssignObjPatternRhs$1.b;
+  const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
   $(tmpNestedAssignObjPatternRhs$1);
-  $(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b$1);
+  $(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b);
 } else {
   $(tmpNestedAssignObjPatternRhs);
-  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+  $(tmpNestedAssignObjPatternRhs, b);
 }
 `````
 

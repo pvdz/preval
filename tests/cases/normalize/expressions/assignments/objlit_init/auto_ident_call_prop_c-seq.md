@@ -24,10 +24,10 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
-const tmpCalleeParam /*:object*/ = { x: tmpClusterSSA_a };
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
+const tmpCalleeParam /*:object*/ = { x: a };
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -36,9 +36,9 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpMCOO = $({ $: $ });
-const tmpClusterSSA_a = tmpMCOO.$(1);
-$({ x: tmpClusterSSA_a });
-$(tmpClusterSSA_a);
+const a = tmpMCOO.$(1);
+$({ x: a });
+$(a);
 `````
 
 

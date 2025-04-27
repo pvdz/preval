@@ -23,14 +23,14 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a, b);
+const a /*:unknown*/ = tmpAssignRhsProp.c;
+if (a) {
+  $(a);
+  $(a, b);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  $(tmpClusterSSA_a, b);
+  $(a, b);
 }
 `````
 
@@ -40,13 +40,13 @@ if (tmpClusterSSA_a) {
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpClusterSSA_a = $(b).c;
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a, b);
+const a = $(b).c;
+if (a) {
+  $(a);
+  $(a, b);
 } else {
   $($(100));
-  $(tmpClusterSSA_a, b);
+  $(a, b);
 }
 `````
 

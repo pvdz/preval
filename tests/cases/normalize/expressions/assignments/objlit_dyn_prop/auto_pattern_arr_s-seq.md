@@ -25,10 +25,10 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [1, 2];
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
+const a /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpCalleeParam /*:object*/ = { [tmpNestedAssignArrPatternRhs]: 10 };
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -41,9 +41,9 @@ const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
-const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
+const a = [...tmpNestedAssignArrPatternRhs][0];
 $({ [tmpNestedAssignArrPatternRhs]: 10 });
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 

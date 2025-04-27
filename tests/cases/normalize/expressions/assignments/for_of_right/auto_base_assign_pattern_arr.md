@@ -25,7 +25,7 @@ const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam$1 /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
+const b /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedAssignArrPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
@@ -36,7 +36,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignArrPatternRhs, b);
 `````
 
 
@@ -46,7 +46,7 @@ $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````js filename=intro
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
+const b = [...tmpNestedAssignArrPatternRhs][0];
 const tmpForOfGenNext = $forOf(tmpNestedAssignArrPatternRhs);
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
@@ -56,7 +56,7 @@ while (true) {
     tmpForOfNext.value;
   }
 }
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignArrPatternRhs, b);
 `````
 
 

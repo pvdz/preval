@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+const a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignObjPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -32,7 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -41,7 +41,7 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
-const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+const a = tmpNestedAssignObjPatternRhs.a;
 const tmpForInGen = $forIn(tmpNestedAssignObjPatternRhs);
 while (true) {
   const tmpForInNext = tmpForInGen();
@@ -51,7 +51,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 

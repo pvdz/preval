@@ -25,8 +25,8 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-throw tmpClusterSSA_a;
+const a /*:boolean*/ = delete tmpDeleteObj.y;
+throw a;
 `````
 
 
@@ -37,8 +37,8 @@ throw tmpClusterSSA_a;
 $(1);
 $(2);
 const tmpDeleteObj = $({ y: 1 });
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-throw tmpClusterSSA_a;
+const a = delete tmpDeleteObj.y;
+throw a;
 `````
 
 

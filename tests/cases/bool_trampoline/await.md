@@ -32,8 +32,8 @@ else $('fail');
 `````js filename=intro
 const f /*:(unused)=>promise*/ = async function ($$0) {
   debugger;
-  const tmpClusterSSA_x /*:unknown*/ = $(0);
-  const y /*:unknown*/ = await tmpClusterSSA_x;
+  const x /*:unknown*/ = $(0);
+  const y /*:unknown*/ = await x;
   return y;
 };
 $(f);
@@ -48,8 +48,8 @@ $(`pass`);
 
 `````js filename=intro
 const f = async function ($$0) {
-  const tmpClusterSSA_x = $(0);
-  const y = await tmpClusterSSA_x;
+  const x = $(0);
+  const y = await x;
   return y;
 };
 $(f);

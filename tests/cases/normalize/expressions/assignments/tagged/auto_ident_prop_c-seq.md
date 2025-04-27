@@ -23,10 +23,10 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
+const a /*:unknown*/ = tmpAssignRhsProp.c;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpClusterSSA_a);
-$(tmpClusterSSA_a, b);
+$(tmpCalleeParam, a);
+$(a, b);
 `````
 
 
@@ -35,9 +35,9 @@ $(tmpClusterSSA_a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpClusterSSA_a = $(b).c;
-$([`before `, ` after`], tmpClusterSSA_a);
-$(tmpClusterSSA_a, b);
+const a = $(b).c;
+$([`before `, ` after`], a);
+$(a, b);
 `````
 
 

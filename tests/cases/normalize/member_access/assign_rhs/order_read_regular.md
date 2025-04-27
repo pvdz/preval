@@ -37,8 +37,8 @@ const obj /*:object*/ = {
   },
 };
 const tmpAssignRhsProp /*:unknown*/ = $(obj);
-const tmpClusterSSA_x /*:unknown*/ = tmpAssignRhsProp.x;
-$(tmpClusterSSA_x);
+const x /*:unknown*/ = tmpAssignRhsProp.x;
+$(x);
 `````
 
 

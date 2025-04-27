@@ -25,10 +25,10 @@ const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
+const a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -39,9 +39,9 @@ $(tmpClusterSSA_a);
 const tmpBinBothLhs = $(100);
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpClusterSSA_a = b[tmpMCCP](1);
-$(tmpBinBothLhs + tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = b[tmpMCCP](1);
+$(tmpBinBothLhs + a);
+$(a);
 `````
 
 

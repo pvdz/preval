@@ -19,8 +19,8 @@ $(x);
 
 
 `````js filename=intro
-const tmpClusterSSA_x /*:array*/ = [];
-$(tmpClusterSSA_x);
+const x /*:array*/ = [];
+$(x);
 `````
 
 

@@ -27,8 +27,8 @@ $(1);
 const b /*:object*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
-$(tmpClusterSSA_a);
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
+$(a);
 `````
 
 

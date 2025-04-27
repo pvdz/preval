@@ -9,7 +9,8 @@
 ## Input
 
 `````js filename=intro
-let f; { 
+let f; 
+{ 
   let b = $(); 
   f = function(a) {
     b = a;

@@ -24,10 +24,10 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
+const a /*:object*/ = new tmpNewCallee(1);
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -36,10 +36,10 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpNewCallee = $({ $: $ }).$;
-const tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpAnonDefaultExport = tmpClusterSSA_a;
+const a = new tmpNewCallee(1);
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 

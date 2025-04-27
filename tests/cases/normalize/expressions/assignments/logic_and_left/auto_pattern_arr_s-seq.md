@@ -23,8 +23,8 @@ const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 [...tmpBindingPatternArrRoot];
 $(10);
 $(20);
-const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(100);
-$(tmpClusterSSA_tmpCalleeParam$1);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+$(tmpClusterSSA_tmpCalleeParam);
 $(1);
 `````
 

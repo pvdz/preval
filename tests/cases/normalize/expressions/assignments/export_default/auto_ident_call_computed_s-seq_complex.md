@@ -24,10 +24,10 @@ $(a);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
-const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
+const a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -37,10 +37,10 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpClusterSSA_a = b[tmpMCCP](1);
-const tmpAnonDefaultExport = tmpClusterSSA_a;
+const a = b[tmpMCCP](1);
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 

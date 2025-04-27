@@ -25,10 +25,10 @@ const tmpBinBothLhs /*:unknown*/ = $(100);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
+const a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 
@@ -40,9 +40,9 @@ const tmpBinBothLhs = $(100);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(tmpBinBothLhs + tmpClusterSSA_a);
-$(tmpClusterSSA_a, b);
+const a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(tmpBinBothLhs + a);
+$(a, b);
 `````
 
 

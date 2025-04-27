@@ -22,9 +22,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:array*/ = [];
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a /*:array*/ = [];
+$(a);
+$(a);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = [];
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = [];
+$(a);
+$(a);
 `````
 
 

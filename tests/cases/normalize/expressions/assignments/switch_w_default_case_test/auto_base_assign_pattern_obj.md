@@ -32,7 +32,7 @@ let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 const tmpIfTest /*:boolean*/ = tmpNestedAssignObjPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -47,10 +47,10 @@ const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+  $(tmpNestedAssignObjPatternRhs, b);
 } else {
   $(`fail2`);
-  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+  $(tmpNestedAssignObjPatternRhs, b);
 }
 `````
 
@@ -63,7 +63,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -74,10 +74,10 @@ if (tmpNestedAssignObjPatternRhs === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+  $(tmpNestedAssignObjPatternRhs, b);
 } else {
   $(`fail2`);
-  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+  $(tmpNestedAssignObjPatternRhs, b);
 }
 `````
 

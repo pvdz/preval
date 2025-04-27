@@ -19,8 +19,8 @@ $(f?.[x]);
 
 
 `````js filename=intro
-const tmpClusterSSA_f /*:object*/ = { [10]: 20 };
-const tmpChainElementObject /*:unknown*/ = tmpClusterSSA_f[10];
+const f /*:object*/ = { [10]: 20 };
+const tmpChainElementObject /*:unknown*/ = f[10];
 $(tmpChainElementObject);
 `````
 

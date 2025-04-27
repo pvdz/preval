@@ -23,15 +23,15 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-if (tmpClusterSSA_a) {
+const a /*:unknown*/ = tmpAssignRhsProp.c;
+if (a) {
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj.c;
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, b);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a, b);
+  $(a);
+  $(a, b);
 }
 `````
 
@@ -41,14 +41,14 @@ if (tmpClusterSSA_a) {
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpClusterSSA_a = $(b).c;
-if (tmpClusterSSA_a) {
+const a = $(b).c;
+if (a) {
   const tmpNestedComplexRhs = $(b).c;
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, b);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a, b);
+  $(a);
+  $(a, b);
 }
 `````
 

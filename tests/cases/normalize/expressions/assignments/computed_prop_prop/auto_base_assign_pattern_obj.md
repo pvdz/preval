@@ -25,9 +25,9 @@ $(a, b);
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 $coerce(tmpNestedAssignObjPatternRhs, `string`);
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 
@@ -37,9 +37,9 @@ $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````js filename=intro
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const b = tmpNestedAssignObjPatternRhs.b;
 $coerce(tmpNestedAssignObjPatternRhs, `string`);
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 

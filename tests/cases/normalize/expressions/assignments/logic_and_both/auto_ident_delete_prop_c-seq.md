@@ -25,8 +25,8 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-if (tmpClusterSSA_a) {
+const a /*:boolean*/ = delete tmpDeleteObj.y;
+if (a) {
   $(1);
   $(2);
   const tmpDeleteObj$1 /*:unknown*/ = $(arg);

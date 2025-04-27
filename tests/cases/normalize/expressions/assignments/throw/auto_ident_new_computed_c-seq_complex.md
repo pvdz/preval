@@ -25,8 +25,8 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-throw tmpClusterSSA_a;
+const a /*:object*/ = new tmpNewCallee(1);
+throw a;
 `````
 
 
@@ -37,8 +37,8 @@ throw tmpClusterSSA_a;
 const tmpCompObj = $({ $: $ });
 const tmpCalleeParam = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCalleeParam];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-throw tmpClusterSSA_a;
+const a = new tmpNewCallee(1);
+throw a;
 `````
 
 

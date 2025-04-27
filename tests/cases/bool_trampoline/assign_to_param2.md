@@ -31,8 +31,8 @@ else $('pass');
 const f /*:(unused)=>boolean*/ = function ($$0) {
   debugger;
   const x /*:unknown*/ = $(0);
-  const tmpClusterSSA_y /*:boolean*/ = $boolean_constructor(x);
-  return tmpClusterSSA_y;
+  const y /*:boolean*/ = $boolean_constructor(x);
+  return y;
 };
 $(f);
 $(f);
@@ -50,8 +50,8 @@ if (tmpBoolTrampoline) {
 
 `````js filename=intro
 const f = function ($$0) {
-  const tmpClusterSSA_y = $boolean_constructor($(0));
-  return tmpClusterSSA_y;
+  const y = $boolean_constructor($(0));
+  return y;
 };
 $(f);
 $(f);

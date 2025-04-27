@@ -24,9 +24,9 @@ $(a);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+const a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_a);
+  $(a);
   $(1);
 }
 `````
@@ -38,9 +38,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpClusterSSA_a = b[tmpMCCP](1);
+const a = b[tmpMCCP](1);
 while (true) {
-  $(tmpClusterSSA_a);
+  $(a);
   $(1);
 }
 `````
@@ -64,7 +64,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) can we support this const aliasing blocking statement? WhileStatement
 - (todo) - at least one of the frfr args was not isFree, bailing
 
 

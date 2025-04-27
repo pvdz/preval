@@ -18,8 +18,8 @@ $(a = $(b).x = c);
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = {};
-const tmpNestedAssignObj /*:unknown*/ = $(tmpClusterSSA_b);
+const b /*:object*/ = {};
+const tmpNestedAssignObj /*:unknown*/ = $(b);
 tmpNestedAssignObj.x = 30;
 $(30);
 `````

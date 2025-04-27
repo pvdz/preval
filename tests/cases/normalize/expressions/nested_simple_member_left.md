@@ -18,8 +18,8 @@ $($(a).x = b = c);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:object*/ = {};
-const tmpInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_a);
+const a /*:object*/ = {};
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(a);
 tmpInitAssignLhsComputedObj.x = 30;
 $(30);
 `````

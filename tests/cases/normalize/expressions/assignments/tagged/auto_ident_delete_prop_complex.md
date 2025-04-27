@@ -23,10 +23,10 @@ $(a, arg);
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
+const a /*:boolean*/ = delete tmpDeleteObj.y;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpClusterSSA_a);
-$(tmpClusterSSA_a, arg);
+$(tmpCalleeParam, a);
+$(a, arg);
 `````
 
 
@@ -36,9 +36,9 @@ $(tmpClusterSSA_a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-$([`before `, ` after`], tmpClusterSSA_a);
-$(tmpClusterSSA_a, arg);
+const a = delete tmpDeleteObj.y;
+$([`before `, ` after`], a);
+$(a, arg);
 `````
 
 

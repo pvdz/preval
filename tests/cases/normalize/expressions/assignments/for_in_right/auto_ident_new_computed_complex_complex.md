@@ -25,8 +25,8 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
+const a /*:object*/ = new tmpNewCallee(1);
+const tmpForInGen /*:unknown*/ = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -36,7 +36,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -47,8 +47,8 @@ $(tmpClusterSSA_a);
 const tmpCompObj = $({ $: $ });
 const tmpCalleeParam$1 = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCalleeParam$1];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpForInGen = $forIn(tmpClusterSSA_a);
+const a = new tmpNewCallee(1);
+const tmpForInGen = $forIn(a);
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
@@ -57,7 +57,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 

@@ -25,10 +25,10 @@ const b /*:object*/ = { $: $ };
 const tmpMCCO /*:unknown*/ = $(b);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
+if (a) {
+  $(a);
+  $(a);
 } else {
   const tmpMCCO$1 /*:unknown*/ = $(b);
   const tmpMCCP$1 /*:unknown*/ = $(`\$`);
@@ -47,10 +47,10 @@ if (tmpClusterSSA_a) {
 const b = { $: $ };
 const tmpMCCO = $(b);
 const tmpMCCP = $(`\$`);
-const tmpClusterSSA_a = tmpMCCO[tmpMCCP](1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+const a = tmpMCCO[tmpMCCP](1);
+if (a) {
+  $(a);
+  $(a);
 } else {
   const tmpMCCO$1 = $(b);
   const tmpMCCP$1 = $(`\$`);

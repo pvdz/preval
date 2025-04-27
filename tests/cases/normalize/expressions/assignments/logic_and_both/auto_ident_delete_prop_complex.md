@@ -23,8 +23,8 @@ $(a, arg);
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-if (tmpClusterSSA_a) {
+const a /*:boolean*/ = delete tmpDeleteObj.y;
+if (a) {
   const tmpDeleteObj$1 /*:unknown*/ = $(arg);
   const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj$1.y;
   $(tmpNestedComplexRhs);

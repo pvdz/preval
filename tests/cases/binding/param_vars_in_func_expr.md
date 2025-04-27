@@ -21,9 +21,9 @@ $(f());
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:unknown*/ = $(10);
+const a /*:unknown*/ = $(10);
 const b /*:unknown*/ = $(20);
-const tmpReturnArg /*:array*/ = [tmpClusterSSA_a, b];
+const tmpReturnArg /*:array*/ = [a, b];
 $(tmpReturnArg);
 `````
 
@@ -32,9 +32,9 @@ $(tmpReturnArg);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $(10);
+const a = $(10);
 const b = $(20);
-$([tmpClusterSSA_a, b]);
+$([a, b]);
 `````
 
 

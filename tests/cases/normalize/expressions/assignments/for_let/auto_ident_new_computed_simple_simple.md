@@ -21,9 +21,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:object*/ = new $(1);
+const a /*:object*/ = new $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_a);
+  $(a);
   $(1);
 }
 `````
@@ -33,9 +33,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
+const a = new $(1);
 while (true) {
-  $(tmpClusterSSA_a);
+  $(a);
   $(1);
 }
 `````
@@ -56,7 +56,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) can we support this const aliasing blocking statement? WhileStatement
 - (todo) Support this node type in isFree: NewExpression
 
 

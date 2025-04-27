@@ -24,8 +24,8 @@ $(a);
 const tmpObjLitVal /*:object*/ = { y: 10 };
 const tmpCompObj /*:unknown*/ = $(tmpObjLitVal);
 const tmpBinBothRhs /*:unknown*/ = tmpCompObj.y;
-const tmpClusterSSA_a /*:boolean*/ = `Identifier` === tmpBinBothRhs;
-$(tmpClusterSSA_a);
+const a /*:boolean*/ = `Identifier` === tmpBinBothRhs;
+$(a);
 `````
 
 

@@ -23,9 +23,9 @@ $(a);
 
 `````js filename=intro
 const tmpCallComplexCallee /*:unknown*/ = $($);
-const tmpClusterSSA_a /*:unknown*/ = tmpCallComplexCallee(1);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a /*:unknown*/ = tmpCallComplexCallee(1);
+$(a);
+$(a);
 `````
 
 
@@ -34,9 +34,9 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpCallComplexCallee = $($);
-const tmpClusterSSA_a = tmpCallComplexCallee(1);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = tmpCallComplexCallee(1);
+$(a);
+$(a);
 `````
 
 

@@ -27,9 +27,9 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(100);
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 
@@ -40,9 +40,9 @@ $(tmpClusterSSA_a, b);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(100);
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 

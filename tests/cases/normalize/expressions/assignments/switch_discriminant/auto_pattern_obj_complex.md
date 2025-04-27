@@ -24,9 +24,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+const a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 $(100);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -34,9 +34,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $({ a: 1, b: 2 }).a;
+const a = $({ a: 1, b: 2 }).a;
 $(100);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 

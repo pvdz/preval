@@ -26,9 +26,9 @@ $(a, b);
 `````js filename=intro
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpClusterSSA_a /*:unknown*/ = b[tmpAssignRhsCompProp];
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, b);
+const a /*:unknown*/ = b[tmpAssignRhsCompProp];
+$(a);
+$(a, b);
 `````
 
 
@@ -38,9 +38,9 @@ $(tmpClusterSSA_a, b);
 `````js filename=intro
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
-const tmpClusterSSA_a = b[tmpAssignRhsCompProp];
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, b);
+const a = b[tmpAssignRhsCompProp];
+$(a);
+$(a, b);
 `````
 
 

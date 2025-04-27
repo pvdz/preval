@@ -37,10 +37,10 @@ const f /*:(number)=>undefined*/ = function ($$0) {
 };
 $coerce(x, `number`);
 f(3);
-const tmpClusterSSA_y /*:number*/ = $coerce(x, `number`);
+const y /*:number*/ = $coerce(x, `number`);
 f(4);
 $(x);
-$(tmpClusterSSA_y);
+$(y);
 `````
 
 
@@ -56,10 +56,10 @@ const f = function (c) {
 };
 $coerce(x, `number`);
 f(3);
-const tmpClusterSSA_y = $coerce(x, `number`);
+const y = $coerce(x, `number`);
 f(4);
 $(x);
-$(tmpClusterSSA_y);
+$(y);
 `````
 
 

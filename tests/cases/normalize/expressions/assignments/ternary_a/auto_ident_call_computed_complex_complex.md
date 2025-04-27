@@ -25,15 +25,15 @@ const b /*:object*/ = { $: $ };
 const tmpMCCO /*:unknown*/ = $(b);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
-if (tmpClusterSSA_a) {
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
+if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(200);
   $(tmpClusterSSA_tmpCalleeParam$1);
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -44,13 +44,13 @@ if (tmpClusterSSA_a) {
 `````js filename=intro
 const tmpMCCO = $({ $: $ });
 const tmpMCCP = $(`\$`);
-const tmpClusterSSA_a = tmpMCCO[tmpMCCP](1);
-if (tmpClusterSSA_a) {
+const a = tmpMCCO[tmpMCCP](1);
+if (a) {
   $($(100));
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   $($(200));
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 

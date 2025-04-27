@@ -32,7 +32,7 @@ let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
+const a /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest /*:boolean*/ = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -47,10 +47,10 @@ const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -64,7 +64,7 @@ const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
-const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
+const a = [...tmpNestedAssignArrPatternRhs][0];
 if (tmpNestedAssignArrPatternRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -75,10 +75,10 @@ if (tmpNestedAssignArrPatternRhs === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 

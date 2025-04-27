@@ -31,8 +31,8 @@ $(problem2);
 
 
 `````js filename=intro
-const tmpClusterSSA_problem2 /*:object*/ = {};
-$(tmpClusterSSA_problem2);
+const problem2 /*:object*/ = {};
+$(problem2);
 `````
 
 

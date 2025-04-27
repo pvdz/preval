@@ -34,7 +34,7 @@ const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 x$1 = tmpArrPatternSplat[0];
-const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
+const y /*:unknown*/ = tmpArrPatternSplat[1];
 const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignArrPatternRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -46,7 +46,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, 1, tmpClusterSSA_y);
+$(a, 1, y);
 `````
 
 
@@ -59,7 +59,7 @@ const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x$1 = tmpArrPatternSplat[0];
-const tmpClusterSSA_y = tmpArrPatternSplat[1];
+const y = tmpArrPatternSplat[1];
 const tmpForInGen = $forIn(tmpNestedAssignArrPatternRhs);
 while (true) {
   const tmpForInNext = tmpForInGen();
@@ -69,7 +69,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$({ a: 999, b: 1000 }, 1, tmpClusterSSA_y);
+$({ a: 999, b: 1000 }, 1, y);
 `````
 
 

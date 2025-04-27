@@ -24,10 +24,10 @@ $(a);
 const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam$3];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
+const a /*:object*/ = new tmpNewCallee(1);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+$(tmpCalleeParam, a);
+$(a);
 `````
 
 
@@ -37,9 +37,9 @@ $(tmpClusterSSA_a);
 `````js filename=intro
 const tmpCalleeParam$3 = $(`\$`);
 const tmpNewCallee = { $: $ }[tmpCalleeParam$3];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-$([`before `, ` after`], tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = new tmpNewCallee(1);
+$([`before `, ` after`], a);
+$(a);
 `````
 
 

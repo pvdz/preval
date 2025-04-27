@@ -33,11 +33,11 @@ const obj /*:object*/ = {
   },
 };
 const tmpCalleeParam$3 /*:unknown*/ = $(obj);
-const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+const a /*:unknown*/ = $(tmpCalleeParam$3);
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -45,7 +45,7 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $(
+const a = $(
   $({
     toString() {
       $(`toString`);
@@ -57,8 +57,8 @@ const tmpClusterSSA_a = $(
     },
   }),
 );
-$(`before  ${tmpClusterSSA_a}  after`);
-$(tmpClusterSSA_a);
+$(`before  ${a}  after`);
+$(a);
 `````
 
 

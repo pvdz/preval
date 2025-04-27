@@ -23,9 +23,9 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { c: $ };
 const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
-const tmpClusterSSA_tmpForInGen /*:unknown*/ = $forIn(tmpChainElementCall);
+const tmpForInGen /*:unknown*/ = $forIn(tmpChainElementCall);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForInNext /*:unknown*/ = tmpClusterSSA_tmpForInGen();
+  const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
   if (tmpIfTest$1) {
     break;
@@ -42,9 +42,9 @@ $(tmpChainElementCall);
 
 `````js filename=intro
 const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
-const tmpClusterSSA_tmpForInGen = $forIn(tmpChainElementCall);
+const tmpForInGen = $forIn(tmpChainElementCall);
 while (true) {
-  const tmpForInNext = tmpClusterSSA_tmpForInGen();
+  const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
     break;
   } else {

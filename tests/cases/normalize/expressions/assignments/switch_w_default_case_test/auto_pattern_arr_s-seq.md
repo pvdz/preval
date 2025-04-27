@@ -33,7 +33,7 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [1, 2];
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
+const a /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest /*:boolean*/ = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -48,10 +48,10 @@ const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -67,7 +67,7 @@ let tmpSwitchCaseToStart = 1;
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
-const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
+const a = [...tmpNestedAssignArrPatternRhs][0];
 if (tmpNestedAssignArrPatternRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -78,10 +78,10 @@ if (tmpNestedAssignArrPatternRhs === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 

@@ -25,9 +25,9 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
+const a /*:boolean*/ = delete tmpDeleteObj.y;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_a);
+  $(a);
   $(1);
 }
 `````
@@ -40,9 +40,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(1);
 $(2);
 const tmpDeleteObj = $({ y: 1 });
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
+const a = delete tmpDeleteObj.y;
 while (true) {
-  $(tmpClusterSSA_a);
+  $(a);
   $(1);
 }
 `````
@@ -67,7 +67,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) can we support this const aliasing blocking statement? WhileStatement
 - (todo) regular property access of an ident feels tricky;
 
 

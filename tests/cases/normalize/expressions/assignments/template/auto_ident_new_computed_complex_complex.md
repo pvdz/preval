@@ -25,11 +25,11 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+const a /*:object*/ = new tmpNewCallee(1);
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -40,9 +40,9 @@ $(tmpClusterSSA_a);
 const tmpCompObj = $({ $: $ });
 const tmpCalleeParam$3 = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCalleeParam$3];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-$(`before  ${tmpClusterSSA_a}  after`);
-$(tmpClusterSSA_a);
+const a = new tmpNewCallee(1);
+$(`before  ${a}  after`);
+$(a);
 `````
 
 

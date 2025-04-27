@@ -20,12 +20,12 @@ $('ok');
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { x: `pass` };
 const tmpOPAD /*:unknown*/ = $(tmpCalleeParam);
-let tmpClusterSSA_tmpObjPatternCrashTest /*:boolean*/ = tmpOPAD === undefined;
-if (tmpClusterSSA_tmpObjPatternCrashTest) {
+let tmpObjPatternCrashTest /*:boolean*/ = tmpOPAD === undefined;
+if (tmpObjPatternCrashTest) {
 } else {
-  tmpClusterSSA_tmpObjPatternCrashTest = tmpOPAD === null;
+  tmpObjPatternCrashTest = tmpOPAD === null;
 }
-if (tmpClusterSSA_tmpObjPatternCrashTest) {
+if (tmpObjPatternCrashTest) {
   tmpOPAD.cannotDestructureThis;
   $(`ok`);
 } else {
@@ -39,11 +39,11 @@ if (tmpClusterSSA_tmpObjPatternCrashTest) {
 
 `````js filename=intro
 const tmpOPAD = $({ x: `pass` });
-let tmpClusterSSA_tmpObjPatternCrashTest = tmpOPAD === undefined;
-if (!tmpClusterSSA_tmpObjPatternCrashTest) {
-  tmpClusterSSA_tmpObjPatternCrashTest = tmpOPAD === null;
+let tmpObjPatternCrashTest = tmpOPAD === undefined;
+if (!tmpObjPatternCrashTest) {
+  tmpObjPatternCrashTest = tmpOPAD === null;
 }
-if (tmpClusterSSA_tmpObjPatternCrashTest) {
+if (tmpObjPatternCrashTest) {
   tmpOPAD.cannotDestructureThis;
   $(`ok`);
 } else {

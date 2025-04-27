@@ -24,8 +24,8 @@
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
-$(tmpClusterSSA_a);
+const a /*:unknown*/ = $dotCall($, b, `\$`, 1);
+$(a);
 `````
 
 

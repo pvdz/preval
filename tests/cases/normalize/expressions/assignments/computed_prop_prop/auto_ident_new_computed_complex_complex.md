@@ -26,9 +26,9 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj$1 /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-$coerce(tmpClusterSSA_a, `string`);
-$(tmpClusterSSA_a);
+const a /*:object*/ = new tmpNewCallee(1);
+$coerce(a, `string`);
+$(a);
 `````
 
 
@@ -39,9 +39,9 @@ $(tmpClusterSSA_a);
 const tmpCompObj$1 = $({ $: $ });
 const tmpCalleeParam$1 = $(`\$`);
 const tmpNewCallee = tmpCompObj$1[tmpCalleeParam$1];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-$coerce(tmpClusterSSA_a, `string`);
-$(tmpClusterSSA_a);
+const a = new tmpNewCallee(1);
+$coerce(a, `string`);
+$(a);
 `````
 
 

@@ -32,8 +32,8 @@ let tmpSwitchCaseToStart /*:number*/ = 1;
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
+const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -47,10 +47,10 @@ const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpClusterSSA_a, arg);
+  $(a, arg);
 } else {
   $(`fail2`);
-  $(tmpClusterSSA_a, arg);
+  $(a, arg);
 }
 `````
 
@@ -64,8 +64,8 @@ let tmpSwitchCaseToStart = 1;
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (tmpClusterSSA_a === tmpSwitchValue) {
+const a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -75,10 +75,10 @@ if (tmpClusterSSA_a === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpClusterSSA_a, arg);
+  $(a, arg);
 } else {
   $(`fail2`);
-  $(tmpClusterSSA_a, arg);
+  $(a, arg);
 }
 `````
 

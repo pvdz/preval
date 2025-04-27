@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-throw tmpClusterSSA_a;
+const a /*:unknown*/ = tmpAssignRhsProp.c;
+throw a;
 `````
 
 
@@ -32,8 +32,8 @@ throw tmpClusterSSA_a;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $({ c: 1 }).c;
-throw tmpClusterSSA_a;
+const a = $({ c: 1 }).c;
+throw a;
 `````
 
 

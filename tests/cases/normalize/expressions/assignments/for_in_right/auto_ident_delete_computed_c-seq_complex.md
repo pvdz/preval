@@ -26,8 +26,8 @@ $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
+const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpForInGen /*:unknown*/ = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -37,7 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a, arg);
+$(a, arg);
 `````
 
 
@@ -50,8 +50,8 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpForInGen = $forIn(tmpClusterSSA_a);
+const a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpForInGen = $forIn(a);
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
@@ -60,7 +60,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a, arg);
+$(a, arg);
 `````
 
 

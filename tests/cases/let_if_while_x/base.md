@@ -39,17 +39,17 @@ $('after');
 $(`before`);
 const tmpBinBothRhs /*:unknown*/ = $(5);
 const x /*:boolean*/ = 0 < tmpBinBothRhs;
-let tmpClusterSSA_flag /*:unknown*/ = x;
+let flag /*:unknown*/ = x;
 if (x) {
   $(`inner`, 0);
   let tmpClusterSSA_n /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_flag) {
+    if (flag) {
       $(`inner`, tmpClusterSSA_n);
       tmpClusterSSA_n = tmpClusterSSA_n + 1;
       const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_n >= 5;
       if (tmpIfTest$1) {
-        tmpClusterSSA_flag = false;
+        flag = false;
       } else {
       }
     } else {
@@ -70,16 +70,16 @@ if (x) {
 $(`before`);
 const tmpBinBothRhs = $(5);
 const x = 0 < tmpBinBothRhs;
-let tmpClusterSSA_flag = x;
+let flag = x;
 if (x) {
   $(`inner`, 0);
   let tmpClusterSSA_n = 1;
   while (true) {
-    if (tmpClusterSSA_flag) {
+    if (flag) {
       $(`inner`, tmpClusterSSA_n);
       tmpClusterSSA_n = tmpClusterSSA_n + 1;
       if (tmpClusterSSA_n >= 5) {
-        tmpClusterSSA_flag = false;
+        flag = false;
       }
     } else {
       break;

@@ -29,9 +29,9 @@ const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpArrAssignPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
+const b /*:unknown*/ = tmpArrPatternSplat[0];
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
+$(a, b);
 `````
 
 
@@ -42,8 +42,8 @@ $(a, tmpClusterSSA_b);
 $(1);
 const tmpArrElement = $(2);
 const tmpArrAssignPatternRhs = $([tmpArrElement]);
-const tmpClusterSSA_b = [...tmpArrAssignPatternRhs][0];
-$({ a: 999, b: 1000 }, tmpClusterSSA_b);
+const b = [...tmpArrAssignPatternRhs][0];
+$({ a: 999, b: 1000 }, b);
 `````
 
 

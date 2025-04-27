@@ -26,8 +26,8 @@ $(f());
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-$(tmpClusterSSA_a, b);
+const a /*:unknown*/ = tmpAssignRhsProp.c;
+$(a, b);
 $(undefined);
 `````
 

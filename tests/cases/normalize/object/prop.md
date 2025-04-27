@@ -24,9 +24,9 @@ const program = {
 
 `````js filename=intro
 const fdata /*:object*/ = { name: 1 };
-const tmpClusterSSA_tmpElement /*:array*/ = [1, fdata];
-const tmpClusterSSA_tmpArg_1 /*:array*/ = [tmpClusterSSA_tmpElement];
-new $map_constructor(tmpClusterSSA_tmpArg_1);
+const tmpElement /*:array*/ = [1, fdata];
+const tmpArg_1 /*:array*/ = [tmpElement];
+new $map_constructor(tmpArg_1);
 fdata.name;
 `````
 
@@ -36,9 +36,9 @@ fdata.name;
 
 `````js filename=intro
 const fdata = { name: 1 };
-const tmpClusterSSA_tmpElement = [1, fdata];
-const tmpClusterSSA_tmpArg_1 = [tmpClusterSSA_tmpElement];
-new $map_constructor(tmpClusterSSA_tmpArg_1);
+const tmpElement = [1, fdata];
+const tmpArg_1 = [tmpElement];
+new $map_constructor(tmpArg_1);
 fdata.name;
 `````
 

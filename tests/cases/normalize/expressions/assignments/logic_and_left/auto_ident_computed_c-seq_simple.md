@@ -24,14 +24,14 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-if (tmpClusterSSA_a) {
+const a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  $(tmpClusterSSA_a, b);
+  $(a, b);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a, b);
+  $(a);
+  $(a, b);
 }
 `````
 
@@ -43,13 +43,13 @@ if (tmpClusterSSA_a) {
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-if (tmpClusterSSA_a) {
+const a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+if (a) {
   $($(100));
-  $(tmpClusterSSA_a, b);
+  $(a, b);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a, b);
+  $(a);
+  $(a, b);
 }
 `````
 

@@ -24,8 +24,8 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-throw tmpClusterSSA_a;
+const a /*:object*/ = new tmpNewCallee(1);
+throw a;
 `````
 
 
@@ -35,8 +35,8 @@ throw tmpClusterSSA_a;
 `````js filename=intro
 const tmpCalleeParam = $(`\$`);
 const tmpNewCallee = { $: $ }[tmpCalleeParam];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-throw tmpClusterSSA_a;
+const a = new tmpNewCallee(1);
+throw a;
 `````
 
 

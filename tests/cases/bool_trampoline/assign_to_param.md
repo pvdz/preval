@@ -30,8 +30,8 @@ else $('pass');
 `````js filename=intro
 const f /*:(unused)=>boolean*/ = function ($$0) {
   debugger;
-  const tmpClusterSSA_x /*:unknown*/ = $(0);
-  const y /*:boolean*/ = $boolean_constructor(tmpClusterSSA_x);
+  const x /*:unknown*/ = $(0);
+  const y /*:boolean*/ = $boolean_constructor(x);
   return y;
 };
 $(f);

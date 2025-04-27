@@ -22,9 +22,9 @@ $(a, arg);
 
 `````js filename=intro
 const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
-  const tmpClusterSSA_a$1 /*:boolean*/ = $$0;
+  const a$1 /*:boolean*/ = $$0;
   debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a$1, `string`);
+  const tmpBinBothRhs /*:string*/ = $coerce(a$1, `string`);
   const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
   return tmpRet;
 };
@@ -33,10 +33,10 @@ $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpCalleeParam /*:string*/ = $frfr(tmpFree, tmpClusterSSA_a);
+const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpCalleeParam /*:string*/ = $frfr(tmpFree, a);
 $(tmpCalleeParam);
-$(tmpClusterSSA_a, arg);
+$(a, arg);
 `````
 
 
@@ -44,8 +44,8 @@ $(tmpClusterSSA_a, arg);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(tmpClusterSSA_a$1) {
-  const tmpRet = `before  ${tmpClusterSSA_a$1}  after`;
+const tmpFree = function $free(a$1) {
+  const tmpRet = `before  ${a$1}  after`;
   return tmpRet;
 };
 $(1);
@@ -53,9 +53,9 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-$($frfr(tmpFree, tmpClusterSSA_a));
-$(tmpClusterSSA_a, arg);
+const a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+$($frfr(tmpFree, a));
+$(a, arg);
 `````
 
 

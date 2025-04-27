@@ -24,9 +24,9 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-$coerce(tmpClusterSSA_a, `string`);
-$(tmpClusterSSA_a, b);
+const a /*:unknown*/ = tmpAssignRhsProp.c;
+$coerce(a, `string`);
+$(a, b);
 `````
 
 
@@ -35,9 +35,9 @@ $(tmpClusterSSA_a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpClusterSSA_a = $(b).c;
-$coerce(tmpClusterSSA_a, `string`);
-$(tmpClusterSSA_a, b);
+const a = $(b).c;
+$coerce(a, `string`);
+$(a, b);
 `````
 
 

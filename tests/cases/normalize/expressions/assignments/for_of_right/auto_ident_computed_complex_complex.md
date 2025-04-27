@@ -24,8 +24,8 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_a);
+const a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
@@ -35,7 +35,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 
@@ -46,8 +46,8 @@ $(tmpClusterSSA_a, b);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpForOfGenNext = $forOf(tmpClusterSSA_a);
+const a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpForOfGenNext = $forOf(a);
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
@@ -56,7 +56,7 @@ while (true) {
     tmpForOfNext.value;
   }
 }
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 

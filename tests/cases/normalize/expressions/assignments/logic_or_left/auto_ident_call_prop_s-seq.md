@@ -22,14 +22,14 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpClusterSSA_a /*:unknown*/ = $dotCall($, b, `\$`, 1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+const a /*:unknown*/ = $dotCall($, b, `\$`, 1);
+if (a) {
+  $(a);
+  $(a);
 } else {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -38,13 +38,13 @@ if (tmpClusterSSA_a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $dotCall($, { $: $ }, `\$`, 1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+const a = $dotCall($, { $: $ }, `\$`, 1);
+if (a) {
+  $(a);
+  $(a);
 } else {
   $($(100));
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 

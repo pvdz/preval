@@ -23,8 +23,8 @@ $(a, arg);
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-const tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_a);
+const a /*:boolean*/ = delete tmpDeleteObj.y;
+const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
@@ -34,7 +34,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-$(tmpClusterSSA_a, arg);
+$(a, arg);
 `````
 
 
@@ -44,8 +44,8 @@ $(tmpClusterSSA_a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpForOfGenNext = $forOf(tmpClusterSSA_a);
+const a = delete tmpDeleteObj.y;
+const tmpForOfGenNext = $forOf(a);
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
@@ -54,7 +54,7 @@ while (true) {
     tmpForOfNext.value;
   }
 }
-$(tmpClusterSSA_a, arg);
+$(a, arg);
 `````
 
 

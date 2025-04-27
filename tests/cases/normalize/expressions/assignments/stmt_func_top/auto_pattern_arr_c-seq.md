@@ -29,8 +29,8 @@ $(20);
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpArrAssignPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrAssignPatternRhs];
-const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
-$(tmpClusterSSA_a);
+const a /*:unknown*/ = tmpArrPatternSplat$1[0];
+$(a);
 $(undefined);
 `````
 

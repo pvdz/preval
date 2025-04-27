@@ -20,10 +20,10 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(1);
-const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+const a /*:unknown*/ = $(tmpCalleeParam$1);
+if (a) {
+  $(a);
+  $(a);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(1);
   const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$3);
@@ -37,10 +37,10 @@ if (tmpClusterSSA_a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $($(1));
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+const a = $($(1));
+if (a) {
+  $(a);
+  $(a);
 } else {
   const tmpNestedComplexRhs = $($(1));
   $(tmpNestedComplexRhs);

@@ -23,10 +23,10 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-const tmpAnonDefaultExport /*:unknown*/ = tmpClusterSSA_a;
+const a /*:unknown*/ = tmpAssignRhsProp.c;
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 
@@ -35,10 +35,10 @@ $(tmpClusterSSA_a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpClusterSSA_a = $(b).c;
-const tmpAnonDefaultExport = tmpClusterSSA_a;
+const a = $(b).c;
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 

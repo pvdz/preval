@@ -21,11 +21,11 @@ $(a);
 
 
 `````js filename=intro
+const a /*:object*/ = new $(1);
 const tmpClusterSSA_a /*:object*/ = new $(1);
-const tmpClusterSSA_a$1 /*:object*/ = new $(1);
-const tmpCalleeParam /*:primitive*/ = tmpClusterSSA_a + tmpClusterSSA_a$1;
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a$1);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -33,10 +33,10 @@ $(tmpClusterSSA_a$1);
 (This ought to be the final result)
 
 `````js filename=intro
+const a = new $(1);
 const tmpClusterSSA_a = new $(1);
-const tmpClusterSSA_a$1 = new $(1);
-$(tmpClusterSSA_a + tmpClusterSSA_a$1);
-$(tmpClusterSSA_a$1);
+$(a + tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 

@@ -27,9 +27,9 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpNewCallee /*:unknown*/ = tmpCompObj.$;
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a /*:object*/ = new tmpNewCallee(1);
+$(a);
+$(a);
 `````
 
 
@@ -38,9 +38,9 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpNewCallee = $({ $: $ }).$;
-const tmpClusterSSA_a = new tmpNewCallee(1);
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = new tmpNewCallee(1);
+$(a);
+$(a);
 `````
 
 

@@ -33,8 +33,8 @@ const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-const tmpClusterSSA_a /*:object*/ = new tmpNewCallee(1);
-const tmpIfTest /*:boolean*/ = tmpClusterSSA_a === tmpSwitchValue;
+const a /*:object*/ = new tmpNewCallee(1);
+const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -48,10 +48,10 @@ const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -65,8 +65,8 @@ let tmpSwitchCaseToStart = 1;
 const tmpCompObj = $({ $: $ });
 const tmpCalleeParam = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCalleeParam];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-if (tmpClusterSSA_a === tmpSwitchValue) {
+const a = new tmpNewCallee(1);
+if (a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -76,10 +76,10 @@ if (tmpClusterSSA_a === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   $(`fail2`);
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 

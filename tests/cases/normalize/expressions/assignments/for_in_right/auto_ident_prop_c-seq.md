@@ -23,8 +23,8 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-const tmpForInGen /*:unknown*/ = $forIn(tmpClusterSSA_a);
+const a /*:unknown*/ = tmpAssignRhsProp.c;
+const tmpForInGen /*:unknown*/ = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -34,7 +34,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 
@@ -43,8 +43,8 @@ $(tmpClusterSSA_a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpClusterSSA_a = $(b).c;
-const tmpForInGen = $forIn(tmpClusterSSA_a);
+const a = $(b).c;
+const tmpForInGen = $forIn(a);
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
@@ -53,7 +53,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$(tmpClusterSSA_a, b);
+$(a, b);
 `````
 
 

@@ -29,10 +29,10 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs$1 /*:array*/ = [1, 2];
 const tmpArrPatternSplat$3 /*:array*/ = [...tmpNestedAssignArrPatternRhs$1];
-const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$3[0];
+const a /*:unknown*/ = tmpArrPatternSplat$3[0];
 const tmpCalleeParam /*:primitive*/ = tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -49,9 +49,9 @@ const tmpNestedAssignArrPatternRhs = [1, 2];
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs$1 = [1, 2];
-const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs$1][0];
+const a = [...tmpNestedAssignArrPatternRhs$1][0];
 $(tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 

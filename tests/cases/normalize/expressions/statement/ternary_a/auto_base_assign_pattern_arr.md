@@ -25,14 +25,14 @@ const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
+const b /*:unknown*/ = tmpArrPatternSplat[0];
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpNestedAssignArrPatternRhs) {
   $(100);
-  $(a, tmpClusterSSA_b);
+  $(a, b);
 } else {
   $(200);
-  $(a, tmpClusterSSA_b);
+  $(a, b);
 }
 `````
 
@@ -43,14 +43,14 @@ if (tmpNestedAssignArrPatternRhs) {
 `````js filename=intro
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
+const b = [...tmpNestedAssignArrPatternRhs][0];
 const a = { a: 999, b: 1000 };
 if (tmpNestedAssignArrPatternRhs) {
   $(100);
-  $(a, tmpClusterSSA_b);
+  $(a, b);
 } else {
   $(200);
-  $(a, tmpClusterSSA_b);
+  $(a, b);
 }
 `````
 

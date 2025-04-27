@@ -26,10 +26,10 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
+const a /*:boolean*/ = delete tmpDeleteObj.y;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a, arg);
+$(a, arg);
 `````
 
 
@@ -42,9 +42,9 @@ $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-$(tmpBinBothLhs + tmpClusterSSA_a);
-$(tmpClusterSSA_a, arg);
+const a = delete tmpDeleteObj.y;
+$(tmpBinBothLhs + a);
+$(a, arg);
 `````
 
 

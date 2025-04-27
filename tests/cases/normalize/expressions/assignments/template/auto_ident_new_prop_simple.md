@@ -21,11 +21,11 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:object*/ = new $(1);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
+const a /*:object*/ = new $(1);
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 
@@ -33,9 +33,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
-$(`before  ${tmpClusterSSA_a}  after`);
-$(tmpClusterSSA_a);
+const a = new $(1);
+$(`before  ${a}  after`);
+$(a);
 `````
 
 

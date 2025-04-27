@@ -24,8 +24,8 @@ $(a);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
-throw tmpClusterSSA_a;
+const a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+throw a;
 `````
 
 
@@ -35,8 +35,8 @@ throw tmpClusterSSA_a;
 `````js filename=intro
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpClusterSSA_a = b[tmpMCCP](1);
-throw tmpClusterSSA_a;
+const a = b[tmpMCCP](1);
+throw a;
 `````
 
 

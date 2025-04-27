@@ -24,16 +24,16 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
-if (tmpClusterSSA_a) {
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
+if (a) {
   const tmpMCOO$1 /*:unknown*/ = $(b);
   const tmpMCF$1 /*:unknown*/ = tmpMCOO$1.$;
   const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpMCF$1, tmpMCOO$1, `\$`, 1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+  $(a);
+  $(a);
 }
 `````
 
@@ -44,15 +44,15 @@ if (tmpClusterSSA_a) {
 `````js filename=intro
 const b = { $: $ };
 const tmpMCOO = $(b);
-const tmpClusterSSA_a = tmpMCOO.$(1);
-if (tmpClusterSSA_a) {
+const a = tmpMCOO.$(1);
+if (a) {
   const tmpMCOO$1 = $(b);
   const tmpNestedComplexRhs = tmpMCOO$1.$(1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+  $(a);
+  $(a);
 }
 `````
 

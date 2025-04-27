@@ -25,11 +25,11 @@ const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam$3 /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
+const b /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedAssignArrPatternRhs, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignArrPatternRhs, b);
 `````
 
 
@@ -39,9 +39,9 @@ $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````js filename=intro
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
+const b = [...tmpNestedAssignArrPatternRhs][0];
 $(`before  ${tmpNestedAssignArrPatternRhs}  after`);
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignArrPatternRhs, b);
 `````
 
 

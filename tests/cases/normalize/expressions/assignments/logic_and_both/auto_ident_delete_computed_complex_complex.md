@@ -24,8 +24,8 @@ $(a, arg);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (tmpClusterSSA_a) {
+const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (a) {
   const tmpDeleteCompObj$1 /*:unknown*/ = $(arg);
   const tmpDeleteCompProp$1 /*:unknown*/ = $(`y`);
   const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];

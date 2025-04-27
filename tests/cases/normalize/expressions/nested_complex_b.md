@@ -18,8 +18,8 @@ $(a = $(b).length = c);
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:array*/ = [];
-const tmpNestedAssignObj /*:unknown*/ = $(tmpClusterSSA_b);
+const b /*:array*/ = [];
+const tmpNestedAssignObj /*:unknown*/ = $(b);
 tmpNestedAssignObj.length = 30;
 $(30);
 `````

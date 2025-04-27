@@ -32,8 +32,8 @@ else $('fail');
 `````js filename=intro
 const f /*:(unused)=>object*/ = function* ($$0) {
   debugger;
-  const tmpClusterSSA_x /*:unknown*/ = $(0);
-  const y /*:unknown*/ = yield tmpClusterSSA_x;
+  const x /*:unknown*/ = $(0);
+  const y /*:unknown*/ = yield x;
   return y;
 };
 $(f);
@@ -48,8 +48,8 @@ $(`pass`);
 
 `````js filename=intro
 const f = function* ($$0) {
-  const tmpClusterSSA_x = $(0);
-  const y = yield tmpClusterSSA_x;
+  const x = $(0);
+  const y = yield x;
   return y;
 };
 $(f);

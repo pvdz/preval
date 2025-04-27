@@ -24,10 +24,10 @@ $(a, b);
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam$3 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$3);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 
@@ -37,9 +37,9 @@ $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````js filename=intro
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const b = tmpNestedAssignObjPatternRhs.b;
 $([`before `, ` after`], tmpNestedAssignObjPatternRhs);
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 

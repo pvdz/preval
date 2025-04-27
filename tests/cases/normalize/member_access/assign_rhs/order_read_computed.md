@@ -38,8 +38,8 @@ const obj /*:object*/ = {
 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(obj);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`x`);
-const tmpClusterSSA_x /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(tmpClusterSSA_x);
+const x /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(x);
 `````
 
 

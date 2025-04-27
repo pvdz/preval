@@ -26,10 +26,10 @@ f(4);
 const x /*:unknown*/ = $(`50`);
 const f /*:()=>undefined*/ = function () {
   debugger;
-  const tmpClusterSSA_d /*:number*/ = $coerce(x, `number`);
+  const d /*:number*/ = $coerce(x, `number`);
   $(1);
   $(2);
-  $(tmpClusterSSA_d);
+  $(d);
   return undefined;
 };
 f();
@@ -43,10 +43,10 @@ f();
 `````js filename=intro
 const x = $(`50`);
 const f = function () {
-  const tmpClusterSSA_d = $coerce(x, `number`);
+  const d = $coerce(x, `number`);
   $(1);
   $(2);
-  $(tmpClusterSSA_d);
+  $(d);
 };
 f();
 f();

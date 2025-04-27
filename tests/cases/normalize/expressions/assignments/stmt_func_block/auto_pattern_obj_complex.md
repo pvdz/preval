@@ -26,8 +26,8 @@ $(f());
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignObjPatternRhs.a;
-$(tmpClusterSSA_a);
+const a /*:unknown*/ = tmpAssignObjPatternRhs.a;
+$(a);
 $(undefined);
 `````
 

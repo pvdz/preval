@@ -24,16 +24,16 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-if (tmpClusterSSA_a) {
+const a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+if (a) {
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam$1 /*:unknown*/ = $(`c`);
   const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, b);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a, b);
+  $(a);
+  $(a, b);
 }
 `````
 
@@ -45,16 +45,16 @@ if (tmpClusterSSA_a) {
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
-const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-if (tmpClusterSSA_a) {
+const a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+if (a) {
   const tmpCompObj = $(b);
   const tmpCalleeParam$1 = $(`c`);
   const tmpNestedComplexRhs = tmpCompObj[tmpCalleeParam$1];
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, b);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a, b);
+  $(a);
+  $(a, b);
 }
 `````
 

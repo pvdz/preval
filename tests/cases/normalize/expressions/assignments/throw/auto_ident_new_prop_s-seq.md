@@ -21,8 +21,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:object*/ = new $(1);
-throw tmpClusterSSA_a;
+const a /*:object*/ = new $(1);
+throw a;
 `````
 
 
@@ -30,8 +30,8 @@ throw tmpClusterSSA_a;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
-throw tmpClusterSSA_a;
+const a = new $(1);
+throw a;
 `````
 
 

@@ -24,8 +24,8 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
-throw tmpClusterSSA_a;
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
+throw a;
 `````
 
 
@@ -34,8 +34,8 @@ throw tmpClusterSSA_a;
 
 `````js filename=intro
 const tmpMCOO = $({ $: $ });
-const tmpClusterSSA_a = tmpMCOO.$(1);
-throw tmpClusterSSA_a;
+const a = tmpMCOO.$(1);
+throw a;
 `````
 
 

@@ -25,8 +25,8 @@ const b /*:object*/ = { $: $ };
 const tmpMCCO /*:unknown*/ = $(b);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
-if (tmpClusterSSA_a) {
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
+if (a) {
   const tmpMCCO$1 /*:unknown*/ = $(b);
   const tmpMCCP$1 /*:unknown*/ = $(`\$`);
   const tmpMCF$1 /*:unknown*/ = tmpMCCO$1[tmpMCCP$1];
@@ -34,8 +34,8 @@ if (tmpClusterSSA_a) {
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+  $(a);
+  $(a);
 }
 `````
 
@@ -47,16 +47,16 @@ if (tmpClusterSSA_a) {
 const b = { $: $ };
 const tmpMCCO = $(b);
 const tmpMCCP = $(`\$`);
-const tmpClusterSSA_a = tmpMCCO[tmpMCCP](1);
-if (tmpClusterSSA_a) {
+const a = tmpMCCO[tmpMCCP](1);
+if (a) {
   const tmpMCCO$1 = $(b);
   const tmpMCCP$1 = $(`\$`);
   const tmpNestedComplexRhs = tmpMCCO$1[tmpMCCP$1](1);
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpClusterSSA_a);
-  $(tmpClusterSSA_a);
+  $(a);
+  $(a);
 }
 `````
 

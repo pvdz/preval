@@ -24,11 +24,11 @@ $(a, b);
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam$1 /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam$1);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 const a /*:object*/ = { a: 999, b: 1000 };
 const tmpClusterSSA_a /*:number*/ = a * tmpNestedAssignObjPatternRhs;
 $(tmpClusterSSA_a);
-$(tmpClusterSSA_a, tmpClusterSSA_b);
+$(tmpClusterSSA_a, b);
 `````
 
 
@@ -38,10 +38,10 @@ $(tmpClusterSSA_a, tmpClusterSSA_b);
 `````js filename=intro
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const b = tmpNestedAssignObjPatternRhs.b;
 const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpNestedAssignObjPatternRhs;
 $(tmpClusterSSA_a);
-$(tmpClusterSSA_a, tmpClusterSSA_b);
+$(tmpClusterSSA_a, b);
 `````
 
 

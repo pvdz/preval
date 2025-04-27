@@ -33,11 +33,11 @@ if (itooamanumberjack) {
 const tmpBool /*:boolean*/ = $boolean_constructor(imanumberandilovethrees);
 const tmpCalleeParam /*:unknown*/ = $(tmpBool);
 imanumberandilovethrees;
-const tmpClusterSSA_itooamanumberjack /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
+const itooamanumberjack /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
 if (tmpCalleeParam) {
-  $(`a`, tmpClusterSSA_itooamanumberjack);
+  $(`a`, itooamanumberjack);
 } else {
-  $(`b`, tmpClusterSSA_itooamanumberjack);
+  $(`b`, itooamanumberjack);
 }
 `````
 
@@ -48,11 +48,11 @@ if (tmpCalleeParam) {
 `````js filename=intro
 const tmpCalleeParam = $($boolean_constructor(imanumberandilovethrees));
 imanumberandilovethrees;
-const tmpClusterSSA_itooamanumberjack = $boolean_constructor(tmpCalleeParam);
+const itooamanumberjack = $boolean_constructor(tmpCalleeParam);
 if (tmpCalleeParam) {
-  $(`a`, tmpClusterSSA_itooamanumberjack);
+  $(`a`, itooamanumberjack);
 } else {
-  $(`b`, tmpClusterSSA_itooamanumberjack);
+  $(`b`, itooamanumberjack);
 }
 `````
 

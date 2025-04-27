@@ -56,7 +56,7 @@ $( 100 );
 ## Todos triggered
 
 
-None
+- (todo) do we want to support Literal as expression statement in free loops?
 
 
 ## Globals

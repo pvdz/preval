@@ -276,20 +276,23 @@ export function after(node, parentNode) {
 
 export function currentState(fdata, suffix, withTyping=false) {
   ASSERT((typeof fdata === 'object' && fdata) || typeof fdata === 'string', 'arg type bad', fdata);
+  //ASSERT(suffix !== undefined, 'give me something');
   if (VERBOSE_TRACING) {
     try {
       if (withTyping) setPrintVarTyping(true, fdata); // Handy typing details
       let code;
       try {
-        if (typeof fdata === 'string') code = fdata;
+        if (typeof fdata === 'string') {
+          code = fdata;
+        }
         else {
           code = tmat(fdata.tenkoOutput.ast, true);
-          try {
-            code = fmat(code, true);
-          } catch (e) {
-            //
-            code = `// fmat failed (prettier failed on syntax?): ${e}\n` + code;
-          }
+        }
+        try {
+          code = fmat(code, true);
+        } catch (e) {
+          //
+          code = `// fmat failed (prettier failed on syntax?): ${e}\n` + code;
         }
       } catch (e) {
         console.log('tmat failed...');

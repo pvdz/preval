@@ -21,11 +21,10 @@ $(a, arg);
 
 
 `````js filename=intro
-let a /*:boolean*/ = false;
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-if (tmpClusterSSA_a) {
+let a /*:boolean*/ = delete tmpDeleteObj.y;
+if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpDeleteObj$1 /*:unknown*/ = $(arg);
@@ -37,7 +36,7 @@ if (tmpClusterSSA_a) {
   }
   $(a, arg);
 } else {
-  $(false, arg);
+  $(a, arg);
 }
 `````
 
@@ -46,10 +45,10 @@ if (tmpClusterSSA_a) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = false;
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-if (delete tmpDeleteObj.y) {
+let a = delete tmpDeleteObj.y;
+if (a) {
   while (true) {
     $(100);
     const tmpDeleteObj$1 = $(arg);
@@ -60,7 +59,7 @@ if (delete tmpDeleteObj.y) {
   }
   $(a, arg);
 } else {
-  $(false, arg);
+  $(a, arg);
 }
 `````
 
@@ -69,26 +68,25 @@ if (delete tmpDeleteObj.y) {
 With rename=true
 
 `````js filename=intro
-let a = false;
-const b = { y: 1 };
-const c = $( b );
-const d = delete c.y;
-if (d) {
+const a = { y: 1 };
+const b = $( a );
+let c = delete b.y;
+if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = $( b );
-    a = delete e.y;
-    if (a) {
+    const d = $( a );
+    c = delete d.y;
+    if (c) {
 
     }
     else {
       break;
     }
   }
-  $( a, b );
+  $( c, a );
 }
 else {
-  $( false, b );
+  $( c, a );
 }
 `````
 

@@ -21,12 +21,12 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 b.c = tmpNestedAssignPropRhs;
+let a /*:unknown*/ = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -42,7 +42,7 @@ if (tmpNestedAssignPropRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignPropRhs, b);
+  $(a, b);
 }
 `````
 
@@ -51,12 +51,12 @@ if (tmpNestedAssignPropRhs) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
 b.c = tmpNestedAssignPropRhs;
+let a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while (true) {
     $(100);
@@ -71,7 +71,7 @@ if (tmpNestedAssignPropRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignPropRhs, b);
+  $(a, b);
 }
 `````
 
@@ -80,23 +80,23 @@ if (tmpNestedAssignPropRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   c: 10,
   d: 20,
 };
-const c = $( b );
-const d = $( "d" );
-const e = c[ d ];
-b.c = e;
-if (e) {
+const b = $( a );
+const c = $( "d" );
+const d = b[ c ];
+a.c = d;
+let e = d;
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = $( b );
+    const f = $( a );
     const g = $( "d" );
     const h = f[ g ];
-    b.c = h;
-    a = h;
+    a.c = h;
+    e = h;
     if (h) {
 
     }
@@ -104,10 +104,10 @@ if (e) {
       break;
     }
   }
-  $( a, b );
+  $( e, a );
 }
 else {
-  $( e, b );
+  $( e, a );
 }
 `````
 

@@ -19,10 +19,9 @@ $(a);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport /*:unknown*/ = 0;
 const tmpCalleeParam /*:unknown*/ = $(1);
 const a /*:unknown*/ = $(tmpCalleeParam);
-tmpAnonDefaultExport = a;
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````
@@ -32,9 +31,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpAnonDefaultExport = 0;
 const a = $($(1));
-tmpAnonDefaultExport = a;
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````
@@ -44,12 +42,11 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = 0;
-const b = $( 1 );
-const c = $( b );
-a = c;
-export { a as default };
-$( c );
+const a = $( 1 );
+const b = $( a );
+const c = b;
+export { c as default };
+$( b );
 `````
 
 

@@ -20,15 +20,14 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
-a = tmpNestedAssignArrPatternRhs;
+const b /*:unknown*/ = tmpArrPatternSplat[0];
+const a /*:unknown*/ = tmpNestedAssignArrPatternRhs;
 export { a };
-$(a, tmpClusterSSA_b);
+$(tmpNestedAssignArrPatternRhs, b);
 `````
 
 
@@ -36,13 +35,12 @@ $(a, tmpClusterSSA_b);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
-a = tmpNestedAssignArrPatternRhs;
+const b = [...tmpNestedAssignArrPatternRhs][0];
+const a = tmpNestedAssignArrPatternRhs;
 export { a };
-$(a, tmpClusterSSA_b);
+$(tmpNestedAssignArrPatternRhs, b);
 `````
 
 
@@ -50,15 +48,14 @@ $(a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 2 );
-const c = [ b ];
-const d = $( c );
-const e = [ ...d ];
-const f = e[ 0 ];
-a = d;
-export { a as a };
-$( a, f );
+const a = $( 2 );
+const b = [ a ];
+const c = $( b );
+const d = [ ...c ];
+const e = d[ 0 ];
+const f = c;
+export { f as a };
+$( c, e );
 `````
 
 
@@ -67,7 +64,6 @@ $( a, f );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
-- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
 
 
 ## Globals

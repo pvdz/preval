@@ -22,17 +22,16 @@ $(a, x, y);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const tmpArrElement /*:unknown*/ = $(3);
 const tmpArrElement$1 /*:unknown*/ = $(4);
 const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
-const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
-tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+const x /*:unknown*/ = tmpArrPatternSplat[0];
+const y /*:unknown*/ = tmpArrPatternSplat[1];
+const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignArrPatternRhs;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_x, tmpClusterSSA_y);
+$(a, x, y);
 `````
 
 
@@ -40,16 +39,15 @@ $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const tmpArrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_x = tmpArrPatternSplat[0];
-const tmpClusterSSA_y = tmpArrPatternSplat[1];
-tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+const x = tmpArrPatternSplat[0];
+const y = tmpArrPatternSplat[1];
+const tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
 export { tmpAnonDefaultExport as default };
-$({ a: 999, b: 1000 }, tmpClusterSSA_x, tmpClusterSSA_y);
+$({ a: 999, b: 1000 }, x, y);
 `````
 
 
@@ -57,20 +55,19 @@ $({ a: 999, b: 1000 }, tmpClusterSSA_x, tmpClusterSSA_y);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 3 );
-const c = $( 4 );
-const d = [ b, c ];
-const e = [ ...d ];
-const f = e[ 0 ];
-const g = e[ 1 ];
-a = d;
-export { a as default };
+const a = $( 3 );
+const b = $( 4 );
+const c = [ a, b ];
+const d = [ ...c ];
+const e = d[ 0 ];
+const f = d[ 1 ];
+const g = c;
+export { g as default };
 const h = {
   a: 999,
   b: 1000,
 };
-$( h, f, g );
+$( h, e, f );
 `````
 
 
@@ -79,7 +76,6 @@ $( h, f, g );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
-- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
 
 
 ## Globals

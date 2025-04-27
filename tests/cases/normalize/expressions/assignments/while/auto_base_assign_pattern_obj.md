@@ -21,12 +21,11 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:unknown*/ = undefined;
-let a /*:unknown*/ = undefined;
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+let b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+let a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -42,7 +41,7 @@ if (tmpNestedAssignObjPatternRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+  $(a, b);
 }
 `````
 
@@ -51,11 +50,10 @@ if (tmpNestedAssignObjPatternRhs) {
 (This ought to be the final result)
 
 `````js filename=intro
-let b = undefined;
-let a = undefined;
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+let b = tmpNestedAssignObjPatternRhs.b;
+let a = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
   while (true) {
     $(100);
@@ -69,7 +67,7 @@ if (tmpNestedAssignObjPatternRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+  $(a, b);
 }
 `````
 
@@ -78,31 +76,30 @@ if (tmpNestedAssignObjPatternRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-let b = undefined;
-const c = $( 2 );
-const d = { b: c };
-const e = $( d );
-const f = e.b;
-if (e) {
+const a = $( 2 );
+const b = { b: a };
+const c = $( b );
+let d = c.b;
+let e = c;
+if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const g = $( 2 );
-    const h = { b: g };
-    const i = $( h );
-    a = i.b;
-    b = i;
-    if (i) {
+    const f = $( 2 );
+    const g = { b: f };
+    const h = $( g );
+    d = h.b;
+    e = h;
+    if (h) {
 
     }
     else {
       break;
     }
   }
-  $( b, a );
+  $( e, d );
 }
 else {
-  $( e, f );
+  $( e, d );
 }
 `````
 

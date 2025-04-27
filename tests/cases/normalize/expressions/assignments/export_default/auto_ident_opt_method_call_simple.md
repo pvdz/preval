@@ -21,10 +21,9 @@ $(a);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const b /*:object*/ = { c: $ };
 const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
-tmpAnonDefaultExport = tmpChainElementCall;
+const tmpAnonDefaultExport /*:unknown*/ = tmpChainElementCall;
 export { tmpAnonDefaultExport as default };
 $(tmpChainElementCall);
 `````
@@ -34,9 +33,8 @@ $(tmpChainElementCall);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
 const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
-tmpAnonDefaultExport = tmpChainElementCall;
+const tmpAnonDefaultExport = tmpChainElementCall;
 export { tmpAnonDefaultExport as default };
 $(tmpChainElementCall);
 `````
@@ -46,19 +44,18 @@ $(tmpChainElementCall);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { c: $ };
-const c = $dotCall( $, b, "c", 1 );
-a = c;
-export { a as default };
-$( c );
+const a = { c: $ };
+const b = $dotCall( $, a, "c", 1 );
+const c = b;
+export { c as default };
+$( b );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
+None
 
 
 ## Globals

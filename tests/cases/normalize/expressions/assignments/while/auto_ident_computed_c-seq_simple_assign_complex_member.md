@@ -21,7 +21,6 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
@@ -29,6 +28,7 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+let a /*:unknown*/ = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -46,7 +46,7 @@ if (tmpNestedAssignPropRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignPropRhs, b);
+  $(a, b);
 }
 `````
 
@@ -55,7 +55,6 @@ if (tmpNestedAssignPropRhs) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
@@ -63,6 +62,7 @@ const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+let a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while (true) {
     $(100);
@@ -79,7 +79,7 @@ if (tmpNestedAssignPropRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignPropRhs, b);
+  $(a, b);
 }
 `````
 
@@ -88,27 +88,27 @@ if (tmpNestedAssignPropRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = {
+const a = {
   c: 10,
   d: 20,
 };
-const c = $( b );
-const d = $( "c" );
-const e = $( b );
-const f = $( "d" );
-const g = e[ f ];
-c[d] = g;
-if (g) {
+const b = $( a );
+const c = $( "c" );
+const d = $( a );
+const e = $( "d" );
+const f = d[ e ];
+b[c] = f;
+let g = f;
+if (f) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const h = $( b );
+    const h = $( a );
     const i = $( "c" );
-    const j = $( b );
+    const j = $( a );
     const k = $( "d" );
     const l = j[ k ];
     h[i] = l;
-    a = l;
+    g = l;
     if (l) {
 
     }
@@ -116,10 +116,10 @@ if (g) {
       break;
     }
   }
-  $( a, b );
+  $( g, a );
 }
 else {
-  $( g, b );
+  $( g, a );
 }
 `````
 

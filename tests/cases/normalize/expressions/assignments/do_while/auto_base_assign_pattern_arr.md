@@ -23,14 +23,13 @@ $(a, b);
 
 
 `````js filename=intro
-let b /*:unknown*/ = undefined;
-let a /*:unknown*/ = undefined;
 $(100);
 const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
+let b /*:unknown*/ = tmpArrPatternSplat[0];
+let a /*:unknown*/ = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -47,7 +46,7 @@ if (tmpNestedAssignArrPatternRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+  $(a, b);
 }
 `````
 
@@ -56,12 +55,11 @@ if (tmpNestedAssignArrPatternRhs) {
 (This ought to be the final result)
 
 `````js filename=intro
-let b = undefined;
-let a = undefined;
 $(100);
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
+let b = [...tmpNestedAssignArrPatternRhs][0];
+let a = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
   while (true) {
     $(100);
@@ -75,7 +73,7 @@ if (tmpNestedAssignArrPatternRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+  $(a, b);
 }
 `````
 
@@ -84,34 +82,33 @@ if (tmpNestedAssignArrPatternRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-let b = undefined;
 $( 100 );
-const c = $( 2 );
-const d = [ c ];
-const e = $( d );
-const f = [ ...e ];
-const g = f[ 0 ];
-if (e) {
+const a = $( 2 );
+const b = [ a ];
+const c = $( b );
+const d = [ ...c ];
+let e = d[ 0 ];
+let f = c;
+if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const h = $( 2 );
-    const i = [ h ];
-    const j = $( i );
-    const k = [ ...j ];
-    a = k[ 0 ];
-    b = j;
-    if (j) {
+    const g = $( 2 );
+    const h = [ g ];
+    const i = $( h );
+    const j = [ ...i ];
+    e = j[ 0 ];
+    f = i;
+    if (i) {
 
     }
     else {
       break;
     }
   }
-  $( b, a );
+  $( f, e );
 }
 else {
-  $( e, g );
+  $( f, e );
 }
 `````
 

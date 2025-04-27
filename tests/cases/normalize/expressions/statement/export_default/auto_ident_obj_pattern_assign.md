@@ -22,11 +22,10 @@ $(a, x, y);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
 const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignObjPatternRhs;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
@@ -37,10 +36,10 @@ $(a, tmpObjLitVal, tmpObjLitVal$1);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-tmpAnonDefaultExport = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+const tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
 export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
@@ -50,27 +49,26 @@ $({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 3 );
-const c = $( 4 );
-const d = {
-  x: b,
-  y: c,
+const a = $( 3 );
+const b = $( 4 );
+const c = {
+  x: a,
+  y: b,
 };
-a = d;
-export { a as default };
+const d = c;
+export { d as default };
 const e = {
   a: 999,
   b: 1000,
 };
-$( e, b, c );
+$( e, a, b );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
+None
 
 
 ## Globals

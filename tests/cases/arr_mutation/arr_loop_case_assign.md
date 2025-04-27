@@ -55,8 +55,8 @@ try {
 $(false);
 $(1);
 const tmpBinLhs$1 /*:primitive*/ = arr[2];
-const tmpClusterSSA_test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
-if (tmpClusterSSA_test$1) {
+const test$1 /*:boolean*/ = tmpBinLhs$1 === 820304;
+if (test$1) {
 } else {
   const next$1 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);
   $dotCall($array_push, arr, `push`, next$1);
@@ -71,8 +71,8 @@ if (tmpClusterSSA_test$1) {
     $(false);
     $(1);
     const tmpBinLhs$2 /*:primitive*/ = arr[2];
-    const tmpClusterSSA_test$2 /*:boolean*/ = tmpBinLhs$2 === 820304;
-    if (tmpClusterSSA_test$2) {
+    const test$2 /*:boolean*/ = tmpBinLhs$2 === 820304;
+    if (test$2) {
       break;
     } else {
       const next$2 /*:unknown*/ = $dotCall($array_shift, arr, `shift`);

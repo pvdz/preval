@@ -23,7 +23,6 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 $(100);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
@@ -31,6 +30,7 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+let a /*:unknown*/ = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -47,7 +47,7 @@ if (tmpNestedAssignPropRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignPropRhs, b);
+  $(a, b);
 }
 `````
 
@@ -56,7 +56,6 @@ if (tmpNestedAssignPropRhs) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 $(100);
 const tmpNestedAssignComMemberProp = $(`c`);
 const b = { c: 10, d: 20 };
@@ -64,6 +63,7 @@ const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+let a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   while (true) {
     $(100);
@@ -79,7 +79,7 @@ if (tmpNestedAssignPropRhs) {
   }
   $(a, b);
 } else {
-  $(tmpNestedAssignPropRhs, b);
+  $(a, b);
 }
 `````
 
@@ -88,26 +88,26 @@ if (tmpNestedAssignPropRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
 $( 100 );
-const b = $( "c" );
-const c = {
+const a = $( "c" );
+const b = {
   c: 10,
   d: 20,
 };
-const d = $( c );
-const e = $( "d" );
-const f = d[ e ];
-c[b] = f;
-if (f) {
+const c = $( b );
+const d = $( "d" );
+const e = c[ d ];
+b[a] = e;
+let f = e;
+if (e) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     const g = $( "c" );
-    const h = $( c );
+    const h = $( b );
     const i = $( "d" );
     const j = h[ i ];
-    c[g] = j;
-    a = j;
+    b[g] = j;
+    f = j;
     if (j) {
 
     }
@@ -115,10 +115,10 @@ if (f) {
       break;
     }
   }
-  $( a, c );
+  $( f, b );
 }
 else {
-  $( f, c );
+  $( f, b );
 }
 `````
 

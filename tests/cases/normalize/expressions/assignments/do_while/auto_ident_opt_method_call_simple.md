@@ -23,10 +23,10 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 $(100);
 const b /*:object*/ = { c: $ };
 const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
+let a /*:unknown*/ = tmpChainElementCall;
 if (tmpChainElementCall) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -40,7 +40,7 @@ if (tmpChainElementCall) {
   }
   $(a);
 } else {
-  $(tmpChainElementCall);
+  $(a);
 }
 `````
 
@@ -49,10 +49,10 @@ if (tmpChainElementCall) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 $(100);
 const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, `c`, 1);
+let a = tmpChainElementCall;
 if (tmpChainElementCall) {
   while (true) {
     $(100);
@@ -64,7 +64,7 @@ if (tmpChainElementCall) {
   }
   $(a);
 } else {
-  $(tmpChainElementCall);
+  $(a);
 }
 `````
 
@@ -73,16 +73,16 @@ if (tmpChainElementCall) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
 $( 100 );
-const b = { c: $ };
-const c = $dotCall( $, b, "c", 1 );
-if (c) {
+const a = { c: $ };
+const b = $dotCall( $, a, "c", 1 );
+let c = b;
+if (b) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = b.c;
-    const e = $dotCall( d, b, "c", 1 );
-    a = e;
+    const d = a.c;
+    const e = $dotCall( d, a, "c", 1 );
+    c = e;
     if (e) {
 
     }
@@ -90,7 +90,7 @@ if (c) {
       break;
     }
   }
-  $( a );
+  $( c );
 }
 else {
   $( c );

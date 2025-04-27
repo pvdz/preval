@@ -23,15 +23,14 @@ $(a, arg);
 
 
 `````js filename=intro
-let a /*:boolean*/ = false;
 $(100);
 $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-if (tmpClusterSSA_a) {
+let a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
     $(1);
@@ -46,7 +45,7 @@ if (tmpClusterSSA_a) {
   }
   $(a, arg);
 } else {
-  $(false, arg);
+  $(a, arg);
 }
 `````
 
@@ -55,14 +54,14 @@ if (tmpClusterSSA_a) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = false;
 $(100);
 $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
+let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (a) {
   while (true) {
     $(100);
     $(1);
@@ -76,7 +75,7 @@ if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
   }
   $(a, arg);
 } else {
-  $(false, arg);
+  $(a, arg);
 }
 `````
 
@@ -85,33 +84,32 @@ if (delete tmpDeleteCompObj[tmpDeleteCompProp]) {
 With rename=true
 
 `````js filename=intro
-let a = false;
 $( 100 );
 $( 1 );
 $( 2 );
-const b = { y: 1 };
-const c = $( b );
-const d = $( "y" );
-const e = delete c[ d ];
-if (e) {
+const a = { y: 1 };
+const b = $( a );
+const c = $( "y" );
+let d = delete b[ c ];
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     $( 1 );
     $( 2 );
-    const f = $( b );
-    const g = $( "y" );
-    a = delete f[ g ];
-    if (a) {
+    const e = $( a );
+    const f = $( "y" );
+    d = delete e[ f ];
+    if (d) {
 
     }
     else {
       break;
     }
   }
-  $( a, b );
+  $( d, a );
 }
 else {
-  $( false, b );
+  $( d, a );
 }
 `````
 

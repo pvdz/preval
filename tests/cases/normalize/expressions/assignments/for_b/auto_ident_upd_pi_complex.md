@@ -21,7 +21,6 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpCalleeParam /*:unknown*/ = $(b);
 const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
@@ -29,6 +28,7 @@ const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
+let a /*:unknown*/ = tmpUpdInc;
 if (tmpUpdInc) {
   while ($LOOP_UNROLL_10) {
     $(1);
@@ -46,7 +46,7 @@ if (tmpUpdInc) {
   }
   $(a, b);
 } else {
-  $(tmpUpdInc, b);
+  $(a, b);
 }
 `````
 
@@ -55,11 +55,11 @@ if (tmpUpdInc) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const b = { x: 1 };
 const tmpUpdObj = $($(b));
 const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
 tmpUpdObj.x = tmpUpdInc;
+let a = tmpUpdInc;
 if (tmpUpdInc) {
   while (true) {
     $(1);
@@ -73,7 +73,7 @@ if (tmpUpdInc) {
   }
   $(a, b);
 } else {
-  $(tmpUpdInc, b);
+  $(a, b);
 }
 `````
 
@@ -82,24 +82,24 @@ if (tmpUpdInc) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
+const a = { x: 1 };
+const b = $( a );
 const c = $( b );
-const d = $( c );
-const e = d.x;
-const f = $coerce( e, "number" );
-const g = f + 1;
-d.x = g;
-if (g) {
+const d = c.x;
+const e = $coerce( d, "number" );
+const f = e + 1;
+c.x = f;
+let g = f;
+if (f) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const h = $( b );
+    const h = $( a );
     const i = $( h );
     const j = i.x;
     const k = $coerce( j, "number" );
     const l = k + 1;
     i.x = l;
-    a = l;
+    g = l;
     if (l) {
 
     }
@@ -107,10 +107,10 @@ if (g) {
       break;
     }
   }
-  $( a, b );
+  $( g, a );
 }
 else {
-  $( g, b );
+  $( g, a );
 }
 `````
 

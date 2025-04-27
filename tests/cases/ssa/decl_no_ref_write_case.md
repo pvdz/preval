@@ -37,6 +37,7 @@ if ($) tmpArrElement$513();
 
 `````js filename=intro
 if ($) {
+  let needle /*:unknown*/ = undefined;
   $(144);
   const a /*:()=>undefined*/ = function () {
     debugger;
@@ -44,7 +45,7 @@ if ($) {
     $dotCall(tmpMCF, needle, `f`);
     return undefined;
   };
-  const needle /*:object*/ = { a: a };
+  needle = { a: a };
   $(needle);
 } else {
 }
@@ -56,11 +57,12 @@ if ($) {
 
 `````js filename=intro
 if ($) {
+  let needle = undefined;
   $(144);
   const a = function () {
     needle.f();
   };
-  const needle = { a: a };
+  needle = { a: a };
   $(needle);
 }
 `````
@@ -71,15 +73,16 @@ With rename=true
 
 `````js filename=intro
 if ($) {
+  let a = undefined;
   $( 144 );
-  const a = function() {
+  const b = function() {
     debugger;
-    const b = c.f;
-    $dotCall( b, c, "f" );
+    const c = a.f;
+    $dotCall( c, a, "f" );
     return undefined;
   };
-  const c = { a: a };
-  $( c );
+  a = { a: b };
+  $( a );
 }
 `````
 

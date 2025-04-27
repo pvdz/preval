@@ -21,12 +21,11 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
-if (tmpClusterSSA_a) {
+let a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+if (a) {
   while ($LOOP_UNROLL_10) {
     $(1);
     const tmpMCCP$1 /*:unknown*/ = $(`\$`);
@@ -39,7 +38,7 @@ if (tmpClusterSSA_a) {
   }
   $(a);
 } else {
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -48,11 +47,10 @@ if (tmpClusterSSA_a) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const tmpClusterSSA_a = b[tmpMCCP](1);
-if (tmpClusterSSA_a) {
+let a = b[tmpMCCP](1);
+if (a) {
   while (true) {
     $(1);
     const tmpMCCP$1 = $(`\$`);
@@ -63,7 +61,7 @@ if (tmpClusterSSA_a) {
   }
   $(a);
 } else {
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -72,28 +70,27 @@ if (tmpClusterSSA_a) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( "$" );
-const c = { $: $ };
-const d = c[ b ];
-const e = $dotCall( d, c, undefined, 1 );
-if (e) {
+const a = $( "$" );
+const b = { $: $ };
+const c = b[ a ];
+let d = $dotCall( c, b, undefined, 1 );
+if (d) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const f = $( "$" );
-    const g = c[ f ];
-    a = $dotCall( g, c, undefined, 1 );
-    if (a) {
+    const e = $( "$" );
+    const f = b[ e ];
+    d = $dotCall( f, b, undefined, 1 );
+    if (d) {
 
     }
     else {
       break;
     }
   }
-  $( a );
+  $( d );
 }
 else {
-  $( e );
+  $( d );
 }
 `````
 

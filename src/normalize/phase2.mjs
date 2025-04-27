@@ -114,6 +114,7 @@ import { arrCoerce } from '../reduce_static/arr_coerce.mjs';
 
 export const ORDER = [
   ['redundantInit', redundantInit],
+  ['assignHoisting', assignHoisting],
   ['dotcallSelfAssigning', dotcallSelfAssigning], // This is a real fast one, it only walks the dotcalls
   ['freeFuncs', freeFuncs], // Do this first...?
   ['frfrTricks', frfrTricks],
@@ -133,7 +134,6 @@ export const ORDER = [
   ['aliasedGlobals', aliasedGlobals],
   ['freeNested', freeNested], // I think it's fine to do this early
   ['simplifyDotCall', simplifyDotCall],
-  ['assignHoisting', assignHoisting],
   ['ifFlipping', ifFlipping],
   ['staticLets', staticLets],
   ['pruneEmptyFunctions', pruneEmptyFunctions],

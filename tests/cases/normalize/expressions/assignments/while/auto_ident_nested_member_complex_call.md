@@ -23,7 +23,6 @@ $(a, b, c, d);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { x: 1 };
 const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
@@ -33,6 +32,7 @@ const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(3);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+let a /*:unknown*/ = tmpInitAssignLhsComputedRhs;
 if (tmpInitAssignLhsComputedRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -51,7 +51,7 @@ if (tmpInitAssignLhsComputedRhs) {
   }
   $(a, b, c, 3);
 } else {
-  $(tmpInitAssignLhsComputedRhs, b, c, 3);
+  $(a, b, c, 3);
 }
 `````
 
@@ -60,7 +60,6 @@ if (tmpInitAssignLhsComputedRhs) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
@@ -70,6 +69,7 @@ const tmpInitAssignLhsComputedProp = $(`y`);
 const tmpInitAssignLhsComputedRhs = $(3);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpInitAssignLhsComputedRhs;
+let a = tmpInitAssignLhsComputedRhs;
 if (tmpInitAssignLhsComputedRhs) {
   while (true) {
     $(100);
@@ -87,7 +87,7 @@ if (tmpInitAssignLhsComputedRhs) {
   }
   $(a, b, c, 3);
 } else {
-  $(tmpInitAssignLhsComputedRhs, b, c, 3);
+  $(a, b, c, 3);
 }
 `````
 
@@ -96,27 +96,27 @@ if (tmpInitAssignLhsComputedRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const c = $( b );
-const d = $( "x" );
-const e = { y: 2 };
-const f = $( e );
-const g = $( "y" );
-const h = $( 3 );
-f[g] = h;
-c[d] = h;
-if (h) {
+const a = { x: 1 };
+const b = $( a );
+const c = $( "x" );
+const d = { y: 2 };
+const e = $( d );
+const f = $( "y" );
+const g = $( 3 );
+e[f] = g;
+b[c] = g;
+let h = g;
+if (g) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const i = $( b );
+    const i = $( a );
     const j = $( "x" );
-    const k = $( e );
+    const k = $( d );
     const l = $( "y" );
     const m = $( 3 );
     k[l] = m;
     i[j] = m;
-    a = m;
+    h = m;
     if (m) {
 
     }
@@ -124,10 +124,10 @@ if (h) {
       break;
     }
   }
-  $( a, b, e, 3 );
+  $( h, a, d, 3 );
 }
 else {
-  $( h, b, e, 3 );
+  $( h, a, d, 3 );
 }
 `````
 

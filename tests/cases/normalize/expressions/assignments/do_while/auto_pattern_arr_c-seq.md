@@ -23,14 +23,13 @@ $(a);
 `````js filename=intro
 const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 [...tmpBindingPatternArrRoot];
-let a /*:unknown*/ = undefined;
 $(100);
 $(10);
 $(20);
 const tmpCalleeParam /*:array*/ = [1, 2];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat$1 /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_a /*:unknown*/ = tmpArrPatternSplat$1[0];
+let a /*:unknown*/ = tmpArrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -47,7 +46,7 @@ if (tmpNestedAssignArrPatternRhs) {
   }
   $(a);
 } else {
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -58,12 +57,11 @@ if (tmpNestedAssignArrPatternRhs) {
 `````js filename=intro
 const tmpBindingPatternArrRoot = { a: 999, b: 1000 };
 [...tmpBindingPatternArrRoot];
-let a = undefined;
 $(100);
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = $([1, 2]);
-const tmpClusterSSA_a = [...tmpNestedAssignArrPatternRhs][0];
+let a = [...tmpNestedAssignArrPatternRhs][0];
 if (tmpNestedAssignArrPatternRhs) {
   while (true) {
     $(100);
@@ -77,7 +75,7 @@ if (tmpNestedAssignArrPatternRhs) {
   }
   $(a);
 } else {
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -91,34 +89,33 @@ const a = {
   b: 1000,
 };
 [ ...a ];
-let b = undefined;
 $( 100 );
 $( 10 );
 $( 20 );
-const c = [ 1, 2 ];
-const d = $( c );
-const e = [ ...d ];
-const f = e[ 0 ];
-if (d) {
+const b = [ 1, 2 ];
+const c = $( b );
+const d = [ ...c ];
+let e = d[ 0 ];
+if (c) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
     $( 10 );
     $( 20 );
-    const g = [ 1, 2 ];
-    const h = $( g );
-    const i = [ ...h ];
-    b = i[ 0 ];
-    if (h) {
+    const f = [ 1, 2 ];
+    const g = $( f );
+    const h = [ ...g ];
+    e = h[ 0 ];
+    if (g) {
 
     }
     else {
       break;
     }
   }
-  $( b );
+  $( e );
 }
 else {
-  $( f );
+  $( e );
 }
 `````
 

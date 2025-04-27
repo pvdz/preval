@@ -21,11 +21,10 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 $(100);
 const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
+let a /*:unknown*/ = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
@@ -39,7 +38,7 @@ if (tmpNestedAssignObjPatternRhs) {
   }
   $(a);
 } else {
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -48,10 +47,9 @@ if (tmpNestedAssignObjPatternRhs) {
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 $(100);
 const tmpNestedAssignObjPatternRhs = $({ a: 1, b: 2 });
-const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+let a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   while (true) {
     $(100);
@@ -63,7 +61,7 @@ if (tmpNestedAssignObjPatternRhs) {
   }
   $(a);
 } else {
-  $(tmpClusterSSA_a);
+  $(a);
 }
 `````
 
@@ -72,34 +70,33 @@ if (tmpNestedAssignObjPatternRhs) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
 $( 100 );
-const b = {
+const a = {
   a: 1,
   b: 2,
 };
-const c = $( b );
-const d = c.a;
-if (c) {
+const b = $( a );
+let c = b.a;
+if (b) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const e = {
+    const d = {
       a: 1,
       b: 2,
     };
-    const f = $( e );
-    a = f.a;
-    if (f) {
+    const e = $( d );
+    c = e.a;
+    if (e) {
 
     }
     else {
       break;
     }
   }
-  $( a );
+  $( c );
 }
 else {
-  $( d );
+  $( c );
 }
 `````
 

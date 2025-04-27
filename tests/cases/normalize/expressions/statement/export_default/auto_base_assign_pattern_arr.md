@@ -21,16 +21,15 @@ $(a, b);
 
 
 `````js filename=intro
-let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
-tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+const b /*:unknown*/ = tmpArrPatternSplat[0];
+const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignArrPatternRhs;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
+$(a, b);
 `````
 
 
@@ -38,13 +37,12 @@ $(a, tmpClusterSSA_b);
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
 const tmpArrElement = $(2);
 const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
-const tmpClusterSSA_b = [...tmpNestedAssignArrPatternRhs][0];
-tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+const b = [...tmpNestedAssignArrPatternRhs][0];
+const tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
 export { tmpAnonDefaultExport as default };
-$({ a: 999, b: 1000 }, tmpClusterSSA_b);
+$({ a: 999, b: 1000 }, b);
 `````
 
 
@@ -52,19 +50,18 @@ $({ a: 999, b: 1000 }, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 2 );
-const c = [ b ];
-const d = $( c );
-const e = [ ...d ];
-const f = e[ 0 ];
-a = d;
-export { a as default };
+const a = $( 2 );
+const b = [ a ];
+const c = $( b );
+const d = [ ...c ];
+const e = d[ 0 ];
+const f = c;
+export { f as default };
 const g = {
   a: 999,
   b: 1000,
 };
-$( g, f );
+$( g, e );
 `````
 
 
@@ -73,7 +70,6 @@ $( g, f );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
-- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
 
 
 ## Globals

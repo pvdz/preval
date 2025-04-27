@@ -19,12 +19,12 @@
 // ```
 //
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, todo } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat, findBodyOffset, todo, currentState } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function assignHoisting(fdata) {
   group('\n\n\n[assignHoisting] Checking for assignments that are actually a decl init');
-  //currentState(fdata, 'assignHoisting'. true);
+  currentState(fdata, 'assignHoisting', true);
   const r = _assignHoisting(fdata);
   groupEnd();
   return r;
@@ -63,103 +63,122 @@ function processAttempt(fdata) {
     vgroupEnd();
   });
 
-  function process(meta, name) {
+  function process(meta, metaName) {
     const rwOrder = meta.rwOrder;
     const first = rwOrder[0];
     if (first.action !== 'write' || first.kind !== 'var') return;
-    vlog(
-      '`' + name + '`:',
-      rwOrder.map((ref) => ref.action + ':' + ref.kind),
-    );
-    let n = 1;
-    while (n < rwOrder.length && rwOrder[n].pfuncNode !== first.pfuncNode) ++n;
-    if (n >= rwOrder.length) {
-      vlog('No same scoped ref after the decl');
-      return;
+
+    // So we have a let decl and the first write in that scope after the decl.
+    // Now we must confirm whether they can be combined.
+    // We can do that when there's zero or more var statements between decl and assign, nothing else, and:
+    // - Back to back; the merge is trivial
+    //   - `let x = y; x = 2`
+    // - Single scope, no prev ref, assign is second ref; I don't think this can leak so it should be safe to move down?
+    //   - `let x = f(); const y = z(); x = g()`
+    //   - this is a superset of the back-to-back rule
+    // - multi-scope -> rest doesn't matter because var might be closure already; so only when no spying in between
+    //
+    // In this context a value is "pure" when it doesn't reference any other value and can't trigger a spy.
+
+    function isPure(node) {
+      if (AST.isPrimitive(node)) return true;
+      switch (node.type) {
+        case 'FunctionExpression': return true;
+        case 'ArrayExpression': return node.elements.every(enode => !enode || (enode.type !== 'SpreadElement' && isPure(enode)));
+        case 'ObjectExpression': return node.properties.every(pnode => pnode.type !== 'SpreadElement' && (!pnode.computed || isPure(pnode.key)) && isPure(pnode.value));
+        // Classes are probably okay similar to objects
+        case 'EmptyStatement': return true;
+        case 'VarStatement': return isPure(node.init);
+        case 'DebuggerStatement': return true; // Rare case but I think it's fine. This means a param is re-assigned and not observed.
+      }
+      return false;
     }
-    vlog('First ref index in same scope as and after the decl:', n);
 
-    let second = rwOrder[n];
-    if (first.blockBody !== second.blockBody) {
-      // TODO: we can improve on this one but let's keep it simple for now
-      vlog('second ref is not in same block');
-      return;
-    }
-    if (second.action !== 'write') {
-      vlog('second ref not a write');
-      return;
-    }
-    if (second.kind !== 'assign') {
-      vlog('second ref not an assign');
-      return;
-    }
+    if (meta.singleScoped) {
+      const second = meta.rwOrder[1];
+      if (first.blockBody !== second?.blockBody) return vlog('- bail: second ref is not in same block as decl');
+      if (second.action !== 'write') return vlog('- bail: second ref of single scoped var is not a write');
+      if (second.kind !== 'assign') return vlog('- bail: write is not an assign...', second.kind);
 
-    vlog('First ref in same scope after the var decl is an assign.');
-    vlog(first.action, first.kind, second.action, second.kind);
+      // The simpler case; the var should be the first write (tdz if not) and the init
+      // is unobservable. As such, it should be safe to change the init to an expr stmt
+      // and move the decl to the assignment spot.
 
-    const block = first.blockBody;
-    const start = first.blockIndex;
-    const stop = second.blockIndex;
+      const firstNode = first.blockBody[first.blockIndex];
+      const secondNode = second.blockBody[second.blockIndex];
 
-    ASSERT(block[stop]?.expression?.type === 'AssignmentExpression');
-    ASSERT(
-      block[stop].expression.left.name === name,
-      'the second write was an assignment ref so this should be an assign to ident and the ident should match the name',
-    );
+      ASSERT(secondNode.expression.type === 'AssignmentExpression' && secondNode.expression.left.type === 'Identifier' && secondNode.expression.left.name === metaName, 'umm, help fixme', metaName, secondNode);
 
-    let index = start + 1;
-    while (index < stop) {
-      const node = block[index];
+      rule('A single scoped decl whose init is not observed should move the decl to the first assign');
+      example('let x = undefined; let y = f(); x = y;', 'undefined; let y = f(); let x = y;');
+      before(firstNode);
+      before(secondNode);
 
-      if (node.type === 'ExpressionStatement' && node.expression.type === 'AssignmentExpression') {
-        // The lhs is allowed to be a local reference
-        if (node.$p.reffedNamesCache === undefined) {
-          const set = AST.ssaFindIdentRefs(node.expression.right);
-          node.$p.reffedNamesCache = set && [...set];
-        }
-      } else if (node.type === 'VarStatement') {
-        // The lhs is allowed to be a local reference
-        if (node.$p.reffedNamesCache === undefined) {
-          const set = AST.ssaFindIdentRefs(node.init)
-          node.$p.reffedNamesCache = set && [...set];
-        }
-      } else if (node.type === 'ExpressionStatement') {
-        if (node.$p.reffedNamesCache === undefined) {
-          const set = AST.ssaFindIdentRefs(node);
-          node.$p.reffedNamesCache = set && [...set];
-        }
+      // Some nodes are irrelevant as statements and we should avoid them.
+      if (['Param', 'FunctionExpression'].includes(firstNode.init.type)) {
+        first.blockBody[first.blockIndex] = AST.emptyStatement();
       } else {
-        // Ignore other statements
-        return;
+        first.blockBody[first.blockIndex] = AST.expressionStatement(firstNode.init);
       }
+      second.blockBody[second.blockIndex] = AST.varStatement('let', metaName, secondNode.expression.right);
 
-      const reffedNames = node.$p.reffedNamesCache;
-      if (reffedNames === false) break;
-      ASSERT(reffedNames, 'see above');
+      after(first.blockBody[first.blockIndex]);
+      after(second.blockBody[second.blockIndex]);
+      updated += 1;
+      return;
+    } else {
+      // More complex case. We must ensure that any statement in between cannot spy.
+      // Only then are we in the same situation as the single scoped case.
 
-      if (
-        reffedNames.some((name) => meta.bfuncNode.$p.ownBindings.has(name) && !meta.bfuncNode.$p.paramNames.includes(name)) &&
-        !AST.expressionHasNoObservableSideEffect(node)
-      ) {
-        vlog('The next statement uses at least one local binding or could observe it and it was not a param name.');
-        return;
+      vlog('Multi-scoped closure. Discovering next ref...');
+
+      // First we must discover the next ref in the same scope as the decl. And confirm that's a write.
+
+      let n = 1;
+      while (n < rwOrder.length && rwOrder[n].blockBody !== first.blockBody) ++n;
+      if (n >= rwOrder.length) {
+        return vlog('- bail: decl has no immediate write in same block');;
       }
-      ++index;
+      vlog('First ref index in same scope as and after the decl:', n);
+      let second = rwOrder[n];
+      ASSERT(second);
+      if (second.action !== 'write') return vlog('- bail: ref is not a write');
+      if (second.kind !== 'assign') return vlog('- bail: write is not an assign...', second.kind);
+
+      const block = first.blockBody;
+      const start = first.blockIndex;
+      const stop = second.blockIndex;
+
+      let failed = false;
+      for (let i=start+1; i<stop; ++i) {
+        vlog('  - testing body['+ i + ']:', block[i]?.type, block[i]?.init?.type ?? block[i]?.expression?.type ?? '');
+        if (!isPure(block[i])) {
+          failed = true;
+          break;
+        }
+      }
+      if (failed) return vlog('- bail: unpure statement between');
+
+      vlog('all statements between the decl and the next ref have no observable side effects');
+
+      rule('If there are no observable side effects between a decl and its first write then the first write becomes a var decl');
+      example('let x = undefined; let f = function(){}; x = 10;', 'undefined; let = function(){}; let x = 10;');
+      before(block[start]);
+      before(block[stop]);
+
+      // Some nodes are irrelevant as statements and we should avoid them.
+      if (['Param', 'FunctionExpression'].includes(block[start].init.type)) {
+        block[start] = AST.emptyStatement();
+      } else {
+        block[start] = AST.expressionStatement(block[start].init);
+      }
+      block[stop] = AST.varStatement('let', block[stop].expression.left, block[stop].expression.right);
+
+      after(block[start]);
+      after(block[stop]);
+      updated += 1;
+      return;
     }
-
-    vlog('all statements between the decl and the next ref have no observable side effects');
-
-    rule('If there are no observable side effects between a decl and its first write then the first write becomes a var decl');
-    example('let x = undefined; let f = function(){}; x = 10;', 'undefined; let = function(){}; let x = 10;');
-    before(block[start]);
-    before(block[stop]);
-
-    block[start] = AST.expressionStatement(block[start].init);
-    block[stop] = AST.varStatement('let', block[stop].expression.left, block[stop].expression.right);
-
-    after(block[start]);
-    after(block[stop]);
-    ++updated;
   }
 
   return updated;

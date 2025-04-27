@@ -20,14 +20,13 @@ $(a, b);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-a = tmpNestedAssignObjPatternRhs;
+const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+const a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
 export { a };
-$(a, tmpClusterSSA_b);
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 
@@ -35,13 +34,12 @@ $(a, tmpClusterSSA_b);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const tmpObjLitVal = $(2);
 const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-a = tmpNestedAssignObjPatternRhs;
+const b = tmpNestedAssignObjPatternRhs.b;
+const a = tmpNestedAssignObjPatternRhs;
 export { a };
-$(a, tmpClusterSSA_b);
+$(tmpNestedAssignObjPatternRhs, b);
 `````
 
 
@@ -49,21 +47,20 @@ $(a, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( 2 );
-const c = { b: b };
-const d = $( c );
-const e = d.b;
-a = d;
-export { a as a };
-$( a, e );
+const a = $( 2 );
+const b = { b: a };
+const c = $( b );
+const d = c.b;
+const e = c;
+export { e as a };
+$( c, d );
 `````
 
 
 ## Todos triggered
 
 
-- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? ExportNamedDeclaration
+None
 
 
 ## Globals

@@ -21,74 +21,18 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = undefined;
 const b /*:object*/ = { $: $ };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const tmpNewCallee /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 new tmpNewCallee(1);
-$(1);
-const tmpCompObj$1 /*:unknown*/ = $(b);
-const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
-new tmpNewCallee$1(1);
-$(1);
-const tmpCompObj$2 /*:unknown*/ = $(b);
-const tmpCalleeParam$2 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$2 /*:unknown*/ = tmpCompObj$2[tmpCalleeParam$2];
-new tmpNewCallee$2(1);
-$(1);
-const tmpCompObj$3 /*:unknown*/ = $(b);
-const tmpCalleeParam$3 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$3 /*:unknown*/ = tmpCompObj$3[tmpCalleeParam$3];
-new tmpNewCallee$3(1);
-$(1);
-const tmpCompObj$4 /*:unknown*/ = $(b);
-const tmpCalleeParam$4 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$4 /*:unknown*/ = tmpCompObj$4[tmpCalleeParam$4];
-new tmpNewCallee$4(1);
-$(1);
-const tmpCompObj$5 /*:unknown*/ = $(b);
-const tmpCalleeParam$5 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$5 /*:unknown*/ = tmpCompObj$5[tmpCalleeParam$5];
-new tmpNewCallee$5(1);
-$(1);
-const tmpCompObj$6 /*:unknown*/ = $(b);
-const tmpCalleeParam$6 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$6 /*:unknown*/ = tmpCompObj$6[tmpCalleeParam$6];
-new tmpNewCallee$6(1);
-$(1);
-const tmpCompObj$7 /*:unknown*/ = $(b);
-const tmpCalleeParam$7 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$7 /*:unknown*/ = tmpCompObj$7[tmpCalleeParam$7];
-new tmpNewCallee$7(1);
-$(1);
-const tmpCompObj$8 /*:unknown*/ = $(b);
-const tmpCalleeParam$8 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$8 /*:unknown*/ = tmpCompObj$8[tmpCalleeParam$8];
-new tmpNewCallee$8(1);
-$(1);
-const tmpCompObj$9 /*:unknown*/ = $(b);
-const tmpCalleeParam$9 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$9 /*:unknown*/ = tmpCompObj$9[tmpCalleeParam$9];
-new tmpNewCallee$9(1);
-$(1);
-const tmpCompObj$10 /*:unknown*/ = $(b);
-const tmpCalleeParam$10 /*:unknown*/ = $(`\$`);
-const tmpNewCallee$10 /*:unknown*/ = tmpCompObj$10[tmpCalleeParam$10];
-new tmpNewCallee$10(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
-  const tmpCompObj$11 /*:unknown*/ = $(b);
-  const tmpCalleeParam$11 /*:unknown*/ = $(`\$`);
-  const tmpNewCallee$11 /*:unknown*/ = tmpCompObj$11[tmpCalleeParam$11];
-  a = new tmpNewCallee$11(1);
-  if (a) {
-  } else {
-    break;
-  }
+  const tmpCompObj$1 /*:unknown*/ = $(b);
+  const tmpCalleeParam$1 /*:unknown*/ = $(`\$`);
+  const tmpNewCallee$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
+  new tmpNewCallee$1(1);
 }
-$(a);
 `````
 
 
@@ -96,73 +40,18 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-let a = undefined;
 const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCalleeParam];
 new tmpNewCallee(1);
-$(1);
-const tmpCompObj$1 = $(b);
-const tmpCalleeParam$1 = $(`\$`);
-const tmpNewCallee$1 = tmpCompObj$1[tmpCalleeParam$1];
-new tmpNewCallee$1(1);
-$(1);
-const tmpCompObj$2 = $(b);
-const tmpCalleeParam$2 = $(`\$`);
-const tmpNewCallee$2 = tmpCompObj$2[tmpCalleeParam$2];
-new tmpNewCallee$2(1);
-$(1);
-const tmpCompObj$3 = $(b);
-const tmpCalleeParam$3 = $(`\$`);
-const tmpNewCallee$3 = tmpCompObj$3[tmpCalleeParam$3];
-new tmpNewCallee$3(1);
-$(1);
-const tmpCompObj$4 = $(b);
-const tmpCalleeParam$4 = $(`\$`);
-const tmpNewCallee$4 = tmpCompObj$4[tmpCalleeParam$4];
-new tmpNewCallee$4(1);
-$(1);
-const tmpCompObj$5 = $(b);
-const tmpCalleeParam$5 = $(`\$`);
-const tmpNewCallee$5 = tmpCompObj$5[tmpCalleeParam$5];
-new tmpNewCallee$5(1);
-$(1);
-const tmpCompObj$6 = $(b);
-const tmpCalleeParam$6 = $(`\$`);
-const tmpNewCallee$6 = tmpCompObj$6[tmpCalleeParam$6];
-new tmpNewCallee$6(1);
-$(1);
-const tmpCompObj$7 = $(b);
-const tmpCalleeParam$7 = $(`\$`);
-const tmpNewCallee$7 = tmpCompObj$7[tmpCalleeParam$7];
-new tmpNewCallee$7(1);
-$(1);
-const tmpCompObj$8 = $(b);
-const tmpCalleeParam$8 = $(`\$`);
-const tmpNewCallee$8 = tmpCompObj$8[tmpCalleeParam$8];
-new tmpNewCallee$8(1);
-$(1);
-const tmpCompObj$9 = $(b);
-const tmpCalleeParam$9 = $(`\$`);
-const tmpNewCallee$9 = tmpCompObj$9[tmpCalleeParam$9];
-new tmpNewCallee$9(1);
-$(1);
-const tmpCompObj$10 = $(b);
-const tmpCalleeParam$10 = $(`\$`);
-const tmpNewCallee$10 = tmpCompObj$10[tmpCalleeParam$10];
-new tmpNewCallee$10(1);
 while (true) {
   $(1);
-  const tmpCompObj$11 = $(b);
-  const tmpCalleeParam$11 = $(`\$`);
-  const tmpNewCallee$11 = tmpCompObj$11[tmpCalleeParam$11];
-  a = new tmpNewCallee$11(1);
-  if (!a) {
-    break;
-  }
+  const tmpCompObj$1 = $(b);
+  const tmpCalleeParam$1 = $(`\$`);
+  const tmpNewCallee$1 = tmpCompObj$1[tmpCalleeParam$1];
+  new tmpNewCallee$1(1);
 }
-$(a);
 `````
 
 
@@ -170,76 +59,18 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = { $: $ };
-const c = $( b );
-const d = $( "$" );
-const e = c[ d ];
-new e( 1 );
-$( 1 );
-const f = $( b );
-const g = $( "$" );
-const h = f[ g ];
-new h( 1 );
-$( 1 );
-const i = $( b );
-const j = $( "$" );
-const k = i[ j ];
-new k( 1 );
-$( 1 );
-const l = $( b );
-const m = $( "$" );
-const n = l[ m ];
-new n( 1 );
-$( 1 );
-const o = $( b );
-const p = $( "$" );
-const q = o[ p ];
-new q( 1 );
-$( 1 );
-const r = $( b );
-const s = $( "$" );
-const t = r[ s ];
-new t( 1 );
-$( 1 );
-const u = $( b );
-const v = $( "$" );
-const w = u[ v ];
-new w( 1 );
-$( 1 );
-const x = $( b );
-const y = $( "$" );
-const z = x[ y ];
-new z( 1 );
-$( 1 );
-const ba = $( b );
-const bb = $( "$" );
-const bc = ba[ bb ];
-new bc( 1 );
-$( 1 );
-const bd = $( b );
-const be = $( "$" );
-const bf = bd[ be ];
-new bf( 1 );
-$( 1 );
-const bg = $( b );
-const bh = $( "$" );
-const bi = bg[ bh ];
-new bi( 1 );
+const a = { $: $ };
+const b = $( a );
+const c = $( "$" );
+const d = b[ c ];
+new d( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
-  const bj = $( b );
-  const bk = $( "$" );
-  const bl = bj[ bk ];
-  a = new bl( 1 );
-  if (a) {
-
-  }
-  else {
-    break;
-  }
+  const e = $( a );
+  const f = $( "$" );
+  const g = e[ f ];
+  new g( 1 );
 }
-$( a );
 `````
 
 

@@ -665,7 +665,7 @@ export function createWriteRef(obj) {
     innerTrap,
     innerCatch,
 
-
+    // Ref tracking:
     reachedByReads: new Set(), // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
     reachedByWrites: new Set(), // Set<Read>. All writes that can "reach" this write (this write shadows theirs)
     reachesWrites: new Set(), // Set<Write>. The previous writes to this binding this write can reach. Used for redundant let write detection.
@@ -2526,7 +2526,10 @@ function exprNodeMightMutateNameUntrapped(expr, singleScope, includeProperties) 
   }
 
   // Expr may be operator that coerces the value, triggering toString/valueOf
-  if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
+  if (AST.isPrimitive(expr)) {
+    vlog('Rhs is primitive');
+  }
+  else if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
     // Can not cause mutation of metaName unless lhs is it, and it wasn't
     vlog('Rhs has no observable side effect');
   }
@@ -2649,7 +2652,10 @@ function exprContainsMutate(expr, metaName, asSideEffect, includeProperties) {
   }
 
   // Rhs may be operator that coerces the value, triggering toString/valueOf
-  if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
+  if (AST.isPrimitive(expr)) {
+    // Can not cause mutation of metaName unless lhs is it, and it wasn't
+    vlog('Rhs is primitive');
+  } else if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
     // Can not cause mutation of metaName unless lhs is it, and it wasn't
     vlog('Rhs has no observable side effect');
   } else if (expr.type === 'TemplateLiteral') {

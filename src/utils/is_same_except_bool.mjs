@@ -43,8 +43,7 @@ export function isSameFlatStatementExceptBool(nodeA, nodeB, collect) {
     }
 
     default:
-      ASSERT(!['EmptyStatement', 'BlockStatement'].includes(nodeA.type), 'should not have certain statements in normalized code', nodeA.type);
-      ASSERT(['IfStatement', 'WhileStatement', 'TryStatement', 'LabeledStatement', 'DebuggerStatement'].includes(nodeA.type), 'what statement is this missing?', nodeA.type);
+      ASSERT(['EmptyStatement', 'BlockStatement', 'IfStatement', 'WhileStatement', 'TryStatement', 'LabeledStatement', 'DebuggerStatement'].includes(nodeA.type), 'what statement is this missing?', nodeA.type);
       return false;
   }
 }

@@ -449,8 +449,8 @@ function _arrMutation(fdata) {
                     // We can expand on this but there's not that much meat on the bone for other statements here.
                     if (write.blockBody[i].type !== 'VarStatement') break;
                     // There's not many things that are absolutely safe. But we can also support array/object/class here as
-                    // well as some cases of unary/binary expression when we know the args are prims. And prims.
-                    if (write.blockBody[i].init.type !== 'FunctionExpression') break;
+                    // well as some cases of unary/binary expression when we know the args are prims.
+                    if (write.blockBody[i].init.type !== 'FunctionExpression' && !AST.isPrimitive(write.blockBody[i].init)) break;
                   }
                 }
                 if (noopBetween) {
@@ -580,8 +580,8 @@ function _arrMutation(fdata) {
               // We can expand on this but there's not that much meat on the bone for other statements here.
               if (write.blockBody[i].type !== 'VarStatement') break;
               // There's not many things that are absolutely safe. But we can also support array/object/class here as
-              // well as some cases of unary/binary expression when we know the args are prims. And prims.
-              if (write.blockBody[i].init.type !== 'FunctionExpression') break;
+              // well as some cases of unary/binary expression when we know the args are prims.
+              if (write.blockBody[i].init.type !== 'FunctionExpression' && !AST.isPrimitive(write.blockBody[i].init)) break;
             }
           }
           vlog('- back2back=', noopBetween);

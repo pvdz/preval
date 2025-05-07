@@ -674,7 +674,6 @@ function _pruneTrampolineFunctions(fdata) {
   }
 
   log('Trampolines inlined: 0.');
-  return false;
 }
 
 function isDeclaredVarReturned(stmt2, ret) {

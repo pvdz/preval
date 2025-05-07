@@ -363,6 +363,9 @@ function _freeNested(fdata, $prng, usePrng) {
             }
 
             vgroup('- move call arg nodes to the var decl for each used param');
+            // We're inlining the free call, right? So we want to map the value passed in by the call we're inlining
+            // to the func being inlined. So we'll find the var statements in the free func header and replace their
+            // Param inits with the arg value nodes. Stop when we find the Debugger function boundary.
             before(calledFreeFuncNode);
             for (let i=0; i<calledFreeFuncNode.body.body.length; ++i) {
               const bnode = calledFreeFuncNode.body.body[i];
@@ -391,7 +394,8 @@ function _freeNested(fdata, $prng, usePrng) {
               ASSERT(calledFreeFuncNode.params[init.index]?.index === init.index, 'index should refer to proper func param', init.index, calledFreeFuncNode.params);
 
               // Updating the init. Note that the frfr first arg is the function, so map the 1-offset.
-              bnode.init = frfrCallArgs[init.index + 1];
+              // If there are fewer args as params then use undefined. This is also why we +1: first call arg is the $free func ref.
+              bnode.init = frfrCallArgs[init.index + 1] || AST.undef();
             }
             after(calledFreeFuncNode);
             vgroupEnd();

@@ -51,6 +51,8 @@ $( "$(1, 2)" );
 
 
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 - (todo) free with zero args, we can eliminate this?
 
 

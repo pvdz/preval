@@ -42,7 +42,7 @@ $dotCall( $console_log, console, "log", a );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

@@ -305,7 +305,8 @@ $( cq );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

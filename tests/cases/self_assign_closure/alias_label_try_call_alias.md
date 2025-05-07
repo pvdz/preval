@@ -220,6 +220,7 @@ $( a );
 - (todo) can we support this const aliasing blocking statement? TryStatement
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

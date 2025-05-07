@@ -146,6 +146,7 @@ $( "4747192131040313372212183947471921310403133713" );
 
 
 - (todo) access object property that also exists on prototype? $array_join
+- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

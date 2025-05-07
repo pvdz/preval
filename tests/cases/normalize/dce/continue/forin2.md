@@ -105,7 +105,7 @@ $( "after, wont eval due to infinite loop" );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -50,6 +50,7 @@ $( a );
 
 - (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) arr mutation may be able to inline this method: tmpMCF$1
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

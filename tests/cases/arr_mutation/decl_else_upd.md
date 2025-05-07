@@ -64,7 +64,7 @@ else {
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

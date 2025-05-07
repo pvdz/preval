@@ -68,6 +68,7 @@ $( e );
 - (todo) can we always safely clone ident refs in this case?
 - (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) arr mutation may be able to inline this method: tmpArrElement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

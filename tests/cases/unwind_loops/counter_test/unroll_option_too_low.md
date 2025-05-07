@@ -54,6 +54,7 @@ $( "b" );
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
+- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

@@ -97,6 +97,7 @@ $( i );
 
 
 - (todo) type trackeed tricks can possibly support static $array_constructor
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

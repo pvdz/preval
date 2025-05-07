@@ -109,6 +109,8 @@ $( p );
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_map
 - (todo) type trackeed tricks can possibly support static $array_map
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type ReturnStatement
 - (todo) access object property that also exists on prototype? $map_keys
 - (todo) access object property that also exists on prototype? $map_get
 - (todo) type trackeed tricks can possibly support static $map_keys

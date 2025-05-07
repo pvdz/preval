@@ -56,6 +56,7 @@ $( d );
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_shift
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

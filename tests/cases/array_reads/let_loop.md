@@ -87,6 +87,7 @@ else {
 ## Todos triggered
 
 
+- (todo) support array reads statement type ExpressionStatement
 - (todo) do we want to support ArrayExpression as expression statement in free loops?
 
 

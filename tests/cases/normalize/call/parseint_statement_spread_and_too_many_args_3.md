@@ -52,6 +52,7 @@ $Number_parseInt( ...b, c, d );
 
 
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

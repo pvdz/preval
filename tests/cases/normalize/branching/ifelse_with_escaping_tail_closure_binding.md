@@ -95,7 +95,7 @@ $( undefined );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

@@ -52,6 +52,7 @@ $( a );
 
 
 - (todo) what other ways do member expressions still appear? ExpressionStatement
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

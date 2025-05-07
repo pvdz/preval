@@ -78,6 +78,7 @@ $( a );
 
 
 - (todo) drop unused rest param?
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

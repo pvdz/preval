@@ -423,6 +423,8 @@ $( br );
 
 
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) objects in isFree check
 - (todo) can we always safely clone ident refs in this case?

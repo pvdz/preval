@@ -50,7 +50,8 @@ With rename=true
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ReturnStatement
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

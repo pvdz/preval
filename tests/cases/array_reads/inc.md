@@ -43,6 +43,7 @@ $( 2 );
 ## Todos triggered
 
 
+- (todo) support array reads statement type ExpressionStatement
 - (todo) free with zero args, we can eliminate this?
 - (todo) In some (many?) cases the array can access this value so we could move the rhs into the array...
 

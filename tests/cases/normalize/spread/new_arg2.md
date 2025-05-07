@@ -52,7 +52,7 @@ new $string_constructor( 8.5, 8, ...a );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

@@ -4,23 +4,7 @@
 //    const arr = [1, 2, 3]; x = 2;
 
 import walk from '../../lib/walk.mjs';
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  fmat,
-  tmat,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  findBodyOffset, riskyRule,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function arrayReads(fdata) {
@@ -81,7 +65,7 @@ function _arrayReads(fdata) {
     const blockIndex = parentNode.type === 'VarStatement' ? path.indexes[path.indexes.length - 2] : path.indexes[path.indexes.length - 3];
 
     ASSERT(blockBody && blockIndex >= 0, 'blockbody and blockindex should be available now, in normalized code they should be easy to get', blockBody, blockIndex);
-    ASSERT(lhs?.type === 'Identifier', 'in normalized code we only assign to idents', lhs, parentNode);
+    ASSERT(lhs?.type === 'Identifier', 'in normalized code we only assign expressions to idents', lhs, parentNode);
     const arrName = lhs.name;
     const meta = fdata.globallyUniqueNamingRegistry.get(arrName);
     if (meta.isImplicitGlobal) return vlog('- Assigned to implicit global, bailing');
@@ -212,6 +196,7 @@ function _arrayReads(fdata) {
       }
       else {
         // TODO: This may be a statement that we can ignore but there are many cases to cover here
+        todo(`support array reads statement type ${next.type}`)
         vlog('  - Was "other" statement (', next.type, next.expression?.type, '), bailing');
         return 'bail';
       }
@@ -224,24 +209,39 @@ function _arrayReads(fdata) {
   function withArrayExpr(arrNode, arrName, parentNode, blockBody, blockIndex, arrMeta) {
     if (arrMeta.writes.length === 1 && arrMeta.reads.every(read => {
       return (
+        // Note: we have eliminated calling member expressions in favor of dotcalls so no need to check parent for being call
         read.parentNode.type === 'MemberExpression' &&
         (read.grandNode.type !== 'UnaryExpression' || read.grandNode.operator !== 'delete') &&
-        read.parentNode.computed &&
-        AST.isNumberLiteral(read.parentNode.property) &&
+        //read.parentNode.computed &&
+        //AST.isNumberLiteral(read.parentNode.property) &&
         (read.grandNode.type !== 'AssignmentExpression' || read.grandProp !== 'left') // Not assignment to prop
       );
     })) {
-      // There was one declaration and every read was an indexed access:
-      // array can't mutate and it's totally safe to inline all reads
-
+      // There was one declaration and every read was a property read of some kind.
+      // The array can't mutate and it should be safe to inline all reads that we can resolve.
+      vlog('Array is constant and does not escape so we should be able to inline all primitive refs from the init');
       arrMeta.reads.forEach(read => {
-        const index = AST.getPrimitiveValue(read.parentNode.property);
-        const enode = arrNode.elements[index];
-        if (!enode || AST.isPrimitive(enode)) {
-          const value = enode ? AST.getPrimitiveValue(enode) : undefined;
+        if (read.parentNode.computed && AST.isNumberLiteral(read.parentNode.property)) {
+          const index = AST.getPrimitiveValue(read.parentNode.property);
+          const enode = arrNode.elements[index];
+          if (!enode || AST.isPrimitive(enode)) {
+            const value = enode ? AST.getPrimitiveValue(enode) : undefined;
 
-          rule('A const array that cant mutate can have any indexed prop access inlined');
-          example('const arr = [1, 2, 3]; f(arr[2]);', 'const arr = [1, 2, 3]; f(3);');
+            rule('A const array that cant mutate can have any indexed prop access inlined');
+            example('const arr = [1, 2, 3]; f(arr[2]);', 'const arr = [1, 2, 3]; f(3);');
+            before(read.blockBody[read.blockIndex]);
+
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(value);
+            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(value);
+
+            after(read.blockBody[read.blockIndex]);
+            changes += 1;
+          }
+        } else if (!read.parentNode.computed && read.parentNode.property.name === 'length') {
+          const value = arrNode.elements.length;
+
+          rule('A const array that cant mutate can have .length inlined');
+          example('const arr = [1, 2, 3]; f(arr.length);', 'const arr = [1, 2, 3]; f(3);');
           before(read.blockBody[read.blockIndex]);
 
           if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(value);
@@ -250,6 +250,7 @@ function _arrayReads(fdata) {
           after(read.blockBody[read.blockIndex]);
           changes += 1;
         }
+        // Note: builtin access are inlined elsewhere, no need to repeat that here. even .length above is properly redundant...
       });
 
       // Either way return, if this couldn't inline some access, the next bit can't either.
@@ -257,11 +258,7 @@ function _arrayReads(fdata) {
     }
 
 
-    let index = blockIndex + 1; //
-    if (!blockBody[index]) {
-      vlog('- Array literal was in last statement of owner block, bailing');
-      return;
-    }
+    let index = blockIndex + 1;
 
     walkBlock(blockBody, index, arrNode, arrName)
   }

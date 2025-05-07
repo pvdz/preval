@@ -53,6 +53,7 @@ $( a );
 
 - (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) access object property that also exists on prototype? $array_join
+- (todo) support array reads statement type ExpressionStatement
 - (todo) free with zero args, we can eliminate this?
 
 

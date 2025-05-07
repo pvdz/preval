@@ -93,6 +93,7 @@ else {
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
+- (todo) support array reads statement type WhileStatement
 - (todo) outline any args for tdz
 - (todo) do we want to support Literal as expression statement in free loops?
 

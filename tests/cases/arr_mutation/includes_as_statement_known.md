@@ -55,6 +55,7 @@ $( 3 );
 
 - (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) arr mutation may be able to inline this method: $array_includes
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

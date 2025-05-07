@@ -46,6 +46,7 @@ $( a );
 
 - (todo) arr mutation may be able to inline this method: tmpMCF$1
 - (todo) outline any args for tdz
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

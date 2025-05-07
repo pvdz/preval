@@ -203,6 +203,8 @@ $( q );
 - (todo) type trackeed tricks can possibly support static $array_slice
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) phase1_1 support this array method call? $array_slice
+- (todo) support array reads statement type WhileStatement
+- (todo) support array reads statement type VarStatement
 - (todo) outline any args for tdz
 
 

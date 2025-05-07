@@ -59,6 +59,7 @@ $( "object" );
 
 
 - (todo) drop unused rest param?
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

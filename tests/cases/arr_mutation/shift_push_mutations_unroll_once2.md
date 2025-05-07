@@ -112,7 +112,9 @@ else {
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) type trackeed tricks can possibly support static $array_slice
+- (todo) support array reads statement type WhileStatement
 - (todo) phase1_1 support this array method call? $array_slice
+- (todo) support array reads statement type VarStatement
 - (todo) - at least one of the frfr args was not isFree, bailing
 
 

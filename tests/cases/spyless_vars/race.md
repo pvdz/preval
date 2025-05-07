@@ -51,7 +51,8 @@ $( a, b );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type EmptyStatement
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

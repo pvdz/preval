@@ -96,6 +96,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) access object property that also exists on prototype? $array_reverse
+- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

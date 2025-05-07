@@ -82,6 +82,8 @@ $( f, g, d, e );
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

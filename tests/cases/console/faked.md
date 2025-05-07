@@ -78,7 +78,7 @@ $dotCall( $console_groupEnd, console, "groupEnd", "a", "b", ...c );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

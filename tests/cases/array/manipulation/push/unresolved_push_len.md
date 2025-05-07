@@ -58,6 +58,7 @@ $( 4 );
 
 
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

@@ -47,6 +47,8 @@ $( "," );
 
 
 - (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

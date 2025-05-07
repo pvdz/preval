@@ -121,7 +121,7 @@ $( l );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ReturnStatement
 
 
 ## Globals

@@ -76,6 +76,7 @@ $( a );
 - (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) outline any args for tdz
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

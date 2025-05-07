@@ -416,7 +416,6 @@ export function registerGlobalIdent(
     isCatchVar: false, // Set by phase1 TryStatement:after on catch vars
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
     bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits/Program. Should be set for anything else (which is only var decls after normalization).
-    rwOrder: undefined, // Array<read|write>. Sorted in DFS order ASC, once at the start of phase2
     singleScoped: undefined, // bool. Is there any reference inside a different scope from another ref? Set at the start of phase2.
     singleInner: undefined, // bool. Are all references of this binding in the same scope/catch?
     //singleScopeWrites: undefined, // bool. Are all writes to this binding happening in the same scope? Set at the start of phase2. (Always true for constants)
@@ -462,6 +461,7 @@ export function registerGlobalIdent(
     // - [x] function declarations
     // - [ ] update expressions, pre or postifx, inc or dec
     // - [ ] for-loop lhs
+    rwOrder: [], // Array<read|write>. Sorted in DFS order ASC, once at the start of phase2
     writes: [], // {parent, prop, index} indirect reference ot the node being assigned. In phase1 (only); If not implicit/builtin then the first write should be the decl. Note that reads and writes can legally appear in source/ast before decl.
     reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
 

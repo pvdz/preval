@@ -63,6 +63,7 @@ function processAttempt(fdata) {
 
   function process(meta, metaName) {
     const rwOrder = meta.rwOrder;
+    ASSERT(rwOrder, 'theres a meta without order? wow', meta); // This was the case at least at one point.
     if (rwOrder.length <= 1) return vlog('- bail: there is no second ref');
     const first = rwOrder[0];
     if (first.action !== 'write' || first.kind !== 'var') return;

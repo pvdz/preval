@@ -25,6 +25,8 @@ export function useRiskyRules() {
   return !!ALLOW_RISKY_RULES;
 }
 
+export const ENABLE_REF_TRACKING = true;
+
 export let REF_TRACK_TRACING = false;
 export function setRefTracing(bool) {
   REF_TRACK_TRACING = bool;

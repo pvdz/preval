@@ -1,6 +1,6 @@
 import walk from '../../lib/walk.mjs';
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET, setVerboseTracing, PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, currentState, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, currentState, ENABLE_REF_TRACKING, } from '../utils.mjs';
 import { $p, resetUid, getUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
 import { createReadRef, createWriteRef, getCleanTypingObject, getIdentUsageKind, getUnknownTypingObject, inferNodeTyping, mergeTyping, registerGlobalIdent, } from '../bindings.mjs';
@@ -36,8 +36,6 @@ import {
 } from '../utils/ref_tracking.mjs';
 import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
-
-const ENABLE_REF_TRACKING = true;
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.

@@ -645,9 +645,11 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
       // We kind of assume that negative literals are the only case where a unary expression may appear
       // as child of another expression. Don't hate me, future self.
       if (exprNode.operator === '-') {
+        vlog('- compiling negative unary');
         if (AST.isNumberLiteral(exprNode.argument)) {
-          const newNode = AST.primitive(-AST.getPrimitiveValue(exprNode.argument));
-          return compileExpression(newNode, regs, fdata, stmt);
+          // We basically do the double negation here. -(-n) -> n
+          const newNode = AST.primitive(-AST.getPrimitiveValue(exprNode));
+          return ['neg', ...compileExpression(newNode, regs, fdata, stmt)];
         }
         return ['neg', ...compileExpression(exprNode.argument, regs, fdata, stmt)];
       }

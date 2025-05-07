@@ -5,7 +5,6 @@ import { REF_TRACK_TRACING } from './utils.mjs';
 /**
  * All blocks have this
  * @see createTreblo where this is created for comments
- * Previously known as OpenRefsN
  *
  * @typedef {
  *  {
@@ -24,10 +23,12 @@ import { REF_TRACK_TRACING } from './utils.mjs';
  */
 
 /**
+ * @param {RefTrackState} refTrackState
  * @param {Set<string>} alreadyDefined
  * @param {Map<string, Set<Write>>} currentParentExitWrites
  */
 export function createTreblo(
+  refTrackState,
   alreadyDefined,
   currentParentExitWrites,
 ) {

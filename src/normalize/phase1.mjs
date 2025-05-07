@@ -32,10 +32,12 @@ import {
   openRefsOnAfterReturn,
   openRefsOnAfterThrow,
   openRefsOnBeforeLabel,
-  openRefsOnAfterLabel,
+  openRefsOnAfterLabel, createState,
 } from '../utils/ref_tracking.mjs';
 import { addLabelReference, registerGlobalLabel } from '../labels.mjs';
 import { SYMBOL_COERCE } from '../symbols_preval.mjs';
+
+const ENABLE_REF_TRACKING = true;
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
@@ -124,6 +126,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   }
 
   resetUid();
+
+  const refTrackState = createState();
 
   const tracingValueBefore = VERBOSE_TRACING;
   if (!verboseTracing && (passes > 1 || phase1s > 1)) {
@@ -226,7 +230,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         blockIds.push(+node.$p.pid);
         blockStack.push(node); // Do we assign node or node.body?
 
-        openRefsOnBeforeProgram(node);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeProgram(refTrackState, node);
 
         node.$p.promoParent = null;
         node.$p.blockChain = '0,';
@@ -265,7 +269,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         loopStack.pop();
         ASSERT(loopStack.length === 0, 'stack should be empty now');
 
-        openRefsOnAfterProgram(node);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterProgram(refTrackState, node);
 
         if (node.$p.alwaysCompletes?.size) {
           vlog('Global always completes explicitly, never implicitly');
@@ -291,9 +295,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.promoParent = blockStack[blockStack.length - 1];
 
         blockStack.push(node);
-        //const mor = enableTiming && performance.now();
-        openRefsOnBeforeBlock(node, parentNode, parentProp, pathNodes[pathNodes.length - 3], blockStack[blockStack.length - 2], globallyUniqueNamingRegistry);
-        //if (enableTiming) TIMING['openRefsOnBeforeBlock'] = (TIMING['openRefsOnBeforeBlock'] | 0) + (performance.now() - mor);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeBlock(refTrackState, node, parentNode, parentProp, pathNodes[pathNodes.length - 3], blockStack[blockStack.length - 2], globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
           if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(+node.$p.pid);
@@ -341,7 +343,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         blockIds.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterBlock(node, path, parentNode, parentProp, pathNodes[pathNodes.length - 3], loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, globallyUniqueNamingRegistry);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterBlock(refTrackState, node, path, parentNode, parentProp, pathNodes[pathNodes.length - 3], loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, globallyUniqueNamingRegistry);
 
         if (tryNodeStack.length) {
           if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.pop();
@@ -395,7 +397,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'BreakStatement:before': {
-        openRefsOnBeforeBreak(node, blockStack);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeBreak(refTrackState, node, blockStack);
 
         // Note: break state is verified by the parser so we should be able to assume this break has a valid target
         if (node.label) {
@@ -418,7 +420,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
       case 'BreakStatement:after': {
-        openRefsOnAfterBreak(node, blockStack);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterBreak(refTrackState, node, blockStack);
         break;
       }
 
@@ -437,14 +439,14 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnBeforeCatchNode(node, parentNode, parentBlock);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeCatchNode(refTrackState, node, parentNode, parentBlock);
 
         break;
       }
 
       case 'CatchClause:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterCatchNode(node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterCatchNode(refTrackState, node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
         break;
       }
 
@@ -528,7 +530,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'Identifier:before': {
-        if (parentNode.type === 'CatchClause') openRefsOnBeforeCatchVar();
+        if (parentNode.type === 'CatchClause') if (ENABLE_REF_TRACKING) openRefsOnBeforeCatchVar(refTrackState);
 
         const currentScope = funcStack[funcStack.length - 1];
         const name = node.name;
@@ -611,7 +613,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           vlog('- Binding referenced in $p.pid:', currentScope.$p.pid, ', reads so far:', meta.reads.length, ', writes so far:', meta.writes.length);
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
 
-          openRefsOnBeforeRef(kind, node, parentNode, parentProp, parentIndex, meta);
+          if (ENABLE_REF_TRACKING) openRefsOnBeforeRef(refTrackState, kind, node, parentNode, parentProp, parentIndex, meta);
 
           // This is normalized code so there must be a block parent for any read ref
           // Find the nearest block/program node
@@ -688,7 +690,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             });
             meta.reads.push(read);
 
-            openRefsOnBeforeRead(read, blockNode, meta);
+            if (ENABLE_REF_TRACKING) openRefsOnBeforeRead(refTrackState, read, blockNode, meta);
           }
           if (kind === 'write') {
             const blockNode = blockStack[blockStack.length - 1];
@@ -728,7 +730,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
             meta.writes.push(write);
 
-            openRefsOnBeforeWrite(write, blockNode, meta);
+            if (ENABLE_REF_TRACKING) openRefsOnBeforeWrite(refTrackState, write, blockNode, meta);
 
             // Inject var decls at the top, append other writes at the end
             if (parentNode.type === 'VarStatement') {
@@ -775,7 +777,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             }
           }
 
-          openRefsOnAfterRef(kind, node, parentNode, parentProp, parentIndex, meta);
+          if (ENABLE_REF_TRACKING) openRefsOnAfterRef(refTrackState, kind, node, parentNode, parentProp, parentIndex, meta);
 
           if (node.name === 'arguments') {
             //ASSERT(kind === 'write', 'so this must be a write to the identifier `arguments`', kind, parentNode.type);
@@ -798,22 +800,20 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
 
 
-        if (parentNode.type === 'CatchClause') openRefsOnAfterCatchVar();
+        if (parentNode.type === 'CatchClause') if (ENABLE_REF_TRACKING) openRefsOnAfterCatchVar(refTrackState);
         break;
       }
 
       case 'IfStatement:before': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnBeforeIf(node, parentBlock);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeIf(refTrackState, node, parentBlock);
 
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         break;
       }
       case 'IfStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        //const mor = enableTiming && performance.now();
-        openRefsOnAfterIf(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack);
-        // if (enableTiming) TIMING['openRefsOnAfterIf'] = (TIMING['openRefsOnAfterIf'] | 0) + (performance.now() - mor);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterIf(refTrackState, node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack);
 
         if (node.consequent.$p.alwaysCompletes?.size && node.alternate.$p.alwaysCompletes?.size) {
           if (!node.$p.alwaysCompletes) node.$p.alwaysCompletes = new Set;
@@ -887,12 +887,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         registerGlobalLabel(fdata, node.label.name, node.label.name, node);
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnBeforeLabel(node, parentBlock);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeLabel(refTrackState, node, parentBlock);
         break;
       }
       case 'LabeledStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLabel(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterLabel(refTrackState, node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack);
 
         if (node.body.$p.alwaysCompletes?.size) {
           const labelPid = +node.$p.pid;
@@ -953,7 +953,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         node.$p.alwaysCompletes = new Set([+funcNode.$p.pid]); // parent block will consume this
 
-        openRefsOnBeforeReturn(blockStack, node);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeReturn(refTrackState, blockStack, node);
 
         vgroup('[commonReturn]');
         const a = funcNode.$p.commonReturn;
@@ -1033,7 +1033,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
       case 'ReturnStatement:after': {
-        openRefsOnAfterReturn(blockStack, node);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterReturn(refTrackState, blockStack, node);
         break;
       }
 
@@ -1065,24 +1065,24 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         node.$p.alwaysCompletes = new Set([+nearest.$p.pid]); // parent block will consume this
 
-        openRefsOnBeforeThrow(blockStack, node);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeThrow(refTrackState, blockStack, node);
         break;
       }
       case 'ThrowStatement:after': {
-        openRefsOnAfterThrow(blockStack, node);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterThrow(refTrackState, blockStack, node);
         break;
       }
 
       case 'TryStatement:before': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnBeforeTryNode(node, parentBlock);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeTryNode(refTrackState, node, parentBlock);
 
         tryNodeStack.push(node);
         break;
       }
       case 'TryStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterTryNode(node, parentBlock, globallyUniqueLabelRegistry, loopStack);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterTryNode(refTrackState, node, parentBlock, globallyUniqueLabelRegistry, loopStack);
 
         if (node.handler.param) {
           const meta = globallyUniqueNamingRegistry.get(node.handler.param.name);
@@ -1177,7 +1177,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
       case 'WhileStatement:before': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnBeforeLoop('while', node, parentBlock);
+        if (ENABLE_REF_TRACKING) openRefsOnBeforeLoop(refTrackState, 'while', node, parentBlock);
 
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         loopStack.push(node);
@@ -1185,7 +1185,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'WhileStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLoop('while', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
+        if (ENABLE_REF_TRACKING) openRefsOnAfterLoop(refTrackState, 'while', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack);
 
         if (node.body.$p.alwaysCompletes?.size) {
           const whilePid = +node.$p.pid;
@@ -1216,7 +1216,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   }
 
   if (VERBOSE_TRACING) {
-    dumpOpenRefsState(globallyUniqueNamingRegistry);
+    dumpOpenRefsState(refTrackState, globallyUniqueNamingRegistry);
 
     vlog();
     vlog('Imports from:');
@@ -1235,7 +1235,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         : [...globallyUniqueNamingRegistry.entries()]
           .filter(([name, _meta]) => !globals.has(name))
           .map(([name, meta]) => {
-            return `- ${name}: ${meta.reads.length} reads and ${meta.writes.length} writes\n${
+            return `- ${name}: ${meta.reads.length} reads and ${meta.writes.length} writes\n${ENABLE_REF_TRACKING ?
               [
                 Array.from(meta.reads),
                 Array.from(meta.writes),
@@ -1255,6 +1255,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
                   !rw.reachedByWrites ? '' : ` and be overwritten by ${reachAtString(rw.reachedByWrites, 'writes')}`
                 }\n`
               }).join('')
+              : '(RefTracking was disabled)'
             }`;
           }).join('')
       ),
@@ -1271,11 +1272,14 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
   groupEnd();
 
+  refTrackState.trebs.clear(); // Clear ref tracking state...
+  refTrackState.trabs.clear(); // Clear ref tracking state...
+
   if (enableTiming) {
     const mend = performance.now();
     TIMING.end = mend - mwalk;
     //Object.keys(TIMING).forEach(key => TIMING[key] = Math.floor(TIMING[key]))
-    console.log('Phase1   timing:', JSON.stringify(TIMING).replace(/"|\.\d+/g, '').replace(/(:|,)/g, '$1 '));
+    console.log(DIM + 'Phase1   timing:', JSON.stringify(TIMING).replace(/"|\.\d+/g, '').replace(/(:|,)/g, '$1 '), RESET);
   }
 }
 

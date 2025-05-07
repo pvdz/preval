@@ -23,10 +23,10 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { c: 1 };
-const tmpAssignRhsProp /*:unknown*/ = $(tmpClusterSSA_b);
-const tmpClusterSSA_a /*:unknown*/ = tmpAssignRhsProp.c;
-$(tmpClusterSSA_a, tmpClusterSSA_b);
+const b /*:object*/ = { c: 1 };
+const tmpAssignRhsProp /*:unknown*/ = $(b);
+const a /*:unknown*/ = tmpAssignRhsProp.c;
+$(a, b);
 `````
 
 
@@ -34,8 +34,8 @@ $(tmpClusterSSA_a, tmpClusterSSA_b);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_b = { c: 1 };
-$($(tmpClusterSSA_b).c, tmpClusterSSA_b);
+const b = { c: 1 };
+$($(b).c, b);
 `````
 
 

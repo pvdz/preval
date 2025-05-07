@@ -34,8 +34,8 @@ if ($) f();
 if ($) {
   $(1);
   if ($) {
-    const tmpClusterSSA_x /*:unknown*/ = $(2);
-    $(tmpClusterSSA_x);
+    const x /*:unknown*/ = $(2);
+    $(x);
   } else {
     $(`else`);
   }

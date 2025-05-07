@@ -80,7 +80,7 @@ $( c, 2, 2 );
 ## Todos triggered
 
 
-- (todo) do we want to support Literal as expression statement in free loops?
+None
 
 
 ## Globals

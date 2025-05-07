@@ -24,8 +24,8 @@ let tmpThrowArg /*:unknown*/ = 60;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
-  tmpThrowArg = tmpClusterSSA_a;
+  const a /*:unknown*/ = $(tmpCalleeParam);
+  tmpThrowArg = a;
 }
 throw tmpThrowArg;
 `````

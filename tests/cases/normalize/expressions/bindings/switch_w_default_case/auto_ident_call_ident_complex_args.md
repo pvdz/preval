@@ -29,8 +29,8 @@ switch (1) {
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
-$(tmpClusterSSA_a);
+const a /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
+$(a);
 $(`fail1`);
 $(`fail2`);
 `````

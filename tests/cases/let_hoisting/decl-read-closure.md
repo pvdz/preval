@@ -30,8 +30,8 @@ if ($) f();
 
 `````js filename=intro
 if ($) {
-  const tmpClusterSSA_x /*:unknown*/ = $(2);
-  $(tmpClusterSSA_x);
+  const x /*:unknown*/ = $(2);
+  $(x);
 } else {
 }
 `````

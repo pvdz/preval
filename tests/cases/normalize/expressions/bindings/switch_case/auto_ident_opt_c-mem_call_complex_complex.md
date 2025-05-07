@@ -23,8 +23,8 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { $: $ };
-const tmpChainElementCall /*:unknown*/ = $(tmpClusterSSA_b);
+const b /*:object*/ = { $: $ };
+const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
   $(undefined);

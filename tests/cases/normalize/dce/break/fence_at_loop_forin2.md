@@ -43,8 +43,8 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     $(`infiloop, do not eliminate`);
   } else {
-    const tmpClusterSSA_x /*:unknown*/ = tmpForInNext.value;
-    $(`loop`, tmpClusterSSA_x);
+    const x /*:unknown*/ = tmpForInNext.value;
+    $(`loop`, x);
     $(`infiloop, do not eliminate`);
   }
   while ($LOOP_UNROLL_10) {
@@ -58,8 +58,8 @@ if (tmpIfTest) {
       if (tmpIfTest$4) {
         $(`infiloop, do not eliminate`);
       } else {
-        const tmpClusterSSA_x$1 /*:unknown*/ = tmpForInNext$1.value;
-        $(`loop`, tmpClusterSSA_x$1);
+        const x$1 /*:unknown*/ = tmpForInNext$1.value;
+        $(`loop`, x$1);
         $(`infiloop, do not eliminate`);
       }
     } else {

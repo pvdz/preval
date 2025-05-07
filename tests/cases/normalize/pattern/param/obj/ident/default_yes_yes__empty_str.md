@@ -23,8 +23,8 @@ $(f('', 10));
 const tmpOPBD /*:unknown*/ = $String_prototype.x;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
-  $(tmpClusterSSA_x);
+  const x /*:unknown*/ = $(`pass`);
+  $(x);
 } else {
   $(tmpOPBD);
 }

@@ -34,9 +34,9 @@ if (tmpIfTest) {
   const tmpArrElement$1 /*:unknown*/ = $(4);
   const tmpNestedAssignArrPatternRhs /*:array*/ = [tmpArrElement, tmpArrElement$1];
   const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-  const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
-  const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
-  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
+  const x /*:unknown*/ = tmpArrPatternSplat[0];
+  const y /*:unknown*/ = tmpArrPatternSplat[1];
+  $(tmpNestedAssignArrPatternRhs, x, y);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, 1, 2);
@@ -91,6 +91,7 @@ else {
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

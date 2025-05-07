@@ -23,8 +23,8 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { c: 2 };
-$(2, tmpClusterSSA_b);
+const b /*:object*/ = { c: 2 };
+$(2, b);
 `````
 
 

@@ -23,9 +23,9 @@ $(a, b);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(100);
 if (tmpCalleeParam) {
-  const tmpClusterSSA_b /*:unknown*/ = $(2);
-  $(tmpClusterSSA_b);
-  $(tmpClusterSSA_b, tmpClusterSSA_b);
+  const b /*:unknown*/ = $(2);
+  $(b);
+  $(b, b);
 } else {
   $(tmpCalleeParam);
   const a /*:object*/ = { a: 999, b: 1000 };
@@ -40,9 +40,9 @@ if (tmpCalleeParam) {
 `````js filename=intro
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpClusterSSA_b = $(2);
-  $(tmpClusterSSA_b);
-  $(tmpClusterSSA_b, tmpClusterSSA_b);
+  const b = $(2);
+  $(b);
+  $(b, b);
 } else {
   $(tmpCalleeParam);
   $({ a: 999, b: 1000 }, 1);

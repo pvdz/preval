@@ -53,7 +53,7 @@ $( c );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExportNamedDeclaration
 
 
 ## Globals

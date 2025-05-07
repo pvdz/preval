@@ -23,9 +23,9 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { $: $ };
-const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpClusterSSA_b, `\$`, 1);
-$(tmpClusterSSA_a);
+const b /*:object*/ = { $: $ };
+const a /*:unknown*/ = $dotCall($, b, `\$`, 1);
+$(a);
 `````
 
 

@@ -26,9 +26,9 @@ if (tmpNestedComplexRhs) {
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 } else {
-  const tmpClusterSSA_b /*:unknown*/ = $(2);
-  $(tmpClusterSSA_b);
-  $(tmpClusterSSA_b, tmpClusterSSA_b);
+  const b /*:unknown*/ = $(2);
+  $(b);
+  $(b, b);
 }
 `````
 
@@ -42,9 +42,9 @@ if (tmpNestedComplexRhs) {
   $(tmpNestedComplexRhs);
   $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 } else {
-  const tmpClusterSSA_b = $(2);
-  $(tmpClusterSSA_b);
-  $(tmpClusterSSA_b, tmpClusterSSA_b);
+  const b = $(2);
+  $(b);
+  $(b, b);
 }
 `````
 

@@ -28,8 +28,8 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { x: 3 };
-$(3, tmpClusterSSA_b, 3);
+const b /*:object*/ = { x: 3 };
+$(3, b, 3);
 $(`fail1`);
 $(`fail2`);
 `````

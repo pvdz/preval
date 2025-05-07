@@ -23,11 +23,11 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_arg /*:object*/ = { y: 1 };
-const tmpDeleteCompObj /*:unknown*/ = $(tmpClusterSSA_arg);
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
-$(tmpClusterSSA_a, tmpClusterSSA_arg);
+const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+$(a, arg);
 `````
 
 
@@ -35,10 +35,10 @@ $(tmpClusterSSA_a, tmpClusterSSA_arg);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_arg = { y: 1 };
-const tmpDeleteCompObj = $(tmpClusterSSA_arg);
+const arg = { y: 1 };
+const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-$(delete tmpDeleteCompObj[tmpDeleteCompProp], tmpClusterSSA_arg);
+$(delete tmpDeleteCompObj[tmpDeleteCompProp], arg);
 `````
 
 

@@ -25,11 +25,11 @@ if (tmpIfTest) {
   $(2);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(100);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpClusterSSA_a, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
-  $(tmpClusterSSA_a);
+  const a /*:unknown*/ = $(tmpCalleeParam$3);
+  const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+  const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
+  $(a);
 }
 `````
 
@@ -42,9 +42,9 @@ if ($(1)) {
   $(`before  2  after`);
   $(2);
 } else {
-  const tmpClusterSSA_a = $($(100));
-  $(`before  ${tmpClusterSSA_a}  after`);
-  $(tmpClusterSSA_a);
+  const a = $($(100));
+  $(`before  ${a}  after`);
+  $(a);
 }
 `````
 

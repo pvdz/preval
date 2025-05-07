@@ -61,7 +61,8 @@ $( c );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

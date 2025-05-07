@@ -48,8 +48,8 @@ let tmpClusterSSA_i$2 /*:number*/ = 14;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_i$2);
   tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
-  const tmpClusterSSA_tst$1 /*:boolean*/ = tmpClusterSSA_i$2 > -5;
-  if (tmpClusterSSA_tst$1) {
+  const tst$1 /*:boolean*/ = tmpClusterSSA_i$2 > -5;
+  if (tst$1) {
   } else {
     break;
   }

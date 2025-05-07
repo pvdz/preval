@@ -28,8 +28,8 @@ const tmpIfTest /*:unknown*/ = $(0);
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpCalleeParam);
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, b, c, 3, 4);
 } else {

@@ -18,8 +18,8 @@ $(x);
 
 
 `````js filename=intro
-const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
-$(tmpClusterSSA_x);
+const x /*:unknown*/ = $(`pass`);
+$(x);
 `````
 
 
@@ -45,6 +45,7 @@ $( a );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

@@ -30,8 +30,6 @@ export function assignHoisting(fdata) {
   return r;
 }
 function _assignHoisting(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
   let updated = processAttempt(fdata);
 
   log('');
@@ -65,6 +63,7 @@ function processAttempt(fdata) {
 
   function process(meta, metaName) {
     const rwOrder = meta.rwOrder;
+    if (rwOrder.length <= 1) return vlog('- bail: there is no second ref');
     const first = rwOrder[0];
     if (first.action !== 'write' || first.kind !== 'var') return;
 
@@ -76,7 +75,9 @@ function processAttempt(fdata) {
     // - Single scope, no prev ref, assign is second ref; I don't think this can leak so it should be safe to move down?
     //   - `let x = f(); const y = z(); x = g()`
     //   - this is a superset of the back-to-back rule
-    // - multi-scope -> rest doesn't matter because var might be closure already; so only when no spying in between
+    // - multi-scope:
+    //   - if var is first write and assign is second write, is there any way merging them is going to break?
+    //   - otherwise var might be closure already; so only when no spying in between
     //
     // In this context a value is "pure" when it doesn't reference any other value and can't trigger a spy.
 
@@ -96,7 +97,22 @@ function processAttempt(fdata) {
 
     if (meta.singleScoped) {
       const second = meta.rwOrder[1];
-      if (first.blockBody !== second?.blockBody) return vlog('- bail: second ref is not in same block as decl');
+      if (first.blockBody !== second.blockBody) {
+        // This can be okay if the remaining refs are in the same block as the assign, which implies the init is never read
+        let ok = true;
+        for (let i=2; i<meta.rwOrder.length; ++i) {
+          if (meta.rwOrder[i].blockBody !== second.blockBody) {
+            ok = false;
+          }
+        }
+        if (!ok) {
+          return vlog('- bail: second ref is not in same block as decl');
+        }
+
+        // This is something like
+        // `let x = 1; while (true) { ...; x = 2; ...; $(x); }`, which we can safely change to `1; while (true) { ...; let x = 2; ...; $(x); }`
+
+      }
       if (second.action !== 'write') return vlog('- bail: second ref of single scoped var is not a write');
       if (second.kind !== 'assign') return vlog('- bail: write is not an assign...', second.kind);
 
@@ -115,7 +131,7 @@ function processAttempt(fdata) {
       before(secondNode);
 
       // Some nodes are irrelevant as statements and we should avoid them.
-      if (['Param', 'FunctionExpression'].includes(firstNode.init.type)) {
+      if (['Param', 'FunctionExpression'].includes(firstNode.init.type) || AST.isPrimitive(firstNode.init)) {
         first.blockBody[first.blockIndex] = AST.emptyStatement();
       } else {
         first.blockBody[first.blockIndex] = AST.expressionStatement(firstNode.init);
@@ -126,7 +142,8 @@ function processAttempt(fdata) {
       after(second.blockBody[second.blockIndex]);
       updated += 1;
       return;
-    } else {
+    }
+    else {
       // More complex case. We must ensure that any statement in between cannot spy.
       // Only then are we in the same situation as the single scoped case.
 
@@ -148,16 +165,19 @@ function processAttempt(fdata) {
       const block = first.blockBody;
       const start = first.blockIndex;
       const stop = second.blockIndex;
+      if (n !== 1) {
+        // If the assign is the second ref then there's no way it become a closure between the two refs so we're ok, too?
 
-      let failed = false;
-      for (let i=start+1; i<stop; ++i) {
-        vlog('  - testing body['+ i + ']:', block[i]?.type, block[i]?.init?.type ?? block[i]?.expression?.type ?? '');
-        if (!isPure(block[i])) {
-          failed = true;
-          break;
+        let failed = false;
+        for (let i=start+1; i<stop; ++i) {
+          vlog('  - testing body['+ i + ']:', block[i]?.type, block[i]?.init?.type ?? block[i]?.expression?.type ?? '');
+          if (!isPure(block[i])) {
+            failed = true;
+            break;
+          }
         }
+        if (failed) return vlog('- bail: unpure statement between');
       }
-      if (failed) return vlog('- bail: unpure statement between');
 
       vlog('all statements between the decl and the next ref have no observable side effects');
 
@@ -167,7 +187,7 @@ function processAttempt(fdata) {
       before(block[stop]);
 
       // Some nodes are irrelevant as statements and we should avoid them.
-      if (['Param', 'FunctionExpression'].includes(block[start].init.type)) {
+      if (['Param', 'FunctionExpression'].includes(block[start].init.type) || AST.isPrimitive(block[start].init)) {
         block[start] = AST.emptyStatement();
       } else {
         block[start] = AST.expressionStatement(block[start].init);

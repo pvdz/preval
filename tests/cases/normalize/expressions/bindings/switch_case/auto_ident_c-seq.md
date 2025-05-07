@@ -25,8 +25,8 @@ switch (1) {
 `````js filename=intro
 $(1);
 $(2);
-const tmpClusterSSA_a /*:unknown*/ = $(1);
-$(tmpClusterSSA_a, 1);
+const a /*:unknown*/ = $(1);
+$(a, 1);
 `````
 
 

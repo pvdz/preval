@@ -24,8 +24,8 @@ const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpCalleeParam);
   $(a);
 } else {
   $(10);
@@ -92,6 +92,7 @@ else {
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

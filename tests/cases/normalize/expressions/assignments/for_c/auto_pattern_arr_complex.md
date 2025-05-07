@@ -111,6 +111,7 @@ else {
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type VarStatement
 - (todo) regular property access of an ident feels tricky;
 
 

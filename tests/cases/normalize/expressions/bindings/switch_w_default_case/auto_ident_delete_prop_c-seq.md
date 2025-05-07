@@ -29,10 +29,10 @@ switch (1) {
 `````js filename=intro
 $(1);
 $(2);
-const tmpClusterSSA_arg /*:object*/ = { y: 1 };
-const tmpDeleteObj /*:unknown*/ = $(tmpClusterSSA_arg);
-const tmpClusterSSA_a /*:boolean*/ = delete tmpDeleteObj.y;
-$(tmpClusterSSA_a, tmpClusterSSA_arg);
+const arg /*:object*/ = { y: 1 };
+const tmpDeleteObj /*:unknown*/ = $(arg);
+const a /*:boolean*/ = delete tmpDeleteObj.y;
+$(a, arg);
 $(`fail1`);
 $(`fail2`);
 `````
@@ -44,9 +44,9 @@ $(`fail2`);
 `````js filename=intro
 $(1);
 $(2);
-const tmpClusterSSA_arg = { y: 1 };
-const tmpDeleteObj = $(tmpClusterSSA_arg);
-$(delete tmpDeleteObj.y, tmpClusterSSA_arg);
+const arg = { y: 1 };
+const tmpDeleteObj = $(arg);
+$(delete tmpDeleteObj.y, arg);
 $(`fail1`);
 $(`fail2`);
 `````

@@ -27,13 +27,13 @@ $(s);
 const s /*:unknown*/ = $(10);
 $(1);
 let tmpClusterSSA_s /*:number*/ = s | 10;
-const tmpClusterSSA_x /*:unknown*/ = $(true);
-if (tmpClusterSSA_x) {
+const x /*:unknown*/ = $(true);
+if (x) {
   while ($LOOP_UNROLL_10) {
     $(1);
     tmpClusterSSA_s = tmpClusterSSA_s | 10;
-    const tmpClusterSSA_x$1 /*:unknown*/ = $(true);
-    if (tmpClusterSSA_x$1) {
+    const x$1 /*:unknown*/ = $(true);
+    if (x$1) {
     } else {
       break;
     }

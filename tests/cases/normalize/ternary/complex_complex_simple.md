@@ -27,8 +27,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 /*:unknown*/ = $(0);
 if (tmpIfTest$1) {
-  const tmpClusterSSA_b /*:unknown*/ = $(4);
-  $(a, tmpClusterSSA_b);
+  const b /*:unknown*/ = $(4);
+  $(a, b);
 } else {
   $(a, 5);
 }

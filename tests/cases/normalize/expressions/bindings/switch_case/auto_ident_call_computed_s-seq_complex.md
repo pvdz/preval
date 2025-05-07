@@ -24,10 +24,10 @@ switch (1) {
 
 `````js filename=intro
 const tmpMCCP /*:unknown*/ = $(`\$`);
-const tmpClusterSSA_b /*:object*/ = { $: $ };
-const tmpMCF /*:unknown*/ = tmpClusterSSA_b[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpClusterSSA_b, undefined, 1);
-$(tmpClusterSSA_a);
+const b /*:object*/ = { $: $ };
+const tmpMCF /*:unknown*/ = b[tmpMCCP];
+const a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+$(a);
 `````
 
 
@@ -36,8 +36,8 @@ $(tmpClusterSSA_a);
 
 `````js filename=intro
 const tmpMCCP = $(`\$`);
-const tmpClusterSSA_b = { $: $ };
-$(tmpClusterSSA_b[tmpMCCP](1));
+const b = { $: $ };
+$(b[tmpMCCP](1));
 `````
 
 

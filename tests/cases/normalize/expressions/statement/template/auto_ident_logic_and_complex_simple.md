@@ -24,9 +24,9 @@ const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
   $(`before  2  after`);
 } else {
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+  const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

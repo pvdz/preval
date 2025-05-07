@@ -22,8 +22,8 @@ switch (1) {
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const tmpClusterSSA_a /*:number*/ = +tmpUnaryArg;
-$(tmpClusterSSA_a);
+const a /*:number*/ = +tmpUnaryArg;
+$(a);
 `````
 
 

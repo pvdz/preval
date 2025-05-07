@@ -29,9 +29,9 @@ if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
   const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
-  const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementCall$1;
-  $(tmpClusterSSA_a$1);
-  $(tmpClusterSSA_a$1);
+  const tmpClusterSSA_a /*:number*/ = a * tmpChainElementCall$1;
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -48,9 +48,9 @@ if (tmpIfTest) {
   $($Number_NaN);
   $($Number_NaN);
 } else {
-  const tmpClusterSSA_a$1 = a * $dotCall(tmpChainElementCall, $, undefined, $(1));
-  $(tmpClusterSSA_a$1);
-  $(tmpClusterSSA_a$1);
+  const tmpClusterSSA_a = a * $dotCall(tmpChainElementCall, $, undefined, $(1));
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 

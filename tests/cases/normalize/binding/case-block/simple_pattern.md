@@ -25,9 +25,9 @@ const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 const z /*:array*/ = [10, 20, 30];
 if (tmpIfTest) {
   const tmpArrPatternSplat /*:array*/ = [...z];
-  const tmpClusterSSA_x /*:unknown*/ = tmpArrPatternSplat[0];
-  const tmpClusterSSA_y /*:unknown*/ = tmpArrPatternSplat[1];
-  $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);
+  const x /*:unknown*/ = tmpArrPatternSplat[0];
+  const y /*:unknown*/ = tmpArrPatternSplat[1];
+  $(1, x, y, z);
 } else {
   $(1, 1, 2, z);
 }

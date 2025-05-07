@@ -28,8 +28,8 @@ const tmpIfTest /*:unknown*/ = $(10);
 if (tmpIfTest) {
   const tmpIfTest$1 /*:unknown*/ = $(20);
   if (tmpIfTest$1) {
-    const tmpClusterSSA_x /*:unknown*/ = $(2);
-    $(tmpClusterSSA_x);
+    const x /*:unknown*/ = $(2);
+    $(x);
   } else {
   }
 } else {

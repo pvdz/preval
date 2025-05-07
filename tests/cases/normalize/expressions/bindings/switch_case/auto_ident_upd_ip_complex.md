@@ -23,14 +23,14 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { x: 1 };
-const tmpCalleeParam /*:unknown*/ = $(tmpClusterSSA_b);
+const b /*:object*/ = { x: 1 };
+const tmpCalleeParam /*:unknown*/ = $(b);
 const tmpUpdObj /*:unknown*/ = $(tmpCalleeParam);
 const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
-$(tmpUpdNum, tmpClusterSSA_b);
+$(tmpUpdNum, b);
 `````
 
 
@@ -38,11 +38,11 @@ $(tmpUpdNum, tmpClusterSSA_b);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
-const tmpUpdObj = $($(tmpClusterSSA_b));
+const b = { x: 1 };
+const tmpUpdObj = $($(b));
 const tmpUpdNum = $coerce(tmpUpdObj.x, `number`);
 tmpUpdObj.x = tmpUpdNum + 1;
-$(tmpUpdNum, tmpClusterSSA_b);
+$(tmpUpdNum, b);
 `````
 
 

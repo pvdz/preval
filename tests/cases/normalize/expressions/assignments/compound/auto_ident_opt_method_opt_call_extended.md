@@ -30,9 +30,9 @@ if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementCall;
-  $(tmpClusterSSA_a$1);
-  $(tmpClusterSSA_a$1);
+  const tmpClusterSSA_a /*:number*/ = a * tmpChainElementCall;
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -48,9 +48,9 @@ if (tmpIfTest$1) {
   $($Number_NaN);
   $($Number_NaN);
 } else {
-  const tmpClusterSSA_a$1 = a * $dotCall($, { e: $ }, `e`, 1);
-  $(tmpClusterSSA_a$1);
-  $(tmpClusterSSA_a$1);
+  const tmpClusterSSA_a = a * $dotCall($, { e: $ }, `e`, 1);
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 

@@ -52,7 +52,7 @@ $( 3, b, 3 );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

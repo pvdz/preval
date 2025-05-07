@@ -28,8 +28,8 @@ if ($) f();
 if ($) {
   $(1);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const tmpClusterSSA_x /*:unknown*/ = $(2);
-    $(tmpClusterSSA_x);
+    const x /*:unknown*/ = $(2);
+    $(x);
   }
 } else {
 }

@@ -23,8 +23,8 @@ $(f([{ y: 2, z: 3 }, 20, 30], 200));
 const tmpOPBD /*:unknown*/ = $Object_prototype.x;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
-  $(tmpClusterSSA_x);
+  const x /*:unknown*/ = $(`pass`);
+  $(x);
 } else {
   $(tmpOPBD);
 }
@@ -65,6 +65,8 @@ else {
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type ExpressionStatement
 - (todo) can we always safely clone ident refs in this case?
 
 

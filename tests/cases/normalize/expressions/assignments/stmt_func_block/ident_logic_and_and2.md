@@ -45,21 +45,21 @@ $(undefined);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpSSA_theneedle /*:unknown*/ = $(tmpCalleeParam);
-if (tmpSSA_theneedle) {
+const theneedle /*:unknown*/ = $(tmpCalleeParam);
+if (theneedle) {
   const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpClusterSSA_tmpSSA_theneedle /*:unknown*/ = $(tmpCalleeParam$3);
-  if (tmpClusterSSA_tmpSSA_theneedle) {
+  const tmpClusterSSA_theneedle /*:unknown*/ = $(tmpCalleeParam$3);
+  if (tmpClusterSSA_theneedle) {
     const tmpCalleeParam$7 /*:unknown*/ = $(2);
-    const tmpClusterSSA_tmpSSA_theneedle$1 /*:unknown*/ = $(tmpCalleeParam$7);
-    $(tmpClusterSSA_tmpSSA_theneedle$1);
+    const tmpClusterSSA_theneedle$1 /*:unknown*/ = $(tmpCalleeParam$7);
+    $(tmpClusterSSA_theneedle$1);
     $(undefined);
   } else {
-    $(tmpClusterSSA_tmpSSA_theneedle);
+    $(tmpClusterSSA_theneedle);
     $(undefined);
   }
 } else {
-  $(tmpSSA_theneedle);
+  $(theneedle);
   $(undefined);
 }
 `````
@@ -69,18 +69,18 @@ if (tmpSSA_theneedle) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpSSA_theneedle = $($(1));
-if (tmpSSA_theneedle) {
-  const tmpClusterSSA_tmpSSA_theneedle = $($(1));
-  if (tmpClusterSSA_tmpSSA_theneedle) {
+const theneedle = $($(1));
+if (theneedle) {
+  const tmpClusterSSA_theneedle = $($(1));
+  if (tmpClusterSSA_theneedle) {
     $($($(2)));
     $(undefined);
   } else {
-    $(tmpClusterSSA_tmpSSA_theneedle);
+    $(tmpClusterSSA_theneedle);
     $(undefined);
   }
 } else {
-  $(tmpSSA_theneedle);
+  $(theneedle);
   $(undefined);
 }
 `````

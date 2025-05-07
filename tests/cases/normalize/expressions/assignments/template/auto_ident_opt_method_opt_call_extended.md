@@ -28,9 +28,9 @@ if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
+  const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
   $(tmpChainElementCall);
 }
 `````

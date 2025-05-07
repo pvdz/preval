@@ -25,9 +25,9 @@ if (a) {
   $(`before  2  after`);
   $(2);
 } else {
-  const tmpClusterSSA_tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-  const tmpClusterSSA_tmpCalleeParam /*:string*/ = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
+  const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
   $(a);
 }
 `````

@@ -30,8 +30,8 @@ switch (1) {
 const tmpObjLitVal /*:unknown*/ = $(2);
 const tmpCalleeParam /*:object*/ = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpClusterSSA_b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
+$(tmpNestedAssignObjPatternRhs, b);
 $(`fail1`);
 $(`fail2`);
 `````

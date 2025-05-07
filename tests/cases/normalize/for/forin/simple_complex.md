@@ -27,8 +27,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpClusterSSA_a /*:unknown*/ = tmpForInNext.value;
-    $(tmpClusterSSA_a);
+    const a /*:unknown*/ = tmpForInNext.value;
+    $(a);
   }
 }
 `````

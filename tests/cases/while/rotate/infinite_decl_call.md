@@ -29,8 +29,8 @@ $(x); // unreachable
 
 `````js filename=intro
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpClusterSSA_x /*:unknown*/ = $(1, 2, 3);
-  $(tmpClusterSSA_x);
+  const x /*:unknown*/ = $(1, 2, 3);
+  $(x);
 }
 `````
 

@@ -23,12 +23,12 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { $: $ };
-const tmpMCCO /*:unknown*/ = $(tmpClusterSSA_b);
+const b /*:object*/ = { $: $ };
+const tmpMCCO /*:unknown*/ = $(b);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const tmpMCF /*:unknown*/ = tmpMCCO[tmpMCCP];
-const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
-$(tmpClusterSSA_a);
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCCO, undefined, 1);
+$(a);
 `````
 
 

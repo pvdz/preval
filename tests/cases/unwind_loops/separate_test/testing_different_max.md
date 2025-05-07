@@ -38,8 +38,8 @@ let tmpClusterSSA_counter$2 /*:number*/ = 11;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`yolo`);
   tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 + 1;
-  const tmpClusterSSA_test$1 /*:boolean*/ = tmpClusterSSA_counter$2 < 20;
-  if (tmpClusterSSA_test$1) {
+  const test$1 /*:boolean*/ = tmpClusterSSA_counter$2 < 20;
+  if (test$1) {
   } else {
     break;
   }

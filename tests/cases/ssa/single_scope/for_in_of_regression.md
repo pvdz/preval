@@ -35,9 +35,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpClusterSSA_arr /*:unknown*/ = tmpForOfNext.value;
-    x = tmpClusterSSA_arr;
-    $(tmpClusterSSA_arr, `for`);
+    const arr /*:unknown*/ = tmpForOfNext.value;
+    x = arr;
+    $(arr, `for`);
   }
 }
 $(x);
@@ -56,9 +56,9 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const tmpClusterSSA_arr = tmpForOfNext.value;
-    x = tmpClusterSSA_arr;
-    $(tmpClusterSSA_arr, `for`);
+    const arr = tmpForOfNext.value;
+    x = arr;
+    $(arr, `for`);
   }
 }
 $(x);

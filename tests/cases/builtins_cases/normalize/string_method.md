@@ -62,8 +62,8 @@ const f /*:(string)=>string*/ = function ($$0) {
   const len /*:number*/ = repl$3.length;
   const test /*:boolean*/ = 0 < len;
   if (test) {
-    const tmpClusterSSA_outputstr /*:string*/ = $frfr(tmpFree$2, repl$3);
-    return tmpClusterSSA_outputstr;
+    const outputstr /*:string*/ = $frfr(tmpFree$2, repl$3);
+    return outputstr;
   } else {
     return ``;
   }
@@ -106,8 +106,8 @@ const f = function (inputstr) {
   const repl$3 = $dotCall($string_replace, inputstr, `replace`, new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`), ``);
   const len = repl$3.length;
   if (0 < len) {
-    const tmpClusterSSA_outputstr = $frfr(tmpFree$2, repl$3);
-    return tmpClusterSSA_outputstr;
+    const outputstr = $frfr(tmpFree$2, repl$3);
+    return outputstr;
   } else {
     return ``;
   }

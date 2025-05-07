@@ -28,12 +28,12 @@ $(f);
 
 
 `````js filename=intro
-const tmpSSA_x /*:unknown*/ = $(1);
-const tmpCalleeParam /*:unknown*/ = tmpSSA_x.headers;
+const x /*:unknown*/ = $(1);
+const tmpCalleeParam /*:unknown*/ = x.headers;
 $(tmpCalleeParam);
 const f /*:()=>undefined*/ = function () {
   debugger;
-  $(tmpSSA_x);
+  $(x);
   return undefined;
 };
 $(f);
@@ -44,10 +44,10 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpSSA_x = $(1);
-$(tmpSSA_x.headers);
+const x = $(1);
+$(x.headers);
 $(function () {
-  $(tmpSSA_x);
+  $(x);
 });
 `````
 

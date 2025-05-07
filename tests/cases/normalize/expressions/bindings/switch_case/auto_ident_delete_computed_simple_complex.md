@@ -24,9 +24,9 @@ switch (1) {
 
 `````js filename=intro
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpClusterSSA_arg /*:object*/ = { y: 1 };
-const tmpClusterSSA_a /*:boolean*/ = delete tmpClusterSSA_arg[tmpDeleteCompProp];
-$(tmpClusterSSA_a, tmpClusterSSA_arg);
+const arg /*:object*/ = { y: 1 };
+const a /*:boolean*/ = delete arg[tmpDeleteCompProp];
+$(a, arg);
 `````
 
 
@@ -35,8 +35,8 @@ $(tmpClusterSSA_a, tmpClusterSSA_arg);
 
 `````js filename=intro
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_arg = { y: 1 };
-$(delete tmpClusterSSA_arg[tmpDeleteCompProp], tmpClusterSSA_arg);
+const arg = { y: 1 };
+$(delete arg[tmpDeleteCompProp], arg);
 `````
 
 

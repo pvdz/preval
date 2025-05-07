@@ -35,8 +35,8 @@ f();
 
 `````js filename=intro
 $(`something`);
-const tmpClusterSSA_x /*:unknown*/ = $(`oops`);
-$(tmpClusterSSA_x);
+const x /*:unknown*/ = $(`oops`);
+$(x);
 `````
 
 

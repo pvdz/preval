@@ -30,18 +30,18 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { x: 1 };
-const tmpNestedAssignComMemberObj /*:unknown*/ = $(tmpClusterSSA_b);
+const b /*:object*/ = { x: 1 };
+const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`x`);
-const tmpInitAssignLhsComputedObj /*:unknown*/ = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`x`);
-const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj$1 /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp$1 /*:unknown*/ = $(`x`);
-const tmpInitAssignLhsComputedObj$3 /*:unknown*/ = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj$3 /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp$3 /*:unknown*/ = $(`x`);
-const tmpInitAssignLhsComputedObj$5 /*:unknown*/ = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj$5 /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp$5 /*:unknown*/ = $(`x`);
-const tmpInitAssignLhsComputedObj$7 /*:unknown*/ = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj$7 /*:unknown*/ = $(b);
 const tmpInitAssignLhsComputedProp$7 /*:unknown*/ = $(`x`);
 tmpInitAssignLhsComputedObj$7[tmpInitAssignLhsComputedProp$7] = 3;
 tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = 3;
@@ -49,7 +49,7 @@ tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-$(3, tmpClusterSSA_b, 3);
+$(3, b, 3);
 $(`fail1`);
 $(`fail2`);
 `````
@@ -59,18 +59,18 @@ $(`fail2`);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
-const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
+const b = { x: 1 };
+const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
-const tmpInitAssignLhsComputedObj = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj = $(b);
 const tmpInitAssignLhsComputedProp = $(`x`);
-const tmpInitAssignLhsComputedObj$1 = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj$1 = $(b);
 const tmpInitAssignLhsComputedProp$1 = $(`x`);
-const tmpInitAssignLhsComputedObj$3 = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj$3 = $(b);
 const tmpInitAssignLhsComputedProp$3 = $(`x`);
-const tmpInitAssignLhsComputedObj$5 = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj$5 = $(b);
 const tmpInitAssignLhsComputedProp$5 = $(`x`);
-const tmpInitAssignLhsComputedObj$7 = $(tmpClusterSSA_b);
+const tmpInitAssignLhsComputedObj$7 = $(b);
 const tmpInitAssignLhsComputedProp$7 = $(`x`);
 tmpInitAssignLhsComputedObj$7[tmpInitAssignLhsComputedProp$7] = 3;
 tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = 3;
@@ -78,7 +78,7 @@ tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-$(3, tmpClusterSSA_b, 3);
+$(3, b, 3);
 $(`fail1`);
 $(`fail2`);
 `````

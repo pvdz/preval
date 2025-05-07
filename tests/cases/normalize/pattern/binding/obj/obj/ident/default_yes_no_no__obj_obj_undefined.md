@@ -18,8 +18,8 @@ $(y);
 
 
 `````js filename=intro
-const tmpClusterSSA_y /*:unknown*/ = $(`pass`);
-$(tmpClusterSSA_y);
+const y /*:unknown*/ = $(`pass`);
+$(y);
 `````
 
 

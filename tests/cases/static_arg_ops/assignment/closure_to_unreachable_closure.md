@@ -32,15 +32,15 @@ if ($) {
   const a /*:unknown*/ = $();
   $();
   let b /*:unknown*/ = a;
-  const tmpClusterSSA_f /*:()=>undefined*/ = function () {
+  const f /*:()=>undefined*/ = function () {
     debugger;
     $(a);
     $(b);
     return undefined;
   };
-  tmpClusterSSA_f();
+  f();
   b = a;
-  tmpClusterSSA_f();
+  f();
 } else {
   throw `[Preval] Attempting to call a value that cannot be called: \`undefined(1);\``;
 }
@@ -55,13 +55,13 @@ if ($) {
   const a = $();
   $();
   let b = a;
-  const tmpClusterSSA_f = function () {
+  const f = function () {
     $(a);
     $(b);
   };
-  tmpClusterSSA_f();
+  f();
   b = a;
-  tmpClusterSSA_f();
+  f();
 } else {
   throw `[Preval] Attempting to call a value that cannot be called: \`undefined(1);\``;
 }

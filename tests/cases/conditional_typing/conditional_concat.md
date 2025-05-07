@@ -37,8 +37,8 @@ const f /*:()=>unknown*/ = function () {
   const tmpStringConcatL$1 /*:string*/ = $coerce(desc$1, `plustr`);
   const tmpIfTest$1787 /*:boolean*/ = lastType === 2097173;
   if (tmpIfTest$1787) {
-    const tmpClusterSSA_fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL$1} (at EOF)`;
-    _THROW(tmpClusterSSA_fullErrmsg, tokenStart$5, tokenStop$5, ``);
+    const fullErrmsg /*:string*/ = `Parser error! ${tmpStringConcatL$1} (at EOF)`;
+    _THROW(fullErrmsg, tokenStart$5, tokenStop$5, ``);
   } else {
     const tmpBinBothLhs$253 /*:string*/ = `Parser error! ${tmpStringConcatL$1}`;
     _THROW(tmpBinBothLhs$253, tokenStart$5, tokenStop$5, ``);

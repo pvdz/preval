@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpClusterSSA_tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
+const tmpIfTest /*:unknown*/ = $(tmpCalleeParam);
 const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpClusterSSA_tmpIfTest) {
+if (tmpIfTest) {
   $(100);
   $(a);
 } else {
@@ -35,9 +35,9 @@ if (tmpClusterSSA_tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_tmpIfTest = $($(1));
+const tmpIfTest = $($(1));
 const a = { a: 999, b: 1000 };
-if (tmpClusterSSA_tmpIfTest) {
+if (tmpIfTest) {
   $(100);
   $(a);
 } else {

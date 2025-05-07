@@ -23,14 +23,14 @@ $(a, b);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpCalleeParam);
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, 1);
 } else {
-  const tmpClusterSSA_b /*:unknown*/ = $(2);
-  $(tmpClusterSSA_b);
-  $(tmpClusterSSA_b, tmpClusterSSA_b);
+  const b /*:unknown*/ = $(2);
+  $(b);
+  $(b, b);
 }
 `````
 
@@ -43,9 +43,9 @@ if ($(0)) {
   $($(100));
   $({ a: 999, b: 1000 }, 1);
 } else {
-  const tmpClusterSSA_b = $(2);
-  $(tmpClusterSSA_b);
-  $(tmpClusterSSA_b, tmpClusterSSA_b);
+  const b = $(2);
+  $(b);
+  $(b, b);
 }
 `````
 

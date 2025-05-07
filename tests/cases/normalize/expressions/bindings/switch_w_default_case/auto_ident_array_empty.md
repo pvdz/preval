@@ -25,8 +25,8 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:array*/ = [];
-$(tmpClusterSSA_a);
+const a /*:array*/ = [];
+$(a);
 $(`fail1`);
 $(`fail2`);
 `````
@@ -56,7 +56,7 @@ $( "fail2" );
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

@@ -54,6 +54,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) support array reads statement type WhileStatement
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
 
 

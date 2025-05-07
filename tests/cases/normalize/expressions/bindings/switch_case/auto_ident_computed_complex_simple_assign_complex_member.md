@@ -23,13 +23,13 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { c: 10, d: 20 };
-const tmpNestedAssignObj /*:unknown*/ = $(tmpClusterSSA_b);
-const tmpCompObj /*:unknown*/ = $(tmpClusterSSA_b);
+const b /*:object*/ = { c: 10, d: 20 };
+const tmpNestedAssignObj /*:unknown*/ = $(b);
+const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs, tmpClusterSSA_b);
+$(tmpNestedAssignPropRhs, b);
 `````
 
 
@@ -37,13 +37,13 @@ $(tmpNestedAssignPropRhs, tmpClusterSSA_b);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_b = { c: 10, d: 20 };
-const tmpNestedAssignObj = $(tmpClusterSSA_b);
-const tmpCompObj = $(tmpClusterSSA_b);
+const b = { c: 10, d: 20 };
+const tmpNestedAssignObj = $(b);
+const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs, tmpClusterSSA_b);
+$(tmpNestedAssignPropRhs, b);
 `````
 
 

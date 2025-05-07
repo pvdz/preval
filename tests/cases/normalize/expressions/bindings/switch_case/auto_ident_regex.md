@@ -21,8 +21,8 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:regex*/ = new $regex_constructor(`foo`, ``);
-$(tmpClusterSSA_a);
+const a /*:regex*/ = new $regex_constructor(`foo`, ``);
+$(a);
 `````
 
 

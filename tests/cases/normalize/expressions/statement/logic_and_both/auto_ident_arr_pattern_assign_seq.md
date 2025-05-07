@@ -77,6 +77,7 @@ $( e, c, d );
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
 - (todo) can we always safely clone ident refs in this case?
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

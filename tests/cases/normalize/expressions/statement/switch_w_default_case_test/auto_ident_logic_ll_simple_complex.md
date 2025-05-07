@@ -29,8 +29,8 @@ $(a);
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpClusterSSA_tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
-const tmpIfTest /*:boolean*/ = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
+const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

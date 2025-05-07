@@ -27,8 +27,8 @@ if (tmpIfTest) {
   $(tmpNestedAssignObjPatternRhs);
   $(tmpClusterSSA_a);
 } else {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(200);
+  $(tmpCalleeParam);
   $(999);
 }
 `````

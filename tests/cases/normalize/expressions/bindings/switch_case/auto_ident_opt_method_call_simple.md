@@ -23,8 +23,8 @@ switch (1) {
 
 
 `````js filename=intro
-const tmpClusterSSA_b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpClusterSSA_b, `c`, 1);
+const b /*:object*/ = { c: $ };
+const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
 $(tmpChainElementCall);
 `````
 

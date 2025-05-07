@@ -23,8 +23,8 @@ $(f('abc'));
 const tmpOPBD /*:unknown*/ = $String_prototype.x;
 const tmpIfTest$3 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$3) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`pass`);
-  $(tmpClusterSSA_x);
+  const x /*:unknown*/ = $(`pass`);
+  $(x);
 } else {
   $(tmpOPBD);
 }
@@ -65,6 +65,7 @@ else {
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

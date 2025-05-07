@@ -36,8 +36,8 @@ if (tmpInitAssignLhsComputedRhs) {
   $(tmpInitAssignLhsComputedRhs);
   $(tmpInitAssignLhsComputedRhs, b, c, 3);
 } else {
-  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpCalleeParam);
   $(tmpInitAssignLhsComputedRhs, b, c, 3);
 }
 `````

@@ -47,7 +47,7 @@ $( "number", 1 );
 ## Todos triggered
 
 
-None
+- (todo) free with zero args, we can eliminate this?
 
 
 ## Globals

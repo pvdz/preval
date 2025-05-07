@@ -24,8 +24,8 @@ let xyz /*:unknown*/ = 2;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
-  xyz = tmpClusterSSA_a;
+  const a /*:unknown*/ = $(tmpCalleeParam);
+  xyz = a;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);

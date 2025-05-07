@@ -28,9 +28,9 @@ switch (1) {
 
 `````js filename=intro
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const tmpClusterSSA_b /*:object*/ = { c: 1 };
-const tmpClusterSSA_a /*:unknown*/ = tmpClusterSSA_b[tmpAssignRhsCompProp];
-$(tmpClusterSSA_a, tmpClusterSSA_b);
+const b /*:object*/ = { c: 1 };
+const a /*:unknown*/ = b[tmpAssignRhsCompProp];
+$(a, b);
 $(`fail1`);
 $(`fail2`);
 `````
@@ -41,8 +41,8 @@ $(`fail2`);
 
 `````js filename=intro
 const tmpAssignRhsCompProp = $(`c`);
-const tmpClusterSSA_b = { c: 1 };
-$(tmpClusterSSA_b[tmpAssignRhsCompProp], tmpClusterSSA_b);
+const b = { c: 1 };
+$(b[tmpAssignRhsCompProp], b);
 $(`fail1`);
 $(`fail2`);
 `````

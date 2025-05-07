@@ -27,8 +27,8 @@ if (tmpIfTest) {
   $(tmpClusterSSA_a$1);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
-  const tmpClusterSSA_tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
-  const tmpClusterSSA_a$3 /*:number*/ = a * tmpClusterSSA_tmpBinBothRhs;
+  const tmpBinBothRhs /*:unknown*/ = $(tmpCalleeParam$1);
+  const tmpClusterSSA_a$3 /*:number*/ = a * tmpBinBothRhs;
   $(tmpClusterSSA_a$3);
   $(tmpClusterSSA_a$3);
 }

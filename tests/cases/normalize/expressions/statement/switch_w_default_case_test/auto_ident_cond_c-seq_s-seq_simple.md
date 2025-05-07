@@ -34,8 +34,8 @@ if (tmpIfTest$1) {
   tmpIfTest = 60 === tmpSwitchValue;
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
-  tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
+  const tmpBinLhs /*:unknown*/ = $(tmpCalleeParam);
+  tmpIfTest = tmpBinLhs === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

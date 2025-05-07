@@ -26,8 +26,8 @@ switch (1) {
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const tmpClusterSSA_a /*:boolean*/ = !tmpUnaryArg;
-$(tmpClusterSSA_a);
+const a /*:boolean*/ = !tmpUnaryArg;
+$(a);
 $(`fail1`);
 $(`fail2`);
 `````

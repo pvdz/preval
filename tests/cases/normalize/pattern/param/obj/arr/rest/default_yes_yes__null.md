@@ -49,6 +49,8 @@ throw "[Preval]: Can not reach here";
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_slice
 - (todo) type trackeed tricks can possibly support static $array_slice
+- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

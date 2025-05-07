@@ -26,8 +26,8 @@ if (tmpIfTest$1) {
   $(60);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
-  $(tmpClusterSSA_a);
+  const a /*:unknown*/ = $(tmpCalleeParam);
+  $(a);
 }
 `````
 

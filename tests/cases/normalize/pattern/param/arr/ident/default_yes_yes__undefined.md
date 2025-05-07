@@ -25,8 +25,8 @@ const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
 const tmpAPBD /*:unknown*/ = tmpArrPatternSplat[0];
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_x /*:unknown*/ = $(`fail`);
-  $(tmpClusterSSA_x);
+  const x /*:unknown*/ = $(`fail`);
+  $(x);
 } else {
   $(tmpAPBD);
 }

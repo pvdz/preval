@@ -22,8 +22,8 @@ f();
 
 `````js filename=intro
 $(1);
-const tmpSSA_x /*:unknown*/ = $(2);
-$(tmpSSA_x, `f`);
+const x /*:unknown*/ = $(2);
+$(x, `f`);
 `````
 
 

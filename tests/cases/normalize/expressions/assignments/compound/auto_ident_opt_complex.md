@@ -31,9 +31,9 @@ if (tmpIfTest) {
   $($Number_NaN);
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  const tmpClusterSSA_a$1 /*:number*/ = a * tmpChainElementObject;
-  $(tmpClusterSSA_a$1);
-  $(tmpClusterSSA_a$1);
+  const tmpClusterSSA_a /*:number*/ = a * tmpChainElementObject;
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -50,9 +50,9 @@ if (tmpIfTest) {
   $($Number_NaN);
   $($Number_NaN);
 } else {
-  const tmpClusterSSA_a$1 = a * tmpChainElementCall.x;
-  $(tmpClusterSSA_a$1);
-  $(tmpClusterSSA_a$1);
+  const tmpClusterSSA_a = a * tmpChainElementCall.x;
+  $(tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 

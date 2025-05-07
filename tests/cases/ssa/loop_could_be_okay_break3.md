@@ -43,13 +43,13 @@ f();
 `````js filename=intro
 $(1);
 let tmpLoopRetCode /*:boolean*/ = true;
-const tmpClusterSSA_x /*:unknown*/ = $(2);
-$(tmpClusterSSA_x);
+const x /*:unknown*/ = $(2);
+$(x);
 if ($) {
 } else {
   while ($LOOP_UNROLL_10) {
-    const tmpClusterSSA_x$1 /*:unknown*/ = $(2);
-    $(tmpClusterSSA_x$1);
+    const x$1 /*:unknown*/ = $(2);
+    $(x$1);
     if ($) {
       tmpLoopRetCode = false;
     } else {

@@ -44,9 +44,9 @@ const g /*:()=>undefined*/ = function () {
   debugger;
   if (tmpFuncLock) {
     const obj /*:object*/ = {};
-    const tmpClusterSSA_x$1 /*:unknown*/ = $dotCall($function_call, f, `call`, obj, 1, 2, 3);
+    const x$1 /*:unknown*/ = $dotCall($function_call, f, `call`, obj, 1, 2, 3);
     tmpFuncLock = false;
-    $(tmpClusterSSA_x$1);
+    $(x$1);
     return undefined;
   } else {
     return undefined;
@@ -69,9 +69,9 @@ const f = function (a, b, c) {
 };
 const g = function () {
   if (tmpFuncLock) {
-    const tmpClusterSSA_x$1 = $dotCall($function_call, f, `call`, {}, 1, 2, 3);
+    const x$1 = $dotCall($function_call, f, `call`, {}, 1, 2, 3);
     tmpFuncLock = false;
-    $(tmpClusterSSA_x$1);
+    $(x$1);
   }
 };
 g();

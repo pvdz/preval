@@ -23,8 +23,8 @@ while (true) {
 `````js filename=intro
 $(10);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpClusterSSA_x /*:unknown*/ = $(20, `set`);
-  $(tmpClusterSSA_x, `loop`);
+  const x /*:unknown*/ = $(20, `set`);
+  $(x, `loop`);
 }
 `````
 

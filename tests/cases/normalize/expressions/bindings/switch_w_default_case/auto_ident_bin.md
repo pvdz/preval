@@ -27,8 +27,8 @@ switch (1) {
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
-const tmpClusterSSA_a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpClusterSSA_a);
+const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+$(a);
 $(`fail1`);
 $(`fail2`);
 `````

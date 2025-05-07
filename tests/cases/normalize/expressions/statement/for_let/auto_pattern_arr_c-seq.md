@@ -72,6 +72,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

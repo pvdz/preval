@@ -46,7 +46,7 @@ throw "[Preval]: Can not reach here";
 ## Todos triggered
 
 
-None
+- (todo) support array reads statement type ExpressionStatement
 
 
 ## Globals

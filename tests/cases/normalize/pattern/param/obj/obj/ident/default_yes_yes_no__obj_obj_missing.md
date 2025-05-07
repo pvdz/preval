@@ -23,8 +23,8 @@ $(f({ x: { x: 1, z: 3 }, b: 11, c: 12 }, 10));
 const tmpOPBD$1 /*:unknown*/ = $Object_prototype.y;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD$1 === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_y /*:unknown*/ = $(`pass`);
-  $(tmpClusterSSA_y);
+  const y /*:unknown*/ = $(`pass`);
+  $(y);
 } else {
   $(tmpOPBD$1);
 }

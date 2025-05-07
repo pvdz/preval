@@ -31,8 +31,8 @@ const tmpArrElement /*:unknown*/ = $(2);
 const tmpCalleeParam /*:array*/ = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b /*:unknown*/ = tmpArrPatternSplat[0];
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+const b /*:unknown*/ = tmpArrPatternSplat[0];
+$(tmpNestedAssignArrPatternRhs, b);
 $(`fail1`);
 $(`fail2`);
 `````
@@ -70,6 +70,7 @@ $( "fail2" );
 
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

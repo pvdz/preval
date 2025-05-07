@@ -20,8 +20,8 @@ $(f({ x: { x: 1, y: undefined, z: 3 }, b: 11, c: 12 }, 10));
 
 
 `````js filename=intro
-const tmpClusterSSA_y /*:unknown*/ = $(`pass`);
-$(tmpClusterSSA_y);
+const y /*:unknown*/ = $(`pass`);
+$(y);
 `````
 
 

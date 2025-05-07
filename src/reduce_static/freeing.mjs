@@ -253,7 +253,7 @@ function _freeing(fdata, $prng, usePrng) {
   }
 
   function processFrfrCall(block, index, frfrCallNode, path) {
-    if (block[index].type === 'ExpressionStatement') {
+    if (block[index].type === 'ExpressionStatement' && block[index].expression === frfrCallNode) {
       // The $frfr call is a statement. Since $free func calls are not observable, this must mean
       // the statement is moot and we can eliminate it. We should keep the ident args for tdz as usual
 
@@ -314,7 +314,7 @@ function _freeing(fdata, $prng, usePrng) {
           }
         }
       });
-      vlog('freeing; Has explicit user global?');
+      vlog('freeing; Has explicit user global?', hasExplicitGlobal);
       vgroupEnd();
 
       if (!hasExplicitGlobal) {

@@ -147,7 +147,7 @@ function _redundantInit(fdata) {
         setPrintVarTyping(true, fdata);
         before(write0.blockBody[write0.blockIndex]);
 
-        if (write0.parentNode.init.type !== 'FunctionExpression') {
+        if (write0.parentNode.init.type !== 'FunctionExpression' && !AST.isPrimitive(write0.parentNode.init)) {
           // Just don't put func exprs as statements
           write0.blockBody.splice(write0.blockIndex, 0, AST.expressionStatement(write0.parentNode.init));
         }

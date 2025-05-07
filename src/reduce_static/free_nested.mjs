@@ -371,7 +371,16 @@ function _freeNested(fdata, $prng, usePrng) {
                 calledFreeFuncNode.body.body[i] = AST.emptyStatement(); // Drop the debugger statement. We won't need it anymore.
                 break;
               }
-              ASSERT(bnode.type === 'VarStatement', 'should not find this/arguments or anything else in the func header', calledFreeFuncNode.body.body, i, bnode.type);
+              if (bnode.type === 'EmptyStatement') {
+                // Empty statements can appear in function headers
+                continue;
+              }
+              if (bnode.type === 'ExpressionStatement' && (bnode.expression.type === 'Identifier' || bnode.expression.type === 'Param') ) {
+                todo('guess we can have idents and params here too (remove me once confirmed)');
+                continue;
+              }
+
+              ASSERT(bnode.type === 'VarStatement', 'in normalized code all func headers should only be var statements and empty statements up to the debugger statement', calledFreeFuncNode.body.body, i, bnode.type, frfrCallArgs);
 
               const init = bnode.init;
               ASSERT(init.type === 'Param', '$free funcs shouldnt get this or arguments aliases and we would stop before finding Debugger so what is this?', bnode);

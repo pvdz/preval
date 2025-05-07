@@ -33,8 +33,8 @@ function _branchConstantInlining(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
     if (!meta.isConstant) return;
+    if (meta.writes.length !== 1) return; // runtime error
 
-    ASSERT(meta.writes.length === 1, 'this is a constant, so ...');
     const write = meta.writes[0];
     ASSERT(write.kind === 'var', 'this is a constant and the write should be the var', write);
 

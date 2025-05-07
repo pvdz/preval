@@ -5,7 +5,6 @@
 // In general we prefer this form but it is not always the same, in particular when the own property .call was set
 // For certain values and builtins we can assert what they're doing, though.
 
-import { NUMBER, BOOLEAN, STRING, OBJECT, ARRAY, DATE, FUNCTION, $JSON, MATH, REGEXP, symbo, sym_prefix, BUFFER, } from '../symbols_builtins.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, todo } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';

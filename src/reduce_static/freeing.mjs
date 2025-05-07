@@ -42,11 +42,11 @@
 //
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo, clearStdio, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_SYMBOLS, MATH, NUMBER, STRING, symbo } from '../symbols_builtins.mjs';
 import { createFreshVar, getMeta } from '../bindings.mjs';
-import { PRIMITIVE_TYPE_NAMES_PREVAL, VERBOSE_TRACING } from '../constants.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL, setVerboseTracing, VERBOSE_TRACING } from '../constants.mjs';
 import { pcodeSupportedBuiltinFuncs, runFreeWithPcode } from '../pcode.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { GLOBAL_PREVAL_SYMBOLS, SYMBOL_COERCE, SYMBOL_DOTCALL } from '../symbols_preval.mjs';
@@ -163,11 +163,19 @@ const SUPPORTED_FREE_BUILTINS = new Set([
 ])
 
 export function freeing(fdata, $prng, options) {
+  //clearStdio();
+  //setVerboseTracing(true);
+
+
   const usePrng = !!options.prngSeed;
   group('\n\n\n[freeing] Searching for free statements to collect\n');
   //currentState(fdata, 'freeing'. true);
   const r = _freeing(fdata, $prng, usePrng);
   groupEnd();
+
+
+//stopmaar
+
   return r;
 }
 function _freeing(fdata, $prng, usePrng) {
@@ -514,7 +522,7 @@ function withPredictableStatements(body, firstIndex, lastIndex, fdata, funcQueue
 
   if (outer.size === 0 && userGlobals.size === 0) {
     // Note: One notable exception is math.random(). Are there any other exceptions like it?
-    vlog('The function would receive no arguments. This means the output is constant and we should be able to resolve it immediately');
+    vlog('The function would receive no arguments. This means the output is constant and we should be able to resolve it immediately', last.id?.name || last.left?.name);
 
     const outNode = runFreeWithPcode(func, [], fdata, 'tmp_free_func', $prng, usePrng);
     if (outNode) {
@@ -785,6 +793,10 @@ function isFreeExpression(exprNode, fdata) {
       }
 
       if (funcName === SYMBOL_COERCE) {
+        // Seen a real world case choke over this:
+        ASSERT(exprNode.arguments.length === 2, 'coerce should always have 2 args', exprNode);
+        if (AST.isPrimitive(exprNode.arguments[0])) return true;
+        ASSERT(exprNode.arguments[0].type === 'Identifier', 'coerce should always have prim or ident as first arg', exprNode, exprNode.arguments[0]);
         const meta = getMeta(exprNode.arguments[0].name, fdata);
         if (meta.typing?.mustBeType || meta.typing?.mustBePrimitive) {
           vlog('  - ok! its a coerce call with primitive arg:', funcName);

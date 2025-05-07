@@ -69,7 +69,7 @@ function processAttempt1MoveVarDeclAboveClosure(fdata) {
   let blockQueue = new Set(); // Map<block, Array<{from, to}>>
   let varNodeSet = new Set(); // Set of all var nodes we wish to move. We can ignore any other node.
 
-  new Map(fdata.globallyUniqueNamingRegistry).forEach(function (meta, name) {
+  fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return; // We can probably do it for some of these cases? But let's do that in another step
     if (meta.isImplicitGlobal) return;
     if (meta.isConstant) return;

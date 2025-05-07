@@ -114,5 +114,4 @@ function _dotcallSelfAssigning(fdata) {
   }
 
   log('Self assigning dotcalls improved: 0.');
-  return false;
 }

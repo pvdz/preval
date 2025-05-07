@@ -92,12 +92,6 @@ function _objlitPropAccess(fdata) {
           return;
         }
 
-        //if (ref.reachedByReads.size === 0) {
-        //  // We can just remove it now, dismantle the object, etc. Or it's a closure...
-        //  vlog('This write is not observed; bailing');
-        //  return;
-        //}
-
         // Ok this was a write that assigned an object literal. Hurray!
         vgroup('  - ok; Found "simple" object expression at ref', ri, ' assigned to `' + name + '`. Tracing nearest property lookups.');
         verifyAfterObjectAssign(meta, rwOrder, ref, ri, rhs);

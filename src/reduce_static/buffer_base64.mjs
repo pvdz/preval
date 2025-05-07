@@ -231,5 +231,4 @@ function _buffer_base64(fdata) {
   }
 
   log('buffer_base64 inlined: 0.');
-  return false;
 }

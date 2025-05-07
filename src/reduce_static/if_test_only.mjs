@@ -148,5 +148,4 @@ function _ifTestOnly(fdata) {
   }
 
   log('Unobservable bool tests fixed: 0.');
-  return false;
 }

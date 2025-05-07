@@ -1701,6 +1701,7 @@ export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
   ASSERT(false, 'TODO: support this node', node);
 }
 export function expressionHasNoObservableSideEffect(node, noDelete) {
+  ASSERT(typeof node === 'object' && node, 'expressionHasNoObservableSideEffect should receive a node');
   // This function assumes normalized code (!)
 
   // Return true when the given expression node has an observable side effect, false when it does not,
@@ -3114,4 +3115,37 @@ export function isBufferConvertPattern(stmt1, stmt2, paramNameOrPrim) {
   if (!init2.arguments.every((anode,i) => i<=2 || isPrimitive(anode))) return false;
 
   return true;
+}
+
+// Is not-observable expression. Idents are only observable if they can throw reference errors.
+export function isNoobExpression(node, allowIdents = false) {
+  if (isPrimitive(node)) return true;
+  if (['FunctionExpression', 'Param', 'ThisExpression'].includes(node.name)) return true;
+  if (node.name === 'Identifier') return !!allowIdents;
+  if (node.type === 'ArrayExpression') {
+    return node.elements.every(enode => {
+      if (!enode) return false;
+      if (enode.type === 'SpreadElement') return false;
+      if (isPrimitive(enode)) return true;
+      if (enode.type === 'Identifier') return allowIdents;
+      return false;
+    });
+  }
+  if (node.type === 'ObjectExpression') {
+    return node.properties.every(pnode => {
+      if (pnode.type === 'SpreadElement') return false;
+      if (pnode.computed) {
+        if (!isPrimitive(pnode.key) && !(pnode.key.type === 'Identifier' && allowIdents)) {
+          return false;
+        }
+      }
+      if (isPrimitive(pnode.value)) return true;
+      if (pnode.value.type === 'Identifier') return allowIdents;
+      return false;
+    });
+  }
+  // TODO: classes. super expr and similar to objects
+  // TODO: more intelligent stuff like accessing properties when we know the object shape / array etc
+
+  return false;
 }

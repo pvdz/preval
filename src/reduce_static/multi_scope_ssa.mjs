@@ -183,28 +183,10 @@ function _multiScopeSSA(fdata) {
         let offset = start + 1;
         vlog('Initial offset:', offset);
 
-        if (declWasFirstRef) {
-          vlog('Adding grace period of side effects because the first ref was a var decl');
-          let declRef = rwOrder[0];
-          let secondRef = rwOrder[1];
-          const declBlockId = declRef.blockIds[declRef.blockIds.length - 1];
-          vlog('Decl block id is:', declBlockId);
-          vlog('Second ref block chain:', secondRef.blockIds);
-          const idIndex = secondRef.blockIds.lastIndexOf(declBlockId);
-          ASSERT(
-            idIndex >= 0,
-            'a reference to this binding must have the decl block as an ancestor block or I dont know whats going on here',
-          );
-          const declBlockIndex = declRef.blockIndex;
-          const secondBlockIndex = secondRef.blockIds[idIndex];
-          vlog('Decl block index:', declBlockIndex, ', second block index:', secondBlockIndex);
-          vlog('This means side effects only need to be checked starting at the first statement containing a reference');
-          vlog('New offset:', secondBlockIndex);
-          offset = secondBlockIndex;
-        }
-
+        const offsetOffset = offset;
         for (; offset < end && sideEffectFree; ++offset) {
           const n = block[offset];
+          ASSERT(n, 'should have a node...', offsetOffset, offset, end, block.length);
           if (AST.expressionHasNoObservableSideEffect(n)) {
             vlog(offset, ': yes');
           } else {

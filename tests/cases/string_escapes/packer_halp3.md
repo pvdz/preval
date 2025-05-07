@@ -40,7 +40,7 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
   return tmpRet;
 };
 const tmpCalleeParam$9 /*:object*/ = {};
-let tmpSSA_e /*:(number)=>unknown*/ = function ($$0) {
+let e /*:(number)=>unknown*/ = function ($$0) {
   const c$2 /*:number*/ = $$0;
   debugger;
   let tmpBinBothLhs /*:unknown*/ = ``;
@@ -48,7 +48,7 @@ let tmpSSA_e /*:(number)=>unknown*/ = function ($$0) {
   if (tmpIfTest) {
   } else {
     const tmpCalleeParam$1 /*:number*/ = $frfr(tmpFree, c$2);
-    tmpBinBothLhs = tmpSSA_e(tmpCalleeParam$1);
+    tmpBinBothLhs = e(tmpCalleeParam$1);
   }
   const tmpClusterSSA_c$4 /*:number*/ = c$2 % 52;
   const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_c$4 > 35;
@@ -62,28 +62,28 @@ let tmpSSA_e /*:(number)=>unknown*/ = function ($$0) {
     return tmpClusterSSA_tmpReturnArg$1;
   }
 };
-const tmpAssignComMemLhsProp /*:unknown*/ = tmpSSA_e(51);
+const tmpAssignComMemLhsProp /*:unknown*/ = e(51);
 tmpCalleeParam$9[tmpAssignComMemLhsProp] = `not_expr`;
-const tmpAssignComMemLhsProp$1 /*:unknown*/ = tmpSSA_e(50);
+const tmpAssignComMemLhsProp$1 /*:unknown*/ = e(50);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$1] = `u0020g`;
-const tmpAssignComMemLhsProp$2 /*:unknown*/ = tmpSSA_e(49);
+const tmpAssignComMemLhsProp$2 /*:unknown*/ = e(49);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$2] = `x20f`;
-const tmpAssignComMemLhsProp$3 /*:unknown*/ = tmpSSA_e(48);
+const tmpAssignComMemLhsProp$3 /*:unknown*/ = e(48);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$3] = `10`;
-const tmpAssignComMemLhsProp$4 /*:unknown*/ = tmpSSA_e(47);
+const tmpAssignComMemLhsProp$4 /*:unknown*/ = e(47);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$4] = `toString`;
-const tmpAssignComMemLhsProp$5 /*:unknown*/ = tmpSSA_e(46);
+const tmpAssignComMemLhsProp$5 /*:unknown*/ = e(46);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$5] = `split`;
-const tmpAssignComMemLhsProp$6 /*:unknown*/ = tmpSSA_e(45);
+const tmpAssignComMemLhsProp$6 /*:unknown*/ = e(45);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$6] = `36`;
-const tmpAssignComMemLhsProp$7 /*:unknown*/ = tmpSSA_e(44);
+const tmpAssignComMemLhsProp$7 /*:unknown*/ = e(44);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$7] = `RegExp`;
-const tmpAssignComMemLhsProp$8 /*:unknown*/ = tmpSSA_e(43);
+const tmpAssignComMemLhsProp$8 /*:unknown*/ = e(43);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$8] = `new`;
-const tmpAssignComMemLhsProp$9 /*:unknown*/ = tmpSSA_e(42);
+const tmpAssignComMemLhsProp$9 /*:unknown*/ = e(42);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$9] = `String`;
 let tmpClusterSSA_c$1 /*:number*/ = 41;
-const tmpAssignComMemLhsProp$10 /*:unknown*/ = tmpSSA_e(41);
+const tmpAssignComMemLhsProp$10 /*:unknown*/ = e(41);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$10] = `eval`;
 const tmpCalleeParam$7 /*:array*/ = [
   ``,
@@ -143,11 +143,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_c$1;
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
-    const tmpAssignComMemLhsProp$11 /*:unknown*/ = tmpSSA_e(tmpClusterSSA_c$1);
+    const tmpAssignComMemLhsProp$11 /*:unknown*/ = e(tmpClusterSSA_c$1);
     let tmpAssignComputedRhs$1 /*:unknown*/ = tmpCalleeParam$7[tmpClusterSSA_c$1];
     if (tmpAssignComputedRhs$1) {
     } else {
-      tmpAssignComputedRhs$1 = tmpSSA_e(tmpClusterSSA_c$1);
+      tmpAssignComputedRhs$1 = e(tmpClusterSSA_c$1);
     }
     tmpCalleeParam$9[tmpAssignComMemLhsProp$11] = tmpAssignComputedRhs$1;
   } else {
@@ -160,7 +160,7 @@ const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
   const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$9[e$1];
   return tmpReturnArg$1;
 };
-tmpSSA_e = function () {
+e = function () {
   debugger;
   return `\\w+`;
 };
@@ -190,10 +190,10 @@ const tmpFree = function $free(c$1) {
   return tmpRet;
 };
 const tmpCalleeParam$9 = {};
-let tmpSSA_e = function (c$2) {
+let e = function (c$2) {
   let tmpBinBothLhs = ``;
   if (!(c$2 < 52)) {
-    tmpBinBothLhs = tmpSSA_e($frfr(tmpFree, c$2));
+    tmpBinBothLhs = e($frfr(tmpFree, c$2));
   }
   const tmpClusterSSA_c$4 = c$2 % 52;
   if (tmpClusterSSA_c$4 > 35) {
@@ -204,28 +204,28 @@ let tmpSSA_e = function (c$2) {
     return tmpClusterSSA_tmpReturnArg$1;
   }
 };
-const tmpAssignComMemLhsProp = tmpSSA_e(51);
+const tmpAssignComMemLhsProp = e(51);
 tmpCalleeParam$9[tmpAssignComMemLhsProp] = `not_expr`;
-const tmpAssignComMemLhsProp$1 = tmpSSA_e(50);
+const tmpAssignComMemLhsProp$1 = e(50);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$1] = `u0020g`;
-const tmpAssignComMemLhsProp$2 = tmpSSA_e(49);
+const tmpAssignComMemLhsProp$2 = e(49);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$2] = `x20f`;
-const tmpAssignComMemLhsProp$3 = tmpSSA_e(48);
+const tmpAssignComMemLhsProp$3 = e(48);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$3] = `10`;
-const tmpAssignComMemLhsProp$4 = tmpSSA_e(47);
+const tmpAssignComMemLhsProp$4 = e(47);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$4] = `toString`;
-const tmpAssignComMemLhsProp$5 = tmpSSA_e(46);
+const tmpAssignComMemLhsProp$5 = e(46);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$5] = `split`;
-const tmpAssignComMemLhsProp$6 = tmpSSA_e(45);
+const tmpAssignComMemLhsProp$6 = e(45);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$6] = `36`;
-const tmpAssignComMemLhsProp$7 = tmpSSA_e(44);
+const tmpAssignComMemLhsProp$7 = e(44);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$7] = `RegExp`;
-const tmpAssignComMemLhsProp$8 = tmpSSA_e(43);
+const tmpAssignComMemLhsProp$8 = e(43);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$8] = `new`;
-const tmpAssignComMemLhsProp$9 = tmpSSA_e(42);
+const tmpAssignComMemLhsProp$9 = e(42);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$9] = `String`;
 let tmpClusterSSA_c$1 = 41;
-const tmpAssignComMemLhsProp$10 = tmpSSA_e(41);
+const tmpAssignComMemLhsProp$10 = e(41);
 tmpCalleeParam$9[tmpAssignComMemLhsProp$10] = `eval`;
 const tmpCalleeParam$7 = [
   ``,
@@ -285,10 +285,10 @@ while (true) {
   const tmpPostUpdArgIdent$1 = tmpClusterSSA_c$1;
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
-    const tmpAssignComMemLhsProp$11 = tmpSSA_e(tmpClusterSSA_c$1);
+    const tmpAssignComMemLhsProp$11 = e(tmpClusterSSA_c$1);
     let tmpAssignComputedRhs$1 = tmpCalleeParam$7[tmpClusterSSA_c$1];
     if (!tmpAssignComputedRhs$1) {
-      tmpAssignComputedRhs$1 = tmpSSA_e(tmpClusterSSA_c$1);
+      tmpAssignComputedRhs$1 = e(tmpClusterSSA_c$1);
     }
     tmpCalleeParam$9[tmpAssignComMemLhsProp$11] = tmpAssignComputedRhs$1;
   } else {
@@ -299,7 +299,7 @@ const tmpArrElement = function (e$1) {
   const tmpReturnArg$1 = tmpCalleeParam$9[e$1];
   return tmpReturnArg$1;
 };
-tmpSSA_e = function () {
+e = function () {
   return `\\w+`;
 };
 $(
@@ -423,7 +423,7 @@ $( br );
 
 
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
-- (todo) support array reads statement type VarStatement
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) objects in isFree check

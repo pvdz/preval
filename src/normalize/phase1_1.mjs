@@ -1101,6 +1101,6 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   if (enableTiming) {
     const mseven = performance.now();
     TIMING.seven = mseven - msix;
-    console.log('Phase1.1 timing:', JSON.stringify(TIMING).replace(/"|\.\d+/g, '').replace(/(:|,)/g, '$1 '));
+    console.log(DIM + 'Phase1.1 timing:', JSON.stringify(TIMING).replace(/"|\.\d+/g, '').replace(/(:|,)/g, '$1 '), RESET);
   }
 }

@@ -113,5 +113,4 @@ function _excessiveArgs(fdata) {
   }
 
   log('Functions unlocked: 0.');
-  return false;
 }

@@ -79,9 +79,8 @@ function _findThrowers(fdata) {
     queue.forEach(({ func }) => func());
 
     log('Throws injected:', queue.length, '. Restarting from phase1');
-    return {what: 'findThrowers', changes: queue.length, next: 'phase1'};
+    return { what: 'findThrowers', changes: queue.length, next: 'phase1' };
   }
 
   log('Throws injected: 0.');
-  return false;
 }

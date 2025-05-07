@@ -296,5 +296,4 @@ function _functionLocks(fdata) {
   }
 
   log('Functions unlocked: 0.');
-  return false;
 }

@@ -299,5 +299,4 @@ function _boolTrampolines(fdata) {
   }
 
   log('Trampolines inlined: 0.');
-  return false;
 }

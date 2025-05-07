@@ -83,7 +83,7 @@ function _letAliasRedundant(fdata) {
     ASSERT(constWrite);
 
     const constRead = constMeta.reads[0];
-    ASSERT(constRead);
+    if (!constRead) return vlog('  - Bail: this ref has no reads; another rule will eliminate it');
 
     if (constRead.node.$p.pid < constWrite.node.$p.pid) return vlog('  - Bail: first read of const occurs before its write');
 

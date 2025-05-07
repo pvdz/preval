@@ -72,5 +72,4 @@ function _ifTestNested(fdata) {
   }
 
   log('Nested if-tests eliminated: 0.');
-  return false;
 }

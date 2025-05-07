@@ -155,5 +155,4 @@ function _readOnce(fdata) {
   }
 
   log('Self destructing bindings split: 0.');
-  return false;
 }

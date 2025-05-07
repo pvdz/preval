@@ -384,5 +384,4 @@ function _refTracked(fdata) {
   }
 
   log('Ref-tracking tricks applied: 0.');
-  return false;
 }

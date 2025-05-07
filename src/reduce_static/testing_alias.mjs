@@ -130,5 +130,4 @@ function _testingAlias(fdata) {
   }
 
   log('Testing aliases inlnied: 0.');
-  return false;
 }

@@ -7,15 +7,16 @@
 //
 //          const arr = []; try { arr.pop(); } catch {}     // pop on a constant that is an array literal, cant throw, assuming builtins
 
-
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, useRiskyRules, assertNoDupeNodes, todo, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, useRiskyRules, assertNoDupeNodes, todo, clearStdio, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL, setVerboseTracing } from '../constants.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function tryEscaping(fdata) {
+  //clearStdio();
+  //setVerboseTracing(true);
   group('\n\n\n[tryEscaping] Find Try statements which start with statements that cannot throw and elevate them\n');
   const r = _tryEscaping(fdata);
   groupEnd();
@@ -25,13 +26,14 @@ function _tryEscaping(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
   let changed = 0;
-  let restart = false;
+  let restart = false; // If true then will restart from normal rather than phase1
 
   walk(_walker, ast);
   function _walker(node, beforeWalk, nodeType, path) {
     // There are a couple of cases we'll target but there are probably many more. Can we catch them all?
 
     if (!beforeWalk) return false;
+    if (changed) return false; // Stop traversing further, require phase1/normal loop first. There's a bug where read blockIndex references get stale and it's breaking. We have to go step-by-step until we manage to work around that.
 
     // Special case for array expressions, targeting a superficial pumping scheme used by obfuscators
     if (node.type === 'ArrayExpression') {
@@ -44,17 +46,17 @@ function _tryEscaping(fdata) {
 
       const parentNode = path.nodes[path.nodes.length - 2];
       //const parentProp = path.props[path.props.length - 1];
-      const parentIndex = path.indexes[path.indexes.length - 1];
+      //const parentIndex = path.indexes[path.indexes.length - 1];
 
-      const grandNode = path.nodes[path.nodes.length - 3];
+      //const grandNode = path.nodes[path.nodes.length - 3];
       //const grandProp = path.props[path.props.length - 2];
-      const grandIndex = path.indexes[path.indexes.length - 2];
+      //const grandIndex = path.indexes[path.indexes.length - 2];
 
 
       if (parentNode.type === 'AssignmentExpression') {
         // TODO: we may be able to fix this case but for arrays we focus on the constants
         // Hopefully SSA will allow us to tackle this one, anyways
-        return vlog('  Cannot deal with assigns of arr litearls');
+        return vlog('  Cannot deal with assigns of arr literals');
       }
       else if (parentNode.type === 'ExpressionStatement') {
         // We ignore this case because there can be no reference to fix
@@ -132,12 +134,17 @@ function _tryEscaping(fdata) {
 
         return true; // bail, for now.
 
-      })) return vlog('  At least one read of the var is unsupported, bailing');
+      })) {
+        return vlog('  At least one read of the var is unsupported, bailing');
+      }
 
       // Okay, this member expression or call will result in a primitive (assuming built-ins are sound)
       // Update the lhs accordingly.
 
       arrMeta.reads.forEach(read => {
+
+        ASSERT(read.blockBody[read.blockIndex], 'ja deze')
+
         if (read.blockBody[read.blockIndex].type === 'VarStatement' && read.blockBody[read.blockIndex].kind === 'const') {
           // We can assert the value of the member expression is a primitive when it's computed number access or .length but not much else
           if (
@@ -166,7 +173,10 @@ function _tryEscaping(fdata) {
     if (!node.block.body.length) return false; // empty try will be eliminated anyways (We could do that here but)
 
     const firstNode = node.block.body[0];
+    vgroup('- Have a Try statement, going to check if its first statement can be lifted', firstNode.type, firstNode.expression?.type);
     const liftable = isLiftableStatement(firstNode, firstNode.type, fdata);
+    vlog('-- verdict:', liftable);
+    vgroupEnd();
     if (liftable === 'no') return false;
 
     // Move the statement to before the Try

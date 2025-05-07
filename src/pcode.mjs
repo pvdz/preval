@@ -642,7 +642,15 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
     }
     case 'UnaryExpression': {
       ASSERT('+-~!typeof'.includes(exprNode.operator), 'unary operator asserted in pcanCompile', exprNode.operator);
-      if (exprNode.operator === '-') return ['neg', ...compileExpression(exprNode.argument, regs, fdata, stmt)];
+      // We kind of assume that negative literals are the only case where a unary expression may appear
+      // as child of another expression. Don't hate me, future self.
+      if (exprNode.operator === '-') {
+        if (AST.isNumberLiteral(exprNode.argument)) {
+          const newNode = AST.primitive(-AST.getPrimitiveValue(exprNode.argument));
+          return compileExpression(newNode, regs, fdata, stmt);
+        }
+        return ['neg', ...compileExpression(exprNode.argument, regs, fdata, stmt)];
+      }
       if (exprNode.operator === '+') return ['pos', ...compileExpression(exprNode.argument, regs, fdata, stmt)];
       return [exprNode.operator, ...compileExpression(exprNode.argument, regs, fdata, stmt)];
     }

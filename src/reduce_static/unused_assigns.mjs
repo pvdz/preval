@@ -95,7 +95,7 @@ function _unusedAssigns(fdata) {
 
     const rhs = write.blockBody[write.blockIndex].expression.right;
     // Keep the rhs in most cases, drop the assignment in all cases
-    if (rhs.type === 'FunctionExpression') {
+    if (rhs.type === 'FunctionExpression' || AST.isPrimitive(rhs)) {
       write.blockBody[write.blockIndex] = AST.emptyStatement();
     } else {
       write.blockBody[write.blockIndex].expression = write.blockBody[write.blockIndex].expression.right;

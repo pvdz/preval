@@ -20,7 +20,7 @@ $('after');
 
 `````js filename=intro
 $(`before`);
-throw `Attempting to call a value that cannot be called: \`false();\``;
+throw `[Preval] Attempting to call a value that cannot be called: \`false();\``;
 `````
 
 
@@ -29,7 +29,7 @@ throw `Attempting to call a value that cannot be called: \`false();\``;
 
 `````js filename=intro
 $(`before`);
-throw `Attempting to call a value that cannot be called: \`false();\``;
+throw `[Preval] Attempting to call a value that cannot be called: \`false();\``;
 `````
 
 
@@ -38,7 +38,7 @@ With rename=true
 
 `````js filename=intro
 $( "before" );
-throw "Attempting to call a value that cannot be called: `false();`";
+throw "[Preval] Attempting to call a value that cannot be called: `false();`";
 `````
 
 

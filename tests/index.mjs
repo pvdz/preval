@@ -793,7 +793,7 @@ function runTestCase(
         .replace(/Preval: Assignment to constant variable.*/, 'Assignment to constant variable.')
         .replace(/Spread syntax requires.*/, '<ref> is not function/iterable')
         .replace(/.*max pcode call depth.*/, 'Maximum call stack size exceeded')
-        .replace(/Attempting to call a value that cannot be called.*/, '<ref> is not function/iterable') // Ultimately, not doing this creates more noise than signal.
+        .replace(/.*Attempting to call a value that cannot be called.*/, '<ref> is not function/iterable') // Ultimately, not doing this creates more noise than signal.
 
         // All arrows are transformed to function expressions
         .replace(/\(\) => \{\}/g, 'function() {}')

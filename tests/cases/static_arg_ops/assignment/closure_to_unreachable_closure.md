@@ -42,7 +42,7 @@ if ($) {
   b = a;
   tmpClusterSSA_f();
 } else {
-  throw `Attempting to call a value that cannot be called: \`undefined(1);\``;
+  throw `[Preval] Attempting to call a value that cannot be called: \`undefined(1);\``;
 }
 `````
 
@@ -63,7 +63,7 @@ if ($) {
   b = a;
   tmpClusterSSA_f();
 } else {
-  throw `Attempting to call a value that cannot be called: \`undefined(1);\``;
+  throw `[Preval] Attempting to call a value that cannot be called: \`undefined(1);\``;
 }
 `````
 
@@ -87,7 +87,7 @@ if ($) {
   c();
 }
 else {
-  throw "Attempting to call a value that cannot be called: `undefined(1);`";
+  throw "[Preval] Attempting to call a value that cannot be called: `undefined(1);`";
 }
 `````
 

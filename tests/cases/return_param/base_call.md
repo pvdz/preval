@@ -39,7 +39,7 @@ f();
 $(`pass`);
 $(undefined);
 f();
-throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``;
+throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``;
 `````
 
 
@@ -56,7 +56,7 @@ f();
 $(`pass`);
 $(undefined);
 f();
-throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``;
+throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam\$3 = 2();\``;
 `````
 
 
@@ -75,7 +75,7 @@ a();
 $( "pass" );
 $( undefined );
 a();
-throw "Attempting to call a value that cannot be called: `const tmpCalleeParam$3 = 2();`";
+throw "[Preval] Attempting to call a value that cannot be called: `const tmpCalleeParam$3 = 2();`";
 `````
 
 

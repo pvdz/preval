@@ -18,7 +18,7 @@ $(o.oops());
 
 
 `````js filename=intro
-throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``;
+throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``;
 `````
 
 
@@ -26,7 +26,7 @@ throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam 
 (This ought to be the final result)
 
 `````js filename=intro
-throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``;
+throw `[Preval] Attempting to call a value that cannot be called: \`const tmpCalleeParam = \$dotCall(\`fail\`, o, \`oops\`);\``;
 `````
 
 
@@ -34,7 +34,7 @@ throw `Attempting to call a value that cannot be called: \`const tmpCalleeParam 
 With rename=true
 
 `````js filename=intro
-throw "Attempting to call a value that cannot be called: `const tmpCalleeParam = $dotCall(`fail`, o, `oops`);`";
+throw "[Preval] Attempting to call a value that cannot be called: `const tmpCalleeParam = $dotCall(`fail`, o, `oops`);`";
 `````
 
 

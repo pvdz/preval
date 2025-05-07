@@ -1517,6 +1517,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             body[i-1].id.name === a.name && // Assigning to property of objlit defined in prev statement
             // Check to confirm the property is not already defined as a getter/setter...
             body[i-1].init.properties.every(pnode => {
+              if (pnode.type === 'SpreadElement') {
+                // What about `const x = {...y}; x.a = b;` -> `const x {...y, a: b}` ?
+                todo('assigning to the prop of an objlit with spread could still be combined right');
+                return false;
+              }
               if (!pnode.computed && !lhs.computed) {
                 // Same ident key. Ok if not the same key or if same key and objlit had it as init (not get/set)
                 // Note: kind is get/set/init
@@ -3515,7 +3520,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             example('404("not found")', 'throw new Error()');
             before(body[i]);
 
-            body[i] = AST.throwStatement(AST.primitive(`Attempting to call a value that cannot be called: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``))
+            body[i] = AST.throwStatement(AST.primitive(`[Preval] Attempting to call a value that cannot be called: \`${tmat(body[i], true).replace(/\n/g, '\\n')}\``))
 
             after(body[i]);
             assertNoDupeNodes(body, 'body');

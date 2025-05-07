@@ -20,7 +20,7 @@ $('after');
 
 `````js filename=intro
 $(`before`);
-throw `Attempting to call a value that cannot be called: \`Infinity();\``;
+throw `[Preval] Attempting to call a value that cannot be called: \`Infinity();\``;
 `````
 
 
@@ -29,7 +29,7 @@ throw `Attempting to call a value that cannot be called: \`Infinity();\``;
 
 `````js filename=intro
 $(`before`);
-throw `Attempting to call a value that cannot be called: \`Infinity();\``;
+throw `[Preval] Attempting to call a value that cannot be called: \`Infinity();\``;
 `````
 
 
@@ -38,7 +38,7 @@ With rename=true
 
 `````js filename=intro
 $( "before" );
-throw "Attempting to call a value that cannot be called: `Infinity();`";
+throw "[Preval] Attempting to call a value that cannot be called: `Infinity();`";
 `````
 
 

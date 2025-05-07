@@ -21,10 +21,10 @@
 
 import walk from '../../lib/walk.mjs';
 import * as AST from '../ast.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, rule, example, before, after, todo, currentState, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING, assertNoDupeNodes, rule, example, before, after, todo, currentState, clearStdio, } from '../utils.mjs';
 import { runFreeWithPcode } from '../pcode.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
-import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
+import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF, setVerboseTracing } from '../constants.mjs';
 import { BUILTIN_SYMBOLS, symbo } from '../symbols_builtins.mjs';
 
 const FAILURE_SYMBOL = {};
@@ -135,7 +135,7 @@ export function _freeLoops(fdata, prng, usePrng) {
     );
     for (let i=fromIndex; i<=whileIndex; ++i) before(blockBody[i]);
 
-    vlog('\n\nStart\n\n');
+    vlog('\n\nStart of running freeloop\n\n');
 
     let failed = false;
     for (let i=fromIndex; i<=whileIndex; ++i) {
@@ -148,7 +148,8 @@ export function _freeLoops(fdata, prng, usePrng) {
 
     vlog('Storing final values of pre-loop variables');
     for (let i=fromIndex; i<whileIndex; ++i) {
-      if (blockBody[i].type === 'VarStatement') {
+      if (blockBody[i].type === 'VarStatement' && blockBody[i].init.type !== 'FunctionExpression') {
+        //vlog('Setting', blockBody[i].id.name, 'to', register.get(blockBody[i].id.name));
         blockBody[i].init = register.get(blockBody[i].id.name);
       }
     }
@@ -204,24 +205,22 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
       ASSERT(!assignedTo, 'assignments should be statements so it shouldnt want to assign the type', assignedTo);
       if (node.left.type === 'Identifier') {
         // TODO: does the type of the lhs need updating/checking? mmmmmm
-        return (
-          isFree(node.left, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined) &&
-          isFree(node.right, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined)
-        );
+        const a = isFree(node.left, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
+        if (!a || a === FAILURE_SYMBOL) return a;
+        return isFree(node.right, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined)
       } else if (node.left.type === 'MemberExpression') {
         if (node.left.computed) {
           // `arr[x] = y`
-          return (
-            isFree(node.left.object, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined) &&
-            isFree(node.left.property, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined) &&
-            isFree(node.right, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined)
-          );
+          const a = isFree(node.left.object, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
+          if (!a || a === FAILURE_SYMBOL) return a;
+          const b = isFree(node.left.property, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
+          if (!b || b === FAILURE_SYMBOL) return b;
+          return isFree(node.right, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
         } else {
           // `arr.x = y`
-          return (
-            isFree(node.left.object, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined) &&
-            isFree(node.right, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined)
-          );
+          const t = isFree(node.left.object, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
+          if (!t || t === FAILURE_SYMBOL) return t;
+          return isFree(node.right, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
         }
       } else {
         todo('what else can we assign to?', node.left);
@@ -269,8 +268,9 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
     }
     case 'BlockStatement': {
       for (let i=0; i<node.body.length; ++i) {
-        if (!isFree(node.body[i], fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined)) {
-          return false;
+        const t = isFree(node.body[i], fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined)
+        if (!t || t === FAILURE_SYMBOL) {
+          return t;
         }
       }
       return true;
@@ -589,15 +589,15 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
       vgroup('test');
       t = isFree(node.test, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
       vgroupEnd();
-      if (!t) return t;
+      if (!t || t === FAILURE_SYMBOL) return t;
       vgroup('consequent');
       t = isFree(node.consequent, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
       vgroupEnd();
-      if (!t) return t;
+      if (!t || t === FAILURE_SYMBOL) return t;
       vgroup('alternate');
       t = isFree(node.alternate, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
       vgroupEnd();
-      if (!t) return t;
+      if (!t || t === FAILURE_SYMBOL) return t;
       return true;
     }
     case 'Literal': {
@@ -739,7 +739,8 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
         return true;
       }
       // Pass in the var id. If it's good then the id will be updated to the type of the expr.
-      if (!isFree(init, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, id.name)) {
+      const r = isFree(init, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, id.name);
+      if (!r || r === FAILURE_SYMBOL) {
         vlog('  - The init was not free');
         return false;
       }
@@ -829,6 +830,7 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
       const init = node.init;
       //console.log('var decl for: ' + node.id.name, 'total', Array.from(register.keys()).join(' '))
       if (init.type === 'ArrayExpression') {
+        vlog('-- Updating', node.id.name, 'to an array node');
         register.set(
           node.id.name,
           init // Use verbatim. The init.elements will be referenced and mutated, most of the time.
@@ -836,11 +838,23 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
       } else if (init.type === 'ObjectExpression') {
         todo('support var decls with objects?');
         return FAILURE_SYMBOL;
+      } else if (init.type === 'FunctionExpression') {
+        vlog('-- Ignoring var statement init that is function expression? id=', node.id.name);
+        //const value = runExpression(fdata, node.init, register, callNodeToCalleeSymbol, prng, usePrng);
+        //if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
+        //ASSERT(PRIMITIVE_TYPE_NAMES_TYPEOF.has(value === null ? 'null' : typeof value), 'var decl init runexpr should yield a primitive?', node.init, value);
+        //
+        //vlog('-- Updating', node.id.name, 'to a primitive node', [value]);
+        //register.set(
+        //  node.id.name,
+        //  AST.primitive(value)
+        //);
       } else {
         const value = runExpression(fdata, node.init, register, callNodeToCalleeSymbol, prng, usePrng);
         if (value === FAILURE_SYMBOL) return FAILURE_SYMBOL;
         ASSERT(PRIMITIVE_TYPE_NAMES_TYPEOF.has(value === null ? 'null' : typeof value), 'var decl init runexpr should yield a primitive?', node.init, value);
 
+        vlog('-- Updating', node.id.name, 'to a primitive node', [value]);
         register.set(
           node.id.name,
           AST.primitive(value)
@@ -897,6 +911,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
       if (node.left.type === 'Identifier') {
         const init = register.get(node.left.name);
         ASSERT(init, 'should know this binding');
+        vlog('-- Updating', node.left.name, 'assigning a primitive node', [value]);
         register.set(node.left.name, AST.primitive(value));
         // In normalized code, the parent of this assignment node should be an expression statement, so the return value should be moot
         return value;
@@ -1016,8 +1031,9 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         if (fail) return FAILURE_SYMBOL;
 
         const outNode = runFreeWithPcode(freeFuncNode, args, fdata, freeFuncName, prng, usePrng);
-        if (!AST.isPrimitive(outNode)) {
+        if (!outNode || !AST.isPrimitive(outNode)) {
           todo('The return value of runFreeWithPcode was not a primitive?');
+          break;
           return FAILURE_SYMBOL;
         }
         return AST.getPrimitiveValue(outNode);

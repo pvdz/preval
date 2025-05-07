@@ -62,12 +62,6 @@ export function ASSERT(b, m = '', ...rest) {
     throw new Error(`PREVAL ASSERT: ${n}; args: ${json}`);
   }
 }
-export function ASSERT_LOC(loc) {
-  ASSERT(typeof loc === 'object' && loc, 'loc should be an object', loc);
-  ASSERT(typeof loc.filename === 'string', 'loc filename must be a string', loc);
-  ASSERT(typeof loc.column === 'number' && loc.column >= 0, 'loc filename must be a number >=0', loc);
-  ASSERT(typeof loc.line === 'number' && loc.line >= 1, 'loc filename must be a number >0', loc);
-}
 
 // Certain things need to be loggable regardless
 export const ASSERT_LOG = console.log;
@@ -92,6 +86,7 @@ export function setStdio(handler, verbose = VERBOSE) {
 }
 
 export function clearStdio() {
+  // Note: --> see setVerboseTracing()
   VERBOSE = true;
   Console.log = (...args) => console.log(...args);
   Console.error = (...args) => console.log(...args);

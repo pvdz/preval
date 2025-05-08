@@ -29,12 +29,13 @@ $(f());
 
 
 `````js filename=intro
-if (a) {
-  $(3);
-} else {
-  b;
-  $(3);
-}
+try {
+  if (a) {
+  } else {
+    b;
+  }
+} catch ($finalImplicit) {}
+$(3);
 `````
 
 
@@ -42,12 +43,12 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-if (a) {
-  $(3);
-} else {
-  b;
-  $(3);
-}
+try {
+  if (!a) {
+    b;
+  }
+} catch ($finalImplicit) {}
+$(3);
 `````
 
 
@@ -55,13 +56,18 @@ if (a) {
 With rename=true
 
 `````js filename=intro
-if (a) {
-  $( 3 );
+try {
+  if (a) {
+
+  }
+  else {
+    b;
+  }
 }
-else {
-  b;
-  $( 3 );
+catch (c) {
+
 }
+$( 3 );
 `````
 
 
@@ -88,8 +94,6 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Post settled calls: BAD!!
- - !eval returned: ('<crash[ <ref> is not defined ]>')
+Post settled calls: Same
 
-Denormalized calls: BAD!!
- - !eval returned: ('<crash[ <ref> is not defined ]>')
+Denormalized calls: Same

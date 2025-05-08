@@ -31,11 +31,15 @@ $(x);
 `````js filename=intro
 const x /*:unknown*/ = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (x) {
-    $(5);
-  } else {
-    break;
+  try {
+    if (x) {
+    } else {
+      break;
+    }
+  } catch (e) {
+    $(`fail`);
   }
+  $(5);
 }
 $(x);
 `````
@@ -47,11 +51,14 @@ $(x);
 `````js filename=intro
 const x = $(1);
 while (true) {
-  if (x) {
-    $(5);
-  } else {
-    break;
+  try {
+    if (!x) {
+      break;
+    }
+  } catch (e) {
+    $(`fail`);
   }
+  $(5);
 }
 $(x);
 `````
@@ -63,12 +70,18 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (a) {
-    $( 5 );
+  try {
+    if (a) {
+
+    }
+    else {
+      break;
+    }
   }
-  else {
-    break;
+  catch (b) {
+    $( "fail" );
   }
+  $( 5 );
 }
 $( a );
 `````

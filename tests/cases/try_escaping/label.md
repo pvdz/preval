@@ -34,18 +34,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const x /*:unknown*/ = $(1);
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (x) {
-    $(2);
-  } else {
-    const tmpCalleeParam /*:primitive*/ = arr[0];
-    try {
+  try {
+    if (x) {
+    } else {
+      const tmpCalleeParam /*:primitive*/ = arr[0];
       $(tmpCalleeParam);
       $dotCall($array_reverse, arr, `reverse`);
-    } catch (e) {
-      $(`fail`);
     }
-    $(2);
+  } catch (e) {
+    $(`fail`);
   }
+  $(2);
 }
 `````
 
@@ -57,18 +56,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const x = $(1);
 const arr = [1, 2, 3];
 while (true) {
-  if (x) {
-    $(2);
-  } else {
-    const tmpCalleeParam = arr[0];
-    try {
-      $(tmpCalleeParam);
+  try {
+    if (!x) {
+      $(arr[0]);
       $dotCall($array_reverse, arr, `reverse`);
-    } catch (e) {
-      $(`fail`);
     }
-    $(2);
+  } catch (e) {
+    $(`fail`);
   }
+  $(2);
 }
 `````
 
@@ -80,20 +76,20 @@ With rename=true
 const a = $( 1 );
 const b = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (a) {
-    $( 2 );
-  }
-  else {
-    const c = b[ 0 ];
-    try {
+  try {
+    if (a) {
+
+    }
+    else {
+      const c = b[ 0 ];
       $( c );
       $dotCall( $array_reverse, b, "reverse" );
     }
-    catch (d) {
-      $( "fail" );
-    }
-    $( 2 );
   }
+  catch (d) {
+    $( "fail" );
+  }
+  $( 2 );
 }
 `````
 
@@ -104,7 +100,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) support array reads statement type WhileStatement
 - (todo) Support this node type in isFree: LabeledStatement
-- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

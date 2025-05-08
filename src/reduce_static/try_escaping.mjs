@@ -352,6 +352,10 @@ function _isLiftableStatement(node, nodeType, fdata, fromIf = false) {
       return 'no';
     }
 
+    if (!cantThrow(node.test, fdata)) {
+      return 'no';
+    }
+
     // When the if-test is safe and one branch is empty then we can move the try into the other branch
 
     let yesRestarts = false;
@@ -588,7 +592,7 @@ function _isNotSpyingValueNode(node, fdata, isVarDecl, isAssign, dontPrint) {
 }
 
 function cantThrow(node, fdata, skipPrimitiveCheck) {
-  // ok if prmitive, builtin, known to be primitive, or we can confirm that the ref can be reached
+  // ok if primitive, builtin, known to be primitive, or we can confirm that the ref can be reached
 
   if (AST.isPrimitive(node)) {
     return true;

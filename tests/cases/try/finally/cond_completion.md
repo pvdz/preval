@@ -26,12 +26,13 @@ log(f());
 
 `````js filename=intro
 log;
-if (a) {
-  log(3);
-} else {
-  b;
-  log(3);
-}
+try {
+  if (a) {
+  } else {
+    b;
+  }
+} catch ($finalImplicit) {}
+log(3);
 `````
 
 
@@ -40,12 +41,12 @@ if (a) {
 
 `````js filename=intro
 log;
-if (a) {
-  log(3);
-} else {
-  b;
-  log(3);
-}
+try {
+  if (!a) {
+    b;
+  }
+} catch ($finalImplicit) {}
+log(3);
 `````
 
 
@@ -54,13 +55,18 @@ With rename=true
 
 `````js filename=intro
 log;
-if (a) {
-  log( 3 );
+try {
+  if (a) {
+
+  }
+  else {
+    b;
+  }
 }
-else {
-  b;
-  log( 3 );
+catch (c) {
+
 }
+log( 3 );
 `````
 
 

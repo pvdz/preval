@@ -31,16 +31,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const arr /*:array*/ = [1, 2, 3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const x /*:unknown*/ = $(1);
-  if (x) {
-    break;
-  } else {
-    const tmpCalleeParam /*:primitive*/ = arr[0];
-    try {
+  try {
+    if (x) {
+      break;
+    } else {
+      const tmpCalleeParam /*:primitive*/ = arr[0];
       $(tmpCalleeParam);
       $dotCall($array_reverse, arr, `reverse`);
-    } catch (e) {
-      $(`fail`);
     }
+  } catch (e) {
+    $(`fail`);
   }
 }
 `````
@@ -52,16 +52,16 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const arr = [1, 2, 3];
 while (true) {
-  if ($(1)) {
-    break;
-  } else {
-    const tmpCalleeParam = arr[0];
-    try {
-      $(tmpCalleeParam);
+  const x = $(1);
+  try {
+    if (x) {
+      break;
+    } else {
+      $(arr[0]);
       $dotCall($array_reverse, arr, `reverse`);
-    } catch (e) {
-      $(`fail`);
     }
+  } catch (e) {
+    $(`fail`);
   }
 }
 `````
@@ -74,18 +74,18 @@ With rename=true
 const a = [ 1, 2, 3 ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const b = $( 1 );
-  if (b) {
-    break;
-  }
-  else {
-    const c = a[ 0 ];
-    try {
+  try {
+    if (b) {
+      break;
+    }
+    else {
+      const c = a[ 0 ];
       $( c );
       $dotCall( $array_reverse, a, "reverse" );
     }
-    catch (d) {
-      $( "fail" );
-    }
+  }
+  catch (d) {
+    $( "fail" );
   }
 }
 `````
@@ -95,7 +95,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) access object property that also exists on prototype? $array_reverse
-- (todo) can try-escaping support this expr node type? CallExpression
 - (todo) support array reads statement type WhileStatement
 
 

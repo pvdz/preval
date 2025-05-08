@@ -43,7 +43,6 @@ function _ifTestBool(fdata) {
     if (beforeWalk) return;
 
     if (node.type !== 'IfStatement') return;
-
     if (node.test.type !== 'Identifier') return;
 
     vlog('If on ident');
@@ -69,11 +68,24 @@ function _ifTestBool(fdata) {
     vgroup('First trick failed. Now searching all reads of the test ident `' + ifTestMeta.uniqueName + '`');
     ifTestMeta.reads.forEach((read, ri) => {
       vlog('- read', ri);
-      let whichBranch = '';
       if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
-        vlog('ref in if branch');
+        vlog('ref in if branch, mustbe:', ifTestMeta.typing.mustBeType);
 
-        if (read.parentNode.type === 'UnaryExpression' && read.parentNode.operator === '!') {
+        if (ifTestMeta.typing.mustBeType === 'boolean') {
+          // We are in a consequent branch of an `if` where the test is an ident that we know is a bool.
+          // As such, we know the value must be `true` inside this branch, and we can replace all occurrences
+          // with that value.
+          rule('A bool ident inside a consequent branch testing for that ident must mean its true');
+          exmaple('const x = !y; if (x) $(x, 1) else {}', 'const x = !y; if (x) $(true, 1) else {}');
+          before(read.blockBody[read.blockIndex]);
+
+          if (read.parentIndex < 0) read.parentNode[read.parentProp] = AST.tru();
+          else read.parentNode[read.parentProp][read.parentIndex] = AST.tru();
+
+          after(read.blockBody[read.blockIndex]);
+          ++changed;
+        }
+        else if (read.parentNode.type === 'UnaryExpression' && read.parentNode.operator === '!') {
           rule('Inverting an `if`-tested constant in the consequent branch must yield `false`');
           example('if (x) y = !x', 'if (x) y = false;');
           before(read.blockBody[read.blockIndex]);
@@ -83,7 +95,8 @@ function _ifTestBool(fdata) {
           ++changed;
 
           after(read.blockBody[read.blockIndex]);
-        } else if (
+        }
+        else if (
           read.parentNode.type === 'CallExpression' &&
           read.parentNode.callee.type === 'Identifier' &&
           read.parentNode.callee.name === symbo('boolean', 'constructor') &&
@@ -100,10 +113,27 @@ function _ifTestBool(fdata) {
 
           after(read.blockBody[read.blockIndex]);
         }
+        else {
+          vlog('- bail: Not unary excl, not calling Boolean');
+        }
       } else if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
-        vlog('ref in else branch');
+        vlog('ref in else branch, mustbe:', ifTestMeta.typing.mustBeType);
 
-        if (read.parentNode.type === 'UnaryExpression' && read.parentNode.operator === '!') {
+        if (ifTestMeta.typing.mustBeType === 'boolean') {
+          // We are in the alternate branch of an `if` where the test is an ident that we know is a bool.
+          // As such, we know the value must be `false` inside this branch, and we can replace all occurrences
+          // with that value.
+          rule('A bool ident inside an alternate branch testing for that ident must mean its false');
+          exmaple('const x = !y; if (x) {} else $(x, 1)', 'const x = !y; if (x) {} else $(false, 1)');
+          before(read.blockBody[read.blockIndex]);
+
+          if (read.parentIndex < 0) read.parentNode[read.parentProp] = AST.fals();
+          else read.parentNode[read.parentProp][read.parentIndex] = AST.fals();
+
+          after(read.blockBody[read.blockIndex]);
+          ++changed;
+        }
+        else if (read.parentNode.type === 'UnaryExpression' && read.parentNode.operator === '!') {
           rule('Inverting an `if`-tested constant in the alternate branch must yield `true`');
           example('if (x) y = !x', 'if (x) y = false;');
           before(read.blockBody[read.blockIndex]);
@@ -113,7 +143,8 @@ function _ifTestBool(fdata) {
           ++changed;
 
           after(read.blockBody[read.blockIndex]);
-        } else if (
+        }
+        else if (
           read.parentNode.type === 'CallExpression' &&
           read.parentNode.callee.type === 'Identifier' &&
           read.parentNode.callee.name === symbo('boolean', 'constructor') &&
@@ -129,6 +160,9 @@ function _ifTestBool(fdata) {
           ++changed;
 
           after(read.blockBody[read.blockIndex]);
+        }
+        else {
+          vlog('- bail: Not unary excl, not calling Boolean');
         }
       } else {
         vlog('ref not inside `if` statement at all');

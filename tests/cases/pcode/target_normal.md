@@ -276,8 +276,8 @@ $( "end" );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) do we want to support TemplateLiteral as expression statement in free loops?
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

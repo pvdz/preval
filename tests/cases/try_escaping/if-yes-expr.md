@@ -89,10 +89,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
+- (todo) Support referencing this builtin in isFree: $
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) can try-escaping support this expr node type? CallExpression
 - (todo) support array reads statement type WhileStatement
-- (todo) Support referencing this builtin in isFree: $
 
 
 ## Globals

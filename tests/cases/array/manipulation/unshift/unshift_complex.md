@@ -73,8 +73,8 @@ $( b );
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) support array reads statement type VarStatement
 
 

@@ -111,8 +111,8 @@ $( "path" );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Buffer_from
 - (todo) access object property that also exists on prototype? $buffer_toString
+- (todo) type trackeed tricks can possibly support static $Buffer_from
 
 
 ## Globals

@@ -120,11 +120,11 @@ $( "JSON:", k );
 
 
 - (todo) type trackeed tricks can possibly support static $array_constructor
-- (todo) type trackeed tricks can possibly support static $object_constructor
+- (todo) type trackeed tricks can possibly support static $buffer_constructor
 - (todo) type trackeed tricks can possibly support static $date_constructor
 - (todo) type trackeed tricks can possibly support static $map_constructor
+- (todo) type trackeed tricks can possibly support static $object_constructor
 - (todo) type trackeed tricks can possibly support static $set_constructor
-- (todo) type trackeed tricks can possibly support static $buffer_constructor
 
 
 ## Globals

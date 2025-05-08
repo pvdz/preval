@@ -83,8 +83,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) objects in isFree check
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

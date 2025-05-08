@@ -138,10 +138,10 @@ new c();
 ## Todos triggered
 
 
-- (todo) infertyping on a non-ident? is that a crash or bug? Super
-- (todo) infertyping on a non-ident? is that a crash or bug? MemberExpression
-- (todo) when we are still receiving method calls in typed tracked tricks?
 - (todo) Encountered non-ident as callee
+- (todo) infertyping on a non-ident? is that a crash or bug? MemberExpression
+- (todo) infertyping on a non-ident? is that a crash or bug? Super
+- (todo) when we are still receiving method calls in typed tracked tricks?
 
 
 ## Globals

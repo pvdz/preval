@@ -235,10 +235,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) can we support this const aliasing blocking statement? WhileStatement
-- (todo) type trackeed tricks can possibly support static $Number_parseInt
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) can we support this const aliasing blocking statement? WhileStatement
 - (todo) support array reads statement type VarStatement
+- (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 
 ## Globals

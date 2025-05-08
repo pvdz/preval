@@ -53,9 +53,9 @@ $( a );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $array_constructor
-- (todo) regular property access of an ident feels tricky;
 - (todo) Support this ident in isFree CallExpression: $array_constructor
+- (todo) regular property access of an ident feels tricky;
+- (todo) type trackeed tricks can possibly support static $array_constructor
 
 
 ## Globals

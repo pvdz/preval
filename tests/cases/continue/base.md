@@ -169,8 +169,8 @@ else {
 ## Todos triggered
 
 
-- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 - (todo) Support this node type in isFree: LabeledStatement
+- (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
 
 
 ## Globals

@@ -100,8 +100,8 @@ $( c, b );
 ## Todos triggered
 
 
-- (todo) objects in isFree check
 - (todo) Support non-primitive in first arg to $coerce
+- (todo) objects in isFree check
 
 
 ## Globals

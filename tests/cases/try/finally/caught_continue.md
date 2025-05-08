@@ -94,8 +94,8 @@ $( 5 );
 ## Todos triggered
 
 
-- (todo) can try-escaping support this expr node type? CallExpression
 - (todo) Support this node type in isFree: LabeledStatement
+- (todo) can try-escaping support this expr node type? CallExpression
 
 
 ## Globals

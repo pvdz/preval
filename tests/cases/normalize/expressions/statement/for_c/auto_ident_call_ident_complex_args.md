@@ -93,8 +93,8 @@ $( g );
 ## Todos triggered
 
 
-- (todo) do we want to support ObjectExpression as expression statement in free loops?
 - (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 
 
 ## Globals

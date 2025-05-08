@@ -109,8 +109,8 @@ $( a );
 ## Todos triggered
 
 
-- (todo) objects in isFree check
 - (todo) nodeMightMutateNameUntrapped; Which statement are we missing here? BlockStatement
+- (todo) objects in isFree check
 
 
 ## Globals

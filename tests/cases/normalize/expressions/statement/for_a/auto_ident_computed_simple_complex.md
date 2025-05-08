@@ -86,8 +86,8 @@ $( d, e );
 ## Todos triggered
 
 
-- (todo) do we want to support MemberExpression as expression statement in free loops?
 - (todo) Support non-primitive in first arg to $coerce
+- (todo) do we want to support MemberExpression as expression statement in free loops?
 
 
 ## Globals

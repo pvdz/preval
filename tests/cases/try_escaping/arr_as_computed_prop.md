@@ -97,9 +97,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) can try-escaping support this expr node type? MemberExpression
-- (todo) support array reads statement type WhileStatement
 - (todo) objects in isFree check
 - (todo) regular property access of an ident feels tricky;
+- (todo) support array reads statement type WhileStatement
 
 
 ## Globals

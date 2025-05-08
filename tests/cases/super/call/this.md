@@ -124,8 +124,8 @@ new d();
 ## Todos triggered
 
 
-- (todo) infertyping on a non-ident? is that a crash or bug? Super
 - (todo) Encountered non-ident as callee
+- (todo) infertyping on a non-ident? is that a crash or bug? Super
 
 
 ## Globals

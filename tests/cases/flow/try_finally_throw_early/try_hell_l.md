@@ -61,8 +61,8 @@ considerMutated( 2 );
 ## Todos triggered
 
 
-- (todo) i need trapChain for this to work properly
 - (todo) can try-escaping support this expr node type? Literal
+- (todo) i need trapChain for this to work properly
 
 
 ## Globals

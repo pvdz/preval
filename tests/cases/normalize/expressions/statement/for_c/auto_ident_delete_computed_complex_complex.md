@@ -101,8 +101,8 @@ $( h, b );
 ## Todos triggered
 
 
-- (todo) objects in isFree check
 - (todo) do we want to support UnaryExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

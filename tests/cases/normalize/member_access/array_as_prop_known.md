@@ -53,8 +53,8 @@ $( c );
 ## Todos triggered
 
 
-- (todo) type trackeed tricks can possibly support static $Array_from
 - (todo) support array reads statement type ExpressionStatement
+- (todo) type trackeed tricks can possibly support static $Array_from
 
 
 ## Globals

@@ -64,11 +64,11 @@ $( e );
 ## Todos triggered
 
 
-- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
-- (todo) can we always safely clone ident refs in this case?
-- (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) arr mutation may be able to inline this method: tmpArrElement
+- (todo) arr mutation may be able to inline this method: tmpMCF
+- (todo) can we always safely clone ident refs in this case?
 - (todo) support array reads statement type VarStatement
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

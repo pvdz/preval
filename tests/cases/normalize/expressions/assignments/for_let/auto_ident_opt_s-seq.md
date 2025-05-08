@@ -54,8 +54,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) can we support this const aliasing blocking statement? WhileStatement
-- (todo) regular property access of an ident feels tricky;
 - (todo) do we want to support Literal as expression statement in free loops?
+- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

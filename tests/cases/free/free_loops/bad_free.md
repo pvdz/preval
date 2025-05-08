@@ -107,11 +107,11 @@ $( h );
 ## Todos triggered
 
 
-- (todo) Support string.charCodeAt when the arg is not a string literal
-- (todo) do we want to support TemplateLiteral as expression statement in free loops?
-- (todo) Support referencing this builtin in isFree: $
 - (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) Support non-primitive in first arg to $coerce
+- (todo) Support referencing this builtin in isFree: $
+- (todo) Support string.charCodeAt when the arg is not a string literal
+- (todo) do we want to support TemplateLiteral as expression statement in free loops?
 
 
 ## Globals

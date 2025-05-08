@@ -40,8 +40,8 @@ throw "[Preval] Attempting to call a value that cannot be called: `const tmpChai
 ## Todos triggered
 
 
-- (todo) infertyping on a non-ident? is that a crash or bug? TemplateLiteral
 - (todo) Encountered non-ident as callee
+- (todo) infertyping on a non-ident? is that a crash or bug? TemplateLiteral
 
 
 ## Globals

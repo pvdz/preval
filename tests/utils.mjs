@@ -218,7 +218,7 @@ export function fmat(code) {
 function toTodosSection(todos) {
   return (
     '## Todos triggered\n\n\n' +
-    (Array.from(todos).map(desc => '- (todo) ' + desc).join('\n') || 'None')
+    (Array.from(todos).map(desc => '- (todo) ' + desc.trim()).sort((a,b)=>a<b?-1:a>b?1:0  ).join('\n') || 'None')
   )
 }
 

@@ -103,8 +103,8 @@ else {
 ## Todos triggered
 
 
-- (todo) objects in isFree check
 - (todo) Support this node type in isFree: NewExpression
+- (todo) objects in isFree check
 
 
 ## Globals

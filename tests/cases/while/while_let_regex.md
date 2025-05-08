@@ -51,8 +51,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) do we want to support NewExpression as expression statement in free loops?
 - (todo) Support this node type in isFree: NewExpression
+- (todo) do we want to support NewExpression as expression statement in free loops?
 
 
 ## Globals

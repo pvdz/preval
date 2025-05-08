@@ -67,8 +67,8 @@ $( "after", a );
 ## Todos triggered
 
 
-- (todo) access object property that also exists on prototype? $array_shift
 - (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
+- (todo) access object property that also exists on prototype? $array_shift
 - (todo) can try-escaping support this expr node type? CallExpression
 
 

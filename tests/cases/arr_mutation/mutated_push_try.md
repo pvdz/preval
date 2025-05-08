@@ -69,8 +69,8 @@ $( a );
 ## Todos triggered
 
 
-- (todo) access object property that also exists on prototype? $array_splice
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) access object property that also exists on prototype? $array_splice
 - (todo) can try-escaping support this expr node type? CallExpression
 
 

@@ -150,11 +150,11 @@ throw "[Preval]: Array spread must crash before this line";
 ## Todos triggered
 
 
-- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_slice
-- (todo) type trackeed tricks can possibly support static $array_slice
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) type trackeed tricks can possibly support static $array_slice
+- (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 
 ## Globals

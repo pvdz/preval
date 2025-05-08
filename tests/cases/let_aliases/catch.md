@@ -104,8 +104,8 @@ catch (e) {
 ## Todos triggered
 
 
-- (todo) can we support this const aliasing blocking statement? TryStatement
 - (todo) can try-escaping support this expr node type? CallExpression
+- (todo) can we support this const aliasing blocking statement? TryStatement
 
 
 ## Globals

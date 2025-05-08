@@ -85,8 +85,8 @@ $( c );
 ## Todos triggered
 
 
-- (todo) access object property that also exists on prototype? $array_splice
 - (todo) access object property that also exists on prototype? $array_push
+- (todo) access object property that also exists on prototype? $array_splice
 - (todo) support array reads statement type ExpressionStatement
 
 

@@ -86,8 +86,8 @@ $( d, b );
 ## Todos triggered
 
 
-- (todo) objects in isFree check
 - (todo) do we want to support MemberExpression as expression statement in free loops?
+- (todo) objects in isFree check
 
 
 ## Globals

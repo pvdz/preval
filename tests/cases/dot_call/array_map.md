@@ -71,10 +71,10 @@ $( e );
 ## Todos triggered
 
 
-- (todo) arr mutation may be able to inline this method: map
 - (todo) arr mutation may be able to inline this method: $array_map
-- (todo) type trackeed tricks can possibly support static $array_map
+- (todo) arr mutation may be able to inline this method: map
 - (todo) support array reads statement type VarStatement
+- (todo) type trackeed tricks can possibly support static $array_map
 
 
 ## Globals

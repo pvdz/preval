@@ -80,12 +80,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) access object property that also exists on prototype? $array_reverse
-- (todo) try escaping may support dotcalling $array_reverse
-- (todo) can try-escaping support this expr node type? CallExpression
-- (todo) support array reads statement type VarStatement
-- (todo) objects in isFree check
 - (todo) - at least one of the frfr args was not isFree, bailing
+- (todo) access object property that also exists on prototype? $array_reverse
+- (todo) can try-escaping support this expr node type? CallExpression
+- (todo) objects in isFree check
+- (todo) support array reads statement type VarStatement
+- (todo) try escaping may support dotcalling $array_reverse
 
 
 ## Globals

@@ -26,7 +26,7 @@ import { tru } from '../ast.mjs';
 
 export function ifDualAssign(fdata) {
   group('\n\n\n[ifDualAssign] Looking for ifs that return a bit that they check');
-  //currentState(fdata, 'ifDualAssign'. true);
+  //currentState(fdata, 'ifDualAssign'. true, fdata);
   const r = _ifDualAssign(fdata);
   groupEnd();
   return r;

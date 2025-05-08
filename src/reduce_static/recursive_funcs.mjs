@@ -27,7 +27,7 @@ import * as AST from '../ast.mjs';
 
 export function recursiveFuncs(fdata) {
   group('\n\n\n[recursiveFuncs] Checking for recursive function decls stuffs');
-  //currentState(fdata, 'recursiveFuncs'. true);
+  //currentState(fdata, 'recursiveFuncs'. true, fdata);
   const r = _recursiveFuncs(fdata);
   groupEnd();
   return r;

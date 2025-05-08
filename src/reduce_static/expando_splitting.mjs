@@ -12,7 +12,7 @@ import { createFreshVar } from '../bindings.mjs';
 
 export function expandoSplitting(fdata) {
   group('\n\n\n[expandoSplitting] Finding funcs with expandos so we can split them into regular objects\n');
-  //currentState(fdata, 'expandoSplitting'. true);
+  //currentState(fdata, 'expandoSplitting'. true, fdata);
   const r = _expandoSplitting(fdata);
   groupEnd();
   return r;

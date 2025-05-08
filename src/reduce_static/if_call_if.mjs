@@ -42,7 +42,7 @@ import { returnStatement } from '../ast.mjs';
 
 export function ifCallIf(fdata) {
   group('\n\n\n[ifCallIf] Checking for the if-call-if pattern');
-  //currentState(fdata, 'ifCallIf'. true);
+  //currentState(fdata, 'ifCallIf'. true, fdata);
   const r = _assignHoisting(fdata);
   groupEnd();
   return r;

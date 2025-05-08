@@ -10,7 +10,7 @@ import { isComplexNode } from '../ast.mjs';
 export function denorm(fdata, resolve, req, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## denorm  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  currentState(fdata, 'before denorm', true);
+  currentState(fdata, 'before denorm', true, fdata);
   vlog('\n\n\n##################################\n## denorm  ::  ' + fdata.fname + '\n##################################\n');
   vlog('Converting normalized code back to somewhat regular JS code...\n\n\n\n');
 

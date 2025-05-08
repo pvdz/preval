@@ -27,7 +27,7 @@ import { createFreshVar } from '../bindings.mjs';
 
 export function tryHoisting(fdata) {
   group('\n\n\n[tryHoisting] Looking for statements inside a try that can not throw and hoist them out\n');
-  //currentState(fdata, 'tryHoisting'. true);
+  //currentState(fdata, 'tryHoisting'. true, fdata);
   const r = _tryHoisting(fdata);
   groupEnd();
   return r;

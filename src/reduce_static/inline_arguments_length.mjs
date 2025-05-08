@@ -22,7 +22,7 @@ import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function inlineArgLen(fdata) {
   group('\n\n\n[inlineArgLen] Checking for predictable `arguments.length` occurrences');
-  //currentState(fdata, 'inlineArgLen'. true);
+  //currentState(fdata, 'inlineArgLen'. true, fdata);
   const r = _inlineArgLen(fdata);
   groupEnd();
   return r;

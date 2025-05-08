@@ -169,7 +169,7 @@ export function freeing(fdata, $prng, options) {
 
   const usePrng = !!options.prngSeed;
   group('\n\n\n[freeing] Searching for free statements to collect\n');
-  //currentState(fdata, 'freeing'. true);
+  //currentState(fdata, 'freeing'. true, fdata);
   const r = _freeing(fdata, $prng, usePrng);
   groupEnd();
 

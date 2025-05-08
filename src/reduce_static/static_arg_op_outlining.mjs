@@ -14,7 +14,7 @@ import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\n[staticArgOpOutlining] Finding static param ops to outline\n');
-  //currentState(fdata, 'staticArgOpOutlining'. true);
+  //currentState(fdata, 'staticArgOpOutlining'. true, fdata);
   const r = _staticArgOpOutlining(fdata);
   groupEnd();
   return r;

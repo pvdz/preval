@@ -9,7 +9,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function andCases(fdata) {
   group('\n\n\n[andCases] Checking AND cases\n');
-  //currentState(fdata, 'andCases', true);
+  //currentState(fdata, 'andCases', true, fdata);
   const r = _andCases(fdata);
   groupEnd();
   return r;

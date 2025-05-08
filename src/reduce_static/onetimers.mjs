@@ -24,7 +24,7 @@ import { createFreshLabelStatement } from '../labels.mjs';
 
 export function inlineOneTimeFunctions(fdata) {
   group('\n\n\n[inlineOneTimeFunctions] Checking for functions that are called once');
-  //currentState(fdata, 'inlineOneTimeFunctions'. true);
+  //currentState(fdata, 'inlineOneTimeFunctions'. true, fdata);
   const r = _inlineOneTimeFunctions(fdata);
   groupEnd();
   return r;

@@ -28,7 +28,7 @@ import * as AST from '../ast.mjs';
 
 export function selfAssignClosure(fdata) {
   group('\n\n\n[selfAssignClosure] Checking for self-assigning funcs returning their own closures');
-  //currentState(fdata, 'selfAssignClosure'. true);
+  //currentState(fdata, 'selfAssignClosure'. true, fdata);
   const r = _selfAssignClosure(fdata);
   groupEnd();
   return r;

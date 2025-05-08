@@ -1568,7 +1568,7 @@ export function phaseNormalOnce(fdata) {
     vgroupEnd();
   }
 
-  //currentState(fdata, 'end of once', true);
+  //currentState(fdata, 'end of once', true, fdata);
 }
 function hoistingOnce(hoistingRoot, from) {
   ASSERT(

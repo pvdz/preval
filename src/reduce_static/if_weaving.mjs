@@ -32,7 +32,7 @@ import * as AST from '../ast.mjs';
 export function ifWeaving(fdata) {
   group('\n\n\n[ifWeaving] Checking for two if-tests that can be merged');
   const ast = fdata.tenkoOutput.ast;
-  //currentState(fdata, 'ifWeaving'. true);
+  //currentState(fdata, 'ifWeaving'. true, fdata);
   const r = _ifWeaving(fdata);
   groupEnd();
   return r;

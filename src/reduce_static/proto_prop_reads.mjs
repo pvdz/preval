@@ -14,7 +14,7 @@ import * as AST from '../ast.mjs';
 
 export function protoPropReads(fdata) {
   group('\n\n\n[protoPropReads] Finding property reads on an objlit that must read prototype\n');
-  //currentState(fdata, 'protoPropReads'. true);
+  //currentState(fdata, 'protoPropReads'. true, fdata);
   const r = _propertyLookups(fdata);
   groupEnd();
   return r;

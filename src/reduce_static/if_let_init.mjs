@@ -23,7 +23,7 @@ import * as AST from '../ast.mjs';
 
 export function ifLetInit(fdata) {
   group('\n\n\n[ifLetInit] Searching for conditionally initialized lets\n');
-  //currentState(fdata, 'ifLetInit'. true);
+  //currentState(fdata, 'ifLetInit'. true, fdata);
   const r = _ifLetInit(fdata);
   groupEnd();
   return r;

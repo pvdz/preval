@@ -9,7 +9,7 @@ import * as AST from '../ast.mjs';
 
 export function arrayReads(fdata) {
   group('\n\n\n[arrayReads] Finding property reads on array literals\n');
-  //currentState(fdata, 'arrayReads'. true);
+  //currentState(fdata, 'arrayReads'. true, fdata);
   const r = _arrayReads(fdata);
   groupEnd();
   return r;

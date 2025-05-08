@@ -236,7 +236,7 @@ export function phase2(program, fdata, resolve, req, passes, phase1s, verboseTra
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   if (VERBOSE_TRACING) {
-    currentState(fdata, 'phase2', true);
+    currentState(fdata, 'phase2', true, fdata);
     groupEnd();
     group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   }

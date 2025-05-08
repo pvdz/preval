@@ -40,7 +40,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   );
   if (!(!verboseTracing && (passes > 1 || phase1s > 1))) {
     if (REF_TRACK_TRACING) {
-      currentState(fdata, 'start of phase1.1', true);
+      currentState(fdata, 'start of phase1.1', true, fdata);
       vlog('\n\n\n#################################################################### phase1.1 [',passes,'::', phase1s, ']\n\n\n');
     }
   }

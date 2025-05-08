@@ -24,7 +24,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function globalCasting(fdata) {
   group('\n\n\n[globalCasting] Searching for calls to global builtins that cast their arg\n');
-  //currentState(fdata, 'globalCasting'. true);
+  //currentState(fdata, 'globalCasting'. true, fdata);
   const r = _globalCasting(fdata);
   groupEnd();
   return r;

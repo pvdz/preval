@@ -25,7 +25,7 @@ import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function objlitInlining(fdata) {
   group('\n\n\n[objlitInlining] Checking for object literals to inline');
-  //currentState(fdata, 'objlitInlining'. true);
+  //currentState(fdata, 'objlitInlining'. true, fdata);
   const r = _objlitInlining(fdata);
   groupEnd();
   return r;

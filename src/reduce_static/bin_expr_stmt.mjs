@@ -29,7 +29,7 @@ import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITVE_TYPE_NAMES_NOT_STRING } from '../
 
 export function binExprStmt(fdata) {
   group('\n\n\n[binExprStmt] Finding dead binary expression statements\n');
-  //currentState(fdata, 'binExprStmt'. true);
+  //currentState(fdata, 'binExprStmt'. true, fdata);
   const r = _binExprStmt(fdata);
   groupEnd();
   return r;

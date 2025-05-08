@@ -271,12 +271,13 @@ export function after(node, parentNode) {
   }
 }
 
-export function currentState(fdata, suffix, withTyping=false) {
+export function currentState(fdata, suffix, withTyping=false, fdataForTyping) {
   ASSERT((typeof fdata === 'object' && fdata) || typeof fdata === 'string', 'arg type bad', fdata);
+  ASSERT(!withTyping || fdataForTyping, 'when requesting typing you have to set fdata as teh last arg but you didnt');
   //ASSERT(suffix !== undefined, 'give me something');
   if (VERBOSE_TRACING) {
     try {
-      if (withTyping) setPrintVarTyping(true, fdata); // Handy typing details
+      if (withTyping) setPrintVarTyping(true, fdataForTyping); // Handy typing details
       let code;
       try {
         if (typeof fdata === 'string') {

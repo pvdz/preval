@@ -43,7 +43,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
       '\n##################################\n\n\n',
   );
 
-  currentState(fdata, 'phasePrimitiveArgInlining'. true);
+  currentState(fdata, 'phasePrimitiveArgInlining'. true, fdata);
 
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
   // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.

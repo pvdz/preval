@@ -23,7 +23,7 @@ import * as AST from '../ast.mjs';
 
 export function restParams(fdata) {
   group('\n\n\n[restParams] Finding unused rest params');
-  //currentState(fdata, 'restParams'. true);
+  //currentState(fdata, 'restParams'. true, fdata);
   const r = _restParams(fdata);
   groupEnd();
   return r;

@@ -6,7 +6,7 @@ import { unrollLoopWithTrue } from '../reduce_static/unroll_loop_with_true.mjs';
 export function phase3(program, fdata, resolve, req, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase3  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  currentState(fdata, 'before phase3', true);
+  currentState(fdata, 'before phase3', true, fdata);
   vlog('\n\n\n##################################\n## phase3  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
   {

@@ -14,7 +14,7 @@ import { pcanCompile, pcompile, pcodeSupportedBuiltinFuncs, runPcode, SO_MESSAGE
 export function freeFuncs(fdata, prng, options, pcodeTestMode = false) {
   const usePrng = !!options.prngSeed
   group('\n\n\n[freeFuncs] Checking for free function calls to simulate and resolve\n');
-  //if (pcodeTestMode) currentState(fdata, 'freeFuncs'. true);
+  //if (pcodeTestMode) currentState(fdata, 'freeFuncs'. true, fdata);
   const r = _freeFuncs(fdata, prng, usePrng, pcodeTestMode);
   groupEnd();
   return r;

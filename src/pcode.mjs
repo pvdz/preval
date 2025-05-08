@@ -536,107 +536,117 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
 export function pcompile(func, fdata) {
   /** @var {Map<string, string>} */
   const regs = new Map;
+  // This is the result "assembly" code or pcode. We'll pass this around by reference to
+  // be able to compile multiple ops if need be (for example for unary minus operator).
+  const asm = [];
 
-  return func.body.body.map((node) => {
-    return compileStatement(node, regs, fdata);
-  }).filter(x => x !== 'debugger').filter(Boolean);
+  func.body.body.forEach(node => compileStatement(node, regs, fdata, asm))
+
+  return asm;
 }
-function compileStatement(stmt, regs, fdata) {
+function compileStatement(stmt, regs, fdata, asm) {
   switch (stmt.type) {
     case 'ExpressionStatement': {
       if (stmt.expression.type === 'AssignmentExpression') {
-        const r = compileExpression(stmt.expression, regs, fdata, stmt, true);
+        const r = compileExpression(stmt.expression, regs, fdata, stmt, true, asm);
         vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
         vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
-        return r;
+        return;
       }
-      const r = ['r', ...compileExpression(stmt.expression, regs, fdata, stmt, true)];
+      const r = ['r', ...compileExpression(stmt.expression, regs, fdata, stmt, true, asm)];
+      asm.push(r);
       vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
       vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
-      return r;
+      return;
     }
     case 'VarStatement': {
       const init = stmt.init;
       if (init.type === 'Identifier' || AST.isPrimitive(init)) {
-        const r = [compileReglit(stmt.id, regs)[0], '=', ...compileExpression(stmt.init, regs, fdata, stmt)];
+        const r = [compileReglit(stmt.id, regs)[0], '=', ...compileExpression(stmt.init, regs, fdata, stmt, false, asm)];
+        asm.push(r);
         vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
         vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
-        return r;
+        return;
       }
-      const r = [compileReglit(stmt.id, regs)[0], ...compileExpression(stmt.init, regs, fdata, stmt)];
+      const r = [compileReglit(stmt.id, regs)[0], ...compileExpression(stmt.init, regs, fdata, stmt, false, asm)];
+      asm.push(r);
       vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
       vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
-      return r;
+      return;
     }
     case 'ReturnStatement': {
-      const r = ['return', ...compileExpression(stmt.argument, regs, fdata, stmt)];
+      const r = ['return', ...compileExpression(stmt.argument, regs, fdata, stmt, false, asm)];
+      asm.push(r);
       vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
       vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
-      return r;
+      return;
     }
     case 'ThrowStatement': {
-      const r = ['throw', ...compileExpression(stmt.argument, regs, fdata, stmt)];
+      const r = ['throw', ...compileExpression(stmt.argument, regs, fdata, stmt, false, asm)];
+      asm.push(r);
       vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
       vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
-      return r;
+      return;
     }
     case 'BreakStatement': {
       const r = ['break', stmt.label?.name ?? ''];
+      asm.push(r);
       vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
       vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
-      return r;
+      return;
     }
     case 'LabeledStatement': {
       vgroup(stmt.label.name + ':');
-      const r = ['label', stmt.label?.name, stmt.body.body.map(e => compileStatement(e, regs, fdata)).filter(Boolean)];
+      const r = ['label', stmt.label?.name, stmt.body.body.map(e => compileStatement(e, regs, fdata, asm)).filter(Boolean)];
+      asm.push(r);
       vgroupEnd();
-      return r;
+      return;
     }
     case 'IfStatement': {
       vgroup('source:  ', DIM, 'if', tmat(stmt.test, true).replace(/\n/g, '\\n '), RESET);
 
-      const test = compileExpression(stmt.test, regs, stmt);
+      const test = compileExpression(stmt.test, regs, fdata, stmt, false, asm);
+      const cons = [];
+      const alt = [];
       vlog('pcode: ', YELLOW, '["if",', JSON.stringify(test).slice(1, -1), ', ..., ...]', RESET);
 
       vgroup('consequent:');
-      const cons = stmt.consequent.body.map(e => {
+      stmt.consequent.body.forEach(e => {
         vgroup();
-        const r = compileStatement(e, regs, fdata);
+        compileStatement(e, regs, fdata, cons);
         vgroupEnd();
-        return r;
-      }).filter(Boolean);
+      });
       vgroupEnd();
 
       vgroup('alternate:');
-      const alt = stmt.alternate.body.map(e => {
+      stmt.alternate.body.forEach(e => {
         vgroup();
-        const r = compileStatement(e, regs, fdata)
+        compileStatement(e, regs, fdata, alt)
         vgroupEnd();
-        return r;
-      }).filter(Boolean);
+      });
       vgroupEnd();
 
       vgroupEnd();
 
-      return ['if', ...test, cons, alt];
+      asm.push(['if', ...test, cons, alt]);
+      return
     }
     case 'DebuggerStatement': {
-      return undefined;
-      //return ['debugger']; // or just undefined?
+      return;
     }
     case 'EmptyStatement': {
-      return undefined;
+      return;
     }
     default: {
       ASSERT(false, 'only a subset of statemetns are supported and we should have verified that before trying to compile a func:', stmt.type);
     }
   }
 }
-function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
+function compileExpression(exprNode, regs, fdata, stmt, withAssign, asm) {
   switch (exprNode.type) {
     case 'BinaryExpression': {
-      const a = compileExpression(exprNode.left, regs, fdata, stmt);
-      const b = compileExpression(exprNode.right, regs, fdata, stmt);
+      const a = compileExpression(exprNode.left, regs, fdata, stmt, false, asm);
+      const b = compileExpression(exprNode.right, regs, fdata, stmt, false, asm);
       const r = [exprNode.operator, ...a , ...b];
       return r;
     }
@@ -644,23 +654,49 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
       ASSERT('+-~!typeof'.includes(exprNode.operator), 'unary operator asserted in pcanCompile', exprNode.operator);
       // We kind of assume that negative literals are the only case where a unary expression may appear
       // as child of another expression. Don't hate me, future self.
+      // Any other unary op is first assigned to a variable in normalized code.
       if (exprNode.operator === '-') {
         vlog('- compiling negative unary');
         if (AST.isNumberLiteral(exprNode.argument)) {
           // We basically do the double negation here. -(-n) -> n
+          // We compile a special op into a fresh register and then compile the register into this op
+          // `f(-1)` -> `[['r1', '=', 'neg', 1], ['r2', '=', 'call', 'f', undefined, 'r1', undefined]]
+
           const newNode = AST.primitive(-AST.getPrimitiveValue(exprNode));
-          return ['neg', ...compileExpression(newNode, regs, fdata, stmt)];
+          const areg = compileReglit(true, regs);
+          const anonRegister = areg[0];
+          const anonOp = [anonRegister, 'neg', ...compileExpression(newNode, regs, fdata, stmt, false, asm)]
+          asm.push(anonOp);
+
+          vlog('source:  ', DIM, tmat(exprNode, true).replace(/\n/g, '\\n '), RESET);
+          vlog('pcode:   ', YELLOW, serializeBytecode(anonOp), RESET);
+
+          // Now return the compiled register as value (`[r1, undefined]`)
+          return withAssign ? ['=', ...areg] : areg;
         }
-        return ['neg', ...compileExpression(exprNode.argument, regs, fdata, stmt)];
+
+        // Not a literal
+        // const areg = compileReglit(true, regs);
+        // const anonRegister = areg[0];
+        // const anonOp = [anonRegister, 'neg', ...compileExpression(exprNode.argument, regs, fdata, stmt, false, asm)]
+        // asm.push(anonOp);
+        //
+        // vlog('source:  ', DIM, tmat(exprNode, true).replace(/\n/g, '\\n '), RESET);
+        // vlog('pcode:   ', YELLOW, serializeBytecode(anonOp), RESET);
+        //
+        // // Now return the compiled register as value (`[r1, undefined]`)
+        // return withAssign ? ['=', ...areg] : areg;
+
+        return ['neg', ...compileExpression(exprNode.argument, regs, fdata, stmt, false, asm)];
       }
-      if (exprNode.operator === '+') return ['pos', ...compileExpression(exprNode.argument, regs, fdata, stmt)];
-      return [exprNode.operator, ...compileExpression(exprNode.argument, regs, fdata, stmt)];
+      if (exprNode.operator === '+') return ['pos', ...compileExpression(exprNode.argument, regs, fdata, stmt, false, asm)];
+      return [exprNode.operator, ...compileExpression(exprNode.argument, regs, fdata, stmt, false, asm)];
     }
     case 'Param': return ['=', '$$' + exprNode.index, ''];
     case 'AssignmentExpression': {
       ASSERT(withAssign, 'normalized code, assign is a statement right? so withAssign should be true still...?');
-      const left = compileExpression(exprNode.left, regs, fdata, stmt)[0];
-      const right = compileExpression(exprNode.right, regs, fdata, stmt, true);
+      const left = compileExpression(exprNode.left, regs, fdata, stmt, false, asm)[0];
+      const right = compileExpression(exprNode.right, regs, fdata, stmt, true, asm);
       return [left, ...right];
     }
     case 'Identifier': {
@@ -677,18 +713,18 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
         vlog('This is a dotcall', exprNode.arguments[0].name, exprNode.arguments[1].type);
         ASSERT(exprNode.arguments[0]?.type === 'Identifier', 'we chcecked this no?');
         const opcode = ['dotcall', exprNode.arguments[0].name];
-        const ctx = compileExpression(exprNode.arguments[1], regs, fdata, stmt)
+        const ctx = compileExpression(exprNode.arguments[1], regs, fdata, stmt, false, asm)
         opcode.push(...ctx);
         for (let i=3; i<exprNode.arguments.length; ++i) {
-          opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt));
+          opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt, false, asm));
         }
         return opcode;
       } else {
         ASSERT(exprNode.callee.name, 'and the ident has a name?', exprNode);
         const opcode = ['call', exprNode.callee.name];
-        opcode.push(...compileExpression(AST.undef(), regs, fdata, stmt));
+        opcode.push(...compileExpression(AST.undef(), regs, fdata, stmt, false, asm));
         for (let i=0; i<exprNode.arguments.length; ++i) {
-          opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt));
+          opcode.push(...compileExpression(exprNode.arguments[i], regs, fdata, stmt, false, asm));
         }
         return opcode;
       }
@@ -713,7 +749,7 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
           ASSERT(exprNode.expressions[i].type === 'Identifier', 'I think all expressions are idents or prims in normalized code...?', exprNode.expressions[i]);
           arr.push(
             '', exprNode.quasis[i].value.cooked,
-            ...compileExpression(exprNode.expressions[i], regs, fdata, stmt)
+            ...compileExpression(exprNode.expressions[i], regs, fdata, stmt, false, asm)
           );
         }
       }
@@ -734,14 +770,23 @@ function compileExpression(exprNode, regs, fdata, stmt, withAssign=false) {
 }
 /**
  * Given an ident or primitive node, return a pair of [registerName, ''] or ['', primitiveValue]
+ * When node is `true` it will compile the value assigned to a fresh anonymous register.
  *
- * @param {IdentifierNode | PrimitiveNode} node
+ * @param {IdentifierNode | PrimitiveNode | true} node
  * @param {Set<string>} regs
  * @returns {[string, Primitive]}
  */
 function compileReglit(node, regs) {
   if (AST.isPrimitive(node)) {
     return ['', AST.getPrimitiveValue(node)];
+  }
+  if (node === true) {
+    // This is a temporary register with no name.
+    // Assign it a fresh index but don't connect it to an identifier
+    const s = 'r' + regs.size;
+    vlog('Compiling anonymous register', [s]);
+    regs.set({}, s); // the object guarantees us a unique entry without risking collisions. not very pretty though.
+    return [s, ''];
   }
   if (node.type === 'Identifier') {
     if (pcodeSupportedBuiltinFuncs.has(node.name)) return [node.name, ''];
@@ -1370,7 +1415,7 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
           if (target === 'number') return Number(v);
           if (target === 'string') return String(v);
           if (target === 'plustr') return '' + v;
-          ASSERT(false, '$coerce target should be fixed and controlled by us', [v, target]);
+          ASSERT(false, '$coerce target should be fixed and controlled by us but target type is not number/string/plustr?', [v, target]);
           break;
         }
 
@@ -1399,8 +1444,7 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         return registers[op[0]];
       }
 
-      console.log('wat expr?', op, [op[1]])
-      TODO // what is this?
+      ASSERT(false, 'corrupted compilation... what is this op?', op); // what is this?
       break;
     }
   }

@@ -25,7 +25,7 @@ import * as AST from '../ast.mjs';
 
 export function arrMethodCall(fdata) {
   group('\n\n\n[arrMethodCall] Checking for array method calls to inline');
-  //currentState(fdata, 'arrMethodCall'. true);
+  //currentState(fdata, 'arrMethodCall'. true, fdata);
   const r = _arrMethodCall(fdata);
   groupEnd();
 

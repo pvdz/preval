@@ -392,7 +392,7 @@ function runTestCase(
           } else if (!CONFIG.targetDir && !CONFIG.updateSnapshots) {
             console.log(`\n-- onAfterPhase: ${passString} (${code.length} bytes)`, lastWrite ? `, ${now - lastWrite}ms since last write` : '', changed ? `Phase ${phaseIndex}/3: changed by ${changed.what}, ${changed.changes}x, t ${changed.actionOrderIndex+1}/${ORDER.length}, ${changed.actionOwnTime}ms, into ${changed.next}` : '');
 
-            currentState(code, 'onAfterPhase', true);
+            if (phaseIndex === 2) currentState(code, 'onAfterPhase' + ' ' + phaseIndex, true, fdata);
           }
           lastWrite = now;
         },

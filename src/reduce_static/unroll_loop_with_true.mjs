@@ -47,7 +47,7 @@ export function unrollLoopWithTrue(fdata, unrollLimit = 10) {
     throw new Error('unrollLoopWithTrue; The unrollLimit (' + unrollLimit + ') is bigger than the hardcoded max MAX_UNROLL_TRUE_COUNT of ' + MAX_UNROLL_TRUE_COUNT);
   }
 
-  //currentState(fdata, 'unrollLoopWithTrue'. true);
+  //currentState(fdata, 'unrollLoopWithTrue'. true, fdata);
   const r = _unrollLoopWithTrue(fdata, unrollLimit);
   groupEnd();
   return r;

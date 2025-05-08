@@ -16,7 +16,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function arrrrrr(fdata) {
   group('\n\n\n[arrrrrr] Checking for arrrrrrray stuffs');
-  //currentState(fdata, 'arrrrrr'. true);
+  //currentState(fdata, 'arrrrrr'. true, fdata);
   const r = _arrrrrr(fdata);
   groupEnd();
   return r;

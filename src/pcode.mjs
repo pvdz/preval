@@ -551,6 +551,7 @@ function compileStatement(stmt, regs, fdata, asm) {
         const r = compileExpression(stmt.expression, regs, fdata, stmt, true, asm);
         vlog('source:  ', DIM, tmat(stmt, true).replace(/\n/g, '\\n '), RESET);
         vlog('pcode:   ', YELLOW, serializeBytecode(r), RESET);
+        asm.push(r);
         return;
       }
       const r = ['r', ...compileExpression(stmt.expression, regs, fdata, stmt, true, asm)];
@@ -597,7 +598,9 @@ function compileStatement(stmt, regs, fdata, asm) {
     }
     case 'LabeledStatement': {
       vgroup(stmt.label.name + ':');
-      const r = ['label', stmt.label?.name, stmt.body.body.map(e => compileStatement(e, regs, fdata, asm)).filter(Boolean)];
+      const a = [];
+      const r = ['label', stmt.label?.name, a];
+      stmt.body.body.forEach(e => compileStatement(e, regs, fdata, a));
       asm.push(r);
       vgroupEnd();
       return;
@@ -843,6 +846,7 @@ export function runPcode(funcName, args, pcodeData, fdata, prng, usePrng, depth 
     bytecode = obj.bytecode = pcompile(obj.funcNode, fdata);
     vgroupEnd();
     vlog('Compilation finished for', funcName,'. Running', funcName, 'now...');
+    // console.dir(bytecode, {depth: null})
     vgroupEnd();
     vgroupEnd();
     vgroupEnd();

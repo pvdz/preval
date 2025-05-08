@@ -20,14 +20,13 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const a /*:boolean*/ = !tmpUnaryArg;
 if (tmpUnaryArg) {
-  $(a);
-  $(a);
+  $(false);
+  $(false);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpCalleeParam);
-  $(a);
+  $(true);
 }
 `````
 
@@ -36,14 +35,12 @@ if (tmpUnaryArg) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
-const a = !tmpUnaryArg;
-if (tmpUnaryArg) {
-  $(a);
-  $(a);
+if ($(100)) {
+  $(false);
+  $(false);
 } else {
   $($(100));
-  $(a);
+  $(true);
 }
 `````
 
@@ -53,15 +50,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-const b = !a;
 if (a) {
-  $( b );
-  $( b );
+  $( false );
+  $( false );
 }
 else {
-  const c = $( 100 );
-  $( c );
+  const b = $( 100 );
   $( b );
+  $( true );
 }
 `````
 

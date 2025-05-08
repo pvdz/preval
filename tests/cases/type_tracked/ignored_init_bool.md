@@ -33,11 +33,10 @@ if (itooamanumberjack) {
 const tmpBool /*:boolean*/ = $boolean_constructor(imanumberandilovethrees);
 const tmpCalleeParam /*:unknown*/ = $(tmpBool);
 imanumberandilovethrees;
-const itooamanumberjack /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
 if (tmpCalleeParam) {
-  $(`a`, itooamanumberjack);
+  $(`a`, true);
 } else {
-  $(`b`, itooamanumberjack);
+  $(`b`, false);
 }
 `````
 
@@ -48,11 +47,10 @@ if (tmpCalleeParam) {
 `````js filename=intro
 const tmpCalleeParam = $($boolean_constructor(imanumberandilovethrees));
 imanumberandilovethrees;
-const itooamanumberjack = $boolean_constructor(tmpCalleeParam);
 if (tmpCalleeParam) {
-  $(`a`, itooamanumberjack);
+  $(`a`, true);
 } else {
-  $(`b`, itooamanumberjack);
+  $(`b`, false);
 }
 `````
 
@@ -64,12 +62,11 @@ With rename=true
 const a = $boolean_constructor( imanumberandilovethrees );
 const b = $( a );
 imanumberandilovethrees;
-const c = $boolean_constructor( b );
 if (b) {
-  $( "a", c );
+  $( "a", true );
 }
 else {
-  $( "b", c );
+  $( "b", false );
 }
 `````
 

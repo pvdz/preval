@@ -123,14 +123,17 @@ function process(meta, funcName, funcNode, fdata, queue) {
             example('function f(x){ return x; } f(a); f(b);', 'a; b;');
             before(read.blockBody[read.blockIndex], funcNode);
 
+            const callNode = read.parentNode;
+            const callArgs = callNode['arguments'];
+
             let arg;
             if (argslen) {
               // This was the `arguments.length` alias inside this function. Inline it with the number of args of the call now :)
-              arg = AST.literal(read.parentNode['arguments'].length);
+              arg = AST.literal(callArgs.length);
             } else if (paramIndex >= 0) {
               // Replace call with the arg in position paramIndex of the call
               // We should not need to clone this since the arg is not reused more then once, and not duplicated in the AST
-              arg = read.parentNode['arguments'][paramIndex];
+              arg = callArgs[paramIndex];
             } else {
               // Replace call with a clone of the return arg
               arg = AST.cloneSimple(returnArg);
@@ -145,6 +148,14 @@ function process(meta, funcName, funcNode, fdata, queue) {
               if (read.grandIndex < 0) read.grandNode[read.grandProp] = arg;
               else read.grandNode[read.grandProp][read.grandIndex] = arg;
             }
+
+            // Make sure to do this second. If the function ended with a throw, this newNode should precede it
+            // Also make sure to retain tdz crash semantics; outline args as statements.
+            read.blockBody.splice(read.blockIndex, 0,
+              ...callArgs
+                .filter(anode => anode.type !== 'FunctionRExpression' && !AST.isPrimitive(anode))
+                .map(anode => AST.expressionStatement(AST.cloneSortOfSimple(anode))), // cant be spread, right?
+            );
 
             after(read.blockBody[read.blockIndex]);
           },
@@ -253,6 +264,9 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
       example('function f(){ const x = g(); return x; } f(); f();', 'g(); g();');
       before(read.blockBody[read.blockIndex], funcNode);
 
+      const callNode = read.parentNode;
+      const callArgs = callNode['arguments'];
+
       const tmpName = createFreshVar(stmt.id.name, fdata);
       const newNode = AST.varStatement('const', tmpName, newInit);
 
@@ -271,11 +285,11 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
       let arg;
       if (argslen) {
         // This was the `arguments.length` alias inside this function. Inline it with the number of args of the call now :)
-        arg = AST.literal(read.parentNode['arguments'].length);
+        arg = AST.literal(callArgs.length);
       } else if (paramIndex >= 0) {
         // Replace call with the arg in position paramIndex of the call
         // We should not need to clone this since the arg is not reused more then once, and not duplicated in the AST
-        arg = read.parentNode['arguments'][paramIndex];
+        arg = callArgs[paramIndex];
       } else if (returnArg.type === 'Identifier' && returnArg.name === oldName) {
         // Replace call with renamed local variable
         arg = AST.identifier(tmpName);
@@ -295,7 +309,13 @@ function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue)
       }
 
       // Make sure to do this second. If the function ended with a throw, this newNode should precede it
-      read.blockBody.splice(read.blockIndex, 0, newNode);
+      // Also make sure to retain tdz crash semantics; outline args as statements.
+      read.blockBody.splice(read.blockIndex, 0,
+        ...callArgs
+          .filter(anode => anode.type !== 'FunctionRExpression' && !AST.isPrimitive(anode))
+          .map(anode => AST.expressionStatement(AST.cloneSortOfSimple(anode))), // cant be spread, right?
+        newNode
+      );
 
       after(read.blockBody[read.blockIndex]);
     },
@@ -317,6 +337,9 @@ function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
       example('function f(x){ g(); return x; } f(); f();', 'g(); g();');
       before(read.blockBody[read.blockIndex], funcNode);
 
+      const callNode = read.parentNode;
+      const callArgs = callNode['arguments'];
+
       let paramIndex = -1;
       let argslen = false;
       const returnArg = ret.argument;
@@ -332,11 +355,11 @@ function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
       let arg;
       if (argslen) {
         // This was the `arguments.length` alias inside this function. Inline it with the number of args of the call now :)
-        arg = AST.literal(read.parentNode['arguments'].length);
+        arg = AST.literal(callArgs.length);
       } else if (paramIndex >= 0) {
         // Replace call with the arg in position paramIndex of the call
         // We should not need to clone this since the arg is not reused more then once, and not duplicated in the AST
-        arg = read.parentNode['arguments'][paramIndex];
+        arg = callArgs[paramIndex];
       } else {
         // Replace call with a clone of the return arg
         arg = AST.cloneSimple(returnArg);
@@ -353,7 +376,13 @@ function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
       }
 
       // Make sure to do this second. If the function ended with a throw, this newNode should precede it
-      read.blockBody.splice(read.blockIndex, 0, newNode);
+      // Also make sure to retain tdz crash semantics; outline args as statements.
+      read.blockBody.splice(read.blockIndex, 0,
+        ...callArgs
+          .filter(anode => anode.type !== 'FunctionRExpression' && !AST.isPrimitive(anode))
+          .map(anode => AST.expressionStatement(AST.cloneSortOfSimple(anode))), // cant be spread, right?
+        newNode
+      );
 
       after(read.blockBody[read.blockIndex]);
     },

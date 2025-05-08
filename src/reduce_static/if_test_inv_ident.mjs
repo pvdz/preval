@@ -126,7 +126,7 @@ function _ifTestInvIdent(fdata) {
 
   if (changed) {
     log('Inverted if test idents swapped:', changed, '. Restarting from phase1 to fix up read/write registry');
-    return {what: 'ifTestBool', changes: changed, next: 'phase1'};
+    return {what: 'ifTestInvIdent', changes: changed, next: 'phase1'};
   }
 
   log('Inverted if test idents swapped: 0.');

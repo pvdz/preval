@@ -24,7 +24,7 @@ import * as AST from '../ast.mjs';
 
 export function assignHoisting(fdata) {
   group('\n\n\n[assignHoisting] Checking for assignments that are actually a decl init');
-  currentState(fdata, 'assignHoisting', true);
+  // currentState(fdata, 'assignHoisting', true);
   const r = _assignHoisting(fdata);
   groupEnd();
   return r;

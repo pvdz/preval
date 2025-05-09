@@ -30,10 +30,10 @@ if (tmpIfTest) {
   $(tmpClusterSSA_tmpCalleeParam);
   $(undefined);
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementObject;
+  const a /*:unknown*/ = tmpChainRootProp.x;
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
   $(tmpClusterSSA_tmpCalleeParam$1);
-  $(tmpChainElementObject);
+  $(a);
 }
 `````
 
@@ -48,9 +48,9 @@ if (tmpChainRootProp == null) {
   $(tmpBinBothLhs + undefined);
   $(undefined);
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  $(tmpBinBothLhs + tmpChainElementObject);
-  $(tmpChainElementObject);
+  const a = tmpChainRootProp.x;
+  $(tmpBinBothLhs + a);
+  $(a);
 }
 `````
 

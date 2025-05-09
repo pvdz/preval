@@ -23,8 +23,7 @@ let tmpAnonDefaultExport /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpAnonDefaultExport = tmpChainElementCall;
+  tmpAnonDefaultExport = $(1);
 }
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -55,15 +54,14 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
 export { a as default };
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( c );
 `````
 
 

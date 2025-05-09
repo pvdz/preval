@@ -43,11 +43,10 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const f /*:()=>undefined*/ = function () {
+  a = function () {
     debugger;
     return undefined;
   };
-  a = f;
 } else {
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -113,14 +112,13 @@ else {
 }
 const g = c <= 0;
 if (g) {
-  const h = function() {
+  a = function() {
     debugger;
     return undefined;
   };
-  a = h;
 }
-const i = c <= 1;
-if (i) {
+const h = c <= 1;
+if (h) {
   $( "fail1" );
   $( "fail2" );
   $( a );

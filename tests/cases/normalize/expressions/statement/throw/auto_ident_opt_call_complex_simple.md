@@ -24,8 +24,7 @@ const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  tmpThrowArg = tmpChainElementCall$1;
+  tmpThrowArg = $dotCall(tmpChainElementCall, $, undefined, 1);
 }
 throw tmpThrowArg;
 `````
@@ -55,8 +54,7 @@ if (c) {
 
 }
 else {
-  const d = $dotCall( b, $, undefined, 1 );
-  a = d;
+  a = $dotCall( b, $, undefined, 1 );
 }
 throw a;
 `````

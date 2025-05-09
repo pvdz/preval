@@ -28,9 +28,8 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpChainRootProp$1 /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.toString;
-  b = tmpChainElementObject;
-  tmpChainRootProp$1 = tmpChainElementObject;
+  b = tmpChainRootProp.toString;
+  tmpChainRootProp$1 = b;
 }
 const tmpIfTest$1 /*:boolean*/ = b == null;
 if (tmpIfTest$1) {
@@ -51,9 +50,8 @@ const tmpChainRootProp = $(2);
 const tmpIfTest = tmpChainRootProp == null;
 let tmpChainRootProp$1 = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.toString;
-  b = tmpChainElementObject;
-  tmpChainRootProp$1 = tmpChainElementObject;
+  b = tmpChainRootProp.toString;
+  tmpChainRootProp$1 = b;
 }
 if (b == null) {
   $(undefined);
@@ -75,17 +73,16 @@ if (c) {
 
 }
 else {
-  const e = b.toString;
-  a = e;
-  d = e;
+  a = b.toString;
+  d = a;
 }
-const f = a == null;
-if (f) {
+const e = a == null;
+if (e) {
   $( undefined );
 }
 else {
-  const g = d.length;
-  $( g );
+  const f = d.length;
+  $( f );
 }
 `````
 

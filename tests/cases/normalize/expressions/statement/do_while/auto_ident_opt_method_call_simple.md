@@ -25,13 +25,13 @@ $(a);
 `````js filename=intro
 $(100);
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
-if (tmpChainElementCall) {
+const tmpIfTest /*:unknown*/ = $dotCall($, b, `c`, 1);
+if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpChainElementObject$1 /*:unknown*/ = b.c;
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
-    if (tmpChainElementCall$1) {
+    const tmpIfTest$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
+    if (tmpIfTest$1) {
     } else {
       break;
     }

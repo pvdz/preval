@@ -20,9 +20,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs /*:regex*/ = new $regex_constructor(`foo`, ``);
+const a /*:regex*/ = new $regex_constructor(`foo`, ``);
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 
@@ -30,9 +30,9 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedComplexRhs = new $regex_constructor(`foo`, ``);
+const a = new $regex_constructor(`foo`, ``);
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 

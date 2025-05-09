@@ -29,9 +29,8 @@ let tmpAnonDefaultExport /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpAnonDefaultExport = tmpChainElementObject;
+  a = tmpChainElementCall[tmpChainRootComputed];
+  tmpAnonDefaultExport = a;
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -48,9 +47,8 @@ const tmpIfTest = tmpChainElementCall == null;
 let tmpAnonDefaultExport = undefined;
 if (!tmpIfTest) {
   const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpAnonDefaultExport = tmpChainElementObject;
+  a = tmpChainElementCall[tmpChainRootComputed];
+  tmpAnonDefaultExport = a;
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -71,9 +69,8 @@ if (d) {
 }
 else {
   const f = $( "x" );
-  const g = c[ f ];
-  a = g;
-  e = g;
+  a = c[ f ];
+  e = a;
 }
 export { e as default };
 $( a );

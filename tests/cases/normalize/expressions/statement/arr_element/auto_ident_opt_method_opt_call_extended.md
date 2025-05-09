@@ -26,16 +26,14 @@ const tmpIfTest$1 /*:boolean*/ = $ == null;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpBinBothLhs = tmpChainElementCall;
+  tmpBinBothLhs = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 let tmpBinBothRhs /*:unknown*/ = undefined;
 const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
 const tmpIfTest$5 /*:boolean*/ = tmpChainElementObject$9 == null;
 if (tmpIfTest$5) {
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
-  tmpBinBothRhs = tmpChainElementCall$1;
+  tmpBinBothRhs = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
 }
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -74,25 +72,23 @@ if (b) {
 
 }
 else {
-  const d = $dotCall( $, c, "e", 1 );
-  a = d;
+  a = $dotCall( $, c, "e", 1 );
 }
-let e = undefined;
-const f = c.e;
-const g = f == null;
-if (g) {
+let d = undefined;
+const e = c.e;
+const f = e == null;
+if (f) {
 
 }
 else {
-  const h = $dotCall( f, c, "e", 1 );
-  e = h;
+  d = $dotCall( e, c, "e", 1 );
 }
-a + e;
-const i = {
+a + d;
+const g = {
   a: 999,
   b: 1000,
 };
-$( i );
+$( g );
 `````
 
 

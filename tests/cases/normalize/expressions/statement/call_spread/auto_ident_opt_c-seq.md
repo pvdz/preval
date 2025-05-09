@@ -27,8 +27,8 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   $(...undefined);
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  $(...tmpChainElementObject);
+  const tmpCalleeParamSpread /*:unknown*/ = tmpChainRootProp.x;
+  $(...tmpCalleeParamSpread);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -43,8 +43,8 @@ const tmpChainRootProp = $({ x: 1 });
 if (tmpChainRootProp == null) {
   $(...undefined);
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  $(...tmpChainElementObject);
+  const tmpCalleeParamSpread = tmpChainRootProp.x;
+  $(...tmpCalleeParamSpread);
 }
 $({ a: 999, b: 1000 });
 `````

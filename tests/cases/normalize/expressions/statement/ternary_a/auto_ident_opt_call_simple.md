@@ -23,8 +23,7 @@ let tmpIfTest /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpIfTest = tmpChainElementCall;
+  tmpIfTest = $(1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
@@ -66,20 +65,19 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
 if (a) {
   $( 100 );
-  $( d );
+  $( c );
 }
 else {
   $( 200 );
-  $( d );
+  $( c );
 }
 `````
 

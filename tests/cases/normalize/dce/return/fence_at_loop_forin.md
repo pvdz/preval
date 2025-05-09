@@ -46,8 +46,7 @@ $inlinedFunction: {
       } else {
         const x /*:unknown*/ = tmpForInNext.value;
         $(`loop`, x);
-        const tmpReturnArg /*:unknown*/ = $(100, `return`);
-        tmpCalleeParam$1 = tmpReturnArg;
+        tmpCalleeParam$1 = $(100, `return`);
         break $inlinedFunction;
       }
     } else {
@@ -111,8 +110,7 @@ $inlinedFunction: {
       else {
         const g = e.value;
         $( "loop", g );
-        const h = $( 100, "return" );
-        a = h;
+        a = $( 100, "return" );
         break $inlinedFunction;
       }
     }

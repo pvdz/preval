@@ -24,8 +24,7 @@ let tmpCompObj /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpCompObj = tmpChainElementCall;
+  tmpCompObj = $(1);
 }
 tmpCompObj.a;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -56,15 +55,14 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
 a.a;
-const d = {
+const c = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( c );
 `````
 
 

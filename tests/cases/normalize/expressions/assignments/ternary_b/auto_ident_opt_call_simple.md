@@ -26,9 +26,9 @@ if (tmpIfTest) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementCall /*:unknown*/ = $(1);
-    $(tmpChainElementCall);
-    $(tmpChainElementCall);
+    const tmpNestedComplexRhs /*:unknown*/ = $(1);
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 } else {
   const tmpCalleeParam /*:unknown*/ = $(200);
@@ -48,9 +48,9 @@ if ($(1)) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementCall = $(1);
-    $(tmpChainElementCall);
-    $(tmpChainElementCall);
+    const tmpNestedComplexRhs = $(1);
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 } else {
   $($(200));

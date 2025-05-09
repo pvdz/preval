@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-tmpBinBothLhs + tmpChainElementCall;
+const tmpBinBothRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

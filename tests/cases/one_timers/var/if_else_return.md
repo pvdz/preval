@@ -30,8 +30,8 @@ if (tmpIfTest) {
   $(1);
   $(undefined);
 } else {
-  const tmpReturnArg /*:unknown*/ = $(2);
-  $(tmpReturnArg);
+  const x /*:unknown*/ = $(2);
+  $(x);
 }
 `````
 

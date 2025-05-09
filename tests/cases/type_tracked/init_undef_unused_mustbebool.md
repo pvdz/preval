@@ -46,12 +46,11 @@ const f /*:()=>undefined*/ = function () {
   $(x);
   return undefined;
 };
-let x /*:unknown*/ = undefined;
+let x /*:primitive*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(true);
 const tmpBool /*:boolean*/ = $boolean_constructor(tmpIfTest);
 const tmpUnaryArg /*:unknown*/ = $(tmpBool);
-const tmpBool$1 /*:boolean*/ = !tmpUnaryArg;
-x = tmpBool$1;
+x = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $(`b`);
   $(`c`);
@@ -113,8 +112,7 @@ let b = undefined;
 const c = $( true );
 const d = $boolean_constructor( c );
 const e = $( d );
-const f = !e;
-b = f;
+b = !e;
 if (e) {
   $( "b" );
   $( "c" );

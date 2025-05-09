@@ -29,8 +29,8 @@ if (tmpIfTest$1) {
   $($Number_NaN);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  const tmpClusterSSA_a /*:number*/ = a * tmpChainElementCall;
+  const tmpBinBothRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
   $(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 }

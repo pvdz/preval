@@ -20,12 +20,12 @@ $(a);
 
 
 `````js filename=intro
-const f$1 /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
 $(undefined);
-$(f$1);
+$(a);
 `````
 
 
@@ -33,9 +33,9 @@ $(f$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const f$1 = function () {};
+const a = function () {};
 $(undefined);
-$(f$1);
+$(a);
 `````
 
 

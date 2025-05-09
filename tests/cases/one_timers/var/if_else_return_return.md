@@ -29,11 +29,11 @@ $(x);
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
   $(0);
-  const tmpReturnArg$1 /*:unknown*/ = $(2);
-  $(tmpReturnArg$1);
+  const tmpClusterSSA_x /*:unknown*/ = $(2);
+  $(tmpClusterSSA_x);
 } else {
-  const tmpReturnArg /*:unknown*/ = $(1);
-  $(tmpReturnArg);
+  const tmpClusterSSA_x$1 /*:unknown*/ = $(1);
+  $(tmpClusterSSA_x$1);
 }
 `````
 

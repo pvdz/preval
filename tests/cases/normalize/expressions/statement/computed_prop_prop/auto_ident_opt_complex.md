@@ -27,8 +27,8 @@ const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  $coerce(tmpChainElementObject, `string`);
+  const tmpCalleeParam /*:unknown*/ = tmpChainElementCall.x;
+  $coerce(tmpCalleeParam, `string`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

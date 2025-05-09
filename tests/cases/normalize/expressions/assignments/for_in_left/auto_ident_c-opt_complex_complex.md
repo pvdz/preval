@@ -39,8 +39,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (tmpIfTest$1) {
     } else {
       const tmpChainRootComputed /*:unknown*/ = $(`x`);
-      const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-      tmpAssignMemLhsObj = tmpChainElementObject;
+      tmpAssignMemLhsObj = tmpChainElementCall[tmpChainRootComputed];
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
@@ -105,11 +104,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
     else {
       const k = $( "x" );
-      const l = h[ k ];
-      j = l;
+      j = h[ k ];
     }
-    const m = f.value;
-    j.x = m;
+    const l = f.value;
+    j.x = l;
   }
 }
 $( a );

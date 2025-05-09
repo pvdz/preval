@@ -23,11 +23,10 @@ let a /*:unknown*/ = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest /*:unknown*/ = $(1);
   if (tmpIfTest) {
-    const f /*:()=>undefined*/ = function () {
+    a = function () {
       debugger;
       return undefined;
     };
-    a = f;
   } else {
     break;
   }
@@ -63,11 +62,10 @@ let a = {
 while (true) {
   const b = $( 1 );
   if (b) {
-    const c = function() {
+    a = function() {
       debugger;
       return undefined;
     };
-    a = c;
   }
   else {
     break;

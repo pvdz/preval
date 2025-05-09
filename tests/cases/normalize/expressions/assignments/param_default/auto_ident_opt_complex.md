@@ -29,9 +29,9 @@ if (tmpIfTest$1) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
+  const a /*:unknown*/ = tmpChainElementCall.x;
   $(undefined);
-  $(tmpChainElementObject);
+  $(a);
 }
 `````
 
@@ -45,9 +45,9 @@ if (tmpChainElementCall == null) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
+  const a = tmpChainElementCall.x;
   $(undefined);
-  $(tmpChainElementObject);
+  $(a);
 }
 `````
 

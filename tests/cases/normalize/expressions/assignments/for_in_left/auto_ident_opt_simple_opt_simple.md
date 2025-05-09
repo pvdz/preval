@@ -31,7 +31,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    a = undefined;
+    a = 1;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     (1).x = tmpAssignMemRhs;
   }
@@ -51,7 +51,7 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    a = undefined;
+    a = 1;
     const tmpAssignMemRhs = tmpForInNext.value;
     (1).x = tmpAssignMemRhs;
   }
@@ -78,7 +78,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    a = undefined;
+    a = 1;
     const g = e.value;
     1.x = g;
   }

@@ -33,8 +33,8 @@ let tmpIfTest /*:boolean*/ = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpIfTest = tmpChainElementCall === tmpSwitchValue;
+  const tmpBinLhs /*:unknown*/ = $(1);
+  tmpIfTest = tmpBinLhs === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

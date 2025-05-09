@@ -27,8 +27,8 @@ const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  $coerce(tmpChainElementObject, `string`);
+  const tmpCalleeParam /*:unknown*/ = tmpChainRootProp.x;
+  $coerce(tmpCalleeParam, `string`);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

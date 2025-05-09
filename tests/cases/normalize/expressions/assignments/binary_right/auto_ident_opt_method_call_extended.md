@@ -23,10 +23,10 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall;
+const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
-$(tmpChainElementCall);
+$(a);
 `````
 
 
@@ -35,9 +35,9 @@ $(tmpChainElementCall);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
-$(tmpBinBothLhs + tmpChainElementCall);
-$(tmpChainElementCall);
+const a = $dotCall($, { e: $ }, `e`, 1);
+$(tmpBinBothLhs + a);
+$(a);
 `````
 
 

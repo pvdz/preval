@@ -28,8 +28,7 @@ const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  tmpCompObj = tmpChainElementObject;
+  tmpCompObj = tmpChainElementCall.x;
 }
 tmpCompObj.a;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -63,15 +62,14 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  a = c.x;
 }
 a.a;
-const f = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( e );
 `````
 
 

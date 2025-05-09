@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-[...tmpChainElementCall];
+const tmpArrElToSpread /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+[...tmpArrElToSpread];
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -33,8 +33,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
-[...tmpChainElementCall];
+const tmpArrElToSpread = $dotCall($, { e: $ }, `e`, 1);
+[...tmpArrElToSpread];
 $({ a: 999, b: 1000 });
 `````
 

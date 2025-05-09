@@ -31,16 +31,15 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpIfTest$1 /*:boolean*/ = true;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.toString;
-  b = tmpChainElementObject;
-  tmpIfTest$1 = tmpChainElementObject == null;
+  b = tmpChainRootProp.toString;
+  tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
   const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const tmpChainElementObject$1 /*:unknown*/ = b.length;
-  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpChainElementObject$1);
+  const c /*:unknown*/ = b.length;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(c);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````
@@ -55,9 +54,8 @@ const tmpChainRootProp = $(2);
 const tmpIfTest = tmpChainRootProp == null;
 let tmpIfTest$1 = true;
 if (!tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.toString;
-  b = tmpChainElementObject;
-  tmpIfTest$1 = tmpChainElementObject == null;
+  b = tmpChainRootProp.toString;
+  tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
   $($(undefined));
@@ -79,18 +77,17 @@ if (c) {
 
 }
 else {
-  const e = b.toString;
-  a = e;
-  d = e == null;
+  a = b.toString;
+  d = a == null;
 }
 if (d) {
-  const f = $( undefined );
-  $( f );
+  const e = $( undefined );
+  $( e );
 }
 else {
-  const g = a.length;
-  const h = $( g );
-  $( h );
+  const f = a.length;
+  const g = $( f );
+  $( g );
 }
 `````
 

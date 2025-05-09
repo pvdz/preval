@@ -52,8 +52,8 @@ if (tmpIfTest) {
     $(undefined);
   } else {
     $(`keep, do not eval`);
-    const tmpReturnArg /*:unknown*/ = $(2, `ret`);
-    $(tmpReturnArg);
+    const tmpCalleeParam /*:unknown*/ = $(2, `ret`);
+    $(tmpCalleeParam);
   }
 }
 `````

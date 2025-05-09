@@ -27,8 +27,7 @@ const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  tmpBinBothLhs = tmpChainElementObject;
+  tmpBinBothLhs = tmpChainElementCall.x;
 }
 const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
@@ -63,16 +62,15 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  a = c.x;
 }
-const f = $( 100 );
-a + f;
-const g = {
+const e = $( 100 );
+a + e;
+const f = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( f );
 `````
 
 

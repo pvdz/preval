@@ -34,8 +34,7 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    a = tmpChainElementObject$1;
+    a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 if (a) {
@@ -46,13 +45,12 @@ if (a) {
     if (tmpIfTest$2) {
     } else {
       const tmpChainRootComputed$2 /*:unknown*/ = $(`x`);
-      const tmpChainElementObject$2 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$2];
-      const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$2 == null;
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$2];
+      const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$1 == null;
       if (tmpIfTest$4) {
       } else {
         const tmpChainRootComputed$4 /*:unknown*/ = $(`y`);
-        const tmpChainElementObject$4 /*:unknown*/ = tmpChainElementObject$2[tmpChainRootComputed$4];
-        a = tmpChainElementObject$4;
+        a = tmpChainElementObject$1[tmpChainRootComputed$4];
       }
     }
     if (a) {
@@ -89,10 +87,10 @@ if (a) {
     const tmpChainElementCall$1 = $(b);
     if (!(tmpChainElementCall$1 == null)) {
       const tmpChainRootComputed$2 = $(`x`);
-      const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-      if (!(tmpChainElementObject$2 == null)) {
+      const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$2];
+      if (!(tmpChainElementObject$1 == null)) {
         const tmpChainRootComputed$4 = $(`y`);
-        a = tmpChainElementObject$2[tmpChainRootComputed$4];
+        a = tmpChainElementObject$1[tmpChainRootComputed$4];
       }
     }
     if (!a) {
@@ -127,29 +125,27 @@ else {
   }
   else {
     const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    a = g[ i ];
   }
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    const k = $( c );
-    const l = k == null;
-    if (l) {
+    const j = $( c );
+    const k = j == null;
+    if (k) {
 
     }
     else {
-      const m = $( "x" );
-      const n = k[ m ];
-      const o = n == null;
-      if (o) {
+      const l = $( "x" );
+      const m = j[ l ];
+      const n = m == null;
+      if (n) {
 
       }
       else {
-        const p = $( "y" );
-        const q = n[ p ];
-        a = q;
+        const o = $( "y" );
+        a = m[ o ];
       }
     }
     if (a) {

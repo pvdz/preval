@@ -29,8 +29,8 @@ const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
 const tmpBinBothRhs /*:unknown*/ = $(1, `case`);
 const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpReturnArg /*:unknown*/ = $(2, `ret`);
-  $(tmpReturnArg);
+  const tmpCalleeParam /*:unknown*/ = $(2, `ret`);
+  $(tmpCalleeParam);
 } else {
   $(`keep, do not eval`);
   $(undefined);

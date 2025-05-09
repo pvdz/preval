@@ -26,8 +26,7 @@ const tmpIfTest$3 /*:boolean*/ = $ == null;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
 if (tmpIfTest$3) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  tmpIfTest = tmpChainElementCall;
+  tmpIfTest = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -37,8 +36,7 @@ if (tmpIfTest) {
     const tmpIfTest$4 /*:boolean*/ = tmpChainElementObject$1 == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
-      tmpIfTest$1 = tmpChainElementCall$1;
+      tmpIfTest$1 = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
     }
     if (tmpIfTest$1) {
     } else {
@@ -90,23 +88,21 @@ if (b) {
 
 }
 else {
-  const d = $dotCall( $, c, "e", 1 );
-  a = d;
+  a = $dotCall( $, c, "e", 1 );
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    let e = undefined;
-    const f = c.e;
-    const g = f == null;
-    if (g) {
+    let d = undefined;
+    const e = c.e;
+    const f = e == null;
+    if (f) {
 
     }
     else {
-      const h = $dotCall( f, c, "e", 1 );
-      e = h;
+      d = $dotCall( e, c, "e", 1 );
     }
-    if (e) {
+    if (d) {
 
     }
     else {
@@ -114,11 +110,11 @@ if (a) {
     }
   }
 }
-const i = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( i );
+$( g );
 `````
 
 

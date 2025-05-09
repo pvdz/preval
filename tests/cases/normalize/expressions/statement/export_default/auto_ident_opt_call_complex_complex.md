@@ -25,8 +25,7 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  tmpAnonDefaultExport = tmpChainElementCall$1;
+  tmpAnonDefaultExport = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
 }
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -60,15 +59,14 @@ if (c) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( b, $, undefined, d );
-  a = e;
+  a = $dotCall( b, $, undefined, d );
 }
 export { a as default };
-const f = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( e );
 `````
 
 

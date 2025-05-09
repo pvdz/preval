@@ -33,8 +33,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
-    a = tmpChainElementCall$1;
+    a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
   }
 }
 if (a) {
@@ -52,9 +51,9 @@ if (a) {
       $(undefined);
     } else {
       const tmpCalleeParam$3 /*:unknown*/ = $(1);
-      const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$3);
-      $(tmpChainElementCall$5);
-      $(tmpChainElementCall$5);
+      const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$3);
+      $(tmpNestedComplexRhs);
+      $(tmpNestedComplexRhs);
     }
   }
 } else {
@@ -90,9 +89,9 @@ if (a) {
       $(undefined);
       $(undefined);
     } else {
-      const tmpChainElementCall$5 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, $(1));
-      $(tmpChainElementCall$5);
-      $(tmpChainElementCall$5);
+      const tmpNestedComplexRhs = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, $(1));
+      $(tmpNestedComplexRhs);
+      $(tmpNestedComplexRhs);
     }
   }
 } else {
@@ -122,30 +121,29 @@ else {
   }
   else {
     const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    a = $dotCall( f, c, undefined, h );
   }
 }
 if (a) {
-  const j = $( b );
-  const k = j == null;
-  if (k) {
+  const i = $( b );
+  const j = i == null;
+  if (j) {
     $( undefined );
     $( undefined );
   }
   else {
-    const l = $( "$" );
-    const m = j[ l ];
-    const n = m == null;
-    if (n) {
+    const k = $( "$" );
+    const l = i[ k ];
+    const m = l == null;
+    if (m) {
       $( undefined );
       $( undefined );
     }
     else {
-      const o = $( 1 );
-      const p = $dotCall( m, j, undefined, o );
-      $( p );
-      $( p );
+      const n = $( 1 );
+      const o = $dotCall( l, i, undefined, n );
+      $( o );
+      $( o );
     }
   }
 }

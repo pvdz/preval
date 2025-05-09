@@ -27,9 +27,9 @@ $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteCompObj /*:unknown*/ = $(arg);
 const tmpDeleteCompProp /*:unknown*/ = $(`y`);
-const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const a /*:boolean*/ = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(undefined);
-$(tmpNestedComplexRhs, arg);
+$(a, arg);
 `````
 
 
@@ -42,9 +42,9 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(undefined);
-$(tmpNestedComplexRhs, arg);
+$(a, arg);
 `````
 
 

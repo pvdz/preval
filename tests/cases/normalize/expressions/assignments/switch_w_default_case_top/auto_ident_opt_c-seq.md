@@ -50,8 +50,7 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 /*:boolean*/ = tmpChainRootProp == null;
   if (tmpIfTest$5) {
   } else {
-    const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-    a = tmpChainElementObject;
+    a = tmpChainRootProp.x;
   }
 } else {
 }
@@ -130,12 +129,11 @@ if (g) {
 
   }
   else {
-    const k = i.x;
-    a = k;
+    a = i.x;
   }
 }
-const l = c <= 1;
-if (l) {
+const k = c <= 1;
+if (k) {
   $( "fail1" );
   $( "fail2" );
   $( a );

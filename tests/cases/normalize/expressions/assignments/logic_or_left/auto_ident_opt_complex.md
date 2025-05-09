@@ -27,8 +27,7 @@ const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  a = tmpChainElementObject;
+  a = tmpChainElementCall.x;
 }
 if (a) {
   $(a);
@@ -72,16 +71,15 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  a = c.x;
 }
 if (a) {
   $( a );
   $( a );
 }
 else {
-  const f = $( 100 );
-  $( f );
+  const e = $( 100 );
+  $( e );
   $( a );
 }
 `````

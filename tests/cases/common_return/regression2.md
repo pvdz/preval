@@ -62,15 +62,15 @@ if ($) {
   $(`a`);
   if ($) {
     $(`b`);
-    const tmpReturnArg$1 /*:unknown*/ = c();
-    $(tmpReturnArg$1);
+    const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = c();
+    $(tmpClusterSSA_tmpCalleeParam$1);
   } else {
-    const tmpReturnArg$3 /*:unknown*/ = c();
-    $(tmpReturnArg$3);
+    const tmpClusterSSA_tmpCalleeParam$2 /*:unknown*/ = c();
+    $(tmpClusterSSA_tmpCalleeParam$2);
   }
 } else {
-  const tmpReturnArg$7 /*:unknown*/ = c();
-  $(tmpReturnArg$7);
+  const tmpClusterSSA_tmpCalleeParam$4 /*:unknown*/ = c();
+  $(tmpClusterSSA_tmpCalleeParam$4);
 }
 `````
 

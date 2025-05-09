@@ -26,8 +26,7 @@ const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
+  a = tmpChainRootProp.x;
 }
 export { a };
 $(a);
@@ -60,8 +59,7 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  a = c.x;
 }
 export { a as a };
 $( a );

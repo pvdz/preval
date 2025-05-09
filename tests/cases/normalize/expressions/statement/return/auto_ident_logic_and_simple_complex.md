@@ -23,8 +23,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
-$(tmpReturnArg);
+const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam);
+$(tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

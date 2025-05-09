@@ -35,8 +35,8 @@ if (tmpIfTest$1) {
     $(undefined);
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    $(tmpChainElementObject$1);
+    const a /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+    $(a);
   }
 }
 `````

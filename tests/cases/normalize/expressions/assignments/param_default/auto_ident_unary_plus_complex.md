@@ -21,9 +21,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const tmpNestedComplexRhs /*:number*/ = +tmpUnaryArg;
+const a /*:number*/ = +tmpUnaryArg;
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpNestedComplexRhs);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpNestedComplexRhs = +tmpUnaryArg;
+const a = +tmpUnaryArg;
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 

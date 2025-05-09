@@ -28,9 +28,8 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpObjLitPropKey /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpObjLitPropKey = tmpChainElementObject;
+  a = tmpChainRootProp.x;
+  tmpObjLitPropKey = a;
 }
 const tmpCalleeParam /*:object*/ = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
@@ -47,9 +46,8 @@ const tmpChainRootProp = $({ x: 1 });
 const tmpIfTest = tmpChainRootProp == null;
 let tmpObjLitPropKey = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpObjLitPropKey = tmpChainElementObject;
+  a = tmpChainRootProp.x;
+  tmpObjLitPropKey = a;
 }
 $({ [tmpObjLitPropKey]: 10 });
 $(a);
@@ -69,12 +67,11 @@ if (d) {
 
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
+  a = c.x;
+  e = a;
 }
-const g = { [ e ]: 10 };
-$( g );
+const f = { [ e ]: 10 };
+$( f );
 $( a );
 `````
 

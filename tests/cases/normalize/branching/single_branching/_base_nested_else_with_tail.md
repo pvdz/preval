@@ -33,8 +33,8 @@ $(f(), 'final');
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(2);
-  const tmpReturnArg$1 /*:unknown*/ = $(7);
-  $(tmpReturnArg$1, `final`);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(7);
+  $(tmpClusterSSA_tmpCalleeParam, `final`);
 } else {
   const tmpIfTest$1 /*:unknown*/ = $(3);
   if (tmpIfTest$1) {
@@ -42,8 +42,8 @@ if (tmpIfTest) {
   } else {
     $(5);
   }
-  const tmpReturnArg /*:unknown*/ = $(6);
-  $(tmpReturnArg, `final`);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(6);
+  $(tmpClusterSSA_tmpCalleeParam$1, `final`);
 }
 `````
 

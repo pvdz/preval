@@ -22,12 +22,12 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
+const tmpBinBothLhs /*:unknown*/ = $dotCall($, b, `c`, 1);
 const tmpChainElementObject$1 /*:unknown*/ = b.c;
-const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
-const tmpCalleeParam /*:primitive*/ = tmpChainElementCall + tmpChainElementCall$1;
+const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpChainElementObject$1, b, `c`, 1);
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpChainElementCall$1);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -36,10 +36,10 @@ $(tmpChainElementCall$1);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpChainElementCall = $dotCall($, b, `c`, 1);
-const tmpChainElementCall$1 = b.c(1);
-$(tmpChainElementCall + tmpChainElementCall$1);
-$(tmpChainElementCall$1);
+const tmpBinBothLhs = $dotCall($, b, `c`, 1);
+const tmpClusterSSA_a = b.c(1);
+$(tmpBinBothLhs + tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 

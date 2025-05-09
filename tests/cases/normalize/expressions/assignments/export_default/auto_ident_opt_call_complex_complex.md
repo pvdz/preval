@@ -26,9 +26,8 @@ let tmpAnonDefaultExport /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  a = tmpChainElementCall$1;
-  tmpAnonDefaultExport = tmpChainElementCall$1;
+  a = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
+  tmpAnonDefaultExport = a;
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -44,9 +43,8 @@ const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 let tmpAnonDefaultExport = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, $(1));
-  a = tmpChainElementCall$1;
-  tmpAnonDefaultExport = tmpChainElementCall$1;
+  a = $dotCall(tmpChainElementCall, $, undefined, $(1));
+  tmpAnonDefaultExport = a;
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -66,9 +64,8 @@ if (c) {
 }
 else {
   const e = $( 1 );
-  const f = $dotCall( b, $, undefined, e );
-  a = f;
-  d = f;
+  a = $dotCall( b, $, undefined, e );
+  d = a;
 }
 export { d as default };
 $( a );

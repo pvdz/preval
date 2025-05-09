@@ -25,8 +25,8 @@ const tmpArrPatternStep /*:unknown*/ = $(tmpCalleeParam);
 const tmpOPBD /*:unknown*/ = tmpArrPatternStep.x;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
-  const x /*:unknown*/ = $(`pass`);
-  $(x);
+  const tmpCalleeParam$1 /*:unknown*/ = $(`pass`);
+  $(tmpCalleeParam$1);
 } else {
   $(tmpOPBD);
 }

@@ -33,8 +33,8 @@ if (tmpIfTest) {
   $(undefined);
 } else {
   tmpForOfNext.value;
-  const tmpReturnArg /*:unknown*/ = $(1, `return`);
-  $(tmpReturnArg);
+  const tmpCalleeParam$1 /*:unknown*/ = $(1, `return`);
+  $(tmpCalleeParam$1);
 }
 `````
 

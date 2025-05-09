@@ -22,8 +22,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(60);
-$(tmpClusterSSA_tmpReturnArg);
+const tmpCalleeParam$1 /*:unknown*/ = $(60);
+$(tmpCalleeParam$1);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

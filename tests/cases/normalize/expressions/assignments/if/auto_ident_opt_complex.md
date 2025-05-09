@@ -27,8 +27,8 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  $(tmpChainElementObject);
+  const a /*:unknown*/ = tmpChainElementCall.x;
+  $(a);
 }
 `````
 

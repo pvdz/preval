@@ -29,8 +29,7 @@ if (x) {
 
 `````js filename=intro
 x = !tmpUnaryArg;
-const tmpBool /*:boolean*/ = !tmpUnaryArg;
-x = tmpBool;
+x = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $(`b`);
   x = true;
@@ -70,8 +69,7 @@ With rename=true
 
 `````js filename=intro
 x = !tmpUnaryArg;
-const a = !tmpUnaryArg;
-x = a;
+x = !tmpUnaryArg;
 if (tmpUnaryArg) {
   $( "b" );
   x = true;

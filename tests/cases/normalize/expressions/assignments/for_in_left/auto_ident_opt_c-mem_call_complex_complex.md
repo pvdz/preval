@@ -43,8 +43,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       if (tmpIfTest$3) {
       } else {
         const tmpCalleeParam$3 /*:unknown*/ = $(1);
-        const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
-        a = tmpChainElementCall$1;
+        a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
       }
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
@@ -117,12 +116,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       }
       else {
         const m = $( 1 );
-        const n = $dotCall( k, h, undefined, m );
-        a = n;
+        a = $dotCall( k, h, undefined, m );
       }
     }
-    const o = f.value;
-    a.x = o;
+    const n = f.value;
+    a.x = n;
   }
 }
 $( a );

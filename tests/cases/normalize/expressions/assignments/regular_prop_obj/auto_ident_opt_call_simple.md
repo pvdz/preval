@@ -25,9 +25,8 @@ const tmpIfTest /*:boolean*/ = $ == null;
 let tmpCompObj /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
-  tmpCompObj = tmpChainElementCall;
+  a = $(1);
+  tmpCompObj = a;
 }
 tmpCompObj.a;
 $(a);
@@ -42,9 +41,8 @@ let a = undefined;
 const tmpIfTest = $ == null;
 let tmpCompObj = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
-  tmpCompObj = tmpChainElementCall;
+  a = $(1);
+  tmpCompObj = a;
 }
 tmpCompObj.a;
 $(a);
@@ -62,9 +60,8 @@ if (b) {
 
 }
 else {
-  const d = $( 1 );
-  a = d;
-  c = d;
+  a = $( 1 );
+  c = a;
 }
 c.a;
 $( a );

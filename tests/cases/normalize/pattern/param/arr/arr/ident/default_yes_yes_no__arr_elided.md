@@ -26,8 +26,8 @@ const tmpArrPatternSplat$1 /*:array*/ = [...tmpArrPatternStep];
 const tmpAPBD$1 /*:unknown*/ = tmpArrPatternSplat$1[0];
 const tmpIfTest$1 /*:boolean*/ = tmpAPBD$1 === undefined;
 if (tmpIfTest$1) {
-  const x /*:unknown*/ = $(`fail`);
-  $(x);
+  const tmpCalleeParam$1 /*:unknown*/ = $(`fail`);
+  $(tmpCalleeParam$1);
 } else {
   $(tmpAPBD$1);
 }

@@ -33,8 +33,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
-    tmpAnonDefaultExport = tmpChainElementCall$1;
+    tmpAnonDefaultExport = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
   }
 }
 export { tmpAnonDefaultExport as default };
@@ -81,16 +80,15 @@ else {
   }
   else {
     const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    a = $dotCall( f, c, undefined, h );
   }
 }
 export { a as default };
-const j = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( i );
 `````
 
 

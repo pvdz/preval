@@ -26,8 +26,7 @@ const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  a = tmpChainElementCall;
+  a = $dotCall($, tmpObjLitVal$1, `e`, 1);
 }
 const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
@@ -60,12 +59,11 @@ if (b) {
 }
 else {
   const c = { e: $ };
-  const d = $dotCall( $, c, "e", 1 );
-  a = d;
+  a = $dotCall( $, c, "e", 1 );
 }
-const e = $( 100 );
-const f = a + e;
-$( f );
+const d = $( 100 );
+const e = a + d;
+$( e );
 $( a );
 `````
 

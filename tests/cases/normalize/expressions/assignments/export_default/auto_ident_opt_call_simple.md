@@ -24,9 +24,8 @@ const tmpIfTest /*:boolean*/ = $ == null;
 let tmpAnonDefaultExport /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
-  tmpAnonDefaultExport = tmpChainElementCall;
+  a = $(1);
+  tmpAnonDefaultExport = a;
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -41,9 +40,8 @@ let a = undefined;
 const tmpIfTest = $ == null;
 let tmpAnonDefaultExport = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
-  tmpAnonDefaultExport = tmpChainElementCall;
+  a = $(1);
+  tmpAnonDefaultExport = a;
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -61,9 +59,8 @@ if (b) {
 
 }
 else {
-  const d = $( 1 );
-  a = d;
-  c = d;
+  a = $( 1 );
+  c = a;
 }
 export { c as default };
 $( a );

@@ -35,8 +35,8 @@ const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
   $(`loop`);
-  const tmpReturnArg /*:unknown*/ = $(100, `return`);
-  $(tmpReturnArg);
+  const tmpCalleeParam /*:unknown*/ = $(100, `return`);
+  $(tmpCalleeParam);
 } else {
   $(`after (not invoked)`);
   $(undefined);

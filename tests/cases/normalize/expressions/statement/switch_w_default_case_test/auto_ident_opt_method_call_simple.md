@@ -31,8 +31,8 @@ $(a);
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
-const tmpIfTest /*:boolean*/ = tmpChainElementCall === tmpSwitchValue;
+const tmpBinLhs /*:unknown*/ = $dotCall($, b, `c`, 1);
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

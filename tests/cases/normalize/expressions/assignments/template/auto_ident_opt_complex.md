@@ -28,11 +28,11 @@ if (tmpIfTest) {
   $(`before  undefined  after`);
   $(undefined);
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementObject, `string`);
+  const a /*:unknown*/ = tmpChainElementCall.x;
+  const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
   const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
   $(tmpCalleeParam);
-  $(tmpChainElementObject);
+  $(a);
 }
 `````
 
@@ -46,9 +46,9 @@ if (tmpChainElementCall == null) {
   $(`before  undefined  after`);
   $(undefined);
 } else {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  $(`before  ${tmpChainElementObject}  after`);
-  $(tmpChainElementObject);
+  const a = tmpChainElementCall.x;
+  $(`before  ${a}  after`);
+  $(a);
 }
 `````
 

@@ -27,8 +27,8 @@ if (tmpIfTest) {
   $(2);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
-  $(tmpReturnArg);
+  const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam);
+  $(tmpCalleeParam$1);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

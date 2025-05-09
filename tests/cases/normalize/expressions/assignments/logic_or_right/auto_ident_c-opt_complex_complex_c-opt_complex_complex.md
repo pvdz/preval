@@ -43,9 +43,9 @@ if (tmpCalleeParam) {
       $(undefined);
     } else {
       const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-      $(tmpChainElementObject$1);
-      $(tmpChainElementObject$1);
+      const tmpNestedComplexRhs /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+      $(tmpNestedComplexRhs);
+      $(tmpNestedComplexRhs);
     }
   }
 }
@@ -74,9 +74,9 @@ if (tmpCalleeParam) {
       $(undefined);
     } else {
       const tmpChainRootComputed$1 = $(`y`);
-      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-      $(tmpChainElementObject$1);
-      $(tmpChainElementObject$1);
+      const tmpNestedComplexRhs = tmpChainElementObject[tmpChainRootComputed$1];
+      $(tmpNestedComplexRhs);
+      $(tmpNestedComplexRhs);
     }
   }
 }

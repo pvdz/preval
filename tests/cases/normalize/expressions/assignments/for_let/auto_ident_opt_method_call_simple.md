@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
+const xyz /*:unknown*/ = $dotCall($, b, `c`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpChainElementCall);
+  $(xyz);
   $(1);
 }
 `````
@@ -34,9 +34,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
+const xyz = $dotCall($, { c: $ }, `c`, 1);
 while (true) {
-  $(tmpChainElementCall);
+  $(xyz);
   $(1);
 }
 `````

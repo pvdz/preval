@@ -23,8 +23,7 @@ const tmpIfTest /*:boolean*/ = $ == null;
 let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpBinBothLhs = tmpChainElementCall;
+  tmpBinBothLhs = $(1);
 }
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
@@ -32,10 +31,10 @@ if (tmpIfTest$1) {
   $(tmpClusterSSA_tmpCalleeParam);
   $(undefined);
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $(1);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$1;
+  const tmpClusterSSA_a /*:unknown*/ = $(1);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam$1);
-  $(tmpChainElementCall$1);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -53,9 +52,9 @@ if ($ == null) {
   $(tmpBinBothLhs + undefined);
   $(undefined);
 } else {
-  const tmpChainElementCall$1 = $(1);
-  $(tmpBinBothLhs + tmpChainElementCall$1);
-  $(tmpChainElementCall$1);
+  const tmpClusterSSA_a = $(1);
+  $(tmpBinBothLhs + tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -70,20 +69,19 @@ if (a) {
 
 }
 else {
-  const c = $( 1 );
-  b = c;
+  b = $( 1 );
 }
-const d = $ == null;
-if (d) {
-  const e = b + undefined;
-  $( e );
+const c = $ == null;
+if (c) {
+  const d = b + undefined;
+  $( d );
   $( undefined );
 }
 else {
-  const f = $( 1 );
-  const g = b + f;
-  $( g );
+  const e = $( 1 );
+  const f = b + e;
   $( f );
+  $( e );
 }
 `````
 

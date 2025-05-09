@@ -24,8 +24,8 @@ $(a, arg);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(1);
 $(undefined);
-const tmpNestedComplexRhs /*:string*/ = typeof tmpUnaryArg;
-$(tmpNestedComplexRhs, 1);
+const a /*:string*/ = typeof tmpUnaryArg;
+$(a, 1);
 `````
 
 

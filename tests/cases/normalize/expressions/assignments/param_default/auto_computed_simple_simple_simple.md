@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 $(1);
 $(undefined);
-const tmpNestedComplexRhs /*:object*/ = { b: 2 };
-$(tmpNestedComplexRhs);
+const a /*:object*/ = { b: 2 };
+$(a);
 `````
 
 

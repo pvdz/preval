@@ -25,9 +25,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpArrSpread /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  a = tmpChainElementCall$1;
-  tmpArrSpread = tmpChainElementCall$1;
+  a = $dotCall(tmpChainElementCall, $, undefined, 1);
+  tmpArrSpread = a;
 }
 const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
@@ -44,9 +43,8 @@ const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 let tmpArrSpread = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, 1);
-  a = tmpChainElementCall$1;
-  tmpArrSpread = tmpChainElementCall$1;
+  a = $dotCall(tmpChainElementCall, $, undefined, 1);
+  tmpArrSpread = a;
 }
 $([...tmpArrSpread]);
 $(a);
@@ -65,12 +63,11 @@ if (c) {
 
 }
 else {
-  const e = $dotCall( b, $, undefined, 1 );
-  a = e;
-  d = e;
+  a = $dotCall( b, $, undefined, 1 );
+  d = a;
 }
-const f = [ ...d ];
-$( f );
+const e = [ ...d ];
+$( e );
 $( a );
 `````
 

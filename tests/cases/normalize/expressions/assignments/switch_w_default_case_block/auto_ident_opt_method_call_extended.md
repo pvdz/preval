@@ -46,8 +46,7 @@ if (tmpIfTest) {
 const tmpIfTest$3 /*:boolean*/ = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  a = tmpChainElementCall;
+  a = $dotCall($, tmpObjLitVal$1, `e`, 1);
 } else {
 }
 const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -114,11 +113,10 @@ else {
 const g = c <= 0;
 if (g) {
   const h = { e: $ };
-  const i = $dotCall( $, h, "e", 1 );
-  a = i;
+  a = $dotCall( $, h, "e", 1 );
 }
-const j = c <= 1;
-if (j) {
+const i = c <= 1;
+if (i) {
   $( "fail1" );
   $( "fail2" );
   $( a );

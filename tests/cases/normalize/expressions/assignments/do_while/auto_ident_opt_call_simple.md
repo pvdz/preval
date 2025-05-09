@@ -26,8 +26,7 @@ $(100);
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
+  a = $(1);
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
@@ -35,8 +34,7 @@ if (a) {
     const tmpIfTest$2 /*:boolean*/ = $ == null;
     if (tmpIfTest$2) {
     } else {
-      const tmpChainElementCall$1 /*:unknown*/ = $(1);
-      a = tmpChainElementCall$1;
+      a = $(1);
     }
     if (a) {
     } else {
@@ -87,19 +85,17 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = $ == null;
-    if (d) {
+    const c = $ == null;
+    if (c) {
 
     }
     else {
-      const e = $( 1 );
-      a = e;
+      a = $( 1 );
     }
     if (a) {
 

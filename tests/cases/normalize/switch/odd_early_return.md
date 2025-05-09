@@ -81,8 +81,7 @@ $inlinedFunction: {
       if (tmpIfTest$11) {
         const tmpIfTest$13 /*:unknown*/ = $(9);
         if (tmpIfTest$13) {
-          const tmpReturnArg /*:unknown*/ = $(10);
-          tmpCalleeParam = tmpReturnArg;
+          tmpCalleeParam = $(10);
           break $inlinedFunction;
         } else {
           $(11);
@@ -91,8 +90,7 @@ $inlinedFunction: {
             $(13);
             $(3);
           } else {
-            const tmpReturnArg$1 /*:unknown*/ = $(14);
-            tmpCalleeParam = tmpReturnArg$1;
+            tmpCalleeParam = $(14);
             break $inlinedFunction;
           }
         }
@@ -104,8 +102,7 @@ $inlinedFunction: {
     const tmpIfTest$17 /*:boolean*/ = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$17) {
       $(5);
-      const tmpReturnArg$3 /*:unknown*/ = $(6);
-      tmpCalleeParam = tmpReturnArg$3;
+      tmpCalleeParam = $(6);
     } else {
     }
   }
@@ -213,20 +210,18 @@ $inlinedFunction: {
       if (m) {
         const n = $( 9 );
         if (n) {
-          const o = $( 10 );
-          a = o;
+          a = $( 10 );
           break $inlinedFunction;
         }
         else {
           $( 11 );
-          const p = $( 2 );
-          if (p) {
+          const o = $( 2 );
+          if (o) {
             $( 13 );
             $( 3 );
           }
           else {
-            const q = $( 14 );
-            a = q;
+            a = $( 14 );
             break $inlinedFunction;
           }
         }
@@ -235,11 +230,10 @@ $inlinedFunction: {
         $( 3 );
       }
     }
-    const r = c <= 2;
-    if (r) {
+    const p = c <= 2;
+    if (p) {
       $( 5 );
-      const s = $( 6 );
-      a = s;
+      a = $( 6 );
     }
   }
 }

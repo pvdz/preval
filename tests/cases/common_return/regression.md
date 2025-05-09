@@ -72,15 +72,15 @@ if ($) {
     $(`prevent`);
     $(`simple`);
     $(`inlining`);
-    const tmpReturnArg$1 /*:unknown*/ = k();
-    $(tmpReturnArg$1);
+    const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = k();
+    $(tmpClusterSSA_tmpCalleeParam$1);
   } else {
-    const tmpReturnArg$3 /*:unknown*/ = k();
-    $(tmpReturnArg$3);
+    const tmpClusterSSA_tmpCalleeParam$2 /*:unknown*/ = k();
+    $(tmpClusterSSA_tmpCalleeParam$2);
   }
 } else {
-  const tmpReturnArg$7 /*:unknown*/ = k();
-  $(tmpReturnArg$7);
+  const tmpClusterSSA_tmpCalleeParam$4 /*:unknown*/ = k();
+  $(tmpClusterSSA_tmpCalleeParam$4);
 }
 `````
 

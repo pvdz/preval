@@ -29,10 +29,10 @@ if (tmpIfTest$1) {
   $(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall;
+  const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + a;
   $(tmpClusterSSA_tmpCalleeParam$1);
-  $(tmpChainElementCall);
+  $(a);
 }
 `````
 
@@ -46,9 +46,9 @@ if ($ == null) {
   $(tmpBinBothLhs + undefined);
   $(undefined);
 } else {
-  const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
-  $(tmpBinBothLhs + tmpChainElementCall);
-  $(tmpChainElementCall);
+  const a = $dotCall($, { e: $ }, `e`, 1);
+  $(tmpBinBothLhs + a);
+  $(a);
 }
 `````
 

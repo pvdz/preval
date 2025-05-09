@@ -31,8 +31,8 @@ if (tmpIfTest) {
   $(100);
   $(undefined, `result`);
 } else {
-  const x /*:unknown*/ = $(2, `b`);
-  $(x, `result`);
+  const tmpCalleeParam /*:unknown*/ = $(2, `b`);
+  $(tmpCalleeParam, `result`);
 }
 `````
 

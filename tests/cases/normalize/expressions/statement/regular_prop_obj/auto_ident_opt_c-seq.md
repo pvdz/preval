@@ -28,8 +28,7 @@ const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  tmpCompObj = tmpChainElementObject;
+  tmpCompObj = tmpChainRootProp.x;
 }
 tmpCompObj.a;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -63,15 +62,14 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  a = c.x;
 }
 a.a;
-const f = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( f );
+$( e );
 `````
 
 

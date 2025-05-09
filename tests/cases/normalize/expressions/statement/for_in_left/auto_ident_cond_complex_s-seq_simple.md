@@ -33,8 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (tmpIfTest$1) {
     } else {
       const tmpCalleeParam$3 /*:unknown*/ = $(100);
-      const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$3);
-      tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+      tmpAssignMemLhsObj$1 = $(tmpCalleeParam$3);
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
@@ -88,18 +87,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
     else {
       const h = $( 100 );
-      const i = $( h );
-      g = i;
+      g = $( h );
     }
-    const j = d.value;
-    g.x = j;
+    const i = d.value;
+    g.x = i;
   }
 }
-const k = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( k );
+$( j );
 `````
 
 

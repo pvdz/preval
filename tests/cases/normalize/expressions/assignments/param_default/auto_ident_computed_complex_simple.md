@@ -24,9 +24,9 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
-const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj.c;
+const a /*:unknown*/ = tmpCompObj.c;
 $(undefined);
-$(tmpNestedComplexRhs, b);
+$(a, b);
 `````
 
 
@@ -35,9 +35,9 @@ $(tmpNestedComplexRhs, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpNestedComplexRhs = $(b).c;
+const a = $(b).c;
 $(undefined);
-$(tmpNestedComplexRhs, b);
+$(a, b);
 `````
 
 

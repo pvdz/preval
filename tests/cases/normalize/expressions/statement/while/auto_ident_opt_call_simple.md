@@ -23,8 +23,7 @@ let tmpIfTest /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpIfTest = tmpChainElementCall;
+  tmpIfTest = $(1);
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -33,8 +32,7 @@ if (tmpIfTest) {
     const tmpIfTest$4 /*:boolean*/ = $ == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementCall$1 /*:unknown*/ = $(1);
-      tmpIfTest$2 = tmpChainElementCall$1;
+      tmpIfTest$2 = $(1);
     }
     if (tmpIfTest$2) {
     } else {
@@ -82,22 +80,20 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    let d = undefined;
-    const e = $ == null;
-    if (e) {
+    let c = undefined;
+    const d = $ == null;
+    if (d) {
 
     }
     else {
-      const f = $( 1 );
-      d = f;
+      c = $( 1 );
     }
-    if (d) {
+    if (c) {
 
     }
     else {
@@ -105,11 +101,11 @@ if (a) {
     }
   }
 }
-const g = {
+const e = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( e );
 `````
 
 

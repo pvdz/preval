@@ -28,11 +28,11 @@ $(f(), 'result');
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpClusterSSA_x /*:unknown*/ = $(1, `a`);
-  $(tmpClusterSSA_x, `result`);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(1, `a`);
+  $(tmpClusterSSA_tmpCalleeParam, `result`);
 } else {
-  const tmpClusterSSA_x$1 /*:unknown*/ = $(2, `b`);
-  $(tmpClusterSSA_x$1, `result`);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(2, `b`);
+  $(tmpClusterSSA_tmpCalleeParam$1, `result`);
 }
 `````
 

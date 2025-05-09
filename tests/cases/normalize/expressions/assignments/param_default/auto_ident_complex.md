@@ -22,9 +22,9 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpNestedComplexRhs /*:unknown*/ = $(1);
+const a /*:unknown*/ = $(1);
 $(undefined);
-$(tmpNestedComplexRhs, 1);
+$(a, 1);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpNestedComplexRhs, 1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(1);
+const a = $(1);
 $(undefined);
-$(tmpNestedComplexRhs, 1);
+$(a, 1);
 `````
 
 

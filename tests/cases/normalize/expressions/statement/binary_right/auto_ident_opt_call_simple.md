@@ -24,8 +24,7 @@ let tmpBinBothRhs /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpBinBothRhs = tmpChainElementCall;
+  tmpBinBothRhs = $(1);
 }
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -58,15 +57,14 @@ if (c) {
 
 }
 else {
-  const d = $( 1 );
-  b = d;
+  b = $( 1 );
 }
 a + b;
-const e = {
+const d = {
   a: 999,
   b: 1000,
 };
-$( e );
+$( d );
 `````
 
 

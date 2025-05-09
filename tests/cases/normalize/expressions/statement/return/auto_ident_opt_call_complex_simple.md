@@ -27,8 +27,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  $(tmpChainElementCall$1);
+  const tmpCalleeParam /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
+  $(tmpCalleeParam);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

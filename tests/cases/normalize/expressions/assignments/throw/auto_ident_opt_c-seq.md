@@ -27,8 +27,7 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpThrowArg /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  tmpThrowArg = tmpChainElementObject;
+  tmpThrowArg = tmpChainRootProp.x;
 }
 throw tmpThrowArg;
 `````
@@ -60,8 +59,7 @@ if (c) {
 
 }
 else {
-  const e = b.x;
-  d = e;
+  d = b.x;
 }
 throw d;
 `````

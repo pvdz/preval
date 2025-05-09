@@ -26,8 +26,8 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   $(undefined);
 } else {
-  const tmpReturnArg /*:unknown*/ = $(2);
-  $(tmpReturnArg);
+  const tmpCalleeParam /*:unknown*/ = $(2);
+  $(tmpCalleeParam);
 }
 `````
 

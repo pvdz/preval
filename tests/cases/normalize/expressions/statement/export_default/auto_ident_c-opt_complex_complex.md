@@ -28,8 +28,7 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  tmpAnonDefaultExport = tmpChainElementObject;
+  tmpAnonDefaultExport = tmpChainElementCall[tmpChainRootComputed];
 }
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -65,15 +64,14 @@ if (d) {
 }
 else {
   const e = $( "x" );
-  const f = c[ e ];
-  a = f;
+  a = c[ e ];
 }
 export { a as default };
-const g = {
+const f = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( f );
 `````
 
 

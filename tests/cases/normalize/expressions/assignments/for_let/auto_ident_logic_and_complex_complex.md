@@ -24,8 +24,7 @@ const a /*:unknown*/ = $(tmpCalleeParam);
 let xyz /*:unknown*/ = undefined;
 if (a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-  xyz = tmpClusterSSA_a;
+  xyz = $(tmpCalleeParam$1);
 } else {
   xyz = a;
 }
@@ -63,8 +62,7 @@ const b = $( a );
 let c = undefined;
 if (b) {
   const d = $( 2 );
-  const e = $( d );
-  c = e;
+  c = $( d );
 }
 else {
   c = b;

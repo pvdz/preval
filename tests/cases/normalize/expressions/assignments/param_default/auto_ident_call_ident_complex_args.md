@@ -24,9 +24,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
+const a /*:unknown*/ = $(tmpCalleeParam, tmpCalleeParam$1);
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 
@@ -34,9 +34,9 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedComplexRhs = $($(1), $(2));
+const a = $($(1), $(2));
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 

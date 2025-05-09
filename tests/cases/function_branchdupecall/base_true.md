@@ -40,8 +40,8 @@ const p /*:unknown*/ = $(1);
 const q /*:unknown*/ = $(3);
 const r /*:unknown*/ = $(5);
 const tmpBinLhs /*:primitive*/ = p + q;
-const tmpReturnArg /*:primitive*/ = tmpBinLhs + r;
-$(tmpReturnArg);
+const tmpCalleeParam /*:primitive*/ = tmpBinLhs + r;
+$(tmpCalleeParam);
 `````
 
 

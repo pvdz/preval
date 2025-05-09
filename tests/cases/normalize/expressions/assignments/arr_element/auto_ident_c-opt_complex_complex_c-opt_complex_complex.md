@@ -34,8 +34,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    a = tmpChainElementObject$1;
+    a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 const tmpBinBothLhs /*:unknown*/ = a;
@@ -50,8 +49,7 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
   } else {
     const tmpChainRootComputed$5 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$5 /*:unknown*/ = tmpChainElementObject$3[tmpChainRootComputed$5];
-    tmpClusterSSA_a = tmpChainElementObject$5;
+    tmpClusterSSA_a = tmpChainElementObject$3[tmpChainRootComputed$5];
   }
 }
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
@@ -113,33 +111,31 @@ else {
   }
   else {
     const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    a = g[ i ];
   }
 }
-const k = a;
-let l = undefined;
-const m = $( c );
-const n = m == null;
-if (n) {
+const j = a;
+let k = undefined;
+const l = $( c );
+const m = l == null;
+if (m) {
 
 }
 else {
-  const o = $( "x" );
-  const p = m[ o ];
-  const q = p == null;
-  if (q) {
+  const n = $( "x" );
+  const o = l[ n ];
+  const p = o == null;
+  if (p) {
 
   }
   else {
-    const r = $( "y" );
-    const s = p[ r ];
-    l = s;
+    const q = $( "y" );
+    k = o[ q ];
   }
 }
-const t = k + l;
-$( t );
-$( l );
+const r = j + k;
+$( r );
+$( k );
 `````
 
 

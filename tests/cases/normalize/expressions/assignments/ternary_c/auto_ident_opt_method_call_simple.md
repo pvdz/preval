@@ -29,9 +29,9 @@ if (tmpIfTest) {
   $(a);
 } else {
   const b /*:object*/ = { c: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
-  $(tmpChainElementCall);
-  $(tmpChainElementCall);
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, b, `c`, 1);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 }
 `````
 
@@ -44,9 +44,9 @@ if ($(0)) {
   $($(100));
   $({ a: 999, b: 1000 });
 } else {
-  const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
-  $(tmpChainElementCall);
-  $(tmpChainElementCall);
+  const tmpNestedComplexRhs = $dotCall($, { c: $ }, `c`, 1);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 }
 `````
 

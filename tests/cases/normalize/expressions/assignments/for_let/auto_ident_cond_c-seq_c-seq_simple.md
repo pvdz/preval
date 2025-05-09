@@ -23,12 +23,10 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(30);
 let xyz /*:unknown*/ = undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_a /*:unknown*/ = $(60);
-  xyz = tmpClusterSSA_a;
+  xyz = $(60);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
-  xyz = tmpClusterSSA_a$1;
+  xyz = $(tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
@@ -62,13 +60,11 @@ With rename=true
 const a = $( 30 );
 let b = undefined;
 if (a) {
-  const c = $( 60 );
-  b = c;
+  b = $( 60 );
 }
 else {
-  const d = $( 100 );
-  const e = $( d );
-  b = e;
+  const c = $( 100 );
+  b = $( c );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );

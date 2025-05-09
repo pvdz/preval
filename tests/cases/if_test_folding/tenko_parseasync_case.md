@@ -22,8 +22,7 @@ if (tmpIfTest$3265) {
 
 
 `````js filename=intro
-const tmpIfTest$3265 /*:boolean*/ = fromStmtOrExpr$1 !== 1;
-tmpCalleeParam$1359 = tmpIfTest$3265;
+tmpCalleeParam$1359 = fromStmtOrExpr$1 !== 1;
 `````
 
 
@@ -39,8 +38,7 @@ tmpCalleeParam$1359 = fromStmtOrExpr$1 !== 1;
 With rename=true
 
 `````js filename=intro
-const a = fromStmtOrExpr$1 !== 1;
-tmpCalleeParam$1359 = a;
+tmpCalleeParam$1359 = fromStmtOrExpr$1 !== 1;
 `````
 
 

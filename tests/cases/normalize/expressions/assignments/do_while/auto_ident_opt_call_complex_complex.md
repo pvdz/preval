@@ -28,19 +28,17 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  a = tmpChainElementCall$1;
+  a = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
-    const tmpChainElementCall$2 /*:unknown*/ = $($);
-    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$2 == null;
+    const tmpChainElementCall$1 /*:unknown*/ = $($);
+    const tmpIfTest$2 /*:boolean*/ = tmpChainElementCall$1 == null;
     if (tmpIfTest$2) {
     } else {
       const tmpCalleeParam$1 /*:unknown*/ = $(1);
-      const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementCall$2, $, undefined, tmpCalleeParam$1);
-      a = tmpChainElementCall$4;
+      a = $dotCall(tmpChainElementCall$1, $, undefined, tmpCalleeParam$1);
     }
     if (a) {
     } else {
@@ -67,9 +65,9 @@ if (!(tmpChainElementCall == null)) {
 if (a) {
   while (true) {
     $(100);
-    const tmpChainElementCall$2 = $($);
-    if (!(tmpChainElementCall$2 == null)) {
-      a = $dotCall(tmpChainElementCall$2, $, undefined, $(1));
+    const tmpChainElementCall$1 = $($);
+    if (!(tmpChainElementCall$1 == null)) {
+      a = $dotCall(tmpChainElementCall$1, $, undefined, $(1));
     }
     if (!a) {
       break;
@@ -95,21 +93,19 @@ if (c) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( b, $, undefined, d );
-  a = e;
+  a = $dotCall( b, $, undefined, d );
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const f = $( $ );
-    const g = f == null;
-    if (g) {
+    const e = $( $ );
+    const f = e == null;
+    if (f) {
 
     }
     else {
-      const h = $( 1 );
-      const i = $dotCall( f, $, undefined, h );
-      a = i;
+      const g = $( 1 );
+      a = $dotCall( e, $, undefined, g );
     }
     if (a) {
 

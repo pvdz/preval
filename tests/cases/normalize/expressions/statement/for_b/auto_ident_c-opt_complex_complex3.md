@@ -43,8 +43,7 @@ const same /*:boolean*/ = g == null;
 if (same) {
 } else {
   const x /*:unknown*/ = $(`x`);
-  const gx /*:unknown*/ = g[x];
-  maybegx = gx;
+  maybegx = g[x];
 }
 if (maybegx) {
   while ($LOOP_UNROLL_10) {
@@ -55,8 +54,7 @@ if (maybegx) {
     if (same$1) {
     } else {
       const x$1 /*:unknown*/ = $(`x`);
-      const gx$1 /*:unknown*/ = g$1[x$1];
-      maybegx$1 = gx$1;
+      maybegx$1 = g$1[x$1];
     }
     if (maybegx$1) {
     } else {
@@ -112,24 +110,22 @@ if (d) {
 }
 else {
   const e = $( "x" );
-  const f = c[ e ];
-  a = f;
+  a = c[ e ];
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    let g = undefined;
-    const h = $( b );
-    const i = h == null;
-    if (i) {
+    let f = undefined;
+    const g = $( b );
+    const h = g == null;
+    if (h) {
 
     }
     else {
-      const j = $( "x" );
-      const k = h[ j ];
-      g = k;
+      const i = $( "x" );
+      f = g[ i ];
     }
-    if (g) {
+    if (f) {
 
     }
     else {
@@ -137,11 +133,11 @@ if (a) {
     }
   }
 }
-const l = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( l );
+$( j );
 `````
 
 

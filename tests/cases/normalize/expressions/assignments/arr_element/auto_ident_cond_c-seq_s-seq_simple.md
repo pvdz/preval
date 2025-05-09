@@ -27,8 +27,7 @@ let tmpBinBothLhs /*:unknown*/ = 60;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpBinBothLhs = tmpClusterSSA_a;
+  tmpBinBothLhs = $(tmpCalleeParam$1);
 }
 const tmpIfTest$1 /*:unknown*/ = $(30);
 if (tmpIfTest$1) {
@@ -76,21 +75,20 @@ if (a) {
 }
 else {
   const c = $( 100 );
-  const d = $( c );
-  b = d;
+  b = $( c );
 }
-const e = $( 30 );
-if (e) {
-  const f = b + 60;
-  $( f );
+const d = $( 30 );
+if (d) {
+  const e = b + 60;
+  $( e );
   $( 60 );
 }
 else {
-  const g = $( 100 );
-  const h = $( g );
-  const i = b + h;
-  $( i );
+  const f = $( 100 );
+  const g = $( f );
+  const h = b + g;
   $( h );
+  $( g );
 }
 `````
 

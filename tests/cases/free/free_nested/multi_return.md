@@ -46,8 +46,8 @@ const g /*:(number, number)=>number*/ = function $free($$0, $$1) {
   const d /*:number*/ = c * 10;
   const tmpIfTest /*:boolean*/ = d > 40;
   if (tmpIfTest) {
-    const tmpReturnArg /*:number*/ = d * 10;
-    return tmpReturnArg;
+    const r /*:number*/ = d * 10;
+    return r;
   } else {
     return d;
   }
@@ -69,8 +69,8 @@ const g = function $free(n, o) {
   const p = n * 20;
   const d = (p + o * 40) * 10;
   if (d > 40) {
-    const tmpReturnArg = d * 10;
-    return tmpReturnArg;
+    const r = d * 10;
+    return r;
   } else {
     return d;
   }

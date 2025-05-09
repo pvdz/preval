@@ -26,8 +26,7 @@ if (a) {
   tmpThrowArg = a;
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);
-  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$1);
-  tmpThrowArg = tmpClusterSSA_a;
+  tmpThrowArg = $(tmpCalleeParam$1);
 }
 throw tmpThrowArg;
 `````
@@ -60,8 +59,7 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  const e = $( d );
-  c = e;
+  c = $( d );
 }
 throw c;
 `````

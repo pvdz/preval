@@ -28,8 +28,7 @@ const tmpMCP /*:regex*/ = new $regex_constructor(`x`, ``);
 const stuff /*:unknown*/ = $dotCall(tmpMCF, cook, `match`, tmpMCP);
 if (stuff) {
   const tmpCalleeParam /*:unknown*/ = stuff[1];
-  const deco /*:string*/ = decodeURIComponent(tmpCalleeParam);
-  unknown = deco;
+  unknown = decodeURIComponent(tmpCalleeParam);
 } else {
 }
 `````
@@ -57,8 +56,7 @@ const c = new $regex_constructor( "x", "" );
 const d = $dotCall( b, a, "match", c );
 if (d) {
   const e = d[ 1 ];
-  const f = decodeURIComponent( e );
-  unknown = f;
+  unknown = decodeURIComponent( e );
 }
 `````
 

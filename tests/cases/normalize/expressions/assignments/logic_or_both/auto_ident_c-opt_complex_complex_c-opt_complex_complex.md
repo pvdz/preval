@@ -34,8 +34,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    a = tmpChainElementObject$1;
+    a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 if (a) {
@@ -56,9 +55,9 @@ if (a) {
       $(undefined);
     } else {
       const tmpChainRootComputed$5 /*:unknown*/ = $(`y`);
-      const tmpChainElementObject$5 /*:unknown*/ = tmpChainElementObject$3[tmpChainRootComputed$5];
-      $(tmpChainElementObject$5);
-      $(tmpChainElementObject$5);
+      const tmpNestedComplexRhs /*:unknown*/ = tmpChainElementObject$3[tmpChainRootComputed$5];
+      $(tmpNestedComplexRhs);
+      $(tmpNestedComplexRhs);
     }
   }
 }
@@ -97,9 +96,9 @@ if (a) {
       $(undefined);
     } else {
       const tmpChainRootComputed$5 = $(`y`);
-      const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
-      $(tmpChainElementObject$5);
-      $(tmpChainElementObject$5);
+      const tmpNestedComplexRhs = tmpChainElementObject$3[tmpChainRootComputed$5];
+      $(tmpNestedComplexRhs);
+      $(tmpNestedComplexRhs);
     }
   }
 }
@@ -127,8 +126,7 @@ else {
   }
   else {
     const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    a = g[ i ];
   }
 }
 if (a) {
@@ -136,25 +134,25 @@ if (a) {
   $( a );
 }
 else {
-  const k = $( c );
-  const l = k == null;
-  if (l) {
+  const j = $( c );
+  const k = j == null;
+  if (k) {
     $( undefined );
     $( undefined );
   }
   else {
-    const m = $( "x" );
-    const n = k[ m ];
-    const o = n == null;
-    if (o) {
+    const l = $( "x" );
+    const m = j[ l ];
+    const n = m == null;
+    if (n) {
       $( undefined );
       $( undefined );
     }
     else {
-      const p = $( "y" );
-      const q = n[ p ];
-      $( q );
-      $( q );
+      const o = $( "y" );
+      const p = m[ o ];
+      $( p );
+      $( p );
     }
   }
 }

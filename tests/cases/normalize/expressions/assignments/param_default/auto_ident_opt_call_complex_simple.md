@@ -26,9 +26,9 @@ if (tmpIfTest$1) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
+  const a /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
   $(undefined);
-  $(tmpChainElementCall$1);
+  $(a);
 }
 `````
 
@@ -42,9 +42,9 @@ if (tmpChainElementCall == null) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, 1);
+  const a = $dotCall(tmpChainElementCall, $, undefined, 1);
   $(undefined);
-  $(tmpChainElementCall$1);
+  $(a);
 }
 `````
 

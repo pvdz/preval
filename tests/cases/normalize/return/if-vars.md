@@ -26,8 +26,8 @@ $(f(), 'result');
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const x /*:unknown*/ = $(1, `a`);
-  $(x, `result`);
+  const tmpCalleeParam /*:unknown*/ = $(1, `a`);
+  $(tmpCalleeParam, `result`);
 } else {
   $(undefined, `result`);
 }

@@ -29,8 +29,8 @@ $(f());
 `````js filename=intro
 if ($) {
   $(1);
-  const tmpReturnArg /*:unknown*/ = $(`ok`);
-  $(tmpReturnArg);
+  const tmpCalleeParam /*:unknown*/ = $(`ok`);
+  $(tmpCalleeParam);
 } else {
   throw `\$ should be defined`;
 }

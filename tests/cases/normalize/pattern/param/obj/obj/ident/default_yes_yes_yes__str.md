@@ -32,8 +32,8 @@ if (tmpIfTest$1) {
 const tmpOPBD$1 /*:unknown*/ = tmpOPAD.y;
 const tmpIfTest$3 /*:boolean*/ = tmpOPBD$1 === undefined;
 if (tmpIfTest$3) {
-  const y /*:unknown*/ = $(`fail`);
-  $(y);
+  const tmpCalleeParam$3 /*:unknown*/ = $(`fail`);
+  $(tmpCalleeParam$3);
 } else {
   $(tmpOPBD$1);
 }

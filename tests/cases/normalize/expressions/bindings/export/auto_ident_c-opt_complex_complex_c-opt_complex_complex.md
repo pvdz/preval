@@ -33,8 +33,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    a = tmpChainElementObject$1;
+    a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 export { a };
@@ -83,8 +82,7 @@ else {
   }
   else {
     const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    a = g[ i ];
   }
 }
 export { a as a };

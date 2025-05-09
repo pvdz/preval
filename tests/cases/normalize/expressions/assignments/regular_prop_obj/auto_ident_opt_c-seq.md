@@ -29,9 +29,8 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpCompObj /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpCompObj = tmpChainElementObject;
+  a = tmpChainRootProp.x;
+  tmpCompObj = a;
 }
 tmpCompObj.a;
 $(a);
@@ -47,9 +46,8 @@ const tmpChainRootProp = $({ x: 1 });
 const tmpIfTest = tmpChainRootProp == null;
 let tmpCompObj = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpCompObj = tmpChainElementObject;
+  a = tmpChainRootProp.x;
+  tmpCompObj = a;
 }
 tmpCompObj.a;
 $(a);
@@ -69,9 +67,8 @@ if (d) {
 
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
+  a = c.x;
+  e = a;
 }
 e.a;
 $( a );

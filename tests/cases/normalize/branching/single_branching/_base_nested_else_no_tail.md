@@ -30,16 +30,16 @@ $(f(), 'final');
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpReturnArg /*:unknown*/ = $(2);
-  $(tmpReturnArg, `final`);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2);
+  $(tmpClusterSSA_tmpCalleeParam, `final`);
 } else {
   const tmpIfTest$1 /*:unknown*/ = $(3);
   if (tmpIfTest$1) {
-    const tmpReturnArg$1 /*:unknown*/ = $(4);
-    $(tmpReturnArg$1, `final`);
+    const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(4);
+    $(tmpClusterSSA_tmpCalleeParam$1, `final`);
   } else {
-    const tmpReturnArg$3 /*:unknown*/ = $(5);
-    $(tmpReturnArg$3, `final`);
+    const tmpClusterSSA_tmpCalleeParam$3 /*:unknown*/ = $(5);
+    $(tmpClusterSSA_tmpCalleeParam$3, `final`);
   }
 }
 `````

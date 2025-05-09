@@ -23,9 +23,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
-$coerce(tmpChainElementCall, `string`);
-$(tmpChainElementCall);
+const a /*:unknown*/ = $dotCall($, b, `c`, 1);
+$coerce(a, `string`);
+$(a);
 `````
 
 
@@ -33,9 +33,9 @@ $(tmpChainElementCall);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
-$coerce(tmpChainElementCall, `string`);
-$(tmpChainElementCall);
+const a = $dotCall($, { c: $ }, `c`, 1);
+$coerce(a, `string`);
+$(a);
 `````
 
 

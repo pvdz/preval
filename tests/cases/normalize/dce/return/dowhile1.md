@@ -23,8 +23,8 @@ $(f());
 
 
 `````js filename=intro
-const tmpReturnArg /*:unknown*/ = $(1, `return`);
-$(tmpReturnArg);
+const tmpCalleeParam /*:unknown*/ = $(1, `return`);
+$(tmpCalleeParam);
 `````
 
 

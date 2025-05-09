@@ -27,8 +27,8 @@ $(tmpCalleeParam);
 `````js filename=intro
 $(undefined);
 if ($) {
-  const x /*:array*/ = [$];
-  $(x);
+  const tmpCalleeParam /*:array*/ = [$];
+  $(tmpCalleeParam);
 } else {
 }
 `````

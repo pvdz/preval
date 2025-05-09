@@ -29,13 +29,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const f /*:()=>undefined*/ = function () {
+    a = function () {
       debugger;
       return undefined;
     };
-    a = f;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    f.x = tmpAssignMemRhs;
+    a.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -53,9 +52,8 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const f = function () {};
-    a = f;
-    f.x = tmpForInNext.value;
+    a = function () {};
+    a.x = tmpForInNext.value;
   }
 }
 $(a);
@@ -80,13 +78,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const g = function() {
+    a = function() {
       debugger;
       return undefined;
     };
-    a = g;
-    const h = e.value;
-    g.x = h;
+    const g = e.value;
+    a.x = g;
   }
 }
 $( a );

@@ -33,8 +33,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
-    tmpBinBothLhs = tmpChainElementCall$1;
+    tmpBinBothLhs = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
   }
 }
 let tmpBinBothRhs /*:unknown*/ = undefined;
@@ -48,8 +47,7 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
-    const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$1);
-    tmpBinBothRhs = tmpChainElementCall$5;
+    tmpBinBothRhs = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$1);
   }
 }
 tmpBinBothLhs + tmpBinBothRhs;
@@ -106,35 +104,33 @@ else {
   }
   else {
     const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    a = $dotCall( f, c, undefined, h );
   }
 }
-let j = undefined;
-const k = $( b );
-const l = k == null;
-if (l) {
+let i = undefined;
+const j = $( b );
+const k = j == null;
+if (k) {
 
 }
 else {
-  const m = $( "$" );
-  const n = k[ m ];
-  const o = n == null;
-  if (o) {
+  const l = $( "$" );
+  const m = j[ l ];
+  const n = m == null;
+  if (n) {
 
   }
   else {
-    const p = $( 1 );
-    const q = $dotCall( n, k, undefined, p );
-    j = q;
+    const o = $( 1 );
+    i = $dotCall( m, j, undefined, o );
   }
 }
-a + j;
-const r = {
+a + i;
+const p = {
   a: 999,
   b: 1000,
 };
-$( r );
+$( p );
 `````
 
 

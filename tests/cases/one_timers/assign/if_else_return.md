@@ -42,9 +42,9 @@ if (tmpIfTest) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpReturnArg /*:unknown*/ = $(2);
-  $(tmpReturnArg);
-  $(tmpReturnArg);
+  const tmpClusterSSA_x /*:unknown*/ = $(2);
+  $(tmpClusterSSA_x);
+  $(tmpClusterSSA_x);
 }
 `````
 
@@ -59,9 +59,9 @@ if ($()) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpReturnArg = $(2);
-  $(tmpReturnArg);
-  $(tmpReturnArg);
+  const tmpClusterSSA_x = $(2);
+  $(tmpClusterSSA_x);
+  $(tmpClusterSSA_x);
 }
 `````
 

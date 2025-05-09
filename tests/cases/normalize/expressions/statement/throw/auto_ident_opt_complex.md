@@ -27,8 +27,7 @@ const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  tmpThrowArg = tmpChainElementObject;
+  tmpThrowArg = tmpChainElementCall.x;
 }
 throw tmpThrowArg;
 `````
@@ -59,8 +58,7 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  a = c.x;
 }
 throw a;
 `````

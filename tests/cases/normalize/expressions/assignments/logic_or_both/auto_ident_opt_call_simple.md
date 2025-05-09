@@ -23,8 +23,7 @@ let a /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
+  a = $(1);
 }
 if (a) {
   $(a);
@@ -35,9 +34,9 @@ if (a) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementCall$1 /*:unknown*/ = $(1);
-    $(tmpChainElementCall$1);
-    $(tmpChainElementCall$1);
+    const tmpNestedComplexRhs /*:unknown*/ = $(1);
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 }
 `````
@@ -59,9 +58,9 @@ if (a) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementCall$1 = $(1);
-    $(tmpChainElementCall$1);
-    $(tmpChainElementCall$1);
+    const tmpNestedComplexRhs = $(1);
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 }
 `````
@@ -77,23 +76,22 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
 if (a) {
   $( a );
   $( a );
 }
 else {
-  const d = $ == null;
-  if (d) {
+  const c = $ == null;
+  if (c) {
     $( undefined );
     $( undefined );
   }
   else {
-    const e = $( 1 );
-    $( e );
-    $( e );
+    const d = $( 1 );
+    $( d );
+    $( d );
   }
 }
 `````

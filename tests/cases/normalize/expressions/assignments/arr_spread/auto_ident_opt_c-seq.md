@@ -28,9 +28,8 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpArrSpread /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpArrSpread = tmpChainElementObject;
+  a = tmpChainRootProp.x;
+  tmpArrSpread = a;
 }
 const tmpCalleeParam /*:array*/ = [...tmpArrSpread];
 $(tmpCalleeParam);
@@ -47,9 +46,8 @@ const tmpChainRootProp = $({ x: 1 });
 const tmpIfTest = tmpChainRootProp == null;
 let tmpArrSpread = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpArrSpread = tmpChainElementObject;
+  a = tmpChainRootProp.x;
+  tmpArrSpread = a;
 }
 $([...tmpArrSpread]);
 $(a);
@@ -69,12 +67,11 @@ if (d) {
 
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
+  a = c.x;
+  e = a;
 }
-const g = [ ...e ];
-$( g );
+const f = [ ...e ];
+$( f );
 $( a );
 `````
 

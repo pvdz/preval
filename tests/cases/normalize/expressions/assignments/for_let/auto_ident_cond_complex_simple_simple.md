@@ -24,8 +24,7 @@ let xyz /*:unknown*/ = 2;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const a /*:unknown*/ = $(tmpCalleeParam);
-  xyz = a;
+  xyz = $(tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
@@ -61,8 +60,7 @@ if (a) {
 }
 else {
   const c = $( 100 );
-  const d = $( c );
-  b = d;
+  b = $( c );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( b );

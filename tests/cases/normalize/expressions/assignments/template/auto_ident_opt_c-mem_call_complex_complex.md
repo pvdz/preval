@@ -33,8 +33,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
+    a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$3);
   }
 }
 const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
@@ -82,13 +81,12 @@ else {
   }
   else {
     const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    a = $dotCall( f, c, undefined, h );
   }
 }
-const j = $coerce( a, "string" );
-const k = `before  ${j}  after`;
-$( k );
+const i = $coerce( a, "string" );
+const j = `before  ${i}  after`;
+$( j );
 $( a );
 `````
 

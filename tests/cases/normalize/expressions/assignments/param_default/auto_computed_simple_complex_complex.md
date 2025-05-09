@@ -25,9 +25,9 @@ const tmpObjLitVal /*:unknown*/ = $(1);
 $(undefined);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 const tmpAssignComputedRhs /*:unknown*/ = $(2);
-const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
-tmpNestedComplexRhs[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(tmpNestedComplexRhs);
+const a /*:object*/ = { b: tmpObjLitVal };
+a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+$(a);
 `````
 
 
@@ -39,9 +39,9 @@ const tmpObjLitVal = $(1);
 $(undefined);
 const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-tmpNestedComplexRhs[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(tmpNestedComplexRhs);
+const a = { b: tmpObjLitVal };
+a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+$(a);
 `````
 
 

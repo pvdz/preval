@@ -34,8 +34,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpCalleeParam$1 = tmpChainElementObject$1;
+    tmpCalleeParam$1 = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
@@ -87,18 +86,17 @@ else {
   }
   else {
     const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    a = g[ i ];
   }
 }
-const k = $coerce( a, "string" );
-const l = `before  ${k}  after`;
-$( l );
-const m = {
+const j = $coerce( a, "string" );
+const k = `before  ${j}  after`;
+$( k );
+const l = {
   a: 999,
   b: 1000,
 };
-$( m );
+$( l );
 `````
 
 

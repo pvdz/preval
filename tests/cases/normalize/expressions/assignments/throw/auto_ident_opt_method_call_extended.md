@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-throw tmpChainElementCall;
+const tmpThrowArg /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+throw tmpThrowArg;
 `````
 
 
@@ -31,8 +31,8 @@ throw tmpChainElementCall;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
-throw tmpChainElementCall;
+const tmpThrowArg = $dotCall($, { e: $ }, `e`, 1);
+throw tmpThrowArg;
 `````
 
 

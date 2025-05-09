@@ -26,8 +26,8 @@ if (tmpIfTest$1) {
   $(`before  undefined  after`);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
+  const tmpCalleeParam$1 /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
   const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
   $(tmpCalleeParam);
 }

@@ -27,16 +27,14 @@ const tmpChainElementCall /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  tmpBinBothLhs = tmpChainElementObject;
+  tmpBinBothLhs = tmpChainElementCall.x;
 }
 let tmpBinBothRhs /*:unknown*/ = undefined;
 const tmpChainElementCall$1 /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.x;
-  tmpBinBothRhs = tmpChainElementObject$1;
+  tmpBinBothRhs = tmpChainElementCall$1.x;
 }
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -76,25 +74,23 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  a = c.x;
 }
-let f = undefined;
-const g = $( b );
-const h = g == null;
-if (h) {
+let e = undefined;
+const f = $( b );
+const g = f == null;
+if (g) {
 
 }
 else {
-  const i = g.x;
-  f = i;
+  e = f.x;
 }
-a + f;
-const j = {
+a + e;
+const h = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( h );
 `````
 
 

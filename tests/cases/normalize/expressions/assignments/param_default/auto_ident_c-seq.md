@@ -24,9 +24,9 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpNestedComplexRhs /*:unknown*/ = $(1);
+const a /*:unknown*/ = $(1);
 $(undefined);
-$(tmpNestedComplexRhs, 1);
+$(a, 1);
 `````
 
 
@@ -36,9 +36,9 @@ $(tmpNestedComplexRhs, 1);
 `````js filename=intro
 $(1);
 $(2);
-const tmpNestedComplexRhs = $(1);
+const a = $(1);
 $(undefined);
-$(tmpNestedComplexRhs, 1);
+$(a, 1);
 `````
 
 

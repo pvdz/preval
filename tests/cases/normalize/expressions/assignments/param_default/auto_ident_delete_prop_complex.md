@@ -24,9 +24,9 @@ $(a, arg);
 `````js filename=intro
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const tmpNestedComplexRhs /*:boolean*/ = delete tmpDeleteObj.y;
+const a /*:boolean*/ = delete tmpDeleteObj.y;
 $(undefined);
-$(tmpNestedComplexRhs, arg);
+$(a, arg);
 `````
 
 
@@ -36,9 +36,9 @@ $(tmpNestedComplexRhs, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+const a = delete tmpDeleteObj.y;
 $(undefined);
-$(tmpNestedComplexRhs, arg);
+$(a, arg);
 `````
 
 

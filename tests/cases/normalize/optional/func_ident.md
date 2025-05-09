@@ -25,8 +25,8 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(undefined);
   $(tmpClusterSSA_tmpReturnArg);
 } else {
-  const tmpChainElementObject /*:unknown*/ = global.foo;
-  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpChainElementObject);
+  const tmpCalleeParam /*:unknown*/ = global.foo;
+  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam);
   $(tmpClusterSSA_tmpReturnArg$1);
 }
 `````

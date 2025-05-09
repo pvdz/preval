@@ -25,8 +25,7 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
-  a = tmpChainElementCall$1;
+  a = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
 }
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
@@ -71,17 +70,16 @@ if (c) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( b, $, undefined, d );
-  a = e;
+  a = $dotCall( b, $, undefined, d );
 }
 if (a) {
-  const f = $( 100 );
-  $( f );
+  const e = $( 100 );
+  $( e );
   $( a );
 }
 else {
-  const g = $( 200 );
-  $( g );
+  const f = $( 200 );
+  $( f );
   $( a );
 }
 `````

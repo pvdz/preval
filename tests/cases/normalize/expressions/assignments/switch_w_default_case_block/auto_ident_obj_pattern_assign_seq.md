@@ -32,7 +32,7 @@ $(a, x, y);
 `````js filename=intro
 let x /*:unknown*/ = 1;
 let y /*:unknown*/ = 2;
-let a /*:unknown*/ = { a: 999, b: 1000 };
+let a /*:object*/ = { a: 999, b: 1000 };
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpBinLhs /*:unknown*/ = $(1);
@@ -54,8 +54,7 @@ if (tmpIfTest$3) {
   const tmpObjLitVal$1 /*:unknown*/ = $(4);
   x = tmpObjLitVal;
   y = tmpObjLitVal$1;
-  const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  a = tmpNestedAssignObjPatternRhs;
+  a = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 } else {
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -137,14 +136,13 @@ if (i) {
   const k = $( 4 );
   a = j;
   b = k;
-  const l = {
+  c = {
     x: j,
     y: k,
   };
-  c = l;
 }
-const m = e <= 1;
-if (m) {
+const l = e <= 1;
+if (l) {
   $( "fail1" );
   $( "fail2" );
   $( c, a, b );

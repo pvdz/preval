@@ -36,9 +36,9 @@ if (tmpIfTest) {
     $(undefined);
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
-    $(tmpChainElementCall$1);
-    $(tmpChainElementCall$1);
+    const a /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
+    $(a);
+    $(a);
   }
 }
 `````
@@ -59,9 +59,9 @@ if (tmpChainElementCall == null) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
-    $(tmpChainElementCall$1);
-    $(tmpChainElementCall$1);
+    const a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+    $(a);
+    $(a);
   }
 }
 `````

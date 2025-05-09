@@ -36,8 +36,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
     if (tmpIfTest$1) {
     } else {
-      const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-      tmpAssignMemLhsObj$1 = tmpChainElementObject;
+      tmpAssignMemLhsObj$1 = tmpChainRootProp.x;
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
@@ -94,18 +93,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
     }
     else {
-      const j = g.x;
-      i = j;
+      i = g.x;
     }
-    const k = e.value;
-    i.x = k;
+    const j = e.value;
+    i.x = j;
   }
 }
-const l = {
+const k = {
   a: 999,
   b: 1000,
 };
-$( l );
+$( k );
 `````
 
 

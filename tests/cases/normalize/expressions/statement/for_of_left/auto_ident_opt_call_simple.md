@@ -32,8 +32,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
     if (tmpIfTest$1) {
     } else {
-      const tmpChainElementCall /*:unknown*/ = $(1);
-      tmpAssignMemLhsObj$1 = tmpChainElementCall;
+      tmpAssignMemLhsObj$1 = $(1);
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
@@ -86,18 +85,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
     }
     else {
-      const h = $( 1 );
-      g = h;
+      g = $( 1 );
     }
-    const i = d.value;
-    g.x = i;
+    const h = d.value;
+    g.x = h;
   }
 }
-const j = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( i );
 `````
 
 

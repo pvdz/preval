@@ -27,9 +27,9 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementObject, `string`);
-  const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  const tmpCalleeParam$1 /*:unknown*/ = tmpChainRootProp.x;
+  const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+  const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
   $(tmpCalleeParam);
 }
 const a /*:object*/ = { a: 999, b: 1000 };

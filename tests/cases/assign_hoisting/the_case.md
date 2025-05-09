@@ -56,8 +56,8 @@ if ($) {
       }
     } else {
     }
-    const tmpReturnArg /*:array*/ = [a, b, c];
-    $(tmpReturnArg);
+    const tmpCalleeParam /*:array*/ = [a, b, c];
+    $(tmpCalleeParam);
   } else {
     $(undefined);
   }

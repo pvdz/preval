@@ -26,9 +26,8 @@ let tmpForInGen /*:unknown*/ = undefined;
 if (tmpIfTest) {
   tmpForInGen = $forIn(undefined);
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  a = tmpChainElementCall$1;
-  tmpForInGen = $forIn(tmpChainElementCall$1);
+  a = $dotCall(tmpChainElementCall, $, undefined, 1);
+  tmpForInGen = $forIn(a);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
@@ -54,9 +53,8 @@ let tmpForInGen = undefined;
 if (tmpIfTest) {
   tmpForInGen = $forIn(undefined);
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, 1);
-  a = tmpChainElementCall$1;
-  tmpForInGen = $forIn(tmpChainElementCall$1);
+  a = $dotCall(tmpChainElementCall, $, undefined, 1);
+  tmpForInGen = $forIn(a);
 }
 while (true) {
   const tmpForInNext = tmpForInGen();
@@ -82,18 +80,17 @@ if (c) {
   d = $forIn( undefined );
 }
 else {
-  const e = $dotCall( b, $, undefined, 1 );
-  a = e;
-  d = $forIn( e );
+  a = $dotCall( b, $, undefined, 1 );
+  d = $forIn( a );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const f = d();
-  const g = f.done;
-  if (g) {
+  const e = d();
+  const f = e.done;
+  if (f) {
     break;
   }
   else {
-    f.value;
+    e.value;
   }
 }
 $( a );

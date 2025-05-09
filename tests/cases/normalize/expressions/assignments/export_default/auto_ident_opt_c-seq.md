@@ -28,9 +28,8 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let tmpAnonDefaultExport /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpAnonDefaultExport = tmpChainElementObject;
+  a = tmpChainRootProp.x;
+  tmpAnonDefaultExport = a;
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -46,9 +45,8 @@ const tmpChainRootProp = $({ x: 1 });
 const tmpIfTest = tmpChainRootProp == null;
 let tmpAnonDefaultExport = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
-  tmpAnonDefaultExport = tmpChainElementObject;
+  a = tmpChainRootProp.x;
+  tmpAnonDefaultExport = a;
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -68,9 +66,8 @@ if (d) {
 
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
+  a = c.x;
+  e = a;
 }
 export { e as default };
 $( a );

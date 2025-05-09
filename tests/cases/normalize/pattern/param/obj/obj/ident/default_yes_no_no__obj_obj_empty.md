@@ -23,8 +23,8 @@ $(f({ x: {}, b: 11, c: 12 }, 10));
 const tmpOPBD /*:unknown*/ = $Object_prototype.y;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const y /*:unknown*/ = $(`pass`);
-  $(y);
+  const tmpCalleeParam /*:unknown*/ = $(`pass`);
+  $(tmpCalleeParam);
 } else {
   $(tmpOPBD);
 }

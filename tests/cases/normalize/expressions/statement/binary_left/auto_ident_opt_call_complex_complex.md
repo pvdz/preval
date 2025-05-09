@@ -25,8 +25,7 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  tmpBinBothLhs = tmpChainElementCall$1;
+  tmpBinBothLhs = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
 }
 const tmpBinBothRhs /*:unknown*/ = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
@@ -61,16 +60,15 @@ if (c) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( b, $, undefined, d );
-  a = e;
+  a = $dotCall( b, $, undefined, d );
 }
-const f = $( 100 );
-a + f;
-const g = {
+const e = $( 100 );
+a + e;
+const f = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( f );
 `````
 
 

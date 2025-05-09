@@ -47,8 +47,7 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 /*:boolean*/ = $ == null;
   if (tmpIfTest$5) {
   } else {
-    const tmpChainElementCall /*:unknown*/ = $(1);
-    a = tmpChainElementCall;
+    a = $(1);
   }
 } else {
 }
@@ -124,12 +123,11 @@ if (g) {
 
   }
   else {
-    const i = $( 1 );
-    a = i;
+    a = $( 1 );
   }
 }
-const j = c <= 1;
-if (j) {
+const i = c <= 1;
+if (i) {
   $( "fail1" );
   $( "fail2" );
   $( a );

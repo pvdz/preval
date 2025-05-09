@@ -24,19 +24,17 @@ const tmpChainElementCall /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  tmpIfTest = tmpChainElementCall$1;
+  tmpIfTest = $dotCall(tmpChainElementCall, $, undefined, 1);
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
     let tmpIfTest$2 /*:unknown*/ = undefined;
-    const tmpChainElementCall$2 /*:unknown*/ = $($);
-    const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$2 == null;
+    const tmpChainElementCall$1 /*:unknown*/ = $($);
+    const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementCall$2, $, undefined, 1);
-      tmpIfTest$2 = tmpChainElementCall$4;
+      tmpIfTest$2 = $dotCall(tmpChainElementCall$1, $, undefined, 1);
     }
     if (tmpIfTest$2) {
     } else {
@@ -63,9 +61,9 @@ if (tmpIfTest) {
   while (true) {
     $(100);
     let tmpIfTest$2 = undefined;
-    const tmpChainElementCall$2 = $($);
-    if (!(tmpChainElementCall$2 == null)) {
-      tmpIfTest$2 = $dotCall(tmpChainElementCall$2, $, undefined, 1);
+    const tmpChainElementCall$1 = $($);
+    if (!(tmpChainElementCall$1 == null)) {
+      tmpIfTest$2 = $dotCall(tmpChainElementCall$1, $, undefined, 1);
     }
     if (!tmpIfTest$2) {
       break;
@@ -87,23 +85,21 @@ if (c) {
 
 }
 else {
-  const d = $dotCall( b, $, undefined, 1 );
-  a = d;
+  a = $dotCall( b, $, undefined, 1 );
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    let e = undefined;
-    const f = $( $ );
-    const g = f == null;
-    if (g) {
+    let d = undefined;
+    const e = $( $ );
+    const f = e == null;
+    if (f) {
 
     }
     else {
-      const h = $dotCall( f, $, undefined, 1 );
-      e = h;
+      d = $dotCall( e, $, undefined, 1 );
     }
-    if (e) {
+    if (d) {
 
     }
     else {
@@ -111,11 +107,11 @@ if (a) {
     }
   }
 }
-const i = {
+const g = {
   a: 999,
   b: 1000,
 };
-$( i );
+$( g );
 `````
 
 

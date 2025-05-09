@@ -24,8 +24,7 @@ let tmpThrowArg /*:unknown*/ = 60;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const a /*:unknown*/ = $(tmpCalleeParam);
-  tmpThrowArg = a;
+  tmpThrowArg = $(tmpCalleeParam);
 }
 throw tmpThrowArg;
 `````
@@ -55,8 +54,7 @@ if (a) {
 }
 else {
   const c = $( 100 );
-  const d = $( c );
-  b = d;
+  b = $( c );
 }
 throw b;
 `````

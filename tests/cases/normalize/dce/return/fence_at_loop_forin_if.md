@@ -57,13 +57,11 @@ $inlinedFunction: {
         const tmpIfTest$3 /*:unknown*/ = $(1, `if`);
         if (tmpIfTest$3) {
           $(`pass`);
-          const tmpReturnArg /*:unknown*/ = $(100, `return`);
-          tmpCalleeParam$1 = tmpReturnArg;
+          tmpCalleeParam$1 = $(100, `return`);
           break $inlinedFunction;
         } else {
           $(`do not visit`);
-          const tmpReturnArg$1 /*:unknown*/ = $(101, `return`);
-          tmpCalleeParam$1 = tmpReturnArg$1;
+          tmpCalleeParam$1 = $(101, `return`);
           break $inlinedFunction;
         }
       }
@@ -138,14 +136,12 @@ $inlinedFunction: {
         const h = $( 1, "if" );
         if (h) {
           $( "pass" );
-          const i = $( 100, "return" );
-          a = i;
+          a = $( 100, "return" );
           break $inlinedFunction;
         }
         else {
           $( "do not visit" );
-          const j = $( 101, "return" );
-          a = j;
+          a = $( 101, "return" );
           break $inlinedFunction;
         }
       }

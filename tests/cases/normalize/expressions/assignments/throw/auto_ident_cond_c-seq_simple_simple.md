@@ -22,12 +22,10 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(30);
 let tmpThrowArg /*:unknown*/ = undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_a /*:unknown*/ = $(2);
-  tmpThrowArg = tmpClusterSSA_a;
+  tmpThrowArg = $(2);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam);
-  tmpThrowArg = tmpClusterSSA_a$1;
+  tmpThrowArg = $(tmpCalleeParam);
 }
 throw tmpThrowArg;
 `````
@@ -55,13 +53,11 @@ With rename=true
 const a = $( 30 );
 let b = undefined;
 if (a) {
-  const c = $( 2 );
-  b = c;
+  b = $( 2 );
 }
 else {
-  const d = $( 100 );
-  const e = $( d );
-  b = e;
+  const c = $( 100 );
+  b = $( c );
 }
 throw b;
 `````

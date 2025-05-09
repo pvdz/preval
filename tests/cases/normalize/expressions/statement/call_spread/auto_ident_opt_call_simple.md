@@ -23,8 +23,8 @@ const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
   $(...undefined);
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  $(...tmpChainElementCall);
+  const tmpCalleeParamSpread /*:unknown*/ = $(1);
+  $(...tmpCalleeParamSpread);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -38,8 +38,8 @@ $(a);
 if ($ == null) {
   $(...undefined);
 } else {
-  const tmpChainElementCall = $(1);
-  $(...tmpChainElementCall);
+  const tmpCalleeParamSpread = $(1);
+  $(...tmpCalleeParamSpread);
 }
 $({ a: 999, b: 1000 });
 `````

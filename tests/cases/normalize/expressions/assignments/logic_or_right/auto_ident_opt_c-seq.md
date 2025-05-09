@@ -34,9 +34,9 @@ if (tmpCalleeParam) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-    $(tmpChainElementObject);
-    $(tmpChainElementObject);
+    const tmpNestedComplexRhs /*:unknown*/ = tmpChainRootProp.x;
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 }
 `````
@@ -56,9 +56,9 @@ if (tmpCalleeParam) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    $(tmpChainElementObject);
-    $(tmpChainElementObject);
+    const tmpNestedComplexRhs = tmpChainRootProp.x;
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 }
 `````

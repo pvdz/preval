@@ -27,8 +27,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const n /*:unknown*/ = tmpForInNext.value;
-    x = n;
+    x = tmpForInNext.value;
   }
 }
 $(x);
@@ -70,8 +69,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
   else {
-    const f = d.value;
-    a = f;
+    a = d.value;
   }
 }
 $( a );

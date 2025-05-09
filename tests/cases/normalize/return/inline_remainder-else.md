@@ -33,8 +33,8 @@ if (tmpIfTest) {
   $(undefined);
 } else {
   $(3);
-  const tmpReturnArg /*:unknown*/ = $(4);
-  $(tmpReturnArg);
+  const tmpCalleeParam /*:unknown*/ = $(4);
+  $(tmpCalleeParam);
 }
 `````
 

@@ -38,9 +38,8 @@ $(tmpCalleeParam, `closure-global1`);
 let tmpClusterSSA_x /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
-  const tmpReturnArg$1 /*:unknown*/ = $(1, `f-return`);
-  tmpClusterSSA_x = tmpReturnArg$1;
-  $(tmpReturnArg$1, `x-global`);
+  tmpClusterSSA_x = $(1, `f-return`);
+  $(tmpClusterSSA_x, `x-global`);
 } else {
   $(undefined, `x-global`);
 }
@@ -56,9 +55,8 @@ $(tmpCalleeParam$1, `closure-global2`);
 $($($(100, `init`), `closure-return`), `closure-global1`);
 let tmpClusterSSA_x = undefined;
 if ($()) {
-  const tmpReturnArg$1 = $(1, `f-return`);
-  tmpClusterSSA_x = tmpReturnArg$1;
-  $(tmpReturnArg$1, `x-global`);
+  tmpClusterSSA_x = $(1, `f-return`);
+  $(tmpClusterSSA_x, `x-global`);
 } else {
   $(undefined, `x-global`);
 }
@@ -76,15 +74,14 @@ $( b, "closure-global1" );
 let c = undefined;
 const d = $();
 if (d) {
-  const e = $( 1, "f-return" );
-  c = e;
-  $( e, "x-global" );
+  c = $( 1, "f-return" );
+  $( c, "x-global" );
 }
 else {
   $( undefined, "x-global" );
 }
-const f = $( c, "closure-return" );
-$( f, "closure-global2" );
+const e = $( c, "closure-return" );
+$( e, "closure-global2" );
 `````
 
 

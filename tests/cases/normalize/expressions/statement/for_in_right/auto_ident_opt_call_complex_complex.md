@@ -26,8 +26,8 @@ if (tmpIfTest) {
   tmpForInGen = $forIn(undefined);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
-  tmpForInGen = $forIn(tmpChainElementCall$1);
+  const tmpCalleeParam /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
+  tmpForInGen = $forIn(tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();

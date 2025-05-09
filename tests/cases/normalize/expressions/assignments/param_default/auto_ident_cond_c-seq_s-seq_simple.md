@@ -26,9 +26,9 @@ if (tmpIfTest$1) {
   $(60);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam);
+  const a /*:unknown*/ = $(tmpCalleeParam);
   $(undefined);
-  $(tmpNestedComplexRhs);
+  $(a);
 }
 `````
 
@@ -41,9 +41,9 @@ if ($(30)) {
   $(undefined);
   $(60);
 } else {
-  const tmpNestedComplexRhs = $($(100));
+  const a = $($(100));
   $(undefined);
-  $(tmpNestedComplexRhs);
+  $(a);
 }
 `````
 

@@ -24,12 +24,12 @@ $(a);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(60);
-  $(tmpClusterSSA_tmpReturnArg);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(60);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam);
-  $(tmpClusterSSA_tmpReturnArg$1);
+  const tmpClusterSSA_tmpCalleeParam$2 /*:unknown*/ = $(tmpCalleeParam);
+  $(tmpClusterSSA_tmpCalleeParam$2);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);

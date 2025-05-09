@@ -24,9 +24,9 @@ $(a);
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  $(tmpChainElementCall);
-  $(tmpChainElementCall);
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(200);
   $(tmpCalleeParam);
@@ -41,9 +41,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
-  $(tmpChainElementCall);
-  $(tmpChainElementCall);
+  const tmpNestedComplexRhs = $dotCall($, { e: $ }, `e`, 1);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 } else {
   $($(200));
   $({ a: 999, b: 1000 });

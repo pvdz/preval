@@ -23,8 +23,8 @@ $(f([1, 2, 3, 20, 30], 200));
 const tmpOPBD /*:unknown*/ = $Number_prototype.x;
 const tmpIfTest /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest) {
-  const x /*:unknown*/ = $(`pass`);
-  $(x);
+  const tmpCalleeParam /*:unknown*/ = $(`pass`);
+  $(tmpCalleeParam);
 } else {
   $(tmpOPBD);
 }

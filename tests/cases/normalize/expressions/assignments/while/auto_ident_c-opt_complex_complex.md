@@ -28,8 +28,7 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
+  a = tmpChainElementCall[tmpChainRootComputed];
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
@@ -39,8 +38,7 @@ if (a) {
     if (tmpIfTest$2) {
     } else {
       const tmpChainRootComputed$1 /*:unknown*/ = $(`x`);
-      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
-      a = tmpChainElementObject$1;
+      a = tmpChainElementCall$1[tmpChainRootComputed$1];
     }
     if (a) {
     } else {
@@ -97,21 +95,19 @@ if (d) {
 }
 else {
   const e = $( "x" );
-  const f = c[ e ];
-  a = f;
+  a = c[ e ];
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const g = $( b );
-    const h = g == null;
-    if (h) {
+    const f = $( b );
+    const g = f == null;
+    if (g) {
 
     }
     else {
-      const i = $( "x" );
-      const j = g[ i ];
-      a = j;
+      const h = $( "x" );
+      a = f[ h ];
     }
     if (a) {
 

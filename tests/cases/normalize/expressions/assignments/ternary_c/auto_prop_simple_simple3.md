@@ -26,13 +26,12 @@ $(a);
 
 
 `````js filename=intro
-let a /*:unknown*/ = { a: 999, b: 1000 };
+let a /*:object*/ = { a: 999, b: 1000 };
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
 } else {
   const one /*:unknown*/ = $(1);
-  const obj /*:object*/ = { b: one };
-  a = obj;
+  a = { b: one };
 }
 a.b = 2;
 $(a);
@@ -67,8 +66,7 @@ if (b) {
 }
 else {
   const c = $( 1 );
-  const d = { b: c };
-  a = d;
+  a = { b: c };
 }
 a.b = 2;
 $( a );

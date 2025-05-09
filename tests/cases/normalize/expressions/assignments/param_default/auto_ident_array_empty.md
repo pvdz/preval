@@ -21,8 +21,8 @@ $(a);
 
 `````js filename=intro
 $(undefined);
-const tmpNestedComplexRhs /*:array*/ = [];
-$(tmpNestedComplexRhs);
+const a /*:array*/ = [];
+$(a);
 `````
 
 

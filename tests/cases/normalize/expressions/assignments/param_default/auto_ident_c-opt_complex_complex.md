@@ -30,9 +30,9 @@ if (tmpIfTest$1) {
   $(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
+  const a /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
   $(undefined);
-  $(tmpChainElementObject);
+  $(a);
 }
 `````
 
@@ -47,9 +47,9 @@ if (tmpChainElementCall == null) {
   $(undefined);
 } else {
   const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const a = tmpChainElementCall[tmpChainRootComputed];
   $(undefined);
-  $(tmpChainElementObject);
+  $(a);
 }
 `````
 

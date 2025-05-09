@@ -24,9 +24,9 @@ $(a, b);
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
-const tmpNestedComplexRhs /*:unknown*/ = b[tmpCalleeParam];
+const a /*:unknown*/ = b[tmpCalleeParam];
 $(undefined);
-$(tmpNestedComplexRhs, b);
+$(a, b);
 `````
 
 
@@ -36,9 +36,9 @@ $(tmpNestedComplexRhs, b);
 `````js filename=intro
 const tmpCalleeParam = $(`c`);
 const b = { c: 1 };
-const tmpNestedComplexRhs = b[tmpCalleeParam];
+const a = b[tmpCalleeParam];
 $(undefined);
-$(tmpNestedComplexRhs, b);
+$(a, b);
 `````
 
 

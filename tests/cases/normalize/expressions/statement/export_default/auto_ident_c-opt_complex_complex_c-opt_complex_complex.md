@@ -34,8 +34,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpAnonDefaultExport = tmpChainElementObject$1;
+    tmpAnonDefaultExport = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 export { tmpAnonDefaultExport as default };
@@ -85,16 +84,15 @@ else {
   }
   else {
     const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    a = g[ i ];
   }
 }
 export { a as default };
-const k = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( k );
+$( j );
 `````
 
 

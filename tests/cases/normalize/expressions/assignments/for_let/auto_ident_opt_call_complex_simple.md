@@ -24,8 +24,7 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let xyz /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  xyz = tmpChainElementCall$1;
+  xyz = $dotCall(tmpChainElementCall, $, undefined, 1);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
@@ -62,8 +61,7 @@ if (b) {
 
 }
 else {
-  const d = $dotCall( a, $, undefined, 1 );
-  c = d;
+  c = $dotCall( a, $, undefined, 1 );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( c );

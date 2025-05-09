@@ -26,8 +26,8 @@ if (tmpIfTest) {
   tmpForOfGenNext = $forOf(undefined);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
-  tmpForOfGenNext = $forOf(tmpChainElementCall$1);
+  const tmpCalleeParam /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
+  tmpForOfGenNext = $forOf(tmpCalleeParam);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();

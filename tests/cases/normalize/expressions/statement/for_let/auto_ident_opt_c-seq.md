@@ -27,8 +27,7 @@ const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  xyz = tmpChainElementObject;
+  xyz = tmpChainRootProp.x;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
@@ -65,8 +64,7 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  a = c.x;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );

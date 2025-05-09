@@ -33,8 +33,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
-    a = tmpChainElementCall$1;
+    a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
   }
 }
 const tmpBinBothLhs /*:unknown*/ = a;
@@ -49,8 +48,7 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
   } else {
     const tmpCalleeParam$3 /*:unknown*/ = $(1);
-    const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$3);
-    tmpClusterSSA_a = tmpChainElementCall$5;
+    tmpClusterSSA_a = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, undefined, tmpCalleeParam$3);
   }
 }
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
@@ -108,33 +106,31 @@ else {
   }
   else {
     const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    a = $dotCall( f, c, undefined, h );
   }
 }
-const j = a;
-let k = undefined;
-const l = $( b );
-const m = l == null;
-if (m) {
+const i = a;
+let j = undefined;
+const k = $( b );
+const l = k == null;
+if (l) {
 
 }
 else {
-  const n = $( "$" );
-  const o = l[ n ];
-  const p = o == null;
-  if (p) {
+  const m = $( "$" );
+  const n = k[ m ];
+  const o = n == null;
+  if (o) {
 
   }
   else {
-    const q = $( 1 );
-    const r = $dotCall( o, l, undefined, q );
-    k = r;
+    const p = $( 1 );
+    j = $dotCall( n, k, undefined, p );
   }
 }
-const s = j + k;
-$( s );
-$( k );
+const q = i + j;
+$( q );
+$( j );
 `````
 
 

@@ -50,7 +50,7 @@ if (tmpIfTest$32854) {
   const tmpCalleeParam$36042 /*:unknown*/ = SSA_SNe$596[2];
   const tmpCalleeParam$36043 /*:unknown*/ = SSA_SNe$596[3];
   const tmpCalleeParam$36044 /*:unknown*/ = SSA_SNe$596[1];
-  const tmpReturnArg$21651 /*:unknown*/ = $(
+  const tmpCalleeParam$1 /*:unknown*/ = $(
     100,
     tmpCalleeParam$36039,
     101,
@@ -61,7 +61,7 @@ if (tmpIfTest$32854) {
     102,
     tmpCalleeParam$36044,
   );
-  $(tmpReturnArg$21651);
+  $(tmpCalleeParam$1);
 } else {
   $(undefined);
 }

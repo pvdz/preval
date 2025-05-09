@@ -21,9 +21,19 @@ $(a);
 
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+let a /*:unknown*/ = undefined;
+while (true) {
   $(100);
+  a = function () {
+    debugger;
+    return undefined;
+  };
+  if (a) {
+  } else {
+    break;
+  }
 }
+$(a);
 `````
 
 
@@ -31,9 +41,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
+let a = undefined;
 while (true) {
   $(100);
+  a = function () {};
+  if (!a) {
+    break;
+  }
 }
+$(a);
 `````
 
 
@@ -41,9 +57,21 @@ while (true) {
 With rename=true
 
 `````js filename=intro
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+let a = undefined;
+while (true) {
   $( 100 );
+  a = function() {
+    debugger;
+    return undefined;
+  };
+  if (a) {
+
+  }
+  else {
+    break;
+  }
 }
+$( a );
 `````
 
 

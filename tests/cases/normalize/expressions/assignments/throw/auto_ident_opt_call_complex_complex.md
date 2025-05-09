@@ -25,8 +25,7 @@ let tmpThrowArg /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  tmpThrowArg = tmpChainElementCall$1;
+  tmpThrowArg = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
 }
 throw tmpThrowArg;
 `````
@@ -58,8 +57,7 @@ if (b) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( a, $, undefined, d );
-  c = e;
+  c = $dotCall( a, $, undefined, d );
 }
 throw c;
 `````

@@ -37,8 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     if (tmpIfTest$1) {
     } else {
       const tmpChainRootComputed /*:unknown*/ = $(`x`);
-      const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-      tmpAssignMemLhsObj$1 = tmpChainElementObject;
+      tmpAssignMemLhsObj$1 = tmpChainElementCall[tmpChainRootComputed];
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
     tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
@@ -97,18 +96,17 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     }
     else {
       const j = $( "x" );
-      const k = g[ j ];
-      i = k;
+      i = g[ j ];
     }
-    const l = e.value;
-    i.x = l;
+    const k = e.value;
+    i.x = k;
   }
 }
-const m = {
+const l = {
   a: 999,
   b: 1000,
 };
-$( m );
+$( l );
 `````
 
 

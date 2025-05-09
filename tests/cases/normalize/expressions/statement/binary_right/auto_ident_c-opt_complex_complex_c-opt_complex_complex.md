@@ -35,8 +35,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpBinBothRhs = tmpChainElementObject$1;
+    tmpBinBothRhs = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 tmpBinBothLhs + tmpBinBothRhs;
@@ -88,16 +87,15 @@ else {
   }
   else {
     const j = $( "y" );
-    const k = h[ j ];
-    b = k;
+    b = h[ j ];
   }
 }
 a + b;
-const l = {
+const k = {
   a: 999,
   b: 1000,
 };
-$( l );
+$( k );
 `````
 
 

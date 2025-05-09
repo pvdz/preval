@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const tmpClusterSSA_a /*:unknown*/ = $(60);
+const xyz /*:unknown*/ = $(60);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_a);
+  $(xyz);
   $(1);
 }
 `````
@@ -31,9 +31,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $(60);
+const xyz = $(60);
 while (true) {
-  $(tmpClusterSSA_a);
+  $(xyz);
   $(1);
 }
 `````

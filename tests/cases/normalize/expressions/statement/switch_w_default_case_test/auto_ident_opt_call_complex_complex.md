@@ -35,8 +35,8 @@ if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  tmpIfTest = tmpChainElementCall$1 === tmpSwitchValue;
+  const tmpBinLhs /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
+  tmpIfTest = tmpBinLhs === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

@@ -24,11 +24,11 @@ $(a);
 const tmpObjLitVal /*:unknown*/ = $(1);
 $(undefined);
 $(1);
-const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
-const tmpAssignMemLhsObj /*:unknown*/ = $(tmpNestedComplexRhs);
+const a /*:object*/ = { b: tmpObjLitVal };
+const tmpAssignMemLhsObj /*:unknown*/ = $(a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 
@@ -39,10 +39,10 @@ $(tmpNestedComplexRhs);
 const tmpObjLitVal = $(1);
 $(undefined);
 $(1);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-const tmpAssignMemLhsObj = $(tmpNestedComplexRhs);
+const a = { b: tmpObjLitVal };
+const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = $(2);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 

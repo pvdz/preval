@@ -55,9 +55,9 @@ if (tmpIfTest$3) {
   const tmpCallVal$2 /*:unknown*/ = tmpChainElementCall$2.call;
   const tmpCalleeParam$5 /*:unknown*/ = $(1);
   const tmpMCF /*:unknown*/ = tmpCallVal$2.call;
-  const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpMCF, tmpCallVal$2, `call`, tmpChainElementCall$2, $, tmpCalleeParam$5);
-  $(tmpChainElementCall$5);
-  $(tmpChainElementCall$5);
+  const a /*:unknown*/ = $dotCall(tmpMCF, tmpCallVal$2, `call`, tmpChainElementCall$2, $, tmpCalleeParam$5);
+  $(a);
+  $(a);
 }
 `````
 
@@ -72,9 +72,9 @@ if (tmpChainElementCall$2 == null) {
   $(undefined);
 } else {
   const tmpCallVal$2 = tmpChainElementCall$2.call;
-  const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, $(1));
-  $(tmpChainElementCall$5);
-  $(tmpChainElementCall$5);
+  const a = tmpCallVal$2.call(tmpChainElementCall$2, $, $(1));
+  $(a);
+  $(a);
 }
 `````
 

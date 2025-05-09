@@ -25,8 +25,7 @@ let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
-  tmpBinBothLhs = tmpChainElementCall$1;
+  tmpBinBothLhs = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
 }
 const tmpChainElementCall$3 /*:unknown*/ = $($);
 const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$3 == null;
@@ -36,10 +35,10 @@ if (tmpIfTest$1) {
   $(undefined);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(1);
-  const tmpChainElementCall$5 /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, tmpCalleeParam$3);
-  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpChainElementCall$5;
+  const tmpClusterSSA_a /*:unknown*/ = $dotCall(tmpChainElementCall$3, $, undefined, tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:primitive*/ = tmpBinBothLhs + tmpClusterSSA_a;
   $(tmpClusterSSA_tmpCalleeParam$1);
-  $(tmpChainElementCall$5);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -59,9 +58,9 @@ if (tmpChainElementCall$3 == null) {
   $(tmpBinBothLhs + undefined);
   $(undefined);
 } else {
-  const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, undefined, $(1));
-  $(tmpBinBothLhs + tmpChainElementCall$5);
-  $(tmpChainElementCall$5);
+  const tmpClusterSSA_a = $dotCall(tmpChainElementCall$3, $, undefined, $(1));
+  $(tmpBinBothLhs + tmpClusterSSA_a);
+  $(tmpClusterSSA_a);
 }
 `````
 
@@ -78,22 +77,21 @@ if (b) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( a, $, undefined, d );
-  c = e;
+  c = $dotCall( a, $, undefined, d );
 }
-const f = $( $ );
-const g = f == null;
-if (g) {
-  const h = c + undefined;
-  $( h );
+const e = $( $ );
+const f = e == null;
+if (f) {
+  const g = c + undefined;
+  $( g );
   $( undefined );
 }
 else {
-  const i = $( 1 );
-  const j = $dotCall( f, $, undefined, i );
-  const k = c + j;
-  $( k );
+  const h = $( 1 );
+  const i = $dotCall( e, $, undefined, h );
+  const j = c + i;
   $( j );
+  $( i );
 }
 `````
 

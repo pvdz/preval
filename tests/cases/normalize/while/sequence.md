@@ -24,8 +24,7 @@ const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject /*:unknown*/ = tmpClusterSSA_x.x;
-  const tmpChainElementCall /*:unknown*/ = $dotCall(tmpChainElementObject, tmpClusterSSA_x, `x`, tmpClusterSSA_x);
-  tmpIfTest = tmpChainElementCall;
+  tmpIfTest = $dotCall(tmpChainElementObject, tmpClusterSSA_x, `x`, tmpClusterSSA_x);
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -36,8 +35,7 @@ if (tmpIfTest) {
     if (tmpIfTest$4) {
     } else {
       const tmpChainElementObject$1 /*:unknown*/ = tmpClusterSSA_x.x;
-      const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpClusterSSA_x, `x`, tmpClusterSSA_x);
-      tmpIfTest$2 = tmpChainElementCall$1;
+      tmpIfTest$2 = $dotCall(tmpChainElementObject$1, tmpClusterSSA_x, `x`, tmpClusterSSA_x);
     }
     if (tmpIfTest$2) {
     } else {
@@ -86,24 +84,22 @@ if (c) {
 }
 else {
   const d = a.x;
-  const e = $dotCall( d, a, "x", a );
-  b = e;
+  b = $dotCall( d, a, "x", a );
 }
 if (b) {
   while ($LOOP_UNROLL_10) {
     a ** 0;
     a = NaN.x;
-    let f = undefined;
-    const g = a == null;
-    if (g) {
+    let e = undefined;
+    const f = a == null;
+    if (f) {
 
     }
     else {
-      const h = a.x;
-      const i = $dotCall( h, a, "x", a );
-      f = i;
+      const g = a.x;
+      e = $dotCall( g, a, "x", a );
     }
-    if (f) {
+    if (e) {
 
     }
     else {

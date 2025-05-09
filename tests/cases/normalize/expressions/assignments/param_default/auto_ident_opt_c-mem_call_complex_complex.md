@@ -37,9 +37,9 @@ if (tmpIfTest$1) {
     $(undefined);
   } else {
     const tmpCalleeParam /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
+    const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
     $(undefined);
-    $(tmpChainElementCall$1);
+    $(tmpNestedComplexRhs);
   }
 }
 `````
@@ -60,9 +60,9 @@ if (tmpChainElementCall == null) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
+    const tmpNestedComplexRhs = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, $(1));
     $(undefined);
-    $(tmpChainElementCall$1);
+    $(tmpNestedComplexRhs);
   }
 }
 `````

@@ -23,8 +23,8 @@ const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  $(tmpChainElementCall);
+  const a /*:unknown*/ = $(1);
+  $(a);
 }
 `````
 

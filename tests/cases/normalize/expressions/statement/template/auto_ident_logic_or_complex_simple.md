@@ -22,8 +22,8 @@ $(a);
 const tmpCalleeParam$3 /*:unknown*/ = $(0);
 const tmpCalleeParam$1 /*:unknown*/ = $(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
-  const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
-  const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  const tmpStringConcatL /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
+  const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
   $(tmpCalleeParam);
 } else {
   $(`before  2  after`);

@@ -42,8 +42,7 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
   } else {
     const tmpCalleeParam /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
-    tmpBinLhs = tmpChainElementCall$1;
+    tmpBinLhs = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
   }
 }
 const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
@@ -128,27 +127,26 @@ else {
   }
   else {
     const j = $( 1 );
-    const k = $dotCall( h, e, undefined, j );
-    c = k;
+    c = $dotCall( h, e, undefined, j );
   }
 }
-const l = c === a;
-if (l) {
+const k = c === a;
+if (k) {
   b = 0;
 }
 else {
-  const m = 2 === a;
-  if (m) {
+  const l = 2 === a;
+  if (l) {
     b = 2;
   }
 }
-const n = b <= 0;
-if (n) {
+const m = b <= 0;
+if (m) {
 
 }
 else {
-  const o = b <= 1;
-  if (o) {
+  const n = b <= 1;
+  if (n) {
     $( "fail1" );
     $( "fail2" );
   }
@@ -156,11 +154,11 @@ else {
     $( "fail2" );
   }
 }
-const p = {
+const o = {
   a: 999,
   b: 1000,
 };
-$( p );
+$( o );
 `````
 
 

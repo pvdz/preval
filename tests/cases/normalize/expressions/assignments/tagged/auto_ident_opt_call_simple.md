@@ -23,8 +23,7 @@ let a /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
+  a = $(1);
 }
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
 $(tmpCalleeParam, a);
@@ -55,11 +54,10 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
-const d = [ "before ", " after" ];
-$( d, a );
+const c = [ "before ", " after" ];
+$( c, a );
 $( a );
 `````
 

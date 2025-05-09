@@ -27,11 +27,11 @@ $(f());
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  const tmpReturnArg /*:unknown*/ = $(1);
-  $(tmpReturnArg);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(1);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpReturnArg$1 /*:unknown*/ = $(2);
-  $(tmpReturnArg$1);
+  const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(2);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
 `````
 

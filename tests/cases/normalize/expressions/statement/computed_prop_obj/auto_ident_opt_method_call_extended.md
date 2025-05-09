@@ -23,8 +23,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-tmpChainElementCall.a;
+const tmpCompObj /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+tmpCompObj.a;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

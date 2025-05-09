@@ -28,8 +28,7 @@ let tmpThrowArg /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  tmpThrowArg = tmpChainElementObject;
+  tmpThrowArg = tmpChainElementCall[tmpChainRootComputed];
 }
 throw tmpThrowArg;
 `````
@@ -63,8 +62,7 @@ if (c) {
 }
 else {
   const e = $( "x" );
-  const f = b[ e ];
-  d = f;
+  d = b[ e ];
 }
 throw d;
 `````

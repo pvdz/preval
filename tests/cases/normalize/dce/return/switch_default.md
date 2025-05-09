@@ -34,8 +34,8 @@ if (tmpIfTest) {
   $(`wrong branch`);
   $(undefined);
 } else {
-  const tmpReturnArg /*:unknown*/ = $(2, `ret`);
-  $(tmpReturnArg);
+  const tmpCalleeParam /*:unknown*/ = $(2, `ret`);
+  $(tmpCalleeParam);
 }
 `````
 

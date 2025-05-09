@@ -34,8 +34,8 @@ const x /*:unknown*/ = $(1);
 if (x) {
   const tmpClusterSSA_x /*:unknown*/ = $(2);
   if (tmpClusterSSA_x) {
-    const tmpReturnArg /*:unknown*/ = $(3);
-    $(tmpReturnArg);
+    const tmpCalleeParam /*:unknown*/ = $(3);
+    $(tmpCalleeParam);
   } else {
     $(tmpClusterSSA_x);
   }

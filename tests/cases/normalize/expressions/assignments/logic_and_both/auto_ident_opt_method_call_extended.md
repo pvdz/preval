@@ -22,15 +22,15 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-if (tmpChainElementCall) {
+const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+if (a) {
   const tmpChainElementObject$9 /*:unknown*/ = tmpObjLitVal$1.e;
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
-  $(tmpChainElementCall$1);
-  $(tmpChainElementCall$1);
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, `e`, 1);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 } else {
-  $(tmpChainElementCall);
-  $(tmpChainElementCall);
+  $(a);
+  $(a);
 }
 `````
 
@@ -40,14 +40,14 @@ if (tmpChainElementCall) {
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, `e`, 1);
-if (tmpChainElementCall) {
-  const tmpChainElementCall$1 = tmpObjLitVal$1.e(1);
-  $(tmpChainElementCall$1);
-  $(tmpChainElementCall$1);
+const a = $dotCall($, tmpObjLitVal$1, `e`, 1);
+if (a) {
+  const tmpNestedComplexRhs = tmpObjLitVal$1.e(1);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 } else {
-  $(tmpChainElementCall);
-  $(tmpChainElementCall);
+  $(a);
+  $(a);
 }
 `````
 

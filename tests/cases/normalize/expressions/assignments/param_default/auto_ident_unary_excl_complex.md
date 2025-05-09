@@ -22,8 +22,8 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
 $(undefined);
-const tmpNestedComplexRhs /*:boolean*/ = !tmpUnaryArg;
-$(tmpNestedComplexRhs);
+const a /*:boolean*/ = !tmpUnaryArg;
+$(a);
 `````
 
 

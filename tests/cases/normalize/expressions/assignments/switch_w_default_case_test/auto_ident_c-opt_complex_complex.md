@@ -38,9 +38,8 @@ if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpIfTest = tmpChainElementObject === tmpSwitchValue;
+  a = tmpChainElementCall[tmpChainRootComputed];
+  tmpIfTest = a === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -77,9 +76,8 @@ if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpIfTest = tmpChainElementObject === tmpSwitchValue;
+  a = tmpChainElementCall[tmpChainRootComputed];
+  tmpIfTest = a === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -115,21 +113,20 @@ if (f) {
 }
 else {
   const h = $( "x" );
-  const i = e[ h ];
-  c = i;
-  g = i === a;
+  c = e[ h ];
+  g = c === a;
 }
 if (g) {
   b = 0;
 }
 else {
-  const j = 2 === a;
-  if (j) {
+  const i = 2 === a;
+  if (i) {
     b = 2;
   }
 }
-const k = b <= 1;
-if (k) {
+const j = b <= 1;
+if (j) {
   $( "fail1" );
   $( "fail2" );
   $( c );

@@ -22,8 +22,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const tmpForInGen /*:unknown*/ = $forIn(tmpChainElementCall);
+const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpForInGen /*:unknown*/ = $forIn(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest$1 /*:unknown*/ = tmpForInNext.done;
@@ -33,7 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(tmpChainElementCall);
+$(a);
 `````
 
 
@@ -41,8 +41,8 @@ $(tmpChainElementCall);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
-const tmpForInGen = $forIn(tmpChainElementCall);
+const a = $dotCall($, { e: $ }, `e`, 1);
+const tmpForInGen = $forIn(a);
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
@@ -51,7 +51,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$(tmpChainElementCall);
+$(a);
 `````
 
 

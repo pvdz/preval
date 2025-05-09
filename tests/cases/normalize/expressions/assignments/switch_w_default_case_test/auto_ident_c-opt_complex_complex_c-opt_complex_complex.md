@@ -42,8 +42,7 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    a = tmpChainElementObject$1;
+    a = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
@@ -126,22 +125,21 @@ else {
   }
   else {
     const k = $( "y" );
-    const l = i[ k ];
-    c = l;
+    c = i[ k ];
   }
 }
-const m = c === a;
-if (m) {
+const l = c === a;
+if (l) {
   b = 0;
 }
 else {
-  const n = 2 === a;
-  if (n) {
+  const m = 2 === a;
+  if (m) {
     b = 2;
   }
 }
-const o = b <= 1;
-if (o) {
+const n = b <= 1;
+if (n) {
   $( "fail1" );
   $( "fail2" );
   $( c );

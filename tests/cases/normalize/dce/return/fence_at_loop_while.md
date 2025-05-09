@@ -40,8 +40,7 @@ $inlinedFunction: {
       const tmpIfTest$1 /*:unknown*/ = $(true);
       if (tmpIfTest$1) {
         $(`loop`);
-        const tmpReturnArg /*:unknown*/ = $(100, `return`);
-        tmpCalleeParam = tmpReturnArg;
+        tmpCalleeParam = $(100, `return`);
         break $inlinedFunction;
       } else {
         $(`do not visit, do not eliminate`);
@@ -95,8 +94,7 @@ $inlinedFunction: {
       const c = $( true );
       if (c) {
         $( "loop" );
-        const d = $( 100, "return" );
-        a = d;
+        a = $( 100, "return" );
         break $inlinedFunction;
       }
       else {

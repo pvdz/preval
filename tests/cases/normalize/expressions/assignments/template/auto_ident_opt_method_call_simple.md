@@ -22,11 +22,11 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpChainElementCall, `string`);
+const a /*:unknown*/ = $dotCall($, b, `c`, 1);
+const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpChainElementCall);
+$(a);
 `````
 
 
@@ -34,9 +34,9 @@ $(tmpChainElementCall);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
-$(`before  ${tmpChainElementCall}  after`);
-$(tmpChainElementCall);
+const a = $dotCall($, { c: $ }, `c`, 1);
+$(`before  ${a}  after`);
+$(a);
 `````
 
 

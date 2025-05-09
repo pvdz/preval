@@ -31,8 +31,8 @@ if (tmpReturnArg) {
   const tmpClusterSSA_tmpReturnArg /*:unknown*/ = $(tmpCalleeParam$1);
   if (tmpClusterSSA_tmpReturnArg) {
     const tmpCalleeParam$3 /*:unknown*/ = $(2);
-    const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam$3);
-    $(tmpClusterSSA_tmpReturnArg$1);
+    const tmpCalleeParam$5 /*:unknown*/ = $(tmpCalleeParam$3);
+    $(tmpCalleeParam$5);
   } else {
     $(tmpClusterSSA_tmpReturnArg);
   }

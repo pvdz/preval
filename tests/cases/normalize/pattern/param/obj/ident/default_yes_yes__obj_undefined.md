@@ -20,8 +20,8 @@ $(f({ x: undefined }, 10));
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(`pass`);
-$(x);
+const tmpCalleeParam$1 /*:unknown*/ = $(`pass`);
+$(tmpCalleeParam$1);
 `````
 
 

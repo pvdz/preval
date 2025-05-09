@@ -34,8 +34,8 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    $coerce(tmpChainElementObject$1, `string`);
+    const tmpCalleeParam /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
+    $coerce(tmpCalleeParam, `string`);
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };

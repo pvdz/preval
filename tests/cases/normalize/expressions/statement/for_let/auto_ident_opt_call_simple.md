@@ -23,8 +23,7 @@ let xyz /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  xyz = tmpChainElementCall;
+  xyz = $(1);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
@@ -58,8 +57,7 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( a );

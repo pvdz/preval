@@ -34,8 +34,7 @@ if (tmpIfTest) {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
     const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
     const tmpChainRootComputed$3 /*:unknown*/ = $(`z`);
-    const tmpChainElementObject$3 /*:unknown*/ = tmpChainElementObject$1[tmpChainRootComputed$3];
-    tmpCalleeParam = tmpChainElementObject$3;
+    tmpCalleeParam = tmpChainElementObject$1[tmpChainRootComputed$3];
   }
 }
 const tmpChainElementCall /*:unknown*/ = $(tmpCalleeParam);
@@ -96,17 +95,16 @@ else {
     const j = $( "y" );
     const k = h[ j ];
     const l = $( "z" );
-    const m = k[ l ];
-    a = m;
+    a = k[ l ];
   }
 }
-const n = $( a );
-const o = n == null;
-if (o) {
+const m = $( a );
+const n = m == null;
+if (n) {
 
 }
 else {
-  $dotCall( n, $, undefined, 100 );
+  $dotCall( m, $, undefined, 100 );
 }
 `````
 

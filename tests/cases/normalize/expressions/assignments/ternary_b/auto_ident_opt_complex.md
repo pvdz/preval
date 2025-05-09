@@ -30,9 +30,9 @@ if (tmpIfTest) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-    $(tmpChainElementObject);
-    $(tmpChainElementObject);
+    const tmpNestedComplexRhs /*:unknown*/ = tmpChainElementCall.x;
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 } else {
   const tmpCalleeParam /*:unknown*/ = $(200);
@@ -53,9 +53,9 @@ if ($(1)) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementObject = tmpChainElementCall.x;
-    $(tmpChainElementObject);
-    $(tmpChainElementObject);
+    const tmpNestedComplexRhs = tmpChainElementCall.x;
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 } else {
   $($(200));

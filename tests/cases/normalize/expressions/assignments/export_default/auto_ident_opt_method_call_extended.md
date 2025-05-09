@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const tmpAnonDefaultExport /*:unknown*/ = tmpChainElementCall;
+const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
-$(tmpChainElementCall);
+$(a);
 `````
 
 
@@ -33,10 +33,10 @@ $(tmpChainElementCall);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
-const tmpAnonDefaultExport = tmpChainElementCall;
+const a = $dotCall($, { e: $ }, `e`, 1);
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpChainElementCall);
+$(a);
 `````
 
 

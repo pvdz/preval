@@ -27,8 +27,8 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  $(tmpChainElementObject);
+  const a /*:unknown*/ = tmpChainRootProp.x;
+  $(a);
 }
 `````
 

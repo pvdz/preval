@@ -44,8 +44,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       if (tmpIfTest$3) {
       } else {
         const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-        const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-        a = tmpChainElementObject$1;
+        a = tmpChainElementObject[tmpChainRootComputed$1];
       }
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
@@ -121,12 +120,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       }
       else {
         const n = $( "y" );
-        const o = l[ n ];
-        a = o;
+        a = l[ n ];
       }
     }
-    const p = g.value;
-    a.x = p;
+    const o = g.value;
+    a.x = o;
   }
 }
 $( a );

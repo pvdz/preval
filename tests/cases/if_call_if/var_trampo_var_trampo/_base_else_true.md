@@ -36,16 +36,16 @@ if ($) $(outer(), 'outer');
 if ($) {
   const x /*:unknown*/ = $(1);
   if (x) {
-    const tmpReturnArg$3 /*:unknown*/ = $(`inner if`, x);
-    $(tmpReturnArg$3, `outer`);
+    const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(`inner if`, x);
+    $(tmpClusterSSA_tmpCalleeParam, `outer`);
   } else {
     const tmpClusterSSA_x /*:unknown*/ = $(2);
     if (tmpClusterSSA_x) {
-      const tmpReturnArg /*:unknown*/ = $(`inner if`, tmpClusterSSA_x);
-      $(tmpReturnArg, `outer`);
+      const tmpClusterSSA_tmpCalleeParam$1 /*:unknown*/ = $(`inner if`, tmpClusterSSA_x);
+      $(tmpClusterSSA_tmpCalleeParam$1, `outer`);
     } else {
-      const tmpReturnArg$1 /*:unknown*/ = $(`inner else`, tmpClusterSSA_x);
-      $(tmpReturnArg$1, `outer`);
+      const tmpClusterSSA_tmpCalleeParam$3 /*:unknown*/ = $(`inner else`, tmpClusterSSA_x);
+      $(tmpClusterSSA_tmpCalleeParam$3, `outer`);
     }
   }
 } else {

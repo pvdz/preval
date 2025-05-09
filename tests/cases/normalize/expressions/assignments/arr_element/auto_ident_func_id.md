@@ -23,13 +23,13 @@ const f /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const f$1 /*:()=>undefined*/ = function () {
+const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam /*:primitive*/ = f + f$1;
+const tmpCalleeParam /*:primitive*/ = f + a;
 $(tmpCalleeParam);
-$(f$1);
+$(a);
 `````
 
 
@@ -38,9 +38,9 @@ $(f$1);
 
 `````js filename=intro
 const f = function () {};
-const f$1 = function () {};
-$(f + f$1);
-$(f$1);
+const a = function () {};
+$(f + a);
+$(a);
 `````
 
 

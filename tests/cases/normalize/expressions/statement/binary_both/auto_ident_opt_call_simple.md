@@ -23,15 +23,13 @@ let tmpBinBothLhs /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpBinBothLhs = tmpChainElementCall;
+  tmpBinBothLhs = $(1);
 }
 let tmpBinBothRhs /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $(1);
-  tmpBinBothRhs = tmpChainElementCall$1;
+  tmpBinBothRhs = $(1);
 }
 tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -66,24 +64,22 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
-let d = undefined;
-const e = $ == null;
-if (e) {
+let c = undefined;
+const d = $ == null;
+if (d) {
 
 }
 else {
-  const f = $( 1 );
-  d = f;
+  c = $( 1 );
 }
-a + d;
-const g = {
+a + c;
+const e = {
   a: 999,
   b: 1000,
 };
-$( g );
+$( e );
 `````
 
 

@@ -28,9 +28,9 @@ if (tmpIfTest$3) {
   $(undefined);
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
-  const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+  const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
   $(undefined);
-  $(tmpChainElementCall);
+  $(tmpNestedComplexRhs);
 }
 `````
 
@@ -43,9 +43,9 @@ if ($ == null) {
   $(undefined);
   $(undefined);
 } else {
-  const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
+  const tmpNestedComplexRhs = $dotCall($, { e: $ }, `e`, 1);
   $(undefined);
-  $(tmpChainElementCall);
+  $(tmpNestedComplexRhs);
 }
 `````
 

@@ -25,8 +25,8 @@ $(x);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $();
 if (tmpIfTest) {
-  const tmpReturnArg /*:unknown*/ = $(1);
-  $(tmpReturnArg);
+  const x /*:unknown*/ = $(1);
+  $(x);
 } else {
   $(undefined);
 }

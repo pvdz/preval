@@ -31,9 +31,8 @@ new $(1);
 let simplifyMe /*:unknown*/ = undefined;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmp /*:unknown*/ = $(1);
-  simplifyMe = tmp;
-  if (tmp) {
+  simplifyMe = $(1);
+  if (simplifyMe) {
     break;
   } else {
   }
@@ -50,9 +49,8 @@ new $(1);
 let simplifyMe = undefined;
 while (true) {
   $(100);
-  const tmp = $(1);
-  simplifyMe = tmp;
-  if (tmp) {
+  simplifyMe = $(1);
+  if (simplifyMe) {
     break;
   }
 }
@@ -68,9 +66,8 @@ new $( 1 );
 let a = undefined;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const b = $( 1 );
-  a = b;
-  if (b) {
+  a = $( 1 );
+  if (a) {
     break;
   }
 }

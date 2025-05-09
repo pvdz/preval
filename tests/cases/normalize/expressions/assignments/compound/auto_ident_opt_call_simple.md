@@ -26,8 +26,8 @@ if (tmpIfTest) {
   $($Number_NaN);
   $($Number_NaN);
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  const tmpClusterSSA_a /*:number*/ = a * tmpChainElementCall;
+  const tmpBinBothRhs /*:unknown*/ = $(1);
+  const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
   $(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 }

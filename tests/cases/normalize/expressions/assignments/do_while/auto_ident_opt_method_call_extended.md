@@ -25,15 +25,13 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-let a /*:unknown*/ = tmpChainElementCall;
-if (tmpChainElementCall) {
+let a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+if (a) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpChainElementObject$1 /*:unknown*/ = tmpObjLitVal$1.e;
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
-    a = tmpChainElementCall$1;
-    if (tmpChainElementCall$1) {
+    a = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, `e`, 1);
+    if (a) {
     } else {
       break;
     }
@@ -51,14 +49,12 @@ if (tmpChainElementCall) {
 `````js filename=intro
 $(100);
 const tmpObjLitVal$1 = { e: $ };
-const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, `e`, 1);
-let a = tmpChainElementCall;
-if (tmpChainElementCall) {
+let a = $dotCall($, tmpObjLitVal$1, `e`, 1);
+if (a) {
   while (true) {
     $(100);
-    const tmpChainElementCall$1 = tmpObjLitVal$1.e(1);
-    a = tmpChainElementCall$1;
-    if (!tmpChainElementCall$1) {
+    a = tmpObjLitVal$1.e(1);
+    if (!a) {
       break;
     }
   }
@@ -75,25 +71,23 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = { e: $ };
-const b = $dotCall( $, a, "e", 1 );
-let c = b;
+let b = $dotCall( $, a, "e", 1 );
 if (b) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    const d = a.e;
-    const e = $dotCall( d, a, "e", 1 );
-    c = e;
-    if (e) {
+    const c = a.e;
+    b = $dotCall( c, a, "e", 1 );
+    if (b) {
 
     }
     else {
       break;
     }
   }
-  $( c );
+  $( b );
 }
 else {
-  $( c );
+  $( b );
 }
 `````
 

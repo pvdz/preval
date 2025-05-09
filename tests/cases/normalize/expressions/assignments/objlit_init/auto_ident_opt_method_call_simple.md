@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
-const tmpCalleeParam /*:object*/ = { x: tmpChainElementCall };
+const a /*:unknown*/ = $dotCall($, b, `c`, 1);
+const tmpCalleeParam /*:object*/ = { x: a };
 $(tmpCalleeParam);
-$(tmpChainElementCall);
+$(a);
 `````
 
 
@@ -33,9 +33,9 @@ $(tmpChainElementCall);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
-$({ x: tmpChainElementCall });
-$(tmpChainElementCall);
+const a = $dotCall($, { c: $ }, `c`, 1);
+$({ x: a });
+$(a);
 `````
 
 

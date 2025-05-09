@@ -23,8 +23,8 @@ $(f(['', 20, 30], 200));
 const tmpOPBD /*:unknown*/ = $String_prototype.x;
 const tmpIfTest$3 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$3) {
-  const x /*:unknown*/ = $(`pass`);
-  $(x);
+  const tmpCalleeParam$3 /*:unknown*/ = $(`pass`);
+  $(tmpCalleeParam$3);
 } else {
   $(tmpOPBD);
 }

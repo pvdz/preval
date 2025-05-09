@@ -29,9 +29,8 @@ let tmpBinBothLhs /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpBinBothLhs = tmpChainElementObject;
+  a = tmpChainElementCall[tmpChainRootComputed];
+  tmpBinBothLhs = a;
 }
 const tmpBinBothRhs /*:unknown*/ = $(100);
 const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
@@ -50,9 +49,8 @@ const tmpIfTest = tmpChainElementCall == null;
 let tmpBinBothLhs = undefined;
 if (!tmpIfTest) {
   const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpBinBothLhs = tmpChainElementObject;
+  a = tmpChainElementCall[tmpChainRootComputed];
+  tmpBinBothLhs = a;
 }
 $(tmpBinBothLhs + $(100));
 $(a);
@@ -73,13 +71,12 @@ if (d) {
 }
 else {
   const f = $( "x" );
-  const g = c[ f ];
-  a = g;
-  e = g;
+  a = c[ f ];
+  e = a;
 }
-const h = $( 100 );
-const i = e + h;
-$( i );
+const g = $( 100 );
+const h = e + g;
+$( h );
 $( a );
 `````
 

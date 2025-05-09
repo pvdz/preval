@@ -23,8 +23,7 @@ let a /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  a = tmpChainElementCall;
+  a = $(1);
 }
 if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
@@ -65,12 +64,11 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
 if (a) {
-  const d = $( 100 );
-  $( d );
+  const c = $( 100 );
+  $( c );
   $( a );
 }
 else {

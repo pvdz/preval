@@ -31,9 +31,9 @@ if (tmpIfTest) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementCall /*:unknown*/ = $(1);
-    $(tmpChainElementCall);
-    $(tmpChainElementCall);
+    const tmpNestedComplexRhs /*:unknown*/ = $(1);
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 }
 `````
@@ -51,9 +51,9 @@ if ($(0)) {
     $(undefined);
     $(undefined);
   } else {
-    const tmpChainElementCall = $(1);
-    $(tmpChainElementCall);
-    $(tmpChainElementCall);
+    const tmpNestedComplexRhs = $(1);
+    $(tmpNestedComplexRhs);
+    $(tmpNestedComplexRhs);
   }
 }
 `````

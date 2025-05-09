@@ -23,8 +23,7 @@ let tmpThrowArg /*:unknown*/ = undefined;
 const tmpIfTest /*:boolean*/ = $ == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementCall /*:unknown*/ = $(1);
-  tmpThrowArg = tmpChainElementCall;
+  tmpThrowArg = $(1);
 }
 throw tmpThrowArg;
 `````
@@ -52,8 +51,7 @@ if (b) {
 
 }
 else {
-  const c = $( 1 );
-  a = c;
+  a = $( 1 );
 }
 throw a;
 `````

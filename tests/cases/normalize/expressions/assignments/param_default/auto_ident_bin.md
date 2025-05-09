@@ -22,9 +22,9 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
-const tmpNestedComplexRhs /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+const a /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 
@@ -32,9 +32,9 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedComplexRhs = $(1) + $(2);
+const a = $(1) + $(2);
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 

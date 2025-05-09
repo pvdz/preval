@@ -34,8 +34,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpCalleeParam = tmpChainElementObject$1;
+    tmpCalleeParam = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 const tmpForInGen /*:unknown*/ = $forIn(tmpCalleeParam);
@@ -102,26 +101,25 @@ else {
   }
   else {
     const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    a = g[ i ];
   }
 }
-const k = $forIn( a );
+const j = $forIn( a );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const l = k();
-  const m = l.done;
-  if (m) {
+  const k = j();
+  const l = k.done;
+  if (l) {
     break;
   }
   else {
-    l.value;
+    k.value;
   }
 }
-const n = {
+const m = {
   a: 999,
   b: 1000,
 };
-$( n );
+$( m );
 `````
 
 

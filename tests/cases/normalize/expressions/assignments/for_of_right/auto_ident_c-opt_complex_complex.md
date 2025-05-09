@@ -30,9 +30,8 @@ if (tmpIfTest) {
   tmpForOfGenNext = $forOf(undefined);
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpForOfGenNext = $forOf(tmpChainElementObject);
+  a = tmpChainElementCall[tmpChainRootComputed];
+  tmpForOfGenNext = $forOf(a);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
@@ -59,9 +58,8 @@ if (tmpIfTest) {
   tmpForOfGenNext = $forOf(undefined);
 } else {
   const tmpChainRootComputed = $(`x`);
-  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  a = tmpChainElementObject;
-  tmpForOfGenNext = $forOf(tmpChainElementObject);
+  a = tmpChainElementCall[tmpChainRootComputed];
+  tmpForOfGenNext = $forOf(a);
 }
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
@@ -89,18 +87,17 @@ if (d) {
 }
 else {
   const f = $( "x" );
-  const g = c[ f ];
-  a = g;
-  e = $forOf( g );
+  a = c[ f ];
+  e = $forOf( a );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const h = e();
-  const i = h.done;
-  if (i) {
+  const g = e();
+  const h = g.done;
+  if (h) {
     break;
   }
   else {
-    h.value;
+    g.value;
   }
 }
 $( a );

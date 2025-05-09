@@ -28,9 +28,8 @@ const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
 let tmpObjSpread /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-  tmpObjSpread = tmpChainElementObject;
+  a = tmpChainElementCall.x;
+  tmpObjSpread = a;
 }
 const tmpCalleeParam /*:object*/ = { ...tmpObjSpread };
 $(tmpCalleeParam);
@@ -47,9 +46,8 @@ const tmpChainElementCall = $({ x: 1 });
 const tmpIfTest = tmpChainElementCall == null;
 let tmpObjSpread = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementObject = tmpChainElementCall.x;
-  a = tmpChainElementObject;
-  tmpObjSpread = tmpChainElementObject;
+  a = tmpChainElementCall.x;
+  tmpObjSpread = a;
 }
 $({ ...tmpObjSpread });
 $(a);
@@ -69,12 +67,11 @@ if (d) {
 
 }
 else {
-  const f = c.x;
-  a = f;
-  e = f;
+  a = c.x;
+  e = a;
 }
-const g = { ... e };
-$( g );
+const f = { ... e };
+$( f );
 $( a );
 `````
 

@@ -23,11 +23,11 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal /*:unknown*/ = $(1);
 $(undefined);
-const tmpNestedComplexRhs /*:object*/ = { b: tmpObjLitVal };
-const tmpAssignComMemLhsObj /*:unknown*/ = $(tmpNestedComplexRhs);
+const a /*:object*/ = { b: tmpObjLitVal };
+const tmpAssignComMemLhsObj /*:unknown*/ = $(a);
 const tmpAssignComMemLhsProp /*:unknown*/ = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 
@@ -37,11 +37,11 @@ $(tmpNestedComplexRhs);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 $(undefined);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
-const tmpAssignComMemLhsObj = $(tmpNestedComplexRhs);
+const a = { b: tmpObjLitVal };
+const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 

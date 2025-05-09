@@ -24,8 +24,8 @@ $(f());
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
-  const tmpReturnArg /*:unknown*/ = $(1);
-  $(tmpReturnArg);
+  const tmpCalleeParam /*:unknown*/ = $(1);
+  $(tmpCalleeParam);
 } else {
   $(undefined);
 }

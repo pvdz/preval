@@ -27,8 +27,7 @@ const tmpChainRootProp /*:unknown*/ = $(b);
 const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  tmpIfTest = tmpChainElementObject;
+  tmpIfTest = tmpChainRootProp.x;
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -38,8 +37,7 @@ if (tmpIfTest) {
     const tmpIfTest$4 /*:boolean*/ = tmpChainRootProp$1 == null;
     if (tmpIfTest$4) {
     } else {
-      const tmpChainElementObject$1 /*:unknown*/ = tmpChainRootProp$1.x;
-      tmpIfTest$2 = tmpChainElementObject$1;
+      tmpIfTest$2 = tmpChainRootProp$1.x;
     }
     if (tmpIfTest$2) {
     } else {
@@ -92,23 +90,21 @@ if (d) {
 
 }
 else {
-  const e = c.x;
-  a = e;
+  a = c.x;
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    let f = undefined;
-    const g = $( b );
-    const h = g == null;
-    if (h) {
+    let e = undefined;
+    const f = $( b );
+    const g = f == null;
+    if (g) {
 
     }
     else {
-      const i = g.x;
-      f = i;
+      e = f.x;
     }
-    if (f) {
+    if (e) {
 
     }
     else {
@@ -116,11 +112,11 @@ if (a) {
     }
   }
 }
-const j = {
+const h = {
   a: 999,
   b: 1000,
 };
-$( j );
+$( h );
 `````
 
 

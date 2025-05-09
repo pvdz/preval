@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpIfTest /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const a /*:object*/ = { a: 999, b: 1000 };
-if (tmpChainElementCall) {
+if (tmpIfTest) {
   $(100);
   $(a);
 } else {
@@ -38,9 +38,9 @@ if (tmpChainElementCall) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
+const tmpIfTest = $dotCall($, { e: $ }, `e`, 1);
 const a = { a: 999, b: 1000 };
-if (tmpChainElementCall) {
+if (tmpIfTest) {
   $(100);
   $(a);
 } else {

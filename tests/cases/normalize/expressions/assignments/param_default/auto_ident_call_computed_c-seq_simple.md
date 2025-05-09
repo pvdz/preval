@@ -25,9 +25,9 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
-const tmpNestedComplexRhs /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
+const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 
@@ -36,9 +36,9 @@ $(tmpNestedComplexRhs);
 
 `````js filename=intro
 const tmpMCOO = $({ $: $ });
-const tmpNestedComplexRhs = tmpMCOO.$(1);
+const a = tmpMCOO.$(1);
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 

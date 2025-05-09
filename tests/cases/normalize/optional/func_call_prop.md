@@ -20,8 +20,8 @@ $(f());
 
 
 `````js filename=intro
-const tmpChainElementObject /*:unknown*/ = $Number_prototype.foo;
-const tmpReturnArg /*:unknown*/ = $(tmpChainElementObject);
+const tmpCalleeParam /*:unknown*/ = $Number_prototype.foo;
+const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
 $(tmpReturnArg);
 `````
 

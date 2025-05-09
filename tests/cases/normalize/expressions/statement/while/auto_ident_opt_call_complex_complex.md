@@ -25,20 +25,18 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  tmpIfTest = tmpChainElementCall$1;
+  tmpIfTest = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     $(100);
     let tmpIfTest$2 /*:unknown*/ = undefined;
-    const tmpChainElementCall$2 /*:unknown*/ = $($);
-    const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$2 == null;
+    const tmpChainElementCall$1 /*:unknown*/ = $($);
+    const tmpIfTest$4 /*:boolean*/ = tmpChainElementCall$1 == null;
     if (tmpIfTest$4) {
     } else {
       const tmpCalleeParam$1 /*:unknown*/ = $(1);
-      const tmpChainElementCall$4 /*:unknown*/ = $dotCall(tmpChainElementCall$2, $, undefined, tmpCalleeParam$1);
-      tmpIfTest$2 = tmpChainElementCall$4;
+      tmpIfTest$2 = $dotCall(tmpChainElementCall$1, $, undefined, tmpCalleeParam$1);
     }
     if (tmpIfTest$2) {
     } else {
@@ -65,9 +63,9 @@ if (tmpIfTest) {
   while (true) {
     $(100);
     let tmpIfTest$2 = undefined;
-    const tmpChainElementCall$2 = $($);
-    if (!(tmpChainElementCall$2 == null)) {
-      tmpIfTest$2 = $dotCall(tmpChainElementCall$2, $, undefined, $(1));
+    const tmpChainElementCall$1 = $($);
+    if (!(tmpChainElementCall$1 == null)) {
+      tmpIfTest$2 = $dotCall(tmpChainElementCall$1, $, undefined, $(1));
     }
     if (!tmpIfTest$2) {
       break;
@@ -90,24 +88,22 @@ if (c) {
 }
 else {
   const d = $( 1 );
-  const e = $dotCall( b, $, undefined, d );
-  a = e;
+  a = $dotCall( b, $, undefined, d );
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    let f = undefined;
-    const g = $( $ );
-    const h = g == null;
-    if (h) {
+    let e = undefined;
+    const f = $( $ );
+    const g = f == null;
+    if (g) {
 
     }
     else {
-      const i = $( 1 );
-      const j = $dotCall( g, $, undefined, i );
-      f = j;
+      const h = $( 1 );
+      e = $dotCall( f, $, undefined, h );
     }
-    if (f) {
+    if (e) {
 
     }
     else {
@@ -115,11 +111,11 @@ if (a) {
     }
   }
 }
-const k = {
+const i = {
   a: 999,
   b: 1000,
 };
-$( k );
+$( i );
 `````
 
 

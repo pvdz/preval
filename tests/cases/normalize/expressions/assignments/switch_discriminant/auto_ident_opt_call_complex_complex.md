@@ -29,9 +29,9 @@ if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
+  const a /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
   $(100);
-  $(tmpChainElementCall$1);
+  $(a);
 }
 `````
 
@@ -45,9 +45,9 @@ if (tmpChainElementCall == null) {
   $(100);
   $(undefined);
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, $(1));
+  const a = $dotCall(tmpChainElementCall, $, undefined, $(1));
   $(100);
-  $(tmpChainElementCall$1);
+  $(a);
 }
 `````
 

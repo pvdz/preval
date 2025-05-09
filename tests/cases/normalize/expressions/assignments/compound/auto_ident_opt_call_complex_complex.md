@@ -28,8 +28,8 @@ if (tmpIfTest) {
   $($Number_NaN);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
-  const tmpClusterSSA_a /*:number*/ = a * tmpChainElementCall$1;
+  const tmpBinBothRhs /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam$1);
+  const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
   $(tmpClusterSSA_a);
   $(tmpClusterSSA_a);
 }

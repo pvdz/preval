@@ -27,9 +27,8 @@ let tmpCompObj /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  a = tmpChainElementCall$1;
-  tmpCompObj = tmpChainElementCall$1;
+  a = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
+  tmpCompObj = a;
 }
 tmpCompObj.a;
 $(a);
@@ -45,9 +44,8 @@ const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 let tmpCompObj = undefined;
 if (!tmpIfTest) {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, $(1));
-  a = tmpChainElementCall$1;
-  tmpCompObj = tmpChainElementCall$1;
+  a = $dotCall(tmpChainElementCall, $, undefined, $(1));
+  tmpCompObj = a;
 }
 tmpCompObj.a;
 $(a);
@@ -67,9 +65,8 @@ if (c) {
 }
 else {
   const e = $( 1 );
-  const f = $dotCall( b, $, undefined, e );
-  a = f;
-  d = f;
+  a = $dotCall( b, $, undefined, e );
+  d = a;
 }
 d.a;
 $( a );

@@ -27,8 +27,7 @@ const tmpIfTest /*:boolean*/ = tmpChainRootProp == null;
 let xyz /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject /*:unknown*/ = tmpChainRootProp.x;
-  xyz = tmpChainElementObject;
+  xyz = tmpChainRootProp.x;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
@@ -66,8 +65,7 @@ if (c) {
 
 }
 else {
-  const e = b.x;
-  d = e;
+  d = b.x;
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );

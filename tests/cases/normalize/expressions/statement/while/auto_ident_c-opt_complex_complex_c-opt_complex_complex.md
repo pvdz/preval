@@ -34,8 +34,7 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
   } else {
     const tmpChainRootComputed$1 /*:unknown*/ = $(`y`);
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpIfTest = tmpChainElementObject$1;
+    tmpIfTest = tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
 if (tmpIfTest) {
@@ -47,13 +46,12 @@ if (tmpIfTest) {
     if (tmpIfTest$4) {
     } else {
       const tmpChainRootComputed$2 /*:unknown*/ = $(`x`);
-      const tmpChainElementObject$2 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$2];
-      const tmpIfTest$6 /*:boolean*/ = tmpChainElementObject$2 == null;
+      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$2];
+      const tmpIfTest$6 /*:boolean*/ = tmpChainElementObject$1 == null;
       if (tmpIfTest$6) {
       } else {
         const tmpChainRootComputed$4 /*:unknown*/ = $(`y`);
-        const tmpChainElementObject$4 /*:unknown*/ = tmpChainElementObject$2[tmpChainRootComputed$4];
-        tmpIfTest$2 = tmpChainElementObject$4;
+        tmpIfTest$2 = tmpChainElementObject$1[tmpChainRootComputed$4];
       }
     }
     if (tmpIfTest$2) {
@@ -91,10 +89,10 @@ if (tmpIfTest) {
     const tmpChainElementCall$1 = $(b);
     if (!(tmpChainElementCall$1 == null)) {
       const tmpChainRootComputed$2 = $(`x`);
-      const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-      if (!(tmpChainElementObject$2 == null)) {
+      const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$2];
+      if (!(tmpChainElementObject$1 == null)) {
         const tmpChainRootComputed$4 = $(`y`);
-        tmpIfTest$2 = tmpChainElementObject$2[tmpChainRootComputed$4];
+        tmpIfTest$2 = tmpChainElementObject$1[tmpChainRootComputed$4];
       }
     }
     if (!tmpIfTest$2) {
@@ -127,33 +125,31 @@ else {
   }
   else {
     const i = $( "y" );
-    const j = g[ i ];
-    a = j;
+    a = g[ i ];
   }
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 100 );
-    let k = undefined;
-    const l = $( c );
-    const m = l == null;
-    if (m) {
+    let j = undefined;
+    const k = $( c );
+    const l = k == null;
+    if (l) {
 
     }
     else {
-      const n = $( "x" );
-      const o = l[ n ];
-      const p = o == null;
-      if (p) {
+      const m = $( "x" );
+      const n = k[ m ];
+      const o = n == null;
+      if (o) {
 
       }
       else {
-        const q = $( "y" );
-        const r = o[ q ];
-        k = r;
+        const p = $( "y" );
+        j = n[ p ];
       }
     }
-    if (k) {
+    if (j) {
 
     }
     else {
@@ -161,11 +157,11 @@ if (a) {
     }
   }
 }
-const s = {
+const q = {
   a: 999,
   b: 1000,
 };
-$( s );
+$( q );
 `````
 
 

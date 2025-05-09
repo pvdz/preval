@@ -32,9 +32,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpChainElementObject /*:unknown*/ = b.c;
-    const tmpChainElementCall /*:unknown*/ = $dotCall(tmpChainElementObject, b, `c`, 1);
+    const tmpAssignMemLhsObj$1 /*:unknown*/ = $dotCall(tmpChainElementObject, b, `c`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpChainElementCall.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -53,8 +53,8 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const tmpChainElementCall = b.c(1);
-    tmpChainElementCall.x = tmpForInNext.value;
+    const tmpAssignMemLhsObj$1 = b.c(1);
+    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
   }
 }
 $({ a: 999, b: 1000 });

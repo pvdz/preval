@@ -27,8 +27,7 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  tmpIfTest = tmpChainElementObject;
+  tmpIfTest = tmpChainElementCall[tmpChainRootComputed];
 }
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -39,8 +38,7 @@ if (tmpIfTest) {
     if (tmpIfTest$4) {
     } else {
       const tmpChainRootComputed$1 /*:unknown*/ = $(`x`);
-      const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1[tmpChainRootComputed$1];
-      tmpIfTest$2 = tmpChainElementObject$1;
+      tmpIfTest$2 = tmpChainElementCall$1[tmpChainRootComputed$1];
     }
     if (tmpIfTest$2) {
     } else {
@@ -96,24 +94,22 @@ if (d) {
 }
 else {
   const e = $( "x" );
-  const f = c[ e ];
-  a = f;
+  a = c[ e ];
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
     $( 1 );
-    let g = undefined;
-    const h = $( b );
-    const i = h == null;
-    if (i) {
+    let f = undefined;
+    const g = $( b );
+    const h = g == null;
+    if (h) {
 
     }
     else {
-      const j = $( "x" );
-      const k = h[ j ];
-      g = k;
+      const i = $( "x" );
+      f = g[ i ];
     }
-    if (g) {
+    if (f) {
 
     }
     else {
@@ -121,11 +117,11 @@ if (a) {
     }
   }
 }
-const l = {
+const j = {
   a: 999,
   b: 1000,
 };
-$( l );
+$( j );
 `````
 
 

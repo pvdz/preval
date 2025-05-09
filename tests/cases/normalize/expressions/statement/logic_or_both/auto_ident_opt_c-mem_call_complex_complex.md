@@ -33,8 +33,7 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
   } else {
     const tmpCalleeParam /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
-    tmpIfTest = tmpChainElementCall$1;
+    tmpIfTest = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam);
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -116,34 +115,33 @@ else {
   }
   else {
     const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    a = $dotCall( f, c, undefined, h );
   }
 }
-const j = {
+const i = {
   a: 999,
   b: 1000,
 };
 if (a) {
-  $( j );
+  $( i );
 }
 else {
-  const k = $( b );
-  const l = k == null;
-  if (l) {
-    $( j );
+  const j = $( b );
+  const k = j == null;
+  if (k) {
+    $( i );
   }
   else {
-    const m = $( "$" );
-    const n = k[ m ];
-    const o = n == null;
-    if (o) {
-      $( j );
+    const l = $( "$" );
+    const m = j[ l ];
+    const n = m == null;
+    if (n) {
+      $( i );
     }
     else {
-      const p = $( 1 );
-      $dotCall( n, k, undefined, p );
-      $( j );
+      const o = $( 1 );
+      $dotCall( m, j, undefined, o );
+      $( i );
     }
   }
 }

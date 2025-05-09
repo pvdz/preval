@@ -25,8 +25,8 @@ if (tmpIfTest) {
   $(...undefined);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(1);
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
-  $(...tmpChainElementCall$1);
+  const tmpCalleeParamSpread /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, tmpCalleeParam);
+  $(...tmpCalleeParamSpread);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -41,8 +41,8 @@ const tmpChainElementCall = $($);
 if (tmpChainElementCall == null) {
   $(...undefined);
 } else {
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, undefined, $(1));
-  $(...tmpChainElementCall$1);
+  const tmpCalleeParamSpread = $dotCall(tmpChainElementCall, $, undefined, $(1));
+  $(...tmpCalleeParamSpread);
 }
 $({ a: 999, b: 1000 });
 `````

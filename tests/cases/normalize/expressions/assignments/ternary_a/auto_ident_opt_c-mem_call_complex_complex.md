@@ -33,8 +33,7 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
   } else {
     const tmpCalleeParam$1 /*:unknown*/ = $(1);
-    const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
-    a = tmpChainElementCall$1;
+    a = $dotCall(tmpChainElementObject, tmpChainElementCall, undefined, tmpCalleeParam$1);
   }
 }
 if (a) {
@@ -92,18 +91,17 @@ else {
   }
   else {
     const h = $( 1 );
-    const i = $dotCall( f, c, undefined, h );
-    a = i;
+    a = $dotCall( f, c, undefined, h );
   }
 }
 if (a) {
-  const j = $( 100 );
-  $( j );
+  const i = $( 100 );
+  $( i );
   $( a );
 }
 else {
-  const k = $( 200 );
-  $( k );
+  const j = $( 200 );
+  $( j );
   $( a );
 }
 `````

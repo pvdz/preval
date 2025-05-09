@@ -25,8 +25,8 @@ const tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
 const tmpOPBD /*:unknown*/ = tmpBindingPatternObjRoot.x;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
-  const x /*:unknown*/ = $(`fail`);
-  $(x);
+  const tmpCalleeParam$1 /*:unknown*/ = $(`fail`);
+  $(tmpCalleeParam$1);
 } else {
   $(tmpOPBD);
 }

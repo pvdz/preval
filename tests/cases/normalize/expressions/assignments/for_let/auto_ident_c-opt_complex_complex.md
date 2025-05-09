@@ -28,8 +28,7 @@ let xyz /*:unknown*/ = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed /*:unknown*/ = $(`x`);
-  const tmpChainElementObject /*:unknown*/ = tmpChainElementCall[tmpChainRootComputed];
-  xyz = tmpChainElementObject;
+  xyz = tmpChainElementCall[tmpChainRootComputed];
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
@@ -69,8 +68,7 @@ if (c) {
 }
 else {
   const e = $( "x" );
-  const f = b[ e ];
-  d = f;
+  d = b[ e ];
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( d );

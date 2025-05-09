@@ -30,8 +30,8 @@ $(a);
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-const tmpIfTest /*:boolean*/ = tmpChainElementCall === tmpSwitchValue;
+const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const tmpIfTest /*:boolean*/ = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -45,10 +45,10 @@ const tmpIfTest$7 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpChainElementCall);
+  $(a);
 } else {
   $(`fail2`);
-  $(tmpChainElementCall);
+  $(a);
 }
 `````
 
@@ -59,8 +59,8 @@ if (tmpIfTest$7) {
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpChainElementCall = $dotCall($, { e: $ }, `e`, 1);
-if (tmpChainElementCall === tmpSwitchValue) {
+const a = $dotCall($, { e: $ }, `e`, 1);
+if (a === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -70,10 +70,10 @@ if (tmpChainElementCall === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpChainElementCall);
+  $(a);
 } else {
   $(`fail2`);
-  $(tmpChainElementCall);
+  $(a);
 }
 `````
 

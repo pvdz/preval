@@ -36,16 +36,14 @@ if (imanumberandilovethrees) {
   const tmpIfTest /*:boolean*/ = tmpChainElementCall == null;
   if (tmpIfTest) {
   } else {
-    const tmpChainElementObject /*:unknown*/ = tmpChainElementCall.x;
-    itooamanumberjack = tmpChainElementObject;
+    itooamanumberjack = tmpChainElementCall.x;
   }
 } else {
   const tmpChainElementCall$1 /*:unknown*/ = $(2);
   const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall$1 == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainElementObject$1 /*:unknown*/ = tmpChainElementCall$1.x;
-    itooamanumberjack = tmpChainElementObject$1;
+    itooamanumberjack = tmpChainElementCall$1.x;
   }
 }
 if (itooamanumberjack) {
@@ -92,19 +90,17 @@ if (imanumberandilovethrees) {
 
   }
   else {
-    const d = b.x;
-    a = d;
+    a = b.x;
   }
 }
 else {
-  const e = $( 2 );
-  const f = e == null;
-  if (f) {
+  const d = $( 2 );
+  const e = d == null;
+  if (e) {
 
   }
   else {
-    const g = e.x;
-    a = g;
+    a = d.x;
   }
 }
 if (a) {

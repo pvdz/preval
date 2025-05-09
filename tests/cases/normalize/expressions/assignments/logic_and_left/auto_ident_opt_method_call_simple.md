@@ -22,14 +22,14 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { c: $ };
-const tmpChainElementCall /*:unknown*/ = $dotCall($, b, `c`, 1);
-if (tmpChainElementCall) {
+const a /*:unknown*/ = $dotCall($, b, `c`, 1);
+if (a) {
   const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
-  $(tmpChainElementCall);
+  $(a);
 } else {
-  $(tmpChainElementCall);
-  $(tmpChainElementCall);
+  $(a);
+  $(a);
 }
 `````
 
@@ -38,13 +38,13 @@ if (tmpChainElementCall) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpChainElementCall = $dotCall($, { c: $ }, `c`, 1);
-if (tmpChainElementCall) {
+const a = $dotCall($, { c: $ }, `c`, 1);
+if (a) {
   $($(100));
-  $(tmpChainElementCall);
+  $(a);
 } else {
-  $(tmpChainElementCall);
-  $(tmpChainElementCall);
+  $(a);
+  $(a);
 }
 `````
 

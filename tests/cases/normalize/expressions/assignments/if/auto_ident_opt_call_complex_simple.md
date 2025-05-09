@@ -24,8 +24,8 @@ const tmpIfTest$1 /*:boolean*/ = tmpChainElementCall == null;
 if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementCall$1 /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
-  $(tmpChainElementCall$1);
+  const a /*:unknown*/ = $dotCall(tmpChainElementCall, $, undefined, 1);
+  $(a);
 }
 `````
 

@@ -23,9 +23,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const tmpNestedComplexRhs /*:unknown*/ = $dotCall($, b, `\$`, 1);
+const a /*:unknown*/ = $dotCall($, b, `\$`, 1);
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 
@@ -33,9 +33,9 @@ $(tmpNestedComplexRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedComplexRhs = $dotCall($, { $: $ }, `\$`, 1);
+const a = $dotCall($, { $: $ }, `\$`, 1);
 $(undefined);
-$(tmpNestedComplexRhs);
+$(a);
 `````
 
 

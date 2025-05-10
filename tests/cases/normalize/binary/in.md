@@ -17,7 +17,7 @@ $(5 in Infinity);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:boolean*/ = 5 in Infinity;
+const tmpCalleeParam /*:boolean*/ = 5 in $Number_POSITIVE_INFINITY;
 $(tmpCalleeParam);
 `````
 
@@ -26,7 +26,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$(5 in Infinity);
+$(5 in $Number_POSITIVE_INFINITY);
 `````
 
 
@@ -34,7 +34,7 @@ $(5 in Infinity);
 With rename=true
 
 `````js filename=intro
-const a = 5 in Infinity;
+const a = 5 in $Number_POSITIVE_INFINITY;
 $( a );
 `````
 

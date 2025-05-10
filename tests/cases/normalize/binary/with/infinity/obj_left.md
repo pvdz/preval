@@ -62,21 +62,21 @@ const x /*:object*/ = {
     return 100;
   },
 };
-const tmpArrElement /*:number*/ = x ** Infinity;
-const tmpArrElement$1 /*:number*/ = x * Infinity;
-const tmpArrElement$3 /*:number*/ = x / Infinity;
-const tmpArrElement$5 /*:number*/ = x % Infinity;
-const tmpArrElement$7 /*:primitive*/ = x + Infinity;
-const tmpArrElement$9 /*:number*/ = x - Infinity;
+const tmpArrElement /*:number*/ = x ** $Number_POSITIVE_INFINITY;
+const tmpArrElement$1 /*:number*/ = x * $Number_POSITIVE_INFINITY;
+const tmpArrElement$3 /*:number*/ = x / $Number_POSITIVE_INFINITY;
+const tmpArrElement$5 /*:number*/ = x % $Number_POSITIVE_INFINITY;
+const tmpArrElement$7 /*:primitive*/ = x + $Number_POSITIVE_INFINITY;
+const tmpArrElement$9 /*:number*/ = x - $Number_POSITIVE_INFINITY;
 const tmpArrElement$11 /*:number*/ = x << 0;
 const tmpArrElement$13 /*:number*/ = x >> 0;
 const tmpArrElement$15 /*:number*/ = x >>> 0;
-const tmpArrElement$17 /*:boolean*/ = x < Infinity;
-const tmpArrElement$19 /*:boolean*/ = x > Infinity;
-const tmpArrElement$21 /*:boolean*/ = x <= Infinity;
-const tmpArrElement$23 /*:boolean*/ = x >= Infinity;
-const tmpArrElement$25 /*:boolean*/ = x == Infinity;
-const tmpArrElement$27 /*:boolean*/ = x != Infinity;
+const tmpArrElement$17 /*:boolean*/ = x < $Number_POSITIVE_INFINITY;
+const tmpArrElement$19 /*:boolean*/ = x > $Number_POSITIVE_INFINITY;
+const tmpArrElement$21 /*:boolean*/ = x <= $Number_POSITIVE_INFINITY;
+const tmpArrElement$23 /*:boolean*/ = x >= $Number_POSITIVE_INFINITY;
+const tmpArrElement$25 /*:boolean*/ = x == $Number_POSITIVE_INFINITY;
+const tmpArrElement$27 /*:boolean*/ = x != $Number_POSITIVE_INFINITY;
 x ** 0;
 const tmpArrElement$35 /*:number*/ = x ^ 0;
 const tmpArrElement$37 /*:number*/ = x | 0;
@@ -103,9 +103,9 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpCalleeParam /*:boolean*/ = x in Infinity;
+const tmpCalleeParam /*:boolean*/ = x in $Number_POSITIVE_INFINITY;
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:boolean*/ = x instanceof Infinity;
+const tmpCalleeParam$1 /*:boolean*/ = x instanceof $Number_POSITIVE_INFINITY;
 $(tmpCalleeParam$1);
 `````
 
@@ -124,21 +124,21 @@ const x = {
     return 100;
   },
 };
-const tmpArrElement = x ** Infinity;
-const tmpArrElement$1 = x * Infinity;
-const tmpArrElement$3 = x / Infinity;
-const tmpArrElement$5 = x % Infinity;
-const tmpArrElement$7 = x + Infinity;
-const tmpArrElement$9 = x - Infinity;
+const tmpArrElement = x ** $Number_POSITIVE_INFINITY;
+const tmpArrElement$1 = x * $Number_POSITIVE_INFINITY;
+const tmpArrElement$3 = x / $Number_POSITIVE_INFINITY;
+const tmpArrElement$5 = x % $Number_POSITIVE_INFINITY;
+const tmpArrElement$7 = x + $Number_POSITIVE_INFINITY;
+const tmpArrElement$9 = x - $Number_POSITIVE_INFINITY;
 const tmpArrElement$11 = x << 0;
 const tmpArrElement$13 = x >> 0;
 const tmpArrElement$15 = x >>> 0;
-const tmpArrElement$17 = x < Infinity;
-const tmpArrElement$19 = x > Infinity;
-const tmpArrElement$21 = x <= Infinity;
-const tmpArrElement$23 = x >= Infinity;
-const tmpArrElement$25 = x == Infinity;
-const tmpArrElement$27 = x != Infinity;
+const tmpArrElement$17 = x < $Number_POSITIVE_INFINITY;
+const tmpArrElement$19 = x > $Number_POSITIVE_INFINITY;
+const tmpArrElement$21 = x <= $Number_POSITIVE_INFINITY;
+const tmpArrElement$23 = x >= $Number_POSITIVE_INFINITY;
+const tmpArrElement$25 = x == $Number_POSITIVE_INFINITY;
+const tmpArrElement$27 = x != $Number_POSITIVE_INFINITY;
 x ** 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
@@ -164,8 +164,8 @@ $([
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
-$(x in Infinity);
-$(x instanceof Infinity);
+$(x in $Number_POSITIVE_INFINITY);
+$(x instanceof $Number_POSITIVE_INFINITY);
 `````
 
 
@@ -185,29 +185,29 @@ const a = {
     return 100;
   },
 };
-const c = a ** Infinity;
-const d = a * Infinity;
-const e = a / Infinity;
-const f = a % Infinity;
-const g = a + Infinity;
-const h = a - Infinity;
+const c = a ** $Number_POSITIVE_INFINITY;
+const d = a * $Number_POSITIVE_INFINITY;
+const e = a / $Number_POSITIVE_INFINITY;
+const f = a % $Number_POSITIVE_INFINITY;
+const g = a + $Number_POSITIVE_INFINITY;
+const h = a - $Number_POSITIVE_INFINITY;
 const i = a << 0;
 const j = a >> 0;
 const k = a >>> 0;
-const l = a < Infinity;
-const m = a > Infinity;
-const n = a <= Infinity;
-const o = a >= Infinity;
-const p = a == Infinity;
-const q = a != Infinity;
+const l = a < $Number_POSITIVE_INFINITY;
+const m = a > $Number_POSITIVE_INFINITY;
+const n = a <= $Number_POSITIVE_INFINITY;
+const o = a >= $Number_POSITIVE_INFINITY;
+const p = a == $Number_POSITIVE_INFINITY;
+const q = a != $Number_POSITIVE_INFINITY;
 a ** 0;
 const r = a ^ 0;
 const s = a | 0;
 const t = [ c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, false, true, 0, r, s ];
 $( t );
-const u = a in Infinity;
+const u = a in $Number_POSITIVE_INFINITY;
 $( u );
-const v = a instanceof Infinity;
+const v = a instanceof $Number_POSITIVE_INFINITY;
 $( v );
 `````
 

@@ -43,26 +43,26 @@ $(-Infinity instanceof x);
 
 `````js filename=intro
 const x /*:unknown*/ = $spy();
-const tmpArrElement /*:number*/ = (-Infinity) ** x;
-const tmpArrElement$1 /*:number*/ = -Infinity * x;
-const tmpArrElement$3 /*:number*/ = -Infinity / x;
-const tmpArrElement$5 /*:number*/ = -Infinity % x;
-const tmpArrElement$7 /*:primitive*/ = -Infinity + x;
-const tmpArrElement$9 /*:number*/ = -Infinity - x;
+const tmpArrElement /*:number*/ = $Number_NEGATIVE_INFINITY ** x;
+const tmpArrElement$1 /*:number*/ = $Number_NEGATIVE_INFINITY * x;
+const tmpArrElement$3 /*:number*/ = $Number_NEGATIVE_INFINITY / x;
+const tmpArrElement$5 /*:number*/ = $Number_NEGATIVE_INFINITY % x;
+const tmpArrElement$7 /*:primitive*/ = $Number_NEGATIVE_INFINITY + x;
+const tmpArrElement$9 /*:number*/ = $Number_NEGATIVE_INFINITY - x;
 const tmpArrElement$11 /*:number*/ = 0 << x;
 const tmpArrElement$13 /*:number*/ = 0 >> x;
 const tmpArrElement$15 /*:number*/ = 0 >>> x;
-const tmpArrElement$17 /*:boolean*/ = -Infinity < x;
-const tmpArrElement$19 /*:boolean*/ = -Infinity > x;
-const tmpArrElement$21 /*:boolean*/ = -Infinity <= x;
-const tmpArrElement$23 /*:boolean*/ = -Infinity >= x;
-const tmpArrElement$25 /*:boolean*/ = -Infinity == x;
-const tmpArrElement$27 /*:boolean*/ = -Infinity != x;
+const tmpArrElement$17 /*:boolean*/ = $Number_NEGATIVE_INFINITY < x;
+const tmpArrElement$19 /*:boolean*/ = $Number_NEGATIVE_INFINITY > x;
+const tmpArrElement$21 /*:boolean*/ = $Number_NEGATIVE_INFINITY <= x;
+const tmpArrElement$23 /*:boolean*/ = $Number_NEGATIVE_INFINITY >= x;
+const tmpArrElement$25 /*:boolean*/ = $Number_NEGATIVE_INFINITY == x;
+const tmpArrElement$27 /*:boolean*/ = $Number_NEGATIVE_INFINITY != x;
 x ** 0;
 const tmpArrElement$35 /*:number*/ = 0 ^ x;
 const tmpArrElement$37 /*:number*/ = 0 | x;
-const tmpArrElement$29 /*:boolean*/ = -Infinity === x;
-const tmpArrElement$31 /*:boolean*/ = -Infinity !== x;
+const tmpArrElement$29 /*:boolean*/ = $Number_NEGATIVE_INFINITY === x;
+const tmpArrElement$31 /*:boolean*/ = $Number_NEGATIVE_INFINITY !== x;
 const arr /*:array*/ = [
   tmpArrElement,
   tmpArrElement$1,
@@ -86,9 +86,9 @@ const arr /*:array*/ = [
   tmpArrElement$37,
 ];
 $(arr);
-const tmpCalleeParam /*:boolean*/ = -Infinity in x;
+const tmpCalleeParam /*:boolean*/ = $Number_NEGATIVE_INFINITY in x;
 $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:boolean*/ = -Infinity instanceof x;
+const tmpCalleeParam$1 /*:boolean*/ = $Number_NEGATIVE_INFINITY instanceof x;
 $(tmpCalleeParam$1);
 `````
 
@@ -98,26 +98,26 @@ $(tmpCalleeParam$1);
 
 `````js filename=intro
 const x = $spy();
-const tmpArrElement = (-Infinity) ** x;
-const tmpArrElement$1 = -Infinity * x;
-const tmpArrElement$3 = -Infinity / x;
-const tmpArrElement$5 = -Infinity % x;
-const tmpArrElement$7 = -Infinity + x;
-const tmpArrElement$9 = -Infinity - x;
+const tmpArrElement = $Number_NEGATIVE_INFINITY ** x;
+const tmpArrElement$1 = $Number_NEGATIVE_INFINITY * x;
+const tmpArrElement$3 = $Number_NEGATIVE_INFINITY / x;
+const tmpArrElement$5 = $Number_NEGATIVE_INFINITY % x;
+const tmpArrElement$7 = $Number_NEGATIVE_INFINITY + x;
+const tmpArrElement$9 = $Number_NEGATIVE_INFINITY - x;
 const tmpArrElement$11 = 0 << x;
 const tmpArrElement$13 = 0 >> x;
 const tmpArrElement$15 = 0 >>> x;
-const tmpArrElement$17 = -Infinity < x;
-const tmpArrElement$19 = -Infinity > x;
-const tmpArrElement$21 = -Infinity <= x;
-const tmpArrElement$23 = -Infinity >= x;
-const tmpArrElement$25 = -Infinity == x;
-const tmpArrElement$27 = -Infinity != x;
+const tmpArrElement$17 = $Number_NEGATIVE_INFINITY < x;
+const tmpArrElement$19 = $Number_NEGATIVE_INFINITY > x;
+const tmpArrElement$21 = $Number_NEGATIVE_INFINITY <= x;
+const tmpArrElement$23 = $Number_NEGATIVE_INFINITY >= x;
+const tmpArrElement$25 = $Number_NEGATIVE_INFINITY == x;
+const tmpArrElement$27 = $Number_NEGATIVE_INFINITY != x;
 x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
-const tmpArrElement$29 = -Infinity === x;
-const tmpArrElement$31 = -Infinity !== x;
+const tmpArrElement$29 = $Number_NEGATIVE_INFINITY === x;
+const tmpArrElement$31 = $Number_NEGATIVE_INFINITY !== x;
 $([
   tmpArrElement,
   tmpArrElement$1,
@@ -140,8 +140,8 @@ $([
   tmpArrElement$35,
   tmpArrElement$37,
 ]);
-$(-Infinity in x);
-$(-Infinity instanceof x);
+$($Number_NEGATIVE_INFINITY in x);
+$($Number_NEGATIVE_INFINITY instanceof x);
 `````
 
 
@@ -150,31 +150,31 @@ With rename=true
 
 `````js filename=intro
 const a = $spy();
-const b = -Infinity ** a;
-const c = -Infinity * a;
-const d = -Infinity / a;
-const e = -Infinity % a;
-const f = -Infinity + a;
-const g = -Infinity - a;
+const b = $Number_NEGATIVE_INFINITY ** a;
+const c = $Number_NEGATIVE_INFINITY * a;
+const d = $Number_NEGATIVE_INFINITY / a;
+const e = $Number_NEGATIVE_INFINITY % a;
+const f = $Number_NEGATIVE_INFINITY + a;
+const g = $Number_NEGATIVE_INFINITY - a;
 const h = 0 << a;
 const i = 0 >> a;
 const j = 0 >>> a;
-const k = -Infinity < a;
-const l = -Infinity > a;
-const m = -Infinity <= a;
-const n = -Infinity >= a;
-const o = -Infinity == a;
-const p = -Infinity != a;
+const k = $Number_NEGATIVE_INFINITY < a;
+const l = $Number_NEGATIVE_INFINITY > a;
+const m = $Number_NEGATIVE_INFINITY <= a;
+const n = $Number_NEGATIVE_INFINITY >= a;
+const o = $Number_NEGATIVE_INFINITY == a;
+const p = $Number_NEGATIVE_INFINITY != a;
 a ** 0;
 const q = 0 ^ a;
 const r = 0 | a;
-const s = -Infinity === a;
-const t = -Infinity !== a;
+const s = $Number_NEGATIVE_INFINITY === a;
+const t = $Number_NEGATIVE_INFINITY !== a;
 const u = [ b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, s, t, 0, q, r ];
 $( u );
-const v = -Infinity in a;
+const v = $Number_NEGATIVE_INFINITY in a;
 $( v );
-const w = -Infinity instanceof a;
+const w = $Number_NEGATIVE_INFINITY instanceof a;
 $( w );
 `````
 

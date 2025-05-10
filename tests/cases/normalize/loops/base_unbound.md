@@ -37,7 +37,7 @@ $(9);
 $(10);
 let tmpClusterSSA_i$2 /*:number*/ = 11;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i$2 < Infinity;
+  const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_i$2 < $Number_POSITIVE_INFINITY;
   if (tmpIfTest$1) {
     $(tmpClusterSSA_i$2);
     tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
@@ -66,7 +66,7 @@ $(9);
 $(10);
 let tmpClusterSSA_i$2 = 11;
 while (true) {
-  if (tmpClusterSSA_i$2 < Infinity) {
+  if (tmpClusterSSA_i$2 < $Number_POSITIVE_INFINITY) {
     $(tmpClusterSSA_i$2);
     tmpClusterSSA_i$2 = tmpClusterSSA_i$2 + 1;
   } else {
@@ -94,7 +94,7 @@ $( 9 );
 $( 10 );
 let a = 11;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const b = a < Infinity;
+  const b = a < $Number_POSITIVE_INFINITY;
   if (b) {
     $( a );
     a = a + 1;

@@ -4,6 +4,7 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { symbo } from '../symbols_builtins.mjs';
 
 export function builtinCases(fdata) {
   group('\n\n\n[builtinCases] Searching for usages of builtins\n');
@@ -19,6 +20,7 @@ function _builtinCases(fdata) {
   changes += processArray(fdata);
   changes += process_encodeURIComponent(fdata);
   changes += process_decodeURIComponent(fdata);
+  changes += process_primidents(fdata);
 
   if (changes) {
     log('Built-ins transformed:', changes, '. Restarting from phase1 to fix up read/write registry.');
@@ -173,6 +175,41 @@ function processArray(fdata) {
       ++changes;
       return;
     }
+  });
+
+  return changes;
+}
+
+function process_primidents(fdata) {
+  const meta = fdata.globallyUniqueNamingRegistry.get('Infinity');
+  ASSERT(meta);
+  ASSERT(meta.isBuiltin);
+
+  let changes = 0;
+  meta.reads.forEach(read => {
+    if (read.parentNode.type === 'UnaryExpression' && read.parentNode.operator === '-') {
+      rule('A reference to -Infinity should be a symbol');
+      example('$(-Infinity)', `$(${symbo('Number', 'NEGATIVE_INFINITY')})`);
+      before(read.blockBody[read.blockIndex]);
+
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier(symbo('Number', 'NEGATIVE_INFINITY'))
+      else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier(symbo('Number', 'NEGATIVE_INFINITY'))
+
+      after(read.blockBody[read.blockIndex]);
+      changes += 1;
+      return;
+    }
+
+    rule('A reference to Infinity should be a symbol');
+    example('$(Infinity)', `$(${symbo('Number', 'POSITIVE_INFINITY')})`);
+    before(read.blockBody[read.blockIndex]);
+
+    if (read.parentIndex < 0) read.parentNode[read.parentProp] = AST.identifier(symbo('Number', 'POSITIVE_INFINITY'))
+    else read.parentNode[read.parentProp][read.parentIndex] = AST.identifier(symbo('Number', 'POSITIVE_INFINITY'))
+
+    after(read.blockBody[read.blockIndex]);
+    changes += 1;
+    return;
   });
 
   return changes;

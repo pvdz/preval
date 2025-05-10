@@ -42,7 +42,7 @@
 //
 
 import walk from '../../lib/walk.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo, clearStdio, } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, todo, clearStdio, currentState } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { BUILTIN_SYMBOLS, MATH, NUMBER, STRING, symbo } from '../symbols_builtins.mjs';
 import { createFreshVar, getMeta } from '../bindings.mjs';
@@ -169,7 +169,7 @@ export function freeing(fdata, $prng, options) {
 
   const usePrng = !!options.prngSeed;
   group('\n\n\n[freeing] Searching for free statements to collect\n');
-  //currentState(fdata, 'freeing'. true, fdata);
+  // currentState(fdata, 'freeing', true, fdata);
   const r = _freeing(fdata, $prng, usePrng);
   groupEnd();
 
@@ -192,7 +192,11 @@ function _freeing(fdata, $prng, usePrng) {
     if (beforeWalk) return;
 
     if (blockNode.type !== 'BlockStatement' && blockNode.type !== 'Program') return; // Just process blocks
-    return processBlock(blockNode, path);
+    vgroup('processBlock()');
+    const r = processBlock(blockNode, path);
+    vgroupEnd();
+
+    return r;
   }
 
   if (changed) {
@@ -762,7 +766,7 @@ function isFreeExpression(exprNode, fdata) {
 
   switch (exprNode.type) {
     case 'CallExpression': {
-      vlog('  - Is call?', [exprNode.callee.name]);
+      vlog('  - Is call', [exprNode.callee.name]);
       // Yes when the args are predictable and when the callee is
       // - a builtin ident (`parseInt()`), or
       // - a builtin member expression (`Math.random()`), or
@@ -831,6 +835,8 @@ function isFreeExpression(exprNode, fdata) {
       return false;
     }
     case 'Identifier': {
+      vlog('is ident', [exprNode.name]);
+
       // The point here is figuring out whether the value of this ident could possibly spy. Like when coerced to string or number.
       // An identifier is "predictable" when either
       // - it's a built-in value of any kind; they don't spy unless called (TODO: so how do we cover that case?)
@@ -875,19 +881,23 @@ function isFreeExpression(exprNode, fdata) {
       return false;
     }
     case 'Literal': {
+      vlog('is lit', [exprNode.value]);
       // I think even a regex is okay here...?
       return true;
     }
     case 'TemplateLiteral': {
+      vlog('is template');
       // In normalized code, templates should be guaranteed to only receive expressions known
       // or forced to be a string already. The template expression itself can therefor have no
       // other side effects than the concatenation of two (or three) strings.
       return true;
     }
     case 'BinaryExpression': {
+      vlog('is binary', exprNode.operator);
       return isFreeExpression(exprNode.left, fdata) && isFreeExpression(exprNode.right, fdata);
     }
     case 'UnaryExpression': {
+      vlog('is unary', exprNode.operator);
       if (exprNode.operator !== 'delete') {
         return isFreeExpression(exprNode.argument, fdata);
       }

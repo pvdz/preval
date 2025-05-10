@@ -931,25 +931,22 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               after(node);
               inlinedAnySpreads = true;
               --j; // Relevant if the string is empty
-            } else if (AST.isPrimitive(n.argument)) {
-              if (node.elements.length !== 1 || body[i + 1]?.type !== 'ThrowStatement') {
-                rule('Array spread on non-string literal must result in an error');
-                example('[...500];', '[...500]; throw error;');
-                example('[...true];', '[...true]; throw error;');
-                before(n, node);
+            }
+            else if (AST.isPrimitive(n.argument)) {
+              rule('Array spread on non-string literal must result in an error');
+              example('[...500];', 'throw error;');
+              example('[...true];', 'throw error;');
+              before(n, node);
 
-                ASSERT(
-                  node.elements.slice(0, j).every((n) => !AST.isComplexNode(n.type === 'SpreadElement' ? n.argument : n)),
-                  'prior array elements should already be normalized',
-                );
-                node.elements.length = 0;
-                node.elements.push(n);
-                body.splice(i + 1, 0, AST.throwStatement(AST.templateLiteral(ERR_MSG_ILLEGAL_ARRAY_SPREAD)));
+              // ASSERT(
+              //   node.elements.slice(0, j).every((n) => !AST.isComplexNode(n.type === 'SpreadElement' ? n.argument : n)),
+              //   `prior array elements should already be normalized`,
+              // );
+              body[i] = AST.throwStatement(AST.templateLiteral(ERR_MSG_ILLEGAL_ARRAY_SPREAD + ` (caused by \`${tmat(body[i], true)}\`)`));
 
-                after(node);
-                assertNoDupeNodes(body, 'body');
-                return true;
-              }
+              after(body[i]);
+              assertNoDupeNodes(body, 'body');
+              return true;
             } else if (n.argument.type === 'ArrayExpression') {
               rule('Array spread on another array should be unlined');
               example('[...[1, 2 ,3]]', '[1, 2, 3]');

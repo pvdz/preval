@@ -18,8 +18,7 @@ $('bad');
 
 
 `````js filename=intro
-[...1];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...1];\`)`;
 `````
 
 
@@ -27,8 +26,7 @@ throw `[Preval]: Array spread must crash before this line`;
 (This ought to be the final result)
 
 `````js filename=intro
-[...1];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...1];\`)`;
 `````
 
 
@@ -36,8 +34,7 @@ throw `[Preval]: Array spread must crash before this line`;
 With rename=true
 
 `````js filename=intro
-[ ...1 ];
-throw "[Preval]: Array spread must crash before this line";
+throw "Preval: Array spread on non-string primitive must crash (caused by `const tmpArrPatternSplat = [...1];`)";
 `````
 
 
@@ -45,6 +42,8 @@ throw "[Preval]: Array spread must crash before this line";
 
 
 - (todo) Deal with array spreads in arr mutation?
+- (todo) access object property that also exists on prototype? $array_slice
+- (todo) type trackeed tricks can possibly support static $array_slice
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

@@ -43,7 +43,7 @@ $( "ok" );
 ## Todos triggered
 
 
-- (todo) Deal with array spreads in arr mutation?
+None
 
 
 ## Globals

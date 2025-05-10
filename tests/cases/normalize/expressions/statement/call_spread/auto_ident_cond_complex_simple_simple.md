@@ -24,8 +24,8 @@ if (tmpIfTest) {
   $(...2);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
-  const tmpClusterSSA_tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam);
-  $(...tmpClusterSSA_tmpCalleeParamSpread);
+  const tmpCalleeParamSpread /*:unknown*/ = $(tmpCalleeParam);
+  $(...tmpCalleeParamSpread);
 }
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -39,8 +39,8 @@ $(a);
 if ($(1)) {
   $(...2);
 } else {
-  const tmpClusterSSA_tmpCalleeParamSpread = $($(100));
-  $(...tmpClusterSSA_tmpCalleeParamSpread);
+  const tmpCalleeParamSpread = $($(100));
+  $(...tmpCalleeParamSpread);
 }
 $({ a: 999, b: 1000 });
 `````

@@ -31,8 +31,7 @@ const tmpInitAssignLhsComputedObj /*:unknown*/ = $(c);
 const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`y`);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-[...3];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpCalleeParam = [...3];\`)`;
 `````
 
 
@@ -46,8 +45,7 @@ const tmpInitAssignLhsComputedObj = $({ y: 2 });
 const tmpInitAssignLhsComputedProp = $(`y`);
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-[...3];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpCalleeParam = [...3];\`)`;
 `````
 
 
@@ -63,8 +61,7 @@ const e = $( d );
 const f = $( "y" );
 e[f] = 3;
 b[c] = 3;
-[ ...3 ];
-throw "[Preval]: Array spread must crash before this line";
+throw "Preval: Array spread on non-string primitive must crash (caused by `const tmpCalleeParam = [...3];`)";
 `````
 
 

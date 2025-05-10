@@ -20,8 +20,7 @@ $(f({ x: 1, a: 2, b: 3 }, 10));
 
 
 `````js filename=intro
-[...1];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...1];\`)`;
 `````
 
 
@@ -29,8 +28,7 @@ throw `[Preval]: Array spread must crash before this line`;
 (This ought to be the final result)
 
 `````js filename=intro
-[...1];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...1];\`)`;
 `````
 
 
@@ -38,8 +36,7 @@ throw `[Preval]: Array spread must crash before this line`;
 With rename=true
 
 `````js filename=intro
-[ ...1 ];
-throw "[Preval]: Array spread must crash before this line";
+throw "Preval: Array spread on non-string primitive must crash (caused by `[...1];`)";
 `````
 
 

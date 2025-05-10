@@ -794,6 +794,7 @@ function runTestCase(
         .replace(/Spread syntax requires.*/, '<ref> is not function/iterable')
         .replace(/.*max pcode call depth.*/, 'Maximum call stack size exceeded')
         .replace(/.*Attempting to call a value that cannot be called.*/, '<ref> is not function/iterable') // Ultimately, not doing this creates more noise than signal.
+        .replace(/.*Preval: Array spread on non-string primitive must crash.*/, '<ref> is not function/iterable')
 
         // All arrows are transformed to function expressions
         .replace(/\(\) => \{\}/g, 'function() {}')

@@ -24,10 +24,10 @@ function f() {
 
 
 `````js filename=intro
-const tmpReturnArg /*:unknown*/ = $();
-const tmpReturnArg$1 /*:unknown*/ = $();
-const tmpReturnArg$3 /*:unknown*/ = $();
-$(tmpReturnArg, tmpReturnArg$1, tmpReturnArg$3);
+const tmpCalleeParam /*:unknown*/ = $();
+const tmpCalleeParam$1 /*:unknown*/ = $();
+const tmpCalleeParam$3 /*:unknown*/ = $();
+$(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 $(undefined);
 `````
 

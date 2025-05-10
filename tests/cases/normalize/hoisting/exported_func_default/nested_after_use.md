@@ -25,8 +25,8 @@ export default function g() {
 `````js filename=intro
 const g /*:()=>undefined*/ = function () {
   debugger;
-  const tmpReturnArg /*:unknown*/ = $(2);
-  $(tmpReturnArg);
+  const tmpCalleeParam /*:unknown*/ = $(2);
+  $(tmpCalleeParam);
   return undefined;
 };
 g();

@@ -45,8 +45,7 @@ tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = 3;
 tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
-[...3];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...3];\`)`;
 `````
 
 
@@ -73,8 +72,7 @@ tmpInitAssignLhsComputedObj$5[tmpInitAssignLhsComputedProp$5] = 3;
 tmpInitAssignLhsComputedObj$3[tmpInitAssignLhsComputedProp$3] = 3;
 tmpInitAssignLhsComputedObj$1[tmpInitAssignLhsComputedProp$1] = 3;
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = 3;
-[...3];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...3];\`)`;
 `````
 
 
@@ -101,8 +99,7 @@ h[i] = 3;
 f[g] = 3;
 d[e] = 3;
 b[c] = 3;
-[ ...3 ];
-throw "[Preval]: Array spread must crash before this line";
+throw "Preval: Array spread on non-string primitive must crash (caused by `[...3];`)";
 `````
 
 

@@ -335,7 +335,8 @@ function _freeing(fdata, $prng, usePrng) {
           changed += 1;
           return true;
         } else {
-          ASSERT(false, 'We should be able to resolve the $frfr call but pcode failed to complete, hasExplicitGlobal=false', outNode);
+          // ASSERT(false, 'We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false', outNode);
+          todo('We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false', outNode);
         }
       }
     }

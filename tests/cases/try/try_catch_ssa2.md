@@ -76,8 +76,7 @@ try {
 }
 $(x);
 one();
-[...undefined];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...undefined];\`)`;
 `````
 
 
@@ -107,8 +106,7 @@ try {
 }
 $(x);
 one();
-[...undefined];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpArrPatternSplat = [...undefined];\`)`;
 `````
 
 
@@ -142,8 +140,7 @@ catch (d) {
 }
 $( c );
 b();
-[ ...undefined ];
-throw "[Preval]: Array spread must crash before this line";
+throw "Preval: Array spread on non-string primitive must crash (caused by `const tmpArrPatternSplat = [...undefined];`)";
 `````
 
 

@@ -8,7 +8,7 @@ export function setVerboseTracing(bool) {
 export const ASSUME_BUILTINS = true; // Put any rules that assert the internals of JS (prototype) that exist are not changed under this flag.
 
 export const DCE_ERROR_MSG = '[Preval]: Can not reach here';
-export const ERR_MSG_ILLEGAL_ARRAY_SPREAD = '[Preval]: Array spread must crash before this line';
+export const ERR_MSG_ILLEGAL_ARRAY_SPREAD = 'Preval: Array spread on non-string primitive must crash';
 export const ERR_MSG_ILLEGAL_CALLEE = '[Preval]: Call expression with illegal callee must crash before this line ';
 
 export const FRESH = true;

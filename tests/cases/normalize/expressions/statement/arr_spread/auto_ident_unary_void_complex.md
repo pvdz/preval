@@ -20,8 +20,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-[...undefined];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...undefined];\`)`;
 `````
 
 
@@ -30,8 +29,7 @@ throw `[Preval]: Array spread must crash before this line`;
 
 `````js filename=intro
 $(100);
-[...undefined];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...undefined];\`)`;
 `````
 
 
@@ -40,8 +38,7 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-[ ...undefined ];
-throw "[Preval]: Array spread must crash before this line";
+throw "Preval: Array spread on non-string primitive must crash (caused by `[...undefined];`)";
 `````
 
 

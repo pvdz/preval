@@ -21,8 +21,8 @@ $(f(undefined, 200));
 
 `````js filename=intro
 const tmpCalleeParam /*:array*/ = [`pass`];
-const tmpSSA_tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpArrPatternSplat /*:array*/ = [...tmpSSA_tmpBindingPatternArrRoot];
+const tmpBindingPatternArrRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
 const x /*:array*/ = $dotCall($array_slice, tmpArrPatternSplat, `slice`, 0);
 $(x);
 `````
@@ -32,8 +32,8 @@ $(x);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpSSA_tmpBindingPatternArrRoot = $([`pass`]);
-$($dotCall($array_slice, [...tmpSSA_tmpBindingPatternArrRoot], `slice`, 0));
+const tmpBindingPatternArrRoot = $([`pass`]);
+$($dotCall($array_slice, [...tmpBindingPatternArrRoot], `slice`, 0));
 `````
 
 
@@ -54,7 +54,6 @@ $( d );
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) access object property that also exists on prototype? $array_slice
-- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 - (todo) type trackeed tricks can possibly support static $array_slice
 

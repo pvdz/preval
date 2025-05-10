@@ -22,10 +22,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 /*:object*/ = { e: $ };
-const tmpClusterSSA_a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
+const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+$(tmpCalleeParam, a);
+$(a);
 `````
 
 
@@ -33,9 +33,9 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $dotCall($, { e: $ }, `e`, 1);
-$([`before `, ` after`], tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const a = $dotCall($, { e: $ }, `e`, 1);
+$([`before `, ` after`], a);
+$(a);
 `````
 
 
@@ -55,6 +55,7 @@ $( b );
 
 
 - (todo) support array reads statement type ExpressionStatement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

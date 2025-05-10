@@ -20,8 +20,7 @@ $(f([1, 2, 3, 4, 5], 200));
 
 
 `````js filename=intro
-[...1];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...1];\`)`;
 `````
 
 
@@ -29,8 +28,7 @@ throw `[Preval]: Array spread must crash before this line`;
 (This ought to be the final result)
 
 `````js filename=intro
-[...1];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`[...1];\`)`;
 `````
 
 
@@ -38,8 +36,7 @@ throw `[Preval]: Array spread must crash before this line`;
 With rename=true
 
 `````js filename=intro
-[ ...1 ];
-throw "[Preval]: Array spread must crash before this line";
+throw "Preval: Array spread on non-string primitive must crash (caused by `[...1];`)";
 `````
 
 
@@ -48,7 +45,6 @@ throw "[Preval]: Array spread must crash before this line";
 
 - (todo) Deal with array spreads in arr mutation?
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 - (todo) we may be able to confirm that ident refs in the array literal are primitives in same loop/try scope
 
 

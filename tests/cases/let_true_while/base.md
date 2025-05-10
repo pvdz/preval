@@ -27,20 +27,20 @@ const y /*:unknown*/ = $(5);
 $(true);
 const tmpPostUpdArgIdent /*:number*/ = $coerce(y, `number`);
 let tmpClusterSSA_y /*:number*/ = tmpPostUpdArgIdent - 1;
-let tmpClusterSSA_x /*:unknown*/ = tmpClusterSSA_y;
+let x /*:unknown*/ = tmpClusterSSA_y;
 if (tmpClusterSSA_y) {
   while ($LOOP_UNROLL_10) {
-    $(tmpClusterSSA_x);
+    $(x);
     tmpClusterSSA_y = tmpClusterSSA_y - 1;
-    tmpClusterSSA_x = tmpClusterSSA_y;
-    if (tmpClusterSSA_x) {
+    x = tmpClusterSSA_y;
+    if (x) {
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_x, tmpClusterSSA_y);
+  $(x, tmpClusterSSA_y);
 } else {
-  $(tmpClusterSSA_x, tmpClusterSSA_y);
+  $(x, tmpClusterSSA_y);
 }
 `````
 
@@ -52,19 +52,19 @@ if (tmpClusterSSA_y) {
 const y = $(5);
 $(true);
 let tmpClusterSSA_y = $coerce(y, `number`) - 1;
-let tmpClusterSSA_x = tmpClusterSSA_y;
+let x = tmpClusterSSA_y;
 if (tmpClusterSSA_y) {
   while (true) {
-    $(tmpClusterSSA_x);
+    $(x);
     tmpClusterSSA_y = tmpClusterSSA_y - 1;
-    tmpClusterSSA_x = tmpClusterSSA_y;
-    if (!tmpClusterSSA_x) {
+    x = tmpClusterSSA_y;
+    if (!x) {
       break;
     }
   }
-  $(tmpClusterSSA_x, tmpClusterSSA_y);
+  $(x, tmpClusterSSA_y);
 } else {
-  $(tmpClusterSSA_x, tmpClusterSSA_y);
+  $(x, tmpClusterSSA_y);
 }
 `````
 

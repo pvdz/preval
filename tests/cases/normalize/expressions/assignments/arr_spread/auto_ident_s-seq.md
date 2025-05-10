@@ -23,8 +23,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-[...1];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpCalleeParam = [...1];\`)`;
 `````
 
 
@@ -34,8 +33,7 @@ throw `[Preval]: Array spread must crash before this line`;
 `````js filename=intro
 $(1);
 $(2);
-[...1];
-throw `[Preval]: Array spread must crash before this line`;
+throw `Preval: Array spread on non-string primitive must crash (caused by \`const tmpCalleeParam = [...1];\`)`;
 `````
 
 
@@ -45,8 +43,7 @@ With rename=true
 `````js filename=intro
 $( 1 );
 $( 2 );
-[ ...1 ];
-throw "[Preval]: Array spread must crash before this line";
+throw "Preval: Array spread on non-string primitive must crash (caused by `const tmpCalleeParam = [...1];`)";
 `````
 
 

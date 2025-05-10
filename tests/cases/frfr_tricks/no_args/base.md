@@ -50,6 +50,7 @@ $( a );
 ## Todos triggered
 
 
+- (todo) We should be able to resolve the $frfr call but pcode failed to complete with a Node, hasExplicitGlobal=false
 - (todo) free with zero args, we can eliminate this?
 - (todo) type trackeed tricks can possibly support static $string_repeat
 

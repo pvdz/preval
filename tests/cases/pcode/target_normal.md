@@ -93,6 +93,8 @@ const pcode /*:(number)=>string*/ = function ($$0) {
     return altstr;
   }
 };
+pcode(1);
+pcode(2);
 const s /*:string*/ = pcode(476);
 $(s);
 const s$1 /*:string*/ = pcode(475);
@@ -160,6 +162,8 @@ const pcode = function (num_arg$1) {
     return altstr;
   }
 };
+pcode(1);
+pcode(2);
 $(pcode(476));
 $(pcode(475));
 $(pcode(474));
@@ -235,6 +239,8 @@ const q = function($$0 ) {
     return z;
   }
 };
+q( 1 );
+q( 2 );
 const ba = q( 476 );
 $( ba );
 const bb = q( 475 );
@@ -276,7 +282,6 @@ $( "end" );
 ## Todos triggered
 
 
-- (todo) do we want to support TemplateLiteral as expression statement in free loops?
 - (todo) type trackeed tricks can possibly support static $Number_parseInt
 
 

@@ -22,8 +22,8 @@ $(f());
 `````js filename=intro
 const tmpObjLitVal /*:array*/ = [`fail2`];
 const tmpCalleeParam /*:object*/ = { x: tmpObjLitVal };
-const tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
-const tmpOPBD /*:unknown*/ = tmpBindingPatternObjRoot.x;
+const tmpSSA_tmpBindingPatternObjRoot /*:unknown*/ = $(tmpCalleeParam);
+const tmpOPBD /*:unknown*/ = tmpSSA_tmpBindingPatternObjRoot.x;
 let tmpOPAD /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpOPBD === undefined;
 if (tmpIfTest$1) {
@@ -79,6 +79,7 @@ $( "ok" );
 ## Todos triggered
 
 
+- (todo) Deal with array spreads in arr mutation?
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type VarStatement
 

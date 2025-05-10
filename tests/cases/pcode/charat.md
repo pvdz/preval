@@ -57,56 +57,7 @@ $(rngstr());
 
 
 `````fileintro
-rngstr =
-    [ r0 = $Math_random - ]
-    [ r1 call $Math_random {- undefined} ]
-    [ r2 * r1 - - 62 ]
-    [ r3 = $Math_floor - ]
-    [ r4 call $Math_floor {- undefined} r2 - ]
-    [ r5 = $string_charAt - ]
-    [ r6 dotcall $string_charAt {- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"} r4 - ]
-    [ r7 call $coerce {- undefined} r6 - - "plustr" ]
-    [ r8 = $Math_random - ]
-    [ r9 call $Math_random {- undefined} ]
-    [ r10 * r9 - - 62 ]
-    [ r11 = $Math_floor - ]
-    [ r12 call $Math_floor {- undefined} r10 - ]
-    [ r13 = $string_charAt - ]
-    [ r14 dotcall $string_charAt {- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"} r12 - ]
-    [ r15 + r7 - r14 - ]
-    [ r16 = $Math_random - ]
-    [ r17 call $Math_random {- undefined} ]
-    [ r18 * r17 - - 62 ]
-    [ r19 = $Math_floor - ]
-    [ r20 call $Math_floor {- undefined} r18 - ]
-    [ r21 = $string_charAt - ]
-    [ r22 dotcall $string_charAt {- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"} r20 - ]
-    [ r23 + r15 - r22 - ]
-    [ r24 = $Math_random - ]
-    [ r25 call $Math_random {- undefined} ]
-    [ r26 * r25 - - 62 ]
-    [ r27 = $Math_floor - ]
-    [ r28 call $Math_floor {- undefined} r26 - ]
-    [ r29 = $string_charAt - ]
-    [ r30 dotcall $string_charAt {- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"} r28 - ]
-    [ r31 + r23 - r30 - ]
-    [ r32 = $Math_random - ]
-    [ r33 call $Math_random {- undefined} ]
-    [ r34 * r33 - - 62 ]
-    [ r35 = $Math_floor - ]
-    [ r36 call $Math_floor {- undefined} r34 - ]
-    [ r37 = $string_charAt - ]
-    [ r38 dotcall $string_charAt {- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"} r36 - ]
-    [ r39 + r31 - r38 - ]
-    [ r40 = $Math_random - ]
-    [ r41 call $Math_random {- undefined} ]
-    [ r42 * r41 - - 62 ]
-    [ r43 = $Math_floor - ]
-    [ r44 call $Math_floor {- undefined} r42 - ]
-    [ r45 = $string_charAt - ]
-    [ r46 dotcall $string_charAt {- "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"} r44 - ]
-    [ r47 + r39 - r46 - ]
-    [ return r47 - ]
+
 `````
 
 
@@ -119,21 +70,3 @@ None
 
 
 ## Pcode result
-
-
-Running function "rngstr":
-
-                                    pcode          =>   eval
- - `rngstr()`                  => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(undefined)`         => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(null)`              => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(true)`              => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(false)`             => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr("")`                => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr("preval")`          => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(0)`                 => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(1)`                 => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(0, 0)`              => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(0, 1)`              => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(1, 0)`              => `"HhOxMW"`       => `"HhOxMW"`        Ok
- - `rngstr(1, 1)`              => `"HhOxMW"`       => `"HhOxMW"`        Ok

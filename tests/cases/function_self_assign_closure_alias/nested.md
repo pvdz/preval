@@ -34,8 +34,8 @@ const g /*:()=>array*/ = function () {
   $(false);
   $(true);
   $(false);
-  const tmpssa3_a$1 /*:array*/ = [1, 2, 3];
-  return tmpssa3_a$1;
+  const tmpClusterSSA_a$9 /*:array*/ = [1, 2, 3];
+  return tmpClusterSSA_a$9;
 };
 const tmpBinBothLhs$5 /*:array*/ = g();
 const tmpBinBothRhs$5 /*:array*/ = g();
@@ -54,8 +54,8 @@ const g = function () {
   $(false);
   $(true);
   $(false);
-  const tmpssa3_a$1 = [1, 2, 3];
-  return tmpssa3_a$1;
+  const tmpClusterSSA_a$9 = [1, 2, 3];
+  return tmpClusterSSA_a$9;
 };
 const tmpBinBothLhs$5 = g();
 $(tmpBinBothLhs$5 === g());
@@ -89,6 +89,7 @@ $( f );
 
 - (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type ReturnStatement
+- (todo) support array reads statement type VarStatement
 
 
 ## Globals

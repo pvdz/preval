@@ -25,9 +25,9 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`c`);
-const a /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+const tmpNestedComplexRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 $(undefined);
-$(a, b);
+$(tmpNestedComplexRhs, b);
 `````
 
 
@@ -38,9 +38,9 @@ $(a, b);
 const b = { c: 1 };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`c`);
-const a = tmpCompObj[tmpCalleeParam];
+const tmpNestedComplexRhs = tmpCompObj[tmpCalleeParam];
 $(undefined);
-$(a, b);
+$(tmpNestedComplexRhs, b);
 `````
 
 

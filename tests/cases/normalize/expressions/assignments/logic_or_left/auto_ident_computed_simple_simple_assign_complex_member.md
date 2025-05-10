@@ -30,8 +30,8 @@ if (tmpNestedAssignPropRhs) {
   $(tmpNestedAssignPropRhs);
   $(tmpNestedAssignPropRhs, b);
 } else {
-  const tmpCalleeParam /*:unknown*/ = $(100);
-  $(tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
   $(tmpNestedAssignPropRhs, b);
 }
 `````

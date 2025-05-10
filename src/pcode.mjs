@@ -393,9 +393,11 @@ function pcanCompileExpr(locals, calls, expr, fdata, stmt, constDeclNameMaybe) {
       //vlog('Checking whether', locals, 'has', [expr.name])
       const has = locals.has(expr.name);
       if (!has) {
-        if (pcodeSupportedBuiltinFuncs.has(expr.name)) {
-          return true;
-        }
+        // This would only be okay as being called or dotcalled. Pcode doesnt know how to deal with moving around function values (yet).
+        // However, we should try to make this work because `const func = num.toString; $dotcall(func, ...` should resolve fine.
+        // if (pcodeSupportedBuiltinFuncs.has(expr.name)) {
+        //   return true;
+        // }
         if (expr.name === 'Math') {
           vlog('- accepting Math, temp, until we move these globals to a symbol as well.');
           return true;

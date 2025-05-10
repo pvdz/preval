@@ -18,7 +18,8 @@ $(x);
 
 
 `````js filename=intro
-$(`foo`);
+const x /*:string*/ = $dotCall($string_toString, `foo`, `toString`);
+$(x);
 `````
 
 
@@ -26,7 +27,7 @@ $(`foo`);
 (This ought to be the final result)
 
 `````js filename=intro
-$(`foo`);
+$($dotCall($string_toString, `foo`, `toString`));
 `````
 
 
@@ -34,7 +35,8 @@ $(`foo`);
 With rename=true
 
 `````js filename=intro
-$( "foo" );
+const a = $dotCall( $string_toString, "foo", "toString" );
+$( a );
 `````
 
 

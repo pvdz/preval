@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(60);
-const tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_tmpCalleeParam);
+const tmpClusterSSA_tmpForOfGenNext /*:unknown*/ = $forOf(tmpClusterSSA_tmpCalleeParam);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
+  const tmpForOfNext /*:unknown*/ = tmpClusterSSA_tmpForOfGenNext();
   const tmpIfTest$1 /*:unknown*/ = tmpForOfNext.done;
   if (tmpIfTest$1) {
     break;
@@ -39,9 +39,9 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpForOfGenNext = $forOf($(60));
+const tmpClusterSSA_tmpForOfGenNext = $forOf($(60));
 while (true) {
-  const tmpForOfNext = tmpForOfGenNext();
+  const tmpForOfNext = tmpClusterSSA_tmpForOfGenNext();
   if (tmpForOfNext.done) {
     break;
   } else {

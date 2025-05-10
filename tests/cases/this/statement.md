@@ -30,8 +30,8 @@ $(0);
 $(0);
 $(0);
 $(0);
-const tmpCalleeParam /*:unknown*/ = $(0);
-$(tmpCalleeParam);
+const x$1 /*:unknown*/ = $(0);
+$(x$1);
 `````
 
 

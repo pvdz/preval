@@ -34,7 +34,7 @@ import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function frfrTricks(fdata) {
-  group('\n\n\n[freeing] Searching $frfr calls to optimize\n');
+  group('\n\n\n[frfrTricks] Searching $frfr calls to optimize\n');
   const r = _frfr_tricks(fdata);
   groupEnd();
   return r;

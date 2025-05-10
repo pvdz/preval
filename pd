@@ -1,0 +1,189 @@
+#!/bin/bash
+
+# If I'm going to add a check for "at least three", make sure to explicitly check for the settled+denorm hunks. Not TODO and others.
+
+# Environment Variables:
+#   DEBUG=1               - Show debug messages about file and hunk detection
+#   ONLY_TODOS=1          - Show only files that would be hidden (only contain "## Todos triggered")
+#   SHOW_GIT_DIFF_CMD=1   - Instead of showing file contents, show the git diff command for each file
+#   SHOW_GIT_ADD_CMD=1    - Instead of showing file contents, show the git add command for each file
+#   SHOW_RELEVANT=1       - Show only hunks named Settled, Runtime Outcome, or Global. The rest is not relevant when looking for changes.
+#   ONLY_IRRLEVANT=1      - Show only files that do NOT contain all three "Settled", "Denormalized", and "Settled PST" hunks, and no "Globals" and no "Runtime". These files did not really change, maybe just a rename or something.
+
+# Formatted way to easily scan through thousands of lines of test changes
+# Hunks are formatted and their header captures the ``## Xyz` markdown section headers
+# We format the tests in such a way that there's always two empty lines between sections
+# which will cause `git diff` to properly detect and split hunks up with their own header.
+
+# Sadly it's not possible to do the .gitattributes stuff through the CLI so we need to
+# generate that file first. We store it in the .git so it shouldn't bother you in any way.
+
+mkdir -p .git/info
+echo "*.md diff=specialmd" > .git/info/attributes
+
+TARGET="${1:-tests/cases}"
+
+# Function to display file contents based on current settings
+display_file() {
+    local file="${1}"
+    local header="${2}"
+    local content="${3}"
+    local settled_content="${4}"
+    local has_non_todo="${5}"
+    local has_relevant_hunk="${6}"
+    local has_settled="${7}"
+    local has_denorm="${8}"
+    local has_pst="${9}"
+    local has_runtime="${10}"
+    local has_globals="${11}"
+
+    if [[ -n "$ONLY_TODOS" && $has_non_todo -eq 1 ]]; then
+        return
+    fi
+
+    if [[ -n "$SHOW_GIT_DIFF_CMD" ]]; then
+        # space is intentional such that it does not stick in cli history
+        echo " git diff \"$file\""
+        return
+    elif [[ -n "$SHOW_GIT_ADD_CMD" ]]; then
+        # space is intentional such that it does not stick in cli history
+        echo " git add \"$file\""
+        return
+    elif [[ -n "$SHOW_RELEVANT" && $has_settled -eq 1 ]]; then
+        echo "$header"
+        echo "$settled_content"
+        return
+    fi
+
+    echo "$content"
+}
+
+# Function to process the diff output
+process_diff() {
+    local current_file=""
+    local has_non_todo=0
+    local buffer=""
+    local IFS=''
+    local in_relevant_hunk=0
+    local settled_buffer=""
+    local has_relevant_hunk=0
+    local file_header=""
+    local current_hunk=""
+    local has_settled=0
+    local has_denorm=0
+    local has_pst=0
+    local has_runtime=0
+    local has_globals=0
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        # Check for new file header
+        if [[ "$line" == *"diff --git"* ]]; then
+            [[ -n "$DEBUG" ]] && echo "DEBUG: Found file header: $line" >&2
+            # Process previous file if exists
+            if [[ -n "$current_file" ]]; then
+                if [[ -n "$ONLY_IRRLEVANT" ]]; then
+                    if [[ ! ($has_settled -eq 1 && $has_denorm -eq 1 && $has_pst -eq 1) && $has_runtime -eq 0 && $has_globals -eq 0 ]]; then
+                        display_file "$current_file" "$file_header" "$buffer" "$settled_buffer" "$has_non_todo" "$has_relevant_hunk" "$has_settled" "$has_denorm" "$has_pst" "$has_runtime" "$has_globals"
+                    fi
+                else
+                    display_file "$current_file" "$file_header" "$buffer" "$settled_buffer" "$has_non_todo" "$has_relevant_hunk" "$has_settled" "$has_denorm" "$has_pst" "$has_runtime" "$has_globals"
+                fi
+            fi
+
+            # Reset for new file
+            current_file=$(echo "$line" | cut -d' ' -f3 | sed 's/^a\///')
+            [[ -n "$DEBUG" ]] && echo "DEBUG: New file: $current_file" >&2
+            has_non_todo=0
+            buffer="$line"$'\n'
+            settled_buffer=""
+            in_relevant_hunk=0
+            has_relevant_hunk=0
+            current_hunk=""
+            file_header="$line"$'\n'
+            has_settled=0
+            has_denorm=0
+            has_pst=0
+            has_runtime=0
+            has_globals=0
+            continue
+        fi
+
+        # Add line to buffer
+        buffer+="$line"$'\n'
+
+        # Check for hunk header
+        if [[ "$line" == *"## "* ]]; then
+            [[ -n "$DEBUG" ]] && echo "DEBUG: Found hunk header: $line" >&2
+            if [[ $in_relevant_hunk -eq 1 ]]; then
+                settled_buffer+="$current_hunk"$'\n'
+            fi
+            current_hunk=""
+
+            if [[ "$line" == *"## Settled"* ]]; then
+                in_relevant_hunk=1
+                has_relevant_hunk=1
+                has_settled=1
+                has_non_todo=1
+                current_hunk="$line"$'\n'
+            elif [[ "$line" == *"## Denormalized"* ]]; then
+                in_relevant_hunk=0
+                has_denorm=1
+                has_non_todo=1
+            elif [[ "$line" == *"## PST Settled"* ]]; then
+                in_relevant_hunk=0
+                has_pst=1
+                has_non_todo=1
+            elif [[ "$line" == *"## Runtime Outcome"* ]]; then
+                in_relevant_hunk=1
+                has_relevant_hunk=1
+                has_runtime=1
+                has_non_todo=1
+            elif [[ "$line" == *"## Globals"* ]]; then
+                in_relevant_hunk=1
+                has_relevant_hunk=1
+                has_globals=1
+                has_non_todo=1
+            elif [[ "$line" == *"## Todos triggered"* ]]; then
+                in_relevant_hunk=0
+            elif [[ "$line" == *"## Input"* ]]; then
+                in_relevant_hunk=0
+            elif [[ "$line" == *"## Options"* ]]; then
+                in_relevant_hunk=0
+            else
+                in_relevant_hunk=0
+                #has_non_todo=1
+            fi
+        else
+            if [[ $in_relevant_hunk -eq 1 ]]; then
+                current_hunk+="$line"$'\n'
+            fi
+        fi
+    done
+
+    # Process last file
+    if [[ -n "$current_file" ]]; then
+        if [[ $in_relevant_hunk -eq 1 ]]; then
+            settled_buffer+="$current_hunk"$'\n'
+        fi
+        display_file "$current_file" "$file_header" "$buffer" "$settled_buffer" "$has_non_todo" "$has_relevant_hunk" "$has_settled" "$has_denorm" "$has_pst" "$has_runtime" "$has_globals"
+    fi
+}
+
+clear
+git \
+  -c 'diff.specialmd.xfuncname=^(## .*)$' \
+  -c color.diff.func="bold black 40" \
+  -c color.diff.meta="ul white" \
+  -c color.diff=always \
+  -c color.ui=always \
+  --no-pager \
+  diff \
+    --no-prefix \
+    --minimal \
+    --patience \
+    -a \
+    --unified=2 \
+    -w \
+    "${TARGET}" \
+    | cat \
+    | { [[ -n "$DEBUG" || -n "$SHOW_HIDDEN" || -n "$SHOW_GIT_DIFF_CMD" || -n "$SHOW_GIT_ADD_CMD" || -n "$SHOW_RELEVANT" || -n "$ONLY_IRRLEVANT" || -n "$ONLY_TODOS" ]] && process_diff || cat; }

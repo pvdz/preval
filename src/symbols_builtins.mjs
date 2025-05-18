@@ -125,9 +125,23 @@ export const STRING = new Map([
   // This is an instance bound value, not a global. We should approach .length differently for typign
   //[symbo('string', 'length'),        {prop: 'length',        isProto: true,  typings: { sname: symbo('string', 'length'),        mustBeType: 'number', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true }}],
 
-  // There are some web platform things that generate tags, like .anchor() and .fontcolor(). They're used in obfuscation sort of scenario's.
-  // We could add this at a relatively innocent risk. TODO
+  // Legacy HTML-related String.prototype methods
+  [symbo('string', 'anchor'),        {prop: 'anchor',        isProto: true, typings: { sname: symbo('string', 'anchor'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'big'),           {prop: 'big',           isProto: true, typings: { sname: symbo('string', 'big'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'blink'),         {prop: 'blink',         isProto: true, typings: { sname: symbo('string', 'blink'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'bold'),          {prop: 'bold',          isProto: true, typings: { sname: symbo('string', 'bold'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'fixed'),         {prop: 'fixed',         isProto: true, typings: { sname: symbo('string', 'fixed'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'fontcolor'),     {prop: 'fontcolor',     isProto: true, typings: { sname: symbo('string', 'fontcolor'),     mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'fontsize'),      {prop: 'fontsize',      isProto: true, typings: { sname: symbo('string', 'fontsize'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'italics'),       {prop: 'italics',       isProto: true, typings: { sname: symbo('string', 'italics'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'link'),          {prop: 'link',          isProto: true, typings: { sname: symbo('string', 'link'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'small'),         {prop: 'small',         isProto: true, typings: { sname: symbo('string', 'small'),         mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'strike'),        {prop: 'strike',        isProto: true, typings: { sname: symbo('string', 'strike'),        mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'sub'),           {prop: 'sub',           isProto: true, typings: { sname: symbo('string', 'sub'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
+  [symbo('string', 'sup'),           {prop: 'sup',           isProto: true, typings: { sname: symbo('string', 'sup'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'string' }}],
 
+  // There are more web platform things that generate tags. They're used in obfuscation sort of scenario's.
+  // We could add this at a relatively innocent risk. TODO
 ]);
 
 

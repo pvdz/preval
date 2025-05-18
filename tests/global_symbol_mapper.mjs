@@ -175,6 +175,21 @@ export function createBuiltinSymbolGlobals() {
     [symbo('string', 'trimStart')]: String.prototype.trimStart,
     [symbo('string', 'valueOf')]: String.prototype.valueOf,
 
+    // HTML string methods
+    [symbo('string', 'anchor')]: String.prototype.anchor,
+    [symbo('string', 'big')]: String.prototype.big,
+    [symbo('string', 'blink')]: String.prototype.blink,
+    [symbo('string', 'bold')]: String.prototype.bold,
+    [symbo('string', 'fixed')]: String.prototype.fixed,
+    [symbo('string', 'fontcolor')]: String.prototype.fontcolor,
+    [symbo('string', 'fontsize')]: String.prototype.fontsize,
+    [symbo('string', 'italics')]: String.prototype.italics,
+    [symbo('string', 'link')]: String.prototype.link,
+    [symbo('string', 'small')]: String.prototype.small,
+    [symbo('string', 'strike')]: String.prototype.strike,
+    [symbo('string', 'sub')]: String.prototype.sub,
+    [symbo('string', 'sup')]: String.prototype.sup,
+
     [symbo('Date', 'now')]: Date.now,
     [symbo('Date', 'parse')]: Date.parse,
     [symbo('Date', 'UTC')]: Date.UTC,

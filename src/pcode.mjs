@@ -158,6 +158,21 @@ export const pcodeSupportedBuiltinFuncs = new Set([
   //symbo('Math', 'tanh'),
   symbo('Math', 'trunc'),
 
+  // Legacy HTML-related String.prototype methods
+  symbo('string', 'anchor'),
+  symbo('string', 'big'),
+  symbo('string', 'blink'),
+  symbo('string', 'bold'),
+  symbo('string', 'fixed'),
+  symbo('string', 'fontcolor'),
+  symbo('string', 'fontsize'),
+  symbo('string', 'italics'),
+  symbo('string', 'link'),
+  symbo('string', 'small'),
+  symbo('string', 'strike'),
+  symbo('string', 'sub'),
+  symbo('string', 'sup'),
+
   SYMBOL_COERCE, // Preval special func
   //SYMBOL_DOTCALL, // handled explicitly below
 ]);
@@ -1192,6 +1207,73 @@ function prunExpr(registers, op, pcodeData, fdata, prng, usePrng, depth) {
         case symbo('string', 'valueOf'): {
           const r = String.prototype.valueOf.call(context, ...arr);
           vlog('String.prototype.valueOf.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+
+        // Legacy HTML-related String.prototype methods
+        case symbo('string', 'anchor'): {
+          const r = String.prototype.anchor.call(context, ...arr);
+          vlog('String.prototype.anchor.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'big'): {
+          const r = String.prototype.big.call(context, ...arr);
+          vlog('String.prototype.big.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'blink'): {
+          const r = String.prototype.blink.call(context, ...arr);
+          vlog('String.prototype.blink.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'bold'): {
+          const r = String.prototype.bold.call(context, ...arr);
+          vlog('String.prototype.bold.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'fixed'): {
+          const r = String.prototype.fixed.call(context, ...arr);
+          vlog('String.prototype.fixed.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'fontcolor'): {
+          const r = String.prototype.fontcolor.call(context, ...arr);
+          vlog('String.prototype.fontcolor.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'fontsize'): {
+          const r = String.prototype.fontsize.call(context, ...arr);
+          vlog('String.prototype.fontsize.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'italics'): {
+          const r = String.prototype.italics.call(context, ...arr);
+          vlog('String.prototype.italics.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'link'): {
+          const r = String.prototype.link.call(context, ...arr);
+          vlog('String.prototype.link.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'small'): {
+          const r = String.prototype.small.call(context, ...arr);
+          vlog('String.prototype.small.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'strike'): {
+          const r = String.prototype.strike.call(context, ...arr);
+          vlog('String.prototype.strike.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'sub'): {
+          const r = String.prototype.sub.call(context, ...arr);
+          vlog('String.prototype.sub.call(', context, ',', arr[0], ') =', [r]);
+          return r;
+        }
+        case symbo('string', 'sup'): {
+          const r = String.prototype.sup.call(context, ...arr);
+          vlog('String.prototype.sup.call(', context, ',', arr[0], ') =', [r]);
           return r;
         }
 

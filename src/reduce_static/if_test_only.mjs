@@ -1,6 +1,10 @@
-// Find bindings that are only used in booly tests (if/while/!/Boolean) and make sure that values where we know the state get an explicit bool.
-// `let x = "foo"; if (x) { x = null; }`
-// -> `let x = true; if (x) { x = false; }`
+// Find bindings that are only used in booly tests (if/while/!/Boolean) and make sure that
+// values where we know the state get an explicit bool.
+//
+//    `let x = "foo"; if (x) { x = null; }`
+// ->
+//    `let x = true; if (x) { x = false; }`
+//
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';

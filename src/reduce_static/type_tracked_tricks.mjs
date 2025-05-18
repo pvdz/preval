@@ -19,6 +19,7 @@ import {
   findBodyOffset,
   assertNoDupeNodes,
   todo,
+  riskyRule
 } from '../utils.mjs';
 import {
   ARGUMENTS_ALIAS_BASE_NAME,
@@ -3172,6 +3173,47 @@ function _typeTrackedTricks(fdata) {
             }
             break;
           }
+          // Legacy HTML-related String.prototype methods
+          case symbo('string', 'anchor'):
+          case symbo('string', 'big'):
+          case symbo('string', 'blink'):
+          case symbo('string', 'bold'):
+          case symbo('string', 'fixed'):
+          case symbo('string', 'fontcolor'):
+          case symbo('string', 'fontsize'):
+          case symbo('string', 'italics'):
+          case symbo('string', 'link'):
+          case symbo('string', 'small'):
+          case symbo('string', 'strike'):
+          case symbo('string', 'sub'):
+          case symbo('string', 'sup'): {
+            if (isDotcall) {
+              if (
+                AST.isStringLiteral(context, true) &&
+                args.every(arg => !arg || AST.isPrimitive(arg))
+              ) {
+                // e.g. ''.fontcolor('red')
+                riskyRule('Calling a legacy HTML String.prototype method on a string with primitive args should resolve the call');
+                example(`${SYMBOL_DOTCALL}(${calleeName}, "foo", "prop", ...args)`, '"<tag>foo</tag>"');
+                before(blockBody[blockIndex]);
+
+                const ctxString = AST.getPrimitiveValue(context);
+                const argValues = args.map(arg => arg ? AST.getPrimitiveValue(arg) : undefined);
+                // Use the method name to call the correct prototype method
+                const method = calleeName.split('_')[1];
+                const result = String.prototype[method].call(ctxString, ...argValues);
+
+                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                after(blockBody[blockIndex]);
+                ++changes;
+                return;
+              }
+            }
+            break;
+          }
+
           default: {
             if (BUILTIN_SYMBOLS.has(calleeName)) {
               todo(`type trackeed tricks can possibly support static ${calleeName}`);

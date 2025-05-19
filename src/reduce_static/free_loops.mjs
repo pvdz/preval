@@ -164,7 +164,7 @@ export function _freeLoops(fdata, prng, usePrng) {
     for (let i=fromIndex; i<=whileIndex; ++i) after(blockBody[i]);
     changed = changed + 1; // hopefully, or this is an endless loop...
 
-    ASSERT(!failed, 'FIXMEHHHH the free loop crashed probably was not free');
+    ASSERT(!failed, 'FIXMEHHHH the free loop crashed probably was not free', failed, register.get(''));
   }
 
   if (changed) {
@@ -587,6 +587,10 @@ function _isFree(node, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideW
     case 'IfStatement': {
       let t
       vgroup('test');
+      if (AST.isPrimitive(node.test)) {
+        vlog('Should normalize trivial if-test first');
+        return FAILURE_SYMBOL;
+      }
       t = isFree(node.test, fdata, callNodeToCalleeSymbol, declaredNameTypes, insideWhile, undefined);
       vgroupEnd();
       if (!t || t === FAILURE_SYMBOL) return t;
@@ -790,6 +794,7 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
     case 'BreakStatement': {
       if (node.label) {
         todo('missing label implementation for break');
+        register.set('', 'break statement missing label');
         return FAILURE_SYMBOL;
       }
       vlog('- eval: Breaky breaky');
@@ -837,6 +842,7 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
         );
       } else if (init.type === 'ObjectExpression') {
         todo('support var decls with objects?');
+        register.set('', 'support var decls with objects');
         return FAILURE_SYMBOL;
       } else if (init.type === 'FunctionExpression') {
         vlog('-- Ignoring var statement init that is function expression? id=', node.id.name);
@@ -869,6 +875,7 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
         if (--limit <= 0) {
           // Prevent runaway loops and ignore.
           vlog('- At least one loop tripped the million iteration breaker');
+          register.set('', 'At least one loop tripped the million iteration breaker');
           return FAILURE_SYMBOL;
         }
 
@@ -881,6 +888,7 @@ function _runStatement(fdata, node, register, callNodeToCalleeSymbol, prng, useP
     }
     default: {
       todo('missing support for statement when running a free loop?', node.type, node);
+      register.set('', `missing support for statement ${node.type}`);
       return FAILURE_SYMBOL;
     }
   }
@@ -918,6 +926,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
       } else if (node.left.type === 'MemberExpression') {
         if (node.left.object.type !== 'Identifier') {
           todo('Trying to assign to a non-ident property? yikes', node);
+          register.set('', 'Trying to assign to a non-ident property? yikes');
           return FAILURE_SYMBOL;
         }
         const obj = register.get(node.left.object.name);
@@ -925,17 +934,20 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         if (obj?.type !== 'ArrayExpression') {
           // objlit is not yet supported. go add it.
           todo('Assigning to prop but it wasnt an array', obj);
+          register.set('', 'Assigning to prop but it wasnt an array');
           return FAILURE_SYMBOL;
         }
         if (node.left.computed) {
           const prop = runExpression(fdata, node.left.property, register, callNodeToCalleeSymbol, prng, usePrng);
           if (typeof prop !== 'number') {
             todo('Assigning non-number to computed property, should investigate this first', [prop]);
+            register.set('', 'Assigning non-number to computed property');
             return FAILURE_SYMBOL;
           }
           // 10k is a pretty arbitrary number but we have a test case that needs a few thousand and it's no big deal.
           if (prop > obj.elements.length + 10_0000) {
             todo('assigning to array index that is more than 10k bigger than the array len...', [prop]);
+            register.set('', 'assigning to array index that is more than 10k');
             return FAILURE_SYMBOL;
           }
           // Fill the elided elements (this is for the AST!)
@@ -947,6 +959,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
           // For arrays, can only support .length here.
           if (node.left.property.name !== 'length') {
             todo('Trying to write to unexpected array property', node.left);
+            register.set('', 'Trying to write to unexpected array property');
             return FAILURE_SYMBOL;
           }
           obj.elements[node.left.property.name] = AST.primitive(value);
@@ -987,6 +1000,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         case '+': return lhs + rhs;
         default: {
           todo('all ops here should have been checked by isFree so one was forgotten to get implemented', node.operator);
+          register.set('', `all ops here should have been checked by isFree ${node.operator}`);
           return FAILURE_SYMBOL;
         }
       }
@@ -1034,7 +1048,6 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         if (!outNode || !AST.isPrimitive(outNode)) {
           todo('The return value of runFreeWithPcode was not a primitive?');
           break;
-          return FAILURE_SYMBOL;
         }
         return AST.getPrimitiveValue(outNode);
       }
@@ -1078,10 +1091,12 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
                   init.elements.push(AST.primitive(argValue));
                 } else {
                   todo('Support pushing a non-primitive into an array');
+                  register.set('', `Support pushing a non-primitive into an array`);
                   return FAILURE_SYMBOL;
                 }
               } else {
                 todo('Unexpected arg type in call:', arg);
+                register.set('', `Unexpected arg type in call ${arg.type}`);
                 return FAILURE_SYMBOL;
               }
             });
@@ -1150,11 +1165,13 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
             const value = runExpression(fdata, targetContextNode, register, callNodeToCalleeSymbol, prng, usePrng);
             if (typeof value !== 'string') {
               todo('The value was not a string but isFree should have guaranteed it was', targetContextNode);
+              register.set('', `The value was not a string`);
               return FAILURE_SYMBOL;
             }
             const arg = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
             if (typeof arg !== 'number') {
               todo('The arg was not a number but isFree should have guaranteed it was', args[0]);
+              register.set('', `The value was not a number`);
               return FAILURE_SYMBOL;
             }
             const ch = value.charAt(arg);
@@ -1164,11 +1181,13 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
             const value = runExpression(fdata, targetContextNode, register, callNodeToCalleeSymbol, prng, usePrng);
             if (typeof value !== 'string') {
               todo('The value was not a string but isFree should have guaranteed it was', targetContextNode);
+              register.set('', `The value was not a string2`);
               return FAILURE_SYMBOL;
             }
             const arg = runExpression(fdata, args[0], register, callNodeToCalleeSymbol, prng, usePrng);
             if (typeof arg !== 'number') {
               todo('The arg was not a number but isFree should have guaranteed it was', args[0]);
+              register.set('', `The value was not a number2`);
               return FAILURE_SYMBOL;
             }
             const ch = value.charCodeAt(arg);
@@ -1191,6 +1210,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
           funcName.startsWith('array_')
         ) console.dir('free_loops may not have bailed if it implemented `' + funcName + '`');
         todo('Missing implementation for allowed function call to:', funcName);
+        register.set('', `Missing implementation for allowed function call to ${funcName}`);
         return FAILURE_SYMBOL;
       }
 
@@ -1215,10 +1235,12 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
           return AST.getPrimitiveValue(currInit);
         } else {
           todo('Deal with reading an ident that is not a primitive;', node.name, currInit);
+          register.set('', `Deal with reading an ident that is not a primitive`);
           return FAILURE_SYMBOL;
         }
       } else {
         todo('Support global value for ident', node.name, node);
+        register.set('', `support global value for ident`);
         return FAILURE_SYMBOL;
       }
     }
@@ -1228,12 +1250,14 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
       } else {
 
         todo('Support non-primitive literal expression resolving', node);
+        register.set('', `Support non-primitive literal expression resolving`);
         return FAILURE_SYMBOL;
       }
     }
     case 'MemberExpression': {
       if (node.object.type !== 'Identifier') {
         todo('Support member on non-ident');
+        register.set('', `Support member on non-ident`);
         return FAILURE_SYMBOL;
       }
 
@@ -1242,6 +1266,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         const prop = runExpression(fdata, node.property, register, callNodeToCalleeSymbol, prng, usePrng);
         if (obj?.type !== 'ArrayExpression' || typeof prop !== 'number') {
           todo('Not numbered array access, implement me', obj, prop);
+          register.set('', `Not numbered array access, implement me`);
           return FAILURE_SYMBOL;
         }
         const v = obj.elements[prop];
@@ -1252,6 +1277,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         else if (AST.isPrimitive(v)) return AST.getPrimitiveValue(v);
         else {
           todo('Array contents was not missing and not a primitive, fixme');
+          register.set('', `Array contents was not missing and not a primitive`);
           return FAILURE_SYMBOL;
         }
       } else if (node.property.name === 'length') {
@@ -1261,6 +1287,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
         return obj.elements.length;
       } else {
         todo('Support regular prop on ident');
+        register.set('', `Support regular prop on ident`);
         return FAILURE_SYMBOL;
       }
 
@@ -1284,6 +1311,7 @@ function _runExpression(fdata, node, register, callNodeToCalleeSymbol, prng, use
     }
     default: {
       todo('missing support for expression when running a free loop?', node.type, node);
+      register.set('', `missing support for expression when running a free loop? ${node.type}`);
       return FAILURE_SYMBOL;
     }
   }

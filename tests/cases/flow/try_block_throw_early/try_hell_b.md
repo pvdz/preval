@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases
 
+## Options
+
+- globals: fail_early
+
 ## Input
 
 `````js filename=intro
@@ -15,7 +19,7 @@ try {
 } catch {
   x = 1
 }
-considerMutated(x) // always true
+$(x);
 `````
 
 
@@ -29,7 +33,7 @@ try {
 } catch (e) {
   x = 1;
 }
-considerMutated(x);
+$(x);
 `````
 
 
@@ -43,7 +47,7 @@ try {
 } catch (e) {
   x = 1;
 }
-considerMutated(x);
+$(x);
 `````
 
 
@@ -58,7 +62,7 @@ try {
 catch (b) {
   a = 1;
 }
-considerMutated( a );
+$( a );
 `````
 
 
@@ -71,16 +75,15 @@ None
 ## Globals
 
 
-BAD@! Found 2 implicit global bindings:
-
-fail_early, considerMutated
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 1
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

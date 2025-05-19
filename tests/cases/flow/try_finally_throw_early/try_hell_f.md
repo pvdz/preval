@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -17,7 +21,7 @@ try {
 } finally {
   throw_early
 }
-considerMutated(x) // always true
+$(x);
 `````
 
 
@@ -26,7 +30,7 @@ considerMutated(x) // always true
 
 `````js filename=intro
 throw_early;
-considerMutated(0);
+$(0);
 `````
 
 
@@ -35,7 +39,7 @@ considerMutated(0);
 
 `````js filename=intro
 throw_early;
-considerMutated(0);
+$(0);
 `````
 
 
@@ -44,7 +48,7 @@ With rename=true
 
 `````js filename=intro
 throw_early;
-considerMutated( 0 );
+$( 0 );
 `````
 
 
@@ -57,9 +61,7 @@ None
 ## Globals
 
 
-BAD@! Found 2 implicit global bindings:
-
-throw_early, considerMutated
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

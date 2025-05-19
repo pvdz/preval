@@ -40,9 +40,13 @@ try {
   } else {
     $(`third`);
   }
-} catch ($finalImplicit) {
-  $(`finally`);
-  throw $finalImplicit;
+} catch (e) {
+  try {
+    $(`error`, e);
+  } catch ($finalImplicit) {
+    $(`finally`);
+    throw $finalImplicit;
+  }
 }
 $(`finally`);
 if ($finalStep) {
@@ -57,9 +61,13 @@ if ($finalStep) {
       } else {
         $(`third`);
       }
-    } catch ($finalImplicit$1) {
-      $(`finally`);
-      throw $finalImplicit$1;
+    } catch (e$3) {
+      try {
+        $(`error`, e$3);
+      } catch ($finalImplicit$1) {
+        $(`finally`);
+        throw $finalImplicit$1;
+      }
     }
     $(`finally`);
     if ($finalStep$1) {
@@ -84,9 +92,13 @@ try {
   } else {
     $(`third`);
   }
-} catch ($finalImplicit) {
-  $(`finally`);
-  throw $finalImplicit;
+} catch (e) {
+  try {
+    $(`error`, e);
+  } catch ($finalImplicit) {
+    $(`finally`);
+    throw $finalImplicit;
+  }
 }
 $(`finally`);
 if (!$finalStep) {
@@ -100,9 +112,13 @@ if (!$finalStep) {
       } else {
         $(`third`);
       }
-    } catch ($finalImplicit$1) {
-      $(`finally`);
-      throw $finalImplicit$1;
+    } catch (e$3) {
+      try {
+        $(`error`, e$3);
+      } catch ($finalImplicit$1) {
+        $(`finally`);
+        throw $finalImplicit$1;
+      }
     }
     $(`finally`);
     if ($finalStep$1) {
@@ -129,8 +145,13 @@ try {
   }
 }
 catch (c) {
-  $( "finally" );
-  throw c;
+  try {
+    $( "error", c );
+  }
+  catch (d) {
+    $( "finally" );
+    throw d;
+  }
 }
 $( "finally" );
 if (a) {
@@ -138,23 +159,28 @@ if (a) {
 }
 else {
   while ($LOOP_UNROLL_10) {
-    let d = false;
+    let e = false;
     try {
-      const e = $( "first" );
+      const f = $( "first" );
       $( "second" );
-      if (e) {
-        d = true;
+      if (f) {
+        e = true;
       }
       else {
         $( "third" );
       }
     }
-    catch (f) {
-      $( "finally" );
-      throw f;
+    catch (g) {
+      try {
+        $( "error", g );
+      }
+      catch (h) {
+        $( "finally" );
+        throw h;
+      }
     }
     $( "finally" );
-    if (d) {
+    if (e) {
       break;
     }
   }

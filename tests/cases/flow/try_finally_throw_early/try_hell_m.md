@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -19,13 +23,13 @@ function f(){
       return
     }
     // This is dead code regardless?
-    console.log(x);
+    $(x);
   }
   // Dead code because the finalizer return overrides the break
   x = 'fail';
 }
 f();
-considerMutated(x) // always false
+$(x);
 `````
 
 
@@ -34,7 +38,7 @@ considerMutated(x) // always false
 
 `````js filename=intro
 throw_early;
-considerMutated(0);
+$(0);
 `````
 
 
@@ -43,7 +47,7 @@ considerMutated(0);
 
 `````js filename=intro
 throw_early;
-considerMutated(0);
+$(0);
 `````
 
 
@@ -52,7 +56,7 @@ With rename=true
 
 `````js filename=intro
 throw_early;
-considerMutated( 0 );
+$( 0 );
 `````
 
 
@@ -65,9 +69,7 @@ None
 ## Globals
 
 
-BAD@! Found 2 implicit global bindings:
-
-throw_early, considerMutated
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

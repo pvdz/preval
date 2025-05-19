@@ -10,7 +10,6 @@
 
 `````js filename=intro
 let f = function () {
-  debugger;
   let x = `fail`;
   const tmpLabeledBlockFunc = function ($$0, ...$$1) {
     let x$3 = $$1;

@@ -9809,17 +9809,16 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
       }
     }
 
-    if (node.handler.body.body.length === 1 && node.handler.body.body[0].type === 'BreakStatement') {
-      todo('Find me a test case for this try { break }');
+    if (node.block.body.length === 1 && node.block.body[0].type === 'BreakStatement') {
       // Breaks cant throw, they are syntactically validated, so we should be able to move them out safely
       // Unfortunately, moving them out will trigger an infinite loop as we try to have try blocks gobble
       // up as many previous statements as is safe to do. So instead we'll rely on DCE to clear the remainder
-      // of the try block. And if it's only got this statement, then the try is dead. And we remove it.
+      // of the try block. And if it's only got this statement, then the try is dead. And we remove it here.
       rule('A `try` block with only a `break` can not catch anything');
       example('x: { try { break x; } catch {} }', 'x: { break x; }');
       before(body[i]);
 
-      body[i] = node.handler.body.body[0];
+      body[i] = node.block.body[0];
 
       after(body[i]);
       assertNoDupeNodes(body, 'body');

@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases0
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -22,7 +26,7 @@ function f() {
   }
 }
 f();
-considerMutated(x) // always true (!)
+$(x);
 `````
 
 
@@ -30,8 +34,11 @@ considerMutated(x) // always true (!)
 
 
 `````js filename=intro
+try {
+  throw `one`;
+} catch (e) {}
 throw_early;
-considerMutated(0);
+$(2);
 `````
 
 
@@ -39,8 +46,11 @@ considerMutated(0);
 (This ought to be the final result)
 
 `````js filename=intro
+try {
+  throw `one`;
+} catch (e) {}
 throw_early;
-considerMutated(0);
+$(2);
 `````
 
 
@@ -48,23 +58,27 @@ considerMutated(0);
 With rename=true
 
 `````js filename=intro
+try {
+  throw "one";
+}
+catch (a) {
+
+}
 throw_early;
-considerMutated( 0 );
+$( 2 );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) can try-escaping support this expr node type? Literal
 
 
 ## Globals
 
 
-BAD@! Found 2 implicit global bindings:
-
-throw_early, considerMutated
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

@@ -28,9 +28,13 @@ $(4);
 $(1);
 try {
   $(2);
-} catch ($finalImplicit) {
-  $(3);
-  throw $finalImplicit;
+} catch (e) {
+  try {
+    $(`fail`);
+  } catch ($finalImplicit) {
+    $(3);
+    throw $finalImplicit;
+  }
 }
 $(3);
 $(4);
@@ -44,9 +48,13 @@ $(4);
 $(1);
 try {
   $(2);
-} catch ($finalImplicit) {
-  $(3);
-  throw $finalImplicit;
+} catch (e) {
+  try {
+    $(`fail`);
+  } catch ($finalImplicit) {
+    $(3);
+    throw $finalImplicit;
+  }
 }
 $(3);
 $(4);
@@ -62,8 +70,13 @@ try {
   $( 2 );
 }
 catch (a) {
-  $( 3 );
-  throw a;
+  try {
+    $( "fail" );
+  }
+  catch (b) {
+    $( 3 );
+    throw b;
+  }
 }
 $( 3 );
 $( 4 );

@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -22,7 +26,7 @@ function f() {
   x = 1;
 }
 f();
-considerMutated(x) // always true (!)
+$(x);
 `````
 
 
@@ -30,8 +34,11 @@ considerMutated(x) // always true (!)
 
 
 `````js filename=intro
+try {
+  throw `one`;
+} catch (e) {}
 throw_early;
-considerMutated(1);
+$(1);
 `````
 
 
@@ -39,8 +46,11 @@ considerMutated(1);
 (This ought to be the final result)
 
 `````js filename=intro
+try {
+  throw `one`;
+} catch (e) {}
 throw_early;
-considerMutated(1);
+$(1);
 `````
 
 
@@ -48,8 +58,14 @@ considerMutated(1);
 With rename=true
 
 `````js filename=intro
+try {
+  throw "one";
+}
+catch (a) {
+
+}
 throw_early;
-considerMutated( 1 );
+$( 1 );
 `````
 
 
@@ -62,9 +78,7 @@ None
 ## Globals
 
 
-BAD@! Found 2 implicit global bindings:
-
-throw_early, considerMutated
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

@@ -1215,6 +1215,20 @@ export function phaseNormalOnce(fdata) {
           after(node);
         }
 
+        if (node.handler && node.finalizer) {
+          // Note: the transform is expecting try-catch-finally to be split up so we monkeypatch it here.
+          rule('Try with both handler and finalizer should be split');
+          example('try {} catch {} finally {}', 'try { try {} catch {} } finally {}');
+          before(node);
+
+          const tmp = AST.tryCatchStatement(node.block, null, AST.blockStatement(), true);
+          tmp.handler = node.handler;
+          node.block = AST.blockStatement(tmp);
+          node.handler = null;
+
+          after(node);
+        }
+
         // Eliminate finally in favor of a catch and some boiler plate. Finally is just a far more complex beast to reason about.
         if (node.finalizer) {
           // Finally is actually a complex beast, especially for reference tracking
@@ -1437,7 +1451,13 @@ export function phaseNormalOnce(fdata) {
             } // switch(key)
           } // /walker
 
+          vgroup();
+          vgroup();
+          vgroup('Walking try again...');
           walk(_walker, node.block, 'block');
+          vgroupEnd();
+          vgroupEnd();
+          vgroupEnd();
 
           const implicitName = createFreshVar('$finalImplicit', fdata);
 

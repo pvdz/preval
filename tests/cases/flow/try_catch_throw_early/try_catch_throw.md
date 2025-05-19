@@ -6,6 +6,10 @@
 >
 > The throw may leave the binding mutated anyways
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -76,9 +80,7 @@ $( "pass" );
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-throw_early
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

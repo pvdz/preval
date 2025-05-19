@@ -1,23 +1,27 @@
 # Preval test case
 
-# try_hell_c.md
+# try_hell_q2.md
 
-> Flow > Try block throw early > Try hell c
+> Flow > Try no throw > Try hell q2
 >
-> Bunch of try/catch/finally cases
+> Bunch of try/catch/finally cases0
 
-## Options
-
-- globals: fail_early
+Regression: it would eliminate the entire try, leaving x=0. But it must be x=1.
 
 ## Input
 
 `````js filename=intro
 let x = 0;
-try {
-  fail_early
-} finally {
-  x = 1
+$inlinedFunction: {
+  try {
+    x = 1;
+    throw `one`;
+  } catch (e) {
+    try {
+      break $inlinedFunction;
+    } catch ($finalImplicit) {
+    }
+  }
 }
 $(x);
 `````
@@ -28,10 +32,8 @@ $(x);
 
 `````js filename=intro
 try {
-  fail_early;
-} catch ($finalImplicit) {
-  throw $finalImplicit;
-}
+  throw `one`;
+} catch (e) {}
 $(1);
 `````
 
@@ -41,10 +43,8 @@ $(1);
 
 `````js filename=intro
 try {
-  fail_early;
-} catch ($finalImplicit) {
-  throw $finalImplicit;
-}
+  throw `one`;
+} catch (e) {}
 $(1);
 `````
 
@@ -54,10 +54,10 @@ With rename=true
 
 `````js filename=intro
 try {
-  fail_early;
+  throw "one";
 }
 catch (a) {
-  throw a;
+
 }
 $( 1 );
 `````
@@ -66,20 +66,21 @@ $( 1 );
 ## Todos triggered
 
 
-None
+- (todo) can try-escaping support this expr node type? Literal
 
 
 ## Globals
 
 
-None (except for the 1 globals expected by the test)
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 1
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

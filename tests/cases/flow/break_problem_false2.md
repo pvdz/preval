@@ -10,7 +10,6 @@
 
 `````js filename=intro
 const tmpLabeledBlockFunc = function () {
-  debugger;
   const tmpIfTest$3 = $(false);
   if (tmpIfTest$3) {
     $('fail');

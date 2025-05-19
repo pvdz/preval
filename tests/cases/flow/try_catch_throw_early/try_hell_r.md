@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases0
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -22,7 +26,7 @@ function f() {
   }
 }
 f();
-considerMutated(x) // always true (!)
+$(x);
 `````
 
 
@@ -30,7 +34,16 @@ considerMutated(x) // always true (!)
 
 
 `````js filename=intro
-considerMutated(0);
+let x /*:number*/ = 0;
+try {
+  throw `one`;
+} catch (e) {
+  try {
+    throw_early;
+    x = 2;
+  } catch ($finalImplicit) {}
+}
+$(x);
 `````
 
 
@@ -38,7 +51,16 @@ considerMutated(0);
 (This ought to be the final result)
 
 `````js filename=intro
-considerMutated(0);
+let x = 0;
+try {
+  throw `one`;
+} catch (e) {
+  try {
+    throw_early;
+    x = 2;
+  } catch ($finalImplicit) {}
+}
+$(x);
 `````
 
 
@@ -46,7 +68,20 @@ considerMutated(0);
 With rename=true
 
 `````js filename=intro
-considerMutated( 0 );
+let a = 0;
+try {
+  throw "one";
+}
+catch (b) {
+  try {
+    throw_early;
+    a = 2;
+  }
+  catch (c) {
+
+  }
+}
+$( a );
 `````
 
 
@@ -59,16 +94,15 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-considerMutated
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 0
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

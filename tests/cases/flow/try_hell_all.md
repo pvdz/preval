@@ -16,7 +16,7 @@
   } catch {
   
   }
-  considerMutated(x) // always true
+  $(x);
 }
 
 {
@@ -26,7 +26,7 @@
   } catch {
     x = 1
   }
-  considerMutated(x) // always true
+  $(x);
 }
 
 {
@@ -36,19 +36,7 @@
   } finally {
     x = 1
   }
-  considerMutated(x) // always true
-}
-
-{
-  let x = 0;
-  try {
-    x = 1
-  } catch {
-  
-  } finally {
-  
-  }
-  considerMutated(x) // always true
+  $(x);
 }
 
 {
@@ -60,7 +48,19 @@
   } finally {
   
   }
-  considerMutated(x) // always true
+  $(x);
+}
+
+{
+  let x = 0;
+  try {
+    x = 1
+  } catch {
+  
+  } finally {
+  
+  }
+  $(x);
 }
 
 {
@@ -72,7 +72,7 @@
   } finally {
   
   }
-  considerMutated(x) // always true
+  $(x);
 }
 
 {
@@ -84,7 +84,7 @@
   } finally {
     x = 1
   }
-  considerMutated(x) // always true
+  $(x);
 }
 
 {
@@ -102,7 +102,7 @@
     
     }
   }
-  considerMutated(x) // always true
+  $(x);
 }
 
 {
@@ -117,7 +117,7 @@
       x = 1
     }
   }
-  considerMutated(x) // always true
+  $(x);
 }
 
 {
@@ -132,7 +132,7 @@
       x = 1
     }
   }
-  considerMutated(x) // always true
+  $(x);
 }
 
 {
@@ -147,7 +147,7 @@
       x = 1
     }
   }
-  considerMutated(x) // always true
+  $(x);
 }
 
 {
@@ -166,7 +166,7 @@
     x = 'fail';
   }
   f();
-  considerMutated(x) // always false
+  $(x);
 }
 
 {
@@ -181,7 +181,7 @@
     }
   }
   f();
-  considerMutated(x) // always false
+  $(x);
 }
 
 {
@@ -195,7 +195,7 @@
     x = 1;
   }
   f();
-  considerMutated(x) // always true (!)
+  $(x);
 }
 
 {
@@ -211,7 +211,7 @@
     x = 1;
   }
   f();
-  considerMutated(x) // always true (!)
+  $(x);
 }
 
 {
@@ -227,7 +227,7 @@
     }
   }
   f();
-  considerMutated(x) // always true (!)
+  $(x);
 }
 
 {
@@ -243,7 +243,7 @@
     }
   }
   f();
-  considerMutated(x) // always true (!)
+  $(x);
 }
 `````
 
@@ -252,23 +252,32 @@
 
 
 `````js filename=intro
-considerMutated(1);
-considerMutated(0);
-considerMutated(1);
-considerMutated(1);
-considerMutated(1);
-considerMutated(0);
-considerMutated(1);
-considerMutated(0);
-considerMutated(1);
-considerMutated(1);
-considerMutated(1);
-considerMutated(0);
-considerMutated(0);
-considerMutated(1);
-considerMutated(1);
-considerMutated(1);
-considerMutated(0);
+$(1);
+$(0);
+$(1);
+$(1);
+$(1);
+$(0);
+$(1);
+$(0);
+$(1);
+$(1);
+$(1);
+$(0);
+$(0);
+$(1);
+try {
+  throw `one`;
+} catch (e$19) {}
+$(1);
+try {
+  throw `one`;
+} catch (e$21) {}
+$(1);
+try {
+  throw `one`;
+} catch (e$23) {}
+$(2);
 `````
 
 
@@ -276,23 +285,32 @@ considerMutated(0);
 (This ought to be the final result)
 
 `````js filename=intro
-considerMutated(1);
-considerMutated(0);
-considerMutated(1);
-considerMutated(1);
-considerMutated(1);
-considerMutated(0);
-considerMutated(1);
-considerMutated(0);
-considerMutated(1);
-considerMutated(1);
-considerMutated(1);
-considerMutated(0);
-considerMutated(0);
-considerMutated(1);
-considerMutated(1);
-considerMutated(1);
-considerMutated(0);
+$(1);
+$(0);
+$(1);
+$(1);
+$(1);
+$(0);
+$(1);
+$(0);
+$(1);
+$(1);
+$(1);
+$(0);
+$(0);
+$(1);
+try {
+  throw `one`;
+} catch (e$19) {}
+$(1);
+try {
+  throw `one`;
+} catch (e$21) {}
+$(1);
+try {
+  throw `one`;
+} catch (e$23) {}
+$(2);
 `````
 
 
@@ -300,23 +318,41 @@ considerMutated(0);
 With rename=true
 
 `````js filename=intro
-considerMutated( 1 );
-considerMutated( 0 );
-considerMutated( 1 );
-considerMutated( 1 );
-considerMutated( 1 );
-considerMutated( 0 );
-considerMutated( 1 );
-considerMutated( 0 );
-considerMutated( 1 );
-considerMutated( 1 );
-considerMutated( 1 );
-considerMutated( 0 );
-considerMutated( 0 );
-considerMutated( 1 );
-considerMutated( 1 );
-considerMutated( 1 );
-considerMutated( 0 );
+$( 1 );
+$( 0 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 0 );
+$( 1 );
+$( 0 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 0 );
+$( 0 );
+$( 1 );
+try {
+  throw "one";
+}
+catch (a) {
+
+}
+$( 1 );
+try {
+  throw "one";
+}
+catch (b) {
+
+}
+$( 1 );
+try {
+  throw "one";
+}
+catch (c) {
+
+}
+$( 2 );
 `````
 
 
@@ -329,16 +365,31 @@ considerMutated( 0 );
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-considerMutated
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 1
+ - 2: 0
+ - 3: 1
+ - 4: 1
+ - 5: 1
+ - 6: 0
+ - 7: 1
+ - 8: 0
+ - 9: 1
+ - 10: 1
+ - 11: 1
+ - 12: 0
+ - 13: 0
+ - 14: 1
+ - 15: 1
+ - 16: 1
+ - 17: 2
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

@@ -6,6 +6,10 @@
 >
 > The throw may leave the binding mutated anyways
 
+## Options
+
+- globals: fail_early
+
 ## Input
 
 `````js filename=intro
@@ -99,9 +103,7 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-fail_early
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

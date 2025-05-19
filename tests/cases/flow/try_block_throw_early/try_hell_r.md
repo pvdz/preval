@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases0
 
+## Options
+
+- globals: fail_early
+
 ## Input
 
 `````js filename=intro
@@ -22,7 +26,7 @@ function f() {
   }
 }
 f();
-considerMutated(x) // always true (!)
+$(x);
 `````
 
 
@@ -32,8 +36,9 @@ considerMutated(x) // always true (!)
 `````js filename=intro
 try {
   fail_early;
-} catch ($finalImplicit) {}
-considerMutated(0);
+  throw `one`;
+} catch (e) {}
+$(2);
 `````
 
 
@@ -43,8 +48,9 @@ considerMutated(0);
 `````js filename=intro
 try {
   fail_early;
-} catch ($finalImplicit) {}
-considerMutated(0);
+  throw `one`;
+} catch (e) {}
+$(2);
 `````
 
 
@@ -54,33 +60,33 @@ With rename=true
 `````js filename=intro
 try {
   fail_early;
+  throw "one";
 }
 catch (a) {
 
 }
-considerMutated( 0 );
+$( 2 );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) can try-escaping support this expr node type? Literal
 
 
 ## Globals
 
 
-BAD@! Found 2 implicit global bindings:
-
-fail_early, considerMutated
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 2
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

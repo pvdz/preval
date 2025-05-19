@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -19,7 +23,7 @@ try {
 } finally {
 
 }
-considerMutated(x) // always true
+$(x);
 `````
 
 
@@ -27,8 +31,25 @@ considerMutated(x) // always true
 
 
 `````js filename=intro
-throw_early;
-considerMutated(0);
+let x /*:number*/ = 0;
+let $implicitThrow /*:boolean*/ = false;
+let $finalCatchArg /*:unknown*/ = undefined;
+try {
+  throw_early;
+} catch (e) {
+  try {
+    throw_early;
+    x = 1;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
+  }
+}
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  $(x);
+}
 `````
 
 
@@ -36,8 +57,25 @@ considerMutated(0);
 (This ought to be the final result)
 
 `````js filename=intro
-throw_early;
-considerMutated(0);
+let x = 0;
+let $implicitThrow = false;
+let $finalCatchArg = undefined;
+try {
+  throw_early;
+} catch (e) {
+  try {
+    throw_early;
+    x = 1;
+  } catch ($finalImplicit) {
+    $implicitThrow = true;
+    $finalCatchArg = $finalImplicit;
+  }
+}
+if ($implicitThrow) {
+  throw $finalCatchArg;
+} else {
+  $(x);
+}
 `````
 
 
@@ -45,8 +83,28 @@ considerMutated(0);
 With rename=true
 
 `````js filename=intro
-throw_early;
-considerMutated( 0 );
+let a = 0;
+let b = false;
+let c = undefined;
+try {
+  throw_early;
+}
+catch (d) {
+  try {
+    throw_early;
+    a = 1;
+  }
+  catch (e) {
+    b = true;
+    c = e;
+  }
+}
+if (b) {
+  throw c;
+}
+else {
+  $( a );
+}
 `````
 
 
@@ -59,9 +117,7 @@ None
 ## Globals
 
 
-BAD@! Found 2 implicit global bindings:
-
-throw_early, considerMutated
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

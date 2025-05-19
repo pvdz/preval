@@ -24,7 +24,7 @@ try {
     a = 4;
   }
 }
-$(a); // can observe 2, 3, and 4. not 1: that's an uncaught throw.
+$(a); // can observe 1, 2, 3, and 4
 `````
 
 
@@ -39,20 +39,25 @@ let $finalCatchArg___13__ = undefined___14__;
 try /*16*/ {
   $(a___20__);
   a___24__ = 2;
-} catch ($finalImplicit___26__) /*27*/ {
-  $implicitThrow___31__ = true;
-  $finalCatchArg___35__ = $finalImplicit___34__;
+} catch (e___26__) /*27*/ {
+  try /*29*/ {
+    $(a___33__);
+    a___37__ = 3;
+  } catch ($finalImplicit___39__) /*40*/ {
+    $implicitThrow___44__ = true;
+    $finalCatchArg___48__ = $finalImplicit___47__;
+  }
 }
-$(a___39__);
-const tmpIfTest___41__ = $();
-if (tmpIfTest___45__) {
-  /*46*/ a___50__ = 4;
-} /*51*/ else {
+$(a___52__);
+const tmpIfTest___54__ = $();
+if (tmpIfTest___58__) {
+  /*59*/ a___63__ = 4;
+} /*64*/ else {
 }
-if ($implicitThrow___53__) {
-  /*54*/ throw $finalCatchArg___56__;
-} /*57*/ else {
-  $(a___61__);
+if ($implicitThrow___66__) {
+  /*67*/ throw $finalCatchArg___69__;
+} /*70*/ else {
+  $(a___74__);
 }
 `````
 
@@ -68,23 +73,25 @@ None
 
                    | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @7       | ########## | 20,39,61    | none           | 24,50
+  - w @7       | ########## | 20,33,52,74 | none           | 24,37,63
   - r @20      | 7
-  - w @24      | ########## | 39,61       | 7              | 50
-  - r @39      | 7,24
-  - w @50      | ########## | 61          | 7,24           | none
-  - r @61      | 7,24,50
+  - w @24      | ########## | 33,52,74    | 7              | 37,63
+  - r @33      | 7,24
+  - w @37      | ########## | 52,74       | 7,24           | 63
+  - r @52      | 7,24,37
+  - w @63      | ########## | 74          | 7,24,37        | none
+  - r @74      | 7,24,37,63
 
 $implicitThrow:
-  - w @10          | ########## | 53          | none           | 31
-  - w @31          | ########## | 53          | 10             | none
-  - r @53          | 10,31
+  - w @10          | ########## | 66          | none           | 44
+  - w @44          | ########## | 66          | 10             | none
+  - r @66          | 10,44
 
 $finalCatchArg:
-  - w @13          | ########## | 56          | none           | 35
-  - w @35          | ########## | 56          | 13             | none
-  - r @56          | 13,35
+  - w @13          | ########## | 69          | none           | 48
+  - w @48          | ########## | 69          | 13             | none
+  - r @69          | 13,48
 
 tmpIfTest:
-  - w @41          | ########## | 45          | none           | none
-  - r @45          | 41
+  - w @54          | ########## | 58          | none           | none
+  - r @58          | 54

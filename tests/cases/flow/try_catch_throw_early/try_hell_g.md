@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -17,7 +21,7 @@ try {
 } finally {
   x = 1
 }
-considerMutated(x) // always true
+$(x);
 `````
 
 
@@ -25,7 +29,7 @@ considerMutated(x) // always true
 
 
 `````js filename=intro
-considerMutated(1);
+$(1);
 `````
 
 
@@ -33,7 +37,7 @@ considerMutated(1);
 (This ought to be the final result)
 
 `````js filename=intro
-considerMutated(1);
+$(1);
 `````
 
 
@@ -41,7 +45,7 @@ considerMutated(1);
 With rename=true
 
 `````js filename=intro
-considerMutated( 1 );
+$( 1 );
 `````
 
 
@@ -54,16 +58,15 @@ None
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-considerMutated
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 1
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

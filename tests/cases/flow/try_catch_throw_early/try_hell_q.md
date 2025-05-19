@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases0
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -22,7 +26,6 @@ function f() {
   }
 }
 f();
-//considerMutated(x) // always true (!)
 $(x);
 `````
 
@@ -31,6 +34,13 @@ $(x);
 
 
 `````js filename=intro
+try {
+  throw `one`;
+} catch (e) {
+  try {
+    throw_early;
+  } catch ($finalImplicit) {}
+}
 $(1);
 `````
 
@@ -39,6 +49,13 @@ $(1);
 (This ought to be the final result)
 
 `````js filename=intro
+try {
+  throw `one`;
+} catch (e) {
+  try {
+    throw_early;
+  } catch ($finalImplicit) {}
+}
 $(1);
 `````
 
@@ -47,6 +64,17 @@ $(1);
 With rename=true
 
 `````js filename=intro
+try {
+  throw "one";
+}
+catch (a) {
+  try {
+    throw_early;
+  }
+  catch (b) {
+
+  }
+}
 $( 1 );
 `````
 
@@ -60,7 +88,7 @@ $( 1 );
 ## Globals
 
 
-None
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

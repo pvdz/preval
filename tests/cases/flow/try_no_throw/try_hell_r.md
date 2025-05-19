@@ -21,7 +21,7 @@ function f() {
   }
 }
 f();
-considerMutated(x) // always true (!)
+$(x);
 `````
 
 
@@ -29,7 +29,10 @@ considerMutated(x) // always true (!)
 
 
 `````js filename=intro
-considerMutated(0);
+try {
+  throw `one`;
+} catch (e) {}
+$(2);
 `````
 
 
@@ -37,7 +40,10 @@ considerMutated(0);
 (This ought to be the final result)
 
 `````js filename=intro
-considerMutated(0);
+try {
+  throw `one`;
+} catch (e) {}
+$(2);
 `````
 
 
@@ -45,29 +51,34 @@ considerMutated(0);
 With rename=true
 
 `````js filename=intro
-considerMutated( 0 );
+try {
+  throw "one";
+}
+catch (a) {
+
+}
+$( 2 );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) can try-escaping support this expr node type? Literal
 
 
 ## Globals
 
 
-BAD@! Found 1 implicit global bindings:
-
-considerMutated
+None
 
 
 ## Runtime Outcome
 
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 2
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

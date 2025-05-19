@@ -25,9 +25,13 @@ try {
 `````js filename=intro
 try {
   $(1);
-} catch ($finalImplicit) {
-  $(3);
-  throw $finalImplicit;
+} catch (e) {
+  try {
+    $(2);
+  } catch ($finalImplicit) {
+    $(3);
+    throw $finalImplicit;
+  }
 }
 $(3);
 `````
@@ -39,9 +43,13 @@ $(3);
 `````js filename=intro
 try {
   $(1);
-} catch ($finalImplicit) {
-  $(3);
-  throw $finalImplicit;
+} catch (e) {
+  try {
+    $(2);
+  } catch ($finalImplicit) {
+    $(3);
+    throw $finalImplicit;
+  }
 }
 $(3);
 `````
@@ -55,8 +63,13 @@ try {
   $( 1 );
 }
 catch (a) {
-  $( 3 );
-  throw a;
+  try {
+    $( 2 );
+  }
+  catch (b) {
+    $( 3 );
+    throw b;
+  }
 }
 $( 3 );
 `````

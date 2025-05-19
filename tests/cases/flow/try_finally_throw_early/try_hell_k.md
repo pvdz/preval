@@ -6,6 +6,10 @@
 >
 > Bunch of try/catch/finally cases
 
+## Options
+
+- globals: throw_early
+
 ## Input
 
 `````js filename=intro
@@ -21,7 +25,7 @@ foo: {
     x = 1
   }
 }
-considerMutated(x) // always true
+$(x);
 `````
 
 
@@ -30,7 +34,7 @@ considerMutated(x) // always true
 
 `````js filename=intro
 throw_early;
-considerMutated(1);
+$(1);
 `````
 
 
@@ -39,7 +43,7 @@ considerMutated(1);
 
 `````js filename=intro
 throw_early;
-considerMutated(1);
+$(1);
 `````
 
 
@@ -48,22 +52,20 @@ With rename=true
 
 `````js filename=intro
 throw_early;
-considerMutated( 1 );
+$( 1 );
 `````
 
 
 ## Todos triggered
 
 
-None
+- (todo) can try-escaping support this expr node type? Literal
 
 
 ## Globals
 
 
-BAD@! Found 2 implicit global bindings:
-
-throw_early, considerMutated
+None (except for the 1 globals expected by the test)
 
 
 ## Runtime Outcome

@@ -1,34 +1,15 @@
 import walk from '../../lib/walk.mjs';
+import * as AST from '../ast.mjs';
+import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo, currentState, } from '../utils.mjs';
 
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, ERR_MSG_ILLEGAL_ARRAY_SPREAD, ERR_MSG_ILLEGAL_CALLEE, FRESH, OLD, RED, BLUE, RESET, } from '../constants.mjs';
-import {
-  BUILTIN_GLOBAL_FUNCS_TO_SYMBOL,
-  BUILTIN_FUNC_NO_CTX,
-  BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER,
-  BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING,
-  BUILTIN_FUNCS_NO_CTXT_NON_COERCE,
-  BUILTIN_SYMBOLS,
-  FUNCTION,
-  GLOBAL_NAMESPACES_FOR_STATIC_METHODS,
-  protoToInstName,
-  symbo,
-} from '../symbols_builtins.mjs';
-import {
-  BUILTIN_REST_HANDLER_NAME,
-  SYMBOL_COERCE,
-  SYMBOL_FORIN,
-  SYMBOL_FOROF,
-  SYMBOL_FRFR,
-  SYMBOL_THROW_TDZ_ERROR,
-} from '../symbols_preval.mjs';
-import { ASSERT, assertNoDupeNodes, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after, riskyRule, useRiskyRules, todo, currentState, } from '../utils.mjs';
-import * as AST from '../ast.mjs';
+import { BUILTIN_GLOBAL_FUNCS_TO_SYMBOL, BUILTIN_FUNC_NO_CTX, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_NUMBER, BUILTIN_FUNCS_NO_CTX_COERCE_FIRST_TO_STRING, BUILTIN_FUNCS_NO_CTXT_NON_COERCE, BUILTIN_SYMBOLS, GLOBAL_NAMESPACES_FOR_STATIC_METHODS, protoToInstName, symbo, } from '../symbols_builtins.mjs';
+import { BUILTIN_REST_HANDLER_NAME, SYMBOL_COERCE, SYMBOL_FORIN, SYMBOL_FOROF, SYMBOL_FRFR, SYMBOL_THROW_TDZ_ERROR, } from '../symbols_preval.mjs';
 import { SYMBOL_DOTCALL, SYMBOL_LOOP_UNROLL, SYMBOL_MAX_LOOP_UNROLL } from '../symbols_preval.mjs';
 import { createFreshVar, } from '../bindings.mjs';
 import globals, { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
-import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
+import { createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
 import { addLabelReference, createFreshLabelStatement, removeLabelReference } from '../labels.mjs';
-import { cloneSortOfSimple, isNewRegexLit, isNumberValueNode, isSameNewRegexLit, newRegex, varStatement } from '../ast.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -5406,7 +5387,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
           before(body[i]);
 
           body[i-1].consequent.body.push(AST.expressionStatement(node));
-          body[i-1].alternate.body.push(AST.expressionStatement(cloneSortOfSimple(node)));
+          body[i-1].alternate.body.push(AST.expressionStatement(AST.cloneSortOfSimple(node)));
           body.splice(i, 1);
 
           before(body[i-1]);

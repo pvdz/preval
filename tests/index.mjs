@@ -61,12 +61,14 @@ if (isMainThread && CONFIG.threads > 1) {
         });
         worker.on('error', (e) => {
           if (broke) return;
+          console.log('Error:', e);
           console.log('Going to kill all threads and run this test case in verbose mode... : ' + last);
           // We can't abort the workers without fataling nodejs. So instead we mute them and tell the main thread
           // that they've completed. This allows the promise.all to continue and run the failed test case in CLI.
           fileToRetryVerbose = last;
           resolvers.forEach((r) => r());
           broke = true;
+          threads.forEach(t => t.terminate())
         });
         worker.on('exit', (code) => {
           if (broke) return;

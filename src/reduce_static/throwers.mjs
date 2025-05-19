@@ -33,6 +33,12 @@ function _findThrowers(fdata) {
       return;
     }
 
+    if (funcNode.async) {
+      // Not sure if there's anything here we can do...
+      vlog('- async functions still return a promise so they do not apply here');
+      return;
+    }
+
     if (funcNode.$p.commonReturn !== undefined) {
       vlog('- returns at least at one point');
       return;

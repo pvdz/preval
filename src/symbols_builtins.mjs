@@ -430,6 +430,28 @@ export const MAP = new Map([
 
 
 /**
+ *      Promise
+ */
+
+
+export const PROMISE = new Map([
+  [symbo('Promise', 'prototype'),       {prop: 'prototype',       isProto: false, typings: { sname: symbo('Promise', 'prototype'),        mustBeType: 'object',   mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }}],
+  [symbo('Promise', 'all'),             {prop: 'all',             isProto: false, typings: { sname: symbo('Promise', 'all'),              mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('Promise', 'allSettled'),      {prop: 'allSettled',      isProto: false, typings: { sname: symbo('Promise', 'allSettled'),       mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('Promise', 'any'),             {prop: 'any',             isProto: false, typings: { sname: symbo('Promise', 'any'),              mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('Promise', 'race'),            {prop: 'race',            isProto: false, typings: { sname: symbo('Promise', 'race'),             mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('Promise', 'reject'),          {prop: 'reject',          isProto: false, typings: { sname: symbo('Promise', 'reject'),           mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('Promise', 'resolve'),         {prop: 'resolve',         isProto: false, typings: { sname: symbo('Promise', 'resolve'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('Promise', 'try'),             {prop: 'try',             isProto: false, typings: { sname: symbo('Promise', 'try'),              mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('Promise', 'withResolvers'),   {prop: 'withResolvers',   isProto: false, typings: { sname: symbo('Promise', 'withResolvers'),    mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('promise', 'catch'),           {prop: 'catch',           isProto: true, typings:  { sname: symbo('promise', 'catch'),            mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('promise', 'constructor'),     {prop: 'constructor',     isProto: true, typings:  { sname: symbo('promise', 'constructor'),      mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('promise', 'finally'),         {prop: 'finally',         isProto: true, typings:  { sname: symbo('promise', 'finally'),          mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+  [symbo('promise', 'then'),            {prop: 'then',            isProto: true, typings:  { sname: symbo('promise', 'then'),             mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false, returns: 'promise' }}],
+]);
+
+
+/**
  *      Set
  */
 
@@ -526,6 +548,7 @@ export const BUILTIN_SYMBOLS = new Map([
   Array.from($JSON.entries()),
   Array.from(MATH.entries()),
   Array.from(REGEXP.entries()),
+  Array.from(PROMISE.entries()),
   Array.from(MAP.entries()),
   Array.from(SET.entries()),
   Array.from(BUFFER.entries()),

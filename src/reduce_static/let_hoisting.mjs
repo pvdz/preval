@@ -34,7 +34,7 @@ import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function letHoisting(fdata) {
   group('\n\n\n[letHoisting] Checking for let decls to move up');
-  //currentState(fdata, 'letHoisting'. true, fdata);
+  //currentState(fdata, 'letHoisting', true, fdata);
   const r = _letHoisting(fdata);
   groupEnd();
   return r;

@@ -10,7 +10,7 @@ import { SYMBOL_DOTCALL } from '../symbols_preval.mjs';
 
 export function arrMutation(fdata) {
   group('\n\n\n[arrMutation] Checking for array mutations to inline');
-  //currentState(fdata, 'arrMutation'. true, fdata);
+  //currentState(fdata, 'arrMutation', true, fdata);
   const r = _arrMutation(fdata);
   groupEnd();
   return r;

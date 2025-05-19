@@ -24,7 +24,7 @@ import { normalizeTemplateSimple } from '../ast.mjs';
 
 export function stringFusing(fdata) {
   group('\n\n\n[stringFusing] Searching for strings to fuse together');
-  //currentState(fdata, 'stringFusing'. true, fdata);
+  //currentState(fdata, 'stringFusing', true, fdata);
   const r = _stringFusing(fdata);
   groupEnd();
   return r;

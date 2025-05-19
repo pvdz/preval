@@ -10,7 +10,7 @@ import * as AST from '../ast.mjs';
 
 export function refTracked(fdata) {
   group('\n\n\n[refTracked] Looking ref-tracking tricks to apply\n');
-  //currentState(fdata, 'refTracked'. true, fdata);
+  //currentState(fdata, 'refTracked', true, fdata);
   const r = _refTracked(fdata);
   groupEnd();
   return r;

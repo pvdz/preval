@@ -27,7 +27,7 @@ import { createFreshVar, getIdentUsageKind } from '../bindings.mjs';
 
 export function ifUpdateCall(fdata) {
   group('\n\n\n[ifUpdateCall] Finding if-update-call patterns to replace\n');
-  //currentState(fdata, 'ifUpdateCall'. true, fdata);
+  //currentState(fdata, 'ifUpdateCall', true, fdata);
   const r = _ifUpdateCall(fdata);
   groupEnd();
   return r;

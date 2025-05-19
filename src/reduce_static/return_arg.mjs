@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 
 export function returnArg(fdata) {
   group('\n\n\n[returnArg] Checking for functions that return an arg');
-  //currentState(fdata, 'returnArg'. true, fdata);
+  //currentState(fdata, 'returnArg', true, fdata);
   const r = _returnArg(fdata);
   groupEnd();
   return r;

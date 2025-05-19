@@ -31,7 +31,7 @@ import { getPrimitiveValue } from '../ast.mjs';
 
 export function inlineIdenticalParam(fdata) {
   group('\n\n\n[inlineIdenticalParam] Checking for params which are always a certain primitive or the same object literal');
-  //currentState(fdata, 'inlineIdenticalParam'. true, fdata);
+  //currentState(fdata, 'inlineIdenticalParam', true, fdata);
   const r = _inlineIdenticalParam(fdata);
   groupEnd();
   return r;

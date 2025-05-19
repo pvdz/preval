@@ -16,7 +16,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function arrCoerce(fdata) {
   group('\n\n\n[arrCoerce] Checking for arrays that get coerced');
-  //currentState(fdata, 'arrCoerce'. true, fdata);
+  //currentState(fdata, 'arrCoerce', true, fdata);
   const r = _arrCoerce(fdata);
   groupEnd();
   return r;

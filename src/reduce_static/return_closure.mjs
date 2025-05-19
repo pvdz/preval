@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 
 export function returnClosure(fdata) {
   group('\n\n\n[returnClosure] Checking for functions that return a closure');
-  //currentState(fdata, 'returnClosure'. true, fdata);
+  //currentState(fdata, 'returnClosure', true, fdata);
   const r = _returnClosure(fdata);
   groupEnd();
   return r;

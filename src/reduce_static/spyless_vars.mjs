@@ -22,7 +22,7 @@ import { DIM, RESET, VERBOSE_TRACING } from '../constants.mjs';
 
 export function spylessVars(fdata) {
   group('\n\n\n[spylessVars] Checking for single scoped spyless vars to move');
-  //currentState(fdata, 'spylessVars'. true, fdata);
+  //currentState(fdata, 'spylessVars', true, fdata);
   const r = _spylessVars(fdata);
   groupEnd();
   return r;

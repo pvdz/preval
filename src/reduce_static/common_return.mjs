@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 
 export function inlineCommonReturns(fdata) {
   group('\n\n\n[inlineCommonReturns] Checking for functions that have a common return value that is a primitive');
-  //currentState(fdata, 'inlineCommonReturns'. true, fdata);
+  //currentState(fdata, 'inlineCommonReturns', true, fdata);
   const r = _inlineCommonReturns(fdata);
   groupEnd();
   return r;

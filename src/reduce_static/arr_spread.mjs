@@ -24,7 +24,7 @@ import { createFreshVar } from '../bindings.mjs';
 export function arrSpreads(fdata) {
   group('\n\n\n[arrSpreads] Checking for array/call spreads');
   const ast = fdata.tenkoOutput.ast;
-  //currentState(fdata, 'arrSpreads'. true, fdata);
+  //currentState(fdata, 'arrSpreads', true, fdata);
   const r = _arrSpreads(fdata);
   groupEnd();
   return r;

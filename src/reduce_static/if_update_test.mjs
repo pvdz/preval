@@ -30,7 +30,7 @@ import * as AST from '../ast.mjs';
 export function ifUpdateTest(fdata) {
   group('\n\n\n[ifUpdateTest] Check for if-mutate-test-if-test');
   const ast = fdata.tenkoOutput.ast;
-  //currentState(fdata, 'ifUpdateTest'. true, fdata);
+  //currentState(fdata, 'ifUpdateTest', true, fdata);
   const r = _ifUpdateTest(fdata);
   groupEnd();
   return r;

@@ -18,7 +18,7 @@ import {findClosureRefs} from "./func_scope_promo.mjs"
 
 export function selfAssignNoop(fdata) {
   group('\n\n\n[selfAssignNoop] Checking for self-assigning noop funcs');
-  //currentState(fdata, 'selfAssignNoop'. true, fdata);
+  //currentState(fdata, 'selfAssignNoop', true, fdata);
   const r = _selfAssignNoop(fdata);
   groupEnd();
   return r;

@@ -47,7 +47,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function bufferBase64(fdata) {
   group('\n\n\n[bufferBase64] Checking for buffer_base64; base64 decoding through Buffer');
-  //currentState(fdata, 'bufferBase64'. true, fdata);
+  //currentState(fdata, 'bufferBase64', true, fdata);
   const r = _buffer_base64(fdata);
   groupEnd();
   return r;

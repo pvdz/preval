@@ -31,7 +31,7 @@ import * as AST from '../ast.mjs';
 
 export function ifTestInvIdent(fdata) {
   group('\n\n\n[ifTestInvIdent] Checking for if-tests on inverted idents');
-  //currentState(fdata, 'ifTestInvIdent'. true, fdata);
+  //currentState(fdata, 'ifTestInvIdent', true, fdata);
   const r = _ifTestInvIdent(fdata);
   groupEnd();
   return r;

@@ -9,7 +9,7 @@ import { PRIMITIVE_TYPE_NAMES_PREVAL } from '../constants.mjs';
 
 export function coercials(fdata) {
   group('\n\n\n[coercials] Find cases of $coerce to eliminate');
-  //currentState(fdata, 'coercials'. true, fdata);
+  //currentState(fdata, 'coercials', true, fdata);
   const r = _coercials(fdata);
   groupEnd();
   return r;

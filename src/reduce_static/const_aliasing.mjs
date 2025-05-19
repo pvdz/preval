@@ -27,7 +27,7 @@ import { SYMBOL_FRFR } from '../symbols_preval.mjs';
 
 export function constAliasing(fdata) {
   group('\n\n\n[constAliasing] Searching for two const values that get assigned to each other\n');
-  //currentState(fdata, 'constAliasing'. true, fdata);
+  //currentState(fdata, 'constAliasing', true, fdata);
   const r = _constAliasing(fdata);
   groupEnd();
   return r;

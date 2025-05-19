@@ -39,7 +39,7 @@ import { createFreshVar } from '../bindings.mjs';
 
 export function ifelseifelse(fdata) {
   group('\n\n\n[ifelseifelse] Checking for the ifElseIfElse pattern');
-  //currentState(fdata, 'ifelseifelse'. true, fdata);
+  //currentState(fdata, 'ifelseifelse', true, fdata);
   const r = _ifelseifelse(fdata);
   groupEnd();
   return r;

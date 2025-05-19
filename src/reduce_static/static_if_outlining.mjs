@@ -37,7 +37,7 @@ import { SYMBOL_COERCE } from '../symbols_preval.mjs';
 
 export function staticIfOutlining(fdata) {
   group('\n\n\n[staticIfOutlining] Finding static ifs to outline\n');
-  //currentState(fdata, 'staticIfOutlining'. true, fdata);
+  //currentState(fdata, 'staticIfOutlining', true, fdata);
   const r = _staticIfOutlining(fdata);
   groupEnd();
   return r;

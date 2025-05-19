@@ -22,7 +22,7 @@ import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function staticLets(fdata) {
   group('\n\n\n[staticLets] Checking for let bindings whose value we can predict anyways');
-  //currentState(fdata, 'staticLets'. true, fdata);
+  //currentState(fdata, 'staticLets', true, fdata);
   const r = _staticLets(fdata);
   groupEnd();
   return r;

@@ -21,7 +21,7 @@ import * as AST from '../ast.mjs';
 
 export function dropUnusedReturns(fdata) {
   group('\n\n\n[dropUnusedReturns] Checking for functions that should return undefined but dont yet');
-  //currentState(fdata, 'dropUnusedReturns'. true, fdata);
+  //currentState(fdata, 'dropUnusedReturns', true, fdata);
   const r = _dropUnusedReturns(fdata);
   groupEnd();
   return r;

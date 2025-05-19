@@ -28,7 +28,7 @@ import { isStringType } from '../ast.mjs';
 
 export function unusedAssigns(fdata) {
   group('\n\n\n[unusedAssigns] Finding assignments that can not be read throuh complex tails\n');
-  //currentState(fdata, 'unusedAssigns'. true, fdata);
+  //currentState(fdata, 'unusedAssigns', true, fdata);
   const r = _unusedAssigns(fdata);
   groupEnd();
   return r;

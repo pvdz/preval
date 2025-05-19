@@ -28,7 +28,7 @@ export function implicitThis(fdata, prng, options) {
   const implicitThisIdent = options.implicitThisIdent;
   group('\n\n\n[implicitThis] Looking for implicit `this` cases to replace with another ident\n');
   const ast = fdata.tenkoOutput.ast;
-  //currentState(fdata, 'implicitThis'. true, fdata);
+  //currentState(fdata, 'implicitThis', true, fdata);
   const r = _implicitThis(fdata, implicitThisIdent);
   groupEnd();
   return r;

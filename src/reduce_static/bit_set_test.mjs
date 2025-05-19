@@ -9,7 +9,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function bitSetTests(fdata) {
   group('\n\n\n[bitSetTests] Checking for bit-set `if`-test pattern\n');
-  //currentState(fdata, 'bitSetTests'. true, fdata);
+  //currentState(fdata, 'bitSetTests', true, fdata);
   const r = _bitSetTests(fdata);
   groupEnd();
   return r;

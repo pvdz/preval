@@ -27,7 +27,7 @@ import { symbo } from '../symbols_builtins.mjs';
 
 export function ifTestBool(fdata) {
   group('\n\n\n[ifTestBool] Checking for if-tests that are inverted');
-  //currentState(fdata, 'ifTestBool'. true, fdata);
+  //currentState(fdata, 'ifTestBool', true, fdata);
   const r = _ifTestBool(fdata);
   groupEnd();
   return r;

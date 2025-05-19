@@ -11,7 +11,7 @@ import * as AST from '../ast.mjs';
 
 export function labelScoping(fdata) {
   group('\n\n\n[labelScoping] Finding var decls to get scoped up by labels\n');
-  //currentState(fdata, 'labelScoping'. true, fdata);
+  //currentState(fdata, 'labelScoping', true, fdata);
   const r = _labelScoping(fdata);
   groupEnd();
   return r;

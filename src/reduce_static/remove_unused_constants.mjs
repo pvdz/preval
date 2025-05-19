@@ -7,7 +7,7 @@ import { isArgumentsLength } from '../ast.mjs';
 export function removeUnusedConstants(fdata) {
   group('\n\n\n[removeUnusedConstants] Eliminating unused constants\n');
   let queue = [];
-  //currentState(fdata, 'removeUnusedConstants'. true, fdata);
+  //currentState(fdata, 'removeUnusedConstants', true, fdata);
   const changes = _inlineConstants(fdata, queue);
   groupEnd();
 

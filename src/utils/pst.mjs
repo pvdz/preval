@@ -445,9 +445,10 @@ export function whileStatement(test, body) {
   };
 }
 
-export function yieldExpression(arg) {
+export function yieldExpression(arg, delegate) {
   return {
     type: 'YieldExpression',
+    delegate: !!delegate, // `yield x` vs `yield * x`
     arg, // Simple
   };
 }

@@ -413,6 +413,7 @@ function verifyExpression(node) {
       return;
     }
     case 'YieldExpression': {
+      expect(typeof node.delegate, 'boolean', node);
       verifySimple(node.arg);
       return;
     }

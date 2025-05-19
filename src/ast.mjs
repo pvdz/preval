@@ -1168,6 +1168,19 @@ export function whileStatement(test, body) {
   };
 }
 
+export function yieldExpression(arg, delegate) {
+  if (typeof arg === 'string') arg = identifier(arg);
+  ASSERT(arg, 'expecting some kind of yield arg...', arg, delegate);
+  ASSERT(typeof delegate === 'boolean' || delegate === undefined);
+
+  return {
+    type: 'YieldExpression',
+    delegate: Boolean(delegate),
+    argument: arg,
+    $p: $p(),
+  }
+}
+
 export function zero() {
   return literal(0);
 }

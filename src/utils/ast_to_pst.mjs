@@ -363,7 +363,7 @@ function convert(node) {
       break;
     }
     case 'YieldExpression': {
-      return PST.yieldExpression(convert(node.argument));
+      return PST.yieldExpression(convert(node.argument), node.delegate);
     }
   }
 }

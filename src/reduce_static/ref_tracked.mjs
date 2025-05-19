@@ -5,26 +5,12 @@
 // - [x]: A write that has no reads -> eliminate (keep rhs)
 // - [x]: A binding with only writes can be eliminated? TDZ concerns notwithstanding
 
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  findBodyOffset,
-  tmat, assertNoDupeNodes,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset, tmat, assertNoDupeNodes, currentState } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function refTracked(fdata) {
   group('\n\n\n[refTracked] Looking ref-tracking tricks to apply\n');
+  //currentState(fdata, 'refTracked'. true, fdata);
   const r = _refTracked(fdata);
   groupEnd();
   return r;
@@ -33,6 +19,7 @@ function _refTracked(fdata) {
   let changed = 0;
 
   const queue = [];
+  const queue2 = []; // unwind after first queue. unconditional actions that should not depend on index caches but might break them anyways.
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
 
@@ -371,12 +358,101 @@ function _refTracked(fdata) {
         }
       }
     }));
+
+    if (
+      meta.writes.length > 0 &&
+      meta.reads.length > 0 &&
+      meta.writes[0].kind === 'var' &&
+      AST.isPrimitive(meta.writes[0].parentNode.init)
+    ) {
+      // This one could be a trick on its own but: when a single scope binding is only used inside one inner block scope
+      // and the init is non-observable, the binding should move to be inside that block scope too.
+      // `let x = 1; if (y) { while (true) { x = 2; ...; } $(x); }`
+      // ->
+      // `if (y) { let x = 1; while (true) { x = 2; ...; } $(x); }`
+      // Less trivial example covered by this rule at the time of writing: tests/cases/ref_tracking/inside_use_promo_complex.md
+
+      const write = meta.writes[0];
+      if (
+        meta.reads.every(read => read.blockChain.startsWith(write.blockChain) && write.blockChain < read.blockChain) &&
+        (meta.writes.length === 1 || meta.writes.every((w,i) => i===0|| (w.blockChain.startsWith(write.blockChain) && write.blockChain < w.blockChain)))
+      ) {
+        // This is a single scoped variable and all reads all subsequent writes occur in a block
+        // nested to the var decl block. Now confirm that they all share the same parent block.
+        const read0 = meta.reads[0];
+        // blockChains are like `23,45,32,` so provided the read was longer than the write, there must be
+        // something and not just a comma. we can split by comma and take the first part which yields a
+        // $p.pid as string. That's the block pid we'll confirm and search for.
+        const pid = read0.blockChain.slice(write.blockChain.length).split(',')[0];
+        if (!pid) {
+          console.log([write.blockChain, read0.blockChain, pid])
+        }
+        ASSERT(pid, 'pid should always be a pid because write.blockChain was less than the read');
+
+        const pref = write.blockChain + pid + ',';
+        // vlog('blockChains:', meta.writes.map(w=>w.blockChain), meta.reads.map(r=>r.blockChain), ', pref to test:', pref);
+        if (
+          meta.reads.every(read => read.blockChain.startsWith(pref)) &&
+          (meta.writes.length === 1 || meta.writes.every((w,i) => i===0|| w.blockChain.startsWith(pref)))
+        ) {
+          // Okay, every ref other than the decl was a child of the node with pid in pref
+          // Find the node. It must be the block of an `if` branch, otherwise we can't continue.
+          // I don't think this is safe for loops. I'm just not sure about try/catch here.
+          // The statement should be found starting at the write and it should be in the block of the write.
+          // If we miss, we bail.
+
+          const body = write.blockBody;
+          for (let i=write.blockIndex+1; i<body.length; ++i) {
+            const next = body[i];
+            if (next.type === 'IfStatement') {
+              // Ok this check is a bit ugly but blocks do not have their own blockChain ID cached so we must construct it... (maybe we can cache that)
+              const isCons = next.consequent.$p.blockChain + next.consequent.$p.pid + ',' === pref;
+              const isAlt = !isCons && (next.alternate.$p.blockChain + -next.alternate.$p + ',' === pref);
+              if (isCons || isAlt) {
+                vlog('It should be safe to move the var decl for', varName, 'inside the block... queued the transform');
+
+                queue.push({
+                  index: write.blockIndex,
+                  func: () => {
+                    rule('When a single scope var with prim init is only used inside the same block, move it inside that block');
+                    example('const x = 1; if (y) { $(x); }', 'if (y) { const x = 1; $(x); }');
+                    before(write.blockBody[write.blockIndex]);
+                    before(next);
+
+                    const varDecl = write.blockBody[write.blockIndex];
+                    write.blockBody.splice(write.blockIndex, 1);
+                    const targetBlock = isCons ? next.consequent.body : next.alternate.body;
+
+                    // We can safely remove the write. We can not yet safely inject it into the block since htat
+                    // would destroy all index caches, so we do this in a second step.
+                    queue2.push(() => {
+                      targetBlock.unshift(varDecl);
+                    });
+
+                    targetBlock.unshift(varDecl); // for debugging. it's fine.
+                    after(next);
+                    // currentState(fdata, 'okwot', true, fdata);
+                    targetBlock.shift(varDecl); // was only for debugging.
+                    // stopmaar
+                  }
+                });
+
+                ++changed;
+                return;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   if (queue.length) {
     // By index, high to low. This way it should not be possible to cause reference problems by changing index
     queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
     queue.forEach(({ func }) => func());
+    // Now call all funcs in the second queue. They may destroy index caches but should not depend on them.
+    queue2.forEach(func => func());
   }
   if (changed) {
     log('Ref-tracking tricks applied:', changed, '. Restarting from phase1 to fix up read/write registry.');

@@ -26,13 +26,13 @@ switch (1) {
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
-if (tmpClusterSSA_a) {
+const a /*:unknown*/ = $(tmpCalleeParam);
+if (a) {
   $(2);
   $(`fail1`);
   $(`fail2`);
 } else {
-  $(tmpClusterSSA_a);
+  $(a);
   $(`fail1`);
   $(`fail2`);
 }
@@ -43,13 +43,13 @@ if (tmpClusterSSA_a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $($(1));
-if (tmpClusterSSA_a) {
+const a = $($(1));
+if (a) {
   $(2);
   $(`fail1`);
   $(`fail2`);
 } else {
-  $(tmpClusterSSA_a);
+  $(a);
   $(`fail1`);
   $(`fail2`);
 }

@@ -23,18 +23,18 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam /*:object*/ = { a: 1, b: 2 };
   const tmpAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
-  let tmpClusterSSA_a /*:unknown*/ = tmpAssignObjPatternRhs.a;
+  let a /*:unknown*/ = tmpAssignObjPatternRhs.a;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 /*:object*/ = { a: 1, b: 2 };
       const tmpAssignObjPatternRhs$1 /*:unknown*/ = $(tmpCalleeParam$1);
-      tmpClusterSSA_a = tmpAssignObjPatternRhs$1.a;
+      a = tmpAssignObjPatternRhs$1.a;
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   $(999);
 }
@@ -46,15 +46,15 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  let tmpClusterSSA_a = $({ a: 1, b: 2 }).a;
+  let a = $({ a: 1, b: 2 }).a;
   while (true) {
     if ($(1)) {
-      tmpClusterSSA_a = $({ a: 1, b: 2 }).a;
+      a = $({ a: 1, b: 2 }).a;
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a);
+  $(a);
 } else {
   $(999);
 }

@@ -21,8 +21,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
-const tmpClusterSSA_p /*:unknown*/ = $(tmpCalleeParam);
-if (tmpClusterSSA_p) {
+const p /*:unknown*/ = $(tmpCalleeParam);
+if (p) {
   $(undefined);
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(2);

@@ -41,7 +41,6 @@ eval( "console.log('boo')" );
 ## Todos triggered
 
 
-- (todo) Support this node type in isFree: NewExpression
 - (todo) can we always safely clone ident refs in this case?
 - (todo) objects in isFree check
 - (todo) support array reads statement type ExpressionStatement

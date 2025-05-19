@@ -23,18 +23,18 @@ $(a, b);
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
-  let tmpClusterSSA_b /*:number*/ = 2;
+  let b /*:number*/ = 2;
   let tmpClusterSSA_a /*:unknown*/ = 2;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      tmpClusterSSA_b = tmpClusterSSA_b + 1;
-      tmpClusterSSA_a = tmpClusterSSA_b;
+      b = b + 1;
+      tmpClusterSSA_a = b;
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a, tmpClusterSSA_b);
+  $(tmpClusterSSA_a, b);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, 1);
@@ -47,17 +47,17 @@ if (tmpIfTest) {
 
 `````js filename=intro
 if ($(1)) {
-  let tmpClusterSSA_b = 2;
+  let b = 2;
   let tmpClusterSSA_a = 2;
   while (true) {
     if ($(1)) {
-      tmpClusterSSA_b = tmpClusterSSA_b + 1;
-      tmpClusterSSA_a = tmpClusterSSA_b;
+      b = b + 1;
+      tmpClusterSSA_a = b;
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a, tmpClusterSSA_b);
+  $(tmpClusterSSA_a, b);
 } else {
   $({ a: 999, b: 1000 }, 1);
 }

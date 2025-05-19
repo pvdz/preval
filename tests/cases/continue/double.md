@@ -892,7 +892,7 @@ $( "woohoo" );
 ## Todos triggered
 
 
-None
+- (todo) Support this node type in isFree: LabeledStatement
 
 
 ## Globals

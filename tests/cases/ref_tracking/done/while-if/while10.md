@@ -126,8 +126,8 @@ $('end', x);
 
 
 `````js filename=intro
-let x /*:number*/ = 1;
 if ($) {
+  let x /*:number*/ = 1;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $(x);
     if ($) {
@@ -146,8 +146,8 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
-let x = 1;
 if ($) {
+  let x = 1;
   while (true) {
     $(x);
     if (!$) {
@@ -165,8 +165,8 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-let a = 1;
 if ($) {
+  let a = 1;
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     $( a );
     if ($) {

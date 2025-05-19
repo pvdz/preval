@@ -38,11 +38,11 @@ $(wat);
 
 `````js filename=intro
 const s /*:unknown*/ = $(10);
-let count /*:boolean*/ = true;
 $(`before`);
 const wat /*:number*/ = s | 10;
 const chk /*:unknown*/ = $(true);
 if (chk) {
+  let count /*:boolean*/ = true;
   $(`inside`);
   let tmpClusterSSA_wat /*:number*/ = wat | 10;
   const chk$1 /*:unknown*/ = $(true);
@@ -75,10 +75,10 @@ if (chk) {
 
 `````js filename=intro
 const s = $(10);
-let count = true;
 $(`before`);
 const wat = s | 10;
 if ($(true)) {
+  let count = true;
   $(`inside`);
   let tmpClusterSSA_wat = wat | 10;
   if (!$(true)) {
@@ -107,22 +107,22 @@ With rename=true
 
 `````js filename=intro
 const a = $( 10 );
-let b = true;
 $( "before" );
-const c = a | 10;
-const d = $( true );
-if (d) {
+const b = a | 10;
+const c = $( true );
+if (c) {
+  let d = true;
   $( "inside" );
-  let e = c | 10;
+  let e = b | 10;
   const f = $( true );
   if (f) {
 
   }
   else {
-    b = false;
+    d = false;
   }
   while ($LOOP_UNROLL_10) {
-    if (b) {
+    if (d) {
       $( "inside" );
       e = e | 10;
       const g = $( true );
@@ -130,7 +130,7 @@ if (d) {
 
       }
       else {
-        b = false;
+        d = false;
       }
     }
     else {
@@ -140,7 +140,7 @@ if (d) {
   $( e );
 }
 else {
-  $( c );
+  $( b );
 }
 `````
 

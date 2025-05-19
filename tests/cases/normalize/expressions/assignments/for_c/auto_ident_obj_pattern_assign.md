@@ -26,22 +26,22 @@ const tmpIfTest /*:unknown*/ = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(3);
   const tmpObjLitVal$1 /*:unknown*/ = $(4);
-  let tmpClusterSSA_x /*:unknown*/ = tmpObjLitVal;
-  let tmpClusterSSA_y /*:unknown*/ = tmpObjLitVal$1;
+  let x /*:unknown*/ = tmpObjLitVal;
+  let y /*:unknown*/ = tmpObjLitVal$1;
   let tmpClusterSSA_a /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpObjLitVal$2 /*:unknown*/ = $(3);
       const tmpObjLitVal$4 /*:unknown*/ = $(4);
-      tmpClusterSSA_x = tmpObjLitVal$2;
-      tmpClusterSSA_y = tmpObjLitVal$4;
+      x = tmpObjLitVal$2;
+      y = tmpObjLitVal$4;
       tmpClusterSSA_a = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
+  $(tmpClusterSSA_a, x, y);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, 1, 2);
@@ -56,21 +56,21 @@ if (tmpIfTest) {
 if ($(1)) {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
-  let tmpClusterSSA_x = tmpObjLitVal;
-  let tmpClusterSSA_y = tmpObjLitVal$1;
+  let x = tmpObjLitVal;
+  let y = tmpObjLitVal$1;
   let tmpClusterSSA_a = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   while (true) {
     if ($(1)) {
       const tmpObjLitVal$2 = $(3);
       const tmpObjLitVal$4 = $(4);
-      tmpClusterSSA_x = tmpObjLitVal$2;
-      tmpClusterSSA_y = tmpObjLitVal$4;
+      x = tmpObjLitVal$2;
+      y = tmpObjLitVal$4;
       tmpClusterSSA_a = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
     } else {
       break;
     }
   }
-  $(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
+  $(tmpClusterSSA_a, x, y);
 } else {
   $({ a: 999, b: 1000 }, 1, 2);
 }

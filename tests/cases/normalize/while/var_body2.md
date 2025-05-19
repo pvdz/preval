@@ -18,9 +18,9 @@ $(x);
 
 
 `````js filename=intro
-let x /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
+  let x /*:unknown*/ = undefined;
   while ($LOOP_UNROLL_10) {
     x = $(10);
     const tmpIfTest$1 /*:unknown*/ = $(true);
@@ -40,8 +40,8 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-let x = undefined;
 if ($(true)) {
+  let x = undefined;
   while (true) {
     x = $(10);
     if (!$(true)) {
@@ -59,11 +59,11 @@ if ($(true)) {
 With rename=true
 
 `````js filename=intro
-let a = undefined;
-const b = $( true );
-if (b) {
+const a = $( true );
+if (a) {
+  let b = undefined;
   while ($LOOP_UNROLL_10) {
-    a = $( 10 );
+    b = $( 10 );
     const c = $( true );
     if (c) {
 
@@ -72,7 +72,7 @@ if (b) {
       break;
     }
   }
-  $( a );
+  $( b );
 }
 else {
   $( undefined );

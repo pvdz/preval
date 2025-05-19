@@ -252,7 +252,6 @@ $( l );
 
 
 - (todo) Support this ident in isFree CallExpression: $number_toString
-- (todo) Support this node type in isFree: NewExpression
 - (todo) can we always safely clone ident refs in this case?
 - (todo) objects in isFree check
 - (todo) support array reads statement type ExpressionStatement

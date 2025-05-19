@@ -60,7 +60,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 - (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) can we support this const aliasing blocking statement? WhileStatement
-- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

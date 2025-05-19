@@ -26,9 +26,9 @@ switch (1) {
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(0);
-const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
+const a /*:unknown*/ = $(tmpCalleeParam);
+if (a) {
+  $(a);
   $(`fail1`);
   $(`fail2`);
 } else {
@@ -43,9 +43,9 @@ if (tmpClusterSSA_a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClusterSSA_a = $($(0));
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
+const a = $($(0));
+if (a) {
+  $(a);
   $(`fail1`);
   $(`fail2`);
 } else {

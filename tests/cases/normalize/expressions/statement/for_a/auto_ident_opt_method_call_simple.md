@@ -85,7 +85,6 @@ $( d );
 
 
 - (todo) - at least one of the frfr args was not isFree, bailing
-- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

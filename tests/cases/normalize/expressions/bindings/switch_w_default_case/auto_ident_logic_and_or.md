@@ -26,20 +26,20 @@ switch (1) {
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(1);
-let tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam);
-if (tmpClusterSSA_a) {
+let a /*:unknown*/ = $(tmpCalleeParam);
+if (a) {
   const tmpCalleeParam$1 /*:unknown*/ = $(1);
-  tmpClusterSSA_a = $(tmpCalleeParam$1);
+  a = $(tmpCalleeParam$1);
 } else {
 }
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
+if (a) {
+  $(a);
   $(`fail1`);
   $(`fail2`);
 } else {
   const tmpCalleeParam$3 /*:unknown*/ = $(2);
-  const tmpClusterSSA_a$1 /*:unknown*/ = $(tmpCalleeParam$3);
-  $(tmpClusterSSA_a$1);
+  const tmpClusterSSA_a /*:unknown*/ = $(tmpCalleeParam$3);
+  $(tmpClusterSSA_a);
   $(`fail1`);
   $(`fail2`);
 }
@@ -50,12 +50,12 @@ if (tmpClusterSSA_a) {
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpClusterSSA_a = $($(1));
-if (tmpClusterSSA_a) {
-  tmpClusterSSA_a = $($(1));
+let a = $($(1));
+if (a) {
+  a = $($(1));
 }
-if (tmpClusterSSA_a) {
-  $(tmpClusterSSA_a);
+if (a) {
+  $(a);
   $(`fail1`);
   $(`fail2`);
 } else {

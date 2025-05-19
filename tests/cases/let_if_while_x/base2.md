@@ -38,10 +38,10 @@ $(x);
 
 
 `````js filename=intro
-let flag /*:boolean*/ = true;
 $(`before`);
 const x /*:unknown*/ = $(`what`);
 if (x) {
+  let flag /*:boolean*/ = true;
   $(`inner`, 0);
   let tmpClusterSSA_n /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
@@ -70,10 +70,10 @@ if (x) {
 (This ought to be the final result)
 
 `````js filename=intro
-let flag = true;
 $(`before`);
 const x = $(`what`);
 if (x) {
+  let flag = true;
   $(`inner`, 0);
   let tmpClusterSSA_n = 1;
   while (true) {
@@ -100,19 +100,19 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = true;
 $( "before" );
-const b = $( "what" );
-if (b) {
+const a = $( "what" );
+if (a) {
+  let b = true;
   $( "inner", 0 );
   let c = 1;
   while ($LOOP_UNROLL_10) {
-    if (a) {
+    if (b) {
       $( "inner", c );
       c = c + 1;
       const d = c >= 5;
       if (d) {
-        a = false;
+        b = false;
       }
     }
     else {
@@ -120,11 +120,11 @@ if (b) {
     }
   }
   $( "after" );
-  $( b );
+  $( a );
 }
 else {
   $( "after" );
-  $( b );
+  $( a );
 }
 `````
 

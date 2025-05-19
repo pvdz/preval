@@ -21,9 +21,9 @@ while (tmpLoopRetCode) {
 
 
 `````js filename=intro
-let tmpLoopRetCode /*:boolean*/ = true;
 if ($) {
 } else {
+  let tmpLoopRetCode /*:boolean*/ = true;
   while ($LOOP_UNROLL_10) {
     if ($) {
       tmpLoopRetCode = false;
@@ -42,8 +42,8 @@ if ($) {
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpLoopRetCode = true;
 if (!$) {
+  let tmpLoopRetCode = true;
   while (true) {
     if ($) {
       tmpLoopRetCode = false;
@@ -60,11 +60,11 @@ if (!$) {
 With rename=true
 
 `````js filename=intro
-let a = true;
 if ($) {
 
 }
 else {
+  let a = true;
   while ($LOOP_UNROLL_10) {
     if ($) {
       a = false;

@@ -26,11 +26,11 @@ while (tmp) {
 
 
 `````js filename=intro
-let tmp /*:boolean*/ = true;
 const test /*:unknown*/ = $(`first`);
 $(`second`);
 if (test) {
 } else {
+  let tmp /*:boolean*/ = true;
   $(`third`);
   while ($LOOP_UNROLL_10) {
     const test$1 /*:unknown*/ = $(`first`);
@@ -53,10 +53,10 @@ if (test) {
 (This ought to be the final result)
 
 `````js filename=intro
-let tmp = true;
 const test = $(`first`);
 $(`second`);
 if (!test) {
+  let tmp = true;
   $(`third`);
   while (true) {
     const test$1 = $(`first`);
@@ -78,24 +78,24 @@ if (!test) {
 With rename=true
 
 `````js filename=intro
-let a = true;
-const b = $( "first" );
+const a = $( "first" );
 $( "second" );
-if (b) {
+if (a) {
 
 }
 else {
+  let b = true;
   $( "third" );
   while ($LOOP_UNROLL_10) {
     const c = $( "first" );
     $( "second" );
     if (c) {
-      a = false;
+      b = false;
     }
     else {
       $( "third" );
     }
-    if (a) {
+    if (b) {
 
     }
     else {

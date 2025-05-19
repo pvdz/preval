@@ -42,11 +42,11 @@ f();
 
 `````js filename=intro
 $(1);
-let tmpLoopRetCode /*:boolean*/ = true;
 const x /*:unknown*/ = $(2);
 $(x);
 if ($) {
 } else {
+  let tmpLoopRetCode /*:boolean*/ = true;
   while ($LOOP_UNROLL_10) {
     const x$1 /*:unknown*/ = $(2);
     $(x$1);
@@ -68,9 +68,9 @@ if ($) {
 
 `````js filename=intro
 $(1);
-let tmpLoopRetCode = true;
 $($(2));
 if (!$) {
+  let tmpLoopRetCode = true;
   while (true) {
     $($(2));
     if ($) {
@@ -89,20 +89,20 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-let a = true;
-const b = $( 2 );
-$( b );
+const a = $( 2 );
+$( a );
 if ($) {
 
 }
 else {
+  let b = true;
   while ($LOOP_UNROLL_10) {
     const c = $( 2 );
     $( c );
     if ($) {
-      a = false;
+      b = false;
     }
-    if (a) {
+    if (b) {
 
     }
     else {

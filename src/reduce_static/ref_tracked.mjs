@@ -395,7 +395,7 @@ function _refTracked(fdata) {
           meta.reads.every(read => read.blockChain.startsWith(pref)) &&
           (meta.writes.length === 1 || meta.writes.every((w,i) => i===0|| w.blockChain.startsWith(pref)))
         ) {
-          // Okay, every ref other than the decl was a child of the node with pid in pref
+          vlog('Every ref other than the decl was a child of the node with pid in pref, name=', varName);
           // Find the node. It must be the block of an `if` branch, otherwise we can't continue.
           // I don't think this is safe for loops. I'm just not sure about try/catch here.
           // The statement should be found starting at the write and it should be in the block of the write.
@@ -405,9 +405,10 @@ function _refTracked(fdata) {
           for (let i=write.blockIndex+1; i<body.length; ++i) {
             const next = body[i];
             if (next.type === 'IfStatement') {
+              // vlog('next:', next.type, [next.consequent.$p.blockChain + next.consequent.$p.pid + ',', next.alternate.$p.blockChain + -next.alternate.$p.pid + ',', pref])
               // Ok this check is a bit ugly but blocks do not have their own blockChain ID cached so we must construct it... (maybe we can cache that)
               const isCons = next.consequent.$p.blockChain + next.consequent.$p.pid + ',' === pref;
-              const isAlt = !isCons && (next.alternate.$p.blockChain + -next.alternate.$p + ',' === pref);
+              const isAlt = !isCons && (next.alternate.$p.blockChain + next.alternate.$p.pid + ',' === pref);
               if (isCons || isAlt) {
                 vlog('It should be safe to move the var decl for', varName, 'inside the block... queued the transform');
 

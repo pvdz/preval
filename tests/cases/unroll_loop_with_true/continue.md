@@ -30,11 +30,11 @@ while (true) {
 
 
 `````js filename=intro
-let tmpClusterSSA_i$2 /*:number*/ = -1;
 const test$2 /*:unknown*/ = $(`first`);
 $(`second`);
 if (test$2) {
 } else {
+  let tmpClusterSSA_i$2 /*:number*/ = -1;
   $(`third`);
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpPostUpdArgIdent$1 /*:unknown*/ = tmpClusterSSA_i$2;
@@ -59,10 +59,10 @@ if (test$2) {
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpClusterSSA_i$2 = -1;
 const test$2 = $(`first`);
 $(`second`);
 if (!test$2) {
+  let tmpClusterSSA_i$2 = -1;
   $(`third`);
   while (true) {
     const tmpPostUpdArgIdent$1 = tmpClusterSSA_i$2;
@@ -85,17 +85,17 @@ if (!test$2) {
 With rename=true
 
 `````js filename=intro
-let a = -1;
-const b = $( "first" );
+const a = $( "first" );
 $( "second" );
-if (b) {
+if (a) {
 
 }
 else {
+  let b = -1;
   $( "third" );
   while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-    const c = a;
-    a = a - 1;
+    const c = b;
+    b = b - 1;
     const d = c > 0;
     if (d) {
 

@@ -39,15 +39,15 @@ if ($tmpLoopUnrollCheck) {
 `````js filename=intro
 if ($) {
 } else {
-  let tmpClusterSSA_tmpLoopRetCode /*:boolean*/ = true;
+  let tmpLoopRetCode /*:boolean*/ = true;
   if ($) {
-    tmpClusterSSA_tmpLoopRetCode = false;
+    tmpLoopRetCode = false;
   } else {
   }
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpLoopRetCode) {
+    if (tmpLoopRetCode) {
       if ($) {
-        tmpClusterSSA_tmpLoopRetCode = false;
+        tmpLoopRetCode = false;
       } else {
       }
     } else {
@@ -63,14 +63,14 @@ if ($) {
 
 `````js filename=intro
 if (!$) {
-  let tmpClusterSSA_tmpLoopRetCode = true;
+  let tmpLoopRetCode = true;
   if ($) {
-    tmpClusterSSA_tmpLoopRetCode = false;
+    tmpLoopRetCode = false;
   }
   while (true) {
-    if (tmpClusterSSA_tmpLoopRetCode) {
+    if (tmpLoopRetCode) {
       if ($) {
-        tmpClusterSSA_tmpLoopRetCode = false;
+        tmpLoopRetCode = false;
       }
     } else {
       break;

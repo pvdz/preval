@@ -18,7 +18,7 @@ while (((x = x * 'str'), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x)))
 
 
 `````js filename=intro
-let tmpClusterSSA_x /*:unknown*/ = NaN.x;
+let tmpClusterSSA_x /*:unknown*/ = $Number_prototype.x;
 let tmpIfTest /*:unknown*/ = undefined;
 const tmpIfTest$1 /*:boolean*/ = tmpClusterSSA_x == null;
 if (tmpIfTest$1) {
@@ -51,7 +51,7 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-let tmpClusterSSA_x = NaN.x;
+let tmpClusterSSA_x = $Number_prototype.x;
 let tmpIfTest = undefined;
 if (!(tmpClusterSSA_x == null)) {
   tmpIfTest = tmpClusterSSA_x.x(tmpClusterSSA_x);
@@ -76,7 +76,7 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-let a = NaN.x;
+let a = $Number_prototype.x;
 let b = undefined;
 const c = a == null;
 if (c) {

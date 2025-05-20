@@ -10,6 +10,7 @@ import { createFreshVar, } from '../bindings.mjs';
 import globals, { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
 import { addLabelReference, createFreshLabelStatement, removeLabelReference } from '../labels.mjs';
+import { isBoolean } from '../ast.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -4338,7 +4339,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               case symbo('number', 'toString'): {
                 // Note: This can only be eliminated if we know that the first arg is missing or between 2 and 36, inclusive.
                 //       The function will throw for OOB or NaN values.
-                if (isDotcall && AST.isNumberValueNode(node.arguments[1]) && (!args[0] || args[0].type !== 'SpreadElement')) {
+                if (isDotcall && AST.isNumberValueNode(node.arguments[1], true) && (!args[0] || args[0].type !== 'SpreadElement')) {
                   if (!args[0] || (AST.isPrimitive(args[0]) && AST.getPrimitiveValue(args[0]) >= 2 && AST.getPrimitiveValue(args[0]) <= 36)) {
                     // This should be safe to eliminate. A statement that calls .toString() on a number value.
                     // - `100..toString()`
@@ -4367,7 +4368,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 break;
               }
               case symbo('number', 'valueOf'): {
-                if (isDotcall && AST.isNumberValueNode(node.arguments[1])) {
+                if (isDotcall && AST.isNumberValueNode(node.arguments[1], true)) {
                   // This should be safe to eliminate. A statement that calls .valueOf() on a number value.
                   // - `100..valueOf()`
                   // Note that this throws if the context is not a number. No coercion happens, just throws.
@@ -6764,6 +6765,49 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             assertNoDupeNodes(body, 'body');
             return true;
           }
+        }
+
+        if (isBoolean(node.object)) {
+          rule('Accessing a property on a bool is accessing it on Boolean.prototype, regardless of the property');
+          example('true.foo', 'Boolean.prototype.foo');
+          example('false.foo', `${symbo('Boolean', 'prototype')}.foo`);
+          example('true[foo]', 'Boolean.prototype[foo]');
+          before(body[i]);
+
+          node.object = AST.identifier(symbo('String', 'prototype'));
+
+          after(body[i]);
+          assertNoDupeNodes(body, 'body');
+          return true;
+        }
+
+        if (AST.isNumberValueNode(node.object, true)) {
+          rule('Accessing a property on a number literal is accessing it on Number.prototype, regardless of the property');
+          example('1..foo', 'Number.prototype.foo');
+          example('1..foo', `${symbo('Number', 'prototype')}.foo`);
+          example('1[foo]', 'Number.prototype[foo]');
+          before(body[i]);
+
+          node.object = AST.identifier(symbo('Number', 'prototype'));
+
+          after(body[i]);
+          assertNoDupeNodes(body, 'body');
+          return true;
+        }
+
+        // Note: have to bail on dynamic access because .length and any integer is an instance property.
+        if (!node.computed && node.property.name !== 'length' && node.object.type === 'TemplateLiteral') {
+          // Note: doesn't matter if it has dynamic expressions: it's always going to yield a string value
+          rule('Accessing a property on a string is accessing it on String.prototype, regardless of the property');
+          example('"abc".foo', 'String.prototype.foo');
+          example('"abc".foo', `${symbo('String', 'prototype')}.foo`);
+          before(body[i]);
+
+          node.object = AST.identifier(symbo('String', 'prototype'));
+
+          after(body[i]);
+          assertNoDupeNodes(body, 'body');
+          return true;
         }
 
         if (node.computed && AST.isComplexNode(node.property)) {

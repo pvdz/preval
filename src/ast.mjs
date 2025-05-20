@@ -1201,26 +1201,35 @@ export function isFalse(node) {
   ASSERT(typeof node === 'object');
   return node.type === 'Literal' && node.value === false;
 }
-export function isNumberLiteral(node) {
+export function isNumberLiteral(node, includeNegativeValues = false) {
   ASSERT(typeof node === 'object');
+  // Technically, a negative number is a unary expression with `-` operator. But it's not a number node. Annoying.
+  if (includeNegativeValues && node.type === 'UnaryExpression' && node.operator === '-') {
+    // Ignore `-(-x)`, this wouldn't appear in normalized code.
+    return isNumberLiteral(node.argument);
+  }
   return node.type === 'Literal' && typeof node.value === 'number';
 }
-export function isNumberValueNode(node) {
+export function isNumberValueNode(node, includeNegativeValues = false) {
   // We could include PI and all those constants but honestly it's just going to be
   // a footgun (precision loss) so let's not. Pretty rare, anyways.
-  return isNumberLiteral(node) || (
+  if (includeNegativeValues && node.type === 'UnaryExpression' && node.operator === '-') {
+    // Ignore `-(-x)`, this wouldn't appear in normalized code.
+    return isNumberValueNode(node.argument);
+  }
+  return isNumberLiteral(node, includeNegativeValues) || (
     node.type === 'Identifier' &&
     [
-    'NaN',
-    'Infinity',
-    // I think we can include our preval symbols for Number properties as well...
-    symbo('Number', 'NaN'),
-    symbo('Number', 'NEGATIVE_INFINITY'),
-    symbo('Number', 'POSITIVE_INFINITY'),
-    symbo('Number', 'MAX_SAFE_INTEGER'),
-    symbo('Number', 'MIN_SAFE_INTEGER'),
-    // I don't want to include epsilon and unsafe numbers... risk of precision loss is too great. Same for the Math constants.
-  ].includes(node.name)
+      'NaN',
+      'Infinity',
+      // I think we can include our preval symbols for Number properties as well...
+      symbo('Number', 'NaN'),
+      symbo('Number', 'NEGATIVE_INFINITY'),
+      symbo('Number', 'POSITIVE_INFINITY'),
+      symbo('Number', 'MAX_SAFE_INTEGER'),
+      symbo('Number', 'MIN_SAFE_INTEGER'),
+      // I don't want to include epsilon and unsafe numbers... risk of precision loss is too great. Same for the Math constants.
+    ].includes(node.name)
   );
 }
 export function isStringLiteral(node, allowLiteral = false) {

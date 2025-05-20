@@ -19,12 +19,12 @@ $(c);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $spy(`a`);
-if (a) {
+const c /*:unknown*/ = $spy(`a`);
+if (c) {
   $(`b`);
   throw `Preval: Assignment to constant variable: \`a = tmpNestedComplexRhs;\``;
 } else {
-  $(a);
+  $(c);
 }
 `````
 
@@ -33,12 +33,12 @@ if (a) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $spy(`a`);
-if (a) {
+const c = $spy(`a`);
+if (c) {
   $(`b`);
   throw `Preval: Assignment to constant variable: \`a = tmpNestedComplexRhs;\``;
 } else {
-  $(a);
+  $(c);
 }
 `````
 

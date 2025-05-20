@@ -18,8 +18,8 @@ $(a??b.c??d);
 
 
 `````js filename=intro
-const a /*:object*/ = {};
-$(a);
+const tmpCalleeParam /*:object*/ = {};
+$(tmpCalleeParam);
 `````
 
 

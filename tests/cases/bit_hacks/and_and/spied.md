@@ -21,8 +21,8 @@ $(c);
 
 `````js filename=intro
 const a /*:unknown*/ = $spy();
-const b /*:number*/ = a & 32;
-$(b);
+const c /*:number*/ = a & 32;
+$(c);
 `````
 
 

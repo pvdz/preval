@@ -28,8 +28,8 @@ $(3);
 const tmpObjLitVal$3 /*:unknown*/ = $();
 const tmpObjLitVal$1 /*:object*/ = { c: tmpObjLitVal$3 };
 const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
-const obj /*:object*/ = { a: tmpObjLitVal };
-const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(obj);
+const tmpCalleeParam /*:object*/ = { a: tmpObjLitVal };
+const tmpClusterSSA_tmpReturnArg$1 /*:unknown*/ = $(tmpCalleeParam);
 $(tmpClusterSSA_tmpReturnArg$1);
 `````
 

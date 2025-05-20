@@ -19,8 +19,8 @@ $('out:', y);
 
 
 `````js filename=intro
-const tmpBinBothRhs /*:string*/ = $coerce($, `string`);
-const y /*:boolean*/ = !tmpBinBothRhs;
+const x /*:string*/ = $coerce($, `string`);
+const y /*:boolean*/ = !x;
 $(`out:`, y);
 `````
 
@@ -29,8 +29,8 @@ $(`out:`, y);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs = $coerce($, `string`);
-$(`out:`, !tmpBinBothRhs);
+const x = $coerce($, `string`);
+$(`out:`, !x);
 `````
 
 

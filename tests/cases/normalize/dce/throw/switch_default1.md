@@ -27,9 +27,9 @@ $(f());
 
 
 `````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+const tmpBinBothLhs /*:unknown*/ = $(1, `disc`);
 const tmpBinBothRhs /*:unknown*/ = $(0);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`keep, do not eval`);
   throw `wrong exig`;

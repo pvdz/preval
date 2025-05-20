@@ -21,9 +21,9 @@ else $('b');
 
 
 `````js filename=intro
-const x /*:unknown*/ = $(1);
+const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
-const a /*:number*/ = x & tmpBinBothRhs;
+const a /*:number*/ = tmpBinBothLhs & tmpBinBothRhs;
 const atest /*:boolean*/ = a === 0;
 if (atest) {
   $(`a`);
@@ -37,8 +37,8 @@ if (atest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const x = $(1);
-if ((x & $(2)) === 0) {
+const tmpBinBothLhs = $(1);
+if ((tmpBinBothLhs & $(2)) === 0) {
   $(`a`);
 } else {
   $(`b`);

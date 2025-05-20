@@ -20,11 +20,11 @@ $(a, b, c);
 
 `````js filename=intro
 const tmpNestedAssignObj /*:unknown*/ = $(3);
-const tmpNestedAssignPropRhs /*:unknown*/ = $(4);
-tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-const a /*:unknown*/ = tmpNestedAssignPropRhs;
+const tmpNestedPropAssignRhs /*:unknown*/ = $(4);
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+const a /*:unknown*/ = tmpNestedPropAssignRhs;
 export { a };
-$(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+$(tmpNestedPropAssignRhs, tmpNestedPropAssignRhs, 3);
 `````
 
 
@@ -33,11 +33,11 @@ $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
 
 `````js filename=intro
 const tmpNestedAssignObj = $(3);
-const tmpNestedAssignPropRhs = $(4);
-tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-const a = tmpNestedAssignPropRhs;
+const tmpNestedPropAssignRhs = $(4);
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+const a = tmpNestedPropAssignRhs;
 export { a };
-$(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+$(tmpNestedPropAssignRhs, tmpNestedPropAssignRhs, 3);
 `````
 
 

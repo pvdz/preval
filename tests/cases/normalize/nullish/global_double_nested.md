@@ -21,8 +21,8 @@ $(obj??a??b??c);
 const tmpObjLitVal$3 /*:unknown*/ = $();
 const tmpObjLitVal$1 /*:object*/ = { c: tmpObjLitVal$3 };
 const tmpObjLitVal /*:object*/ = { b: tmpObjLitVal$1 };
-const obj /*:object*/ = { a: tmpObjLitVal };
-$(obj);
+const tmpCalleeParam /*:object*/ = { a: tmpObjLitVal };
+$(tmpCalleeParam);
 `````
 
 

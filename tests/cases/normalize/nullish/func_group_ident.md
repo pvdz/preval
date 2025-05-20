@@ -22,8 +22,8 @@ $(f());
 
 
 `````js filename=intro
-const a /*:object*/ = { x: 1 };
-const tmpReturnArg /*:unknown*/ = $(a);
+const y /*:object*/ = { x: 1 };
+const tmpReturnArg /*:unknown*/ = $(y);
 $(tmpReturnArg);
 `````
 

@@ -22,11 +22,11 @@ $(a);
 
 `````js filename=intro
 $(1);
-const f /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-$(f);
+$(a);
 `````
 
 

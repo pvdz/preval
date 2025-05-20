@@ -28,8 +28,8 @@ if (tmpIfTest$1) {
 } else {
   const tmpObjLitVal$1 /*:object*/ = { e: $ };
   const a /*:unknown*/ = $dotCall($, tmpObjLitVal$1, `e`, 1);
-  const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-  const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  const tmpStringConcatL /*:string*/ = $coerce(a, `string`);
+  const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
   $(tmpCalleeParam);
   $(a);
 }

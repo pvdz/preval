@@ -25,14 +25,14 @@ $(f($(9)));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(7);
-const x$5 /*:number*/ = tmpCalleeParam$1 & 8;
-$(x$5);
+const tmpCalleeParam /*:number*/ = tmpCalleeParam$1 & 8;
+$(tmpCalleeParam);
 const tmpCalleeParam$5 /*:unknown*/ = $(8);
-const x$3 /*:number*/ = tmpCalleeParam$5 & 8;
-$(x$3);
+const tmpCalleeParam$3 /*:number*/ = tmpCalleeParam$5 & 8;
+$(tmpCalleeParam$3);
 const tmpCalleeParam$9 /*:unknown*/ = $(9);
-const x$1 /*:number*/ = tmpCalleeParam$9 & 8;
-$(x$1);
+const tmpCalleeParam$7 /*:number*/ = tmpCalleeParam$9 & 8;
+$(tmpCalleeParam$7);
 `````
 
 

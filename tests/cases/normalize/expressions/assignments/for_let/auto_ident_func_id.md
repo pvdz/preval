@@ -19,12 +19,12 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(f);
+  $(a);
   $(1);
 }
 `````
@@ -34,9 +34,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
+const a = function () {};
 while (true) {
-  $(f);
+  $(a);
   $(1);
 }
 `````

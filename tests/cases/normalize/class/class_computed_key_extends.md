@@ -37,9 +37,9 @@ $(new x().y());
 
 
 `````js filename=intro
-const tmpClassSuper /*:unknown*/ = $($string_constructor);
+const tmpClassSuper$1 /*:unknown*/ = $($string_constructor);
 const tmpClassComputedKey /*:unknown*/ = $(`f`);
-const x /*:class*/ = class extends tmpClassSuper {
+const x /*:class*/ = class extends tmpClassSuper$1 {
   [tmpClassComputedKey]() {
     debugger;
     const tmpReturnArg /*:unknown*/ = $(100, `method`);
@@ -84,9 +84,9 @@ $(tmpCalleeParam$5);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpClassSuper = $($string_constructor);
+const tmpClassSuper$1 = $($string_constructor);
 const tmpClassComputedKey = $(`f`);
-const x = class extends tmpClassSuper {
+const x = class extends tmpClassSuper$1 {
   [tmpClassComputedKey]() {
     const tmpReturnArg = $(100, `method`);
     return tmpReturnArg;

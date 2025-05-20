@@ -26,8 +26,8 @@ if (x) $('d'); else $('c');
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 const tmpBool /*:boolean*/ = $boolean_constructor(tmpIfTest);
-const tmpUnaryArg /*:unknown*/ = $(tmpBool);
-if (tmpUnaryArg) {
+const x /*:unknown*/ = $(tmpBool);
+if (x) {
   $(`b`);
   $(`c`);
 } else {

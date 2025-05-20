@@ -31,8 +31,8 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpArrElement /*:unknown*/ = $(1);
     const tmpArrElement$3 /*:unknown*/ = $(3);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    const tmpAssignMemLhsObj /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    const tmpAssignMemLhsObj$1 /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -53,8 +53,8 @@ while (true) {
     const tmpArrElement = $(1);
     const tmpArrElement$3 = $(3);
     const tmpAssignMemRhs = tmpForInNext.value;
-    const tmpAssignMemLhsObj = [tmpArrElement, 2, tmpArrElement$3];
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    const tmpAssignMemLhsObj$1 = [tmpArrElement, 2, tmpArrElement$3];
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 $({ a: 999, b: 1000 });

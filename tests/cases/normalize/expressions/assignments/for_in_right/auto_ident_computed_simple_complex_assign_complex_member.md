@@ -25,9 +25,9 @@ const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-const tmpForInGen /*:unknown*/ = $forIn(tmpNestedAssignPropRhs);
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
+b[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+const tmpForInGen /*:unknown*/ = $forIn(tmpNestedPropAssignRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForInNext /*:unknown*/ = tmpForInGen();
   const tmpIfTest /*:unknown*/ = tmpForInNext.done;
@@ -37,7 +37,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForInNext.value;
   }
 }
-$(tmpNestedAssignPropRhs, b);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 
@@ -49,9 +49,9 @@ const tmpNestedAssignComMemberProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam$1 = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
-b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-const tmpForInGen = $forIn(tmpNestedAssignPropRhs);
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam$1];
+b[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+const tmpForInGen = $forIn(tmpNestedPropAssignRhs);
 while (true) {
   const tmpForInNext = tmpForInGen();
   if (tmpForInNext.done) {
@@ -60,7 +60,7 @@ while (true) {
     tmpForInNext.value;
   }
 }
-$(tmpNestedAssignPropRhs, b);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 

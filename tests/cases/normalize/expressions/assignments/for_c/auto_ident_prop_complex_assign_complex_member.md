@@ -27,18 +27,18 @@ if (tmpIfTest) {
   const tmpNestedAssignObj /*:unknown*/ = $(b);
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam /*:unknown*/ = $(`d`);
-  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-  let tmpClusterSSA_a /*:unknown*/ = tmpNestedAssignPropRhs;
+  const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  let tmpClusterSSA_a /*:unknown*/ = tmpNestedPropAssignRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
       const tmpNestedAssignObj$1 /*:unknown*/ = $(b);
       const tmpCompObj$1 /*:unknown*/ = $(b);
       const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-      const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
-      tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-      tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+      const tmpNestedPropAssignRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
+      tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs$1;
+      tmpClusterSSA_a = tmpNestedPropAssignRhs$1;
     } else {
       break;
     }
@@ -61,17 +61,17 @@ if (tmpIfTest) {
   const tmpNestedAssignObj = $(b);
   const tmpCompObj = $(b);
   const tmpCalleeParam = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
-  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-  let tmpClusterSSA_a = tmpNestedAssignPropRhs;
+  const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam];
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  let tmpClusterSSA_a = tmpNestedPropAssignRhs;
   while (true) {
     if ($(1)) {
       const tmpNestedAssignObj$1 = $(b);
       const tmpCompObj$1 = $(b);
       const tmpCalleeParam$1 = $(`d`);
-      const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
-      tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-      tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+      const tmpNestedPropAssignRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
+      tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs$1;
+      tmpClusterSSA_a = tmpNestedPropAssignRhs$1;
     } else {
       break;
     }

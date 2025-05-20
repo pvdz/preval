@@ -21,8 +21,8 @@ $(obj??a??b);
 `````js filename=intro
 $();
 const tmpObjLitVal /*:object*/ = { b: 15 };
-const obj /*:object*/ = { a: tmpObjLitVal };
-$(obj);
+const tmpCalleeParam /*:object*/ = { a: tmpObjLitVal };
+$(tmpCalleeParam);
 `````
 
 

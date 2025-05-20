@@ -26,11 +26,11 @@ $(b);
 
 `````js filename=intro
 const b /*:object*/ = { x: 1 };
-const t /*:unknown*/ = $(b);
-const tmpUpdProp /*:unknown*/ = t.x;
+const tmpUpdObj /*:unknown*/ = $(b);
+const tmpUpdProp /*:unknown*/ = tmpUpdObj.x;
 const tmpUpdNum /*:number*/ = $coerce(tmpUpdProp, `number`);
 const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
-t.x = tmpUpdInc;
+tmpUpdObj.x = tmpUpdInc;
 $(b);
 `````
 
@@ -40,8 +40,8 @@ $(b);
 
 `````js filename=intro
 const b = { x: 1 };
-const t = $(b);
-t.x = $coerce(t.x, `number`) + 1;
+const tmpUpdObj = $(b);
+tmpUpdObj.x = $coerce(tmpUpdObj.x, `number`) + 1;
 $(b);
 `````
 

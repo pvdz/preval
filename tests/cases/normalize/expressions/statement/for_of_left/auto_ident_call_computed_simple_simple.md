@@ -32,9 +32,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpMCF /*:unknown*/ = b.$;
-    const tmpAssignMemLhsObj /*:unknown*/ = $dotCall(tmpMCF, b, `\$`, 1);
+    const tmpAssignMemLhsObj$1 /*:unknown*/ = $dotCall(tmpMCF, b, `\$`, 1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -53,8 +53,8 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const tmpAssignMemLhsObj = b.$(1);
-    tmpAssignMemLhsObj.x = tmpForOfNext.value;
+    const tmpAssignMemLhsObj$1 = b.$(1);
+    tmpAssignMemLhsObj$1.x = tmpForOfNext.value;
   }
 }
 $({ a: 999, b: 1000 });

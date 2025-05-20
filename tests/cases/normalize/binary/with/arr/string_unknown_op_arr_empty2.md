@@ -22,9 +22,9 @@ $(arr);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(``);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam, `string`);
+const tmpBinBothLhs$1 /*:string*/ = $coerce(tmpCalleeParam, `string`);
 const tmpBinBothRhs$1 /*:array*/ = [];
-const tmpArrElement /*:boolean*/ = tmpBinBothRhs == tmpBinBothRhs$1;
+const tmpArrElement /*:boolean*/ = tmpBinBothLhs$1 == tmpBinBothRhs$1;
 const arr /*:array*/ = [tmpArrElement];
 $(arr);
 `````

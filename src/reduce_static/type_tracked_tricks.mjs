@@ -36,7 +36,7 @@ import {
 } from '../symbols_builtins.mjs';
 import * as AST from '../ast.mjs';
 import { getRegexFromLiteralNode, isNumberValueNode } from '../ast.mjs';
-import { PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
+import { ALL_NON_PRIMITIVE_TYPE_NAMES, PRIMITIVE_TYPE_NAMES_PREVAL, PRIMITIVE_TYPE_NAMES_TYPEOF } from '../constants.mjs';
 import { BUILTIN_GLOBAL_FUNC_NAMES } from '../globals.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
@@ -676,10 +676,16 @@ function _typeTrackedTricks(fdata) {
             // In all other cases at least one side is a primitive and the other side is coerced to one if it isn't too
 
             // - `x == x`
-            if (left.type === 'Identifier' && right.type === 'Identifier' && left.name === right.name) {
+            if (
+              left.type === 'Identifier' &&
+              right.type === 'Identifier' &&
+              left.name === right.name &&
+              left.name !== 'NaN' // NaN is not equal to NaN
+            ) {
               // Trivial case but maybe an artifact of sorts?
               rule('Weak comparison when left and right are same ident must result in equality');
               example('x == x', 'true');
+              example('x != x', 'false');
               before(blockBody[blockIndex]);
 
               ASSERT(parentIndex < 0);
@@ -709,37 +715,38 @@ function _typeTrackedTricks(fdata) {
               break;
             }
             else if (lp && !rp && node.right.type === 'Identifier') {
+              // Left is a primitive, right is an ident. See if right is known to be a non-nullable primitive
               const pv = AST.getPrimitiveValue(node.left);
               // We can assert a few cases using the .typing data
               const meta = fdata.globallyUniqueNamingRegistry.get(node.right.name);
               if (
                 (pv === undefined || pv == null) &&
-                meta.typing.mustBeType !== 'null' &&
-                meta.typing.mustBeType !== 'undefined' &&
-                PRIMITIVE_TYPE_NAMES_TYPEOF.has(meta.typing.mustBeType)
+                (
+                  // if: mustBeType is known, but not "primitive", "undefined", or "null"
+                  (
+                    ALL_NON_PRIMITIVE_TYPE_NAMES.has(meta.typing.mustBeType) ||
+                    (
+                      PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) &&
+                      meta.typing.mustBeType !== 'undefined' &&
+                      meta.typing.mustBeType !== 'null'
+                    )
+                  ) ||
+                  // or: immediate use of object-ish literal or primitive that is not "undefined" or "null"
+                  // TODO: can do the same for assignment prior to using it... `x={}; if (x==null)` can be safely predicted.
+                  (
+                    meta.writes.length > 0 &&
+                    meta.writes[0].kind === 'var' &&
+                    meta.writes[0].blockBody[meta.writes[0].blockIndex + 1] === blockBody[blockIndex] &&
+                    (
+                      // Object ref is never ==null
+                      ['ObjectExpression', 'ArrayExpression', 'FunctionExpression', 'NewExpression'].includes(meta.writes[0].parentNode.init.type) ||
+                      // primitive that is not null or undefined is never ==null
+                      (AST.isPrimitive(meta.writes[0].parentNode.init) && AST.getPrimitiveValue(meta.writes[0].parentNode.init) != null)
+                    )
+                  )
+                )
               ) {
-                ASSERT(
-                  meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
-                  'already confirmed not to be a primitive',
-                );
-                // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
-                // So as long as that's not the values it can't match.
-                rule('Weak comparison of nullables to non-nullable never works out; left');
-                example('null == 0', 'false');
-                before(blockBody[blockIndex]);
-
-                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator !== '==');
-                else parentNode[parentProp][parentIndex] = AST.primitive(node.operator !== '==');
-
-                after(blockBody[blockIndex]);
-                ++changes;
-                break;
-              }
-              else if (
-                pv == null &&
-                ['object', 'array', 'set', 'map', 'regex', 'function', 'promise'].includes(meta.typing.mustBeType)
-              ) {
-                rule('Comparing a null with an object type always results in false');
+                rule('Comparing a null with an object type always results in false; left');
                 example('null == []', 'false', () => node.operator === '==');
                 before(blockBody[blockIndex]);
 
@@ -753,40 +760,42 @@ function _typeTrackedTricks(fdata) {
               }
             }
             else if (!lp && rp && node.left.type === 'Identifier') {
-
+              // Same as above but the right side is a primitive. See if left is known to be a non-nullable primitive
               const pv = AST.getPrimitiveValue(node.right);
               // We can assert a few cases using the .typing data
               const meta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
 
               if (
                 (pv === undefined || pv == null) &&
-                meta.typing.mustBeType !== 'null' &&
-                meta.typing.mustBeType !== 'undefined' &&
-                PRIMITIVE_TYPE_NAMES_TYPEOF.has(meta.typing.mustBeType)
+                (
+                  // if: mustBeType is known, but not "primitive", "undefined", or "null"
+                  (
+                    ALL_NON_PRIMITIVE_TYPE_NAMES.has(meta.typing.mustBeType) ||
+                    (
+                      PRIMITIVE_TYPE_NAMES_PREVAL.has(meta.typing.mustBeType) &&
+                      meta.typing.mustBeType !== 'undefined' &&
+                      meta.typing.mustBeType !== 'null'
+                    )
+                  ) ||
+                  // or: immediate use of object-ish literal or primitive that is not "undefined" or "null"
+                  // TODO: can do the same for assignment prior to using it... `x={}; if (x==null)` can be safely predicted.
+                  (
+                    meta.writes.length > 0 &&
+                    meta.writes[0].kind === 'var' &&
+                    meta.writes[0].blockBody[meta.writes[0].blockIndex + 1] === blockBody[blockIndex] &&
+                    (
+                      // Object ref is never ==null
+                      ['ObjectExpression', 'ArrayExpression', 'FunctionExpression', 'NewExpression'].includes(meta.writes[0].parentNode.init.type) ||
+                      // primitive that is not null or undefined is never ==null
+                      (AST.isPrimitive(meta.writes[0].parentNode.init) && AST.getPrimitiveValue(meta.writes[0].parentNode.init) != null)
+                    )
+                  )
+                )
               ) {
-                ASSERT(
-                  meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
-                  'already confirmed not to be a primitive',
-                );
-                // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
-                // So as long as that's not the values it can't match.
-                rule('Weak comparison of nullables to non-nullable never works out; right');
-                example('null == 0', 'false');
-                before(blockBody[blockIndex]);
-
-                if (parentIndex < 0) parentNode[parentProp] = AST.primitive(node.operator !== '==');
-                else parentNode[parentProp][parentIndex] = AST.primitive(node.operator !== '==');
-
-                after(blockBody[blockIndex]);
-                ++changes;
-                break;
-              }
-              else if (
-                pv == null &&
-                ['object', 'array', 'set', 'map', 'regex', 'function'].includes(meta.typing.mustBeType)
-              ) {
-                rule('Comparing a null with an object type always results in false');
+                rule('Comparing a null with an object type always results in false; right');
                 example('null == []', 'false', () => node.operator === '==');
+                example('const x = {}; x == null', 'false');
+                example('let y = new Map; y == null', 'false');
                 before(blockBody[blockIndex]);
 
                 // This is comparing object-types which is the same as using strict comparison so we should change to that

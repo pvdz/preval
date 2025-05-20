@@ -29,9 +29,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   if (tmpIfTest) {
     break;
   } else {
-    const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+    const tmpAssignMemLhsObj$1 /*:unknown*/ = $(a);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
     const tmpCalleeParam$1 /*:unknown*/ = a.x;
     $(tmpCalleeParam$1);
   }
@@ -50,8 +50,8 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const tmpAssignMemLhsObj = $(a);
-    tmpAssignMemLhsObj.x = tmpForInNext.value;
+    const tmpAssignMemLhsObj$1 = $(a);
+    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
     $(a.x);
   }
 }

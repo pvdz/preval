@@ -23,9 +23,9 @@ $(a, b, c, d, obj);
 
 
 `````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothLhs /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 const obj /*:object*/ = {
   get c() {
     debugger;

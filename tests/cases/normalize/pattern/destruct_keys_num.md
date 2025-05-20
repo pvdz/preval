@@ -19,8 +19,8 @@ $(c);
 
 
 `````js filename=intro
-const x /*:object*/ = { [200]: 3 };
-const c /*:unknown*/ = x[200];
+const tmpBindingPatternObjRoot /*:object*/ = { [200]: 3 };
+const c /*:unknown*/ = tmpBindingPatternObjRoot[200];
 $(c);
 `````
 

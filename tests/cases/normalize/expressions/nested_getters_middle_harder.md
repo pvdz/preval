@@ -67,7 +67,7 @@ f();
 $(`-------- start`);
 $(`-------- bound`);
 $(`-------- let 1`);
-const tmpNestedAssignPropRhs /*:unknown*/ = $(6);
+const tmpNestedPropAssignRhs /*:unknown*/ = $(6);
 const b /*:object*/ = {
   get foo() {
     debugger;
@@ -80,10 +80,10 @@ const b /*:object*/ = {
     return tmpReturnArg$1;
   },
 };
-b.foo = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs);
+b.foo = tmpNestedPropAssignRhs;
+$(tmpNestedPropAssignRhs);
 $(`-------- test case`);
-$(tmpNestedAssignPropRhs);
+$(tmpNestedPropAssignRhs);
 $(`-------- a`);
 const tmpCalleeParam$1 /*:unknown*/ = b.foo;
 $(tmpCalleeParam$1);
@@ -101,7 +101,7 @@ $(`-------- a.foo = 4`);
 $(`-------- start`);
 $(`-------- bound`);
 $(`-------- let 1`);
-const tmpNestedAssignPropRhs = $(6);
+const tmpNestedPropAssignRhs = $(6);
 const b = {
   get foo() {
     const tmpReturnArg = $(2);
@@ -112,10 +112,10 @@ const b = {
     return tmpReturnArg$1;
   },
 };
-b.foo = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs);
+b.foo = tmpNestedPropAssignRhs;
+$(tmpNestedPropAssignRhs);
 $(`-------- test case`);
-$(tmpNestedAssignPropRhs);
+$(tmpNestedPropAssignRhs);
 $(`-------- a`);
 $(b.foo);
 $(`-------- a.foo`);

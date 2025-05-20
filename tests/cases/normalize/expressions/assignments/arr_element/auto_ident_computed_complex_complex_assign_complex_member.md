@@ -26,17 +26,17 @@ const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 const tmpNestedAssignComMemberObj$1 /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp$1 /*:unknown*/ = $(`c`);
 const tmpCompObj$1 /*:unknown*/ = $(b);
 const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$3];
-tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-const tmpCalleeParam /*:primitive*/ = tmpNestedAssignPropRhs + tmpNestedAssignPropRhs$1;
+const tmpNestedPropAssignRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$3];
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$1;
+const tmpCalleeParam /*:primitive*/ = tmpNestedPropAssignRhs + tmpNestedPropAssignRhs$1;
 $(tmpCalleeParam);
-$(tmpNestedAssignPropRhs$1, b);
+$(tmpNestedPropAssignRhs$1, b);
 `````
 
 
@@ -49,16 +49,16 @@ const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
 const tmpCalleeParam$1 = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam$1];
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 const tmpNestedAssignComMemberObj$1 = $(b);
 const tmpNestedAssignComMemberProp$1 = $(`c`);
 const tmpCompObj$1 = $(b);
 const tmpCalleeParam$3 = $(`d`);
-const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCalleeParam$3];
-tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-$(tmpNestedAssignPropRhs + tmpNestedAssignPropRhs$1);
-$(tmpNestedAssignPropRhs$1, b);
+const tmpNestedPropAssignRhs$1 = tmpCompObj$1[tmpCalleeParam$3];
+tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedPropAssignRhs$1;
+$(tmpNestedPropAssignRhs + tmpNestedPropAssignRhs$1);
+$(tmpNestedPropAssignRhs$1, b);
 `````
 
 

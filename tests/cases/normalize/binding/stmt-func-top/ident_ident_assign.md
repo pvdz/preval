@@ -23,9 +23,9 @@ $(f());
 
 `````js filename=intro
 const tmpNestedAssignObj /*:unknown*/ = $(3);
-const tmpNestedAssignPropRhs /*:unknown*/ = $(4);
-tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+const tmpNestedPropAssignRhs /*:unknown*/ = $(4);
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+$(tmpNestedPropAssignRhs, tmpNestedPropAssignRhs, 3);
 $(undefined);
 `````
 
@@ -35,9 +35,9 @@ $(undefined);
 
 `````js filename=intro
 const tmpNestedAssignObj = $(3);
-const tmpNestedAssignPropRhs = $(4);
-tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+const tmpNestedPropAssignRhs = $(4);
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
+$(tmpNestedPropAssignRhs, tmpNestedPropAssignRhs, 3);
 $(undefined);
 `````
 

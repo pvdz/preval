@@ -35,13 +35,13 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     a = undefined;
     const tmpChainRootProp /*:unknown*/ = $(b);
     const tmpIfTest$1 /*:boolean*/ = tmpChainRootProp == null;
-    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
     if (tmpIfTest$1) {
     } else {
-      tmpAssignMemLhsObj = tmpChainRootProp.x;
+      tmpAssignMemLhsObj$1 = tmpChainRootProp.x;
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -63,11 +63,11 @@ while (true) {
     a = undefined;
     const tmpChainRootProp = $(b);
     const tmpIfTest$1 = tmpChainRootProp == null;
-    let tmpAssignMemLhsObj = undefined;
+    let tmpAssignMemLhsObj$1 = undefined;
     if (!tmpIfTest$1) {
-      tmpAssignMemLhsObj = tmpChainRootProp.x;
+      tmpAssignMemLhsObj$1 = tmpChainRootProp.x;
     }
-    tmpAssignMemLhsObj.x = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
   }
 }
 $(a);

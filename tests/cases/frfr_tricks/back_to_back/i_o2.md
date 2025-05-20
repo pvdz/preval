@@ -34,8 +34,8 @@ $(rs);
 
 `````js filename=intro
 const x /*:unknown*/ = $();
-const xs /*:string*/ = $coerce(x, `plustr`);
-$(xs);
+const rs /*:string*/ = $coerce(x, `plustr`);
+$(rs);
 `````
 
 

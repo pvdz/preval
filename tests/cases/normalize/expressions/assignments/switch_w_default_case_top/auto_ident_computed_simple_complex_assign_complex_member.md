@@ -48,9 +48,9 @@ if (tmpIfTest$3) {
   const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam /*:unknown*/ = $(`d`);
-  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-  b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
+  const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+  b[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
 } else {
 }
 const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
@@ -85,9 +85,9 @@ if (tmpIfTest$3) {
   const tmpNestedAssignComMemberProp = $(`c`);
   const tmpCompObj = $(b);
   const tmpCalleeParam = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
-  b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
+  const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam];
+  b[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
 }
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);

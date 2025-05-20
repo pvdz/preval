@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 const b /*:object*/ = { c: $ };
 const a /*:unknown*/ = $dotCall($, b, `c`, 1);
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+const tmpStringConcatL /*:string*/ = $coerce(a, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

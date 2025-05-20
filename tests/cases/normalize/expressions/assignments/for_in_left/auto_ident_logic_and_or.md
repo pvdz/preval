@@ -36,15 +36,15 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
       a = $(tmpCalleeParam$5);
     } else {
     }
-    let tmpAssignMemLhsObj /*:unknown*/ = undefined;
+    let tmpAssignMemLhsObj$1 /*:unknown*/ = undefined;
     if (a) {
-      tmpAssignMemLhsObj = a;
+      tmpAssignMemLhsObj$1 = a;
     } else {
       const tmpCalleeParam$7 /*:unknown*/ = $(2);
-      tmpAssignMemLhsObj = $(tmpCalleeParam$7);
+      tmpAssignMemLhsObj$1 = $(tmpCalleeParam$7);
     }
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -66,13 +66,13 @@ while (true) {
     if (a) {
       a = $($(1));
     }
-    let tmpAssignMemLhsObj = undefined;
+    let tmpAssignMemLhsObj$1 = undefined;
     if (a) {
-      tmpAssignMemLhsObj = a;
+      tmpAssignMemLhsObj$1 = a;
     } else {
-      tmpAssignMemLhsObj = $($(2));
+      tmpAssignMemLhsObj$1 = $($(2));
     }
-    tmpAssignMemLhsObj.x = tmpForInNext.value;
+    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
   }
 }
 $(a);

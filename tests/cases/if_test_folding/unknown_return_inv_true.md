@@ -29,8 +29,8 @@ $(f());
 `````js filename=intro
 $(1);
 const tmpBoolTrampoline /*:unknown*/ = $(1);
-const tmpBoolTrampolineB /*:boolean*/ = $boolean_constructor(tmpBoolTrampoline);
-$(tmpBoolTrampolineB);
+const tmpCalleeParam /*:boolean*/ = $boolean_constructor(tmpBoolTrampoline);
+$(tmpCalleeParam);
 `````
 
 

@@ -21,8 +21,8 @@ $({...f()});
 
 `````js filename=intro
 const tmpCalleeParam /*:object*/ = { x: 1 };
-const tmpReturnArg /*:unknown*/ = $(tmpCalleeParam);
-const tmpCalleeParam$1 /*:object*/ = { ...tmpReturnArg };
+const tmpObjSpread /*:unknown*/ = $(tmpCalleeParam);
+const tmpCalleeParam$1 /*:object*/ = { ...tmpObjSpread };
 $(tmpCalleeParam$1);
 `````
 
@@ -31,8 +31,8 @@ $(tmpCalleeParam$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpReturnArg = $({ x: 1 });
-$({ ...tmpReturnArg });
+const tmpObjSpread = $({ x: 1 });
+$({ ...tmpObjSpread });
 `````
 
 

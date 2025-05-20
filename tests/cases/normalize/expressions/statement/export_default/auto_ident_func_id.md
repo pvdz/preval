@@ -19,11 +19,10 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
+const tmpAnonDefaultExport /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const tmpAnonDefaultExport /*:unknown*/ = f;
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
@@ -34,8 +33,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
-const tmpAnonDefaultExport = f;
+const tmpAnonDefaultExport = function () {};
 export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 });
 `````
@@ -49,13 +47,12 @@ const a = function() {
   debugger;
   return undefined;
 };
-const b = a;
-export { b as default };
-const c = {
+export { a as default };
+const b = {
   a: 999,
   b: 1000,
 };
-$( c );
+$( b );
 `````
 
 

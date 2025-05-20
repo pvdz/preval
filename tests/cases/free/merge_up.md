@@ -37,22 +37,22 @@ if (x) {
 
 `````js filename=intro
 const tmpFree /*:(string, number)=>string*/ = function $free($$0, $$1) {
-  const somestr /*:string*/ = $$0;
+  const tmpStringConcatR /*:string*/ = $$0;
   const x$1 /*:number*/ = $$1;
   debugger;
-  const extra$1 /*:string*/ = `${somestr}x`;
+  const extra$1 /*:string*/ = `${tmpStringConcatR}x`;
   const chr /*:string*/ = $dotCall($string_charAt, extra$1, `charAt`, 1);
   const tmpIfTest$3 /*:number*/ = x$1 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
-  const ret2 /*:string*/ = tmpRet + chr;
-  return ret2;
+  const tmpRet$2 /*:string*/ = tmpRet + chr;
+  return tmpRet$2;
 };
 const tmpUnaryArg /*:unknown*/ = $spy(1);
 const x /*:number*/ = +tmpUnaryArg;
 if (x) {
   const unknown /*:unknown*/ = $(`abc`);
-  const somestr$1 /*:string*/ = $coerce(unknown, `string`);
-  const tmpIfTest$5 /*:string*/ = $frfr(tmpFree, somestr$1, x);
+  const tmpStringConcatR$1 /*:string*/ = $coerce(unknown, `string`);
+  const tmpIfTest$5 /*:string*/ = $frfr(tmpFree, tmpStringConcatR$1, x);
   if (tmpIfTest$5) {
     $(`it is 58`);
   } else {
@@ -66,10 +66,10 @@ if (x) {
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(somestr, x$1) {
-  const chr = $dotCall($string_charAt, `${somestr}x`, `charAt`, 1);
-  const ret2 = ((x$1 & 48) === 48) + chr;
-  return ret2;
+const tmpFree = function $free(tmpStringConcatR, x$1) {
+  const chr = $dotCall($string_charAt, `${tmpStringConcatR}x`, `charAt`, 1);
+  const tmpRet$2 = ((x$1 & 48) === 48) + chr;
+  return tmpRet$2;
 };
 const tmpUnaryArg = $spy(1);
 const x = +tmpUnaryArg;

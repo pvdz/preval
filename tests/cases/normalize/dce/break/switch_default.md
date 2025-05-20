@@ -29,9 +29,9 @@ $('after, do not evaluate (infinite loop)');
 `````js filename=intro
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
-  const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+  const tmpBinBothLhs /*:unknown*/ = $(1, `disc`);
   const tmpBinBothRhs /*:unknown*/ = $(0);
-  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+  const tmpIfTest$1 /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
   if (tmpIfTest$1) {
     $(`wrong branch`);
   } else {
@@ -39,9 +39,9 @@ if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
-      const tmpSwitchDisc$1 /*:unknown*/ = $(1, `disc`);
+      const tmpBinBothLhs$1 /*:unknown*/ = $(1, `disc`);
       const tmpBinBothRhs$1 /*:unknown*/ = $(0);
-      const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      const tmpIfTest$4 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
       if (tmpIfTest$4) {
         $(`wrong branch`);
       } else {

@@ -21,9 +21,9 @@ switch ($(1)) {
 
 
 `````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(2);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   $(3);
 } else {

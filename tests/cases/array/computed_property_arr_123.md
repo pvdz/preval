@@ -18,8 +18,8 @@ $(x[[1, 2, 3]]);
 
 
 `````js filename=intro
-const x /*:array*/ = [];
-const tmpCalleeParam /*:unknown*/ = x[`1,2,3`];
+const tmpCompObj /*:array*/ = [];
+const tmpCalleeParam /*:unknown*/ = tmpCompObj[`1,2,3`];
 $(tmpCalleeParam);
 `````
 
@@ -45,7 +45,7 @@ $( b );
 ## Todos triggered
 
 
-- (todo) support array reads statement type ExpressionStatement
+None
 
 
 ## Globals

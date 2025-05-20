@@ -40,9 +40,9 @@ $('after (not invoked)');
 const tmpIfTest /*:unknown*/ = $(true);
 if (tmpIfTest) {
   $(`loop`);
-  const tmpSwitchDisc /*:unknown*/ = $(true, `dis`);
+  const tmpBinBothLhs /*:unknown*/ = $(true, `dis`);
   const tmpBinBothRhs /*:unknown*/ = $(true, `case`);
-  const tmpIfTest$1 /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+  const tmpIfTest$1 /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
   if (tmpIfTest$1) {
     $(`case`);
     $(`infiloop, do not eliminate`);
@@ -54,9 +54,9 @@ if (tmpIfTest) {
     const tmpIfTest$2 /*:unknown*/ = $(true);
     if (tmpIfTest$2) {
       $(`loop`);
-      const tmpSwitchDisc$1 /*:unknown*/ = $(true, `dis`);
+      const tmpBinBothLhs$1 /*:unknown*/ = $(true, `dis`);
       const tmpBinBothRhs$1 /*:unknown*/ = $(true, `case`);
-      const tmpIfTest$4 /*:boolean*/ = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      const tmpIfTest$4 /*:boolean*/ = tmpBinBothLhs$1 === tmpBinBothRhs$1;
       if (tmpIfTest$4) {
         $(`case`);
         $(`infiloop, do not eliminate`);

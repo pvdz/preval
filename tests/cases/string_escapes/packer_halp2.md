@@ -38,7 +38,7 @@ const tmpCalleeParam$5 /*:object*/ = {
   p: `p`,
 };
 let tmpClusterSSA_c$1 /*:number*/ = 25;
-const tmpCalleeParam$3 /*:array*/ = [
+const k /*:array*/ = [
   ``,
   ``,
   ``,
@@ -81,7 +81,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
     const tmpAssignComMemLhsProp$1 /*:string*/ = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
-    let tmpAssignComputedRhs$1 /*:primitive*/ = tmpCalleeParam$3[tmpClusterSSA_c$1];
+    let tmpAssignComputedRhs$1 /*:primitive*/ = k[tmpClusterSSA_c$1];
     if (tmpAssignComputedRhs$1) {
     } else {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
@@ -128,7 +128,7 @@ const tmpCalleeParam$5 = {
   p: `p`,
 };
 let tmpClusterSSA_c$1 = 25;
-const tmpCalleeParam$3 = [
+const k = [
   ``,
   ``,
   ``,
@@ -171,7 +171,7 @@ while (true) {
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
     const tmpAssignComMemLhsProp$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
-    let tmpAssignComputedRhs$1 = tmpCalleeParam$3[tmpClusterSSA_c$1];
+    let tmpAssignComputedRhs$1 = k[tmpClusterSSA_c$1];
     if (!tmpAssignComputedRhs$1) {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
     }

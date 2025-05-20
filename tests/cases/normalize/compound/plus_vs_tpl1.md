@@ -23,12 +23,12 @@ $('a' + spy === `a${spy}`);
 
 `````js filename=intro
 const tmpFree /*:(string, string)=>boolean*/ = function $free($$0, $$1) {
-  const tmpBinBothRhs$2 /*:string*/ = $$0;
-  const tmpStringConcatL$1 /*:string*/ = $$1;
+  const tmpStringConcatL$1 /*:string*/ = $$0;
+  const tmpBinBothRhs$2 /*:string*/ = $$1;
   debugger;
   const tmpBinBothLhs /*:string*/ = `a${tmpStringConcatL$1}`;
-  const tmpBinLhs /*:string*/ = `a${tmpBinBothRhs$2}`;
-  const tmpRet /*:boolean*/ = tmpBinBothLhs === tmpBinLhs;
+  const tmpBinBothRhs /*:string*/ = `a${tmpBinBothRhs$2}`;
+  const tmpRet /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
   return tmpRet;
 };
 const spy /*:object*/ = {
@@ -43,7 +43,7 @@ const spy /*:object*/ = {
 };
 const tmpStringConcatL /*:string*/ = $coerce(spy, `plustr`);
 const tmpBinBothRhs$1 /*:string*/ = $coerce(spy, `string`);
-const tmpCalleeParam /*:boolean*/ = $frfr(tmpFree, tmpBinBothRhs$1, tmpStringConcatL);
+const tmpCalleeParam /*:boolean*/ = $frfr(tmpFree, tmpStringConcatL, tmpBinBothRhs$1);
 $(tmpCalleeParam);
 `````
 
@@ -52,7 +52,7 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(tmpBinBothRhs$2, tmpStringConcatL$1) {
+const tmpFree = function $free(tmpStringConcatL$1, tmpBinBothRhs$2) {
   const tmpRet = `a${tmpStringConcatL$1}` === `a${tmpBinBothRhs$2}`;
   return tmpRet;
 };
@@ -65,7 +65,7 @@ const spy = {
   },
 };
 const tmpStringConcatL = $coerce(spy, `plustr`);
-$($frfr(tmpFree, $coerce(spy, `string`), tmpStringConcatL));
+$($frfr(tmpFree, tmpStringConcatL, $coerce(spy, `string`)));
 `````
 
 
@@ -77,8 +77,8 @@ const a = function b($$0,$$1 ) {
   const c = $$0;
   const d = $$1;
   debugger;
-  const e = `a${d}`;
-  const f = `a${c}`;
+  const e = `a${c}`;
+  const f = `a${d}`;
   const g = e === f;
   return g;
 };
@@ -94,7 +94,7 @@ const h = {
 };
 const i = $coerce( h, "plustr" );
 const j = $coerce( h, "string" );
-const k = l( a, j, i );
+const k = l( a, i, j );
 $( k );
 `````
 

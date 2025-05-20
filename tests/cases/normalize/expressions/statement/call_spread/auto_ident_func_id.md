@@ -19,11 +19,11 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const tmpCalleeParamSpread /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-$(...f);
+$(...tmpCalleeParamSpread);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -33,8 +33,8 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
-$(...f);
+const tmpCalleeParamSpread = function () {};
+$(...tmpCalleeParamSpread);
 $({ a: 999, b: 1000 });
 `````
 

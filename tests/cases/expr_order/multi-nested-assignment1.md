@@ -126,7 +126,7 @@ const e /*:()=>unknown*/ = function () {
   d = 54;
   return obj;
 };
-const tmpAssignMemLhsObj /*:unknown*/ = a();
+const tmpAssignMemLhsObj$1 /*:unknown*/ = a();
 const varInitAssignLhsComputedObj /*:unknown*/ = b();
 const varInitAssignLhsComputedObj$1 /*:unknown*/ = c();
 const varInitAssignLhsComputedObj$3 /*:unknown*/ = d();
@@ -135,7 +135,7 @@ const varInitAssignLhsComputedRhs$3 /*:unknown*/ = obj;
 varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$3;
-tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$3;
+tmpAssignMemLhsObj$1.x = varInitAssignLhsComputedRhs$3;
 $(a, b, c, d, e);
 `````
 
@@ -183,7 +183,7 @@ const e = function () {
   d = 54;
   return obj;
 };
-const tmpAssignMemLhsObj = a();
+const tmpAssignMemLhsObj$1 = a();
 const varInitAssignLhsComputedObj = b();
 const varInitAssignLhsComputedObj$1 = c();
 const varInitAssignLhsComputedObj$3 = d();
@@ -192,7 +192,7 @@ const varInitAssignLhsComputedRhs$3 = obj;
 varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$3;
-tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$3;
+tmpAssignMemLhsObj$1.x = varInitAssignLhsComputedRhs$3;
 $(a, b, c, d, e);
 `````
 

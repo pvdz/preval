@@ -23,8 +23,8 @@ $(z);
 
 `````js filename=intro
 const tmpStringFirstArg /*:unknown*/ = $(`hello`);
-const x /*:string*/ = $coerce(tmpStringFirstArg, `string`);
-$(x);
+const z /*:string*/ = $coerce(tmpStringFirstArg, `string`);
+$(z);
 `````
 
 

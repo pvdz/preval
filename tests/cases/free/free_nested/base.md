@@ -40,8 +40,8 @@ const g /*:(number, number)=>number*/ = function $free($$0, $$1) {
   const p /*:number*/ = n * 20;
   const q /*:number*/ = o * 40;
   const c /*:number*/ = p + q;
-  const d /*:number*/ = c * 10;
-  return d;
+  const r /*:number*/ = c * 10;
+  return r;
 };
 const tmpBinLhs /*:unknown*/ = $(100);
 const x /*:number*/ = tmpBinLhs * 1;
@@ -58,8 +58,8 @@ $(tmp);
 `````js filename=intro
 const g = function $free(n, o) {
   const p = n * 20;
-  const d = (p + o * 40) * 10;
-  return d;
+  const r = (p + o * 40) * 10;
+  return r;
 };
 const x = $(100) * 1;
 $($frfr(g, x, $(200) * 1));

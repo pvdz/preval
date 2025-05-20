@@ -42,17 +42,12 @@ const tmpFree$2 /*:(string)=>string*/ = function $free($$0) {
   const repl$2 /*:string*/ = $$0;
   debugger;
   const a1 /*:string*/ = $dotCall($string_charAt, repl$2, `charAt`, 0);
-  const tmpRet$1 /*:number*/ = $dotCall(
-    $string_indexOf,
-    `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
-    `indexOf`,
-    a1,
-  );
+  const a2$3 /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
   const b1$1 /*:string*/ = $dotCall($string_charAt, repl$2, `charAt`, 1);
   const b2$1 /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, b1$1);
-  const frout /*:number*/ = tmpRet$1 + b2$1;
-  const tmpRet /*:string*/ = $coerce(frout, `string`);
-  return tmpRet;
+  const frout /*:number*/ = a2$3 + b2$1;
+  const tmpRet$2 /*:string*/ = $coerce(frout, `string`);
+  return tmpRet$2;
 };
 const f /*:(string)=>string*/ = function ($$0) {
   const inputstr /*:string*/ = $$0;
@@ -84,14 +79,14 @@ $(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpFree$2 = function $free(repl$2) {
-  const tmpRet$1 = $dotCall(
+  const a2$3 = $dotCall(
     $string_indexOf,
     `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
     `indexOf`,
     $dotCall($string_charAt, repl$2, `charAt`, 0),
   );
-  const tmpRet = $coerce(
-    tmpRet$1 +
+  const tmpRet$2 = $coerce(
+    a2$3 +
       $dotCall(
         $string_indexOf,
         `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
@@ -100,7 +95,7 @@ const tmpFree$2 = function $free(repl$2) {
       ),
     `string`,
   );
-  return tmpRet;
+  return tmpRet$2;
 };
 const f = function (inputstr) {
   const repl$3 = $dotCall($string_replace, inputstr, `replace`, new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`), ``);

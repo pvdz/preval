@@ -25,10 +25,10 @@ $(d);
 
 
 `````js filename=intro
-const a /*:unknown*/ = tmpForInNext.value;
-const tmpBinBothRhs /*:string*/ = $coerce(a, `string`);
-const tmpBinLhs /*:string*/ = `; ${tmpBinBothRhs}`;
-const d /*:string*/ = tmpBinLhs + e;
+const b /*:unknown*/ = tmpForInNext.value;
+const tmpBinBothRhs /*:string*/ = $coerce(b, `string`);
+const c /*:string*/ = `; ${tmpBinBothRhs}`;
+const d /*:string*/ = c + e;
 $(d);
 `````
 

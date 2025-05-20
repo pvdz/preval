@@ -25,8 +25,8 @@ $(diff);
 `````js filename=intro
 const a /*:unknown*/ = $(1);
 const b /*:unknown*/ = $(1);
-const same /*:boolean*/ = a !== b;
-$(same);
+const diff /*:boolean*/ = a !== b;
+$(diff);
 `````
 
 

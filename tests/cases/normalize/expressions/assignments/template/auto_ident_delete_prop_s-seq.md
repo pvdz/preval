@@ -24,8 +24,8 @@ $(a, arg);
 const tmpFree /*:(boolean)=>string*/ = function $free($$0) {
   const a$1 /*:boolean*/ = $$0;
   debugger;
-  const tmpBinBothRhs /*:string*/ = $coerce(a$1, `string`);
-  const tmpRet /*:string*/ = `before  ${tmpBinBothRhs}  after`;
+  const tmpStringConcatL /*:string*/ = $coerce(a$1, `string`);
+  const tmpRet /*:string*/ = `before  ${tmpStringConcatL}  after`;
   return tmpRet;
 };
 $(1);

@@ -23,15 +23,15 @@ $(y);
 `````js filename=intro
 $(10);
 const tmpCalleeParam /*:unknown*/ = $(`x`);
-const tmpBinBothRhs$1 /*:string*/ = $coerce(tmpCalleeParam, `string`);
+const tmpStringConcatR /*:string*/ = $coerce(tmpCalleeParam, `string`);
 const tmpCalleeParam$1 /*:unknown*/ = $(`y`);
 const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam$1, `string`);
 if ($) {
   $(20);
 } else {
 }
-const tmpBinLhs /*:string*/ = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
-const y /*:array*/ = [`a`, 1, tmpBinLhs, 3, `b`];
+const tmpArrElement$1 /*:string*/ = `${tmpStringConcatR} ${tmpBinBothRhs}`;
+const y /*:array*/ = [`a`, 1, tmpArrElement$1, 3, `b`];
 $(y);
 `````
 
@@ -41,13 +41,13 @@ $(y);
 
 `````js filename=intro
 $(10);
-const tmpBinBothRhs$1 = $coerce($(`x`), `string`);
+const tmpStringConcatR = $coerce($(`x`), `string`);
 const tmpBinBothRhs = $coerce($(`y`), `string`);
 if ($) {
   $(20);
 }
-const tmpBinLhs = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
-$([`a`, 1, tmpBinLhs, 3, `b`]);
+const tmpArrElement$1 = `${tmpStringConcatR} ${tmpBinBothRhs}`;
+$([`a`, 1, tmpArrElement$1, 3, `b`]);
 `````
 
 

@@ -30,8 +30,8 @@ while (true) {
 
 `````js filename=intro
 const t /*:unknown*/ = $(5);
-const x /*:boolean*/ = 0 < t;
-if (x) {
+const flag /*:boolean*/ = 0 < t;
+if (flag) {
   $(`inner`);
 } else {
 }

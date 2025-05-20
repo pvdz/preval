@@ -23,8 +23,8 @@ $((f($(16))));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(16);
-const x$1 /*:number*/ = tmpCalleeParam$1 & 16;
-$(x$1);
+const tmpCalleeParam /*:number*/ = tmpCalleeParam$1 & 16;
+$(tmpCalleeParam);
 `````
 
 

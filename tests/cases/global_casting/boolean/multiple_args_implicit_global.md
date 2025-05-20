@@ -24,8 +24,8 @@ $(y);
 const a /*:unknown*/ = $(`a`);
 const b /*:unknown*/ = $(`b`);
 fail_hard;
-const x /*:boolean*/ = a === b;
-$(x);
+const y /*:boolean*/ = a === b;
+$(y);
 `````
 
 

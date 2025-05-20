@@ -19,13 +19,13 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, f);
-$(f);
+$(tmpCalleeParam, a);
+$(a);
 `````
 
 
@@ -33,9 +33,9 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
-$([`before `, ` after`], f);
-$(f);
+const a = function () {};
+$([`before `, ` after`], a);
+$(a);
 `````
 
 

@@ -24,11 +24,11 @@ $(a, b);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
-b.c = tmpNestedAssignPropRhs;
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
+b.c = tmpNestedPropAssignRhs;
 const tmpCalleeParam /*:array*/ = [`before `, ` after`];
-$(tmpCalleeParam, tmpNestedAssignPropRhs);
-$(tmpNestedAssignPropRhs, b);
+$(tmpCalleeParam, tmpNestedPropAssignRhs);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 
@@ -39,10 +39,10 @@ $(tmpNestedAssignPropRhs, b);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam$3 = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$3];
-b.c = tmpNestedAssignPropRhs;
-$([`before `, ` after`], tmpNestedAssignPropRhs);
-$(tmpNestedAssignPropRhs, b);
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam$3];
+b.c = tmpNestedPropAssignRhs;
+$([`before `, ` after`], tmpNestedPropAssignRhs);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 

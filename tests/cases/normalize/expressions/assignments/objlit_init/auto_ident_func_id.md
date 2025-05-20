@@ -19,13 +19,13 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam /*:object*/ = { x: f };
+const tmpCalleeParam /*:object*/ = { x: a };
 $(tmpCalleeParam);
-$(f);
+$(a);
 `````
 
 
@@ -33,9 +33,9 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
-$({ x: f });
-$(f);
+const a = function () {};
+$({ x: a });
+$(a);
 `````
 
 

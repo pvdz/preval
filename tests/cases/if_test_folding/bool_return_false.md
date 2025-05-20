@@ -30,8 +30,8 @@ $(f());
 const f /*:()=>boolean*/ = function () {
   debugger;
   const tmpBinLhs /*:unknown*/ = $(1);
-  const x /*:boolean*/ = tmpBinLhs !== 1;
-  return x;
+  const tmpIfTestFold /*:boolean*/ = tmpBinLhs !== 1;
+  return tmpIfTestFold;
 };
 f();
 const tmpCalleeParam /*:boolean*/ = f();
@@ -44,8 +44,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const x = $(1) !== 1;
-  return x;
+  const tmpIfTestFold = $(1) !== 1;
+  return tmpIfTestFold;
 };
 f();
 $(f());

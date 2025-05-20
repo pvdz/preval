@@ -44,9 +44,9 @@ $(a, x, y, z);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(`a`);
 const tmpBinLhs /*:unknown*/ = $(`a`);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest$1 /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 const z /*:array*/ = [10, 20, 30];
-if (tmpIfTest) {
+if (tmpIfTest$1) {
   const arrPatternSplat /*:array*/ = [...z];
   const x /*:unknown*/ = arrPatternSplat[0];
   const y /*:unknown*/ = arrPatternSplat[1];
@@ -62,9 +62,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpSwitchValue = $(`a`);
-const tmpIfTest = $(`a`) === tmpSwitchValue;
+const tmpIfTest$1 = $(`a`) === tmpSwitchValue;
 const z = [10, 20, 30];
-if (tmpIfTest) {
+if (tmpIfTest$1) {
   const arrPatternSplat = [...z];
   $(1, arrPatternSplat[0], arrPatternSplat[1], z);
 } else {

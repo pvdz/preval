@@ -39,9 +39,9 @@ const tmpFree /*:(string, unused)=>string*/ = function $free($$0, $$1) {
   const xs$1 /*:string*/ = $$0;
   debugger;
   const one /*:string*/ = xs$1 + 5;
-  const two /*:string*/ = $dotCall($string_slice, one, `slice`, 1);
+  const r /*:string*/ = $dotCall($string_slice, one, `slice`, 1);
   const s /*:string*/ = $dotCall($string_slice, xs$1, `slice`, 2);
-  const tmpRet /*:string*/ = two + s;
+  const tmpRet /*:string*/ = r + s;
   return tmpRet;
 };
 const x /*:unknown*/ = $spy(`x`);

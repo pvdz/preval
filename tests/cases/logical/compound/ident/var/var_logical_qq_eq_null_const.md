@@ -19,13 +19,13 @@ $(c);
 
 
 `````js filename=intro
-const a /*:unknown*/ = $(null);
-const tmpIfTest /*:boolean*/ = a == null;
+const c /*:unknown*/ = $(null);
+const tmpIfTest /*:boolean*/ = c == null;
 if (tmpIfTest) {
   $(`b`);
   throw `Preval: Assignment to constant variable: \`a = tmpNestedComplexRhs;\``;
 } else {
-  $(a);
+  $(c);
 }
 `````
 
@@ -34,12 +34,12 @@ if (tmpIfTest) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $(null);
-if (a == null) {
+const c = $(null);
+if (c == null) {
   $(`b`);
   throw `Preval: Assignment to constant variable: \`a = tmpNestedComplexRhs;\``;
 } else {
-  $(a);
+  $(c);
 }
 `````
 

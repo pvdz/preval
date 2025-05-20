@@ -20,11 +20,11 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const f /*:()=>undefined*/ = function () {
+const tmpBinBothRhs /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-tmpBinBothLhs + f;
+tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

@@ -34,8 +34,8 @@ if (tmpSaooB) {
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1, `disc`);
 const tmpBinLhs /*:unknown*/ = $(0);
-const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
+const tmpSaooB /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
+if (tmpSaooB) {
   $(`keep, do not eval`);
   $(undefined);
 } else {

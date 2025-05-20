@@ -25,9 +25,9 @@ const tmpBinBothRhs /*:unknown*/ = $(100);
 const a /*:object*/ = { b: tmpObjLitVal };
 const tmpCalleeParam /*:primitive*/ = a + tmpBinBothRhs;
 $(tmpCalleeParam);
-const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+const tmpAssignMemLhsObj$1 /*:unknown*/ = $(a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -40,8 +40,8 @@ const tmpObjLitVal = $(1);
 const tmpBinBothRhs = $(100);
 const a = { b: tmpObjLitVal };
 $(a + tmpBinBothRhs);
-const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj.b = $(2);
+const tmpAssignMemLhsObj$1 = $(a);
+tmpAssignMemLhsObj$1.b = $(2);
 $(a);
 `````
 

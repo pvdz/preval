@@ -28,19 +28,19 @@ const b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-let a /*:unknown*/ = tmpNestedAssignPropRhs;
-if (tmpNestedAssignPropRhs) {
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+let a /*:unknown*/ = tmpNestedPropAssignRhs;
+if (tmpNestedPropAssignRhs) {
   while ($LOOP_UNROLL_10) {
     $(100);
     const tmpNestedAssignObj$1 /*:unknown*/ = $(b);
     const tmpCompObj$1 /*:unknown*/ = $(b);
     const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-    const tmpNestedAssignPropRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
-    tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-    a = tmpNestedAssignPropRhs$1;
-    if (tmpNestedAssignPropRhs$1) {
+    const tmpNestedPropAssignRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
+    tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs$1;
+    a = tmpNestedPropAssignRhs$1;
+    if (tmpNestedPropAssignRhs$1) {
     } else {
       break;
     }
@@ -61,19 +61,19 @@ const b = { c: 10, d: 20 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
-tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-let a = tmpNestedAssignPropRhs;
-if (tmpNestedAssignPropRhs) {
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam];
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+let a = tmpNestedPropAssignRhs;
+if (tmpNestedPropAssignRhs) {
   while (true) {
     $(100);
     const tmpNestedAssignObj$1 = $(b);
     const tmpCompObj$1 = $(b);
     const tmpCalleeParam$1 = $(`d`);
-    const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
-    tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-    a = tmpNestedAssignPropRhs$1;
-    if (!tmpNestedAssignPropRhs$1) {
+    const tmpNestedPropAssignRhs$1 = tmpCompObj$1[tmpCalleeParam$1];
+    tmpNestedAssignObj$1.c = tmpNestedPropAssignRhs$1;
+    a = tmpNestedPropAssignRhs$1;
+    if (!tmpNestedPropAssignRhs$1) {
       break;
     }
   }

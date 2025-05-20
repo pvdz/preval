@@ -32,9 +32,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpCalleeParam$3 /*:array*/ = [1, 2];
-    const tmpAssignMemLhsObj /*:unknown*/ = $(tmpCalleeParam$3);
+    const tmpAssignMemLhsObj$1 /*:unknown*/ = $(tmpCalleeParam$3);
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 $(a);
@@ -53,8 +53,8 @@ while (true) {
   if (tmpForOfNext.done) {
     break;
   } else {
-    const tmpAssignMemLhsObj = $([1, 2]);
-    tmpAssignMemLhsObj.x = tmpForOfNext.value;
+    const tmpAssignMemLhsObj$1 = $([1, 2]);
+    tmpAssignMemLhsObj$1.x = tmpForOfNext.value;
   }
 }
 $(a);

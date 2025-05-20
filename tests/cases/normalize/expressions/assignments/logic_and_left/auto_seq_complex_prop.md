@@ -25,9 +25,9 @@ const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpAssignMemLhsObj /*:unknown*/ = $(a);
+const tmpAssignMemLhsObj$1 /*:unknown*/ = $(a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 `````
 
@@ -40,8 +40,8 @@ const tmpObjLitVal = $(1);
 $($(100));
 $(1);
 const a = { b: tmpObjLitVal };
-const tmpAssignMemLhsObj = $(a);
-tmpAssignMemLhsObj.b = $(2);
+const tmpAssignMemLhsObj$1 = $(a);
+tmpAssignMemLhsObj$1.b = $(2);
 $(a);
 `````
 

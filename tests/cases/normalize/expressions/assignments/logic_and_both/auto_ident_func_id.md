@@ -19,12 +19,12 @@ $(a);
 
 
 `````js filename=intro
-const f$1 /*:()=>unknown*/ = function () {
+const tmpNestedComplexRhs /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-$(f$1);
-$(f$1);
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 
@@ -32,9 +32,9 @@ $(f$1);
 (This ought to be the final result)
 
 `````js filename=intro
-const f$1 = function () {};
-$(f$1);
-$(f$1);
+const tmpNestedComplexRhs = function () {};
+$(tmpNestedComplexRhs);
+$(tmpNestedComplexRhs);
 `````
 
 

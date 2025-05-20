@@ -38,9 +38,8 @@ $('after');
 `````js filename=intro
 $(`before`);
 const tmpBinBothRhs /*:unknown*/ = $(5);
-const x /*:boolean*/ = 0 < tmpBinBothRhs;
-let flag /*:unknown*/ = x;
-if (x) {
+let flag /*:boolean*/ = 0 < tmpBinBothRhs;
+if (flag) {
   $(`inner`, 0);
   let tmpClusterSSA_n /*:number*/ = 1;
   while ($LOOP_UNROLL_10) {
@@ -69,9 +68,8 @@ if (x) {
 `````js filename=intro
 $(`before`);
 const tmpBinBothRhs = $(5);
-const x = 0 < tmpBinBothRhs;
-let flag = x;
-if (x) {
+let flag = 0 < tmpBinBothRhs;
+if (flag) {
   $(`inner`, 0);
   let tmpClusterSSA_n = 1;
   while (true) {
@@ -98,18 +96,17 @@ With rename=true
 `````js filename=intro
 $( "before" );
 const a = $( 5 );
-const b = 0 < a;
-let c = b;
+let b = 0 < a;
 if (b) {
   $( "inner", 0 );
-  let d = 1;
+  let c = 1;
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      $( "inner", d );
-      d = d + 1;
-      const e = d >= 5;
-      if (e) {
-        c = false;
+    if (b) {
+      $( "inner", c );
+      c = c + 1;
+      const d = c >= 5;
+      if (d) {
+        b = false;
       }
     }
     else {

@@ -32,9 +32,9 @@ let tmpSwitchCaseToStart /*:number*/ = 1;
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-b.c = tmpNestedAssignPropRhs;
-const tmpIfTest /*:boolean*/ = tmpNestedAssignPropRhs === tmpSwitchValue;
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+b.c = tmpNestedPropAssignRhs;
+const tmpIfTest /*:boolean*/ = tmpNestedPropAssignRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -48,10 +48,10 @@ const tmpIfTest$5 /*:boolean*/ = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpNestedAssignPropRhs, b);
+  $(tmpNestedPropAssignRhs, b);
 } else {
   $(`fail2`);
-  $(tmpNestedAssignPropRhs, b);
+  $(tmpNestedPropAssignRhs, b);
 }
 `````
 
@@ -65,9 +65,9 @@ let tmpSwitchCaseToStart = 1;
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
-b.c = tmpNestedAssignPropRhs;
-if (tmpNestedAssignPropRhs === tmpSwitchValue) {
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam];
+b.c = tmpNestedPropAssignRhs;
+if (tmpNestedPropAssignRhs === tmpSwitchValue) {
   tmpSwitchCaseToStart = 0;
 } else {
   if (2 === tmpSwitchValue) {
@@ -77,10 +77,10 @@ if (tmpNestedAssignPropRhs === tmpSwitchValue) {
 if (tmpSwitchCaseToStart <= 1) {
   $(`fail1`);
   $(`fail2`);
-  $(tmpNestedAssignPropRhs, b);
+  $(tmpNestedPropAssignRhs, b);
 } else {
   $(`fail2`);
-  $(tmpNestedAssignPropRhs, b);
+  $(tmpNestedPropAssignRhs, b);
 }
 `````
 

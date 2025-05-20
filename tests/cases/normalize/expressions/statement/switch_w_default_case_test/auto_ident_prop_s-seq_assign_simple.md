@@ -29,8 +29,8 @@ $(a, b);
 
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = 2 === tmpSwitchValue;
-if (tmpIfTest) {
+const tmpIfTest$3 /*:boolean*/ = 2 === tmpSwitchValue;
+if (tmpIfTest$3) {
 } else {
   $(`fail1`);
   $(`fail2`);

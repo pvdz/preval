@@ -19,12 +19,12 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const a /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
 $(`before  function(){}  after`);
-$(f);
+$(a);
 `````
 
 
@@ -32,9 +32,9 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
+const a = function () {};
 $(`before  function(){}  after`);
-$(f);
+$(a);
 `````
 
 

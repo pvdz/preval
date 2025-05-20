@@ -35,7 +35,7 @@ $(a, s); // 5, 'read;write[5]'
 let s /*:string*/ = ``;
 let a /*:primitive*/ = 0;
 const tmpAssignMemRhs /*:date*/ = new $date_constructor(12345);
-const obj /*:object*/ = {
+const tmpAssignMemLhsObj /*:object*/ = {
   get x() {
     debugger;
     const tmpStringConcatR /*:unknown*/ = s;
@@ -46,14 +46,14 @@ const obj /*:object*/ = {
     const v /*:unknown*/ = $$0;
     debugger;
     const tmpBinBothLhs /*:unknown*/ = s;
-    const tmpStringConcatL$1 /*:string*/ = $coerce(v, `plustr`);
-    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL$1}];`;
+    const tmpStringConcatL /*:string*/ = $coerce(v, `plustr`);
+    const tmpBinBothRhs /*:string*/ = `write[${tmpStringConcatL}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;
   },
 };
-obj.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, s);
 `````
 
@@ -65,7 +65,7 @@ $(a, s);
 let s = ``;
 let a = 0;
 const tmpAssignMemRhs = new $date_constructor(12345);
-const obj = {
+const tmpAssignMemLhsObj = {
   get x() {
     const tmpStringConcatR = s;
     s = `${tmpStringConcatR}read;`;
@@ -73,13 +73,13 @@ const obj = {
   },
   set x(v) {
     const tmpBinBothLhs = s;
-    const tmpStringConcatL$1 = $coerce(v, `plustr`);
-    s = tmpBinBothLhs + `write[${tmpStringConcatL$1}];`;
+    const tmpStringConcatL = $coerce(v, `plustr`);
+    s = tmpBinBothLhs + `write[${tmpStringConcatL}];`;
     a = a + v;
     return a;
   },
 };
-obj.x = tmpAssignMemRhs;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, s);
 `````
 

@@ -25,9 +25,9 @@ const a /*:object*/ = { a: 999, b: 1000 };
 const tmpBinBothRhs /*:object*/ = { b: tmpObjLitVal };
 const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
-const tmpAssignMemLhsObj /*:unknown*/ = $(tmpClusterSSA_a);
+const tmpAssignMemLhsObj$1 /*:unknown*/ = $(tmpClusterSSA_a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(tmpClusterSSA_a);
 `````
 
@@ -39,8 +39,8 @@ $(tmpClusterSSA_a);
 const tmpObjLitVal = $(1);
 const tmpClusterSSA_a = { a: 999, b: 1000 } * { b: tmpObjLitVal };
 $(tmpClusterSSA_a);
-const tmpAssignMemLhsObj = $(tmpClusterSSA_a);
-tmpAssignMemLhsObj.b = $(2);
+const tmpAssignMemLhsObj$1 = $(tmpClusterSSA_a);
+tmpAssignMemLhsObj$1.b = $(2);
 $(tmpClusterSSA_a);
 `````
 

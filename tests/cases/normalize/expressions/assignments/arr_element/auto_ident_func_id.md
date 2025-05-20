@@ -19,17 +19,17 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
-  debugger;
-  return undefined;
-};
 const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam /*:primitive*/ = f + a;
+const tmpClusterSSA_a /*:()=>undefined*/ = function () {
+  debugger;
+  return undefined;
+};
+const tmpCalleeParam /*:primitive*/ = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 
@@ -37,10 +37,10 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
 const a = function () {};
-$(f + a);
-$(a);
+const tmpClusterSSA_a = function () {};
+$(a + tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 

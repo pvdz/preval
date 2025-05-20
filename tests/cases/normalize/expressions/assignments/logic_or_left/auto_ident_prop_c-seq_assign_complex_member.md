@@ -25,15 +25,15 @@ const b /*:object*/ = { c: 10, d: 20 };
 const tmpNestedAssignObj /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-if (tmpNestedAssignPropRhs) {
-  $(tmpNestedAssignPropRhs);
-  $(tmpNestedAssignPropRhs, b);
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+if (tmpNestedPropAssignRhs) {
+  $(tmpNestedPropAssignRhs);
+  $(tmpNestedPropAssignRhs, b);
 } else {
   const tmpCalleeParam /*:unknown*/ = $(100);
   $(tmpCalleeParam);
-  $(tmpNestedAssignPropRhs, b);
+  $(tmpNestedPropAssignRhs, b);
 }
 `````
 
@@ -46,14 +46,14 @@ const b = { c: 10, d: 20 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
 const tmpCalleeParam$1 = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
-tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-if (tmpNestedAssignPropRhs) {
-  $(tmpNestedAssignPropRhs);
-  $(tmpNestedAssignPropRhs, b);
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam$1];
+tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+if (tmpNestedPropAssignRhs) {
+  $(tmpNestedPropAssignRhs);
+  $(tmpNestedPropAssignRhs, b);
 } else {
   $($(100));
-  $(tmpNestedAssignPropRhs, b);
+  $(tmpNestedPropAssignRhs, b);
 }
 `````
 

@@ -28,11 +28,11 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue /*:unknown*/ = $(1);
 let tmpSwitchCaseToStart /*:number*/ = 1;
-const f /*:()=>undefined*/ = function () {
+const tmpBinLhs /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpIfTest /*:boolean*/ = f === tmpSwitchValue;
+const tmpIfTest /*:boolean*/ = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

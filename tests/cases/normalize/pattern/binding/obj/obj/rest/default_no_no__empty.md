@@ -18,9 +18,9 @@ $('bad');
 
 
 `````js filename=intro
-const tmpOPND /*:unknown*/ = $Number_prototype.x;
+const tmpCalleeParam /*:unknown*/ = $Number_prototype.x;
 const tmpCalleeParam$1 /*:array*/ = [];
-$objPatternRest(tmpOPND, tmpCalleeParam$1, undefined);
+$objPatternRest(tmpCalleeParam, tmpCalleeParam$1, undefined);
 $(`bad`);
 `````
 

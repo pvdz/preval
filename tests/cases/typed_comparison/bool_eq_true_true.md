@@ -20,8 +20,8 @@ $('out:', y);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(true);
-const x /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
-$(`out:`, x);
+const y /*:boolean*/ = $boolean_constructor(tmpCalleeParam);
+$(`out:`, y);
 `````
 
 

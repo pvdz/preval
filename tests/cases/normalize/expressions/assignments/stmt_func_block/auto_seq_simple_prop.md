@@ -27,9 +27,9 @@ $(f());
 const tmpObjLitVal /*:unknown*/ = $(1);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const a /*:object*/ = { b: tmpObjLitVal };
-const tmpAssignMemLhsObj /*:unknown*/ = a(tmpCalleeParam, a);
+const tmpAssignMemLhsObj$1 /*:unknown*/ = a(tmpCalleeParam, a);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
-tmpAssignMemLhsObj.b = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1.b = tmpAssignMemRhs;
 $(a);
 $(undefined);
 `````
@@ -42,8 +42,8 @@ $(undefined);
 const tmpObjLitVal = $(1);
 const tmpCalleeParam = $(1);
 const a = { b: tmpObjLitVal };
-const tmpAssignMemLhsObj = a(tmpCalleeParam, a);
-tmpAssignMemLhsObj.b = $(2);
+const tmpAssignMemLhsObj$1 = a(tmpCalleeParam, a);
+tmpAssignMemLhsObj$1.b = $(2);
 $(a);
 $(undefined);
 `````

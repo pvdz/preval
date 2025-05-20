@@ -19,12 +19,12 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
+const tmpBinBothLhs /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
 const tmpBinBothRhs /*:unknown*/ = $(100);
-f + tmpBinBothRhs;
+tmpBinBothLhs + tmpBinBothRhs;
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

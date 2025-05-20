@@ -28,9 +28,9 @@ $(a, b, c, d, e);
 
 
 `````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 const b /*:object*/ = { x: 1 };
 const c /*:object*/ = { y: 2 };
 if (tmpIfTest) {

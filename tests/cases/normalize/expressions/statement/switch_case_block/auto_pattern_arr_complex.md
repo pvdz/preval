@@ -26,9 +26,9 @@ $(a);
 const tmpBindingPatternArrRoot /*:object*/ = { a: 999, b: 1000 };
 const tmpArrPatternSplat /*:array*/ = [...tmpBindingPatternArrRoot];
 const a /*:unknown*/ = tmpArrPatternSplat[0];
-const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpCalleeParam /*:array*/ = [1, 2];
   $(tmpCalleeParam);

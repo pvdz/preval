@@ -44,8 +44,8 @@ const tmpFree$1 /*:(string, number)=>string*/ = function $free($$0, $$1) {
   const tmpIfTest$3 /*:number*/ = x$1 & 48;
   const tmpRet /*:boolean*/ = tmpIfTest$3 === 48;
   const tmpBinLhs /*:string*/ = tmpRet + chr;
-  const ret2 /*:string*/ = tmpBinLhs + chr;
-  return ret2;
+  const tmpRet$1 /*:string*/ = tmpBinLhs + chr;
+  return tmpRet$1;
 };
 const tmpUnaryArg /*:unknown*/ = $spy(1);
 const x /*:number*/ = +tmpUnaryArg;
@@ -68,8 +68,8 @@ if (x) {
 `````js filename=intro
 const tmpFree$1 = function $free(somestr, x$1) {
   const chr = $dotCall($string_charAt, somestr, `charAt`, 1);
-  const ret2 = ((x$1 & 48) === 48) + chr + chr;
-  return ret2;
+  const tmpRet$1 = ((x$1 & 48) === 48) + chr + chr;
+  return tmpRet$1;
 };
 const tmpUnaryArg = $spy(1);
 const x = +tmpUnaryArg;

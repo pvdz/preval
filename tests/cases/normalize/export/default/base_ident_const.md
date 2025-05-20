@@ -19,8 +19,7 @@ export default FOO;
 
 
 `````js filename=intro
-const FOO /*:unknown*/ = $(1);
-const tmpAnonDefaultExport /*:unknown*/ = FOO;
+const tmpAnonDefaultExport /*:unknown*/ = $(1);
 export { tmpAnonDefaultExport as default };
 `````
 
@@ -29,8 +28,7 @@ export { tmpAnonDefaultExport as default };
 (This ought to be the final result)
 
 `````js filename=intro
-const FOO = $(1);
-const tmpAnonDefaultExport = FOO;
+const tmpAnonDefaultExport = $(1);
 export { tmpAnonDefaultExport as default };
 `````
 
@@ -40,8 +38,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = a;
-export { b as default };
+export { a as default };
 `````
 
 

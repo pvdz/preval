@@ -23,8 +23,8 @@ $(y);
 `````js filename=intro
 const a /*:unknown*/ = $(`a`);
 const b /*:unknown*/ = $(`b`);
-const x /*:boolean*/ = a === b;
-$(x);
+const y /*:boolean*/ = a === b;
+$(y);
 `````
 
 

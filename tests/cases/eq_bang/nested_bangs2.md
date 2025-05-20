@@ -28,8 +28,8 @@ const a /*:boolean*/ = tmpBinBothLhs !== tmpBinBothRhs;
 $(a);
 const tmpBinBothLhs$1 /*:unknown*/ = $(1);
 const tmpBinBothRhs$1 /*:unknown*/ = $(2);
-const b /*:boolean*/ = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
-$(b);
+const tmpCalleeParam$1 /*:boolean*/ = tmpBinBothLhs$1 !== tmpBinBothRhs$1;
+$(tmpCalleeParam$1);
 $(a);
 $(a);
 `````

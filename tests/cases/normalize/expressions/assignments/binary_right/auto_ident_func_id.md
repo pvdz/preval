@@ -20,13 +20,13 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(100);
-const f /*:()=>undefined*/ = function () {
+const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + f;
+const tmpCalleeParam /*:primitive*/ = tmpBinBothLhs + a;
 $(tmpCalleeParam);
-$(f);
+$(a);
 `````
 
 
@@ -35,9 +35,9 @@ $(f);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const f = function () {};
-$(tmpBinBothLhs + f);
-$(f);
+const a = function () {};
+$(tmpBinBothLhs + a);
+$(a);
 `````
 
 

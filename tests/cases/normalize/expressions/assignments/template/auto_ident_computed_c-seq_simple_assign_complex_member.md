@@ -26,12 +26,12 @@ const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedAssignPropRhs, `string`);
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedPropAssignRhs, `string`);
 const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpNestedAssignPropRhs, b);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 
@@ -44,10 +44,10 @@ const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
 const tmpCalleeParam$3 = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$3];
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-$(`before  ${tmpNestedAssignPropRhs}  after`);
-$(tmpNestedAssignPropRhs, b);
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam$3];
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+$(`before  ${tmpNestedPropAssignRhs}  after`);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 

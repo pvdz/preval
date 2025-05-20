@@ -21,8 +21,8 @@ f(y); // In this test, this is the call we expect to be replaced by trampoline i
 
 
 `````js filename=intro
-const y /*:unknown*/ = $(`pass`);
-$(...y);
+const x /*:unknown*/ = $(`pass`);
+$(...x);
 `````
 
 
@@ -30,8 +30,8 @@ $(...y);
 (This ought to be the final result)
 
 `````js filename=intro
-const y = $(`pass`);
-$(...y);
+const x = $(`pass`);
+$(...x);
 `````
 
 

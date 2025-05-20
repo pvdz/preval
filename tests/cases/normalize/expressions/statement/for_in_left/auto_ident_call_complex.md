@@ -29,9 +29,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   } else {
     const tmpCallComplexCallee /*:unknown*/ = $($);
-    const tmpAssignMemLhsObj /*:unknown*/ = tmpCallComplexCallee(1);
+    const tmpAssignMemLhsObj$1 /*:unknown*/ = tmpCallComplexCallee(1);
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -50,8 +50,8 @@ while (true) {
     break;
   } else {
     const tmpCallComplexCallee = $($);
-    const tmpAssignMemLhsObj = tmpCallComplexCallee(1);
-    tmpAssignMemLhsObj.x = tmpForInNext.value;
+    const tmpAssignMemLhsObj$1 = tmpCallComplexCallee(1);
+    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
   }
 }
 $({ a: 999, b: 1000 });

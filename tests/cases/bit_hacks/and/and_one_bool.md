@@ -24,8 +24,8 @@ if (y === 1) {
 
 `````js filename=intro
 const tmpBinLhs /*:unknown*/ = $(1);
-const x /*:number*/ = tmpBinLhs & 1;
-if (x) {
+const y /*:number*/ = tmpBinLhs & 1;
+if (y) {
   $(`pass`);
 } else {
   $(`fail`);

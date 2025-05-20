@@ -485,10 +485,6 @@ export function functionExpression(params, bodyArr, { id, generator, async, norm
 
 export function identifier(name, nonComputedProperty = false) {
   ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings', name);
-  ASSERT(
-    nonComputedProperty || (typeof nonComputedProperty === 'boolean' && !['true', 'false', 'null'].includes(name)),
-    'these are literals.',
-  );
   return {
     type: 'Identifier',
     name,

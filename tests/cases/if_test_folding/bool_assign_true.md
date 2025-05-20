@@ -35,8 +35,8 @@ const f /*:()=>boolean*/ = function () {
   const tmpBinLhs /*:unknown*/ = $(1);
   $(`block`);
   $(`block`);
-  const x /*:boolean*/ = tmpBinLhs !== 1;
-  return x;
+  const tmpIfTestFold /*:boolean*/ = tmpBinLhs !== 1;
+  return tmpIfTestFold;
 };
 f();
 const tmpCalleeParam /*:boolean*/ = f();
@@ -52,8 +52,8 @@ const f = function () {
   const tmpBinLhs = $(1);
   $(`block`);
   $(`block`);
-  const x = tmpBinLhs !== 1;
-  return x;
+  const tmpIfTestFold = tmpBinLhs !== 1;
+  return tmpIfTestFold;
 };
 f();
 $(f());

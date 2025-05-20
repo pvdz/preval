@@ -26,8 +26,7 @@ $(1);
 $(2);
 const tmpObjLitVal /*:unknown*/ = $(3);
 const tmpObjLitVal$1 /*:unknown*/ = $(4);
-const tmpNestedAssignObjPatternRhs /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignObjPatternRhs;
+const tmpAnonDefaultExport /*:object*/ = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 export { tmpAnonDefaultExport as default };
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
@@ -42,8 +41,7 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+const tmpAnonDefaultExport = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 export { tmpAnonDefaultExport as default };
 $({ a: 999, b: 1000 }, tmpObjLitVal, tmpObjLitVal$1);
 `````
@@ -61,13 +59,12 @@ const c = {
   x: a,
   y: b,
 };
-const d = c;
-export { d as default };
-const e = {
+export { c as default };
+const d = {
   a: 999,
   b: 1000,
 };
-$( e, a, b );
+$( d, a, b );
 `````
 
 

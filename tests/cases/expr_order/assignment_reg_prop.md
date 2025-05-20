@@ -34,9 +34,9 @@ const b /*:object*/ = {
     return undefined;
   },
 };
-const tmpAssignMemLhsObj /*:unknown*/ = $(b);
+const tmpAssignMemLhsObj$1 /*:unknown*/ = $(b);
 const tmpAssignMemRhs /*:unknown*/ = $(2);
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 `````
 
 
@@ -44,7 +44,7 @@ tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpAssignMemLhsObj = $({
+const tmpAssignMemLhsObj$1 = $({
   get c() {
     $(`get`);
   },
@@ -52,7 +52,7 @@ const tmpAssignMemLhsObj = $({
     $(`set`);
   },
 });
-tmpAssignMemLhsObj.c = $(2);
+tmpAssignMemLhsObj$1.c = $(2);
 `````
 
 

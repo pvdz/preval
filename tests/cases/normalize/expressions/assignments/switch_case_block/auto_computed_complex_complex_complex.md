@@ -25,10 +25,10 @@ $(a);
 
 `````js filename=intro
 let a /*:object*/ = { a: 999, b: 1000 };
-const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
 let tmpAssignComMemLhsObj /*:unknown*/ = undefined;
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpObjLitVal /*:unknown*/ = $(1);
   a = { b: tmpObjLitVal };
@@ -48,10 +48,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(1);
 let tmpAssignComMemLhsObj = undefined;
-if (tmpSwitchDisc === tmpBinBothRhs) {
+if (tmpBinBothLhs === tmpBinBothRhs) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
   tmpAssignComMemLhsObj = $(a);

@@ -21,8 +21,8 @@ $(c);
 
 `````js filename=intro
 const a /*:unknown*/ = inline.value;
-const b /*:string*/ = encodeURIComponent(a);
-$(b);
+const c /*:string*/ = encodeURIComponent(a);
+$(c);
 `````
 
 

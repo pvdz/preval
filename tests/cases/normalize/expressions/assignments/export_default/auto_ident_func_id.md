@@ -19,13 +19,13 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
+const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpAnonDefaultExport /*:unknown*/ = f;
+const tmpAnonDefaultExport /*:unknown*/ = a;
 export { tmpAnonDefaultExport as default };
-$(f);
+$(a);
 `````
 
 
@@ -33,10 +33,10 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
-const tmpAnonDefaultExport = f;
+const a = function () {};
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(f);
+$(a);
 `````
 
 

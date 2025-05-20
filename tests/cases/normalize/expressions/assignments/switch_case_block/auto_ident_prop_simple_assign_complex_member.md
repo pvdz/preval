@@ -25,16 +25,16 @@ $(a, b);
 
 
 `````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1);
+const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam /*:unknown*/ = $(`d`);
-  const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-  b.c = tmpNestedAssignPropRhs;
-  $(tmpNestedAssignPropRhs, b);
+  const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+  b.c = tmpNestedPropAssignRhs;
+  $(tmpNestedPropAssignRhs, b);
 } else {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a, b);
@@ -51,9 +51,9 @@ const b = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpCompObj = $(b);
   const tmpCalleeParam = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
-  b.c = tmpNestedAssignPropRhs;
-  $(tmpNestedAssignPropRhs, b);
+  const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam];
+  b.c = tmpNestedPropAssignRhs;
+  $(tmpNestedPropAssignRhs, b);
 } else {
   $({ a: 999, b: 1000 }, b);
 }

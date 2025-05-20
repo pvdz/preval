@@ -19,8 +19,8 @@ for (let a = b = $(c).y = $(d);false;) $(a, b, c);
 
 `````js filename=intro
 const tmpNestedAssignObj /*:unknown*/ = $(3);
-const tmpNestedAssignPropRhs /*:unknown*/ = $(4);
-tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
+const tmpNestedPropAssignRhs /*:unknown*/ = $(4);
+tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
 `````
 
 

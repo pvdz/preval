@@ -26,9 +26,9 @@ const tmpNestedAssignComMemberObj /*:unknown*/ = $(b);
 const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-if (tmpNestedAssignPropRhs) {
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+if (tmpNestedPropAssignRhs) {
   const tmpInitAssignLhsComputedObj /*:unknown*/ = $(b);
   const tmpInitAssignLhsComputedProp /*:unknown*/ = $(`c`);
   const tmpCompObj$1 /*:unknown*/ = $(b);
@@ -38,8 +38,8 @@ if (tmpNestedAssignPropRhs) {
   $(tmpInitAssignLhsComputedRhs);
   $(tmpInitAssignLhsComputedRhs, b);
 } else {
-  $(tmpNestedAssignPropRhs);
-  $(tmpNestedAssignPropRhs, b);
+  $(tmpNestedPropAssignRhs);
+  $(tmpNestedPropAssignRhs, b);
 }
 `````
 
@@ -53,9 +53,9 @@ const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
 const tmpCalleeParam$1 = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
-tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-if (tmpNestedAssignPropRhs) {
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam$1];
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+if (tmpNestedPropAssignRhs) {
   const tmpInitAssignLhsComputedObj = $(b);
   const tmpInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj$1 = $(b);
@@ -65,8 +65,8 @@ if (tmpNestedAssignPropRhs) {
   $(tmpInitAssignLhsComputedRhs);
   $(tmpInitAssignLhsComputedRhs, b);
 } else {
-  $(tmpNestedAssignPropRhs);
-  $(tmpNestedAssignPropRhs, b);
+  $(tmpNestedPropAssignRhs);
+  $(tmpNestedPropAssignRhs, b);
 }
 `````
 

@@ -19,11 +19,11 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>undefined*/ = function () {
+const a /*:()=>undefined*/ = function () {
   debugger;
   return undefined;
 };
-const tmpForOfGenNext /*:unknown*/ = $forOf(f);
+const tmpForOfGenNext /*:unknown*/ = $forOf(a);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
@@ -33,7 +33,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-$(f);
+$(a);
 `````
 
 
@@ -41,8 +41,8 @@ $(f);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
-const tmpForOfGenNext = $forOf(f);
+const a = function () {};
+const tmpForOfGenNext = $forOf(a);
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
@@ -51,7 +51,7 @@ while (true) {
     tmpForOfNext.value;
   }
 }
-$(f);
+$(a);
 `````
 
 

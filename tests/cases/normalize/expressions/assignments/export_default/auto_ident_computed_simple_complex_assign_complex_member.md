@@ -25,11 +25,11 @@ const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-const tmpAnonDefaultExport /*:unknown*/ = tmpNestedAssignPropRhs;
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
+b[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+const tmpAnonDefaultExport /*:unknown*/ = tmpNestedPropAssignRhs;
 export { tmpAnonDefaultExport as default };
-$(tmpNestedAssignPropRhs, b);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 
@@ -41,11 +41,11 @@ const tmpNestedAssignComMemberProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam];
-b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-const tmpAnonDefaultExport = tmpNestedAssignPropRhs;
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam];
+b[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+const tmpAnonDefaultExport = tmpNestedPropAssignRhs;
 export { tmpAnonDefaultExport as default };
-$(tmpNestedAssignPropRhs, b);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 

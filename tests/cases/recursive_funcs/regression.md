@@ -248,7 +248,6 @@ $( i );
 - (todo) - at least one of the frfr args was not isFree, bailing
 - (todo) Support referencing this builtin in isFree: $
 - (todo) Support string.charCodeAt when the arg is not a string literal
-- (todo) free with zero args, we can eliminate this?
 
 
 ## Globals

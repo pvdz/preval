@@ -38,8 +38,8 @@ $(f.call({x: 100}));
 const f /*:()=>unknown*/ = function () {
   const tmpPrevalAliasThis /*:object*/ = this;
   debugger;
-  const tmpReturnArg /*:unknown*/ = tmpPrevalAliasThis.x;
-  return tmpReturnArg;
+  const tmpReturnArg$1 /*:unknown*/ = tmpPrevalAliasThis.x;
+  return tmpReturnArg$1;
 };
 const tmpMCP /*:object*/ = { x: 100 };
 const tmpCalleeParam /*:unknown*/ = $dotCall($function_call, f, `call`, tmpMCP);
@@ -52,8 +52,8 @@ $(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpReturnArg = this.x;
-  return tmpReturnArg;
+  const tmpReturnArg$1 = this.x;
+  return tmpReturnArg$1;
 };
 $($dotCall($function_call, f, `call`, { x: 100 }));
 `````

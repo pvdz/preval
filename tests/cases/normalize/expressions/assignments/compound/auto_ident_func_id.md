@@ -19,12 +19,12 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const tmpBinBothRhs /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
 const a /*:object*/ = { a: 999, b: 1000 };
-const tmpClusterSSA_a /*:number*/ = a * f;
+const tmpClusterSSA_a /*:number*/ = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
@@ -34,8 +34,8 @@ $(tmpClusterSSA_a);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
-const tmpClusterSSA_a = { a: 999, b: 1000 } * f;
+const tmpBinBothRhs = function () {};
+const tmpClusterSSA_a = { a: 999, b: 1000 } * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

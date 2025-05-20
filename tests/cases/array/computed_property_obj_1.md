@@ -18,8 +18,8 @@ $(x[[1]]);
 
 
 `````js filename=intro
-const x /*:object*/ = { [1]: `pass` };
-const tmpCalleeParam /*:unknown*/ = x[`1`];
+const tmpCompObj /*:object*/ = { [1]: `pass` };
+const tmpCalleeParam /*:unknown*/ = tmpCompObj[`1`];
 $(tmpCalleeParam);
 `````
 

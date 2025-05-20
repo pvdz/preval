@@ -22,11 +22,11 @@ $(a, b);
 
 `````js filename=intro
 const b /*:object*/ = { c: 10, d: 20 };
-const tmpAssignMemLhsObj /*:unknown*/ = $(b);
+const tmpAssignMemLhsObj$1 /*:unknown*/ = $(b);
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam /*:unknown*/ = $(`d`);
 const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   while ($LOOP_UNROLL_10) {
@@ -48,10 +48,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 10, d: 20 };
-const tmpAssignMemLhsObj = $(b);
+const tmpAssignMemLhsObj$1 = $(b);
 const tmpCompObj = $(b);
 const tmpCalleeParam = $(`d`);
-tmpAssignMemLhsObj.c = tmpCompObj[tmpCalleeParam];
+tmpAssignMemLhsObj$1.c = tmpCompObj[tmpCalleeParam];
 if ($(0)) {
   while (true) {
     if (!$(0)) {

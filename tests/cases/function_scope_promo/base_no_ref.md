@@ -48,8 +48,8 @@ if ($) {
   }
 } else {
 }
-const tmpReturnArg /*:unknown*/ = $(10);
-$(tmpReturnArg);
+const tmpReturnArg$1 /*:unknown*/ = $(10);
+$(tmpReturnArg$1);
 `````
 
 

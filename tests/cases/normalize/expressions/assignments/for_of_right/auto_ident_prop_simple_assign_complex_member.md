@@ -24,9 +24,9 @@ $(a, b);
 const b /*:object*/ = { c: 10, d: 20 };
 const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
-const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
-b.c = tmpNestedAssignPropRhs;
-const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedAssignPropRhs);
+const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$1];
+b.c = tmpNestedPropAssignRhs;
+const tmpForOfGenNext /*:unknown*/ = $forOf(tmpNestedPropAssignRhs);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpForOfNext /*:unknown*/ = tmpForOfGenNext();
   const tmpIfTest /*:unknown*/ = tmpForOfNext.done;
@@ -36,7 +36,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     tmpForOfNext.value;
   }
 }
-$(tmpNestedAssignPropRhs, b);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 
@@ -47,9 +47,9 @@ $(tmpNestedAssignPropRhs, b);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCalleeParam$1 = $(`d`);
-const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$1];
-b.c = tmpNestedAssignPropRhs;
-const tmpForOfGenNext = $forOf(tmpNestedAssignPropRhs);
+const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam$1];
+b.c = tmpNestedPropAssignRhs;
+const tmpForOfGenNext = $forOf(tmpNestedPropAssignRhs);
 while (true) {
   const tmpForOfNext = tmpForOfGenNext();
   if (tmpForOfNext.done) {
@@ -58,7 +58,7 @@ while (true) {
     tmpForOfNext.value;
   }
 }
-$(tmpNestedAssignPropRhs, b);
+$(tmpNestedPropAssignRhs, b);
 `````
 
 

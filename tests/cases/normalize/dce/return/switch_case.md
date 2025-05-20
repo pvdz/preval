@@ -24,9 +24,9 @@ $(f());
 
 
 `````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(1, `disc`);
+const tmpBinBothLhs /*:unknown*/ = $(1, `disc`);
 const tmpBinBothRhs /*:unknown*/ = $(1, `case`);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpCalleeParam /*:unknown*/ = $(2, `ret`);
   $(tmpCalleeParam);

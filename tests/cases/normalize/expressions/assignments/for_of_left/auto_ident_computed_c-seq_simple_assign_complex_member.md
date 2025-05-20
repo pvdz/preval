@@ -36,11 +36,11 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     const tmpNestedAssignComMemberProp /*:unknown*/ = $(`c`);
     const tmpCompObj /*:unknown*/ = $(b);
     const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
-    const tmpNestedAssignPropRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-    a = tmpNestedAssignPropRhs;
+    const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
     const tmpAssignMemRhs /*:unknown*/ = tmpForOfNext.value;
-    tmpNestedAssignPropRhs.x = tmpAssignMemRhs;
+    tmpNestedPropAssignRhs.x = tmpAssignMemRhs;
   }
 }
 $(a, b);
@@ -63,10 +63,10 @@ while (true) {
     const tmpNestedAssignComMemberProp = $(`c`);
     const tmpCompObj = $(b);
     const tmpCalleeParam$3 = $(`d`);
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCalleeParam$3];
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-    a = tmpNestedAssignPropRhs;
-    tmpNestedAssignPropRhs.x = tmpForOfNext.value;
+    const tmpNestedPropAssignRhs = tmpCompObj[tmpCalleeParam$3];
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    tmpNestedPropAssignRhs.x = tmpForOfNext.value;
   }
 }
 $(a, b);

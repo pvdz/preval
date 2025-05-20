@@ -20,8 +20,8 @@ $(Boolean(x)); // Is the same as `x` and dropping the `Boolean` call should not 
 `````js filename=intro
 const tmpBinBothLhs /*:unknown*/ = $(1);
 const tmpBinBothRhs /*:unknown*/ = $(1);
-const x /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
-$(x);
+const tmpCalleeParam /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
+$(tmpCalleeParam);
 `````
 
 

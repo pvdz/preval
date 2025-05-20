@@ -21,8 +21,8 @@ f(obj, '$'); // In this test, this is the call we expect to be replaced by tramp
 
 
 `````js filename=intro
-const obj /*:object*/ = { $: $ };
-$dotCall($, obj, undefined, 1);
+const obj$1 /*:object*/ = { $: $ };
+$dotCall($, obj$1, undefined, 1);
 `````
 
 

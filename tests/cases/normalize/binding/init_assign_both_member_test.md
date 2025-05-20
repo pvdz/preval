@@ -35,7 +35,7 @@ const c /*:object*/ = {
     return undefined;
   },
 };
-const tmpNestedAssignPropRhs /*:unknown*/ = c.x;
+const tmpNestedPropAssignRhs /*:unknown*/ = c.x;
 const b /*:object*/ = {
   get x() {
     debugger;
@@ -49,8 +49,8 @@ const b /*:object*/ = {
     return undefined;
   },
 };
-b.x = tmpNestedAssignPropRhs;
-$(5, tmpNestedAssignPropRhs);
+b.x = tmpNestedPropAssignRhs;
+$(5, tmpNestedPropAssignRhs);
 `````
 
 
@@ -58,7 +58,7 @@ $(5, tmpNestedAssignPropRhs);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpNestedAssignPropRhs = {
+const tmpNestedPropAssignRhs = {
   get x() {
     $(3);
     return 20;
@@ -76,8 +76,8 @@ const b = {
     $(2, n);
   },
 };
-b.x = tmpNestedAssignPropRhs;
-$(5, tmpNestedAssignPropRhs);
+b.x = tmpNestedPropAssignRhs;
+$(5, tmpNestedPropAssignRhs);
 `````
 
 

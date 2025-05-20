@@ -26,12 +26,12 @@ if (tmpIfTest) {
   const a /*:object*/ = { a: 999, b: 1000 };
   $(a);
 } else {
-  const f /*:()=>undefined*/ = function () {
+  const tmpNestedComplexRhs /*:()=>undefined*/ = function () {
     debugger;
     return undefined;
   };
-  $(f);
-  $(f);
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 }
 `````
 
@@ -44,9 +44,9 @@ if ($(0)) {
   $($(100));
   $({ a: 999, b: 1000 });
 } else {
-  const f = function () {};
-  $(f);
-  $(f);
+  const tmpNestedComplexRhs = function () {};
+  $(tmpNestedComplexRhs);
+  $(tmpNestedComplexRhs);
 }
 `````
 

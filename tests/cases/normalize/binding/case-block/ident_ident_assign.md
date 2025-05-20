@@ -19,9 +19,9 @@ $(a, b, c);
 
 
 `````js filename=intro
-const tmpSwitchDisc /*:unknown*/ = $(`a`);
+const tmpBinBothLhs /*:unknown*/ = $(`a`);
 const tmpBinBothRhs /*:unknown*/ = $(`a`);
-const tmpIfTest /*:boolean*/ = tmpSwitchDisc === tmpBinBothRhs;
+const tmpIfTest /*:boolean*/ = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpInitAssignLhsComputedObj /*:unknown*/ = $(3);
   const tmpInitAssignLhsComputedRhs /*:unknown*/ = $(4);

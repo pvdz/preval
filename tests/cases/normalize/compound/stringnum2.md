@@ -26,8 +26,8 @@ const tmpCalleeParam /*:string*/ = `b${tmpStringConcatL}`;
 $(tmpCalleeParam);
 const sp2 /*:unknown*/ = $spy();
 const tmpBinBothRhs /*:string*/ = $coerce(sp2, `string`);
-const tmpBinLhs /*:string*/ = `b${tmpBinBothRhs}`;
-$(tmpBinLhs);
+const tmpCalleeParam$1 /*:string*/ = `b${tmpBinBothRhs}`;
+$(tmpCalleeParam$1);
 `````
 
 

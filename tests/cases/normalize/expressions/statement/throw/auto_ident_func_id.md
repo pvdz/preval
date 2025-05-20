@@ -19,11 +19,11 @@ $(a);
 
 
 `````js filename=intro
-const f /*:()=>unknown*/ = function () {
+const tmpThrowArg /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
-throw f;
+throw tmpThrowArg;
 `````
 
 
@@ -31,8 +31,8 @@ throw f;
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function () {};
-throw f;
+const tmpThrowArg = function () {};
+throw tmpThrowArg;
 `````
 
 

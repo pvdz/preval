@@ -51,21 +51,21 @@ $(arr2);
 
 `````js filename=intro
 const tmpCalleeParam /*:unknown*/ = $(``);
-const tmpBinBothRhs /*:string*/ = $coerce(tmpCalleeParam, `string`);
+const x /*:string*/ = $coerce(tmpCalleeParam, `string`);
 const tmpBinBothRhs$27 /*:array*/ = [`a`, `b`, `c`];
-const tmpArrElement$25 /*:boolean*/ = tmpBinBothRhs == tmpBinBothRhs$27;
+const tmpArrElement$25 /*:boolean*/ = x == tmpBinBothRhs$27;
 const tmpBinBothRhs$29 /*:array*/ = [`a`, `b`, `c`];
-const tmpArrElement$27 /*:boolean*/ = tmpBinBothRhs != tmpBinBothRhs$29;
-const tmpArrElement$7 /*:string*/ = `${tmpBinBothRhs}a,b,c`;
-const tmpArrElement$11 /*:number*/ = tmpBinBothRhs << 0;
-const tmpArrElement$13 /*:number*/ = tmpBinBothRhs >> 0;
-const tmpArrElement$15 /*:number*/ = tmpBinBothRhs >>> 0;
-const tmpArrElement$17 /*:boolean*/ = tmpBinBothRhs < `a,b,c`;
-const tmpArrElement$19 /*:boolean*/ = tmpBinBothRhs > `a,b,c`;
-const tmpArrElement$21 /*:boolean*/ = tmpBinBothRhs <= `a,b,c`;
-const tmpArrElement$23 /*:boolean*/ = tmpBinBothRhs >= `a,b,c`;
-const tmpArrElement$35 /*:number*/ = tmpBinBothRhs ^ 0;
-const tmpArrElement$37 /*:number*/ = tmpBinBothRhs | 0;
+const tmpArrElement$27 /*:boolean*/ = x != tmpBinBothRhs$29;
+const tmpArrElement$7 /*:string*/ = `${x}a,b,c`;
+const tmpArrElement$11 /*:number*/ = x << 0;
+const tmpArrElement$13 /*:number*/ = x >> 0;
+const tmpArrElement$15 /*:number*/ = x >>> 0;
+const tmpArrElement$17 /*:boolean*/ = x < `a,b,c`;
+const tmpArrElement$19 /*:boolean*/ = x > `a,b,c`;
+const tmpArrElement$21 /*:boolean*/ = x <= `a,b,c`;
+const tmpArrElement$23 /*:boolean*/ = x >= `a,b,c`;
+const tmpArrElement$35 /*:number*/ = x ^ 0;
+const tmpArrElement$37 /*:number*/ = x | 0;
 const arr /*:array*/ = [
   NaN,
   NaN,
@@ -91,8 +91,8 @@ const arr /*:array*/ = [
 $(arr);
 const tmpBinBothRhs$41 /*:array*/ = [];
 const tmpBinBothRhs$43 /*:array*/ = [];
-const tmpArrElement$39 /*:boolean*/ = tmpBinBothRhs in tmpBinBothRhs$41;
-const tmpArrElement$41 /*:boolean*/ = tmpBinBothRhs instanceof tmpBinBothRhs$43;
+const tmpArrElement$39 /*:boolean*/ = x in tmpBinBothRhs$41;
+const tmpArrElement$41 /*:boolean*/ = x instanceof tmpBinBothRhs$43;
 const arr2 /*:array*/ = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
@@ -102,19 +102,19 @@ $(arr2);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpBinBothRhs = $coerce($(``), `string`);
-const tmpArrElement$25 = tmpBinBothRhs == [`a`, `b`, `c`];
-const tmpArrElement$27 = tmpBinBothRhs != [`a`, `b`, `c`];
-const tmpArrElement$7 = `${tmpBinBothRhs}a,b,c`;
-const tmpArrElement$11 = tmpBinBothRhs << 0;
-const tmpArrElement$13 = tmpBinBothRhs >> 0;
-const tmpArrElement$15 = tmpBinBothRhs >>> 0;
-const tmpArrElement$17 = tmpBinBothRhs < `a,b,c`;
-const tmpArrElement$19 = tmpBinBothRhs > `a,b,c`;
-const tmpArrElement$21 = tmpBinBothRhs <= `a,b,c`;
-const tmpArrElement$23 = tmpBinBothRhs >= `a,b,c`;
-const tmpArrElement$35 = tmpBinBothRhs ^ 0;
-const tmpArrElement$37 = tmpBinBothRhs | 0;
+const x = $coerce($(``), `string`);
+const tmpArrElement$25 = x == [`a`, `b`, `c`];
+const tmpArrElement$27 = x != [`a`, `b`, `c`];
+const tmpArrElement$7 = `${x}a,b,c`;
+const tmpArrElement$11 = x << 0;
+const tmpArrElement$13 = x >> 0;
+const tmpArrElement$15 = x >>> 0;
+const tmpArrElement$17 = x < `a,b,c`;
+const tmpArrElement$19 = x > `a,b,c`;
+const tmpArrElement$21 = x <= `a,b,c`;
+const tmpArrElement$23 = x >= `a,b,c`;
+const tmpArrElement$35 = x ^ 0;
+const tmpArrElement$37 = x | 0;
 $([
   NaN,
   NaN,
@@ -139,8 +139,8 @@ $([
 ]);
 const tmpBinBothRhs$41 = [];
 const tmpBinBothRhs$43 = [];
-const tmpArrElement$39 = tmpBinBothRhs in tmpBinBothRhs$41;
-const tmpArrElement$41 = tmpBinBothRhs instanceof tmpBinBothRhs$43;
+const tmpArrElement$39 = x in tmpBinBothRhs$41;
+const tmpArrElement$41 = x instanceof tmpBinBothRhs$43;
 $([tmpArrElement$39, tmpArrElement$41]);
 `````
 

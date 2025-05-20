@@ -25,11 +25,11 @@ const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { c: 10, d: 20 };
 const a /*:object*/ = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpAssignMemLhsObj /*:unknown*/ = $(b);
+  const tmpAssignMemLhsObj$1 /*:unknown*/ = $(b);
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam /*:unknown*/ = $(`d`);
   const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
   $(a, b);
 } else {
   $(200);
@@ -46,10 +46,10 @@ const tmpIfTest = $(1);
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const tmpAssignMemLhsObj = $(b);
+  const tmpAssignMemLhsObj$1 = $(b);
   const tmpCompObj = $(b);
   const tmpCalleeParam = $(`d`);
-  tmpAssignMemLhsObj.c = tmpCompObj[tmpCalleeParam];
+  tmpAssignMemLhsObj$1.c = tmpCompObj[tmpCalleeParam];
   $(a, b);
 } else {
   $(200);

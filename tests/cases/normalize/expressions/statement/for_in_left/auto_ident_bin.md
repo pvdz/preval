@@ -30,9 +30,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   } else {
     const tmpBinBothLhs /*:unknown*/ = $(1);
     const tmpBinBothRhs /*:unknown*/ = $(2);
-    const tmpAssignMemLhsObj /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
+    const tmpAssignMemLhsObj$1 /*:primitive*/ = tmpBinBothLhs + tmpBinBothRhs;
     const tmpAssignMemRhs /*:unknown*/ = tmpForInNext.value;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
   }
 }
 const a /*:object*/ = { a: 999, b: 1000 };
@@ -50,8 +50,8 @@ while (true) {
   if (tmpForInNext.done) {
     break;
   } else {
-    const tmpAssignMemLhsObj = $(1) + $(2);
-    tmpAssignMemLhsObj.x = tmpForInNext.value;
+    const tmpAssignMemLhsObj$1 = $(1) + $(2);
+    tmpAssignMemLhsObj$1.x = tmpForInNext.value;
   }
 }
 $({ a: 999, b: 1000 });

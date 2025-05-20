@@ -29,8 +29,8 @@ const tmpIfTest /*:unknown*/ = $(0);
 if (tmpIfTest) {
   $(`fail`);
 } else {
-  const x /*:boolean*/ = !$;
-  $(x);
+  const tmpCalleeParam$1 /*:boolean*/ = !$;
+  $(tmpCalleeParam$1);
 }
 `````
 

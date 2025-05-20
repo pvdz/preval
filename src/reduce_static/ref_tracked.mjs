@@ -363,7 +363,10 @@ function _refTracked(fdata) {
       meta.writes.length > 0 &&
       meta.reads.length > 0 &&
       meta.writes[0].kind === 'var' &&
-      AST.isPrimitive(meta.writes[0].parentNode.init)
+      (
+        AST.isPrimitive(meta.writes[0].parentNode.init) ||
+        (meta.writes[0].parentNode.init.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(meta.writes[0].parentNode.init.name)?.isConstant)
+      )
     ) {
       // This one could be a trick on its own but: when a single scope binding is only used inside one inner block scope
       // and the init is non-observable, the binding should move to be inside that block scope too.

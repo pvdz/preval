@@ -24,19 +24,19 @@ $(a, b);
 const tmpIfTest /*:unknown*/ = $(1);
 const b /*:object*/ = { c: 10, d: 20 };
 if (tmpIfTest) {
-  const tmpAssignMemLhsObj /*:unknown*/ = $(b);
+  const tmpAssignMemLhsObj$1 /*:unknown*/ = $(b);
   const tmpCompObj /*:unknown*/ = $(b);
   const tmpCalleeParam /*:unknown*/ = $(`d`);
   const tmpAssignMemRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+  tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
   while ($LOOP_UNROLL_10) {
     const tmpIfTest$1 /*:unknown*/ = $(1);
     if (tmpIfTest$1) {
-      const tmpAssignMemLhsObj$1 /*:unknown*/ = $(b);
+      const tmpAssignMemLhsObj$2 /*:unknown*/ = $(b);
       const tmpCompObj$1 /*:unknown*/ = $(b);
       const tmpCalleeParam$1 /*:unknown*/ = $(`d`);
       const tmpAssignMemRhs$1 /*:unknown*/ = tmpCompObj$1[tmpCalleeParam$1];
-      tmpAssignMemLhsObj$1.c = tmpAssignMemRhs$1;
+      tmpAssignMemLhsObj$2.c = tmpAssignMemRhs$1;
     } else {
       break;
     }
@@ -55,16 +55,16 @@ $(a, b);
 const tmpIfTest = $(1);
 const b = { c: 10, d: 20 };
 if (tmpIfTest) {
-  const tmpAssignMemLhsObj = $(b);
+  const tmpAssignMemLhsObj$1 = $(b);
   const tmpCompObj = $(b);
   const tmpCalleeParam = $(`d`);
-  tmpAssignMemLhsObj.c = tmpCompObj[tmpCalleeParam];
+  tmpAssignMemLhsObj$1.c = tmpCompObj[tmpCalleeParam];
   while (true) {
     if ($(1)) {
-      const tmpAssignMemLhsObj$1 = $(b);
+      const tmpAssignMemLhsObj$2 = $(b);
       const tmpCompObj$1 = $(b);
       const tmpCalleeParam$1 = $(`d`);
-      tmpAssignMemLhsObj$1.c = tmpCompObj$1[tmpCalleeParam$1];
+      tmpAssignMemLhsObj$2.c = tmpCompObj$1[tmpCalleeParam$1];
     } else {
       break;
     }

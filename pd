@@ -9,6 +9,7 @@
 #   SHOW_GIT_ADD_CMD=1    - Instead of showing file contents, show the git add command for each file
 #   SHOW_RELEVANT=1       - Show only hunks named Settled, Runtime Outcome, or Global. The rest is not relevant when looking for changes.
 #   ONLY_IRRLEVANT=1      - Show only files that do NOT contain all three "Settled", "Denormalized", and "Settled PST" hunks, and no "Globals" and no "Runtime". These files did not really change, maybe just a rename or something.
+#   ADD_GIT_IRRELEVANT=1  - Same as ONLY_IRRELEVANT but automatically adds the files to git
 
 # Formatted way to easily scan through thousands of lines of test changes
 # Hunks are formatted and their header captures the ``## Xyz` markdown section headers
@@ -38,6 +39,14 @@ display_file() {
     local has_globals="${11}"
 
     if [[ -n "$ONLY_TODOS" && $has_non_todo -eq 1 ]]; then
+        return
+    fi
+
+    if [[ -n "$ADD_GIT_IRRELEVANT" ]]; then
+        if [[ ! ($has_settled -eq 1 && $has_denorm -eq 1 && $has_pst -eq 1) && $has_runtime -eq 0 && $has_globals -eq 0 ]]; then
+            git add "$file"
+            echo "Added to git: $file"
+        fi
         return
     fi
 
@@ -186,4 +195,4 @@ git \
     -w \
     "${TARGET}" \
     | cat \
-    | { [[ -n "$DEBUG" || -n "$SHOW_HIDDEN" || -n "$SHOW_GIT_DIFF_CMD" || -n "$SHOW_GIT_ADD_CMD" || -n "$SHOW_RELEVANT" || -n "$ONLY_IRRLEVANT" || -n "$ONLY_TODOS" ]] && process_diff || cat; }
+    | { [[ -n "$DEBUG" || -n "$SHOW_HIDDEN" || -n "$SHOW_GIT_DIFF_CMD" || -n "$SHOW_GIT_ADD_CMD" || -n "$SHOW_RELEVANT" || -n "$ONLY_IRRLEVANT" || -n "$ONLY_TODOS" || -n "$ADD_GIT_IRRELEVANT" ]] && process_diff || cat; }

@@ -120,7 +120,7 @@ function _inlineConstants(fdata, queue, queue2) {
               func: () => {
                 write.blockBody.splice(write.blockIndex, 1);
               }
-            })
+            });
 
             after(AST.emptyStatement());
             after(read.blockBody[read.blockIndex]); // Note: this is read index now so s'fine

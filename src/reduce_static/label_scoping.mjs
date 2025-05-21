@@ -40,6 +40,11 @@ function _labelScoping(fdata) {
         // Ok. We have a label preceded by a var decl, now verify that the decl is not used after the label.
         // We can simply check the blockChain property of the last source-order ref for this.
 
+        if (stmt.init.type === 'FunctionExpression') {
+          vlog('- bail: do not pull functions in because there is a transform in func_scope_promo that explicitly moves them out and it leads to an infinite loop');
+          return;
+        }
+
         const varName = stmt.id.name;
         const meta = fdata.globallyUniqueNamingRegistry.get(varName);
         // TODO: If not single scoped then the closure must happen inside the label too. If it happens before then all bets are off.
@@ -48,11 +53,10 @@ function _labelScoping(fdata) {
         // If the label has no sub-statements then the last read can't be inside of it, eh?
         if (!node.body.body.length) return;
 
-        before(AST.emptyStatement(), body)
-
         // Block chain is the chain of block pid's from current node all the way to Program
         // If one blockChain is a prefix of the other than the one is in a block that is some ancestor of the other
-        const labelBlockChain = node.body.body[0].$p.blockChain;
+        const firstNode = node.body.body[0];
+        const labelBlockChain = firstNode.$p.blockChain;
         const lastRefBlockChain = meta.rwOrder[meta.rwOrder.length - 1].node.$p.blockChain;
         vlog('varname:', varName, ', label block:', [labelBlockChain], ', lastref:', [lastRefBlockChain]);
         if (lastRefBlockChain === labelBlockChain) {

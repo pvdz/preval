@@ -22,9 +22,9 @@ $(a);
 
 `````js filename=intro
 const b /*:object*/ = { $: $ };
-const a /*:unknown*/ = $dotCall($, b, `\$`, 1);
+const xyz /*:unknown*/ = $dotCall($, b, `\$`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -34,9 +34,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $dotCall($, { $: $ }, `\$`, 1);
+const xyz = $dotCall($, { $: $ }, `\$`, 1);
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

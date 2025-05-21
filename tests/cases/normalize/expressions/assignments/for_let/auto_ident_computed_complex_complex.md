@@ -24,9 +24,9 @@ $(a, b);
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsCompObj /*:unknown*/ = $(b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
-const a /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const xyz /*:unknown*/ = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -38,9 +38,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const tmpAssignRhsCompObj = $({ c: 1 });
 const tmpAssignRhsCompProp = $(`c`);
-const a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const xyz = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

@@ -26,8 +26,8 @@ const tmpCompObj /*:unknown*/ = $(b);
 const tmpCalleeParam$3 /*:unknown*/ = $(`d`);
 const tmpNestedPropAssignRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam$3];
 b.c = tmpNestedPropAssignRhs;
-const tmpStringConcatL /*:string*/ = $coerce(tmpNestedPropAssignRhs, `string`);
-const tmpCalleeParam /*:string*/ = `before  ${tmpStringConcatL}  after`;
+const tmpBinBothRhs /*:string*/ = $coerce(tmpNestedPropAssignRhs, `string`);
+const tmpCalleeParam /*:string*/ = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpNestedPropAssignRhs, b);
 `````

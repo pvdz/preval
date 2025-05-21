@@ -23,9 +23,9 @@ $(a, b);
 `````js filename=intro
 const b /*:object*/ = { c: 1 };
 const tmpAssignRhsProp /*:unknown*/ = $(b);
-const a /*:unknown*/ = tmpAssignRhsProp.c;
+const xyz /*:unknown*/ = tmpAssignRhsProp.c;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -35,9 +35,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = $({ c: 1 }).c;
+const xyz = $({ c: 1 }).c;
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

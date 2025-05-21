@@ -24,9 +24,9 @@ $(a);
 const b /*:object*/ = { $: $ };
 const tmpMCOO /*:unknown*/ = $(b);
 const tmpMCF /*:unknown*/ = tmpMCOO.$;
-const a /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
+const xyz /*:unknown*/ = $dotCall(tmpMCF, tmpMCOO, `\$`, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -37,9 +37,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpMCOO = $({ $: $ });
-const a = tmpMCOO.$(1);
+const xyz = tmpMCOO.$(1);
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

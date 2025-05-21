@@ -24,9 +24,9 @@ $(a);
 const tmpCalleeParam /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpNewCallee /*:unknown*/ = b[tmpCalleeParam];
-const a /*:object*/ = new tmpNewCallee(1);
+const xyz /*:object*/ = new tmpNewCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -38,9 +38,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const tmpCalleeParam = $(`\$`);
 const tmpNewCallee = { $: $ }[tmpCalleeParam];
-const a = new tmpNewCallee(1);
+const xyz = new tmpNewCallee(1);
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

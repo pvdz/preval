@@ -26,7 +26,7 @@ const tmpNestedAssignObjPatternRhs /*:unknown*/ = $(tmpCalleeParam);
 const b /*:unknown*/ = tmpNestedAssignObjPatternRhs.b;
 const a /*:unknown*/ = tmpNestedAssignObjPatternRhs;
 export { a };
-$(tmpNestedAssignObjPatternRhs, b);
+$(a, b);
 `````
 
 
@@ -39,7 +39,7 @@ const tmpNestedAssignObjPatternRhs = $({ b: tmpObjLitVal });
 const b = tmpNestedAssignObjPatternRhs.b;
 const a = tmpNestedAssignObjPatternRhs;
 export { a };
-$(tmpNestedAssignObjPatternRhs, b);
+$(a, b);
 `````
 
 
@@ -53,7 +53,7 @@ const c = $( b );
 const d = c.b;
 const e = c;
 export { e as a };
-$( c, d );
+$( e, d );
 `````
 
 

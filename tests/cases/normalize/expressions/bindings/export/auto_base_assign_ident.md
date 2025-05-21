@@ -23,7 +23,7 @@ $(a, b);
 const b /*:unknown*/ = $(2);
 const a /*:unknown*/ = b;
 export { a };
-$(b, b);
+$(a, b);
 `````
 
 
@@ -34,7 +34,7 @@ $(b, b);
 const b = $(2);
 const a = b;
 export { a };
-$(b, b);
+$(a, b);
 `````
 
 
@@ -45,7 +45,7 @@ With rename=true
 const a = $( 2 );
 const b = a;
 export { b as a };
-$( a, a );
+$( b, a );
 `````
 
 

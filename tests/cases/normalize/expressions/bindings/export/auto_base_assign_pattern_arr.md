@@ -27,7 +27,7 @@ const tmpArrPatternSplat /*:array*/ = [...tmpNestedAssignArrPatternRhs];
 const b /*:unknown*/ = tmpArrPatternSplat[0];
 const a /*:unknown*/ = tmpNestedAssignArrPatternRhs;
 export { a };
-$(tmpNestedAssignArrPatternRhs, b);
+$(a, b);
 `````
 
 
@@ -40,7 +40,7 @@ const tmpNestedAssignArrPatternRhs = $([tmpArrElement]);
 const b = [...tmpNestedAssignArrPatternRhs][0];
 const a = tmpNestedAssignArrPatternRhs;
 export { a };
-$(tmpNestedAssignArrPatternRhs, b);
+$(a, b);
 `````
 
 
@@ -55,7 +55,7 @@ const d = [ ...c ];
 const e = d[ 0 ];
 const f = c;
 export { f as a };
-$( c, e );
+$( f, e );
 `````
 
 

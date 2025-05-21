@@ -127,10 +127,11 @@ function _inlineConstants(fdata) {
         const read = reads[i];
         if (read.parentNode.type === 'ExportSpecifier') {
           vlog('Not inlining export');
-        } else if (!useRiskyRules() && read.parentNode.type === 'ExpressionStatement') {
-          // This is unsafe because we can't guarantee an ident won't trigger a TDZ/implicitGlobal throw
+        } else if (read.parentNode.type === 'ExpressionStatement') {
+          // We are going to keep the original ident anyways so this would just add a statement that is
+          // the value of the ident. That's useless and worst case very bad.
           vlog('Not inlining ident that is expression statement because riskyRules = false');
-        } else {
+        } else if (read.parentNode.type !== 'ExpressionStatement') {
           queue.push({
             pid: +read.node.$p.pid,
             func: () => {
@@ -195,10 +196,9 @@ function _inlineConstants(fdata) {
         const stmt = read.blockBody[read.blockIndex];
         if (stmt.type === 'ExportNamedDeclaration') {
           vlog('Skipping export ident');
-        } else if (!useRiskyRules() && stmt.type === 'ExpressionStatement') {
-          // Skip. Otherwise it might run into an infinite loop.
-          // This can be eliminated if we can eliminate the var decl entirely
-          // but otherwise we must keep it to preserve TDZ. Further inlining is not useful.
+        } else if (stmt.type === 'ExpressionStatement') {
+          // Skip. Otherwise it might run into an infinite loop. Plus what's the point.
+          // We must keep it to preserve TDZ. Further inlining is not useful.
           vlog('Skipping ident that is expression statement');
         } else {
           queue.push({

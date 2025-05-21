@@ -24,8 +24,8 @@ $(a, b);
 const tmpAssignRhsCompProp /*:unknown*/ = $(`c`);
 const b /*:object*/ = { c: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const a /*:unknown*/ = b[tmpAssignRhsCompProp];
-  $(a);
+  const xyz /*:unknown*/ = b[tmpAssignRhsCompProp];
+  $(xyz);
   $(1);
 }
 `````

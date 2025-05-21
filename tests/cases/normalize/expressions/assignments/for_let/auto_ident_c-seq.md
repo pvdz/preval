@@ -23,9 +23,9 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const a /*:unknown*/ = $(1);
+const xyz /*:unknown*/ = $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -37,9 +37,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 $(1);
 $(2);
-const a = $(1);
+const xyz = $(1);
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

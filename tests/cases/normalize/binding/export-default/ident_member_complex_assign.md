@@ -27,7 +27,7 @@ tmpInitAssignLhsComputedObj$1.y = tmpInitAssignLhsComputedRhs$1;
 tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs$1;
 const a /*:unknown*/ = tmpInitAssignLhsComputedRhs$1;
 export { a };
-$(tmpInitAssignLhsComputedRhs$1, b, 3, 4);
+$(a, b, 3, 4);
 `````
 
 
@@ -43,7 +43,7 @@ tmpInitAssignLhsComputedObj$1.y = tmpInitAssignLhsComputedRhs$1;
 tmpInitAssignLhsComputedObj.x = tmpInitAssignLhsComputedRhs$1;
 const a = tmpInitAssignLhsComputedRhs$1;
 export { a };
-$(tmpInitAssignLhsComputedRhs$1, b, 3, 4);
+$(a, b, 3, 4);
 `````
 
 
@@ -59,7 +59,7 @@ c.y = d;
 b.x = d;
 const e = d;
 export { e as a };
-$( d, a, 3, 4 );
+$( e, a, 3, 4 );
 `````
 
 

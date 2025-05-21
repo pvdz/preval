@@ -29,7 +29,7 @@ const tmpInitAssignLhsComputedRhs /*:unknown*/ = tmpCompObj[tmpCalleeParam];
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 const a /*:unknown*/ = tmpInitAssignLhsComputedRhs;
 export { a };
-$(tmpInitAssignLhsComputedRhs, b);
+$(a, b);
 `````
 
 
@@ -46,7 +46,7 @@ const tmpInitAssignLhsComputedRhs = tmpCompObj[tmpCalleeParam];
 tmpInitAssignLhsComputedObj[tmpInitAssignLhsComputedProp] = tmpInitAssignLhsComputedRhs;
 const a = tmpInitAssignLhsComputedRhs;
 export { a };
-$(tmpInitAssignLhsComputedRhs, b);
+$(a, b);
 `````
 
 
@@ -66,7 +66,7 @@ const f = d[ e ];
 b[c] = f;
 const g = f;
 export { g as a };
-$( f, a );
+$( g, a );
 `````
 
 

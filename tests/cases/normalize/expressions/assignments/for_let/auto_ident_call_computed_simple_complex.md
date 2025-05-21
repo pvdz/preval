@@ -24,9 +24,9 @@ $(a);
 const tmpMCCP /*:unknown*/ = $(`\$`);
 const b /*:object*/ = { $: $ };
 const tmpMCF /*:unknown*/ = b[tmpMCCP];
-const a /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
+const xyz /*:unknown*/ = $dotCall(tmpMCF, b, undefined, 1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -38,9 +38,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const tmpMCCP = $(`\$`);
 const b = { $: $ };
-const a = b[tmpMCCP](1);
+const xyz = b[tmpMCCP](1);
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

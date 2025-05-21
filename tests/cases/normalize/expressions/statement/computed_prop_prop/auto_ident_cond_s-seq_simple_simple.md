@@ -20,8 +20,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpCalleeParam /*:unknown*/ = $(2);
-$coerce(tmpCalleeParam, `string`);
+const tmpClusterSSA_tmpCalleeParam /*:unknown*/ = $(2);
+$coerce(tmpClusterSSA_tmpCalleeParam, `string`);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````

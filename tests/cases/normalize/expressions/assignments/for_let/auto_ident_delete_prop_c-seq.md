@@ -25,9 +25,9 @@ $(1);
 $(2);
 const arg /*:object*/ = { y: 1 };
 const tmpDeleteObj /*:unknown*/ = $(arg);
-const a /*:boolean*/ = delete tmpDeleteObj.y;
+const xyz /*:boolean*/ = delete tmpDeleteObj.y;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -40,9 +40,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(1);
 $(2);
 const tmpDeleteObj = $({ y: 1 });
-const a = delete tmpDeleteObj.y;
+const xyz = delete tmpDeleteObj.y;
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

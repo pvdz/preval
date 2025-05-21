@@ -19,12 +19,12 @@ $(a);
 
 
 `````js filename=intro
-const a /*:()=>unknown*/ = function () {
+const xyz /*:()=>unknown*/ = function () {
   debugger;
   return undefined;
 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -34,9 +34,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = function () {};
+const xyz = function () {};
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -60,7 +60,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-None
+- (todo) do we want to support ObjectExpression as expression statement in free loops?
 
 
 ## Globals

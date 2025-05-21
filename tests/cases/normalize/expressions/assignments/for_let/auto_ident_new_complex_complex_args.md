@@ -24,9 +24,9 @@ $(a);
 const tmpNewCallee /*:unknown*/ = $($);
 const tmpCalleeParam /*:unknown*/ = $(1);
 const tmpCalleeParam$1 /*:unknown*/ = $(2);
-const a /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const xyz /*:object*/ = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -39,9 +39,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const xyz = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

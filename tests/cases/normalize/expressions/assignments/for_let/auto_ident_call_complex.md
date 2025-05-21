@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpCallComplexCallee /*:unknown*/ = $($);
-const a /*:unknown*/ = tmpCallComplexCallee(1);
+const xyz /*:unknown*/ = tmpCallComplexCallee(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -33,9 +33,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpCallComplexCallee = $($);
-const a = tmpCallComplexCallee(1);
+const xyz = tmpCallComplexCallee(1);
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

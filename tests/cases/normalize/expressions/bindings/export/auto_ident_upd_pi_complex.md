@@ -29,7 +29,7 @@ const tmpUpdInc /*:number*/ = tmpUpdNum + 1;
 tmpUpdObj.x = tmpUpdInc;
 const a /*:unknown*/ = tmpUpdInc;
 export { a };
-$(tmpUpdInc, b);
+$(a, b);
 `````
 
 
@@ -43,7 +43,7 @@ const tmpUpdInc = $coerce(tmpUpdObj.x, `number`) + 1;
 tmpUpdObj.x = tmpUpdInc;
 const a = tmpUpdInc;
 export { a };
-$(tmpUpdInc, b);
+$(a, b);
 `````
 
 
@@ -60,7 +60,7 @@ const f = e + 1;
 c.x = f;
 const g = f;
 export { g as a };
-$( f, a );
+$( g, a );
 `````
 
 

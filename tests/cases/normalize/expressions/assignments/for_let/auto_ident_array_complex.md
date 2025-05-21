@@ -21,9 +21,9 @@ $(a);
 `````js filename=intro
 const tmpArrElement /*:unknown*/ = $(1);
 const tmpArrElement$3 /*:unknown*/ = $(3);
-const a /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
+const xyz /*:array*/ = [tmpArrElement, 2, tmpArrElement$3];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -35,9 +35,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$3];
+const xyz = [tmpArrElement, 2, tmpArrElement$3];
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -60,7 +60,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) support array reads statement type ExpressionStatement
 - (todo) support array reads statement type WhileStatement
 
 

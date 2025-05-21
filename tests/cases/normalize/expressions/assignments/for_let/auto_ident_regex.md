@@ -19,9 +19,9 @@ $(a);
 
 
 `````js filename=intro
-const a /*:regex*/ = new $regex_constructor(`foo`, ``);
+const xyz /*:regex*/ = new $regex_constructor(`foo`, ``);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -31,9 +31,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 (This ought to be the final result)
 
 `````js filename=intro
-const a = new $regex_constructor(`foo`, ``);
+const xyz = new $regex_constructor(`foo`, ``);
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

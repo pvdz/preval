@@ -24,7 +24,7 @@ const tmpNestedPropAssignRhs /*:unknown*/ = $(4);
 tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
 const a /*:unknown*/ = tmpNestedPropAssignRhs;
 export { a };
-$(tmpNestedPropAssignRhs, tmpNestedPropAssignRhs, 3);
+$(a, tmpNestedPropAssignRhs, 3);
 `````
 
 
@@ -37,7 +37,7 @@ const tmpNestedPropAssignRhs = $(4);
 tmpNestedAssignObj.y = tmpNestedPropAssignRhs;
 const a = tmpNestedPropAssignRhs;
 export { a };
-$(tmpNestedPropAssignRhs, tmpNestedPropAssignRhs, 3);
+$(a, tmpNestedPropAssignRhs, 3);
 `````
 
 
@@ -50,7 +50,7 @@ const b = $( 4 );
 a.y = b;
 const c = b;
 export { c as a };
-$( b, b, 3 );
+$( c, b, 3 );
 `````
 
 

@@ -20,9 +20,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const a /*:number*/ = ~tmpUnaryArg;
+const xyz /*:number*/ = ~tmpUnaryArg;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````
@@ -33,9 +33,9 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = ~tmpUnaryArg;
+const xyz = ~tmpUnaryArg;
 while (true) {
-  $(a);
+  $(xyz);
   $(1);
 }
 `````

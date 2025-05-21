@@ -37,14 +37,8 @@ const tmpCalleeParam$5 /*:object*/ = {
   q: `10`,
   p: `p`,
 };
-const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
-  const e$1 /*:unknown*/ = $$0;
-  debugger;
-  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$5[e$1];
-  return tmpReturnArg$1;
-};
 let tmpClusterSSA_c$1 /*:number*/ = 25;
-const tmpCalleeParam$3 /*:array*/ = [
+const k /*:array*/ = [
   ``,
   ``,
   ``,
@@ -87,7 +81,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
     const tmpAssignComMemLhsProp$1 /*:string*/ = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
-    let tmpAssignComputedRhs$1 /*:primitive*/ = tmpCalleeParam$3[tmpClusterSSA_c$1];
+    let tmpAssignComputedRhs$1 /*:primitive*/ = k[tmpClusterSSA_c$1];
     if (tmpAssignComputedRhs$1) {
     } else {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
@@ -97,6 +91,12 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     break;
   }
 }
+const tmpArrElement /*:(unknown)=>unknown*/ = function ($$0) {
+  const e$1 /*:unknown*/ = $$0;
+  debugger;
+  const tmpReturnArg$1 /*:unknown*/ = tmpCalleeParam$5[e$1];
+  return tmpReturnArg$1;
+};
 const tmpMCP$1 /*:regex*/ = new $regex_constructor(`\\b\\w+\\b`, `g`);
 const p /*:string*/ = $dotCall(
   $string_replace,
@@ -127,12 +127,8 @@ const tmpCalleeParam$5 = {
   q: `10`,
   p: `p`,
 };
-const tmpArrElement = function (e$1) {
-  const tmpReturnArg$1 = tmpCalleeParam$5[e$1];
-  return tmpReturnArg$1;
-};
 let tmpClusterSSA_c$1 = 25;
-const tmpCalleeParam$3 = [
+const k = [
   ``,
   ``,
   ``,
@@ -175,7 +171,7 @@ while (true) {
   tmpClusterSSA_c$1 = tmpClusterSSA_c$1 - 1;
   if (tmpPostUpdArgIdent$1) {
     const tmpAssignComMemLhsProp$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
-    let tmpAssignComputedRhs$1 = tmpCalleeParam$3[tmpClusterSSA_c$1];
+    let tmpAssignComputedRhs$1 = k[tmpClusterSSA_c$1];
     if (!tmpAssignComputedRhs$1) {
       tmpAssignComputedRhs$1 = $dotCall($number_toString, tmpClusterSSA_c$1, `toString`, 36);
     }
@@ -184,6 +180,10 @@ while (true) {
     break;
   }
 }
+const tmpArrElement = function (e$1) {
+  const tmpReturnArg$1 = tmpCalleeParam$5[e$1];
+  return tmpReturnArg$1;
+};
 $(
   eval(
     $dotCall(
@@ -215,34 +215,34 @@ const a = {
   q: "10",
   p: "p",
 };
-const b = function($$0 ) {
-  const c = $$0;
-  debugger;
-  const d = a[ c ];
-  return d;
-};
-let e = 25;
-const f = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "function", "", "", "", "return", "", "String", "if", "replace", "while", "", "10", "", "eval", "new", "RegExp", "x20f", "", "u0020g", "not_expr", "split" ];
+let b = 25;
+const c = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "function", "", "", "", "return", "", "String", "if", "replace", "while", "", "10", "", "eval", "new", "RegExp", "x20f", "", "u0020g", "not_expr", "split" ];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const g = e;
-  e = e - 1;
-  if (g) {
-    const h = $dotCall( $number_toString, e, "toString", 36 );
-    let i = f[ e ];
-    if (i) {
+  const d = b;
+  b = b - 1;
+  if (d) {
+    const e = $dotCall( $number_toString, b, "toString", 36 );
+    let f = c[ b ];
+    if (f) {
 
     }
     else {
-      i = $dotCall( $number_toString, e, "toString", 36 );
+      f = $dotCall( $number_toString, b, "toString", 36 );
     }
-    a[h] = i;
+    a[e] = f;
   }
   else {
     break;
   }
 }
+const g = function($$0 ) {
+  const h = $$0;
+  debugger;
+  const i = a[ h ];
+  return i;
+};
 const j = new $regex_constructor( "\\b\\w+\\b", "g" );
-const k = $dotCall( $string_replace, "s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('\"0\\\\`1\\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6${7}8\\\\/9\"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))", "replace", j, b );
+const k = $dotCall( $string_replace, "s(f(p,a,c,k,e,r){e=l;m(!''.n(/^/,l)){o(c--)r[c]=k[c]||c;k=[f(e){j r[e]}];e=f(){j'\\\\w+'};c=1};o(c--)m(k[c])p=p.n(t u('\\\\b'+e(c)+'\\\\b','g'),k[c]);j p}('\"0\\\\`1\\\\\"2\\\\\\'3\\\\\\\\4\\\\5\\\\6${7}8\\\\/9\"',q,q,'a|b|c|d|e|v|x|y|h|i'.z('|'),0,{}))", "replace", j, g );
 const l = eval( k );
 $( l );
 `````

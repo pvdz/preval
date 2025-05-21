@@ -118,3 +118,7 @@ $finalCatchArg:
   - w @26          | ########## | 76          | none           | 57
   - w @57          | ########## | 76          | 26             | none
   - r @76          | 26,57
+
+$finalImplicit:
+  - w @48          | ########## | 56          | none           | none
+  - r @56          | 48

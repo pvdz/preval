@@ -54,7 +54,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 
 
 - (todo) do we want to support ObjectExpression as expression statement in free loops?
-- (todo) regular property access of an ident feels tricky;
 
 
 ## Globals

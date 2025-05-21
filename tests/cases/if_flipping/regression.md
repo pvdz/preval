@@ -55,8 +55,9 @@ if (tmpIfTest$45) {
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
+  const h /*:unknown*/ = tmpReturnArg$39;
   tmpSSA__0x2d5594;
-  tmpReturnArg$39(e, d);
+  h(e, d);
   getParameterByName();
   unknown(297);
   alsoUnknown(310);
@@ -73,8 +74,9 @@ if (tmpIfTest$45) {
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
+  const h = tmpReturnArg$39;
   tmpSSA__0x2d5594;
-  tmpReturnArg$39(e, d);
+  h(e, d);
   getParameterByName();
   unknown(297);
   alsoUnknown(310);
@@ -89,13 +91,14 @@ With rename=true
 `````js filename=intro
 if (tmpIfTest$45) {
   tmpCalleeParam$127;
+  const c = tmpReturnArg$39;
   tmpSSA__0x2d5594;
-  tmpReturnArg$39( e, d );
+  c( e, d );
   getParameterByName();
   unknown( 297 );
   alsoUnknown( 310 );
-  const c = $dotCall( a, document, undefined, b );
-  $( c );
+  const f = $dotCall( a, document, undefined, b );
+  $( f );
 }
 `````
 
@@ -111,7 +114,7 @@ None
 
 BAD@! Found 11 implicit global bindings:
 
-tmpIfTest$45, tmpCalleeParam$127, tmpSSA__0x2d5594, tmpReturnArg$39, e, d, getParameterByName, unknown, alsoUnknown, a, b
+tmpIfTest$45, tmpCalleeParam$127, tmpReturnArg$39, tmpSSA__0x2d5594, e, d, getParameterByName, unknown, alsoUnknown, a, b
 
 
 ## Runtime Outcome

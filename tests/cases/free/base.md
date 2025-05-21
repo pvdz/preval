@@ -32,9 +32,9 @@ $(i);
 
 `````js filename=intro
 const tmpFree /*:(number)=>string*/ = function $free($$0) {
-  const n /*:number*/ = $$0;
+  const n$1 /*:number*/ = $$0;
   debugger;
-  const a /*:number*/ = $Math_pow(n, 2);
+  const a /*:number*/ = $Math_pow(n$1, 2);
   const b /*:number*/ = a / 2;
   const tmpRet /*:string*/ = $coerce(b, `string`);
   return tmpRet;
@@ -42,8 +42,8 @@ const tmpFree /*:(number)=>string*/ = function $free($$0) {
 let i /*:number*/ = 0;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const r /*:unknown*/ = $(i);
-  const n$1 /*:number*/ = r * 1;
-  const c /*:string*/ = $frfr(tmpFree, n$1);
+  const n$2 /*:number*/ = r * 1;
+  const c /*:string*/ = $frfr(tmpFree, n$2);
   $(i, c);
   i = i + 1;
   const tmpIfTest /*:boolean*/ = i > 10;
@@ -60,8 +60,8 @@ $(i);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree = function $free(n) {
-  const tmpRet = $coerce($Math_pow(n, 2) / 2, `string`);
+const tmpFree = function $free(n$1) {
+  const tmpRet = $coerce($Math_pow(n$1, 2) / 2, `string`);
   return tmpRet;
 };
 let i = 0;

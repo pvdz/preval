@@ -85,3 +85,7 @@ $implicitThrow:
 $finalCatchArg:
   - w @23          | ########## | 56          | none           | none
   - r @56          | 23
+
+$finalImplicit:
+  - w @32          | ########## | 43          | none           | none
+  - r @43          | 32

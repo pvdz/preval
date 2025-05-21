@@ -22,10 +22,39 @@ function _refTracked(fdata) {
   const queue2 = []; // unwind after first queue. unconditional actions that should not depend on index caches but might break them anyways.
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
-
-
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
+
+    let destm = false;
+    meta.reads.forEach(read => {
+      if (read.parentNode.type === 'ExpressionStatement') {
+        // This is a statement that is just the ident.
+        // If this read can reach a write, any write, regardless of single/multi scoping, then it's not a tdz?
+        // For a single scope, the opposite is true too; that case should be caught by normalization, we skip it here
+        // For multi scope the opposite does not hold because ref tracking only works reliably for single scoped vars
+        if (read.reachesWrites.size > 0 || meta.isCatchVar) {
+          rule('A expr statement that is an ident when the read reaches at least one write, or a catch var, can be dropped safely');
+          example('const x = $(); x;', 'const x = $(); ;');
+          before(read.blockBody[read.blockIndex]);
+
+          read.blockBody[read.blockIndex] = AST.emptyStatement(); // This will be eliminated in queue2
+
+          after(read.blockBody[read.blockIndex]);
+          changed += 1;
+          destm = true;
+
+          // Queue2 has index-less cleanup. Walk this block and prune all the empty statements.
+          queue2.push(() => {
+            for (let i=read.blockBody.length -1; i>=0; --i) {
+              if (read.blockBody[i].type === 'EmptyStatement') {
+                read.blockBody.splice(i, 1);
+              }
+            }
+          });
+        }
+      }
+    });
+    if (destm) return; // Dont process further until next loop
 
     if (meta.singleScoped) {
       // Ref tracking only works for vars that appear in one (func) scope. No closures.
@@ -256,6 +285,9 @@ function _refTracked(fdata) {
             } else {
               vlog('Init is not a primitive:', write.parentNode.init.type);
             }
+          }
+          else if (write.parentNode.type === 'CatchClause') {
+            // ignore
           }
           else {
             ASSERT(false, 'what else might cause this?', write.parentNode.type);

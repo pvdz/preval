@@ -155,6 +155,10 @@ tmpIfTest:
   - w @51          | ########## | 54          | none           | none
   - r @54          | 51
 
+$finalImplicit:
+  - w @72          | ########## | 80          | none           | none
+  - r @80          | 72
+
 tmpIfTest$1:
   - w @83          | ########## | 87          | none           | none
   - r @87          | 83

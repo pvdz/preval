@@ -93,3 +93,7 @@ $finalStep:
 $finalCatchArg:
   - w @20          | ########## | not read    | none           | 51
   - w @51          | ########## | not read    | 20             | none
+
+$finalImplicit:
+  - w @42          | ########## | 50          | none           | none
+  - r @50          | 42

@@ -411,7 +411,7 @@ export function registerGlobalIdent(
     uniqueName: name,
     isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
     isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`. Currently also `catch` clause bindings.
-    //isConstant, // Set from phase1 in the var decl case when it is actually a const
+    isConstant: false, // Set from phase1 in the var decl case when it is actually a const
     //varDeclRef, // {node:init,varDeclNode,varDeclBody,varDeclIndex}. Set from phase1 in the var delc case, regardless of const/let. varDeclBody[varDeclIndex] === varDeclNode
     isCatchVar: false, // Set by phase1 TryStatement:after on catch vars
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
@@ -591,7 +591,7 @@ export function createReadRef(obj) {
 export function createWriteRef(obj) {
   const {
     name, // The var name, unique in this scope. Owner meta should have the same name.
-    kind, // var, assign, for, ..?
+    kind, // var, assign, catcher, importee, other (-> class id), ..?
     parentNode, // parent of the node
     parentProp,
     parentIndex,
@@ -620,7 +620,7 @@ export function createWriteRef(obj) {
 
     ...rest
   } = obj;
-  ASSERT(kind === 'var' || kind === 'assign' || kind === 'other', 'update write kind', kind);
+  ASSERT(['var', 'assign', 'catcher', 'assignee', 'importee', 'other'].includes(kind), 'update write kind', kind);
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
   ASSERT(typeof innerLoop === 'number');

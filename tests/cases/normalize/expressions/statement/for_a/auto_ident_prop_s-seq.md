@@ -81,7 +81,7 @@ $( c, d );
 ## Todos triggered
 
 
-- (todo) do we want to support MemberExpression as expression statement in free loops?
+None
 
 
 ## Globals

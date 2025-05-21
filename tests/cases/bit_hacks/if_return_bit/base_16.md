@@ -23,8 +23,12 @@ $((f($(16))));
 
 `````js filename=intro
 const tmpCalleeParam$1 /*:unknown*/ = $(16);
-const tmpCalleeParam /*:number*/ = tmpCalleeParam$1 & 16;
-$(tmpCalleeParam);
+const x /*:number*/ = tmpCalleeParam$1 & 16;
+if (x) {
+  $(16);
+} else {
+  $(0);
+}
 `````
 
 
@@ -32,7 +36,11 @@ $(tmpCalleeParam);
 (This ought to be the final result)
 
 `````js filename=intro
-$($(16) & 16);
+if ($(16) & 16) {
+  $(16);
+} else {
+  $(0);
+}
 `````
 
 
@@ -42,7 +50,12 @@ With rename=true
 `````js filename=intro
 const a = $( 16 );
 const b = a & 16;
-$( b );
+if (b) {
+  $( 16 );
+}
+else {
+  $( 0 );
+}
 `````
 
 

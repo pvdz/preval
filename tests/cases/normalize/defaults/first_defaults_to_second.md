@@ -35,20 +35,20 @@ $(f('x', 'y')); // [x, y]
 
 `````js filename=intro
 const f /*:(primitive, primitive)=>array*/ = function ($$0, $$1) {
-  const tmpParamBare$1 /*:primitive*/ = $$0;
-  const tmpParamBare$3 /*:primitive*/ = $$1;
+  const tmpParamBare /*:primitive*/ = $$0;
+  const tmpParamBare$1 /*:primitive*/ = $$1;
   debugger;
-  const tmpIfTest /*:boolean*/ = tmpParamBare$1 === undefined;
+  const tmpIfTest /*:boolean*/ = tmpParamBare === undefined;
   if (tmpIfTest) {
     throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
   } else {
     let b /*:unknown*/ = `bar`;
-    const tmpIfTest$1 /*:boolean*/ = tmpParamBare$3 === undefined;
+    const tmpIfTest$1 /*:boolean*/ = tmpParamBare$1 === undefined;
     if (tmpIfTest$1) {
     } else {
-      b = tmpParamBare$3;
+      b = tmpParamBare$1;
     }
-    const tmpReturnArg /*:array*/ = [tmpParamBare$1, b];
+    const tmpReturnArg /*:array*/ = [tmpParamBare, b];
     return tmpReturnArg;
   }
 };
@@ -67,15 +67,15 @@ $(tmpCalleeParam$5);
 (This ought to be the final result)
 
 `````js filename=intro
-const f = function (tmpParamBare$1, tmpParamBare$3) {
-  if (tmpParamBare$1 === undefined) {
+const f = function (tmpParamBare, tmpParamBare$1) {
+  if (tmpParamBare === undefined) {
     throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
   } else {
     let b = `bar`;
-    if (!(tmpParamBare$3 === undefined)) {
-      b = tmpParamBare$3;
+    if (!(tmpParamBare$1 === undefined)) {
+      b = tmpParamBare$1;
     }
-    const tmpReturnArg = [tmpParamBare$1, b];
+    const tmpReturnArg = [tmpParamBare, b];
     return tmpReturnArg;
   }
 };

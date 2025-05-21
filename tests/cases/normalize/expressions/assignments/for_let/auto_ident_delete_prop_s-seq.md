@@ -59,7 +59,6 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Todos triggered
 
 
-- (todo) regular property access of an ident feels tricky;
 - (todo) support delete in free loop?
 
 

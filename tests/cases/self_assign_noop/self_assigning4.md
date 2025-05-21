@@ -68,9 +68,9 @@ const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
   const unusedNewArg2 /*:unknown*/ = $$1;
   debugger;
   $(`a`, newArg1, unusedNewArg2);
-  const index$1 /*:number*/ = newArg1 - 1;
-  const arrval /*:primitive*/ = arr[index$1];
-  $(`b`, index$1);
+  const index /*:number*/ = newArg1 - 1;
+  const arrval /*:primitive*/ = arr[index];
+  $(`b`, index);
   const tmpBinLhs /*:unknown*/ = func.IS_EXPANDO_SET;
   const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
   if (tmpIfTest) {
@@ -80,7 +80,7 @@ const func /*:(unknown, unknown)=>unknown*/ = function ($$0, $$1) {
     func.IS_EXPANDO_SET = true;
   } else {
   }
-  const newIndex /*:number*/ = index$1 + 100;
+  const newIndex /*:number*/ = index + 100;
   $(`d`, newIndex);
   const arguments_x /*:unknown*/ = arg1[newIndex];
   if (arguments_x) {
@@ -112,16 +112,16 @@ let arg1 = 3;
 const func = function (newArg1, unusedNewArg2) {
   const tmpPrevalAliasArgumentsAny = arguments;
   $(`a`, newArg1, unusedNewArg2);
-  const index$1 = newArg1 - 1;
-  const arrval = arr[index$1];
-  $(`b`, index$1);
+  const index = newArg1 - 1;
+  const arrval = arr[index];
+  $(`b`, index);
   if (func.IS_EXPANDO_SET === undefined) {
     $(`c`);
     func.THIS_IS_AN_EXPANDO = $spy;
     arg1 = tmpPrevalAliasArgumentsAny;
     func.IS_EXPANDO_SET = true;
   }
-  const newIndex = index$1 + 100;
+  const newIndex = index + 100;
   $(`d`, newIndex);
   const arguments_x = arg1[newIndex];
   if (arguments_x) {

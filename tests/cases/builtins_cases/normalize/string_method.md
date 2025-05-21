@@ -38,26 +38,26 @@ $(f(String(y)));
 
 
 `````js filename=intro
-const tmpFree$2 /*:(string)=>string*/ = function $free($$0) {
-  const repl$2 /*:string*/ = $$0;
+const tmpFree$1 /*:(string)=>string*/ = function $free($$0) {
+  const repl$1 /*:string*/ = $$0;
   debugger;
-  const a1 /*:string*/ = $dotCall($string_charAt, repl$2, `charAt`, 0);
-  const a2$3 /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
-  const b1$1 /*:string*/ = $dotCall($string_charAt, repl$2, `charAt`, 1);
-  const b2$1 /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, b1$1);
-  const frout /*:number*/ = a2$3 + b2$1;
-  const tmpRet$2 /*:string*/ = $coerce(frout, `string`);
-  return tmpRet$2;
+  const a1 /*:string*/ = $dotCall($string_charAt, repl$1, `charAt`, 0);
+  const a2 /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, a1);
+  const b1 /*:string*/ = $dotCall($string_charAt, repl$1, `charAt`, 1);
+  const b2 /*:number*/ = $dotCall($string_indexOf, `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`, `indexOf`, b1);
+  const frout /*:number*/ = a2 + b2;
+  const tmpRet$1 /*:string*/ = $coerce(frout, `string`);
+  return tmpRet$1;
 };
 const f /*:(string)=>string*/ = function ($$0) {
   const inputstr /*:string*/ = $$0;
   debugger;
   const regex /*:regex*/ = new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`);
-  const repl$3 /*:string*/ = $dotCall($string_replace, inputstr, `replace`, regex, ``);
-  const len /*:number*/ = repl$3.length;
+  const repl$2 /*:string*/ = $dotCall($string_replace, inputstr, `replace`, regex, ``);
+  const len /*:number*/ = repl$2.length;
   const test /*:boolean*/ = 0 < len;
   if (test) {
-    const outputstr /*:string*/ = $frfr(tmpFree$2, repl$3);
+    const outputstr /*:string*/ = $frfr(tmpFree$1, repl$2);
     return outputstr;
   } else {
     return ``;
@@ -78,30 +78,30 @@ $(tmpCalleeParam$3);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpFree$2 = function $free(repl$2) {
-  const a2$3 = $dotCall(
+const tmpFree$1 = function $free(repl$1) {
+  const a2 = $dotCall(
     $string_indexOf,
     `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
     `indexOf`,
-    $dotCall($string_charAt, repl$2, `charAt`, 0),
+    $dotCall($string_charAt, repl$1, `charAt`, 0),
   );
-  const tmpRet$2 = $coerce(
-    a2$3 +
+  const tmpRet$1 = $coerce(
+    a2 +
       $dotCall(
         $string_indexOf,
         `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=`,
         `indexOf`,
-        $dotCall($string_charAt, repl$2, `charAt`, 1),
+        $dotCall($string_charAt, repl$1, `charAt`, 1),
       ),
     `string`,
   );
-  return tmpRet$2;
+  return tmpRet$1;
 };
 const f = function (inputstr) {
-  const repl$3 = $dotCall($string_replace, inputstr, `replace`, new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`), ``);
-  const len = repl$3.length;
+  const repl$2 = $dotCall($string_replace, inputstr, `replace`, new $regex_constructor(`[^A-Za-z0-9\\+\\/\\=]`, `g`), ``);
+  const len = repl$2.length;
   if (0 < len) {
-    const outputstr = $frfr(tmpFree$2, repl$3);
+    const outputstr = $frfr(tmpFree$1, repl$2);
     return outputstr;
   } else {
     return ``;

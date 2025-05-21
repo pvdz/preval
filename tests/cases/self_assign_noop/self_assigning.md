@@ -58,8 +58,8 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1) {
   const tmpPrevalAliasArgumentsAny /*:arguments*/ = arguments;
   const newArg1 /*:unknown*/ = $$0;
   debugger;
-  const index$1 /*:number*/ = newArg1 - 1;
-  const arrval /*:primitive*/ = arr[index$1];
+  const index /*:number*/ = newArg1 - 1;
+  const arrval /*:primitive*/ = arr[index];
   const tmpBinLhs /*:unknown*/ = func.IS_EXPANDO_SET;
   const tmpIfTest /*:boolean*/ = tmpBinLhs === undefined;
   if (tmpIfTest) {
@@ -68,7 +68,7 @@ const func /*:(unknown, unused)=>unknown*/ = function ($$0, $$1) {
     func.IS_EXPANDO_SET = true;
   } else {
   }
-  const newIndex /*:number*/ = index$1 + 100;
+  const newIndex /*:number*/ = index + 100;
   const arguments_x /*:unknown*/ = arg1[newIndex];
   if (arguments_x) {
     return arguments_x;
@@ -93,14 +93,14 @@ const arr = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 let arg1 = 3;
 const func = function (newArg1, $$1) {
   const tmpPrevalAliasArgumentsAny = arguments;
-  const index$1 = newArg1 - 1;
-  const arrval = arr[index$1];
+  const index = newArg1 - 1;
+  const arrval = arr[index];
   if (func.IS_EXPANDO_SET === undefined) {
     func.THIS_IS_AN_EXPANDO = $spy;
     arg1 = tmpPrevalAliasArgumentsAny;
     func.IS_EXPANDO_SET = true;
   }
-  const newIndex = index$1 + 100;
+  const newIndex = index + 100;
   const arguments_x = arg1[newIndex];
   if (arguments_x) {
     return arguments_x;

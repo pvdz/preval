@@ -89,3 +89,7 @@ $implicitThrow:
 $finalCatchArg:
   - w @19          | ########## | not read    | none           | 37
   - w @37          | ########## | not read    | 19             | none
+
+$finalImplicit:
+  - w @28          | ########## | 36          | none           | none
+  - r @36          | 28

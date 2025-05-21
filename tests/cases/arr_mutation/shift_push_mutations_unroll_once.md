@@ -103,7 +103,6 @@ $( f );
 
 
 - (todo) - at least one of the frfr args was not isFree, bailing
-- (todo) ExpressionStatement; how else might an array be used that we may want to support in phase1_1?
 - (todo) access object property that also exists on prototype? $array_push
 - (todo) access object property that also exists on prototype? $array_shift
 - (todo) access object property that also exists on prototype? $array_slice

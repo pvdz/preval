@@ -104,6 +104,10 @@ $finalCatchArg:
   - w @50          | ########## | 71          | 20             | none
   - r @71          | 20,50
 
+$finalImplicit:
+  - w @41          | ########## | 49          | none           | none
+  - r @49          | 41
+
 tmpIfTest:
   - w @56          | ########## | 60          | none           | none
   - r @60          | 56

@@ -40,8 +40,7 @@ $( true );
 ## Todos triggered
 
 
-- (todo) support array reads statement type ExpressionStatement
-- (todo) type trackeed tricks can possibly support static $Array_isArray
+None
 
 
 ## Globals

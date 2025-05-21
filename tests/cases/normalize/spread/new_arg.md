@@ -51,7 +51,6 @@ new $string_constructor( 8.5, 8, ...a );
 
 
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

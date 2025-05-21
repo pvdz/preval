@@ -109,3 +109,7 @@ $finalArg:
 tmpIfTest:
   - w @35          | ########## | 39          | none           | none
   - r @39          | 35
+
+$finalImplicit:
+  - w @57          | ########## | 64          | none           | none
+  - r @64          | 57

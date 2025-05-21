@@ -147,9 +147,23 @@ $finalCatchArg:
   - w @67            | ########## | 88          | 32             | none
   - r @88            | 32,67
 
+e:
+  - w @45            | ########## | not read    | none           | none
+
+$finalImplicit:
+  - w @58            | ########## | 66          | none           | none
+  - r @66            | 58
+
 tmpIfTest:
   - w @73            | ########## | 77          | none           | none
   - r @77            | 73
+
+e$1:
+  - w @91            | ########## | not read    | none           | none
+
+$finalImplicit$1:
+  - w @104           | ########## | 112         | none           | none
+  - r @112           | 104
 
 tmpIfTest$1:
   - w @119           | ########## | 123         | none           | none

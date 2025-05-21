@@ -535,7 +535,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         vlog('Ident:', [name]);
         ASSERT(name, 'idents must have valid non-empty names...', node);
         const kind = getIdentUsageKind(parentNode, parentProp);
-        vlog(`- Ident kind: "${kind}"`);
+        vlog(`- Ident rw kind: "${kind}"`);
 
         ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment (or unary inc/dec) and we eliminated those? prove me wrong', node);
         ASSERT(
@@ -698,7 +698,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
             const write = createWriteRef({
               name,
-              kind: parentNode.type === 'VarStatement' ? 'var' : parentNode.type === 'AssignmentExpression' ? 'assign' : 'other',
+              kind:
+                parentNode.type === 'VarStatement' ? 'var'
+                : parentNode.type === 'AssignmentExpression' ? 'assign'
+                : parentNode.type === 'CatchClause' ? 'catcher' // something greppable, plz. not used very often.
+                : parentNode.type === 'ImportSpecifier' ? 'importee' // greppable
+                : 'other', // other is like class ids, not sure what else
               parentNode,
               parentProp,
               parentIndex,
@@ -759,12 +764,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             if (write.kind === 'var' || write.kind === 'assign') {
               vlog('Skipping typing till after the parent var/assign handler');
             } else {
-              // exports? not sure what else, currently. since we dont do catch clause yet and normalize everything else.
+              // exports, catch? not sure what else, currently. we normalize everything else.
               ASSERT(
                 parentNode.type === 'ImportSpecifier' ||
                 parentNode.type === 'CatchClause' ||
                 parentNode.type === 'ClassExpression' || // meh. i'm allowing it for now.
-                parentNode.type === 'FunctionExpression' || // $free functions
+                // parentNode.type === 'FunctionExpression' || // $free functions, but those branch off above
+                false,
                 'assign is var, assign, import/export, or catch ... right?',
                 parentNode.type,
               );
@@ -1089,6 +1095,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           // For now, keep the binding as an implicit global. But annotate that this is a catch var.
           // This allows tests to ignore these bindings for the sake of reporting implicit global issues.
           meta.isCatchVar = true;
+          meta.isImplicitGlobal = false;
         }
 
         // Completion is slightly more complicated here

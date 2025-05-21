@@ -127,3 +127,7 @@ $finalArg:
 tmpIfTest:
   - w @43            | ########## | 47          | none           | none
   - r @47            | 43
+
+$finalImplicit:
+  - w @65            | ########## | 72          | none           | none
+  - r @72            | 65

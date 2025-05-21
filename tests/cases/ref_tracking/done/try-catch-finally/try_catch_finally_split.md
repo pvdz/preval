@@ -95,3 +95,10 @@ $finalCatchArg:
   - w @12          | ########## | 68          | none           | 51
   - w @51          | ########## | 68          | 12             | none
   - r @68          | 12,51
+
+e:
+  - w @27          | ########## | not read    | none           | none
+
+$finalImplicit:
+  - w @42          | ########## | 50          | none           | none
+  - r @50          | 42

@@ -87,7 +87,7 @@ $( 5 );
 ## Todos triggered
 
 
-- (todo) support array reads statement type VarStatement
+None
 
 
 ## Globals

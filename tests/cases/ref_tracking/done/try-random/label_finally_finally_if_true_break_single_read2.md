@@ -113,3 +113,7 @@ $finalCatchArg:
 tmpIfTest:
   - w @36          | ########## | 41          | none           | none
   - r @41          | 36
+
+$finalImplicit:
+  - w @59          | ########## | 66          | none           | none
+  - r @66          | 59

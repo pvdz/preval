@@ -93,3 +93,7 @@ $finalStep:
 $finalCatchArg:
   - w @23          | ########## | 61          | none           | none
   - r @61          | 23
+
+$finalImplicit:
+  - w @45          | ########## | 52          | none           | none
+  - r @52          | 45

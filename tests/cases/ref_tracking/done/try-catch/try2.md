@@ -48,3 +48,6 @@ None
 x:
   - w @4       | ########## | 17          | none           | none
   - r @17      | 4
+
+e:
+  - w @12      | ########## | not read    | none           | none

@@ -63,7 +63,6 @@ else {
 
 - (todo) access object property that also exists on prototype? $array_concat
 - (todo) support array reads statement type ExpressionStatement
-- (todo) support array reads statement type VarStatement
 
 
 ## Globals

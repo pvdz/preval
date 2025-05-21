@@ -33,23 +33,20 @@ if (a) {
 }
 if (a) {
   const tmpCalleeParam$7 /*:unknown*/ = $(0);
-  const tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
+  let tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$7);
   if (tmpNestedComplexRhs) {
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
   } else {
     const tmpCalleeParam$9 /*:unknown*/ = $(1);
-    const tmpClusterSSA_tmpNestedComplexRhs /*:unknown*/ = $(tmpCalleeParam$9);
-    if (tmpClusterSSA_tmpNestedComplexRhs) {
-      $(tmpClusterSSA_tmpNestedComplexRhs);
-      $(tmpClusterSSA_tmpNestedComplexRhs);
+    tmpNestedComplexRhs = $(tmpCalleeParam$9);
+    if (tmpNestedComplexRhs) {
     } else {
       const tmpCalleeParam$11 /*:unknown*/ = $(2);
-      const tmpClusterSSA_tmpNestedComplexRhs$1 /*:unknown*/ = $(tmpCalleeParam$11);
-      $(tmpClusterSSA_tmpNestedComplexRhs$1);
-      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+      tmpNestedComplexRhs = $(tmpCalleeParam$11);
     }
   }
+  const tmpClusterSSA_a /*:unknown*/ = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(tmpClusterSSA_a);
 } else {
   $(a);
   $(a);
@@ -69,21 +66,16 @@ if (!a) {
   }
 }
 if (a) {
-  const tmpNestedComplexRhs = $($(0));
-  if (tmpNestedComplexRhs) {
-    $(tmpNestedComplexRhs);
-    $(tmpNestedComplexRhs);
-  } else {
-    const tmpClusterSSA_tmpNestedComplexRhs = $($(1));
-    if (tmpClusterSSA_tmpNestedComplexRhs) {
-      $(tmpClusterSSA_tmpNestedComplexRhs);
-      $(tmpClusterSSA_tmpNestedComplexRhs);
-    } else {
-      const tmpClusterSSA_tmpNestedComplexRhs$1 = $($(2));
-      $(tmpClusterSSA_tmpNestedComplexRhs$1);
-      $(tmpClusterSSA_tmpNestedComplexRhs$1);
+  let tmpNestedComplexRhs = $($(0));
+  if (!tmpNestedComplexRhs) {
+    tmpNestedComplexRhs = $($(1));
+    if (!tmpNestedComplexRhs) {
+      tmpNestedComplexRhs = $($(2));
     }
   }
+  const tmpClusterSSA_a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
+  $(tmpClusterSSA_a);
 } else {
   $(a);
   $(a);
@@ -113,25 +105,24 @@ else {
 }
 if (b) {
   const e = $( 0 );
-  const f = $( e );
+  let f = $( e );
   if (f) {
-    $( f );
-    $( f );
+
   }
   else {
     const g = $( 1 );
-    const h = $( g );
-    if (h) {
-      $( h );
-      $( h );
+    f = $( g );
+    if (f) {
+
     }
     else {
-      const i = $( 2 );
-      const j = $( i );
-      $( j );
-      $( j );
+      const h = $( 2 );
+      f = $( h );
     }
   }
+  const i = f;
+  $( f );
+  $( i );
 }
 else {
   $( b );

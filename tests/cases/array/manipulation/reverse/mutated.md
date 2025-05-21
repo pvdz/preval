@@ -54,6 +54,7 @@ $( a );
 - (todo) access object property that also exists on prototype? $array_reverse
 - (todo) arr mutation may be able to inline this method: tmpMCF
 - (todo) outline any args for tdz
+- (todo) support array reads statement type EmptyStatement
 - (todo) support array reads statement type ExpressionStatement
 
 

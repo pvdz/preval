@@ -146,3 +146,10 @@ $finalCatchArg:
 tmpIfTest:
   - w @68          | ########## | 72          | none           | none
   - r @72          | 68
+
+e:
+  - w @95          | ########## | not read    | none           | none
+
+$finalImplicit:
+  - w @106         | ########## | 115         | none           | none
+  - r @115         | 106

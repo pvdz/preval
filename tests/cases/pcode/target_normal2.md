@@ -78,16 +78,16 @@ const tmpFree /*:(number)=>number*/ = function $free($$0) {
   return tmpRet;
 };
 const pcode /*:(number)=>string*/ = function ($$0) {
-  const $dlr_$$2 /*:number*/ = $$0;
+  const $dlr_$$1 /*:number*/ = $$0;
   debugger;
   let out_str$3 /*:string*/ = ``;
-  const tmpIfTest /*:boolean*/ = $dlr_$$2 < 62;
+  const tmpIfTest /*:boolean*/ = $dlr_$$1 < 62;
   if (tmpIfTest) {
   } else {
-    const pint /*:number*/ = $frfr(tmpFree, $dlr_$$2);
+    const pint /*:number*/ = $frfr(tmpFree, $dlr_$$1);
     out_str$3 = pcode(pint);
   }
-  const perc$3 /*:number*/ = $dlr_$$2 % 62;
+  const perc$3 /*:number*/ = $dlr_$$1 % 62;
   const tmpIfTest$1 /*:boolean*/ = perc$3 > 35;
   if (tmpIfTest$1) {
     const str /*:string*/ = $frfr(tmpFree$1, perc$3, out_str$3);
@@ -120,12 +120,12 @@ const tmpFree = function $free($dlr_$$0) {
   const tmpRet = $Number_parseInt($dlr_$$0 / 62);
   return tmpRet;
 };
-const pcode = function ($dlr_$$2) {
+const pcode = function ($dlr_$$1) {
   let out_str$3 = ``;
-  if (!($dlr_$$2 < 62)) {
-    out_str$3 = pcode($frfr(tmpFree, $dlr_$$2));
+  if (!($dlr_$$1 < 62)) {
+    out_str$3 = pcode($frfr(tmpFree, $dlr_$$1));
   }
-  const perc$3 = $dlr_$$2 % 62;
+  const perc$3 = $dlr_$$1 % 62;
   if (perc$3 > 35) {
     const str = $frfr(tmpFree$1, perc$3, out_str$3);
     return str;

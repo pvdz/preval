@@ -53,7 +53,9 @@ $( a );
 
 - (todo) access object property that also exists on prototype? $array_join
 - (todo) arr mutation may be able to inline this method: tmpMCF
-- (todo) free with zero args, we can eliminate this?
+- (todo) arr mutation may be able to inline this method: tmpMCF$11
+- (todo) arr mutation may be able to inline this method: tmpMCF$3
+- (todo) arr mutation may be able to inline this method: tmpMCF$7
 - (todo) support array reads statement type ExpressionStatement
 
 

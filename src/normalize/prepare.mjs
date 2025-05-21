@@ -416,8 +416,16 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
           const meta = globallyUniqueNamingRegistry.get(uniqueName);
           ASSERT(meta, 'the meta should exist this this name at this point');
           // These are used by the unique naming logic (bottom of this file)
-          if (kind === 'read' || kind === 'readwrite') meta.renamingReads.push(node);
-          if (kind === 'write' || kind === 'readwrite') meta.renamingWrites.push(node);
+          // TODO: eliminate readwrite, it's no longer used and confusing
+          if (kind === 'read' || kind === 'readwrite') {
+            vlog('- Adding to renamingReads array of', uniqueName);
+            meta.renamingReads.push(node);
+          } else if (kind === 'write' || kind === 'readwrite') {
+            vlog('- Adding to renamingWrites array of', uniqueName);
+            meta.renamingWrites.push(node);
+          } else {
+            ASSERT(false, 'its a read or a write, wright?', kind);
+          }
 
           // Resolve whether this was an export. If so, mark the name as such.
           // Since we process and "record" bindings in lexical scope order, the global scope goes first
@@ -809,39 +817,50 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
   vgroupEnd();
 
   // If the next global sweep changes anything, consider all caches busted and re-run this prepare from scratch.
-  // That should be a one time cost at the start as afterwards all names must be unique.
+  // That should be a one time cost at the start as afterwards all names must be unique. (There are still cases
+  // where dupe names are introduced, in particular when creating new functions and lazily letting this code
+  // clean up the dupe names).
   // Future me: Sorry. This is a bit of a hack but we assume normalize_once does not use any of this stuff and so
   //            leaving it in a dirty state was a heckuvalot easier than the alternative. Does the foot hurt much?
   let globalsShuffled = 0;
   vlog(
     '\n\nAfter walking, find all aliased implicit globals and give them back their original name, renaming any explicits with the same name',
   );
-  new Map(globallyUniqueNamingRegistry).forEach((meta, name) => {
-    if (!meta.isImplicitGlobal) return;
+  globallyUniqueNamingRegistry.forEach((metaGlobal, name) => {
+    if (!metaGlobal.isImplicitGlobal) return;
     if (!name.startsWith(IMPLICIT_GLOBAL_PREFIX)) return;
-    vlog('- Reclaiming `' + name + '`, to `' + meta.originalName + '`');
+    vlog('- Reclaiming `' + name + '`, to `' + metaGlobal.originalName + '`');
 
-    if (globallyUniqueNamingRegistry.has(meta.originalName)) {
-      const meta2 = globallyUniqueNamingRegistry.get(meta.originalName);
-      if (meta2.isImplicitGlobal) {
+    if (globallyUniqueNamingRegistry.has(metaGlobal.originalName)) {
+      const metaLocal = globallyUniqueNamingRegistry.get(metaGlobal.originalName);
+      if (metaLocal.isImplicitGlobal) {
         // This happens for multiple globals. The non-first one will go into this branch. Just rename them back.
-        vlog('  Original name was already recorded as implicit global. Renaming the ident with pid', meta.renamingReads?.[0]?.node?.$p.pid);
-        meta.renamingReads.forEach((node) => (node.name = meta.originalName));
-      } else if (meta2) {
-        const newName = createFreshVar(meta.originalName, fdata);
-        vlog('  This name was also bound explicitly. Renaming existing occurrences to `' + newName + '`');
-        meta2.renamingReads.forEach((node) => (node.name = newName));
-        meta2.renamingWrites.forEach((node) => (node.name = newName));
-        vlog('  Renaming the global to its original name `' + meta.originalName + '`');
-        meta.renamingReads.forEach((node) => (node.name = meta.originalName));
-        meta.renamingWrites.forEach((node) => (node.name = meta.originalName));
+        vlog('  Original name was already recorded as implicit global,', metaGlobal.renamingReads.length, 'reads,', metaGlobal.renamingWrites.length, 'writes');
+        metaGlobal.renamingReads.forEach((node) => {
+          vlog('  -', node.name, 'to', metaGlobal.originalName);
+          node.name = metaGlobal.originalName;
+        });
+        metaGlobal.renamingWrites.forEach((node) => {
+          vlog('  -', node.name, 'to', metaGlobal.originalName);
+          node.name = metaGlobal.originalName;
+        });
+      } else if (metaLocal) {
+        const newName = createFreshVar(metaGlobal.originalName, fdata);
+        vlog('  This name was also bound explicitly. Renaming', metaLocal.renamingReads.length, 'reads and', metaLocal.renamingWrites.length, 'writes to `' + newName + '`');
+        metaLocal.renamingReads.forEach((node) => (node.name = newName));
+        metaLocal.renamingWrites.forEach((node) => (node.name = newName));
+
+        vlog('  Now renaming the global cases to their original name `' + metaGlobal.originalName + '`,', metaGlobal.renamingReads.length, 'reads and', metaGlobal.renamingWrites.length, 'writes');
+        metaGlobal.renamingReads.forEach((node) => (node.name = metaGlobal.originalName));
+        metaGlobal.renamingWrites.forEach((node) => (node.name = metaGlobal.originalName));
+
         ++globalsShuffled;
-        meta2.isImplicitGlobal = true; // Make sure other globals just get renamed (in previous branch)
+        metaLocal.isImplicitGlobal = true; // (this makes above loop skip this meta. normalization and phase1 will reset it, dont worry.)
         // Poison these refs to prevent a footgun situation
-        meta.renamingReads = null;
-        meta.renamingWrites = null;
-        meta2.renamingReads = null;
-        meta2.renamingWrites = null;
+        metaGlobal.renamingReads = null;
+        metaGlobal.renamingWrites = null;
+        metaLocal.renamingReads = null;
+        metaLocal.renamingWrites = null;
       } else {
         ASSERT(
           false,
@@ -852,15 +871,15 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
       // A little annoying but hopefully an artificial edge case; the input code contained an implicit global that started with
       // our custom prefix that globals temporarily get assigned when their name is also explicitly bound.
       vlog('  Original name was not known to the registry. Was this the prefix exception?');
-      ASSERT(meta.originalName.startsWith(IMPLICIT_GLOBAL_PREFIX), 'was this a binding that started with our custom prefix?', meta);
-      const newName = createFreshVar(meta.originalName, fdata);
-      ASSERT(newName === meta.originalName, 'should be available');
-      meta.renamingReads.forEach((node) => (node.name = newName));
-      meta.renamingWrites.forEach((node) => (node.name = newName));
+      ASSERT(metaGlobal.originalName.startsWith(IMPLICIT_GLOBAL_PREFIX), 'was this a binding that started with our custom prefix?', metaGlobal);
+      const newName = createFreshVar(metaGlobal.originalName, fdata);
+      ASSERT(newName === metaGlobal.originalName, 'should be available');
+      metaGlobal.renamingReads.forEach((node) => (node.name = newName));
+      metaGlobal.renamingWrites.forEach((node) => (node.name = newName));
       vlog('  Swapping meta in the registry');
-      globallyUniqueNamingRegistry.set(newName, meta);
+      globallyUniqueNamingRegistry.set(newName, metaGlobal);
       globallyUniqueNamingRegistry.delete(name);
-      meta.uniqueName = meta.originalName;
+      metaGlobal.uniqueName = metaGlobal.originalName;
     }
   });
 
@@ -899,8 +918,6 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options) {
         ? '<none>'
         : [...globallyUniqueLabelRegistry.keys()].join(', '),
     );
-
-    //currentState(fdata, 'end of prepare');
   }
   log('End of phase 1');
   groupEnd();

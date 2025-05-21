@@ -20,10 +20,7 @@ $(a);
 
 
 `````js filename=intro
-const tmpUnaryArg /*:unknown*/ = $(100);
-const obj /*:object*/ = {};
-const tmpCalleeParam /*:boolean*/ = !tmpUnaryArg;
-obj[tmpCalleeParam];
+$(100);
 const a /*:object*/ = { a: 999, b: 1000 };
 $(a);
 `````
@@ -33,10 +30,7 @@ $(a);
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
-const obj = {};
-const tmpCalleeParam = !tmpUnaryArg;
-obj[tmpCalleeParam];
+$(100);
 $({ a: 999, b: 1000 });
 `````
 
@@ -45,15 +39,12 @@ $({ a: 999, b: 1000 });
 With rename=true
 
 `````js filename=intro
-const a = $( 100 );
-const b = {};
-const c = !a;
-b[ c ];
-const d = {
+$( 100 );
+const a = {
   a: 999,
   b: 1000,
 };
-$( d );
+$( a );
 `````
 
 

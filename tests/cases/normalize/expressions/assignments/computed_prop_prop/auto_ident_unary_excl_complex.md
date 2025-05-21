@@ -21,9 +21,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg /*:unknown*/ = $(100);
-const obj /*:object*/ = {};
 const a /*:boolean*/ = !tmpUnaryArg;
-obj[a];
 $(a);
 `````
 
@@ -33,10 +31,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const obj = {};
-const a = !tmpUnaryArg;
-obj[a];
-$(a);
+$(!tmpUnaryArg);
 `````
 
 
@@ -45,10 +40,8 @@ With rename=true
 
 `````js filename=intro
 const a = $( 100 );
-const b = {};
-const c = !a;
-b[ c ];
-$( c );
+const b = !a;
+$( b );
 `````
 
 

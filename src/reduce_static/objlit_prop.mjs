@@ -84,11 +84,11 @@ function _objlitPropAccess(fdata) {
         }
 
         if (rhs.properties.some(pnode => {
-          if (pnode.computed) return true; // There's probably some trivial cases we can support here...?
+          if (pnode.computed && !AST.isNumberLiteral(pnode.key)) return true; // TODO: allow other literals?
           if (pnode.type === 'SpreadElement') return true; // We can support some sub-cases but not worth the squeeze right now
           if (pnode.kind === 'get' || pnode.kind === 'set') return true; // Ignore getters and setters eeeew
         })) {
-          vlog('  - bail: Objlit had computed, get, set, or spread properties; bailing');
+          vlog('  - bail: Objlit had computed (non-numeric), get, set, or spread properties; bailing');
           return;
         }
 
@@ -166,16 +166,11 @@ function _objlitPropAccess(fdata) {
       // A reference "might mutate an object" when either we can see it does or when we can't predict it won't.
       // So `delete` on a property is most likely going to mutate the object. But when the object escapes
       // it also becomes less likely that we can predict how it's going to be used, up to perhaps impossible.
+      // Note: the parentNode check subsumes calls, so obj cant escape this way.
       if (read.parentNode.type !== 'MemberExpression' || read.parentProp !== 'object') {
         // - `f(obj)`
         // - `foo[obj]`
         vlog('- mightMutate: at least one read escaped as it was not a member. singleWriteSafe=false');
-        return true;
-      }
-
-      if (read.parentNode.computed) {
-        // - `obj[foo]`
-        vlog('- mightMutate: at least one read was a computed prop access (hard to predict). singleWriteSafe=false');
         return true;
       }
 
@@ -185,14 +180,7 @@ function _objlitPropAccess(fdata) {
         return true;
       }
 
-      if (read.grandNode.type === 'CallExpression' && read.grandProp === 'callee') {
-        // A method call may refer to `this` and mutate object, `arr.splice(1, 1)`
-        // - `x.foo()`
-        vlog('- mightMutate: at least one member expression was called. singleWriteSafe=false');
-        return true;
-      }
-
-      if (read.parentNode.type === 'UnaryExpression' && read.parentNode.op === 'delete') {
+      if (read.grandNode.type === 'UnaryExpression' && read.grandProp === 'delete') {
         // - `delete x.y`
         vlog('- mightMutate: at least one member expression was a property delete. singleWriteSafe=false');
         return true;
@@ -431,11 +419,15 @@ function _objlitPropAccess(fdata) {
         }
       }
 
+      // TODO: is it really a big deal if we allow arbitrary property assignment in this context? Worst case, __proto__? is that an issue?
       if (readRef.parentNode.computed) {
-        // Computed props are hard to predict.
-        // TODO: we could do for literals `x[20]` or `x["a b"]`... but how often does that happen? aside from arrays... which this is not
-        vlog('- bail: A computed member expression; type:', readRef.parentNode.type, ', computed:', readRef.parentNode.computed, ', parent prop:', readRef.parentProp, ', prop type:', readRef.parentNode.property.type);
-        return true;
+        // Computed props are hard to predict. Allow numeric literals.
+        // TODO: we could do for other literals like `x["a b"]`... but how often does that happen? aside from arrays... which this is not
+        if (!AST.isNumberLiteral(readRef.parentNode.property)) {
+          vlog('- bail: A computed member expression with non-numeric property; type:', readRef.parentNode.type, ', computed:', readRef.parentNode.computed, ', parent prop:', readRef.parentProp, ', prop type:', readRef.parentNode.property.type);
+          return true;
+        }
+        vlog('- ok: Computed property is a number literal, proceeding with inlining');
       }
 
       if (readRef.grandNode.type === 'AssignmentExpression' && readRef.grandProp === 'left') {
@@ -454,8 +446,17 @@ function _objlitPropAccess(fdata) {
           vlog('- The write is at index', prevWrite.blockIndex, ', the read at index', readRef.blockIndex, ', between them:', readRef.blockBody.slice(prevWrite.blockIndex+1, readRef.blockIndex).map(node => node.type));
 
           const prop = readRef.parentNode.property;
-          ASSERT(prop.type === 'Identifier', 'not computed so property node must be an identifier?');
-          const propName = prop.name;
+          let propName;
+          if (readRef.parentNode.computed) {
+            if (!AST.isNumberLiteral(prop)) {
+              vlog('- bail: Computed property is not a number literal');
+              return true; // Move to next write
+            }
+            propName = AST.getPrimitiveValue(prop).toString();
+          } else {
+            ASSERT(prop.type === 'Identifier', 'not computed so property node must be an identifier?');
+            propName = prop.name;
+          }
 
           if (!AST.isPrimitive(readRef.grandNode.right)) {
             //if (
@@ -472,20 +473,26 @@ function _objlitPropAccess(fdata) {
             //}
           }
 
-          // Remember: obj is asserted to be free of computed, get, and set props
-          const propNode = objExprNode.properties.find((pnode) => pnode.key.name === propName);
-          if (propNode) {
-            if (propNode.computed) {
-              // - `const b = {[a]: 2}; b.a = 1'
-              vlog('- bail: Found prop, is computed');
-              ASSERT(false, 'unreachable; we asserted properties are not computed earlier on');
-              return true; // Move to next write
+          // Remember: obj is asserted to be free of get, and set props. computed props may exist but they can only numeric literals.
+          const propNode = objExprNode.properties.find((pnode) => {
+            if (readRef.parentNode.computed) {
+              return pnode.computed && AST.isNumberLiteral(pnode.key) && 
+                     AST.getPrimitiveValue(pnode.key).toString() === propName;
             }
+            return !pnode.computed && pnode.key.name === propName;
+          });
+          if (propNode) {
             if (propNode.kind !== 'init') {
               // - `const b = {get a(){}}; b.a = 1'
               // - `const b = {set a(x){}}; b.a = 1'
               ASSERT(false, 'unreachable; we asserted properties are not get/set earlier on');
               vlog('- bail: Found prop, is getter/setter');
+              return true; // Move to next write
+            }
+            if (propNode.computed && !AST.isNumberLiteral(propNode.key)) {
+              // - `const b = {[a]: 2}; b.a = 1'
+              vlog('- bail: Found non-numeric computed prop');
+              ASSERT(false, 'unreachable; we asserted properties are either not computed or numeric literals earlier on', propNode);
               return true; // Move to next write
             }
             if (propNode.method) {
@@ -509,15 +516,26 @@ function _objlitPropAccess(fdata) {
             updated += 1;
             return true; // "prop mutation". Move to next write
           } else {
-            // The prop does not exist and since there are no computed props and no spreads, it
+            // The prop does not exist and since there are no non-numeric computed props and no spreads, it
             // must mean this object simply does not have this own property yet and we can create it.
             vlog('- ok: Object expression currently does not have this property. Adding it');
             rule('Writing to a new property after the object literal can be inlined');
             example('const x = {}; x.a = 2;', 'const x = {a: 2}; ;');
+            example('const x = {}; x[0] = 2;', 'const x = {[0]: 2}; ;');
             before(prevWrite.blockBody[prevWrite.blockIndex]);
             before(readRef.blockBody[readRef.blockIndex]);
 
-            objExprNode.properties.push(AST.property(propName, readRef.grandNode.right));
+            if (readRef.parentNode.computed) {
+              ASSERT(AST.isNumberLiteral(prop), 'checked before getting here, computed prop must be a number', propNode);
+              objExprNode.properties.push(AST.property(
+                AST.primitive(Number(propName)),
+                readRef.grandNode.right,
+                false, // shorthand
+                true // computed
+              ));
+            } else {
+              objExprNode.properties.push(AST.property(propName, readRef.grandNode.right));
+            }
             readRef.blockBody[readRef.blockIndex] = AST.emptyStatement();
 
             after(prevWrite.blockBody[prevWrite.blockIndex]);
@@ -765,6 +783,7 @@ function onlyFreeVarDeclsBetween(a, b, body) {
   // var decls with inits we know can't trigger spies for the sake of declaring them.
 
   ASSERT(a>=0 && a<b && b<body.length, 'caller should ensure bounds 0<=a<b<body.len', a, b, body.length);
+  // Do not include checking a and b themselves. We only care about detecting in-between changes.
   for (let i=a+1; i<b-1; ++i) {
     switch (body[i].type) {
       case 'VarStatement': {

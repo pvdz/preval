@@ -67,7 +67,12 @@ function _funcScopePromo(fdata) {
         from, // A BlockStatement.body array
         to, // A BlockStatement.body array
         toPid,
+        parentNode,
       }) => {
+        rule('Functions should be promoted as much as possible');
+        example('if (x) { const f = function(){}; f() }', 'const f = function(){}; if (x) { f(); }');
+        before(parentNode);
+
         vlog('Moving', varDecl.$p.pid, 'to', toPid);
         const pos = from.indexOf(varDecl);
         ASSERT(pos >= 0, 'var decl must be part of this parent');
@@ -75,6 +80,8 @@ function _funcScopePromo(fdata) {
         let bodyOffset = findBodyOffsetExpensiveMaybe(to);
         if (bodyOffset < 0) bodyOffset = 0;
         to.splice(bodyOffset, 0, varDecl);
+
+        after(parentNode);
       },
     );
 
@@ -155,6 +162,7 @@ function _oneFunc(meta, funcName, queue) {
 
   vlog('Queuing', varDecl.$p.pid, 'for promotion from', write.parentNode.$p.pid, 'to', currentParentNode.$p.pid);
   queue.push({
+    parentNode: currentParentNode,
     varDecl,
     from: write.blockBody,
     to: currentParentNode.body,

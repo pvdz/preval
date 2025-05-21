@@ -5367,11 +5367,13 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
               ) {
                 rule('Ident statement where the ident is used immediately as an arg on the next statement can drop the ident statement');
                 example('x; f(x);', '; f(x);');
+                before(body[i-1]);
                 before(body[i]);
 
                 // Is it going to lead to problems when changing the previous (already visited, not revisited..) statement?
                 body[i-1] = AST.emptyStatement();
 
+                after(body[i-1]);
                 after(body[i]);
                 assertNoDupeNodes(body, 'body');
                 return true;
@@ -5853,14 +5855,17 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             vlog('Skipping `arguments` in global space');
           }
           else if (globals.has(node.name) || meta.isBuiltin || (useRiskyRules() && !meta.isImplicitGlobal)) {
-            // We can't "just" do this safely because implicit globals would throw and this eliminates a runtime exception.
+            // We can't "just" do this safely because implicit globals would throw and this
+            // eliminates an observable and catchable runtime exception. Try as I might, there is no real
+            // alternative to verifying TDZ on multi-scoped variables. I'm choosing pragmatism over purism
+            // in this particular case. TDZ based hacks are super rare and if they happen, we'll cover it later.
             // Restrictions:
-            // - Eliminating local bindings that are closures is unsafe because (worst case) we can't prove TDZ. -> enableRiskyRules()
-            // - Eliminating implicit globals is unsafe because we can't proof they won't throw -> enableRiskyRules()
-            // Note: it's not risky for built-ins (and we could improve on non-closured bindings)
+            // - Eliminating local bindings that are closures is unsafe because (worst case) we can't prove TDZ. -> enableRiskyRules()?
+            // - Eliminating implicit globals is unsafe because we can't proof they won't throw -> enableRiskyRules()?
+            // Note: it's not risky for built-ins (and we could improve on non-closured bindings but that requires scanning ahead)
 
-            riskyRule('A statement can not just be an identifier');
-            example('x;', ';');
+            rule('A statement can not just be a builtin identifier');
+            example('undefined;', ';');
             before(node, parentNodeOrWhatever);
 
             body[i] = AST.emptyStatement();

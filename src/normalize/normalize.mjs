@@ -7291,7 +7291,7 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
             // A property can be shorthand, computed, method, getter, setter
             // We can ignore the getter/setter/method props because functions have no observable side effects when being declared
             // TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
-            ASSERT(!pnode.shorthand, 'this already has to be fixed in the prepare phase');
+            ASSERT(!pnode.shorthand, 'prepare phase should already have enforced shorthand:false', pnode);
 
             if (pnode.type === 'SpreadElement') {
               if (AST.isComplexNode(pnode.argument)) last = i;

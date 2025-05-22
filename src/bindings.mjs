@@ -415,11 +415,11 @@ export function registerGlobalIdent(
     //varDeclRef, // {node:init,varDeclNode,varDeclBody,varDeclIndex}. Set from phase1 in the var delc case, regardless of const/let. varDeclBody[varDeclIndex] === varDeclNode
     isCatchVar: false, // Set by phase1 TryStatement:after on catch vars
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
+    isTernaryConst: false, // Set in phase1_1 if verified to be true. When true, all reads of this binding always return the same value regardless of branching. Consider the reads to be the same as a const. It's just not an actual const. (Artifact of ternary `const x = a?b:c` which Preval always modesls as if-else).
     bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits/Program. Should be set for anything else (which is only var decls after normalization).
-    singleScoped: undefined, // bool. Is there any reference inside a different scope from another ref? Set at the start of phase2.
-    singleInner: undefined, // bool. Are all references of this binding in the same scope/catch?
-    //singleScopeWrites: undefined, // bool. Are all writes to this binding happening in the same scope? Set at the start of phase2. (Always true for constants)
-    //singleScopeReads: undefined, // bool. Are all reads of this binding happening in the same scope? Set at the start of phase2.
+    singleScoped: undefined, // bool. Is there any reference inside a different scope from another ref? Set at the end of phase1.
+    //singleScopeWrites: undefined, // bool. Are all writes to this binding happening in the same scope? Set at the end of phase1. (Always true for constants)
+    //singleScopeReads: undefined, // bool. Are all reads of this binding happening in the same scope? Set at the end of phase1.
     tainted: false, // For single rules, mark an identifier dirty, consider its caches potentially busted, requiring another phase1 first.
     // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
     // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
@@ -712,12 +712,13 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
       // back to their initial (implicit global) name, since those names must be maintained as we don't
       // control the final/target environment.
       globalName = IMPLICIT_GLOBAL_PREFIX + globalName;
-      vlog('  Will temporarily rename to `' + globalName + '` to avoid collisions.');
+      vlog('  Will temporarily prefix the implicit global tag to avoid collisions, initially;', globalName);
     }
 
     // Register one...
-    vlog('Creating implicit global binding for `' + globalName + '` now');
+    vlog('Creating unique name for `' + globalName + '`');
     const uniqueName = generateUniqueGlobalName(globalName, fdata);
+    vlog('Resulting uniqueName:', uniqueName, ', this will be the temp name for this reference');
     const meta = registerGlobalIdent(fdata, uniqueName, node.name, { isImplicitGlobal: true });
     if (VERBOSE_TRACING) {
       vlog('- Meta:', {

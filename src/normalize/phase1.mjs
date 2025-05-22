@@ -52,6 +52,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   const TIMING = {
     init: 0,
     walk: 0,
+    mscoping: 0,
     end: 0,
   };
 
@@ -141,7 +142,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   vlog(`RTT: phase1 (REF_TRACK_TRACING=${REF_TRACK_TRACING}, enable with --ref-tracing)\n`);
   if (REF_TRACK_TRACING) console.group();
   log('Walking AST...');
-  walk(_walker, ast, 'ast');
+  walk(mainPhase1Walker, ast, 'ast');
   log('Walked AST in', Date.now() - now, 'ms');
   if (REF_TRACK_TRACING) console.groupEnd();
   vlog('End of phase1\n');
@@ -149,11 +150,54 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   const mwalk = enableTiming && performance.now();
   TIMING.walk = mwalk - minit;
 
+  // Set meta.rwOrder and meta.singleScoped stuff.
+  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+    // Since we regenerate the pid during every phase1, we should be able to rely on it for DFS ordering.
+    // Note: this is not necessarily source order. `x = y` will visit `y` before `x`.
+    const rwOrder = meta.reads.concat(meta.writes).sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
+      +a < +b ? -1 : +a > +b ? 1 : 0,
+    );
+    meta.rwOrder = rwOrder;
+
+    // We can also settle this in phase1...
+    let lastScope = undefined;
+    let lastScopeRead = undefined;
+    let lastScopeWrite = undefined;
+    meta.singleScoped = true;
+    meta.singleScopeReads = true;
+    meta.singleScopeWrites = true;
+    rwOrder.some((ref) => {
+      if (lastScope === undefined) {
+        lastScope = ref.scope;
+      }
+      if (lastScope !== ref.scope) {
+        meta.singleScoped = false;
+      }
+
+      if (ref.type === 'read') {
+        if (lastScopeRead === undefined) lastScopeRead = ref.scope;
+        else if (lastScopeRead !== ref.scope) meta.singleScopeReads = false;
+      }
+      if (ref.type === 'write') {
+        if (lastScopeWrite === undefined) lastScopeWrite = ref.scope;
+        else if (lastScopeWrite !== ref.scope) meta.singleScopeWrites = false;
+      }
+
+      // These start as undefined
+      if (meta.singleScopeReads === false && meta.singleScopeWrites === false) {
+        return true;
+      }
+    });
+  });
+
+  const mscoping = enableTiming && performance.now();
+  TIMING.scoping = mscoping - mwalk;
+
   assertNoDupeNodes(ast, 'body');
 
   setVerboseTracing(tracingValueBefore);
 
-  function _walker(node, before, nodeType, path) {
+  function mainPhase1Walker(node, before, nodeType, path) {
     ASSERT(node, 'node should be truthy', node);
     ASSERT(nodeType === node.type);
 
@@ -1282,7 +1326,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
   if (enableTiming) {
     const mend = performance.now();
-    TIMING.end = mend - mwalk;
+    TIMING.end = mend - mscoping;
     //Object.keys(TIMING).forEach(key => TIMING[key] = Math.floor(TIMING[key]))
     console.log(DIM + 'Phase1   timing:', JSON.stringify(TIMING).replace(/"|\.\d+/g, '').replace(/(:|,)/g, '$1 '), RESET);
   }

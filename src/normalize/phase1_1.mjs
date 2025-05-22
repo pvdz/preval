@@ -5,6 +5,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, sour
 import { createTypingObject, getCleanTypingObject, getMeta, inferNodeTyping, mergeTyping } from '../bindings.mjs';
 import { SYMBOL_COERCE, SYMBOL_DOTCALL, SYMBOL_FRFR } from '../symbols_preval.mjs';
 import { symbo } from '../symbols_builtins.mjs';
+// import { setPrintPids } from '../../lib/printer.mjs';
 
 // This phase walks the AST a few times to discover things for which it needs phase1 to complete
 // Currently it discovers call arg types (for which it needs the meta.typing data) and propagated mustBeType cases
@@ -49,12 +50,15 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   if (!verboseTracing /*&& (passes > 1 || phase1s > 1)*/) {
     vlog('(Disabling verbose tracing for phase 1 after the first pass)');
     setVerboseTracing(false);
+    // setPrintPids(true);
+    // currentState(fdata, 'phase1.1', true, fdata);
+    // setPrintPids(false);
   }
 
   // Collect for type analysis later
   const funcNodesForSomething = new Set; // Set<FunctionExpression>
   const calledMetas = new Map; // Map<Meta, Array<CallExpression>>
-  const untypedConstDecls = new Set; // Set<VarStatement> Collect all const decls that have no typing yet.
+  const untypedVarDecls = new Set; // Set<VarStatement> Collect all const decls that have no typing yet.
   const funcNodesForParams = new Set;
 
   // Discover param types. If an ident always gets invoked in the same way then that's information
@@ -215,7 +219,13 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
       const meta = getMeta(declName, fdata);
       if (!meta.typing.mustBeType || meta.typing.mustBeType === 'primitive') {
         vlog('## queued type resolving for decl of', [declName], '(mustbetype:', meta.typing.mustBeType, ', isprimitive:', meta.typing.mustBePrimitive, ')');
-        untypedConstDecls.add({node: declNode, meta});
+        untypedVarDecls.add({node: declNode, meta});
+        if (declNode.kind === 'let') {
+          if (isTernaryPattern(declNode, meta)) {
+            vlog('  -', declName, 'is a ternary constant!');
+            meta.isTernaryConst = true;
+          }
+        }
       } else {
         vlog('## decl for', [declName], 'already has typing;', meta.typing.mustBeType, meta.typing.mustBePrimitive)
       }
@@ -343,17 +353,17 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
   TIMING.three = mthree - mtwo;
 
   vlog('');
-  vgroup('Trying to resolve a mustBeType for', untypedConstDecls.size, 'var decls, ', funcNodesForSomething.size, 'funcs, and the callerArgs for', calledMetas.size, 'funcs');
+  vgroup('Trying to resolve a mustBeType for', untypedVarDecls.size, 'var decls, ', funcNodesForSomething.size, 'funcs, and the callerArgs for', calledMetas.size, 'funcs');
   let typingUpdated = 0;
   let typingChanged = true;
   let loopi = 0;
-  while (typingChanged && untypedConstDecls.size) {
+  while (typingChanged && untypedVarDecls.size) {
     typingChanged = false;
-    group('typingLoop', loopi++,';', untypedConstDecls.size, 'vars and', funcNodesForSomething.size, 'funcs left');
+    group('typingLoop', loopi++,';', untypedVarDecls.size, 'vars and', funcNodesForSomething.size, 'funcs left');
 
-    vgroup(untypedConstDecls.size, 'const decl types to discover');
+    vgroup(untypedVarDecls.size, 'const decl types to discover');
     let cdi = 0;
-      untypedConstDecls.forEach((untypedObj) => {
+    untypedVarDecls.forEach((untypedObj) => {
       const {node, meta} = untypedObj;
       const name = node.id.name;
       vgroup('-- decl', cdi++, '::', [name], ', mustBeType:', [meta.typing?.mustBeType, meta.typing?.mustBePrimitive]);
@@ -646,7 +656,7 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
         meta.typing = newTyping; // Is there any reason we shouldn't overwrite it anyways? It may have discovered other typing things?
         typingChanged = true;
         typingUpdated += 1;
-        untypedConstDecls.delete(untypedObj);
+        untypedVarDecls.delete(untypedObj);
       }
       else if (newTyping?.mustBePrimitive && !meta.typing?.mustBePrimitive) {
         vlog('  - We have a mustBePrimitive, typingChanged=true');
@@ -974,10 +984,8 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     });
     vlog('Updated param types in', Date.now() - now2, 'ms');
     vgroupEnd();
-
-    groupEnd();
   }
-  vlog('All typing settled now..., updated', typingUpdated, 'times. Still have', untypedConstDecls.size, 'decls without a mustBeType, sadge');
+  vlog('All typing settled now..., updated', typingUpdated, 'times. Still have', untypedVarDecls.size, 'decls without a mustBeType, sadge');
   vgroupEnd();
 
   const mfour = enableTiming && performance.now();
@@ -1102,5 +1110,163 @@ export function phase1_1(fdata, resolve, req, firstAfterParse, passes, phase1s, 
     const mseven = performance.now();
     TIMING.seven = mseven - msix;
     console.log(DIM + 'Phase1.1 timing:', JSON.stringify(TIMING).replace(/"|\.\d+/g, '').replace(/(:|,)/g, '$1 '), RESET);
+  }
+}
+
+function isTernaryPattern(varDeclNode, meta) {
+  // This function is sound (if it returns true, it must be correct), but not complete (won't always return true when it should)
+  // When it returns true, it guarantees all reads always return the same value, considered constant for most intentions and purposes.
+
+  // A binding is a "ternary constant" if is a let that is assigned to once or twice, each assignment in different branches
+  // of the same `if` node. There's three variations; three writes (var, assign in either branch), and two writes (var init
+  // and a write in one branch or the other).
+  // An important property is that under no circumstance a read may see a different value of the binding in the same run.
+  // eg. `let x = 1; x; if (a) x = 2; x` now x is observed with different values twice. However, `let x = 1; if (a) x = 2; else x; x;`
+  // now x is never observed differently, no matter the value of `a`. When `a` is true, x will only be seen as `2` once,
+  // and otherwise `x` is observed as 1 twice. But never as a different value.
+  //
+  // This property is important and easy to check for single scoped vars while difficult to prove for multi scoped vars.
+  // For multi scoped we have to prove that there are no observable side effects that may observe the binding before it's
+  // "sealed" into its final value. We can only do some heuristics but we'll never catch all cases around this.
+  //
+  // Another property is that the writes must occur in unique branches of an `if` node. Due to the nature of the AST we
+  // can't easily navigate from the assign back to the decl so we have to do some guess work here.
+  // To begin with we are going to serach for an `if`, starting at the var decl. We'll bail if there's no `if` following
+  // the var decl in the same body.
+
+  if (!meta.singleScoped) return; // Multi scoped is much harder to do. Bail on it for now.
+  if (meta.writes.length < 2) return; // Must have two or three writes
+  if (meta.writes.length > 3) return; // Not our pattern. TODO: we could catch more cases like this that use nested ternaries but it gets harder.
+  if (!meta.reads.length) return; // essentially dead code
+
+  const varWrite = meta.writes[0];
+  if (varWrite.kind !== 'var') return;
+
+  if (varWrite.parentNode.kind !== 'let') return;
+  const varNode = varWrite.blockBody[varWrite.blockIndex];
+
+  if (meta.rwOrder[0] !== varWrite) return; // we can't assert the first or second assign as easily.
+
+  const firstAssign = meta.writes[1];
+  if (firstAssign.kind !== 'assign') return; // dont think this can happen but ok
+
+  const firstNode = firstAssign.blockBody[firstAssign.blockIndex];
+  const firstPid = +firstNode.$p.pid;
+
+  // Find the node that contains the write.
+  vlog('Searching for firstAssign pid @', firstPid, ', var decl @', +varNode.$p.pid, '(note: we are looking for PREV here!)');
+  let ifNode;
+  let prevPid = +varNode.$p.pid;
+  // Note: +2 because we lookahead and then walk one back.
+  for (let i=varWrite.blockIndex+2; i<varWrite.blockBody.length; ++i) {
+    const stmt = varWrite.blockBody[i];
+    const stmtPid = +stmt.$p.pid;
+    vlog('-', i, ';', stmt.type, '(', firstPid, '>=', prevPid, '&&', firstPid, '<', stmtPid, ')');
+    if (firstPid >= prevPid && firstPid < stmtPid) {
+      // write must exist in prev statement, which must exist (and shouldn't really be the var decl itself)
+      const prev = varWrite.blockBody[i-1];
+      if (prev.type === 'IfStatement') {
+        // Good.
+        vlog('Found the if-node! At i=', i-1);
+        ifNode = prev;
+        break;
+      } else {
+        // It may still be nested or whatever, but we bail on that for now.
+        return false;
+      }
+    }
+    prevPid = stmtPid;
+  }
+  if (!ifNode) return false;
+
+  // Now we must confirm that the binding has at most two assigns and that each assign has their own branch and that
+  // there is no read prior to the assign of that branch (if there is one). If there is a second assign, it must be
+  // a child of this same if-node.
+
+  const ifBranchStart = +ifNode.consequent.$p.pid;
+  const ifBranchEnd = +ifNode.consequent.$p.lastPid;
+  const elseBranchStart = +ifNode.alternate.$p.pid;
+  const elseBranchEnd = +ifNode.alternate.$p.lastPid;
+
+  const read0pid = +meta.reads[0].blockBody[meta.reads[0].blockIndex].$p.pid;
+
+  if (read0pid < ifBranchStart) {
+    // First read occurred before the if-consequent and since we asserted the write to be inside the if
+    // this read can observe a value different from the final value. So we bail. (can also be if-test!)
+    return false;
+  }
+
+  // Note: check the consequent. The if-test may read it too which would be bad too.
+  if (read0pid > elseBranchEnd) {
+    // This safeguards the read condition, provided the writes both occur in this if-node
+    // - For the 2-write case, this is a fast safe check and we are done (we know it appears in this if-node and don't care where).
+    // - For the 3-write case, we must verify that the writes appear in the proper branches first
+    // - Technically, we can do this recursive for more writes (a ? b : c ? d : etc)
+    if (meta.writes.length === 2) return true;
+    const secondPid = +meta.writes[2].blockBody[meta.writes[2].blockIndex].$p.pid;
+    return firstPid > ifBranchStart && firstPid < ifBranchEnd && secondPid > elseBranchStart && secondPid < elseBranchEnd;
+  }
+
+  if (meta.writes.length === 2) {
+    // In this case we must check if there's a read in the write-branch that appears before the write.
+    // This does not need to be the first read, like `let a=1; if(x) { a; a } else { a=2; a; }` is fine
+    // while `let a=1; if(x) { a; a } else { a; a=2; }` is bad. Check until the first ref that appears
+    // after the if-node, if any.
+
+    if (firstPid > ifBranchStart && firstPid < ifBranchEnd) {
+      // Assert that no write appears between ifBranchStart and firstPid.
+      // Stop search when we see a read after the firstPid (they are sequential)
+      for (let i=0; i<meta.reads.length; ++i) {
+        const pid = +meta.reads[i].blockBody[meta.reads[i].blockIndex].$p.pid;
+        ASSERT(pid > ifBranchStart, 'this was checked above and is a bad case');
+        if (pid > firstPid) break;
+        return false; // Bail: this read observes the binding before writing to it so different reads can have different results.
+      }
+      // If it reaches here it must be ok; reading this binding must yield a consistent result, no matter the branching.
+      return true;
+    }
+    else if (firstPid > elseBranchStart && firstPid < elseBranchEnd) {
+      // Basically the same as in the other branch;
+      // Assert that no write appears between elseBranchStart and firstPid.
+      // Stop search when we see a read after the firstPid (they are sequential)
+      for (let i=0; i<meta.reads.length; ++i) {
+        const pid = +meta.reads[i].blockBody[meta.reads[i].blockIndex].$p.pid;
+        if (pid < elseBranchStart) continue;
+        if (pid > firstPid) break;
+        return false; // Bail: this read observes the binding before writing to it so different reads can have different results.
+      }
+      // If it reaches here it must be ok; reading this binding must yield a consistent result, no matter the branching.
+      return true;
+    }
+    else {
+      ASSERT(false, 'the first pid must appear between the pid of the if-branch or the else-branch as it must appear inside this node.');
+    }
+    unreachable();
+  } else {
+    ASSERT(meta.writes.length === 3, 'checked above');
+
+    const secondAssign = meta.writes[2];
+    if (secondAssign.kind !== 'assign') return; // dont think this can happen but ok
+
+    const secondNode = secondAssign.blockBody[secondAssign.blockIndex];
+    const secondPid = +secondNode.$p.pid;
+
+    // Due to sequential nature, the first assign must be in the if-branch and the second-assign must be in the else-branch.
+    if (firstPid < ifBranchStart || firstPid > ifBranchEnd) return false;
+    if (secondPid < elseBranchStart || secondPid > elseBranchEnd) return false;
+
+    // Ok, each branch has one assign. Now verify for each read to be between the first assign and if-branch-end, or simply after the second assign.
+    // We can stop searching once we find a read that occurs after the if-node, because they're sequential.
+    // There is no read before this if (already checked).
+    for (let i=0; i<meta.reads.length; ++i) {
+      const pid = +meta.reads[i].blockBody[i-1];
+      if (pid > secondPid) break;
+      if (pid < firstPid || pid > elseBranchStart) {
+        // So in this case the read must be in the if-branch but before the first assign, or in the else-branch before the second assign.
+        return false;
+      }
+    }
+    // If it gets here then all reads are in such a way that they can never yield an inconsistent value for this binding.
+    return true;
   }
 }

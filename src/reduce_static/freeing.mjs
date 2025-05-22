@@ -173,9 +173,6 @@ export function freeing(fdata, $prng, options) {
   const r = _freeing(fdata, $prng, usePrng);
   groupEnd();
 
-
-//stopmaar
-
   return r;
 }
 function _freeing(fdata, $prng, usePrng) {

@@ -469,7 +469,6 @@ function _refTracked(fdata) {
                     after(next);
                     // currentState(fdata, 'okwot', true, fdata);
                     targetBlock.shift(varDecl); // was only for debugging.
-                    // stopmaar
                   }
                 });
 

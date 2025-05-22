@@ -19,8 +19,8 @@ $(a);
 
 
 `````js filename=intro
-const tmpThrowArg /*:unknown*/ = $(2);
-throw tmpThrowArg;
+const a /*:unknown*/ = $(2);
+throw a;
 `````
 
 
@@ -28,8 +28,8 @@ throw tmpThrowArg;
 (This ought to be the final result)
 
 `````js filename=intro
-const tmpThrowArg = $(2);
-throw tmpThrowArg;
+const a = $(2);
+throw a;
 `````
 
 

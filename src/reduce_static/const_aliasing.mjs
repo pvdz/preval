@@ -19,6 +19,8 @@
 //        const x = unknown; y = x; z = x; $(x, y);
 // ->     const x = unknown; y = unknown; z = unknown; $(x, y)
 //
+// Also handles some "ternary" cases, where a binding is conditionally initialized but still always to the same binding.
+//
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after, findBodyOffset, riskyRule, todo, } from '../utils.mjs';
 import * as AST from '../ast.mjs';
@@ -36,12 +38,19 @@ function _constAliasing(fdata) {
   // `const a = x; const b = a; f(b);` --> `f(a);`
 
   let dropped = 0;
+  const queue = [];
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, lhsName) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
+    if (meta.isCatchVar) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
-    if (!meta.isConstant) return;
+    if (!meta.isConstant) {
+      if (meta.isTernaryConst) {
+        handleTernaryConst(meta);
+      }
+      return;
+    }
     if (meta.writes.length !== 1) return;
     if (meta.writes[0].kind !== 'var') return; // catch or smth
     if (meta.varDeclRef.varDeclNode.init.type !== 'Identifier') return;
@@ -339,7 +348,56 @@ function _constAliasing(fdata) {
     scanBlock(index, body);
   });
 
+  function handleTernaryConst(meta) {
+    // We can salvage this.
+    // If this var is consistently set to the same binding that is a const (or even other ternaryconst) in all writes then it's an alias anyways
+    // and we can dedupe them.
+    let bindingName;
+    const ok = meta.writes.every((write, i) => {
+      if (i===0 && meta.ternaryWritesIgnoreFirst) return true;
+      const rhs = write.parentNode.type === 'VarStatement' ? write.parentNode.init : write.parentNode.right;
+      if (rhs.type !== 'Identifier') return; // Whatever.
+      if (bindingName) return bindingName === rhs.name;
+      // Ok we're searching for this name now.
+      bindingName = rhs.name;
+      return true;
+    });
+    if (!ok) return; // all relevant writes did not get same ident assigned
+    const rhsMeta = fdata.globallyUniqueNamingRegistry.get(bindingName);
+    if (rhsMeta.isConstant || rhsMeta.isTernaryConst) {
+      rule('When a ternary const binding is assigned the same binding that is a const or ternary const, eliminate the first binding');
+      example(
+        'let a = 0; let b = 0; if (x) { a = 1; b = a; } else { a = 2; b = a; } $(b)',
+        'let a = 0; if (x) { a = 1; } else { a = 2; } $(a)',
+      );
+
+      // Eliminate all writes. They should be statements so just replace the statement.
+      // Replace all reads by the other name.
+      // TODO: we can do better; cleanup with queue
+      meta.writes.forEach(write => {
+        before(write.blockBody[write.blockIndex]);
+        write.blockBody[write.blockIndex] = AST.emptyStatement()
+        after(write.blockBody[write.blockIndex]);
+
+        queue.push({
+          index: write.blockIndex,
+          func: () => write.blockBody.splice(write.blockIndex, 1), // Drop the empty statement
+        });
+      });
+      meta.reads.forEach(read => {
+        before(read.blockBody[read.blockIndex]);
+        if (read.parentIndex < 0) read.parentNode[read.parentProp] = AST.identifier(bindingName);
+        else read.parentNode[read.parentProp][read.parentIndex] = AST.identifier(bindingName);
+        after(read.blockBody[read.blockIndex]);
+      });
+      dropped += 1;
+    }
+  }
+
   if (dropped) {
+    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.forEach(({ index, func }) => func());
+
     log('Dropped const aliases:', dropped, '. Restarting from phase1');
     return {what: 'constAliasing', changes: dropped, next: 'phase1'};
   }

@@ -21,16 +21,13 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(1);
-let tmpObjSpread /*:unknown*/ = undefined;
 if (tmpIfTest) {
   a = $(60);
-  tmpObjSpread = a;
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
-  tmpObjSpread = a;
 }
-const tmpCalleeParam /*:object*/ = { ...tmpObjSpread };
+const tmpCalleeParam /*:object*/ = { ...a };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -41,16 +38,12 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpIfTest = $(1);
-let tmpObjSpread = undefined;
-if (tmpIfTest) {
+if ($(1)) {
   a = $(60);
-  tmpObjSpread = a;
 } else {
   a = $($(100));
-  tmpObjSpread = a;
 }
-$({ ...tmpObjSpread });
+$({ ...a });
 $(a);
 `````
 
@@ -61,18 +54,15 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = $( 1 );
-let c = undefined;
 if (b) {
   a = $( 60 );
-  c = a;
 }
 else {
-  const d = $( 100 );
-  a = $( d );
-  c = a;
+  const c = $( 100 );
+  a = $( c );
 }
-const e = { ... c };
-$( e );
+const d = { ... a };
+$( d );
 $( a );
 `````
 

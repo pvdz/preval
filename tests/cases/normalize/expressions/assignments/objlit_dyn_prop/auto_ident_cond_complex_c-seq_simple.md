@@ -21,16 +21,13 @@ $(a);
 `````js filename=intro
 let a /*:unknown*/ = undefined;
 const tmpIfTest /*:unknown*/ = $(1);
-let tmpObjLitPropKey /*:unknown*/ = undefined;
 if (tmpIfTest) {
   a = $(60);
-  tmpObjLitPropKey = a;
 } else {
   const tmpCalleeParam$1 /*:unknown*/ = $(100);
   a = $(tmpCalleeParam$1);
-  tmpObjLitPropKey = a;
 }
-const tmpCalleeParam /*:object*/ = { [tmpObjLitPropKey]: 10 };
+const tmpCalleeParam /*:object*/ = { [a]: 10 };
 $(tmpCalleeParam);
 $(a);
 `````
@@ -41,16 +38,12 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpIfTest = $(1);
-let tmpObjLitPropKey = undefined;
-if (tmpIfTest) {
+if ($(1)) {
   a = $(60);
-  tmpObjLitPropKey = a;
 } else {
   a = $($(100));
-  tmpObjLitPropKey = a;
 }
-$({ [tmpObjLitPropKey]: 10 });
+$({ [a]: 10 });
 $(a);
 `````
 
@@ -61,18 +54,15 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = $( 1 );
-let c = undefined;
 if (b) {
   a = $( 60 );
-  c = a;
 }
 else {
-  const d = $( 100 );
-  a = $( d );
-  c = a;
+  const c = $( 100 );
+  a = $( c );
 }
-const e = { [ c ]: 10 };
-$( e );
+const d = { [ a ]: 10 };
+$( d );
 $( a );
 `````
 

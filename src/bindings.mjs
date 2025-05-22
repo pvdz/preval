@@ -416,6 +416,7 @@ export function registerGlobalIdent(
     isCatchVar: false, // Set by phase1 TryStatement:after on catch vars
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
     isTernaryConst: false, // Set in phase1_1 if verified to be true. When true, all reads of this binding always return the same value regardless of branching. Consider the reads to be the same as a const. It's just not an actual const. (Artifact of ternary `const x = a?b:c` which Preval always modesls as if-else).
+    //ternaryWritesIgnoreFirst, Set in phase1_1 if ternary const and first write is not observed
     bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits/Program. Should be set for anything else (which is only var decls after normalization).
     singleScoped: undefined, // bool. Is there any reference inside a different scope from another ref? Set at the end of phase1.
     //singleScopeWrites: undefined, // bool. Are all writes to this binding happening in the same scope? Set at the end of phase1. (Always true for constants)

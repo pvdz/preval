@@ -5100,6 +5100,64 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
                 }
                 break;
               }
+              case symbo('Math', 'trunc'): {
+                // TODO: improve handling
+                if (args.length === 1 && args.every((anode, ai) => anode.type !== 'SpreadElement')) {
+                  const v = (args[0] && AST.isNumberLiteral(args[0])) ? AST.getPrimitiveValue(args[0]) : undefined;
+                  if (v !== undefined && Number.isSafeInteger(Math.trunc(v))) {
+                    rule('A call to Math.trunc can be replaced by the arg, trunced');
+                    example('Math.trunc(100);', `100;`);
+                    before(body[i]);
+
+                    const finalNode = AST.primitive(Math.trunc(v));
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body.splice(i, 1,
+                      // Context might not be used but if it is referenced we keep for tdz reasons.
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                      finalParent,
+                    );
+
+                    after(finalParent);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                }
+                break;
+              }
+              case symbo('Math', 'max'): {
+                // TODO: improve handling
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
+                  if (args.length && args.every((anode, ai) => AST.isNumberLiteral(anode) || (anode.type === 'UnaryExpression' && AST.isNumberLiteral(anode.argument)))) {
+                    rule('A call to Math.max can be replaced by the max arg');
+                    example('Math.trunc(100);', `100;`);
+                    before(body[i]);
+
+                    // Slightly careful; retain the numeric node to prevent rounding errors or whatever
+                    let maxNode = args[0];
+                    let maxVal = AST.getPrimitiveValue(args[0]);
+                    for (let i=1; i<args.length; ++i) {
+                      const v = AST.getPrimitiveValue(args[i]);
+                      if (v > maxVal || isNaN(v)) {
+                        maxNode = args[i];
+                        maxVal = v;
+                      }
+                    }
+
+                    const finalNode = maxNode;
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body.splice(i, 1,
+                      // Context might not be used but if it is referenced we keep for tdz reasons.
+                      ...(contextNode ? [AST.expressionStatement(AST.cloneSimple(contextNode))] : []),
+                      finalParent,
+                    );
+
+                    after(finalParent);
+                    assertNoDupeNodes(body, 'body');
+                    return true;
+                  }
+                }
+                break;
+              }
               case symbo('string', 'constructor'): {
                 // We eliminate String in favor of $coerce
 
@@ -6012,6 +6070,11 @@ export function phaseNormalize(fdata, fname, firstTime, prng, options) {
         }
 
         return false;
+      }
+
+      case 'Import': {
+        todo('normalize: import() ?');
+        return;
       }
 
       case 'Literal': {

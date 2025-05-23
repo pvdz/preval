@@ -179,20 +179,40 @@ function _ifTestBool(fdata) {
 
         if (
           read.blockBody[read.blockIndex].type === 'VarStatement' &&
-          read.blockBody[read.blockIndex].kind === 'const'
+          (read.blockBody[read.blockIndex].kind === 'const' || read.blockBody[read.blockIndex].kind === 'let')
         ) {
-          if (
-            read.parentNode.type === 'UnaryExpression' && // This implicitly must mean the ident is not the var .id...
-            read.parentNode.operator === '!'
-          ) {
-            // Yes, this is an inv bool alias so we know its value inside target `if`
-            boolAliasesInv.push(read.blockBody[read.blockIndex].id.name);
-          } else if (
-            read.parentNode.type === 'CallExpression' && // This implicitly must mean the ident is not the var .id...
-            read.parentNode.callee.type === 'Identifier' &&
-            read.parentNode.callee.name === symbo('boolean', 'constructor') // Boolean(x)
-          ) {
-            boolAliasesEq.push(read.blockBody[read.blockIndex].id.name);
+          // Const is fine here as we can assert the value to be the init.
+          // For let, only allow if single scoped, no writes before read, and same loop/try scope.
+          const aliasName = read.blockBody[read.blockIndex].id.name;
+          let allowAlias = false;
+          if (read.blockBody[read.blockIndex].kind === 'const') {
+            allowAlias = true;
+          } else {
+            const aliasMeta = fdata.globallyUniqueNamingRegistry.get(aliasName);
+            if (aliasMeta?.singleScoped) {
+              // Use rwOrder to prove no writes before this read
+              const rwOrder = aliasMeta.rwOrder;
+              const refIdx = rwOrder.indexOf(read);
+              const declWrite = refIdx > 0 && rwOrder[refIdx - 1];
+              if (declWrite?.kind === 'var') {
+                // Ok, I think this binding is safe and a const up to the point of the read.
+                allowAlias = (declWrite.innerLoop === read.innerLoop && declWrite.innerTry === read.innerTry);
+              }
+            }
+          }
+          if (allowAlias) {
+            if (
+              read.parentNode.type === 'UnaryExpression' &&
+              read.parentNode.operator === '!'
+            ) {
+              boolAliasesInv.push(aliasName);
+            } else if (
+              read.parentNode.type === 'CallExpression' &&
+              read.parentNode.callee.type === 'Identifier' &&
+              read.parentNode.callee.name === symbo('boolean', 'constructor')
+            ) {
+              boolAliasesEq.push(aliasName);
+            }
           }
         }
       }
